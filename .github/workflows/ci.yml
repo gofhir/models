@@ -39,13 +39,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        module:
-          - name: r4
-            path: ./r4/...
-          - name: r4b
-            path: ./r4b/...
-          - name: r5
-            path: ./r5/...
+        module: [r4, r4b, r5]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -61,30 +55,30 @@ jobs:
           path: |
             ~/.cache/go-build
             ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ matrix.module.name }}-${{ hashFiles('**/go.sum') }}
+          key: ${{ runner.os }}-go-${{ matrix.module }}-${{ hashFiles('**/go.sum') }}
           restore-keys: |
-            ${{ runner.os }}-go-${{ matrix.module.name }}-
+            ${{ runner.os }}-go-${{ matrix.module }}-
             ${{ runner.os }}-go-
 
-      - name: Create go.work for local modules
+      - name: Run tests for ${{ matrix.module }}
         run: |
-          go work init
-          go work use ./r4 ./r4b ./r5
-
-      - name: Run tests for ${{ matrix.module.name }}
-        run: go test -v -race -coverprofile=coverage-${{ matrix.module.name }}.txt -covermode=atomic ${{ matrix.module.path }}
+          cd ${{ matrix.module }}
+          go test -v -race -coverprofile=coverage.txt -covermode=atomic ./...
 
       - name: Upload coverage
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: coverage-${{ matrix.module.name }}.txt
-          flags: ${{ matrix.module.name }}
+          files: ${{ matrix.module }}/coverage.txt
+          flags: ${{ matrix.module }}
 
   build:
     name: Build
     runs-on: ubuntu-latest
     needs: [lint, test]
+    strategy:
+      matrix:
+        module: [r4, r4b, r5]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -94,13 +88,10 @@ jobs:
         with:
           go-version: ${{ env.GO_VERSION }}
 
-      - name: Create go.work for local modules
+      - name: Build ${{ matrix.module }}
         run: |
-          go work init
-          go work use ./r4 ./r4b ./r5
-
-      - name: Build all modules
-        run: go build -v ./...
+          cd ${{ matrix.module }}
+          go build -v ./...
 
   verify-modules:
     name: Verify Modules
@@ -117,11 +108,6 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: ${{ env.GO_VERSION }}
-
-      - name: Create go.work for local modules
-        run: |
-          go work init
-          go work use ./r4 ./r4b ./r5
 
       - name: Verify ${{ matrix.module }} module
         run: |
