@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/gofhir/fhir/compare/r4/v1.0.0...r4/v1.0.1) (2026-01-24)
+
+
+### Bug Fixes
+
+* update all import paths to github.com/gofhir/fhir ([f97bfb1](https://github.com/gofhir/fhir/commit/f97bfb100ceaf780ad28202e7d87d13d25037a44))
+
 ## [0.2.0](https://github.com/robertoAraneda/gofhir/compare/r4/v0.1.0...r4/v0.2.0) (2026-01-17)
 
 
