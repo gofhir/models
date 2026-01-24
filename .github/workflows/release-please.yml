@@ -29,6 +29,9 @@ jobs:
     needs: release-please
     if: ${{ needs.release-please.outputs.releases_created == 'true' }}
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        module: [r4, r4b, r5]
     steps:
       - uses: actions/checkout@v4
 
@@ -37,13 +40,9 @@ jobs:
         with:
           go-version: "1.23"
 
-      - name: Create go.work for local modules
+      - name: Verify ${{ matrix.module }} module
         run: |
-          go work init
-          go work use ./r4 ./r4b ./r5
-
-      - name: Verify released modules
-        run: |
-          echo "Releases created, verifying modules..."
+          echo "Verifying ${{ matrix.module }} module..."
+          cd ${{ matrix.module }}
           go build ./...
           go test ./...
