@@ -1,0 +1,156 @@
+run:
+  timeout: 5m
+  modules-download-mode: readonly
+
+linters:
+  enable:
+    # Default linters
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+    # Additional linters
+    - bodyclose
+    - dogsled
+    - dupl
+    - copyloopvar  # Replaces deprecated exportloopref
+    - gochecknoinits
+    - goconst
+    - gocritic
+    - gocyclo
+    - gofmt
+    - goimports
+    - goprintffuncname
+    - gosec
+    - misspell
+    - nakedret
+    - noctx
+    - nolintlint
+    - prealloc
+    - revive
+    - rowserrcheck
+    - stylecheck
+    - unconvert
+    - unparam
+    - whitespace
+
+linters-settings:
+  errcheck:
+    check-type-assertions: false  # Type assertions are often checked via error-or-value pattern
+    check-blank: true
+
+  govet:
+    enable-all: true
+    disable:
+      - fieldalignment # Too strict for generated code
+
+  gocyclo:
+    min-complexity: 15
+
+  dupl:
+    threshold: 150
+
+  goconst:
+    min-len: 5
+    min-occurrences: 4
+
+  misspell:
+    locale: US
+
+  goimports:
+    local-prefixes: github.com/robertoaraneda/gofhir
+
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - experimental
+      - opinionated
+      - performance
+      - style
+    disabled-checks:
+      - hugeParam # Generated structs can be large
+      - rangeValCopy # Generated code may copy
+
+  revive:
+    rules:
+      - name: blank-imports
+      - name: context-as-argument
+      - name: context-keys-type
+      - name: dot-imports
+      - name: error-return
+      - name: error-strings
+      - name: error-naming
+      - name: exported
+      - name: if-return
+      - name: increment-decrement
+      - name: var-naming
+      - name: var-declaration
+      - name: package-comments
+      - name: range
+      - name: receiver-naming
+      - name: time-naming
+      - name: unexported-return
+      - name: indent-error-flow
+      - name: errorf
+
+issues:
+  exclude-rules:
+    # Exclude some linters from running on generated files
+    - path: "pkg/fhir/.*/.*\\.go"
+      linters:
+        - dupl
+        - gocyclo
+        - goconst
+        - stylecheck
+      text: "should have comment"
+
+    # Exclude some linters from test files
+    - path: _test\.go
+      linters:
+        - dupl
+        - gosec
+        - goconst
+        - errcheck
+        - gocyclo
+
+    # Exclude linting of doc.go files
+    - path: doc\.go
+      linters:
+        - stylecheck
+
+    # Exclude gochecknoinits from funcs package (init functions are intentional for registration)
+    - path: "pkg/fhirpath/funcs/.*\\.go"
+      linters:
+        - gochecknoinits
+
+    # Exclude gochecknoinits from pool.go (init for integer cache is intentional)
+    - path: "pkg/fhirpath/types/pool\\.go"
+      linters:
+        - gochecknoinits
+
+    # Exclude gocyclo from temporal types (Compare functions need complex type handling)
+    - path: "pkg/fhirpath/types/(datetime|date|time)\\.go"
+      linters:
+        - gocyclo
+
+    # Exclude gocyclo from functions with inherently complex control flow
+    - path: "pkg/fhirpath/eval/evaluator\\.go"
+      linters:
+        - gocyclo
+
+    - path: "pkg/fhirpath/funcs/math\\.go"
+      linters:
+        - gocyclo
+
+    - path: "pkg/fhirpath/funcs/fhir\\.go"
+      linters:
+        - gocyclo
+
+    - path: "pkg/validator/validator\\.go"
+      linters:
+        - gocyclo
+
+  max-issues-per-linter: 50
+  max-same-issues: 10
