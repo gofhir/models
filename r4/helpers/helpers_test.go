@@ -3,7 +3,7 @@ package helpers
 import (
 	"testing"
 
-	"github.com/robertoaraneda/gofhir/r4"
+	"github.com/gofhir/fhir/r4"
 )
 
 // =============================================================================

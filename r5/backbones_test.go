@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/robertoaraneda/gofhir/r5"
+	"github.com/gofhir/fhir/r5"
 )
 
 // TestResourceBackboneElements tests backbone elements that are part of resources

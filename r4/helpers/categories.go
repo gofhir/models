@@ -1,6 +1,6 @@
 package helpers
 
-import "github.com/robertoaraneda/gofhir/r4"
+import "github.com/gofhir/fhir/r4"
 
 // ObservationCategorySystem is the HL7 observation category code system.
 const ObservationCategorySystem = "http://terminology.hl7.org/CodeSystem/observation-category"
