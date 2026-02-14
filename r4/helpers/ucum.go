@@ -1,6 +1,6 @@
 package helpers
 
-import "github.com/gofhir/fhir/r4"
+import "github.com/gofhir/models/r4"
 
 // UCUMSystem is the official UCUM code system URL.
 const UCUMSystem = "http://unitsofmeasure.org"

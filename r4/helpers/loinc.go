@@ -2,7 +2,7 @@
 // This includes LOINC codes, UCUM units, and other clinical coding standards.
 package helpers
 
-import "github.com/gofhir/fhir/r4"
+import "github.com/gofhir/models/r4"
 
 // LOINCSystem is the official LOINC code system URL.
 const LOINCSystem = "http://loinc.org"

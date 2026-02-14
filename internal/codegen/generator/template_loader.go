@@ -12,7 +12,7 @@ import (
 	"text/template"
 	"unicode"
 
-	"github.com/gofhir/fhir/internal/codegen/analyzer"
+	"github.com/gofhir/models/internal/codegen/analyzer"
 )
 
 // Kind constants for type categorization.

@@ -5,7 +5,7 @@
 //
 // Usage:
 //
-//	import "github.com/gofhir/fhir/r4"
+//	import "github.com/gofhir/models/r4"
 //
 //	patient := &r4.Patient{
 //	    ResourceType: "Patient",

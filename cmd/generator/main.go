@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/gofhir/fhir/internal/codegen/generator"
+	"github.com/gofhir/models/internal/codegen/generator"
 )
 
 func main() {

@@ -1,4 +1,4 @@
-module github.com/gofhir/fhir/r4b
+module github.com/gofhir/models/r4b
 
 go 1.23
 

@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/gofhir/fhir/r4b"
+	"github.com/gofhir/models/r4b"
 )
 
 func TestPatientFunctionalOptions(t *testing.T) {

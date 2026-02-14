@@ -8,8 +8,8 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/gofhir/fhir/internal/codegen/analyzer"
-	"github.com/gofhir/fhir/internal/codegen/parser"
+	"github.com/gofhir/models/internal/codegen/analyzer"
+	"github.com/gofhir/models/internal/codegen/parser"
 )
 
 // Config holds code generation configuration.

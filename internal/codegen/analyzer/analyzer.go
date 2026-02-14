@@ -6,7 +6,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/gofhir/fhir/internal/codegen/parser"
+	"github.com/gofhir/models/internal/codegen/parser"
 )
 
 // Kind constants for type categorization.

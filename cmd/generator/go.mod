@@ -1,7 +1,7 @@
-module github.com/gofhir/fhir/cmd/generator
+module github.com/gofhir/models/cmd/generator
 
 go 1.23
 
-replace github.com/gofhir/fhir => ../../
+replace github.com/gofhir/models => ../../
 
-require github.com/gofhir/fhir v0.0.0
+require github.com/gofhir/models v0.0.0

@@ -1,4 +1,4 @@
-module github.com/gofhir/fhir/r5
+module github.com/gofhir/models/r5
 
 go 1.23
 
