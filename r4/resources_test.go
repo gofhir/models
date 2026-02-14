@@ -468,3 +468,62 @@ func TestResourceWithPrimitiveExtensions(t *testing.T) {
 		assert.Equal(t, extURL, patient.BirthDateExt.Extension[0].Url)
 	})
 }
+
+func TestPatient_MarshalJSON_NoHTMLEscape(t *testing.T) {
+	t.Run("narrative HTML is not escaped", func(t *testing.T) {
+		id := "pt-narrative"
+		status := NarrativeStatusGenerated
+		divContent := "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Test patient with <b>bold</b> and <i>italic</i> text</p></div>"
+
+		patient := Patient{
+			Id: &id,
+			Text: &Narrative{
+				Status: &status,
+				Div:    &divContent,
+			},
+		}
+
+		data, err := Marshal(patient)
+		require.NoError(t, err)
+
+		jsonStr := string(data)
+
+		// Verify HTML tags are preserved (not escaped)
+		assert.Contains(t, jsonStr, "<div")
+		assert.Contains(t, jsonStr, "<b>bold</b>")
+		assert.Contains(t, jsonStr, "<i>italic</i>")
+		assert.Contains(t, jsonStr, "</div>")
+
+		// Verify unicode escape sequences are NOT present
+		assert.NotContains(t, jsonStr, `\u003c`)
+		assert.NotContains(t, jsonStr, `\u003e`)
+	})
+
+	t.Run("narrative round trip preserves HTML", func(t *testing.T) {
+		id := "pt-roundtrip"
+		status := NarrativeStatusGenerated
+		originalDiv := "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h1>Patient Summary</h1><p>Status: <span style=\"color: red;\">Critical</span></p></div>"
+
+		original := Patient{
+			Id: &id,
+			Text: &Narrative{
+				Status: &status,
+				Div:    &originalDiv,
+			},
+		}
+
+		// Marshal using package helper
+		data, err := Marshal(original)
+		require.NoError(t, err)
+
+		// Unmarshal
+		var decoded Patient
+		err = json.Unmarshal(data, &decoded)
+		require.NoError(t, err)
+
+		// Verify content preserved exactly
+		require.NotNil(t, decoded.Text)
+		require.NotNil(t, decoded.Text.Div)
+		assert.Equal(t, originalDiv, *decoded.Text.Div)
+	})
+}

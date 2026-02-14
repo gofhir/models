@@ -5,6 +5,7 @@
 package r4
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -146,10 +147,24 @@ func (r *Condition) GetModifierExtension() []Extension {
 }
 
 // MarshalJSON ensures resourceType is always included in JSON output.
+// HTML escaping is disabled to preserve FHIR narrative XHTML content.
+//
+// Note: Use the package-level Marshal function instead of json.Marshal
+// to ensure HTML in narrative text.div fields is not escaped.
 func (r Condition) MarshalJSON() ([]byte, error) {
 	r.ResourceType = "Condition"
 	type Alias Condition
-	return json.Marshal((Alias)(r))
+	var buf bytes.Buffer
+	enc := json.NewEncoder(&buf)
+	enc.SetEscapeHTML(false)
+	if err := enc.Encode((Alias)(r)); err != nil {
+		return nil, err
+	}
+	b := buf.Bytes()
+	if len(b) > 0 && b[len(b)-1] == '\n' {
+		b = b[:len(b)-1]
+	}
+	return b, nil
 }
 
 // UnmarshalJSON handles deserialization of polymorphic contained resources.
