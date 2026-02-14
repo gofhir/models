@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.2](https://github.com/gofhir/models/compare/r4b/v1.0.1...r4b/v1.0.2) (2026-02-14)
+
+
+### Bug Fixes
+
+* prevent HTML escaping in FHIR narrative text.div fields ([b543156](https://github.com/gofhir/models/commit/b543156e327ce11d92dc398f779911ba75169b41)), closes [#2](https://github.com/gofhir/models/issues/2)
+* update all import paths to github.com/gofhir/models ([eda97a2](https://github.com/gofhir/models/commit/eda97a26f1d9db154e5488c8c00671b14d9f5395))
+
 ## [1.0.1](https://github.com/gofhir/models/compare/r4b/v1.0.0...r4b/v1.0.1) (2026-01-24)
 
 
