@@ -35,6 +35,7 @@ specs/r5/*.json
 
 # Build artifacts
 dist/
+cmd/generator/generator
 
 # Temporary files
 tmp/

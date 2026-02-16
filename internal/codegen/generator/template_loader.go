@@ -30,12 +30,6 @@ type TemplateData struct {
 	FileType    string
 }
 
-// TypesTemplateData holds data for datatypes and resources templates.
-type TypesTemplateData struct {
-	TemplateData
-	Types []*analyzer.AnalyzedType
-}
-
 // RegistryTemplateData holds data for registry template.
 type RegistryTemplateData struct {
 	TemplateData
@@ -63,12 +57,6 @@ type CodeData struct {
 	ConstName string
 }
 
-// BuildersTemplateData holds data for builders template.
-type BuildersTemplateData struct {
-	TemplateData
-	Resources []ResourceBuilderData
-}
-
 // ResourceBuilderData holds data for a single resource builder.
 type ResourceBuilderData struct {
 	Name       string
@@ -87,9 +75,20 @@ type PropertyBuilderData struct {
 	BaseType    string // For pointers: the base type (e.g., "string" from "*string")
 }
 
-// BackbonesTemplateData holds data for backbones template.
-type BackbonesTemplateData struct {
+// ResourceConsolidatedData holds data for the consolidated resource template
+// (struct + backbones + JSON + XML + builder + options in a single file).
+type ResourceConsolidatedData struct {
 	TemplateData
+	Resource  *analyzer.AnalyzedType
+	Backbones []*analyzer.AnalyzedType
+	Builder   ResourceBuilderData
+}
+
+// DatatypesConsolidatedData holds data for the consolidated datatypes template
+// (all datatype structs + backbone structs + XML marshal/unmarshal in a single file).
+type DatatypesConsolidatedData struct {
+	TemplateData
+	Types     []*analyzer.AnalyzedType
 	Backbones []*analyzer.AnalyzedType
 }
 
@@ -304,139 +303,6 @@ func (c *CodeGen) generateSummaryFromTemplate() error {
 	return writeTemplateFile(path, "summary.go.tmpl", data)
 }
 
-// ============================================================================
-// NEW: Separate File Generation Functions
-// ============================================================================
-
-// generateDatatypesSeparately generates one file per datatype.
-func (c *CodeGen) generateDatatypesSeparately() error {
-	for _, t := range c.types {
-		// Include datatype, primitive, and backbone types (like Dosage, Timing)
-		// Backbone types that appear here are top-level datatypes with nested backbones
-		if t.Kind != "datatype" && t.Kind != "primitive" && t.Kind != "backbone" {
-			continue
-		}
-
-		// Skip Element and BackboneElement (they go in datatype_base.go)
-		if t.Name == "Element" || t.Name == "BackboneElement" {
-			continue
-		}
-
-		data := TypesTemplateData{
-			TemplateData: TemplateData{
-				PackageName: c.config.PackageName,
-				Version:     strings.ToUpper(c.config.Version),
-				FileType:    "datatypes",
-			},
-			Types: []*analyzer.AnalyzedType{t},
-		}
-
-		// Naming convention: datatype_<lowercase_name>.go
-		filename := fmt.Sprintf("datatype_%s.go", strings.ToLower(t.Name))
-		path := filepath.Join(c.config.OutputDir, filename)
-
-		if err := writeTemplateFile(path, "datatypes.go.tmpl", data); err != nil {
-			return fmt.Errorf("failed to generate %s: %w", filename, err)
-		}
-	}
-
-	// Generate datatype_base.go for Element and BackboneElement
-	baseTypes := make([]*analyzer.AnalyzedType, 0)
-	for _, t := range c.types {
-		if t.Name == "Element" || t.Name == "BackboneElement" {
-			baseTypes = append(baseTypes, t)
-		}
-	}
-
-	if len(baseTypes) > 0 {
-		data := TypesTemplateData{
-			TemplateData: TemplateData{
-				PackageName: c.config.PackageName,
-				Version:     strings.ToUpper(c.config.Version),
-				FileType:    "datatypes",
-			},
-			Types: baseTypes,
-		}
-
-		path := filepath.Join(c.config.OutputDir, "datatype_base.go")
-		if err := writeTemplateFile(path, "datatypes.go.tmpl", data); err != nil {
-			return fmt.Errorf("failed to generate datatype_base.go: %w", err)
-		}
-	}
-
-	return nil
-}
-
-// generateResourcesSeparately generates one file per resource.
-func (c *CodeGen) generateResourcesSeparately() error {
-	for _, t := range c.types {
-		if t.Kind != kindResource {
-			continue
-		}
-
-		data := TypesTemplateData{
-			TemplateData: TemplateData{
-				PackageName: c.config.PackageName,
-				Version:     strings.ToUpper(c.config.Version),
-				FileType:    "resources",
-			},
-			Types: []*analyzer.AnalyzedType{t},
-		}
-
-		// Naming convention: resource_<lowercase_name>.go
-		filename := fmt.Sprintf("resource_%s.go", strings.ToLower(t.Name))
-		path := filepath.Join(c.config.OutputDir, filename)
-
-		if err := writeTemplateFile(path, "resources.go.tmpl", data); err != nil {
-			return fmt.Errorf("failed to generate %s: %w", filename, err)
-		}
-	}
-
-	return nil
-}
-
-// generateBackbonesSeparately generates backbone files grouped by parent resource.
-func (c *CodeGen) generateBackbonesSeparately() error {
-	// Group backbones by parent resource
-	backbonesByParent := make(map[string][]*analyzer.AnalyzedType)
-
-	for _, t := range c.types {
-		if len(t.BackboneTypes) == 0 {
-			continue
-		}
-
-		// The parent name is the resource/datatype name
-		parentName := t.Name
-		backbonesByParent[parentName] = append(backbonesByParent[parentName], t.BackboneTypes...)
-	}
-
-	// Generate one file per parent
-	for parentName, backbones := range backbonesByParent {
-		sort.Slice(backbones, func(i, j int) bool {
-			return backbones[i].Name < backbones[j].Name
-		})
-
-		data := BackbonesTemplateData{
-			TemplateData: TemplateData{
-				PackageName: c.config.PackageName,
-				Version:     strings.ToUpper(c.config.Version),
-				FileType:    "backbones",
-			},
-			Backbones: backbones,
-		}
-
-		// Naming convention: backbone_<lowercase_parent>.go
-		filename := fmt.Sprintf("backbone_%s.go", strings.ToLower(parentName))
-		path := filepath.Join(c.config.OutputDir, filename)
-
-		if err := writeTemplateFile(path, "backbones.go.tmpl", data); err != nil {
-			return fmt.Errorf("failed to generate %s: %w", filename, err)
-		}
-	}
-
-	return nil
-}
-
 // buildResourceBuilderData converts an AnalyzedType to ResourceBuilderData.
 func buildResourceBuilderData(t *analyzer.AnalyzedType) ResourceBuilderData {
 	resource := ResourceBuilderData{
@@ -467,26 +333,218 @@ func buildResourceBuilderData(t *analyzer.AnalyzedType) ResourceBuilderData {
 	return resource
 }
 
-// generateBuildersSeparately generates one fluent builder file per resource.
-func (c *CodeGen) generateBuildersSeparately() error {
+// ============================================================================
+// XML Serialization Generation
+// ============================================================================
+
+// xmlTemplateFuncMap returns template functions used by XML templates.
+func xmlTemplateFuncMap() template.FuncMap {
+	return template.FuncMap{
+		// isExtField detects _field extension companion properties (e.g., "_birthDate").
+		"isExtField": func(prop analyzer.AnalyzedProperty) bool {
+			return strings.HasPrefix(prop.JSONName, "_")
+		},
+
+		// xmlPrimitiveFunc maps a Go type to the XML primitive encoding function name.
+		"xmlPrimitiveFunc": func(goType string) string {
+			baseType := strings.TrimPrefix(goType, "*")
+			switch baseType {
+			case "string":
+				return "xmlEncodePrimitiveString"
+			case "bool":
+				return "xmlEncodePrimitiveBool"
+			case "int":
+				return "xmlEncodePrimitiveInt"
+			case "int64":
+				return "xmlEncodePrimitiveInt64"
+			case "uint32":
+				return "xmlEncodePrimitiveUint32"
+			case "float64":
+				return "xmlEncodePrimitiveFloat64"
+			default:
+				// Custom code type (e.g., *AdministrativeGender, *NarrativeStatus)
+				return "xmlEncodePrimitiveCode"
+			}
+		},
+
+		// extFieldRef returns the extension companion field reference (e.g., "r.BirthDateExt")
+		// or "nil" if no extension companion exists.
+		"extFieldRef": func(receiver string, prop analyzer.AnalyzedProperty) string {
+			if !prop.HasExtension || prop.IsChoice {
+				return "nil"
+			}
+			return fmt.Sprintf("%s.%sExt", receiver, prop.Name)
+		},
+
+		// hasIdField checks whether a type has an "id" property.
+		"hasIdField": func(t *analyzer.AnalyzedType) bool {
+			for _, prop := range t.Properties {
+				if prop.JSONName == "id" {
+					return true
+				}
+			}
+			return false
+		},
+
+		// xmlPrimitiveArrayFunc maps a Go array type to the XML primitive array encoding function name.
+		"xmlPrimitiveArrayFunc": func(goType string) string {
+			elemType := strings.TrimPrefix(goType, "[]")
+			switch elemType {
+			case "string":
+				return "xmlEncodePrimitiveStringArray"
+			case "bool":
+				return "xmlEncodePrimitiveBoolArray"
+			case "int":
+				return "xmlEncodePrimitiveIntArray"
+			case "int64":
+				return "xmlEncodePrimitiveInt64Array"
+			case "uint32":
+				return "xmlEncodePrimitiveUint32Array"
+			case "float64":
+				return "xmlEncodePrimitiveFloat64Array"
+			default:
+				// Custom code type array (e.g., []ReferenceHandlingPolicy)
+				return "xmlEncodePrimitiveCodeArray"
+			}
+		},
+
+		// xmlPrimitiveDecodeFunc maps a Go type to the XML primitive decode function name.
+		"xmlPrimitiveDecodeFunc": func(goType string) string {
+			baseType := strings.TrimPrefix(goType, "*")
+			switch baseType {
+			case "string":
+				return "xmlDecodePrimitiveString"
+			case "bool":
+				return "xmlDecodePrimitiveBool"
+			case "int":
+				return "xmlDecodePrimitiveInt"
+			case "int64":
+				return "xmlDecodePrimitiveInt64"
+			case "uint32":
+				return "xmlDecodePrimitiveUint32"
+			case "float64":
+				return "xmlDecodePrimitiveFloat64"
+			default:
+				// Custom code type (e.g., *AdministrativeGender)
+				return "xmlDecodePrimitiveCode[" + baseType + "]"
+			}
+		},
+
+		// elemType extracts the element type from a slice type: "[]Foo" -> "Foo"
+		"elemType": func(goType string) string {
+			return strings.TrimPrefix(goType, "[]")
+		},
+
+		// derefType extracts the base type from a pointer type: "*Foo" -> "Foo"
+		"derefType": func(goType string) string {
+			return strings.TrimPrefix(goType, "*")
+		},
+
+		// hasResourceField checks whether any property of a type has GoType "Resource".
+		"hasResourceField": func(t *analyzer.AnalyzedType) bool {
+			for _, prop := range t.Properties {
+				if prop.GoType == "Resource" {
+					return true
+				}
+			}
+			return false
+		},
+
+		// resourceFieldName returns the Go field name of the first Resource-typed property.
+		"resourceFieldName": func(t *analyzer.AnalyzedType) string {
+			for _, prop := range t.Properties {
+				if prop.GoType == "Resource" {
+					return prop.Name
+				}
+			}
+			return ""
+		},
+	}
+}
+
+// loadTemplateWithFuncs loads a template with custom functions.
+func loadTemplateWithFuncs(name string, funcMap template.FuncMap) (*template.Template, error) {
+	content, err := templatesFS.ReadFile("templates/" + name)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read template %s: %w", name, err)
+	}
+
+	tmpl, err := template.New(name).Funcs(funcMap).Parse(string(content))
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse template %s: %w", name, err)
+	}
+
+	return tmpl, nil
+}
+
+// writeXMLTemplateFile executes an XML template with FuncMap and writes to file.
+func writeXMLTemplateFile(outputPath, templateName string, data interface{}) error {
+	tmpl, err := loadTemplateWithFuncs(templateName, xmlTemplateFuncMap())
+	if err != nil {
+		return err
+	}
+
+	content, err := executeTemplate(tmpl, data)
+	if err != nil {
+		// Write unformatted content for debugging
+		unformattedPath := outputPath + ".unformatted"
+		if writeErr := os.WriteFile(unformattedPath, content, 0o600); writeErr != nil {
+			return fmt.Errorf("%w (also failed to write debug file: %v)", err, writeErr)
+		}
+		return fmt.Errorf("%w (saved to %s)", err, unformattedPath)
+	}
+
+	return os.WriteFile(outputPath, content, 0o600)
+}
+
+// generateXMLHelpers generates xml_helpers.go from template.
+func (c *CodeGen) generateXMLHelpers() error {
+	data := TemplateData{
+		PackageName: c.config.PackageName,
+		Version:     strings.ToUpper(c.config.Version),
+		FileType:    "xml_helpers",
+	}
+
+	path := filepath.Join(c.config.OutputDir, "xml_helpers.go")
+	return writeTemplateFile(path, "xml_helpers.go.tmpl", data)
+}
+
+// ============================================================================
+// Consolidated File Generation
+// ============================================================================
+
+// generateResourcesConsolidated generates one file per resource containing:
+// struct + backbones + JSON marshal/unmarshal + XML marshal/unmarshal.
+func (c *CodeGen) generateResourcesConsolidated() error {
 	for _, t := range c.types {
 		if t.Kind != kindResource {
 			continue
 		}
 
-		data := BuildersTemplateData{
+		var backbones []*analyzer.AnalyzedType
+		if len(t.BackboneTypes) > 0 {
+			backbones = make([]*analyzer.AnalyzedType, len(t.BackboneTypes))
+			copy(backbones, t.BackboneTypes)
+			sort.Slice(backbones, func(i, j int) bool {
+				return backbones[i].Name < backbones[j].Name
+			})
+		}
+
+		data := ResourceConsolidatedData{
 			TemplateData: TemplateData{
 				PackageName: c.config.PackageName,
 				Version:     strings.ToUpper(c.config.Version),
-				FileType:    "builders",
+				FileType:    "resource_consolidated",
 			},
-			Resources: []ResourceBuilderData{buildResourceBuilderData(t)},
+			Resource:  t,
+			Backbones: backbones,
+			Builder:   buildResourceBuilderData(t),
 		}
 
-		filename := fmt.Sprintf("builder_%s.go", strings.ToLower(t.Name))
+		filename := fmt.Sprintf("resource_%s.go", strings.ToLower(t.Name))
 		path := filepath.Join(c.config.OutputDir, filename)
 
-		if err := writeTemplateFile(path, "fluent_builders.go.tmpl", data); err != nil {
+		if err := writeXMLTemplateFile(path, "resource_consolidated.go.tmpl", data); err != nil {
 			return fmt.Errorf("failed to generate %s: %w", filename, err)
 		}
 	}
@@ -494,29 +552,49 @@ func (c *CodeGen) generateBuildersSeparately() error {
 	return nil
 }
 
-// generateOptionsSeparately generates one functional options file per resource.
-func (c *CodeGen) generateOptionsSeparately() error {
+// generateDatatypesConsolidated generates a single file with all datatypes,
+// their backbone elements, and all XML marshal/unmarshal methods.
+func (c *CodeGen) generateDatatypesConsolidated() error {
+	var allTypes []*analyzer.AnalyzedType
+	var allBackbones []*analyzer.AnalyzedType
+
+	// Collect base types first (Element, BackboneElement)
 	for _, t := range c.types {
-		if t.Kind != kindResource {
-			continue
-		}
-
-		data := BuildersTemplateData{
-			TemplateData: TemplateData{
-				PackageName: c.config.PackageName,
-				Version:     strings.ToUpper(c.config.Version),
-				FileType:    "options",
-			},
-			Resources: []ResourceBuilderData{buildResourceBuilderData(t)},
-		}
-
-		filename := fmt.Sprintf("options_%s.go", strings.ToLower(t.Name))
-		path := filepath.Join(c.config.OutputDir, filename)
-
-		if err := writeTemplateFile(path, "functional_options.go.tmpl", data); err != nil {
-			return fmt.Errorf("failed to generate %s: %w", filename, err)
+		if t.Name == "Element" || t.Name == "BackboneElement" {
+			allTypes = append(allTypes, t)
 		}
 	}
 
-	return nil
+	// Collect all other datatypes and their backbones
+	for _, t := range c.types {
+		if t.Kind != "datatype" && t.Kind != "primitive" && t.Kind != "backbone" {
+			continue
+		}
+		if t.Name == "Element" || t.Name == "BackboneElement" {
+			continue
+		}
+
+		allTypes = append(allTypes, t)
+
+		if len(t.BackboneTypes) > 0 {
+			allBackbones = append(allBackbones, t.BackboneTypes...)
+		}
+	}
+
+	sort.Slice(allBackbones, func(i, j int) bool {
+		return allBackbones[i].Name < allBackbones[j].Name
+	})
+
+	data := DatatypesConsolidatedData{
+		TemplateData: TemplateData{
+			PackageName: c.config.PackageName,
+			Version:     strings.ToUpper(c.config.Version),
+			FileType:    "datatypes_consolidated",
+		},
+		Types:     allTypes,
+		Backbones: allBackbones,
+	}
+
+	path := filepath.Join(c.config.OutputDir, "datatypes.go")
+	return writeXMLTemplateFile(path, "datatypes_consolidated.go.tmpl", data)
 }

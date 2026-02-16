@@ -160,29 +160,19 @@ func (c *CodeGen) Generate() error {
 		return fmt.Errorf("failed to generate summary: %w", err)
 	}
 
-	// NEW: Generate separate files for datatypes (one file per datatype)
-	if err := c.generateDatatypesSeparately(); err != nil {
+	// Generate consolidated datatypes (all structs + backbones + XML in one file)
+	if err := c.generateDatatypesConsolidated(); err != nil {
 		return fmt.Errorf("failed to generate datatypes: %w", err)
 	}
 
-	// NEW: Generate separate files for resources (one file per resource)
-	if err := c.generateResourcesSeparately(); err != nil {
+	// Generate consolidated resources (one file per resource: struct + backbones + JSON + XML + builder + options)
+	if err := c.generateResourcesConsolidated(); err != nil {
 		return fmt.Errorf("failed to generate resources: %w", err)
 	}
 
-	// NEW: Generate separate backbone files (grouped by parent resource)
-	if err := c.generateBackbonesSeparately(); err != nil {
-		return fmt.Errorf("failed to generate backbones: %w", err)
-	}
-
-	// NEW: Generate separate builder files (one per resource)
-	if err := c.generateBuildersSeparately(); err != nil {
-		return fmt.Errorf("failed to generate builders: %w", err)
-	}
-
-	// NEW: Generate separate option files (one per resource)
-	if err := c.generateOptionsSeparately(); err != nil {
-		return fmt.Errorf("failed to generate options: %w", err)
+	// Generate XML helpers (shared encoding/decoding utilities)
+	if err := c.generateXMLHelpers(); err != nil {
+		return fmt.Errorf("failed to generate XML helpers: %w", err)
 	}
 
 	return nil
