@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/gofhir/models/compare/r5/v1.0.2...r5/v1.0.3) (2026-02-16)
+
+
+### Code Refactoring
+
+* consolidate generated files and add XML deserialization ([b0b217e](https://github.com/gofhir/models/commit/b0b217e9e3990b2f075ed6df98a2f1a578ce2e29))
+
 ## [1.0.2](https://github.com/gofhir/models/compare/r5/v1.0.1...r5/v1.0.2) (2026-02-14)
 
 
