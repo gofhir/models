@@ -83,7 +83,7 @@ func TestResourceBackboneElements(t *testing.T) {
 		search := r4b.BundleEntrySearch{
 			Id:    ptrStringBB("search-1"),
 			Mode:  &mode,
-			Score: ptrFloat64BB(0.95),
+			Score: ptrDecimalBB(0.95),
 		}
 
 		data, err := json.Marshal(search)
@@ -95,7 +95,7 @@ func TestResourceBackboneElements(t *testing.T) {
 
 		assert.Equal(t, "search-1", *decoded.Id)
 		assert.Equal(t, r4b.SearchEntryMode("match"), *decoded.Mode)
-		assert.Equal(t, 0.95, *decoded.Score)
+		assert.Equal(t, "0.95", decoded.Score.String())
 	})
 
 	t.Run("ObservationComponent", func(t *testing.T) {
@@ -111,7 +111,7 @@ func TestResourceBackboneElements(t *testing.T) {
 				},
 			},
 			ValueQuantity: &r4b.Quantity{
-				Value:  ptrFloat64BB(120),
+				Value:  ptrDecimalBB(120),
 				Unit:   ptrStringBB("mmHg"),
 				System: ptrStringBB("http://unitsofmeasure.org"),
 				Code:   ptrStringBB("mm[Hg]"),
@@ -127,7 +127,7 @@ func TestResourceBackboneElements(t *testing.T) {
 
 		assert.Equal(t, "comp-1", *decoded.Id)
 		assert.Equal(t, "8480-6", *decoded.Code.Coding[0].Code)
-		assert.Equal(t, float64(120), *decoded.ValueQuantity.Value)
+		assert.Equal(t, "120", decoded.ValueQuantity.Value.String())
 	})
 }
 
@@ -146,7 +146,7 @@ func TestDatatypeBackboneElements(t *testing.T) {
 				},
 			},
 			DoseQuantity: &r4b.Quantity{
-				Value:  ptrFloat64BB(500),
+				Value:  ptrDecimalBB(500),
 				Unit:   ptrStringBB("mg"),
 				System: ptrStringBB("http://unitsofmeasure.org"),
 				Code:   ptrStringBB("mg"),
@@ -162,7 +162,7 @@ func TestDatatypeBackboneElements(t *testing.T) {
 
 		assert.Equal(t, "dose-1", *decoded.Id)
 		assert.Equal(t, "ordered", *decoded.Type.Coding[0].Code)
-		assert.Equal(t, float64(500), *decoded.DoseQuantity.Value)
+		assert.Equal(t, "500", decoded.DoseQuantity.Value.String())
 	})
 
 	t.Run("TimingRepeat", func(t *testing.T) {
@@ -170,12 +170,12 @@ func TestDatatypeBackboneElements(t *testing.T) {
 		repeat := r4b.TimingRepeat{
 			Id:          ptrStringBB("repeat-1"),
 			Frequency:   ptrUint32BB(2),
-			Period:      ptrFloat64BB(1),
+			Period:      ptrDecimalBB(1),
 			PeriodUnit:  &periodUnit,
 			DayOfWeek:   []r4b.DaysOfWeek{"mon", "wed", "fri"},
 			TimeOfDay:   []string{"08:00:00", "18:00:00"},
-			Duration:    ptrFloat64BB(30),
-			DurationMax: ptrFloat64BB(60),
+			Duration:    ptrDecimalBB(30),
+			DurationMax: ptrDecimalBB(60),
 		}
 
 		data, err := json.Marshal(repeat)
@@ -334,8 +334,8 @@ func ptrBoolBB(b bool) *bool {
 	return &b
 }
 
-func ptrFloat64BB(f float64) *float64 {
-	return &f
+func ptrDecimalBB(f float64) *r4b.Decimal {
+	return r4b.NewDecimalFromFloat64(f)
 }
 
 func ptrUint32BB(u uint32) *uint32 {

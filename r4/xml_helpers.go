@@ -174,14 +174,14 @@ func xmlEncodePrimitiveUint32(e *xml.Encoder, name string, value *uint32, ext *E
 	return xmlEncodePrimitiveString(e, name, strVal, ext)
 }
 
-// xmlEncodePrimitiveFloat64 encodes a FHIR decimal primitive.
-func xmlEncodePrimitiveFloat64(e *xml.Encoder, name string, value *float64, ext *Element) error {
+// xmlEncodePrimitiveDecimal encodes a FHIR decimal primitive.
+func xmlEncodePrimitiveDecimal(e *xml.Encoder, name string, value *Decimal, ext *Element) error {
 	if value == nil && ext == nil {
 		return nil
 	}
 	var strVal *string
 	if value != nil {
-		s := strconv.FormatFloat(*value, 'f', -1, 64)
+		s := value.String()
 		strVal = &s
 	}
 	return xmlEncodePrimitiveString(e, name, strVal, ext)
@@ -292,8 +292,8 @@ func xmlEncodePrimitiveUint32Array(e *xml.Encoder, name string, values []uint32,
 	return nil
 }
 
-// xmlEncodePrimitiveFloat64Array encodes a repeating FHIR decimal primitive.
-func xmlEncodePrimitiveFloat64Array(e *xml.Encoder, name string, values []float64, exts []Element) error {
+// xmlEncodePrimitiveDecimalArray encodes a repeating FHIR decimal primitive.
+func xmlEncodePrimitiveDecimalArray(e *xml.Encoder, name string, values []Decimal, exts []Element) error {
 	for i := range values {
 		var ext *Element
 		if i < len(exts) {
@@ -303,7 +303,7 @@ func xmlEncodePrimitiveFloat64Array(e *xml.Encoder, name string, values []float6
 			}
 		}
 		val := values[i]
-		if err := xmlEncodePrimitiveFloat64(e, name, &val, ext); err != nil {
+		if err := xmlEncodePrimitiveDecimal(e, name, &val, ext); err != nil {
 			return err
 		}
 	}
@@ -524,8 +524,8 @@ func xmlDecodePrimitiveUint32(d *xml.Decoder, start xml.StartElement) (*uint32, 
 	return &u, elem, nil
 }
 
-// xmlDecodePrimitiveFloat64 decodes a FHIR decimal primitive element.
-func xmlDecodePrimitiveFloat64(d *xml.Decoder, start xml.StartElement) (*float64, *Element, error) {
+// xmlDecodePrimitiveDecimal decodes a FHIR decimal primitive element.
+func xmlDecodePrimitiveDecimal(d *xml.Decoder, start xml.StartElement) (*Decimal, *Element, error) {
 	s, elem, err := xmlDecodePrimitiveString(d, start)
 	if err != nil {
 		return nil, nil, err
@@ -533,11 +533,11 @@ func xmlDecodePrimitiveFloat64(d *xml.Decoder, start xml.StartElement) (*float64
 	if s == nil {
 		return nil, elem, nil
 	}
-	v, err := strconv.ParseFloat(*s, 64)
+	dec, err := NewDecimalFromString(*s)
 	if err != nil {
-		return nil, nil, fmt.Errorf("invalid float64 value %q: %w", *s, err)
+		return nil, nil, fmt.Errorf("invalid decimal %q: %w", *s, err)
 	}
-	return &v, elem, nil
+	return dec, elem, nil
 }
 
 // xmlDecodePrimitiveCode decodes a FHIR code primitive with a custom string-based type.

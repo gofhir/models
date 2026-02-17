@@ -140,6 +140,11 @@ func (c *CodeGen) Generate() error {
 		return fmt.Errorf("failed to create output directory: %w", err)
 	}
 
+	// Generate decimal.go (FHIR decimal type with precision preservation)
+	if err := c.generateDecimalType(); err != nil {
+		return fmt.Errorf("failed to generate decimal type: %w", err)
+	}
+
 	// Generate interfaces.go (shared interfaces, small file)
 	if err := c.generateInterfacesFromTemplate(); err != nil {
 		return fmt.Errorf("failed to generate interfaces: %w", err)

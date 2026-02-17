@@ -1074,7 +1074,7 @@ type StructureMapGroupRuleSource struct {
 	// Extension for DefaultValueDateTime
 	DefaultValueDateTimeExt *Element `json:"_defaultValueDateTime,omitempty"`
 	// Default value if no value exists
-	DefaultValueDecimal *float64 `json:"defaultValueDecimal,omitempty"`
+	DefaultValueDecimal *Decimal `json:"defaultValueDecimal,omitempty"`
 	// Extension for DefaultValueDecimal
 	DefaultValueDecimalExt *Element `json:"_defaultValueDecimal,omitempty"`
 	// Default value if no value exists
@@ -1253,7 +1253,7 @@ func (b StructureMapGroupRuleSource) MarshalXML(e *xml.Encoder, start xml.StartE
 	if err := xmlEncodePrimitiveString(e, "defaultValueDateTime", b.DefaultValueDateTime, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "defaultValueDecimal", b.DefaultValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "defaultValueDecimal", b.DefaultValueDecimal, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "defaultValueId", b.DefaultValueId, nil); err != nil {
@@ -1559,7 +1559,7 @@ func (r *StructureMapGroupRuleSource) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.DefaultValueDateTime = v
 			case "defaultValueDecimal":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -2064,7 +2064,7 @@ type StructureMapGroupRuleTargetParameter struct {
 	// Extension for ValueInteger
 	ValueIntegerExt *Element `json:"_valueInteger,omitempty"`
 	// Parameter value - variable or literal
-	ValueDecimal *float64 `json:"valueDecimal,omitempty"`
+	ValueDecimal *Decimal `json:"valueDecimal,omitempty"`
 	// Extension for ValueDecimal
 	ValueDecimalExt *Element `json:"_valueDecimal,omitempty"`
 }
@@ -2103,7 +2103,7 @@ func (b StructureMapGroupRuleTargetParameter) MarshalXML(e *xml.Encoder, start x
 	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
 		return err
 	}
 
@@ -2164,7 +2164,7 @@ func (r *StructureMapGroupRuleTargetParameter) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.ValueInteger = v
 			case "valueDecimal":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

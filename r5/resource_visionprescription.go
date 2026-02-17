@@ -378,21 +378,21 @@ type VisionPrescriptionLensSpecification struct {
 	// right | left
 	Eye *VisionEyes `json:"eye,omitempty"`
 	// Power of the lens
-	Sphere *float64 `json:"sphere,omitempty"`
+	Sphere *Decimal `json:"sphere,omitempty"`
 	// Lens power for astigmatism
-	Cylinder *float64 `json:"cylinder,omitempty"`
+	Cylinder *Decimal `json:"cylinder,omitempty"`
 	// Lens meridian which contain no power for astigmatism
 	Axis *int `json:"axis,omitempty"`
 	// Eye alignment compensation
 	Prism []VisionPrescriptionLensSpecificationPrism `json:"prism,omitempty"`
 	// Added power for multifocal levels
-	Add *float64 `json:"add,omitempty"`
+	Add *Decimal `json:"add,omitempty"`
 	// Contact lens power
-	Power *float64 `json:"power,omitempty"`
+	Power *Decimal `json:"power,omitempty"`
 	// Contact lens back curvature
-	BackCurve *float64 `json:"backCurve,omitempty"`
+	BackCurve *Decimal `json:"backCurve,omitempty"`
 	// Contact lens diameter
-	Diameter *float64 `json:"diameter,omitempty"`
+	Diameter *Decimal `json:"diameter,omitempty"`
 	// Lens wear duration
 	Duration *Quantity `json:"duration,omitempty"`
 	// Color required
@@ -431,10 +431,10 @@ func (b VisionPrescriptionLensSpecification) MarshalXML(e *xml.Encoder, start xm
 	if err := xmlEncodePrimitiveCode(e, "eye", b.Eye, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "sphere", b.Sphere, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "sphere", b.Sphere, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "cylinder", b.Cylinder, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "cylinder", b.Cylinder, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveInt(e, "axis", b.Axis, nil); err != nil {
@@ -445,16 +445,16 @@ func (b VisionPrescriptionLensSpecification) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "add", b.Add, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "add", b.Add, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "power", b.Power, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "power", b.Power, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "backCurve", b.BackCurve, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "backCurve", b.BackCurve, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "diameter", b.Diameter, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "diameter", b.Diameter, nil); err != nil {
 		return err
 	}
 	if b.Duration != nil {
@@ -517,13 +517,13 @@ func (r *VisionPrescriptionLensSpecification) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.Eye = v
 			case "sphere":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Sphere = v
 			case "cylinder":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -541,25 +541,25 @@ func (r *VisionPrescriptionLensSpecification) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.Prism = append(r.Prism, v)
 			case "add":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Add = v
 			case "power":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Power = v
 			case "backCurve":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.BackCurve = v
 			case "diameter":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -609,7 +609,7 @@ type VisionPrescriptionLensSpecificationPrism struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Amount of adjustment
-	Amount *float64 `json:"amount,omitempty"`
+	Amount *Decimal `json:"amount,omitempty"`
 	// up | down | in | out
 	Base *VisionBase `json:"base,omitempty"`
 }
@@ -636,7 +636,7 @@ func (b VisionPrescriptionLensSpecificationPrism) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "amount", b.Amount, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "amount", b.Amount, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveCode(e, "base", b.Base, nil); err != nil {
@@ -676,7 +676,7 @@ func (r *VisionPrescriptionLensSpecificationPrism) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "amount":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

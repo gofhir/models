@@ -937,7 +937,7 @@ type EffectEvidenceSynthesisEffectEstimate struct {
 	// Variant exposure states
 	VariantState *CodeableConcept `json:"variantState,omitempty"`
 	// Point estimate
-	Value *float64 `json:"value,omitempty"`
+	Value *Decimal `json:"value,omitempty"`
 	// What unit is the outcome described in?
 	UnitOfMeasure *CodeableConcept `json:"unitOfMeasure,omitempty"`
 	// How precise the estimate is
@@ -979,7 +979,7 @@ func (b EffectEvidenceSynthesisEffectEstimate) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "value", b.Value, nil); err != nil {
 		return err
 	}
 	if b.UnitOfMeasure != nil {
@@ -1044,7 +1044,7 @@ func (r *EffectEvidenceSynthesisEffectEstimate) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.VariantState = &v
 			case "value":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -1084,11 +1084,11 @@ type EffectEvidenceSynthesisEffectEstimatePrecisionEstimate struct {
 	// Type of precision estimate
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Level of confidence interval
-	Level *float64 `json:"level,omitempty"`
+	Level *Decimal `json:"level,omitempty"`
 	// Lower bound
-	From *float64 `json:"from,omitempty"`
+	From *Decimal `json:"from,omitempty"`
 	// Upper bound
-	To *float64 `json:"to,omitempty"`
+	To *Decimal `json:"to,omitempty"`
 }
 
 // MarshalXML serializes EffectEvidenceSynthesisEffectEstimatePrecisionEstimate to FHIR-conformant XML.
@@ -1118,13 +1118,13 @@ func (b EffectEvidenceSynthesisEffectEstimatePrecisionEstimate) MarshalXML(e *xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "level", b.Level, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "level", b.Level, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "from", b.From, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "from", b.From, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "to", b.To, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "to", b.To, nil); err != nil {
 		return err
 	}
 
@@ -1167,19 +1167,19 @@ func (r *EffectEvidenceSynthesisEffectEstimatePrecisionEstimate) UnmarshalXML(d 
 				}
 				r.Type = &v
 			case "level":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Level = v
 			case "from":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.From = v
 			case "to":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

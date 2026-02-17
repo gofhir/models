@@ -1401,7 +1401,7 @@ type ClaimItem struct {
 	// Fee, charge or cost per item
 	UnitPrice *Money `json:"unitPrice,omitempty"`
 	// Price scaling factor
-	Factor *float64 `json:"factor,omitempty"`
+	Factor *Decimal `json:"factor,omitempty"`
 	// Total tax
 	Tax *Money `json:"tax,omitempty"`
 	// Total item cost
@@ -1531,7 +1531,7 @@ func (b ClaimItem) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "factor", b.Factor, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "factor", b.Factor, nil); err != nil {
 		return err
 	}
 	if b.Tax != nil {
@@ -1732,7 +1732,7 @@ func (r *ClaimItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.UnitPrice = &v
 			case "factor":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -1919,7 +1919,7 @@ type ClaimItemDetail struct {
 	// Fee, charge or cost per item
 	UnitPrice *Money `json:"unitPrice,omitempty"`
 	// Price scaling factor
-	Factor *float64 `json:"factor,omitempty"`
+	Factor *Decimal `json:"factor,omitempty"`
 	// Total tax
 	Tax *Money `json:"tax,omitempty"`
 	// Total item cost
@@ -2005,7 +2005,7 @@ func (b ClaimItemDetail) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "factor", b.Factor, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "factor", b.Factor, nil); err != nil {
 		return err
 	}
 	if b.Tax != nil {
@@ -2128,7 +2128,7 @@ func (r *ClaimItemDetail) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.UnitPrice = &v
 			case "factor":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -2200,7 +2200,7 @@ type ClaimItemDetailSubDetail struct {
 	// Fee, charge or cost per item
 	UnitPrice *Money `json:"unitPrice,omitempty"`
 	// Price scaling factor
-	Factor *float64 `json:"factor,omitempty"`
+	Factor *Decimal `json:"factor,omitempty"`
 	// Total tax
 	Tax *Money `json:"tax,omitempty"`
 	// Total item cost
@@ -2284,7 +2284,7 @@ func (b ClaimItemDetailSubDetail) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "factor", b.Factor, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "factor", b.Factor, nil); err != nil {
 		return err
 	}
 	if b.Tax != nil {
@@ -2402,7 +2402,7 @@ func (r *ClaimItemDetailSubDetail) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.UnitPrice = &v
 			case "factor":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

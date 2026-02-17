@@ -95,7 +95,7 @@ func TestObservationBuilder(t *testing.T) {
 		codeSystem := "http://loinc.org"
 		codeCode := "8480-6"
 		codeDisplay := "Systolic blood pressure"
-		value := 120.0
+		value := r4b.NewDecimalFromFloat64(120.0)
 		unit := "mmHg"
 		unitSystem := "http://unitsofmeasure.org"
 		unitCode := "mm[Hg]"
@@ -109,7 +109,7 @@ func TestObservationBuilder(t *testing.T) {
 				},
 			}).
 			SetValueQuantity(r4b.Quantity{
-				Value:  &value,
+				Value:  value,
 				Unit:   &unit,
 				System: &unitSystem,
 				Code:   &unitCode,
@@ -121,7 +121,7 @@ func TestObservationBuilder(t *testing.T) {
 		assert.Equal(t, "obs-bp", *obs.Id)
 		assert.Equal(t, r4b.ObservationStatusFinal, *obs.Status)
 		require.NotNil(t, obs.ValueQuantity)
-		assert.Equal(t, 120.0, *obs.ValueQuantity.Value)
+		assert.Equal(t, "120", obs.ValueQuantity.Value.String())
 		assert.Equal(t, "mmHg", *obs.ValueQuantity.Unit)
 		assert.Equal(t, "2024-06-15T14:30:00Z", *obs.EffectiveDateTime)
 	})

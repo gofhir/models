@@ -101,7 +101,7 @@ func TestObservationFunctionalOptions(t *testing.T) {
 	})
 
 	t.Run("observation with value quantity", func(t *testing.T) {
-		value := 72.0
+		value := r4b.NewDecimalFromFloat64(72.0)
 		unit := "bpm"
 		system := "http://unitsofmeasure.org"
 		code := "/min"
@@ -110,7 +110,7 @@ func TestObservationFunctionalOptions(t *testing.T) {
 			r4b.WithObservationId("obs-456"),
 			r4b.WithObservationStatus(r4b.ObservationStatusFinal),
 			r4b.WithObservationValueQuantity(r4b.Quantity{
-				Value:  &value,
+				Value:  value,
 				Unit:   &unit,
 				System: &system,
 				Code:   &code,
@@ -119,7 +119,7 @@ func TestObservationFunctionalOptions(t *testing.T) {
 
 		require.NotNil(t, obs)
 		require.NotNil(t, obs.ValueQuantity)
-		assert.Equal(t, 72.0, *obs.ValueQuantity.Value)
+		assert.Equal(t, "72", obs.ValueQuantity.Value.String())
 		assert.Equal(t, "bpm", *obs.ValueQuantity.Unit)
 	})
 }

@@ -83,7 +83,7 @@ func TestResourceBackboneElements(t *testing.T) {
 		search := r5.BundleEntrySearch{
 			Id:    ptrStringB5("search-1"),
 			Mode:  &mode,
-			Score: ptrFloat64B5(0.95),
+			Score: ptrDecimalB5(0.95),
 		}
 
 		data, err := json.Marshal(search)
@@ -95,7 +95,7 @@ func TestResourceBackboneElements(t *testing.T) {
 
 		assert.Equal(t, "search-1", *decoded.Id)
 		assert.Equal(t, r5.SearchEntryMode("match"), *decoded.Mode)
-		assert.Equal(t, 0.95, *decoded.Score)
+		assert.Equal(t, "0.95", decoded.Score.String())
 	})
 
 	t.Run("ObservationComponent", func(t *testing.T) {
@@ -111,7 +111,7 @@ func TestResourceBackboneElements(t *testing.T) {
 				},
 			},
 			ValueQuantity: &r5.Quantity{
-				Value:  ptrFloat64B5(120),
+				Value:  ptrDecimalB5(120),
 				Unit:   ptrStringB5("mmHg"),
 				System: ptrStringB5("http://unitsofmeasure.org"),
 				Code:   ptrStringB5("mm[Hg]"),
@@ -127,7 +127,7 @@ func TestResourceBackboneElements(t *testing.T) {
 
 		assert.Equal(t, "comp-1", *decoded.Id)
 		assert.Equal(t, "8480-6", *decoded.Code.Coding[0].Code)
-		assert.Equal(t, float64(120), *decoded.ValueQuantity.Value)
+		assert.Equal(t, "120", decoded.ValueQuantity.Value.String())
 	})
 }
 
@@ -146,7 +146,7 @@ func TestDatatypeBackboneElements(t *testing.T) {
 				},
 			},
 			DoseQuantity: &r5.Quantity{
-				Value:  ptrFloat64B5(500),
+				Value:  ptrDecimalB5(500),
 				Unit:   ptrStringB5("mg"),
 				System: ptrStringB5("http://unitsofmeasure.org"),
 				Code:   ptrStringB5("mg"),
@@ -162,7 +162,7 @@ func TestDatatypeBackboneElements(t *testing.T) {
 
 		assert.Equal(t, "dose-1", *decoded.Id)
 		assert.Equal(t, "ordered", *decoded.Type.Coding[0].Code)
-		assert.Equal(t, float64(500), *decoded.DoseQuantity.Value)
+		assert.Equal(t, "500", decoded.DoseQuantity.Value.String())
 	})
 
 	t.Run("TimingRepeat", func(t *testing.T) {
@@ -170,12 +170,12 @@ func TestDatatypeBackboneElements(t *testing.T) {
 		repeat := r5.TimingRepeat{
 			Id:          ptrStringB5("repeat-1"),
 			Frequency:   ptrUint32B5(2),
-			Period:      ptrFloat64B5(1),
+			Period:      ptrDecimalB5(1),
 			PeriodUnit:  &periodUnit,
 			DayOfWeek:   []r5.DaysOfWeek{"mon", "wed", "fri"},
 			TimeOfDay:   []string{"08:00:00", "18:00:00"},
-			Duration:    ptrFloat64B5(30),
-			DurationMax: ptrFloat64B5(60),
+			Duration:    ptrDecimalB5(30),
+			DurationMax: ptrDecimalB5(60),
 		}
 
 		data, err := json.Marshal(repeat)
@@ -356,8 +356,8 @@ func ptrBoolB5(b bool) *bool {
 	return &b
 }
 
-func ptrFloat64B5(f float64) *float64 {
-	return &f
+func ptrDecimalB5(f float64) *r5.Decimal {
+	return r5.NewDecimalFromFloat64(f)
 }
 
 func ptrUint32B5(u uint32) *uint32 {

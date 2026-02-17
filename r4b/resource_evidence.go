@@ -984,7 +984,7 @@ type EvidenceStatisticAttributeEstimate struct {
 	// The singular quantity of the attribute estimate, for attribute estimates represented as single values; also used to report unit of measure
 	Quantity *Quantity `json:"quantity,omitempty"`
 	// Level of confidence interval, eg 0.95 for 95% confidence interval
-	Level *float64 `json:"level,omitempty"`
+	Level *Decimal `json:"level,omitempty"`
 	// Lower and upper bound values of the attribute estimate
 	Range *Range `json:"range,omitempty"`
 	// A nested attribute estimate; which is the attribute estimate of an attribute estimate
@@ -1031,7 +1031,7 @@ func (b EvidenceStatisticAttributeEstimate) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "level", b.Level, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "level", b.Level, nil); err != nil {
 		return err
 	}
 	if b.Range != nil {
@@ -1102,7 +1102,7 @@ func (r *EvidenceStatisticAttributeEstimate) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.Quantity = &v
 			case "level":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

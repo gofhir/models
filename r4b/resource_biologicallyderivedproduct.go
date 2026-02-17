@@ -806,7 +806,7 @@ type BiologicallyDerivedProductStorage struct {
 	// Description of storage
 	Description *string `json:"description,omitempty"`
 	// Storage temperature
-	Temperature *float64 `json:"temperature,omitempty"`
+	Temperature *Decimal `json:"temperature,omitempty"`
 	// farenheit | celsius | kelvin
 	Scale *BiologicallyDerivedProductStorageScale `json:"scale,omitempty"`
 	// Storage timeperiod
@@ -838,7 +838,7 @@ func (b BiologicallyDerivedProductStorage) MarshalXML(e *xml.Encoder, start xml.
 	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "temperature", b.Temperature, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "temperature", b.Temperature, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveCode(e, "scale", b.Scale, nil); err != nil {
@@ -889,7 +889,7 @@ func (r *BiologicallyDerivedProductStorage) UnmarshalXML(d *xml.Decoder, start x
 				}
 				r.Description = v
 			case "temperature":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

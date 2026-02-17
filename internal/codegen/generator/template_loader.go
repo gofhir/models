@@ -359,8 +359,8 @@ func xmlTemplateFuncMap() template.FuncMap {
 				return "xmlEncodePrimitiveInt64"
 			case "uint32":
 				return "xmlEncodePrimitiveUint32"
-			case "float64":
-				return "xmlEncodePrimitiveFloat64"
+			case "Decimal":
+				return "xmlEncodePrimitiveDecimal"
 			default:
 				// Custom code type (e.g., *AdministrativeGender, *NarrativeStatus)
 				return "xmlEncodePrimitiveCode"
@@ -400,8 +400,8 @@ func xmlTemplateFuncMap() template.FuncMap {
 				return "xmlEncodePrimitiveInt64Array"
 			case "uint32":
 				return "xmlEncodePrimitiveUint32Array"
-			case "float64":
-				return "xmlEncodePrimitiveFloat64Array"
+			case "Decimal":
+				return "xmlEncodePrimitiveDecimalArray"
 			default:
 				// Custom code type array (e.g., []ReferenceHandlingPolicy)
 				return "xmlEncodePrimitiveCodeArray"
@@ -422,8 +422,8 @@ func xmlTemplateFuncMap() template.FuncMap {
 				return "xmlDecodePrimitiveInt64"
 			case "uint32":
 				return "xmlDecodePrimitiveUint32"
-			case "float64":
-				return "xmlDecodePrimitiveFloat64"
+			case "Decimal":
+				return "xmlDecodePrimitiveDecimal"
 			default:
 				// Custom code type (e.g., *AdministrativeGender)
 				return "xmlDecodePrimitiveCode[" + baseType + "]"
@@ -507,6 +507,18 @@ func (c *CodeGen) generateXMLHelpers() error {
 
 	path := filepath.Join(c.config.OutputDir, "xml_helpers.go")
 	return writeTemplateFile(path, "xml_helpers.go.tmpl", data)
+}
+
+// generateDecimalType generates decimal.go from template.
+func (c *CodeGen) generateDecimalType() error {
+	data := TemplateData{
+		PackageName: c.config.PackageName,
+		Version:     strings.ToUpper(c.config.Version),
+		FileType:    "decimal",
+	}
+
+	path := filepath.Join(c.config.OutputDir, "decimal.go")
+	return writeTemplateFile(path, "decimal.go.tmpl", data)
 }
 
 // ============================================================================

@@ -58,7 +58,7 @@ type TestReport struct {
 	// Extension for Result
 	ResultExt *Element `json:"_result,omitempty"`
 	// The final score (percentage of tests passed) resulting from the execution of the TestScript
-	Score *float64 `json:"score,omitempty"`
+	Score *Decimal `json:"score,omitempty"`
 	// Extension for Score
 	ScoreExt *Element `json:"_score,omitempty"`
 	// Name of the tester producing this report (Organization or individual)
@@ -243,7 +243,7 @@ func (r TestReport) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveCode(e, "result", r.Result, r.ResultExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "score", r.Score, r.ScoreExt); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "score", r.Score, r.ScoreExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "tester", r.Tester, r.TesterExt); err != nil {
@@ -373,7 +373,7 @@ func (r *TestReport) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				r.Result = v
 				r.ResultExt = ext
 			case "score":
-				v, ext, err := xmlDecodePrimitiveFloat64(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -1562,7 +1562,7 @@ func (b *TestReportBuilder) SetResult(v TestReportResult) *TestReportBuilder {
 }
 
 // SetScore sets the Score field.
-func (b *TestReportBuilder) SetScore(v float64) *TestReportBuilder {
+func (b *TestReportBuilder) SetScore(v Decimal) *TestReportBuilder {
 	b.testReport.Score = &v
 	return b
 }
@@ -1711,7 +1711,7 @@ func WithTestReportResult(v TestReportResult) TestReportOption {
 }
 
 // WithTestReportScore sets the Score field.
-func WithTestReportScore(v float64) TestReportOption {
+func WithTestReportScore(v Decimal) TestReportOption {
 	return func(r *TestReport) {
 		r.Score = &v
 	}

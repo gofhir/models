@@ -623,7 +623,7 @@ type ObservationDefinitionQuantitativeDetails struct {
 	// SI unit for quantitative results
 	Unit *CodeableConcept `json:"unit,omitempty"`
 	// SI to Customary unit conversion factor
-	ConversionFactor *float64 `json:"conversionFactor,omitempty"`
+	ConversionFactor *Decimal `json:"conversionFactor,omitempty"`
 	// Decimal precision of observation quantitative results
 	DecimalPrecision *int `json:"decimalPrecision,omitempty"`
 }
@@ -660,7 +660,7 @@ func (b ObservationDefinitionQuantitativeDetails) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "conversionFactor", b.ConversionFactor, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "conversionFactor", b.ConversionFactor, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveInt(e, "decimalPrecision", b.DecimalPrecision, nil); err != nil {
@@ -712,7 +712,7 @@ func (r *ObservationDefinitionQuantitativeDetails) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.Unit = &v
 			case "conversionFactor":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

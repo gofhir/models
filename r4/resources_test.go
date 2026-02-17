@@ -124,7 +124,7 @@ func TestObservation(t *testing.T) {
 	t.Run("create observation with value quantity", func(t *testing.T) {
 		id := "obs-123"
 		status := ObservationStatusFinal
-		value := 120.0
+		value := NewDecimalFromFloat64(120.0)
 		unit := "mmHg"
 		system := "http://unitsofmeasure.org"
 		code := "mm[Hg]"
@@ -142,7 +142,7 @@ func TestObservation(t *testing.T) {
 				},
 			},
 			ValueQuantity: &Quantity{
-				Value:  &value,
+				Value:  value,
 				Unit:   &unit,
 				System: &system,
 				Code:   &code,
@@ -152,7 +152,7 @@ func TestObservation(t *testing.T) {
 		assert.Equal(t, "obs-123", *obs.Id)
 		assert.Equal(t, ObservationStatusFinal, *obs.Status)
 		require.NotNil(t, obs.ValueQuantity)
-		assert.Equal(t, 120.0, *obs.ValueQuantity.Value)
+		assert.Equal(t, 120.0, obs.ValueQuantity.Value.Float64())
 		assert.Equal(t, "mmHg", *obs.ValueQuantity.Unit)
 	})
 

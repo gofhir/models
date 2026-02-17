@@ -917,7 +917,7 @@ type CodeSystemConceptProperty struct {
 	// Extension for ValueDateTime
 	ValueDateTimeExt *Element `json:"_valueDateTime,omitempty"`
 	// Value of the property for this concept
-	ValueDecimal *float64 `json:"valueDecimal,omitempty"`
+	ValueDecimal *Decimal `json:"valueDecimal,omitempty"`
 	// Extension for ValueDecimal
 	ValueDecimalExt *Element `json:"_valueDecimal,omitempty"`
 }
@@ -967,7 +967,7 @@ func (b CodeSystemConceptProperty) MarshalXML(e *xml.Encoder, start xml.StartEle
 	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
 		return err
 	}
 
@@ -1046,7 +1046,7 @@ func (r *CodeSystemConceptProperty) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ValueDateTime = v
 			case "valueDecimal":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

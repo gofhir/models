@@ -651,7 +651,7 @@ type ImagingSelectionInstanceImageRegion2D struct {
 	// point | polyline | interpolated | circle | ellipse
 	RegionType *ImagingSelection2DGraphicType `json:"regionType,omitempty"`
 	// Specifies the coordinates that define the image region
-	Coordinate []float64 `json:"coordinate,omitempty"`
+	Coordinate []Decimal `json:"coordinate,omitempty"`
 }
 
 // MarshalXML serializes ImagingSelectionInstanceImageRegion2D to FHIR-conformant XML.
@@ -679,7 +679,7 @@ func (b ImagingSelectionInstanceImageRegion2D) MarshalXML(e *xml.Encoder, start 
 	if err := xmlEncodePrimitiveCode(e, "regionType", b.RegionType, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64Array(e, "coordinate", b.Coordinate, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimalArray(e, "coordinate", b.Coordinate, nil); err != nil {
 		return err
 	}
 
@@ -722,7 +722,7 @@ func (r *ImagingSelectionInstanceImageRegion2D) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.RegionType = v
 			case "coordinate":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -752,7 +752,7 @@ type ImagingSelectionInstanceImageRegion3D struct {
 	// point | multipoint | polyline | polygon | ellipse | ellipsoid
 	RegionType *ImagingSelection3DGraphicType `json:"regionType,omitempty"`
 	// Specifies the coordinates that define the image region
-	Coordinate []float64 `json:"coordinate,omitempty"`
+	Coordinate []Decimal `json:"coordinate,omitempty"`
 }
 
 // MarshalXML serializes ImagingSelectionInstanceImageRegion3D to FHIR-conformant XML.
@@ -780,7 +780,7 @@ func (b ImagingSelectionInstanceImageRegion3D) MarshalXML(e *xml.Encoder, start 
 	if err := xmlEncodePrimitiveCode(e, "regionType", b.RegionType, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64Array(e, "coordinate", b.Coordinate, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimalArray(e, "coordinate", b.Coordinate, nil); err != nil {
 		return err
 	}
 
@@ -823,7 +823,7 @@ func (r *ImagingSelectionInstanceImageRegion3D) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.RegionType = v
 			case "coordinate":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

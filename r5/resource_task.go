@@ -739,7 +739,7 @@ type TaskInput struct {
 	// Extension for ValueDateTime
 	ValueDateTimeExt *Element `json:"_valueDateTime,omitempty"`
 	// Content to use in performing the task
-	ValueDecimal *float64 `json:"valueDecimal,omitempty"`
+	ValueDecimal *Decimal `json:"valueDecimal,omitempty"`
 	// Extension for ValueDecimal
 	ValueDecimalExt *Element `json:"_valueDecimal,omitempty"`
 	// Content to use in performing the task
@@ -907,7 +907,7 @@ func (b TaskInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "valueId", b.ValueId, nil); err != nil {
@@ -1193,7 +1193,7 @@ func (r *TaskInput) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.ValueDateTime = v
 			case "valueDecimal":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -1527,7 +1527,7 @@ type TaskOutput struct {
 	// Extension for ValueDateTime
 	ValueDateTimeExt *Element `json:"_valueDateTime,omitempty"`
 	// Result of output
-	ValueDecimal *float64 `json:"valueDecimal,omitempty"`
+	ValueDecimal *Decimal `json:"valueDecimal,omitempty"`
 	// Extension for ValueDecimal
 	ValueDecimalExt *Element `json:"_valueDecimal,omitempty"`
 	// Result of output
@@ -1695,7 +1695,7 @@ func (b TaskOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "valueId", b.ValueId, nil); err != nil {
@@ -1981,7 +1981,7 @@ func (r *TaskOutput) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				r.ValueDateTime = v
 			case "valueDecimal":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

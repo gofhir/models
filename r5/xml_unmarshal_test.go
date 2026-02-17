@@ -159,7 +159,7 @@ func TestObservation_UnmarshalXML_ComplexStructure(t *testing.T) {
 	assert.Equal(t, "8480-6", *obs.Code.Coding[0].Code)
 	assert.Equal(t, "Systolic blood pressure", *obs.Code.Coding[0].Display)
 	require.NotNil(t, obs.ValueQuantity)
-	assert.Equal(t, 120.0, *obs.ValueQuantity.Value)
+	assert.Equal(t, "120", obs.ValueQuantity.Value.String())
 	assert.Equal(t, "mmHg", *obs.ValueQuantity.Unit)
 }
 

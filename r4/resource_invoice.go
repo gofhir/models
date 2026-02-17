@@ -618,7 +618,7 @@ type InvoiceLineItemPriceComponent struct {
 	// Code identifying the specific component
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Factor used for calculating this component
-	Factor *float64 `json:"factor,omitempty"`
+	Factor *Decimal `json:"factor,omitempty"`
 	// Monetary amount associated with this component
 	Amount *Money `json:"amount,omitempty"`
 }
@@ -653,7 +653,7 @@ func (b InvoiceLineItemPriceComponent) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "factor", b.Factor, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "factor", b.Factor, nil); err != nil {
 		return err
 	}
 	if b.Amount != nil {
@@ -707,7 +707,7 @@ func (r *InvoiceLineItemPriceComponent) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.Code = &v
 			case "factor":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

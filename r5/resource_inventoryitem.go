@@ -572,7 +572,7 @@ type InventoryItemCharacteristic struct {
 	// Extension for ValueInteger
 	ValueIntegerExt *Element `json:"_valueInteger,omitempty"`
 	// The value of the attribute
-	ValueDecimal *float64 `json:"valueDecimal,omitempty"`
+	ValueDecimal *Decimal `json:"valueDecimal,omitempty"`
 	// Extension for ValueDecimal
 	ValueDecimalExt *Element `json:"_valueDecimal,omitempty"`
 	// The value of the attribute
@@ -634,7 +634,7 @@ func (b InventoryItemCharacteristic) MarshalXML(e *xml.Encoder, start xml.StartE
 	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
@@ -731,7 +731,7 @@ func (r *InventoryItemCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ValueInteger = v
 			case "valueDecimal":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

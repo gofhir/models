@@ -499,21 +499,21 @@ type MolecularSequenceQuality struct {
 	// Method to get quality
 	Method *CodeableConcept `json:"method,omitempty"`
 	// True positives from the perspective of the truth data
-	TruthTP *float64 `json:"truthTP,omitempty"`
+	TruthTP *Decimal `json:"truthTP,omitempty"`
 	// True positives from the perspective of the query data
-	QueryTP *float64 `json:"queryTP,omitempty"`
+	QueryTP *Decimal `json:"queryTP,omitempty"`
 	// False negatives
-	TruthFN *float64 `json:"truthFN,omitempty"`
+	TruthFN *Decimal `json:"truthFN,omitempty"`
 	// False positives
-	QueryFP *float64 `json:"queryFP,omitempty"`
+	QueryFP *Decimal `json:"queryFP,omitempty"`
 	// False positives where the non-REF alleles in the Truth and Query Call Sets match
-	GtFP *float64 `json:"gtFP,omitempty"`
+	GtFP *Decimal `json:"gtFP,omitempty"`
 	// Precision of comparison
-	Precision *float64 `json:"precision,omitempty"`
+	Precision *Decimal `json:"precision,omitempty"`
 	// Recall of comparison
-	Recall *float64 `json:"recall,omitempty"`
+	Recall *Decimal `json:"recall,omitempty"`
 	// F-score
-	FScore *float64 `json:"fScore,omitempty"`
+	FScore *Decimal `json:"fScore,omitempty"`
 	// Receiver Operator Characteristic (ROC) Curve
 	Roc *MolecularSequenceQualityRoc `json:"roc,omitempty"`
 }
@@ -564,28 +564,28 @@ func (b MolecularSequenceQuality) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "truthTP", b.TruthTP, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "truthTP", b.TruthTP, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "queryTP", b.QueryTP, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "queryTP", b.QueryTP, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "truthFN", b.TruthFN, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "truthFN", b.TruthFN, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "queryFP", b.QueryFP, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "queryFP", b.QueryFP, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "gtFP", b.GtFP, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "gtFP", b.GtFP, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "precision", b.Precision, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "precision", b.Precision, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "recall", b.Recall, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "recall", b.Recall, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "fScore", b.FScore, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "fScore", b.FScore, nil); err != nil {
 		return err
 	}
 	if b.Roc != nil {
@@ -663,49 +663,49 @@ func (r *MolecularSequenceQuality) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.Method = &v
 			case "truthTP":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.TruthTP = v
 			case "queryTP":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.QueryTP = v
 			case "truthFN":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.TruthFN = v
 			case "queryFP":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.QueryFP = v
 			case "gtFP":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.GtFP = v
 			case "precision":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Precision = v
 			case "recall":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Recall = v
 			case "fScore":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -745,11 +745,11 @@ type MolecularSequenceQualityRoc struct {
 	// Roc score false negative numbers
 	NumFN []int `json:"numFN,omitempty"`
 	// Precision of the GQ score
-	Precision []float64 `json:"precision,omitempty"`
+	Precision []Decimal `json:"precision,omitempty"`
 	// Sensitivity of the GQ score
-	Sensitivity []float64 `json:"sensitivity,omitempty"`
+	Sensitivity []Decimal `json:"sensitivity,omitempty"`
 	// FScore of the GQ score
-	FMeasure []float64 `json:"fMeasure,omitempty"`
+	FMeasure []Decimal `json:"fMeasure,omitempty"`
 }
 
 // MarshalXML serializes MolecularSequenceQualityRoc to FHIR-conformant XML.
@@ -786,13 +786,13 @@ func (b MolecularSequenceQualityRoc) MarshalXML(e *xml.Encoder, start xml.StartE
 	if err := xmlEncodePrimitiveIntArray(e, "numFN", b.NumFN, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64Array(e, "precision", b.Precision, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimalArray(e, "precision", b.Precision, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64Array(e, "sensitivity", b.Sensitivity, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimalArray(e, "sensitivity", b.Sensitivity, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64Array(e, "fMeasure", b.FMeasure, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimalArray(e, "fMeasure", b.FMeasure, nil); err != nil {
 		return err
 	}
 
@@ -861,7 +861,7 @@ func (r *MolecularSequenceQualityRoc) UnmarshalXML(d *xml.Decoder, start xml.Sta
 					r.NumFN = append(r.NumFN, *v)
 				}
 			case "precision":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -869,7 +869,7 @@ func (r *MolecularSequenceQualityRoc) UnmarshalXML(d *xml.Decoder, start xml.Sta
 					r.Precision = append(r.Precision, *v)
 				}
 			case "sensitivity":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -877,7 +877,7 @@ func (r *MolecularSequenceQualityRoc) UnmarshalXML(d *xml.Decoder, start xml.Sta
 					r.Sensitivity = append(r.Sensitivity, *v)
 				}
 			case "fMeasure":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

@@ -8,7 +8,7 @@ var PrimitiveTypeMap = map[string]string{
 	// Numeric types
 	"integer":     "int",
 	"integer64":   "int64",
-	"decimal":     "float64",
+	"decimal":     "Decimal",
 	"unsignedInt": "uint32",
 	"positiveInt": "uint32",
 
@@ -104,7 +104,7 @@ var FHIRPathSystemTypes = map[string]string{
 	"http://hl7.org/fhirpath/System.String":   "string",
 	"http://hl7.org/fhirpath/System.Boolean":  "bool",
 	"http://hl7.org/fhirpath/System.Integer":  "int",
-	"http://hl7.org/fhirpath/System.Decimal":  "float64",
+	"http://hl7.org/fhirpath/System.Decimal":  "Decimal",
 	"http://hl7.org/fhirpath/System.Date":     "string",
 	"http://hl7.org/fhirpath/System.DateTime": "string",
 	"http://hl7.org/fhirpath/System.Time":     "string",
@@ -156,7 +156,7 @@ func GoTypeRequiresPointer(goType string, isRequired bool) bool {
 
 	// For primitives, we always use pointers to distinguish "not set" from "zero value"
 	switch goType {
-	case "bool", "int", "int64", "uint32", "float64", "string":
+	case "bool", "int", "int64", "uint32", "Decimal", "string":
 		return true
 	default:
 		return !isRequired

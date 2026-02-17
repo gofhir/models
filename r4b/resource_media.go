@@ -94,7 +94,7 @@ type Media struct {
 	// Extension for Frames
 	FramesExt *Element `json:"_frames,omitempty"`
 	// Length in seconds (audio / video)
-	Duration *float64 `json:"duration,omitempty"`
+	Duration *Decimal `json:"duration,omitempty"`
 	// Extension for Duration
 	DurationExt *Element `json:"_duration,omitempty"`
 	// Actual Media - reference or data
@@ -336,7 +336,7 @@ func (r Media) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveUint32(e, "frames", r.Frames, r.FramesExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "duration", r.Duration, r.DurationExt); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "duration", r.Duration, r.DurationExt); err != nil {
 		return err
 	}
 	if err := r.Content.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "content"}}); err != nil {
@@ -541,7 +541,7 @@ func (r *Media) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				r.Frames = v
 				r.FramesExt = ext
 			case "duration":
-				v, ext, err := xmlDecodePrimitiveFloat64(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -764,7 +764,7 @@ func (b *MediaBuilder) SetFrames(v uint32) *MediaBuilder {
 }
 
 // SetDuration sets the Duration field.
-func (b *MediaBuilder) SetDuration(v float64) *MediaBuilder {
+func (b *MediaBuilder) SetDuration(v Decimal) *MediaBuilder {
 	b.media.Duration = &v
 	return b
 }
@@ -1001,7 +1001,7 @@ func WithMediaFrames(v uint32) MediaOption {
 }
 
 // WithMediaDuration sets the Duration field.
-func WithMediaDuration(v float64) MediaOption {
+func WithMediaDuration(v Decimal) MediaOption {
 	return func(r *Media) {
 		r.Duration = &v
 	}

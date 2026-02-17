@@ -223,7 +223,7 @@ func TestFHIRToGoType(t *testing.T) {
 		{"boolean", "bool"},
 		{"integer", "int"},
 		{"integer64", "int64"},
-		{"decimal", "float64"},
+		{"decimal", "Decimal"},
 		{"string", "string"},
 		{"uri", "string"},
 		{"date", "string"},

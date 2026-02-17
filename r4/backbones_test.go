@@ -85,7 +85,7 @@ func TestResourceBackboneElements(t *testing.T) {
 		search := r4.BundleEntrySearch{
 			Id:    ptrStringB("search-1"),
 			Mode:  &mode,
-			Score: ptrFloat64B(0.95),
+			Score: ptrDecimalB(0.95),
 		}
 
 		data, err := json.Marshal(search)
@@ -97,7 +97,7 @@ func TestResourceBackboneElements(t *testing.T) {
 
 		assert.Equal(t, "search-1", *decoded.Id)
 		assert.Equal(t, r4.SearchEntryMode("match"), *decoded.Mode)
-		assert.Equal(t, 0.95, *decoded.Score)
+		assert.Equal(t, "0.95", decoded.Score.String())
 	})
 
 	t.Run("ObservationComponent", func(t *testing.T) {
@@ -113,7 +113,7 @@ func TestResourceBackboneElements(t *testing.T) {
 				},
 			},
 			ValueQuantity: &r4.Quantity{
-				Value:  ptrFloat64B(120),
+				Value:  ptrDecimalB(120),
 				Unit:   ptrStringB("mmHg"),
 				System: ptrStringB("http://unitsofmeasure.org"),
 				Code:   ptrStringB("mm[Hg]"),
@@ -129,7 +129,7 @@ func TestResourceBackboneElements(t *testing.T) {
 
 		assert.Equal(t, "comp-1", *decoded.Id)
 		assert.Equal(t, "8480-6", *decoded.Code.Coding[0].Code)
-		assert.Equal(t, float64(120), *decoded.ValueQuantity.Value)
+		assert.Equal(t, "120", decoded.ValueQuantity.Value.String())
 	})
 
 	t.Run("ClaimItem", func(t *testing.T) {
@@ -145,10 +145,10 @@ func TestResourceBackboneElements(t *testing.T) {
 				},
 			},
 			Quantity: &r4.Quantity{
-				Value: ptrFloat64B(1),
+				Value: ptrDecimalB(1),
 			},
 			UnitPrice: &r4.Money{
-				Value:    ptrFloat64B(135.57),
+				Value:    ptrDecimalB(135.57),
 				Currency: ptrStringB("USD"),
 			},
 		}
@@ -162,7 +162,7 @@ func TestResourceBackboneElements(t *testing.T) {
 
 		assert.Equal(t, uint32(1), *decoded.Sequence)
 		assert.Equal(t, "1205", *decoded.ProductOrService.Coding[0].Code)
-		assert.Equal(t, 135.57, *decoded.UnitPrice.Value)
+		assert.Equal(t, "135.57", decoded.UnitPrice.Value.String())
 	})
 
 	t.Run("AllergyIntoleranceReaction", func(t *testing.T) {
@@ -210,7 +210,7 @@ func TestDatatypeBackboneElements(t *testing.T) {
 				},
 			},
 			DoseQuantity: &r4.Quantity{
-				Value:  ptrFloat64B(500),
+				Value:  ptrDecimalB(500),
 				Unit:   ptrStringB("mg"),
 				System: ptrStringB("http://unitsofmeasure.org"),
 				Code:   ptrStringB("mg"),
@@ -226,7 +226,7 @@ func TestDatatypeBackboneElements(t *testing.T) {
 
 		assert.Equal(t, "dose-1", *decoded.Id)
 		assert.Equal(t, "ordered", *decoded.Type.Coding[0].Code)
-		assert.Equal(t, float64(500), *decoded.DoseQuantity.Value)
+		assert.Equal(t, "500", decoded.DoseQuantity.Value.String())
 		assert.Equal(t, "mg", *decoded.DoseQuantity.Unit)
 	})
 
@@ -235,12 +235,12 @@ func TestDatatypeBackboneElements(t *testing.T) {
 		repeat := r4.TimingRepeat{
 			Id:          ptrStringB("repeat-1"),
 			Frequency:   ptrUint32B(2),
-			Period:      ptrFloat64B(1),
+			Period:      ptrDecimalB(1),
 			PeriodUnit:  &periodUnit,
 			DayOfWeek:   []r4.DaysOfWeek{"mon", "wed", "fri"},
 			TimeOfDay:   []string{"08:00:00", "18:00:00"},
-			Duration:    ptrFloat64B(30),
-			DurationMax: ptrFloat64B(60),
+			Duration:    ptrDecimalB(30),
+			DurationMax: ptrDecimalB(60),
 		}
 
 		data, err := json.Marshal(repeat)
@@ -252,7 +252,7 @@ func TestDatatypeBackboneElements(t *testing.T) {
 
 		assert.Equal(t, "repeat-1", *decoded.Id)
 		assert.Equal(t, uint32(2), *decoded.Frequency)
-		assert.Equal(t, float64(1), *decoded.Period)
+		assert.Equal(t, "1", decoded.Period.String())
 		assert.Equal(t, r4.UnitsOfTime("d"), *decoded.PeriodUnit)
 		assert.Equal(t, []r4.DaysOfWeek{"mon", "wed", "fri"}, decoded.DayOfWeek)
 		assert.Equal(t, []string{"08:00:00", "18:00:00"}, decoded.TimeOfDay)
@@ -546,9 +546,9 @@ func TestBackboneJSONSerialization(t *testing.T) {
 
 		assert.Equal(t, "dose-json", *doseAndRate.Id)
 		assert.Equal(t, "calculated", *doseAndRate.Type.Coding[0].Code)
-		assert.Equal(t, float64(250), *doseAndRate.DoseQuantity.Value)
+		assert.Equal(t, "250", doseAndRate.DoseQuantity.Value.String())
 		assert.NotNil(t, doseAndRate.RateRatio)
-		assert.Equal(t, float64(500), *doseAndRate.RateRatio.Numerator.Value)
+		assert.Equal(t, "500", doseAndRate.RateRatio.Numerator.Value.String())
 	})
 }
 
@@ -561,8 +561,8 @@ func ptrBoolB(b bool) *bool {
 	return &b
 }
 
-func ptrFloat64B(f float64) *float64 {
-	return &f
+func ptrDecimalB(f float64) *r4.Decimal {
+	return r4.NewDecimalFromFloat64(f)
 }
 
 func ptrUint32B(u uint32) *uint32 {

@@ -755,7 +755,7 @@ type BundleEntrySearch struct {
 	// match | include - why this is in the result set
 	Mode *SearchEntryMode `json:"mode,omitempty"`
 	// Search ranking (between 0 and 1)
-	Score *float64 `json:"score,omitempty"`
+	Score *Decimal `json:"score,omitempty"`
 }
 
 // MarshalXML serializes BundleEntrySearch to FHIR-conformant XML.
@@ -783,7 +783,7 @@ func (b BundleEntrySearch) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	if err := xmlEncodePrimitiveCode(e, "mode", b.Mode, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "score", b.Score, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "score", b.Score, nil); err != nil {
 		return err
 	}
 
@@ -826,7 +826,7 @@ func (r *BundleEntrySearch) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.Mode = v
 			case "score":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

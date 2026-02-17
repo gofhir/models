@@ -65,7 +65,7 @@ func TestObservation(t *testing.T) {
 	t.Run("create observation with value quantity", func(t *testing.T) {
 		id := "obs-123"
 		status := ObservationStatusFinal
-		value := 72.0
+		value := NewDecimalFromFloat64(72.0)
 		unit := "bpm"
 
 		obs := Observation{
@@ -73,7 +73,7 @@ func TestObservation(t *testing.T) {
 			Status: &status,
 			Code:   CodeableConcept{},
 			ValueQuantity: &Quantity{
-				Value: &value,
+				Value: value,
 				Unit:  &unit,
 			},
 		}
@@ -81,7 +81,7 @@ func TestObservation(t *testing.T) {
 		assert.Equal(t, "obs-123", *obs.Id)
 		assert.Equal(t, ObservationStatusFinal, *obs.Status)
 		require.NotNil(t, obs.ValueQuantity)
-		assert.Equal(t, 72.0, *obs.ValueQuantity.Value)
+		assert.Equal(t, "72", obs.ValueQuantity.Value.String())
 		assert.Equal(t, "bpm", *obs.ValueQuantity.Unit)
 	})
 

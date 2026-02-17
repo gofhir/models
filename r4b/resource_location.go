@@ -626,11 +626,11 @@ type LocationPosition struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Longitude with WGS84 datum
-	Longitude *float64 `json:"longitude,omitempty"`
+	Longitude *Decimal `json:"longitude,omitempty"`
 	// Latitude with WGS84 datum
-	Latitude *float64 `json:"latitude,omitempty"`
+	Latitude *Decimal `json:"latitude,omitempty"`
 	// Altitude with WGS84 datum
-	Altitude *float64 `json:"altitude,omitempty"`
+	Altitude *Decimal `json:"altitude,omitempty"`
 }
 
 // MarshalXML serializes LocationPosition to FHIR-conformant XML.
@@ -655,13 +655,13 @@ func (b LocationPosition) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "longitude", b.Longitude, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "longitude", b.Longitude, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "latitude", b.Latitude, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "latitude", b.Latitude, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "altitude", b.Altitude, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "altitude", b.Altitude, nil); err != nil {
 		return err
 	}
 
@@ -698,19 +698,19 @@ func (r *LocationPosition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "longitude":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Longitude = v
 			case "latitude":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Latitude = v
 			case "altitude":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

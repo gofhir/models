@@ -1015,7 +1015,7 @@ type QuestionnaireItemEnableWhen struct {
 	// Extension for AnswerBoolean
 	AnswerBooleanExt *Element `json:"_answerBoolean,omitempty"`
 	// Value for question comparison based on operator
-	AnswerDecimal *float64 `json:"answerDecimal,omitempty"`
+	AnswerDecimal *Decimal `json:"answerDecimal,omitempty"`
 	// Extension for AnswerDecimal
 	AnswerDecimalExt *Element `json:"_answerDecimal,omitempty"`
 	// Value for question comparison based on operator
@@ -1077,7 +1077,7 @@ func (b QuestionnaireItemEnableWhen) MarshalXML(e *xml.Encoder, start xml.StartE
 	if err := xmlEncodePrimitiveBool(e, "answerBoolean", b.AnswerBoolean, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "answerDecimal", b.AnswerDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "answerDecimal", b.AnswerDecimal, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveInt(e, "answerInteger", b.AnswerInteger, nil); err != nil {
@@ -1162,7 +1162,7 @@ func (r *QuestionnaireItemEnableWhen) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.AnswerBoolean = v
 			case "answerDecimal":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -1240,7 +1240,7 @@ type QuestionnaireItemInitial struct {
 	// Extension for ValueBoolean
 	ValueBooleanExt *Element `json:"_valueBoolean,omitempty"`
 	// Actual value for initializing the question
-	ValueDecimal *float64 `json:"valueDecimal,omitempty"`
+	ValueDecimal *Decimal `json:"valueDecimal,omitempty"`
 	// Extension for ValueDecimal
 	ValueDecimalExt *Element `json:"_valueDecimal,omitempty"`
 	// Actual value for initializing the question
@@ -1302,7 +1302,7 @@ func (b QuestionnaireItemInitial) MarshalXML(e *xml.Encoder, start xml.StartElem
 	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, nil); err != nil {
@@ -1383,7 +1383,7 @@ func (r *QuestionnaireItemInitial) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ValueBoolean = v
 			case "valueDecimal":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

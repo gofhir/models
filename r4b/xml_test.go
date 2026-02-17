@@ -294,7 +294,7 @@ func TestObservation_MarshalXML_ComplexStructure(t *testing.T) {
 			},
 		},
 		ValueQuantity: &Quantity{
-			Value:  ptr(120.0),
+			Value:  NewDecimalFromFloat64(120.0),
 			Unit:   ptr("mmHg"),
 			System: ptr("http://unitsofmeasure.org"),
 			Code:   ptr("mm[Hg]"),

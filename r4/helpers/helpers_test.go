@@ -999,8 +999,8 @@ func TestCreateVitalSignsObservation(t *testing.T) {
 		t.Errorf("expected LOINC code '29463-7', got %s", *obs.Code.Coding[0].Code)
 	}
 
-	if *obs.ValueQuantity.Value != 75.5 {
-		t.Errorf("expected value 75.5, got %f", *obs.ValueQuantity.Value)
+	if obs.ValueQuantity.Value == nil || obs.ValueQuantity.Value.Float64() != 75.5 {
+		t.Errorf("expected value 75.5, got %v", obs.ValueQuantity.Value)
 	}
 }
 
@@ -1150,10 +1150,10 @@ func assertCodeableConcept(t *testing.T, cc r4.CodeableConcept, wantSystem, want
 func assertQuantity(t *testing.T, q r4.Quantity, wantValue float64, wantUnit, wantCode, wantSystem string) {
 	t.Helper()
 
-	if q.Value == nil || *q.Value != wantValue {
+	if q.Value == nil || q.Value.Float64() != wantValue {
 		got := "<nil>"
 		if q.Value != nil {
-			got = string(rune(*q.Value))
+			got = q.Value.String()
 		}
 		t.Errorf("value: expected %f, got %s", wantValue, got)
 	}

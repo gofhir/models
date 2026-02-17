@@ -1705,7 +1705,7 @@ type ValueSetExpansionContainsProperty struct {
 	// Extension for ValueDateTime
 	ValueDateTimeExt *Element `json:"_valueDateTime,omitempty"`
 	// Value of the property for this concept
-	ValueDecimal *float64 `json:"valueDecimal,omitempty"`
+	ValueDecimal *Decimal `json:"valueDecimal,omitempty"`
 	// Extension for ValueDecimal
 	ValueDecimalExt *Element `json:"_valueDecimal,omitempty"`
 	// SubProperty value for the concept
@@ -1757,7 +1757,7 @@ func (b ValueSetExpansionContainsProperty) MarshalXML(e *xml.Encoder, start xml.
 	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
 		return err
 	}
 	for _, item := range b.SubProperty {
@@ -1841,7 +1841,7 @@ func (r *ValueSetExpansionContainsProperty) UnmarshalXML(d *xml.Decoder, start x
 				}
 				r.ValueDateTime = v
 			case "valueDecimal":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -1897,7 +1897,7 @@ type ValueSetExpansionContainsPropertySubProperty struct {
 	// Extension for ValueDateTime
 	ValueDateTimeExt *Element `json:"_valueDateTime,omitempty"`
 	// Value of the subproperty for this concept
-	ValueDecimal *float64 `json:"valueDecimal,omitempty"`
+	ValueDecimal *Decimal `json:"valueDecimal,omitempty"`
 	// Extension for ValueDecimal
 	ValueDecimalExt *Element `json:"_valueDecimal,omitempty"`
 }
@@ -1947,7 +1947,7 @@ func (b ValueSetExpansionContainsPropertySubProperty) MarshalXML(e *xml.Encoder,
 	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
 		return err
 	}
 
@@ -2026,7 +2026,7 @@ func (r *ValueSetExpansionContainsPropertySubProperty) UnmarshalXML(d *xml.Decod
 				}
 				r.ValueDateTime = v
 			case "valueDecimal":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -2066,7 +2066,7 @@ type ValueSetExpansionParameter struct {
 	// Extension for ValueInteger
 	ValueIntegerExt *Element `json:"_valueInteger,omitempty"`
 	// Value of the named parameter
-	ValueDecimal *float64 `json:"valueDecimal,omitempty"`
+	ValueDecimal *Decimal `json:"valueDecimal,omitempty"`
 	// Extension for ValueDecimal
 	ValueDecimalExt *Element `json:"_valueDecimal,omitempty"`
 	// Value of the named parameter
@@ -2117,7 +2117,7 @@ func (b ValueSetExpansionParameter) MarshalXML(e *xml.Encoder, start xml.StartEl
 	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "valueUri", b.ValueUri, nil); err != nil {
@@ -2187,7 +2187,7 @@ func (r *ValueSetExpansionParameter) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.ValueInteger = v
 			case "valueDecimal":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

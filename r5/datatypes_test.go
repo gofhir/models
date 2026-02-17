@@ -269,36 +269,36 @@ func TestContactPoint(t *testing.T) {
 
 func TestQuantity(t *testing.T) {
 	t.Run("create quantity", func(t *testing.T) {
-		value := 72.5
+		value := NewDecimalFromFloat64(72.5)
 		unit := "kg"
 		system := "http://unitsofmeasure.org"
 		code := "kg"
 
 		qty := Quantity{
-			Value:  &value,
+			Value:  value,
 			Unit:   &unit,
 			System: &system,
 			Code:   &code,
 		}
 
-		assert.Equal(t, 72.5, *qty.Value)
+		assert.Equal(t, 72.5, qty.Value.Float64())
 		assert.Equal(t, "kg", *qty.Unit)
 		assert.Equal(t, "http://unitsofmeasure.org", *qty.System)
 		assert.Equal(t, "kg", *qty.Code)
 	})
 
 	t.Run("quantity with comparator", func(t *testing.T) {
-		value := 100.0
+		value := NewDecimalFromFloat64(100.0)
 		comparator := QuantityComparatorGreaterThan
 		unit := "mg/dL"
 
 		qty := Quantity{
-			Value:      &value,
+			Value:      value,
 			Comparator: &comparator,
 			Unit:       &unit,
 		}
 
-		assert.Equal(t, 100.0, *qty.Value)
+		assert.Equal(t, 100.0, qty.Value.Float64())
 		assert.Equal(t, QuantityComparatorGreaterThan, *qty.Comparator)
 		assert.Equal(t, unit, *qty.Unit)
 	})

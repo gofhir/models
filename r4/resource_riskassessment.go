@@ -510,7 +510,7 @@ type RiskAssessmentPrediction struct {
 	// Possible outcome for the subject
 	Outcome *CodeableConcept `json:"outcome,omitempty"`
 	// Likelihood of specified outcome
-	ProbabilityDecimal *float64 `json:"probabilityDecimal,omitempty"`
+	ProbabilityDecimal *Decimal `json:"probabilityDecimal,omitempty"`
 	// Extension for ProbabilityDecimal
 	ProbabilityDecimalExt *Element `json:"_probabilityDecimal,omitempty"`
 	// Likelihood of specified outcome
@@ -518,7 +518,7 @@ type RiskAssessmentPrediction struct {
 	// Likelihood of specified outcome as a qualitative value
 	QualitativeRisk *CodeableConcept `json:"qualitativeRisk,omitempty"`
 	// Relative likelihood
-	RelativeRisk *float64 `json:"relativeRisk,omitempty"`
+	RelativeRisk *Decimal `json:"relativeRisk,omitempty"`
 	// Timeframe or age range
 	WhenPeriod *Period `json:"whenPeriod,omitempty"`
 	// Timeframe or age range
@@ -554,7 +554,7 @@ func (b RiskAssessmentPrediction) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "probabilityDecimal", b.ProbabilityDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "probabilityDecimal", b.ProbabilityDecimal, nil); err != nil {
 		return err
 	}
 	if b.ProbabilityRange != nil {
@@ -567,7 +567,7 @@ func (b RiskAssessmentPrediction) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "relativeRisk", b.RelativeRisk, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "relativeRisk", b.RelativeRisk, nil); err != nil {
 		return err
 	}
 	if b.WhenPeriod != nil {
@@ -623,7 +623,7 @@ func (r *RiskAssessmentPrediction) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.Outcome = &v
 			case "probabilityDecimal":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -641,7 +641,7 @@ func (r *RiskAssessmentPrediction) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.QualitativeRisk = &v
 			case "relativeRisk":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

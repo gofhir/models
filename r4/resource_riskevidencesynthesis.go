@@ -917,7 +917,7 @@ type RiskEvidenceSynthesisRiskEstimate struct {
 	// Type of risk estimate
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Point estimate
-	Value *float64 `json:"value,omitempty"`
+	Value *Decimal `json:"value,omitempty"`
 	// What unit is the outcome described in?
 	UnitOfMeasure *CodeableConcept `json:"unitOfMeasure,omitempty"`
 	// Sample size for group measured
@@ -958,7 +958,7 @@ func (b RiskEvidenceSynthesisRiskEstimate) MarshalXML(e *xml.Encoder, start xml.
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "value", b.Value, nil); err != nil {
 		return err
 	}
 	if b.UnitOfMeasure != nil {
@@ -1023,7 +1023,7 @@ func (r *RiskEvidenceSynthesisRiskEstimate) UnmarshalXML(d *xml.Decoder, start x
 				}
 				r.Type = &v
 			case "value":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -1075,11 +1075,11 @@ type RiskEvidenceSynthesisRiskEstimatePrecisionEstimate struct {
 	// Type of precision estimate
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Level of confidence interval
-	Level *float64 `json:"level,omitempty"`
+	Level *Decimal `json:"level,omitempty"`
 	// Lower bound
-	From *float64 `json:"from,omitempty"`
+	From *Decimal `json:"from,omitempty"`
 	// Upper bound
-	To *float64 `json:"to,omitempty"`
+	To *Decimal `json:"to,omitempty"`
 }
 
 // MarshalXML serializes RiskEvidenceSynthesisRiskEstimatePrecisionEstimate to FHIR-conformant XML.
@@ -1109,13 +1109,13 @@ func (b RiskEvidenceSynthesisRiskEstimatePrecisionEstimate) MarshalXML(e *xml.En
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "level", b.Level, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "level", b.Level, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "from", b.From, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "from", b.From, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "to", b.To, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "to", b.To, nil); err != nil {
 		return err
 	}
 
@@ -1158,19 +1158,19 @@ func (r *RiskEvidenceSynthesisRiskEstimatePrecisionEstimate) UnmarshalXML(d *xml
 				}
 				r.Type = &v
 			case "level":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Level = v
 			case "from":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.From = v
 			case "to":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

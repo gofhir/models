@@ -12,7 +12,7 @@ const UCUMSystem = "http://unitsofmeasure.org"
 // QuantityKg creates a Quantity with kilograms.
 func QuantityKg(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("kg"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("kg"),
@@ -22,7 +22,7 @@ func QuantityKg(value float64) r4.Quantity {
 // QuantityLb creates a Quantity with pounds.
 func QuantityLb(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("[lb_av]"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("[lb_av]"),
@@ -32,7 +32,7 @@ func QuantityLb(value float64) r4.Quantity {
 // QuantityG creates a Quantity with grams.
 func QuantityG(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("g"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("g"),
@@ -46,7 +46,7 @@ func QuantityG(value float64) r4.Quantity {
 // QuantityCm creates a Quantity with centimeters.
 func QuantityCm(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("cm"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("cm"),
@@ -56,7 +56,7 @@ func QuantityCm(value float64) r4.Quantity {
 // QuantityM creates a Quantity with meters.
 func QuantityM(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("m"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("m"),
@@ -66,7 +66,7 @@ func QuantityM(value float64) r4.Quantity {
 // QuantityIn creates a Quantity with inches.
 func QuantityIn(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("[in_i]"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("[in_i]"),
@@ -76,7 +76,7 @@ func QuantityIn(value float64) r4.Quantity {
 // QuantityFt creates a Quantity with feet.
 func QuantityFt(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("[ft_i]"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("[ft_i]"),
@@ -90,7 +90,7 @@ func QuantityFt(value float64) r4.Quantity {
 // QuantityCelsius creates a Quantity with degrees Celsius.
 func QuantityCelsius(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("Cel"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("Cel"),
@@ -100,7 +100,7 @@ func QuantityCelsius(value float64) r4.Quantity {
 // QuantityFahrenheit creates a Quantity with degrees Fahrenheit.
 func QuantityFahrenheit(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("[degF]"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("[degF]"),
@@ -114,7 +114,7 @@ func QuantityFahrenheit(value float64) r4.Quantity {
 // QuantityMmHg creates a Quantity with millimeters of mercury.
 func QuantityMmHg(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("mm[Hg]"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("mm[Hg]"),
@@ -128,7 +128,7 @@ func QuantityMmHg(value float64) r4.Quantity {
 // QuantityBPM creates a Quantity with beats per minute (for heart rate).
 func QuantityBPM(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("/min"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("/min"),
@@ -138,7 +138,7 @@ func QuantityBPM(value float64) r4.Quantity {
 // QuantityBreathsPerMin creates a Quantity with breaths per minute.
 func QuantityBreathsPerMin(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("/min"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("/min"),
@@ -152,7 +152,7 @@ func QuantityBreathsPerMin(value float64) r4.Quantity {
 // QuantityPercent creates a Quantity with percentage.
 func QuantityPercent(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("%"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("%"),
@@ -166,7 +166,7 @@ func QuantityPercent(value float64) r4.Quantity {
 // QuantityMgDL creates a Quantity with milligrams per deciliter.
 func QuantityMgDL(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("mg/dL"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("mg/dL"),
@@ -176,7 +176,7 @@ func QuantityMgDL(value float64) r4.Quantity {
 // QuantityMmolL creates a Quantity with millimoles per liter.
 func QuantityMmolL(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("mmol/L"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("mmol/L"),
@@ -186,7 +186,7 @@ func QuantityMmolL(value float64) r4.Quantity {
 // QuantityGDL creates a Quantity with grams per deciliter.
 func QuantityGDL(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("g/dL"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("g/dL"),
@@ -196,7 +196,7 @@ func QuantityGDL(value float64) r4.Quantity {
 // QuantityUL creates a Quantity with units per liter.
 func QuantityUL(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("U/L"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("U/L"),
@@ -206,7 +206,7 @@ func QuantityUL(value float64) r4.Quantity {
 // QuantityMeqL creates a Quantity with milliequivalents per liter.
 func QuantityMeqL(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("meq/L"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("meq/L"),
@@ -220,7 +220,7 @@ func QuantityMeqL(value float64) r4.Quantity {
 // QuantityMLMinPerM2 creates a Quantity for eGFR (mL/min/1.73m²).
 func QuantityMLMinPerM2(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("mL/min/{1.73_m2}"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("mL/min/{1.73_m2}"),
@@ -234,7 +234,7 @@ func QuantityMLMinPerM2(value float64) r4.Quantity {
 // QuantityKgM2 creates a Quantity for BMI (kg/m²).
 func QuantityKgM2(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("kg/m2"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("kg/m2"),
@@ -248,7 +248,7 @@ func QuantityKgM2(value float64) r4.Quantity {
 // QuantitySeconds creates a Quantity with seconds.
 func QuantitySeconds(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("s"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("s"),
@@ -258,7 +258,7 @@ func QuantitySeconds(value float64) r4.Quantity {
 // QuantityMinutes creates a Quantity with minutes.
 func QuantityMinutes(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("min"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("min"),
@@ -268,7 +268,7 @@ func QuantityMinutes(value float64) r4.Quantity {
 // QuantityHours creates a Quantity with hours.
 func QuantityHours(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("h"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("h"),
@@ -278,7 +278,7 @@ func QuantityHours(value float64) r4.Quantity {
 // QuantityDays creates a Quantity with days.
 func QuantityDays(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("d"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("d"),
@@ -288,7 +288,7 @@ func QuantityDays(value float64) r4.Quantity {
 // QuantityWeeks creates a Quantity with weeks.
 func QuantityWeeks(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("wk"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("wk"),
@@ -298,7 +298,7 @@ func QuantityWeeks(value float64) r4.Quantity {
 // QuantityMonths creates a Quantity with months.
 func QuantityMonths(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("mo"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("mo"),
@@ -308,7 +308,7 @@ func QuantityMonths(value float64) r4.Quantity {
 // QuantityYears creates a Quantity with years.
 func QuantityYears(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("a"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("a"),
@@ -322,7 +322,7 @@ func QuantityYears(value float64) r4.Quantity {
 // QuantityML creates a Quantity with milliliters.
 func QuantityML(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("mL"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("mL"),
@@ -332,7 +332,7 @@ func QuantityML(value float64) r4.Quantity {
 // QuantityL creates a Quantity with liters.
 func QuantityL(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("L"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("L"),
@@ -346,7 +346,7 @@ func QuantityL(value float64) r4.Quantity {
 // QuantityMg creates a Quantity with milligrams.
 func QuantityMg(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("mg"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("mg"),
@@ -356,7 +356,7 @@ func QuantityMg(value float64) r4.Quantity {
 // QuantityMcg creates a Quantity with micrograms.
 func QuantityMcg(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("ug"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("ug"),
@@ -366,7 +366,7 @@ func QuantityMcg(value float64) r4.Quantity {
 // QuantityMgKg creates a Quantity with milligrams per kilogram.
 func QuantityMgKg(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("mg/kg"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("mg/kg"),
@@ -376,7 +376,7 @@ func QuantityMgKg(value float64) r4.Quantity {
 // QuantityUnits creates a Quantity with international units.
 func QuantityUnits(value float64) r4.Quantity {
 	return r4.Quantity{
-		Value:  &value,
+		Value:  r4.NewDecimalFromFloat64(value),
 		Unit:   ptr("[iU]"),
 		System: ptr(UCUMSystem),
 		Code:   ptr("[iU]"),

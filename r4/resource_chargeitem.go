@@ -82,7 +82,7 @@ type ChargeItem struct {
 	// Anatomical location, if relevant
 	Bodysite []CodeableConcept `json:"bodysite,omitempty"`
 	// Factor overriding the associated rules
-	FactorOverride *float64 `json:"factorOverride,omitempty"`
+	FactorOverride *Decimal `json:"factorOverride,omitempty"`
 	// Extension for FactorOverride
 	FactorOverrideExt *Element `json:"_factorOverride,omitempty"`
 	// Price overriding the associated rules
@@ -333,7 +333,7 @@ func (r ChargeItem) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "factorOverride", r.FactorOverride, r.FactorOverrideExt); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "factorOverride", r.FactorOverride, r.FactorOverrideExt); err != nil {
 		return err
 	}
 	if r.PriceOverride != nil {
@@ -558,7 +558,7 @@ func (r *ChargeItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				r.Bodysite = append(r.Bodysite, v)
 			case "factorOverride":
-				v, ext, err := xmlDecodePrimitiveFloat64(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -920,7 +920,7 @@ func (b *ChargeItemBuilder) AddBodysite(v CodeableConcept) *ChargeItemBuilder {
 }
 
 // SetFactorOverride sets the FactorOverride field.
-func (b *ChargeItemBuilder) SetFactorOverride(v float64) *ChargeItemBuilder {
+func (b *ChargeItemBuilder) SetFactorOverride(v Decimal) *ChargeItemBuilder {
 	b.chargeItem.FactorOverride = &v
 	return b
 }
@@ -1190,7 +1190,7 @@ func WithChargeItemBodysite(v CodeableConcept) ChargeItemOption {
 }
 
 // WithChargeItemFactorOverride sets the FactorOverride field.
-func WithChargeItemFactorOverride(v float64) ChargeItemOption {
+func WithChargeItemFactorOverride(v Decimal) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.FactorOverride = &v
 	}

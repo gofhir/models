@@ -650,7 +650,7 @@ type ClaimResponseAddItem struct {
 	// Fee, charge or cost per item
 	UnitPrice *Money `json:"unitPrice,omitempty"`
 	// Price scaling factor
-	Factor *float64 `json:"factor,omitempty"`
+	Factor *Decimal `json:"factor,omitempty"`
 	// Total item cost
 	Net *Money `json:"net,omitempty"`
 	// Anatomical location
@@ -747,7 +747,7 @@ func (b ClaimResponseAddItem) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "factor", b.Factor, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "factor", b.Factor, nil); err != nil {
 		return err
 	}
 	if b.Net != nil {
@@ -900,7 +900,7 @@ func (r *ClaimResponseAddItem) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.UnitPrice = &v
 			case "factor":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -972,7 +972,7 @@ type ClaimResponseAddItemDetail struct {
 	// Fee, charge or cost per item
 	UnitPrice *Money `json:"unitPrice,omitempty"`
 	// Price scaling factor
-	Factor *float64 `json:"factor,omitempty"`
+	Factor *Decimal `json:"factor,omitempty"`
 	// Total item cost
 	Net *Money `json:"net,omitempty"`
 	// Applicable note numbers
@@ -1023,7 +1023,7 @@ func (b ClaimResponseAddItemDetail) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "factor", b.Factor, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "factor", b.Factor, nil); err != nil {
 		return err
 	}
 	if b.Net != nil {
@@ -1100,7 +1100,7 @@ func (r *ClaimResponseAddItemDetail) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.UnitPrice = &v
 			case "factor":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -1160,7 +1160,7 @@ type ClaimResponseAddItemDetailSubDetail struct {
 	// Fee, charge or cost per item
 	UnitPrice *Money `json:"unitPrice,omitempty"`
 	// Price scaling factor
-	Factor *float64 `json:"factor,omitempty"`
+	Factor *Decimal `json:"factor,omitempty"`
 	// Total item cost
 	Net *Money `json:"net,omitempty"`
 	// Applicable note numbers
@@ -1209,7 +1209,7 @@ func (b ClaimResponseAddItemDetailSubDetail) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "factor", b.Factor, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "factor", b.Factor, nil); err != nil {
 		return err
 	}
 	if b.Net != nil {
@@ -1281,7 +1281,7 @@ func (r *ClaimResponseAddItemDetailSubDetail) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.UnitPrice = &v
 			case "factor":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -1711,7 +1711,7 @@ type ClaimResponseItemAdjudication struct {
 	// Monetary amount
 	Amount *Money `json:"amount,omitempty"`
 	// Non-monetary value
-	Value *float64 `json:"value,omitempty"`
+	Value *Decimal `json:"value,omitempty"`
 }
 
 // MarshalXML serializes ClaimResponseItemAdjudication to FHIR-conformant XML.
@@ -1749,7 +1749,7 @@ func (b ClaimResponseItemAdjudication) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "value", b.Value, nil); err != nil {
 		return err
 	}
 
@@ -1802,7 +1802,7 @@ func (r *ClaimResponseItemAdjudication) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.Amount = &v
 			case "value":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

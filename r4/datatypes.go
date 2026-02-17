@@ -83,7 +83,7 @@ type Age struct {
 	// Additional content defined by implementations
 	Extension []Extension `json:"extension,omitempty"`
 	// Numerical value (with implicit precision)
-	Value *float64 `json:"value,omitempty"`
+	Value *Decimal `json:"value,omitempty"`
 	// Extension for Value
 	ValueExt *Element `json:"_value,omitempty"`
 	// < | <= | >= | > - how to understand the value
@@ -273,7 +273,7 @@ type Count struct {
 	// Additional content defined by implementations
 	Extension []Extension `json:"extension,omitempty"`
 	// Numerical value (with implicit precision)
-	Value *float64 `json:"value,omitempty"`
+	Value *Decimal `json:"value,omitempty"`
 	// Extension for Value
 	ValueExt *Element `json:"_value,omitempty"`
 	// < | <= | >= | > - how to understand the value
@@ -335,7 +335,7 @@ type Distance struct {
 	// Additional content defined by implementations
 	Extension []Extension `json:"extension,omitempty"`
 	// Numerical value (with implicit precision)
-	Value *float64 `json:"value,omitempty"`
+	Value *Decimal `json:"value,omitempty"`
 	// Extension for Value
 	ValueExt *Element `json:"_value,omitempty"`
 	// < | <= | >= | > - how to understand the value
@@ -409,7 +409,7 @@ type Duration struct {
 	// Additional content defined by implementations
 	Extension []Extension `json:"extension,omitempty"`
 	// Numerical value (with implicit precision)
-	Value *float64 `json:"value,omitempty"`
+	Value *Decimal `json:"value,omitempty"`
 	// Extension for Value
 	ValueExt *Element `json:"_value,omitempty"`
 	// < | <= | >= | > - how to understand the value
@@ -523,7 +523,7 @@ type ElementDefinition struct {
 	// Extension for DefaultValueDateTime
 	DefaultValueDateTimeExt *Element `json:"_defaultValueDateTime,omitempty"`
 	// Specified value if missing from instance
-	DefaultValueDecimal *float64 `json:"defaultValueDecimal,omitempty"`
+	DefaultValueDecimal *Decimal `json:"defaultValueDecimal,omitempty"`
 	// Extension for DefaultValueDecimal
 	DefaultValueDecimalExt *Element `json:"_defaultValueDecimal,omitempty"`
 	// Specified value if missing from instance
@@ -669,7 +669,7 @@ type ElementDefinition struct {
 	// Extension for FixedDateTime
 	FixedDateTimeExt *Element `json:"_fixedDateTime,omitempty"`
 	// Value must be exactly this
-	FixedDecimal *float64 `json:"fixedDecimal,omitempty"`
+	FixedDecimal *Decimal `json:"fixedDecimal,omitempty"`
 	// Extension for FixedDecimal
 	FixedDecimalExt *Element `json:"_fixedDecimal,omitempty"`
 	// Value must be exactly this
@@ -807,7 +807,7 @@ type ElementDefinition struct {
 	// Extension for PatternDateTime
 	PatternDateTimeExt *Element `json:"_patternDateTime,omitempty"`
 	// Value must have at least these property values
-	PatternDecimal *float64 `json:"patternDecimal,omitempty"`
+	PatternDecimal *Decimal `json:"patternDecimal,omitempty"`
 	// Extension for PatternDecimal
 	PatternDecimalExt *Element `json:"_patternDecimal,omitempty"`
 	// Value must have at least these property values
@@ -939,7 +939,7 @@ type ElementDefinition struct {
 	// Extension for MinValueTime
 	MinValueTimeExt *Element `json:"_minValueTime,omitempty"`
 	// Minimum Allowed Value (for some types)
-	MinValueDecimal *float64 `json:"minValueDecimal,omitempty"`
+	MinValueDecimal *Decimal `json:"minValueDecimal,omitempty"`
 	// Extension for MinValueDecimal
 	MinValueDecimalExt *Element `json:"_minValueDecimal,omitempty"`
 	// Minimum Allowed Value (for some types)
@@ -973,7 +973,7 @@ type ElementDefinition struct {
 	// Extension for MaxValueTime
 	MaxValueTimeExt *Element `json:"_maxValueTime,omitempty"`
 	// Maximum Allowed Value (for some types)
-	MaxValueDecimal *float64 `json:"maxValueDecimal,omitempty"`
+	MaxValueDecimal *Decimal `json:"maxValueDecimal,omitempty"`
 	// Extension for MaxValueDecimal
 	MaxValueDecimalExt *Element `json:"_maxValueDecimal,omitempty"`
 	// Maximum Allowed Value (for some types)
@@ -1083,7 +1083,7 @@ type Extension struct {
 	// Extension for ValueDateTime
 	ValueDateTimeExt *Element `json:"_valueDateTime,omitempty"`
 	// Value of extension
-	ValueDecimal *float64 `json:"valueDecimal,omitempty"`
+	ValueDecimal *Decimal `json:"valueDecimal,omitempty"`
 	// Extension for ValueDecimal
 	ValueDecimalExt *Element `json:"_valueDecimal,omitempty"`
 	// Value of extension
@@ -1315,7 +1315,7 @@ type Money struct {
 	// Additional content defined by implementations
 	Extension []Extension `json:"extension,omitempty"`
 	// Numerical value (with implicit precision)
-	Value *float64 `json:"value,omitempty"`
+	Value *Decimal `json:"value,omitempty"`
 	// Extension for Value
 	ValueExt *Element `json:"_value,omitempty"`
 	// ISO 4217 Currency Code
@@ -1475,7 +1475,7 @@ type Quantity struct {
 	// Additional content defined by implementations
 	Extension []Extension `json:"extension,omitempty"`
 	// Numerical value (with implicit precision)
-	Value *float64 `json:"value,omitempty"`
+	Value *Decimal `json:"value,omitempty"`
 	// Extension for Value
 	ValueExt *Element `json:"_value,omitempty"`
 	// < | <= | >= | > - how to understand the value
@@ -1585,19 +1585,19 @@ type SampledData struct {
 	// Zero value and units
 	Origin Quantity `json:"origin"`
 	// Number of milliseconds between samples
-	Period *float64 `json:"period,omitempty"`
+	Period *Decimal `json:"period,omitempty"`
 	// Extension for Period
 	PeriodExt *Element `json:"_period,omitempty"`
 	// Multiply data by this before adding to origin
-	Factor *float64 `json:"factor,omitempty"`
+	Factor *Decimal `json:"factor,omitempty"`
 	// Extension for Factor
 	FactorExt *Element `json:"_factor,omitempty"`
 	// Lower limit of detection
-	LowerLimit *float64 `json:"lowerLimit,omitempty"`
+	LowerLimit *Decimal `json:"lowerLimit,omitempty"`
 	// Extension for LowerLimit
 	LowerLimitExt *Element `json:"_lowerLimit,omitempty"`
 	// Upper limit of detection
-	UpperLimit *float64 `json:"upperLimit,omitempty"`
+	UpperLimit *Decimal `json:"upperLimit,omitempty"`
 	// Extension for UpperLimit
 	UpperLimitExt *Element `json:"_upperLimit,omitempty"`
 	// Number of sample points at each time point
@@ -1741,7 +1741,7 @@ type MoneyQuantity struct {
 	// Additional content defined by implementations
 	Extension []Extension `json:"extension,omitempty"`
 	// Numerical value (with implicit precision)
-	Value *float64 `json:"value,omitempty"`
+	Value *Decimal `json:"value,omitempty"`
 	// Extension for Value
 	ValueExt *Element `json:"_value,omitempty"`
 	// < | <= | >= | > - how to understand the value
@@ -1769,7 +1769,7 @@ type SimpleQuantity struct {
 	// Additional content defined by implementations
 	Extension []Extension `json:"extension,omitempty"`
 	// Numerical value (with implicit precision)
-	Value *float64 `json:"value,omitempty"`
+	Value *Decimal `json:"value,omitempty"`
 	// Extension for Value
 	ValueExt *Element `json:"_value,omitempty"`
 	// < | <= | >= | > - how to understand the value
@@ -2015,7 +2015,7 @@ type ElementDefinitionExample struct {
 	// Extension for ValueDateTime
 	ValueDateTimeExt *Element `json:"_valueDateTime,omitempty"`
 	// Value of Example (one of allowed types)
-	ValueDecimal *float64 `json:"valueDecimal,omitempty"`
+	ValueDecimal *Decimal `json:"valueDecimal,omitempty"`
 	// Extension for ValueDecimal
 	ValueDecimalExt *Element `json:"_valueDecimal,omitempty"`
 	// Value of Example (one of allowed types)
@@ -2227,9 +2227,9 @@ type TimingRepeat struct {
 	// Maximum number of times to repeat
 	CountMax *uint32 `json:"countMax,omitempty"`
 	// How long when it happens
-	Duration *float64 `json:"duration,omitempty"`
+	Duration *Decimal `json:"duration,omitempty"`
 	// How long when it happens (Max)
-	DurationMax *float64 `json:"durationMax,omitempty"`
+	DurationMax *Decimal `json:"durationMax,omitempty"`
 	// s | min | h | d | wk | mo | a - unit of time (UCUM)
 	DurationUnit *UnitsOfTime `json:"durationUnit,omitempty"`
 	// Event occurs frequency times per period
@@ -2237,9 +2237,9 @@ type TimingRepeat struct {
 	// Event occurs up to frequencyMax times per period
 	FrequencyMax *uint32 `json:"frequencyMax,omitempty"`
 	// Event occurs frequency times per period
-	Period *float64 `json:"period,omitempty"`
+	Period *Decimal `json:"period,omitempty"`
 	// Upper limit of period (3-4 hours)
-	PeriodMax *float64 `json:"periodMax,omitempty"`
+	PeriodMax *Decimal `json:"periodMax,omitempty"`
 	// s | min | h | d | wk | mo | a - unit of time (UCUM)
 	PeriodUnit *UnitsOfTime `json:"periodUnit,omitempty"`
 	// mon | tue | wed | thu | fri | sat | sun
@@ -2373,7 +2373,7 @@ func (d Age) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "value", d.Value, d.ValueExt); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "value", d.Value, d.ValueExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveCode(e, "comparator", d.Comparator, d.ComparatorExt); err != nil {
@@ -2653,7 +2653,7 @@ func (d Count) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "value", d.Value, d.ValueExt); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "value", d.Value, d.ValueExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveCode(e, "comparator", d.Comparator, d.ComparatorExt); err != nil {
@@ -2747,7 +2747,7 @@ func (d Distance) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "value", d.Value, d.ValueExt); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "value", d.Value, d.ValueExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveCode(e, "comparator", d.Comparator, d.ComparatorExt); err != nil {
@@ -2871,7 +2871,7 @@ func (d Duration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "value", d.Value, d.ValueExt); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "value", d.Value, d.ValueExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveCode(e, "comparator", d.Comparator, d.ComparatorExt); err != nil {
@@ -2989,7 +2989,7 @@ func (d ElementDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	if err := xmlEncodePrimitiveString(e, "defaultValueDateTime", d.DefaultValueDateTime, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "defaultValueDecimal", d.DefaultValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "defaultValueDecimal", d.DefaultValueDecimal, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "defaultValueId", d.DefaultValueId, nil); err != nil {
@@ -3207,7 +3207,7 @@ func (d ElementDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	if err := xmlEncodePrimitiveString(e, "fixedDateTime", d.FixedDateTime, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "fixedDecimal", d.FixedDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "fixedDecimal", d.FixedDecimal, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "fixedId", d.FixedId, nil); err != nil {
@@ -3419,7 +3419,7 @@ func (d ElementDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	if err := xmlEncodePrimitiveString(e, "patternDateTime", d.PatternDateTime, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "patternDecimal", d.PatternDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "patternDecimal", d.PatternDecimal, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "patternId", d.PatternId, nil); err != nil {
@@ -3630,7 +3630,7 @@ func (d ElementDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	if err := xmlEncodePrimitiveString(e, "minValueTime", d.MinValueTime, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "minValueDecimal", d.MinValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "minValueDecimal", d.MinValueDecimal, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveInt(e, "minValueInteger", d.MinValueInteger, nil); err != nil {
@@ -3659,7 +3659,7 @@ func (d ElementDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	if err := xmlEncodePrimitiveString(e, "maxValueTime", d.MaxValueTime, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "maxValueDecimal", d.MaxValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "maxValueDecimal", d.MaxValueDecimal, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveInt(e, "maxValueInteger", d.MaxValueInteger, nil); err != nil {
@@ -3787,7 +3787,7 @@ func (d Extension) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveString(e, "valueDateTime", d.ValueDateTime, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "valueDecimal", d.ValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", d.ValueDecimal, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "valueId", d.ValueId, nil); err != nil {
@@ -4177,7 +4177,7 @@ func (d Money) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "value", d.Value, d.ValueExt); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "value", d.Value, d.ValueExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "currency", d.Currency, d.CurrencyExt); err != nil {
@@ -4468,7 +4468,7 @@ func (d Quantity) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "value", d.Value, d.ValueExt); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "value", d.Value, d.ValueExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveCode(e, "comparator", d.Comparator, d.ComparatorExt); err != nil {
@@ -4648,16 +4648,16 @@ func (d SampledData) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := d.Origin.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "origin"}}); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "period", d.Period, d.PeriodExt); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "period", d.Period, d.PeriodExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "factor", d.Factor, d.FactorExt); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "factor", d.Factor, d.FactorExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "lowerLimit", d.LowerLimit, d.LowerLimitExt); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "lowerLimit", d.LowerLimit, d.LowerLimitExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "upperLimit", d.UpperLimit, d.UpperLimitExt); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "upperLimit", d.UpperLimit, d.UpperLimitExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveUint32(e, "dimensions", d.Dimensions, d.DimensionsExt); err != nil {
@@ -4921,7 +4921,7 @@ func (d MoneyQuantity) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "value", d.Value, d.ValueExt); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "value", d.Value, d.ValueExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveCode(e, "comparator", d.Comparator, d.ComparatorExt); err != nil {
@@ -4957,7 +4957,7 @@ func (d SimpleQuantity) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "value", d.Value, d.ValueExt); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "value", d.Value, d.ValueExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveCode(e, "comparator", d.Comparator, d.ComparatorExt); err != nil {
@@ -5364,7 +5364,7 @@ func (b ElementDefinitionExample) MarshalXML(e *xml.Encoder, start xml.StartElem
 	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "valueId", b.ValueId, nil); err != nil {
@@ -5762,10 +5762,10 @@ func (b TimingRepeat) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveUint32(e, "countMax", b.CountMax, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "duration", b.Duration, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "duration", b.Duration, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "durationMax", b.DurationMax, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "durationMax", b.DurationMax, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveCode(e, "durationUnit", b.DurationUnit, nil); err != nil {
@@ -5777,10 +5777,10 @@ func (b TimingRepeat) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveUint32(e, "frequencyMax", b.FrequencyMax, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "period", b.Period, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "period", b.Period, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "periodMax", b.PeriodMax, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "periodMax", b.PeriodMax, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveCode(e, "periodUnit", b.PeriodUnit, nil); err != nil {
@@ -6008,7 +6008,7 @@ func (r *Age) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				}
 				r.Extension = append(r.Extension, v)
 			case "value":
-				v, ext, err := xmlDecodePrimitiveFloat64(dec, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(dec, t)
 				if err != nil {
 					return err
 				}
@@ -6513,7 +6513,7 @@ func (r *Count) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				}
 				r.Extension = append(r.Extension, v)
 			case "value":
-				v, ext, err := xmlDecodePrimitiveFloat64(dec, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(dec, t)
 				if err != nil {
 					return err
 				}
@@ -6676,7 +6676,7 @@ func (r *Distance) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error 
 				}
 				r.Extension = append(r.Extension, v)
 			case "value":
-				v, ext, err := xmlDecodePrimitiveFloat64(dec, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(dec, t)
 				if err != nil {
 					return err
 				}
@@ -6873,7 +6873,7 @@ func (r *Duration) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error 
 				}
 				r.Extension = append(r.Extension, v)
 			case "value":
-				v, ext, err := xmlDecodePrimitiveFloat64(dec, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(dec, t)
 				if err != nil {
 					return err
 				}
@@ -7107,7 +7107,7 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				r.DefaultValueDateTime = v
 				_ = ext
 			case "defaultValueDecimal":
-				v, ext, err := xmlDecodePrimitiveFloat64(dec, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(dec, t)
 				if err != nil {
 					return err
 				}
@@ -7440,7 +7440,7 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				r.FixedDateTime = v
 				_ = ext
 			case "fixedDecimal":
-				v, ext, err := xmlDecodePrimitiveFloat64(dec, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(dec, t)
 				if err != nil {
 					return err
 				}
@@ -7759,7 +7759,7 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				r.PatternDateTime = v
 				_ = ext
 			case "patternDecimal":
-				v, ext, err := xmlDecodePrimitiveFloat64(dec, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(dec, t)
 				if err != nil {
 					return err
 				}
@@ -8070,7 +8070,7 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				r.MinValueTime = v
 				_ = ext
 			case "minValueDecimal":
-				v, ext, err := xmlDecodePrimitiveFloat64(dec, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(dec, t)
 				if err != nil {
 					return err
 				}
@@ -8132,7 +8132,7 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				r.MaxValueTime = v
 				_ = ext
 			case "maxValueDecimal":
-				v, ext, err := xmlDecodePrimitiveFloat64(dec, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(dec, t)
 				if err != nil {
 					return err
 				}
@@ -8375,7 +8375,7 @@ func (r *Extension) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error
 				r.ValueDateTime = v
 				_ = ext
 			case "valueDecimal":
-				v, ext, err := xmlDecodePrimitiveFloat64(dec, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(dec, t)
 				if err != nil {
 					return err
 				}
@@ -8984,7 +8984,7 @@ func (r *Money) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				}
 				r.Extension = append(r.Extension, v)
 			case "value":
-				v, ext, err := xmlDecodePrimitiveFloat64(dec, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(dec, t)
 				if err != nil {
 					return err
 				}
@@ -9451,7 +9451,7 @@ func (r *Quantity) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error 
 				}
 				r.Extension = append(r.Extension, v)
 			case "value":
-				v, ext, err := xmlDecodePrimitiveFloat64(dec, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(dec, t)
 				if err != nil {
 					return err
 				}
@@ -9759,28 +9759,28 @@ func (r *SampledData) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) err
 					return err
 				}
 			case "period":
-				v, ext, err := xmlDecodePrimitiveFloat64(dec, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(dec, t)
 				if err != nil {
 					return err
 				}
 				r.Period = v
 				r.PeriodExt = ext
 			case "factor":
-				v, ext, err := xmlDecodePrimitiveFloat64(dec, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(dec, t)
 				if err != nil {
 					return err
 				}
 				r.Factor = v
 				r.FactorExt = ext
 			case "lowerLimit":
-				v, ext, err := xmlDecodePrimitiveFloat64(dec, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(dec, t)
 				if err != nil {
 					return err
 				}
 				r.LowerLimit = v
 				r.LowerLimitExt = ext
 			case "upperLimit":
-				v, ext, err := xmlDecodePrimitiveFloat64(dec, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(dec, t)
 				if err != nil {
 					return err
 				}
@@ -10199,7 +10199,7 @@ func (r *MoneyQuantity) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) e
 				}
 				r.Extension = append(r.Extension, v)
 			case "value":
-				v, ext, err := xmlDecodePrimitiveFloat64(dec, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(dec, t)
 				if err != nil {
 					return err
 				}
@@ -10268,7 +10268,7 @@ func (r *SimpleQuantity) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) 
 				}
 				r.Extension = append(r.Extension, v)
 			case "value":
-				v, ext, err := xmlDecodePrimitiveFloat64(dec, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(dec, t)
 				if err != nil {
 					return err
 				}
@@ -10956,7 +10956,7 @@ func (r *ElementDefinitionExample) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ValueDateTime = v
 			case "valueDecimal":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -11562,13 +11562,13 @@ func (r *TimingRepeat) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.CountMax = v
 			case "duration":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Duration = v
 			case "durationMax":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -11592,13 +11592,13 @@ func (r *TimingRepeat) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.FrequencyMax = v
 			case "period":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Period = v
 			case "periodMax":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}

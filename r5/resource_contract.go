@@ -2377,9 +2377,9 @@ type ContractTermAssetValuedItem struct {
 	// Contract Valued Item fee, charge, or cost
 	UnitPrice *Money `json:"unitPrice,omitempty"`
 	// Contract Valued Item Price Scaling Factor
-	Factor *float64 `json:"factor,omitempty"`
+	Factor *Decimal `json:"factor,omitempty"`
 	// Contract Valued Item Difficulty Scaling Factor
-	Points *float64 `json:"points,omitempty"`
+	Points *Decimal `json:"points,omitempty"`
 	// Total Contract Valued Item Value
 	Net *Money `json:"net,omitempty"`
 	// Terms of valuation
@@ -2446,10 +2446,10 @@ func (b ContractTermAssetValuedItem) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "factor", b.Factor, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "factor", b.Factor, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "points", b.Points, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "points", b.Points, nil); err != nil {
 		return err
 	}
 	if b.Net != nil {
@@ -2549,13 +2549,13 @@ func (r *ContractTermAssetValuedItem) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.UnitPrice = &v
 			case "factor":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Factor = v
 			case "points":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
@@ -2836,7 +2836,7 @@ type ContractTermOfferAnswer struct {
 	// Extension for ValueBoolean
 	ValueBooleanExt *Element `json:"_valueBoolean,omitempty"`
 	// The actual answer response
-	ValueDecimal *float64 `json:"valueDecimal,omitempty"`
+	ValueDecimal *Decimal `json:"valueDecimal,omitempty"`
 	// Extension for ValueDecimal
 	ValueDecimalExt *Element `json:"_valueDecimal,omitempty"`
 	// The actual answer response
@@ -2898,7 +2898,7 @@ func (b ContractTermOfferAnswer) MarshalXML(e *xml.Encoder, start xml.StartEleme
 	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveFloat64(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, nil); err != nil {
@@ -2979,7 +2979,7 @@ func (r *ContractTermOfferAnswer) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.ValueBoolean = v
 			case "valueDecimal":
-				v, _, err := xmlDecodePrimitiveFloat64(d, t)
+				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
