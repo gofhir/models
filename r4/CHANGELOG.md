@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/gofhir/models/compare/r4/v1.0.3...r4/v1.1.0) (2026-02-17)
+
+
+### Features
+
+* replace *float64 with custom Decimal type for FHIR decimal precision preservation ([1a53aee](https://github.com/gofhir/models/commit/1a53aeecdecba440ea488984fb8c067f70732f41)), closes [#6](https://github.com/gofhir/models/issues/6)
+
 ## [1.0.3](https://github.com/gofhir/models/compare/r4/v1.0.2...r4/v1.0.3) (2026-02-16)
 
 
