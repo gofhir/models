@@ -1,0 +1,6 @@
+:root {
+  /* HL7 blue: #005a9c → hsl(209, 100%, 31%) */
+  --primary-hue: 209deg;
+  --primary-saturation: 100%;
+  --primary-lightness: 31%;
+}

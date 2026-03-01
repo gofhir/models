@@ -1,0 +1,121 @@
+baseURL: "https://gofhir.github.io/models/"
+title: "FHIR Models for Go"
+
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: false
+enableRobotsTXT: true
+enableGitInfo: true
+
+disableKinds:
+  - taxonomy
+  - term
+
+languages:
+  en:
+    languageName: English
+    contentDir: content/en
+    weight: 1
+    params:
+      description: "Type-safe Go structs for FHIR R4, R4B, and R5 resources with builders, serialization, and FHIRPath model metadata"
+    menu:
+      main:
+        - name: Documentation
+          pageRef: /docs
+          weight: 10
+        - name: Search
+          weight: 20
+          params:
+            type: search
+        - name: pkg.go.dev
+          url: "https://pkg.go.dev/github.com/gofhir/models/r4"
+          weight: 30
+        - name: GitHub
+          url: "https://github.com/gofhir/models"
+          weight: 40
+          params:
+            icon: github
+  es:
+    languageName: "Español"
+    contentDir: content/es
+    weight: 2
+    params:
+      description: "Structs Go con tipado seguro para recursos FHIR R4, R4B y R5 con builders, serialización y metadata FHIRPath"
+    menu:
+      main:
+        - name: "Documentación"
+          pageRef: /docs
+          weight: 10
+        - name: "Búsqueda"
+          weight: 20
+          params:
+            type: search
+        - name: pkg.go.dev
+          url: "https://pkg.go.dev/github.com/gofhir/models/r4"
+          weight: 30
+        - name: GitHub
+          url: "https://github.com/gofhir/models"
+          weight: 40
+          params:
+            icon: github
+
+markup:
+  goldmark:
+    parser:
+      attribute:
+        block: true
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+
+outputs:
+  home:
+    - HTML
+    - RSS
+  section:
+    - HTML
+    - RSS
+
+module:
+  proxy: direct
+  hugoVersion:
+    extended: true
+    min: "0.112.0"
+  imports:
+    - path: github.com/imfing/hextra
+
+params:
+  navbar:
+    displayTitle: true
+    displayLogo: true
+    logo:
+      path: icons/logo.svg
+      dark: icons/logo-dark.svg
+      link: /
+      width: 32
+      height: 32
+
+  theme:
+    default: system
+    displayToggle: true
+
+  search:
+    enable: true
+    type: flexsearch
+    flexsearch:
+      index: content
+      tokenize: forward
+
+  editURL:
+    enable: true
+    base: "https://github.com/gofhir/models/edit/main/docs/content"
+
+  displayUpdatedDate: true
+  dateFormat: "January 2, 2006"
+
+  page:
+    width: normal
+
+  footer:
+    displayCopyright: true
+    displayPoweredBy: false

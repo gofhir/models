@@ -43,6 +43,12 @@ tmp/
 *.tmp
 *.log
 
+# Hugo docs build artifacts
+docs/public/
+docs/resources/
+docs/.hugo_build.lock
+docs/_vendor/
+
 # Go workspace (local development)
 go.work
 go.work.sum
