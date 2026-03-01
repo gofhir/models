@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/gofhir/models/compare/r5/v1.1.0...r5/v1.2.0) (2026-03-01)
+
+
+### Features
+
+* generate FHIRPath model metadata for version-aware expression evaluation ([b280322](https://github.com/gofhir/models/commit/b280322d3c8fe45e76989ed569a1478125986bdb)), closes [#8](https://github.com/gofhir/models/issues/8)
+
 ## [1.1.0](https://github.com/gofhir/models/compare/r5/v1.0.3...r5/v1.1.0) (2026-02-17)
 
 
