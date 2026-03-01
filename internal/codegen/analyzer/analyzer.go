@@ -53,22 +53,25 @@ type AnalyzedType struct {
 
 // AnalyzedProperty represents a single property of a type.
 type AnalyzedProperty struct {
-	Name         string   // Go field name (PascalCase)
-	JSONName     string   // JSON field name (camelCase)
-	GoType       string   // Complete Go type (e.g., "*string", "[]Coding")
-	Description  string   // Documentation
-	IsPointer    bool     // Whether this field is a pointer
-	IsArray      bool     // Whether this field is an array
-	IsRequired   bool     // Whether min >= 1
-	IsPrimitive  bool     // Whether the base type is a primitive
-	IsChoice     bool     // Whether this is a choice type field
-	ChoiceTypes  []string // For choice types, the list of allowed types
-	FHIRType     string   // Original FHIR type code
-	Binding      *AnalyzedBinding
-	HasExtension bool   // Whether this primitive needs a _field for extensions
-	IsBackbone   bool   // Whether this is a backbone element reference
-	BackboneType string // For backbone: the specific backbone type name (e.g., "PatientContact")
-	IsSummary    bool   // Whether this field is marked as isSummary in FHIR spec
+	Name           string   // Go field name (PascalCase)
+	JSONName       string   // JSON field name (camelCase)
+	GoType         string   // Complete Go type (e.g., "*string", "[]Coding")
+	Description    string   // Documentation
+	IsPointer      bool     // Whether this field is a pointer
+	IsArray        bool     // Whether this field is an array
+	IsRequired     bool     // Whether min >= 1
+	IsPrimitive    bool     // Whether the base type is a primitive
+	IsChoice       bool     // Whether this is a choice type field
+	ChoiceTypes    []string // For choice types, the list of allowed types
+	ChoiceBaseName string   // For choice types, the base element name (e.g., "value" for "value[x]")
+	FHIRType       string   // Original FHIR type code
+	Binding        *AnalyzedBinding
+	HasExtension   bool     // Whether this primitive needs a _field for extensions
+	IsBackbone     bool     // Whether this is a backbone element reference
+	BackboneType   string   // For backbone: the specific backbone type name (e.g., "PatientContact")
+	IsSummary      bool     // Whether this field is marked as isSummary in FHIR spec
+	TargetTypes    []string // For Reference/canonical types: allowed target resource type names
+	ContentRef     string   // For contentReference properties: the target FHIR path (e.g., "Questionnaire.item")
 }
 
 // AnalyzedBinding represents a value set binding.
@@ -218,6 +221,7 @@ func (a *Analyzer) extractBackboneElements(sd *parser.StructureDefinition) []*An
 				FHIRType:     "ContentReference",
 				IsBackbone:   isBackboneRef,
 				BackboneType: backboneTypeName,
+				ContentRef:   strings.TrimPrefix(elem.ContentReference, "#"),
 			}
 			backbone.Properties = append(backbone.Properties, prop)
 		case elem.IsBackboneElement():
@@ -390,18 +394,19 @@ func (a *Analyzer) analyzeChoiceType(elem *parser.ElementDefinition, baseName st
 		usePointer := !isInterface // true for most types, false for interfaces
 
 		prop := AnalyzedProperty{
-			Name:         fieldName,
-			JSONName:     toLowerFirst(baseName) + toPascalCase(typeName),
-			GoType:       a.resolveGoType(typeName, usePointer, false),
-			Description:  elem.Short,
-			IsPointer:    usePointer,
-			IsArray:      false,
-			IsRequired:   false,
-			IsPrimitive:  IsPrimitiveType(typeName),
-			IsChoice:     true,
-			ChoiceTypes:  choiceTypes,
-			FHIRType:     typeName,
-			HasExtension: IsPrimitiveType(typeName),
+			Name:           fieldName,
+			JSONName:       toLowerFirst(baseName) + toPascalCase(typeName),
+			GoType:         a.resolveGoType(typeName, usePointer, false),
+			Description:    elem.Short,
+			IsPointer:      usePointer,
+			IsArray:        false,
+			IsRequired:     false,
+			IsPrimitive:    IsPrimitiveType(typeName),
+			IsChoice:       true,
+			ChoiceTypes:    choiceTypes,
+			ChoiceBaseName: baseName,
+			FHIRType:       typeName,
+			HasExtension:   IsPrimitiveType(typeName),
 		}
 
 		if elem.Binding != nil {
@@ -450,6 +455,7 @@ func (a *Analyzer) analyzeContentReference(elem *parser.ElementDefinition, field
 		FHIRType:     "ContentReference",
 		IsBackbone:   isBackbone,
 		BackboneType: backboneTypeName,
+		ContentRef:   strings.TrimPrefix(elem.ContentReference, "#"),
 	}
 	return []AnalyzedProperty{prop}, nil
 }
@@ -568,6 +574,15 @@ func (a *Analyzer) createProperty(elem *parser.ElementDefinition, fieldName stri
 		FHIRType:     typeName,
 		HasExtension: isPrimitive,
 		IsSummary:    elem.IsSummary,
+	}
+
+	if (typeRef.Code == "Reference" || typeRef.Code == "canonical") && len(typeRef.TargetProfile) > 0 {
+		targets := make([]string, 0, len(typeRef.TargetProfile))
+		for _, url := range typeRef.TargetProfile {
+			parts := strings.Split(url, "/")
+			targets = append(targets, parts[len(parts)-1])
+		}
+		prop.TargetTypes = targets
 	}
 
 	if elem.Binding != nil {
@@ -705,4 +720,27 @@ func toLowerFirst(s string) string {
 	runes := []rune(s)
 	runes[0] = unicode.ToLower(runes[0])
 	return string(runes)
+}
+
+// TypeHierarchy returns a map from FHIR type name to its immediate parent type name,
+// extracted from each StructureDefinition's BaseDefinition URL.
+// e.g. "Patient" → "DomainResource", "Age" → "Quantity", "code" → "string".
+func (a *Analyzer) TypeHierarchy() map[string]string {
+	result := make(map[string]string)
+	seen := make(map[string]bool)
+	for _, sd := range a.definitions {
+		if seen[sd.Name] {
+			continue
+		}
+		seen[sd.Name] = true
+		if sd.BaseDefinition == "" {
+			continue
+		}
+		parts := strings.Split(sd.BaseDefinition, "/")
+		parent := parts[len(parts)-1]
+		if parent != "" && parent != sd.Name {
+			result[sd.Name] = parent
+		}
+	}
+	return result
 }

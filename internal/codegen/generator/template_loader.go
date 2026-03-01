@@ -337,6 +337,69 @@ func buildResourceBuilderData(t *analyzer.AnalyzedType) ResourceBuilderData {
 // XML Serialization Generation
 // ============================================================================
 
+// xmlPrimitiveEncodeFunc maps a base Go type to the XML primitive encoding function name.
+func xmlPrimitiveEncodeFunc(baseType string) string {
+	switch baseType {
+	case "string":
+		return "xmlEncodePrimitiveString"
+	case "bool":
+		return "xmlEncodePrimitiveBool"
+	case "int":
+		return "xmlEncodePrimitiveInt"
+	case "int64":
+		return "xmlEncodePrimitiveInt64"
+	case "uint32":
+		return "xmlEncodePrimitiveUint32"
+	case "Decimal":
+		return "xmlEncodePrimitiveDecimal"
+	default:
+		// Custom code type (e.g., *AdministrativeGender, *NarrativeStatus)
+		return "xmlEncodePrimitiveCode"
+	}
+}
+
+// xmlPrimitiveArrayEncodeFunc maps a base element Go type to the XML array encoding function name.
+func xmlPrimitiveArrayEncodeFunc(elemType string) string {
+	switch elemType {
+	case "string":
+		return "xmlEncodePrimitiveStringArray"
+	case "bool":
+		return "xmlEncodePrimitiveBoolArray"
+	case "int":
+		return "xmlEncodePrimitiveIntArray"
+	case "int64":
+		return "xmlEncodePrimitiveInt64Array"
+	case "uint32":
+		return "xmlEncodePrimitiveUint32Array"
+	case "Decimal":
+		return "xmlEncodePrimitiveDecimalArray"
+	default:
+		// Custom code type array (e.g., []ReferenceHandlingPolicy)
+		return "xmlEncodePrimitiveCodeArray"
+	}
+}
+
+// xmlPrimitiveDecodeFunc maps a base Go type to the XML primitive decoding function name.
+func xmlPrimitiveDecodeFunc(baseType string) string {
+	switch baseType {
+	case "string":
+		return "xmlDecodePrimitiveString"
+	case "bool":
+		return "xmlDecodePrimitiveBool"
+	case "int":
+		return "xmlDecodePrimitiveInt"
+	case "int64":
+		return "xmlDecodePrimitiveInt64"
+	case "uint32":
+		return "xmlDecodePrimitiveUint32"
+	case "Decimal":
+		return "xmlDecodePrimitiveDecimal"
+	default:
+		// Custom code type (e.g., *AdministrativeGender)
+		return "xmlDecodePrimitiveCode[" + baseType + "]"
+	}
+}
+
 // xmlTemplateFuncMap returns template functions used by XML templates.
 func xmlTemplateFuncMap() template.FuncMap {
 	return template.FuncMap{
@@ -347,24 +410,7 @@ func xmlTemplateFuncMap() template.FuncMap {
 
 		// xmlPrimitiveFunc maps a Go type to the XML primitive encoding function name.
 		"xmlPrimitiveFunc": func(goType string) string {
-			baseType := strings.TrimPrefix(goType, "*")
-			switch baseType {
-			case "string":
-				return "xmlEncodePrimitiveString"
-			case "bool":
-				return "xmlEncodePrimitiveBool"
-			case "int":
-				return "xmlEncodePrimitiveInt"
-			case "int64":
-				return "xmlEncodePrimitiveInt64"
-			case "uint32":
-				return "xmlEncodePrimitiveUint32"
-			case "Decimal":
-				return "xmlEncodePrimitiveDecimal"
-			default:
-				// Custom code type (e.g., *AdministrativeGender, *NarrativeStatus)
-				return "xmlEncodePrimitiveCode"
-			}
+			return xmlPrimitiveEncodeFunc(strings.TrimPrefix(goType, "*"))
 		},
 
 		// extFieldRef returns the extension companion field reference (e.g., "r.BirthDateExt")
@@ -388,46 +434,12 @@ func xmlTemplateFuncMap() template.FuncMap {
 
 		// xmlPrimitiveArrayFunc maps a Go array type to the XML primitive array encoding function name.
 		"xmlPrimitiveArrayFunc": func(goType string) string {
-			elemType := strings.TrimPrefix(goType, "[]")
-			switch elemType {
-			case "string":
-				return "xmlEncodePrimitiveStringArray"
-			case "bool":
-				return "xmlEncodePrimitiveBoolArray"
-			case "int":
-				return "xmlEncodePrimitiveIntArray"
-			case "int64":
-				return "xmlEncodePrimitiveInt64Array"
-			case "uint32":
-				return "xmlEncodePrimitiveUint32Array"
-			case "Decimal":
-				return "xmlEncodePrimitiveDecimalArray"
-			default:
-				// Custom code type array (e.g., []ReferenceHandlingPolicy)
-				return "xmlEncodePrimitiveCodeArray"
-			}
+			return xmlPrimitiveArrayEncodeFunc(strings.TrimPrefix(goType, "[]"))
 		},
 
 		// xmlPrimitiveDecodeFunc maps a Go type to the XML primitive decode function name.
 		"xmlPrimitiveDecodeFunc": func(goType string) string {
-			baseType := strings.TrimPrefix(goType, "*")
-			switch baseType {
-			case "string":
-				return "xmlDecodePrimitiveString"
-			case "bool":
-				return "xmlDecodePrimitiveBool"
-			case "int":
-				return "xmlDecodePrimitiveInt"
-			case "int64":
-				return "xmlDecodePrimitiveInt64"
-			case "uint32":
-				return "xmlDecodePrimitiveUint32"
-			case "Decimal":
-				return "xmlDecodePrimitiveDecimal"
-			default:
-				// Custom code type (e.g., *AdministrativeGender)
-				return "xmlDecodePrimitiveCode[" + baseType + "]"
-			}
+			return xmlPrimitiveDecodeFunc(strings.TrimPrefix(goType, "*"))
 		},
 
 		// elemType extracts the element type from a slice type: "[]Foo" -> "Foo"
@@ -567,7 +579,7 @@ func (c *CodeGen) generateResourcesConsolidated() error {
 // generateDatatypesConsolidated generates a single file with all datatypes,
 // their backbone elements, and all XML marshal/unmarshal methods.
 func (c *CodeGen) generateDatatypesConsolidated() error {
-	var allTypes []*analyzer.AnalyzedType
+	allTypes := make([]*analyzer.AnalyzedType, 0, len(c.types))
 	var allBackbones []*analyzer.AnalyzedType
 
 	// Collect base types first (Element, BackboneElement)

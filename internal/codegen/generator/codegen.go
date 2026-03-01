@@ -30,7 +30,8 @@ type CodeGen struct {
 	analyzer     *analyzer.Analyzer
 	types        []*analyzer.AnalyzedType
 	valueSets    *parser.ValueSetRegistry
-	usedBindings map[string]bool // Track which bindings are actually used
+	usedBindings map[string]bool               // Track which bindings are actually used
+	rawSDs       []*parser.StructureDefinition // All SDs before filtering, used for hierarchy
 }
 
 // New creates a new CodeGen instance.
@@ -75,6 +76,19 @@ func (c *CodeGen) LoadTypes() error {
 	}
 	allSDs = append(allSDs, resourceSDs...)
 
+	// Load all SDs without filtering, needed for the complete type hierarchy
+	// (includes abstract types like DomainResource and Resource).
+	rawTypeSDs, err := c.loadAllStructureDefinitions(typesFile)
+	if err != nil {
+		return fmt.Errorf("failed to load raw types: %w", err)
+	}
+	rawResourceSDs, err := c.loadAllStructureDefinitions(resourcesFile)
+	if err != nil {
+		return fmt.Errorf("failed to load raw resources: %w", err)
+	}
+	c.rawSDs = append(c.rawSDs, rawTypeSDs...)
+	c.rawSDs = append(c.rawSDs, rawResourceSDs...)
+
 	// Create ONE analyzer with ALL definitions and value sets
 	c.analyzer = analyzer.NewAnalyzer(allSDs, c.valueSets)
 
@@ -89,6 +103,28 @@ func (c *CodeGen) LoadTypes() error {
 	}
 
 	return nil
+}
+
+// loadAllStructureDefinitions loads all StructureDefinitions from a Bundle file
+// without any filtering. Used to build a complete type hierarchy that includes
+// abstract types like DomainResource and Resource.
+func (c *CodeGen) loadAllStructureDefinitions(path string) ([]*parser.StructureDefinition, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read %s: %w", path, err)
+	}
+
+	bundle, err := parser.ParseBundle(data)
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse bundle: %w", err)
+	}
+
+	sds, err := parser.ExtractStructureDefinitions(bundle)
+	if err != nil {
+		return nil, fmt.Errorf("failed to extract definitions: %w", err)
+	}
+
+	return sds, nil
 }
 
 // loadStructureDefinitions loads and filters StructureDefinitions from a Bundle file.
@@ -163,6 +199,11 @@ func (c *CodeGen) Generate() error {
 	// Generate summary.go (summary fields per resource type)
 	if err := c.generateSummaryFromTemplate(); err != nil {
 		return fmt.Errorf("failed to generate summary: %w", err)
+	}
+
+	// Generate fhirpath_model.go (runtime metadata for FHIRPath evaluation)
+	if err := c.generateFHIRPathModel(); err != nil {
+		return fmt.Errorf("failed to generate fhirpath model: %w", err)
 	}
 
 	// Generate consolidated datatypes (all structs + backbones + XML in one file)
