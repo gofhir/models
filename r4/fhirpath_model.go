@@ -10,6 +10,7 @@ package r4
 //
 // Use [FHIRPathModel] to obtain the singleton for this package.
 type FHIRPathModelData struct {
+	fhirVersion           string
 	choiceTypePaths       map[string][]string
 	path2Type             map[string]string
 	path2RefType          map[string][]string
@@ -20,6 +21,10 @@ type FHIRPathModelData struct {
 
 // fhirpathModel is the package-level singleton populated at init time.
 var fhirpathModel = FHIRPathModelData{
+
+	// fhirVersion is the FHIR release these definitions were generated from,
+	// taken from StructureDefinition.fhirVersion in the source spec bundle.
+	fhirVersion: "4.0.1",
 
 	// choiceTypePaths maps the base path of a polymorphic element (without the type suffix)
 	// to the ordered list of permitted type codes.
@@ -9563,6 +9568,16 @@ var fhirpathModel = FHIRPathModelData{
 // FHIRPathModel returns the FHIRPath metadata singleton for this FHIR version.
 func FHIRPathModel() *FHIRPathModelData {
 	return &fhirpathModel
+}
+
+// FHIRVersion returns the FHIR release this model describes, e.g. "4.0.1".
+//
+// It identifies the static model compiled into the binary, which is what lets a
+// version-aware consumer reconcile it against StructureDefinitions loaded at
+// runtime, or key a registry of models by version without maintaining a
+// separate package-to-version table.
+func (m *FHIRPathModelData) FHIRVersion() string {
+	return m.fhirVersion
 }
 
 // ChoiceTypes returns the permitted type codes for a polymorphic element path.

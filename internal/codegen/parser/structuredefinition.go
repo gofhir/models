@@ -12,10 +12,15 @@ import (
 // StructureDefinition represents a FHIR StructureDefinition resource.
 // This is a simplified version containing only the fields needed for code generation.
 type StructureDefinition struct {
-	ResourceType   string        `json:"resourceType"`
-	ID             string        `json:"id"`
-	URL            string        `json:"url"`
-	Version        string        `json:"version"`
+	ResourceType string `json:"resourceType"`
+	ID           string `json:"id"`
+	URL          string `json:"url"`
+	// Version is the version of this artifact, not of FHIR itself.
+	Version string `json:"version"`
+	// FHIRVersion is the FHIR release this definition is written against
+	// (e.g. "4.0.1"). Distinct from Version, even though core spec bundles
+	// happen to set both to the same value.
+	FHIRVersion    string        `json:"fhirVersion"`
 	Name           string        `json:"name"`
 	Title          string        `json:"title"`
 	Status         string        `json:"status"`

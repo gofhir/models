@@ -12,6 +12,11 @@ func TestFHIRPathModel_NotNil(t *testing.T) {
 	require.NotNil(t, m)
 }
 
+func TestFHIRPathModel_FHIRVersion(t *testing.T) {
+	// Must match StructureDefinition.fhirVersion in specs/r4, not the package name.
+	assert.Equal(t, "4.0.1", FHIRPathModel().FHIRVersion())
+}
+
 func TestFHIRPathModel_ChoiceTypes(t *testing.T) {
 	m := FHIRPathModel()
 
