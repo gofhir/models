@@ -11,6 +11,7 @@ import (
 // FHIRPathModelTemplateData holds all data needed by fhirpath_model.go.tmpl.
 type FHIRPathModelTemplateData struct {
 	TemplateData
+	FHIRVersion           string
 	ChoiceTypePaths       []FHIRPathKVMulti
 	Path2Type             []FHIRPathKV
 	Path2RefType          []FHIRPathKVMulti
@@ -100,6 +101,7 @@ func (c *CodeGen) generateFHIRPathModel() error {
 			Version:     strings.ToUpper(c.config.Version),
 			FileType:    "fhirpath_model",
 		},
+		FHIRVersion:           c.fhirVersion,
 		ChoiceTypePaths:       sortedKVMulti(choiceTypeMap),
 		Path2Type:             sortedKV(path2TypeMap),
 		Path2RefType:          sortedKVMulti(path2RefMap),

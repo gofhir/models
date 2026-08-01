@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 	"unicode/utf8"
 
@@ -32,6 +33,7 @@ type CodeGen struct {
 	valueSets    *parser.ValueSetRegistry
 	usedBindings map[string]bool               // Track which bindings are actually used
 	rawSDs       []*parser.StructureDefinition // All SDs before filtering, used for hierarchy
+	fhirVersion  string                        // FHIR release of the loaded specs, e.g. "4.0.1"
 }
 
 // New creates a new CodeGen instance.
@@ -88,6 +90,14 @@ func (c *CodeGen) LoadTypes() error {
 	}
 	c.rawSDs = append(c.rawSDs, rawTypeSDs...)
 	c.rawSDs = append(c.rawSDs, rawResourceSDs...)
+
+	// Derive the FHIR release from the specs themselves, so generated code never
+	// carries a hand-written version string.
+	fhirVersion, err := detectFHIRVersion(c.rawSDs)
+	if err != nil {
+		return fmt.Errorf("failed to determine FHIR version from %s: %w", specsDir, err)
+	}
+	c.fhirVersion = fhirVersion
 
 	// Create ONE analyzer with ALL definitions and value sets
 	c.analyzer = analyzer.NewAnalyzer(allSDs, c.valueSets)
@@ -168,6 +178,46 @@ func (c *CodeGen) loadStructureDefinitions(path string) ([]*parser.StructureDefi
 	}
 
 	return filtered, nil
+}
+
+// detectFHIRVersion derives the FHIR release (e.g. "4.0.1") from the
+// StructureDefinitions being generated from, so that generated code never
+// carries a hand-written version string.
+//
+// Definitions without a fhirVersion are ignored. Disagreement is fatal: a model
+// that cannot state its version unambiguously must not be emitted.
+func detectFHIRVersion(sds []*parser.StructureDefinition) (string, error) {
+	// Track one example definition per distinct value to make conflicts diagnosable.
+	examples := make(map[string]string)
+	for _, sd := range sds {
+		if sd.FHIRVersion == "" {
+			continue
+		}
+		if _, seen := examples[sd.FHIRVersion]; !seen {
+			examples[sd.FHIRVersion] = sd.Name
+		}
+	}
+
+	switch len(examples) {
+	case 1:
+		for version := range examples {
+			return version, nil
+		}
+	case 0:
+		return "", fmt.Errorf("no StructureDefinition declares a fhirVersion (checked %d definitions)", len(sds))
+	}
+
+	versions := make([]string, 0, len(examples))
+	for version := range examples {
+		versions = append(versions, version)
+	}
+	sort.Strings(versions)
+
+	conflicts := make([]string, 0, len(versions))
+	for _, version := range versions {
+		conflicts = append(conflicts, fmt.Sprintf("%s (e.g. %s)", version, examples[version]))
+	}
+	return "", fmt.Errorf("StructureDefinitions declare conflicting fhirVersion values: %s", strings.Join(conflicts, ", "))
 }
 
 // Generate writes all generated code to the output directory.
