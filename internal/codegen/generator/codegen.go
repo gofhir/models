@@ -27,22 +27,20 @@ type Config struct {
 
 // CodeGen generates Go code from FHIR specifications.
 type CodeGen struct {
-	config       Config
-	analyzer     *analyzer.Analyzer
-	types        []*analyzer.AnalyzedType
-	valueSets    *parser.ValueSetRegistry
-	usedBindings map[string]bool               // Track which bindings are actually used
-	rawSDs       []*parser.StructureDefinition // All SDs before filtering, used for hierarchy
-	fhirVersion  string                        // FHIR release of the loaded specs, e.g. "4.0.1"
+	config      Config
+	analyzer    *analyzer.Analyzer
+	types       []*analyzer.AnalyzedType
+	valueSets   *parser.ValueSetRegistry
+	rawSDs      []*parser.StructureDefinition // All SDs before filtering, used for hierarchy
+	fhirVersion string                        // FHIR release of the loaded specs, e.g. "4.0.1"
 }
 
 // New creates a new CodeGen instance.
 func New(config Config) *CodeGen {
 	return &CodeGen{
-		config:       config,
-		types:        make([]*analyzer.AnalyzedType, 0),
-		valueSets:    parser.NewValueSetRegistry(),
-		usedBindings: make(map[string]bool),
+		config:    config,
+		types:     make([]*analyzer.AnalyzedType, 0),
+		valueSets: parser.NewValueSetRegistry(),
 	}
 }
 
