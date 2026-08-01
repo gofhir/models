@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/gofhir/models/compare/r5/v1.2.0...r5/v1.3.0) (2026-08-01)
+
+
+### Features
+
+* expose FHIR version from the generated FHIRPath model ([#11](https://github.com/gofhir/models/issues/11)) ([6930c5f](https://github.com/gofhir/models/commit/6930c5f406a011f40933f01c6af840a1f3888b1f)), closes [#10](https://github.com/gofhir/models/issues/10)
+
 ## [1.2.0](https://github.com/gofhir/models/compare/r5/v1.1.0...r5/v1.2.0) (2026-03-01)
 
 
