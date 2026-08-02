@@ -154,6 +154,86 @@ func TestFHIRPathModel_IsResource(t *testing.T) {
 	assert.False(t, m.IsResource("NonExistentType"))
 }
 
+func TestFHIRPathModel_HasType(t *testing.T) {
+	m := FHIRPathModel()
+
+	// Resources, data types and primitives are all type specifiers a FHIRPath
+	// expression may legitimately name.
+	for _, name := range []string{
+		"Patient", "Observation", "Bundle",
+		"HumanName", "Quantity", "CodeableConcept",
+		"string", "code", "dateTime", "boolean",
+	} {
+		assert.True(t, m.HasType(name), "expected %q to resolve", name)
+	}
+
+	// Root and abstract types resolve too, even though ParentType returns ""
+	// for them — which is why HasType cannot be derived from ParentType alone.
+	assert.True(t, m.HasType("Element"))
+	assert.True(t, m.HasType("Resource"))
+	assert.True(t, m.HasType("DomainResource"))
+	assert.True(t, m.HasType("BackboneElement"))
+	assert.Empty(t, m.ParentType("Element"))
+	assert.Empty(t, m.ParentType("Resource"))
+
+	// Base is R5-only: Element and Resource are the roots in R4.
+	assert.False(t, m.HasType("Base"))
+
+	// Constraint-derived definitions resolve, and must agree with ParentType:
+	// the model cannot report a parent for a type it claims not to declare.
+	assert.True(t, m.HasType("SimpleQuantity"))
+	assert.Equal(t, "Quantity", m.ParentType("SimpleQuantity"))
+
+	// Unresolvable specifiers. The FHIRPath conformance suite requires
+	// Patient.gender.as(string1) to be an execution error rather than empty.
+	assert.False(t, m.HasType("string1"))
+	assert.False(t, m.HasType("strng"))
+	assert.False(t, m.HasType("NonExistentType"))
+	assert.False(t, m.HasType(""))
+
+	// Case-sensitive: FHIR names resources in PascalCase and primitives in
+	// lower camelCase, and treats them as distinct types.
+	assert.False(t, m.HasType("patient"))
+	assert.False(t, m.HasType("String"))
+
+	// System types belong to the FHIRPath language, not to this model.
+	assert.False(t, m.HasType("Integer"))
+	assert.False(t, m.HasType("Decimal"))
+}
+
+// typeRegistry mirrors the optional interface gofhir/fhirpath probes for. The
+// engine detects it by assertion, so a signature change here would silently
+// switch type-specifier validation back off instead of breaking the build.
+type typeRegistry interface {
+	HasType(typeName string) bool
+}
+
+func TestFHIRPathModel_SatisfiesTypeRegistry(t *testing.T) {
+	var _ typeRegistry = FHIRPathModel()
+
+	r, ok := any(FHIRPathModel()).(typeRegistry)
+	require.True(t, ok)
+	assert.True(t, r.HasType("Patient"))
+	assert.False(t, r.HasType("string1"))
+}
+
+func TestFHIRPathModel_HasTypeCoversHierarchy(t *testing.T) {
+	m := FHIRPathModel()
+
+	// Every name the hierarchy mentions must be a type the model declares,
+	// on both sides. Otherwise IsSubtype could walk into a type that HasType
+	// rejects, and the two would contradict each other.
+	for child, parent := range m.type2Parent {
+		assert.True(t, m.HasType(child), "type2Parent key %q is not declared", child)
+		assert.True(t, m.HasType(parent), "type2Parent value %q is not declared", parent)
+	}
+
+	// Same for resources, which is a subset of the declared types.
+	for name := range m.resources {
+		assert.True(t, m.HasType(name), "resource %q is not declared", name)
+	}
+}
+
 func TestFHIRPathModel_DeterministicOutput(t *testing.T) {
 	// Both calls return the same pointer — the singleton is deterministic.
 	m1 := FHIRPathModel()
