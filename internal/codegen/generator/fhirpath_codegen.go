@@ -18,6 +18,7 @@ type FHIRPathModelTemplateData struct {
 	Type2Parent           []FHIRPathKV
 	PathsDefinedElsewhere []FHIRPathKV
 	Resources             []string
+	Types                 []string
 }
 
 // FHIRPathKV is a key-value pair used in map literals within generated code.
@@ -108,6 +109,7 @@ func (c *CodeGen) generateFHIRPathModel() error {
 		Type2Parent:           sortedKV(c.buildTypeHierarchy()),
 		PathsDefinedElsewhere: sortedKV(contentRefMap),
 		Resources:             sortedBoolMapKeys(resourceSet),
+		Types:                 sortedBoolMapKeys(c.buildTypeSet()),
 	}
 
 	outputPath := filepath.Join(c.config.OutputDir, "fhirpath_model.go")
@@ -162,6 +164,25 @@ func (c *CodeGen) buildTypeHierarchy() map[string]string {
 		if parent != "" && parent != sd.Name {
 			result[sd.Name] = parent
 		}
+	}
+	return result
+}
+
+// buildTypeSet returns every type name declared by this FHIR version, taken
+// from all raw StructureDefinitions. This is deliberately wider than the types
+// the code generator emits Go structs for: it includes primitives, abstract
+// types, and constraint-derived definitions such as SimpleQuantity, because a
+// FHIRPath type specifier may legitimately name any of them.
+//
+// It must stay a superset of every name appearing in buildTypeHierarchy, or the
+// model would claim a parent type it does not declare.
+func (c *CodeGen) buildTypeSet() map[string]bool {
+	result := make(map[string]bool, len(c.rawSDs))
+	for _, sd := range c.rawSDs {
+		if sd.Name == "" {
+			continue
+		}
+		result[sd.Name] = true
 	}
 	return result
 }
