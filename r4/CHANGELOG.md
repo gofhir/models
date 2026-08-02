@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/gofhir/models/compare/r4/v1.3.0...r4/v1.4.0) (2026-08-02)
+
+
+### Features
+
+* expose whether a name resolves to a type in the FHIRPath model ([#15](https://github.com/gofhir/models/issues/15)) ([d98450a](https://github.com/gofhir/models/commit/d98450ae1ede486c92bc3b61f9416b978c546661)), closes [#14](https://github.com/gofhir/models/issues/14)
+
 ## [1.3.0](https://github.com/gofhir/models/compare/r4/v1.2.0...r4/v1.3.0) (2026-08-01)
 
 
