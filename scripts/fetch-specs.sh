@@ -24,7 +24,13 @@ VERSIONS=()
 for arg in "$@"; do
   case "$arg" in
     --verify) VERIFY_ONLY=1 ;;
-    -h|--help) sed -n '2,18p' "${BASH_SOURCE[0]}"; exit 0 ;;
+    # Print the header comment block, stripped of its leading '# ', stopping at
+    # the first line that is not a comment. Derived rather than a fixed line
+    # range, so editing the header cannot start leaking code into --help.
+    -h|--help)
+      awk 'NR>1 && /^#/ {sub(/^# ?/, ""); print; next} NR>1 {exit}' "${BASH_SOURCE[0]}"
+      exit 0
+      ;;
     -*) echo "unknown flag: $arg" >&2; exit 2 ;;
     *) VERSIONS+=("$arg") ;;
   esac

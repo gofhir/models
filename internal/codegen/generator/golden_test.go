@@ -5,6 +5,7 @@ import (
 	"flag"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"testing"
 )
@@ -286,34 +287,58 @@ func TestGolden(t *testing.T) {
 // when two ValueSets share a FHIR name, the generator must not silently emit one
 // and bind the other's fields to it.
 //
-// Today this documents the defect. It is the test that must flip when the
-// collision is made fatal or the names are disambiguated.
+// The bug is live, so this test cannot assert the correct behavior yet: the real
+// R4 specs contain the same collision (medication-status and
+// medication-statement-status are both named "Medication Status Codes"), so making
+// it fatal requires the disambiguation work in PLAN.md task 3.1.
 //
-// Currently skipped because the bug is live: the fixture reproduces it exactly,
-// with Probe.Status and Sample.Status both resolving to *ProbeStatusCodes and the
-// second ValueSet's codes ("draft", "final") absent from codesystems.go. Remove
-// the skip as part of the value-set collision fix (PLAN.md, task 3.1) — the real
-// R4 specs contain the same collision, so making it fatal requires the
-// disambiguation work in that task, not a one-line change here.
+// Rather than skipping — which would leave the body unreachable and give no
+// signal when the defect is fixed — it detects which state the generator is in.
+// While the bug is live it pins the broken behavior; once the collision is
+// handled it switches to asserting the correct behavior, so the fix is verified
+// without anyone having to remember this file exists.
 func TestGoldenValueSetCollision(t *testing.T) {
-	t.Skip("known defect: ValueSet name collision drops codes silently — see PLAN.md task 3.1")
-
 	out := generateGolden(t)
 
-	codesystems, err := os.ReadFile(filepath.Join(out, "codesystems.go"))
-	if err != nil {
-		t.Fatalf("reading codesystems.go: %v", err)
-	}
-	probe, err := os.ReadFile(filepath.Join(out, "resource_probe.go"))
-	if err != nil {
-		t.Fatalf("reading resource_probe.go: %v", err)
-	}
-	sample, err := os.ReadFile(filepath.Join(out, "resource_sample.go"))
-	if err != nil {
-		t.Fatalf("reading resource_sample.go: %v", err)
+	codesystems := readGenerated(t, out, "codesystems.go")
+	probeType := typeOfStatusField(readGenerated(t, out, "resource_probe.go"))
+	sampleType := typeOfStatusField(readGenerated(t, out, "resource_sample.go"))
+
+	collisionPresent := probeType != "" && probeType == sampleType
+	codesMissing := !strings.Contains(codesystems, `= "draft"`) ||
+		!strings.Contains(codesystems, `= "final"`)
+
+	if !collisionPresent && !codesMissing {
+		t.Log("the ValueSet name collision is handled; asserting correct behavior." +
+			" The broken-state branch of this test and task 3.1 in PLAN.md can now go.")
+		assertValueSetCollisionFixed(t, out)
+		return
 	}
 
-	cs, p, s := string(codesystems), string(probe), string(sample)
+	// Pin the defect precisely, so a partial change is caught rather than passing
+	// quietly as if nothing had moved.
+	if !collisionPresent {
+		t.Errorf("collision changed shape: Probe.Status=%s Sample.Status=%s;"+
+			" expected both to share one type while the bug is live", probeType, sampleType)
+	}
+	if !codesMissing {
+		t.Error("the second ValueSet's codes are now emitted, but the types still collide;" +
+			" this is a new intermediate state that needs review")
+	}
+	t.Logf("known defect reproduced: Probe.Status and Sample.Status both use %s,"+
+		" and the codes draft/final have no constants (PLAN.md task 3.1)", probeType)
+}
+
+// assertValueSetCollisionFixed is what TestGoldenValueSetCollision should become
+// once task 3.1 lands: two ValueSets sharing a FHIR name must either produce two
+// distinct Go types, or fail generation outright — never one type silently
+// standing in for both.
+func assertValueSetCollisionFixed(t *testing.T, out string) {
+	t.Helper()
+
+	cs := readGenerated(t, out, "codesystems.go")
+	p := readGenerated(t, out, "resource_probe.go")
+	s := readGenerated(t, out, "resource_sample.go")
 
 	// Both resources bind to a required ValueSet, so both must end up with a
 	// typed status field rather than a bare *string.
@@ -360,6 +385,16 @@ func typeOfStatusField(src string) string {
 	return ""
 }
 
+// readGenerated returns a generated file's contents as a string.
+func readGenerated(t *testing.T, out, name string) string {
+	t.Helper()
+	data, err := os.ReadFile(filepath.Join(out, name))
+	if err != nil {
+		t.Fatalf("reading generated %s: %v", name, err)
+	}
+	return string(data)
+}
+
 // firstDiff reports the first differing line, which is far more useful in test
 // output than dumping two multi-kilobyte files.
 func firstDiff(want, got string) string {
@@ -374,20 +409,8 @@ func firstDiff(want, got string) string {
 			g = gotLines[i]
 		}
 		if w != g {
-			return "first difference at line " + itoa(i+1) + ":\n  golden: " + w + "\n  got:    " + g
+			return "first difference at line " + strconv.Itoa(i+1) + ":\n  golden: " + w + "\n  got:    " + g
 		}
 	}
 	return "files differ only in trailing content"
-}
-
-func itoa(n int) string {
-	if n == 0 {
-		return "0"
-	}
-	var digits []byte
-	for n > 0 {
-		digits = append([]byte{byte('0' + n%10)}, digits...)
-		n /= 10
-	}
-	return string(digits)
 }
