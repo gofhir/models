@@ -48,13 +48,22 @@ func New(config Config) *CodeGen {
 func (c *CodeGen) LoadTypes() error {
 	specsDir := filepath.Join(c.config.SpecsDir, c.config.Version)
 
-	// Load ValueSets first (needed for binding resolution)
+	// Load ValueSets first (needed for binding resolution).
+	//
+	// This is fatal on purpose. Without valuesets.json every required binding
+	// silently degrades from a generated enum to *string: ~205 exported types
+	// vanish, the package still compiles, and `go build ./...` reports nothing.
+	// A missing or unparseable file must stop generation, not warn.
 	valueSetsFile := filepath.Join(specsDir, "valuesets.json")
-	if data, err := os.ReadFile(valueSetsFile); err == nil {
-		if err := c.valueSets.LoadFromBundle(data); err != nil {
-			// Non-fatal: continue without value sets
-			fmt.Printf("Warning: failed to load value sets: %v\n", err)
-		}
+	data, err := os.ReadFile(valueSetsFile)
+	if err != nil {
+		return fmt.Errorf("failed to read required value sets from %s: %w", valueSetsFile, err)
+	}
+	if err = c.valueSets.LoadFromBundle(data); err != nil {
+		return fmt.Errorf("failed to load value sets from %s: %w", valueSetsFile, err)
+	}
+	if n := c.valueSets.Count(); n == 0 {
+		return fmt.Errorf("no value sets parsed from %s: refusing to generate code with no enums", valueSetsFile)
 	}
 
 	// Collect all StructureDefinitions from both bundles
