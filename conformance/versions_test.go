@@ -23,6 +23,12 @@ type codec struct {
 
 	unmarshalXML func([]byte) (any, error)
 	marshalXML   func(any) ([]byte, error)
+
+	// maxResourceDepth reads and writes the package's depth guard, so the guard
+	// can be exercised and restored without the runner importing each package.
+	getMaxDepth func() int
+	setMaxDepth func(int)
+	errMaxDepth error
 }
 
 // codecs is the set of versions under test, in a stable order.
@@ -44,6 +50,9 @@ func codecs() []codec {
 				}
 				return r4.MarshalResourceXML(res)
 			},
+			getMaxDepth: func() int { return r4.MaxResourceDepth },
+			setMaxDepth: func(n int) { r4.MaxResourceDepth = n },
+			errMaxDepth: r4.ErrMaxResourceDepth,
 		},
 		{
 			name: "r4b",
@@ -61,6 +70,9 @@ func codecs() []codec {
 				}
 				return r4b.MarshalResourceXML(res)
 			},
+			getMaxDepth: func() int { return r4b.MaxResourceDepth },
+			setMaxDepth: func(n int) { r4b.MaxResourceDepth = n },
+			errMaxDepth: r4b.ErrMaxResourceDepth,
 		},
 		{
 			name: "r5",
@@ -78,6 +90,9 @@ func codecs() []codec {
 				}
 				return r5.MarshalResourceXML(res)
 			},
+			getMaxDepth: func() int { return r5.MaxResourceDepth },
+			setMaxDepth: func(n int) { r5.MaxResourceDepth = n },
+			errMaxDepth: r5.ErrMaxResourceDepth,
 		},
 	}
 }
