@@ -105,6 +105,112 @@ func TestDepthGuardRejectsHostileNesting(t *testing.T) {
 	}
 }
 
+// reorderedContained nests resources with "contained" declared *before*
+// "resourceType".
+//
+// JSON does not order members, so this is as valid as any other ordering — and it
+// bypassed the first version of the guard completely, because that version marked
+// an object as a resource at the moment it read the key. A depth-4000 payload was
+// accepted and cost 7.5 seconds of CPU. The fix computes depth when each object
+// closes, which is order-independent.
+func reorderedContained(depth int) []byte {
+	if depth < 1 {
+		panic("depth must be at least 1")
+	}
+	var b strings.Builder
+	for i := 0; i < depth-1; i++ {
+		b.WriteString(`{"contained":[`)
+	}
+	b.WriteString(`{"resourceType":"Patient"}`)
+	for i := 0; i < depth-1; i++ {
+		b.WriteString(`],"resourceType":"Patient"}`)
+	}
+	return []byte(b.String())
+}
+
+// escapedKeyContained spells the member name with a unicode escape.
+// encoding/json decodes "resourceType" to resourceType, so the document
+// deserializes normally — but a raw byte comparison against the literal misses it.
+func escapedKeyContained(depth int) []byte {
+	if depth < 1 {
+		panic("depth must be at least 1")
+	}
+	const escaped = `"resourceType"`
+	var b strings.Builder
+	for i := 0; i < depth-1; i++ {
+		b.WriteString(`{` + escaped + `:"Patient","contained":[`)
+	}
+	b.WriteString(`{` + escaped + `:"Patient"}`)
+	for i := 0; i < depth-1; i++ {
+		b.WriteString(`]}`)
+	}
+	return []byte(b.String())
+}
+
+// TestDepthGuardResistsEvasion covers the ways a payload can hide its nesting from
+// a naive scanner. Both of these were live bypasses in the first implementation,
+// and both were invisible to the tests above because those builders emit
+// "resourceType" first and unescaped — the shape a well-behaved encoder produces,
+// not the shape an attacker chooses.
+func TestDepthGuardResistsEvasion(t *testing.T) {
+	evasions := []struct {
+		name  string
+		build func(int) []byte
+	}{
+		{"contained before resourceType", reorderedContained},
+		{"escaped member name", escapedKeyContained},
+		{"both at once", func(d int) []byte {
+			if d < 1 {
+				panic("depth must be at least 1")
+			}
+			const escaped = `"resourceType"`
+			var b strings.Builder
+			for i := 0; i < d-1; i++ {
+				b.WriteString(`{"contained":[`)
+			}
+			b.WriteString(`{` + escaped + `:"Patient"}`)
+			for i := 0; i < d-1; i++ {
+				b.WriteString(`],` + escaped + `:"Patient"}`)
+			}
+			return []byte(b.String())
+		}},
+	}
+
+	for _, c := range codecs() {
+		t.Run(c.name, func(t *testing.T) {
+			limit := c.getMaxDepth()
+			for _, ev := range evasions {
+				t.Run(ev.name, func(t *testing.T) {
+					payload := ev.build(limit + 1000)
+
+					start := time.Now()
+					_, err := c.unmarshalJSON(payload)
+					elapsed := time.Since(start)
+
+					if err == nil {
+						t.Fatalf("accepted %d levels disguised as %q (%d bytes, %v)",
+							limit+1000, ev.name, len(payload), elapsed)
+					}
+					if !errors.Is(err, c.errMaxDepth) {
+						t.Errorf("rejected, but not via ErrMaxResourceDepth: %v", err)
+					}
+					if elapsed > 200*time.Millisecond {
+						t.Errorf("took %v to reject: the evasion delayed the guard"+
+							" into deserializing", elapsed)
+					}
+				})
+			}
+
+			// The same tricks must not cause false rejections at legal depths.
+			for _, ev := range evasions {
+				if _, err := c.unmarshalJSON(ev.build(3)); err != nil {
+					t.Errorf("%s: rejected a legal depth of 3: %v", ev.name, err)
+				}
+			}
+		})
+	}
+}
+
 // TestDepthGuardAcceptsLegitimateDocuments is the other half, and the reason the
 // guard counts resources instead of JSON braces: a limit on braces would have to
 // sit above 28 to accommodate real Questionnaires, which would leave the expensive

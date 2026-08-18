@@ -198,7 +198,19 @@ Questionnaire con 100 niveles de item  aceptado
 rechazo de 42 KB hostiles              14 us
 ```
 
-Overhead en tráfico normal (Bundle de 50 Patients): **5,9 %** y **cero allocaciones** añadidas. La primera versión costaba 21,8 % porque el escáner materializaba un string por cada string del documento; comparar los bytes contra el literal lo eliminó.
+Overhead en tráfico normal (Bundle de 50 Patients): **0,6 %** —dentro del ruido de medición— y **cero allocaciones** añadidas.
+
+> **Dos bypasses que un code review adversarial encontró en la primera versión.**
+> Ambos reproducidos antes de arreglarlos:
+>
+> | evasión | resultado | por qué |
+> |---|---|---|
+> | `contained` antes de `resourceType` | **aceptado, 7,55 s de CPU** | el escáner marcaba el objeto al *leer* la clave, y JSON no ordena los miembros |
+> | clave escrita como `"resourceType"` | aceptado | `encoding/json` la desescapa; una comparación de bytes crudos no |
+>
+> El primero anulaba la guarda por completo: basta reordenar el payload. El arreglo calcula la profundidad **al cerrar** cada objeto —bottom-up, y por tanto independiente del orden— y decodifica la clave cuando lleva escapes.
+>
+> Los tests originales no los detectaban porque todos los generadores de payload emitían `resourceType` primero y sin escapar: la forma que produce un encoder correcto, no la que elige un atacante. `TestDepthGuardResistsEvasion` cubre ahora las tres combinaciones en las tres versiones.
 
 `MaxResourceDepth` es configurable (0 la desactiva) y `ErrMaxResourceDepth` permite `errors.Is`. Los 12.411 ejemplos del corpus siguen pasando: la guarda no rechaza ningún documento publicado.
 
