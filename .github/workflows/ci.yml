@@ -3,8 +3,9 @@ name: CI
 on:
   push:
     branches: [main]
+  # Any pull request, not just those targeting main, so stacked PRs get checked
+  # too. A stack whose lower half is unverified is worse than no stack.
   pull_request:
-    branches: [main]
 
 env:
   GO_VERSION: "1.23"
