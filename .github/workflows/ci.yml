@@ -161,6 +161,41 @@ jobs:
           go mod verify
           go build ./...
 
+  # Round-trip every published FHIR example through the library and compare the
+  # result against the recorded known-failure lists. Catches both regressions and
+  # fixes that nobody wrote down.
+  #
+  # Its own module, so the published r4/r4b/r5 modules carry neither the suite nor
+  # its corpus.
+  conformance:
+    name: Conformance
+    runs-on: ubuntu-latest
+    env:
+      GOWORK: "off"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
+      # The archives are what the hash is pinned against, so caching them (rather
+      # than the unpacked tree) keeps the verification meaningful.
+      - name: Cache example archives
+        uses: actions/cache@v4
+        with:
+          path: conformance/testdata/.archives
+          key: examples-${{ hashFiles('examples.lock') }}
+
+      - name: Fetch and verify examples
+        run: scripts/fetch-examples.sh
+
+      - name: Round-trip the corpus
+        working-directory: conformance
+        run: go test -timeout 20m ./...
+
   # Regenerate every version from the pinned specs and fail if the result differs
   # from what is committed. Without this, a change to a template or to the
   # analyzer can land without anyone noticing what it did to the output.

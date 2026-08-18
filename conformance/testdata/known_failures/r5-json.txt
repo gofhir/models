@@ -1,0 +1,73 @@
+# Known round-trip failures: 61 of 2824 examples.
+#
+# Regenerate with: go test ./conformance -update-known
+# Every line removed is a bug fixed; every line added is a regression.
+#
+# Format: <kind> <file>
+#   parse     the published example could not be read
+#   marshal   parsed, but could not be written back
+#   reparse   our own output could not be read back
+#   mismatch  round-trip lost or changed data
+#   emptyread parsed to nothing, with no error
+
+mismatch bundle-example.json
+mismatch bundle-lipids.json
+mismatch bundle-lri-example.json
+mismatch bundle-references.json
+mismatch bundle-request-medsallergies.json
+mismatch bundle-request-simplesummary.json
+mismatch bundle-response-medsallergies.json
+mismatch bundle-response-simplesummary.json
+mismatch bundle-response.json
+mismatch bundle-search-warning.json
+mismatch bundle-transaction.json
+mismatch codesystem-map-transform.json
+mismatch conceptmaps.json
+mismatch diagnosticreport-example-f001-bloodexam.json
+mismatch diagnosticreport-example-f202-bloodculture.json
+mismatch diagnosticreport-example-ghp.json
+mismatch diagnosticreport-example.json
+mismatch diagnosticreport-examples-general.json
+mismatch diagnosticreport-micro1.json
+mismatch document-example-dischargesummary.json
+mismatch endpoint-examples-general-template.json
+mismatch external-resources.json
+mismatch json-edge-cases.json
+mismatch location-examples-general.json
+mismatch medicinalproductdefinition-example-combo-product-bundle.json
+mismatch message-request-link.json
+mismatch message-response-link.json
+mismatch namingsystem-terminologies.json
+mismatch organization-example.json
+mismatch patient-examples-cypress-template.json
+mismatch patient-examples-general.json
+mismatch practitioner-examples-general.json
+mismatch practitionerrole-examples-general.json
+mismatch profiles-others.json
+mismatch profiles-resources.json
+mismatch provenance-example-anon0.json
+mismatch questionnaire-profile-example-ussg-fht.json
+mismatch search-parameters.json
+mismatch structuredefinition-example-composition.json
+mismatch valuesets.json
+mismatch xds-example.json
+parse communication-example-fm-attachment.json
+parse communication-example-fm-solicited-attachment.json
+parse dataelements.json
+parse documentreference-example-comprehensive.json
+parse documentreference-example.json
+parse integer64.profile.json
+parse location-wash-dc-metro.json
+parse notification-empty.json
+parse notification-error.json
+parse notification-full-resource-with-patient.json
+parse notification-full-resource.json
+parse notification-handshake.json
+parse notification-heartbeat.json
+parse notification-id-only-with-patient.json
+parse notification-id-only.json
+parse notification-message-full-resource.json
+parse notification-query-event.json
+parse notification-query-status.json
+parse profiles-types.json
+parse subscriptionstatus-example.json
