@@ -1,0 +1,15 @@
+# Known round-trip failures: 3 of 2912 examples.
+#
+# Regenerate with: go test ./conformance -update-known
+# Every line removed is a bug fixed; every line added is a regression.
+#
+# Format: <kind> <file>
+#   parse     the published example could not be read
+#   marshal   parsed, but could not be written back
+#   reparse   our own output could not be read back
+#   mismatch  round-trip lost or changed data
+#   emptyread parsed to nothing, with no error
+
+mismatch json-edge-cases.json
+mismatch structuredefinition-example-composition.json
+parse package-min-ver.json

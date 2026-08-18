@@ -1,0 +1,21 @@
+# examples.lock — pinned FHIR example corpora, used by the conformance suite.
+#
+# These are the official example resources published with each release: ~2900 JSON
+# and ~1100 XML files per version, about 200 MB unpacked. They are gitignored and
+# fetched by scripts/fetch-examples.sh, which verifies every archive against the
+# sha256 below.
+#
+# The conformance suite skips itself when the corpus is absent, so neither a fresh
+# clone nor a plain `go test ./...` requires this download.
+#
+# Format:  <version> <kind> <sha256> <url>
+# kind is "json" or "xml"; each archive unpacks into testdata/examples/<version>/<kind>/.
+
+r4  json 5b3da7fe910fcd20470d63365317bde3b230118844b8adf77e629fc55ebe2f28 http://hl7.org/fhir/R4/examples-json.zip
+r4  xml  e569e7580fb742ff138f77d7d863395bb2460afb0e39d5cced2fbff3be9790a6 http://hl7.org/fhir/R4/examples.zip
+
+r4b json 9cd3f998f230032f5760ba097f394a1f7bafebea13bd5b2b26f7359344e3cf17 http://hl7.org/fhir/R4B/examples-json.zip
+r4b xml  20af569983e16520d62dbaec781291adb50e815f69e2d8fbb0e46a05a7c3c020 http://hl7.org/fhir/R4B/examples.zip
+
+r5  json a6937601b88ec9d187afb93c7c4d7a4902c8591439c6baaa1d50981c29328921 http://hl7.org/fhir/R5/examples-json.zip
+r5  xml  65bb7d27a07a7e3801aa898a6d7d102e80b496122cc35b2e1a8f0bfd1dc90d5d http://hl7.org/fhir/R5/examples.zip

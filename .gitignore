@@ -57,3 +57,8 @@ go.work.sum
 
 # Debug artifacts the generator writes when go/format rejects its output.
 *.unformatted
+
+# FHIR example corpora for the conformance suite: ~200 MB per version, fetched
+# by scripts/fetch-examples.sh and pinned in examples.lock.
+conformance/testdata/examples/
+conformance/testdata/.archives/

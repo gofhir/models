@@ -1,0 +1,23 @@
+# Known round-trip failures: 11 of 3022 examples.
+#
+# Regenerate with: go test ./conformance -update-known
+# Every line removed is a bug fixed; every line added is a regression.
+#
+# Format: <kind> <file>
+#   parse     the published example could not be read
+#   marshal   parsed, but could not be written back
+#   reparse   our own output could not be read back
+#   mismatch  round-trip lost or changed data
+#   emptyread parsed to nothing, with no error
+
+mismatch activitydefinition-administer-zika-virus-exposure-assessment.json
+mismatch activitydefinition-example.json
+mismatch activitydefinition-order-serum-dengue-virus-igm.json
+mismatch activitydefinition-order-serum-zika-dengue-virus-igm.json
+mismatch activitydefinition-predecessor-example.json
+mismatch activitydefinition-provide-mosquito-prevention-advice.json
+mismatch activitydefinition-servicerequest-example.json
+mismatch json-edge-cases.json
+mismatch plandefinition-example-cardiology-os.json
+mismatch plandefinition-example.json
+mismatch structuredefinition-example-composition.json
