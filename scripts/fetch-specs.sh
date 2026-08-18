@@ -73,10 +73,18 @@ download_version() {
   wanted="$(awk -v v="$version" '!/^#/ && NF >= 5 && $1 == v {print $3}' "$LOCKFILE")"
   while IFS= read -r file; do
     [[ -n "$file" ]] || continue
-    if ! unzip -o -q -j "$tmp/definitions.zip" "$file" -d "$dest"; then
-      echo "  error: $file not present in the archive for $version" >&2
-      return 1
+    # The archive layout is not consistent across releases: R4 and R5 keep these
+    # files at the top level, while R4B nests them under definitions.json/.
+    # Try the exact name first, then one directory level down. -j flattens
+    # whatever matched into $dest.
+    if unzip -o -q -j "$tmp/definitions.zip" "$file" -d "$dest" 2>/dev/null; then
+      continue
     fi
+    if unzip -o -q -j "$tmp/definitions.zip" "*/$file" -d "$dest" 2>/dev/null; then
+      continue
+    fi
+    echo "  error: $file not found in the archive for $version" >&2
+    return 1
   done <<< "$wanted"
 }
 
@@ -131,7 +139,8 @@ if [[ $exit_code -ne 0 ]]; then
   if [[ $VERIFY_ONLY -eq 1 ]]; then
     echo "run scripts/fetch-specs.sh to download them." >&2
   else
-    echo "a hash mismatch means the published spec changed: update specs.lock deliberately." >&2
+    echo "MISSING means the archive layout changed; MISMATCH means the published" >&2
+    echo "bytes changed — in that case update specs.lock deliberately." >&2
   fi
   exit 1
 fi
