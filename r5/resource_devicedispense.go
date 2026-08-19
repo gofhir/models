@@ -645,7 +645,10 @@ type DeviceDispenseBuilder struct {
 // NewDeviceDispenseBuilder creates a new DeviceDispenseBuilder.
 func NewDeviceDispenseBuilder() *DeviceDispenseBuilder {
 	return &DeviceDispenseBuilder{
-		deviceDispense: &DeviceDispense{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		deviceDispense: &DeviceDispense{ResourceType: "DeviceDispense"},
 	}
 }
 
@@ -837,7 +840,7 @@ type DeviceDispenseOption func(*DeviceDispense)
 
 // NewDeviceDispense creates a new DeviceDispense with the given options.
 func NewDeviceDispense(opts ...DeviceDispenseOption) *DeviceDispense {
-	r := &DeviceDispense{}
+	r := &DeviceDispense{ResourceType: "DeviceDispense"}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -571,7 +571,10 @@ type ListBuilder struct {
 // NewListBuilder creates a new ListBuilder.
 func NewListBuilder() *ListBuilder {
 	return &ListBuilder{
-		list: &List{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		list: &List{ResourceType: "List"},
 	}
 }
 
@@ -715,7 +718,7 @@ type ListOption func(*List)
 
 // NewList creates a new List with the given options.
 func NewList(opts ...ListOption) *List {
-	r := &List{}
+	r := &List{ResourceType: "List"}
 	for _, opt := range opts {
 		opt(r)
 	}

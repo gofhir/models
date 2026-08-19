@@ -5343,7 +5343,10 @@ type ExplanationOfBenefitBuilder struct {
 // NewExplanationOfBenefitBuilder creates a new ExplanationOfBenefitBuilder.
 func NewExplanationOfBenefitBuilder() *ExplanationOfBenefitBuilder {
 	return &ExplanationOfBenefitBuilder{
-		explanationOfBenefit: &ExplanationOfBenefit{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		explanationOfBenefit: &ExplanationOfBenefit{ResourceType: "ExplanationOfBenefit"},
 	}
 }
 
@@ -5703,7 +5706,7 @@ type ExplanationOfBenefitOption func(*ExplanationOfBenefit)
 
 // NewExplanationOfBenefit creates a new ExplanationOfBenefit with the given options.
 func NewExplanationOfBenefit(opts ...ExplanationOfBenefitOption) *ExplanationOfBenefit {
-	r := &ExplanationOfBenefit{}
+	r := &ExplanationOfBenefit{ResourceType: "ExplanationOfBenefit"}
 	for _, opt := range opts {
 		opt(r)
 	}

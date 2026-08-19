@@ -618,7 +618,10 @@ type DeviceUsageBuilder struct {
 // NewDeviceUsageBuilder creates a new DeviceUsageBuilder.
 func NewDeviceUsageBuilder() *DeviceUsageBuilder {
 	return &DeviceUsageBuilder{
-		deviceUsage: &DeviceUsage{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		deviceUsage: &DeviceUsage{ResourceType: "DeviceUsage"},
 	}
 }
 
@@ -804,7 +807,7 @@ type DeviceUsageOption func(*DeviceUsage)
 
 // NewDeviceUsage creates a new DeviceUsage with the given options.
 func NewDeviceUsage(opts ...DeviceUsageOption) *DeviceUsage {
-	r := &DeviceUsage{}
+	r := &DeviceUsage{ResourceType: "DeviceUsage"}
 	for _, opt := range opts {
 		opt(r)
 	}

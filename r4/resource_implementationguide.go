@@ -1881,7 +1881,10 @@ type ImplementationGuideBuilder struct {
 // NewImplementationGuideBuilder creates a new ImplementationGuideBuilder.
 func NewImplementationGuideBuilder() *ImplementationGuideBuilder {
 	return &ImplementationGuideBuilder{
-		implementationGuide: &ImplementationGuide{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		implementationGuide: &ImplementationGuide{ResourceType: "ImplementationGuide"},
 	}
 }
 
@@ -2067,7 +2070,7 @@ type ImplementationGuideOption func(*ImplementationGuide)
 
 // NewImplementationGuide creates a new ImplementationGuide with the given options.
 func NewImplementationGuide(opts ...ImplementationGuideOption) *ImplementationGuide {
-	r := &ImplementationGuide{}
+	r := &ImplementationGuide{ResourceType: "ImplementationGuide"}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -659,7 +659,10 @@ type ProvenanceBuilder struct {
 // NewProvenanceBuilder creates a new ProvenanceBuilder.
 func NewProvenanceBuilder() *ProvenanceBuilder {
 	return &ProvenanceBuilder{
-		provenance: &Provenance{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		provenance: &Provenance{ResourceType: "Provenance"},
 	}
 }
 
@@ -797,7 +800,7 @@ type ProvenanceOption func(*Provenance)
 
 // NewProvenance creates a new Provenance with the given options.
 func NewProvenance(opts ...ProvenanceOption) *Provenance {
-	r := &Provenance{}
+	r := &Provenance{ResourceType: "Provenance"}
 	for _, opt := range opts {
 		opt(r)
 	}

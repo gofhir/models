@@ -506,7 +506,10 @@ type MedicinalProductIndicationBuilder struct {
 // NewMedicinalProductIndicationBuilder creates a new MedicinalProductIndicationBuilder.
 func NewMedicinalProductIndicationBuilder() *MedicinalProductIndicationBuilder {
 	return &MedicinalProductIndicationBuilder{
-		medicinalProductIndication: &MedicinalProductIndication{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		medicinalProductIndication: &MedicinalProductIndication{ResourceType: "MedicinalProductIndication"},
 	}
 }
 
@@ -626,7 +629,7 @@ type MedicinalProductIndicationOption func(*MedicinalProductIndication)
 
 // NewMedicinalProductIndication creates a new MedicinalProductIndication with the given options.
 func NewMedicinalProductIndication(opts ...MedicinalProductIndicationOption) *MedicinalProductIndication {
-	r := &MedicinalProductIndication{}
+	r := &MedicinalProductIndication{ResourceType: "MedicinalProductIndication"}
 	for _, opt := range opts {
 		opt(r)
 	}

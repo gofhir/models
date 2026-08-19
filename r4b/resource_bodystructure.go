@@ -379,7 +379,10 @@ type BodyStructureBuilder struct {
 // NewBodyStructureBuilder creates a new BodyStructureBuilder.
 func NewBodyStructureBuilder() *BodyStructureBuilder {
 	return &BodyStructureBuilder{
-		bodyStructure: &BodyStructure{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		bodyStructure: &BodyStructure{ResourceType: "BodyStructure"},
 	}
 }
 
@@ -493,7 +496,7 @@ type BodyStructureOption func(*BodyStructure)
 
 // NewBodyStructure creates a new BodyStructure with the given options.
 func NewBodyStructure(opts ...BodyStructureOption) *BodyStructure {
-	r := &BodyStructure{}
+	r := &BodyStructure{ResourceType: "BodyStructure"}
 	for _, opt := range opts {
 		opt(r)
 	}

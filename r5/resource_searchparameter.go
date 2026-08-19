@@ -823,7 +823,10 @@ type SearchParameterBuilder struct {
 // NewSearchParameterBuilder creates a new SearchParameterBuilder.
 func NewSearchParameterBuilder() *SearchParameterBuilder {
 	return &SearchParameterBuilder{
-		searchParameter: &SearchParameter{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		searchParameter: &SearchParameter{ResourceType: "SearchParameter"},
 	}
 }
 
@@ -1087,7 +1090,7 @@ type SearchParameterOption func(*SearchParameter)
 
 // NewSearchParameter creates a new SearchParameter with the given options.
 func NewSearchParameter(opts ...SearchParameterOption) *SearchParameter {
-	r := &SearchParameter{}
+	r := &SearchParameter{ResourceType: "SearchParameter"}
 	for _, opt := range opts {
 		opt(r)
 	}

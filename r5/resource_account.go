@@ -1223,7 +1223,10 @@ type AccountBuilder struct {
 // NewAccountBuilder creates a new AccountBuilder.
 func NewAccountBuilder() *AccountBuilder {
 	return &AccountBuilder{
-		account: &Account{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		account: &Account{ResourceType: "Account"},
 	}
 }
 
@@ -1391,7 +1394,7 @@ type AccountOption func(*Account)
 
 // NewAccount creates a new Account with the given options.
 func NewAccount(opts ...AccountOption) *Account {
-	r := &Account{}
+	r := &Account{ResourceType: "Account"}
 	for _, opt := range opts {
 		opt(r)
 	}

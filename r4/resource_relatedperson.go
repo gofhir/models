@@ -529,7 +529,10 @@ type RelatedPersonBuilder struct {
 // NewRelatedPersonBuilder creates a new RelatedPersonBuilder.
 func NewRelatedPersonBuilder() *RelatedPersonBuilder {
 	return &RelatedPersonBuilder{
-		relatedPerson: &RelatedPerson{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		relatedPerson: &RelatedPerson{ResourceType: "RelatedPerson"},
 	}
 }
 
@@ -667,7 +670,7 @@ type RelatedPersonOption func(*RelatedPerson)
 
 // NewRelatedPerson creates a new RelatedPerson with the given options.
 func NewRelatedPerson(opts ...RelatedPersonOption) *RelatedPerson {
-	r := &RelatedPerson{}
+	r := &RelatedPerson{ResourceType: "RelatedPerson"}
 	for _, opt := range opts {
 		opt(r)
 	}

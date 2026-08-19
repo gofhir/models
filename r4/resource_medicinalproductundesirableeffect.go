@@ -342,7 +342,10 @@ type MedicinalProductUndesirableEffectBuilder struct {
 // NewMedicinalProductUndesirableEffectBuilder creates a new MedicinalProductUndesirableEffectBuilder.
 func NewMedicinalProductUndesirableEffectBuilder() *MedicinalProductUndesirableEffectBuilder {
 	return &MedicinalProductUndesirableEffectBuilder{
-		medicinalProductUndesirableEffect: &MedicinalProductUndesirableEffect{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		medicinalProductUndesirableEffect: &MedicinalProductUndesirableEffect{ResourceType: "MedicinalProductUndesirableEffect"},
 	}
 }
 
@@ -438,7 +441,7 @@ type MedicinalProductUndesirableEffectOption func(*MedicinalProductUndesirableEf
 
 // NewMedicinalProductUndesirableEffect creates a new MedicinalProductUndesirableEffect with the given options.
 func NewMedicinalProductUndesirableEffect(opts ...MedicinalProductUndesirableEffectOption) *MedicinalProductUndesirableEffect {
-	r := &MedicinalProductUndesirableEffect{}
+	r := &MedicinalProductUndesirableEffect{ResourceType: "MedicinalProductUndesirableEffect"}
 	for _, opt := range opts {
 		opt(r)
 	}

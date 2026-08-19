@@ -3035,7 +3035,10 @@ type TestScriptBuilder struct {
 // NewTestScriptBuilder creates a new TestScriptBuilder.
 func NewTestScriptBuilder() *TestScriptBuilder {
 	return &TestScriptBuilder{
-		testScript: &TestScript{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		testScript: &TestScript{ResourceType: "TestScript"},
 	}
 }
 
@@ -3275,7 +3278,7 @@ type TestScriptOption func(*TestScript)
 
 // NewTestScript creates a new TestScript with the given options.
 func NewTestScript(opts ...TestScriptOption) *TestScript {
-	r := &TestScript{}
+	r := &TestScript{ResourceType: "TestScript"}
 	for _, opt := range opts {
 		opt(r)
 	}

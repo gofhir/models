@@ -7,7 +7,6 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
-	"unicode/utf8"
 
 	"github.com/gofhir/models/internal/codegen/analyzer"
 	"github.com/gofhir/models/internal/codegen/parser"
@@ -243,6 +242,21 @@ func (c *CodeGen) Generate() error {
 		return fmt.Errorf("failed to generate interfaces: %w", err)
 	}
 
+	// Generate helpers.go (generic pointer/value helpers)
+	if err := c.generateHelpersFromTemplate(); err != nil {
+		return fmt.Errorf("failed to generate helpers: %w", err)
+	}
+
+	// Generate doc.go (package documentation)
+	if err := c.generateDocFromTemplate(); err != nil {
+		return fmt.Errorf("failed to generate doc: %w", err)
+	}
+
+	// Generate marshal.go (JSON marshaling entry points)
+	if err := c.generateMarshalFromTemplate(); err != nil {
+		return fmt.Errorf("failed to generate marshal: %w", err)
+	}
+
 	// Generate registry.go (resource factories and unmarshal functions)
 	if err := c.generateRegistryFromTemplate(); err != nil {
 		return fmt.Errorf("failed to generate registry: %w", err)
@@ -279,28 +293,6 @@ func (c *CodeGen) Generate() error {
 	}
 
 	return nil
-}
-
-// sanitizeTypeName converts a ValueSet name to a valid Go type name.
-func sanitizeTypeName(name string) string {
-	// Remove/replace invalid characters
-	name = strings.ReplaceAll(name, " ", "")
-	name = strings.ReplaceAll(name, "-", "")
-	name = strings.ReplaceAll(name, "_", "")
-	name = strings.ReplaceAll(name, ".", "")
-	name = strings.ReplaceAll(name, "(", "")
-	name = strings.ReplaceAll(name, ")", "")
-	name = strings.ReplaceAll(name, "/", "")
-
-	// Ensure first character is uppercase
-	if name != "" {
-		runes := []rune(name)
-		r, _ := utf8.DecodeRuneInString(strings.ToUpper(string(runes[0])))
-		runes[0] = r
-		name = string(runes)
-	}
-
-	return name
 }
 
 // toPascalCaseCode converts a code value to PascalCase for use as a constant name.

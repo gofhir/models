@@ -493,7 +493,10 @@ type SubscriptionStatusBuilder struct {
 // NewSubscriptionStatusBuilder creates a new SubscriptionStatusBuilder.
 func NewSubscriptionStatusBuilder() *SubscriptionStatusBuilder {
 	return &SubscriptionStatusBuilder{
-		subscriptionStatus: &SubscriptionStatus{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		subscriptionStatus: &SubscriptionStatus{ResourceType: "SubscriptionStatus"},
 	}
 }
 
@@ -601,7 +604,7 @@ type SubscriptionStatusOption func(*SubscriptionStatus)
 
 // NewSubscriptionStatus creates a new SubscriptionStatus with the given options.
 func NewSubscriptionStatus(opts ...SubscriptionStatusOption) *SubscriptionStatus {
-	r := &SubscriptionStatus{}
+	r := &SubscriptionStatus{ResourceType: "SubscriptionStatus"}
 	for _, opt := range opts {
 		opt(r)
 	}

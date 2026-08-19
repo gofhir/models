@@ -1204,7 +1204,10 @@ type ConditionDefinitionBuilder struct {
 // NewConditionDefinitionBuilder creates a new ConditionDefinitionBuilder.
 func NewConditionDefinitionBuilder() *ConditionDefinitionBuilder {
 	return &ConditionDefinitionBuilder{
-		conditionDefinition: &ConditionDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		conditionDefinition: &ConditionDefinition{ResourceType: "ConditionDefinition"},
 	}
 }
 
@@ -1456,7 +1459,7 @@ type ConditionDefinitionOption func(*ConditionDefinition)
 
 // NewConditionDefinition creates a new ConditionDefinition with the given options.
 func NewConditionDefinition(opts ...ConditionDefinitionOption) *ConditionDefinition {
-	r := &ConditionDefinition{}
+	r := &ConditionDefinition{ResourceType: "ConditionDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

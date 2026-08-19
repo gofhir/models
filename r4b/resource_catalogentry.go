@@ -543,7 +543,10 @@ type CatalogEntryBuilder struct {
 // NewCatalogEntryBuilder creates a new CatalogEntryBuilder.
 func NewCatalogEntryBuilder() *CatalogEntryBuilder {
 	return &CatalogEntryBuilder{
-		catalogEntry: &CatalogEntry{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		catalogEntry: &CatalogEntry{ResourceType: "CatalogEntry"},
 	}
 }
 
@@ -687,7 +690,7 @@ type CatalogEntryOption func(*CatalogEntry)
 
 // NewCatalogEntry creates a new CatalogEntry with the given options.
 func NewCatalogEntry(opts ...CatalogEntryOption) *CatalogEntry {
-	r := &CatalogEntry{}
+	r := &CatalogEntry{ResourceType: "CatalogEntry"}
 	for _, opt := range opts {
 		opt(r)
 	}

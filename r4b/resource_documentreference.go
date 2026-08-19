@@ -853,7 +853,10 @@ type DocumentReferenceBuilder struct {
 // NewDocumentReferenceBuilder creates a new DocumentReferenceBuilder.
 func NewDocumentReferenceBuilder() *DocumentReferenceBuilder {
 	return &DocumentReferenceBuilder{
-		documentReference: &DocumentReference{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		documentReference: &DocumentReference{ResourceType: "DocumentReference"},
 	}
 }
 
@@ -1015,7 +1018,7 @@ type DocumentReferenceOption func(*DocumentReference)
 
 // NewDocumentReference creates a new DocumentReference with the given options.
 func NewDocumentReference(opts ...DocumentReferenceOption) *DocumentReference {
-	r := &DocumentReference{}
+	r := &DocumentReference{ResourceType: "DocumentReference"}
 	for _, opt := range opts {
 		opt(r)
 	}

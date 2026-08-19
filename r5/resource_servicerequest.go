@@ -1161,7 +1161,10 @@ type ServiceRequestBuilder struct {
 // NewServiceRequestBuilder creates a new ServiceRequestBuilder.
 func NewServiceRequestBuilder() *ServiceRequestBuilder {
 	return &ServiceRequestBuilder{
-		serviceRequest: &ServiceRequest{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		serviceRequest: &ServiceRequest{ResourceType: "ServiceRequest"},
 	}
 }
 
@@ -1467,7 +1470,7 @@ type ServiceRequestOption func(*ServiceRequest)
 
 // NewServiceRequest creates a new ServiceRequest with the given options.
 func NewServiceRequest(opts ...ServiceRequestOption) *ServiceRequest {
-	r := &ServiceRequest{}
+	r := &ServiceRequest{ResourceType: "ServiceRequest"}
 	for _, opt := range opts {
 		opt(r)
 	}

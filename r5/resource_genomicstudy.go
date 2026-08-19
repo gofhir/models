@@ -1214,7 +1214,10 @@ type GenomicStudyBuilder struct {
 // NewGenomicStudyBuilder creates a new GenomicStudyBuilder.
 func NewGenomicStudyBuilder() *GenomicStudyBuilder {
 	return &GenomicStudyBuilder{
-		genomicStudy: &GenomicStudy{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		genomicStudy: &GenomicStudy{ResourceType: "GenomicStudy"},
 	}
 }
 
@@ -1370,7 +1373,7 @@ type GenomicStudyOption func(*GenomicStudy)
 
 // NewGenomicStudy creates a new GenomicStudy with the given options.
 func NewGenomicStudy(opts ...GenomicStudyOption) *GenomicStudy {
-	r := &GenomicStudy{}
+	r := &GenomicStudy{ResourceType: "GenomicStudy"}
 	for _, opt := range opts {
 		opt(r)
 	}

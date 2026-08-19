@@ -981,7 +981,10 @@ type AdministrableProductDefinitionBuilder struct {
 // NewAdministrableProductDefinitionBuilder creates a new AdministrableProductDefinitionBuilder.
 func NewAdministrableProductDefinitionBuilder() *AdministrableProductDefinitionBuilder {
 	return &AdministrableProductDefinitionBuilder{
-		administrableProductDefinition: &AdministrableProductDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		administrableProductDefinition: &AdministrableProductDefinition{ResourceType: "AdministrableProductDefinition"},
 	}
 }
 
@@ -1113,7 +1116,7 @@ type AdministrableProductDefinitionOption func(*AdministrableProductDefinition)
 
 // NewAdministrableProductDefinition creates a new AdministrableProductDefinition with the given options.
 func NewAdministrableProductDefinition(opts ...AdministrableProductDefinitionOption) *AdministrableProductDefinition {
-	r := &AdministrableProductDefinition{}
+	r := &AdministrableProductDefinition{ResourceType: "AdministrableProductDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

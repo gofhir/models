@@ -540,7 +540,10 @@ type ResearchSubjectBuilder struct {
 // NewResearchSubjectBuilder creates a new ResearchSubjectBuilder.
 func NewResearchSubjectBuilder() *ResearchSubjectBuilder {
 	return &ResearchSubjectBuilder{
-		researchSubject: &ResearchSubject{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		researchSubject: &ResearchSubject{ResourceType: "ResearchSubject"},
 	}
 }
 
@@ -660,7 +663,7 @@ type ResearchSubjectOption func(*ResearchSubject)
 
 // NewResearchSubject creates a new ResearchSubject with the given options.
 func NewResearchSubject(opts ...ResearchSubjectOption) *ResearchSubject {
-	r := &ResearchSubject{}
+	r := &ResearchSubject{ResourceType: "ResearchSubject"}
 	for _, opt := range opts {
 		opt(r)
 	}

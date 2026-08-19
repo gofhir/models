@@ -577,7 +577,10 @@ type CareTeamBuilder struct {
 // NewCareTeamBuilder creates a new CareTeamBuilder.
 func NewCareTeamBuilder() *CareTeamBuilder {
 	return &CareTeamBuilder{
-		careTeam: &CareTeam{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		careTeam: &CareTeam{ResourceType: "CareTeam"},
 	}
 }
 
@@ -721,7 +724,7 @@ type CareTeamOption func(*CareTeam)
 
 // NewCareTeam creates a new CareTeam with the given options.
 func NewCareTeam(opts ...CareTeamOption) *CareTeam {
-	r := &CareTeam{}
+	r := &CareTeam{ResourceType: "CareTeam"}
 	for _, opt := range opts {
 		opt(r)
 	}

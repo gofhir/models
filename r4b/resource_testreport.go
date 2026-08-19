@@ -1353,7 +1353,10 @@ type TestReportBuilder struct {
 // NewTestReportBuilder creates a new TestReportBuilder.
 func NewTestReportBuilder() *TestReportBuilder {
 	return &TestReportBuilder{
-		testReport: &TestReport{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		testReport: &TestReport{ResourceType: "TestReport"},
 	}
 }
 
@@ -1491,7 +1494,7 @@ type TestReportOption func(*TestReport)
 
 // NewTestReport creates a new TestReport with the given options.
 func NewTestReport(opts ...TestReportOption) *TestReport {
-	r := &TestReport{}
+	r := &TestReport{ResourceType: "TestReport"}
 	for _, opt := range opts {
 		opt(r)
 	}

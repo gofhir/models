@@ -44,7 +44,7 @@ type Medication struct {
 	// Codes that identify this medication
 	Code *CodeableConcept `json:"code,omitempty"`
 	// active | inactive | entered-in-error
-	Status *MedicationStatusCodes `json:"status,omitempty"`
+	Status *MedicationStatus `json:"status,omitempty"`
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Manufacturer of the item
@@ -323,7 +323,7 @@ func (r *Medication) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				r.Code = &v
 			case "status":
-				v, ext, err := xmlDecodePrimitiveCode[MedicationStatusCodes](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[MedicationStatus](d, t)
 				if err != nil {
 					return err
 				}
@@ -608,7 +608,10 @@ type MedicationBuilder struct {
 // NewMedicationBuilder creates a new MedicationBuilder.
 func NewMedicationBuilder() *MedicationBuilder {
 	return &MedicationBuilder{
-		medication: &Medication{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		medication: &Medication{ResourceType: "Medication"},
 	}
 }
 
@@ -678,7 +681,7 @@ func (b *MedicationBuilder) SetCode(v CodeableConcept) *MedicationBuilder {
 }
 
 // SetStatus sets the Status field.
-func (b *MedicationBuilder) SetStatus(v MedicationStatusCodes) *MedicationBuilder {
+func (b *MedicationBuilder) SetStatus(v MedicationStatus) *MedicationBuilder {
 	b.medication.Status = &v
 	return b
 }
@@ -722,7 +725,7 @@ type MedicationOption func(*Medication)
 
 // NewMedication creates a new Medication with the given options.
 func NewMedication(opts ...MedicationOption) *Medication {
-	r := &Medication{}
+	r := &Medication{ResourceType: "Medication"}
 	for _, opt := range opts {
 		opt(r)
 	}
@@ -800,7 +803,7 @@ func WithMedicationCode(v CodeableConcept) MedicationOption {
 }
 
 // WithMedicationStatus sets the Status field.
-func WithMedicationStatus(v MedicationStatusCodes) MedicationOption {
+func WithMedicationStatus(v MedicationStatus) MedicationOption {
 	return func(r *Medication) {
 		r.Status = &v
 	}

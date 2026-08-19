@@ -658,7 +658,10 @@ type PersonBuilder struct {
 // NewPersonBuilder creates a new PersonBuilder.
 func NewPersonBuilder() *PersonBuilder {
 	return &PersonBuilder{
-		person: &Person{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		person: &Person{ResourceType: "Person"},
 	}
 }
 
@@ -820,7 +823,7 @@ type PersonOption func(*Person)
 
 // NewPerson creates a new Person with the given options.
 func NewPerson(opts ...PersonOption) *Person {
-	r := &Person{}
+	r := &Person{ResourceType: "Person"}
 	for _, opt := range opts {
 		opt(r)
 	}

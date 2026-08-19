@@ -1078,7 +1078,10 @@ type ConsentBuilder struct {
 // NewConsentBuilder creates a new ConsentBuilder.
 func NewConsentBuilder() *ConsentBuilder {
 	return &ConsentBuilder{
-		consent: &Consent{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		consent: &Consent{ResourceType: "Consent"},
 	}
 }
 
@@ -1228,7 +1231,7 @@ type ConsentOption func(*Consent)
 
 // NewConsent creates a new Consent with the given options.
 func NewConsent(opts ...ConsentOption) *Consent {
-	r := &Consent{}
+	r := &Consent{ResourceType: "Consent"}
 	for _, opt := range opts {
 		opt(r)
 	}

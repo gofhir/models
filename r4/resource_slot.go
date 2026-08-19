@@ -421,7 +421,10 @@ type SlotBuilder struct {
 // NewSlotBuilder creates a new SlotBuilder.
 func NewSlotBuilder() *SlotBuilder {
 	return &SlotBuilder{
-		slot: &Slot{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		slot: &Slot{ResourceType: "Slot"},
 	}
 }
 
@@ -553,7 +556,7 @@ type SlotOption func(*Slot)
 
 // NewSlot creates a new Slot with the given options.
 func NewSlot(opts ...SlotOption) *Slot {
-	r := &Slot{}
+	r := &Slot{ResourceType: "Slot"}
 	for _, opt := range opts {
 		opt(r)
 	}

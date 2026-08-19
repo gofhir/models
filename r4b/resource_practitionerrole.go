@@ -685,7 +685,10 @@ type PractitionerRoleBuilder struct {
 // NewPractitionerRoleBuilder creates a new PractitionerRoleBuilder.
 func NewPractitionerRoleBuilder() *PractitionerRoleBuilder {
 	return &PractitionerRoleBuilder{
-		practitionerRole: &PractitionerRole{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		practitionerRole: &PractitionerRole{ResourceType: "PractitionerRole"},
 	}
 }
 
@@ -835,7 +838,7 @@ type PractitionerRoleOption func(*PractitionerRole)
 
 // NewPractitionerRole creates a new PractitionerRole with the given options.
 func NewPractitionerRole(opts ...PractitionerRoleOption) *PractitionerRole {
-	r := &PractitionerRole{}
+	r := &PractitionerRole{ResourceType: "PractitionerRole"}
 	for _, opt := range opts {
 		opt(r)
 	}

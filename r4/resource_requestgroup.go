@@ -1114,7 +1114,10 @@ type RequestGroupBuilder struct {
 // NewRequestGroupBuilder creates a new RequestGroupBuilder.
 func NewRequestGroupBuilder() *RequestGroupBuilder {
 	return &RequestGroupBuilder{
-		requestGroup: &RequestGroup{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		requestGroup: &RequestGroup{ResourceType: "RequestGroup"},
 	}
 }
 
@@ -1288,7 +1291,7 @@ type RequestGroupOption func(*RequestGroup)
 
 // NewRequestGroup creates a new RequestGroup with the given options.
 func NewRequestGroup(opts ...RequestGroupOption) *RequestGroup {
-	r := &RequestGroup{}
+	r := &RequestGroup{ResourceType: "RequestGroup"}
 	for _, opt := range opts {
 		opt(r)
 	}

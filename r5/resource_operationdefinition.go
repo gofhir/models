@@ -1236,7 +1236,10 @@ type OperationDefinitionBuilder struct {
 // NewOperationDefinitionBuilder creates a new OperationDefinitionBuilder.
 func NewOperationDefinitionBuilder() *OperationDefinitionBuilder {
 	return &OperationDefinitionBuilder{
-		operationDefinition: &OperationDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		operationDefinition: &OperationDefinition{ResourceType: "OperationDefinition"},
 	}
 }
 
@@ -1494,7 +1497,7 @@ type OperationDefinitionOption func(*OperationDefinition)
 
 // NewOperationDefinition creates a new OperationDefinition with the given options.
 func NewOperationDefinition(opts ...OperationDefinitionOption) *OperationDefinition {
-	r := &OperationDefinition{}
+	r := &OperationDefinition{ResourceType: "OperationDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

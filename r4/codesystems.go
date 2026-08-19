@@ -2113,6 +2113,19 @@ const (
 	MedicationStatusCodesNotTaken MedicationStatusCodes = "not-taken"
 )
 
+// MedicationStatus represents Medication  status  codes.
+type MedicationStatus string
+
+// MedicationStatus values.
+const (
+	// MedicationStatusActive - Active
+	MedicationStatusActive MedicationStatus = "active"
+	// MedicationStatusInactive - Inactive
+	MedicationStatusInactive MedicationStatus = "inactive"
+	// MedicationStatusEnteredInError - Entered in Error
+	MedicationStatusEnteredInError MedicationStatus = "entered-in-error"
+)
+
 // MedicationDispenseStatusCodes represents Medication dispense  status  codes.
 type MedicationDispenseStatusCodes string
 

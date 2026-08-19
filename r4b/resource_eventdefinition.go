@@ -669,7 +669,10 @@ type EventDefinitionBuilder struct {
 // NewEventDefinitionBuilder creates a new EventDefinitionBuilder.
 func NewEventDefinitionBuilder() *EventDefinitionBuilder {
 	return &EventDefinitionBuilder{
-		eventDefinition: &EventDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		eventDefinition: &EventDefinition{ResourceType: "EventDefinition"},
 	}
 }
 
@@ -909,7 +912,7 @@ type EventDefinitionOption func(*EventDefinition)
 
 // NewEventDefinition creates a new EventDefinition with the given options.
 func NewEventDefinition(opts ...EventDefinitionOption) *EventDefinition {
-	r := &EventDefinition{}
+	r := &EventDefinition{ResourceType: "EventDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

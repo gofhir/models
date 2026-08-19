@@ -374,7 +374,10 @@ type FlagBuilder struct {
 // NewFlagBuilder creates a new FlagBuilder.
 func NewFlagBuilder() *FlagBuilder {
 	return &FlagBuilder{
-		flag: &Flag{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		flag: &Flag{ResourceType: "Flag"},
 	}
 }
 
@@ -488,7 +491,7 @@ type FlagOption func(*Flag)
 
 // NewFlag creates a new Flag with the given options.
 func NewFlag(opts ...FlagOption) *Flag {
-	r := &Flag{}
+	r := &Flag{ResourceType: "Flag"}
 	for _, opt := range opts {
 		opt(r)
 	}

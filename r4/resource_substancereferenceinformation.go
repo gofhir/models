@@ -911,7 +911,10 @@ type SubstanceReferenceInformationBuilder struct {
 // NewSubstanceReferenceInformationBuilder creates a new SubstanceReferenceInformationBuilder.
 func NewSubstanceReferenceInformationBuilder() *SubstanceReferenceInformationBuilder {
 	return &SubstanceReferenceInformationBuilder{
-		substanceReferenceInformation: &SubstanceReferenceInformation{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		substanceReferenceInformation: &SubstanceReferenceInformation{ResourceType: "SubstanceReferenceInformation"},
 	}
 }
 
@@ -1007,7 +1010,7 @@ type SubstanceReferenceInformationOption func(*SubstanceReferenceInformation)
 
 // NewSubstanceReferenceInformation creates a new SubstanceReferenceInformation with the given options.
 func NewSubstanceReferenceInformation(opts ...SubstanceReferenceInformationOption) *SubstanceReferenceInformation {
-	r := &SubstanceReferenceInformation{}
+	r := &SubstanceReferenceInformation{ResourceType: "SubstanceReferenceInformation"}
 	for _, opt := range opts {
 		opt(r)
 	}

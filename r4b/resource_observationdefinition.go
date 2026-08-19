@@ -746,7 +746,10 @@ type ObservationDefinitionBuilder struct {
 // NewObservationDefinitionBuilder creates a new ObservationDefinitionBuilder.
 func NewObservationDefinitionBuilder() *ObservationDefinitionBuilder {
 	return &ObservationDefinitionBuilder{
-		observationDefinition: &ObservationDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		observationDefinition: &ObservationDefinition{ResourceType: "ObservationDefinition"},
 	}
 }
 
@@ -890,7 +893,7 @@ type ObservationDefinitionOption func(*ObservationDefinition)
 
 // NewObservationDefinition creates a new ObservationDefinition with the given options.
 func NewObservationDefinition(opts ...ObservationDefinitionOption) *ObservationDefinition {
-	r := &ObservationDefinition{}
+	r := &ObservationDefinition{ResourceType: "ObservationDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -434,7 +434,10 @@ type OrganizationAffiliationBuilder struct {
 // NewOrganizationAffiliationBuilder creates a new OrganizationAffiliationBuilder.
 func NewOrganizationAffiliationBuilder() *OrganizationAffiliationBuilder {
 	return &OrganizationAffiliationBuilder{
-		organizationAffiliation: &OrganizationAffiliation{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		organizationAffiliation: &OrganizationAffiliation{ResourceType: "OrganizationAffiliation"},
 	}
 }
 
@@ -572,7 +575,7 @@ type OrganizationAffiliationOption func(*OrganizationAffiliation)
 
 // NewOrganizationAffiliation creates a new OrganizationAffiliation with the given options.
 func NewOrganizationAffiliation(opts ...OrganizationAffiliationOption) *OrganizationAffiliation {
-	r := &OrganizationAffiliation{}
+	r := &OrganizationAffiliation{ResourceType: "OrganizationAffiliation"}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -769,7 +769,10 @@ type MedicinalProductAuthorizationBuilder struct {
 // NewMedicinalProductAuthorizationBuilder creates a new MedicinalProductAuthorizationBuilder.
 func NewMedicinalProductAuthorizationBuilder() *MedicinalProductAuthorizationBuilder {
 	return &MedicinalProductAuthorizationBuilder{
-		medicinalProductAuthorization: &MedicinalProductAuthorization{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		medicinalProductAuthorization: &MedicinalProductAuthorization{ResourceType: "MedicinalProductAuthorization"},
 	}
 }
 
@@ -931,7 +934,7 @@ type MedicinalProductAuthorizationOption func(*MedicinalProductAuthorization)
 
 // NewMedicinalProductAuthorization creates a new MedicinalProductAuthorization with the given options.
 func NewMedicinalProductAuthorization(opts ...MedicinalProductAuthorizationOption) *MedicinalProductAuthorization {
-	r := &MedicinalProductAuthorization{}
+	r := &MedicinalProductAuthorization{ResourceType: "MedicinalProductAuthorization"}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -59,8 +59,11 @@ type CodeData struct {
 
 // ResourceBuilderData holds data for a single resource builder.
 type ResourceBuilderData struct {
-	Name       string
-	LowerName  string
+	Name      string
+	LowerName string
+	// FHIRName is the resource type as it appears on the wire, which the
+	// constructors use to populate ResourceType.
+	FHIRName   string
 	Properties []PropertyBuilderData
 }
 
@@ -178,6 +181,56 @@ func (c *CodeGen) generateInterfacesFromTemplate() error {
 	return writeTemplateFile(path, "interfaces.go.tmpl", data)
 }
 
+// generateMarshalFromTemplate generates marshal.go using template.
+//
+// This file used to be hand-written and copied into each version by hand, which
+// is how r4b and r5 ended up without doc.go and helpers/ at all. Anything shared
+// across versions belongs in a template, or the next version silently ships
+// without it.
+func (c *CodeGen) generateMarshalFromTemplate() error {
+	data := TemplateData{
+		PackageName: c.config.PackageName,
+		Version:     strings.ToUpper(c.config.Version),
+		FileType:    "marshal",
+	}
+
+	path := filepath.Join(c.config.OutputDir, "marshal.go")
+	return writeTemplateFile(path, "marshal.go.tmpl", data)
+}
+
+// DocTemplateData holds data for the package documentation template.
+type DocTemplateData struct {
+	TemplateData
+	FHIRVersion string
+}
+
+// generateDocFromTemplate generates doc.go using template.
+func (c *CodeGen) generateDocFromTemplate() error {
+	data := DocTemplateData{
+		TemplateData: TemplateData{
+			PackageName: c.config.PackageName,
+			Version:     strings.ToUpper(c.config.Version),
+			FileType:    "doc",
+		},
+		FHIRVersion: c.fhirVersion,
+	}
+
+	path := filepath.Join(c.config.OutputDir, "doc.go")
+	return writeTemplateFile(path, "doc.go.tmpl", data)
+}
+
+// generateHelpersFromTemplate generates helpers.go using template.
+func (c *CodeGen) generateHelpersFromTemplate() error {
+	data := TemplateData{
+		PackageName: c.config.PackageName,
+		Version:     strings.ToUpper(c.config.Version),
+		FileType:    "helpers",
+	}
+
+	path := filepath.Join(c.config.OutputDir, "helpers.go")
+	return writeTemplateFile(path, "helpers.go.tmpl", data)
+}
+
 // generateCodeSystemsFromTemplate generates codesystems.go using template.
 func (c *CodeGen) generateCodeSystemsFromTemplate() error {
 	if c.analyzer == nil || len(c.analyzer.UsedBindings) == 0 {
@@ -192,7 +245,9 @@ func (c *CodeGen) generateCodeSystemsFromTemplate() error {
 	sort.Strings(valueSetURLs)
 
 	// Track generated type names to avoid duplicates
-	generatedTypes := make(map[string]bool)
+	// Go type name -> the ValueSet URL that claimed it, so a collision can name
+	// both sides in its error.
+	generatedTypes := make(map[string]string)
 	valueSets := make([]ValueSetData, 0, len(valueSetURLs))
 
 	for _, url := range valueSetURLs {
@@ -201,11 +256,19 @@ func (c *CodeGen) generateCodeSystemsFromTemplate() error {
 			continue
 		}
 
-		typeName := sanitizeTypeName(vs.Name)
-		if generatedTypes[typeName] {
-			continue
+		typeName := analyzer.ValueSetTypeName(vs.URL, vs.Name)
+		if previous, taken := generatedTypes[typeName]; taken {
+			// Dropping the second ValueSet silently is what made Medication.status
+			// resolve to MedicationStatement's codes: the analyzer had already
+			// bound its fields to this type name, so the fields survived while
+			// their codes did not.
+			return fmt.Errorf(
+				"two ValueSets map to the Go type %s:\n  %s\n  %s\n"+
+					"FHIR names are not unique. Add an override for one of these URLs to "+
+					"valueSetTypeNameOverrides in internal/codegen/analyzer",
+				typeName, previous, vs.URL)
 		}
-		generatedTypes[typeName] = true
+		generatedTypes[typeName] = vs.URL
 
 		vsData := ValueSetData{
 			Name:     vs.Name,
@@ -308,6 +371,7 @@ func buildResourceBuilderData(t *analyzer.AnalyzedType) ResourceBuilderData {
 	resource := ResourceBuilderData{
 		Name:       t.Name,
 		LowerName:  toLowerFirstChar(t.Name),
+		FHIRName:   t.FHIRName,
 		Properties: make([]PropertyBuilderData, 0, len(t.Properties)),
 	}
 

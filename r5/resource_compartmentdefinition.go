@@ -645,7 +645,10 @@ type CompartmentDefinitionBuilder struct {
 // NewCompartmentDefinitionBuilder creates a new CompartmentDefinitionBuilder.
 func NewCompartmentDefinitionBuilder() *CompartmentDefinitionBuilder {
 	return &CompartmentDefinitionBuilder{
-		compartmentDefinition: &CompartmentDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		compartmentDefinition: &CompartmentDefinition{ResourceType: "CompartmentDefinition"},
 	}
 }
 
@@ -819,7 +822,7 @@ type CompartmentDefinitionOption func(*CompartmentDefinition)
 
 // NewCompartmentDefinition creates a new CompartmentDefinition with the given options.
 func NewCompartmentDefinition(opts ...CompartmentDefinitionOption) *CompartmentDefinition {
-	r := &CompartmentDefinition{}
+	r := &CompartmentDefinition{ResourceType: "CompartmentDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

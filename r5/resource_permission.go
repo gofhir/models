@@ -944,7 +944,10 @@ type PermissionBuilder struct {
 // NewPermissionBuilder creates a new PermissionBuilder.
 func NewPermissionBuilder() *PermissionBuilder {
 	return &PermissionBuilder{
-		permission: &Permission{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		permission: &Permission{ResourceType: "Permission"},
 	}
 }
 
@@ -1052,7 +1055,7 @@ type PermissionOption func(*Permission)
 
 // NewPermission creates a new Permission with the given options.
 func NewPermission(opts ...PermissionOption) *Permission {
-	r := &Permission{}
+	r := &Permission{ResourceType: "Permission"}
 	for _, opt := range opts {
 		opt(r)
 	}

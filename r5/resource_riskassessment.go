@@ -674,7 +674,10 @@ type RiskAssessmentBuilder struct {
 // NewRiskAssessmentBuilder creates a new RiskAssessmentBuilder.
 func NewRiskAssessmentBuilder() *RiskAssessmentBuilder {
 	return &RiskAssessmentBuilder{
-		riskAssessment: &RiskAssessment{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		riskAssessment: &RiskAssessment{ResourceType: "RiskAssessment"},
 	}
 }
 
@@ -848,7 +851,7 @@ type RiskAssessmentOption func(*RiskAssessment)
 
 // NewRiskAssessment creates a new RiskAssessment with the given options.
 func NewRiskAssessment(opts ...RiskAssessmentOption) *RiskAssessment {
-	r := &RiskAssessment{}
+	r := &RiskAssessment{ResourceType: "RiskAssessment"}
 	for _, opt := range opts {
 		opt(r)
 	}

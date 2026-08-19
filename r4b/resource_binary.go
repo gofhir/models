@@ -206,7 +206,10 @@ type BinaryBuilder struct {
 // NewBinaryBuilder creates a new BinaryBuilder.
 func NewBinaryBuilder() *BinaryBuilder {
 	return &BinaryBuilder{
-		binary: &Binary{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		binary: &Binary{ResourceType: "Binary"},
 	}
 }
 
@@ -266,7 +269,7 @@ type BinaryOption func(*Binary)
 
 // NewBinary creates a new Binary with the given options.
 func NewBinary(opts ...BinaryOption) *Binary {
-	r := &Binary{}
+	r := &Binary{ResourceType: "Binary"}
 	for _, opt := range opts {
 		opt(r)
 	}

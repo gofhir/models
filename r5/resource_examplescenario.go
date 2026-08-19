@@ -1678,7 +1678,10 @@ type ExampleScenarioBuilder struct {
 // NewExampleScenarioBuilder creates a new ExampleScenarioBuilder.
 func NewExampleScenarioBuilder() *ExampleScenarioBuilder {
 	return &ExampleScenarioBuilder{
-		exampleScenario: &ExampleScenario{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		exampleScenario: &ExampleScenario{ResourceType: "ExampleScenario"},
 	}
 }
 
@@ -1876,7 +1879,7 @@ type ExampleScenarioOption func(*ExampleScenario)
 
 // NewExampleScenario creates a new ExampleScenario with the given options.
 func NewExampleScenario(opts ...ExampleScenarioOption) *ExampleScenario {
-	r := &ExampleScenario{}
+	r := &ExampleScenario{ResourceType: "ExampleScenario"}
 	for _, opt := range opts {
 		opt(r)
 	}

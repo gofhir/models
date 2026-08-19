@@ -1150,7 +1150,10 @@ type PackagedProductDefinitionBuilder struct {
 // NewPackagedProductDefinitionBuilder creates a new PackagedProductDefinitionBuilder.
 func NewPackagedProductDefinitionBuilder() *PackagedProductDefinitionBuilder {
 	return &PackagedProductDefinitionBuilder{
-		packagedProductDefinition: &PackagedProductDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		packagedProductDefinition: &PackagedProductDefinition{ResourceType: "PackagedProductDefinition"},
 	}
 }
 
@@ -1300,7 +1303,7 @@ type PackagedProductDefinitionOption func(*PackagedProductDefinition)
 
 // NewPackagedProductDefinition creates a new PackagedProductDefinition with the given options.
 func NewPackagedProductDefinition(opts ...PackagedProductDefinitionOption) *PackagedProductDefinition {
-	r := &PackagedProductDefinition{}
+	r := &PackagedProductDefinition{ResourceType: "PackagedProductDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

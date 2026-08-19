@@ -2672,7 +2672,10 @@ type MedicationKnowledgeBuilder struct {
 // NewMedicationKnowledgeBuilder creates a new MedicationKnowledgeBuilder.
 func NewMedicationKnowledgeBuilder() *MedicationKnowledgeBuilder {
 	return &MedicationKnowledgeBuilder{
-		medicationKnowledge: &MedicationKnowledge{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		medicationKnowledge: &MedicationKnowledge{ResourceType: "MedicationKnowledge"},
 	}
 }
 
@@ -2858,7 +2861,7 @@ type MedicationKnowledgeOption func(*MedicationKnowledge)
 
 // NewMedicationKnowledge creates a new MedicationKnowledge with the given options.
 func NewMedicationKnowledge(opts ...MedicationKnowledgeOption) *MedicationKnowledge {
-	r := &MedicationKnowledge{}
+	r := &MedicationKnowledge{ResourceType: "MedicationKnowledge"}
 	for _, opt := range opts {
 		opt(r)
 	}

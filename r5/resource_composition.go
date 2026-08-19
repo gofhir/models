@@ -931,7 +931,10 @@ type CompositionBuilder struct {
 // NewCompositionBuilder creates a new CompositionBuilder.
 func NewCompositionBuilder() *CompositionBuilder {
 	return &CompositionBuilder{
-		composition: &Composition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		composition: &Composition{ResourceType: "Composition"},
 	}
 }
 
@@ -1111,7 +1114,7 @@ type CompositionOption func(*Composition)
 
 // NewComposition creates a new Composition with the given options.
 func NewComposition(opts ...CompositionOption) *Composition {
-	r := &Composition{}
+	r := &Composition{ResourceType: "Composition"}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -1417,7 +1417,10 @@ type TestPlanBuilder struct {
 // NewTestPlanBuilder creates a new TestPlanBuilder.
 func NewTestPlanBuilder() *TestPlanBuilder {
 	return &TestPlanBuilder{
-		testPlan: &TestPlan{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		testPlan: &TestPlan{ResourceType: "TestPlan"},
 	}
 }
 
@@ -1633,7 +1636,7 @@ type TestPlanOption func(*TestPlan)
 
 // NewTestPlan creates a new TestPlan with the given options.
 func NewTestPlan(opts ...TestPlanOption) *TestPlan {
-	r := &TestPlan{}
+	r := &TestPlan{ResourceType: "TestPlan"}
 	for _, opt := range opts {
 		opt(r)
 	}

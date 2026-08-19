@@ -1360,7 +1360,10 @@ type AdverseEventBuilder struct {
 // NewAdverseEventBuilder creates a new AdverseEventBuilder.
 func NewAdverseEventBuilder() *AdverseEventBuilder {
 	return &AdverseEventBuilder{
-		adverseEvent: &AdverseEvent{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		adverseEvent: &AdverseEvent{ResourceType: "AdverseEvent"},
 	}
 }
 
@@ -1588,7 +1591,7 @@ type AdverseEventOption func(*AdverseEvent)
 
 // NewAdverseEvent creates a new AdverseEvent with the given options.
 func NewAdverseEvent(opts ...AdverseEventOption) *AdverseEvent {
-	r := &AdverseEvent{}
+	r := &AdverseEvent{ResourceType: "AdverseEvent"}
 	for _, opt := range opts {
 		opt(r)
 	}

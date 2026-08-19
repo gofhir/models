@@ -896,7 +896,10 @@ type GraphDefinitionBuilder struct {
 // NewGraphDefinitionBuilder creates a new GraphDefinitionBuilder.
 func NewGraphDefinitionBuilder() *GraphDefinitionBuilder {
 	return &GraphDefinitionBuilder{
-		graphDefinition: &GraphDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		graphDefinition: &GraphDefinition{ResourceType: "GraphDefinition"},
 	}
 }
 
@@ -1052,7 +1055,7 @@ type GraphDefinitionOption func(*GraphDefinition)
 
 // NewGraphDefinition creates a new GraphDefinition with the given options.
 func NewGraphDefinition(opts ...GraphDefinitionOption) *GraphDefinition {
-	r := &GraphDefinition{}
+	r := &GraphDefinition{ResourceType: "GraphDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

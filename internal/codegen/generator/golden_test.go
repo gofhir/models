@@ -8,6 +8,8 @@ import (
 	"strconv"
 	"strings"
 	"testing"
+
+	"github.com/gofhir/models/internal/codegen/analyzer"
 )
 
 // -update rewrites the golden files instead of comparing against them. Review the
@@ -16,17 +18,19 @@ import (
 var update = flag.Bool("update", false, "rewrite golden files")
 
 // The fixture bundles below are deliberately tiny and deliberately awkward. Each
-// shape present here corresponds to a class of generator bug:
+// shape present here corresponds to a class of generator bug, so that a change in
+// how any of them is emitted shows up as a readable diff rather than as forty
+// thousand lines across r4, r4b and r5:
 //
 //   - a backbone element with a primitive child  -> missing _ext companion fields
 //   - a choice type (value[x])                   -> choice handling and _ext suppression
 //   - an array of primitives                     -> positional null alignment
-//   - two ValueSets sharing a FHIR name          -> silent type-name collision
+//   - a required binding                         -> enum type resolution
 //
-// The last one is why this file exists: two distinct ValueSets named "Probe Status
-// Codes" collapse to the same Go identifier, and the generator used to drop the
-// second one with a bare `continue`, leaving fields bound to codes that were
-// never emitted.
+// ValueSets sharing a FHIR name — the collision that gave Medication.status
+// MedicationStatement's codes — have their own bundle and test further down,
+// because that case now stops generation and so cannot be part of a fixture whose
+// point is to generate successfully.
 
 const goldenTypesBundle = `{
   "resourceType": "Bundle",
@@ -170,9 +174,8 @@ const goldenResourcesBundle = `{
   ]
 }`
 
-// Two ValueSets, different URLs, same `name`. This mirrors the real R4 pair
-// medication-status / medication-statement-status, both named "Medication Status
-// Codes", which made Medication.status resolve to MedicationStatement's codes.
+// Two ValueSets with distinct names, so the golden fixture exercises ordinary
+// generation. The colliding case has its own bundle and its own test below.
 const goldenValueSetsBundle = `{
   "resourceType": "Bundle",
   "entry": [
@@ -200,7 +203,7 @@ const goldenValueSetsBundle = `{
         "resourceType": "ValueSet",
         "id": "sample-status",
         "url": "http://hl7.org/fhir/ValueSet/sample-status",
-        "name": "Probe Status Codes",
+        "name": "Sample Status Codes",
         "compose": {
           "include": [
             {
@@ -287,112 +290,124 @@ func TestGolden(t *testing.T) {
 // when two ValueSets share a FHIR name, the generator must not silently emit one
 // and bind the other's fields to it.
 //
-// The bug is live, so this test cannot assert the correct behavior yet: the real
-// R4 specs contain the same collision (medication-status and
-// medication-statement-status are both named "Medication Status Codes"), so making
-// it fatal requires the disambiguation work in PLAN.md task 3.1.
+// collidingValueSetsBundle mirrors the real R4 pair medication-status /
+// medication-statement-status: different URLs, identical FHIR `name`, both
+// sanitizing to the same Go identifier.
+const collidingValueSetsBundle = `{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "ValueSet",
+        "id": "probe-status",
+        "url": "http://hl7.org/fhir/ValueSet/probe-status",
+        "name": "Probe Status Codes",
+        "compose": {
+          "include": [
+            {
+              "system": "http://hl7.org/fhir/probe-status",
+              "concept": [{"code": "active", "display": "Active"}]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "ValueSet",
+        "id": "sample-status",
+        "url": "http://hl7.org/fhir/ValueSet/sample-status",
+        "name": "Probe Status Codes",
+        "compose": {
+          "include": [
+            {
+              "system": "http://hl7.org/fhir/sample-status",
+              "concept": [{"code": "draft", "display": "Draft"}]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}`
+
+// TestValueSetCollisionFailsGeneration pins the resolution of the bug that this
+// fixture was built to expose.
 //
-// Rather than skipping — which would leave the body unreachable and give no
-// signal when the defect is fixed — it detects which state the generator is in.
-// While the bug is live it pins the broken behavior; once the collision is
-// handled it switches to asserting the correct behavior, so the fix is verified
-// without anyone having to remember this file exists.
-func TestGoldenValueSetCollision(t *testing.T) {
-	out := generateGolden(t)
+// Two ValueSets sharing a FHIR name used to be resolved by emitting whichever came
+// first and dropping the other with a bare `continue` — while the analyzer had
+// already pointed the dropped ValueSet's fields at the surviving type. In R4 that
+// gave Medication.status MedicationStatement's codes, with no constant for
+// `inactive`, its only other legal value.
+//
+// Generation now stops instead, naming both URLs, so a new collision in a future
+// release is resolved deliberately rather than by bundle order.
+func TestValueSetCollisionFailsGeneration(t *testing.T) {
+	specs := writeSpecs(t, map[string]string{
+		"profiles-types.json":     goldenTypesBundle,
+		"profiles-resources.json": goldenResourcesBundle,
+		"valuesets.json":          collidingValueSetsBundle,
+	})
 
-	codesystems := readGenerated(t, out, "codesystems.go")
-	probeType := typeOfStatusField(readGenerated(t, out, "resource_probe.go"))
-	sampleType := typeOfStatusField(readGenerated(t, out, "resource_sample.go"))
-
-	collisionPresent := probeType != "" && probeType == sampleType
-	codesMissing := !strings.Contains(codesystems, `= "draft"`) ||
-		!strings.Contains(codesystems, `= "final"`)
-
-	if !collisionPresent && !codesMissing {
-		t.Log("the ValueSet name collision is handled; asserting correct behavior." +
-			" The broken-state branch of this test and task 3.1 in PLAN.md can now go.")
-		assertValueSetCollisionFixed(t, out)
-		return
+	gen := New(Config{
+		SpecsDir:    specs,
+		OutputDir:   t.TempDir(),
+		PackageName: "probe",
+		Version:     "r4",
+	})
+	if err := gen.LoadTypes(); err != nil {
+		t.Fatalf("LoadTypes: %v", err)
 	}
 
-	// Pin the defect precisely, so a partial change is caught rather than passing
-	// quietly as if nothing had moved.
-	if !collisionPresent {
-		t.Errorf("collision changed shape: Probe.Status=%s Sample.Status=%s;"+
-			" expected both to share one type while the bug is live", probeType, sampleType)
-	}
-	if !codesMissing {
-		t.Error("the second ValueSet's codes are now emitted, but the types still collide;" +
-			" this is a new intermediate state that needs review")
-	}
-	t.Logf("known defect reproduced: Probe.Status and Sample.Status both use %s,"+
-		" and the codes draft/final have no constants (PLAN.md task 3.1)", probeType)
-}
-
-// assertValueSetCollisionFixed is what TestGoldenValueSetCollision should become
-// once task 3.1 lands: two ValueSets sharing a FHIR name must either produce two
-// distinct Go types, or fail generation outright — never one type silently
-// standing in for both.
-func assertValueSetCollisionFixed(t *testing.T, out string) {
-	t.Helper()
-
-	cs := readGenerated(t, out, "codesystems.go")
-	p := readGenerated(t, out, "resource_probe.go")
-	s := readGenerated(t, out, "resource_sample.go")
-
-	// Both resources bind to a required ValueSet, so both must end up with a
-	// typed status field rather than a bare *string.
-	if strings.Contains(p, "Status *string") {
-		t.Error("Probe.Status degraded to *string: its required binding was not resolved")
-	}
-	if strings.Contains(s, "Status *string") {
-		t.Error("Sample.Status degraded to *string: its required binding was not resolved")
+	err := gen.Generate()
+	if err == nil {
+		t.Fatal("generation succeeded despite two ValueSets mapping to one Go type;" +
+			" one of them was silently dropped")
 	}
 
-	// The two resources bind to different ValueSets, so they must not share one
-	// Go type. Sharing means one ValueSet's codes were dropped.
-	probeType := typeOfStatusField(p)
-	sampleType := typeOfStatusField(s)
-	if probeType != "" && probeType == sampleType {
-		t.Errorf("Probe.Status and Sample.Status both use %s, but they bind to different ValueSets;"+
-			" one ValueSet's codes were silently discarded", probeType)
-	}
-
-	// Whatever the types end up being called, every code from both ValueSets has
-	// to exist somewhere. A missing constant means a legal value a user cannot
-	// express — the concrete harm in the Medication.status case, where `inactive`
-	// had no constant at all.
-	for _, code := range []string{`= "active"`, `= "inactive"`, `= "draft"`, `= "final"`} {
-		if !strings.Contains(cs, code) {
-			t.Errorf("no constant with value %s was generated; that code is unreachable for users", code)
+	// The message has to identify both sides, or whoever hits this has no way to
+	// tell which ValueSets are involved.
+	for _, want := range []string{
+		"ProbeStatusCodes",
+		"http://hl7.org/fhir/ValueSet/probe-status",
+		"http://hl7.org/fhir/ValueSet/sample-status",
+		"valueSetTypeNameOverrides",
+	} {
+		if !strings.Contains(err.Error(), want) {
+			t.Errorf("error does not mention %q:\n%v", want, err)
 		}
 	}
 }
 
-// typeOfStatusField extracts the Go type of the `Status` field from a generated
-// resource file, e.g. "*ProbeStatusCodes".
-func typeOfStatusField(src string) string {
-	for _, line := range strings.Split(src, "\n") {
-		trimmed := strings.TrimSpace(line)
-		if !strings.HasPrefix(trimmed, "Status ") {
-			continue
-		}
-		fields := strings.Fields(trimmed)
-		if len(fields) >= 2 {
-			return fields[1]
-		}
-	}
-	return ""
-}
+// TestValueSetOverrideResolvesRealCollision checks the override that fixes R4's
+// actual collision, using the real ValueSet URLs.
+func TestValueSetOverrideResolvesRealCollision(t *testing.T) {
+	const medicationName = "Medication Status Codes"
 
-// readGenerated returns a generated file's contents as a string.
-func readGenerated(t *testing.T, out, name string) string {
-	t.Helper()
-	data, err := os.ReadFile(filepath.Join(out, name))
-	if err != nil {
-		t.Fatalf("reading generated %s: %v", name, err)
+	statement := analyzer.ValueSetTypeName(
+		"http://hl7.org/fhir/ValueSet/medication-statement-status", medicationName)
+	medication := analyzer.ValueSetTypeName(
+		"http://hl7.org/fhir/ValueSet/medication-status", medicationName)
+
+	if statement == medication {
+		t.Fatalf("both ValueSets still resolve to %s", statement)
 	}
-	return string(data)
+	// The surviving name is deliberately unchanged, so existing constants keep
+	// working; only the shadowed ValueSet is renamed.
+	if statement != "MedicationStatusCodes" {
+		t.Errorf("MedicationStatement's ValueSet was renamed to %s; that breaks"+
+			" existing constants for no reason", statement)
+	}
+	if medication != "MedicationStatus" {
+		t.Errorf("Medication's ValueSet resolved to %s, want MedicationStatus", medication)
+	}
+
+	// The version suffix FHIR bindings carry must not defeat the override.
+	withVersion := analyzer.ValueSetTypeName(
+		"http://hl7.org/fhir/ValueSet/medication-status|4.0.1", medicationName)
+	if withVersion != "MedicationStatus" {
+		t.Errorf("versioned URL resolved to %s; the |version suffix is not being stripped", withVersion)
+	}
 }
 
 // firstDiff reports the first differing line, which is far more useful in test

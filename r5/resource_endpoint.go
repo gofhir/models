@@ -542,7 +542,10 @@ type EndpointBuilder struct {
 // NewEndpointBuilder creates a new EndpointBuilder.
 func NewEndpointBuilder() *EndpointBuilder {
 	return &EndpointBuilder{
-		endpoint: &Endpoint{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		endpoint: &Endpoint{ResourceType: "Endpoint"},
 	}
 }
 
@@ -680,7 +683,7 @@ type EndpointOption func(*Endpoint)
 
 // NewEndpoint creates a new Endpoint with the given options.
 func NewEndpoint(opts ...EndpointOption) *Endpoint {
-	r := &Endpoint{}
+	r := &Endpoint{ResourceType: "Endpoint"}
 	for _, opt := range opts {
 		opt(r)
 	}

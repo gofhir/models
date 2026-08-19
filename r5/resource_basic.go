@@ -339,7 +339,10 @@ type BasicBuilder struct {
 // NewBasicBuilder creates a new BasicBuilder.
 func NewBasicBuilder() *BasicBuilder {
 	return &BasicBuilder{
-		basic: &Basic{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		basic: &Basic{ResourceType: "Basic"},
 	}
 }
 
@@ -435,7 +438,7 @@ type BasicOption func(*Basic)
 
 // NewBasic creates a new Basic with the given options.
 func NewBasic(opts ...BasicOption) *Basic {
-	r := &Basic{}
+	r := &Basic{ResourceType: "Basic"}
 	for _, opt := range opts {
 		opt(r)
 	}

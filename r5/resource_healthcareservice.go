@@ -682,7 +682,10 @@ type HealthcareServiceBuilder struct {
 // NewHealthcareServiceBuilder creates a new HealthcareServiceBuilder.
 func NewHealthcareServiceBuilder() *HealthcareServiceBuilder {
 	return &HealthcareServiceBuilder{
-		healthcareService: &HealthcareService{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		healthcareService: &HealthcareService{ResourceType: "HealthcareService"},
 	}
 }
 
@@ -886,7 +889,7 @@ type HealthcareServiceOption func(*HealthcareService)
 
 // NewHealthcareService creates a new HealthcareService with the given options.
 func NewHealthcareService(opts ...HealthcareServiceOption) *HealthcareService {
-	r := &HealthcareService{}
+	r := &HealthcareService{ResourceType: "HealthcareService"}
 	for _, opt := range opts {
 		opt(r)
 	}

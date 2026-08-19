@@ -1184,7 +1184,10 @@ type ObservationBuilder struct {
 // NewObservationBuilder creates a new ObservationBuilder.
 func NewObservationBuilder() *ObservationBuilder {
 	return &ObservationBuilder{
-		observation: &Observation{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		observation: &Observation{ResourceType: "Observation"},
 	}
 }
 
@@ -1514,7 +1517,7 @@ type ObservationOption func(*Observation)
 
 // NewObservation creates a new Observation with the given options.
 func NewObservation(opts ...ObservationOption) *Observation {
-	r := &Observation{}
+	r := &Observation{ResourceType: "Observation"}
 	for _, opt := range opts {
 		opt(r)
 	}

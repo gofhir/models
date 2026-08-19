@@ -995,7 +995,10 @@ type CoverageEligibilityRequestBuilder struct {
 // NewCoverageEligibilityRequestBuilder creates a new CoverageEligibilityRequestBuilder.
 func NewCoverageEligibilityRequestBuilder() *CoverageEligibilityRequestBuilder {
 	return &CoverageEligibilityRequestBuilder{
-		coverageEligibilityRequest: &CoverageEligibilityRequest{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		coverageEligibilityRequest: &CoverageEligibilityRequest{ResourceType: "CoverageEligibilityRequest"},
 	}
 }
 
@@ -1157,7 +1160,7 @@ type CoverageEligibilityRequestOption func(*CoverageEligibilityRequest)
 
 // NewCoverageEligibilityRequest creates a new CoverageEligibilityRequest with the given options.
 func NewCoverageEligibilityRequest(opts ...CoverageEligibilityRequestOption) *CoverageEligibilityRequest {
-	r := &CoverageEligibilityRequest{}
+	r := &CoverageEligibilityRequest{ResourceType: "CoverageEligibilityRequest"}
 	for _, opt := range opts {
 		opt(r)
 	}

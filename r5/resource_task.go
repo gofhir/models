@@ -2504,7 +2504,10 @@ type TaskBuilder struct {
 // NewTaskBuilder creates a new TaskBuilder.
 func NewTaskBuilder() *TaskBuilder {
 	return &TaskBuilder{
-		task: &Task{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		task: &Task{ResourceType: "Task"},
 	}
 }
 
@@ -2768,7 +2771,7 @@ type TaskOption func(*Task)
 
 // NewTask creates a new Task with the given options.
 func NewTask(opts ...TaskOption) *Task {
-	r := &Task{}
+	r := &Task{ResourceType: "Task"}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -1855,7 +1855,10 @@ type StructureMapBuilder struct {
 // NewStructureMapBuilder creates a new StructureMapBuilder.
 func NewStructureMapBuilder() *StructureMapBuilder {
 	return &StructureMapBuilder{
-		structureMap: &StructureMap{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		structureMap: &StructureMap{ResourceType: "StructureMap"},
 	}
 }
 
@@ -2059,7 +2062,7 @@ type StructureMapOption func(*StructureMap)
 
 // NewStructureMap creates a new StructureMap with the given options.
 func NewStructureMap(opts ...StructureMapOption) *StructureMap {
-	r := &StructureMap{}
+	r := &StructureMap{ResourceType: "StructureMap"}
 	for _, opt := range opts {
 		opt(r)
 	}

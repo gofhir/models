@@ -489,7 +489,10 @@ type GuidanceResponseBuilder struct {
 // NewGuidanceResponseBuilder creates a new GuidanceResponseBuilder.
 func NewGuidanceResponseBuilder() *GuidanceResponseBuilder {
 	return &GuidanceResponseBuilder{
-		guidanceResponse: &GuidanceResponse{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		guidanceResponse: &GuidanceResponse{ResourceType: "GuidanceResponse"},
 	}
 }
 
@@ -663,7 +666,7 @@ type GuidanceResponseOption func(*GuidanceResponse)
 
 // NewGuidanceResponse creates a new GuidanceResponse with the given options.
 func NewGuidanceResponse(opts ...GuidanceResponseOption) *GuidanceResponse {
-	r := &GuidanceResponse{}
+	r := &GuidanceResponse{ResourceType: "GuidanceResponse"}
 	for _, opt := range opts {
 		opt(r)
 	}

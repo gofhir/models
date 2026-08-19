@@ -1308,7 +1308,10 @@ type EncounterBuilder struct {
 // NewEncounterBuilder creates a new EncounterBuilder.
 func NewEncounterBuilder() *EncounterBuilder {
 	return &EncounterBuilder{
-		encounter: &Encounter{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		encounter: &Encounter{ResourceType: "Encounter"},
 	}
 }
 
@@ -1512,7 +1515,7 @@ type EncounterOption func(*Encounter)
 
 // NewEncounter creates a new Encounter with the given options.
 func NewEncounter(opts ...EncounterOption) *Encounter {
-	r := &Encounter{}
+	r := &Encounter{ResourceType: "Encounter"}
 	for _, opt := range opts {
 		opt(r)
 	}

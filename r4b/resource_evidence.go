@@ -1686,7 +1686,10 @@ type EvidenceBuilder struct {
 // NewEvidenceBuilder creates a new EvidenceBuilder.
 func NewEvidenceBuilder() *EvidenceBuilder {
 	return &EvidenceBuilder{
-		evidence: &Evidence{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		evidence: &Evidence{ResourceType: "Evidence"},
 	}
 }
 
@@ -1914,7 +1917,7 @@ type EvidenceOption func(*Evidence)
 
 // NewEvidence creates a new Evidence with the given options.
 func NewEvidence(opts ...EvidenceOption) *Evidence {
-	r := &Evidence{}
+	r := &Evidence{ResourceType: "Evidence"}
 	for _, opt := range opts {
 		opt(r)
 	}

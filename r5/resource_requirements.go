@@ -777,7 +777,10 @@ type RequirementsBuilder struct {
 // NewRequirementsBuilder creates a new RequirementsBuilder.
 func NewRequirementsBuilder() *RequirementsBuilder {
 	return &RequirementsBuilder{
-		requirements: &Requirements{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		requirements: &Requirements{ResourceType: "Requirements"},
 	}
 }
 
@@ -981,7 +984,7 @@ type RequirementsOption func(*Requirements)
 
 // NewRequirements creates a new Requirements with the given options.
 func NewRequirements(opts ...RequirementsOption) *Requirements {
-	r := &Requirements{}
+	r := &Requirements{ResourceType: "Requirements"}
 	for _, opt := range opts {
 		opt(r)
 	}

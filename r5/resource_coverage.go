@@ -1022,7 +1022,10 @@ type CoverageBuilder struct {
 // NewCoverageBuilder creates a new CoverageBuilder.
 func NewCoverageBuilder() *CoverageBuilder {
 	return &CoverageBuilder{
-		coverage: &Coverage{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		coverage: &Coverage{ResourceType: "Coverage"},
 	}
 }
 
@@ -1208,7 +1211,7 @@ type CoverageOption func(*Coverage)
 
 // NewCoverage creates a new Coverage with the given options.
 func NewCoverage(opts ...CoverageOption) *Coverage {
-	r := &Coverage{}
+	r := &Coverage{ResourceType: "Coverage"}
 	for _, opt := range opts {
 		opt(r)
 	}

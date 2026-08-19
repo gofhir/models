@@ -1855,7 +1855,10 @@ type NutritionOrderBuilder struct {
 // NewNutritionOrderBuilder creates a new NutritionOrderBuilder.
 func NewNutritionOrderBuilder() *NutritionOrderBuilder {
 	return &NutritionOrderBuilder{
-		nutritionOrder: &NutritionOrder{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		nutritionOrder: &NutritionOrder{ResourceType: "NutritionOrder"},
 	}
 }
 
@@ -2059,7 +2062,7 @@ type NutritionOrderOption func(*NutritionOrder)
 
 // NewNutritionOrder creates a new NutritionOrder with the given options.
 func NewNutritionOrder(opts ...NutritionOrderOption) *NutritionOrder {
-	r := &NutritionOrder{}
+	r := &NutritionOrder{ResourceType: "NutritionOrder"}
 	for _, opt := range opts {
 		opt(r)
 	}

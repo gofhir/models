@@ -843,7 +843,10 @@ type MessageDefinitionBuilder struct {
 // NewMessageDefinitionBuilder creates a new MessageDefinitionBuilder.
 func NewMessageDefinitionBuilder() *MessageDefinitionBuilder {
 	return &MessageDefinitionBuilder{
-		messageDefinition: &MessageDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		messageDefinition: &MessageDefinition{ResourceType: "MessageDefinition"},
 	}
 }
 
@@ -1065,7 +1068,7 @@ type MessageDefinitionOption func(*MessageDefinition)
 
 // NewMessageDefinition creates a new MessageDefinition with the given options.
 func NewMessageDefinition(opts ...MessageDefinitionOption) *MessageDefinition {
-	r := &MessageDefinition{}
+	r := &MessageDefinition{ResourceType: "MessageDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

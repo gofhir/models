@@ -236,7 +236,10 @@ type ProbeBuilder struct {
 // NewProbeBuilder creates a new ProbeBuilder.
 func NewProbeBuilder() *ProbeBuilder {
 	return &ProbeBuilder{
-		probe: &Probe{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		probe: &Probe{ResourceType: "Probe"},
 	}
 }
 
@@ -302,7 +305,7 @@ type ProbeOption func(*Probe)
 
 // NewProbe creates a new Probe with the given options.
 func NewProbe(opts ...ProbeOption) *Probe {
-	r := &Probe{}
+	r := &Probe{ResourceType: "Probe"}
 	for _, opt := range opts {
 		opt(r)
 	}

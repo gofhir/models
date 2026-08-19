@@ -2434,7 +2434,10 @@ type ClaimResponseBuilder struct {
 // NewClaimResponseBuilder creates a new ClaimResponseBuilder.
 func NewClaimResponseBuilder() *ClaimResponseBuilder {
 	return &ClaimResponseBuilder{
-		claimResponse: &ClaimResponse{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		claimResponse: &ClaimResponse{ResourceType: "ClaimResponse"},
 	}
 }
 
@@ -2662,7 +2665,7 @@ type ClaimResponseOption func(*ClaimResponse)
 
 // NewClaimResponse creates a new ClaimResponse with the given options.
 func NewClaimResponse(opts ...ClaimResponseOption) *ClaimResponse {
-	r := &ClaimResponse{}
+	r := &ClaimResponse{ResourceType: "ClaimResponse"}
 	for _, opt := range opts {
 		opt(r)
 	}

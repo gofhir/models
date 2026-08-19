@@ -1101,7 +1101,10 @@ type SubstancePolymerBuilder struct {
 // NewSubstancePolymerBuilder creates a new SubstancePolymerBuilder.
 func NewSubstancePolymerBuilder() *SubstancePolymerBuilder {
 	return &SubstancePolymerBuilder{
-		substancePolymer: &SubstancePolymer{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		substancePolymer: &SubstancePolymer{ResourceType: "SubstancePolymer"},
 	}
 }
 
@@ -1209,7 +1212,7 @@ type SubstancePolymerOption func(*SubstancePolymer)
 
 // NewSubstancePolymer creates a new SubstancePolymer with the given options.
 func NewSubstancePolymer(opts ...SubstancePolymerOption) *SubstancePolymer {
-	r := &SubstancePolymer{}
+	r := &SubstancePolymer{ResourceType: "SubstancePolymer"}
 	for _, opt := range opts {
 		opt(r)
 	}

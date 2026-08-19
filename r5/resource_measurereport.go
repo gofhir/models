@@ -1541,7 +1541,10 @@ type MeasureReportBuilder struct {
 // NewMeasureReportBuilder creates a new MeasureReportBuilder.
 func NewMeasureReportBuilder() *MeasureReportBuilder {
 	return &MeasureReportBuilder{
-		measureReport: &MeasureReport{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		measureReport: &MeasureReport{ResourceType: "MeasureReport"},
 	}
 }
 
@@ -1709,7 +1712,7 @@ type MeasureReportOption func(*MeasureReport)
 
 // NewMeasureReport creates a new MeasureReport with the given options.
 func NewMeasureReport(opts ...MeasureReportOption) *MeasureReport {
-	r := &MeasureReport{}
+	r := &MeasureReport{ResourceType: "MeasureReport"}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -1907,7 +1907,10 @@ type ConceptMapBuilder struct {
 // NewConceptMapBuilder creates a new ConceptMapBuilder.
 func NewConceptMapBuilder() *ConceptMapBuilder {
 	return &ConceptMapBuilder{
-		conceptMap: &ConceptMap{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		conceptMap: &ConceptMap{ResourceType: "ConceptMap"},
 	}
 }
 
@@ -2207,7 +2210,7 @@ type ConceptMapOption func(*ConceptMap)
 
 // NewConceptMap creates a new ConceptMap with the given options.
 func NewConceptMap(opts ...ConceptMapOption) *ConceptMap {
-	r := &ConceptMap{}
+	r := &ConceptMap{ResourceType: "ConceptMap"}
 	for _, opt := range opts {
 		opt(r)
 	}

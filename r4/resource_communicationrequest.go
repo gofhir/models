@@ -697,7 +697,10 @@ type CommunicationRequestBuilder struct {
 // NewCommunicationRequestBuilder creates a new CommunicationRequestBuilder.
 func NewCommunicationRequestBuilder() *CommunicationRequestBuilder {
 	return &CommunicationRequestBuilder{
-		communicationRequest: &CommunicationRequest{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		communicationRequest: &CommunicationRequest{ResourceType: "CommunicationRequest"},
 	}
 }
 
@@ -907,7 +910,7 @@ type CommunicationRequestOption func(*CommunicationRequest)
 
 // NewCommunicationRequest creates a new CommunicationRequest with the given options.
 func NewCommunicationRequest(opts ...CommunicationRequestOption) *CommunicationRequest {
-	r := &CommunicationRequest{}
+	r := &CommunicationRequest{ResourceType: "CommunicationRequest"}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -1455,7 +1455,10 @@ type MedicinalProductDefinitionBuilder struct {
 // NewMedicinalProductDefinitionBuilder creates a new MedicinalProductDefinitionBuilder.
 func NewMedicinalProductDefinitionBuilder() *MedicinalProductDefinitionBuilder {
 	return &MedicinalProductDefinitionBuilder{
-		medicinalProductDefinition: &MedicinalProductDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		medicinalProductDefinition: &MedicinalProductDefinition{ResourceType: "MedicinalProductDefinition"},
 	}
 }
 
@@ -1689,7 +1692,7 @@ type MedicinalProductDefinitionOption func(*MedicinalProductDefinition)
 
 // NewMedicinalProductDefinition creates a new MedicinalProductDefinition with the given options.
 func NewMedicinalProductDefinition(opts ...MedicinalProductDefinitionOption) *MedicinalProductDefinition {
-	r := &MedicinalProductDefinition{}
+	r := &MedicinalProductDefinition{ResourceType: "MedicinalProductDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

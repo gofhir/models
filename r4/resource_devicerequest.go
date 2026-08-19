@@ -775,7 +775,10 @@ type DeviceRequestBuilder struct {
 // NewDeviceRequestBuilder creates a new DeviceRequestBuilder.
 func NewDeviceRequestBuilder() *DeviceRequestBuilder {
 	return &DeviceRequestBuilder{
-		deviceRequest: &DeviceRequest{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		deviceRequest: &DeviceRequest{ResourceType: "DeviceRequest"},
 	}
 }
 
@@ -1009,7 +1012,7 @@ type DeviceRequestOption func(*DeviceRequest)
 
 // NewDeviceRequest creates a new DeviceRequest with the given options.
 func NewDeviceRequest(opts ...DeviceRequestOption) *DeviceRequest {
-	r := &DeviceRequest{}
+	r := &DeviceRequest{ResourceType: "DeviceRequest"}
 	for _, opt := range opts {
 		opt(r)
 	}

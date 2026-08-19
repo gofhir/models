@@ -1266,7 +1266,10 @@ type AuditEventBuilder struct {
 // NewAuditEventBuilder creates a new AuditEventBuilder.
 func NewAuditEventBuilder() *AuditEventBuilder {
 	return &AuditEventBuilder{
-		auditEvent: &AuditEvent{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		auditEvent: &AuditEvent{ResourceType: "AuditEvent"},
 	}
 }
 
@@ -1428,7 +1431,7 @@ type AuditEventOption func(*AuditEvent)
 
 // NewAuditEvent creates a new AuditEvent with the given options.
 func NewAuditEvent(opts ...AuditEventOption) *AuditEvent {
-	r := &AuditEvent{}
+	r := &AuditEvent{ResourceType: "AuditEvent"}
 	for _, opt := range opts {
 		opt(r)
 	}

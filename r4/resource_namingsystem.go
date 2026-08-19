@@ -588,7 +588,10 @@ type NamingSystemBuilder struct {
 // NewNamingSystemBuilder creates a new NamingSystemBuilder.
 func NewNamingSystemBuilder() *NamingSystemBuilder {
 	return &NamingSystemBuilder{
-		namingSystem: &NamingSystem{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		namingSystem: &NamingSystem{ResourceType: "NamingSystem"},
 	}
 }
 
@@ -732,7 +735,7 @@ type NamingSystemOption func(*NamingSystem)
 
 // NewNamingSystem creates a new NamingSystem with the given options.
 func NewNamingSystem(opts ...NamingSystemOption) *NamingSystem {
-	r := &NamingSystem{}
+	r := &NamingSystem{ResourceType: "NamingSystem"}
 	for _, opt := range opts {
 		opt(r)
 	}

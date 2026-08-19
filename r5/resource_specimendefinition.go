@@ -1306,7 +1306,10 @@ type SpecimenDefinitionBuilder struct {
 // NewSpecimenDefinitionBuilder creates a new SpecimenDefinitionBuilder.
 func NewSpecimenDefinitionBuilder() *SpecimenDefinitionBuilder {
 	return &SpecimenDefinitionBuilder{
-		specimenDefinition: &SpecimenDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		specimenDefinition: &SpecimenDefinition{ResourceType: "SpecimenDefinition"},
 	}
 }
 
@@ -1558,7 +1561,7 @@ type SpecimenDefinitionOption func(*SpecimenDefinition)
 
 // NewSpecimenDefinition creates a new SpecimenDefinition with the given options.
 func NewSpecimenDefinition(opts ...SpecimenDefinitionOption) *SpecimenDefinition {
-	r := &SpecimenDefinition{}
+	r := &SpecimenDefinition{ResourceType: "SpecimenDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

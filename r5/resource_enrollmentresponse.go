@@ -385,7 +385,10 @@ type EnrollmentResponseBuilder struct {
 // NewEnrollmentResponseBuilder creates a new EnrollmentResponseBuilder.
 func NewEnrollmentResponseBuilder() *EnrollmentResponseBuilder {
 	return &EnrollmentResponseBuilder{
-		enrollmentResponse: &EnrollmentResponse{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		enrollmentResponse: &EnrollmentResponse{ResourceType: "EnrollmentResponse"},
 	}
 }
 
@@ -499,7 +502,7 @@ type EnrollmentResponseOption func(*EnrollmentResponse)
 
 // NewEnrollmentResponse creates a new EnrollmentResponse with the given options.
 func NewEnrollmentResponse(opts ...EnrollmentResponseOption) *EnrollmentResponse {
-	r := &EnrollmentResponse{}
+	r := &EnrollmentResponse{ResourceType: "EnrollmentResponse"}
 	for _, opt := range opts {
 		opt(r)
 	}

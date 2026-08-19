@@ -1491,7 +1491,10 @@ type CodeSystemBuilder struct {
 // NewCodeSystemBuilder creates a new CodeSystemBuilder.
 func NewCodeSystemBuilder() *CodeSystemBuilder {
 	return &CodeSystemBuilder{
-		codeSystem: &CodeSystem{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		codeSystem: &CodeSystem{ResourceType: "CodeSystem"},
 	}
 }
 
@@ -1791,7 +1794,7 @@ type CodeSystemOption func(*CodeSystem)
 
 // NewCodeSystem creates a new CodeSystem with the given options.
 func NewCodeSystem(opts ...CodeSystemOption) *CodeSystem {
-	r := &CodeSystem{}
+	r := &CodeSystem{ResourceType: "CodeSystem"}
 	for _, opt := range opts {
 		opt(r)
 	}

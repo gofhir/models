@@ -467,7 +467,10 @@ type DeviceUseStatementBuilder struct {
 // NewDeviceUseStatementBuilder creates a new DeviceUseStatementBuilder.
 func NewDeviceUseStatementBuilder() *DeviceUseStatementBuilder {
 	return &DeviceUseStatementBuilder{
-		deviceUseStatement: &DeviceUseStatement{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		deviceUseStatement: &DeviceUseStatement{ResourceType: "DeviceUseStatement"},
 	}
 }
 
@@ -629,7 +632,7 @@ type DeviceUseStatementOption func(*DeviceUseStatement)
 
 // NewDeviceUseStatement creates a new DeviceUseStatement with the given options.
 func NewDeviceUseStatement(opts ...DeviceUseStatementOption) *DeviceUseStatement {
-	r := &DeviceUseStatement{}
+	r := &DeviceUseStatement{ResourceType: "DeviceUseStatement"}
 	for _, opt := range opts {
 		opt(r)
 	}

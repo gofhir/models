@@ -439,7 +439,10 @@ type OperationOutcomeBuilder struct {
 // NewOperationOutcomeBuilder creates a new OperationOutcomeBuilder.
 func NewOperationOutcomeBuilder() *OperationOutcomeBuilder {
 	return &OperationOutcomeBuilder{
-		operationOutcome: &OperationOutcome{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		operationOutcome: &OperationOutcome{ResourceType: "OperationOutcome"},
 	}
 }
 
@@ -511,7 +514,7 @@ type OperationOutcomeOption func(*OperationOutcome)
 
 // NewOperationOutcome creates a new OperationOutcome with the given options.
 func NewOperationOutcome(opts ...OperationOutcomeOption) *OperationOutcome {
-	r := &OperationOutcome{}
+	r := &OperationOutcome{ResourceType: "OperationOutcome"}
 	for _, opt := range opts {
 		opt(r)
 	}

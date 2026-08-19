@@ -603,8 +603,8 @@ func (a *Analyzer) resolveGoTypeWithBinding(fhirType string, isPointer, isArray 
 			// Track that this binding is used
 			a.UsedBindings[binding.ValueSet] = true
 
-			// Sanitize the type name to match what generator produces
-			customType := sanitizeTypeName(vs.Name)
+			// Must match what the code-system template emits for this ValueSet.
+			customType := ValueSetTypeName(vs.URL, vs.Name)
 			if isArray {
 				return "[]" + customType
 			}
@@ -616,6 +616,51 @@ func (a *Analyzer) resolveGoTypeWithBinding(fhirType string, isPointer, isArray 
 	}
 
 	return a.resolveGoType(fhirType, isPointer, isArray)
+}
+
+// valueSetTypeNameOverrides pins the Go type name for ValueSets whose FHIR `name`
+// collides with another ValueSet's.
+//
+// FHIR names are not unique. In R4, medication-status and
+// medication-statement-status are both named "Medication Status Codes", which both
+// sanitize to MedicationStatusCodes. The generator used to emit whichever came
+// first and silently drop the other, while still pointing the dropped ValueSet's
+// fields at the surviving type — so Medication.status offered MedicationStatement's
+// codes and had no constant for `inactive`, its only other legal value.
+//
+// Collisions not listed here fail generation rather than resolving arbitrarily;
+// see the check in generateCodeSystemsFromTemplate. Keeping this explicit means a
+// new collision in a future release is a decision someone makes, not a coin flip
+// decided by bundle order.
+//
+// The surviving name is left alone and only the shadowed ValueSet is renamed, so
+// existing constants keep working.
+var valueSetTypeNameOverrides = map[string]string{
+	// Collides with medication-statement-status ("Medication Status Codes").
+	// Bound by Medication.status: active | inactive | entered-in-error.
+	"http://hl7.org/fhir/ValueSet/medication-status": "MedicationStatus",
+}
+
+// ValueSetTypeName returns the Go type name for a ValueSet, applying any override
+// for its canonical URL.
+//
+// Both the analyzer (choosing a field's type) and the code-system template
+// (emitting the type) must agree on this, or fields end up bound to types that
+// were never generated. It lives here because analyzer is the package both import.
+func ValueSetTypeName(url, name string) string {
+	if override, ok := valueSetTypeNameOverrides[canonicalValueSetURL(url)]; ok {
+		return override
+	}
+	return sanitizeTypeName(name)
+}
+
+// canonicalValueSetURL strips the |version suffix FHIR bindings carry, so
+// "…/medication-status|4.0.1" and "…/medication-status" are the same key.
+func canonicalValueSetURL(url string) string {
+	if i := strings.IndexByte(url, '|'); i >= 0 {
+		return url[:i]
+	}
+	return url
 }
 
 // sanitizeTypeName converts a ValueSet name to a valid Go type name.
