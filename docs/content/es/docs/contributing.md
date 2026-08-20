@@ -78,20 +78,46 @@ Las suites de pruebas cubren:
 - Validacion de constantes de sistemas de codigos
 - Preservacion de precision del tipo Decimal
 
-## Regenerando Modelos
+## Obteniendo las especificaciones FHIR
 
-Si modificas el generador de codigo o actualizas los archivos de especificacion FHIR, regenera el codigo:
+El generador lee tres bundles JSON por versión desde `specs/`. Suman unos 143 MB y
+**no** están versionados, así que un clon nuevo debe descargarlos primero:
 
 ```bash
-# Regenerar codigo R4
-go run cmd/generator/main.go r4
+# Descargar y verificar todas las versiones
+./scripts/fetch-specs.sh
 
-# Regenerar codigo R4B
-go run cmd/generator/main.go r4b
+# O solo la que necesites
+./scripts/fetch-specs.sh r4
 
-# Regenerar codigo R5
-go run cmd/generator/main.go r5
+# Verificar lo que ya está en disco, sin descargar
+./scripts/fetch-specs.sh --verify
 ```
+
+Cada archivo se verifica contra el SHA-256 fijado en `specs.lock`, que también
+registra la URL de origen y la versión FHIR. Una discrepancia es un fallo duro: si
+la especificación publicada cambia, actualiza `specs.lock` de forma deliberada en
+lugar de dejar que el código generado se desvíe.
+
+Sin estos archivos el generador se detiene con
+`failed to read required value sets`. Es intencional: antes continuaba y emitía en
+silencio `*string` en lugar de cada tipo generado de code system.
+
+## Regenerando Modelos
+
+Si modificas el generador de código o actualizas los archivos de especificación FHIR, regenera el código.
+`cmd/generator` es un módulo Go propio, así que ejecútalo desde ese directorio:
+
+```bash
+cd cmd/generator
+
+go run . r4    # Regenerar código R4
+go run . r4b   # Regenerar código R4B
+go run . r5    # Regenerar código R5
+```
+
+CI regenera las tres versiones en cada pull request y falla si el resultado difiere
+de lo versionado, así que incluye la salida regenerada en tu PR.
 
 Despues de la regeneracion, ejecuta la suite completa de pruebas para verificar la correccion:
 

@@ -45,6 +45,20 @@ func main() {
 }
 ```
 
+## Development
+
+The Go types are generated from the FHIR specifications, which are not committed
+(~143 MB). After cloning, download them before running the generator:
+
+```bash
+./scripts/fetch-specs.sh          # download and verify all versions
+cd cmd/generator && go run . r4   # regenerate one version
+```
+
+Hashes and source URLs are pinned in [specs.lock](specs.lock). See the
+[contributing guide](https://gofhir.github.io/models/docs/contributing/) for the
+full workflow.
+
 ## Related Projects
 
 - [gofhir/fhirpath](https://github.com/gofhir/fhirpath) - FHIRPath evaluator for Go

@@ -49,6 +49,11 @@ docs/resources/
 docs/.hugo_build.lock
 docs/_vendor/
 
-# Go workspace (local development)
+# Go workspace (local development).
+# Deliberately not committed: building each module in isolation is what proves
+# its own go.mod/go.sum are complete, and CI runs with GOWORK=off.
 go.work
 go.work.sum
+
+# Debug artifacts the generator writes when go/format rejects its output.
+*.unformatted

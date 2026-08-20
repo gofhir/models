@@ -78,20 +78,46 @@ The test suites cover:
 - Code system constant validation
 - Decimal type precision preservation
 
-## Regenerating Models
+## Fetching the FHIR specifications
 
-If you modify the code generator or update the FHIR specification files, regenerate the code:
+The generator reads three JSON bundles per version from `specs/`. They total about
+143 MB and are **not** committed, so a fresh clone has to download them first:
 
 ```bash
-# Regenerate R4 code
-go run cmd/generator/main.go r4
+# Download and verify every version
+./scripts/fetch-specs.sh
 
-# Regenerate R4B code
-go run cmd/generator/main.go r4b
+# Or just the one you need
+./scripts/fetch-specs.sh r4
 
-# Regenerate R5 code
-go run cmd/generator/main.go r5
+# Check what is already on disk without downloading
+./scripts/fetch-specs.sh --verify
 ```
+
+Each file is verified against the SHA-256 pinned in `specs.lock`, which also
+records the source URL and FHIR release. A mismatch is a hard failure: if the
+published specification changes, update `specs.lock` deliberately rather than
+letting the generated output drift.
+
+Without these files the generator stops with
+`failed to read required value sets`. That is intentional — it used to continue
+and silently emit `*string` in place of every generated code system type.
+
+## Regenerating Models
+
+If you modify the code generator or update the FHIR specification files, regenerate the code.
+`cmd/generator` is its own Go module, so run it from that directory:
+
+```bash
+cd cmd/generator
+
+go run . r4    # Regenerate R4 code
+go run . r4b   # Regenerate R4B code
+go run . r5    # Regenerate R5 code
+```
+
+CI regenerates all three versions on every pull request and fails if the result
+differs from what is committed, so include the regenerated output in your PR.
 
 After regeneration, run the full test suite to verify correctness:
 

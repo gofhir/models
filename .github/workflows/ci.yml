@@ -10,6 +10,53 @@ env:
   GO_VERSION: "1.23"
 
 jobs:
+  # The generator itself. Until this job existed, internal/codegen/** and
+  # cmd/generator were never compiled, tested or linted by CI — which is where
+  # the value-set collision and the silent enum degradation both lived.
+  #
+  # GOWORK=off on purpose: go.work is gitignored local tooling, and building the
+  # module in isolation is what proves its own go.mod/go.sum are complete.
+  generator:
+    name: Generator
+    runs-on: ubuntu-latest
+    env:
+      GOWORK: "off"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
+      - name: Verify root module
+        run: |
+          go mod verify
+          go build ./...
+          go vet ./internal/...
+
+      - name: Test
+        run: go test -race ./internal/...
+
+      # v8 of the action is the first line that runs golangci-lint v2; v4
+      # resolves "latest" to v1.64.x, which rejects a v2 config outright. The
+      # version is pinned rather than "latest" so a linter release cannot turn a
+      # green PR red on its own. Timeout comes from run.timeout in .golangci.yml.
+      - name: Lint
+        uses: golangci/golangci-lint-action@v8
+        with:
+          version: v2.11.4
+          args: ./internal/...
+
+      # cmd/generator is its own module with a replace back to the root, so it
+      # has to be built from its own directory.
+      - name: Verify cmd/generator module
+        working-directory: cmd/generator
+        run: |
+          go build ./...
+          go vet ./...
+
   lint:
     name: Lint
     runs-on: ubuntu-latest
@@ -27,11 +74,10 @@ jobs:
           go-version: ${{ env.GO_VERSION }}
 
       - name: Run golangci-lint for ${{ matrix.module }}
-        uses: golangci/golangci-lint-action@v4
+        uses: golangci/golangci-lint-action@v8
         with:
-          version: latest
+          version: v2.11.4
           working-directory: ${{ matrix.module }}
-          args: --timeout=5m
 
   test:
     name: Test
@@ -114,3 +160,67 @@ jobs:
           cd ${{ matrix.module }}
           go mod verify
           go build ./...
+
+  # Regenerate every version from the pinned specs and fail if the result differs
+  # from what is committed. Without this, a change to a template or to the
+  # analyzer can land without anyone noticing what it did to the output.
+  drift:
+    name: Generated code is up to date
+    runs-on: ubuntu-latest
+    needs: [generator]
+    env:
+      GOWORK: "off"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
+      - name: Cache FHIR specs
+        uses: actions/cache@v4
+        with:
+          path: specs
+          key: specs-${{ hashFiles('specs.lock') }}
+
+      - name: Fetch and verify specs
+        run: scripts/fetch-specs.sh
+
+      # Run from cmd/generator: main.go derives the repo root from the working
+      # directory, and the module lives there.
+      - name: Regenerate all versions
+        working-directory: cmd/generator
+        run: |
+          for v in r4 r4b r5; do
+            go run . "$v"
+          done
+
+      # A positive assertion, not just a diff: if generation silently produced no
+      # enums, the diff would be huge and obvious, but if it produced none *and*
+      # left the old file behind, only a count catches it.
+      - name: Assert enum types were generated
+        run: |
+          for v in r4 r4b r5; do
+            n=$(grep -cE '^type [A-Za-z0-9]+ string$' "$v/codesystems.go" || true)
+            echo "$v: $n enum types"
+            if [ "$n" -lt 200 ]; then
+              echo "::error::$v/codesystems.go has only $n enum types (expected >= 200)"
+              exit 1
+            fi
+          done
+
+      - name: Check for drift
+        run: |
+          if ! git diff --quiet -- r4 r4b r5; then
+            echo "::error::generated code is out of date; regenerate and commit the result"
+            git diff --stat -- r4 r4b r5
+            exit 1
+          fi
+          if [ -n "$(git status --porcelain --untracked-files=all -- r4 r4b r5)" ]; then
+            echo "::error::generation produced untracked files; commit them or add them to .gitignore"
+            git status --porcelain --untracked-files=all -- r4 r4b r5
+            exit 1
+          fi
+          echo "no drift: committed output matches the generator"

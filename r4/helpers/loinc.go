@@ -205,7 +205,7 @@ var Creatinine = r4.CodeableConcept{
 	Text: ptr("Creatinine"),
 }
 
-// eGFR is the LOINC code for estimated glomerular filtration rate.
+// EGFR is the LOINC code for estimated glomerular filtration rate (eGFR).
 var EGFR = r4.CodeableConcept{
 	Coding: []r4.Coding{{
 		System:  ptr(LOINCSystem),
