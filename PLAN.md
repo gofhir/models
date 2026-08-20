@@ -118,7 +118,43 @@ Descargar los ejemplos oficiales (JSON y XML) a `testdata/` y escribir un runner
 
 No es un gate: es un **inventario de deuda**, y sale barato porque no exige arreglar nada todavía.
 
-**Por qué va aquí y no al final:** además de dar señal a las fases 4 y 6, mide la profundidad de anidamiento real del corpus — el número que la fase 2 necesita para elegir su límite sin inventarlo. En los specs del repo la profundidad máxima observada es **14**.
+**Por qué va aquí y no al final:** además de dar señal a las fases 4 y 6, mide la profundidad de anidamiento real del corpus — el número que la fase 2 necesita para elegir su límite sin inventarlo.
+
+### Resultado (ejecutado)
+
+Implementada en el módulo `conformance/`, sobre **12.411 ejemplos oficiales**:
+
+| | archivos | fallan | pasan |
+|---|---|---|---|
+| r4 JSON | 2.912 | 3 | **99,9 %** |
+| r4b JSON | 3.022 | 11 | 99,6 % |
+| r5 JSON | 2.824 | 61 | 97,8 % |
+| r4 XML | 1.138 | **1.094** | 3,9 % |
+| r4b XML | 1.156 | **1.075** | 7,0 % |
+| r5 XML | 1.359 | **1.287** | 5,3 % |
+
+**Un solo defecto causa el 96 % de los fallos de XML.** Todos los mismatches muestran el mismo primer byte de divergencia: la primera serialización emite `<rawInner><div…>` y al re-parsear el narrative desaparece. Arreglar `rawInner` (tarea 4.3) desbloquea ~3.400 archivos de una vez, lo que confirma la decisión de fusionar el writer de bytes en la fase XML en lugar de dejarlo para la v2.
+
+Los tres fallos de r4 JSON son **exactamente** los bugs ya identificados, ahora con respaldo de ejemplos oficiales:
+
+| Archivo | Diagnóstico | Tarea |
+|---|---|---|
+| `json-edge-cases.json` | `contact[0].name._given[0]: <nil> became {object}` | 6.4 (arrays de primitivos) |
+| `structuredefinition-example-composition.json` | `differential.element[2].type[0]._profile: dropped` | 4.4 (`_ext` en backbones) |
+| `package-min-ver.json` | sin `resourceType` | ruido del corpus, no es un recurso |
+
+### Dos hallazgos nuevos
+
+**`integer64` de R5 debe serializarse como string.** Ninguna de las siete auditorías lo vio. La spec exige que `integer64` viaje como string en JSON porque JSON solo garantiza 53 bits de precisión; la librería tipó `Attachment.size` como `int64` y falla al leer ejemplos oficiales:
+
+```
+failed to unmarshal Communication: json: cannot unmarshal string into
+Go struct field Attachment.Alias.payload.contentAttachment.size of type int64
+```
+
+Es un cambio de tipo, así que **va a la v2** (fase 6). Afecta a los 20 fallos `parse` de r5.
+
+**La profundidad real es 28, no 14.** El máximo está en `structuremap-questionnaire.json` de r4b — un Questionnaire con árboles de `item` muy anidados. Los bundles de definiciones llegan solo a 14, así que dimensionar el límite desde los specs habría sido optimista: el margen del límite de 64 propuesto es **2,3×**, no 4×. Y `Questionnaire.item`, `Parameters.parameter.part` y `GraphDefinition.link.target` no tienen tope en la especificación, así que documentos legítimos pueden ir más hondo. Dado que el riesgo es asimétrico, la tarea 2.1 debe elegir un límite **holgadamente** por encima de 28, no apenas por encima.
 
 ---
 

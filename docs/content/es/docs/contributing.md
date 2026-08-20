@@ -103,6 +103,29 @@ Sin estos archivos el generador se detiene con
 `failed to read required value sets`. Es intencional: antes continuaba y emitía en
 silencio `*string` en lugar de cada tipo generado de code system.
 
+## Suite de conformidad
+
+`conformance/` hace round-trip de todos los ejemplos oficiales de FHIR a través de
+la librería —unos 12.400 archivos entre las tres versiones— y compara el resultado
+con las listas de fallos conocidos en `conformance/testdata/known_failures/`.
+
+```bash
+./scripts/fetch-examples.sh        # descargar los corpus (~200 MB por versión)
+cd conformance && go test ./...
+```
+
+La suite se salta a sí misma cuando el corpus no está presente, así que nunca
+fuerza la descarga en un `go test ./...` normal.
+
+Las listas funcionan como un trinquete, no como una foto: la suite falla tanto
+cuando un archivo que pasaba empieza a fallar (una regresión) como cuando un
+archivo listado empieza a pasar (progreso que hay que registrar). Tras un arreglo,
+regenéralas y lee el diff: cada línea eliminada es un bug corregido:
+
+```bash
+cd conformance && go test . -update-known
+```
+
 ## Regenerando Modelos
 
 Si modificas el generador de código o actualizas los archivos de especificación FHIR, regenera el código.
