@@ -150,6 +150,13 @@ func checkFile(path, kind string, unmarshal func([]byte) (any, error), marshal f
 		return failure{}, false
 	}
 
+	// XML is compared for self-stability only: parse -> serialize -> parse ->
+	// serialize must converge. Comparing against the published bytes would need a
+	// canonical XML comparison (namespace prefixes, attribute order, whitespace in
+	// mixed content), and with ~96% of XML examples already failing on the
+	// narrative bug there is nothing to learn from it yet. Once the XML rewrite
+	// lands and the lists shrink, this is the check to add — data loss against the
+	// source is currently unmeasured on this path.
 	if !bytes.Equal(produced, reproduced) {
 		return failure{name, failMismatch, firstByteDiff(produced, reproduced)}, true
 	}
@@ -225,6 +232,15 @@ func diffValues(path string, a, b any) string {
 		return ""
 
 	default:
+		// Compare the type as well as the text. fmt.Sprint alone renders the
+		// number 1 and the string "1" identically, and true identically to
+		// "true" — which is exactly the class of defect worth catching here,
+		// since FHIR requires integer64 to travel as a JSON string while
+		// integer travels as a number.
+		if fmt.Sprintf("%T", a) != fmt.Sprintf("%T", b) {
+			return fmt.Sprintf("%s: %s (%T) became %s (%T)",
+				pathOr(path), brief(a), a, brief(b), b)
+		}
 		if fmt.Sprint(a) != fmt.Sprint(b) {
 			return fmt.Sprintf("%s: %s became %s", pathOr(path), brief(a), brief(b))
 		}
@@ -295,7 +311,7 @@ func writeKnownFailures(t *testing.T, path string, failures []failure, total int
 	var buf bytes.Buffer
 	fmt.Fprintf(&buf, "# Known round-trip failures: %d of %d examples.\n", len(failures), total)
 	buf.WriteString("#\n")
-	buf.WriteString("# Regenerate with: go test ./conformance -update-known\n")
+	buf.WriteString("# Regenerate with: cd conformance && go test . -update-known\n")
 	buf.WriteString("# Every line removed is a bug fixed; every line added is a regression.\n")
 	buf.WriteString("#\n")
 	buf.WriteString("# Format: <kind> <file>\n")
@@ -337,7 +353,7 @@ func compareAgainstKnown(t *testing.T, path string, failures []failure, total in
 	known, err := readKnownFailures(path)
 	if err != nil {
 		if os.IsNotExist(err) {
-			t.Fatalf("no known-failure list at %s.\nCreate it with: go test ./conformance -update-known", path)
+			t.Fatalf("no known-failure list at %s.\nCreate it with: cd conformance && go test . -update-known", path)
 		}
 		t.Fatalf("reading %s: %v", path, err)
 	}
@@ -386,7 +402,7 @@ func compareAgainstKnown(t *testing.T, path string, failures []failure, total in
 	if len(fixed) > 0 {
 		var b strings.Builder
 		fmt.Fprintf(&b, "%d known failure(s) now pass — record the progress with"+
-			" `go test ./conformance -update-known`:\n", len(fixed))
+			" `cd conformance && go test . -update-known`:\n", len(fixed))
 		for i, line := range fixed {
 			if i == 15 {
 				fmt.Fprintf(&b, "  ... and %d more\n", len(fixed)-15)
@@ -395,5 +411,41 @@ func compareAgainstKnown(t *testing.T, path string, failures []failure, total in
 			fmt.Fprintf(&b, "  %s\n", line)
 		}
 		t.Error(b.String())
+	}
+}
+
+// TestJSONDiffDetectsTypeChanges guards the leaf comparison itself.
+//
+// It compared with fmt.Sprint alone, which renders the number 1 and the string
+// "1" identically — so a value silently changing JSON type round-tripped as
+// equal. That is precisely the R5 integer64 defect (the specification requires
+// integer64 to travel as a string), which makes it the one class of mismatch the
+// suite most needs to see.
+func TestJSONDiffDetectsTypeChanges(t *testing.T) {
+	cases := []struct {
+		name       string
+		a, b       string
+		wantChange bool
+	}{
+		{"number became string", `{"v":1}`, `{"v":"1"}`, true},
+		{"string became number", `{"v":"1"}`, `{"v":1}`, true},
+		{"bool became string", `{"v":true}`, `{"v":"true"}`, true},
+		{"null became empty string", `{"v":null}`, `{"v":""}`, true},
+		{"decimal precision lost", `{"v":2.00}`, `{"v":2.0}`, true},
+		{"identical", `{"v":1}`, `{"v":1}`, false},
+		{"key order differs", `{"a":1,"b":2}`, `{"b":2,"a":1}`, false},
+		{"whitespace differs", `{"v": 1}`, `{"v":1}`, false},
+	}
+
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			diff := jsonDiff([]byte(tc.a), []byte(tc.b))
+			if tc.wantChange && diff == "" {
+				t.Errorf("%s vs %s reported no difference", tc.a, tc.b)
+			}
+			if !tc.wantChange && diff != "" {
+				t.Errorf("%s vs %s reported a spurious difference: %s", tc.a, tc.b, diff)
+			}
+		})
 	}
 }

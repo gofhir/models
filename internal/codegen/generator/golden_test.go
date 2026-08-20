@@ -3,6 +3,7 @@ package generator
 import (
 	"bytes"
 	"flag"
+	"fmt"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -10,6 +11,7 @@ import (
 	"testing"
 
 	"github.com/gofhir/models/internal/codegen/analyzer"
+	"github.com/gofhir/models/internal/codegen/parser"
 )
 
 // -update rewrites the golden files instead of comparing against them. Review the
@@ -379,35 +381,83 @@ func TestValueSetCollisionFailsGeneration(t *testing.T) {
 	}
 }
 
-// TestValueSetOverrideResolvesRealCollision checks the override that fixes R4's
-// actual collision, using the real ValueSet URLs.
-func TestValueSetOverrideResolvesRealCollision(t *testing.T) {
-	const medicationName = "Medication Status Codes"
+// TestValueSetOverrideAppliesOnlyOnCollision covers the condition under which the
+// R4 override fires.
+//
+// The first version keyed overrides on the URL alone, which renamed
+// medication-status in every version. But the clash only exists in R4: upstream
+// renamed one side to "MedicationStatement Status Codes" in R4B and to
+// "MedicationStatementStatusCodes" in R5. The URL-keyed version therefore deleted
+// the exported MedicationStatusCodes type from r4b and r5, two packages that never
+// had the problem.
+func TestValueSetOverrideAppliesOnlyOnCollision(t *testing.T) {
+	const (
+		medicationURL = "http://hl7.org/fhir/ValueSet/medication-status"
+		statementURL  = "http://hl7.org/fhir/ValueSet/medication-statement-status"
+	)
 
-	statement := analyzer.ValueSetTypeName(
-		"http://hl7.org/fhir/ValueSet/medication-statement-status", medicationName)
-	medication := analyzer.ValueSetTypeName(
-		"http://hl7.org/fhir/ValueSet/medication-status", medicationName)
-
-	if statement == medication {
-		t.Fatalf("both ValueSets still resolve to %s", statement)
-	}
-	// The surviving name is deliberately unchanged, so existing constants keep
-	// working; only the shadowed ValueSet is renamed.
-	if statement != "MedicationStatusCodes" {
-		t.Errorf("MedicationStatement's ValueSet was renamed to %s; that breaks"+
-			" existing constants for no reason", statement)
-	}
-	if medication != "MedicationStatus" {
-		t.Errorf("Medication's ValueSet resolved to %s, want MedicationStatus", medication)
+	// valueSetBundle builds a ValueSet bundle from url/name pairs, each with one
+	// code so it counts as a candidate for enum generation.
+	valueSetBundle := func(pairs ...[2]string) string {
+		entries := make([]string, 0, len(pairs))
+		for i, p := range pairs {
+			entries = append(entries, fmt.Sprintf(`{"resource":{"resourceType":"ValueSet",`+
+				`"id":"vs%d","url":%q,"name":%q,"compose":{"include":[{"system":"http://example.org/s%d",`+
+				`"concept":[{"code":"active","display":"Active"}]}]}}}`, i, p[0], p[1], i))
+		}
+		return `{"resourceType":"Bundle","entry":[` + strings.Join(entries, ",") + `]}`
 	}
 
-	// The version suffix FHIR bindings carry must not defeat the override.
-	withVersion := analyzer.ValueSetTypeName(
-		"http://hl7.org/fhir/ValueSet/medication-status|4.0.1", medicationName)
-	if withVersion != "MedicationStatus" {
-		t.Errorf("versioned URL resolved to %s; the |version suffix is not being stripped", withVersion)
+	newAnalyzerFor := func(t *testing.T, bundle string) *analyzer.Analyzer {
+		t.Helper()
+		registry := parser.NewValueSetRegistry()
+		if err := registry.LoadFromBundle([]byte(bundle)); err != nil {
+			t.Fatalf("loading value sets: %v", err)
+		}
+		return analyzer.NewAnalyzer(nil, registry)
 	}
+
+	t.Run("r4 shape: names collide, override applies", func(t *testing.T) {
+		a := newAnalyzerFor(t, valueSetBundle(
+			[2]string{statementURL, "Medication Status Codes"},
+			[2]string{medicationURL, "Medication Status Codes"},
+		))
+
+		statement := a.ValueSetTypeName(statementURL, "Medication Status Codes")
+		medication := a.ValueSetTypeName(medicationURL, "Medication Status Codes")
+
+		if statement == medication {
+			t.Fatalf("both ValueSets still resolve to %s", statement)
+		}
+		// The surviving name is deliberately unchanged, so existing constants keep
+		// working; only the shadowed ValueSet is renamed.
+		if statement != "MedicationStatusCodes" {
+			t.Errorf("MedicationStatement's ValueSet became %s; renaming it breaks"+
+				" existing constants for no reason", statement)
+		}
+		if medication != "MedicationStatus" {
+			t.Errorf("Medication's ValueSet resolved to %s, want MedicationStatus", medication)
+		}
+
+		// The version suffix bindings carry must not defeat the override.
+		if got := a.ValueSetTypeName(medicationURL+"|4.0.1", "Medication Status Codes"); got != "MedicationStatus" {
+			t.Errorf("versioned URL resolved to %s; the |version suffix is not being stripped", got)
+		}
+	})
+
+	t.Run("r4b/r5 shape: names differ, override must not fire", func(t *testing.T) {
+		a := newAnalyzerFor(t, valueSetBundle(
+			[2]string{statementURL, "MedicationStatement Status Codes"},
+			[2]string{medicationURL, "Medication Status Codes"},
+		))
+
+		got := a.ValueSetTypeName(medicationURL, "Medication Status Codes")
+		if got != "MedicationStatusCodes" {
+			t.Errorf("medication-status resolved to %s where nothing collides with it;"+
+				" that removes MedicationStatusCodes from packages that never had"+
+				" the collision", got)
+		}
+	})
 }
 
 // firstDiff reports the first differing line, which is far more useful in test

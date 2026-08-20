@@ -15,11 +15,23 @@ const (
 	kindBackbone = "backbone"
 )
 
+// maxEnumCodes caps how large a ValueSet may be before its binding falls back to
+// a plain string. resource-types, all-types, mimetypes and currencies are the ones
+// this excludes: emitting hundreds of constants for them costs more than it buys.
+//
+// Shared with the collision index, so both agree on which ValueSets could ever
+// become a Go type.
+const maxEnumCodes = 100
+
 // Analyzer processes StructureDefinitions and produces analyzed types for code generation.
 type Analyzer struct {
 	definitions  map[string]*parser.StructureDefinition
 	valueSets    *parser.ValueSetRegistry
 	UsedBindings map[string]bool // Track which bindings are used (exported for generator)
+	// valueSetNameClaims maps a sanitized Go type name to the canonical URLs of
+	// the ValueSets that would claim it, so a genuine collision is
+	// distinguishable from a name that is simply in use.
+	valueSetNameClaims map[string][]string
 }
 
 // NewAnalyzer creates a new Analyzer with the given StructureDefinitions and ValueSets.
@@ -31,9 +43,10 @@ func NewAnalyzer(definitions []*parser.StructureDefinition, valueSets *parser.Va
 		defMap[sd.Type] = sd
 	}
 	return &Analyzer{
-		definitions:  defMap,
-		valueSets:    valueSets,
-		UsedBindings: make(map[string]bool),
+		definitions:        defMap,
+		valueSets:          valueSets,
+		UsedBindings:       make(map[string]bool),
+		valueSetNameClaims: buildValueSetNameClaims(valueSets),
 	}
 }
 
@@ -604,7 +617,7 @@ func (a *Analyzer) resolveGoTypeWithBinding(fhirType string, isPointer, isArray 
 			a.UsedBindings[binding.ValueSet] = true
 
 			// Must match what the code-system template emits for this ValueSet.
-			customType := ValueSetTypeName(vs.URL, vs.Name)
+			customType := a.ValueSetTypeName(vs.URL, vs.Name)
 			if isArray {
 				return "[]" + customType
 			}
@@ -618,8 +631,8 @@ func (a *Analyzer) resolveGoTypeWithBinding(fhirType string, isPointer, isArray 
 	return a.resolveGoType(fhirType, isPointer, isArray)
 }
 
-// valueSetTypeNameOverrides pins the Go type name for ValueSets whose FHIR `name`
-// collides with another ValueSet's.
+// valueSetCollisionOverrides resolves ValueSets whose FHIR `name` collides with
+// another's, keyed by the colliding Go type name and then by canonical URL.
 //
 // FHIR names are not unique. In R4, medication-status and
 // medication-statement-status are both named "Medication Status Codes", which both
@@ -628,30 +641,64 @@ func (a *Analyzer) resolveGoTypeWithBinding(fhirType string, isPointer, isArray 
 // fields at the surviving type — so Medication.status offered MedicationStatement's
 // codes and had no constant for `inactive`, its only other legal value.
 //
-// Collisions not listed here fail generation rather than resolving arbitrarily;
-// see the check in generateCodeSystemsFromTemplate. Keeping this explicit means a
-// new collision in a future release is a decision someone makes, not a coin flip
-// decided by bundle order.
+// Overrides are keyed on the collision, not on the URL alone, and are applied only
+// when that collision is actually present. The R4 clash was fixed upstream: R4B
+// renamed one side to "MedicationStatement Status Codes" and R5 to
+// "MedicationStatementStatusCodes". A URL-keyed override would rename
+// MedicationStatusCodes out of r4b and r5 as well, deleting an exported type from
+// two packages that never had the problem.
 //
 // The surviving name is left alone and only the shadowed ValueSet is renamed, so
 // existing constants keep working.
-var valueSetTypeNameOverrides = map[string]string{
-	// Collides with medication-statement-status ("Medication Status Codes").
-	// Bound by Medication.status: active | inactive | entered-in-error.
-	"http://hl7.org/fhir/ValueSet/medication-status": "MedicationStatus",
+//
+// A collision with no entry here fails generation rather than resolving by bundle
+// order; see generateCodeSystemsFromTemplate.
+var valueSetCollisionOverrides = map[string]map[string]string{
+	"MedicationStatusCodes": {
+		// Bound by Medication.status: active | inactive | entered-in-error.
+		"http://hl7.org/fhir/ValueSet/medication-status": "MedicationStatus",
+	},
 }
 
-// ValueSetTypeName returns the Go type name for a ValueSet, applying any override
-// for its canonical URL.
+// ValueSetTypeName returns the Go type name for a ValueSet.
 //
 // Both the analyzer (choosing a field's type) and the code-system template
 // (emitting the type) must agree on this, or fields end up bound to types that
-// were never generated. It lives here because analyzer is the package both import.
-func ValueSetTypeName(url, name string) string {
-	if override, ok := valueSetTypeNameOverrides[canonicalValueSetURL(url)]; ok {
+// were never generated.
+func (a *Analyzer) ValueSetTypeName(url, name string) string {
+	base := sanitizeTypeName(name)
+
+	// Only a real collision justifies renaming.
+	if len(a.valueSetNameClaims[base]) < 2 {
+		return base
+	}
+	if override, ok := valueSetCollisionOverrides[base][canonicalValueSetURL(url)]; ok {
 		return override
 	}
-	return sanitizeTypeName(name)
+	// Unresolved: keep the base name so the template reports the collision with
+	// both URLs rather than this returning something arbitrary.
+	return base
+}
+
+// buildValueSetNameClaims indexes which ValueSets lay claim to each sanitized Go
+// type name, so a collision can be recognized as such.
+//
+// Only ValueSets that could actually become an enum are counted — the same filter
+// getValueSetForBinding applies — because two unused ValueSets sharing a name is
+// not a problem anyone can observe.
+func buildValueSetNameClaims(valueSets *parser.ValueSetRegistry) map[string][]string {
+	claims := make(map[string][]string)
+	if valueSets == nil {
+		return claims
+	}
+	for _, vs := range valueSets.All() {
+		if len(vs.Codes) == 0 || len(vs.Codes) > maxEnumCodes {
+			continue
+		}
+		base := sanitizeTypeName(vs.Name)
+		claims[base] = append(claims[base], canonicalValueSetURL(vs.URL))
+	}
+	return claims
 }
 
 // canonicalValueSetURL strips the |version suffix FHIR bindings carry, so
@@ -696,7 +743,7 @@ func (a *Analyzer) getValueSetForBinding(url string) *parser.ParsedValueSet {
 	}
 
 	// Skip very large value sets (like all-types, mimetypes)
-	if len(vs.Codes) > 100 {
+	if len(vs.Codes) > maxEnumCodes {
 		return nil
 	}
 

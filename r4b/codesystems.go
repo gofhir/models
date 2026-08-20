@@ -2163,17 +2163,17 @@ const (
 	MedicationStatementStatusCodesNotTaken MedicationStatementStatusCodes = "not-taken"
 )
 
-// MedicationStatus represents allowed values for the Medication Status Codes code system.
-type MedicationStatus string
+// MedicationStatusCodes represents allowed values for the Medication Status Codes code system.
+type MedicationStatusCodes string
 
-// MedicationStatus values.
+// MedicationStatusCodes values.
 const (
-	// MedicationStatusActive - Active
-	MedicationStatusActive MedicationStatus = "active"
-	// MedicationStatusInactive - Inactive
-	MedicationStatusInactive MedicationStatus = "inactive"
-	// MedicationStatusEnteredInError - Entered in Error
-	MedicationStatusEnteredInError MedicationStatus = "entered-in-error"
+	// MedicationStatusCodesActive - Active
+	MedicationStatusCodesActive MedicationStatusCodes = "active"
+	// MedicationStatusCodesInactive - Inactive
+	MedicationStatusCodesInactive MedicationStatusCodes = "inactive"
+	// MedicationStatusCodesEnteredInError - Entered in Error
+	MedicationStatusCodesEnteredInError MedicationStatusCodes = "entered-in-error"
 )
 
 // MedicationDispenseStatusCodes represents allowed values for the MedicationDispense Status Codes code system.

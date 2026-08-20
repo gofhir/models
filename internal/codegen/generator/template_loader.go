@@ -250,13 +250,24 @@ func (c *CodeGen) generateCodeSystemsFromTemplate() error {
 	generatedTypes := make(map[string]string)
 	valueSets := make([]ValueSetData, 0, len(valueSetURLs))
 
+	// A binding may reference the same ValueSet with and without a |version
+	// suffix, and several elements may share one ValueSet. Deduplicate on the
+	// resolved ValueSet before looking for collisions, or the same URL reports a
+	// collision with itself — which is what the `continue` this replaced was
+	// quietly handling alongside the real bug.
+	seenValueSets := make(map[string]bool, len(valueSetURLs))
+
 	for _, url := range valueSetURLs {
 		vs := c.valueSets.Get(url)
 		if vs == nil {
 			continue
 		}
+		if seenValueSets[vs.URL] {
+			continue
+		}
+		seenValueSets[vs.URL] = true
 
-		typeName := analyzer.ValueSetTypeName(vs.URL, vs.Name)
+		typeName := c.analyzer.ValueSetTypeName(vs.URL, vs.Name)
 		if previous, taken := generatedTypes[typeName]; taken {
 			// Dropping the second ValueSet silently is what made Medication.status
 			// resolve to MedicationStatement's codes: the analyzer had already

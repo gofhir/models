@@ -44,7 +44,7 @@ type Medication struct {
 	// Codes that identify this medication
 	Code *CodeableConcept `json:"code,omitempty"`
 	// active | inactive | entered-in-error
-	Status *MedicationStatus `json:"status,omitempty"`
+	Status *MedicationStatusCodes `json:"status,omitempty"`
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Organization that has authorization to market medication
@@ -330,7 +330,7 @@ func (r *Medication) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				r.Code = &v
 			case "status":
-				v, ext, err := xmlDecodePrimitiveCode[MedicationStatus](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[MedicationStatusCodes](d, t)
 				if err != nil {
 					return err
 				}
@@ -703,7 +703,7 @@ func (b *MedicationBuilder) SetCode(v CodeableConcept) *MedicationBuilder {
 }
 
 // SetStatus sets the Status field.
-func (b *MedicationBuilder) SetStatus(v MedicationStatus) *MedicationBuilder {
+func (b *MedicationBuilder) SetStatus(v MedicationStatusCodes) *MedicationBuilder {
 	b.medication.Status = &v
 	return b
 }
@@ -831,7 +831,7 @@ func WithMedicationCode(v CodeableConcept) MedicationOption {
 }
 
 // WithMedicationStatus sets the Status field.
-func WithMedicationStatus(v MedicationStatus) MedicationOption {
+func WithMedicationStatus(v MedicationStatusCodes) MedicationOption {
 	return func(r *Medication) {
 		r.Status = &v
 	}

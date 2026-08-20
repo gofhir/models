@@ -1,6 +1,6 @@
 # Known round-trip failures: 3 of 2912 examples.
 #
-# Regenerate with: go test ./conformance -update-known
+# Regenerate with: cd conformance && go test . -update-known
 # Every line removed is a bug fixed; every line added is a regression.
 #
 # Format: <kind> <file>

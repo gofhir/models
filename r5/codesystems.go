@@ -2843,17 +2843,17 @@ const (
 	MedicationStatementStatusCodesDraft MedicationStatementStatusCodes = "draft"
 )
 
-// MedicationStatus represents Medication Status Codes.
-type MedicationStatus string
+// MedicationStatusCodes represents Medication Status Codes.
+type MedicationStatusCodes string
 
-// MedicationStatus values.
+// MedicationStatusCodes values.
 const (
-	// MedicationStatusActive - Active
-	MedicationStatusActive MedicationStatus = "active"
-	// MedicationStatusInactive - Inactive
-	MedicationStatusInactive MedicationStatus = "inactive"
-	// MedicationStatusEnteredInError - Entered in Error
-	MedicationStatusEnteredInError MedicationStatus = "entered-in-error"
+	// MedicationStatusCodesActive - Active
+	MedicationStatusCodesActive MedicationStatusCodes = "active"
+	// MedicationStatusCodesInactive - Inactive
+	MedicationStatusCodesInactive MedicationStatusCodes = "inactive"
+	// MedicationStatusCodesEnteredInError - Entered in Error
+	MedicationStatusCodesEnteredInError MedicationStatusCodes = "entered-in-error"
 )
 
 // MedicationDispenseStatusCodes represents MedicationDispense Status Codes.
