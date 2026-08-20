@@ -271,10 +271,14 @@ func TestBundle_MarshalXML_EntryResource(t *testing.T) {
 	assert.Contains(t, xml, `<Bundle xmlns="http://hl7.org/fhir">`)
 	assert.Contains(t, xml, `<type value="searchset"/>`)
 	assert.Contains(t, xml, `<entry>`)
-	// Entry resource is encoded with its type name (no namespace)
-	assert.Contains(t, xml, `<Patient>`)
+	// FHIR wraps a resource-valued element, so entry.resource is
+	// <resource><Patient>…</Patient></resource>. Asserting the wrapper and the
+	// resource together matters: a Contains check for `<Patient>` alone passes
+	// whether or not the wrapper is there, which is how the missing wrapper
+	// survived in this suite while every conformant Bundle failed to parse.
+	assert.Contains(t, xml, `<resource><Patient>`)
 	assert.Contains(t, xml, `<id value="p1"/>`)
-	assert.Contains(t, xml, `</Patient>`)
+	assert.Contains(t, xml, `</Patient></resource>`)
 	assert.Contains(t, xml, `</entry>`)
 }
 

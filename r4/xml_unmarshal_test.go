@@ -130,7 +130,9 @@ func TestCoding_UnmarshalXML_IdAttribute(t *testing.T) {
 }
 
 func TestBundle_UnmarshalXML_EntryResource(t *testing.T) {
-	xmlData := []byte(`<?xml version="1.0" encoding="UTF-8"?><Bundle xmlns="http://hl7.org/fhir"><id value="bundle-test"/><type value="searchset"/><entry><Patient><id value="p1"/></Patient></entry></Bundle>`)
+	// The conformant shape, which is what every FHIR server sends: entry.resource
+	// is wrapped. This used to parse to a nil resource with err == nil.
+	xmlData := []byte(`<?xml version="1.0" encoding="UTF-8"?><Bundle xmlns="http://hl7.org/fhir"><id value="bundle-test"/><type value="searchset"/><entry><resource><Patient><id value="p1"/></Patient></resource></entry></Bundle>`)
 
 	resource, err := UnmarshalResourceXML(xmlData)
 	require.NoError(t, err)
@@ -246,4 +248,40 @@ func TestUnmarshalResourceXML_UnknownType(t *testing.T) {
 	_, err := UnmarshalResourceXML(xmlData)
 	require.Error(t, err)
 	assert.Contains(t, err.Error(), "UnknownResource")
+}
+
+// TestBundle_UnmarshalXML_UnwrappedEntryResource covers the shape this library
+// used to emit, so documents it already persisted still read back.
+func TestBundle_UnmarshalXML_UnwrappedEntryResource(t *testing.T) {
+	xmlData := []byte(`<?xml version="1.0" encoding="UTF-8"?><Bundle xmlns="http://hl7.org/fhir"><type value="searchset"/><entry><Patient><id value="p1"/></Patient></entry></Bundle>`)
+
+	resource, err := UnmarshalResourceXML(xmlData)
+	require.NoError(t, err)
+
+	bundle := resource.(*Bundle)
+	require.Len(t, bundle.Entry, 1)
+	require.NotNil(t, bundle.Entry[0].Resource)
+	assert.Equal(t, "Patient", bundle.Entry[0].Resource.GetResourceType())
+}
+
+// TestPatient_UnmarshalXML_ContainedStaysInSync guards decoder synchronization.
+//
+// The wrapper decoder used to consume tokens until the first end element after the
+// resource, so an unexpected sibling inside <contained> closed the loop early and
+// left the decoder one level shallow — every field after it was dropped with no
+// error.
+func TestPatient_UnmarshalXML_ContainedStaysInSync(t *testing.T) {
+	xmlData := []byte(`<?xml version="1.0" encoding="UTF-8"?><Patient xmlns="http://hl7.org/fhir">` +
+		`<contained><Organization><id value="o1"/></Organization><unexpected><nested/></unexpected></contained>` +
+		`<gender value="female"/><birthDate value="1980-01-01"/></Patient>`)
+
+	resource, err := UnmarshalResourceXML(xmlData)
+	require.NoError(t, err)
+
+	patient := resource.(*Patient)
+	require.Len(t, patient.Contained, 1)
+	require.NotNil(t, patient.Gender, "gender was dropped: the decoder lost sync inside <contained>")
+	assert.Equal(t, AdministrativeGenderFemale, *patient.Gender)
+	require.NotNil(t, patient.BirthDate, "birthDate was dropped")
+	assert.Equal(t, "1980-01-01", *patient.BirthDate)
 }

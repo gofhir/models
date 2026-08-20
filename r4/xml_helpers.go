@@ -342,7 +342,20 @@ func xmlEncodeExtensionChildren(e *xml.Encoder, elem *Element) error {
 // xmlEncodeContainedResource encodes a polymorphic contained resource.
 // The output is: <contained><ResourceType>...</ResourceType></contained>
 func xmlEncodeContainedResource(e *xml.Encoder, resource Resource) error {
-	start := xml.StartElement{Name: xml.Name{Local: "contained"}}
+	return xmlEncodeWrappedResource(e, "contained", resource)
+}
+
+// xmlEncodeWrappedResource encodes a resource inside a named wrapper element:
+//
+//	<wrapper><ResourceType>…</ResourceType></wrapper>
+//
+// FHIR XML wraps every resource-valued element this way — contained,
+// Bundle.entry.resource, Bundle.entry.response.outcome and
+// Parameters.parameter.resource. The wrapper used to be omitted for everything
+// except contained, which produced non-conformant XML and, worse, meant a
+// conformant document from any real server parsed to a nil resource with no error.
+func xmlEncodeWrappedResource(e *xml.Encoder, wrapper string, resource Resource) error {
+	start := xml.StartElement{Name: xml.Name{Local: wrapper}}
 	if err := e.EncodeToken(start); err != nil {
 		return err
 	}
@@ -577,6 +590,21 @@ func xmlDecodePrimitiveCode[T ~string](d *xml.Decoder, start xml.StartElement) (
 // xmlDecodeContainedResource decodes a <contained> element containing a polymorphic resource.
 // The pattern is: <contained><ResourceType>...</ResourceType></contained>
 func xmlDecodeContainedResource(d *xml.Decoder, start xml.StartElement) (Resource, error) {
+	return xmlDecodeWrappedResource(d, start)
+}
+
+// xmlDecodeWrappedResource decodes a wrapper element holding one polymorphic
+// resource: <wrapper><ResourceType>…</ResourceType></wrapper>.
+//
+// Anything else inside the wrapper is skipped whole, which matters more than it
+// sounds: the previous implementation consumed tokens until the *first* end
+// element after the resource, so a stray sibling inside the wrapper closed the
+// loop early and left the decoder one level shallow. Every field after it was
+// then silently dropped — `<junk><a/></junk>` inside <contained> was enough to
+// make gender, birthDate and everything following disappear with err == nil.
+func xmlDecodeWrappedResource(d *xml.Decoder, start xml.StartElement) (Resource, error) {
+	var found Resource
+
 	for {
 		tok, err := d.Token()
 		if err != nil {
@@ -584,22 +612,24 @@ func xmlDecodeContainedResource(d *xml.Decoder, start xml.StartElement) (Resourc
 		}
 		switch t := tok.(type) {
 		case xml.StartElement:
-			res, err := xmlDecodeInlineResource(d, t)
-			if err != nil {
-				return nil, err
-			}
-			// Consume remaining tokens until </contained>
-			for {
-				tok2, err := d.Token()
+			if found == nil && IsKnownResourceType(t.Name.Local) {
+				res, err := xmlDecodeInlineResource(d, t)
 				if err != nil {
 					return nil, err
 				}
-				if _, ok := tok2.(xml.EndElement); ok {
-					return res, nil
-				}
+				found = res
+				continue
 			}
+			// Not the resource: skip the whole element rather than falling out of
+			// the loop at its close.
+			if err := d.Skip(); err != nil {
+				return nil, err
+			}
+
 		case xml.EndElement:
-			return nil, nil
+			// The wrapper's own close, since every child element above is either
+			// consumed by its decoder or skipped entirely.
+			return found, nil
 		}
 	}
 }
