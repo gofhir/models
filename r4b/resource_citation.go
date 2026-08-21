@@ -3749,7 +3749,10 @@ type CitationBuilder struct {
 // NewCitationBuilder creates a new CitationBuilder.
 func NewCitationBuilder() *CitationBuilder {
 	return &CitationBuilder{
-		citation: &Citation{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		citation: &Citation{ResourceType: "Citation"},
 	}
 }
 
@@ -3989,7 +3992,7 @@ type CitationOption func(*Citation)
 
 // NewCitation creates a new Citation with the given options.
 func NewCitation(opts ...CitationOption) *Citation {
-	r := &Citation{}
+	r := &Citation{ResourceType: "Citation"}
 	for _, opt := range opts {
 		opt(r)
 	}

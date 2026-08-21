@@ -645,7 +645,10 @@ type InventoryReportBuilder struct {
 // NewInventoryReportBuilder creates a new InventoryReportBuilder.
 func NewInventoryReportBuilder() *InventoryReportBuilder {
 	return &InventoryReportBuilder{
-		inventoryReport: &InventoryReport{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		inventoryReport: &InventoryReport{ResourceType: "InventoryReport"},
 	}
 }
 
@@ -771,7 +774,7 @@ type InventoryReportOption func(*InventoryReport)
 
 // NewInventoryReport creates a new InventoryReport with the given options.
 func NewInventoryReport(opts ...InventoryReportOption) *InventoryReport {
-	r := &InventoryReport{}
+	r := &InventoryReport{ResourceType: "InventoryReport"}
 	for _, opt := range opts {
 		opt(r)
 	}

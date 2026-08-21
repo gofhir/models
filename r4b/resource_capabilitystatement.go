@@ -2287,7 +2287,10 @@ type CapabilityStatementBuilder struct {
 // NewCapabilityStatementBuilder creates a new CapabilityStatementBuilder.
 func NewCapabilityStatementBuilder() *CapabilityStatementBuilder {
 	return &CapabilityStatementBuilder{
-		capabilityStatement: &CapabilityStatement{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		capabilityStatement: &CapabilityStatement{ResourceType: "CapabilityStatement"},
 	}
 }
 
@@ -2509,7 +2512,7 @@ type CapabilityStatementOption func(*CapabilityStatement)
 
 // NewCapabilityStatement creates a new CapabilityStatement with the given options.
 func NewCapabilityStatement(opts ...CapabilityStatementOption) *CapabilityStatement {
-	r := &CapabilityStatement{}
+	r := &CapabilityStatement{ResourceType: "CapabilityStatement"}
 	for _, opt := range opts {
 		opt(r)
 	}

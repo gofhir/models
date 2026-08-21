@@ -745,7 +745,10 @@ type LibraryBuilder struct {
 // NewLibraryBuilder creates a new LibraryBuilder.
 func NewLibraryBuilder() *LibraryBuilder {
 	return &LibraryBuilder{
-		library: &Library{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		library: &Library{ResourceType: "Library"},
 	}
 }
 
@@ -1027,7 +1030,7 @@ type LibraryOption func(*Library)
 
 // NewLibrary creates a new Library with the given options.
 func NewLibrary(opts ...LibraryOption) *Library {
-	r := &Library{}
+	r := &Library{ResourceType: "Library"}
 	for _, opt := range opts {
 		opt(r)
 	}

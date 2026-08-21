@@ -702,7 +702,10 @@ type GoalBuilder struct {
 // NewGoalBuilder creates a new GoalBuilder.
 func NewGoalBuilder() *GoalBuilder {
 	return &GoalBuilder{
-		goal: &Goal{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		goal: &Goal{ResourceType: "Goal"},
 	}
 }
 
@@ -876,7 +879,7 @@ type GoalOption func(*Goal)
 
 // NewGoal creates a new Goal with the given options.
 func NewGoal(opts ...GoalOption) *Goal {
-	r := &Goal{}
+	r := &Goal{ResourceType: "Goal"}
 	for _, opt := range opts {
 		opt(r)
 	}

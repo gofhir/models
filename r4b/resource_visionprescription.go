@@ -710,7 +710,10 @@ type VisionPrescriptionBuilder struct {
 // NewVisionPrescriptionBuilder creates a new VisionPrescriptionBuilder.
 func NewVisionPrescriptionBuilder() *VisionPrescriptionBuilder {
 	return &VisionPrescriptionBuilder{
-		visionPrescription: &VisionPrescription{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		visionPrescription: &VisionPrescription{ResourceType: "VisionPrescription"},
 	}
 }
 
@@ -824,7 +827,7 @@ type VisionPrescriptionOption func(*VisionPrescription)
 
 // NewVisionPrescription creates a new VisionPrescription with the given options.
 func NewVisionPrescription(opts ...VisionPrescriptionOption) *VisionPrescription {
-	r := &VisionPrescription{}
+	r := &VisionPrescription{ResourceType: "VisionPrescription"}
 	for _, opt := range opts {
 		opt(r)
 	}

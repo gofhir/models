@@ -748,7 +748,10 @@ type ResearchDefinitionBuilder struct {
 // NewResearchDefinitionBuilder creates a new ResearchDefinitionBuilder.
 func NewResearchDefinitionBuilder() *ResearchDefinitionBuilder {
 	return &ResearchDefinitionBuilder{
-		researchDefinition: &ResearchDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		researchDefinition: &ResearchDefinition{ResourceType: "ResearchDefinition"},
 	}
 }
 
@@ -1024,7 +1027,7 @@ type ResearchDefinitionOption func(*ResearchDefinition)
 
 // NewResearchDefinition creates a new ResearchDefinition with the given options.
 func NewResearchDefinition(opts ...ResearchDefinitionOption) *ResearchDefinition {
-	r := &ResearchDefinition{}
+	r := &ResearchDefinition{ResourceType: "ResearchDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

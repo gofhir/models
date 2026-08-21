@@ -397,7 +397,10 @@ type ScheduleBuilder struct {
 // NewScheduleBuilder creates a new ScheduleBuilder.
 func NewScheduleBuilder() *ScheduleBuilder {
 	return &ScheduleBuilder{
-		schedule: &Schedule{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		schedule: &Schedule{ResourceType: "Schedule"},
 	}
 }
 
@@ -517,7 +520,7 @@ type ScheduleOption func(*Schedule)
 
 // NewSchedule creates a new Schedule with the given options.
 func NewSchedule(opts ...ScheduleOption) *Schedule {
-	r := &Schedule{}
+	r := &Schedule{ResourceType: "Schedule"}
 	for _, opt := range opts {
 		opt(r)
 	}

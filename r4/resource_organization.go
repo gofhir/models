@@ -540,7 +540,10 @@ type OrganizationBuilder struct {
 // NewOrganizationBuilder creates a new OrganizationBuilder.
 func NewOrganizationBuilder() *OrganizationBuilder {
 	return &OrganizationBuilder{
-		organization: &Organization{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		organization: &Organization{ResourceType: "Organization"},
 	}
 }
 
@@ -666,7 +669,7 @@ type OrganizationOption func(*Organization)
 
 // NewOrganization creates a new Organization with the given options.
 func NewOrganization(opts ...OrganizationOption) *Organization {
-	r := &Organization{}
+	r := &Organization{ResourceType: "Organization"}
 	for _, opt := range opts {
 		opt(r)
 	}

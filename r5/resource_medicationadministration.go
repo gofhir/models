@@ -837,7 +837,10 @@ type MedicationAdministrationBuilder struct {
 // NewMedicationAdministrationBuilder creates a new MedicationAdministrationBuilder.
 func NewMedicationAdministrationBuilder() *MedicationAdministrationBuilder {
 	return &MedicationAdministrationBuilder{
-		medicationAdministration: &MedicationAdministration{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		medicationAdministration: &MedicationAdministration{ResourceType: "MedicationAdministration"},
 	}
 }
 
@@ -1047,7 +1050,7 @@ type MedicationAdministrationOption func(*MedicationAdministration)
 
 // NewMedicationAdministration creates a new MedicationAdministration with the given options.
 func NewMedicationAdministration(opts ...MedicationAdministrationOption) *MedicationAdministration {
-	r := &MedicationAdministration{}
+	r := &MedicationAdministration{ResourceType: "MedicationAdministration"}
 	for _, opt := range opts {
 		opt(r)
 	}

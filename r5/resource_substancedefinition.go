@@ -2288,7 +2288,10 @@ type SubstanceDefinitionBuilder struct {
 // NewSubstanceDefinitionBuilder creates a new SubstanceDefinitionBuilder.
 func NewSubstanceDefinitionBuilder() *SubstanceDefinitionBuilder {
 	return &SubstanceDefinitionBuilder{
-		substanceDefinition: &SubstanceDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		substanceDefinition: &SubstanceDefinition{ResourceType: "SubstanceDefinition"},
 	}
 }
 
@@ -2498,7 +2501,7 @@ type SubstanceDefinitionOption func(*SubstanceDefinition)
 
 // NewSubstanceDefinition creates a new SubstanceDefinition with the given options.
 func NewSubstanceDefinition(opts ...SubstanceDefinitionOption) *SubstanceDefinition {
-	r := &SubstanceDefinition{}
+	r := &SubstanceDefinition{ResourceType: "SubstanceDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

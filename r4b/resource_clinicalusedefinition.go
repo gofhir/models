@@ -1301,7 +1301,10 @@ type ClinicalUseDefinitionBuilder struct {
 // NewClinicalUseDefinitionBuilder creates a new ClinicalUseDefinitionBuilder.
 func NewClinicalUseDefinitionBuilder() *ClinicalUseDefinitionBuilder {
 	return &ClinicalUseDefinitionBuilder{
-		clinicalUseDefinition: &ClinicalUseDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		clinicalUseDefinition: &ClinicalUseDefinition{ResourceType: "ClinicalUseDefinition"},
 	}
 }
 
@@ -1433,7 +1436,7 @@ type ClinicalUseDefinitionOption func(*ClinicalUseDefinition)
 
 // NewClinicalUseDefinition creates a new ClinicalUseDefinition with the given options.
 func NewClinicalUseDefinition(opts ...ClinicalUseDefinitionOption) *ClinicalUseDefinition {
-	r := &ClinicalUseDefinition{}
+	r := &ClinicalUseDefinition{ResourceType: "ClinicalUseDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

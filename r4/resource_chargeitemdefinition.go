@@ -931,7 +931,10 @@ type ChargeItemDefinitionBuilder struct {
 // NewChargeItemDefinitionBuilder creates a new ChargeItemDefinitionBuilder.
 func NewChargeItemDefinitionBuilder() *ChargeItemDefinitionBuilder {
 	return &ChargeItemDefinitionBuilder{
-		chargeItemDefinition: &ChargeItemDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		chargeItemDefinition: &ChargeItemDefinition{ResourceType: "ChargeItemDefinition"},
 	}
 }
 
@@ -1135,7 +1138,7 @@ type ChargeItemDefinitionOption func(*ChargeItemDefinition)
 
 // NewChargeItemDefinition creates a new ChargeItemDefinition with the given options.
 func NewChargeItemDefinition(opts ...ChargeItemDefinitionOption) *ChargeItemDefinition {
-	r := &ChargeItemDefinition{}
+	r := &ChargeItemDefinition{ResourceType: "ChargeItemDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

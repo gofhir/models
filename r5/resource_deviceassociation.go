@@ -498,7 +498,10 @@ type DeviceAssociationBuilder struct {
 // NewDeviceAssociationBuilder creates a new DeviceAssociationBuilder.
 func NewDeviceAssociationBuilder() *DeviceAssociationBuilder {
 	return &DeviceAssociationBuilder{
-		deviceAssociation: &DeviceAssociation{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		deviceAssociation: &DeviceAssociation{ResourceType: "DeviceAssociation"},
 	}
 }
 
@@ -618,7 +621,7 @@ type DeviceAssociationOption func(*DeviceAssociation)
 
 // NewDeviceAssociation creates a new DeviceAssociation with the given options.
 func NewDeviceAssociation(opts ...DeviceAssociationOption) *DeviceAssociation {
-	r := &DeviceAssociation{}
+	r := &DeviceAssociation{ResourceType: "DeviceAssociation"}
 	for _, opt := range opts {
 		opt(r)
 	}

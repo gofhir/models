@@ -862,7 +862,10 @@ type ManufacturedItemDefinitionBuilder struct {
 // NewManufacturedItemDefinitionBuilder creates a new ManufacturedItemDefinitionBuilder.
 func NewManufacturedItemDefinitionBuilder() *ManufacturedItemDefinitionBuilder {
 	return &ManufacturedItemDefinitionBuilder{
-		manufacturedItemDefinition: &ManufacturedItemDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		manufacturedItemDefinition: &ManufacturedItemDefinition{ResourceType: "ManufacturedItemDefinition"},
 	}
 }
 
@@ -988,7 +991,7 @@ type ManufacturedItemDefinitionOption func(*ManufacturedItemDefinition)
 
 // NewManufacturedItemDefinition creates a new ManufacturedItemDefinition with the given options.
 func NewManufacturedItemDefinition(opts ...ManufacturedItemDefinitionOption) *ManufacturedItemDefinition {
-	r := &ManufacturedItemDefinition{}
+	r := &ManufacturedItemDefinition{ResourceType: "ManufacturedItemDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

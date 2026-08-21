@@ -414,7 +414,10 @@ type LinkageBuilder struct {
 // NewLinkageBuilder creates a new LinkageBuilder.
 func NewLinkageBuilder() *LinkageBuilder {
 	return &LinkageBuilder{
-		linkage: &Linkage{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		linkage: &Linkage{ResourceType: "Linkage"},
 	}
 }
 
@@ -498,7 +501,7 @@ type LinkageOption func(*Linkage)
 
 // NewLinkage creates a new Linkage with the given options.
 func NewLinkage(opts ...LinkageOption) *Linkage {
-	r := &Linkage{}
+	r := &Linkage{ResourceType: "Linkage"}
 	for _, opt := range opts {
 		opt(r)
 	}

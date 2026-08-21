@@ -754,7 +754,10 @@ type SubstanceNucleicAcidBuilder struct {
 // NewSubstanceNucleicAcidBuilder creates a new SubstanceNucleicAcidBuilder.
 func NewSubstanceNucleicAcidBuilder() *SubstanceNucleicAcidBuilder {
 	return &SubstanceNucleicAcidBuilder{
-		substanceNucleicAcid: &SubstanceNucleicAcid{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		substanceNucleicAcid: &SubstanceNucleicAcid{ResourceType: "SubstanceNucleicAcid"},
 	}
 }
 
@@ -850,7 +853,7 @@ type SubstanceNucleicAcidOption func(*SubstanceNucleicAcid)
 
 // NewSubstanceNucleicAcid creates a new SubstanceNucleicAcid with the given options.
 func NewSubstanceNucleicAcid(opts ...SubstanceNucleicAcidOption) *SubstanceNucleicAcid {
-	r := &SubstanceNucleicAcid{}
+	r := &SubstanceNucleicAcid{ResourceType: "SubstanceNucleicAcid"}
 	for _, opt := range opts {
 		opt(r)
 	}

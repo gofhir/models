@@ -1520,7 +1520,10 @@ type InsurancePlanBuilder struct {
 // NewInsurancePlanBuilder creates a new InsurancePlanBuilder.
 func NewInsurancePlanBuilder() *InsurancePlanBuilder {
 	return &InsurancePlanBuilder{
-		insurancePlan: &InsurancePlan{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		insurancePlan: &InsurancePlan{ResourceType: "InsurancePlan"},
 	}
 }
 
@@ -1670,7 +1673,7 @@ type InsurancePlanOption func(*InsurancePlan)
 
 // NewInsurancePlan creates a new InsurancePlan with the given options.
 func NewInsurancePlan(opts ...InsurancePlanOption) *InsurancePlan {
-	r := &InsurancePlan{}
+	r := &InsurancePlan{ResourceType: "InsurancePlan"}
 	for _, opt := range opts {
 		opt(r)
 	}

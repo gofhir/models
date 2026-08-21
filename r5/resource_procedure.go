@@ -948,7 +948,10 @@ type ProcedureBuilder struct {
 // NewProcedureBuilder creates a new ProcedureBuilder.
 func NewProcedureBuilder() *ProcedureBuilder {
 	return &ProcedureBuilder{
-		procedure: &Procedure{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		procedure: &Procedure{ResourceType: "Procedure"},
 	}
 }
 
@@ -1236,7 +1239,7 @@ type ProcedureOption func(*Procedure)
 
 // NewProcedure creates a new Procedure with the given options.
 func NewProcedure(opts ...ProcedureOption) *Procedure {
-	r := &Procedure{}
+	r := &Procedure{ResourceType: "Procedure"}
 	for _, opt := range opts {
 		opt(r)
 	}

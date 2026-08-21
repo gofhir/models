@@ -1308,7 +1308,10 @@ type RiskEvidenceSynthesisBuilder struct {
 // NewRiskEvidenceSynthesisBuilder creates a new RiskEvidenceSynthesisBuilder.
 func NewRiskEvidenceSynthesisBuilder() *RiskEvidenceSynthesisBuilder {
 	return &RiskEvidenceSynthesisBuilder{
-		riskEvidenceSynthesis: &RiskEvidenceSynthesis{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		riskEvidenceSynthesis: &RiskEvidenceSynthesis{ResourceType: "RiskEvidenceSynthesis"},
 	}
 }
 
@@ -1560,7 +1563,7 @@ type RiskEvidenceSynthesisOption func(*RiskEvidenceSynthesis)
 
 // NewRiskEvidenceSynthesis creates a new RiskEvidenceSynthesis with the given options.
 func NewRiskEvidenceSynthesis(opts ...RiskEvidenceSynthesisOption) *RiskEvidenceSynthesis {
-	r := &RiskEvidenceSynthesis{}
+	r := &RiskEvidenceSynthesis{ResourceType: "RiskEvidenceSynthesis"}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -697,7 +697,10 @@ type GroupBuilder struct {
 // NewGroupBuilder creates a new GroupBuilder.
 func NewGroupBuilder() *GroupBuilder {
 	return &GroupBuilder{
-		group: &Group{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		group: &Group{ResourceType: "Group"},
 	}
 }
 
@@ -823,7 +826,7 @@ type GroupOption func(*Group)
 
 // NewGroup creates a new Group with the given options.
 func NewGroup(opts ...GroupOption) *Group {
-	r := &Group{}
+	r := &Group{ResourceType: "Group"}
 	for _, opt := range opts {
 		opt(r)
 	}

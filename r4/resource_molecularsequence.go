@@ -1713,7 +1713,10 @@ type MolecularSequenceBuilder struct {
 // NewMolecularSequenceBuilder creates a new MolecularSequenceBuilder.
 func NewMolecularSequenceBuilder() *MolecularSequenceBuilder {
 	return &MolecularSequenceBuilder{
-		molecularSequence: &MolecularSequence{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		molecularSequence: &MolecularSequence{ResourceType: "MolecularSequence"},
 	}
 }
 
@@ -1875,7 +1878,7 @@ type MolecularSequenceOption func(*MolecularSequence)
 
 // NewMolecularSequence creates a new MolecularSequence with the given options.
 func NewMolecularSequence(opts ...MolecularSequenceOption) *MolecularSequence {
-	r := &MolecularSequence{}
+	r := &MolecularSequence{ResourceType: "MolecularSequence"}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -614,7 +614,10 @@ type {{$r.Name}}Builder struct {
 // New{{$r.Name}}Builder creates a new {{$r.Name}}Builder.
 func New{{$r.Name}}Builder() *{{$r.Name}}Builder {
 	return &{{$r.Name}}Builder{
-		{{$r.LowerName}}: &{{$r.Name}}{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		{{$r.LowerName}}: &{{$r.Name}}{ResourceType: "{{$r.FHIRName}}"},
 	}
 }
 
@@ -659,7 +662,7 @@ type {{$r.Name}}Option func(*{{$r.Name}})
 
 // New{{$r.Name}} creates a new {{$r.Name}} with the given options.
 func New{{$r.Name}}(opts ...{{$r.Name}}Option) *{{$r.Name}} {
-	r := &{{$r.Name}}{}
+	r := &{{$r.Name}}{ResourceType: "{{$r.FHIRName}}"}
 	for _, opt := range opts {
 		opt(r)
 	}

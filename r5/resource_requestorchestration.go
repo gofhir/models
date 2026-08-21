@@ -1727,7 +1727,10 @@ type RequestOrchestrationBuilder struct {
 // NewRequestOrchestrationBuilder creates a new RequestOrchestrationBuilder.
 func NewRequestOrchestrationBuilder() *RequestOrchestrationBuilder {
 	return &RequestOrchestrationBuilder{
-		requestOrchestration: &RequestOrchestration{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		requestOrchestration: &RequestOrchestration{ResourceType: "RequestOrchestration"},
 	}
 }
 
@@ -1901,7 +1904,7 @@ type RequestOrchestrationOption func(*RequestOrchestration)
 
 // NewRequestOrchestration creates a new RequestOrchestration with the given options.
 func NewRequestOrchestration(opts ...RequestOrchestrationOption) *RequestOrchestration {
-	r := &RequestOrchestration{}
+	r := &RequestOrchestration{ResourceType: "RequestOrchestration"}
 	for _, opt := range opts {
 		opt(r)
 	}

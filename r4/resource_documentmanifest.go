@@ -540,7 +540,10 @@ type DocumentManifestBuilder struct {
 // NewDocumentManifestBuilder creates a new DocumentManifestBuilder.
 func NewDocumentManifestBuilder() *DocumentManifestBuilder {
 	return &DocumentManifestBuilder{
-		documentManifest: &DocumentManifest{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		documentManifest: &DocumentManifest{ResourceType: "DocumentManifest"},
 	}
 }
 
@@ -678,7 +681,7 @@ type DocumentManifestOption func(*DocumentManifest)
 
 // NewDocumentManifest creates a new DocumentManifest with the given options.
 func NewDocumentManifest(opts ...DocumentManifestOption) *DocumentManifest {
-	r := &DocumentManifest{}
+	r := &DocumentManifest{ResourceType: "DocumentManifest"}
 	for _, opt := range opts {
 		opt(r)
 	}

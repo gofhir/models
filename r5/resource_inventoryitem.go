@@ -1259,7 +1259,10 @@ type InventoryItemBuilder struct {
 // NewInventoryItemBuilder creates a new InventoryItemBuilder.
 func NewInventoryItemBuilder() *InventoryItemBuilder {
 	return &InventoryItemBuilder{
-		inventoryItem: &InventoryItem{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		inventoryItem: &InventoryItem{ResourceType: "InventoryItem"},
 	}
 }
 
@@ -1409,7 +1412,7 @@ type InventoryItemOption func(*InventoryItem)
 
 // NewInventoryItem creates a new InventoryItem with the given options.
 func NewInventoryItem(opts ...InventoryItemOption) *InventoryItem {
-	r := &InventoryItem{}
+	r := &InventoryItem{ResourceType: "InventoryItem"}
 	for _, opt := range opts {
 		opt(r)
 	}

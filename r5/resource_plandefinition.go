@@ -2619,7 +2619,10 @@ type PlanDefinitionBuilder struct {
 // NewPlanDefinitionBuilder creates a new PlanDefinitionBuilder.
 func NewPlanDefinitionBuilder() *PlanDefinitionBuilder {
 	return &PlanDefinitionBuilder{
-		planDefinition: &PlanDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		planDefinition: &PlanDefinition{ResourceType: "PlanDefinition"},
 	}
 }
 
@@ -2937,7 +2940,7 @@ type PlanDefinitionOption func(*PlanDefinition)
 
 // NewPlanDefinition creates a new PlanDefinition with the given options.
 func NewPlanDefinition(opts ...PlanDefinitionOption) *PlanDefinition {
-	r := &PlanDefinition{}
+	r := &PlanDefinition{ResourceType: "PlanDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -953,7 +953,10 @@ type BundleBuilder struct {
 // NewBundleBuilder creates a new BundleBuilder.
 func NewBundleBuilder() *BundleBuilder {
 	return &BundleBuilder{
-		bundle: &Bundle{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		bundle: &Bundle{ResourceType: "Bundle"},
 	}
 }
 
@@ -1043,7 +1046,7 @@ type BundleOption func(*Bundle)
 
 // NewBundle creates a new Bundle with the given options.
 func NewBundle(opts ...BundleOption) *Bundle {
-	r := &Bundle{}
+	r := &Bundle{ResourceType: "Bundle"}
 	for _, opt := range opts {
 		opt(r)
 	}

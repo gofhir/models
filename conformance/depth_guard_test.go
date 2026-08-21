@@ -135,7 +135,11 @@ func escapedKeyContained(depth int) []byte {
 	if depth < 1 {
 		panic("depth must be at least 1")
 	}
-	const escaped = `"resourceType"`
+	// The JSON must literally contain a backslash-u escape, so the bytes differ
+	// from "resourceType" while encoding/json decodes them to the same member
+	// name. Written as a quoted string with a doubled backslash, because a raw
+	// string would emit whatever this file's source already spells out.
+	const escaped = "\"\\u0072esourceType\""
 	var b strings.Builder
 	for i := 0; i < depth-1; i++ {
 		b.WriteString(`{` + escaped + `:"Patient","contained":[`)
@@ -163,7 +167,11 @@ func TestDepthGuardResistsEvasion(t *testing.T) {
 			if d < 1 {
 				panic("depth must be at least 1")
 			}
-			const escaped = `"resourceType"`
+			// The JSON must literally contain a backslash-u escape, so the bytes differ
+			// from "resourceType" while encoding/json decodes them to the same member
+			// name. Written as a quoted string with a doubled backslash, because a raw
+			// string would emit whatever this file's source already spells out.
+			const escaped = "\"\\u0072esourceType\""
 			var b strings.Builder
 			for i := 0; i < d-1; i++ {
 				b.WriteString(`{"contained":[`)
@@ -319,4 +327,63 @@ func BenchmarkDepthGuardOverhead(b *testing.B) {
 			}
 		}
 	})
+}
+
+// nestedContainedXML builds XML nesting resources inside contained to exactly
+// depth resources.
+func nestedContainedXML(depth int) []byte {
+	if depth < 1 {
+		panic("depth must be at least 1")
+	}
+	var b strings.Builder
+	b.WriteString(`<Patient xmlns="http://hl7.org/fhir">`)
+	for i := 0; i < depth-1; i++ {
+		b.WriteString(`<contained><Patient>`)
+	}
+	b.WriteString(`<id value="leaf"/>`)
+	for i := 0; i < depth-1; i++ {
+		b.WriteString(`</Patient></contained>`)
+	}
+	b.WriteString(`</Patient>`)
+	return []byte(b.String())
+}
+
+// TestDepthGuardXML covers the XML decode path, where the same nesting causes a
+// different failure: the decoders recurse mutually at roughly 1.4 KB of stack per
+// level, and a large enough body produces `fatal error: stack overflow`.
+//
+// That is strictly worse than the JSON case, because it is a fatal error rather
+// than a panic — recover() does not catch it and the process dies with every
+// in-flight request. An 8.4 MB body was enough.
+func TestDepthGuardXML(t *testing.T) {
+	for _, c := range codecs() {
+		t.Run(c.name, func(t *testing.T) {
+			limit := c.getMaxDepth()
+
+			// Deep enough to be hostile, but well short of the ~200k levels that
+			// used to kill the process — this test must not be the thing that
+			// crashes the suite if the guard regresses, so it stays modest and
+			// relies on the error rather than on surviving the crash.
+			payload := nestedContainedXML(limit + 500)
+
+			start := time.Now()
+			_, err := c.unmarshalXML(payload)
+			elapsed := time.Since(start)
+
+			if err == nil {
+				t.Fatalf("accepted %d levels of XML resource nesting (limit %d)", limit+500, limit)
+			}
+			if !errors.Is(err, c.errMaxDepth) {
+				t.Errorf("rejected, but not via ErrMaxResourceDepth: %v", err)
+			}
+			if elapsed > 200*time.Millisecond {
+				t.Errorf("took %v to reject %d bytes", elapsed, len(payload))
+			}
+
+			// A contained resource is depth 2 and entirely ordinary.
+			if _, err := c.unmarshalXML(nestedContainedXML(2)); err != nil {
+				t.Errorf("rejected a single contained resource: %v", err)
+			}
+		})
+	}
 }

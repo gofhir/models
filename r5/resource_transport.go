@@ -2384,7 +2384,10 @@ type TransportBuilder struct {
 // NewTransportBuilder creates a new TransportBuilder.
 func NewTransportBuilder() *TransportBuilder {
 	return &TransportBuilder{
-		transport: &Transport{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		transport: &Transport{ResourceType: "Transport"},
 	}
 }
 
@@ -2642,7 +2645,7 @@ type TransportOption func(*Transport)
 
 // NewTransport creates a new Transport with the given options.
 func NewTransport(opts ...TransportOption) *Transport {
-	r := &Transport{}
+	r := &Transport{ResourceType: "Transport"}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -1269,7 +1269,10 @@ type SubscriptionTopicBuilder struct {
 // NewSubscriptionTopicBuilder creates a new SubscriptionTopicBuilder.
 func NewSubscriptionTopicBuilder() *SubscriptionTopicBuilder {
 	return &SubscriptionTopicBuilder{
-		subscriptionTopic: &SubscriptionTopic{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		subscriptionTopic: &SubscriptionTopic{ResourceType: "SubscriptionTopic"},
 	}
 }
 
@@ -1497,7 +1500,7 @@ type SubscriptionTopicOption func(*SubscriptionTopic)
 
 // NewSubscriptionTopic creates a new SubscriptionTopic with the given options.
 func NewSubscriptionTopic(opts ...SubscriptionTopicOption) *SubscriptionTopic {
-	r := &SubscriptionTopic{}
+	r := &SubscriptionTopic{ResourceType: "SubscriptionTopic"}
 	for _, opt := range opts {
 		opt(r)
 	}

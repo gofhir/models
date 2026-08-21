@@ -616,7 +616,10 @@ type RegulatedAuthorizationBuilder struct {
 // NewRegulatedAuthorizationBuilder creates a new RegulatedAuthorizationBuilder.
 func NewRegulatedAuthorizationBuilder() *RegulatedAuthorizationBuilder {
 	return &RegulatedAuthorizationBuilder{
-		regulatedAuthorization: &RegulatedAuthorization{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		regulatedAuthorization: &RegulatedAuthorization{ResourceType: "RegulatedAuthorization"},
 	}
 }
 
@@ -766,7 +769,7 @@ type RegulatedAuthorizationOption func(*RegulatedAuthorization)
 
 // NewRegulatedAuthorization creates a new RegulatedAuthorization with the given options.
 func NewRegulatedAuthorization(opts ...RegulatedAuthorizationOption) *RegulatedAuthorization {
-	r := &RegulatedAuthorization{}
+	r := &RegulatedAuthorization{ResourceType: "RegulatedAuthorization"}
 	for _, opt := range opts {
 		opt(r)
 	}

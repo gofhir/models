@@ -852,7 +852,10 @@ type MedicationDispenseBuilder struct {
 // NewMedicationDispenseBuilder creates a new MedicationDispenseBuilder.
 func NewMedicationDispenseBuilder() *MedicationDispenseBuilder {
 	return &MedicationDispenseBuilder{
-		medicationDispense: &MedicationDispense{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		medicationDispense: &MedicationDispense{ResourceType: "MedicationDispense"},
 	}
 }
 
@@ -1080,7 +1083,7 @@ type MedicationDispenseOption func(*MedicationDispense)
 
 // NewMedicationDispense creates a new MedicationDispense with the given options.
 func NewMedicationDispense(opts ...MedicationDispenseOption) *MedicationDispense {
-	r := &MedicationDispense{}
+	r := &MedicationDispense{ResourceType: "MedicationDispense"}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -653,7 +653,10 @@ type SupplyRequestBuilder struct {
 // NewSupplyRequestBuilder creates a new SupplyRequestBuilder.
 func NewSupplyRequestBuilder() *SupplyRequestBuilder {
 	return &SupplyRequestBuilder{
-		supplyRequest: &SupplyRequest{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		supplyRequest: &SupplyRequest{ResourceType: "SupplyRequest"},
 	}
 }
 
@@ -833,7 +836,7 @@ type SupplyRequestOption func(*SupplyRequest)
 
 // NewSupplyRequest creates a new SupplyRequest with the given options.
 func NewSupplyRequest(opts ...SupplyRequestOption) *SupplyRequest {
-	r := &SupplyRequest{}
+	r := &SupplyRequest{ResourceType: "SupplyRequest"}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -703,7 +703,10 @@ type DetectedIssueBuilder struct {
 // NewDetectedIssueBuilder creates a new DetectedIssueBuilder.
 func NewDetectedIssueBuilder() *DetectedIssueBuilder {
 	return &DetectedIssueBuilder{
-		detectedIssue: &DetectedIssue{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		detectedIssue: &DetectedIssue{ResourceType: "DetectedIssue"},
 	}
 }
 
@@ -865,7 +868,7 @@ type DetectedIssueOption func(*DetectedIssue)
 
 // NewDetectedIssue creates a new DetectedIssue with the given options.
 func NewDetectedIssue(opts ...DetectedIssueOption) *DetectedIssue {
-	r := &DetectedIssue{}
+	r := &DetectedIssue{ResourceType: "DetectedIssue"}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -3317,7 +3317,10 @@ type ContractBuilder struct {
 // NewContractBuilder creates a new ContractBuilder.
 func NewContractBuilder() *ContractBuilder {
 	return &ContractBuilder{
-		contract: &Contract{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		contract: &Contract{ResourceType: "Contract"},
 	}
 }
 
@@ -3593,7 +3596,7 @@ type ContractOption func(*Contract)
 
 // NewContract creates a new Contract with the given options.
 func NewContract(opts ...ContractOption) *Contract {
-	r := &Contract{}
+	r := &Contract{ResourceType: "Contract"}
 	for _, opt := range opts {
 		opt(r)
 	}

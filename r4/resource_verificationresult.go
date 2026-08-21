@@ -916,7 +916,10 @@ type VerificationResultBuilder struct {
 // NewVerificationResultBuilder creates a new VerificationResultBuilder.
 func NewVerificationResultBuilder() *VerificationResultBuilder {
 	return &VerificationResultBuilder{
-		verificationResult: &VerificationResult{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		verificationResult: &VerificationResult{ResourceType: "VerificationResult"},
 	}
 }
 
@@ -1066,7 +1069,7 @@ type VerificationResultOption func(*VerificationResult)
 
 // NewVerificationResult creates a new VerificationResult with the given options.
 func NewVerificationResult(opts ...VerificationResultOption) *VerificationResult {
-	r := &VerificationResult{}
+	r := &VerificationResult{ResourceType: "VerificationResult"}
 	for _, opt := range opts {
 		opt(r)
 	}

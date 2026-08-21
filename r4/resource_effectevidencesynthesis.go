@@ -1438,7 +1438,10 @@ type EffectEvidenceSynthesisBuilder struct {
 // NewEffectEvidenceSynthesisBuilder creates a new EffectEvidenceSynthesisBuilder.
 func NewEffectEvidenceSynthesisBuilder() *EffectEvidenceSynthesisBuilder {
 	return &EffectEvidenceSynthesisBuilder{
-		effectEvidenceSynthesis: &EffectEvidenceSynthesis{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		effectEvidenceSynthesis: &EffectEvidenceSynthesis{ResourceType: "EffectEvidenceSynthesis"},
 	}
 }
 
@@ -1702,7 +1705,7 @@ type EffectEvidenceSynthesisOption func(*EffectEvidenceSynthesis)
 
 // NewEffectEvidenceSynthesis creates a new EffectEvidenceSynthesis with the given options.
 func NewEffectEvidenceSynthesis(opts ...EffectEvidenceSynthesisOption) *EffectEvidenceSynthesis {
-	r := &EffectEvidenceSynthesis{}
+	r := &EffectEvidenceSynthesis{ResourceType: "EffectEvidenceSynthesis"}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -1209,7 +1209,10 @@ type DeviceDefinitionBuilder struct {
 // NewDeviceDefinitionBuilder creates a new DeviceDefinitionBuilder.
 func NewDeviceDefinitionBuilder() *DeviceDefinitionBuilder {
 	return &DeviceDefinitionBuilder{
-		deviceDefinition: &DeviceDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		deviceDefinition: &DeviceDefinition{ResourceType: "DeviceDefinition"},
 	}
 }
 
@@ -1419,7 +1422,7 @@ type DeviceDefinitionOption func(*DeviceDefinition)
 
 // NewDeviceDefinition creates a new DeviceDefinition with the given options.
 func NewDeviceDefinition(opts ...DeviceDefinitionOption) *DeviceDefinition {
-	r := &DeviceDefinition{}
+	r := &DeviceDefinition{ResourceType: "DeviceDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

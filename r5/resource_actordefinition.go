@@ -596,7 +596,10 @@ type ActorDefinitionBuilder struct {
 // NewActorDefinitionBuilder creates a new ActorDefinitionBuilder.
 func NewActorDefinitionBuilder() *ActorDefinitionBuilder {
 	return &ActorDefinitionBuilder{
-		actorDefinition: &ActorDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		actorDefinition: &ActorDefinition{ResourceType: "ActorDefinition"},
 	}
 }
 
@@ -806,7 +809,7 @@ type ActorDefinitionOption func(*ActorDefinition)
 
 // NewActorDefinition creates a new ActorDefinition with the given options.
 func NewActorDefinition(opts ...ActorDefinitionOption) *ActorDefinition {
-	r := &ActorDefinition{}
+	r := &ActorDefinition{ResourceType: "ActorDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

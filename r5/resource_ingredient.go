@@ -1004,7 +1004,10 @@ type IngredientBuilder struct {
 // NewIngredientBuilder creates a new IngredientBuilder.
 func NewIngredientBuilder() *IngredientBuilder {
 	return &IngredientBuilder{
-		ingredient: &Ingredient{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		ingredient: &Ingredient{ResourceType: "Ingredient"},
 	}
 }
 
@@ -1130,7 +1133,7 @@ type IngredientOption func(*Ingredient)
 
 // NewIngredient creates a new Ingredient with the given options.
 func NewIngredient(opts ...IngredientOption) *Ingredient {
-	r := &Ingredient{}
+	r := &Ingredient{ResourceType: "Ingredient"}
 	for _, opt := range opts {
 		opt(r)
 	}

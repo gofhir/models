@@ -1660,7 +1660,10 @@ type TerminologyCapabilitiesBuilder struct {
 // NewTerminologyCapabilitiesBuilder creates a new TerminologyCapabilitiesBuilder.
 func NewTerminologyCapabilitiesBuilder() *TerminologyCapabilitiesBuilder {
 	return &TerminologyCapabilitiesBuilder{
-		terminologyCapabilities: &TerminologyCapabilities{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		terminologyCapabilities: &TerminologyCapabilities{ResourceType: "TerminologyCapabilities"},
 	}
 }
 
@@ -1870,7 +1873,7 @@ type TerminologyCapabilitiesOption func(*TerminologyCapabilities)
 
 // NewTerminologyCapabilities creates a new TerminologyCapabilities with the given options.
 func NewTerminologyCapabilities(opts ...TerminologyCapabilitiesOption) *TerminologyCapabilities {
-	r := &TerminologyCapabilities{}
+	r := &TerminologyCapabilities{ResourceType: "TerminologyCapabilities"}
 	for _, opt := range opts {
 		opt(r)
 	}

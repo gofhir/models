@@ -370,7 +370,10 @@ type EnrollmentRequestBuilder struct {
 // NewEnrollmentRequestBuilder creates a new EnrollmentRequestBuilder.
 func NewEnrollmentRequestBuilder() *EnrollmentRequestBuilder {
 	return &EnrollmentRequestBuilder{
-		enrollmentRequest: &EnrollmentRequest{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		enrollmentRequest: &EnrollmentRequest{ResourceType: "EnrollmentRequest"},
 	}
 }
 
@@ -478,7 +481,7 @@ type EnrollmentRequestOption func(*EnrollmentRequest)
 
 // NewEnrollmentRequest creates a new EnrollmentRequest with the given options.
 func NewEnrollmentRequest(opts ...EnrollmentRequestOption) *EnrollmentRequest {
-	r := &EnrollmentRequest{}
+	r := &EnrollmentRequest{ResourceType: "EnrollmentRequest"}
 	for _, opt := range opts {
 		opt(r)
 	}

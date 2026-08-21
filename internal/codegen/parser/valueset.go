@@ -4,6 +4,7 @@ package parser
 import (
 	"encoding/json"
 	"fmt"
+	"sort"
 	"strings"
 )
 
@@ -209,4 +210,20 @@ func (r *ValueSetRegistry) Get(url string) *ParsedValueSet {
 // Count returns the number of loaded value sets.
 func (r *ValueSetRegistry) Count() int {
 	return len(r.valueSets)
+}
+
+// All returns every parsed ValueSet, ordered by canonical URL so callers that
+// derive names or detect collisions get the same answer on every run.
+func (r *ValueSetRegistry) All() []*ParsedValueSet {
+	urls := make([]string, 0, len(r.valueSets))
+	for url := range r.valueSets {
+		urls = append(urls, url)
+	}
+	sort.Strings(urls)
+
+	out := make([]*ParsedValueSet, 0, len(urls))
+	for _, url := range urls {
+		out = append(out, r.valueSets[url])
+	}
+	return out
 }

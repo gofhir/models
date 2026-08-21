@@ -738,7 +738,10 @@ type LocationBuilder struct {
 // NewLocationBuilder creates a new LocationBuilder.
 func NewLocationBuilder() *LocationBuilder {
 	return &LocationBuilder{
-		location: &Location{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		location: &Location{ResourceType: "Location"},
 	}
 }
 
@@ -906,7 +909,7 @@ type LocationOption func(*Location)
 
 // NewLocation creates a new Location with the given options.
 func NewLocation(opts ...LocationOption) *Location {
-	r := &Location{}
+	r := &Location{ResourceType: "Location"}
 	for _, opt := range opts {
 		opt(r)
 	}

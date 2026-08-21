@@ -1088,7 +1088,10 @@ type StructureDefinitionBuilder struct {
 // NewStructureDefinitionBuilder creates a new StructureDefinitionBuilder.
 func NewStructureDefinitionBuilder() *StructureDefinitionBuilder {
 	return &StructureDefinitionBuilder{
-		structureDefinition: &StructureDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		structureDefinition: &StructureDefinition{ResourceType: "StructureDefinition"},
 	}
 }
 
@@ -1340,7 +1343,7 @@ type StructureDefinitionOption func(*StructureDefinition)
 
 // NewStructureDefinition creates a new StructureDefinition with the given options.
 func NewStructureDefinition(opts ...StructureDefinitionOption) *StructureDefinition {
-	r := &StructureDefinition{}
+	r := &StructureDefinition{ResourceType: "StructureDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

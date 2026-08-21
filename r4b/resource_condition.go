@@ -822,7 +822,10 @@ type ConditionBuilder struct {
 // NewConditionBuilder creates a new ConditionBuilder.
 func NewConditionBuilder() *ConditionBuilder {
 	return &ConditionBuilder{
-		condition: &Condition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		condition: &Condition{ResourceType: "Condition"},
 	}
 }
 
@@ -1062,7 +1065,7 @@ type ConditionOption func(*Condition)
 
 // NewCondition creates a new Condition with the given options.
 func NewCondition(opts ...ConditionOption) *Condition {
-	r := &Condition{}
+	r := &Condition{ResourceType: "Condition"}
 	for _, opt := range opts {
 		opt(r)
 	}

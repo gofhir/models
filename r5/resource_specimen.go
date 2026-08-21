@@ -1057,7 +1057,10 @@ type SpecimenBuilder struct {
 // NewSpecimenBuilder creates a new SpecimenBuilder.
 func NewSpecimenBuilder() *SpecimenBuilder {
 	return &SpecimenBuilder{
-		specimen: &Specimen{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		specimen: &Specimen{ResourceType: "Specimen"},
 	}
 }
 
@@ -1219,7 +1222,7 @@ type SpecimenOption func(*Specimen)
 
 // NewSpecimen creates a new Specimen with the given options.
 func NewSpecimen(opts ...SpecimenOption) *Specimen {
-	r := &Specimen{}
+	r := &Specimen{ResourceType: "Specimen"}
 	for _, opt := range opts {
 		opt(r)
 	}

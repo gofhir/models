@@ -503,7 +503,10 @@ type SubstanceProteinBuilder struct {
 // NewSubstanceProteinBuilder creates a new SubstanceProteinBuilder.
 func NewSubstanceProteinBuilder() *SubstanceProteinBuilder {
 	return &SubstanceProteinBuilder{
-		substanceProtein: &SubstanceProtein{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		substanceProtein: &SubstanceProtein{ResourceType: "SubstanceProtein"},
 	}
 }
 
@@ -593,7 +596,7 @@ type SubstanceProteinOption func(*SubstanceProtein)
 
 // NewSubstanceProtein creates a new SubstanceProtein with the given options.
 func NewSubstanceProtein(opts ...SubstanceProteinOption) *SubstanceProtein {
-	r := &SubstanceProtein{}
+	r := &SubstanceProtein{ResourceType: "SubstanceProtein"}
 	for _, opt := range opts {
 		opt(r)
 	}

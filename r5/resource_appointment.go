@@ -1417,7 +1417,10 @@ type AppointmentBuilder struct {
 // NewAppointmentBuilder creates a new AppointmentBuilder.
 func NewAppointmentBuilder() *AppointmentBuilder {
 	return &AppointmentBuilder{
-		appointment: &Appointment{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		appointment: &Appointment{ResourceType: "Appointment"},
 	}
 }
 
@@ -1675,7 +1678,7 @@ type AppointmentOption func(*Appointment)
 
 // NewAppointment creates a new Appointment with the given options.
 func NewAppointment(opts ...AppointmentOption) *Appointment {
-	r := &Appointment{}
+	r := &Appointment{ResourceType: "Appointment"}
 	for _, opt := range opts {
 		opt(r)
 	}

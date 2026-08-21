@@ -703,7 +703,10 @@ type AllergyIntoleranceBuilder struct {
 // NewAllergyIntoleranceBuilder creates a new AllergyIntoleranceBuilder.
 func NewAllergyIntoleranceBuilder() *AllergyIntoleranceBuilder {
 	return &AllergyIntoleranceBuilder{
-		allergyIntolerance: &AllergyIntolerance{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		allergyIntolerance: &AllergyIntolerance{ResourceType: "AllergyIntolerance"},
 	}
 }
 
@@ -901,7 +904,7 @@ type AllergyIntoleranceOption func(*AllergyIntolerance)
 
 // NewAllergyIntolerance creates a new AllergyIntolerance with the given options.
 func NewAllergyIntolerance(opts ...AllergyIntoleranceOption) *AllergyIntolerance {
-	r := &AllergyIntolerance{}
+	r := &AllergyIntolerance{ResourceType: "AllergyIntolerance"}
 	for _, opt := range opts {
 		opt(r)
 	}

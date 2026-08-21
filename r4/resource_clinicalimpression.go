@@ -766,7 +766,10 @@ type ClinicalImpressionBuilder struct {
 // NewClinicalImpressionBuilder creates a new ClinicalImpressionBuilder.
 func NewClinicalImpressionBuilder() *ClinicalImpressionBuilder {
 	return &ClinicalImpressionBuilder{
-		clinicalImpression: &ClinicalImpression{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		clinicalImpression: &ClinicalImpression{ResourceType: "ClinicalImpression"},
 	}
 }
 
@@ -964,7 +967,7 @@ type ClinicalImpressionOption func(*ClinicalImpression)
 
 // NewClinicalImpression creates a new ClinicalImpression with the given options.
 func NewClinicalImpression(opts ...ClinicalImpressionOption) *ClinicalImpression {
-	r := &ClinicalImpression{}
+	r := &ClinicalImpression{ResourceType: "ClinicalImpression"}
 	for _, opt := range opts {
 		opt(r)
 	}

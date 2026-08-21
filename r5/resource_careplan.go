@@ -697,7 +697,10 @@ type CarePlanBuilder struct {
 // NewCarePlanBuilder creates a new CarePlanBuilder.
 func NewCarePlanBuilder() *CarePlanBuilder {
 	return &CarePlanBuilder{
-		carePlan: &CarePlan{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		carePlan: &CarePlan{ResourceType: "CarePlan"},
 	}
 }
 
@@ -901,7 +904,7 @@ type CarePlanOption func(*CarePlan)
 
 // NewCarePlan creates a new CarePlan with the given options.
 func NewCarePlan(opts ...CarePlanOption) *CarePlan {
-	r := &CarePlan{}
+	r := &CarePlan{ResourceType: "CarePlan"}
 	for _, opt := range opts {
 		opt(r)
 	}

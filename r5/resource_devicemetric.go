@@ -499,7 +499,10 @@ type DeviceMetricBuilder struct {
 // NewDeviceMetricBuilder creates a new DeviceMetricBuilder.
 func NewDeviceMetricBuilder() *DeviceMetricBuilder {
 	return &DeviceMetricBuilder{
-		deviceMetric: &DeviceMetric{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		deviceMetric: &DeviceMetric{ResourceType: "DeviceMetric"},
 	}
 }
 
@@ -619,7 +622,7 @@ type DeviceMetricOption func(*DeviceMetric)
 
 // NewDeviceMetric creates a new DeviceMetric with the given options.
 func NewDeviceMetric(opts ...DeviceMetricOption) *DeviceMetric {
-	r := &DeviceMetric{}
+	r := &DeviceMetric{ResourceType: "DeviceMetric"}
 	for _, opt := range opts {
 		opt(r)
 	}

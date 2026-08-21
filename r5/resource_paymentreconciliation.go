@@ -1026,7 +1026,10 @@ type PaymentReconciliationBuilder struct {
 // NewPaymentReconciliationBuilder creates a new PaymentReconciliationBuilder.
 func NewPaymentReconciliationBuilder() *PaymentReconciliationBuilder {
 	return &PaymentReconciliationBuilder{
-		paymentReconciliation: &PaymentReconciliation{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		paymentReconciliation: &PaymentReconciliation{ResourceType: "PaymentReconciliation"},
 	}
 }
 
@@ -1266,7 +1269,7 @@ type PaymentReconciliationOption func(*PaymentReconciliation)
 
 // NewPaymentReconciliation creates a new PaymentReconciliation with the given options.
 func NewPaymentReconciliation(opts ...PaymentReconciliationOption) *PaymentReconciliation {
-	r := &PaymentReconciliation{}
+	r := &PaymentReconciliation{ResourceType: "PaymentReconciliation"}
 	for _, opt := range opts {
 		opt(r)
 	}

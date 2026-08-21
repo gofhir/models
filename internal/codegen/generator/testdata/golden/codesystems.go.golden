@@ -14,3 +14,14 @@ const (
 	// ProbeStatusCodesInactive - Inactive
 	ProbeStatusCodesInactive ProbeStatusCodes = "inactive"
 )
+
+// SampleStatusCodes represents allowed values for the Sample Status Codes code system.
+type SampleStatusCodes string
+
+// SampleStatusCodes values.
+const (
+	// SampleStatusCodesDraft - Draft
+	SampleStatusCodesDraft SampleStatusCodes = "draft"
+	// SampleStatusCodesFinal - Final
+	SampleStatusCodesFinal SampleStatusCodes = "final"
+)

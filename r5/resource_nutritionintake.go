@@ -919,7 +919,10 @@ type NutritionIntakeBuilder struct {
 // NewNutritionIntakeBuilder creates a new NutritionIntakeBuilder.
 func NewNutritionIntakeBuilder() *NutritionIntakeBuilder {
 	return &NutritionIntakeBuilder{
-		nutritionIntake: &NutritionIntake{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		nutritionIntake: &NutritionIntake{ResourceType: "NutritionIntake"},
 	}
 }
 
@@ -1129,7 +1132,7 @@ type NutritionIntakeOption func(*NutritionIntake)
 
 // NewNutritionIntake creates a new NutritionIntake with the given options.
 func NewNutritionIntake(opts ...NutritionIntakeOption) *NutritionIntake {
-	r := &NutritionIntake{}
+	r := &NutritionIntake{ResourceType: "NutritionIntake"}
 	for _, opt := range opts {
 		opt(r)
 	}

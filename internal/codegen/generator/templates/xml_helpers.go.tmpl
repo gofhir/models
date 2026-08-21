@@ -387,6 +387,27 @@ func xmlEncodeRawXHTML(e *xml.Encoder, rawXHTML *string) error {
 // It reads the root element name to determine the resource type, creates the
 // appropriate struct via the registry, and calls UnmarshalXML.
 func UnmarshalResourceXML(data []byte) (Resource, error) {
+	// Reject over-deep documents before decoding. The XML decode path recurses
+	// mutually — UnmarshalXML -> xmlDecodeContainedResource ->
+	// xmlDecodeInlineResource -> UnmarshalXML — at roughly 1.4 KB of stack per
+	// level, so a large enough body exhausts the goroutine stack. That surfaces
+	// as `fatal error: stack overflow`, which recover() cannot catch: the whole
+	// process dies, taking every in-flight request with it.
+	//
+	// Unlike the JSON path this is linear in memory rather than quadratic, so the
+	// concern is purely the stack. The same MaxResourceDepth applies, for one
+	// limit across both formats.
+	if limit := MaxResourceDepth; limit > 0 {
+		depth, err := xmlResourceNestingDepth(data, limit)
+		if err != nil {
+			return nil, err
+		}
+		if depth > limit {
+			return nil, fmt.Errorf("%w: at least %d levels, limit is %d",
+				ErrMaxResourceDepth, depth, limit)
+		}
+	}
+
 	d := xml.NewDecoder(bytes.NewReader(data))
 	for {
 		tok, err := d.Token()
@@ -676,4 +697,59 @@ func xmlEscapeAttr(s string) string {
 	s = strings.ReplaceAll(s, ">", "&gt;")
 	s = strings.ReplaceAll(s, `"`, "&quot;")
 	return s
+}
+
+// xmlResourceNestingDepth reports how deeply resources nest inside one another in
+// an XML document.
+//
+// It walks the token stream, which encoding/xml does iteratively, so counting the
+// depth cannot itself overflow the stack the way decoding does. Only elements
+// naming a known resource type add to the depth: structural nesting such as
+// Questionnaire.item costs nothing to decode and must not count.
+//
+// Malformed XML is not diagnosed here — the real decode reports it with position
+// information — so the scan stops and returns what it measured so far.
+func xmlResourceNestingDepth(data []byte, limit int) (int, error) {
+	// Bounds the scanner's own bookkeeping, well above any real document.
+	const maxScanNesting = 10000
+
+	dec := xml.NewDecoder(bytes.NewReader(data))
+
+	// isResource[i] records whether the element open at depth i names a resource.
+	isResource := make([]bool, 0, 64)
+	depth, maxDepth := 0, 0
+
+	for {
+		tok, err := dec.Token()
+		if err != nil {
+			return maxDepth, nil // EOF or malformed: let the decoder speak
+		}
+
+		switch t := tok.(type) {
+		case xml.StartElement:
+			if len(isResource) >= maxScanNesting {
+				return 0, fmt.Errorf("%w: %d levels", ErrJSONTooNested, maxScanNesting)
+			}
+			resource := IsKnownResourceType(t.Name.Local)
+			isResource = append(isResource, resource)
+			if resource {
+				depth++
+				if depth > maxDepth {
+					maxDepth = depth
+					if maxDepth > limit {
+						return maxDepth, nil
+					}
+				}
+			}
+
+		case xml.EndElement:
+			if len(isResource) == 0 {
+				return maxDepth, nil // unbalanced; the decoder will report it
+			}
+			if isResource[len(isResource)-1] {
+				depth--
+			}
+			isResource = isResource[:len(isResource)-1]
+		}
+	}
 }

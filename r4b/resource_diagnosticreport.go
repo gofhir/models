@@ -621,7 +621,10 @@ type DiagnosticReportBuilder struct {
 // NewDiagnosticReportBuilder creates a new DiagnosticReportBuilder.
 func NewDiagnosticReportBuilder() *DiagnosticReportBuilder {
 	return &DiagnosticReportBuilder{
-		diagnosticReport: &DiagnosticReport{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		diagnosticReport: &DiagnosticReport{ResourceType: "DiagnosticReport"},
 	}
 }
 
@@ -807,7 +810,7 @@ type DiagnosticReportOption func(*DiagnosticReport)
 
 // NewDiagnosticReport creates a new DiagnosticReport with the given options.
 func NewDiagnosticReport(opts ...DiagnosticReportOption) *DiagnosticReport {
-	r := &DiagnosticReport{}
+	r := &DiagnosticReport{ResourceType: "DiagnosticReport"}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -1188,7 +1188,10 @@ type ActivityDefinitionBuilder struct {
 // NewActivityDefinitionBuilder creates a new ActivityDefinitionBuilder.
 func NewActivityDefinitionBuilder() *ActivityDefinitionBuilder {
 	return &ActivityDefinitionBuilder{
-		activityDefinition: &ActivityDefinition{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		activityDefinition: &ActivityDefinition{ResourceType: "ActivityDefinition"},
 	}
 }
 
@@ -1578,7 +1581,7 @@ type ActivityDefinitionOption func(*ActivityDefinition)
 
 // NewActivityDefinition creates a new ActivityDefinition with the given options.
 func NewActivityDefinition(opts ...ActivityDefinitionOption) *ActivityDefinition {
-	r := &ActivityDefinition{}
+	r := &ActivityDefinition{ResourceType: "ActivityDefinition"}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -544,7 +544,10 @@ type EncounterHistoryBuilder struct {
 // NewEncounterHistoryBuilder creates a new EncounterHistoryBuilder.
 func NewEncounterHistoryBuilder() *EncounterHistoryBuilder {
 	return &EncounterHistoryBuilder{
-		encounterHistory: &EncounterHistory{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		encounterHistory: &EncounterHistory{ResourceType: "EncounterHistory"},
 	}
 }
 
@@ -688,7 +691,7 @@ type EncounterHistoryOption func(*EncounterHistory)
 
 // NewEncounterHistory creates a new EncounterHistory with the given options.
 func NewEncounterHistory(opts ...EncounterHistoryOption) *EncounterHistory {
-	r := &EncounterHistory{}
+	r := &EncounterHistory{ResourceType: "EncounterHistory"}
 	for _, opt := range opts {
 		opt(r)
 	}

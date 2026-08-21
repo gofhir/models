@@ -424,7 +424,10 @@ type PaymentNoticeBuilder struct {
 // NewPaymentNoticeBuilder creates a new PaymentNoticeBuilder.
 func NewPaymentNoticeBuilder() *PaymentNoticeBuilder {
 	return &PaymentNoticeBuilder{
-		paymentNotice: &PaymentNotice{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		paymentNotice: &PaymentNotice{ResourceType: "PaymentNotice"},
 	}
 }
 
@@ -562,7 +565,7 @@ type PaymentNoticeOption func(*PaymentNotice)
 
 // NewPaymentNotice creates a new PaymentNotice with the given options.
 func NewPaymentNotice(opts ...PaymentNoticeOption) *PaymentNotice {
-	r := &PaymentNotice{}
+	r := &PaymentNotice{ResourceType: "PaymentNotice"}
 	for _, opt := range opts {
 		opt(r)
 	}

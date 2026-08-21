@@ -317,7 +317,10 @@ type FormularyItemBuilder struct {
 // NewFormularyItemBuilder creates a new FormularyItemBuilder.
 func NewFormularyItemBuilder() *FormularyItemBuilder {
 	return &FormularyItemBuilder{
-		formularyItem: &FormularyItem{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		formularyItem: &FormularyItem{ResourceType: "FormularyItem"},
 	}
 }
 
@@ -401,7 +404,7 @@ type FormularyItemOption func(*FormularyItem)
 
 // NewFormularyItem creates a new FormularyItem with the given options.
 func NewFormularyItem(opts ...FormularyItemOption) *FormularyItem {
-	r := &FormularyItem{}
+	r := &FormularyItem{ResourceType: "FormularyItem"}
 	for _, opt := range opts {
 		opt(r)
 	}

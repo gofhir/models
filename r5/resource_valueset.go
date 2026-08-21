@@ -2431,7 +2431,10 @@ type ValueSetBuilder struct {
 // NewValueSetBuilder creates a new ValueSetBuilder.
 func NewValueSetBuilder() *ValueSetBuilder {
 	return &ValueSetBuilder{
-		valueSet: &ValueSet{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		valueSet: &ValueSet{ResourceType: "ValueSet"},
 	}
 }
 
@@ -2689,7 +2692,7 @@ type ValueSetOption func(*ValueSet)
 
 // NewValueSet creates a new ValueSet with the given options.
 func NewValueSet(opts ...ValueSetOption) *ValueSet {
-	r := &ValueSet{}
+	r := &ValueSet{ResourceType: "ValueSet"}
 	for _, opt := range opts {
 		opt(r)
 	}

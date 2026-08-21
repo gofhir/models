@@ -580,7 +580,10 @@ type BiologicallyDerivedProductDispenseBuilder struct {
 // NewBiologicallyDerivedProductDispenseBuilder creates a new BiologicallyDerivedProductDispenseBuilder.
 func NewBiologicallyDerivedProductDispenseBuilder() *BiologicallyDerivedProductDispenseBuilder {
 	return &BiologicallyDerivedProductDispenseBuilder{
-		biologicallyDerivedProductDispense: &BiologicallyDerivedProductDispense{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		biologicallyDerivedProductDispense: &BiologicallyDerivedProductDispense{ResourceType: "BiologicallyDerivedProductDispense"},
 	}
 }
 
@@ -742,7 +745,7 @@ type BiologicallyDerivedProductDispenseOption func(*BiologicallyDerivedProductDi
 
 // NewBiologicallyDerivedProductDispense creates a new BiologicallyDerivedProductDispense with the given options.
 func NewBiologicallyDerivedProductDispense(opts ...BiologicallyDerivedProductDispenseOption) *BiologicallyDerivedProductDispense {
-	r := &BiologicallyDerivedProductDispense{}
+	r := &BiologicallyDerivedProductDispense{ResourceType: "BiologicallyDerivedProductDispense"}
 	for _, opt := range opts {
 		opt(r)
 	}

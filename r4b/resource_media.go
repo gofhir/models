@@ -580,7 +580,10 @@ type MediaBuilder struct {
 // NewMediaBuilder creates a new MediaBuilder.
 func NewMediaBuilder() *MediaBuilder {
 	return &MediaBuilder{
-		media: &Media{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		media: &Media{ResourceType: "Media"},
 	}
 }
 
@@ -790,7 +793,7 @@ type MediaOption func(*Media)
 
 // NewMedia creates a new Media with the given options.
 func NewMedia(opts ...MediaOption) *Media {
-	r := &Media{}
+	r := &Media{ResourceType: "Media"}
 	for _, opt := range opts {
 		opt(r)
 	}

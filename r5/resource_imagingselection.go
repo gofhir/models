@@ -956,7 +956,10 @@ type ImagingSelectionBuilder struct {
 // NewImagingSelectionBuilder creates a new ImagingSelectionBuilder.
 func NewImagingSelectionBuilder() *ImagingSelectionBuilder {
 	return &ImagingSelectionBuilder{
-		imagingSelection: &ImagingSelection{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		imagingSelection: &ImagingSelection{ResourceType: "ImagingSelection"},
 	}
 }
 
@@ -1124,7 +1127,7 @@ type ImagingSelectionOption func(*ImagingSelection)
 
 // NewImagingSelection creates a new ImagingSelection with the given options.
 func NewImagingSelection(opts ...ImagingSelectionOption) *ImagingSelection {
-	r := &ImagingSelection{}
+	r := &ImagingSelection{ResourceType: "ImagingSelection"}
 	for _, opt := range opts {
 		opt(r)
 	}

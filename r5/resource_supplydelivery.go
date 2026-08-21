@@ -564,7 +564,10 @@ type SupplyDeliveryBuilder struct {
 // NewSupplyDeliveryBuilder creates a new SupplyDeliveryBuilder.
 func NewSupplyDeliveryBuilder() *SupplyDeliveryBuilder {
 	return &SupplyDeliveryBuilder{
-		supplyDelivery: &SupplyDelivery{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		supplyDelivery: &SupplyDelivery{ResourceType: "SupplyDelivery"},
 	}
 }
 
@@ -714,7 +717,7 @@ type SupplyDeliveryOption func(*SupplyDelivery)
 
 // NewSupplyDelivery creates a new SupplyDelivery with the given options.
 func NewSupplyDelivery(opts ...SupplyDeliveryOption) *SupplyDelivery {
-	r := &SupplyDelivery{}
+	r := &SupplyDelivery{ResourceType: "SupplyDelivery"}
 	for _, opt := range opts {
 		opt(r)
 	}

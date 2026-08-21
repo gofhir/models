@@ -806,7 +806,10 @@ type MessageHeaderBuilder struct {
 // NewMessageHeaderBuilder creates a new MessageHeaderBuilder.
 func NewMessageHeaderBuilder() *MessageHeaderBuilder {
 	return &MessageHeaderBuilder{
-		messageHeader: &MessageHeader{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		messageHeader: &MessageHeader{ResourceType: "MessageHeader"},
 	}
 }
 
@@ -950,7 +953,7 @@ type MessageHeaderOption func(*MessageHeader)
 
 // NewMessageHeader creates a new MessageHeader with the given options.
 func NewMessageHeader(opts ...MessageHeaderOption) *MessageHeader {
-	r := &MessageHeader{}
+	r := &MessageHeader{ResourceType: "MessageHeader"}
 	for _, opt := range opts {
 		opt(r)
 	}

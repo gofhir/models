@@ -21,7 +21,6 @@ go get github.com/gofhir/models/r5
 package main
 
 import (
-    "encoding/json"
     "fmt"
 
     "github.com/gofhir/models/r4"
@@ -30,20 +29,35 @@ import (
 func main() {
     patient := r4.Patient{
         ResourceType: "Patient",
-        Id:           r4.String("123"),
-        Active:       r4.Boolean(true),
+        Id:           r4.Ptr("123"),
+        Active:       r4.Ptr(true),
         Name: []r4.HumanName{
             {
-                Family: r4.String("Smith"),
-                Given:  []r4.String{r4.String("John")},
+                Family: r4.Ptr("Smith"),
+                Given:  []string{"John"},
             },
         },
     }
 
-    data, _ := json.MarshalIndent(patient, "", "  ")
+    data, err := r4.MarshalIndent(patient, "", "  ")
+    if err != nil {
+        panic(err)
+    }
     fmt.Println(string(data))
 }
 ```
+
+Optional elements are pointers, so an absent value stays distinguishable from a
+present-but-empty one — `Ptr`, `Val` and `First` cover the boilerplate that
+follows from that.
+
+Use `r4.Marshal` rather than `json.Marshal`: the standard encoder escapes `<` and
+`>`, which mangles the XHTML in `text.div`.
+
+> **Validation.** These types do not validate. Cardinality, required bindings and
+> FHIRPath invariants are not checked — a `Patient` with no `id` and a gender of
+> `"banana"` marshals happily. See
+> [gofhir/validator](https://github.com/gofhir/validator).
 
 ## Development
 

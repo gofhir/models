@@ -975,7 +975,10 @@ type ImagingStudyBuilder struct {
 // NewImagingStudyBuilder creates a new ImagingStudyBuilder.
 func NewImagingStudyBuilder() *ImagingStudyBuilder {
 	return &ImagingStudyBuilder{
-		imagingStudy: &ImagingStudy{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		imagingStudy: &ImagingStudy{ResourceType: "ImagingStudy"},
 	}
 }
 
@@ -1161,7 +1164,7 @@ type ImagingStudyOption func(*ImagingStudy)
 
 // NewImagingStudy creates a new ImagingStudy with the given options.
 func NewImagingStudy(opts ...ImagingStudyOption) *ImagingStudy {
-	r := &ImagingStudy{}
+	r := &ImagingStudy{ResourceType: "ImagingStudy"}
 	for _, opt := range opts {
 		opt(r)
 	}

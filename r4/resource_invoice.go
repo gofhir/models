@@ -840,7 +840,10 @@ type InvoiceBuilder struct {
 // NewInvoiceBuilder creates a new InvoiceBuilder.
 func NewInvoiceBuilder() *InvoiceBuilder {
 	return &InvoiceBuilder{
-		invoice: &Invoice{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		invoice: &Invoice{ResourceType: "Invoice"},
 	}
 }
 
@@ -1002,7 +1005,7 @@ type InvoiceOption func(*Invoice)
 
 // NewInvoice creates a new Invoice with the given options.
 func NewInvoice(opts ...InvoiceOption) *Invoice {
-	r := &Invoice{}
+	r := &Invoice{ResourceType: "Invoice"}
 	for _, opt := range opts {
 		opt(r)
 	}

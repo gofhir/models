@@ -657,7 +657,10 @@ type ImmunizationRecommendationBuilder struct {
 // NewImmunizationRecommendationBuilder creates a new ImmunizationRecommendationBuilder.
 func NewImmunizationRecommendationBuilder() *ImmunizationRecommendationBuilder {
 	return &ImmunizationRecommendationBuilder{
-		immunizationRecommendation: &ImmunizationRecommendation{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		immunizationRecommendation: &ImmunizationRecommendation{ResourceType: "ImmunizationRecommendation"},
 	}
 }
 
@@ -753,7 +756,7 @@ type ImmunizationRecommendationOption func(*ImmunizationRecommendation)
 
 // NewImmunizationRecommendation creates a new ImmunizationRecommendation with the given options.
 func NewImmunizationRecommendation(opts ...ImmunizationRecommendationOption) *ImmunizationRecommendation {
-	r := &ImmunizationRecommendation{}
+	r := &ImmunizationRecommendation{ResourceType: "ImmunizationRecommendation"}
 	for _, opt := range opts {
 		opt(r)
 	}

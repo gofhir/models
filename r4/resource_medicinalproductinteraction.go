@@ -472,7 +472,10 @@ type MedicinalProductInteractionBuilder struct {
 // NewMedicinalProductInteractionBuilder creates a new MedicinalProductInteractionBuilder.
 func NewMedicinalProductInteractionBuilder() *MedicinalProductInteractionBuilder {
 	return &MedicinalProductInteractionBuilder{
-		medicinalProductInteraction: &MedicinalProductInteraction{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		medicinalProductInteraction: &MedicinalProductInteraction{ResourceType: "MedicinalProductInteraction"},
 	}
 }
 
@@ -580,7 +583,7 @@ type MedicinalProductInteractionOption func(*MedicinalProductInteraction)
 
 // NewMedicinalProductInteraction creates a new MedicinalProductInteraction with the given options.
 func NewMedicinalProductInteraction(opts ...MedicinalProductInteractionOption) *MedicinalProductInteraction {
-	r := &MedicinalProductInteraction{}
+	r := &MedicinalProductInteraction{ResourceType: "MedicinalProductInteraction"}
 	for _, opt := range opts {
 		opt(r)
 	}

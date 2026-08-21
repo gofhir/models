@@ -670,7 +670,10 @@ type ArtifactAssessmentBuilder struct {
 // NewArtifactAssessmentBuilder creates a new ArtifactAssessmentBuilder.
 func NewArtifactAssessmentBuilder() *ArtifactAssessmentBuilder {
 	return &ArtifactAssessmentBuilder{
-		artifactAssessment: &ArtifactAssessment{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		artifactAssessment: &ArtifactAssessment{ResourceType: "ArtifactAssessment"},
 	}
 }
 
@@ -838,7 +841,7 @@ type ArtifactAssessmentOption func(*ArtifactAssessment)
 
 // NewArtifactAssessment creates a new ArtifactAssessment with the given options.
 func NewArtifactAssessment(opts ...ArtifactAssessmentOption) *ArtifactAssessment {
-	r := &ArtifactAssessment{}
+	r := &ArtifactAssessment{ResourceType: "ArtifactAssessment"}
 	for _, opt := range opts {
 		opt(r)
 	}

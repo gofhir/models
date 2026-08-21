@@ -878,7 +878,10 @@ type PatientBuilder struct {
 // NewPatientBuilder creates a new PatientBuilder.
 func NewPatientBuilder() *PatientBuilder {
 	return &PatientBuilder{
-		patient: &Patient{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		patient: &Patient{ResourceType: "Patient"},
 	}
 }
 
@@ -1076,7 +1079,7 @@ type PatientOption func(*Patient)
 
 // NewPatient creates a new Patient with the given options.
 func NewPatient(opts ...PatientOption) *Patient {
-	r := &Patient{}
+	r := &Patient{ResourceType: "Patient"}
 	for _, opt := range opts {
 		opt(r)
 	}

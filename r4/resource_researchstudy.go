@@ -805,7 +805,10 @@ type ResearchStudyBuilder struct {
 // NewResearchStudyBuilder creates a new ResearchStudyBuilder.
 func NewResearchStudyBuilder() *ResearchStudyBuilder {
 	return &ResearchStudyBuilder{
-		researchStudy: &ResearchStudy{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		researchStudy: &ResearchStudy{ResourceType: "ResearchStudy"},
 	}
 }
 
@@ -1015,7 +1018,7 @@ type ResearchStudyOption func(*ResearchStudy)
 
 // NewResearchStudy creates a new ResearchStudy with the given options.
 func NewResearchStudy(opts ...ResearchStudyOption) *ResearchStudy {
-	r := &ResearchStudy{}
+	r := &ResearchStudy{ResourceType: "ResearchStudy"}
 	for _, opt := range opts {
 		opt(r)
 	}

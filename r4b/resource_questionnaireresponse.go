@@ -805,7 +805,10 @@ type QuestionnaireResponseBuilder struct {
 // NewQuestionnaireResponseBuilder creates a new QuestionnaireResponseBuilder.
 func NewQuestionnaireResponseBuilder() *QuestionnaireResponseBuilder {
 	return &QuestionnaireResponseBuilder{
-		questionnaireResponse: &QuestionnaireResponse{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		questionnaireResponse: &QuestionnaireResponse{ResourceType: "QuestionnaireResponse"},
 	}
 }
 
@@ -937,7 +940,7 @@ type QuestionnaireResponseOption func(*QuestionnaireResponse)
 
 // NewQuestionnaireResponse creates a new QuestionnaireResponse with the given options.
 func NewQuestionnaireResponse(opts ...QuestionnaireResponseOption) *QuestionnaireResponse {
-	r := &QuestionnaireResponse{}
+	r := &QuestionnaireResponse{ResourceType: "QuestionnaireResponse"}
 	for _, opt := range opts {
 		opt(r)
 	}

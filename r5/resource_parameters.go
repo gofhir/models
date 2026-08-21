@@ -1024,7 +1024,10 @@ type ParametersBuilder struct {
 // NewParametersBuilder creates a new ParametersBuilder.
 func NewParametersBuilder() *ParametersBuilder {
 	return &ParametersBuilder{
-		parameters: &Parameters{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		parameters: &Parameters{ResourceType: "Parameters"},
 	}
 }
 
@@ -1072,7 +1075,7 @@ type ParametersOption func(*Parameters)
 
 // NewParameters creates a new Parameters with the given options.
 func NewParameters(opts ...ParametersOption) *Parameters {
-	r := &Parameters{}
+	r := &Parameters{ResourceType: "Parameters"}
 	for _, opt := range opts {
 		opt(r)
 	}

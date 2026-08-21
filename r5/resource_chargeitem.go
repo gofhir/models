@@ -739,7 +739,10 @@ type ChargeItemBuilder struct {
 // NewChargeItemBuilder creates a new ChargeItemBuilder.
 func NewChargeItemBuilder() *ChargeItemBuilder {
 	return &ChargeItemBuilder{
-		chargeItem: &ChargeItem{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		chargeItem: &ChargeItem{ResourceType: "ChargeItem"},
 	}
 }
 
@@ -979,7 +982,7 @@ type ChargeItemOption func(*ChargeItem)
 
 // NewChargeItem creates a new ChargeItem with the given options.
 func NewChargeItem(opts ...ChargeItemOption) *ChargeItem {
-	r := &ChargeItem{}
+	r := &ChargeItem{ResourceType: "ChargeItem"}
 	for _, opt := range opts {
 		opt(r)
 	}

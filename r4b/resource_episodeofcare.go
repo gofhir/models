@@ -637,7 +637,10 @@ type EpisodeOfCareBuilder struct {
 // NewEpisodeOfCareBuilder creates a new EpisodeOfCareBuilder.
 func NewEpisodeOfCareBuilder() *EpisodeOfCareBuilder {
 	return &EpisodeOfCareBuilder{
-		episodeOfCare: &EpisodeOfCare{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		episodeOfCare: &EpisodeOfCare{ResourceType: "EpisodeOfCare"},
 	}
 }
 
@@ -775,7 +778,7 @@ type EpisodeOfCareOption func(*EpisodeOfCare)
 
 // NewEpisodeOfCare creates a new EpisodeOfCare with the given options.
 func NewEpisodeOfCare(opts ...EpisodeOfCareOption) *EpisodeOfCare {
-	r := &EpisodeOfCare{}
+	r := &EpisodeOfCare{ResourceType: "EpisodeOfCare"}
 	for _, opt := range opts {
 		opt(r)
 	}

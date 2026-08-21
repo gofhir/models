@@ -1096,7 +1096,10 @@ type FamilyMemberHistoryBuilder struct {
 // NewFamilyMemberHistoryBuilder creates a new FamilyMemberHistoryBuilder.
 func NewFamilyMemberHistoryBuilder() *FamilyMemberHistoryBuilder {
 	return &FamilyMemberHistoryBuilder{
-		familyMemberHistory: &FamilyMemberHistory{},
+		// ResourceType is set here rather than left to MarshalJSON, so a resource
+		// built this way reports its type in memory too. Code switching on
+		// r.ResourceType used to fall through to default in silence.
+		familyMemberHistory: &FamilyMemberHistory{ResourceType: "FamilyMemberHistory"},
 	}
 }
 
@@ -1360,7 +1363,7 @@ type FamilyMemberHistoryOption func(*FamilyMemberHistory)
 
 // NewFamilyMemberHistory creates a new FamilyMemberHistory with the given options.
 func NewFamilyMemberHistory(opts ...FamilyMemberHistoryOption) *FamilyMemberHistory {
-	r := &FamilyMemberHistory{}
+	r := &FamilyMemberHistory{ResourceType: "FamilyMemberHistory"}
 	for _, opt := range opts {
 		opt(r)
 	}
