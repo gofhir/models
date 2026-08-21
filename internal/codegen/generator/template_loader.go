@@ -537,6 +537,17 @@ func xmlTemplateFuncMap() template.FuncMap {
 			return false
 		},
 
+		// resourceFieldJSONName returns the wire name of the first Resource-typed
+		// property, which is the wrapper element FHIR XML expects around it.
+		"resourceFieldJSONName": func(t *analyzer.AnalyzedType) string {
+			for _, prop := range t.Properties {
+				if prop.GoType == "Resource" {
+					return prop.JSONName
+				}
+			}
+			return ""
+		},
+
 		// resourceFieldName returns the Go field name of the first Resource-typed property.
 		"resourceFieldName": func(t *analyzer.AnalyzedType) string {
 			for _, prop := range t.Properties {

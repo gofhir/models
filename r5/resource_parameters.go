@@ -615,7 +615,7 @@ func (b ParametersParameter) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 		}
 	}
 	if b.Resource != nil {
-		if err := xmlEncodeInlineResource(e, b.Resource); err != nil {
+		if err := xmlEncodeWrappedResource(e, "resource", b.Resource); err != nil {
 			return err
 		}
 	}
@@ -993,7 +993,16 @@ func (r *ParametersParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 					return err
 				}
 				r.Part = append(r.Part, v)
+			case "resource":
+				// FHIR wraps a resource-valued element: <resource><Patient>…
+				res, err := xmlDecodeWrappedResource(d, t)
+				if err != nil {
+					return err
+				}
+				r.Resource = res
 			default:
+				// Unwrapped form, which is what this library used to emit. Kept so
+				// documents it already persisted still read back.
 				if IsKnownResourceType(t.Name.Local) {
 					res, err := xmlDecodeInlineResource(d, t)
 					if err != nil {

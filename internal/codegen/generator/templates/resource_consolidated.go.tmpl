@@ -238,7 +238,7 @@ func (r {{.Name}}) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 {{- /* Polymorphic Resource field (e.g., Bundle entry) */ -}}
 {{- else if eq .GoType "Resource"}}
 	if r.{{.Name}} != nil {
-		if err := xmlEncodeInlineResource(e, r.{{.Name}}); err != nil {
+		if err := xmlEncodeWrappedResource(e, "{{.JSONName}}", r.{{.Name}}); err != nil {
 			return err
 		}
 	}
@@ -452,7 +452,7 @@ func (b {{.Name}}) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 {{- /* Polymorphic Resource field (e.g., BundleEntry.Resource) */ -}}
 {{- if eq .GoType "Resource"}}
 	if b.{{.Name}} != nil {
-		if err := xmlEncodeInlineResource(e, b.{{.Name}}); err != nil {
+		if err := xmlEncodeWrappedResource(e, "{{.JSONName}}", b.{{.Name}}); err != nil {
 			return err
 		}
 	}
@@ -573,8 +573,19 @@ func (r *{{.Name}}) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 {{- end}}
 {{- end}}
+{{- if $hasResourceField}}
+			case "{{$resourceJSONName}}":
+				// FHIR wraps a resource-valued element: <resource><Patient>…
+				res, err := xmlDecodeWrappedResource(d, t)
+				if err != nil {
+					return err
+				}
+				r.{{$resourceFieldName}} = res
+{{- end}}
 			default:
 {{- if $hasResourceField}}
+				// Unwrapped form, which is what this library used to emit. Kept so
+				// documents it already persisted still read back.
 				if IsKnownResourceType(t.Name.Local) {
 					res, err := xmlDecodeInlineResource(d, t)
 					if err != nil {

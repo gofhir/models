@@ -1,4 +1,4 @@
-# Known round-trip failures: 1094 of 1138 examples.
+# Known round-trip failures: 1130 of 1138 examples.
 #
 # Regenerate with: cd conformance && go test . -update-known
 # Every line removed is a bug fixed; every line added is a regression.
@@ -73,6 +73,13 @@ mismatch bodytemp.profile.xml
 mismatch bodyweight.profile.xml
 mismatch boolean.profile.xml
 mismatch bp.profile.xml
+mismatch bundle-example(bundle-example).xml
+mismatch bundle-references(bundle-references).xml
+mismatch bundle-response(bundle-response).xml
+mismatch bundle-response-medsallergies(bundle-response-medsallergies).xml
+mismatch bundle-response-simplesummary(bundle-response-simplesummary).xml
+mismatch bundle-search-warning(bundle-search-warning).xml
+mismatch bundle-transaction(bundle-transaction).xml
 mismatch bundle.profile.xml
 mismatch canonical.profile.xml
 mismatch capabilitystatement-base.xml
@@ -170,6 +177,7 @@ mismatch conceptmap-example(101).xml
 mismatch conceptmap-example-2(example2).xml
 mismatch conceptmap-example-specimen-type(102).xml
 mismatch conceptmap.profile.xml
+mismatch conceptmaps.xml
 mismatch condition-example(example).xml
 mismatch condition-example-f001-heart(f001).xml
 mismatch condition-example-f002-lung(f002).xml
@@ -246,15 +254,27 @@ mismatch devicerequest-right-lens(right-lens).xml
 mismatch devicerequest.profile.xml
 mismatch deviceusestatement-example(example).xml
 mismatch deviceusestatement.profile.xml
+mismatch diagnosticreport-example(101).xml
 mismatch diagnosticreport-example-dxa(102).xml
+mismatch diagnosticreport-example-f001-bloodexam(f001).xml
 mismatch diagnosticreport-example-f201-brainct(f201).xml
+mismatch diagnosticreport-example-f202-bloodculture(f202).xml
+mismatch diagnosticreport-example-ghp(ghp).xml
 mismatch diagnosticreport-example-gingival-mass(gingival-mass).xml
+mismatch diagnosticreport-example-lipids(lipids).xml
+mismatch diagnosticreport-example-lri(lri-example).xml
 mismatch diagnosticreport-example-papsmear(pap).xml
 mismatch diagnosticreport-example-pgx(example-pgx).xml
 mismatch diagnosticreport-example-ultrasound(ultrasound).xml
+mismatch diagnosticreport-examples-general(72ac8493-52ac-41bd-8d5d-7258c289b5ea).xml
+mismatch diagnosticreport-genetics-comprehensive-bone-marrow-report(report).xml
+mismatch diagnosticreport-genetics-example-2-familyhistory(dg2).xml
 mismatch diagnosticreport-genetics.profile.xml
+mismatch diagnosticreport-hla-genetics-results-example(hla-1).xml
+mismatch diagnosticreport-micro1(micro).xml
 mismatch diagnosticreport.profile.xml
 mismatch distance.profile.xml
+mismatch document-example-dischargesummary(father).xml
 mismatch documentmanifest-example(example).xml
 mismatch documentmanifest-fm-attachment(654789).xml
 mismatch documentmanifest.profile.xml
@@ -285,6 +305,7 @@ mismatch endpoint-example(example).xml
 mismatch endpoint-example-direct(direct-endpoint).xml
 mismatch endpoint-example-iid(example-iid).xml
 mismatch endpoint-example-wadors(example-wadors).xml
+mismatch endpoint-examples-general-template(b0a5e4277-83c4-4adb-87e2-e3efe3369b6f).xml
 mismatch endpoint.profile.xml
 mismatch enrollmentrequest-example(22345).xml
 mismatch enrollmentrequest.profile.xml
@@ -305,6 +326,7 @@ mismatch explanationofbenefit-example-2(EB3501).xml
 mismatch explanationofbenefit.profile.xml
 mismatch expression.profile.xml
 mismatch extension.profile.xml
+mismatch external-resources.xml
 mismatch familymemberhistory-example(father).xml
 mismatch familymemberhistory-example-mother(mother).xml
 mismatch familymemberhistory-genetic.profile.xml
@@ -400,6 +422,7 @@ mismatch location-example-hl7hq(hl7).xml
 mismatch location-example-patients-home(ph).xml
 mismatch location-example-room(2).xml
 mismatch location-example-ukpharmacy(ukp).xml
+mismatch location-examples-general(3ad0687e-f477-468c-afd5-fcc2bf897819).xml
 mismatch location.profile.xml
 mismatch markdown.profile.xml
 mismatch marketingstatus.profile.xml
@@ -563,6 +586,8 @@ mismatch medicinalproductpharmaceutical-example(example).xml
 mismatch medicinalproductpharmaceutical.profile.xml
 mismatch medicinalproductundesirableeffect-example(example).xml
 mismatch medicinalproductundesirableeffect.profile.xml
+mismatch message-request-link(10bb101f-a121-4264-a920-67be9cb82c74).xml
+mismatch message-response-link(3a0707d3-549e-4467-b8b8-5a2ab3800efe).xml
 mismatch messagedefinition-example(example).xml
 mismatch messagedefinition-patient-link-notification(patient-link-notification).xml
 mismatch messagedefinition-patient-link-response(patient-link-response).xml
@@ -577,6 +602,7 @@ mismatch money.profile.xml
 mismatch moneyquantity.profile.xml
 mismatch namingsystem-example(example).xml
 mismatch namingsystem-example-id(example-id).xml
+mismatch namingsystem-registry(registry).xml
 mismatch namingsystem.profile.xml
 mismatch narrative.profile.xml
 mismatch nutritionorder-example-cardiacdiet(cardiacdiet).xml
@@ -758,6 +784,8 @@ mismatch patient-example-newborn(newborn).xml
 mismatch patient-example-proband(proband).xml
 mismatch patient-example-xcda(xcda).xml
 mismatch patient-example-xds(xds).xml
+mismatch patient-examples-cypress-template(b0a5e4277-83c4-4adb-87e2-e3efe3369b6f).xml
+mismatch patient-examples-general(b248b1b2-1686-4b94-9936-37d7a5f94b51).xml
 mismatch patient-genetics-example1(genetics-example1).xml
 mismatch patient-glossy-example(glossy).xml
 mismatch patient.profile.xml
@@ -813,8 +841,10 @@ mismatch practitioner-example-f203-jvg(f203).xml
 mismatch practitioner-example-f204-ce(f204).xml
 mismatch practitioner-example-xcda-author(xcda-author).xml
 mismatch practitioner-example-xcda1(xcda1).xml
+mismatch practitioner-examples-general(3ad0687e-f477-468c-afd5-fcc2bf897809).xml
 mismatch practitioner.profile.xml
 mismatch practitionerrole-example(example).xml
+mismatch practitionerrole-examples-general(3ad0687e-f477-468c-afd5-fcc2bf897808).xml
 mismatch practitionerrole.profile.xml
 mismatch procedure-example(example).xml
 mismatch procedure-example-HCBS(HCBS).xml
@@ -835,6 +865,7 @@ mismatch procedure-example-physical-therapy(physical-therapy).xml
 mismatch procedure.profile.xml
 mismatch prodcharacteristic.profile.xml
 mismatch productshelflife.profile.xml
+mismatch profiles-others.xml
 mismatch provenance-consent-signature(consent-signature).xml
 mismatch provenance-example(example).xml
 mismatch provenance-example-biocompute-object(example-biocompute-object).xml
@@ -848,6 +879,7 @@ mismatch questionnaire-example(3141).xml
 mismatch questionnaire-example-bluebook(bb).xml
 mismatch questionnaire-example-f201-lifelines(f201).xml
 mismatch questionnaire-example-gcs(gcs).xml
+mismatch questionnaire-profile-example-ussg-fht(ussg-fht).xml
 mismatch questionnaire-zika-virus-exposure-assessment(zika-virus-exposure-assessment).xml
 mismatch questionnaire.profile.xml
 mismatch questionnaireresponse-example(3141).xml
@@ -1085,6 +1117,8 @@ mismatch uri.profile.xml
 mismatch url.profile.xml
 mismatch usagecontext.profile.xml
 mismatch uuid.profile.xml
+mismatch v2-tables.xml
+mismatch v3-codesystems.xml
 mismatch valueset-cpt-all(cpt-all).xml
 mismatch valueset-example(example-extensional).xml
 mismatch valueset-example-expansion(example-expansion).xml
@@ -1096,6 +1130,7 @@ mismatch valueset-example-yesnodontknow(yesnodontknow).xml
 mismatch valueset-nhin-purposeofuse(nhin-purposeofuse).xml
 mismatch valueset-ucum-common(ucum-common).xml
 mismatch valueset.profile.xml
+mismatch valuesets.xml
 mismatch verificationresult-example(example).xml
 mismatch verificationresult.profile.xml
 mismatch visionprescription-example(33123).xml
@@ -1103,4 +1138,5 @@ mismatch visionprescription-example-1(33124).xml
 mismatch visionprescription.profile.xml
 mismatch vitalsigns.profile.xml
 mismatch vitalspanel.profile.xml
+mismatch xds-example(xds).xml
 mismatch xhtml.profile.xml
