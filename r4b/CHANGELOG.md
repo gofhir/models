@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.5.0](https://github.com/gofhir/models/compare/r4b/v1.4.0...r4b/v1.5.0) (2026-08-21)
+
+
+### Features
+
+* add Ptr/Val/First helpers and resolve the ValueSet name collision ([#20](https://github.com/gofhir/models/issues/20)) ([7135046](https://github.com/gofhir/models/commit/7135046b0c391a84011bc518083a9064d3fc6c5a))
+
+
+### Bug Fixes
+
+* **json:** bound resource nesting depth to stop a remote DoS ([#19](https://github.com/gofhir/models/issues/19)) ([42b4003](https://github.com/gofhir/models/commit/42b4003a066be00a0434a998d123eed3b7dcfc18))
+* **xml:** wrap resource-valued elements and keep the decoder in sync ([#21](https://github.com/gofhir/models/issues/21)) ([2ca0868](https://github.com/gofhir/models/commit/2ca0868c54f8a6ebd466794e058eac8ca43555bd))
+
 ## [1.4.0](https://github.com/gofhir/models/compare/r4b/v1.3.0...r4b/v1.4.0) (2026-08-02)
 
 
