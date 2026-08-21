@@ -173,20 +173,46 @@ Es un cambio de tipo, así que **va a la v2** (fase 6). Afecta a los 20 fallos `
 >
 > El atómico es peor: cuenta concurrencia global, no profundidad. Bajo carga rechaza ~74 % del tráfico legítimo.
 
-### 2.1 · Escaneo de bytes O(n) en el dispatcher polimórfico
+### 2.1 · Escaneo de bytes O(n) en el dispatcher polimórfico ✅ HECHO
 
-`jsonDepthExceeds(raw, 64)` de ~25 líneas, **sin estado** y seguro para concurrencia, dentro de `UnmarshalResource` y en los tres campos `Resource` singulares. Todo anidamiento polimórfico pasa obligatoriamente por ahí, así que protege también el `json.Unmarshal(data, &p)` idiomático.
+Implementado en `templates/registry.go.tmpl` como `resourceNestingDepth`, sin estado y seguro para concurrencia, dentro de `UnmarshalResource`. Todo anidamiento polimórfico pasa obligatoriamente por ahí, así que protege también el `json.Unmarshal(data, &p)` idiomático.
+
+> **Corrección sobre lo planificado: cuenta recursos, no llaves JSON.**
+> El plan proponía contar llaves con un tope de 64. Medido sobre el corpus, son **dos métricas distintas** que no deben confundirse:
+>
+> | métrica | máximo real | ¿causa el coste? |
+> |---|---|---|
+> | anidamiento estructural (llaves) | **28** (`Questionnaire.item`) | no — no re-lee nada |
+> | recursos anidados | **3** (`bundle-response-simplesummary.json`) | **sí** — cada nivel re-parsea su subárbol |
+>
+> Un tope sobre llaves tendría que superar 28 para no rechazar Questionnaires legítimos, lo que dejaría el caso caro casi sin acotar. Contando recursos, el límite queda en **32** —más de diez veces el máximo real de 3— y un Questionnaire con 100 niveles de `item` pasa sin problema, porque su profundidad de recursos es 1.
+>
+> FHIR además prohíbe que un recurso contenido tenga sus propios contenidos, así que cualquier profundidad legítima más allá de un Bundle de Bundles ya está fuera de la especificación.
+
+Medido:
 
 ```
-doc normal (50 contained)    71483 ns vs 71695 sin guarda   ← gratis
-contained depth=200          rechazado en 93 µs
-contained depth=64, 10.5MB   rechazado en 73 ms   (antes: 2.36 s)
-Bundle-in-Bundle depth=31    rechazado en 20 µs
+ataque original (160 KB, depth 4000)   3.85 s / 670 MB  ->  0 ms / 2 MB   RECHAZADO
+Bundle en Bundle en Patient (depth 3)  aceptado
+Questionnaire con 100 niveles de item  aceptado
+rechazo de 42 KB hostiles              14 us
 ```
 
-El tope cuenta llaves JSON, no recursos: 64 ≈ 32 niveles de recurso, con la profundidad real del corpus en 14. Margen amplio sin falsos positivos.
+Overhead en tráfico normal (Bundle de 50 Patients): **0,6 %** —dentro del ruido de medición— y **cero allocaciones** añadidas.
 
-Nota: el límite de 64 **por sí solo** no acotaba nada — un documento de 10 MB con profundidad legal costaba 2,36 s de CPU. Es la guarda de escaneo la que lo cierra.
+> **Dos bypasses que un code review adversarial encontró en la primera versión.**
+> Ambos reproducidos antes de arreglarlos:
+>
+> | evasión | resultado | por qué |
+> |---|---|---|
+> | `contained` antes de `resourceType` | **aceptado, 7,55 s de CPU** | el escáner marcaba el objeto al *leer* la clave, y JSON no ordena los miembros |
+> | clave escrita como `"resourceType"` | aceptado | `encoding/json` la desescapa; una comparación de bytes crudos no |
+>
+> El primero anulaba la guarda por completo: basta reordenar el payload. El arreglo calcula la profundidad **al cerrar** cada objeto —bottom-up, y por tanto independiente del orden— y decodifica la clave cuando lleva escapes.
+>
+> Los tests originales no los detectaban porque todos los generadores de payload emitían `resourceType` primero y sin escapar: la forma que produce un encoder correcto, no la que elige un atacante. `TestDepthGuardResistsEvasion` cubre ahora las tres combinaciones en las tres versiones.
+
+`MaxResourceDepth` es configurable (0 la desactiva) y `ErrMaxResourceDepth` permite `errors.Is`. Los 12.411 ejemplos del corpus siguen pasando: la guarda no rechaza ningún documento publicado.
 
 ### 2.2 · Límite de profundidad en el decoder XML
 

@@ -5,7 +5,9 @@
 package r5
 
 import (
+	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 )
 
@@ -181,10 +183,63 @@ func NewResource(resourceType string) (Resource, error) {
 	return factory(), nil
 }
 
+// MaxResourceDepth is the deepest nesting of resources within resources that
+// UnmarshalResource will accept — resources inside contained, Bundle.entry.resource
+// or Parameters.parameter.resource.
+//
+// Deserializing a nested resource re-reads its subtree: the dispatcher extracts it
+// as raw JSON and hands it to a fresh json.Unmarshal, which walks it again. Cost is
+// therefore proportional to size times nesting depth, so an unbounded depth turns a
+// small request into an arbitrarily expensive one. 160 KB of nested contained used
+// to cost 670 MB of heap and close to four seconds of CPU.
+//
+// This counts nested *resources*, not JSON braces, because braces are not what
+// costs anything: Questionnaire.item trees reach 28 levels of plain structure in
+// the published examples and re-read nothing. Resource nesting in those same
+// examples never exceeds 3 — 2,600 of the ~8,800 files sit at 1 — so the default
+// leaves an order of magnitude of headroom while keeping the worst case bounded.
+//
+// FHIR forbids a contained resource from containing further contained resources,
+// so legitimate depth beyond a Bundle of Bundles is already out of spec.
+//
+// Set to 0 to disable the check. Configure it during start-up: it is read on every
+// call and is not synchronized, so changing it while other goroutines are
+// deserializing is a data race.
+var MaxResourceDepth = 32
+
+// ErrMaxResourceDepth is returned when a document nests resources more deeply than
+// MaxResourceDepth allows.
+var ErrMaxResourceDepth = errors.New("resource nesting exceeds MaxResourceDepth")
+
+// ErrJSONTooNested is returned when a document's structural nesting exceeds what
+// the depth scan can track. It is deliberately distinct from ErrMaxResourceDepth:
+// structural nesting is not what MaxResourceDepth limits, and the threshold
+// matches the cap in encoding/json so this never rejects a document the standard
+// decoder would accept.
+var ErrJSONTooNested = errors.New("JSON nesting is too deep to scan")
+
 // UnmarshalResource deserializes JSON to the correct resource type.
 // It first peeks at the resourceType field to determine the type,
 // then unmarshals the full JSON into the appropriate struct.
+//
+// Documents nesting resources more deeply than MaxResourceDepth are rejected
+// before deserialization, in a single linear pass.
 func UnmarshalResource(data []byte) (Resource, error) {
+	// Read the limit once: it is a package-level variable, and sampling it twice
+	// could mix an old and a new value if it is reconfigured mid-flight.
+	if limit := MaxResourceDepth; limit > 0 {
+		depth, err := resourceNestingDepth(data, limit)
+		if err != nil {
+			return nil, err
+		}
+		if depth > limit {
+			// The scan stops as soon as the verdict is settled, so depth is a
+			// lower bound rather than the document's true depth.
+			return nil, fmt.Errorf("%w: at least %d levels, limit is %d",
+				ErrMaxResourceDepth, depth, limit)
+		}
+	}
+
 	resourceType, err := GetResourceType(data)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get resource type: %w", err)
@@ -200,6 +255,153 @@ func UnmarshalResource(data []byte) (Resource, error) {
 	}
 
 	return resource, nil
+}
+
+// resourceNestingDepth reports how deeply resources nest inside one another.
+//
+// It scans the bytes once without building a value. Depth is computed on the way
+// back up: when an object closes, its depth is its deepest child's depth plus one
+// if the object itself carried a "resourceType" member. Plain structural nesting —
+// arrays, backbone elements, item trees — contributes nothing.
+//
+// Computing on close rather than on entry is what makes the result independent of
+// member order. JSON does not order members, so an object may declare "contained"
+// before "resourceType"; an earlier version marked objects as they were read and
+// was therefore bypassed entirely by reordering the payload.
+//
+// Malformed JSON is not diagnosed here: json.Unmarshal reports it with better
+// messages, so the scan stops and lets the caller proceed.
+func resourceNestingDepth(data []byte, limit int) (int, error) {
+	// maxScanNesting bounds the scanner's own stack. It matches the nesting cap
+	// in encoding/json, so this scan never rejects a document the standard
+	// decoder would have accepted.
+	const maxScanNesting = 10000
+
+	type frame struct {
+		isResource bool // the object declares "resourceType"
+		deepest    int  // deepest resource nesting among its closed children
+	}
+
+	stack := make([]frame, 0, 64)
+	overall := 0
+
+	i, n := 0, len(data)
+	for i < n {
+		switch data[i] {
+		case '{':
+			if len(stack) >= maxScanNesting {
+				return 0, fmt.Errorf("%w: %d levels", ErrJSONTooNested, maxScanNesting)
+			}
+			stack = append(stack, frame{})
+			i++
+
+		case '}':
+			if len(stack) == 0 {
+				return overall, nil // unbalanced; json.Unmarshal will report it
+			}
+			top := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+
+			depth := top.deepest
+			if top.isResource {
+				depth++
+			}
+			if depth > overall {
+				overall = depth
+				if overall > limit {
+					// overall only grows, so the verdict is already settled.
+					return overall, nil
+				}
+			}
+			// Arrays are not tracked as frames, so an object nested inside one
+			// propagates straight to the object that holds the array — which is
+			// the correct parent for depth purposes.
+			if len(stack) > 0 && depth > stack[len(stack)-1].deepest {
+				stack[len(stack)-1].deepest = depth
+			}
+			i++
+
+		case '"':
+			next, escaped, ok := scanJSONStringEnd(data, i)
+			if !ok {
+				return overall, nil // malformed; json.Unmarshal will say why
+			}
+			// Cheap rejection first: almost every string in a FHIR document is a
+			// value or some other member name, and a length comparison discards
+			// those before any byte is examined.
+			maybeKey := len(stack) > 0 && !stack[len(stack)-1].isResource &&
+				(next-i == len(resourceTypeKey) || escaped)
+
+			if maybeKey && isResourceTypeKey(data[i:next], escaped) {
+				// A string is a member name only when the next non-space byte
+				// is a colon.
+				if j := skipJSONSpace(data, next); j < n && data[j] == ':' {
+					stack[len(stack)-1].isResource = true
+				}
+			}
+			i = next
+
+		default:
+			i++
+		}
+	}
+	return overall, nil
+}
+
+// resourceTypeKey is the quoted member name that marks an object as a resource.
+var resourceTypeKey = []byte(`"resourceType"`)
+
+// isResourceTypeKey reports whether the quoted string in token names the
+// resourceType member. token includes both quotes.
+//
+// The common case is a byte comparison. When the name contains escapes it is
+// decoded first, because `"resourceType"` is the same member as far as
+// encoding/json is concerned and would otherwise slip past the guard.
+func isResourceTypeKey(token []byte, escaped bool) bool {
+	if !escaped {
+		return bytes.Equal(token, resourceTypeKey)
+	}
+	// Longest possible encoding of a 12-character name is 6 bytes per character
+	// plus the quotes; anything longer cannot be it.
+	if len(token) > 12*6+2 {
+		return false
+	}
+	var name string
+	if err := json.Unmarshal(token, &name); err != nil {
+		return false
+	}
+	return name == "resourceType"
+}
+
+// scanJSONStringEnd returns the index just past the closing quote of the string
+// starting at data[start] (which must be a quote), whether the string contained
+// any escape sequence, and whether it was terminated.
+func scanJSONStringEnd(data []byte, start int) (end int, escaped, ok bool) {
+	i := start + 1
+	for i < len(data) {
+		switch data[i] {
+		case '\\':
+			escaped = true
+			i += 2 // skip the escaped byte, whatever it is
+		case '"':
+			return i + 1, escaped, true
+		default:
+			i++
+		}
+	}
+	return len(data), escaped, false
+}
+
+func skipJSONSpace(data []byte, i int) int {
+	for i < len(data) {
+		switch data[i] {
+		case ' ', '\t', '\n', '\r':
+			i++
+		default:
+			return i
+		}
+	}
+	return i
 }
 
 // GetResourceType extracts the resourceType from JSON without fully deserializing.
