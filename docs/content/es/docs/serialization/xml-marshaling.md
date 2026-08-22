@@ -5,7 +5,28 @@ description: "Serialización y deserialización XML de FHIR con manejo de namesp
 weight: 2
 ---
 
-La biblioteca `gofhir/models` proporciona soporte completo para la serialización XML de FHIR a través de funciones auxiliares dedicadas definidas en `xml_helpers.go`. Cada struct de recurso implementa `MarshalXML` y `UnmarshalXML` del paquete `encoding/xml` de Go, y las funciones de nivel superior manejan la declaración XML, el namespace de FHIR y las convenciones de elementos auto-cerrados.
+{{< callout type="warning" >}}
+**El soporte XML es experimental. No lo uses para datos que no puedas permitirte perder.**
+
+Haciendo round-trip de los corpus oficiales de ejemplos FHIR a través de esta librería, **3579 de 3653 archivos XML (98 %) no sobreviven**. Sobre las mismas tres versiones, 8683 de 8758 archivos JSON (99,1 %) sí lo hacen. Un solo defecto explica casi todo: `Narrative.Div` se emite dentro de un elemento espurio `<rawInner>` y luego **se descarta en silencio** al volver a leer el documento. No se devuelve ningún error.
+
+Verificado como funcional: primitivos como atributos `value=`, orden de elementos según la StructureDefinition, el namespace FHIR en el elemento raíz, recursos `contained`, choice types, `Element.id` como atributo, elementos con valor de recurso como `Bundle.entry.resource`, y la precisión de los decimales.
+
+Verificado como roto hoy:
+
+| Defecto | Consecuencia |
+|---|---|
+| `Narrative.Div` envuelto en `<rawInner>` | Salida no conforme; la narrativa se pierde al re-parsear, sin error |
+| El namespace no se valida al leer | Un documento en cualquier namespace se parsea como FHIR |
+| `Narrative.Div` se escribe sin validar | Un `div` malformado produce XML que no está bien formado, y `MarshalResourceXML` devuelve error `nil` |
+| Extensiones sobre primitivos dentro de backbone elements | No son representables, así que se descartan — esto también afecta a JSON |
+| Post-proceso de `collapseEmptyElements` | Una regex reescribe el XHTML del usuario: un elemento vacío **con atributos** se colapsa, así que `<a href="q"></a>` pasa a `<a href="q"/>` |
+
+JSON es la serialización soportada. Usa XML para intercambiar con un sistema que lo exija, y considera la narrativa insegura hasta que esto se arregle.
+{{< /callout >}}
+
+
+La biblioteca `gofhir/models` serializa XML de FHIR a través de funciones auxiliares dedicadas definidas en `xml_helpers.go`. Cada struct de recurso implementa `MarshalXML` y `UnmarshalXML` del paquete `encoding/xml` de Go, y las funciones de nivel superior manejan la declaración XML, el namespace de FHIR y las convenciones de elementos auto-cerrados.
 
 ## Funciones Auxiliares XML
 
@@ -183,7 +204,23 @@ La biblioteca maneja esto a través de las funciones auxiliares `xmlEncodeContai
 
 ## Narrativa XHTML en XML
 
-El campo `Narrative.Div` contiene contenido XHTML que debe preservarse tal cual en la salida XML. La biblioteca usa `xmlEncodeRawXHTML` para inyectar el contenido XHTML sin procesar directamente en el flujo XML sin re-codificarlo:
+{{< callout type="warning" >}}
+**Esto no funciona actualmente.** La narrativa se emite dentro de un elemento `<rawInner>` —el nombre de un tipo interno de Go filtrándose al documento— y se descarta al volver a leer el XML, sin error:
+
+```xml
+<text>
+  <status value="generated"/>
+  <rawInner><div xmlns="http://www.w3.org/1999/xhtml"><p>John Smith</p></div></rawInner>
+</text>
+```
+
+Ninguna otra implementación FHIR aceptará eso, y un round-trip por esta librería pierde la narrativa por completo. La especificación FHIR considera `text.div` la forma legible autoritativa de un recurso cuando el receptor no puede procesar los datos estructurados, así que es una pérdida de significado clínico, no un detalle de formato.
+
+La causa es que `xml.Encoder` no ofrece forma de escribir bytes crudos, así que escribir el XHTML verbatim exige reemplazar el encoder. Hasta entonces, si necesitas que la narrativa sobreviva, usa JSON.
+{{< /callout >}}
+
+
+El campo `Narrative.Div` contiene XHTML que debe preservarse tal cual en la salida XML. La biblioteca lo intenta mediante `xmlEncodeRawXHTML`:
 
 ```go
 patient := &r4.Patient{
@@ -201,7 +238,25 @@ fmt.Println(string(data))
 
 ## Fidelidad de Ida y Vuelta en XML
 
-La biblioteca soporta serialización XML de ida y vuelta (round-trip). Puedes serializar un recurso a XML, luego deserializarlo de vuelta, y el struct resultante contendrá los mismos datos:
+{{< callout type="warning" >}}
+**La fidelidad de ida y vuelta en XML no se cumple.** Medido sobre los corpus de ejemplos publicados:
+
+| | ejemplos | sobreviven el round-trip |
+|---|---:|---:|
+| r4 JSON | 2912 | 99,9 % |
+| r4 XML | 1138 | **0,7 %** |
+| r4b XML | 1156 | 3,1 % |
+| r5 XML | 1359 | 2,2 % |
+
+Prácticamente todos los ejemplos publicados llevan narrativa, y la narrativa no sobrevive (ver arriba). Un recurso sin narrativa y sin extensiones sobre primitivos dentro de backbone elements sí hace round-trip correctamente.
+
+La suite de conformidad en `conformance/` lleva la cuenta archivo por archivo, así que estas cifras son medidas, no estimadas.
+{{< /callout >}}
+
+
+Un recurso sin narrativa hace round-trip correctamente. Nota que este ejemplo
+construye su propio recurso en lugar de reutilizar el `patient` de la sección de
+narrativa: ese lleva un `Text.Div`, y volvería como nil:
 
 ```go
 // Marshal to XML

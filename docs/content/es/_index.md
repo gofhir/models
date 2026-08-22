@@ -19,7 +19,7 @@ layout: hextra-home
 
 <div class="hx:mb-12">
 {{< hextra/hero-subtitle >}}
-  Structs Go con tipado seguro para todos los recursos FHIR R4, R4B y R5.&nbsp;<br class="sm:hx:block hx:hidden" />Construye, serializa e integra con builders fluidos y soporte completo de JSON/XML.
+  Structs Go con tipado seguro para todos los recursos FHIR R4, R4B y R5.&nbsp;<br class="sm:hx:block hx:hidden" />Construye, serializa e integra con builders fluidos y serialización JSON.
 {{< /hextra/hero-subtitle >}}
 </div>
 

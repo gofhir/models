@@ -5,7 +5,27 @@ description: "FHIR XML serialization and deserialization with namespace handling
 weight: 2
 ---
 
-The `gofhir/models` library provides full support for FHIR XML serialization through dedicated helper functions defined in `xml_helpers.go`. Every resource struct implements `MarshalXML` and `UnmarshalXML` from Go's `encoding/xml` package, and top-level functions handle the XML declaration, FHIR namespace, and self-closing element conventions.
+{{< callout type="warning" >}}
+**XML support is experimental. Do not rely on it for data you cannot afford to lose.**
+
+Round-tripping the official FHIR example corpora through this library, **3579 of 3653 XML files (98%) do not survive**. Over the same three versions, 8683 of 8758 JSON files (99.1%) do. One defect accounts for nearly all of it: `Narrative.Div` is emitted inside a spurious `<rawInner>` element and is then **silently discarded** when the document is read back. No error is returned.
+
+Verified as working: primitives as `value=` attributes, element ordering per the StructureDefinition, the FHIR namespace on the root element, `contained` resources, choice types, `Element.id` as an attribute, resource-valued elements such as `Bundle.entry.resource`, and decimal precision.
+
+Verified as broken today:
+
+| Defect | Consequence |
+|---|---|
+| `Narrative.Div` wrapped in `<rawInner>` | Non-conformant output; the narrative is lost on re-parse, with no error |
+| Namespace is not validated on input | A document in any namespace parses as FHIR |
+| `Narrative.Div` is written unvalidated | A malformed `div` produces XML that is not well-formed, and `MarshalResourceXML` returns `nil` error |
+| Extensions on primitives inside backbone elements | Not representable, so they are dropped — this affects JSON too |
+| Post-processing by `collapseEmptyElements` | A regex rewrites the user's XHTML: an empty element **with attributes** is collapsed, so `<a href="q"></a>` becomes `<a href="q"/>` |
+
+JSON is the supported serialization. Use XML for interchange with a system that requires it, and treat the narrative as unsafe until these are fixed.
+{{< /callout >}}
+
+The `gofhir/models` library serializes FHIR XML through dedicated helper functions defined in `xml_helpers.go`. Every resource struct implements `MarshalXML` and `UnmarshalXML` from Go's `encoding/xml` package, and top-level functions handle the XML declaration, FHIR namespace, and self-closing element conventions.
 
 ## XML Helper Functions
 
@@ -183,7 +203,22 @@ The library handles this through the `xmlEncodeContainedResource` and `xmlDecode
 
 ## XHTML Narrative in XML
 
-The `Narrative.Div` field contains XHTML content that must be preserved verbatim in the XML output. The library uses `xmlEncodeRawXHTML` to inject the raw XHTML content directly into the XML stream without re-encoding:
+{{< callout type="warning" >}}
+**This does not currently work.** The narrative is emitted inside a `<rawInner>` element — the name of an internal Go type leaking into the document — and is discarded when the XML is read back, without an error:
+
+```xml
+<text>
+  <status value="generated"/>
+  <rawInner><div xmlns="http://www.w3.org/1999/xhtml"><p>John Smith</p></div></rawInner>
+</text>
+```
+
+No other FHIR implementation will accept that, and a round-trip through this library loses the narrative entirely. The FHIR specification treats `text.div` as the authoritative human-readable form of a resource when the receiver cannot process the structured data, so this is a loss of clinical meaning, not a formatting quirk.
+
+The cause is that `xml.Encoder` offers no way to write raw bytes, so writing the XHTML verbatim requires replacing the encoder — tracked as the XML writer task in the remediation plan. Until then, if you need the narrative to survive, use JSON.
+{{< /callout >}}
+
+The `Narrative.Div` field contains XHTML that must be preserved verbatim in the XML output. The library attempts this through `xmlEncodeRawXHTML`:
 
 ```go
 patient := &r4.Patient{
@@ -201,23 +236,46 @@ fmt.Println(string(data))
 
 ## Round-Trip XML Fidelity
 
-The library supports XML round-trip serialization. You can marshal a resource to XML, then unmarshal it back, and the resulting struct will contain the same data:
+{{< callout type="warning" >}}
+**XML round-trip fidelity does not hold.** Measured over the published example corpora:
+
+| | examples | surviving a round-trip |
+|---|---:|---:|
+| r4 JSON | 2912 | 99.9% |
+| r4 XML | 1138 | **0.7%** |
+| r4b XML | 1156 | 3.1% |
+| r5 XML | 1359 | 2.2% |
+
+Practically every published example carries a narrative, and the narrative does not survive (see above). A resource with no narrative and no primitive extensions inside backbone elements does round-trip correctly.
+
+The conformance suite in `conformance/` tracks this file by file, so the numbers here are measured rather than estimated.
+{{< /callout >}}
+
+A resource without a narrative round-trips correctly. Note that this example
+builds its own resource rather than reusing the `patient` from the narrative
+section above — that one carries a `Text.Div`, and it would come back nil:
 
 ```go
-// Marshal to XML
-xmlBytes, err := r4.MarshalResourceXML(patient)
+plain := &r4.Patient{
+    ResourceType: "Patient",
+    Id:           ptrTo("round-trip"),
+    Active:       ptrTo(true),
+    Gender:       ptrTo(r4.AdministrativeGenderMale),
+}
+
+xmlBytes, err := r4.MarshalResourceXML(plain)
 if err != nil {
     log.Fatal(err)
 }
 
-// Unmarshal back
 resource, err := r4.UnmarshalResourceXML(xmlBytes)
 if err != nil {
     log.Fatal(err)
 }
 
 decoded := resource.(*r4.Patient)
-fmt.Println(*decoded.Id) // same as original
+fmt.Println(*decoded.Id)     // "round-trip"
+fmt.Println(*decoded.Active) // true
 ```
 
 {{< callout type="info" >}}

@@ -38,6 +38,11 @@
 // resources and Bundle entries. [MarshalResourceXML] and [UnmarshalResourceXML]
 // are the XML equivalents.
 //
+// XML support is experimental. Narrative.Div is currently emitted inside a
+// spurious wrapper element and is dropped when the document is read back, so a
+// resource carrying a narrative does not survive an XML round-trip. Use JSON
+// where fidelity matters.
+//
 // # What this package does not do
 //
 // These types do not validate. Cardinality, value-set bindings, primitive formats
