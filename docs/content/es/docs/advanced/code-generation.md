@@ -49,7 +49,7 @@ Cada archivo de recurso (por ejemplo, `resource_patient.go`) contiene:
 1. **La struct del recurso** con tags JSON y XML
 2. **Implementaciones de metodos de interfaz** (`GetResourceType`, `GetId`, `SetId`, `GetMeta`, `SetMeta` y metodos de `DomainResource` cuando corresponda)
 3. **`MarshalJSON`/`UnmarshalJSON`** para la inyeccion automatica de `resourceType` y el manejo de recursos contenidos
-4. **`MarshalXML`/`UnmarshalXML`** para la codificacion XML conforme a FHIR con manejo adecuado de namespace y atributos primitivos
+4. **`MarshalXML`/`UnmarshalXML`** para la codificacion XML con manejo de namespace y atributos primitivos (experimental — ver [XML Marshaling](../../serialization/xml-marshaling/))
 5. **Structs de backbone elements** (por ejemplo, `PatientContact`, `PatientCommunication`) con sus propios metodos de marshaling
 6. **Un builder fluido** (`PatientBuilder` con `NewPatientBuilder`, `Set*`, `Add*`, `Build`)
 7. **Opciones funcionales** (tipo `PatientOption`, `NewPatient`, funciones `WithPatient*`)

@@ -251,9 +251,15 @@ Practically every published example carries a narrative, and the narrative does 
 The conformance suite in `conformance/` tracks this file by file, so these numbers are measured rather than estimated. One caveat on what they measure: for XML the suite checks only that our own output is stable (parse, serialize, parse, serialize, converge), because comparing against the published bytes needs a canonical XML comparison that does not exist yet. Loss against the source document is therefore **unmeasured** on the XML path — the real figure can only be worse than the one above. JSON is checked both ways.
 {{< /callout >}}
 
-A resource without a narrative round-trips correctly. Note that this example
-builds its own resource rather than reusing the `patient` from the narrative
-section above — that one carries a `Text.Div`, and it would come back nil:
+A resource without a narrative round-trips with its data intact. Note that this
+example builds its own resource rather than reusing the `patient` from the
+narrative section above — that one carries a `Text.Div`, and it would come back
+nil.
+
+One difference to be aware of: `UnmarshalResourceXML` leaves the `ResourceType`
+field empty, so the decoded struct is not byte-identical to the original. Use
+`GetResourceType()`, which returns the correct value regardless, and note that
+serialization is unaffected because `MarshalJSON` supplies the field:
 
 ```go
 plain := &r4.Patient{
@@ -279,5 +285,5 @@ fmt.Println(*decoded.Active) // true
 ```
 
 {{< callout type="info" >}}
-XML serialization uses the same resource registry as JSON deserialization, so the root element name corresponds to the `resourceType` field in JSON. Every registered resource type can be marshalled and unmarshalled — but see the warnings above for what does not survive the trip.
+XML serialization uses the same resource registry as JSON deserialization, so the root element name corresponds to the `resourceType` field in JSON. Every registered resource type can be marshalled and unmarshalled — but see the warnings above for what does not survive the trip, and note that the decoded struct has an empty `ResourceType` field.
 {{< /callout >}}

@@ -15,7 +15,7 @@ La biblioteca está diseñada en torno a tres principios fundamentales:
 
 1. **Tipado seguro** -- Cada campo FHIR se mapea a un campo de struct Go con tipado fuerte y semántica adecuada de punteros para valores opcionales.
 2. **Múltiples patrones de construcción** -- Elige entre literales de struct, builders fluidos u opciones funcionales según tu estilo de programación.
-3. **JSON conforme con FHIR** -- El marshaling JSON sigue la especificación FHIR, incluyendo la precisión decimal y las extensiones sobre primitivos. XML es experimental: la narrativa no se preserva actualmente, así que usa JSON cuando importe la fidelidad.
+3. **Serialización JSON** -- El marshaling JSON sigue la especificación FHIR en cuanto a precisión decimal y la representación `_campo` de extensiones sobre primitivos, con huecos conocidos documentados en [JSON Marshaling](../serialization/json-marshaling/). XML es experimental: la narrativa no se preserva actualmente, así que usa JSON cuando importe la fidelidad.
 
 ## Guías
 

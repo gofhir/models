@@ -84,9 +84,17 @@ Los campos requeridos como `ResourceType` no usan `omitempty`, asegurando que si
 
 ## Fidelidad de Ida y Vuelta
 
-La biblioteca garantiza fidelidad de ida y vuelta (round-trip): serializar un recurso a JSON y luego deserializarlo de vuelta produce un struct idéntico. Esto es crítico para sistemas FHIR que necesitan almacenar y recuperar recursos sin pérdida de datos.
+La biblioteca busca fidelidad de ida y vuelta (round-trip): serializar un recurso a JSON y luego deserializarlo de vuelta produce un struct idéntico. Esto es crítico para sistemas FHIR que necesitan almacenar y recuperar recursos sin pérdida de datos.
 
-Medido sobre los corpus oficiales de ejemplos, 8683 de 8758 archivos JSON (99,1 %) sobreviven un round-trip sin cambios. Conviene enunciar la excepción conocida sin rodeos: **las extensiones sobre campos primitivos dentro de backbone elements no son representables y se descartan en silencio.** Un `_text` en `Questionnaire.item`, o un `data-absent-reason` sobre cualquier primitivo anidado en un backbone, no sobrevive. Las extensiones sobre primitivos a nivel de recurso y de datatype sí.
+Medido sobre los corpus oficiales de ejemplos, 8683 de 8758 archivos JSON (99,1 %) sobreviven un round-trip sin cambios. Los 75 que no se reparten así, y ninguno devuelve un error que puedas capturar:
+
+| Defecto | Archivos | Efecto |
+|---|---:|---|
+| `integer64` de R5 tipado como `int64` | 21 | La especificación exige que `integer64` viaje como **string** en JSON, porque JSON solo garantiza 53 bits de precisión. `Attachment.size` falla directamente al parsear |
+| `Bundle.issues` emitido como `null` en R5 | 12 | El campo es una interfaz y no lleva `omitempty`, así que todo Bundle de R5 gana `"issues": null` — que no es FHIR válido |
+| Extensiones sobre primitivos | ~40 | Se pierden allí donde no son representables: primitivos dentro de backbone elements (`_text` en `Questionnaire.item`), algunas posiciones de array (`_given`) y algunos campos a nivel de recurso (`_base`) |
+
+Las extensiones sobre primitivos a nivel de recurso y de datatype sobreviven en su mayoría, pero no universalmente: no las consideres garantizadas hasta que las listas de conformidad se reduzcan.
 
 ```go
 package main

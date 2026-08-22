@@ -86,7 +86,15 @@ Required fields like `ResourceType` do not use `omitempty`, ensuring they are al
 
 The library aims for round-trip fidelity: marshaling a resource to JSON and then unmarshaling it back produces an identical struct. This is critical for FHIR systems that need to store and retrieve resources without data loss.
 
-Measured over the official example corpora, 8683 of 8758 JSON files (99.1%) survive a round-trip unchanged. The known exception is worth stating plainly: **extensions on primitive fields inside backbone elements are not representable and are silently dropped.** A `_text` on `Questionnaire.item`, or a `data-absent-reason` on any primitive nested in a backbone, does not survive. Extensions on primitives at resource and datatype level do.
+Measured over the official example corpora, 8683 of 8758 JSON files (99.1%) survive a round-trip unchanged. The 75 that do not break down as follows, and none of them reports an error you could catch:
+
+| Defect | Files | Effect |
+|---|---:|---|
+| R5 `integer64` typed as `int64` | 21 | The specification requires `integer64` to travel as a JSON **string**, since JSON guarantees only 53 bits of precision. `Attachment.size` therefore fails to parse outright |
+| `Bundle.issues` emitted as `null` in R5 | 12 | The field is an interface and carries no `omitempty`, so every R5 Bundle gains `"issues": null` — not valid FHIR |
+| Extensions on primitives | ~40 | Lost wherever they are not representable, which includes primitives inside backbone elements (`_text` on `Questionnaire.item`), some array positions (`_given`) and some resource-level fields (`_base`) |
+
+Extensions on primitives at resource and datatype level mostly survive, but not universally — do not treat any of them as guaranteed until the conformance lists shrink.
 
 ```go
 package main

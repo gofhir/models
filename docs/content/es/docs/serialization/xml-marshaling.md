@@ -254,9 +254,15 @@ La suite de conformidad en `conformance/` lleva la cuenta archivo por archivo, a
 {{< /callout >}}
 
 
-Un recurso sin narrativa hace round-trip correctamente. Nota que este ejemplo
-construye su propio recurso en lugar de reutilizar el `patient` de la sección de
-narrativa: ese lleva un `Text.Div`, y volvería como nil:
+Un recurso sin narrativa hace round-trip con sus datos intactos. Nota que este
+ejemplo construye su propio recurso en lugar de reutilizar el `patient` de la
+sección de narrativa: ese lleva un `Text.Div`, y volvería como nil.
+
+Una diferencia a tener en cuenta: `UnmarshalResourceXML` deja vacío el campo
+`ResourceType`, así que el struct decodificado no es idéntico al original. Usa
+`GetResourceType()`, que devuelve el valor correcto de todas formas, y ten en
+cuenta que la serialización no se ve afectada porque `MarshalJSON` rellena el
+campo:
 
 ```go
 plain := &r4.Patient{
@@ -282,5 +288,5 @@ fmt.Println(*decoded.Active) // true
 ```
 
 {{< callout type="info" >}}
-La serialización XML usa el mismo registro de recursos que la deserialización JSON, así que el nombre del elemento raíz corresponde al campo `resourceType` de JSON. Todo tipo de recurso registrado se puede serializar y deserializar, pero consulta los avisos de arriba para saber qué no sobrevive el viaje.
+La serialización XML usa el mismo registro de recursos que la deserialización JSON, así que el nombre del elemento raíz corresponde al campo `resourceType` de JSON. Todo tipo de recurso registrado se puede serializar y deserializar, pero consulta los avisos de arriba para saber qué no sobrevive el viaje, y ten en cuenta que el struct decodificado queda con el campo `ResourceType` vacío.
 {{< /callout >}}
