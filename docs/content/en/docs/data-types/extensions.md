@@ -5,7 +5,7 @@ description: "FHIR extensibility model with Extension and Element types, includi
 weight: 5
 ---
 
-FHIR's extensibility framework allows resources to carry additional data beyond what the base specification defines. The `gofhir/models` library provides full support for extensions through the `Extension` struct (for adding data to resources and complex types) and the `Element` struct (for extending primitive values).
+FHIR's extensibility framework allows resources to carry additional data beyond what the base specification defines. The `gofhir/models` library supports extensions through the `Extension` struct (for adding data to resources and complex types) and the `Element` struct (for extending primitive values). One known gap: extensions on primitives **inside backbone elements** are not representable and are silently dropped; at resource and datatype level they work.
 
 ## The Extension Struct
 

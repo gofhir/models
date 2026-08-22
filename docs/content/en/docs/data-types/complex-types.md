@@ -342,5 +342,5 @@ patient := &r4.Patient{
 ```
 
 {{< callout type="info" >}}
-All complex types implement `MarshalJSON`, `UnmarshalJSON`, `MarshalXML`, and `UnmarshalXML` for full serialization support. When composing resources, you do not need to handle serialization of individual data types -- the resource-level marshaling methods handle everything recursively.
+All complex types implement `MarshalJSON`, `UnmarshalJSON`, `MarshalXML`, and `UnmarshalXML`. When composing resources, you do not need to handle serialization of individual data types -- the resource-level marshaling methods handle everything recursively.
 {{< /callout >}}

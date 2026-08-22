@@ -153,7 +153,7 @@ func checkFile(path, kind string, unmarshal func([]byte) (any, error), marshal f
 	// XML is compared for self-stability only: parse -> serialize -> parse ->
 	// serialize must converge. Comparing against the published bytes would need a
 	// canonical XML comparison (namespace prefixes, attribute order, whitespace in
-	// mixed content), and with ~96% of XML examples already failing on the
+	// mixed content), and with ~98% of XML examples already failing on the
 	// narrative bug there is nothing to learn from it yet. Once the XML rewrite
 	// lands and the lists shrink, this is the check to add — data loss against the
 	// source is currently unmeasured on this path.

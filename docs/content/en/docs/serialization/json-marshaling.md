@@ -84,7 +84,9 @@ Required fields like `ResourceType` do not use `omitempty`, ensuring they are al
 
 ## Round-Trip Fidelity
 
-The library guarantees round-trip fidelity: marshaling a resource to JSON and then unmarshaling it back produces an identical struct. This is critical for FHIR systems that need to store and retrieve resources without data loss.
+The library aims for round-trip fidelity: marshaling a resource to JSON and then unmarshaling it back produces an identical struct. This is critical for FHIR systems that need to store and retrieve resources without data loss.
+
+Measured over the official example corpora, 8683 of 8758 JSON files (99.1%) survive a round-trip unchanged. The known exception is worth stating plainly: **extensions on primitive fields inside backbone elements are not representable and are silently dropped.** A `_text` on `Questionnaire.item`, or a `data-absent-reason` on any primitive nested in a backbone, does not survive. Extensions on primitives at resource and datatype level do.
 
 ```go
 package main

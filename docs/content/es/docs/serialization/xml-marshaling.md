@@ -67,7 +67,7 @@ func main() {
 }
 ```
 
-La salida incluye la declaración XML y el namespace de FHIR:
+La salida incluye la declaración XML y el namespace de FHIR (`MarshalResourceXML` emite una sola línea; la forma indentada de abajo viene de `MarshalResourceXMLIndent`.)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -250,7 +250,7 @@ fmt.Println(string(data))
 
 Prácticamente todos los ejemplos publicados llevan narrativa, y la narrativa no sobrevive (ver arriba). Un recurso sin narrativa y sin extensiones sobre primitivos dentro de backbone elements sí hace round-trip correctamente.
 
-La suite de conformidad en `conformance/` lleva la cuenta archivo por archivo, así que estas cifras son medidas, no estimadas.
+La suite de conformidad en `conformance/` lleva la cuenta archivo por archivo, así que estas cifras son medidas, no estimadas. Una advertencia sobre qué miden: en XML la suite solo comprueba que nuestra propia salida sea estable (parsear, serializar, parsear, serializar, converger), porque comparar contra los bytes publicados exige una comparación canónica de XML que todavía no existe. La pérdida frente al documento de origen está, por tanto, **sin medir** en el camino XML: la cifra real solo puede ser peor que la de arriba. En JSON se comprueba en ambos sentidos.
 {{< /callout >}}
 
 
@@ -259,22 +259,28 @@ construye su propio recurso en lugar de reutilizar el `patient` de la sección d
 narrativa: ese lleva un `Text.Div`, y volvería como nil:
 
 ```go
-// Marshal to XML
-xmlBytes, err := r4.MarshalResourceXML(patient)
+plain := &r4.Patient{
+    ResourceType: "Patient",
+    Id:           ptrTo("round-trip"),
+    Active:       ptrTo(true),
+    Gender:       ptrTo(r4.AdministrativeGenderMale),
+}
+
+xmlBytes, err := r4.MarshalResourceXML(plain)
 if err != nil {
     log.Fatal(err)
 }
 
-// Unmarshal back
 resource, err := r4.UnmarshalResourceXML(xmlBytes)
 if err != nil {
     log.Fatal(err)
 }
 
 decoded := resource.(*r4.Patient)
-fmt.Println(*decoded.Id) // same as original
+fmt.Println(*decoded.Id)     // "round-trip"
+fmt.Println(*decoded.Active) // true
 ```
 
 {{< callout type="info" >}}
-La serialización XML usa el mismo registro de recursos que la deserialización JSON. El nombre del elemento raíz en el XML corresponde al campo `resourceType` en JSON. Todos los tipos de recursos registrados en `resourceFactories` son compatibles con viajes de ida y vuelta XML.
+La serialización XML usa el mismo registro de recursos que la deserialización JSON, así que el nombre del elemento raíz corresponde al campo `resourceType` de JSON. Todo tipo de recurso registrado se puede serializar y deserializar, pero consulta los avisos de arriba para saber qué no sobrevive el viaje.
 {{< /callout >}}

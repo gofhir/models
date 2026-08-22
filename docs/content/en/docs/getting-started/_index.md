@@ -15,7 +15,7 @@ The library is designed around three core principles:
 
 1. **Type safety** -- Every FHIR field maps to a strongly typed Go struct field with proper pointer semantics for optional values.
 2. **Multiple construction patterns** -- Choose between struct literals, fluent builders, or functional options depending on your coding style.
-3. **FHIR-conformant serialization** -- JSON and XML marshaling follows the FHIR specification exactly, including narrative XHTML preservation and decimal precision.
+3. **FHIR-conformant JSON** -- JSON marshaling follows the FHIR specification, including decimal precision and extensions on primitives. XML is experimental: the narrative is not currently preserved, so use JSON where fidelity matters.
 
 ## Guides
 

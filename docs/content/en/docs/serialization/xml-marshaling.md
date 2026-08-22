@@ -66,7 +66,7 @@ func main() {
 }
 ```
 
-The output includes the XML declaration and the FHIR namespace:
+The output includes the XML declaration and the FHIR namespace (`MarshalResourceXML` emits a single line; the indented form below comes from `MarshalResourceXMLIndent`.)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -248,7 +248,7 @@ fmt.Println(string(data))
 
 Practically every published example carries a narrative, and the narrative does not survive (see above). A resource with no narrative and no primitive extensions inside backbone elements does round-trip correctly.
 
-The conformance suite in `conformance/` tracks this file by file, so the numbers here are measured rather than estimated.
+The conformance suite in `conformance/` tracks this file by file, so these numbers are measured rather than estimated. One caveat on what they measure: for XML the suite checks only that our own output is stable (parse, serialize, parse, serialize, converge), because comparing against the published bytes needs a canonical XML comparison that does not exist yet. Loss against the source document is therefore **unmeasured** on the XML path — the real figure can only be worse than the one above. JSON is checked both ways.
 {{< /callout >}}
 
 A resource without a narrative round-trips correctly. Note that this example
@@ -279,5 +279,5 @@ fmt.Println(*decoded.Active) // true
 ```
 
 {{< callout type="info" >}}
-XML serialization uses the same resource registry as JSON deserialization. The root element name in the XML corresponds to the `resourceType` field in JSON. All resource types registered in `resourceFactories` are supported for XML round-trips.
+XML serialization uses the same resource registry as JSON deserialization, so the root element name corresponds to the `resourceType` field in JSON. Every registered resource type can be marshalled and unmarshalled — but see the warnings above for what does not survive the trip.
 {{< /callout >}}

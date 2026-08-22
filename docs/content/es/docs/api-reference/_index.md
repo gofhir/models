@@ -26,7 +26,7 @@ La biblioteca exporta una superficie de API pequena y enfocada sobre las structs
 | Registro | `NewResource`, `UnmarshalResource`, `GetResourceType`, `IsKnownResourceType`, `AllResourceTypes` | Creacion y deserializacion dinamica de recursos |
 | Builders | `New<Resource>Builder`, `Set*`, `Add*`, `Build` | Construccion fluida de recursos |
 | Opciones Funcionales | `New<Resource>`, `With<Resource><Field>` | Creacion concisa de recursos con opciones |
-| Serializacion | `Marshal`, `MarshalIndent`, `MarshalResourceXML`, `MarshalResourceXMLIndent`, `UnmarshalResourceXML` | Codificacion JSON y XML conforme a FHIR |
+| Serializacion | `Marshal`, `MarshalIndent`, `MarshalResourceXML`, `MarshalResourceXMLIndent`, `UnmarshalResourceXML` | Codificacion JSON conforme a FHIR; la codificacion XML es experimental |
 | Metadatos | `FHIRPathModel`, `SummaryFields` | Informacion de tipos en tiempo de ejecucion y listas de campos de resumen |
 
 Todos los ejemplos en esta seccion usan el paquete `r4`. Los mismos patrones aplican a `r4b` y `r5` con sus respectivas definiciones de tipos.
