@@ -19,7 +19,7 @@ layout: hextra-home
 
 <div class="hx:mb-12">
 {{< hextra/hero-subtitle >}}
-  Type-safe Go structs for every FHIR R4, R4B, and R5 resource.&nbsp;<br class="sm:hx:block hx:hidden" />Build, serialize, and integrate with fluent builders and full JSON/XML support.
+  Type-safe Go structs for every FHIR R4, R4B, and R5 resource.&nbsp;<br class="sm:hx:block hx:hidden" />Build, serialize, and integrate with fluent builders and JSON serialization.
 {{< /hextra/hero-subtitle >}}
 </div>
 

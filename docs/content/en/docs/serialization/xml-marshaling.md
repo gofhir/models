@@ -8,7 +8,7 @@ weight: 2
 {{< callout type="warning" >}}
 **XML support is experimental. Do not rely on it for data you cannot afford to lose.**
 
-Round-tripping the official FHIR example corpora through this library, **3579 of 3653 XML files (98%) do not survive** — against 99.9% that do in JSON. One defect accounts for nearly all of it: `Narrative.Div` is emitted inside a spurious `<rawInner>` element and is then **silently discarded** when the document is read back. No error is returned.
+Round-tripping the official FHIR example corpora through this library, **3579 of 3653 XML files (98%) do not survive**. Over the same three versions, 8683 of 8758 JSON files (99.1%) do. One defect accounts for nearly all of it: `Narrative.Div` is emitted inside a spurious `<rawInner>` element and is then **silently discarded** when the document is read back. No error is returned.
 
 Verified as working: primitives as `value=` attributes, element ordering per the StructureDefinition, the FHIR namespace on the root element, `contained` resources, choice types, `Element.id` as an attribute, resource-valued elements such as `Bundle.entry.resource`, and decimal precision.
 
@@ -20,7 +20,7 @@ Verified as broken today:
 | Namespace is not validated on input | A document in any namespace parses as FHIR |
 | `Narrative.Div` is written unvalidated | A malformed `div` produces XML that is not well-formed, and `MarshalResourceXML` returns `nil` error |
 | Extensions on primitives inside backbone elements | Not representable, so they are dropped — this affects JSON too |
-| `collapseEmptyElements` post-processing | A regex rewrites the user's XHTML, so `<a></a>` becomes `<a/>` |
+| Post-processing by `collapseEmptyElements` | A regex rewrites the user's XHTML: an empty element **with attributes** is collapsed, so `<a href="q"></a>` becomes `<a href="q"/>` |
 
 JSON is the supported serialization. Use XML for interchange with a system that requires it, and treat the narrative as unsafe until these are fixed.
 {{< /callout >}}
@@ -246,28 +246,36 @@ fmt.Println(string(data))
 | r4b XML | 1156 | 3.1% |
 | r5 XML | 1359 | 2.2% |
 
-Practically every published example carries a narrative, and the narrative does not survive (see above). A resource with no narrative and no primitive extensions inside backbone elements will round-trip correctly — which is what the example below is.
+Practically every published example carries a narrative, and the narrative does not survive (see above). A resource with no narrative and no primitive extensions inside backbone elements does round-trip correctly.
 
 The conformance suite in `conformance/` tracks this file by file, so the numbers here are measured rather than estimated.
 {{< /callout >}}
 
-A resource without a narrative round-trips correctly: marshal it to XML, unmarshal it back, and the struct holds the same data.
+A resource without a narrative round-trips correctly. Note that this example
+builds its own resource rather than reusing the `patient` from the narrative
+section above — that one carries a `Text.Div`, and it would come back nil:
 
 ```go
-// Marshal to XML
-xmlBytes, err := r4.MarshalResourceXML(patient)
+plain := &r4.Patient{
+    ResourceType: "Patient",
+    Id:           ptrTo("round-trip"),
+    Active:       ptrTo(true),
+    Gender:       ptrTo(r4.AdministrativeGenderMale),
+}
+
+xmlBytes, err := r4.MarshalResourceXML(plain)
 if err != nil {
     log.Fatal(err)
 }
 
-// Unmarshal back
 resource, err := r4.UnmarshalResourceXML(xmlBytes)
 if err != nil {
     log.Fatal(err)
 }
 
 decoded := resource.(*r4.Patient)
-fmt.Println(*decoded.Id) // same as original
+fmt.Println(*decoded.Id)     // "round-trip"
+fmt.Println(*decoded.Active) // true
 ```
 
 {{< callout type="info" >}}
