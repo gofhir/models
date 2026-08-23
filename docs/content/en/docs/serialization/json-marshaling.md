@@ -86,15 +86,19 @@ Required fields like `ResourceType` do not use `omitempty`, ensuring they are al
 
 The library aims for round-trip fidelity: marshaling a resource to JSON and then unmarshaling it back produces an identical struct. This is critical for FHIR systems that need to store and retrieve resources without data loss.
 
-Measured over the official example corpora, 8683 of 8758 JSON files (99.1%) survive a round-trip unchanged. The 75 that do not break down as follows, and none of them reports an error you could catch:
+Measured over the official example corpora, 8683 of 8758 JSON files (99.1%) survive a round-trip unchanged. Classifying the 75 that do not, by every difference present rather than only the first:
 
-| Defect | Files | Effect |
-|---|---:|---|
-| R5 `integer64` typed as `int64` | 21 | The specification requires `integer64` to travel as a JSON **string**, since JSON guarantees only 53 bits of precision. `Attachment.size` therefore fails to parse outright |
-| `Bundle.issues` emitted as `null` in R5 | 12 | The field is an interface and carries no `omitempty`, so every R5 Bundle gains `"issues": null` — not valid FHIR |
-| Extensions on primitives | ~40 | Lost wherever they are not representable, which includes primitives inside backbone elements (`_text` on `Questionnaire.item`), some array positions (`_given`) and some resource-level fields (`_base`) |
+| Defect | Files | Detected? | Effect |
+|---|---:|---|---|
+| `Bundle.issues` emitted as `null` in R5 | 37 | silent | The field is an interface, so it misses the `omitempty` that pointers and arrays get. Every R5 Bundle gains `"issues": null`, which is not valid FHIR |
+| R5 `integer64` typed as `int64` | 20 | **error** | The specification requires `integer64` to travel as a JSON **string**, since JSON guarantees only 53 bits of precision. Affected documents fail to parse rather than losing data quietly |
+| `null` in a primitive array becomes `""` | 13 | silent | `["2020-01-01", null]` comes back as `["2020-01-01", ""]`. The positional `null` FHIR uses to align `_field` extensions is not representable, so a value that was absent becomes an empty one |
+| Extensions on primitives dropped | 6 | silent | Wherever the companion field does not exist: primitives inside backbone elements (`_text` on `Questionnaire.item`), and some resource-level fields (`_base`) |
+| Not a FHIR resource | 1 | error | `package-min-ver.json` is a package manifest with no `resourceType`; corpus noise, not a defect |
 
-Extensions on primitives at resource and datatype level mostly survive, but not universally — do not treat any of them as guaranteed until the conformance lists shrink.
+Counts overlap slightly, since two files carry more than one defect. Regenerate them with `cd conformance && go test . -update-known` and read the lists.
+
+Extensions on primitives at resource and datatype level mostly survive, but not universally — do not treat any of them as guaranteed until these lists shrink.
 
 ```go
 package main
