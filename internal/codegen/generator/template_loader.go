@@ -219,6 +219,43 @@ func (c *CodeGen) generateDocFromTemplate() error {
 	return writeTemplateFile(path, "doc.go.tmpl", data)
 }
 
+// usesInteger64 reports whether any analyzed property is a FHIR integer64.
+//
+// The type was introduced in R5, so r4 and r4b must not carry it: exporting a
+// primitive that does not exist in those releases would be its own kind of wrong.
+func (c *CodeGen) usesInteger64() bool {
+	for _, t := range c.types {
+		for _, prop := range t.Properties {
+			if prop.FHIRType == "integer64" {
+				return true
+			}
+		}
+		for _, bb := range t.BackboneTypes {
+			for _, prop := range bb.Properties {
+				if prop.FHIRType == "integer64" {
+					return true
+				}
+			}
+		}
+	}
+	return false
+}
+
+// generateInteger64FromTemplate generates integer64.go using template.
+func (c *CodeGen) generateInteger64FromTemplate() error {
+	if !c.usesInteger64() {
+		return nil
+	}
+	data := TemplateData{
+		PackageName: c.config.PackageName,
+		Version:     strings.ToUpper(c.config.Version),
+		FileType:    "integer64",
+	}
+
+	path := filepath.Join(c.config.OutputDir, "integer64.go")
+	return writeTemplateFile(path, "integer64.go.tmpl", data)
+}
+
 // generateHelpersFromTemplate generates helpers.go using template.
 func (c *CodeGen) generateHelpersFromTemplate() error {
 	data := TemplateData{
@@ -415,6 +452,8 @@ func buildResourceBuilderData(t *analyzer.AnalyzedType) ResourceBuilderData {
 // xmlPrimitiveEncodeFunc maps a base Go type to the XML primitive encoding function name.
 func xmlPrimitiveEncodeFunc(baseType string) string {
 	switch baseType {
+	case "Integer64":
+		return "xmlEncodePrimitiveInteger64"
 	case "string":
 		return "xmlEncodePrimitiveString"
 	case "bool":
@@ -457,6 +496,8 @@ func xmlPrimitiveArrayEncodeFunc(elemType string) string {
 // xmlPrimitiveDecodeFunc maps a base Go type to the XML primitive decoding function name.
 func xmlPrimitiveDecodeFunc(baseType string) string {
 	switch baseType {
+	case "Integer64":
+		return "xmlDecodePrimitiveInteger64"
 	case "string":
 		return "xmlDecodePrimitiveString"
 	case "bool":
@@ -595,12 +636,23 @@ func writeXMLTemplateFile(outputPath, templateName string, data interface{}) err
 	return os.WriteFile(outputPath, content, 0o600)
 }
 
+// XMLHelpersTemplateData holds data for the XML helpers template.
+type XMLHelpersTemplateData struct {
+	TemplateData
+	// UsesInteger64 gates the integer64 helpers, since the type only exists in
+	// releases that define the primitive.
+	UsesInteger64 bool
+}
+
 // generateXMLHelpers generates xml_helpers.go from template.
 func (c *CodeGen) generateXMLHelpers() error {
-	data := TemplateData{
-		PackageName: c.config.PackageName,
-		Version:     strings.ToUpper(c.config.Version),
-		FileType:    "xml_helpers",
+	data := XMLHelpersTemplateData{
+		TemplateData: TemplateData{
+			PackageName: c.config.PackageName,
+			Version:     strings.ToUpper(c.config.Version),
+			FileType:    "xml_helpers",
+		},
+		UsesInteger64: c.usesInteger64(),
 	}
 
 	path := filepath.Join(c.config.OutputDir, "xml_helpers.go")

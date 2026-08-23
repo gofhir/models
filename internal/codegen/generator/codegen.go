@@ -242,6 +242,11 @@ func (c *CodeGen) Generate() error {
 		return fmt.Errorf("failed to generate interfaces: %w", err)
 	}
 
+	// Generate integer64.go (R5 only: the FHIR integer64 primitive)
+	if err := c.generateInteger64FromTemplate(); err != nil {
+		return fmt.Errorf("failed to generate integer64: %w", err)
+	}
+
 	// Generate helpers.go (generic pointer/value helpers)
 	if err := c.generateHelpersFromTemplate(); err != nil {
 		return fmt.Errorf("failed to generate helpers: %w", err)

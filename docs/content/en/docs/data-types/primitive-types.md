@@ -24,7 +24,7 @@ The following table shows the complete mapping from FHIR primitive types to thei
 | `code` | `*string` or generated enum | e.g., `*AdministrativeGender` for bound value sets |
 | `boolean` | `*bool` | true or false |
 | `integer` | `*int` | 32-bit signed integer |
-| `integer64` | `*int64` | 64-bit signed integer (R5 only) |
+| `integer64` | `*Integer64` | 64-bit signed integer, JSON-encoded as a string (R5 only) |
 | `unsignedInt` | `*uint32` | 32-bit unsigned integer (>= 0) |
 | `positiveInt` | `*uint32` | 32-bit unsigned integer (>= 1) |
 | `decimal` | `*Decimal` | Custom type, preserves precision |
@@ -118,7 +118,24 @@ observation := &r4.Observation{
 
 ### Integer Types
 
-FHIR defines three integer types with different Go mappings:
+FHIR defines four integer types with different Go mappings. `integer64` is the odd
+one out: JSON numbers only carry 53 bits of precision reliably, so the
+specification requires it to travel as a JSON **string**. It therefore maps to a
+named type rather than `int64`:
+
+```go
+// integer64 -> *Integer64, marshalled as "1024"
+attachment := r5.Attachment{Size: r5.Ptr(r5.Integer64(1024))}
+data, _ := r5.Marshal(attachment)  // {"size":"1024"}
+
+size := attachment.Size.Int64()    // 1024, as a plain int64
+```
+
+`Integer64` also accepts a bare JSON number when reading, since that is what a
+naive encoder produces, but it always writes the string form. In XML it is an
+ordinary `value=` attribute.
+
+The other three:
 
 ```go
 // integer -> *int

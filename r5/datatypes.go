@@ -149,7 +149,7 @@ type Attachment struct {
 	// Extension for Url
 	UrlExt *Element `json:"_url,omitempty"`
 	// Number of bytes of content (if url provided)
-	Size *int64 `json:"size,omitempty"`
+	Size *Integer64 `json:"size,omitempty"`
 	// Extension for Size
 	SizeExt *Element `json:"_size,omitempty"`
 	// Hash of the data (sha-1, base64ed)
@@ -585,7 +585,7 @@ type ElementDefinition struct {
 	// Extension for DefaultValueInteger
 	DefaultValueIntegerExt *Element `json:"_defaultValueInteger,omitempty"`
 	// Specified value if missing from instance
-	DefaultValueInteger64 *int64 `json:"defaultValueInteger64,omitempty"`
+	DefaultValueInteger64 *Integer64 `json:"defaultValueInteger64,omitempty"`
 	// Extension for DefaultValueInteger64
 	DefaultValueInteger64Ext *Element `json:"_defaultValueInteger64,omitempty"`
 	// Specified value if missing from instance
@@ -741,7 +741,7 @@ type ElementDefinition struct {
 	// Extension for FixedInteger
 	FixedIntegerExt *Element `json:"_fixedInteger,omitempty"`
 	// Value must be exactly this
-	FixedInteger64 *int64 `json:"fixedInteger64,omitempty"`
+	FixedInteger64 *Integer64 `json:"fixedInteger64,omitempty"`
 	// Extension for FixedInteger64
 	FixedInteger64Ext *Element `json:"_fixedInteger64,omitempty"`
 	// Value must be exactly this
@@ -889,7 +889,7 @@ type ElementDefinition struct {
 	// Extension for PatternInteger
 	PatternIntegerExt *Element `json:"_patternInteger,omitempty"`
 	// Value must have at least these property values
-	PatternInteger64 *int64 `json:"patternInteger64,omitempty"`
+	PatternInteger64 *Integer64 `json:"patternInteger64,omitempty"`
 	// Extension for PatternInteger64
 	PatternInteger64Ext *Element `json:"_patternInteger64,omitempty"`
 	// Value must have at least these property values
@@ -1023,7 +1023,7 @@ type ElementDefinition struct {
 	// Extension for MinValueInteger
 	MinValueIntegerExt *Element `json:"_minValueInteger,omitempty"`
 	// Minimum Allowed Value (for some types)
-	MinValueInteger64 *int64 `json:"minValueInteger64,omitempty"`
+	MinValueInteger64 *Integer64 `json:"minValueInteger64,omitempty"`
 	// Extension for MinValueInteger64
 	MinValueInteger64Ext *Element `json:"_minValueInteger64,omitempty"`
 	// Minimum Allowed Value (for some types)
@@ -1061,7 +1061,7 @@ type ElementDefinition struct {
 	// Extension for MaxValueInteger
 	MaxValueIntegerExt *Element `json:"_maxValueInteger,omitempty"`
 	// Maximum Allowed Value (for some types)
-	MaxValueInteger64 *int64 `json:"maxValueInteger64,omitempty"`
+	MaxValueInteger64 *Integer64 `json:"maxValueInteger64,omitempty"`
 	// Extension for MaxValueInteger64
 	MaxValueInteger64Ext *Element `json:"_maxValueInteger64,omitempty"`
 	// Maximum Allowed Value (for some types)
@@ -1211,7 +1211,7 @@ type Extension struct {
 	// Extension for ValueInteger
 	ValueIntegerExt *Element `json:"_valueInteger,omitempty"`
 	// Value of extension
-	ValueInteger64 *int64 `json:"valueInteger64,omitempty"`
+	ValueInteger64 *Integer64 `json:"valueInteger64,omitempty"`
 	// Extension for ValueInteger64
 	ValueInteger64Ext *Element `json:"_valueInteger64,omitempty"`
 	// Value of extension
@@ -2175,7 +2175,7 @@ type ElementDefinitionExample struct {
 	// Extension for ValueInteger
 	ValueIntegerExt *Element `json:"_valueInteger,omitempty"`
 	// Value of Example (one of allowed types)
-	ValueInteger64 *int64 `json:"valueInteger64,omitempty"`
+	ValueInteger64 *Integer64 `json:"valueInteger64,omitempty"`
 	// Extension for ValueInteger64
 	ValueInteger64Ext *Element `json:"_valueInteger64,omitempty"`
 	// Value of Example (one of allowed types)
@@ -2597,7 +2597,7 @@ func (d Attachment) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveString(e, "url", d.Url, d.UrlExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt64(e, "size", d.Size, d.SizeExt); err != nil {
+	if err := xmlEncodePrimitiveInteger64(e, "size", d.Size, d.SizeExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "hash", d.Hash, d.HashExt); err != nil {
@@ -3224,7 +3224,7 @@ func (d ElementDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	if err := xmlEncodePrimitiveInt(e, "defaultValueInteger", d.DefaultValueInteger, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt64(e, "defaultValueInteger64", d.DefaultValueInteger64, nil); err != nil {
+	if err := xmlEncodePrimitiveInteger64(e, "defaultValueInteger64", d.DefaultValueInteger64, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "defaultValueMarkdown", d.DefaultValueMarkdown, nil); err != nil {
@@ -3460,7 +3460,7 @@ func (d ElementDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	if err := xmlEncodePrimitiveInt(e, "fixedInteger", d.FixedInteger, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt64(e, "fixedInteger64", d.FixedInteger64, nil); err != nil {
+	if err := xmlEncodePrimitiveInteger64(e, "fixedInteger64", d.FixedInteger64, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "fixedMarkdown", d.FixedMarkdown, nil); err != nil {
@@ -3690,7 +3690,7 @@ func (d ElementDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	if err := xmlEncodePrimitiveInt(e, "patternInteger", d.PatternInteger, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt64(e, "patternInteger64", d.PatternInteger64, nil); err != nil {
+	if err := xmlEncodePrimitiveInteger64(e, "patternInteger64", d.PatternInteger64, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "patternMarkdown", d.PatternMarkdown, nil); err != nil {
@@ -3913,7 +3913,7 @@ func (d ElementDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	if err := xmlEncodePrimitiveInt(e, "minValueInteger", d.MinValueInteger, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt64(e, "minValueInteger64", d.MinValueInteger64, nil); err != nil {
+	if err := xmlEncodePrimitiveInteger64(e, "minValueInteger64", d.MinValueInteger64, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveUint32(e, "minValuePositiveInt", d.MinValuePositiveInt, nil); err != nil {
@@ -3945,7 +3945,7 @@ func (d ElementDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	if err := xmlEncodePrimitiveInt(e, "maxValueInteger", d.MaxValueInteger, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt64(e, "maxValueInteger64", d.MaxValueInteger64, nil); err != nil {
+	if err := xmlEncodePrimitiveInteger64(e, "maxValueInteger64", d.MaxValueInteger64, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveUint32(e, "maxValuePositiveInt", d.MaxValuePositiveInt, nil); err != nil {
@@ -4139,7 +4139,7 @@ func (d Extension) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveInt(e, "valueInteger", d.ValueInteger, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt64(e, "valueInteger64", d.ValueInteger64, nil); err != nil {
+	if err := xmlEncodePrimitiveInteger64(e, "valueInteger64", d.ValueInteger64, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "valueMarkdown", d.ValueMarkdown, nil); err != nil {
@@ -5778,7 +5778,7 @@ func (b ElementDefinitionExample) MarshalXML(e *xml.Encoder, start xml.StartElem
 	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt64(e, "valueInteger64", b.ValueInteger64, nil); err != nil {
+	if err := xmlEncodePrimitiveInteger64(e, "valueInteger64", b.ValueInteger64, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "valueMarkdown", b.ValueMarkdown, nil); err != nil {
@@ -6555,7 +6555,7 @@ func (r *Attachment) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) erro
 				r.Url = v
 				r.UrlExt = ext
 			case "size":
-				v, ext, err := xmlDecodePrimitiveInt64(dec, t)
+				v, ext, err := xmlDecodePrimitiveInteger64(dec, t)
 				if err != nil {
 					return err
 				}
@@ -7657,7 +7657,7 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				r.DefaultValueInteger = v
 				_ = ext
 			case "defaultValueInteger64":
-				v, ext, err := xmlDecodePrimitiveInt64(dec, t)
+				v, ext, err := xmlDecodePrimitiveInteger64(dec, t)
 				if err != nil {
 					return err
 				}
@@ -8015,7 +8015,7 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				r.FixedInteger = v
 				_ = ext
 			case "fixedInteger64":
-				v, ext, err := xmlDecodePrimitiveInt64(dec, t)
+				v, ext, err := xmlDecodePrimitiveInteger64(dec, t)
 				if err != nil {
 					return err
 				}
@@ -8359,7 +8359,7 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				r.PatternInteger = v
 				_ = ext
 			case "patternInteger64":
-				v, ext, err := xmlDecodePrimitiveInt64(dec, t)
+				v, ext, err := xmlDecodePrimitiveInteger64(dec, t)
 				if err != nil {
 					return err
 				}
@@ -8681,7 +8681,7 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				r.MinValueInteger = v
 				_ = ext
 			case "minValueInteger64":
-				v, ext, err := xmlDecodePrimitiveInt64(dec, t)
+				v, ext, err := xmlDecodePrimitiveInteger64(dec, t)
 				if err != nil {
 					return err
 				}
@@ -8750,7 +8750,7 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				r.MaxValueInteger = v
 				_ = ext
 			case "maxValueInteger64":
-				v, ext, err := xmlDecodePrimitiveInt64(dec, t)
+				v, ext, err := xmlDecodePrimitiveInteger64(dec, t)
 				if err != nil {
 					return err
 				}
@@ -9099,7 +9099,7 @@ func (r *Extension) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error
 				r.ValueInteger = v
 				_ = ext
 			case "valueInteger64":
-				v, ext, err := xmlDecodePrimitiveInt64(dec, t)
+				v, ext, err := xmlDecodePrimitiveInteger64(dec, t)
 				if err != nil {
 					return err
 				}
@@ -11803,7 +11803,7 @@ func (r *ElementDefinitionExample) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ValueInteger = v
 			case "valueInteger64":
-				v, _, err := xmlDecodePrimitiveInt64(d, t)
+				v, _, err := xmlDecodePrimitiveInteger64(d, t)
 				if err != nil {
 					return err
 				}

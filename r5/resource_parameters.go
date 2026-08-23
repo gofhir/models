@@ -219,7 +219,7 @@ type ParametersParameter struct {
 	// Extension for ValueInteger
 	ValueIntegerExt *Element `json:"_valueInteger,omitempty"`
 	// If parameter is a data type
-	ValueInteger64 *int64 `json:"valueInteger64,omitempty"`
+	ValueInteger64 *Integer64 `json:"valueInteger64,omitempty"`
 	// Extension for ValueInteger64
 	ValueInteger64Ext *Element `json:"_valueInteger64,omitempty"`
 	// If parameter is a data type
@@ -414,7 +414,7 @@ func (b ParametersParameter) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt64(e, "valueInteger64", b.ValueInteger64, nil); err != nil {
+	if err := xmlEncodePrimitiveInteger64(e, "valueInteger64", b.ValueInteger64, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "valueMarkdown", b.ValueMarkdown, nil); err != nil {
@@ -724,7 +724,7 @@ func (r *ParametersParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.ValueInteger = v
 			case "valueInteger64":
-				v, _, err := xmlDecodePrimitiveInt64(d, t)
+				v, _, err := xmlDecodePrimitiveInteger64(d, t)
 				if err != nil {
 					return err
 				}

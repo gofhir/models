@@ -222,7 +222,9 @@ func TestFHIRToGoType(t *testing.T) {
 		// Primitives
 		{"boolean", "bool"},
 		{"integer", "int"},
-		{"integer64", "int64"},
+		// integer64 is a named type, not int64: the spec requires it to travel as
+		// a JSON string, since JSON numbers only carry 53 bits reliably.
+		{"integer64", "Integer64"},
 		{"decimal", "Decimal"},
 		{"string", "string"},
 		{"uri", "string"},

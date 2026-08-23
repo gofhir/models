@@ -7,7 +7,7 @@ var PrimitiveTypeMap = map[string]string{
 
 	// Numeric types
 	"integer":     "int",
-	"integer64":   "int64",
+	"integer64":   "Integer64",
 	"decimal":     "Decimal",
 	"unsignedInt": "uint32",
 	"positiveInt": "uint32",
