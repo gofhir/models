@@ -475,6 +475,8 @@ func xmlPrimitiveEncodeFunc(baseType string) string {
 // xmlPrimitiveArrayEncodeFunc maps a base element Go type to the XML array encoding function name.
 func xmlPrimitiveArrayEncodeFunc(elemType string) string {
 	switch elemType {
+	case "Integer64":
+		return "xmlEncodePrimitiveInteger64Array"
 	case "string":
 		return "xmlEncodePrimitiveStringArray"
 	case "bool":

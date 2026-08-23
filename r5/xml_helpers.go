@@ -691,6 +691,26 @@ func xmlDecodePrimitiveInt(d *xml.Decoder, start xml.StartElement) (*int, *Eleme
 	return &v, elem, nil
 }
 
+// xmlEncodePrimitiveInteger64Array encodes a repeating FHIR integer64 primitive.
+func xmlEncodePrimitiveInteger64Array(e *xml.Encoder, name string, values []Integer64, exts []Element) error {
+	for i, v := range values {
+		var ext *Element
+		if i < len(exts) {
+			ext = &exts[i]
+		}
+		value := v
+		if err := xmlEncodePrimitiveInteger64(e, name, &value, ext); err != nil {
+			return err
+		}
+	}
+	for i := len(values); i < len(exts); i++ {
+		if err := xmlEncodePrimitiveInteger64(e, name, nil, &exts[i]); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
 // xmlDecodePrimitiveInteger64 decodes a FHIR integer64 primitive from XML.
 func xmlDecodePrimitiveInteger64(d *xml.Decoder, start xml.StartElement) (*Integer64, *Element, error) {
 	s, ext, err := xmlDecodePrimitiveString(d, start)
