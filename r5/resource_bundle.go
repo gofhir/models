@@ -52,7 +52,7 @@ type Bundle struct {
 	// Digital Signature
 	Signature *Signature `json:"signature,omitempty"`
 	// Issues with the Bundle
-	Issues Resource `json:"issues"`
+	Issues Resource `json:"issues,omitempty"`
 }
 
 // GetResourceType returns the FHIR resource type.
@@ -99,6 +99,32 @@ func (r Bundle) MarshalJSON() ([]byte, error) {
 		b = b[:len(b)-1]
 	}
 	return b, nil
+}
+
+// UnmarshalJSON handles deserialization of the polymorphic issues field.
+func (r *Bundle) UnmarshalJSON(data []byte) error {
+	// Use an alias to avoid infinite recursion
+	type Alias Bundle
+	aux := &struct {
+		Issues json.RawMessage `json:"issues,omitempty"`
+		*Alias
+	}{
+		Alias: (*Alias)(r),
+	}
+
+	if err := json.Unmarshal(data, aux); err != nil {
+		return err
+	}
+
+	if len(aux.Issues) > 0 {
+		resource, err := UnmarshalResource(aux.Issues)
+		if err != nil {
+			return fmt.Errorf("failed to unmarshal issues: %w", err)
+		}
+		r.Issues = resource
+	}
+
+	return nil
 }
 
 // MarshalXML serializes Bundle to FHIR-conformant XML.
