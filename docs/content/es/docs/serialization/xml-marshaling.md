@@ -5,7 +5,28 @@ description: "Serialización y deserialización XML de FHIR con manejo de namesp
 weight: 2
 ---
 
-La biblioteca `gofhir/models` proporciona soporte completo para la serialización XML de FHIR a través de funciones auxiliares dedicadas definidas en `xml_helpers.go`. Cada struct de recurso implementa `MarshalXML` y `UnmarshalXML` del paquete `encoding/xml` de Go, y las funciones de nivel superior manejan la declaración XML, el namespace de FHIR y las convenciones de elementos auto-cerrados.
+{{< callout type="warning" >}}
+**El soporte XML es experimental. No lo uses para datos que no puedas permitirte perder.**
+
+Haciendo round-trip de los corpus oficiales de ejemplos FHIR a través de esta librería, **3579 de 3653 archivos XML (98 %) no sobreviven**. Sobre las mismas tres versiones, 8683 de 8758 archivos JSON (99,1 %) sí lo hacen. Un solo defecto explica casi todo: `Narrative.Div` se emite dentro de un elemento espurio `<rawInner>` y luego **se descarta en silencio** al volver a leer el documento. No se devuelve ningún error.
+
+Verificado como funcional: primitivos como atributos `value=`, orden de elementos según la StructureDefinition, el namespace FHIR en el elemento raíz, recursos `contained`, choice types, `Element.id` como atributo, elementos con valor de recurso como `Bundle.entry.resource`, y la precisión de los decimales.
+
+Verificado como roto hoy:
+
+| Defecto | Consecuencia |
+|---|---|
+| `Narrative.Div` envuelto en `<rawInner>` | Salida no conforme; la narrativa se pierde al re-parsear, sin error |
+| El namespace no se valida al leer | Un documento en cualquier namespace se parsea como FHIR |
+| `Narrative.Div` se escribe sin validar | Un `div` malformado produce XML que no está bien formado, y `MarshalResourceXML` devuelve error `nil` |
+| Extensiones sobre primitivos dentro de backbone elements | No son representables, así que se descartan — esto también afecta a JSON |
+| Post-proceso de `collapseEmptyElements` | Una regex reescribe el XHTML del usuario: un elemento vacío **con atributos** se colapsa, así que `<a href="q"></a>` pasa a `<a href="q"/>` |
+
+JSON es la serialización soportada. Usa XML para intercambiar con un sistema que lo exija, y considera la narrativa insegura hasta que esto se arregle.
+{{< /callout >}}
+
+
+La biblioteca `gofhir/models` serializa XML de FHIR a través de funciones auxiliares dedicadas definidas en `xml_helpers.go`. Cada struct de recurso implementa `MarshalXML` y `UnmarshalXML` del paquete `encoding/xml` de Go, y las funciones de nivel superior manejan la declaración XML, el namespace de FHIR y las convenciones de elementos auto-cerrados.
 
 ## Funciones Auxiliares XML
 
@@ -46,17 +67,14 @@ func main() {
 }
 ```
 
-La salida incluye la declaración XML y el namespace de FHIR:
+`MarshalResourceXML` escribe la declaración y luego el recurso completo en una línea:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<Patient xmlns="http://hl7.org/fhir">
-  <id value="xml-example"/>
-  <active value="true"/>
-  <gender value="male"/>
-  <birthDate value="1990-06-15"/>
-</Patient>
+<Patient xmlns="http://hl7.org/fhir"><id value="xml-example"/><active value="true"/><gender value="male"/><birthDate value="1990-06-15"/></Patient>
 ```
+
+Para la forma indentada usa `MarshalResourceXMLIndent`: ver la sección siguiente.
 
 ### MarshalResourceXMLIndent
 
@@ -183,7 +201,23 @@ La biblioteca maneja esto a través de las funciones auxiliares `xmlEncodeContai
 
 ## Narrativa XHTML en XML
 
-El campo `Narrative.Div` contiene contenido XHTML que debe preservarse tal cual en la salida XML. La biblioteca usa `xmlEncodeRawXHTML` para inyectar el contenido XHTML sin procesar directamente en el flujo XML sin re-codificarlo:
+{{< callout type="warning" >}}
+**Esto no funciona actualmente.** La narrativa se emite dentro de un elemento `<rawInner>` —el nombre de un tipo interno de Go filtrándose al documento— y se descarta al volver a leer el XML, sin error:
+
+```xml
+<text>
+  <status value="generated"/>
+  <rawInner><div xmlns="http://www.w3.org/1999/xhtml"><p>John Smith</p></div></rawInner>
+</text>
+```
+
+Ninguna otra implementación FHIR aceptará eso, y un round-trip por esta librería pierde la narrativa por completo. La especificación FHIR considera `text.div` la forma legible autoritativa de un recurso cuando el receptor no puede procesar los datos estructurados, así que es una pérdida de significado clínico, no un detalle de formato.
+
+La causa es que `xml.Encoder` no ofrece forma de escribir bytes crudos, así que escribir el XHTML verbatim exige reemplazar el encoder. Hasta entonces, si necesitas que la narrativa sobreviva, usa JSON.
+{{< /callout >}}
+
+
+El campo `Narrative.Div` contiene XHTML que debe preservarse tal cual en la salida XML. La biblioteca lo intenta mediante `xmlEncodeRawXHTML`:
 
 ```go
 patient := &r4.Patient{
@@ -201,25 +235,55 @@ fmt.Println(string(data))
 
 ## Fidelidad de Ida y Vuelta en XML
 
-La biblioteca soporta serialización XML de ida y vuelta (round-trip). Puedes serializar un recurso a XML, luego deserializarlo de vuelta, y el struct resultante contendrá los mismos datos:
+{{< callout type="warning" >}}
+**La fidelidad de ida y vuelta en XML no se cumple.** Medido sobre los corpus de ejemplos publicados:
+
+| | ejemplos | sobreviven el round-trip |
+|---|---:|---:|
+| JSON, las tres versiones | 8758 | 99,1 % |
+| r4 XML | 1138 | **0,7 %** |
+| r4b XML | 1156 | 3,1 % |
+| r5 XML | 1359 | 2,2 % |
+
+Prácticamente todos los ejemplos publicados llevan narrativa, y la narrativa no sobrevive (ver arriba). Un recurso sin narrativa y sin extensiones sobre primitivos dentro de backbone elements sí hace round-trip correctamente.
+
+La suite de conformidad en `conformance/` lleva la cuenta archivo por archivo, así que estas cifras son medidas, no estimadas. Una advertencia sobre qué miden: en XML la suite solo comprueba que nuestra propia salida sea estable (parsear, serializar, parsear, serializar, converger), porque comparar contra los bytes publicados exige una comparación canónica de XML que todavía no existe. La pérdida frente al documento de origen está, por tanto, **sin medir** en el camino XML: la cifra real solo puede ser peor que la de arriba. En JSON se comprueba en ambos sentidos.
+{{< /callout >}}
+
+
+Un recurso sin narrativa y sin extensiones sobre primitivos de backbone hace round-trip con sus datos intactos. Nota que este
+ejemplo construye su propio recurso en lugar de reutilizar el `patient` de la
+sección de narrativa: ese lleva un `Text.Div`, y volvería como nil.
+
+Una diferencia a tener en cuenta: `UnmarshalResourceXML` deja vacío el campo
+`ResourceType`, así que el struct decodificado no es idéntico al original. Usa
+`GetResourceType()`, que devuelve el valor correcto de todas formas, y ten en
+cuenta que la serialización no se ve afectada porque `MarshalJSON` rellena el
+campo:
 
 ```go
-// Marshal to XML
-xmlBytes, err := r4.MarshalResourceXML(patient)
+plain := &r4.Patient{
+    ResourceType: "Patient",
+    Id:           ptrTo("round-trip"),
+    Active:       ptrTo(true),
+    Gender:       ptrTo(r4.AdministrativeGenderMale),
+}
+
+xmlBytes, err := r4.MarshalResourceXML(plain)
 if err != nil {
     log.Fatal(err)
 }
 
-// Unmarshal back
 resource, err := r4.UnmarshalResourceXML(xmlBytes)
 if err != nil {
     log.Fatal(err)
 }
 
 decoded := resource.(*r4.Patient)
-fmt.Println(*decoded.Id) // same as original
+fmt.Println(*decoded.Id)     // "round-trip"
+fmt.Println(*decoded.Active) // true
 ```
 
 {{< callout type="info" >}}
-La serialización XML usa el mismo registro de recursos que la deserialización JSON. El nombre del elemento raíz en el XML corresponde al campo `resourceType` en JSON. Todos los tipos de recursos registrados en `resourceFactories` son compatibles con viajes de ida y vuelta XML.
+La serialización XML usa el mismo registro de recursos que la deserialización JSON, así que el nombre del elemento raíz corresponde al campo `resourceType` de JSON. Todo tipo de recurso registrado se puede serializar y deserializar, pero consulta los avisos de arriba para saber qué no sobrevive el viaje, y ten en cuenta que el struct decodificado queda con el campo `ResourceType` vacío.
 {{< /callout >}}

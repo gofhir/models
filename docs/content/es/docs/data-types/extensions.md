@@ -5,7 +5,7 @@ description: "Modelo de extensibilidad FHIR con tipos Extension y Element, inclu
 weight: 5
 ---
 
-El framework de extensibilidad de FHIR permite que los recursos lleven datos adicionales más allá de lo que define la especificación base. La biblioteca `gofhir/models` proporciona soporte completo para extensiones a través del struct `Extension` (para agregar datos a recursos y tipos complejos) y el struct `Element` (para extender valores primitivos).
+El framework de extensibilidad de FHIR permite que los recursos lleven datos adicionales más allá de lo que define la especificación base. La biblioteca `gofhir/models` soporta extensiones a través del struct `Extension` (para agregar datos a recursos y tipos complejos) y el struct `Element` (para extender valores primitivos). Con una salvedad conocida: las extensiones sobre primitivos **dentro de backbone elements** no son representables y se descartan en silencio. A nivel de recurso y de datatype el campo compañero sí se genera, así que sobreviven; toda pérdida de extensiones medida en los corpus es un backbone element. Consulta [JSON Marshaling](../../serialization/json-marshaling/) para el desglose completo.
 
 ## El Struct Extension
 

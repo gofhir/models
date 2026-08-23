@@ -84,7 +84,21 @@ Los campos requeridos como `ResourceType` no usan `omitempty`, asegurando que si
 
 ## Fidelidad de Ida y Vuelta
 
-La biblioteca garantiza fidelidad de ida y vuelta (round-trip): serializar un recurso a JSON y luego deserializarlo de vuelta produce un struct idéntico. Esto es crítico para sistemas FHIR que necesitan almacenar y recuperar recursos sin pérdida de datos.
+La biblioteca busca fidelidad de ida y vuelta (round-trip): serializar un recurso a JSON y luego deserializarlo de vuelta produce un struct idéntico. Esto es crítico para sistemas FHIR que necesitan almacenar y recuperar recursos sin pérdida de datos.
+
+Medido sobre los corpus oficiales de ejemplos, 8683 de 8758 archivos JSON (99,1 %) sobreviven un round-trip sin cambios. Clasificando los 75 que no, por todas las diferencias presentes y no solo por la primera:
+
+| Defecto | Archivos | ¿Se detecta? | Efecto |
+|---|---:|---|---|
+| `Bundle.issues` emitido como `null` en R5 | 37 | silencioso | El campo es una interfaz, así que no recibe el `omitempty` que sí reciben punteros y arrays. Todo Bundle de R5 gana `"issues": null`, que no es FHIR válido |
+| `integer64` de R5 tipado como `int64` | 20 | **error** | La especificación exige que `integer64` viaje como **string** en JSON, porque JSON solo garantiza 53 bits de precisión. Los documentos afectados fallan al parsear en lugar de perder datos en silencio |
+| `null` posicional en un array de primitivos | 13 | silencioso | FHIR usa `null` para alinear un array `_campo` con sus valores, y ninguno de los dos lados puede representarlo: un valor `null` vuelve como `""` (9 archivos), y un `null` dentro del propio array `_campo` vuelve como `{}` (4 archivos, p. ej. `_base` en `search-parameters.json`). Un valor ausente se convierte en uno vacío |
+| Extensiones sobre primitivos descartadas | 6 | silencioso | Allí donde no existe ningún campo compañero: primitivos dentro de backbone elements, como `_text` en `Questionnaire.item`. Los 6 casos medidos son backbone elements |
+| No es un recurso FHIR | 1 | error | `package-min-ver.json` es un manifiesto de paquete sin `resourceType`; ruido del corpus, no un defecto |
+
+Las cifras se solapan ligeramente, porque dos archivos llevan más de un defecto. Regenéralas con `cd conformance && go test . -update-known` y lee las listas.
+
+Las extensiones sobre primitivos a nivel de recurso y de datatype sobreviven en su mayoría, pero no universalmente: no las consideres garantizadas hasta que estas listas se reduzcan.
 
 ```go
 package main

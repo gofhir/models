@@ -342,5 +342,5 @@ patient := &r4.Patient{
 ```
 
 {{< callout type="info" >}}
-Todos los tipos complejos implementan `MarshalJSON`, `UnmarshalJSON`, `MarshalXML` y `UnmarshalXML` para soporte completo de serialización. Al componer recursos, no necesitas manejar la serialización de tipos de datos individuales -- los métodos de marshaling a nivel de recurso manejan todo de forma recursiva.
+Todos los tipos complejos implementan `MarshalJSON`, `UnmarshalJSON`, `MarshalXML` y `UnmarshalXML`. Al componer recursos, no necesitas manejar la serialización de tipos de datos individuales -- los métodos de marshaling a nivel de recurso manejan todo de forma recursiva.
 {{< /callout >}}

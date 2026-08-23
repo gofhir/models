@@ -5,7 +5,11 @@ description: "JSON and XML serialization support for FHIR resources in the gofhi
 weight: 3
 ---
 
-The `gofhir/models` library provides comprehensive serialization support for FHIR resources in both JSON and XML formats. Every generated resource struct implements the standard Go marshaling interfaces, and the library also provides custom functions for FHIR-specific serialization requirements.
+The `gofhir/models` library serializes FHIR resources to JSON and XML. Every generated resource struct implements the standard Go marshaling interfaces, and the library also provides custom functions for FHIR-specific serialization requirements.
+
+{{< callout type="warning" >}}
+**JSON is the supported format; XML is experimental.** Measured over the official example corpora, 99.1% of JSON files survive a round-trip against 2% of XML files — `Narrative.Div` is emitted incorrectly and lost on re-parse. See [XML Marshaling](xml-marshaling/) for what works and what does not.
+{{< /callout >}}
 
 ## Serialization Overview
 
@@ -32,7 +36,7 @@ In addition, the library provides `r4.Marshal()` and `r4.MarshalIndent()` functi
 
 ### XML Serialization
 
-XML serialization is handled through dedicated helper functions in the `xml_helpers.go` module. The library provides `MarshalResourceXML()`, `MarshalResourceXMLIndent()`, and `UnmarshalResourceXML()` for working with the FHIR XML format, including proper namespace handling and the FHIR convention of encoding primitives as `<name value="..."/>` attributes.
+XML serialization is handled through dedicated helper functions in the `xml_helpers.go` module: `MarshalResourceXML()`, `MarshalResourceXMLIndent()` and `UnmarshalResourceXML()`. Namespace handling and the FHIR convention of encoding primitives as `<name value="..."/>` attributes both work. **This path is experimental** — the narrative is emitted incorrectly and lost on re-parse, so 98% of the published XML examples do not survive a round-trip. See [XML Marshaling](xml-marshaling/).
 
 ### Polymorphic Deserialization
 

@@ -19,7 +19,7 @@ Bienvenido a la documentación de **gofhir/models**. Esta biblioteca proporciona
 - **Todas las versiones FHIR** -- R4 (4.0.1), R4B (4.3.0) y R5 (5.0.0) con cada recurso, elemento backbone, tipo de dato y sistema de códigos.
 - **Tres patrones de construcción** -- Elige entre literales de struct directos, cadenas de builder fluido u opciones funcionales según tu caso de uso.
 - **Serialización JSON** -- Marshaling seguro para HTML que preserva el contenido XHTML narrativo de FHIR, con inyección automática de `resourceType`.
-- **Serialización XML** -- Marshaling y unmarshaling XML completamente conforme con FHIR mediante `MarshalXML` y `UnmarshalXML` en cada tipo.
+- **Serialización XML** -- `MarshalXML` y `UnmarshalXML` en cada tipo. Experimental: la narrativa todavía no se preserva, así que JSON es el formato soportado. Consulta [XML Marshaling](serialization/xml-marshaling/).
 - **Deserialización polimórfica** -- `UnmarshalResource(data)` detecta automáticamente el `resourceType` y devuelve el struct Go correcto.
 - **Decimales con preservación de precisión** -- Un tipo `Decimal` personalizado almacena la representación textual exacta (por ejemplo, `"1.50"` conserva el cero final).
 - **Metadatos del modelo FHIRPath** -- Información de tipos en tiempo de ejecución para motores FHIRPath, incluyendo rutas de tipos choice, jerarquías de tipos y objetivos de referencia.

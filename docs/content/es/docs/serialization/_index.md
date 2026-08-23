@@ -5,7 +5,11 @@ description: "Soporte de serialización JSON y XML para recursos FHIR en la bibl
 weight: 3
 ---
 
-La biblioteca `gofhir/models` proporciona soporte integral de serialización para recursos FHIR en formatos JSON y XML. Cada struct de recurso generado implementa las interfaces estándar de marshaling de Go, y la biblioteca también proporciona funciones personalizadas para los requisitos de serialización específicos de FHIR.
+La biblioteca `gofhir/models` serializa recursos FHIR a JSON y XML. Cada struct de recurso generado implementa las interfaces estándar de marshaling de Go, y la biblioteca también proporciona funciones personalizadas para los requisitos de serialización específicos de FHIR.
+
+{{< callout type="warning" >}}
+**JSON es el formato soportado; XML es experimental.** Medido sobre los corpus oficiales de ejemplos, el 99,1 % de los archivos JSON sobrevive un round-trip frente al 2 % de los XML: `Narrative.Div` se emite de forma incorrecta y se pierde al re-parsear. Consulta [XML Marshaling](xml-marshaling/) para ver qué funciona y qué no.
+{{< /callout >}}
 
 ## Descripción General de la Serialización
 
@@ -32,7 +36,7 @@ Además, la biblioteca proporciona las funciones `r4.Marshal()` y `r4.MarshalInd
 
 ### Serialización XML
 
-La serialización XML se maneja a través de funciones auxiliares dedicadas en el módulo `xml_helpers.go`. La biblioteca proporciona `MarshalResourceXML()`, `MarshalResourceXMLIndent()` y `UnmarshalResourceXML()` para trabajar con el formato XML de FHIR, incluyendo el manejo adecuado de namespaces y la convención FHIR de codificar primitivos como atributos `<name value="..."/>`.
+La serialización XML se maneja a través de funciones auxiliares dedicadas en el módulo `xml_helpers.go`: `MarshalResourceXML()`, `MarshalResourceXMLIndent()` y `UnmarshalResourceXML()`. El manejo de namespaces y la convención FHIR de codificar primitivos como atributos `<name value="..."/>` funcionan. **Este camino es experimental**: la narrativa se emite de forma incorrecta y se pierde al re-parsear, así que el 98 % de los ejemplos XML publicados no sobrevive un round-trip. Consulta [XML Marshaling](xml-marshaling/).
 
 ### Deserialización Polimórfica
 

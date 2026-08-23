@@ -49,7 +49,7 @@ Each resource file (e.g., `resource_patient.go`) contains:
 1. **The resource struct** with JSON and XML tags
 2. **Interface method implementations** (`GetResourceType`, `GetId`, `SetId`, `GetMeta`, `SetMeta`, and `DomainResource` methods where applicable)
 3. **`MarshalJSON`/`UnmarshalJSON`** for automatic `resourceType` injection and contained resource handling
-4. **`MarshalXML`/`UnmarshalXML`** for FHIR-conformant XML encoding with proper namespace and primitive attribute handling
+4. **`MarshalXML`/`UnmarshalXML`** for XML encoding with namespace and primitive attribute handling (experimental — see [XML Marshaling](../../serialization/xml-marshaling/))
 5. **Backbone element structs** (e.g., `PatientContact`, `PatientCommunication`) with their own marshaling methods
 6. **A fluent builder** (`PatientBuilder` with `NewPatientBuilder`, `Set*`, `Add*`, `Build`)
 7. **Functional options** (`PatientOption` type, `NewPatient`, `WithPatient*` functions)
