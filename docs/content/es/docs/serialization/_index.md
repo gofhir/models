@@ -36,7 +36,7 @@ Además, la biblioteca proporciona las funciones `r4.Marshal()` y `r4.MarshalInd
 
 ### Serialización XML
 
-La serialización XML se maneja a través de funciones auxiliares dedicadas en el módulo `xml_helpers.go`. La biblioteca proporciona `MarshalResourceXML()`, `MarshalResourceXMLIndent()` y `UnmarshalResourceXML()` para trabajar con el formato XML de FHIR, incluyendo el manejo adecuado de namespaces y la convención FHIR de codificar primitivos como atributos `<name value="..."/>`.
+La serialización XML se maneja a través de funciones auxiliares dedicadas en el módulo `xml_helpers.go`: `MarshalResourceXML()`, `MarshalResourceXMLIndent()` y `UnmarshalResourceXML()`. El manejo de namespaces y la convención FHIR de codificar primitivos como atributos `<name value="..."/>` funcionan. **Este camino es experimental**: la narrativa se emite de forma incorrecta y se pierde al re-parsear, así que el 98 % de los ejemplos XML publicados no sobrevive un round-trip. Consulta [XML Marshaling](xml-marshaling/).
 
 ### Deserialización Polimórfica
 

@@ -67,17 +67,14 @@ func main() {
 }
 ```
 
-La salida incluye la declaración XML y el namespace de FHIR (`MarshalResourceXML` emite una sola línea; la forma indentada de abajo viene de `MarshalResourceXMLIndent`.)
+`MarshalResourceXML` escribe la declaración y luego el recurso completo en una línea:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<Patient xmlns="http://hl7.org/fhir">
-  <id value="xml-example"/>
-  <active value="true"/>
-  <gender value="male"/>
-  <birthDate value="1990-06-15"/>
-</Patient>
+<Patient xmlns="http://hl7.org/fhir"><id value="xml-example"/><active value="true"/><gender value="male"/><birthDate value="1990-06-15"/></Patient>
 ```
+
+Para la forma indentada usa `MarshalResourceXMLIndent`: ver la sección siguiente.
 
 ### MarshalResourceXMLIndent
 
@@ -243,7 +240,7 @@ fmt.Println(string(data))
 
 | | ejemplos | sobreviven el round-trip |
 |---|---:|---:|
-| r4 JSON | 2912 | 99,9 % |
+| JSON, las tres versiones | 8758 | 99,1 % |
 | r4 XML | 1138 | **0,7 %** |
 | r4b XML | 1156 | 3,1 % |
 | r5 XML | 1359 | 2,2 % |
@@ -254,7 +251,7 @@ La suite de conformidad en `conformance/` lleva la cuenta archivo por archivo, a
 {{< /callout >}}
 
 
-Un recurso sin narrativa hace round-trip con sus datos intactos. Nota que este
+Un recurso sin narrativa y sin extensiones sobre primitivos de backbone hace round-trip con sus datos intactos. Nota que este
 ejemplo construye su propio recurso en lugar de reutilizar el `patient` de la
 sección de narrativa: ese lleva un `Text.Div`, y volvería como nil.
 

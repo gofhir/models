@@ -66,17 +66,14 @@ func main() {
 }
 ```
 
-The output includes the XML declaration and the FHIR namespace (`MarshalResourceXML` emits a single line; the indented form below comes from `MarshalResourceXMLIndent`.)
+`MarshalResourceXML` writes the declaration, then the whole resource on one line:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<Patient xmlns="http://hl7.org/fhir">
-  <id value="xml-example"/>
-  <active value="true"/>
-  <gender value="male"/>
-  <birthDate value="1990-06-15"/>
-</Patient>
+<Patient xmlns="http://hl7.org/fhir"><id value="xml-example"/><active value="true"/><gender value="male"/><birthDate value="1990-06-15"/></Patient>
 ```
+
+For the indented form, use `MarshalResourceXMLIndent` — see the next section.
 
 ### MarshalResourceXMLIndent
 
@@ -241,7 +238,7 @@ fmt.Println(string(data))
 
 | | examples | surviving a round-trip |
 |---|---:|---:|
-| r4 JSON | 2912 | 99.9% |
+| JSON, all three versions | 8758 | 99.1% |
 | r4 XML | 1138 | **0.7%** |
 | r4b XML | 1156 | 3.1% |
 | r5 XML | 1359 | 2.2% |
@@ -251,7 +248,7 @@ Practically every published example carries a narrative, and the narrative does 
 The conformance suite in `conformance/` tracks this file by file, so these numbers are measured rather than estimated. One caveat on what they measure: for XML the suite checks only that our own output is stable (parse, serialize, parse, serialize, converge), because comparing against the published bytes needs a canonical XML comparison that does not exist yet. Loss against the source document is therefore **unmeasured** on the XML path — the real figure can only be worse than the one above. JSON is checked both ways.
 {{< /callout >}}
 
-A resource without a narrative round-trips with its data intact. Note that this
+A resource with no narrative and no extensions on backbone primitives round-trips with its data intact. Note that this
 example builds its own resource rather than reusing the `patient` from the
 narrative section above — that one carries a `Text.Div`, and it would come back
 nil.

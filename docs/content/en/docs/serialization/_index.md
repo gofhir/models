@@ -36,7 +36,7 @@ In addition, the library provides `r4.Marshal()` and `r4.MarshalIndent()` functi
 
 ### XML Serialization
 
-XML serialization is handled through dedicated helper functions in the `xml_helpers.go` module. The library provides `MarshalResourceXML()`, `MarshalResourceXMLIndent()`, and `UnmarshalResourceXML()` for working with the FHIR XML format, including proper namespace handling and the FHIR convention of encoding primitives as `<name value="..."/>` attributes.
+XML serialization is handled through dedicated helper functions in the `xml_helpers.go` module: `MarshalResourceXML()`, `MarshalResourceXMLIndent()` and `UnmarshalResourceXML()`. Namespace handling and the FHIR convention of encoding primitives as `<name value="..."/>` attributes both work. **This path is experimental** — the narrative is emitted incorrectly and lost on re-parse, so 98% of the published XML examples do not survive a round-trip. See [XML Marshaling](xml-marshaling/).
 
 ### Polymorphic Deserialization
 

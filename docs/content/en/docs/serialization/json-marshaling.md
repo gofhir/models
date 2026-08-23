@@ -92,8 +92,8 @@ Measured over the official example corpora, 8683 of 8758 JSON files (99.1%) surv
 |---|---:|---|---|
 | `Bundle.issues` emitted as `null` in R5 | 37 | silent | The field is an interface, so it misses the `omitempty` that pointers and arrays get. Every R5 Bundle gains `"issues": null`, which is not valid FHIR |
 | R5 `integer64` typed as `int64` | 20 | **error** | The specification requires `integer64` to travel as a JSON **string**, since JSON guarantees only 53 bits of precision. Affected documents fail to parse rather than losing data quietly |
-| `null` in a primitive array becomes `""` | 13 | silent | `["2020-01-01", null]` comes back as `["2020-01-01", ""]`. The positional `null` FHIR uses to align `_field` extensions is not representable, so a value that was absent becomes an empty one |
-| Extensions on primitives dropped | 6 | silent | Wherever the companion field does not exist: primitives inside backbone elements (`_text` on `Questionnaire.item`), and some resource-level fields (`_base`) |
+| Positional `null` in a primitive array | 13 | silent | FHIR uses `null` to align a `_field` array with its values, and neither side can represent it: a `null` value comes back as `""` (9 files), and a `null` in the `_field` array itself comes back as `{}` (4 files, e.g. `_base` in `search-parameters.json`). An absent value becomes an empty one |
+| Extensions on primitives dropped | 6 | silent | Where no companion field exists at all — primitives inside backbone elements, such as `_text` on `Questionnaire.item`. All 6 measured cases are backbone elements |
 | Not a FHIR resource | 1 | error | `package-min-ver.json` is a package manifest with no `resourceType`; corpus noise, not a defect |
 
 Counts overlap slightly, since two files carry more than one defect. Regenerate them with `cd conformance && go test . -update-known` and read the lists.
