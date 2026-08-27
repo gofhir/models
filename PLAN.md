@@ -638,10 +638,33 @@ Cuatro releases en vez de tres: la fase 4 se separa porque cambia la salida XML 
 
 Agrupar los rompientes es correcto —el coste real de un major en Go es el sufijo y la migración de imports, que se paga igual con uno que con siete— pero con la cobertura actual una v2 de siete cambios es una apuesta. **No cortarla sin:**
 
-1. El corpus de la fase 1 en verde.
-2. Todo lo que muere en v2 marcado `// Deprecated:` desde la v1.5.0.
+1. ✅ El corpus de la fase 1 en verde.
+2. ✅ Todo lo que muere en v2 marcado `// Deprecated:` — en la **v1.6.0**, no en la v1.5.0: esa ventana se cerró al publicar v1.5.0 y v1.5.1 sin las marcas.
 
-Definir además la política de la rama v1 *antes* de cortar: cuánto se sostiene y para qué. Con release-please, mantener v1 exige configuración o rama de release adicional.
+**El gate 2 obligó a crear la rama `v1`, no por preferencia sino porque no había alternativa.** Con `main` ya en `/v2`, Go rechaza cualquier tag v1.x sobre él:
+
+```
+invalid version: r4/go.mod has post-v1 module path
+"github.com/gofhir/models/r4/v2" at revision r4/v1.6.0
+```
+
+Verificado, no deducido. Y las marcas no sirven de nada dentro de la propia v2, donde los símbolos ya no existen. La rama sale de `r4/v1.5.1` (6c843b2), antes de que `main` moviera las rutas.
+
+Lo marcado son solo los símbolos que **desaparecen**, no los que cambian de tipo: 11.952 `With*`, 445 `New<Res>(opts...)` y 445 tipos `<Res>Option`. Un `// Deprecated:` sobre `ResourceType` o `Contained` sería engañoso —el campo sigue existiendo con el mismo nombre— así que esos van a la guía de migración.
+
+Dos comprobaciones que valía hacer antes de emitir 12.845 mensajes:
+
+- **El aviso llega al usuario y no rompe al repo.** `staticcheck` omite SA1019 dentro del mismo módulo, así que los tests propios siguen en verde, mientras un consumidor externo sí recibe el aviso con el reemplazo nombrado. Comprobado en ambas direcciones con un módulo aparte.
+- **La equivalencia que el mensaje promete es real.** Un test parsea el código generado y compara, para las 11.952, el tipo del parámetro y la operación del cuerpo (`append` / `&v` / asignación). Cero discrepancias. Sin eso, el mensaje sería una promesa sin respaldo repetida doce mil veces.
+
+### Política de la rama `v1`
+
+Definida ahora que la rama existe:
+
+- **Recibe:** arreglos que no exijan un cambio rompiente, y las marcas de deprecación.
+- **No recibe:** nada que cambie una firma o un tipo. Eso es lo que define la v2.
+- **Cuánto:** hasta que la v2 lleve un ciclo publicada. La ventana real de aviso no son las dos semanas hasta la v2, sino todo el tiempo que cada usuario siga en v1 — los avisos siguen ahí mientras no migre.
+- **Mecánica:** el mismo workflow de release-please sirve a las dos ramas con `target-branch: ${{ github.ref_name }}`. Cada rama lleva su propio manifest, así que ambas avanzan desde el 1.5.1 que comparten sin interferir. El CI también corre en `v1`; sin eso, sus commits de release se publicarían sin verificar.
 
 ---
 
