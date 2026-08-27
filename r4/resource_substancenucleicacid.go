@@ -854,9 +854,23 @@ func (b *SubstanceNucleicAcidBuilder) AddSubunit(v SubstanceNucleicAcidSubunit) 
 // =============================================================================
 
 // SubstanceNucleicAcidOption is a functional option for configuring a SubstanceNucleicAcid.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// SubstanceNucleicAcidBuilder. Every WithSubstanceNucleicAcid* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type SubstanceNucleicAcidOption func(*SubstanceNucleicAcid)
 
 // NewSubstanceNucleicAcid creates a new SubstanceNucleicAcid with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewSubstanceNucleicAcidBuilder().SetId("x").Build()
+//
+// Deprecated: use NewSubstanceNucleicAcidBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewSubstanceNucleicAcid(opts ...SubstanceNucleicAcidOption) *SubstanceNucleicAcid {
 	r := &SubstanceNucleicAcid{ResourceType: "SubstanceNucleicAcid"}
 	for _, opt := range opts {
@@ -866,6 +880,8 @@ func NewSubstanceNucleicAcid(opts ...SubstanceNucleicAcidOption) *SubstanceNucle
 }
 
 // WithSubstanceNucleicAcidId sets the Id field.
+//
+// Deprecated: use SubstanceNucleicAcidBuilder.SetId instead; removed in v2.
 func WithSubstanceNucleicAcidId(v string) SubstanceNucleicAcidOption {
 	return func(r *SubstanceNucleicAcid) {
 		r.Id = &v
@@ -873,6 +889,8 @@ func WithSubstanceNucleicAcidId(v string) SubstanceNucleicAcidOption {
 }
 
 // WithSubstanceNucleicAcidMeta sets the Meta field.
+//
+// Deprecated: use SubstanceNucleicAcidBuilder.SetMeta instead; removed in v2.
 func WithSubstanceNucleicAcidMeta(v Meta) SubstanceNucleicAcidOption {
 	return func(r *SubstanceNucleicAcid) {
 		r.Meta = &v
@@ -880,6 +898,8 @@ func WithSubstanceNucleicAcidMeta(v Meta) SubstanceNucleicAcidOption {
 }
 
 // WithSubstanceNucleicAcidImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use SubstanceNucleicAcidBuilder.SetImplicitRules instead; removed in v2.
 func WithSubstanceNucleicAcidImplicitRules(v string) SubstanceNucleicAcidOption {
 	return func(r *SubstanceNucleicAcid) {
 		r.ImplicitRules = &v
@@ -887,6 +907,8 @@ func WithSubstanceNucleicAcidImplicitRules(v string) SubstanceNucleicAcidOption 
 }
 
 // WithSubstanceNucleicAcidLanguage sets the Language field.
+//
+// Deprecated: use SubstanceNucleicAcidBuilder.SetLanguage instead; removed in v2.
 func WithSubstanceNucleicAcidLanguage(v string) SubstanceNucleicAcidOption {
 	return func(r *SubstanceNucleicAcid) {
 		r.Language = &v
@@ -894,6 +916,8 @@ func WithSubstanceNucleicAcidLanguage(v string) SubstanceNucleicAcidOption {
 }
 
 // WithSubstanceNucleicAcidText sets the Text field.
+//
+// Deprecated: use SubstanceNucleicAcidBuilder.SetText instead; removed in v2.
 func WithSubstanceNucleicAcidText(v Narrative) SubstanceNucleicAcidOption {
 	return func(r *SubstanceNucleicAcid) {
 		r.Text = &v
@@ -901,6 +925,8 @@ func WithSubstanceNucleicAcidText(v Narrative) SubstanceNucleicAcidOption {
 }
 
 // WithSubstanceNucleicAcidContained adds a Contained to the SubstanceNucleicAcid.
+//
+// Deprecated: use SubstanceNucleicAcidBuilder.AddContained instead; removed in v2.
 func WithSubstanceNucleicAcidContained(v Resource) SubstanceNucleicAcidOption {
 	return func(r *SubstanceNucleicAcid) {
 		r.Contained = append(r.Contained, v)
@@ -908,6 +934,8 @@ func WithSubstanceNucleicAcidContained(v Resource) SubstanceNucleicAcidOption {
 }
 
 // WithSubstanceNucleicAcidExtension adds a Extension to the SubstanceNucleicAcid.
+//
+// Deprecated: use SubstanceNucleicAcidBuilder.AddExtension instead; removed in v2.
 func WithSubstanceNucleicAcidExtension(v Extension) SubstanceNucleicAcidOption {
 	return func(r *SubstanceNucleicAcid) {
 		r.Extension = append(r.Extension, v)
@@ -915,6 +943,8 @@ func WithSubstanceNucleicAcidExtension(v Extension) SubstanceNucleicAcidOption {
 }
 
 // WithSubstanceNucleicAcidModifierExtension adds a ModifierExtension to the SubstanceNucleicAcid.
+//
+// Deprecated: use SubstanceNucleicAcidBuilder.AddModifierExtension instead; removed in v2.
 func WithSubstanceNucleicAcidModifierExtension(v Extension) SubstanceNucleicAcidOption {
 	return func(r *SubstanceNucleicAcid) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -922,6 +952,8 @@ func WithSubstanceNucleicAcidModifierExtension(v Extension) SubstanceNucleicAcid
 }
 
 // WithSubstanceNucleicAcidSequenceType sets the SequenceType field.
+//
+// Deprecated: use SubstanceNucleicAcidBuilder.SetSequenceType instead; removed in v2.
 func WithSubstanceNucleicAcidSequenceType(v CodeableConcept) SubstanceNucleicAcidOption {
 	return func(r *SubstanceNucleicAcid) {
 		r.SequenceType = &v
@@ -929,6 +961,8 @@ func WithSubstanceNucleicAcidSequenceType(v CodeableConcept) SubstanceNucleicAci
 }
 
 // WithSubstanceNucleicAcidNumberOfSubunits sets the NumberOfSubunits field.
+//
+// Deprecated: use SubstanceNucleicAcidBuilder.SetNumberOfSubunits instead; removed in v2.
 func WithSubstanceNucleicAcidNumberOfSubunits(v int) SubstanceNucleicAcidOption {
 	return func(r *SubstanceNucleicAcid) {
 		r.NumberOfSubunits = &v
@@ -936,6 +970,8 @@ func WithSubstanceNucleicAcidNumberOfSubunits(v int) SubstanceNucleicAcidOption 
 }
 
 // WithSubstanceNucleicAcidAreaOfHybridisation sets the AreaOfHybridisation field.
+//
+// Deprecated: use SubstanceNucleicAcidBuilder.SetAreaOfHybridisation instead; removed in v2.
 func WithSubstanceNucleicAcidAreaOfHybridisation(v string) SubstanceNucleicAcidOption {
 	return func(r *SubstanceNucleicAcid) {
 		r.AreaOfHybridisation = &v
@@ -943,6 +979,8 @@ func WithSubstanceNucleicAcidAreaOfHybridisation(v string) SubstanceNucleicAcidO
 }
 
 // WithSubstanceNucleicAcidOligoNucleotideType sets the OligoNucleotideType field.
+//
+// Deprecated: use SubstanceNucleicAcidBuilder.SetOligoNucleotideType instead; removed in v2.
 func WithSubstanceNucleicAcidOligoNucleotideType(v CodeableConcept) SubstanceNucleicAcidOption {
 	return func(r *SubstanceNucleicAcid) {
 		r.OligoNucleotideType = &v
@@ -950,6 +988,8 @@ func WithSubstanceNucleicAcidOligoNucleotideType(v CodeableConcept) SubstanceNuc
 }
 
 // WithSubstanceNucleicAcidSubunit adds a Subunit to the SubstanceNucleicAcid.
+//
+// Deprecated: use SubstanceNucleicAcidBuilder.AddSubunit instead; removed in v2.
 func WithSubstanceNucleicAcidSubunit(v SubstanceNucleicAcidSubunit) SubstanceNucleicAcidOption {
 	return func(r *SubstanceNucleicAcid) {
 		r.Subunit = append(r.Subunit, v)

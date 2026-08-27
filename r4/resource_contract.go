@@ -3597,9 +3597,23 @@ func (b *ContractBuilder) SetLegallyBindingReference(v Reference) *ContractBuild
 // =============================================================================
 
 // ContractOption is a functional option for configuring a Contract.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ContractBuilder. Every WithContract* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ContractOption func(*Contract)
 
 // NewContract creates a new Contract with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewContractBuilder().SetId("x").Build()
+//
+// Deprecated: use NewContractBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewContract(opts ...ContractOption) *Contract {
 	r := &Contract{ResourceType: "Contract"}
 	for _, opt := range opts {
@@ -3609,6 +3623,8 @@ func NewContract(opts ...ContractOption) *Contract {
 }
 
 // WithContractId sets the Id field.
+//
+// Deprecated: use ContractBuilder.SetId instead; removed in v2.
 func WithContractId(v string) ContractOption {
 	return func(r *Contract) {
 		r.Id = &v
@@ -3616,6 +3632,8 @@ func WithContractId(v string) ContractOption {
 }
 
 // WithContractMeta sets the Meta field.
+//
+// Deprecated: use ContractBuilder.SetMeta instead; removed in v2.
 func WithContractMeta(v Meta) ContractOption {
 	return func(r *Contract) {
 		r.Meta = &v
@@ -3623,6 +3641,8 @@ func WithContractMeta(v Meta) ContractOption {
 }
 
 // WithContractImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ContractBuilder.SetImplicitRules instead; removed in v2.
 func WithContractImplicitRules(v string) ContractOption {
 	return func(r *Contract) {
 		r.ImplicitRules = &v
@@ -3630,6 +3650,8 @@ func WithContractImplicitRules(v string) ContractOption {
 }
 
 // WithContractLanguage sets the Language field.
+//
+// Deprecated: use ContractBuilder.SetLanguage instead; removed in v2.
 func WithContractLanguage(v string) ContractOption {
 	return func(r *Contract) {
 		r.Language = &v
@@ -3637,6 +3659,8 @@ func WithContractLanguage(v string) ContractOption {
 }
 
 // WithContractText sets the Text field.
+//
+// Deprecated: use ContractBuilder.SetText instead; removed in v2.
 func WithContractText(v Narrative) ContractOption {
 	return func(r *Contract) {
 		r.Text = &v
@@ -3644,6 +3668,8 @@ func WithContractText(v Narrative) ContractOption {
 }
 
 // WithContractContained adds a Contained to the Contract.
+//
+// Deprecated: use ContractBuilder.AddContained instead; removed in v2.
 func WithContractContained(v Resource) ContractOption {
 	return func(r *Contract) {
 		r.Contained = append(r.Contained, v)
@@ -3651,6 +3677,8 @@ func WithContractContained(v Resource) ContractOption {
 }
 
 // WithContractExtension adds a Extension to the Contract.
+//
+// Deprecated: use ContractBuilder.AddExtension instead; removed in v2.
 func WithContractExtension(v Extension) ContractOption {
 	return func(r *Contract) {
 		r.Extension = append(r.Extension, v)
@@ -3658,6 +3686,8 @@ func WithContractExtension(v Extension) ContractOption {
 }
 
 // WithContractModifierExtension adds a ModifierExtension to the Contract.
+//
+// Deprecated: use ContractBuilder.AddModifierExtension instead; removed in v2.
 func WithContractModifierExtension(v Extension) ContractOption {
 	return func(r *Contract) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -3665,6 +3695,8 @@ func WithContractModifierExtension(v Extension) ContractOption {
 }
 
 // WithContractIdentifier adds a Identifier to the Contract.
+//
+// Deprecated: use ContractBuilder.AddIdentifier instead; removed in v2.
 func WithContractIdentifier(v Identifier) ContractOption {
 	return func(r *Contract) {
 		r.Identifier = append(r.Identifier, v)
@@ -3672,6 +3704,8 @@ func WithContractIdentifier(v Identifier) ContractOption {
 }
 
 // WithContractUrl sets the Url field.
+//
+// Deprecated: use ContractBuilder.SetUrl instead; removed in v2.
 func WithContractUrl(v string) ContractOption {
 	return func(r *Contract) {
 		r.Url = &v
@@ -3679,6 +3713,8 @@ func WithContractUrl(v string) ContractOption {
 }
 
 // WithContractVersion sets the Version field.
+//
+// Deprecated: use ContractBuilder.SetVersion instead; removed in v2.
 func WithContractVersion(v string) ContractOption {
 	return func(r *Contract) {
 		r.Version = &v
@@ -3686,6 +3722,8 @@ func WithContractVersion(v string) ContractOption {
 }
 
 // WithContractStatus sets the Status field.
+//
+// Deprecated: use ContractBuilder.SetStatus instead; removed in v2.
 func WithContractStatus(v ContractResourceStatusCodes) ContractOption {
 	return func(r *Contract) {
 		r.Status = &v
@@ -3693,6 +3731,8 @@ func WithContractStatus(v ContractResourceStatusCodes) ContractOption {
 }
 
 // WithContractLegalState sets the LegalState field.
+//
+// Deprecated: use ContractBuilder.SetLegalState instead; removed in v2.
 func WithContractLegalState(v CodeableConcept) ContractOption {
 	return func(r *Contract) {
 		r.LegalState = &v
@@ -3700,6 +3740,8 @@ func WithContractLegalState(v CodeableConcept) ContractOption {
 }
 
 // WithContractInstantiatesCanonical sets the InstantiatesCanonical field.
+//
+// Deprecated: use ContractBuilder.SetInstantiatesCanonical instead; removed in v2.
 func WithContractInstantiatesCanonical(v Reference) ContractOption {
 	return func(r *Contract) {
 		r.InstantiatesCanonical = &v
@@ -3707,6 +3749,8 @@ func WithContractInstantiatesCanonical(v Reference) ContractOption {
 }
 
 // WithContractInstantiatesUri sets the InstantiatesUri field.
+//
+// Deprecated: use ContractBuilder.SetInstantiatesUri instead; removed in v2.
 func WithContractInstantiatesUri(v string) ContractOption {
 	return func(r *Contract) {
 		r.InstantiatesUri = &v
@@ -3714,6 +3758,8 @@ func WithContractInstantiatesUri(v string) ContractOption {
 }
 
 // WithContractContentDerivative sets the ContentDerivative field.
+//
+// Deprecated: use ContractBuilder.SetContentDerivative instead; removed in v2.
 func WithContractContentDerivative(v CodeableConcept) ContractOption {
 	return func(r *Contract) {
 		r.ContentDerivative = &v
@@ -3721,6 +3767,8 @@ func WithContractContentDerivative(v CodeableConcept) ContractOption {
 }
 
 // WithContractIssued sets the Issued field.
+//
+// Deprecated: use ContractBuilder.SetIssued instead; removed in v2.
 func WithContractIssued(v string) ContractOption {
 	return func(r *Contract) {
 		r.Issued = &v
@@ -3728,6 +3776,8 @@ func WithContractIssued(v string) ContractOption {
 }
 
 // WithContractApplies sets the Applies field.
+//
+// Deprecated: use ContractBuilder.SetApplies instead; removed in v2.
 func WithContractApplies(v Period) ContractOption {
 	return func(r *Contract) {
 		r.Applies = &v
@@ -3735,6 +3785,8 @@ func WithContractApplies(v Period) ContractOption {
 }
 
 // WithContractExpirationType sets the ExpirationType field.
+//
+// Deprecated: use ContractBuilder.SetExpirationType instead; removed in v2.
 func WithContractExpirationType(v CodeableConcept) ContractOption {
 	return func(r *Contract) {
 		r.ExpirationType = &v
@@ -3742,6 +3794,8 @@ func WithContractExpirationType(v CodeableConcept) ContractOption {
 }
 
 // WithContractSubject adds a Subject to the Contract.
+//
+// Deprecated: use ContractBuilder.AddSubject instead; removed in v2.
 func WithContractSubject(v Reference) ContractOption {
 	return func(r *Contract) {
 		r.Subject = append(r.Subject, v)
@@ -3749,6 +3803,8 @@ func WithContractSubject(v Reference) ContractOption {
 }
 
 // WithContractAuthority adds a Authority to the Contract.
+//
+// Deprecated: use ContractBuilder.AddAuthority instead; removed in v2.
 func WithContractAuthority(v Reference) ContractOption {
 	return func(r *Contract) {
 		r.Authority = append(r.Authority, v)
@@ -3756,6 +3812,8 @@ func WithContractAuthority(v Reference) ContractOption {
 }
 
 // WithContractDomain adds a Domain to the Contract.
+//
+// Deprecated: use ContractBuilder.AddDomain instead; removed in v2.
 func WithContractDomain(v Reference) ContractOption {
 	return func(r *Contract) {
 		r.Domain = append(r.Domain, v)
@@ -3763,6 +3821,8 @@ func WithContractDomain(v Reference) ContractOption {
 }
 
 // WithContractSite adds a Site to the Contract.
+//
+// Deprecated: use ContractBuilder.AddSite instead; removed in v2.
 func WithContractSite(v Reference) ContractOption {
 	return func(r *Contract) {
 		r.Site = append(r.Site, v)
@@ -3770,6 +3830,8 @@ func WithContractSite(v Reference) ContractOption {
 }
 
 // WithContractName sets the Name field.
+//
+// Deprecated: use ContractBuilder.SetName instead; removed in v2.
 func WithContractName(v string) ContractOption {
 	return func(r *Contract) {
 		r.Name = &v
@@ -3777,6 +3839,8 @@ func WithContractName(v string) ContractOption {
 }
 
 // WithContractTitle sets the Title field.
+//
+// Deprecated: use ContractBuilder.SetTitle instead; removed in v2.
 func WithContractTitle(v string) ContractOption {
 	return func(r *Contract) {
 		r.Title = &v
@@ -3784,6 +3848,8 @@ func WithContractTitle(v string) ContractOption {
 }
 
 // WithContractSubtitle sets the Subtitle field.
+//
+// Deprecated: use ContractBuilder.SetSubtitle instead; removed in v2.
 func WithContractSubtitle(v string) ContractOption {
 	return func(r *Contract) {
 		r.Subtitle = &v
@@ -3791,6 +3857,8 @@ func WithContractSubtitle(v string) ContractOption {
 }
 
 // WithContractAlias adds a Alias to the Contract.
+//
+// Deprecated: use ContractBuilder.AddAlias instead; removed in v2.
 func WithContractAlias(v string) ContractOption {
 	return func(r *Contract) {
 		r.Alias = append(r.Alias, v)
@@ -3798,6 +3866,8 @@ func WithContractAlias(v string) ContractOption {
 }
 
 // WithContractAuthor sets the Author field.
+//
+// Deprecated: use ContractBuilder.SetAuthor instead; removed in v2.
 func WithContractAuthor(v Reference) ContractOption {
 	return func(r *Contract) {
 		r.Author = &v
@@ -3805,6 +3875,8 @@ func WithContractAuthor(v Reference) ContractOption {
 }
 
 // WithContractScope sets the Scope field.
+//
+// Deprecated: use ContractBuilder.SetScope instead; removed in v2.
 func WithContractScope(v CodeableConcept) ContractOption {
 	return func(r *Contract) {
 		r.Scope = &v
@@ -3812,6 +3884,8 @@ func WithContractScope(v CodeableConcept) ContractOption {
 }
 
 // WithContractTopicCodeableConcept sets the TopicCodeableConcept field.
+//
+// Deprecated: use ContractBuilder.SetTopicCodeableConcept instead; removed in v2.
 func WithContractTopicCodeableConcept(v CodeableConcept) ContractOption {
 	return func(r *Contract) {
 		r.TopicCodeableConcept = &v
@@ -3819,6 +3893,8 @@ func WithContractTopicCodeableConcept(v CodeableConcept) ContractOption {
 }
 
 // WithContractTopicReference sets the TopicReference field.
+//
+// Deprecated: use ContractBuilder.SetTopicReference instead; removed in v2.
 func WithContractTopicReference(v Reference) ContractOption {
 	return func(r *Contract) {
 		r.TopicReference = &v
@@ -3826,6 +3902,8 @@ func WithContractTopicReference(v Reference) ContractOption {
 }
 
 // WithContractType sets the Type field.
+//
+// Deprecated: use ContractBuilder.SetType instead; removed in v2.
 func WithContractType(v CodeableConcept) ContractOption {
 	return func(r *Contract) {
 		r.Type = &v
@@ -3833,6 +3911,8 @@ func WithContractType(v CodeableConcept) ContractOption {
 }
 
 // WithContractSubType adds a SubType to the Contract.
+//
+// Deprecated: use ContractBuilder.AddSubType instead; removed in v2.
 func WithContractSubType(v CodeableConcept) ContractOption {
 	return func(r *Contract) {
 		r.SubType = append(r.SubType, v)
@@ -3840,6 +3920,8 @@ func WithContractSubType(v CodeableConcept) ContractOption {
 }
 
 // WithContractContentDefinition sets the ContentDefinition field.
+//
+// Deprecated: use ContractBuilder.SetContentDefinition instead; removed in v2.
 func WithContractContentDefinition(v ContractContentDefinition) ContractOption {
 	return func(r *Contract) {
 		r.ContentDefinition = &v
@@ -3847,6 +3929,8 @@ func WithContractContentDefinition(v ContractContentDefinition) ContractOption {
 }
 
 // WithContractTerm adds a Term to the Contract.
+//
+// Deprecated: use ContractBuilder.AddTerm instead; removed in v2.
 func WithContractTerm(v ContractTerm) ContractOption {
 	return func(r *Contract) {
 		r.Term = append(r.Term, v)
@@ -3854,6 +3938,8 @@ func WithContractTerm(v ContractTerm) ContractOption {
 }
 
 // WithContractSupportingInfo adds a SupportingInfo to the Contract.
+//
+// Deprecated: use ContractBuilder.AddSupportingInfo instead; removed in v2.
 func WithContractSupportingInfo(v Reference) ContractOption {
 	return func(r *Contract) {
 		r.SupportingInfo = append(r.SupportingInfo, v)
@@ -3861,6 +3947,8 @@ func WithContractSupportingInfo(v Reference) ContractOption {
 }
 
 // WithContractRelevantHistory adds a RelevantHistory to the Contract.
+//
+// Deprecated: use ContractBuilder.AddRelevantHistory instead; removed in v2.
 func WithContractRelevantHistory(v Reference) ContractOption {
 	return func(r *Contract) {
 		r.RelevantHistory = append(r.RelevantHistory, v)
@@ -3868,6 +3956,8 @@ func WithContractRelevantHistory(v Reference) ContractOption {
 }
 
 // WithContractSigner adds a Signer to the Contract.
+//
+// Deprecated: use ContractBuilder.AddSigner instead; removed in v2.
 func WithContractSigner(v ContractSigner) ContractOption {
 	return func(r *Contract) {
 		r.Signer = append(r.Signer, v)
@@ -3875,6 +3965,8 @@ func WithContractSigner(v ContractSigner) ContractOption {
 }
 
 // WithContractFriendly adds a Friendly to the Contract.
+//
+// Deprecated: use ContractBuilder.AddFriendly instead; removed in v2.
 func WithContractFriendly(v ContractFriendly) ContractOption {
 	return func(r *Contract) {
 		r.Friendly = append(r.Friendly, v)
@@ -3882,6 +3974,8 @@ func WithContractFriendly(v ContractFriendly) ContractOption {
 }
 
 // WithContractLegal adds a Legal to the Contract.
+//
+// Deprecated: use ContractBuilder.AddLegal instead; removed in v2.
 func WithContractLegal(v ContractLegal) ContractOption {
 	return func(r *Contract) {
 		r.Legal = append(r.Legal, v)
@@ -3889,6 +3983,8 @@ func WithContractLegal(v ContractLegal) ContractOption {
 }
 
 // WithContractRule adds a Rule to the Contract.
+//
+// Deprecated: use ContractBuilder.AddRule instead; removed in v2.
 func WithContractRule(v ContractRule) ContractOption {
 	return func(r *Contract) {
 		r.Rule = append(r.Rule, v)
@@ -3896,6 +3992,8 @@ func WithContractRule(v ContractRule) ContractOption {
 }
 
 // WithContractLegallyBindingAttachment sets the LegallyBindingAttachment field.
+//
+// Deprecated: use ContractBuilder.SetLegallyBindingAttachment instead; removed in v2.
 func WithContractLegallyBindingAttachment(v Attachment) ContractOption {
 	return func(r *Contract) {
 		r.LegallyBindingAttachment = &v
@@ -3903,6 +4001,8 @@ func WithContractLegallyBindingAttachment(v Attachment) ContractOption {
 }
 
 // WithContractLegallyBindingReference sets the LegallyBindingReference field.
+//
+// Deprecated: use ContractBuilder.SetLegallyBindingReference instead; removed in v2.
 func WithContractLegallyBindingReference(v Reference) ContractOption {
 	return func(r *Contract) {
 		r.LegallyBindingReference = &v

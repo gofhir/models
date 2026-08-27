@@ -5,6 +5,14 @@ description: "Create FHIR resources using composable functional option functions
 weight: 3
 ---
 
+{{< callout type="warning" >}}
+**Deprecated as of v1.6.0. Removed in v2.** The functional options are consolidated into the [builder pattern](../builder-pattern/), which reaches the same result through chained methods.
+
+Everything on this page still works in v1 and its behavior is unchanged — but if you are writing new code, use the builder. Every `With<Resource><Field>` option has a builder method with an identical parameter type and identical behavior: `Set*` for single fields, `Add*` for repeating ones. The correspondence was verified for all 11,952 options, so the change is mechanical.
+
+`staticcheck` or `golangci-lint` will list your call sites and name each replacement. See the [v1-to-v2 migration guide](../../migration/v1-to-v2/).
+{{< /callout >}}
+
 The functional options pattern uses Go functions to configure resource fields. Each resource type has a `New<Resource>(opts...)` constructor and a set of `With<Resource><Field>()` functions. This pattern, popularized by Dave Cheney and Rob Pike, produces clean call sites and makes options composable.
 
 ## How It Works

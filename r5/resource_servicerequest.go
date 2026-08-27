@@ -1471,9 +1471,23 @@ func (b *ServiceRequestBuilder) AddRelevantHistory(v Reference) *ServiceRequestB
 // =============================================================================
 
 // ServiceRequestOption is a functional option for configuring a ServiceRequest.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ServiceRequestBuilder. Every WithServiceRequest* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ServiceRequestOption func(*ServiceRequest)
 
 // NewServiceRequest creates a new ServiceRequest with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewServiceRequestBuilder().SetId("x").Build()
+//
+// Deprecated: use NewServiceRequestBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewServiceRequest(opts ...ServiceRequestOption) *ServiceRequest {
 	r := &ServiceRequest{ResourceType: "ServiceRequest"}
 	for _, opt := range opts {
@@ -1483,6 +1497,8 @@ func NewServiceRequest(opts ...ServiceRequestOption) *ServiceRequest {
 }
 
 // WithServiceRequestId sets the Id field.
+//
+// Deprecated: use ServiceRequestBuilder.SetId instead; removed in v2.
 func WithServiceRequestId(v string) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Id = &v
@@ -1490,6 +1506,8 @@ func WithServiceRequestId(v string) ServiceRequestOption {
 }
 
 // WithServiceRequestMeta sets the Meta field.
+//
+// Deprecated: use ServiceRequestBuilder.SetMeta instead; removed in v2.
 func WithServiceRequestMeta(v Meta) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Meta = &v
@@ -1497,6 +1515,8 @@ func WithServiceRequestMeta(v Meta) ServiceRequestOption {
 }
 
 // WithServiceRequestImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ServiceRequestBuilder.SetImplicitRules instead; removed in v2.
 func WithServiceRequestImplicitRules(v string) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.ImplicitRules = &v
@@ -1504,6 +1524,8 @@ func WithServiceRequestImplicitRules(v string) ServiceRequestOption {
 }
 
 // WithServiceRequestLanguage sets the Language field.
+//
+// Deprecated: use ServiceRequestBuilder.SetLanguage instead; removed in v2.
 func WithServiceRequestLanguage(v string) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Language = &v
@@ -1511,6 +1533,8 @@ func WithServiceRequestLanguage(v string) ServiceRequestOption {
 }
 
 // WithServiceRequestText sets the Text field.
+//
+// Deprecated: use ServiceRequestBuilder.SetText instead; removed in v2.
 func WithServiceRequestText(v Narrative) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Text = &v
@@ -1518,6 +1542,8 @@ func WithServiceRequestText(v Narrative) ServiceRequestOption {
 }
 
 // WithServiceRequestContained adds a Contained to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddContained instead; removed in v2.
 func WithServiceRequestContained(v Resource) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Contained = append(r.Contained, v)
@@ -1525,6 +1551,8 @@ func WithServiceRequestContained(v Resource) ServiceRequestOption {
 }
 
 // WithServiceRequestExtension adds a Extension to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddExtension instead; removed in v2.
 func WithServiceRequestExtension(v Extension) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Extension = append(r.Extension, v)
@@ -1532,6 +1560,8 @@ func WithServiceRequestExtension(v Extension) ServiceRequestOption {
 }
 
 // WithServiceRequestModifierExtension adds a ModifierExtension to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddModifierExtension instead; removed in v2.
 func WithServiceRequestModifierExtension(v Extension) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1539,6 +1569,8 @@ func WithServiceRequestModifierExtension(v Extension) ServiceRequestOption {
 }
 
 // WithServiceRequestIdentifier adds a Identifier to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddIdentifier instead; removed in v2.
 func WithServiceRequestIdentifier(v Identifier) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Identifier = append(r.Identifier, v)
@@ -1546,6 +1578,8 @@ func WithServiceRequestIdentifier(v Identifier) ServiceRequestOption {
 }
 
 // WithServiceRequestInstantiatesCanonical adds a InstantiatesCanonical to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddInstantiatesCanonical instead; removed in v2.
 func WithServiceRequestInstantiatesCanonical(v string) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
@@ -1553,6 +1587,8 @@ func WithServiceRequestInstantiatesCanonical(v string) ServiceRequestOption {
 }
 
 // WithServiceRequestInstantiatesUri adds a InstantiatesUri to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddInstantiatesUri instead; removed in v2.
 func WithServiceRequestInstantiatesUri(v string) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.InstantiatesUri = append(r.InstantiatesUri, v)
@@ -1560,6 +1596,8 @@ func WithServiceRequestInstantiatesUri(v string) ServiceRequestOption {
 }
 
 // WithServiceRequestBasedOn adds a BasedOn to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddBasedOn instead; removed in v2.
 func WithServiceRequestBasedOn(v Reference) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -1567,6 +1605,8 @@ func WithServiceRequestBasedOn(v Reference) ServiceRequestOption {
 }
 
 // WithServiceRequestReplaces adds a Replaces to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddReplaces instead; removed in v2.
 func WithServiceRequestReplaces(v Reference) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Replaces = append(r.Replaces, v)
@@ -1574,6 +1614,8 @@ func WithServiceRequestReplaces(v Reference) ServiceRequestOption {
 }
 
 // WithServiceRequestRequisition sets the Requisition field.
+//
+// Deprecated: use ServiceRequestBuilder.SetRequisition instead; removed in v2.
 func WithServiceRequestRequisition(v Identifier) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Requisition = &v
@@ -1581,6 +1623,8 @@ func WithServiceRequestRequisition(v Identifier) ServiceRequestOption {
 }
 
 // WithServiceRequestStatus sets the Status field.
+//
+// Deprecated: use ServiceRequestBuilder.SetStatus instead; removed in v2.
 func WithServiceRequestStatus(v RequestStatus) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Status = &v
@@ -1588,6 +1632,8 @@ func WithServiceRequestStatus(v RequestStatus) ServiceRequestOption {
 }
 
 // WithServiceRequestIntent sets the Intent field.
+//
+// Deprecated: use ServiceRequestBuilder.SetIntent instead; removed in v2.
 func WithServiceRequestIntent(v RequestIntent) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Intent = &v
@@ -1595,6 +1641,8 @@ func WithServiceRequestIntent(v RequestIntent) ServiceRequestOption {
 }
 
 // WithServiceRequestCategory adds a Category to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddCategory instead; removed in v2.
 func WithServiceRequestCategory(v CodeableConcept) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Category = append(r.Category, v)
@@ -1602,6 +1650,8 @@ func WithServiceRequestCategory(v CodeableConcept) ServiceRequestOption {
 }
 
 // WithServiceRequestPriority sets the Priority field.
+//
+// Deprecated: use ServiceRequestBuilder.SetPriority instead; removed in v2.
 func WithServiceRequestPriority(v RequestPriority) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Priority = &v
@@ -1609,6 +1659,8 @@ func WithServiceRequestPriority(v RequestPriority) ServiceRequestOption {
 }
 
 // WithServiceRequestDoNotPerform sets the DoNotPerform field.
+//
+// Deprecated: use ServiceRequestBuilder.SetDoNotPerform instead; removed in v2.
 func WithServiceRequestDoNotPerform(v bool) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.DoNotPerform = &v
@@ -1616,6 +1668,8 @@ func WithServiceRequestDoNotPerform(v bool) ServiceRequestOption {
 }
 
 // WithServiceRequestCode sets the Code field.
+//
+// Deprecated: use ServiceRequestBuilder.SetCode instead; removed in v2.
 func WithServiceRequestCode(v CodeableReference) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Code = &v
@@ -1623,6 +1677,8 @@ func WithServiceRequestCode(v CodeableReference) ServiceRequestOption {
 }
 
 // WithServiceRequestOrderDetail adds a OrderDetail to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddOrderDetail instead; removed in v2.
 func WithServiceRequestOrderDetail(v ServiceRequestOrderDetail) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.OrderDetail = append(r.OrderDetail, v)
@@ -1630,6 +1686,8 @@ func WithServiceRequestOrderDetail(v ServiceRequestOrderDetail) ServiceRequestOp
 }
 
 // WithServiceRequestQuantityQuantity sets the QuantityQuantity field.
+//
+// Deprecated: use ServiceRequestBuilder.SetQuantityQuantity instead; removed in v2.
 func WithServiceRequestQuantityQuantity(v Quantity) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.QuantityQuantity = &v
@@ -1637,6 +1695,8 @@ func WithServiceRequestQuantityQuantity(v Quantity) ServiceRequestOption {
 }
 
 // WithServiceRequestQuantityRatio sets the QuantityRatio field.
+//
+// Deprecated: use ServiceRequestBuilder.SetQuantityRatio instead; removed in v2.
 func WithServiceRequestQuantityRatio(v Ratio) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.QuantityRatio = &v
@@ -1644,6 +1704,8 @@ func WithServiceRequestQuantityRatio(v Ratio) ServiceRequestOption {
 }
 
 // WithServiceRequestQuantityRange sets the QuantityRange field.
+//
+// Deprecated: use ServiceRequestBuilder.SetQuantityRange instead; removed in v2.
 func WithServiceRequestQuantityRange(v Range) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.QuantityRange = &v
@@ -1651,6 +1713,8 @@ func WithServiceRequestQuantityRange(v Range) ServiceRequestOption {
 }
 
 // WithServiceRequestSubject sets the Subject field.
+//
+// Deprecated: use ServiceRequestBuilder.SetSubject instead; removed in v2.
 func WithServiceRequestSubject(v Reference) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Subject = v
@@ -1658,6 +1722,8 @@ func WithServiceRequestSubject(v Reference) ServiceRequestOption {
 }
 
 // WithServiceRequestFocus adds a Focus to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddFocus instead; removed in v2.
 func WithServiceRequestFocus(v Reference) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Focus = append(r.Focus, v)
@@ -1665,6 +1731,8 @@ func WithServiceRequestFocus(v Reference) ServiceRequestOption {
 }
 
 // WithServiceRequestEncounter sets the Encounter field.
+//
+// Deprecated: use ServiceRequestBuilder.SetEncounter instead; removed in v2.
 func WithServiceRequestEncounter(v Reference) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Encounter = &v
@@ -1672,6 +1740,8 @@ func WithServiceRequestEncounter(v Reference) ServiceRequestOption {
 }
 
 // WithServiceRequestOccurrenceDateTime sets the OccurrenceDateTime field.
+//
+// Deprecated: use ServiceRequestBuilder.SetOccurrenceDateTime instead; removed in v2.
 func WithServiceRequestOccurrenceDateTime(v string) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.OccurrenceDateTime = &v
@@ -1679,6 +1749,8 @@ func WithServiceRequestOccurrenceDateTime(v string) ServiceRequestOption {
 }
 
 // WithServiceRequestOccurrenceDateTimeExt sets the OccurrenceDateTimeExt field.
+//
+// Deprecated: use ServiceRequestBuilder.SetOccurrenceDateTimeExt instead; removed in v2.
 func WithServiceRequestOccurrenceDateTimeExt(v Element) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.OccurrenceDateTimeExt = &v
@@ -1686,6 +1758,8 @@ func WithServiceRequestOccurrenceDateTimeExt(v Element) ServiceRequestOption {
 }
 
 // WithServiceRequestOccurrencePeriod sets the OccurrencePeriod field.
+//
+// Deprecated: use ServiceRequestBuilder.SetOccurrencePeriod instead; removed in v2.
 func WithServiceRequestOccurrencePeriod(v Period) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.OccurrencePeriod = &v
@@ -1693,6 +1767,8 @@ func WithServiceRequestOccurrencePeriod(v Period) ServiceRequestOption {
 }
 
 // WithServiceRequestOccurrenceTiming sets the OccurrenceTiming field.
+//
+// Deprecated: use ServiceRequestBuilder.SetOccurrenceTiming instead; removed in v2.
 func WithServiceRequestOccurrenceTiming(v Timing) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.OccurrenceTiming = &v
@@ -1700,6 +1776,8 @@ func WithServiceRequestOccurrenceTiming(v Timing) ServiceRequestOption {
 }
 
 // WithServiceRequestAsNeededBoolean sets the AsNeededBoolean field.
+//
+// Deprecated: use ServiceRequestBuilder.SetAsNeededBoolean instead; removed in v2.
 func WithServiceRequestAsNeededBoolean(v bool) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.AsNeededBoolean = &v
@@ -1707,6 +1785,8 @@ func WithServiceRequestAsNeededBoolean(v bool) ServiceRequestOption {
 }
 
 // WithServiceRequestAsNeededBooleanExt sets the AsNeededBooleanExt field.
+//
+// Deprecated: use ServiceRequestBuilder.SetAsNeededBooleanExt instead; removed in v2.
 func WithServiceRequestAsNeededBooleanExt(v Element) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.AsNeededBooleanExt = &v
@@ -1714,6 +1794,8 @@ func WithServiceRequestAsNeededBooleanExt(v Element) ServiceRequestOption {
 }
 
 // WithServiceRequestAsNeededCodeableConcept sets the AsNeededCodeableConcept field.
+//
+// Deprecated: use ServiceRequestBuilder.SetAsNeededCodeableConcept instead; removed in v2.
 func WithServiceRequestAsNeededCodeableConcept(v CodeableConcept) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.AsNeededCodeableConcept = &v
@@ -1721,6 +1803,8 @@ func WithServiceRequestAsNeededCodeableConcept(v CodeableConcept) ServiceRequest
 }
 
 // WithServiceRequestAuthoredOn sets the AuthoredOn field.
+//
+// Deprecated: use ServiceRequestBuilder.SetAuthoredOn instead; removed in v2.
 func WithServiceRequestAuthoredOn(v string) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.AuthoredOn = &v
@@ -1728,6 +1812,8 @@ func WithServiceRequestAuthoredOn(v string) ServiceRequestOption {
 }
 
 // WithServiceRequestRequester sets the Requester field.
+//
+// Deprecated: use ServiceRequestBuilder.SetRequester instead; removed in v2.
 func WithServiceRequestRequester(v Reference) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Requester = &v
@@ -1735,6 +1821,8 @@ func WithServiceRequestRequester(v Reference) ServiceRequestOption {
 }
 
 // WithServiceRequestPerformerType sets the PerformerType field.
+//
+// Deprecated: use ServiceRequestBuilder.SetPerformerType instead; removed in v2.
 func WithServiceRequestPerformerType(v CodeableConcept) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.PerformerType = &v
@@ -1742,6 +1830,8 @@ func WithServiceRequestPerformerType(v CodeableConcept) ServiceRequestOption {
 }
 
 // WithServiceRequestPerformer adds a Performer to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddPerformer instead; removed in v2.
 func WithServiceRequestPerformer(v Reference) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Performer = append(r.Performer, v)
@@ -1749,6 +1839,8 @@ func WithServiceRequestPerformer(v Reference) ServiceRequestOption {
 }
 
 // WithServiceRequestLocation adds a Location to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddLocation instead; removed in v2.
 func WithServiceRequestLocation(v CodeableReference) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Location = append(r.Location, v)
@@ -1756,6 +1848,8 @@ func WithServiceRequestLocation(v CodeableReference) ServiceRequestOption {
 }
 
 // WithServiceRequestReason adds a Reason to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddReason instead; removed in v2.
 func WithServiceRequestReason(v CodeableReference) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Reason = append(r.Reason, v)
@@ -1763,6 +1857,8 @@ func WithServiceRequestReason(v CodeableReference) ServiceRequestOption {
 }
 
 // WithServiceRequestInsurance adds a Insurance to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddInsurance instead; removed in v2.
 func WithServiceRequestInsurance(v Reference) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Insurance = append(r.Insurance, v)
@@ -1770,6 +1866,8 @@ func WithServiceRequestInsurance(v Reference) ServiceRequestOption {
 }
 
 // WithServiceRequestSupportingInfo adds a SupportingInfo to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddSupportingInfo instead; removed in v2.
 func WithServiceRequestSupportingInfo(v CodeableReference) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.SupportingInfo = append(r.SupportingInfo, v)
@@ -1777,6 +1875,8 @@ func WithServiceRequestSupportingInfo(v CodeableReference) ServiceRequestOption 
 }
 
 // WithServiceRequestSpecimen adds a Specimen to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddSpecimen instead; removed in v2.
 func WithServiceRequestSpecimen(v Reference) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Specimen = append(r.Specimen, v)
@@ -1784,6 +1884,8 @@ func WithServiceRequestSpecimen(v Reference) ServiceRequestOption {
 }
 
 // WithServiceRequestBodySite adds a BodySite to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddBodySite instead; removed in v2.
 func WithServiceRequestBodySite(v CodeableConcept) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.BodySite = append(r.BodySite, v)
@@ -1791,6 +1893,8 @@ func WithServiceRequestBodySite(v CodeableConcept) ServiceRequestOption {
 }
 
 // WithServiceRequestBodyStructure sets the BodyStructure field.
+//
+// Deprecated: use ServiceRequestBuilder.SetBodyStructure instead; removed in v2.
 func WithServiceRequestBodyStructure(v Reference) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.BodyStructure = &v
@@ -1798,6 +1902,8 @@ func WithServiceRequestBodyStructure(v Reference) ServiceRequestOption {
 }
 
 // WithServiceRequestNote adds a Note to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddNote instead; removed in v2.
 func WithServiceRequestNote(v Annotation) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.Note = append(r.Note, v)
@@ -1805,6 +1911,8 @@ func WithServiceRequestNote(v Annotation) ServiceRequestOption {
 }
 
 // WithServiceRequestPatientInstruction adds a PatientInstruction to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddPatientInstruction instead; removed in v2.
 func WithServiceRequestPatientInstruction(v ServiceRequestPatientInstruction) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.PatientInstruction = append(r.PatientInstruction, v)
@@ -1812,6 +1920,8 @@ func WithServiceRequestPatientInstruction(v ServiceRequestPatientInstruction) Se
 }
 
 // WithServiceRequestRelevantHistory adds a RelevantHistory to the ServiceRequest.
+//
+// Deprecated: use ServiceRequestBuilder.AddRelevantHistory instead; removed in v2.
 func WithServiceRequestRelevantHistory(v Reference) ServiceRequestOption {
 	return func(r *ServiceRequest) {
 		r.RelevantHistory = append(r.RelevantHistory, v)

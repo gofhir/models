@@ -405,9 +405,23 @@ func (b *FormularyItemBuilder) SetStatus(v FormularyItemStatusCodes) *FormularyI
 // =============================================================================
 
 // FormularyItemOption is a functional option for configuring a FormularyItem.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// FormularyItemBuilder. Every WithFormularyItem* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type FormularyItemOption func(*FormularyItem)
 
 // NewFormularyItem creates a new FormularyItem with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewFormularyItemBuilder().SetId("x").Build()
+//
+// Deprecated: use NewFormularyItemBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewFormularyItem(opts ...FormularyItemOption) *FormularyItem {
 	r := &FormularyItem{ResourceType: "FormularyItem"}
 	for _, opt := range opts {
@@ -417,6 +431,8 @@ func NewFormularyItem(opts ...FormularyItemOption) *FormularyItem {
 }
 
 // WithFormularyItemId sets the Id field.
+//
+// Deprecated: use FormularyItemBuilder.SetId instead; removed in v2.
 func WithFormularyItemId(v string) FormularyItemOption {
 	return func(r *FormularyItem) {
 		r.Id = &v
@@ -424,6 +440,8 @@ func WithFormularyItemId(v string) FormularyItemOption {
 }
 
 // WithFormularyItemMeta sets the Meta field.
+//
+// Deprecated: use FormularyItemBuilder.SetMeta instead; removed in v2.
 func WithFormularyItemMeta(v Meta) FormularyItemOption {
 	return func(r *FormularyItem) {
 		r.Meta = &v
@@ -431,6 +449,8 @@ func WithFormularyItemMeta(v Meta) FormularyItemOption {
 }
 
 // WithFormularyItemImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use FormularyItemBuilder.SetImplicitRules instead; removed in v2.
 func WithFormularyItemImplicitRules(v string) FormularyItemOption {
 	return func(r *FormularyItem) {
 		r.ImplicitRules = &v
@@ -438,6 +458,8 @@ func WithFormularyItemImplicitRules(v string) FormularyItemOption {
 }
 
 // WithFormularyItemLanguage sets the Language field.
+//
+// Deprecated: use FormularyItemBuilder.SetLanguage instead; removed in v2.
 func WithFormularyItemLanguage(v string) FormularyItemOption {
 	return func(r *FormularyItem) {
 		r.Language = &v
@@ -445,6 +467,8 @@ func WithFormularyItemLanguage(v string) FormularyItemOption {
 }
 
 // WithFormularyItemText sets the Text field.
+//
+// Deprecated: use FormularyItemBuilder.SetText instead; removed in v2.
 func WithFormularyItemText(v Narrative) FormularyItemOption {
 	return func(r *FormularyItem) {
 		r.Text = &v
@@ -452,6 +476,8 @@ func WithFormularyItemText(v Narrative) FormularyItemOption {
 }
 
 // WithFormularyItemContained adds a Contained to the FormularyItem.
+//
+// Deprecated: use FormularyItemBuilder.AddContained instead; removed in v2.
 func WithFormularyItemContained(v Resource) FormularyItemOption {
 	return func(r *FormularyItem) {
 		r.Contained = append(r.Contained, v)
@@ -459,6 +485,8 @@ func WithFormularyItemContained(v Resource) FormularyItemOption {
 }
 
 // WithFormularyItemExtension adds a Extension to the FormularyItem.
+//
+// Deprecated: use FormularyItemBuilder.AddExtension instead; removed in v2.
 func WithFormularyItemExtension(v Extension) FormularyItemOption {
 	return func(r *FormularyItem) {
 		r.Extension = append(r.Extension, v)
@@ -466,6 +494,8 @@ func WithFormularyItemExtension(v Extension) FormularyItemOption {
 }
 
 // WithFormularyItemModifierExtension adds a ModifierExtension to the FormularyItem.
+//
+// Deprecated: use FormularyItemBuilder.AddModifierExtension instead; removed in v2.
 func WithFormularyItemModifierExtension(v Extension) FormularyItemOption {
 	return func(r *FormularyItem) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -473,6 +503,8 @@ func WithFormularyItemModifierExtension(v Extension) FormularyItemOption {
 }
 
 // WithFormularyItemIdentifier adds a Identifier to the FormularyItem.
+//
+// Deprecated: use FormularyItemBuilder.AddIdentifier instead; removed in v2.
 func WithFormularyItemIdentifier(v Identifier) FormularyItemOption {
 	return func(r *FormularyItem) {
 		r.Identifier = append(r.Identifier, v)
@@ -480,6 +512,8 @@ func WithFormularyItemIdentifier(v Identifier) FormularyItemOption {
 }
 
 // WithFormularyItemCode sets the Code field.
+//
+// Deprecated: use FormularyItemBuilder.SetCode instead; removed in v2.
 func WithFormularyItemCode(v CodeableConcept) FormularyItemOption {
 	return func(r *FormularyItem) {
 		r.Code = &v
@@ -487,6 +521,8 @@ func WithFormularyItemCode(v CodeableConcept) FormularyItemOption {
 }
 
 // WithFormularyItemStatus sets the Status field.
+//
+// Deprecated: use FormularyItemBuilder.SetStatus instead; removed in v2.
 func WithFormularyItemStatus(v FormularyItemStatusCodes) FormularyItemOption {
 	return func(r *FormularyItem) {
 		r.Status = &v

@@ -963,9 +963,23 @@ func (b *MessageHeaderBuilder) SetDefinition(v string) *MessageHeaderBuilder {
 // =============================================================================
 
 // MessageHeaderOption is a functional option for configuring a MessageHeader.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// MessageHeaderBuilder. Every WithMessageHeader* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type MessageHeaderOption func(*MessageHeader)
 
 // NewMessageHeader creates a new MessageHeader with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewMessageHeaderBuilder().SetId("x").Build()
+//
+// Deprecated: use NewMessageHeaderBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewMessageHeader(opts ...MessageHeaderOption) *MessageHeader {
 	r := &MessageHeader{ResourceType: "MessageHeader"}
 	for _, opt := range opts {
@@ -975,6 +989,8 @@ func NewMessageHeader(opts ...MessageHeaderOption) *MessageHeader {
 }
 
 // WithMessageHeaderId sets the Id field.
+//
+// Deprecated: use MessageHeaderBuilder.SetId instead; removed in v2.
 func WithMessageHeaderId(v string) MessageHeaderOption {
 	return func(r *MessageHeader) {
 		r.Id = &v
@@ -982,6 +998,8 @@ func WithMessageHeaderId(v string) MessageHeaderOption {
 }
 
 // WithMessageHeaderMeta sets the Meta field.
+//
+// Deprecated: use MessageHeaderBuilder.SetMeta instead; removed in v2.
 func WithMessageHeaderMeta(v Meta) MessageHeaderOption {
 	return func(r *MessageHeader) {
 		r.Meta = &v
@@ -989,6 +1007,8 @@ func WithMessageHeaderMeta(v Meta) MessageHeaderOption {
 }
 
 // WithMessageHeaderImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use MessageHeaderBuilder.SetImplicitRules instead; removed in v2.
 func WithMessageHeaderImplicitRules(v string) MessageHeaderOption {
 	return func(r *MessageHeader) {
 		r.ImplicitRules = &v
@@ -996,6 +1016,8 @@ func WithMessageHeaderImplicitRules(v string) MessageHeaderOption {
 }
 
 // WithMessageHeaderLanguage sets the Language field.
+//
+// Deprecated: use MessageHeaderBuilder.SetLanguage instead; removed in v2.
 func WithMessageHeaderLanguage(v string) MessageHeaderOption {
 	return func(r *MessageHeader) {
 		r.Language = &v
@@ -1003,6 +1025,8 @@ func WithMessageHeaderLanguage(v string) MessageHeaderOption {
 }
 
 // WithMessageHeaderText sets the Text field.
+//
+// Deprecated: use MessageHeaderBuilder.SetText instead; removed in v2.
 func WithMessageHeaderText(v Narrative) MessageHeaderOption {
 	return func(r *MessageHeader) {
 		r.Text = &v
@@ -1010,6 +1034,8 @@ func WithMessageHeaderText(v Narrative) MessageHeaderOption {
 }
 
 // WithMessageHeaderContained adds a Contained to the MessageHeader.
+//
+// Deprecated: use MessageHeaderBuilder.AddContained instead; removed in v2.
 func WithMessageHeaderContained(v Resource) MessageHeaderOption {
 	return func(r *MessageHeader) {
 		r.Contained = append(r.Contained, v)
@@ -1017,6 +1043,8 @@ func WithMessageHeaderContained(v Resource) MessageHeaderOption {
 }
 
 // WithMessageHeaderExtension adds a Extension to the MessageHeader.
+//
+// Deprecated: use MessageHeaderBuilder.AddExtension instead; removed in v2.
 func WithMessageHeaderExtension(v Extension) MessageHeaderOption {
 	return func(r *MessageHeader) {
 		r.Extension = append(r.Extension, v)
@@ -1024,6 +1052,8 @@ func WithMessageHeaderExtension(v Extension) MessageHeaderOption {
 }
 
 // WithMessageHeaderModifierExtension adds a ModifierExtension to the MessageHeader.
+//
+// Deprecated: use MessageHeaderBuilder.AddModifierExtension instead; removed in v2.
 func WithMessageHeaderModifierExtension(v Extension) MessageHeaderOption {
 	return func(r *MessageHeader) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1031,6 +1061,8 @@ func WithMessageHeaderModifierExtension(v Extension) MessageHeaderOption {
 }
 
 // WithMessageHeaderEventCoding sets the EventCoding field.
+//
+// Deprecated: use MessageHeaderBuilder.SetEventCoding instead; removed in v2.
 func WithMessageHeaderEventCoding(v Coding) MessageHeaderOption {
 	return func(r *MessageHeader) {
 		r.EventCoding = &v
@@ -1038,6 +1070,8 @@ func WithMessageHeaderEventCoding(v Coding) MessageHeaderOption {
 }
 
 // WithMessageHeaderEventCanonical sets the EventCanonical field.
+//
+// Deprecated: use MessageHeaderBuilder.SetEventCanonical instead; removed in v2.
 func WithMessageHeaderEventCanonical(v string) MessageHeaderOption {
 	return func(r *MessageHeader) {
 		r.EventCanonical = &v
@@ -1045,6 +1079,8 @@ func WithMessageHeaderEventCanonical(v string) MessageHeaderOption {
 }
 
 // WithMessageHeaderEventCanonicalExt sets the EventCanonicalExt field.
+//
+// Deprecated: use MessageHeaderBuilder.SetEventCanonicalExt instead; removed in v2.
 func WithMessageHeaderEventCanonicalExt(v Element) MessageHeaderOption {
 	return func(r *MessageHeader) {
 		r.EventCanonicalExt = &v
@@ -1052,6 +1088,8 @@ func WithMessageHeaderEventCanonicalExt(v Element) MessageHeaderOption {
 }
 
 // WithMessageHeaderDestination adds a Destination to the MessageHeader.
+//
+// Deprecated: use MessageHeaderBuilder.AddDestination instead; removed in v2.
 func WithMessageHeaderDestination(v MessageHeaderDestination) MessageHeaderOption {
 	return func(r *MessageHeader) {
 		r.Destination = append(r.Destination, v)
@@ -1059,6 +1097,8 @@ func WithMessageHeaderDestination(v MessageHeaderDestination) MessageHeaderOptio
 }
 
 // WithMessageHeaderSender sets the Sender field.
+//
+// Deprecated: use MessageHeaderBuilder.SetSender instead; removed in v2.
 func WithMessageHeaderSender(v Reference) MessageHeaderOption {
 	return func(r *MessageHeader) {
 		r.Sender = &v
@@ -1066,6 +1106,8 @@ func WithMessageHeaderSender(v Reference) MessageHeaderOption {
 }
 
 // WithMessageHeaderAuthor sets the Author field.
+//
+// Deprecated: use MessageHeaderBuilder.SetAuthor instead; removed in v2.
 func WithMessageHeaderAuthor(v Reference) MessageHeaderOption {
 	return func(r *MessageHeader) {
 		r.Author = &v
@@ -1073,6 +1115,8 @@ func WithMessageHeaderAuthor(v Reference) MessageHeaderOption {
 }
 
 // WithMessageHeaderSource sets the Source field.
+//
+// Deprecated: use MessageHeaderBuilder.SetSource instead; removed in v2.
 func WithMessageHeaderSource(v MessageHeaderSource) MessageHeaderOption {
 	return func(r *MessageHeader) {
 		r.Source = &v
@@ -1080,6 +1124,8 @@ func WithMessageHeaderSource(v MessageHeaderSource) MessageHeaderOption {
 }
 
 // WithMessageHeaderResponsible sets the Responsible field.
+//
+// Deprecated: use MessageHeaderBuilder.SetResponsible instead; removed in v2.
 func WithMessageHeaderResponsible(v Reference) MessageHeaderOption {
 	return func(r *MessageHeader) {
 		r.Responsible = &v
@@ -1087,6 +1133,8 @@ func WithMessageHeaderResponsible(v Reference) MessageHeaderOption {
 }
 
 // WithMessageHeaderReason sets the Reason field.
+//
+// Deprecated: use MessageHeaderBuilder.SetReason instead; removed in v2.
 func WithMessageHeaderReason(v CodeableConcept) MessageHeaderOption {
 	return func(r *MessageHeader) {
 		r.Reason = &v
@@ -1094,6 +1142,8 @@ func WithMessageHeaderReason(v CodeableConcept) MessageHeaderOption {
 }
 
 // WithMessageHeaderResponse sets the Response field.
+//
+// Deprecated: use MessageHeaderBuilder.SetResponse instead; removed in v2.
 func WithMessageHeaderResponse(v MessageHeaderResponse) MessageHeaderOption {
 	return func(r *MessageHeader) {
 		r.Response = &v
@@ -1101,6 +1151,8 @@ func WithMessageHeaderResponse(v MessageHeaderResponse) MessageHeaderOption {
 }
 
 // WithMessageHeaderFocus adds a Focus to the MessageHeader.
+//
+// Deprecated: use MessageHeaderBuilder.AddFocus instead; removed in v2.
 func WithMessageHeaderFocus(v Reference) MessageHeaderOption {
 	return func(r *MessageHeader) {
 		r.Focus = append(r.Focus, v)
@@ -1108,6 +1160,8 @@ func WithMessageHeaderFocus(v Reference) MessageHeaderOption {
 }
 
 // WithMessageHeaderDefinition sets the Definition field.
+//
+// Deprecated: use MessageHeaderBuilder.SetDefinition instead; removed in v2.
 func WithMessageHeaderDefinition(v string) MessageHeaderOption {
 	return func(r *MessageHeader) {
 		r.Definition = &v

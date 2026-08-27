@@ -1070,9 +1070,23 @@ func (b *VerificationResultBuilder) AddValidator(v VerificationResultValidator) 
 // =============================================================================
 
 // VerificationResultOption is a functional option for configuring a VerificationResult.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// VerificationResultBuilder. Every WithVerificationResult* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type VerificationResultOption func(*VerificationResult)
 
 // NewVerificationResult creates a new VerificationResult with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewVerificationResultBuilder().SetId("x").Build()
+//
+// Deprecated: use NewVerificationResultBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewVerificationResult(opts ...VerificationResultOption) *VerificationResult {
 	r := &VerificationResult{ResourceType: "VerificationResult"}
 	for _, opt := range opts {
@@ -1082,6 +1096,8 @@ func NewVerificationResult(opts ...VerificationResultOption) *VerificationResult
 }
 
 // WithVerificationResultId sets the Id field.
+//
+// Deprecated: use VerificationResultBuilder.SetId instead; removed in v2.
 func WithVerificationResultId(v string) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.Id = &v
@@ -1089,6 +1105,8 @@ func WithVerificationResultId(v string) VerificationResultOption {
 }
 
 // WithVerificationResultMeta sets the Meta field.
+//
+// Deprecated: use VerificationResultBuilder.SetMeta instead; removed in v2.
 func WithVerificationResultMeta(v Meta) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.Meta = &v
@@ -1096,6 +1114,8 @@ func WithVerificationResultMeta(v Meta) VerificationResultOption {
 }
 
 // WithVerificationResultImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use VerificationResultBuilder.SetImplicitRules instead; removed in v2.
 func WithVerificationResultImplicitRules(v string) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.ImplicitRules = &v
@@ -1103,6 +1123,8 @@ func WithVerificationResultImplicitRules(v string) VerificationResultOption {
 }
 
 // WithVerificationResultLanguage sets the Language field.
+//
+// Deprecated: use VerificationResultBuilder.SetLanguage instead; removed in v2.
 func WithVerificationResultLanguage(v string) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.Language = &v
@@ -1110,6 +1132,8 @@ func WithVerificationResultLanguage(v string) VerificationResultOption {
 }
 
 // WithVerificationResultText sets the Text field.
+//
+// Deprecated: use VerificationResultBuilder.SetText instead; removed in v2.
 func WithVerificationResultText(v Narrative) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.Text = &v
@@ -1117,6 +1141,8 @@ func WithVerificationResultText(v Narrative) VerificationResultOption {
 }
 
 // WithVerificationResultContained adds a Contained to the VerificationResult.
+//
+// Deprecated: use VerificationResultBuilder.AddContained instead; removed in v2.
 func WithVerificationResultContained(v Resource) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.Contained = append(r.Contained, v)
@@ -1124,6 +1150,8 @@ func WithVerificationResultContained(v Resource) VerificationResultOption {
 }
 
 // WithVerificationResultExtension adds a Extension to the VerificationResult.
+//
+// Deprecated: use VerificationResultBuilder.AddExtension instead; removed in v2.
 func WithVerificationResultExtension(v Extension) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.Extension = append(r.Extension, v)
@@ -1131,6 +1159,8 @@ func WithVerificationResultExtension(v Extension) VerificationResultOption {
 }
 
 // WithVerificationResultModifierExtension adds a ModifierExtension to the VerificationResult.
+//
+// Deprecated: use VerificationResultBuilder.AddModifierExtension instead; removed in v2.
 func WithVerificationResultModifierExtension(v Extension) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1138,6 +1168,8 @@ func WithVerificationResultModifierExtension(v Extension) VerificationResultOpti
 }
 
 // WithVerificationResultTarget adds a Target to the VerificationResult.
+//
+// Deprecated: use VerificationResultBuilder.AddTarget instead; removed in v2.
 func WithVerificationResultTarget(v Reference) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.Target = append(r.Target, v)
@@ -1145,6 +1177,8 @@ func WithVerificationResultTarget(v Reference) VerificationResultOption {
 }
 
 // WithVerificationResultTargetLocation adds a TargetLocation to the VerificationResult.
+//
+// Deprecated: use VerificationResultBuilder.AddTargetLocation instead; removed in v2.
 func WithVerificationResultTargetLocation(v string) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.TargetLocation = append(r.TargetLocation, v)
@@ -1152,6 +1186,8 @@ func WithVerificationResultTargetLocation(v string) VerificationResultOption {
 }
 
 // WithVerificationResultNeed sets the Need field.
+//
+// Deprecated: use VerificationResultBuilder.SetNeed instead; removed in v2.
 func WithVerificationResultNeed(v CodeableConcept) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.Need = &v
@@ -1159,6 +1195,8 @@ func WithVerificationResultNeed(v CodeableConcept) VerificationResultOption {
 }
 
 // WithVerificationResultStatus sets the Status field.
+//
+// Deprecated: use VerificationResultBuilder.SetStatus instead; removed in v2.
 func WithVerificationResultStatus(v VerificationResultStatus) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.Status = &v
@@ -1166,6 +1204,8 @@ func WithVerificationResultStatus(v VerificationResultStatus) VerificationResult
 }
 
 // WithVerificationResultStatusDate sets the StatusDate field.
+//
+// Deprecated: use VerificationResultBuilder.SetStatusDate instead; removed in v2.
 func WithVerificationResultStatusDate(v string) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.StatusDate = &v
@@ -1173,6 +1213,8 @@ func WithVerificationResultStatusDate(v string) VerificationResultOption {
 }
 
 // WithVerificationResultValidationType sets the ValidationType field.
+//
+// Deprecated: use VerificationResultBuilder.SetValidationType instead; removed in v2.
 func WithVerificationResultValidationType(v CodeableConcept) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.ValidationType = &v
@@ -1180,6 +1222,8 @@ func WithVerificationResultValidationType(v CodeableConcept) VerificationResultO
 }
 
 // WithVerificationResultValidationProcess adds a ValidationProcess to the VerificationResult.
+//
+// Deprecated: use VerificationResultBuilder.AddValidationProcess instead; removed in v2.
 func WithVerificationResultValidationProcess(v CodeableConcept) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.ValidationProcess = append(r.ValidationProcess, v)
@@ -1187,6 +1231,8 @@ func WithVerificationResultValidationProcess(v CodeableConcept) VerificationResu
 }
 
 // WithVerificationResultFrequency sets the Frequency field.
+//
+// Deprecated: use VerificationResultBuilder.SetFrequency instead; removed in v2.
 func WithVerificationResultFrequency(v Timing) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.Frequency = &v
@@ -1194,6 +1240,8 @@ func WithVerificationResultFrequency(v Timing) VerificationResultOption {
 }
 
 // WithVerificationResultLastPerformed sets the LastPerformed field.
+//
+// Deprecated: use VerificationResultBuilder.SetLastPerformed instead; removed in v2.
 func WithVerificationResultLastPerformed(v string) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.LastPerformed = &v
@@ -1201,6 +1249,8 @@ func WithVerificationResultLastPerformed(v string) VerificationResultOption {
 }
 
 // WithVerificationResultNextScheduled sets the NextScheduled field.
+//
+// Deprecated: use VerificationResultBuilder.SetNextScheduled instead; removed in v2.
 func WithVerificationResultNextScheduled(v string) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.NextScheduled = &v
@@ -1208,6 +1258,8 @@ func WithVerificationResultNextScheduled(v string) VerificationResultOption {
 }
 
 // WithVerificationResultFailureAction sets the FailureAction field.
+//
+// Deprecated: use VerificationResultBuilder.SetFailureAction instead; removed in v2.
 func WithVerificationResultFailureAction(v CodeableConcept) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.FailureAction = &v
@@ -1215,6 +1267,8 @@ func WithVerificationResultFailureAction(v CodeableConcept) VerificationResultOp
 }
 
 // WithVerificationResultPrimarySource adds a PrimarySource to the VerificationResult.
+//
+// Deprecated: use VerificationResultBuilder.AddPrimarySource instead; removed in v2.
 func WithVerificationResultPrimarySource(v VerificationResultPrimarySource) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.PrimarySource = append(r.PrimarySource, v)
@@ -1222,6 +1276,8 @@ func WithVerificationResultPrimarySource(v VerificationResultPrimarySource) Veri
 }
 
 // WithVerificationResultAttestation sets the Attestation field.
+//
+// Deprecated: use VerificationResultBuilder.SetAttestation instead; removed in v2.
 func WithVerificationResultAttestation(v VerificationResultAttestation) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.Attestation = &v
@@ -1229,6 +1285,8 @@ func WithVerificationResultAttestation(v VerificationResultAttestation) Verifica
 }
 
 // WithVerificationResultValidator adds a Validator to the VerificationResult.
+//
+// Deprecated: use VerificationResultBuilder.AddValidator instead; removed in v2.
 func WithVerificationResultValidator(v VerificationResultValidator) VerificationResultOption {
 	return func(r *VerificationResult) {
 		r.Validator = append(r.Validator, v)

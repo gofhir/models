@@ -808,9 +808,23 @@ func (b *DeviceUsageBuilder) AddNote(v Annotation) *DeviceUsageBuilder {
 // =============================================================================
 
 // DeviceUsageOption is a functional option for configuring a DeviceUsage.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// DeviceUsageBuilder. Every WithDeviceUsage* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type DeviceUsageOption func(*DeviceUsage)
 
 // NewDeviceUsage creates a new DeviceUsage with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewDeviceUsageBuilder().SetId("x").Build()
+//
+// Deprecated: use NewDeviceUsageBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewDeviceUsage(opts ...DeviceUsageOption) *DeviceUsage {
 	r := &DeviceUsage{ResourceType: "DeviceUsage"}
 	for _, opt := range opts {
@@ -820,6 +834,8 @@ func NewDeviceUsage(opts ...DeviceUsageOption) *DeviceUsage {
 }
 
 // WithDeviceUsageId sets the Id field.
+//
+// Deprecated: use DeviceUsageBuilder.SetId instead; removed in v2.
 func WithDeviceUsageId(v string) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.Id = &v
@@ -827,6 +843,8 @@ func WithDeviceUsageId(v string) DeviceUsageOption {
 }
 
 // WithDeviceUsageMeta sets the Meta field.
+//
+// Deprecated: use DeviceUsageBuilder.SetMeta instead; removed in v2.
 func WithDeviceUsageMeta(v Meta) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.Meta = &v
@@ -834,6 +852,8 @@ func WithDeviceUsageMeta(v Meta) DeviceUsageOption {
 }
 
 // WithDeviceUsageImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use DeviceUsageBuilder.SetImplicitRules instead; removed in v2.
 func WithDeviceUsageImplicitRules(v string) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.ImplicitRules = &v
@@ -841,6 +861,8 @@ func WithDeviceUsageImplicitRules(v string) DeviceUsageOption {
 }
 
 // WithDeviceUsageLanguage sets the Language field.
+//
+// Deprecated: use DeviceUsageBuilder.SetLanguage instead; removed in v2.
 func WithDeviceUsageLanguage(v string) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.Language = &v
@@ -848,6 +870,8 @@ func WithDeviceUsageLanguage(v string) DeviceUsageOption {
 }
 
 // WithDeviceUsageText sets the Text field.
+//
+// Deprecated: use DeviceUsageBuilder.SetText instead; removed in v2.
 func WithDeviceUsageText(v Narrative) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.Text = &v
@@ -855,6 +879,8 @@ func WithDeviceUsageText(v Narrative) DeviceUsageOption {
 }
 
 // WithDeviceUsageContained adds a Contained to the DeviceUsage.
+//
+// Deprecated: use DeviceUsageBuilder.AddContained instead; removed in v2.
 func WithDeviceUsageContained(v Resource) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.Contained = append(r.Contained, v)
@@ -862,6 +888,8 @@ func WithDeviceUsageContained(v Resource) DeviceUsageOption {
 }
 
 // WithDeviceUsageExtension adds a Extension to the DeviceUsage.
+//
+// Deprecated: use DeviceUsageBuilder.AddExtension instead; removed in v2.
 func WithDeviceUsageExtension(v Extension) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.Extension = append(r.Extension, v)
@@ -869,6 +897,8 @@ func WithDeviceUsageExtension(v Extension) DeviceUsageOption {
 }
 
 // WithDeviceUsageModifierExtension adds a ModifierExtension to the DeviceUsage.
+//
+// Deprecated: use DeviceUsageBuilder.AddModifierExtension instead; removed in v2.
 func WithDeviceUsageModifierExtension(v Extension) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -876,6 +906,8 @@ func WithDeviceUsageModifierExtension(v Extension) DeviceUsageOption {
 }
 
 // WithDeviceUsageIdentifier adds a Identifier to the DeviceUsage.
+//
+// Deprecated: use DeviceUsageBuilder.AddIdentifier instead; removed in v2.
 func WithDeviceUsageIdentifier(v Identifier) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.Identifier = append(r.Identifier, v)
@@ -883,6 +915,8 @@ func WithDeviceUsageIdentifier(v Identifier) DeviceUsageOption {
 }
 
 // WithDeviceUsageBasedOn adds a BasedOn to the DeviceUsage.
+//
+// Deprecated: use DeviceUsageBuilder.AddBasedOn instead; removed in v2.
 func WithDeviceUsageBasedOn(v Reference) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -890,6 +924,8 @@ func WithDeviceUsageBasedOn(v Reference) DeviceUsageOption {
 }
 
 // WithDeviceUsageStatus sets the Status field.
+//
+// Deprecated: use DeviceUsageBuilder.SetStatus instead; removed in v2.
 func WithDeviceUsageStatus(v DeviceUsageStatus) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.Status = &v
@@ -897,6 +933,8 @@ func WithDeviceUsageStatus(v DeviceUsageStatus) DeviceUsageOption {
 }
 
 // WithDeviceUsageCategory adds a Category to the DeviceUsage.
+//
+// Deprecated: use DeviceUsageBuilder.AddCategory instead; removed in v2.
 func WithDeviceUsageCategory(v CodeableConcept) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.Category = append(r.Category, v)
@@ -904,6 +942,8 @@ func WithDeviceUsageCategory(v CodeableConcept) DeviceUsageOption {
 }
 
 // WithDeviceUsagePatient sets the Patient field.
+//
+// Deprecated: use DeviceUsageBuilder.SetPatient instead; removed in v2.
 func WithDeviceUsagePatient(v Reference) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.Patient = v
@@ -911,6 +951,8 @@ func WithDeviceUsagePatient(v Reference) DeviceUsageOption {
 }
 
 // WithDeviceUsageDerivedFrom adds a DerivedFrom to the DeviceUsage.
+//
+// Deprecated: use DeviceUsageBuilder.AddDerivedFrom instead; removed in v2.
 func WithDeviceUsageDerivedFrom(v Reference) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.DerivedFrom = append(r.DerivedFrom, v)
@@ -918,6 +960,8 @@ func WithDeviceUsageDerivedFrom(v Reference) DeviceUsageOption {
 }
 
 // WithDeviceUsageContext sets the Context field.
+//
+// Deprecated: use DeviceUsageBuilder.SetContext instead; removed in v2.
 func WithDeviceUsageContext(v Reference) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.Context = &v
@@ -925,6 +969,8 @@ func WithDeviceUsageContext(v Reference) DeviceUsageOption {
 }
 
 // WithDeviceUsageTimingTiming sets the TimingTiming field.
+//
+// Deprecated: use DeviceUsageBuilder.SetTimingTiming instead; removed in v2.
 func WithDeviceUsageTimingTiming(v Timing) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.TimingTiming = &v
@@ -932,6 +978,8 @@ func WithDeviceUsageTimingTiming(v Timing) DeviceUsageOption {
 }
 
 // WithDeviceUsageTimingPeriod sets the TimingPeriod field.
+//
+// Deprecated: use DeviceUsageBuilder.SetTimingPeriod instead; removed in v2.
 func WithDeviceUsageTimingPeriod(v Period) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.TimingPeriod = &v
@@ -939,6 +987,8 @@ func WithDeviceUsageTimingPeriod(v Period) DeviceUsageOption {
 }
 
 // WithDeviceUsageTimingDateTime sets the TimingDateTime field.
+//
+// Deprecated: use DeviceUsageBuilder.SetTimingDateTime instead; removed in v2.
 func WithDeviceUsageTimingDateTime(v string) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.TimingDateTime = &v
@@ -946,6 +996,8 @@ func WithDeviceUsageTimingDateTime(v string) DeviceUsageOption {
 }
 
 // WithDeviceUsageTimingDateTimeExt sets the TimingDateTimeExt field.
+//
+// Deprecated: use DeviceUsageBuilder.SetTimingDateTimeExt instead; removed in v2.
 func WithDeviceUsageTimingDateTimeExt(v Element) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.TimingDateTimeExt = &v
@@ -953,6 +1005,8 @@ func WithDeviceUsageTimingDateTimeExt(v Element) DeviceUsageOption {
 }
 
 // WithDeviceUsageDateAsserted sets the DateAsserted field.
+//
+// Deprecated: use DeviceUsageBuilder.SetDateAsserted instead; removed in v2.
 func WithDeviceUsageDateAsserted(v string) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.DateAsserted = &v
@@ -960,6 +1014,8 @@ func WithDeviceUsageDateAsserted(v string) DeviceUsageOption {
 }
 
 // WithDeviceUsageUsageStatus sets the UsageStatus field.
+//
+// Deprecated: use DeviceUsageBuilder.SetUsageStatus instead; removed in v2.
 func WithDeviceUsageUsageStatus(v CodeableConcept) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.UsageStatus = &v
@@ -967,6 +1023,8 @@ func WithDeviceUsageUsageStatus(v CodeableConcept) DeviceUsageOption {
 }
 
 // WithDeviceUsageUsageReason adds a UsageReason to the DeviceUsage.
+//
+// Deprecated: use DeviceUsageBuilder.AddUsageReason instead; removed in v2.
 func WithDeviceUsageUsageReason(v CodeableConcept) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.UsageReason = append(r.UsageReason, v)
@@ -974,6 +1032,8 @@ func WithDeviceUsageUsageReason(v CodeableConcept) DeviceUsageOption {
 }
 
 // WithDeviceUsageAdherence sets the Adherence field.
+//
+// Deprecated: use DeviceUsageBuilder.SetAdherence instead; removed in v2.
 func WithDeviceUsageAdherence(v DeviceUsageAdherence) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.Adherence = &v
@@ -981,6 +1041,8 @@ func WithDeviceUsageAdherence(v DeviceUsageAdherence) DeviceUsageOption {
 }
 
 // WithDeviceUsageInformationSource sets the InformationSource field.
+//
+// Deprecated: use DeviceUsageBuilder.SetInformationSource instead; removed in v2.
 func WithDeviceUsageInformationSource(v Reference) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.InformationSource = &v
@@ -988,6 +1050,8 @@ func WithDeviceUsageInformationSource(v Reference) DeviceUsageOption {
 }
 
 // WithDeviceUsageDevice sets the Device field.
+//
+// Deprecated: use DeviceUsageBuilder.SetDevice instead; removed in v2.
 func WithDeviceUsageDevice(v CodeableReference) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.Device = v
@@ -995,6 +1059,8 @@ func WithDeviceUsageDevice(v CodeableReference) DeviceUsageOption {
 }
 
 // WithDeviceUsageReason adds a Reason to the DeviceUsage.
+//
+// Deprecated: use DeviceUsageBuilder.AddReason instead; removed in v2.
 func WithDeviceUsageReason(v CodeableReference) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.Reason = append(r.Reason, v)
@@ -1002,6 +1068,8 @@ func WithDeviceUsageReason(v CodeableReference) DeviceUsageOption {
 }
 
 // WithDeviceUsageBodySite sets the BodySite field.
+//
+// Deprecated: use DeviceUsageBuilder.SetBodySite instead; removed in v2.
 func WithDeviceUsageBodySite(v CodeableReference) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.BodySite = &v
@@ -1009,6 +1077,8 @@ func WithDeviceUsageBodySite(v CodeableReference) DeviceUsageOption {
 }
 
 // WithDeviceUsageNote adds a Note to the DeviceUsage.
+//
+// Deprecated: use DeviceUsageBuilder.AddNote instead; removed in v2.
 func WithDeviceUsageNote(v Annotation) DeviceUsageOption {
 	return func(r *DeviceUsage) {
 		r.Note = append(r.Note, v)

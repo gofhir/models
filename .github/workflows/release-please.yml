@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+      # v1 is a maintenance line, cut at r4/v1.5.1 before main moved its module
+      # paths to /v2. It exists because a v1.6.0 cannot be released from main at
+      # all: Go rejects the tag with "post-v1 module path", so the deprecation
+      # warnings that tell users what v2 removes have nowhere else to ship from.
+      - v1
 
 permissions:
   contents: write
@@ -24,6 +29,11 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+          # Without this, release-please assumes the repository's default branch
+          # and would open the v1 release PR against main. Each branch carries its
+          # own manifest, so the two lines advance independently from the 1.5.1
+          # they share: v1 to 1.6.0, main to 2.0.0.
+          target-branch: ${{ github.ref_name }}
 
   post-release:
     needs: release-please

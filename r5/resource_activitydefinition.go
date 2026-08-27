@@ -1716,9 +1716,23 @@ func (b *ActivityDefinitionBuilder) AddDynamicValue(v ActivityDefinitionDynamicV
 // =============================================================================
 
 // ActivityDefinitionOption is a functional option for configuring a ActivityDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ActivityDefinitionBuilder. Every WithActivityDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ActivityDefinitionOption func(*ActivityDefinition)
 
 // NewActivityDefinition creates a new ActivityDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewActivityDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewActivityDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewActivityDefinition(opts ...ActivityDefinitionOption) *ActivityDefinition {
 	r := &ActivityDefinition{ResourceType: "ActivityDefinition"}
 	for _, opt := range opts {
@@ -1728,6 +1742,8 @@ func NewActivityDefinition(opts ...ActivityDefinitionOption) *ActivityDefinition
 }
 
 // WithActivityDefinitionId sets the Id field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetId instead; removed in v2.
 func WithActivityDefinitionId(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Id = &v
@@ -1735,6 +1751,8 @@ func WithActivityDefinitionId(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionMeta sets the Meta field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetMeta instead; removed in v2.
 func WithActivityDefinitionMeta(v Meta) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Meta = &v
@@ -1742,6 +1760,8 @@ func WithActivityDefinitionMeta(v Meta) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithActivityDefinitionImplicitRules(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.ImplicitRules = &v
@@ -1749,6 +1769,8 @@ func WithActivityDefinitionImplicitRules(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionLanguage sets the Language field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithActivityDefinitionLanguage(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Language = &v
@@ -1756,6 +1778,8 @@ func WithActivityDefinitionLanguage(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionText sets the Text field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetText instead; removed in v2.
 func WithActivityDefinitionText(v Narrative) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Text = &v
@@ -1763,6 +1787,8 @@ func WithActivityDefinitionText(v Narrative) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionContained adds a Contained to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddContained instead; removed in v2.
 func WithActivityDefinitionContained(v Resource) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -1770,6 +1796,8 @@ func WithActivityDefinitionContained(v Resource) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionExtension adds a Extension to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddExtension instead; removed in v2.
 func WithActivityDefinitionExtension(v Extension) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -1777,6 +1805,8 @@ func WithActivityDefinitionExtension(v Extension) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionModifierExtension adds a ModifierExtension to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithActivityDefinitionModifierExtension(v Extension) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1784,6 +1814,8 @@ func WithActivityDefinitionModifierExtension(v Extension) ActivityDefinitionOpti
 }
 
 // WithActivityDefinitionUrl sets the Url field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetUrl instead; removed in v2.
 func WithActivityDefinitionUrl(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Url = &v
@@ -1791,6 +1823,8 @@ func WithActivityDefinitionUrl(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionIdentifier adds a Identifier to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddIdentifier instead; removed in v2.
 func WithActivityDefinitionIdentifier(v Identifier) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Identifier = append(r.Identifier, v)
@@ -1798,6 +1832,8 @@ func WithActivityDefinitionIdentifier(v Identifier) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionVersion sets the Version field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetVersion instead; removed in v2.
 func WithActivityDefinitionVersion(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Version = &v
@@ -1805,6 +1841,8 @@ func WithActivityDefinitionVersion(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionVersionAlgorithmString sets the VersionAlgorithmString field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetVersionAlgorithmString instead; removed in v2.
 func WithActivityDefinitionVersionAlgorithmString(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.VersionAlgorithmString = &v
@@ -1812,6 +1850,8 @@ func WithActivityDefinitionVersionAlgorithmString(v string) ActivityDefinitionOp
 }
 
 // WithActivityDefinitionVersionAlgorithmStringExt sets the VersionAlgorithmStringExt field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetVersionAlgorithmStringExt instead; removed in v2.
 func WithActivityDefinitionVersionAlgorithmStringExt(v Element) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.VersionAlgorithmStringExt = &v
@@ -1819,6 +1859,8 @@ func WithActivityDefinitionVersionAlgorithmStringExt(v Element) ActivityDefiniti
 }
 
 // WithActivityDefinitionVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetVersionAlgorithmCoding instead; removed in v2.
 func WithActivityDefinitionVersionAlgorithmCoding(v Coding) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.VersionAlgorithmCoding = &v
@@ -1826,6 +1868,8 @@ func WithActivityDefinitionVersionAlgorithmCoding(v Coding) ActivityDefinitionOp
 }
 
 // WithActivityDefinitionName sets the Name field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetName instead; removed in v2.
 func WithActivityDefinitionName(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Name = &v
@@ -1833,6 +1877,8 @@ func WithActivityDefinitionName(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionTitle sets the Title field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetTitle instead; removed in v2.
 func WithActivityDefinitionTitle(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Title = &v
@@ -1840,6 +1886,8 @@ func WithActivityDefinitionTitle(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionSubtitle sets the Subtitle field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetSubtitle instead; removed in v2.
 func WithActivityDefinitionSubtitle(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Subtitle = &v
@@ -1847,6 +1895,8 @@ func WithActivityDefinitionSubtitle(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionStatus sets the Status field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetStatus instead; removed in v2.
 func WithActivityDefinitionStatus(v PublicationStatus) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Status = &v
@@ -1854,6 +1904,8 @@ func WithActivityDefinitionStatus(v PublicationStatus) ActivityDefinitionOption 
 }
 
 // WithActivityDefinitionExperimental sets the Experimental field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetExperimental instead; removed in v2.
 func WithActivityDefinitionExperimental(v bool) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Experimental = &v
@@ -1861,6 +1913,8 @@ func WithActivityDefinitionExperimental(v bool) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionSubjectCodeableConcept sets the SubjectCodeableConcept field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetSubjectCodeableConcept instead; removed in v2.
 func WithActivityDefinitionSubjectCodeableConcept(v CodeableConcept) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.SubjectCodeableConcept = &v
@@ -1868,6 +1922,8 @@ func WithActivityDefinitionSubjectCodeableConcept(v CodeableConcept) ActivityDef
 }
 
 // WithActivityDefinitionSubjectReference sets the SubjectReference field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetSubjectReference instead; removed in v2.
 func WithActivityDefinitionSubjectReference(v Reference) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.SubjectReference = &v
@@ -1875,6 +1931,8 @@ func WithActivityDefinitionSubjectReference(v Reference) ActivityDefinitionOptio
 }
 
 // WithActivityDefinitionSubjectCanonical sets the SubjectCanonical field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetSubjectCanonical instead; removed in v2.
 func WithActivityDefinitionSubjectCanonical(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.SubjectCanonical = &v
@@ -1882,6 +1940,8 @@ func WithActivityDefinitionSubjectCanonical(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionSubjectCanonicalExt sets the SubjectCanonicalExt field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetSubjectCanonicalExt instead; removed in v2.
 func WithActivityDefinitionSubjectCanonicalExt(v Element) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.SubjectCanonicalExt = &v
@@ -1889,6 +1949,8 @@ func WithActivityDefinitionSubjectCanonicalExt(v Element) ActivityDefinitionOpti
 }
 
 // WithActivityDefinitionDate sets the Date field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetDate instead; removed in v2.
 func WithActivityDefinitionDate(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Date = &v
@@ -1896,6 +1958,8 @@ func WithActivityDefinitionDate(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionPublisher sets the Publisher field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetPublisher instead; removed in v2.
 func WithActivityDefinitionPublisher(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Publisher = &v
@@ -1903,6 +1967,8 @@ func WithActivityDefinitionPublisher(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionContact adds a Contact to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddContact instead; removed in v2.
 func WithActivityDefinitionContact(v ContactDetail) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Contact = append(r.Contact, v)
@@ -1910,6 +1976,8 @@ func WithActivityDefinitionContact(v ContactDetail) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionDescription sets the Description field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetDescription instead; removed in v2.
 func WithActivityDefinitionDescription(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Description = &v
@@ -1917,6 +1985,8 @@ func WithActivityDefinitionDescription(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionUseContext adds a UseContext to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddUseContext instead; removed in v2.
 func WithActivityDefinitionUseContext(v UsageContext) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.UseContext = append(r.UseContext, v)
@@ -1924,6 +1994,8 @@ func WithActivityDefinitionUseContext(v UsageContext) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionJurisdiction adds a Jurisdiction to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddJurisdiction instead; removed in v2.
 func WithActivityDefinitionJurisdiction(v CodeableConcept) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1931,6 +2003,8 @@ func WithActivityDefinitionJurisdiction(v CodeableConcept) ActivityDefinitionOpt
 }
 
 // WithActivityDefinitionPurpose sets the Purpose field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetPurpose instead; removed in v2.
 func WithActivityDefinitionPurpose(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Purpose = &v
@@ -1938,6 +2012,8 @@ func WithActivityDefinitionPurpose(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionUsage sets the Usage field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetUsage instead; removed in v2.
 func WithActivityDefinitionUsage(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Usage = &v
@@ -1945,6 +2021,8 @@ func WithActivityDefinitionUsage(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionCopyright sets the Copyright field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetCopyright instead; removed in v2.
 func WithActivityDefinitionCopyright(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Copyright = &v
@@ -1952,6 +2030,8 @@ func WithActivityDefinitionCopyright(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionCopyrightLabel sets the CopyrightLabel field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetCopyrightLabel instead; removed in v2.
 func WithActivityDefinitionCopyrightLabel(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.CopyrightLabel = &v
@@ -1959,6 +2039,8 @@ func WithActivityDefinitionCopyrightLabel(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionApprovalDate sets the ApprovalDate field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetApprovalDate instead; removed in v2.
 func WithActivityDefinitionApprovalDate(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.ApprovalDate = &v
@@ -1966,6 +2048,8 @@ func WithActivityDefinitionApprovalDate(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionLastReviewDate sets the LastReviewDate field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetLastReviewDate instead; removed in v2.
 func WithActivityDefinitionLastReviewDate(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.LastReviewDate = &v
@@ -1973,6 +2057,8 @@ func WithActivityDefinitionLastReviewDate(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionEffectivePeriod sets the EffectivePeriod field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetEffectivePeriod instead; removed in v2.
 func WithActivityDefinitionEffectivePeriod(v Period) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.EffectivePeriod = &v
@@ -1980,6 +2066,8 @@ func WithActivityDefinitionEffectivePeriod(v Period) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionTopic adds a Topic to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddTopic instead; removed in v2.
 func WithActivityDefinitionTopic(v CodeableConcept) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Topic = append(r.Topic, v)
@@ -1987,6 +2075,8 @@ func WithActivityDefinitionTopic(v CodeableConcept) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionAuthor adds a Author to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddAuthor instead; removed in v2.
 func WithActivityDefinitionAuthor(v ContactDetail) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Author = append(r.Author, v)
@@ -1994,6 +2084,8 @@ func WithActivityDefinitionAuthor(v ContactDetail) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionEditor adds a Editor to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddEditor instead; removed in v2.
 func WithActivityDefinitionEditor(v ContactDetail) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Editor = append(r.Editor, v)
@@ -2001,6 +2093,8 @@ func WithActivityDefinitionEditor(v ContactDetail) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionReviewer adds a Reviewer to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddReviewer instead; removed in v2.
 func WithActivityDefinitionReviewer(v ContactDetail) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Reviewer = append(r.Reviewer, v)
@@ -2008,6 +2102,8 @@ func WithActivityDefinitionReviewer(v ContactDetail) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionEndorser adds a Endorser to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddEndorser instead; removed in v2.
 func WithActivityDefinitionEndorser(v ContactDetail) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Endorser = append(r.Endorser, v)
@@ -2015,6 +2111,8 @@ func WithActivityDefinitionEndorser(v ContactDetail) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionRelatedArtifact adds a RelatedArtifact to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddRelatedArtifact instead; removed in v2.
 func WithActivityDefinitionRelatedArtifact(v RelatedArtifact) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.RelatedArtifact = append(r.RelatedArtifact, v)
@@ -2022,6 +2120,8 @@ func WithActivityDefinitionRelatedArtifact(v RelatedArtifact) ActivityDefinition
 }
 
 // WithActivityDefinitionLibrary adds a Library to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddLibrary instead; removed in v2.
 func WithActivityDefinitionLibrary(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Library = append(r.Library, v)
@@ -2029,6 +2129,8 @@ func WithActivityDefinitionLibrary(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionKind sets the Kind field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetKind instead; removed in v2.
 func WithActivityDefinitionKind(v RequestResourceTypes) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Kind = &v
@@ -2036,6 +2138,8 @@ func WithActivityDefinitionKind(v RequestResourceTypes) ActivityDefinitionOption
 }
 
 // WithActivityDefinitionProfile sets the Profile field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetProfile instead; removed in v2.
 func WithActivityDefinitionProfile(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Profile = &v
@@ -2043,6 +2147,8 @@ func WithActivityDefinitionProfile(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionCode sets the Code field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetCode instead; removed in v2.
 func WithActivityDefinitionCode(v CodeableConcept) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Code = &v
@@ -2050,6 +2156,8 @@ func WithActivityDefinitionCode(v CodeableConcept) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionIntent sets the Intent field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetIntent instead; removed in v2.
 func WithActivityDefinitionIntent(v RequestIntent) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Intent = &v
@@ -2057,6 +2165,8 @@ func WithActivityDefinitionIntent(v RequestIntent) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionPriority sets the Priority field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetPriority instead; removed in v2.
 func WithActivityDefinitionPriority(v RequestPriority) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Priority = &v
@@ -2064,6 +2174,8 @@ func WithActivityDefinitionPriority(v RequestPriority) ActivityDefinitionOption 
 }
 
 // WithActivityDefinitionDoNotPerform sets the DoNotPerform field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetDoNotPerform instead; removed in v2.
 func WithActivityDefinitionDoNotPerform(v bool) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.DoNotPerform = &v
@@ -2071,6 +2183,8 @@ func WithActivityDefinitionDoNotPerform(v bool) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionTimingTiming sets the TimingTiming field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetTimingTiming instead; removed in v2.
 func WithActivityDefinitionTimingTiming(v Timing) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.TimingTiming = &v
@@ -2078,6 +2192,8 @@ func WithActivityDefinitionTimingTiming(v Timing) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionTimingAge sets the TimingAge field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetTimingAge instead; removed in v2.
 func WithActivityDefinitionTimingAge(v Age) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.TimingAge = &v
@@ -2085,6 +2201,8 @@ func WithActivityDefinitionTimingAge(v Age) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionTimingRange sets the TimingRange field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetTimingRange instead; removed in v2.
 func WithActivityDefinitionTimingRange(v Range) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.TimingRange = &v
@@ -2092,6 +2210,8 @@ func WithActivityDefinitionTimingRange(v Range) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionTimingDuration sets the TimingDuration field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetTimingDuration instead; removed in v2.
 func WithActivityDefinitionTimingDuration(v Duration) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.TimingDuration = &v
@@ -2099,6 +2219,8 @@ func WithActivityDefinitionTimingDuration(v Duration) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionAsNeededBoolean sets the AsNeededBoolean field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetAsNeededBoolean instead; removed in v2.
 func WithActivityDefinitionAsNeededBoolean(v bool) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.AsNeededBoolean = &v
@@ -2106,6 +2228,8 @@ func WithActivityDefinitionAsNeededBoolean(v bool) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionAsNeededBooleanExt sets the AsNeededBooleanExt field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetAsNeededBooleanExt instead; removed in v2.
 func WithActivityDefinitionAsNeededBooleanExt(v Element) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.AsNeededBooleanExt = &v
@@ -2113,6 +2237,8 @@ func WithActivityDefinitionAsNeededBooleanExt(v Element) ActivityDefinitionOptio
 }
 
 // WithActivityDefinitionAsNeededCodeableConcept sets the AsNeededCodeableConcept field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetAsNeededCodeableConcept instead; removed in v2.
 func WithActivityDefinitionAsNeededCodeableConcept(v CodeableConcept) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.AsNeededCodeableConcept = &v
@@ -2120,6 +2246,8 @@ func WithActivityDefinitionAsNeededCodeableConcept(v CodeableConcept) ActivityDe
 }
 
 // WithActivityDefinitionLocation sets the Location field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetLocation instead; removed in v2.
 func WithActivityDefinitionLocation(v CodeableReference) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Location = &v
@@ -2127,6 +2255,8 @@ func WithActivityDefinitionLocation(v CodeableReference) ActivityDefinitionOptio
 }
 
 // WithActivityDefinitionParticipant adds a Participant to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddParticipant instead; removed in v2.
 func WithActivityDefinitionParticipant(v ActivityDefinitionParticipant) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Participant = append(r.Participant, v)
@@ -2134,6 +2264,8 @@ func WithActivityDefinitionParticipant(v ActivityDefinitionParticipant) Activity
 }
 
 // WithActivityDefinitionProductReference sets the ProductReference field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetProductReference instead; removed in v2.
 func WithActivityDefinitionProductReference(v Reference) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.ProductReference = &v
@@ -2141,6 +2273,8 @@ func WithActivityDefinitionProductReference(v Reference) ActivityDefinitionOptio
 }
 
 // WithActivityDefinitionProductCodeableConcept sets the ProductCodeableConcept field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetProductCodeableConcept instead; removed in v2.
 func WithActivityDefinitionProductCodeableConcept(v CodeableConcept) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.ProductCodeableConcept = &v
@@ -2148,6 +2282,8 @@ func WithActivityDefinitionProductCodeableConcept(v CodeableConcept) ActivityDef
 }
 
 // WithActivityDefinitionQuantity sets the Quantity field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetQuantity instead; removed in v2.
 func WithActivityDefinitionQuantity(v Quantity) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Quantity = &v
@@ -2155,6 +2291,8 @@ func WithActivityDefinitionQuantity(v Quantity) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionDosage adds a Dosage to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddDosage instead; removed in v2.
 func WithActivityDefinitionDosage(v Dosage) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Dosage = append(r.Dosage, v)
@@ -2162,6 +2300,8 @@ func WithActivityDefinitionDosage(v Dosage) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionBodySite adds a BodySite to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddBodySite instead; removed in v2.
 func WithActivityDefinitionBodySite(v CodeableConcept) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.BodySite = append(r.BodySite, v)
@@ -2169,6 +2309,8 @@ func WithActivityDefinitionBodySite(v CodeableConcept) ActivityDefinitionOption 
 }
 
 // WithActivityDefinitionSpecimenRequirement adds a SpecimenRequirement to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddSpecimenRequirement instead; removed in v2.
 func WithActivityDefinitionSpecimenRequirement(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.SpecimenRequirement = append(r.SpecimenRequirement, v)
@@ -2176,6 +2318,8 @@ func WithActivityDefinitionSpecimenRequirement(v string) ActivityDefinitionOptio
 }
 
 // WithActivityDefinitionObservationRequirement adds a ObservationRequirement to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddObservationRequirement instead; removed in v2.
 func WithActivityDefinitionObservationRequirement(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.ObservationRequirement = append(r.ObservationRequirement, v)
@@ -2183,6 +2327,8 @@ func WithActivityDefinitionObservationRequirement(v string) ActivityDefinitionOp
 }
 
 // WithActivityDefinitionObservationResultRequirement adds a ObservationResultRequirement to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddObservationResultRequirement instead; removed in v2.
 func WithActivityDefinitionObservationResultRequirement(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.ObservationResultRequirement = append(r.ObservationResultRequirement, v)
@@ -2190,6 +2336,8 @@ func WithActivityDefinitionObservationResultRequirement(v string) ActivityDefini
 }
 
 // WithActivityDefinitionTransform sets the Transform field.
+//
+// Deprecated: use ActivityDefinitionBuilder.SetTransform instead; removed in v2.
 func WithActivityDefinitionTransform(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.Transform = &v
@@ -2197,6 +2345,8 @@ func WithActivityDefinitionTransform(v string) ActivityDefinitionOption {
 }
 
 // WithActivityDefinitionDynamicValue adds a DynamicValue to the ActivityDefinition.
+//
+// Deprecated: use ActivityDefinitionBuilder.AddDynamicValue instead; removed in v2.
 func WithActivityDefinitionDynamicValue(v ActivityDefinitionDynamicValue) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
 		r.DynamicValue = append(r.DynamicValue, v)

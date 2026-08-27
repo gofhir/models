@@ -1165,9 +1165,23 @@ func (b *ImagingStudyBuilder) AddSeries(v ImagingStudySeries) *ImagingStudyBuild
 // =============================================================================
 
 // ImagingStudyOption is a functional option for configuring a ImagingStudy.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ImagingStudyBuilder. Every WithImagingStudy* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ImagingStudyOption func(*ImagingStudy)
 
 // NewImagingStudy creates a new ImagingStudy with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewImagingStudyBuilder().SetId("x").Build()
+//
+// Deprecated: use NewImagingStudyBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewImagingStudy(opts ...ImagingStudyOption) *ImagingStudy {
 	r := &ImagingStudy{ResourceType: "ImagingStudy"}
 	for _, opt := range opts {
@@ -1177,6 +1191,8 @@ func NewImagingStudy(opts ...ImagingStudyOption) *ImagingStudy {
 }
 
 // WithImagingStudyId sets the Id field.
+//
+// Deprecated: use ImagingStudyBuilder.SetId instead; removed in v2.
 func WithImagingStudyId(v string) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.Id = &v
@@ -1184,6 +1200,8 @@ func WithImagingStudyId(v string) ImagingStudyOption {
 }
 
 // WithImagingStudyMeta sets the Meta field.
+//
+// Deprecated: use ImagingStudyBuilder.SetMeta instead; removed in v2.
 func WithImagingStudyMeta(v Meta) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.Meta = &v
@@ -1191,6 +1209,8 @@ func WithImagingStudyMeta(v Meta) ImagingStudyOption {
 }
 
 // WithImagingStudyImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ImagingStudyBuilder.SetImplicitRules instead; removed in v2.
 func WithImagingStudyImplicitRules(v string) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.ImplicitRules = &v
@@ -1198,6 +1218,8 @@ func WithImagingStudyImplicitRules(v string) ImagingStudyOption {
 }
 
 // WithImagingStudyLanguage sets the Language field.
+//
+// Deprecated: use ImagingStudyBuilder.SetLanguage instead; removed in v2.
 func WithImagingStudyLanguage(v string) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.Language = &v
@@ -1205,6 +1227,8 @@ func WithImagingStudyLanguage(v string) ImagingStudyOption {
 }
 
 // WithImagingStudyText sets the Text field.
+//
+// Deprecated: use ImagingStudyBuilder.SetText instead; removed in v2.
 func WithImagingStudyText(v Narrative) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.Text = &v
@@ -1212,6 +1236,8 @@ func WithImagingStudyText(v Narrative) ImagingStudyOption {
 }
 
 // WithImagingStudyContained adds a Contained to the ImagingStudy.
+//
+// Deprecated: use ImagingStudyBuilder.AddContained instead; removed in v2.
 func WithImagingStudyContained(v Resource) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.Contained = append(r.Contained, v)
@@ -1219,6 +1245,8 @@ func WithImagingStudyContained(v Resource) ImagingStudyOption {
 }
 
 // WithImagingStudyExtension adds a Extension to the ImagingStudy.
+//
+// Deprecated: use ImagingStudyBuilder.AddExtension instead; removed in v2.
 func WithImagingStudyExtension(v Extension) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.Extension = append(r.Extension, v)
@@ -1226,6 +1254,8 @@ func WithImagingStudyExtension(v Extension) ImagingStudyOption {
 }
 
 // WithImagingStudyModifierExtension adds a ModifierExtension to the ImagingStudy.
+//
+// Deprecated: use ImagingStudyBuilder.AddModifierExtension instead; removed in v2.
 func WithImagingStudyModifierExtension(v Extension) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1233,6 +1263,8 @@ func WithImagingStudyModifierExtension(v Extension) ImagingStudyOption {
 }
 
 // WithImagingStudyIdentifier adds a Identifier to the ImagingStudy.
+//
+// Deprecated: use ImagingStudyBuilder.AddIdentifier instead; removed in v2.
 func WithImagingStudyIdentifier(v Identifier) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.Identifier = append(r.Identifier, v)
@@ -1240,6 +1272,8 @@ func WithImagingStudyIdentifier(v Identifier) ImagingStudyOption {
 }
 
 // WithImagingStudyStatus sets the Status field.
+//
+// Deprecated: use ImagingStudyBuilder.SetStatus instead; removed in v2.
 func WithImagingStudyStatus(v ImagingStudyStatus) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.Status = &v
@@ -1247,6 +1281,8 @@ func WithImagingStudyStatus(v ImagingStudyStatus) ImagingStudyOption {
 }
 
 // WithImagingStudyModality adds a Modality to the ImagingStudy.
+//
+// Deprecated: use ImagingStudyBuilder.AddModality instead; removed in v2.
 func WithImagingStudyModality(v Coding) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.Modality = append(r.Modality, v)
@@ -1254,6 +1290,8 @@ func WithImagingStudyModality(v Coding) ImagingStudyOption {
 }
 
 // WithImagingStudySubject sets the Subject field.
+//
+// Deprecated: use ImagingStudyBuilder.SetSubject instead; removed in v2.
 func WithImagingStudySubject(v Reference) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.Subject = v
@@ -1261,6 +1299,8 @@ func WithImagingStudySubject(v Reference) ImagingStudyOption {
 }
 
 // WithImagingStudyEncounter sets the Encounter field.
+//
+// Deprecated: use ImagingStudyBuilder.SetEncounter instead; removed in v2.
 func WithImagingStudyEncounter(v Reference) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.Encounter = &v
@@ -1268,6 +1308,8 @@ func WithImagingStudyEncounter(v Reference) ImagingStudyOption {
 }
 
 // WithImagingStudyStarted sets the Started field.
+//
+// Deprecated: use ImagingStudyBuilder.SetStarted instead; removed in v2.
 func WithImagingStudyStarted(v string) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.Started = &v
@@ -1275,6 +1317,8 @@ func WithImagingStudyStarted(v string) ImagingStudyOption {
 }
 
 // WithImagingStudyBasedOn adds a BasedOn to the ImagingStudy.
+//
+// Deprecated: use ImagingStudyBuilder.AddBasedOn instead; removed in v2.
 func WithImagingStudyBasedOn(v Reference) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -1282,6 +1326,8 @@ func WithImagingStudyBasedOn(v Reference) ImagingStudyOption {
 }
 
 // WithImagingStudyReferrer sets the Referrer field.
+//
+// Deprecated: use ImagingStudyBuilder.SetReferrer instead; removed in v2.
 func WithImagingStudyReferrer(v Reference) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.Referrer = &v
@@ -1289,6 +1335,8 @@ func WithImagingStudyReferrer(v Reference) ImagingStudyOption {
 }
 
 // WithImagingStudyInterpreter adds a Interpreter to the ImagingStudy.
+//
+// Deprecated: use ImagingStudyBuilder.AddInterpreter instead; removed in v2.
 func WithImagingStudyInterpreter(v Reference) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.Interpreter = append(r.Interpreter, v)
@@ -1296,6 +1344,8 @@ func WithImagingStudyInterpreter(v Reference) ImagingStudyOption {
 }
 
 // WithImagingStudyEndpoint adds a Endpoint to the ImagingStudy.
+//
+// Deprecated: use ImagingStudyBuilder.AddEndpoint instead; removed in v2.
 func WithImagingStudyEndpoint(v Reference) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.Endpoint = append(r.Endpoint, v)
@@ -1303,6 +1353,8 @@ func WithImagingStudyEndpoint(v Reference) ImagingStudyOption {
 }
 
 // WithImagingStudyNumberOfSeries sets the NumberOfSeries field.
+//
+// Deprecated: use ImagingStudyBuilder.SetNumberOfSeries instead; removed in v2.
 func WithImagingStudyNumberOfSeries(v uint32) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.NumberOfSeries = &v
@@ -1310,6 +1362,8 @@ func WithImagingStudyNumberOfSeries(v uint32) ImagingStudyOption {
 }
 
 // WithImagingStudyNumberOfInstances sets the NumberOfInstances field.
+//
+// Deprecated: use ImagingStudyBuilder.SetNumberOfInstances instead; removed in v2.
 func WithImagingStudyNumberOfInstances(v uint32) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.NumberOfInstances = &v
@@ -1317,6 +1371,8 @@ func WithImagingStudyNumberOfInstances(v uint32) ImagingStudyOption {
 }
 
 // WithImagingStudyProcedureReference sets the ProcedureReference field.
+//
+// Deprecated: use ImagingStudyBuilder.SetProcedureReference instead; removed in v2.
 func WithImagingStudyProcedureReference(v Reference) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.ProcedureReference = &v
@@ -1324,6 +1380,8 @@ func WithImagingStudyProcedureReference(v Reference) ImagingStudyOption {
 }
 
 // WithImagingStudyProcedureCode adds a ProcedureCode to the ImagingStudy.
+//
+// Deprecated: use ImagingStudyBuilder.AddProcedureCode instead; removed in v2.
 func WithImagingStudyProcedureCode(v CodeableConcept) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.ProcedureCode = append(r.ProcedureCode, v)
@@ -1331,6 +1389,8 @@ func WithImagingStudyProcedureCode(v CodeableConcept) ImagingStudyOption {
 }
 
 // WithImagingStudyLocation sets the Location field.
+//
+// Deprecated: use ImagingStudyBuilder.SetLocation instead; removed in v2.
 func WithImagingStudyLocation(v Reference) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.Location = &v
@@ -1338,6 +1398,8 @@ func WithImagingStudyLocation(v Reference) ImagingStudyOption {
 }
 
 // WithImagingStudyReasonCode adds a ReasonCode to the ImagingStudy.
+//
+// Deprecated: use ImagingStudyBuilder.AddReasonCode instead; removed in v2.
 func WithImagingStudyReasonCode(v CodeableConcept) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.ReasonCode = append(r.ReasonCode, v)
@@ -1345,6 +1407,8 @@ func WithImagingStudyReasonCode(v CodeableConcept) ImagingStudyOption {
 }
 
 // WithImagingStudyReasonReference adds a ReasonReference to the ImagingStudy.
+//
+// Deprecated: use ImagingStudyBuilder.AddReasonReference instead; removed in v2.
 func WithImagingStudyReasonReference(v Reference) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.ReasonReference = append(r.ReasonReference, v)
@@ -1352,6 +1416,8 @@ func WithImagingStudyReasonReference(v Reference) ImagingStudyOption {
 }
 
 // WithImagingStudyNote adds a Note to the ImagingStudy.
+//
+// Deprecated: use ImagingStudyBuilder.AddNote instead; removed in v2.
 func WithImagingStudyNote(v Annotation) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.Note = append(r.Note, v)
@@ -1359,6 +1425,8 @@ func WithImagingStudyNote(v Annotation) ImagingStudyOption {
 }
 
 // WithImagingStudyDescription sets the Description field.
+//
+// Deprecated: use ImagingStudyBuilder.SetDescription instead; removed in v2.
 func WithImagingStudyDescription(v string) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.Description = &v
@@ -1366,6 +1434,8 @@ func WithImagingStudyDescription(v string) ImagingStudyOption {
 }
 
 // WithImagingStudySeries adds a Series to the ImagingStudy.
+//
+// Deprecated: use ImagingStudyBuilder.AddSeries instead; removed in v2.
 func WithImagingStudySeries(v ImagingStudySeries) ImagingStudyOption {
 	return func(r *ImagingStudy) {
 		r.Series = append(r.Series, v)

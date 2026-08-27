@@ -801,9 +801,23 @@ func (b *ProvenanceBuilder) AddSignature(v Signature) *ProvenanceBuilder {
 // =============================================================================
 
 // ProvenanceOption is a functional option for configuring a Provenance.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ProvenanceBuilder. Every WithProvenance* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ProvenanceOption func(*Provenance)
 
 // NewProvenance creates a new Provenance with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewProvenanceBuilder().SetId("x").Build()
+//
+// Deprecated: use NewProvenanceBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewProvenance(opts ...ProvenanceOption) *Provenance {
 	r := &Provenance{ResourceType: "Provenance"}
 	for _, opt := range opts {
@@ -813,6 +827,8 @@ func NewProvenance(opts ...ProvenanceOption) *Provenance {
 }
 
 // WithProvenanceId sets the Id field.
+//
+// Deprecated: use ProvenanceBuilder.SetId instead; removed in v2.
 func WithProvenanceId(v string) ProvenanceOption {
 	return func(r *Provenance) {
 		r.Id = &v
@@ -820,6 +836,8 @@ func WithProvenanceId(v string) ProvenanceOption {
 }
 
 // WithProvenanceMeta sets the Meta field.
+//
+// Deprecated: use ProvenanceBuilder.SetMeta instead; removed in v2.
 func WithProvenanceMeta(v Meta) ProvenanceOption {
 	return func(r *Provenance) {
 		r.Meta = &v
@@ -827,6 +845,8 @@ func WithProvenanceMeta(v Meta) ProvenanceOption {
 }
 
 // WithProvenanceImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ProvenanceBuilder.SetImplicitRules instead; removed in v2.
 func WithProvenanceImplicitRules(v string) ProvenanceOption {
 	return func(r *Provenance) {
 		r.ImplicitRules = &v
@@ -834,6 +854,8 @@ func WithProvenanceImplicitRules(v string) ProvenanceOption {
 }
 
 // WithProvenanceLanguage sets the Language field.
+//
+// Deprecated: use ProvenanceBuilder.SetLanguage instead; removed in v2.
 func WithProvenanceLanguage(v string) ProvenanceOption {
 	return func(r *Provenance) {
 		r.Language = &v
@@ -841,6 +863,8 @@ func WithProvenanceLanguage(v string) ProvenanceOption {
 }
 
 // WithProvenanceText sets the Text field.
+//
+// Deprecated: use ProvenanceBuilder.SetText instead; removed in v2.
 func WithProvenanceText(v Narrative) ProvenanceOption {
 	return func(r *Provenance) {
 		r.Text = &v
@@ -848,6 +872,8 @@ func WithProvenanceText(v Narrative) ProvenanceOption {
 }
 
 // WithProvenanceContained adds a Contained to the Provenance.
+//
+// Deprecated: use ProvenanceBuilder.AddContained instead; removed in v2.
 func WithProvenanceContained(v Resource) ProvenanceOption {
 	return func(r *Provenance) {
 		r.Contained = append(r.Contained, v)
@@ -855,6 +881,8 @@ func WithProvenanceContained(v Resource) ProvenanceOption {
 }
 
 // WithProvenanceExtension adds a Extension to the Provenance.
+//
+// Deprecated: use ProvenanceBuilder.AddExtension instead; removed in v2.
 func WithProvenanceExtension(v Extension) ProvenanceOption {
 	return func(r *Provenance) {
 		r.Extension = append(r.Extension, v)
@@ -862,6 +890,8 @@ func WithProvenanceExtension(v Extension) ProvenanceOption {
 }
 
 // WithProvenanceModifierExtension adds a ModifierExtension to the Provenance.
+//
+// Deprecated: use ProvenanceBuilder.AddModifierExtension instead; removed in v2.
 func WithProvenanceModifierExtension(v Extension) ProvenanceOption {
 	return func(r *Provenance) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -869,6 +899,8 @@ func WithProvenanceModifierExtension(v Extension) ProvenanceOption {
 }
 
 // WithProvenanceTarget adds a Target to the Provenance.
+//
+// Deprecated: use ProvenanceBuilder.AddTarget instead; removed in v2.
 func WithProvenanceTarget(v Reference) ProvenanceOption {
 	return func(r *Provenance) {
 		r.Target = append(r.Target, v)
@@ -876,6 +908,8 @@ func WithProvenanceTarget(v Reference) ProvenanceOption {
 }
 
 // WithProvenanceOccurredPeriod sets the OccurredPeriod field.
+//
+// Deprecated: use ProvenanceBuilder.SetOccurredPeriod instead; removed in v2.
 func WithProvenanceOccurredPeriod(v Period) ProvenanceOption {
 	return func(r *Provenance) {
 		r.OccurredPeriod = &v
@@ -883,6 +917,8 @@ func WithProvenanceOccurredPeriod(v Period) ProvenanceOption {
 }
 
 // WithProvenanceOccurredDateTime sets the OccurredDateTime field.
+//
+// Deprecated: use ProvenanceBuilder.SetOccurredDateTime instead; removed in v2.
 func WithProvenanceOccurredDateTime(v string) ProvenanceOption {
 	return func(r *Provenance) {
 		r.OccurredDateTime = &v
@@ -890,6 +926,8 @@ func WithProvenanceOccurredDateTime(v string) ProvenanceOption {
 }
 
 // WithProvenanceOccurredDateTimeExt sets the OccurredDateTimeExt field.
+//
+// Deprecated: use ProvenanceBuilder.SetOccurredDateTimeExt instead; removed in v2.
 func WithProvenanceOccurredDateTimeExt(v Element) ProvenanceOption {
 	return func(r *Provenance) {
 		r.OccurredDateTimeExt = &v
@@ -897,6 +935,8 @@ func WithProvenanceOccurredDateTimeExt(v Element) ProvenanceOption {
 }
 
 // WithProvenanceRecorded sets the Recorded field.
+//
+// Deprecated: use ProvenanceBuilder.SetRecorded instead; removed in v2.
 func WithProvenanceRecorded(v string) ProvenanceOption {
 	return func(r *Provenance) {
 		r.Recorded = &v
@@ -904,6 +944,8 @@ func WithProvenanceRecorded(v string) ProvenanceOption {
 }
 
 // WithProvenancePolicy adds a Policy to the Provenance.
+//
+// Deprecated: use ProvenanceBuilder.AddPolicy instead; removed in v2.
 func WithProvenancePolicy(v string) ProvenanceOption {
 	return func(r *Provenance) {
 		r.Policy = append(r.Policy, v)
@@ -911,6 +953,8 @@ func WithProvenancePolicy(v string) ProvenanceOption {
 }
 
 // WithProvenanceLocation sets the Location field.
+//
+// Deprecated: use ProvenanceBuilder.SetLocation instead; removed in v2.
 func WithProvenanceLocation(v Reference) ProvenanceOption {
 	return func(r *Provenance) {
 		r.Location = &v
@@ -918,6 +962,8 @@ func WithProvenanceLocation(v Reference) ProvenanceOption {
 }
 
 // WithProvenanceReason adds a Reason to the Provenance.
+//
+// Deprecated: use ProvenanceBuilder.AddReason instead; removed in v2.
 func WithProvenanceReason(v CodeableConcept) ProvenanceOption {
 	return func(r *Provenance) {
 		r.Reason = append(r.Reason, v)
@@ -925,6 +971,8 @@ func WithProvenanceReason(v CodeableConcept) ProvenanceOption {
 }
 
 // WithProvenanceActivity sets the Activity field.
+//
+// Deprecated: use ProvenanceBuilder.SetActivity instead; removed in v2.
 func WithProvenanceActivity(v CodeableConcept) ProvenanceOption {
 	return func(r *Provenance) {
 		r.Activity = &v
@@ -932,6 +980,8 @@ func WithProvenanceActivity(v CodeableConcept) ProvenanceOption {
 }
 
 // WithProvenanceAgent adds a Agent to the Provenance.
+//
+// Deprecated: use ProvenanceBuilder.AddAgent instead; removed in v2.
 func WithProvenanceAgent(v ProvenanceAgent) ProvenanceOption {
 	return func(r *Provenance) {
 		r.Agent = append(r.Agent, v)
@@ -939,6 +989,8 @@ func WithProvenanceAgent(v ProvenanceAgent) ProvenanceOption {
 }
 
 // WithProvenanceEntity adds a Entity to the Provenance.
+//
+// Deprecated: use ProvenanceBuilder.AddEntity instead; removed in v2.
 func WithProvenanceEntity(v ProvenanceEntity) ProvenanceOption {
 	return func(r *Provenance) {
 		r.Entity = append(r.Entity, v)
@@ -946,6 +998,8 @@ func WithProvenanceEntity(v ProvenanceEntity) ProvenanceOption {
 }
 
 // WithProvenanceSignature adds a Signature to the Provenance.
+//
+// Deprecated: use ProvenanceBuilder.AddSignature instead; removed in v2.
 func WithProvenanceSignature(v Signature) ProvenanceOption {
 	return func(r *Provenance) {
 		r.Signature = append(r.Signature, v)

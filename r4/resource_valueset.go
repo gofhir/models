@@ -1793,9 +1793,23 @@ func (b *ValueSetBuilder) SetExpansion(v ValueSetExpansion) *ValueSetBuilder {
 // =============================================================================
 
 // ValueSetOption is a functional option for configuring a ValueSet.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ValueSetBuilder. Every WithValueSet* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ValueSetOption func(*ValueSet)
 
 // NewValueSet creates a new ValueSet with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewValueSetBuilder().SetId("x").Build()
+//
+// Deprecated: use NewValueSetBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewValueSet(opts ...ValueSetOption) *ValueSet {
 	r := &ValueSet{ResourceType: "ValueSet"}
 	for _, opt := range opts {
@@ -1805,6 +1819,8 @@ func NewValueSet(opts ...ValueSetOption) *ValueSet {
 }
 
 // WithValueSetId sets the Id field.
+//
+// Deprecated: use ValueSetBuilder.SetId instead; removed in v2.
 func WithValueSetId(v string) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Id = &v
@@ -1812,6 +1828,8 @@ func WithValueSetId(v string) ValueSetOption {
 }
 
 // WithValueSetMeta sets the Meta field.
+//
+// Deprecated: use ValueSetBuilder.SetMeta instead; removed in v2.
 func WithValueSetMeta(v Meta) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Meta = &v
@@ -1819,6 +1837,8 @@ func WithValueSetMeta(v Meta) ValueSetOption {
 }
 
 // WithValueSetImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ValueSetBuilder.SetImplicitRules instead; removed in v2.
 func WithValueSetImplicitRules(v string) ValueSetOption {
 	return func(r *ValueSet) {
 		r.ImplicitRules = &v
@@ -1826,6 +1846,8 @@ func WithValueSetImplicitRules(v string) ValueSetOption {
 }
 
 // WithValueSetLanguage sets the Language field.
+//
+// Deprecated: use ValueSetBuilder.SetLanguage instead; removed in v2.
 func WithValueSetLanguage(v string) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Language = &v
@@ -1833,6 +1855,8 @@ func WithValueSetLanguage(v string) ValueSetOption {
 }
 
 // WithValueSetText sets the Text field.
+//
+// Deprecated: use ValueSetBuilder.SetText instead; removed in v2.
 func WithValueSetText(v Narrative) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Text = &v
@@ -1840,6 +1864,8 @@ func WithValueSetText(v Narrative) ValueSetOption {
 }
 
 // WithValueSetContained adds a Contained to the ValueSet.
+//
+// Deprecated: use ValueSetBuilder.AddContained instead; removed in v2.
 func WithValueSetContained(v Resource) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Contained = append(r.Contained, v)
@@ -1847,6 +1873,8 @@ func WithValueSetContained(v Resource) ValueSetOption {
 }
 
 // WithValueSetExtension adds a Extension to the ValueSet.
+//
+// Deprecated: use ValueSetBuilder.AddExtension instead; removed in v2.
 func WithValueSetExtension(v Extension) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Extension = append(r.Extension, v)
@@ -1854,6 +1882,8 @@ func WithValueSetExtension(v Extension) ValueSetOption {
 }
 
 // WithValueSetModifierExtension adds a ModifierExtension to the ValueSet.
+//
+// Deprecated: use ValueSetBuilder.AddModifierExtension instead; removed in v2.
 func WithValueSetModifierExtension(v Extension) ValueSetOption {
 	return func(r *ValueSet) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1861,6 +1891,8 @@ func WithValueSetModifierExtension(v Extension) ValueSetOption {
 }
 
 // WithValueSetUrl sets the Url field.
+//
+// Deprecated: use ValueSetBuilder.SetUrl instead; removed in v2.
 func WithValueSetUrl(v string) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Url = &v
@@ -1868,6 +1900,8 @@ func WithValueSetUrl(v string) ValueSetOption {
 }
 
 // WithValueSetIdentifier adds a Identifier to the ValueSet.
+//
+// Deprecated: use ValueSetBuilder.AddIdentifier instead; removed in v2.
 func WithValueSetIdentifier(v Identifier) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Identifier = append(r.Identifier, v)
@@ -1875,6 +1909,8 @@ func WithValueSetIdentifier(v Identifier) ValueSetOption {
 }
 
 // WithValueSetVersion sets the Version field.
+//
+// Deprecated: use ValueSetBuilder.SetVersion instead; removed in v2.
 func WithValueSetVersion(v string) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Version = &v
@@ -1882,6 +1918,8 @@ func WithValueSetVersion(v string) ValueSetOption {
 }
 
 // WithValueSetName sets the Name field.
+//
+// Deprecated: use ValueSetBuilder.SetName instead; removed in v2.
 func WithValueSetName(v string) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Name = &v
@@ -1889,6 +1927,8 @@ func WithValueSetName(v string) ValueSetOption {
 }
 
 // WithValueSetTitle sets the Title field.
+//
+// Deprecated: use ValueSetBuilder.SetTitle instead; removed in v2.
 func WithValueSetTitle(v string) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Title = &v
@@ -1896,6 +1936,8 @@ func WithValueSetTitle(v string) ValueSetOption {
 }
 
 // WithValueSetStatus sets the Status field.
+//
+// Deprecated: use ValueSetBuilder.SetStatus instead; removed in v2.
 func WithValueSetStatus(v PublicationStatus) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Status = &v
@@ -1903,6 +1945,8 @@ func WithValueSetStatus(v PublicationStatus) ValueSetOption {
 }
 
 // WithValueSetExperimental sets the Experimental field.
+//
+// Deprecated: use ValueSetBuilder.SetExperimental instead; removed in v2.
 func WithValueSetExperimental(v bool) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Experimental = &v
@@ -1910,6 +1954,8 @@ func WithValueSetExperimental(v bool) ValueSetOption {
 }
 
 // WithValueSetDate sets the Date field.
+//
+// Deprecated: use ValueSetBuilder.SetDate instead; removed in v2.
 func WithValueSetDate(v string) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Date = &v
@@ -1917,6 +1963,8 @@ func WithValueSetDate(v string) ValueSetOption {
 }
 
 // WithValueSetPublisher sets the Publisher field.
+//
+// Deprecated: use ValueSetBuilder.SetPublisher instead; removed in v2.
 func WithValueSetPublisher(v string) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Publisher = &v
@@ -1924,6 +1972,8 @@ func WithValueSetPublisher(v string) ValueSetOption {
 }
 
 // WithValueSetContact adds a Contact to the ValueSet.
+//
+// Deprecated: use ValueSetBuilder.AddContact instead; removed in v2.
 func WithValueSetContact(v ContactDetail) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Contact = append(r.Contact, v)
@@ -1931,6 +1981,8 @@ func WithValueSetContact(v ContactDetail) ValueSetOption {
 }
 
 // WithValueSetDescription sets the Description field.
+//
+// Deprecated: use ValueSetBuilder.SetDescription instead; removed in v2.
 func WithValueSetDescription(v string) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Description = &v
@@ -1938,6 +1990,8 @@ func WithValueSetDescription(v string) ValueSetOption {
 }
 
 // WithValueSetUseContext adds a UseContext to the ValueSet.
+//
+// Deprecated: use ValueSetBuilder.AddUseContext instead; removed in v2.
 func WithValueSetUseContext(v UsageContext) ValueSetOption {
 	return func(r *ValueSet) {
 		r.UseContext = append(r.UseContext, v)
@@ -1945,6 +1999,8 @@ func WithValueSetUseContext(v UsageContext) ValueSetOption {
 }
 
 // WithValueSetJurisdiction adds a Jurisdiction to the ValueSet.
+//
+// Deprecated: use ValueSetBuilder.AddJurisdiction instead; removed in v2.
 func WithValueSetJurisdiction(v CodeableConcept) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1952,6 +2008,8 @@ func WithValueSetJurisdiction(v CodeableConcept) ValueSetOption {
 }
 
 // WithValueSetImmutable sets the Immutable field.
+//
+// Deprecated: use ValueSetBuilder.SetImmutable instead; removed in v2.
 func WithValueSetImmutable(v bool) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Immutable = &v
@@ -1959,6 +2017,8 @@ func WithValueSetImmutable(v bool) ValueSetOption {
 }
 
 // WithValueSetPurpose sets the Purpose field.
+//
+// Deprecated: use ValueSetBuilder.SetPurpose instead; removed in v2.
 func WithValueSetPurpose(v string) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Purpose = &v
@@ -1966,6 +2026,8 @@ func WithValueSetPurpose(v string) ValueSetOption {
 }
 
 // WithValueSetCopyright sets the Copyright field.
+//
+// Deprecated: use ValueSetBuilder.SetCopyright instead; removed in v2.
 func WithValueSetCopyright(v string) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Copyright = &v
@@ -1973,6 +2035,8 @@ func WithValueSetCopyright(v string) ValueSetOption {
 }
 
 // WithValueSetCompose sets the Compose field.
+//
+// Deprecated: use ValueSetBuilder.SetCompose instead; removed in v2.
 func WithValueSetCompose(v ValueSetCompose) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Compose = &v
@@ -1980,6 +2044,8 @@ func WithValueSetCompose(v ValueSetCompose) ValueSetOption {
 }
 
 // WithValueSetExpansion sets the Expansion field.
+//
+// Deprecated: use ValueSetBuilder.SetExpansion instead; removed in v2.
 func WithValueSetExpansion(v ValueSetExpansion) ValueSetOption {
 	return func(r *ValueSet) {
 		r.Expansion = &v

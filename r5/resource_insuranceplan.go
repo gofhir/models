@@ -1545,9 +1545,23 @@ func (b *InsurancePlanBuilder) AddPlan(v InsurancePlanPlan) *InsurancePlanBuilde
 // =============================================================================
 
 // InsurancePlanOption is a functional option for configuring a InsurancePlan.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// InsurancePlanBuilder. Every WithInsurancePlan* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type InsurancePlanOption func(*InsurancePlan)
 
 // NewInsurancePlan creates a new InsurancePlan with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewInsurancePlanBuilder().SetId("x").Build()
+//
+// Deprecated: use NewInsurancePlanBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewInsurancePlan(opts ...InsurancePlanOption) *InsurancePlan {
 	r := &InsurancePlan{ResourceType: "InsurancePlan"}
 	for _, opt := range opts {
@@ -1557,6 +1571,8 @@ func NewInsurancePlan(opts ...InsurancePlanOption) *InsurancePlan {
 }
 
 // WithInsurancePlanId sets the Id field.
+//
+// Deprecated: use InsurancePlanBuilder.SetId instead; removed in v2.
 func WithInsurancePlanId(v string) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.Id = &v
@@ -1564,6 +1580,8 @@ func WithInsurancePlanId(v string) InsurancePlanOption {
 }
 
 // WithInsurancePlanMeta sets the Meta field.
+//
+// Deprecated: use InsurancePlanBuilder.SetMeta instead; removed in v2.
 func WithInsurancePlanMeta(v Meta) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.Meta = &v
@@ -1571,6 +1589,8 @@ func WithInsurancePlanMeta(v Meta) InsurancePlanOption {
 }
 
 // WithInsurancePlanImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use InsurancePlanBuilder.SetImplicitRules instead; removed in v2.
 func WithInsurancePlanImplicitRules(v string) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.ImplicitRules = &v
@@ -1578,6 +1598,8 @@ func WithInsurancePlanImplicitRules(v string) InsurancePlanOption {
 }
 
 // WithInsurancePlanLanguage sets the Language field.
+//
+// Deprecated: use InsurancePlanBuilder.SetLanguage instead; removed in v2.
 func WithInsurancePlanLanguage(v string) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.Language = &v
@@ -1585,6 +1607,8 @@ func WithInsurancePlanLanguage(v string) InsurancePlanOption {
 }
 
 // WithInsurancePlanText sets the Text field.
+//
+// Deprecated: use InsurancePlanBuilder.SetText instead; removed in v2.
 func WithInsurancePlanText(v Narrative) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.Text = &v
@@ -1592,6 +1616,8 @@ func WithInsurancePlanText(v Narrative) InsurancePlanOption {
 }
 
 // WithInsurancePlanContained adds a Contained to the InsurancePlan.
+//
+// Deprecated: use InsurancePlanBuilder.AddContained instead; removed in v2.
 func WithInsurancePlanContained(v Resource) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.Contained = append(r.Contained, v)
@@ -1599,6 +1625,8 @@ func WithInsurancePlanContained(v Resource) InsurancePlanOption {
 }
 
 // WithInsurancePlanExtension adds a Extension to the InsurancePlan.
+//
+// Deprecated: use InsurancePlanBuilder.AddExtension instead; removed in v2.
 func WithInsurancePlanExtension(v Extension) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.Extension = append(r.Extension, v)
@@ -1606,6 +1634,8 @@ func WithInsurancePlanExtension(v Extension) InsurancePlanOption {
 }
 
 // WithInsurancePlanModifierExtension adds a ModifierExtension to the InsurancePlan.
+//
+// Deprecated: use InsurancePlanBuilder.AddModifierExtension instead; removed in v2.
 func WithInsurancePlanModifierExtension(v Extension) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1613,6 +1643,8 @@ func WithInsurancePlanModifierExtension(v Extension) InsurancePlanOption {
 }
 
 // WithInsurancePlanIdentifier adds a Identifier to the InsurancePlan.
+//
+// Deprecated: use InsurancePlanBuilder.AddIdentifier instead; removed in v2.
 func WithInsurancePlanIdentifier(v Identifier) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.Identifier = append(r.Identifier, v)
@@ -1620,6 +1652,8 @@ func WithInsurancePlanIdentifier(v Identifier) InsurancePlanOption {
 }
 
 // WithInsurancePlanStatus sets the Status field.
+//
+// Deprecated: use InsurancePlanBuilder.SetStatus instead; removed in v2.
 func WithInsurancePlanStatus(v PublicationStatus) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.Status = &v
@@ -1627,6 +1661,8 @@ func WithInsurancePlanStatus(v PublicationStatus) InsurancePlanOption {
 }
 
 // WithInsurancePlanType adds a Type to the InsurancePlan.
+//
+// Deprecated: use InsurancePlanBuilder.AddType instead; removed in v2.
 func WithInsurancePlanType(v CodeableConcept) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.Type = append(r.Type, v)
@@ -1634,6 +1670,8 @@ func WithInsurancePlanType(v CodeableConcept) InsurancePlanOption {
 }
 
 // WithInsurancePlanName sets the Name field.
+//
+// Deprecated: use InsurancePlanBuilder.SetName instead; removed in v2.
 func WithInsurancePlanName(v string) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.Name = &v
@@ -1641,6 +1679,8 @@ func WithInsurancePlanName(v string) InsurancePlanOption {
 }
 
 // WithInsurancePlanAlias adds a Alias to the InsurancePlan.
+//
+// Deprecated: use InsurancePlanBuilder.AddAlias instead; removed in v2.
 func WithInsurancePlanAlias(v string) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.Alias = append(r.Alias, v)
@@ -1648,6 +1688,8 @@ func WithInsurancePlanAlias(v string) InsurancePlanOption {
 }
 
 // WithInsurancePlanPeriod sets the Period field.
+//
+// Deprecated: use InsurancePlanBuilder.SetPeriod instead; removed in v2.
 func WithInsurancePlanPeriod(v Period) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.Period = &v
@@ -1655,6 +1697,8 @@ func WithInsurancePlanPeriod(v Period) InsurancePlanOption {
 }
 
 // WithInsurancePlanOwnedBy sets the OwnedBy field.
+//
+// Deprecated: use InsurancePlanBuilder.SetOwnedBy instead; removed in v2.
 func WithInsurancePlanOwnedBy(v Reference) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.OwnedBy = &v
@@ -1662,6 +1706,8 @@ func WithInsurancePlanOwnedBy(v Reference) InsurancePlanOption {
 }
 
 // WithInsurancePlanAdministeredBy sets the AdministeredBy field.
+//
+// Deprecated: use InsurancePlanBuilder.SetAdministeredBy instead; removed in v2.
 func WithInsurancePlanAdministeredBy(v Reference) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.AdministeredBy = &v
@@ -1669,6 +1715,8 @@ func WithInsurancePlanAdministeredBy(v Reference) InsurancePlanOption {
 }
 
 // WithInsurancePlanCoverageArea adds a CoverageArea to the InsurancePlan.
+//
+// Deprecated: use InsurancePlanBuilder.AddCoverageArea instead; removed in v2.
 func WithInsurancePlanCoverageArea(v Reference) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.CoverageArea = append(r.CoverageArea, v)
@@ -1676,6 +1724,8 @@ func WithInsurancePlanCoverageArea(v Reference) InsurancePlanOption {
 }
 
 // WithInsurancePlanContact adds a Contact to the InsurancePlan.
+//
+// Deprecated: use InsurancePlanBuilder.AddContact instead; removed in v2.
 func WithInsurancePlanContact(v ExtendedContactDetail) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.Contact = append(r.Contact, v)
@@ -1683,6 +1733,8 @@ func WithInsurancePlanContact(v ExtendedContactDetail) InsurancePlanOption {
 }
 
 // WithInsurancePlanEndpoint adds a Endpoint to the InsurancePlan.
+//
+// Deprecated: use InsurancePlanBuilder.AddEndpoint instead; removed in v2.
 func WithInsurancePlanEndpoint(v Reference) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.Endpoint = append(r.Endpoint, v)
@@ -1690,6 +1742,8 @@ func WithInsurancePlanEndpoint(v Reference) InsurancePlanOption {
 }
 
 // WithInsurancePlanNetwork adds a Network to the InsurancePlan.
+//
+// Deprecated: use InsurancePlanBuilder.AddNetwork instead; removed in v2.
 func WithInsurancePlanNetwork(v Reference) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.Network = append(r.Network, v)
@@ -1697,6 +1751,8 @@ func WithInsurancePlanNetwork(v Reference) InsurancePlanOption {
 }
 
 // WithInsurancePlanCoverage adds a Coverage to the InsurancePlan.
+//
+// Deprecated: use InsurancePlanBuilder.AddCoverage instead; removed in v2.
 func WithInsurancePlanCoverage(v InsurancePlanCoverage) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.Coverage = append(r.Coverage, v)
@@ -1704,6 +1760,8 @@ func WithInsurancePlanCoverage(v InsurancePlanCoverage) InsurancePlanOption {
 }
 
 // WithInsurancePlanPlan adds a Plan to the InsurancePlan.
+//
+// Deprecated: use InsurancePlanBuilder.AddPlan instead; removed in v2.
 func WithInsurancePlanPlan(v InsurancePlanPlan) InsurancePlanOption {
 	return func(r *InsurancePlan) {
 		r.Plan = append(r.Plan, v)

@@ -1065,9 +1065,23 @@ func (b *BiologicallyDerivedProductBuilder) AddStorage(v BiologicallyDerivedProd
 // =============================================================================
 
 // BiologicallyDerivedProductOption is a functional option for configuring a BiologicallyDerivedProduct.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// BiologicallyDerivedProductBuilder. Every WithBiologicallyDerivedProduct* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type BiologicallyDerivedProductOption func(*BiologicallyDerivedProduct)
 
 // NewBiologicallyDerivedProduct creates a new BiologicallyDerivedProduct with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewBiologicallyDerivedProductBuilder().SetId("x").Build()
+//
+// Deprecated: use NewBiologicallyDerivedProductBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewBiologicallyDerivedProduct(opts ...BiologicallyDerivedProductOption) *BiologicallyDerivedProduct {
 	r := &BiologicallyDerivedProduct{ResourceType: "BiologicallyDerivedProduct"}
 	for _, opt := range opts {
@@ -1077,6 +1091,8 @@ func NewBiologicallyDerivedProduct(opts ...BiologicallyDerivedProductOption) *Bi
 }
 
 // WithBiologicallyDerivedProductId sets the Id field.
+//
+// Deprecated: use BiologicallyDerivedProductBuilder.SetId instead; removed in v2.
 func WithBiologicallyDerivedProductId(v string) BiologicallyDerivedProductOption {
 	return func(r *BiologicallyDerivedProduct) {
 		r.Id = &v
@@ -1084,6 +1100,8 @@ func WithBiologicallyDerivedProductId(v string) BiologicallyDerivedProductOption
 }
 
 // WithBiologicallyDerivedProductMeta sets the Meta field.
+//
+// Deprecated: use BiologicallyDerivedProductBuilder.SetMeta instead; removed in v2.
 func WithBiologicallyDerivedProductMeta(v Meta) BiologicallyDerivedProductOption {
 	return func(r *BiologicallyDerivedProduct) {
 		r.Meta = &v
@@ -1091,6 +1109,8 @@ func WithBiologicallyDerivedProductMeta(v Meta) BiologicallyDerivedProductOption
 }
 
 // WithBiologicallyDerivedProductImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use BiologicallyDerivedProductBuilder.SetImplicitRules instead; removed in v2.
 func WithBiologicallyDerivedProductImplicitRules(v string) BiologicallyDerivedProductOption {
 	return func(r *BiologicallyDerivedProduct) {
 		r.ImplicitRules = &v
@@ -1098,6 +1118,8 @@ func WithBiologicallyDerivedProductImplicitRules(v string) BiologicallyDerivedPr
 }
 
 // WithBiologicallyDerivedProductLanguage sets the Language field.
+//
+// Deprecated: use BiologicallyDerivedProductBuilder.SetLanguage instead; removed in v2.
 func WithBiologicallyDerivedProductLanguage(v string) BiologicallyDerivedProductOption {
 	return func(r *BiologicallyDerivedProduct) {
 		r.Language = &v
@@ -1105,6 +1127,8 @@ func WithBiologicallyDerivedProductLanguage(v string) BiologicallyDerivedProduct
 }
 
 // WithBiologicallyDerivedProductText sets the Text field.
+//
+// Deprecated: use BiologicallyDerivedProductBuilder.SetText instead; removed in v2.
 func WithBiologicallyDerivedProductText(v Narrative) BiologicallyDerivedProductOption {
 	return func(r *BiologicallyDerivedProduct) {
 		r.Text = &v
@@ -1112,6 +1136,8 @@ func WithBiologicallyDerivedProductText(v Narrative) BiologicallyDerivedProductO
 }
 
 // WithBiologicallyDerivedProductContained adds a Contained to the BiologicallyDerivedProduct.
+//
+// Deprecated: use BiologicallyDerivedProductBuilder.AddContained instead; removed in v2.
 func WithBiologicallyDerivedProductContained(v Resource) BiologicallyDerivedProductOption {
 	return func(r *BiologicallyDerivedProduct) {
 		r.Contained = append(r.Contained, v)
@@ -1119,6 +1145,8 @@ func WithBiologicallyDerivedProductContained(v Resource) BiologicallyDerivedProd
 }
 
 // WithBiologicallyDerivedProductExtension adds a Extension to the BiologicallyDerivedProduct.
+//
+// Deprecated: use BiologicallyDerivedProductBuilder.AddExtension instead; removed in v2.
 func WithBiologicallyDerivedProductExtension(v Extension) BiologicallyDerivedProductOption {
 	return func(r *BiologicallyDerivedProduct) {
 		r.Extension = append(r.Extension, v)
@@ -1126,6 +1154,8 @@ func WithBiologicallyDerivedProductExtension(v Extension) BiologicallyDerivedPro
 }
 
 // WithBiologicallyDerivedProductModifierExtension adds a ModifierExtension to the BiologicallyDerivedProduct.
+//
+// Deprecated: use BiologicallyDerivedProductBuilder.AddModifierExtension instead; removed in v2.
 func WithBiologicallyDerivedProductModifierExtension(v Extension) BiologicallyDerivedProductOption {
 	return func(r *BiologicallyDerivedProduct) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1133,6 +1163,8 @@ func WithBiologicallyDerivedProductModifierExtension(v Extension) BiologicallyDe
 }
 
 // WithBiologicallyDerivedProductIdentifier adds a Identifier to the BiologicallyDerivedProduct.
+//
+// Deprecated: use BiologicallyDerivedProductBuilder.AddIdentifier instead; removed in v2.
 func WithBiologicallyDerivedProductIdentifier(v Identifier) BiologicallyDerivedProductOption {
 	return func(r *BiologicallyDerivedProduct) {
 		r.Identifier = append(r.Identifier, v)
@@ -1140,6 +1172,8 @@ func WithBiologicallyDerivedProductIdentifier(v Identifier) BiologicallyDerivedP
 }
 
 // WithBiologicallyDerivedProductProductCategory sets the ProductCategory field.
+//
+// Deprecated: use BiologicallyDerivedProductBuilder.SetProductCategory instead; removed in v2.
 func WithBiologicallyDerivedProductProductCategory(v BiologicallyDerivedProductCategory) BiologicallyDerivedProductOption {
 	return func(r *BiologicallyDerivedProduct) {
 		r.ProductCategory = &v
@@ -1147,6 +1181,8 @@ func WithBiologicallyDerivedProductProductCategory(v BiologicallyDerivedProductC
 }
 
 // WithBiologicallyDerivedProductProductCode sets the ProductCode field.
+//
+// Deprecated: use BiologicallyDerivedProductBuilder.SetProductCode instead; removed in v2.
 func WithBiologicallyDerivedProductProductCode(v CodeableConcept) BiologicallyDerivedProductOption {
 	return func(r *BiologicallyDerivedProduct) {
 		r.ProductCode = &v
@@ -1154,6 +1190,8 @@ func WithBiologicallyDerivedProductProductCode(v CodeableConcept) BiologicallyDe
 }
 
 // WithBiologicallyDerivedProductStatus sets the Status field.
+//
+// Deprecated: use BiologicallyDerivedProductBuilder.SetStatus instead; removed in v2.
 func WithBiologicallyDerivedProductStatus(v BiologicallyDerivedProductStatus) BiologicallyDerivedProductOption {
 	return func(r *BiologicallyDerivedProduct) {
 		r.Status = &v
@@ -1161,6 +1199,8 @@ func WithBiologicallyDerivedProductStatus(v BiologicallyDerivedProductStatus) Bi
 }
 
 // WithBiologicallyDerivedProductRequest adds a Request to the BiologicallyDerivedProduct.
+//
+// Deprecated: use BiologicallyDerivedProductBuilder.AddRequest instead; removed in v2.
 func WithBiologicallyDerivedProductRequest(v Reference) BiologicallyDerivedProductOption {
 	return func(r *BiologicallyDerivedProduct) {
 		r.Request = append(r.Request, v)
@@ -1168,6 +1208,8 @@ func WithBiologicallyDerivedProductRequest(v Reference) BiologicallyDerivedProdu
 }
 
 // WithBiologicallyDerivedProductQuantity sets the Quantity field.
+//
+// Deprecated: use BiologicallyDerivedProductBuilder.SetQuantity instead; removed in v2.
 func WithBiologicallyDerivedProductQuantity(v int) BiologicallyDerivedProductOption {
 	return func(r *BiologicallyDerivedProduct) {
 		r.Quantity = &v
@@ -1175,6 +1217,8 @@ func WithBiologicallyDerivedProductQuantity(v int) BiologicallyDerivedProductOpt
 }
 
 // WithBiologicallyDerivedProductParent adds a Parent to the BiologicallyDerivedProduct.
+//
+// Deprecated: use BiologicallyDerivedProductBuilder.AddParent instead; removed in v2.
 func WithBiologicallyDerivedProductParent(v Reference) BiologicallyDerivedProductOption {
 	return func(r *BiologicallyDerivedProduct) {
 		r.Parent = append(r.Parent, v)
@@ -1182,6 +1226,8 @@ func WithBiologicallyDerivedProductParent(v Reference) BiologicallyDerivedProduc
 }
 
 // WithBiologicallyDerivedProductCollection sets the Collection field.
+//
+// Deprecated: use BiologicallyDerivedProductBuilder.SetCollection instead; removed in v2.
 func WithBiologicallyDerivedProductCollection(v BiologicallyDerivedProductCollection) BiologicallyDerivedProductOption {
 	return func(r *BiologicallyDerivedProduct) {
 		r.Collection = &v
@@ -1189,6 +1235,8 @@ func WithBiologicallyDerivedProductCollection(v BiologicallyDerivedProductCollec
 }
 
 // WithBiologicallyDerivedProductProcessing adds a Processing to the BiologicallyDerivedProduct.
+//
+// Deprecated: use BiologicallyDerivedProductBuilder.AddProcessing instead; removed in v2.
 func WithBiologicallyDerivedProductProcessing(v BiologicallyDerivedProductProcessing) BiologicallyDerivedProductOption {
 	return func(r *BiologicallyDerivedProduct) {
 		r.Processing = append(r.Processing, v)
@@ -1196,6 +1244,8 @@ func WithBiologicallyDerivedProductProcessing(v BiologicallyDerivedProductProces
 }
 
 // WithBiologicallyDerivedProductManipulation sets the Manipulation field.
+//
+// Deprecated: use BiologicallyDerivedProductBuilder.SetManipulation instead; removed in v2.
 func WithBiologicallyDerivedProductManipulation(v BiologicallyDerivedProductManipulation) BiologicallyDerivedProductOption {
 	return func(r *BiologicallyDerivedProduct) {
 		r.Manipulation = &v
@@ -1203,6 +1253,8 @@ func WithBiologicallyDerivedProductManipulation(v BiologicallyDerivedProductMani
 }
 
 // WithBiologicallyDerivedProductStorage adds a Storage to the BiologicallyDerivedProduct.
+//
+// Deprecated: use BiologicallyDerivedProductBuilder.AddStorage instead; removed in v2.
 func WithBiologicallyDerivedProductStorage(v BiologicallyDerivedProductStorage) BiologicallyDerivedProductOption {
 	return func(r *BiologicallyDerivedProduct) {
 		r.Storage = append(r.Storage, v)

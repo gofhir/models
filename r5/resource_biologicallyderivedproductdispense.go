@@ -746,9 +746,23 @@ func (b *BiologicallyDerivedProductDispenseBuilder) SetUsageInstruction(v string
 // =============================================================================
 
 // BiologicallyDerivedProductDispenseOption is a functional option for configuring a BiologicallyDerivedProductDispense.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// BiologicallyDerivedProductDispenseBuilder. Every WithBiologicallyDerivedProductDispense* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type BiologicallyDerivedProductDispenseOption func(*BiologicallyDerivedProductDispense)
 
 // NewBiologicallyDerivedProductDispense creates a new BiologicallyDerivedProductDispense with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewBiologicallyDerivedProductDispenseBuilder().SetId("x").Build()
+//
+// Deprecated: use NewBiologicallyDerivedProductDispenseBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewBiologicallyDerivedProductDispense(opts ...BiologicallyDerivedProductDispenseOption) *BiologicallyDerivedProductDispense {
 	r := &BiologicallyDerivedProductDispense{ResourceType: "BiologicallyDerivedProductDispense"}
 	for _, opt := range opts {
@@ -758,6 +772,8 @@ func NewBiologicallyDerivedProductDispense(opts ...BiologicallyDerivedProductDis
 }
 
 // WithBiologicallyDerivedProductDispenseId sets the Id field.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.SetId instead; removed in v2.
 func WithBiologicallyDerivedProductDispenseId(v string) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.Id = &v
@@ -765,6 +781,8 @@ func WithBiologicallyDerivedProductDispenseId(v string) BiologicallyDerivedProdu
 }
 
 // WithBiologicallyDerivedProductDispenseMeta sets the Meta field.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.SetMeta instead; removed in v2.
 func WithBiologicallyDerivedProductDispenseMeta(v Meta) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.Meta = &v
@@ -772,6 +790,8 @@ func WithBiologicallyDerivedProductDispenseMeta(v Meta) BiologicallyDerivedProdu
 }
 
 // WithBiologicallyDerivedProductDispenseImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.SetImplicitRules instead; removed in v2.
 func WithBiologicallyDerivedProductDispenseImplicitRules(v string) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.ImplicitRules = &v
@@ -779,6 +799,8 @@ func WithBiologicallyDerivedProductDispenseImplicitRules(v string) BiologicallyD
 }
 
 // WithBiologicallyDerivedProductDispenseLanguage sets the Language field.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.SetLanguage instead; removed in v2.
 func WithBiologicallyDerivedProductDispenseLanguage(v string) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.Language = &v
@@ -786,6 +808,8 @@ func WithBiologicallyDerivedProductDispenseLanguage(v string) BiologicallyDerive
 }
 
 // WithBiologicallyDerivedProductDispenseText sets the Text field.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.SetText instead; removed in v2.
 func WithBiologicallyDerivedProductDispenseText(v Narrative) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.Text = &v
@@ -793,6 +817,8 @@ func WithBiologicallyDerivedProductDispenseText(v Narrative) BiologicallyDerived
 }
 
 // WithBiologicallyDerivedProductDispenseContained adds a Contained to the BiologicallyDerivedProductDispense.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.AddContained instead; removed in v2.
 func WithBiologicallyDerivedProductDispenseContained(v Resource) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.Contained = append(r.Contained, v)
@@ -800,6 +826,8 @@ func WithBiologicallyDerivedProductDispenseContained(v Resource) BiologicallyDer
 }
 
 // WithBiologicallyDerivedProductDispenseExtension adds a Extension to the BiologicallyDerivedProductDispense.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.AddExtension instead; removed in v2.
 func WithBiologicallyDerivedProductDispenseExtension(v Extension) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.Extension = append(r.Extension, v)
@@ -807,6 +835,8 @@ func WithBiologicallyDerivedProductDispenseExtension(v Extension) BiologicallyDe
 }
 
 // WithBiologicallyDerivedProductDispenseModifierExtension adds a ModifierExtension to the BiologicallyDerivedProductDispense.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.AddModifierExtension instead; removed in v2.
 func WithBiologicallyDerivedProductDispenseModifierExtension(v Extension) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -814,6 +844,8 @@ func WithBiologicallyDerivedProductDispenseModifierExtension(v Extension) Biolog
 }
 
 // WithBiologicallyDerivedProductDispenseIdentifier adds a Identifier to the BiologicallyDerivedProductDispense.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.AddIdentifier instead; removed in v2.
 func WithBiologicallyDerivedProductDispenseIdentifier(v Identifier) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.Identifier = append(r.Identifier, v)
@@ -821,6 +853,8 @@ func WithBiologicallyDerivedProductDispenseIdentifier(v Identifier) Biologically
 }
 
 // WithBiologicallyDerivedProductDispenseBasedOn adds a BasedOn to the BiologicallyDerivedProductDispense.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.AddBasedOn instead; removed in v2.
 func WithBiologicallyDerivedProductDispenseBasedOn(v Reference) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -828,6 +862,8 @@ func WithBiologicallyDerivedProductDispenseBasedOn(v Reference) BiologicallyDeri
 }
 
 // WithBiologicallyDerivedProductDispensePartOf adds a PartOf to the BiologicallyDerivedProductDispense.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.AddPartOf instead; removed in v2.
 func WithBiologicallyDerivedProductDispensePartOf(v Reference) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.PartOf = append(r.PartOf, v)
@@ -835,6 +871,8 @@ func WithBiologicallyDerivedProductDispensePartOf(v Reference) BiologicallyDeriv
 }
 
 // WithBiologicallyDerivedProductDispenseStatus sets the Status field.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.SetStatus instead; removed in v2.
 func WithBiologicallyDerivedProductDispenseStatus(v BiologicallyDerivedProductDispenseCodes) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.Status = &v
@@ -842,6 +880,8 @@ func WithBiologicallyDerivedProductDispenseStatus(v BiologicallyDerivedProductDi
 }
 
 // WithBiologicallyDerivedProductDispenseOriginRelationshipType sets the OriginRelationshipType field.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.SetOriginRelationshipType instead; removed in v2.
 func WithBiologicallyDerivedProductDispenseOriginRelationshipType(v CodeableConcept) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.OriginRelationshipType = &v
@@ -849,6 +889,8 @@ func WithBiologicallyDerivedProductDispenseOriginRelationshipType(v CodeableConc
 }
 
 // WithBiologicallyDerivedProductDispenseProduct sets the Product field.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.SetProduct instead; removed in v2.
 func WithBiologicallyDerivedProductDispenseProduct(v Reference) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.Product = v
@@ -856,6 +898,8 @@ func WithBiologicallyDerivedProductDispenseProduct(v Reference) BiologicallyDeri
 }
 
 // WithBiologicallyDerivedProductDispensePatient sets the Patient field.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.SetPatient instead; removed in v2.
 func WithBiologicallyDerivedProductDispensePatient(v Reference) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.Patient = v
@@ -863,6 +907,8 @@ func WithBiologicallyDerivedProductDispensePatient(v Reference) BiologicallyDeri
 }
 
 // WithBiologicallyDerivedProductDispenseMatchStatus sets the MatchStatus field.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.SetMatchStatus instead; removed in v2.
 func WithBiologicallyDerivedProductDispenseMatchStatus(v CodeableConcept) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.MatchStatus = &v
@@ -870,6 +916,8 @@ func WithBiologicallyDerivedProductDispenseMatchStatus(v CodeableConcept) Biolog
 }
 
 // WithBiologicallyDerivedProductDispensePerformer adds a Performer to the BiologicallyDerivedProductDispense.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.AddPerformer instead; removed in v2.
 func WithBiologicallyDerivedProductDispensePerformer(v BiologicallyDerivedProductDispensePerformer) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.Performer = append(r.Performer, v)
@@ -877,6 +925,8 @@ func WithBiologicallyDerivedProductDispensePerformer(v BiologicallyDerivedProduc
 }
 
 // WithBiologicallyDerivedProductDispenseLocation sets the Location field.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.SetLocation instead; removed in v2.
 func WithBiologicallyDerivedProductDispenseLocation(v Reference) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.Location = &v
@@ -884,6 +934,8 @@ func WithBiologicallyDerivedProductDispenseLocation(v Reference) BiologicallyDer
 }
 
 // WithBiologicallyDerivedProductDispenseQuantity sets the Quantity field.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.SetQuantity instead; removed in v2.
 func WithBiologicallyDerivedProductDispenseQuantity(v Quantity) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.Quantity = &v
@@ -891,6 +943,8 @@ func WithBiologicallyDerivedProductDispenseQuantity(v Quantity) BiologicallyDeri
 }
 
 // WithBiologicallyDerivedProductDispensePreparedDate sets the PreparedDate field.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.SetPreparedDate instead; removed in v2.
 func WithBiologicallyDerivedProductDispensePreparedDate(v string) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.PreparedDate = &v
@@ -898,6 +952,8 @@ func WithBiologicallyDerivedProductDispensePreparedDate(v string) BiologicallyDe
 }
 
 // WithBiologicallyDerivedProductDispenseWhenHandedOver sets the WhenHandedOver field.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.SetWhenHandedOver instead; removed in v2.
 func WithBiologicallyDerivedProductDispenseWhenHandedOver(v string) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.WhenHandedOver = &v
@@ -905,6 +961,8 @@ func WithBiologicallyDerivedProductDispenseWhenHandedOver(v string) Biologically
 }
 
 // WithBiologicallyDerivedProductDispenseDestination sets the Destination field.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.SetDestination instead; removed in v2.
 func WithBiologicallyDerivedProductDispenseDestination(v Reference) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.Destination = &v
@@ -912,6 +970,8 @@ func WithBiologicallyDerivedProductDispenseDestination(v Reference) Biologically
 }
 
 // WithBiologicallyDerivedProductDispenseNote adds a Note to the BiologicallyDerivedProductDispense.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.AddNote instead; removed in v2.
 func WithBiologicallyDerivedProductDispenseNote(v Annotation) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.Note = append(r.Note, v)
@@ -919,6 +979,8 @@ func WithBiologicallyDerivedProductDispenseNote(v Annotation) BiologicallyDerive
 }
 
 // WithBiologicallyDerivedProductDispenseUsageInstruction sets the UsageInstruction field.
+//
+// Deprecated: use BiologicallyDerivedProductDispenseBuilder.SetUsageInstruction instead; removed in v2.
 func WithBiologicallyDerivedProductDispenseUsageInstruction(v string) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
 		r.UsageInstruction = &v

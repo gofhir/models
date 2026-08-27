@@ -983,9 +983,23 @@ func (b *ChargeItemBuilder) AddSupportingInformation(v Reference) *ChargeItemBui
 // =============================================================================
 
 // ChargeItemOption is a functional option for configuring a ChargeItem.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ChargeItemBuilder. Every WithChargeItem* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ChargeItemOption func(*ChargeItem)
 
 // NewChargeItem creates a new ChargeItem with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewChargeItemBuilder().SetId("x").Build()
+//
+// Deprecated: use NewChargeItemBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewChargeItem(opts ...ChargeItemOption) *ChargeItem {
 	r := &ChargeItem{ResourceType: "ChargeItem"}
 	for _, opt := range opts {
@@ -995,6 +1009,8 @@ func NewChargeItem(opts ...ChargeItemOption) *ChargeItem {
 }
 
 // WithChargeItemId sets the Id field.
+//
+// Deprecated: use ChargeItemBuilder.SetId instead; removed in v2.
 func WithChargeItemId(v string) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.Id = &v
@@ -1002,6 +1018,8 @@ func WithChargeItemId(v string) ChargeItemOption {
 }
 
 // WithChargeItemMeta sets the Meta field.
+//
+// Deprecated: use ChargeItemBuilder.SetMeta instead; removed in v2.
 func WithChargeItemMeta(v Meta) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.Meta = &v
@@ -1009,6 +1027,8 @@ func WithChargeItemMeta(v Meta) ChargeItemOption {
 }
 
 // WithChargeItemImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ChargeItemBuilder.SetImplicitRules instead; removed in v2.
 func WithChargeItemImplicitRules(v string) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.ImplicitRules = &v
@@ -1016,6 +1036,8 @@ func WithChargeItemImplicitRules(v string) ChargeItemOption {
 }
 
 // WithChargeItemLanguage sets the Language field.
+//
+// Deprecated: use ChargeItemBuilder.SetLanguage instead; removed in v2.
 func WithChargeItemLanguage(v string) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.Language = &v
@@ -1023,6 +1045,8 @@ func WithChargeItemLanguage(v string) ChargeItemOption {
 }
 
 // WithChargeItemText sets the Text field.
+//
+// Deprecated: use ChargeItemBuilder.SetText instead; removed in v2.
 func WithChargeItemText(v Narrative) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.Text = &v
@@ -1030,6 +1054,8 @@ func WithChargeItemText(v Narrative) ChargeItemOption {
 }
 
 // WithChargeItemContained adds a Contained to the ChargeItem.
+//
+// Deprecated: use ChargeItemBuilder.AddContained instead; removed in v2.
 func WithChargeItemContained(v Resource) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.Contained = append(r.Contained, v)
@@ -1037,6 +1063,8 @@ func WithChargeItemContained(v Resource) ChargeItemOption {
 }
 
 // WithChargeItemExtension adds a Extension to the ChargeItem.
+//
+// Deprecated: use ChargeItemBuilder.AddExtension instead; removed in v2.
 func WithChargeItemExtension(v Extension) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.Extension = append(r.Extension, v)
@@ -1044,6 +1072,8 @@ func WithChargeItemExtension(v Extension) ChargeItemOption {
 }
 
 // WithChargeItemModifierExtension adds a ModifierExtension to the ChargeItem.
+//
+// Deprecated: use ChargeItemBuilder.AddModifierExtension instead; removed in v2.
 func WithChargeItemModifierExtension(v Extension) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1051,6 +1081,8 @@ func WithChargeItemModifierExtension(v Extension) ChargeItemOption {
 }
 
 // WithChargeItemIdentifier adds a Identifier to the ChargeItem.
+//
+// Deprecated: use ChargeItemBuilder.AddIdentifier instead; removed in v2.
 func WithChargeItemIdentifier(v Identifier) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.Identifier = append(r.Identifier, v)
@@ -1058,6 +1090,8 @@ func WithChargeItemIdentifier(v Identifier) ChargeItemOption {
 }
 
 // WithChargeItemDefinitionUri adds a DefinitionUri to the ChargeItem.
+//
+// Deprecated: use ChargeItemBuilder.AddDefinitionUri instead; removed in v2.
 func WithChargeItemDefinitionUri(v string) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.DefinitionUri = append(r.DefinitionUri, v)
@@ -1065,6 +1099,8 @@ func WithChargeItemDefinitionUri(v string) ChargeItemOption {
 }
 
 // WithChargeItemDefinitionCanonical adds a DefinitionCanonical to the ChargeItem.
+//
+// Deprecated: use ChargeItemBuilder.AddDefinitionCanonical instead; removed in v2.
 func WithChargeItemDefinitionCanonical(v string) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.DefinitionCanonical = append(r.DefinitionCanonical, v)
@@ -1072,6 +1108,8 @@ func WithChargeItemDefinitionCanonical(v string) ChargeItemOption {
 }
 
 // WithChargeItemStatus sets the Status field.
+//
+// Deprecated: use ChargeItemBuilder.SetStatus instead; removed in v2.
 func WithChargeItemStatus(v ChargeItemStatus) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.Status = &v
@@ -1079,6 +1117,8 @@ func WithChargeItemStatus(v ChargeItemStatus) ChargeItemOption {
 }
 
 // WithChargeItemPartOf adds a PartOf to the ChargeItem.
+//
+// Deprecated: use ChargeItemBuilder.AddPartOf instead; removed in v2.
 func WithChargeItemPartOf(v Reference) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.PartOf = append(r.PartOf, v)
@@ -1086,6 +1126,8 @@ func WithChargeItemPartOf(v Reference) ChargeItemOption {
 }
 
 // WithChargeItemCode sets the Code field.
+//
+// Deprecated: use ChargeItemBuilder.SetCode instead; removed in v2.
 func WithChargeItemCode(v CodeableConcept) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.Code = v
@@ -1093,6 +1135,8 @@ func WithChargeItemCode(v CodeableConcept) ChargeItemOption {
 }
 
 // WithChargeItemSubject sets the Subject field.
+//
+// Deprecated: use ChargeItemBuilder.SetSubject instead; removed in v2.
 func WithChargeItemSubject(v Reference) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.Subject = v
@@ -1100,6 +1144,8 @@ func WithChargeItemSubject(v Reference) ChargeItemOption {
 }
 
 // WithChargeItemEncounter sets the Encounter field.
+//
+// Deprecated: use ChargeItemBuilder.SetEncounter instead; removed in v2.
 func WithChargeItemEncounter(v Reference) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.Encounter = &v
@@ -1107,6 +1153,8 @@ func WithChargeItemEncounter(v Reference) ChargeItemOption {
 }
 
 // WithChargeItemOccurrenceDateTime sets the OccurrenceDateTime field.
+//
+// Deprecated: use ChargeItemBuilder.SetOccurrenceDateTime instead; removed in v2.
 func WithChargeItemOccurrenceDateTime(v string) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.OccurrenceDateTime = &v
@@ -1114,6 +1162,8 @@ func WithChargeItemOccurrenceDateTime(v string) ChargeItemOption {
 }
 
 // WithChargeItemOccurrenceDateTimeExt sets the OccurrenceDateTimeExt field.
+//
+// Deprecated: use ChargeItemBuilder.SetOccurrenceDateTimeExt instead; removed in v2.
 func WithChargeItemOccurrenceDateTimeExt(v Element) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.OccurrenceDateTimeExt = &v
@@ -1121,6 +1171,8 @@ func WithChargeItemOccurrenceDateTimeExt(v Element) ChargeItemOption {
 }
 
 // WithChargeItemOccurrencePeriod sets the OccurrencePeriod field.
+//
+// Deprecated: use ChargeItemBuilder.SetOccurrencePeriod instead; removed in v2.
 func WithChargeItemOccurrencePeriod(v Period) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.OccurrencePeriod = &v
@@ -1128,6 +1180,8 @@ func WithChargeItemOccurrencePeriod(v Period) ChargeItemOption {
 }
 
 // WithChargeItemOccurrenceTiming sets the OccurrenceTiming field.
+//
+// Deprecated: use ChargeItemBuilder.SetOccurrenceTiming instead; removed in v2.
 func WithChargeItemOccurrenceTiming(v Timing) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.OccurrenceTiming = &v
@@ -1135,6 +1189,8 @@ func WithChargeItemOccurrenceTiming(v Timing) ChargeItemOption {
 }
 
 // WithChargeItemPerformer adds a Performer to the ChargeItem.
+//
+// Deprecated: use ChargeItemBuilder.AddPerformer instead; removed in v2.
 func WithChargeItemPerformer(v ChargeItemPerformer) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.Performer = append(r.Performer, v)
@@ -1142,6 +1198,8 @@ func WithChargeItemPerformer(v ChargeItemPerformer) ChargeItemOption {
 }
 
 // WithChargeItemPerformingOrganization sets the PerformingOrganization field.
+//
+// Deprecated: use ChargeItemBuilder.SetPerformingOrganization instead; removed in v2.
 func WithChargeItemPerformingOrganization(v Reference) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.PerformingOrganization = &v
@@ -1149,6 +1207,8 @@ func WithChargeItemPerformingOrganization(v Reference) ChargeItemOption {
 }
 
 // WithChargeItemRequestingOrganization sets the RequestingOrganization field.
+//
+// Deprecated: use ChargeItemBuilder.SetRequestingOrganization instead; removed in v2.
 func WithChargeItemRequestingOrganization(v Reference) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.RequestingOrganization = &v
@@ -1156,6 +1216,8 @@ func WithChargeItemRequestingOrganization(v Reference) ChargeItemOption {
 }
 
 // WithChargeItemCostCenter sets the CostCenter field.
+//
+// Deprecated: use ChargeItemBuilder.SetCostCenter instead; removed in v2.
 func WithChargeItemCostCenter(v Reference) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.CostCenter = &v
@@ -1163,6 +1225,8 @@ func WithChargeItemCostCenter(v Reference) ChargeItemOption {
 }
 
 // WithChargeItemQuantity sets the Quantity field.
+//
+// Deprecated: use ChargeItemBuilder.SetQuantity instead; removed in v2.
 func WithChargeItemQuantity(v Quantity) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.Quantity = &v
@@ -1170,6 +1234,8 @@ func WithChargeItemQuantity(v Quantity) ChargeItemOption {
 }
 
 // WithChargeItemBodysite adds a Bodysite to the ChargeItem.
+//
+// Deprecated: use ChargeItemBuilder.AddBodysite instead; removed in v2.
 func WithChargeItemBodysite(v CodeableConcept) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.Bodysite = append(r.Bodysite, v)
@@ -1177,6 +1243,8 @@ func WithChargeItemBodysite(v CodeableConcept) ChargeItemOption {
 }
 
 // WithChargeItemUnitPriceComponent sets the UnitPriceComponent field.
+//
+// Deprecated: use ChargeItemBuilder.SetUnitPriceComponent instead; removed in v2.
 func WithChargeItemUnitPriceComponent(v MonetaryComponent) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.UnitPriceComponent = &v
@@ -1184,6 +1252,8 @@ func WithChargeItemUnitPriceComponent(v MonetaryComponent) ChargeItemOption {
 }
 
 // WithChargeItemTotalPriceComponent sets the TotalPriceComponent field.
+//
+// Deprecated: use ChargeItemBuilder.SetTotalPriceComponent instead; removed in v2.
 func WithChargeItemTotalPriceComponent(v MonetaryComponent) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.TotalPriceComponent = &v
@@ -1191,6 +1261,8 @@ func WithChargeItemTotalPriceComponent(v MonetaryComponent) ChargeItemOption {
 }
 
 // WithChargeItemOverrideReason sets the OverrideReason field.
+//
+// Deprecated: use ChargeItemBuilder.SetOverrideReason instead; removed in v2.
 func WithChargeItemOverrideReason(v CodeableConcept) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.OverrideReason = &v
@@ -1198,6 +1270,8 @@ func WithChargeItemOverrideReason(v CodeableConcept) ChargeItemOption {
 }
 
 // WithChargeItemEnterer sets the Enterer field.
+//
+// Deprecated: use ChargeItemBuilder.SetEnterer instead; removed in v2.
 func WithChargeItemEnterer(v Reference) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.Enterer = &v
@@ -1205,6 +1279,8 @@ func WithChargeItemEnterer(v Reference) ChargeItemOption {
 }
 
 // WithChargeItemEnteredDate sets the EnteredDate field.
+//
+// Deprecated: use ChargeItemBuilder.SetEnteredDate instead; removed in v2.
 func WithChargeItemEnteredDate(v string) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.EnteredDate = &v
@@ -1212,6 +1288,8 @@ func WithChargeItemEnteredDate(v string) ChargeItemOption {
 }
 
 // WithChargeItemReason adds a Reason to the ChargeItem.
+//
+// Deprecated: use ChargeItemBuilder.AddReason instead; removed in v2.
 func WithChargeItemReason(v CodeableConcept) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.Reason = append(r.Reason, v)
@@ -1219,6 +1297,8 @@ func WithChargeItemReason(v CodeableConcept) ChargeItemOption {
 }
 
 // WithChargeItemService adds a Service to the ChargeItem.
+//
+// Deprecated: use ChargeItemBuilder.AddService instead; removed in v2.
 func WithChargeItemService(v CodeableReference) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.Service = append(r.Service, v)
@@ -1226,6 +1306,8 @@ func WithChargeItemService(v CodeableReference) ChargeItemOption {
 }
 
 // WithChargeItemProduct adds a Product to the ChargeItem.
+//
+// Deprecated: use ChargeItemBuilder.AddProduct instead; removed in v2.
 func WithChargeItemProduct(v CodeableReference) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.Product = append(r.Product, v)
@@ -1233,6 +1315,8 @@ func WithChargeItemProduct(v CodeableReference) ChargeItemOption {
 }
 
 // WithChargeItemAccount adds a Account to the ChargeItem.
+//
+// Deprecated: use ChargeItemBuilder.AddAccount instead; removed in v2.
 func WithChargeItemAccount(v Reference) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.Account = append(r.Account, v)
@@ -1240,6 +1324,8 @@ func WithChargeItemAccount(v Reference) ChargeItemOption {
 }
 
 // WithChargeItemNote adds a Note to the ChargeItem.
+//
+// Deprecated: use ChargeItemBuilder.AddNote instead; removed in v2.
 func WithChargeItemNote(v Annotation) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.Note = append(r.Note, v)
@@ -1247,6 +1333,8 @@ func WithChargeItemNote(v Annotation) ChargeItemOption {
 }
 
 // WithChargeItemSupportingInformation adds a SupportingInformation to the ChargeItem.
+//
+// Deprecated: use ChargeItemBuilder.AddSupportingInformation instead; removed in v2.
 func WithChargeItemSupportingInformation(v Reference) ChargeItemOption {
 	return func(r *ChargeItem) {
 		r.SupportingInformation = append(r.SupportingInformation, v)

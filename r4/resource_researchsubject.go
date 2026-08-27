@@ -494,9 +494,23 @@ func (b *ResearchSubjectBuilder) SetConsent(v Reference) *ResearchSubjectBuilder
 // =============================================================================
 
 // ResearchSubjectOption is a functional option for configuring a ResearchSubject.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ResearchSubjectBuilder. Every WithResearchSubject* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ResearchSubjectOption func(*ResearchSubject)
 
 // NewResearchSubject creates a new ResearchSubject with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewResearchSubjectBuilder().SetId("x").Build()
+//
+// Deprecated: use NewResearchSubjectBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewResearchSubject(opts ...ResearchSubjectOption) *ResearchSubject {
 	r := &ResearchSubject{ResourceType: "ResearchSubject"}
 	for _, opt := range opts {
@@ -506,6 +520,8 @@ func NewResearchSubject(opts ...ResearchSubjectOption) *ResearchSubject {
 }
 
 // WithResearchSubjectId sets the Id field.
+//
+// Deprecated: use ResearchSubjectBuilder.SetId instead; removed in v2.
 func WithResearchSubjectId(v string) ResearchSubjectOption {
 	return func(r *ResearchSubject) {
 		r.Id = &v
@@ -513,6 +529,8 @@ func WithResearchSubjectId(v string) ResearchSubjectOption {
 }
 
 // WithResearchSubjectMeta sets the Meta field.
+//
+// Deprecated: use ResearchSubjectBuilder.SetMeta instead; removed in v2.
 func WithResearchSubjectMeta(v Meta) ResearchSubjectOption {
 	return func(r *ResearchSubject) {
 		r.Meta = &v
@@ -520,6 +538,8 @@ func WithResearchSubjectMeta(v Meta) ResearchSubjectOption {
 }
 
 // WithResearchSubjectImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ResearchSubjectBuilder.SetImplicitRules instead; removed in v2.
 func WithResearchSubjectImplicitRules(v string) ResearchSubjectOption {
 	return func(r *ResearchSubject) {
 		r.ImplicitRules = &v
@@ -527,6 +547,8 @@ func WithResearchSubjectImplicitRules(v string) ResearchSubjectOption {
 }
 
 // WithResearchSubjectLanguage sets the Language field.
+//
+// Deprecated: use ResearchSubjectBuilder.SetLanguage instead; removed in v2.
 func WithResearchSubjectLanguage(v string) ResearchSubjectOption {
 	return func(r *ResearchSubject) {
 		r.Language = &v
@@ -534,6 +556,8 @@ func WithResearchSubjectLanguage(v string) ResearchSubjectOption {
 }
 
 // WithResearchSubjectText sets the Text field.
+//
+// Deprecated: use ResearchSubjectBuilder.SetText instead; removed in v2.
 func WithResearchSubjectText(v Narrative) ResearchSubjectOption {
 	return func(r *ResearchSubject) {
 		r.Text = &v
@@ -541,6 +565,8 @@ func WithResearchSubjectText(v Narrative) ResearchSubjectOption {
 }
 
 // WithResearchSubjectContained adds a Contained to the ResearchSubject.
+//
+// Deprecated: use ResearchSubjectBuilder.AddContained instead; removed in v2.
 func WithResearchSubjectContained(v Resource) ResearchSubjectOption {
 	return func(r *ResearchSubject) {
 		r.Contained = append(r.Contained, v)
@@ -548,6 +574,8 @@ func WithResearchSubjectContained(v Resource) ResearchSubjectOption {
 }
 
 // WithResearchSubjectExtension adds a Extension to the ResearchSubject.
+//
+// Deprecated: use ResearchSubjectBuilder.AddExtension instead; removed in v2.
 func WithResearchSubjectExtension(v Extension) ResearchSubjectOption {
 	return func(r *ResearchSubject) {
 		r.Extension = append(r.Extension, v)
@@ -555,6 +583,8 @@ func WithResearchSubjectExtension(v Extension) ResearchSubjectOption {
 }
 
 // WithResearchSubjectModifierExtension adds a ModifierExtension to the ResearchSubject.
+//
+// Deprecated: use ResearchSubjectBuilder.AddModifierExtension instead; removed in v2.
 func WithResearchSubjectModifierExtension(v Extension) ResearchSubjectOption {
 	return func(r *ResearchSubject) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -562,6 +592,8 @@ func WithResearchSubjectModifierExtension(v Extension) ResearchSubjectOption {
 }
 
 // WithResearchSubjectIdentifier adds a Identifier to the ResearchSubject.
+//
+// Deprecated: use ResearchSubjectBuilder.AddIdentifier instead; removed in v2.
 func WithResearchSubjectIdentifier(v Identifier) ResearchSubjectOption {
 	return func(r *ResearchSubject) {
 		r.Identifier = append(r.Identifier, v)
@@ -569,6 +601,8 @@ func WithResearchSubjectIdentifier(v Identifier) ResearchSubjectOption {
 }
 
 // WithResearchSubjectStatus sets the Status field.
+//
+// Deprecated: use ResearchSubjectBuilder.SetStatus instead; removed in v2.
 func WithResearchSubjectStatus(v ResearchSubjectStatus) ResearchSubjectOption {
 	return func(r *ResearchSubject) {
 		r.Status = &v
@@ -576,6 +610,8 @@ func WithResearchSubjectStatus(v ResearchSubjectStatus) ResearchSubjectOption {
 }
 
 // WithResearchSubjectPeriod sets the Period field.
+//
+// Deprecated: use ResearchSubjectBuilder.SetPeriod instead; removed in v2.
 func WithResearchSubjectPeriod(v Period) ResearchSubjectOption {
 	return func(r *ResearchSubject) {
 		r.Period = &v
@@ -583,6 +619,8 @@ func WithResearchSubjectPeriod(v Period) ResearchSubjectOption {
 }
 
 // WithResearchSubjectStudy sets the Study field.
+//
+// Deprecated: use ResearchSubjectBuilder.SetStudy instead; removed in v2.
 func WithResearchSubjectStudy(v Reference) ResearchSubjectOption {
 	return func(r *ResearchSubject) {
 		r.Study = v
@@ -590,6 +628,8 @@ func WithResearchSubjectStudy(v Reference) ResearchSubjectOption {
 }
 
 // WithResearchSubjectIndividual sets the Individual field.
+//
+// Deprecated: use ResearchSubjectBuilder.SetIndividual instead; removed in v2.
 func WithResearchSubjectIndividual(v Reference) ResearchSubjectOption {
 	return func(r *ResearchSubject) {
 		r.Individual = v
@@ -597,6 +637,8 @@ func WithResearchSubjectIndividual(v Reference) ResearchSubjectOption {
 }
 
 // WithResearchSubjectAssignedArm sets the AssignedArm field.
+//
+// Deprecated: use ResearchSubjectBuilder.SetAssignedArm instead; removed in v2.
 func WithResearchSubjectAssignedArm(v string) ResearchSubjectOption {
 	return func(r *ResearchSubject) {
 		r.AssignedArm = &v
@@ -604,6 +646,8 @@ func WithResearchSubjectAssignedArm(v string) ResearchSubjectOption {
 }
 
 // WithResearchSubjectActualArm sets the ActualArm field.
+//
+// Deprecated: use ResearchSubjectBuilder.SetActualArm instead; removed in v2.
 func WithResearchSubjectActualArm(v string) ResearchSubjectOption {
 	return func(r *ResearchSubject) {
 		r.ActualArm = &v
@@ -611,6 +655,8 @@ func WithResearchSubjectActualArm(v string) ResearchSubjectOption {
 }
 
 // WithResearchSubjectConsent sets the Consent field.
+//
+// Deprecated: use ResearchSubjectBuilder.SetConsent instead; removed in v2.
 func WithResearchSubjectConsent(v Reference) ResearchSubjectOption {
 	return func(r *ResearchSubject) {
 		r.Consent = &v

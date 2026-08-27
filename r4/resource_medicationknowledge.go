@@ -2516,9 +2516,23 @@ func (b *MedicationKnowledgeBuilder) AddKinetics(v MedicationKnowledgeKinetics) 
 // =============================================================================
 
 // MedicationKnowledgeOption is a functional option for configuring a MedicationKnowledge.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// MedicationKnowledgeBuilder. Every WithMedicationKnowledge* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type MedicationKnowledgeOption func(*MedicationKnowledge)
 
 // NewMedicationKnowledge creates a new MedicationKnowledge with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewMedicationKnowledgeBuilder().SetId("x").Build()
+//
+// Deprecated: use NewMedicationKnowledgeBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewMedicationKnowledge(opts ...MedicationKnowledgeOption) *MedicationKnowledge {
 	r := &MedicationKnowledge{ResourceType: "MedicationKnowledge"}
 	for _, opt := range opts {
@@ -2528,6 +2542,8 @@ func NewMedicationKnowledge(opts ...MedicationKnowledgeOption) *MedicationKnowle
 }
 
 // WithMedicationKnowledgeId sets the Id field.
+//
+// Deprecated: use MedicationKnowledgeBuilder.SetId instead; removed in v2.
 func WithMedicationKnowledgeId(v string) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.Id = &v
@@ -2535,6 +2551,8 @@ func WithMedicationKnowledgeId(v string) MedicationKnowledgeOption {
 }
 
 // WithMedicationKnowledgeMeta sets the Meta field.
+//
+// Deprecated: use MedicationKnowledgeBuilder.SetMeta instead; removed in v2.
 func WithMedicationKnowledgeMeta(v Meta) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.Meta = &v
@@ -2542,6 +2560,8 @@ func WithMedicationKnowledgeMeta(v Meta) MedicationKnowledgeOption {
 }
 
 // WithMedicationKnowledgeImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use MedicationKnowledgeBuilder.SetImplicitRules instead; removed in v2.
 func WithMedicationKnowledgeImplicitRules(v string) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.ImplicitRules = &v
@@ -2549,6 +2569,8 @@ func WithMedicationKnowledgeImplicitRules(v string) MedicationKnowledgeOption {
 }
 
 // WithMedicationKnowledgeLanguage sets the Language field.
+//
+// Deprecated: use MedicationKnowledgeBuilder.SetLanguage instead; removed in v2.
 func WithMedicationKnowledgeLanguage(v string) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.Language = &v
@@ -2556,6 +2578,8 @@ func WithMedicationKnowledgeLanguage(v string) MedicationKnowledgeOption {
 }
 
 // WithMedicationKnowledgeText sets the Text field.
+//
+// Deprecated: use MedicationKnowledgeBuilder.SetText instead; removed in v2.
 func WithMedicationKnowledgeText(v Narrative) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.Text = &v
@@ -2563,6 +2587,8 @@ func WithMedicationKnowledgeText(v Narrative) MedicationKnowledgeOption {
 }
 
 // WithMedicationKnowledgeContained adds a Contained to the MedicationKnowledge.
+//
+// Deprecated: use MedicationKnowledgeBuilder.AddContained instead; removed in v2.
 func WithMedicationKnowledgeContained(v Resource) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.Contained = append(r.Contained, v)
@@ -2570,6 +2596,8 @@ func WithMedicationKnowledgeContained(v Resource) MedicationKnowledgeOption {
 }
 
 // WithMedicationKnowledgeExtension adds a Extension to the MedicationKnowledge.
+//
+// Deprecated: use MedicationKnowledgeBuilder.AddExtension instead; removed in v2.
 func WithMedicationKnowledgeExtension(v Extension) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.Extension = append(r.Extension, v)
@@ -2577,6 +2605,8 @@ func WithMedicationKnowledgeExtension(v Extension) MedicationKnowledgeOption {
 }
 
 // WithMedicationKnowledgeModifierExtension adds a ModifierExtension to the MedicationKnowledge.
+//
+// Deprecated: use MedicationKnowledgeBuilder.AddModifierExtension instead; removed in v2.
 func WithMedicationKnowledgeModifierExtension(v Extension) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -2584,6 +2614,8 @@ func WithMedicationKnowledgeModifierExtension(v Extension) MedicationKnowledgeOp
 }
 
 // WithMedicationKnowledgeCode sets the Code field.
+//
+// Deprecated: use MedicationKnowledgeBuilder.SetCode instead; removed in v2.
 func WithMedicationKnowledgeCode(v CodeableConcept) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.Code = &v
@@ -2591,6 +2623,8 @@ func WithMedicationKnowledgeCode(v CodeableConcept) MedicationKnowledgeOption {
 }
 
 // WithMedicationKnowledgeStatus sets the Status field.
+//
+// Deprecated: use MedicationKnowledgeBuilder.SetStatus instead; removed in v2.
 func WithMedicationKnowledgeStatus(v MedicationKnowledgeStatusCodes) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.Status = &v
@@ -2598,6 +2632,8 @@ func WithMedicationKnowledgeStatus(v MedicationKnowledgeStatusCodes) MedicationK
 }
 
 // WithMedicationKnowledgeManufacturer sets the Manufacturer field.
+//
+// Deprecated: use MedicationKnowledgeBuilder.SetManufacturer instead; removed in v2.
 func WithMedicationKnowledgeManufacturer(v Reference) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.Manufacturer = &v
@@ -2605,6 +2641,8 @@ func WithMedicationKnowledgeManufacturer(v Reference) MedicationKnowledgeOption 
 }
 
 // WithMedicationKnowledgeDoseForm sets the DoseForm field.
+//
+// Deprecated: use MedicationKnowledgeBuilder.SetDoseForm instead; removed in v2.
 func WithMedicationKnowledgeDoseForm(v CodeableConcept) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.DoseForm = &v
@@ -2612,6 +2650,8 @@ func WithMedicationKnowledgeDoseForm(v CodeableConcept) MedicationKnowledgeOptio
 }
 
 // WithMedicationKnowledgeAmount sets the Amount field.
+//
+// Deprecated: use MedicationKnowledgeBuilder.SetAmount instead; removed in v2.
 func WithMedicationKnowledgeAmount(v Quantity) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.Amount = &v
@@ -2619,6 +2659,8 @@ func WithMedicationKnowledgeAmount(v Quantity) MedicationKnowledgeOption {
 }
 
 // WithMedicationKnowledgeSynonym adds a Synonym to the MedicationKnowledge.
+//
+// Deprecated: use MedicationKnowledgeBuilder.AddSynonym instead; removed in v2.
 func WithMedicationKnowledgeSynonym(v string) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.Synonym = append(r.Synonym, v)
@@ -2626,6 +2668,8 @@ func WithMedicationKnowledgeSynonym(v string) MedicationKnowledgeOption {
 }
 
 // WithMedicationKnowledgeRelatedMedicationKnowledge adds a RelatedMedicationKnowledge to the MedicationKnowledge.
+//
+// Deprecated: use MedicationKnowledgeBuilder.AddRelatedMedicationKnowledge instead; removed in v2.
 func WithMedicationKnowledgeRelatedMedicationKnowledge(v MedicationKnowledgeRelatedMedicationKnowledge) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.RelatedMedicationKnowledge = append(r.RelatedMedicationKnowledge, v)
@@ -2633,6 +2677,8 @@ func WithMedicationKnowledgeRelatedMedicationKnowledge(v MedicationKnowledgeRela
 }
 
 // WithMedicationKnowledgeAssociatedMedication adds a AssociatedMedication to the MedicationKnowledge.
+//
+// Deprecated: use MedicationKnowledgeBuilder.AddAssociatedMedication instead; removed in v2.
 func WithMedicationKnowledgeAssociatedMedication(v Reference) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.AssociatedMedication = append(r.AssociatedMedication, v)
@@ -2640,6 +2686,8 @@ func WithMedicationKnowledgeAssociatedMedication(v Reference) MedicationKnowledg
 }
 
 // WithMedicationKnowledgeProductType adds a ProductType to the MedicationKnowledge.
+//
+// Deprecated: use MedicationKnowledgeBuilder.AddProductType instead; removed in v2.
 func WithMedicationKnowledgeProductType(v CodeableConcept) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.ProductType = append(r.ProductType, v)
@@ -2647,6 +2695,8 @@ func WithMedicationKnowledgeProductType(v CodeableConcept) MedicationKnowledgeOp
 }
 
 // WithMedicationKnowledgeMonograph adds a Monograph to the MedicationKnowledge.
+//
+// Deprecated: use MedicationKnowledgeBuilder.AddMonograph instead; removed in v2.
 func WithMedicationKnowledgeMonograph(v MedicationKnowledgeMonograph) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.Monograph = append(r.Monograph, v)
@@ -2654,6 +2704,8 @@ func WithMedicationKnowledgeMonograph(v MedicationKnowledgeMonograph) Medication
 }
 
 // WithMedicationKnowledgeIngredient adds a Ingredient to the MedicationKnowledge.
+//
+// Deprecated: use MedicationKnowledgeBuilder.AddIngredient instead; removed in v2.
 func WithMedicationKnowledgeIngredient(v MedicationKnowledgeIngredient) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.Ingredient = append(r.Ingredient, v)
@@ -2661,6 +2713,8 @@ func WithMedicationKnowledgeIngredient(v MedicationKnowledgeIngredient) Medicati
 }
 
 // WithMedicationKnowledgePreparationInstruction sets the PreparationInstruction field.
+//
+// Deprecated: use MedicationKnowledgeBuilder.SetPreparationInstruction instead; removed in v2.
 func WithMedicationKnowledgePreparationInstruction(v string) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.PreparationInstruction = &v
@@ -2668,6 +2722,8 @@ func WithMedicationKnowledgePreparationInstruction(v string) MedicationKnowledge
 }
 
 // WithMedicationKnowledgeIntendedRoute adds a IntendedRoute to the MedicationKnowledge.
+//
+// Deprecated: use MedicationKnowledgeBuilder.AddIntendedRoute instead; removed in v2.
 func WithMedicationKnowledgeIntendedRoute(v CodeableConcept) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.IntendedRoute = append(r.IntendedRoute, v)
@@ -2675,6 +2731,8 @@ func WithMedicationKnowledgeIntendedRoute(v CodeableConcept) MedicationKnowledge
 }
 
 // WithMedicationKnowledgeCost adds a Cost to the MedicationKnowledge.
+//
+// Deprecated: use MedicationKnowledgeBuilder.AddCost instead; removed in v2.
 func WithMedicationKnowledgeCost(v MedicationKnowledgeCost) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.Cost = append(r.Cost, v)
@@ -2682,6 +2740,8 @@ func WithMedicationKnowledgeCost(v MedicationKnowledgeCost) MedicationKnowledgeO
 }
 
 // WithMedicationKnowledgeMonitoringProgram adds a MonitoringProgram to the MedicationKnowledge.
+//
+// Deprecated: use MedicationKnowledgeBuilder.AddMonitoringProgram instead; removed in v2.
 func WithMedicationKnowledgeMonitoringProgram(v MedicationKnowledgeMonitoringProgram) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.MonitoringProgram = append(r.MonitoringProgram, v)
@@ -2689,6 +2749,8 @@ func WithMedicationKnowledgeMonitoringProgram(v MedicationKnowledgeMonitoringPro
 }
 
 // WithMedicationKnowledgeAdministrationGuidelines adds a AdministrationGuidelines to the MedicationKnowledge.
+//
+// Deprecated: use MedicationKnowledgeBuilder.AddAdministrationGuidelines instead; removed in v2.
 func WithMedicationKnowledgeAdministrationGuidelines(v MedicationKnowledgeAdministrationGuidelines) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.AdministrationGuidelines = append(r.AdministrationGuidelines, v)
@@ -2696,6 +2758,8 @@ func WithMedicationKnowledgeAdministrationGuidelines(v MedicationKnowledgeAdmini
 }
 
 // WithMedicationKnowledgeMedicineClassification adds a MedicineClassification to the MedicationKnowledge.
+//
+// Deprecated: use MedicationKnowledgeBuilder.AddMedicineClassification instead; removed in v2.
 func WithMedicationKnowledgeMedicineClassification(v MedicationKnowledgeMedicineClassification) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.MedicineClassification = append(r.MedicineClassification, v)
@@ -2703,6 +2767,8 @@ func WithMedicationKnowledgeMedicineClassification(v MedicationKnowledgeMedicine
 }
 
 // WithMedicationKnowledgePackaging sets the Packaging field.
+//
+// Deprecated: use MedicationKnowledgeBuilder.SetPackaging instead; removed in v2.
 func WithMedicationKnowledgePackaging(v MedicationKnowledgePackaging) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.Packaging = &v
@@ -2710,6 +2776,8 @@ func WithMedicationKnowledgePackaging(v MedicationKnowledgePackaging) Medication
 }
 
 // WithMedicationKnowledgeDrugCharacteristic adds a DrugCharacteristic to the MedicationKnowledge.
+//
+// Deprecated: use MedicationKnowledgeBuilder.AddDrugCharacteristic instead; removed in v2.
 func WithMedicationKnowledgeDrugCharacteristic(v MedicationKnowledgeDrugCharacteristic) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.DrugCharacteristic = append(r.DrugCharacteristic, v)
@@ -2717,6 +2785,8 @@ func WithMedicationKnowledgeDrugCharacteristic(v MedicationKnowledgeDrugCharacte
 }
 
 // WithMedicationKnowledgeContraindication adds a Contraindication to the MedicationKnowledge.
+//
+// Deprecated: use MedicationKnowledgeBuilder.AddContraindication instead; removed in v2.
 func WithMedicationKnowledgeContraindication(v Reference) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.Contraindication = append(r.Contraindication, v)
@@ -2724,6 +2794,8 @@ func WithMedicationKnowledgeContraindication(v Reference) MedicationKnowledgeOpt
 }
 
 // WithMedicationKnowledgeRegulatory adds a Regulatory to the MedicationKnowledge.
+//
+// Deprecated: use MedicationKnowledgeBuilder.AddRegulatory instead; removed in v2.
 func WithMedicationKnowledgeRegulatory(v MedicationKnowledgeRegulatory) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.Regulatory = append(r.Regulatory, v)
@@ -2731,6 +2803,8 @@ func WithMedicationKnowledgeRegulatory(v MedicationKnowledgeRegulatory) Medicati
 }
 
 // WithMedicationKnowledgeKinetics adds a Kinetics to the MedicationKnowledge.
+//
+// Deprecated: use MedicationKnowledgeBuilder.AddKinetics instead; removed in v2.
 func WithMedicationKnowledgeKinetics(v MedicationKnowledgeKinetics) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
 		r.Kinetics = append(r.Kinetics, v)

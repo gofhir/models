@@ -842,9 +842,23 @@ func (b *ArtifactAssessmentBuilder) SetDisposition(v ArtifactAssessmentDispositi
 // =============================================================================
 
 // ArtifactAssessmentOption is a functional option for configuring a ArtifactAssessment.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ArtifactAssessmentBuilder. Every WithArtifactAssessment* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ArtifactAssessmentOption func(*ArtifactAssessment)
 
 // NewArtifactAssessment creates a new ArtifactAssessment with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewArtifactAssessmentBuilder().SetId("x").Build()
+//
+// Deprecated: use NewArtifactAssessmentBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewArtifactAssessment(opts ...ArtifactAssessmentOption) *ArtifactAssessment {
 	r := &ArtifactAssessment{ResourceType: "ArtifactAssessment"}
 	for _, opt := range opts {
@@ -854,6 +868,8 @@ func NewArtifactAssessment(opts ...ArtifactAssessmentOption) *ArtifactAssessment
 }
 
 // WithArtifactAssessmentId sets the Id field.
+//
+// Deprecated: use ArtifactAssessmentBuilder.SetId instead; removed in v2.
 func WithArtifactAssessmentId(v string) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.Id = &v
@@ -861,6 +877,8 @@ func WithArtifactAssessmentId(v string) ArtifactAssessmentOption {
 }
 
 // WithArtifactAssessmentMeta sets the Meta field.
+//
+// Deprecated: use ArtifactAssessmentBuilder.SetMeta instead; removed in v2.
 func WithArtifactAssessmentMeta(v Meta) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.Meta = &v
@@ -868,6 +886,8 @@ func WithArtifactAssessmentMeta(v Meta) ArtifactAssessmentOption {
 }
 
 // WithArtifactAssessmentImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ArtifactAssessmentBuilder.SetImplicitRules instead; removed in v2.
 func WithArtifactAssessmentImplicitRules(v string) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.ImplicitRules = &v
@@ -875,6 +895,8 @@ func WithArtifactAssessmentImplicitRules(v string) ArtifactAssessmentOption {
 }
 
 // WithArtifactAssessmentLanguage sets the Language field.
+//
+// Deprecated: use ArtifactAssessmentBuilder.SetLanguage instead; removed in v2.
 func WithArtifactAssessmentLanguage(v string) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.Language = &v
@@ -882,6 +904,8 @@ func WithArtifactAssessmentLanguage(v string) ArtifactAssessmentOption {
 }
 
 // WithArtifactAssessmentText sets the Text field.
+//
+// Deprecated: use ArtifactAssessmentBuilder.SetText instead; removed in v2.
 func WithArtifactAssessmentText(v Narrative) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.Text = &v
@@ -889,6 +913,8 @@ func WithArtifactAssessmentText(v Narrative) ArtifactAssessmentOption {
 }
 
 // WithArtifactAssessmentContained adds a Contained to the ArtifactAssessment.
+//
+// Deprecated: use ArtifactAssessmentBuilder.AddContained instead; removed in v2.
 func WithArtifactAssessmentContained(v Resource) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.Contained = append(r.Contained, v)
@@ -896,6 +922,8 @@ func WithArtifactAssessmentContained(v Resource) ArtifactAssessmentOption {
 }
 
 // WithArtifactAssessmentExtension adds a Extension to the ArtifactAssessment.
+//
+// Deprecated: use ArtifactAssessmentBuilder.AddExtension instead; removed in v2.
 func WithArtifactAssessmentExtension(v Extension) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.Extension = append(r.Extension, v)
@@ -903,6 +931,8 @@ func WithArtifactAssessmentExtension(v Extension) ArtifactAssessmentOption {
 }
 
 // WithArtifactAssessmentModifierExtension adds a ModifierExtension to the ArtifactAssessment.
+//
+// Deprecated: use ArtifactAssessmentBuilder.AddModifierExtension instead; removed in v2.
 func WithArtifactAssessmentModifierExtension(v Extension) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -910,6 +940,8 @@ func WithArtifactAssessmentModifierExtension(v Extension) ArtifactAssessmentOpti
 }
 
 // WithArtifactAssessmentIdentifier adds a Identifier to the ArtifactAssessment.
+//
+// Deprecated: use ArtifactAssessmentBuilder.AddIdentifier instead; removed in v2.
 func WithArtifactAssessmentIdentifier(v Identifier) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.Identifier = append(r.Identifier, v)
@@ -917,6 +949,8 @@ func WithArtifactAssessmentIdentifier(v Identifier) ArtifactAssessmentOption {
 }
 
 // WithArtifactAssessmentTitle sets the Title field.
+//
+// Deprecated: use ArtifactAssessmentBuilder.SetTitle instead; removed in v2.
 func WithArtifactAssessmentTitle(v string) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.Title = &v
@@ -924,6 +958,8 @@ func WithArtifactAssessmentTitle(v string) ArtifactAssessmentOption {
 }
 
 // WithArtifactAssessmentCiteAsReference sets the CiteAsReference field.
+//
+// Deprecated: use ArtifactAssessmentBuilder.SetCiteAsReference instead; removed in v2.
 func WithArtifactAssessmentCiteAsReference(v Reference) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.CiteAsReference = &v
@@ -931,6 +967,8 @@ func WithArtifactAssessmentCiteAsReference(v Reference) ArtifactAssessmentOption
 }
 
 // WithArtifactAssessmentCiteAsMarkdown sets the CiteAsMarkdown field.
+//
+// Deprecated: use ArtifactAssessmentBuilder.SetCiteAsMarkdown instead; removed in v2.
 func WithArtifactAssessmentCiteAsMarkdown(v string) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.CiteAsMarkdown = &v
@@ -938,6 +976,8 @@ func WithArtifactAssessmentCiteAsMarkdown(v string) ArtifactAssessmentOption {
 }
 
 // WithArtifactAssessmentCiteAsMarkdownExt sets the CiteAsMarkdownExt field.
+//
+// Deprecated: use ArtifactAssessmentBuilder.SetCiteAsMarkdownExt instead; removed in v2.
 func WithArtifactAssessmentCiteAsMarkdownExt(v Element) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.CiteAsMarkdownExt = &v
@@ -945,6 +985,8 @@ func WithArtifactAssessmentCiteAsMarkdownExt(v Element) ArtifactAssessmentOption
 }
 
 // WithArtifactAssessmentDate sets the Date field.
+//
+// Deprecated: use ArtifactAssessmentBuilder.SetDate instead; removed in v2.
 func WithArtifactAssessmentDate(v string) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.Date = &v
@@ -952,6 +994,8 @@ func WithArtifactAssessmentDate(v string) ArtifactAssessmentOption {
 }
 
 // WithArtifactAssessmentCopyright sets the Copyright field.
+//
+// Deprecated: use ArtifactAssessmentBuilder.SetCopyright instead; removed in v2.
 func WithArtifactAssessmentCopyright(v string) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.Copyright = &v
@@ -959,6 +1003,8 @@ func WithArtifactAssessmentCopyright(v string) ArtifactAssessmentOption {
 }
 
 // WithArtifactAssessmentApprovalDate sets the ApprovalDate field.
+//
+// Deprecated: use ArtifactAssessmentBuilder.SetApprovalDate instead; removed in v2.
 func WithArtifactAssessmentApprovalDate(v string) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.ApprovalDate = &v
@@ -966,6 +1012,8 @@ func WithArtifactAssessmentApprovalDate(v string) ArtifactAssessmentOption {
 }
 
 // WithArtifactAssessmentLastReviewDate sets the LastReviewDate field.
+//
+// Deprecated: use ArtifactAssessmentBuilder.SetLastReviewDate instead; removed in v2.
 func WithArtifactAssessmentLastReviewDate(v string) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.LastReviewDate = &v
@@ -973,6 +1021,8 @@ func WithArtifactAssessmentLastReviewDate(v string) ArtifactAssessmentOption {
 }
 
 // WithArtifactAssessmentArtifactReference sets the ArtifactReference field.
+//
+// Deprecated: use ArtifactAssessmentBuilder.SetArtifactReference instead; removed in v2.
 func WithArtifactAssessmentArtifactReference(v Reference) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.ArtifactReference = &v
@@ -980,6 +1030,8 @@ func WithArtifactAssessmentArtifactReference(v Reference) ArtifactAssessmentOpti
 }
 
 // WithArtifactAssessmentArtifactCanonical sets the ArtifactCanonical field.
+//
+// Deprecated: use ArtifactAssessmentBuilder.SetArtifactCanonical instead; removed in v2.
 func WithArtifactAssessmentArtifactCanonical(v string) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.ArtifactCanonical = &v
@@ -987,6 +1039,8 @@ func WithArtifactAssessmentArtifactCanonical(v string) ArtifactAssessmentOption 
 }
 
 // WithArtifactAssessmentArtifactCanonicalExt sets the ArtifactCanonicalExt field.
+//
+// Deprecated: use ArtifactAssessmentBuilder.SetArtifactCanonicalExt instead; removed in v2.
 func WithArtifactAssessmentArtifactCanonicalExt(v Element) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.ArtifactCanonicalExt = &v
@@ -994,6 +1048,8 @@ func WithArtifactAssessmentArtifactCanonicalExt(v Element) ArtifactAssessmentOpt
 }
 
 // WithArtifactAssessmentArtifactUri sets the ArtifactUri field.
+//
+// Deprecated: use ArtifactAssessmentBuilder.SetArtifactUri instead; removed in v2.
 func WithArtifactAssessmentArtifactUri(v string) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.ArtifactUri = &v
@@ -1001,6 +1057,8 @@ func WithArtifactAssessmentArtifactUri(v string) ArtifactAssessmentOption {
 }
 
 // WithArtifactAssessmentArtifactUriExt sets the ArtifactUriExt field.
+//
+// Deprecated: use ArtifactAssessmentBuilder.SetArtifactUriExt instead; removed in v2.
 func WithArtifactAssessmentArtifactUriExt(v Element) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.ArtifactUriExt = &v
@@ -1008,6 +1066,8 @@ func WithArtifactAssessmentArtifactUriExt(v Element) ArtifactAssessmentOption {
 }
 
 // WithArtifactAssessmentContent adds a Content to the ArtifactAssessment.
+//
+// Deprecated: use ArtifactAssessmentBuilder.AddContent instead; removed in v2.
 func WithArtifactAssessmentContent(v ArtifactAssessmentContent) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.Content = append(r.Content, v)
@@ -1015,6 +1075,8 @@ func WithArtifactAssessmentContent(v ArtifactAssessmentContent) ArtifactAssessme
 }
 
 // WithArtifactAssessmentWorkflowStatus sets the WorkflowStatus field.
+//
+// Deprecated: use ArtifactAssessmentBuilder.SetWorkflowStatus instead; removed in v2.
 func WithArtifactAssessmentWorkflowStatus(v ArtifactAssessmentWorkflowStatus) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.WorkflowStatus = &v
@@ -1022,6 +1084,8 @@ func WithArtifactAssessmentWorkflowStatus(v ArtifactAssessmentWorkflowStatus) Ar
 }
 
 // WithArtifactAssessmentDisposition sets the Disposition field.
+//
+// Deprecated: use ArtifactAssessmentBuilder.SetDisposition instead; removed in v2.
 func WithArtifactAssessmentDisposition(v ArtifactAssessmentDisposition) ArtifactAssessmentOption {
 	return func(r *ArtifactAssessment) {
 		r.Disposition = &v

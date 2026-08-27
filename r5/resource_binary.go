@@ -265,9 +265,23 @@ func (b *BinaryBuilder) SetData(v string) *BinaryBuilder {
 // =============================================================================
 
 // BinaryOption is a functional option for configuring a Binary.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// BinaryBuilder. Every WithBinary* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type BinaryOption func(*Binary)
 
 // NewBinary creates a new Binary with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewBinaryBuilder().SetId("x").Build()
+//
+// Deprecated: use NewBinaryBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewBinary(opts ...BinaryOption) *Binary {
 	r := &Binary{ResourceType: "Binary"}
 	for _, opt := range opts {
@@ -277,6 +291,8 @@ func NewBinary(opts ...BinaryOption) *Binary {
 }
 
 // WithBinaryId sets the Id field.
+//
+// Deprecated: use BinaryBuilder.SetId instead; removed in v2.
 func WithBinaryId(v string) BinaryOption {
 	return func(r *Binary) {
 		r.Id = &v
@@ -284,6 +300,8 @@ func WithBinaryId(v string) BinaryOption {
 }
 
 // WithBinaryMeta sets the Meta field.
+//
+// Deprecated: use BinaryBuilder.SetMeta instead; removed in v2.
 func WithBinaryMeta(v Meta) BinaryOption {
 	return func(r *Binary) {
 		r.Meta = &v
@@ -291,6 +309,8 @@ func WithBinaryMeta(v Meta) BinaryOption {
 }
 
 // WithBinaryImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use BinaryBuilder.SetImplicitRules instead; removed in v2.
 func WithBinaryImplicitRules(v string) BinaryOption {
 	return func(r *Binary) {
 		r.ImplicitRules = &v
@@ -298,6 +318,8 @@ func WithBinaryImplicitRules(v string) BinaryOption {
 }
 
 // WithBinaryLanguage sets the Language field.
+//
+// Deprecated: use BinaryBuilder.SetLanguage instead; removed in v2.
 func WithBinaryLanguage(v string) BinaryOption {
 	return func(r *Binary) {
 		r.Language = &v
@@ -305,6 +327,8 @@ func WithBinaryLanguage(v string) BinaryOption {
 }
 
 // WithBinaryContentType sets the ContentType field.
+//
+// Deprecated: use BinaryBuilder.SetContentType instead; removed in v2.
 func WithBinaryContentType(v string) BinaryOption {
 	return func(r *Binary) {
 		r.ContentType = &v
@@ -312,6 +336,8 @@ func WithBinaryContentType(v string) BinaryOption {
 }
 
 // WithBinarySecurityContext sets the SecurityContext field.
+//
+// Deprecated: use BinaryBuilder.SetSecurityContext instead; removed in v2.
 func WithBinarySecurityContext(v Reference) BinaryOption {
 	return func(r *Binary) {
 		r.SecurityContext = &v
@@ -319,6 +345,8 @@ func WithBinarySecurityContext(v Reference) BinaryOption {
 }
 
 // WithBinaryData sets the Data field.
+//
+// Deprecated: use BinaryBuilder.SetData instead; removed in v2.
 func WithBinaryData(v string) BinaryOption {
 	return func(r *Binary) {
 		r.Data = &v

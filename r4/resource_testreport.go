@@ -1495,9 +1495,23 @@ func (b *TestReportBuilder) SetTeardown(v TestReportTeardown) *TestReportBuilder
 // =============================================================================
 
 // TestReportOption is a functional option for configuring a TestReport.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// TestReportBuilder. Every WithTestReport* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type TestReportOption func(*TestReport)
 
 // NewTestReport creates a new TestReport with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewTestReportBuilder().SetId("x").Build()
+//
+// Deprecated: use NewTestReportBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewTestReport(opts ...TestReportOption) *TestReport {
 	r := &TestReport{ResourceType: "TestReport"}
 	for _, opt := range opts {
@@ -1507,6 +1521,8 @@ func NewTestReport(opts ...TestReportOption) *TestReport {
 }
 
 // WithTestReportId sets the Id field.
+//
+// Deprecated: use TestReportBuilder.SetId instead; removed in v2.
 func WithTestReportId(v string) TestReportOption {
 	return func(r *TestReport) {
 		r.Id = &v
@@ -1514,6 +1530,8 @@ func WithTestReportId(v string) TestReportOption {
 }
 
 // WithTestReportMeta sets the Meta field.
+//
+// Deprecated: use TestReportBuilder.SetMeta instead; removed in v2.
 func WithTestReportMeta(v Meta) TestReportOption {
 	return func(r *TestReport) {
 		r.Meta = &v
@@ -1521,6 +1539,8 @@ func WithTestReportMeta(v Meta) TestReportOption {
 }
 
 // WithTestReportImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use TestReportBuilder.SetImplicitRules instead; removed in v2.
 func WithTestReportImplicitRules(v string) TestReportOption {
 	return func(r *TestReport) {
 		r.ImplicitRules = &v
@@ -1528,6 +1548,8 @@ func WithTestReportImplicitRules(v string) TestReportOption {
 }
 
 // WithTestReportLanguage sets the Language field.
+//
+// Deprecated: use TestReportBuilder.SetLanguage instead; removed in v2.
 func WithTestReportLanguage(v string) TestReportOption {
 	return func(r *TestReport) {
 		r.Language = &v
@@ -1535,6 +1557,8 @@ func WithTestReportLanguage(v string) TestReportOption {
 }
 
 // WithTestReportText sets the Text field.
+//
+// Deprecated: use TestReportBuilder.SetText instead; removed in v2.
 func WithTestReportText(v Narrative) TestReportOption {
 	return func(r *TestReport) {
 		r.Text = &v
@@ -1542,6 +1566,8 @@ func WithTestReportText(v Narrative) TestReportOption {
 }
 
 // WithTestReportContained adds a Contained to the TestReport.
+//
+// Deprecated: use TestReportBuilder.AddContained instead; removed in v2.
 func WithTestReportContained(v Resource) TestReportOption {
 	return func(r *TestReport) {
 		r.Contained = append(r.Contained, v)
@@ -1549,6 +1575,8 @@ func WithTestReportContained(v Resource) TestReportOption {
 }
 
 // WithTestReportExtension adds a Extension to the TestReport.
+//
+// Deprecated: use TestReportBuilder.AddExtension instead; removed in v2.
 func WithTestReportExtension(v Extension) TestReportOption {
 	return func(r *TestReport) {
 		r.Extension = append(r.Extension, v)
@@ -1556,6 +1584,8 @@ func WithTestReportExtension(v Extension) TestReportOption {
 }
 
 // WithTestReportModifierExtension adds a ModifierExtension to the TestReport.
+//
+// Deprecated: use TestReportBuilder.AddModifierExtension instead; removed in v2.
 func WithTestReportModifierExtension(v Extension) TestReportOption {
 	return func(r *TestReport) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1563,6 +1593,8 @@ func WithTestReportModifierExtension(v Extension) TestReportOption {
 }
 
 // WithTestReportIdentifier sets the Identifier field.
+//
+// Deprecated: use TestReportBuilder.SetIdentifier instead; removed in v2.
 func WithTestReportIdentifier(v Identifier) TestReportOption {
 	return func(r *TestReport) {
 		r.Identifier = &v
@@ -1570,6 +1602,8 @@ func WithTestReportIdentifier(v Identifier) TestReportOption {
 }
 
 // WithTestReportName sets the Name field.
+//
+// Deprecated: use TestReportBuilder.SetName instead; removed in v2.
 func WithTestReportName(v string) TestReportOption {
 	return func(r *TestReport) {
 		r.Name = &v
@@ -1577,6 +1611,8 @@ func WithTestReportName(v string) TestReportOption {
 }
 
 // WithTestReportStatus sets the Status field.
+//
+// Deprecated: use TestReportBuilder.SetStatus instead; removed in v2.
 func WithTestReportStatus(v TestReportStatus) TestReportOption {
 	return func(r *TestReport) {
 		r.Status = &v
@@ -1584,6 +1620,8 @@ func WithTestReportStatus(v TestReportStatus) TestReportOption {
 }
 
 // WithTestReportTestScript sets the TestScript field.
+//
+// Deprecated: use TestReportBuilder.SetTestScript instead; removed in v2.
 func WithTestReportTestScript(v Reference) TestReportOption {
 	return func(r *TestReport) {
 		r.TestScript = v
@@ -1591,6 +1629,8 @@ func WithTestReportTestScript(v Reference) TestReportOption {
 }
 
 // WithTestReportResult sets the Result field.
+//
+// Deprecated: use TestReportBuilder.SetResult instead; removed in v2.
 func WithTestReportResult(v TestReportResult) TestReportOption {
 	return func(r *TestReport) {
 		r.Result = &v
@@ -1598,6 +1638,8 @@ func WithTestReportResult(v TestReportResult) TestReportOption {
 }
 
 // WithTestReportScore sets the Score field.
+//
+// Deprecated: use TestReportBuilder.SetScore instead; removed in v2.
 func WithTestReportScore(v Decimal) TestReportOption {
 	return func(r *TestReport) {
 		r.Score = &v
@@ -1605,6 +1647,8 @@ func WithTestReportScore(v Decimal) TestReportOption {
 }
 
 // WithTestReportTester sets the Tester field.
+//
+// Deprecated: use TestReportBuilder.SetTester instead; removed in v2.
 func WithTestReportTester(v string) TestReportOption {
 	return func(r *TestReport) {
 		r.Tester = &v
@@ -1612,6 +1656,8 @@ func WithTestReportTester(v string) TestReportOption {
 }
 
 // WithTestReportIssued sets the Issued field.
+//
+// Deprecated: use TestReportBuilder.SetIssued instead; removed in v2.
 func WithTestReportIssued(v string) TestReportOption {
 	return func(r *TestReport) {
 		r.Issued = &v
@@ -1619,6 +1665,8 @@ func WithTestReportIssued(v string) TestReportOption {
 }
 
 // WithTestReportParticipant adds a Participant to the TestReport.
+//
+// Deprecated: use TestReportBuilder.AddParticipant instead; removed in v2.
 func WithTestReportParticipant(v TestReportParticipant) TestReportOption {
 	return func(r *TestReport) {
 		r.Participant = append(r.Participant, v)
@@ -1626,6 +1674,8 @@ func WithTestReportParticipant(v TestReportParticipant) TestReportOption {
 }
 
 // WithTestReportSetup sets the Setup field.
+//
+// Deprecated: use TestReportBuilder.SetSetup instead; removed in v2.
 func WithTestReportSetup(v TestReportSetup) TestReportOption {
 	return func(r *TestReport) {
 		r.Setup = &v
@@ -1633,6 +1683,8 @@ func WithTestReportSetup(v TestReportSetup) TestReportOption {
 }
 
 // WithTestReportTest adds a Test to the TestReport.
+//
+// Deprecated: use TestReportBuilder.AddTest instead; removed in v2.
 func WithTestReportTest(v TestReportTest) TestReportOption {
 	return func(r *TestReport) {
 		r.Test = append(r.Test, v)
@@ -1640,6 +1692,8 @@ func WithTestReportTest(v TestReportTest) TestReportOption {
 }
 
 // WithTestReportTeardown sets the Teardown field.
+//
+// Deprecated: use TestReportBuilder.SetTeardown instead; removed in v2.
 func WithTestReportTeardown(v TestReportTeardown) TestReportOption {
 	return func(r *TestReport) {
 		r.Teardown = &v

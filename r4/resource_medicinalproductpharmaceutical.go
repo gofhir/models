@@ -944,9 +944,23 @@ func (b *MedicinalProductPharmaceuticalBuilder) AddRouteOfAdministration(v Medic
 // =============================================================================
 
 // MedicinalProductPharmaceuticalOption is a functional option for configuring a MedicinalProductPharmaceutical.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// MedicinalProductPharmaceuticalBuilder. Every WithMedicinalProductPharmaceutical* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type MedicinalProductPharmaceuticalOption func(*MedicinalProductPharmaceutical)
 
 // NewMedicinalProductPharmaceutical creates a new MedicinalProductPharmaceutical with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewMedicinalProductPharmaceuticalBuilder().SetId("x").Build()
+//
+// Deprecated: use NewMedicinalProductPharmaceuticalBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewMedicinalProductPharmaceutical(opts ...MedicinalProductPharmaceuticalOption) *MedicinalProductPharmaceutical {
 	r := &MedicinalProductPharmaceutical{ResourceType: "MedicinalProductPharmaceutical"}
 	for _, opt := range opts {
@@ -956,6 +970,8 @@ func NewMedicinalProductPharmaceutical(opts ...MedicinalProductPharmaceuticalOpt
 }
 
 // WithMedicinalProductPharmaceuticalId sets the Id field.
+//
+// Deprecated: use MedicinalProductPharmaceuticalBuilder.SetId instead; removed in v2.
 func WithMedicinalProductPharmaceuticalId(v string) MedicinalProductPharmaceuticalOption {
 	return func(r *MedicinalProductPharmaceutical) {
 		r.Id = &v
@@ -963,6 +979,8 @@ func WithMedicinalProductPharmaceuticalId(v string) MedicinalProductPharmaceutic
 }
 
 // WithMedicinalProductPharmaceuticalMeta sets the Meta field.
+//
+// Deprecated: use MedicinalProductPharmaceuticalBuilder.SetMeta instead; removed in v2.
 func WithMedicinalProductPharmaceuticalMeta(v Meta) MedicinalProductPharmaceuticalOption {
 	return func(r *MedicinalProductPharmaceutical) {
 		r.Meta = &v
@@ -970,6 +988,8 @@ func WithMedicinalProductPharmaceuticalMeta(v Meta) MedicinalProductPharmaceutic
 }
 
 // WithMedicinalProductPharmaceuticalImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use MedicinalProductPharmaceuticalBuilder.SetImplicitRules instead; removed in v2.
 func WithMedicinalProductPharmaceuticalImplicitRules(v string) MedicinalProductPharmaceuticalOption {
 	return func(r *MedicinalProductPharmaceutical) {
 		r.ImplicitRules = &v
@@ -977,6 +997,8 @@ func WithMedicinalProductPharmaceuticalImplicitRules(v string) MedicinalProductP
 }
 
 // WithMedicinalProductPharmaceuticalLanguage sets the Language field.
+//
+// Deprecated: use MedicinalProductPharmaceuticalBuilder.SetLanguage instead; removed in v2.
 func WithMedicinalProductPharmaceuticalLanguage(v string) MedicinalProductPharmaceuticalOption {
 	return func(r *MedicinalProductPharmaceutical) {
 		r.Language = &v
@@ -984,6 +1006,8 @@ func WithMedicinalProductPharmaceuticalLanguage(v string) MedicinalProductPharma
 }
 
 // WithMedicinalProductPharmaceuticalText sets the Text field.
+//
+// Deprecated: use MedicinalProductPharmaceuticalBuilder.SetText instead; removed in v2.
 func WithMedicinalProductPharmaceuticalText(v Narrative) MedicinalProductPharmaceuticalOption {
 	return func(r *MedicinalProductPharmaceutical) {
 		r.Text = &v
@@ -991,6 +1015,8 @@ func WithMedicinalProductPharmaceuticalText(v Narrative) MedicinalProductPharmac
 }
 
 // WithMedicinalProductPharmaceuticalContained adds a Contained to the MedicinalProductPharmaceutical.
+//
+// Deprecated: use MedicinalProductPharmaceuticalBuilder.AddContained instead; removed in v2.
 func WithMedicinalProductPharmaceuticalContained(v Resource) MedicinalProductPharmaceuticalOption {
 	return func(r *MedicinalProductPharmaceutical) {
 		r.Contained = append(r.Contained, v)
@@ -998,6 +1024,8 @@ func WithMedicinalProductPharmaceuticalContained(v Resource) MedicinalProductPha
 }
 
 // WithMedicinalProductPharmaceuticalExtension adds a Extension to the MedicinalProductPharmaceutical.
+//
+// Deprecated: use MedicinalProductPharmaceuticalBuilder.AddExtension instead; removed in v2.
 func WithMedicinalProductPharmaceuticalExtension(v Extension) MedicinalProductPharmaceuticalOption {
 	return func(r *MedicinalProductPharmaceutical) {
 		r.Extension = append(r.Extension, v)
@@ -1005,6 +1033,8 @@ func WithMedicinalProductPharmaceuticalExtension(v Extension) MedicinalProductPh
 }
 
 // WithMedicinalProductPharmaceuticalModifierExtension adds a ModifierExtension to the MedicinalProductPharmaceutical.
+//
+// Deprecated: use MedicinalProductPharmaceuticalBuilder.AddModifierExtension instead; removed in v2.
 func WithMedicinalProductPharmaceuticalModifierExtension(v Extension) MedicinalProductPharmaceuticalOption {
 	return func(r *MedicinalProductPharmaceutical) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1012,6 +1042,8 @@ func WithMedicinalProductPharmaceuticalModifierExtension(v Extension) MedicinalP
 }
 
 // WithMedicinalProductPharmaceuticalIdentifier adds a Identifier to the MedicinalProductPharmaceutical.
+//
+// Deprecated: use MedicinalProductPharmaceuticalBuilder.AddIdentifier instead; removed in v2.
 func WithMedicinalProductPharmaceuticalIdentifier(v Identifier) MedicinalProductPharmaceuticalOption {
 	return func(r *MedicinalProductPharmaceutical) {
 		r.Identifier = append(r.Identifier, v)
@@ -1019,6 +1051,8 @@ func WithMedicinalProductPharmaceuticalIdentifier(v Identifier) MedicinalProduct
 }
 
 // WithMedicinalProductPharmaceuticalAdministrableDoseForm sets the AdministrableDoseForm field.
+//
+// Deprecated: use MedicinalProductPharmaceuticalBuilder.SetAdministrableDoseForm instead; removed in v2.
 func WithMedicinalProductPharmaceuticalAdministrableDoseForm(v CodeableConcept) MedicinalProductPharmaceuticalOption {
 	return func(r *MedicinalProductPharmaceutical) {
 		r.AdministrableDoseForm = v
@@ -1026,6 +1060,8 @@ func WithMedicinalProductPharmaceuticalAdministrableDoseForm(v CodeableConcept) 
 }
 
 // WithMedicinalProductPharmaceuticalUnitOfPresentation sets the UnitOfPresentation field.
+//
+// Deprecated: use MedicinalProductPharmaceuticalBuilder.SetUnitOfPresentation instead; removed in v2.
 func WithMedicinalProductPharmaceuticalUnitOfPresentation(v CodeableConcept) MedicinalProductPharmaceuticalOption {
 	return func(r *MedicinalProductPharmaceutical) {
 		r.UnitOfPresentation = &v
@@ -1033,6 +1069,8 @@ func WithMedicinalProductPharmaceuticalUnitOfPresentation(v CodeableConcept) Med
 }
 
 // WithMedicinalProductPharmaceuticalIngredient adds a Ingredient to the MedicinalProductPharmaceutical.
+//
+// Deprecated: use MedicinalProductPharmaceuticalBuilder.AddIngredient instead; removed in v2.
 func WithMedicinalProductPharmaceuticalIngredient(v Reference) MedicinalProductPharmaceuticalOption {
 	return func(r *MedicinalProductPharmaceutical) {
 		r.Ingredient = append(r.Ingredient, v)
@@ -1040,6 +1078,8 @@ func WithMedicinalProductPharmaceuticalIngredient(v Reference) MedicinalProductP
 }
 
 // WithMedicinalProductPharmaceuticalDevice adds a Device to the MedicinalProductPharmaceutical.
+//
+// Deprecated: use MedicinalProductPharmaceuticalBuilder.AddDevice instead; removed in v2.
 func WithMedicinalProductPharmaceuticalDevice(v Reference) MedicinalProductPharmaceuticalOption {
 	return func(r *MedicinalProductPharmaceutical) {
 		r.Device = append(r.Device, v)
@@ -1047,6 +1087,8 @@ func WithMedicinalProductPharmaceuticalDevice(v Reference) MedicinalProductPharm
 }
 
 // WithMedicinalProductPharmaceuticalCharacteristics adds a Characteristics to the MedicinalProductPharmaceutical.
+//
+// Deprecated: use MedicinalProductPharmaceuticalBuilder.AddCharacteristics instead; removed in v2.
 func WithMedicinalProductPharmaceuticalCharacteristics(v MedicinalProductPharmaceuticalCharacteristics) MedicinalProductPharmaceuticalOption {
 	return func(r *MedicinalProductPharmaceutical) {
 		r.Characteristics = append(r.Characteristics, v)
@@ -1054,6 +1096,8 @@ func WithMedicinalProductPharmaceuticalCharacteristics(v MedicinalProductPharmac
 }
 
 // WithMedicinalProductPharmaceuticalRouteOfAdministration adds a RouteOfAdministration to the MedicinalProductPharmaceutical.
+//
+// Deprecated: use MedicinalProductPharmaceuticalBuilder.AddRouteOfAdministration instead; removed in v2.
 func WithMedicinalProductPharmaceuticalRouteOfAdministration(v MedicinalProductPharmaceuticalRouteOfAdministration) MedicinalProductPharmaceuticalOption {
 	return func(r *MedicinalProductPharmaceutical) {
 		r.RouteOfAdministration = append(r.RouteOfAdministration, v)

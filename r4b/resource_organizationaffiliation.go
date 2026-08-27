@@ -576,9 +576,23 @@ func (b *OrganizationAffiliationBuilder) AddEndpoint(v Reference) *OrganizationA
 // =============================================================================
 
 // OrganizationAffiliationOption is a functional option for configuring a OrganizationAffiliation.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// OrganizationAffiliationBuilder. Every WithOrganizationAffiliation* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type OrganizationAffiliationOption func(*OrganizationAffiliation)
 
 // NewOrganizationAffiliation creates a new OrganizationAffiliation with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewOrganizationAffiliationBuilder().SetId("x").Build()
+//
+// Deprecated: use NewOrganizationAffiliationBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewOrganizationAffiliation(opts ...OrganizationAffiliationOption) *OrganizationAffiliation {
 	r := &OrganizationAffiliation{ResourceType: "OrganizationAffiliation"}
 	for _, opt := range opts {
@@ -588,6 +602,8 @@ func NewOrganizationAffiliation(opts ...OrganizationAffiliationOption) *Organiza
 }
 
 // WithOrganizationAffiliationId sets the Id field.
+//
+// Deprecated: use OrganizationAffiliationBuilder.SetId instead; removed in v2.
 func WithOrganizationAffiliationId(v string) OrganizationAffiliationOption {
 	return func(r *OrganizationAffiliation) {
 		r.Id = &v
@@ -595,6 +611,8 @@ func WithOrganizationAffiliationId(v string) OrganizationAffiliationOption {
 }
 
 // WithOrganizationAffiliationMeta sets the Meta field.
+//
+// Deprecated: use OrganizationAffiliationBuilder.SetMeta instead; removed in v2.
 func WithOrganizationAffiliationMeta(v Meta) OrganizationAffiliationOption {
 	return func(r *OrganizationAffiliation) {
 		r.Meta = &v
@@ -602,6 +620,8 @@ func WithOrganizationAffiliationMeta(v Meta) OrganizationAffiliationOption {
 }
 
 // WithOrganizationAffiliationImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use OrganizationAffiliationBuilder.SetImplicitRules instead; removed in v2.
 func WithOrganizationAffiliationImplicitRules(v string) OrganizationAffiliationOption {
 	return func(r *OrganizationAffiliation) {
 		r.ImplicitRules = &v
@@ -609,6 +629,8 @@ func WithOrganizationAffiliationImplicitRules(v string) OrganizationAffiliationO
 }
 
 // WithOrganizationAffiliationLanguage sets the Language field.
+//
+// Deprecated: use OrganizationAffiliationBuilder.SetLanguage instead; removed in v2.
 func WithOrganizationAffiliationLanguage(v string) OrganizationAffiliationOption {
 	return func(r *OrganizationAffiliation) {
 		r.Language = &v
@@ -616,6 +638,8 @@ func WithOrganizationAffiliationLanguage(v string) OrganizationAffiliationOption
 }
 
 // WithOrganizationAffiliationText sets the Text field.
+//
+// Deprecated: use OrganizationAffiliationBuilder.SetText instead; removed in v2.
 func WithOrganizationAffiliationText(v Narrative) OrganizationAffiliationOption {
 	return func(r *OrganizationAffiliation) {
 		r.Text = &v
@@ -623,6 +647,8 @@ func WithOrganizationAffiliationText(v Narrative) OrganizationAffiliationOption 
 }
 
 // WithOrganizationAffiliationContained adds a Contained to the OrganizationAffiliation.
+//
+// Deprecated: use OrganizationAffiliationBuilder.AddContained instead; removed in v2.
 func WithOrganizationAffiliationContained(v Resource) OrganizationAffiliationOption {
 	return func(r *OrganizationAffiliation) {
 		r.Contained = append(r.Contained, v)
@@ -630,6 +656,8 @@ func WithOrganizationAffiliationContained(v Resource) OrganizationAffiliationOpt
 }
 
 // WithOrganizationAffiliationExtension adds a Extension to the OrganizationAffiliation.
+//
+// Deprecated: use OrganizationAffiliationBuilder.AddExtension instead; removed in v2.
 func WithOrganizationAffiliationExtension(v Extension) OrganizationAffiliationOption {
 	return func(r *OrganizationAffiliation) {
 		r.Extension = append(r.Extension, v)
@@ -637,6 +665,8 @@ func WithOrganizationAffiliationExtension(v Extension) OrganizationAffiliationOp
 }
 
 // WithOrganizationAffiliationModifierExtension adds a ModifierExtension to the OrganizationAffiliation.
+//
+// Deprecated: use OrganizationAffiliationBuilder.AddModifierExtension instead; removed in v2.
 func WithOrganizationAffiliationModifierExtension(v Extension) OrganizationAffiliationOption {
 	return func(r *OrganizationAffiliation) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -644,6 +674,8 @@ func WithOrganizationAffiliationModifierExtension(v Extension) OrganizationAffil
 }
 
 // WithOrganizationAffiliationIdentifier adds a Identifier to the OrganizationAffiliation.
+//
+// Deprecated: use OrganizationAffiliationBuilder.AddIdentifier instead; removed in v2.
 func WithOrganizationAffiliationIdentifier(v Identifier) OrganizationAffiliationOption {
 	return func(r *OrganizationAffiliation) {
 		r.Identifier = append(r.Identifier, v)
@@ -651,6 +683,8 @@ func WithOrganizationAffiliationIdentifier(v Identifier) OrganizationAffiliation
 }
 
 // WithOrganizationAffiliationActive sets the Active field.
+//
+// Deprecated: use OrganizationAffiliationBuilder.SetActive instead; removed in v2.
 func WithOrganizationAffiliationActive(v bool) OrganizationAffiliationOption {
 	return func(r *OrganizationAffiliation) {
 		r.Active = &v
@@ -658,6 +692,8 @@ func WithOrganizationAffiliationActive(v bool) OrganizationAffiliationOption {
 }
 
 // WithOrganizationAffiliationPeriod sets the Period field.
+//
+// Deprecated: use OrganizationAffiliationBuilder.SetPeriod instead; removed in v2.
 func WithOrganizationAffiliationPeriod(v Period) OrganizationAffiliationOption {
 	return func(r *OrganizationAffiliation) {
 		r.Period = &v
@@ -665,6 +701,8 @@ func WithOrganizationAffiliationPeriod(v Period) OrganizationAffiliationOption {
 }
 
 // WithOrganizationAffiliationOrganization sets the Organization field.
+//
+// Deprecated: use OrganizationAffiliationBuilder.SetOrganization instead; removed in v2.
 func WithOrganizationAffiliationOrganization(v Reference) OrganizationAffiliationOption {
 	return func(r *OrganizationAffiliation) {
 		r.Organization = &v
@@ -672,6 +710,8 @@ func WithOrganizationAffiliationOrganization(v Reference) OrganizationAffiliatio
 }
 
 // WithOrganizationAffiliationParticipatingOrganization sets the ParticipatingOrganization field.
+//
+// Deprecated: use OrganizationAffiliationBuilder.SetParticipatingOrganization instead; removed in v2.
 func WithOrganizationAffiliationParticipatingOrganization(v Reference) OrganizationAffiliationOption {
 	return func(r *OrganizationAffiliation) {
 		r.ParticipatingOrganization = &v
@@ -679,6 +719,8 @@ func WithOrganizationAffiliationParticipatingOrganization(v Reference) Organizat
 }
 
 // WithOrganizationAffiliationNetwork adds a Network to the OrganizationAffiliation.
+//
+// Deprecated: use OrganizationAffiliationBuilder.AddNetwork instead; removed in v2.
 func WithOrganizationAffiliationNetwork(v Reference) OrganizationAffiliationOption {
 	return func(r *OrganizationAffiliation) {
 		r.Network = append(r.Network, v)
@@ -686,6 +728,8 @@ func WithOrganizationAffiliationNetwork(v Reference) OrganizationAffiliationOpti
 }
 
 // WithOrganizationAffiliationCode adds a Code to the OrganizationAffiliation.
+//
+// Deprecated: use OrganizationAffiliationBuilder.AddCode instead; removed in v2.
 func WithOrganizationAffiliationCode(v CodeableConcept) OrganizationAffiliationOption {
 	return func(r *OrganizationAffiliation) {
 		r.Code = append(r.Code, v)
@@ -693,6 +737,8 @@ func WithOrganizationAffiliationCode(v CodeableConcept) OrganizationAffiliationO
 }
 
 // WithOrganizationAffiliationSpecialty adds a Specialty to the OrganizationAffiliation.
+//
+// Deprecated: use OrganizationAffiliationBuilder.AddSpecialty instead; removed in v2.
 func WithOrganizationAffiliationSpecialty(v CodeableConcept) OrganizationAffiliationOption {
 	return func(r *OrganizationAffiliation) {
 		r.Specialty = append(r.Specialty, v)
@@ -700,6 +746,8 @@ func WithOrganizationAffiliationSpecialty(v CodeableConcept) OrganizationAffilia
 }
 
 // WithOrganizationAffiliationLocation adds a Location to the OrganizationAffiliation.
+//
+// Deprecated: use OrganizationAffiliationBuilder.AddLocation instead; removed in v2.
 func WithOrganizationAffiliationLocation(v Reference) OrganizationAffiliationOption {
 	return func(r *OrganizationAffiliation) {
 		r.Location = append(r.Location, v)
@@ -707,6 +755,8 @@ func WithOrganizationAffiliationLocation(v Reference) OrganizationAffiliationOpt
 }
 
 // WithOrganizationAffiliationHealthcareService adds a HealthcareService to the OrganizationAffiliation.
+//
+// Deprecated: use OrganizationAffiliationBuilder.AddHealthcareService instead; removed in v2.
 func WithOrganizationAffiliationHealthcareService(v Reference) OrganizationAffiliationOption {
 	return func(r *OrganizationAffiliation) {
 		r.HealthcareService = append(r.HealthcareService, v)
@@ -714,6 +764,8 @@ func WithOrganizationAffiliationHealthcareService(v Reference) OrganizationAffil
 }
 
 // WithOrganizationAffiliationTelecom adds a Telecom to the OrganizationAffiliation.
+//
+// Deprecated: use OrganizationAffiliationBuilder.AddTelecom instead; removed in v2.
 func WithOrganizationAffiliationTelecom(v ContactPoint) OrganizationAffiliationOption {
 	return func(r *OrganizationAffiliation) {
 		r.Telecom = append(r.Telecom, v)
@@ -721,6 +773,8 @@ func WithOrganizationAffiliationTelecom(v ContactPoint) OrganizationAffiliationO
 }
 
 // WithOrganizationAffiliationEndpoint adds a Endpoint to the OrganizationAffiliation.
+//
+// Deprecated: use OrganizationAffiliationBuilder.AddEndpoint instead; removed in v2.
 func WithOrganizationAffiliationEndpoint(v Reference) OrganizationAffiliationOption {
 	return func(r *OrganizationAffiliation) {
 		r.Endpoint = append(r.Endpoint, v)

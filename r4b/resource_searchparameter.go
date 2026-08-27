@@ -967,9 +967,23 @@ func (b *SearchParameterBuilder) AddComponent(v SearchParameterComponent) *Searc
 // =============================================================================
 
 // SearchParameterOption is a functional option for configuring a SearchParameter.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// SearchParameterBuilder. Every WithSearchParameter* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type SearchParameterOption func(*SearchParameter)
 
 // NewSearchParameter creates a new SearchParameter with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewSearchParameterBuilder().SetId("x").Build()
+//
+// Deprecated: use NewSearchParameterBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewSearchParameter(opts ...SearchParameterOption) *SearchParameter {
 	r := &SearchParameter{ResourceType: "SearchParameter"}
 	for _, opt := range opts {
@@ -979,6 +993,8 @@ func NewSearchParameter(opts ...SearchParameterOption) *SearchParameter {
 }
 
 // WithSearchParameterId sets the Id field.
+//
+// Deprecated: use SearchParameterBuilder.SetId instead; removed in v2.
 func WithSearchParameterId(v string) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Id = &v
@@ -986,6 +1002,8 @@ func WithSearchParameterId(v string) SearchParameterOption {
 }
 
 // WithSearchParameterMeta sets the Meta field.
+//
+// Deprecated: use SearchParameterBuilder.SetMeta instead; removed in v2.
 func WithSearchParameterMeta(v Meta) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Meta = &v
@@ -993,6 +1011,8 @@ func WithSearchParameterMeta(v Meta) SearchParameterOption {
 }
 
 // WithSearchParameterImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use SearchParameterBuilder.SetImplicitRules instead; removed in v2.
 func WithSearchParameterImplicitRules(v string) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.ImplicitRules = &v
@@ -1000,6 +1020,8 @@ func WithSearchParameterImplicitRules(v string) SearchParameterOption {
 }
 
 // WithSearchParameterLanguage sets the Language field.
+//
+// Deprecated: use SearchParameterBuilder.SetLanguage instead; removed in v2.
 func WithSearchParameterLanguage(v string) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Language = &v
@@ -1007,6 +1029,8 @@ func WithSearchParameterLanguage(v string) SearchParameterOption {
 }
 
 // WithSearchParameterText sets the Text field.
+//
+// Deprecated: use SearchParameterBuilder.SetText instead; removed in v2.
 func WithSearchParameterText(v Narrative) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Text = &v
@@ -1014,6 +1038,8 @@ func WithSearchParameterText(v Narrative) SearchParameterOption {
 }
 
 // WithSearchParameterContained adds a Contained to the SearchParameter.
+//
+// Deprecated: use SearchParameterBuilder.AddContained instead; removed in v2.
 func WithSearchParameterContained(v Resource) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Contained = append(r.Contained, v)
@@ -1021,6 +1047,8 @@ func WithSearchParameterContained(v Resource) SearchParameterOption {
 }
 
 // WithSearchParameterExtension adds a Extension to the SearchParameter.
+//
+// Deprecated: use SearchParameterBuilder.AddExtension instead; removed in v2.
 func WithSearchParameterExtension(v Extension) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Extension = append(r.Extension, v)
@@ -1028,6 +1056,8 @@ func WithSearchParameterExtension(v Extension) SearchParameterOption {
 }
 
 // WithSearchParameterModifierExtension adds a ModifierExtension to the SearchParameter.
+//
+// Deprecated: use SearchParameterBuilder.AddModifierExtension instead; removed in v2.
 func WithSearchParameterModifierExtension(v Extension) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1035,6 +1065,8 @@ func WithSearchParameterModifierExtension(v Extension) SearchParameterOption {
 }
 
 // WithSearchParameterUrl sets the Url field.
+//
+// Deprecated: use SearchParameterBuilder.SetUrl instead; removed in v2.
 func WithSearchParameterUrl(v string) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Url = &v
@@ -1042,6 +1074,8 @@ func WithSearchParameterUrl(v string) SearchParameterOption {
 }
 
 // WithSearchParameterVersion sets the Version field.
+//
+// Deprecated: use SearchParameterBuilder.SetVersion instead; removed in v2.
 func WithSearchParameterVersion(v string) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Version = &v
@@ -1049,6 +1083,8 @@ func WithSearchParameterVersion(v string) SearchParameterOption {
 }
 
 // WithSearchParameterName sets the Name field.
+//
+// Deprecated: use SearchParameterBuilder.SetName instead; removed in v2.
 func WithSearchParameterName(v string) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Name = &v
@@ -1056,6 +1092,8 @@ func WithSearchParameterName(v string) SearchParameterOption {
 }
 
 // WithSearchParameterDerivedFrom sets the DerivedFrom field.
+//
+// Deprecated: use SearchParameterBuilder.SetDerivedFrom instead; removed in v2.
 func WithSearchParameterDerivedFrom(v string) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.DerivedFrom = &v
@@ -1063,6 +1101,8 @@ func WithSearchParameterDerivedFrom(v string) SearchParameterOption {
 }
 
 // WithSearchParameterStatus sets the Status field.
+//
+// Deprecated: use SearchParameterBuilder.SetStatus instead; removed in v2.
 func WithSearchParameterStatus(v PublicationStatus) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Status = &v
@@ -1070,6 +1110,8 @@ func WithSearchParameterStatus(v PublicationStatus) SearchParameterOption {
 }
 
 // WithSearchParameterExperimental sets the Experimental field.
+//
+// Deprecated: use SearchParameterBuilder.SetExperimental instead; removed in v2.
 func WithSearchParameterExperimental(v bool) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Experimental = &v
@@ -1077,6 +1119,8 @@ func WithSearchParameterExperimental(v bool) SearchParameterOption {
 }
 
 // WithSearchParameterDate sets the Date field.
+//
+// Deprecated: use SearchParameterBuilder.SetDate instead; removed in v2.
 func WithSearchParameterDate(v string) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Date = &v
@@ -1084,6 +1128,8 @@ func WithSearchParameterDate(v string) SearchParameterOption {
 }
 
 // WithSearchParameterPublisher sets the Publisher field.
+//
+// Deprecated: use SearchParameterBuilder.SetPublisher instead; removed in v2.
 func WithSearchParameterPublisher(v string) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Publisher = &v
@@ -1091,6 +1137,8 @@ func WithSearchParameterPublisher(v string) SearchParameterOption {
 }
 
 // WithSearchParameterContact adds a Contact to the SearchParameter.
+//
+// Deprecated: use SearchParameterBuilder.AddContact instead; removed in v2.
 func WithSearchParameterContact(v ContactDetail) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Contact = append(r.Contact, v)
@@ -1098,6 +1146,8 @@ func WithSearchParameterContact(v ContactDetail) SearchParameterOption {
 }
 
 // WithSearchParameterDescription sets the Description field.
+//
+// Deprecated: use SearchParameterBuilder.SetDescription instead; removed in v2.
 func WithSearchParameterDescription(v string) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Description = &v
@@ -1105,6 +1155,8 @@ func WithSearchParameterDescription(v string) SearchParameterOption {
 }
 
 // WithSearchParameterUseContext adds a UseContext to the SearchParameter.
+//
+// Deprecated: use SearchParameterBuilder.AddUseContext instead; removed in v2.
 func WithSearchParameterUseContext(v UsageContext) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.UseContext = append(r.UseContext, v)
@@ -1112,6 +1164,8 @@ func WithSearchParameterUseContext(v UsageContext) SearchParameterOption {
 }
 
 // WithSearchParameterJurisdiction adds a Jurisdiction to the SearchParameter.
+//
+// Deprecated: use SearchParameterBuilder.AddJurisdiction instead; removed in v2.
 func WithSearchParameterJurisdiction(v CodeableConcept) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1119,6 +1173,8 @@ func WithSearchParameterJurisdiction(v CodeableConcept) SearchParameterOption {
 }
 
 // WithSearchParameterPurpose sets the Purpose field.
+//
+// Deprecated: use SearchParameterBuilder.SetPurpose instead; removed in v2.
 func WithSearchParameterPurpose(v string) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Purpose = &v
@@ -1126,6 +1182,8 @@ func WithSearchParameterPurpose(v string) SearchParameterOption {
 }
 
 // WithSearchParameterCode sets the Code field.
+//
+// Deprecated: use SearchParameterBuilder.SetCode instead; removed in v2.
 func WithSearchParameterCode(v string) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Code = &v
@@ -1133,6 +1191,8 @@ func WithSearchParameterCode(v string) SearchParameterOption {
 }
 
 // WithSearchParameterBase adds a Base to the SearchParameter.
+//
+// Deprecated: use SearchParameterBuilder.AddBase instead; removed in v2.
 func WithSearchParameterBase(v string) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Base = append(r.Base, v)
@@ -1140,6 +1200,8 @@ func WithSearchParameterBase(v string) SearchParameterOption {
 }
 
 // WithSearchParameterType sets the Type field.
+//
+// Deprecated: use SearchParameterBuilder.SetType instead; removed in v2.
 func WithSearchParameterType(v SearchParamType) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Type = &v
@@ -1147,6 +1209,8 @@ func WithSearchParameterType(v SearchParamType) SearchParameterOption {
 }
 
 // WithSearchParameterExpression sets the Expression field.
+//
+// Deprecated: use SearchParameterBuilder.SetExpression instead; removed in v2.
 func WithSearchParameterExpression(v string) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Expression = &v
@@ -1154,6 +1218,8 @@ func WithSearchParameterExpression(v string) SearchParameterOption {
 }
 
 // WithSearchParameterXpath sets the Xpath field.
+//
+// Deprecated: use SearchParameterBuilder.SetXpath instead; removed in v2.
 func WithSearchParameterXpath(v string) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Xpath = &v
@@ -1161,6 +1227,8 @@ func WithSearchParameterXpath(v string) SearchParameterOption {
 }
 
 // WithSearchParameterXpathUsage sets the XpathUsage field.
+//
+// Deprecated: use SearchParameterBuilder.SetXpathUsage instead; removed in v2.
 func WithSearchParameterXpathUsage(v XPathUsageType) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.XpathUsage = &v
@@ -1168,6 +1236,8 @@ func WithSearchParameterXpathUsage(v XPathUsageType) SearchParameterOption {
 }
 
 // WithSearchParameterTarget adds a Target to the SearchParameter.
+//
+// Deprecated: use SearchParameterBuilder.AddTarget instead; removed in v2.
 func WithSearchParameterTarget(v string) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Target = append(r.Target, v)
@@ -1175,6 +1245,8 @@ func WithSearchParameterTarget(v string) SearchParameterOption {
 }
 
 // WithSearchParameterMultipleOr sets the MultipleOr field.
+//
+// Deprecated: use SearchParameterBuilder.SetMultipleOr instead; removed in v2.
 func WithSearchParameterMultipleOr(v bool) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.MultipleOr = &v
@@ -1182,6 +1254,8 @@ func WithSearchParameterMultipleOr(v bool) SearchParameterOption {
 }
 
 // WithSearchParameterMultipleAnd sets the MultipleAnd field.
+//
+// Deprecated: use SearchParameterBuilder.SetMultipleAnd instead; removed in v2.
 func WithSearchParameterMultipleAnd(v bool) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.MultipleAnd = &v
@@ -1189,6 +1263,8 @@ func WithSearchParameterMultipleAnd(v bool) SearchParameterOption {
 }
 
 // WithSearchParameterComparator adds a Comparator to the SearchParameter.
+//
+// Deprecated: use SearchParameterBuilder.AddComparator instead; removed in v2.
 func WithSearchParameterComparator(v SearchComparator) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Comparator = append(r.Comparator, v)
@@ -1196,6 +1272,8 @@ func WithSearchParameterComparator(v SearchComparator) SearchParameterOption {
 }
 
 // WithSearchParameterModifier adds a Modifier to the SearchParameter.
+//
+// Deprecated: use SearchParameterBuilder.AddModifier instead; removed in v2.
 func WithSearchParameterModifier(v SearchModifierCode) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Modifier = append(r.Modifier, v)
@@ -1203,6 +1281,8 @@ func WithSearchParameterModifier(v SearchModifierCode) SearchParameterOption {
 }
 
 // WithSearchParameterChain adds a Chain to the SearchParameter.
+//
+// Deprecated: use SearchParameterBuilder.AddChain instead; removed in v2.
 func WithSearchParameterChain(v string) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Chain = append(r.Chain, v)
@@ -1210,6 +1290,8 @@ func WithSearchParameterChain(v string) SearchParameterOption {
 }
 
 // WithSearchParameterComponent adds a Component to the SearchParameter.
+//
+// Deprecated: use SearchParameterBuilder.AddComponent instead; removed in v2.
 func WithSearchParameterComponent(v SearchParameterComponent) SearchParameterOption {
 	return func(r *SearchParameter) {
 		r.Component = append(r.Component, v)

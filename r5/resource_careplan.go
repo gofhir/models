@@ -905,9 +905,23 @@ func (b *CarePlanBuilder) AddNote(v Annotation) *CarePlanBuilder {
 // =============================================================================
 
 // CarePlanOption is a functional option for configuring a CarePlan.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// CarePlanBuilder. Every WithCarePlan* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type CarePlanOption func(*CarePlan)
 
 // NewCarePlan creates a new CarePlan with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewCarePlanBuilder().SetId("x").Build()
+//
+// Deprecated: use NewCarePlanBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewCarePlan(opts ...CarePlanOption) *CarePlan {
 	r := &CarePlan{ResourceType: "CarePlan"}
 	for _, opt := range opts {
@@ -917,6 +931,8 @@ func NewCarePlan(opts ...CarePlanOption) *CarePlan {
 }
 
 // WithCarePlanId sets the Id field.
+//
+// Deprecated: use CarePlanBuilder.SetId instead; removed in v2.
 func WithCarePlanId(v string) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Id = &v
@@ -924,6 +940,8 @@ func WithCarePlanId(v string) CarePlanOption {
 }
 
 // WithCarePlanMeta sets the Meta field.
+//
+// Deprecated: use CarePlanBuilder.SetMeta instead; removed in v2.
 func WithCarePlanMeta(v Meta) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Meta = &v
@@ -931,6 +949,8 @@ func WithCarePlanMeta(v Meta) CarePlanOption {
 }
 
 // WithCarePlanImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use CarePlanBuilder.SetImplicitRules instead; removed in v2.
 func WithCarePlanImplicitRules(v string) CarePlanOption {
 	return func(r *CarePlan) {
 		r.ImplicitRules = &v
@@ -938,6 +958,8 @@ func WithCarePlanImplicitRules(v string) CarePlanOption {
 }
 
 // WithCarePlanLanguage sets the Language field.
+//
+// Deprecated: use CarePlanBuilder.SetLanguage instead; removed in v2.
 func WithCarePlanLanguage(v string) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Language = &v
@@ -945,6 +967,8 @@ func WithCarePlanLanguage(v string) CarePlanOption {
 }
 
 // WithCarePlanText sets the Text field.
+//
+// Deprecated: use CarePlanBuilder.SetText instead; removed in v2.
 func WithCarePlanText(v Narrative) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Text = &v
@@ -952,6 +976,8 @@ func WithCarePlanText(v Narrative) CarePlanOption {
 }
 
 // WithCarePlanContained adds a Contained to the CarePlan.
+//
+// Deprecated: use CarePlanBuilder.AddContained instead; removed in v2.
 func WithCarePlanContained(v Resource) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Contained = append(r.Contained, v)
@@ -959,6 +985,8 @@ func WithCarePlanContained(v Resource) CarePlanOption {
 }
 
 // WithCarePlanExtension adds a Extension to the CarePlan.
+//
+// Deprecated: use CarePlanBuilder.AddExtension instead; removed in v2.
 func WithCarePlanExtension(v Extension) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Extension = append(r.Extension, v)
@@ -966,6 +994,8 @@ func WithCarePlanExtension(v Extension) CarePlanOption {
 }
 
 // WithCarePlanModifierExtension adds a ModifierExtension to the CarePlan.
+//
+// Deprecated: use CarePlanBuilder.AddModifierExtension instead; removed in v2.
 func WithCarePlanModifierExtension(v Extension) CarePlanOption {
 	return func(r *CarePlan) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -973,6 +1003,8 @@ func WithCarePlanModifierExtension(v Extension) CarePlanOption {
 }
 
 // WithCarePlanIdentifier adds a Identifier to the CarePlan.
+//
+// Deprecated: use CarePlanBuilder.AddIdentifier instead; removed in v2.
 func WithCarePlanIdentifier(v Identifier) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Identifier = append(r.Identifier, v)
@@ -980,6 +1012,8 @@ func WithCarePlanIdentifier(v Identifier) CarePlanOption {
 }
 
 // WithCarePlanInstantiatesCanonical adds a InstantiatesCanonical to the CarePlan.
+//
+// Deprecated: use CarePlanBuilder.AddInstantiatesCanonical instead; removed in v2.
 func WithCarePlanInstantiatesCanonical(v string) CarePlanOption {
 	return func(r *CarePlan) {
 		r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
@@ -987,6 +1021,8 @@ func WithCarePlanInstantiatesCanonical(v string) CarePlanOption {
 }
 
 // WithCarePlanInstantiatesUri adds a InstantiatesUri to the CarePlan.
+//
+// Deprecated: use CarePlanBuilder.AddInstantiatesUri instead; removed in v2.
 func WithCarePlanInstantiatesUri(v string) CarePlanOption {
 	return func(r *CarePlan) {
 		r.InstantiatesUri = append(r.InstantiatesUri, v)
@@ -994,6 +1030,8 @@ func WithCarePlanInstantiatesUri(v string) CarePlanOption {
 }
 
 // WithCarePlanBasedOn adds a BasedOn to the CarePlan.
+//
+// Deprecated: use CarePlanBuilder.AddBasedOn instead; removed in v2.
 func WithCarePlanBasedOn(v Reference) CarePlanOption {
 	return func(r *CarePlan) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -1001,6 +1039,8 @@ func WithCarePlanBasedOn(v Reference) CarePlanOption {
 }
 
 // WithCarePlanReplaces adds a Replaces to the CarePlan.
+//
+// Deprecated: use CarePlanBuilder.AddReplaces instead; removed in v2.
 func WithCarePlanReplaces(v Reference) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Replaces = append(r.Replaces, v)
@@ -1008,6 +1048,8 @@ func WithCarePlanReplaces(v Reference) CarePlanOption {
 }
 
 // WithCarePlanPartOf adds a PartOf to the CarePlan.
+//
+// Deprecated: use CarePlanBuilder.AddPartOf instead; removed in v2.
 func WithCarePlanPartOf(v Reference) CarePlanOption {
 	return func(r *CarePlan) {
 		r.PartOf = append(r.PartOf, v)
@@ -1015,6 +1057,8 @@ func WithCarePlanPartOf(v Reference) CarePlanOption {
 }
 
 // WithCarePlanStatus sets the Status field.
+//
+// Deprecated: use CarePlanBuilder.SetStatus instead; removed in v2.
 func WithCarePlanStatus(v RequestStatus) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Status = &v
@@ -1022,6 +1066,8 @@ func WithCarePlanStatus(v RequestStatus) CarePlanOption {
 }
 
 // WithCarePlanIntent sets the Intent field.
+//
+// Deprecated: use CarePlanBuilder.SetIntent instead; removed in v2.
 func WithCarePlanIntent(v CarePlanIntent) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Intent = &v
@@ -1029,6 +1075,8 @@ func WithCarePlanIntent(v CarePlanIntent) CarePlanOption {
 }
 
 // WithCarePlanCategory adds a Category to the CarePlan.
+//
+// Deprecated: use CarePlanBuilder.AddCategory instead; removed in v2.
 func WithCarePlanCategory(v CodeableConcept) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Category = append(r.Category, v)
@@ -1036,6 +1084,8 @@ func WithCarePlanCategory(v CodeableConcept) CarePlanOption {
 }
 
 // WithCarePlanTitle sets the Title field.
+//
+// Deprecated: use CarePlanBuilder.SetTitle instead; removed in v2.
 func WithCarePlanTitle(v string) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Title = &v
@@ -1043,6 +1093,8 @@ func WithCarePlanTitle(v string) CarePlanOption {
 }
 
 // WithCarePlanDescription sets the Description field.
+//
+// Deprecated: use CarePlanBuilder.SetDescription instead; removed in v2.
 func WithCarePlanDescription(v string) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Description = &v
@@ -1050,6 +1102,8 @@ func WithCarePlanDescription(v string) CarePlanOption {
 }
 
 // WithCarePlanSubject sets the Subject field.
+//
+// Deprecated: use CarePlanBuilder.SetSubject instead; removed in v2.
 func WithCarePlanSubject(v Reference) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Subject = v
@@ -1057,6 +1111,8 @@ func WithCarePlanSubject(v Reference) CarePlanOption {
 }
 
 // WithCarePlanEncounter sets the Encounter field.
+//
+// Deprecated: use CarePlanBuilder.SetEncounter instead; removed in v2.
 func WithCarePlanEncounter(v Reference) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Encounter = &v
@@ -1064,6 +1120,8 @@ func WithCarePlanEncounter(v Reference) CarePlanOption {
 }
 
 // WithCarePlanPeriod sets the Period field.
+//
+// Deprecated: use CarePlanBuilder.SetPeriod instead; removed in v2.
 func WithCarePlanPeriod(v Period) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Period = &v
@@ -1071,6 +1129,8 @@ func WithCarePlanPeriod(v Period) CarePlanOption {
 }
 
 // WithCarePlanCreated sets the Created field.
+//
+// Deprecated: use CarePlanBuilder.SetCreated instead; removed in v2.
 func WithCarePlanCreated(v string) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Created = &v
@@ -1078,6 +1138,8 @@ func WithCarePlanCreated(v string) CarePlanOption {
 }
 
 // WithCarePlanCustodian sets the Custodian field.
+//
+// Deprecated: use CarePlanBuilder.SetCustodian instead; removed in v2.
 func WithCarePlanCustodian(v Reference) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Custodian = &v
@@ -1085,6 +1147,8 @@ func WithCarePlanCustodian(v Reference) CarePlanOption {
 }
 
 // WithCarePlanContributor adds a Contributor to the CarePlan.
+//
+// Deprecated: use CarePlanBuilder.AddContributor instead; removed in v2.
 func WithCarePlanContributor(v Reference) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Contributor = append(r.Contributor, v)
@@ -1092,6 +1156,8 @@ func WithCarePlanContributor(v Reference) CarePlanOption {
 }
 
 // WithCarePlanCareTeam adds a CareTeam to the CarePlan.
+//
+// Deprecated: use CarePlanBuilder.AddCareTeam instead; removed in v2.
 func WithCarePlanCareTeam(v Reference) CarePlanOption {
 	return func(r *CarePlan) {
 		r.CareTeam = append(r.CareTeam, v)
@@ -1099,6 +1165,8 @@ func WithCarePlanCareTeam(v Reference) CarePlanOption {
 }
 
 // WithCarePlanAddresses adds a Addresses to the CarePlan.
+//
+// Deprecated: use CarePlanBuilder.AddAddresses instead; removed in v2.
 func WithCarePlanAddresses(v CodeableReference) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Addresses = append(r.Addresses, v)
@@ -1106,6 +1174,8 @@ func WithCarePlanAddresses(v CodeableReference) CarePlanOption {
 }
 
 // WithCarePlanSupportingInfo adds a SupportingInfo to the CarePlan.
+//
+// Deprecated: use CarePlanBuilder.AddSupportingInfo instead; removed in v2.
 func WithCarePlanSupportingInfo(v Reference) CarePlanOption {
 	return func(r *CarePlan) {
 		r.SupportingInfo = append(r.SupportingInfo, v)
@@ -1113,6 +1183,8 @@ func WithCarePlanSupportingInfo(v Reference) CarePlanOption {
 }
 
 // WithCarePlanGoal adds a Goal to the CarePlan.
+//
+// Deprecated: use CarePlanBuilder.AddGoal instead; removed in v2.
 func WithCarePlanGoal(v Reference) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Goal = append(r.Goal, v)
@@ -1120,6 +1192,8 @@ func WithCarePlanGoal(v Reference) CarePlanOption {
 }
 
 // WithCarePlanActivity adds a Activity to the CarePlan.
+//
+// Deprecated: use CarePlanBuilder.AddActivity instead; removed in v2.
 func WithCarePlanActivity(v CarePlanActivity) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Activity = append(r.Activity, v)
@@ -1127,6 +1201,8 @@ func WithCarePlanActivity(v CarePlanActivity) CarePlanOption {
 }
 
 // WithCarePlanNote adds a Note to the CarePlan.
+//
+// Deprecated: use CarePlanBuilder.AddNote instead; removed in v2.
 func WithCarePlanNote(v Annotation) CarePlanOption {
 	return func(r *CarePlan) {
 		r.Note = append(r.Note, v)

@@ -2063,9 +2063,23 @@ func (b *StructureMapBuilder) AddGroup(v StructureMapGroup) *StructureMapBuilder
 // =============================================================================
 
 // StructureMapOption is a functional option for configuring a StructureMap.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// StructureMapBuilder. Every WithStructureMap* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type StructureMapOption func(*StructureMap)
 
 // NewStructureMap creates a new StructureMap with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewStructureMapBuilder().SetId("x").Build()
+//
+// Deprecated: use NewStructureMapBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewStructureMap(opts ...StructureMapOption) *StructureMap {
 	r := &StructureMap{ResourceType: "StructureMap"}
 	for _, opt := range opts {
@@ -2075,6 +2089,8 @@ func NewStructureMap(opts ...StructureMapOption) *StructureMap {
 }
 
 // WithStructureMapId sets the Id field.
+//
+// Deprecated: use StructureMapBuilder.SetId instead; removed in v2.
 func WithStructureMapId(v string) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Id = &v
@@ -2082,6 +2098,8 @@ func WithStructureMapId(v string) StructureMapOption {
 }
 
 // WithStructureMapMeta sets the Meta field.
+//
+// Deprecated: use StructureMapBuilder.SetMeta instead; removed in v2.
 func WithStructureMapMeta(v Meta) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Meta = &v
@@ -2089,6 +2107,8 @@ func WithStructureMapMeta(v Meta) StructureMapOption {
 }
 
 // WithStructureMapImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use StructureMapBuilder.SetImplicitRules instead; removed in v2.
 func WithStructureMapImplicitRules(v string) StructureMapOption {
 	return func(r *StructureMap) {
 		r.ImplicitRules = &v
@@ -2096,6 +2116,8 @@ func WithStructureMapImplicitRules(v string) StructureMapOption {
 }
 
 // WithStructureMapLanguage sets the Language field.
+//
+// Deprecated: use StructureMapBuilder.SetLanguage instead; removed in v2.
 func WithStructureMapLanguage(v string) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Language = &v
@@ -2103,6 +2125,8 @@ func WithStructureMapLanguage(v string) StructureMapOption {
 }
 
 // WithStructureMapText sets the Text field.
+//
+// Deprecated: use StructureMapBuilder.SetText instead; removed in v2.
 func WithStructureMapText(v Narrative) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Text = &v
@@ -2110,6 +2134,8 @@ func WithStructureMapText(v Narrative) StructureMapOption {
 }
 
 // WithStructureMapContained adds a Contained to the StructureMap.
+//
+// Deprecated: use StructureMapBuilder.AddContained instead; removed in v2.
 func WithStructureMapContained(v Resource) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Contained = append(r.Contained, v)
@@ -2117,6 +2143,8 @@ func WithStructureMapContained(v Resource) StructureMapOption {
 }
 
 // WithStructureMapExtension adds a Extension to the StructureMap.
+//
+// Deprecated: use StructureMapBuilder.AddExtension instead; removed in v2.
 func WithStructureMapExtension(v Extension) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Extension = append(r.Extension, v)
@@ -2124,6 +2152,8 @@ func WithStructureMapExtension(v Extension) StructureMapOption {
 }
 
 // WithStructureMapModifierExtension adds a ModifierExtension to the StructureMap.
+//
+// Deprecated: use StructureMapBuilder.AddModifierExtension instead; removed in v2.
 func WithStructureMapModifierExtension(v Extension) StructureMapOption {
 	return func(r *StructureMap) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -2131,6 +2161,8 @@ func WithStructureMapModifierExtension(v Extension) StructureMapOption {
 }
 
 // WithStructureMapUrl sets the Url field.
+//
+// Deprecated: use StructureMapBuilder.SetUrl instead; removed in v2.
 func WithStructureMapUrl(v string) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Url = &v
@@ -2138,6 +2170,8 @@ func WithStructureMapUrl(v string) StructureMapOption {
 }
 
 // WithStructureMapIdentifier adds a Identifier to the StructureMap.
+//
+// Deprecated: use StructureMapBuilder.AddIdentifier instead; removed in v2.
 func WithStructureMapIdentifier(v Identifier) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Identifier = append(r.Identifier, v)
@@ -2145,6 +2179,8 @@ func WithStructureMapIdentifier(v Identifier) StructureMapOption {
 }
 
 // WithStructureMapVersion sets the Version field.
+//
+// Deprecated: use StructureMapBuilder.SetVersion instead; removed in v2.
 func WithStructureMapVersion(v string) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Version = &v
@@ -2152,6 +2188,8 @@ func WithStructureMapVersion(v string) StructureMapOption {
 }
 
 // WithStructureMapVersionAlgorithmString sets the VersionAlgorithmString field.
+//
+// Deprecated: use StructureMapBuilder.SetVersionAlgorithmString instead; removed in v2.
 func WithStructureMapVersionAlgorithmString(v string) StructureMapOption {
 	return func(r *StructureMap) {
 		r.VersionAlgorithmString = &v
@@ -2159,6 +2197,8 @@ func WithStructureMapVersionAlgorithmString(v string) StructureMapOption {
 }
 
 // WithStructureMapVersionAlgorithmStringExt sets the VersionAlgorithmStringExt field.
+//
+// Deprecated: use StructureMapBuilder.SetVersionAlgorithmStringExt instead; removed in v2.
 func WithStructureMapVersionAlgorithmStringExt(v Element) StructureMapOption {
 	return func(r *StructureMap) {
 		r.VersionAlgorithmStringExt = &v
@@ -2166,6 +2206,8 @@ func WithStructureMapVersionAlgorithmStringExt(v Element) StructureMapOption {
 }
 
 // WithStructureMapVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+//
+// Deprecated: use StructureMapBuilder.SetVersionAlgorithmCoding instead; removed in v2.
 func WithStructureMapVersionAlgorithmCoding(v Coding) StructureMapOption {
 	return func(r *StructureMap) {
 		r.VersionAlgorithmCoding = &v
@@ -2173,6 +2215,8 @@ func WithStructureMapVersionAlgorithmCoding(v Coding) StructureMapOption {
 }
 
 // WithStructureMapName sets the Name field.
+//
+// Deprecated: use StructureMapBuilder.SetName instead; removed in v2.
 func WithStructureMapName(v string) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Name = &v
@@ -2180,6 +2224,8 @@ func WithStructureMapName(v string) StructureMapOption {
 }
 
 // WithStructureMapTitle sets the Title field.
+//
+// Deprecated: use StructureMapBuilder.SetTitle instead; removed in v2.
 func WithStructureMapTitle(v string) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Title = &v
@@ -2187,6 +2233,8 @@ func WithStructureMapTitle(v string) StructureMapOption {
 }
 
 // WithStructureMapStatus sets the Status field.
+//
+// Deprecated: use StructureMapBuilder.SetStatus instead; removed in v2.
 func WithStructureMapStatus(v PublicationStatus) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Status = &v
@@ -2194,6 +2242,8 @@ func WithStructureMapStatus(v PublicationStatus) StructureMapOption {
 }
 
 // WithStructureMapExperimental sets the Experimental field.
+//
+// Deprecated: use StructureMapBuilder.SetExperimental instead; removed in v2.
 func WithStructureMapExperimental(v bool) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Experimental = &v
@@ -2201,6 +2251,8 @@ func WithStructureMapExperimental(v bool) StructureMapOption {
 }
 
 // WithStructureMapDate sets the Date field.
+//
+// Deprecated: use StructureMapBuilder.SetDate instead; removed in v2.
 func WithStructureMapDate(v string) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Date = &v
@@ -2208,6 +2260,8 @@ func WithStructureMapDate(v string) StructureMapOption {
 }
 
 // WithStructureMapPublisher sets the Publisher field.
+//
+// Deprecated: use StructureMapBuilder.SetPublisher instead; removed in v2.
 func WithStructureMapPublisher(v string) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Publisher = &v
@@ -2215,6 +2269,8 @@ func WithStructureMapPublisher(v string) StructureMapOption {
 }
 
 // WithStructureMapContact adds a Contact to the StructureMap.
+//
+// Deprecated: use StructureMapBuilder.AddContact instead; removed in v2.
 func WithStructureMapContact(v ContactDetail) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Contact = append(r.Contact, v)
@@ -2222,6 +2278,8 @@ func WithStructureMapContact(v ContactDetail) StructureMapOption {
 }
 
 // WithStructureMapDescription sets the Description field.
+//
+// Deprecated: use StructureMapBuilder.SetDescription instead; removed in v2.
 func WithStructureMapDescription(v string) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Description = &v
@@ -2229,6 +2287,8 @@ func WithStructureMapDescription(v string) StructureMapOption {
 }
 
 // WithStructureMapUseContext adds a UseContext to the StructureMap.
+//
+// Deprecated: use StructureMapBuilder.AddUseContext instead; removed in v2.
 func WithStructureMapUseContext(v UsageContext) StructureMapOption {
 	return func(r *StructureMap) {
 		r.UseContext = append(r.UseContext, v)
@@ -2236,6 +2296,8 @@ func WithStructureMapUseContext(v UsageContext) StructureMapOption {
 }
 
 // WithStructureMapJurisdiction adds a Jurisdiction to the StructureMap.
+//
+// Deprecated: use StructureMapBuilder.AddJurisdiction instead; removed in v2.
 func WithStructureMapJurisdiction(v CodeableConcept) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -2243,6 +2305,8 @@ func WithStructureMapJurisdiction(v CodeableConcept) StructureMapOption {
 }
 
 // WithStructureMapPurpose sets the Purpose field.
+//
+// Deprecated: use StructureMapBuilder.SetPurpose instead; removed in v2.
 func WithStructureMapPurpose(v string) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Purpose = &v
@@ -2250,6 +2314,8 @@ func WithStructureMapPurpose(v string) StructureMapOption {
 }
 
 // WithStructureMapCopyright sets the Copyright field.
+//
+// Deprecated: use StructureMapBuilder.SetCopyright instead; removed in v2.
 func WithStructureMapCopyright(v string) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Copyright = &v
@@ -2257,6 +2323,8 @@ func WithStructureMapCopyright(v string) StructureMapOption {
 }
 
 // WithStructureMapCopyrightLabel sets the CopyrightLabel field.
+//
+// Deprecated: use StructureMapBuilder.SetCopyrightLabel instead; removed in v2.
 func WithStructureMapCopyrightLabel(v string) StructureMapOption {
 	return func(r *StructureMap) {
 		r.CopyrightLabel = &v
@@ -2264,6 +2332,8 @@ func WithStructureMapCopyrightLabel(v string) StructureMapOption {
 }
 
 // WithStructureMapStructure adds a Structure to the StructureMap.
+//
+// Deprecated: use StructureMapBuilder.AddStructure instead; removed in v2.
 func WithStructureMapStructure(v StructureMapStructure) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Structure = append(r.Structure, v)
@@ -2271,6 +2341,8 @@ func WithStructureMapStructure(v StructureMapStructure) StructureMapOption {
 }
 
 // WithStructureMapImport adds a Import to the StructureMap.
+//
+// Deprecated: use StructureMapBuilder.AddImport instead; removed in v2.
 func WithStructureMapImport(v string) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Import = append(r.Import, v)
@@ -2278,6 +2350,8 @@ func WithStructureMapImport(v string) StructureMapOption {
 }
 
 // WithStructureMapConst adds a Const to the StructureMap.
+//
+// Deprecated: use StructureMapBuilder.AddConst instead; removed in v2.
 func WithStructureMapConst(v StructureMapConst) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Const = append(r.Const, v)
@@ -2285,6 +2359,8 @@ func WithStructureMapConst(v StructureMapConst) StructureMapOption {
 }
 
 // WithStructureMapGroup adds a Group to the StructureMap.
+//
+// Deprecated: use StructureMapBuilder.AddGroup instead; removed in v2.
 func WithStructureMapGroup(v StructureMapGroup) StructureMapOption {
 	return func(r *StructureMap) {
 		r.Group = append(r.Group, v)

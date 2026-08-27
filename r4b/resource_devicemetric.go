@@ -646,9 +646,23 @@ func (b *DeviceMetricBuilder) AddCalibration(v DeviceMetricCalibration) *DeviceM
 // =============================================================================
 
 // DeviceMetricOption is a functional option for configuring a DeviceMetric.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// DeviceMetricBuilder. Every WithDeviceMetric* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type DeviceMetricOption func(*DeviceMetric)
 
 // NewDeviceMetric creates a new DeviceMetric with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewDeviceMetricBuilder().SetId("x").Build()
+//
+// Deprecated: use NewDeviceMetricBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewDeviceMetric(opts ...DeviceMetricOption) *DeviceMetric {
 	r := &DeviceMetric{ResourceType: "DeviceMetric"}
 	for _, opt := range opts {
@@ -658,6 +672,8 @@ func NewDeviceMetric(opts ...DeviceMetricOption) *DeviceMetric {
 }
 
 // WithDeviceMetricId sets the Id field.
+//
+// Deprecated: use DeviceMetricBuilder.SetId instead; removed in v2.
 func WithDeviceMetricId(v string) DeviceMetricOption {
 	return func(r *DeviceMetric) {
 		r.Id = &v
@@ -665,6 +681,8 @@ func WithDeviceMetricId(v string) DeviceMetricOption {
 }
 
 // WithDeviceMetricMeta sets the Meta field.
+//
+// Deprecated: use DeviceMetricBuilder.SetMeta instead; removed in v2.
 func WithDeviceMetricMeta(v Meta) DeviceMetricOption {
 	return func(r *DeviceMetric) {
 		r.Meta = &v
@@ -672,6 +690,8 @@ func WithDeviceMetricMeta(v Meta) DeviceMetricOption {
 }
 
 // WithDeviceMetricImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use DeviceMetricBuilder.SetImplicitRules instead; removed in v2.
 func WithDeviceMetricImplicitRules(v string) DeviceMetricOption {
 	return func(r *DeviceMetric) {
 		r.ImplicitRules = &v
@@ -679,6 +699,8 @@ func WithDeviceMetricImplicitRules(v string) DeviceMetricOption {
 }
 
 // WithDeviceMetricLanguage sets the Language field.
+//
+// Deprecated: use DeviceMetricBuilder.SetLanguage instead; removed in v2.
 func WithDeviceMetricLanguage(v string) DeviceMetricOption {
 	return func(r *DeviceMetric) {
 		r.Language = &v
@@ -686,6 +708,8 @@ func WithDeviceMetricLanguage(v string) DeviceMetricOption {
 }
 
 // WithDeviceMetricText sets the Text field.
+//
+// Deprecated: use DeviceMetricBuilder.SetText instead; removed in v2.
 func WithDeviceMetricText(v Narrative) DeviceMetricOption {
 	return func(r *DeviceMetric) {
 		r.Text = &v
@@ -693,6 +717,8 @@ func WithDeviceMetricText(v Narrative) DeviceMetricOption {
 }
 
 // WithDeviceMetricContained adds a Contained to the DeviceMetric.
+//
+// Deprecated: use DeviceMetricBuilder.AddContained instead; removed in v2.
 func WithDeviceMetricContained(v Resource) DeviceMetricOption {
 	return func(r *DeviceMetric) {
 		r.Contained = append(r.Contained, v)
@@ -700,6 +726,8 @@ func WithDeviceMetricContained(v Resource) DeviceMetricOption {
 }
 
 // WithDeviceMetricExtension adds a Extension to the DeviceMetric.
+//
+// Deprecated: use DeviceMetricBuilder.AddExtension instead; removed in v2.
 func WithDeviceMetricExtension(v Extension) DeviceMetricOption {
 	return func(r *DeviceMetric) {
 		r.Extension = append(r.Extension, v)
@@ -707,6 +735,8 @@ func WithDeviceMetricExtension(v Extension) DeviceMetricOption {
 }
 
 // WithDeviceMetricModifierExtension adds a ModifierExtension to the DeviceMetric.
+//
+// Deprecated: use DeviceMetricBuilder.AddModifierExtension instead; removed in v2.
 func WithDeviceMetricModifierExtension(v Extension) DeviceMetricOption {
 	return func(r *DeviceMetric) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -714,6 +744,8 @@ func WithDeviceMetricModifierExtension(v Extension) DeviceMetricOption {
 }
 
 // WithDeviceMetricIdentifier adds a Identifier to the DeviceMetric.
+//
+// Deprecated: use DeviceMetricBuilder.AddIdentifier instead; removed in v2.
 func WithDeviceMetricIdentifier(v Identifier) DeviceMetricOption {
 	return func(r *DeviceMetric) {
 		r.Identifier = append(r.Identifier, v)
@@ -721,6 +753,8 @@ func WithDeviceMetricIdentifier(v Identifier) DeviceMetricOption {
 }
 
 // WithDeviceMetricType sets the Type field.
+//
+// Deprecated: use DeviceMetricBuilder.SetType instead; removed in v2.
 func WithDeviceMetricType(v CodeableConcept) DeviceMetricOption {
 	return func(r *DeviceMetric) {
 		r.Type = v
@@ -728,6 +762,8 @@ func WithDeviceMetricType(v CodeableConcept) DeviceMetricOption {
 }
 
 // WithDeviceMetricUnit sets the Unit field.
+//
+// Deprecated: use DeviceMetricBuilder.SetUnit instead; removed in v2.
 func WithDeviceMetricUnit(v CodeableConcept) DeviceMetricOption {
 	return func(r *DeviceMetric) {
 		r.Unit = &v
@@ -735,6 +771,8 @@ func WithDeviceMetricUnit(v CodeableConcept) DeviceMetricOption {
 }
 
 // WithDeviceMetricSource sets the Source field.
+//
+// Deprecated: use DeviceMetricBuilder.SetSource instead; removed in v2.
 func WithDeviceMetricSource(v Reference) DeviceMetricOption {
 	return func(r *DeviceMetric) {
 		r.Source = &v
@@ -742,6 +780,8 @@ func WithDeviceMetricSource(v Reference) DeviceMetricOption {
 }
 
 // WithDeviceMetricParent sets the Parent field.
+//
+// Deprecated: use DeviceMetricBuilder.SetParent instead; removed in v2.
 func WithDeviceMetricParent(v Reference) DeviceMetricOption {
 	return func(r *DeviceMetric) {
 		r.Parent = &v
@@ -749,6 +789,8 @@ func WithDeviceMetricParent(v Reference) DeviceMetricOption {
 }
 
 // WithDeviceMetricOperationalStatus sets the OperationalStatus field.
+//
+// Deprecated: use DeviceMetricBuilder.SetOperationalStatus instead; removed in v2.
 func WithDeviceMetricOperationalStatus(v DeviceMetricOperationalStatus) DeviceMetricOption {
 	return func(r *DeviceMetric) {
 		r.OperationalStatus = &v
@@ -756,6 +798,8 @@ func WithDeviceMetricOperationalStatus(v DeviceMetricOperationalStatus) DeviceMe
 }
 
 // WithDeviceMetricColor sets the Color field.
+//
+// Deprecated: use DeviceMetricBuilder.SetColor instead; removed in v2.
 func WithDeviceMetricColor(v DeviceMetricColor) DeviceMetricOption {
 	return func(r *DeviceMetric) {
 		r.Color = &v
@@ -763,6 +807,8 @@ func WithDeviceMetricColor(v DeviceMetricColor) DeviceMetricOption {
 }
 
 // WithDeviceMetricCategory sets the Category field.
+//
+// Deprecated: use DeviceMetricBuilder.SetCategory instead; removed in v2.
 func WithDeviceMetricCategory(v DeviceMetricCategory) DeviceMetricOption {
 	return func(r *DeviceMetric) {
 		r.Category = &v
@@ -770,6 +816,8 @@ func WithDeviceMetricCategory(v DeviceMetricCategory) DeviceMetricOption {
 }
 
 // WithDeviceMetricMeasurementPeriod sets the MeasurementPeriod field.
+//
+// Deprecated: use DeviceMetricBuilder.SetMeasurementPeriod instead; removed in v2.
 func WithDeviceMetricMeasurementPeriod(v Timing) DeviceMetricOption {
 	return func(r *DeviceMetric) {
 		r.MeasurementPeriod = &v
@@ -777,6 +825,8 @@ func WithDeviceMetricMeasurementPeriod(v Timing) DeviceMetricOption {
 }
 
 // WithDeviceMetricCalibration adds a Calibration to the DeviceMetric.
+//
+// Deprecated: use DeviceMetricBuilder.AddCalibration instead; removed in v2.
 func WithDeviceMetricCalibration(v DeviceMetricCalibration) DeviceMetricOption {
 	return func(r *DeviceMetric) {
 		r.Calibration = append(r.Calibration, v)

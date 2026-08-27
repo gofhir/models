@@ -1133,9 +1133,23 @@ func (b *NutritionIntakeBuilder) AddNote(v Annotation) *NutritionIntakeBuilder {
 // =============================================================================
 
 // NutritionIntakeOption is a functional option for configuring a NutritionIntake.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// NutritionIntakeBuilder. Every WithNutritionIntake* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type NutritionIntakeOption func(*NutritionIntake)
 
 // NewNutritionIntake creates a new NutritionIntake with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewNutritionIntakeBuilder().SetId("x").Build()
+//
+// Deprecated: use NewNutritionIntakeBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewNutritionIntake(opts ...NutritionIntakeOption) *NutritionIntake {
 	r := &NutritionIntake{ResourceType: "NutritionIntake"}
 	for _, opt := range opts {
@@ -1145,6 +1159,8 @@ func NewNutritionIntake(opts ...NutritionIntakeOption) *NutritionIntake {
 }
 
 // WithNutritionIntakeId sets the Id field.
+//
+// Deprecated: use NutritionIntakeBuilder.SetId instead; removed in v2.
 func WithNutritionIntakeId(v string) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.Id = &v
@@ -1152,6 +1168,8 @@ func WithNutritionIntakeId(v string) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeMeta sets the Meta field.
+//
+// Deprecated: use NutritionIntakeBuilder.SetMeta instead; removed in v2.
 func WithNutritionIntakeMeta(v Meta) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.Meta = &v
@@ -1159,6 +1177,8 @@ func WithNutritionIntakeMeta(v Meta) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use NutritionIntakeBuilder.SetImplicitRules instead; removed in v2.
 func WithNutritionIntakeImplicitRules(v string) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.ImplicitRules = &v
@@ -1166,6 +1186,8 @@ func WithNutritionIntakeImplicitRules(v string) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeLanguage sets the Language field.
+//
+// Deprecated: use NutritionIntakeBuilder.SetLanguage instead; removed in v2.
 func WithNutritionIntakeLanguage(v string) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.Language = &v
@@ -1173,6 +1195,8 @@ func WithNutritionIntakeLanguage(v string) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeText sets the Text field.
+//
+// Deprecated: use NutritionIntakeBuilder.SetText instead; removed in v2.
 func WithNutritionIntakeText(v Narrative) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.Text = &v
@@ -1180,6 +1204,8 @@ func WithNutritionIntakeText(v Narrative) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeContained adds a Contained to the NutritionIntake.
+//
+// Deprecated: use NutritionIntakeBuilder.AddContained instead; removed in v2.
 func WithNutritionIntakeContained(v Resource) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.Contained = append(r.Contained, v)
@@ -1187,6 +1213,8 @@ func WithNutritionIntakeContained(v Resource) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeExtension adds a Extension to the NutritionIntake.
+//
+// Deprecated: use NutritionIntakeBuilder.AddExtension instead; removed in v2.
 func WithNutritionIntakeExtension(v Extension) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.Extension = append(r.Extension, v)
@@ -1194,6 +1222,8 @@ func WithNutritionIntakeExtension(v Extension) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeModifierExtension adds a ModifierExtension to the NutritionIntake.
+//
+// Deprecated: use NutritionIntakeBuilder.AddModifierExtension instead; removed in v2.
 func WithNutritionIntakeModifierExtension(v Extension) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1201,6 +1231,8 @@ func WithNutritionIntakeModifierExtension(v Extension) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeIdentifier adds a Identifier to the NutritionIntake.
+//
+// Deprecated: use NutritionIntakeBuilder.AddIdentifier instead; removed in v2.
 func WithNutritionIntakeIdentifier(v Identifier) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.Identifier = append(r.Identifier, v)
@@ -1208,6 +1240,8 @@ func WithNutritionIntakeIdentifier(v Identifier) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeInstantiatesCanonical adds a InstantiatesCanonical to the NutritionIntake.
+//
+// Deprecated: use NutritionIntakeBuilder.AddInstantiatesCanonical instead; removed in v2.
 func WithNutritionIntakeInstantiatesCanonical(v string) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
@@ -1215,6 +1249,8 @@ func WithNutritionIntakeInstantiatesCanonical(v string) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeInstantiatesUri adds a InstantiatesUri to the NutritionIntake.
+//
+// Deprecated: use NutritionIntakeBuilder.AddInstantiatesUri instead; removed in v2.
 func WithNutritionIntakeInstantiatesUri(v string) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.InstantiatesUri = append(r.InstantiatesUri, v)
@@ -1222,6 +1258,8 @@ func WithNutritionIntakeInstantiatesUri(v string) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeBasedOn adds a BasedOn to the NutritionIntake.
+//
+// Deprecated: use NutritionIntakeBuilder.AddBasedOn instead; removed in v2.
 func WithNutritionIntakeBasedOn(v Reference) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -1229,6 +1267,8 @@ func WithNutritionIntakeBasedOn(v Reference) NutritionIntakeOption {
 }
 
 // WithNutritionIntakePartOf adds a PartOf to the NutritionIntake.
+//
+// Deprecated: use NutritionIntakeBuilder.AddPartOf instead; removed in v2.
 func WithNutritionIntakePartOf(v Reference) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.PartOf = append(r.PartOf, v)
@@ -1236,6 +1276,8 @@ func WithNutritionIntakePartOf(v Reference) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeStatus sets the Status field.
+//
+// Deprecated: use NutritionIntakeBuilder.SetStatus instead; removed in v2.
 func WithNutritionIntakeStatus(v EventStatus) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.Status = &v
@@ -1243,6 +1285,8 @@ func WithNutritionIntakeStatus(v EventStatus) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeStatusReason adds a StatusReason to the NutritionIntake.
+//
+// Deprecated: use NutritionIntakeBuilder.AddStatusReason instead; removed in v2.
 func WithNutritionIntakeStatusReason(v CodeableConcept) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.StatusReason = append(r.StatusReason, v)
@@ -1250,6 +1294,8 @@ func WithNutritionIntakeStatusReason(v CodeableConcept) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeCode sets the Code field.
+//
+// Deprecated: use NutritionIntakeBuilder.SetCode instead; removed in v2.
 func WithNutritionIntakeCode(v CodeableConcept) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.Code = &v
@@ -1257,6 +1303,8 @@ func WithNutritionIntakeCode(v CodeableConcept) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeSubject sets the Subject field.
+//
+// Deprecated: use NutritionIntakeBuilder.SetSubject instead; removed in v2.
 func WithNutritionIntakeSubject(v Reference) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.Subject = v
@@ -1264,6 +1312,8 @@ func WithNutritionIntakeSubject(v Reference) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeEncounter sets the Encounter field.
+//
+// Deprecated: use NutritionIntakeBuilder.SetEncounter instead; removed in v2.
 func WithNutritionIntakeEncounter(v Reference) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.Encounter = &v
@@ -1271,6 +1321,8 @@ func WithNutritionIntakeEncounter(v Reference) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeOccurrenceDateTime sets the OccurrenceDateTime field.
+//
+// Deprecated: use NutritionIntakeBuilder.SetOccurrenceDateTime instead; removed in v2.
 func WithNutritionIntakeOccurrenceDateTime(v string) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.OccurrenceDateTime = &v
@@ -1278,6 +1330,8 @@ func WithNutritionIntakeOccurrenceDateTime(v string) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeOccurrenceDateTimeExt sets the OccurrenceDateTimeExt field.
+//
+// Deprecated: use NutritionIntakeBuilder.SetOccurrenceDateTimeExt instead; removed in v2.
 func WithNutritionIntakeOccurrenceDateTimeExt(v Element) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.OccurrenceDateTimeExt = &v
@@ -1285,6 +1339,8 @@ func WithNutritionIntakeOccurrenceDateTimeExt(v Element) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeOccurrencePeriod sets the OccurrencePeriod field.
+//
+// Deprecated: use NutritionIntakeBuilder.SetOccurrencePeriod instead; removed in v2.
 func WithNutritionIntakeOccurrencePeriod(v Period) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.OccurrencePeriod = &v
@@ -1292,6 +1348,8 @@ func WithNutritionIntakeOccurrencePeriod(v Period) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeRecorded sets the Recorded field.
+//
+// Deprecated: use NutritionIntakeBuilder.SetRecorded instead; removed in v2.
 func WithNutritionIntakeRecorded(v string) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.Recorded = &v
@@ -1299,6 +1357,8 @@ func WithNutritionIntakeRecorded(v string) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeReportedBoolean sets the ReportedBoolean field.
+//
+// Deprecated: use NutritionIntakeBuilder.SetReportedBoolean instead; removed in v2.
 func WithNutritionIntakeReportedBoolean(v bool) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.ReportedBoolean = &v
@@ -1306,6 +1366,8 @@ func WithNutritionIntakeReportedBoolean(v bool) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeReportedBooleanExt sets the ReportedBooleanExt field.
+//
+// Deprecated: use NutritionIntakeBuilder.SetReportedBooleanExt instead; removed in v2.
 func WithNutritionIntakeReportedBooleanExt(v Element) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.ReportedBooleanExt = &v
@@ -1313,6 +1375,8 @@ func WithNutritionIntakeReportedBooleanExt(v Element) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeReportedReference sets the ReportedReference field.
+//
+// Deprecated: use NutritionIntakeBuilder.SetReportedReference instead; removed in v2.
 func WithNutritionIntakeReportedReference(v Reference) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.ReportedReference = &v
@@ -1320,6 +1384,8 @@ func WithNutritionIntakeReportedReference(v Reference) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeConsumedItem adds a ConsumedItem to the NutritionIntake.
+//
+// Deprecated: use NutritionIntakeBuilder.AddConsumedItem instead; removed in v2.
 func WithNutritionIntakeConsumedItem(v NutritionIntakeConsumedItem) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.ConsumedItem = append(r.ConsumedItem, v)
@@ -1327,6 +1393,8 @@ func WithNutritionIntakeConsumedItem(v NutritionIntakeConsumedItem) NutritionInt
 }
 
 // WithNutritionIntakeIngredientLabel adds a IngredientLabel to the NutritionIntake.
+//
+// Deprecated: use NutritionIntakeBuilder.AddIngredientLabel instead; removed in v2.
 func WithNutritionIntakeIngredientLabel(v NutritionIntakeIngredientLabel) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.IngredientLabel = append(r.IngredientLabel, v)
@@ -1334,6 +1402,8 @@ func WithNutritionIntakeIngredientLabel(v NutritionIntakeIngredientLabel) Nutrit
 }
 
 // WithNutritionIntakePerformer adds a Performer to the NutritionIntake.
+//
+// Deprecated: use NutritionIntakeBuilder.AddPerformer instead; removed in v2.
 func WithNutritionIntakePerformer(v NutritionIntakePerformer) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.Performer = append(r.Performer, v)
@@ -1341,6 +1411,8 @@ func WithNutritionIntakePerformer(v NutritionIntakePerformer) NutritionIntakeOpt
 }
 
 // WithNutritionIntakeLocation sets the Location field.
+//
+// Deprecated: use NutritionIntakeBuilder.SetLocation instead; removed in v2.
 func WithNutritionIntakeLocation(v Reference) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.Location = &v
@@ -1348,6 +1420,8 @@ func WithNutritionIntakeLocation(v Reference) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeDerivedFrom adds a DerivedFrom to the NutritionIntake.
+//
+// Deprecated: use NutritionIntakeBuilder.AddDerivedFrom instead; removed in v2.
 func WithNutritionIntakeDerivedFrom(v Reference) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.DerivedFrom = append(r.DerivedFrom, v)
@@ -1355,6 +1429,8 @@ func WithNutritionIntakeDerivedFrom(v Reference) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeReason adds a Reason to the NutritionIntake.
+//
+// Deprecated: use NutritionIntakeBuilder.AddReason instead; removed in v2.
 func WithNutritionIntakeReason(v CodeableReference) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.Reason = append(r.Reason, v)
@@ -1362,6 +1438,8 @@ func WithNutritionIntakeReason(v CodeableReference) NutritionIntakeOption {
 }
 
 // WithNutritionIntakeNote adds a Note to the NutritionIntake.
+//
+// Deprecated: use NutritionIntakeBuilder.AddNote instead; removed in v2.
 func WithNutritionIntakeNote(v Annotation) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
 		r.Note = append(r.Note, v)

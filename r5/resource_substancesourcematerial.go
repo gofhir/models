@@ -1346,9 +1346,23 @@ func (b *SubstanceSourceMaterialBuilder) AddPartDescription(v SubstanceSourceMat
 // =============================================================================
 
 // SubstanceSourceMaterialOption is a functional option for configuring a SubstanceSourceMaterial.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// SubstanceSourceMaterialBuilder. Every WithSubstanceSourceMaterial* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type SubstanceSourceMaterialOption func(*SubstanceSourceMaterial)
 
 // NewSubstanceSourceMaterial creates a new SubstanceSourceMaterial with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewSubstanceSourceMaterialBuilder().SetId("x").Build()
+//
+// Deprecated: use NewSubstanceSourceMaterialBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewSubstanceSourceMaterial(opts ...SubstanceSourceMaterialOption) *SubstanceSourceMaterial {
 	r := &SubstanceSourceMaterial{ResourceType: "SubstanceSourceMaterial"}
 	for _, opt := range opts {
@@ -1358,6 +1372,8 @@ func NewSubstanceSourceMaterial(opts ...SubstanceSourceMaterialOption) *Substanc
 }
 
 // WithSubstanceSourceMaterialId sets the Id field.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.SetId instead; removed in v2.
 func WithSubstanceSourceMaterialId(v string) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.Id = &v
@@ -1365,6 +1381,8 @@ func WithSubstanceSourceMaterialId(v string) SubstanceSourceMaterialOption {
 }
 
 // WithSubstanceSourceMaterialMeta sets the Meta field.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.SetMeta instead; removed in v2.
 func WithSubstanceSourceMaterialMeta(v Meta) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.Meta = &v
@@ -1372,6 +1390,8 @@ func WithSubstanceSourceMaterialMeta(v Meta) SubstanceSourceMaterialOption {
 }
 
 // WithSubstanceSourceMaterialImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.SetImplicitRules instead; removed in v2.
 func WithSubstanceSourceMaterialImplicitRules(v string) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.ImplicitRules = &v
@@ -1379,6 +1399,8 @@ func WithSubstanceSourceMaterialImplicitRules(v string) SubstanceSourceMaterialO
 }
 
 // WithSubstanceSourceMaterialLanguage sets the Language field.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.SetLanguage instead; removed in v2.
 func WithSubstanceSourceMaterialLanguage(v string) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.Language = &v
@@ -1386,6 +1408,8 @@ func WithSubstanceSourceMaterialLanguage(v string) SubstanceSourceMaterialOption
 }
 
 // WithSubstanceSourceMaterialText sets the Text field.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.SetText instead; removed in v2.
 func WithSubstanceSourceMaterialText(v Narrative) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.Text = &v
@@ -1393,6 +1417,8 @@ func WithSubstanceSourceMaterialText(v Narrative) SubstanceSourceMaterialOption 
 }
 
 // WithSubstanceSourceMaterialContained adds a Contained to the SubstanceSourceMaterial.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.AddContained instead; removed in v2.
 func WithSubstanceSourceMaterialContained(v Resource) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.Contained = append(r.Contained, v)
@@ -1400,6 +1426,8 @@ func WithSubstanceSourceMaterialContained(v Resource) SubstanceSourceMaterialOpt
 }
 
 // WithSubstanceSourceMaterialExtension adds a Extension to the SubstanceSourceMaterial.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.AddExtension instead; removed in v2.
 func WithSubstanceSourceMaterialExtension(v Extension) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.Extension = append(r.Extension, v)
@@ -1407,6 +1435,8 @@ func WithSubstanceSourceMaterialExtension(v Extension) SubstanceSourceMaterialOp
 }
 
 // WithSubstanceSourceMaterialModifierExtension adds a ModifierExtension to the SubstanceSourceMaterial.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.AddModifierExtension instead; removed in v2.
 func WithSubstanceSourceMaterialModifierExtension(v Extension) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1414,6 +1444,8 @@ func WithSubstanceSourceMaterialModifierExtension(v Extension) SubstanceSourceMa
 }
 
 // WithSubstanceSourceMaterialSourceMaterialClass sets the SourceMaterialClass field.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.SetSourceMaterialClass instead; removed in v2.
 func WithSubstanceSourceMaterialSourceMaterialClass(v CodeableConcept) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.SourceMaterialClass = &v
@@ -1421,6 +1453,8 @@ func WithSubstanceSourceMaterialSourceMaterialClass(v CodeableConcept) Substance
 }
 
 // WithSubstanceSourceMaterialSourceMaterialType sets the SourceMaterialType field.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.SetSourceMaterialType instead; removed in v2.
 func WithSubstanceSourceMaterialSourceMaterialType(v CodeableConcept) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.SourceMaterialType = &v
@@ -1428,6 +1462,8 @@ func WithSubstanceSourceMaterialSourceMaterialType(v CodeableConcept) SubstanceS
 }
 
 // WithSubstanceSourceMaterialSourceMaterialState sets the SourceMaterialState field.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.SetSourceMaterialState instead; removed in v2.
 func WithSubstanceSourceMaterialSourceMaterialState(v CodeableConcept) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.SourceMaterialState = &v
@@ -1435,6 +1471,8 @@ func WithSubstanceSourceMaterialSourceMaterialState(v CodeableConcept) Substance
 }
 
 // WithSubstanceSourceMaterialOrganismId sets the OrganismId field.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.SetOrganismId instead; removed in v2.
 func WithSubstanceSourceMaterialOrganismId(v Identifier) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.OrganismId = &v
@@ -1442,6 +1480,8 @@ func WithSubstanceSourceMaterialOrganismId(v Identifier) SubstanceSourceMaterial
 }
 
 // WithSubstanceSourceMaterialOrganismName sets the OrganismName field.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.SetOrganismName instead; removed in v2.
 func WithSubstanceSourceMaterialOrganismName(v string) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.OrganismName = &v
@@ -1449,6 +1489,8 @@ func WithSubstanceSourceMaterialOrganismName(v string) SubstanceSourceMaterialOp
 }
 
 // WithSubstanceSourceMaterialParentSubstanceId adds a ParentSubstanceId to the SubstanceSourceMaterial.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.AddParentSubstanceId instead; removed in v2.
 func WithSubstanceSourceMaterialParentSubstanceId(v Identifier) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.ParentSubstanceId = append(r.ParentSubstanceId, v)
@@ -1456,6 +1498,8 @@ func WithSubstanceSourceMaterialParentSubstanceId(v Identifier) SubstanceSourceM
 }
 
 // WithSubstanceSourceMaterialParentSubstanceName adds a ParentSubstanceName to the SubstanceSourceMaterial.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.AddParentSubstanceName instead; removed in v2.
 func WithSubstanceSourceMaterialParentSubstanceName(v string) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.ParentSubstanceName = append(r.ParentSubstanceName, v)
@@ -1463,6 +1507,8 @@ func WithSubstanceSourceMaterialParentSubstanceName(v string) SubstanceSourceMat
 }
 
 // WithSubstanceSourceMaterialCountryOfOrigin adds a CountryOfOrigin to the SubstanceSourceMaterial.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.AddCountryOfOrigin instead; removed in v2.
 func WithSubstanceSourceMaterialCountryOfOrigin(v CodeableConcept) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.CountryOfOrigin = append(r.CountryOfOrigin, v)
@@ -1470,6 +1516,8 @@ func WithSubstanceSourceMaterialCountryOfOrigin(v CodeableConcept) SubstanceSour
 }
 
 // WithSubstanceSourceMaterialGeographicalLocation adds a GeographicalLocation to the SubstanceSourceMaterial.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.AddGeographicalLocation instead; removed in v2.
 func WithSubstanceSourceMaterialGeographicalLocation(v string) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.GeographicalLocation = append(r.GeographicalLocation, v)
@@ -1477,6 +1525,8 @@ func WithSubstanceSourceMaterialGeographicalLocation(v string) SubstanceSourceMa
 }
 
 // WithSubstanceSourceMaterialDevelopmentStage sets the DevelopmentStage field.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.SetDevelopmentStage instead; removed in v2.
 func WithSubstanceSourceMaterialDevelopmentStage(v CodeableConcept) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.DevelopmentStage = &v
@@ -1484,6 +1534,8 @@ func WithSubstanceSourceMaterialDevelopmentStage(v CodeableConcept) SubstanceSou
 }
 
 // WithSubstanceSourceMaterialFractionDescription adds a FractionDescription to the SubstanceSourceMaterial.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.AddFractionDescription instead; removed in v2.
 func WithSubstanceSourceMaterialFractionDescription(v SubstanceSourceMaterialFractionDescription) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.FractionDescription = append(r.FractionDescription, v)
@@ -1491,6 +1543,8 @@ func WithSubstanceSourceMaterialFractionDescription(v SubstanceSourceMaterialFra
 }
 
 // WithSubstanceSourceMaterialOrganism sets the Organism field.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.SetOrganism instead; removed in v2.
 func WithSubstanceSourceMaterialOrganism(v SubstanceSourceMaterialOrganism) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.Organism = &v
@@ -1498,6 +1552,8 @@ func WithSubstanceSourceMaterialOrganism(v SubstanceSourceMaterialOrganism) Subs
 }
 
 // WithSubstanceSourceMaterialPartDescription adds a PartDescription to the SubstanceSourceMaterial.
+//
+// Deprecated: use SubstanceSourceMaterialBuilder.AddPartDescription instead; removed in v2.
 func WithSubstanceSourceMaterialPartDescription(v SubstanceSourceMaterialPartDescription) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
 		r.PartDescription = append(r.PartDescription, v)

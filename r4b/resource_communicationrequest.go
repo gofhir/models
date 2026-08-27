@@ -911,9 +911,23 @@ func (b *CommunicationRequestBuilder) AddNote(v Annotation) *CommunicationReques
 // =============================================================================
 
 // CommunicationRequestOption is a functional option for configuring a CommunicationRequest.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// CommunicationRequestBuilder. Every WithCommunicationRequest* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type CommunicationRequestOption func(*CommunicationRequest)
 
 // NewCommunicationRequest creates a new CommunicationRequest with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewCommunicationRequestBuilder().SetId("x").Build()
+//
+// Deprecated: use NewCommunicationRequestBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewCommunicationRequest(opts ...CommunicationRequestOption) *CommunicationRequest {
 	r := &CommunicationRequest{ResourceType: "CommunicationRequest"}
 	for _, opt := range opts {
@@ -923,6 +937,8 @@ func NewCommunicationRequest(opts ...CommunicationRequestOption) *CommunicationR
 }
 
 // WithCommunicationRequestId sets the Id field.
+//
+// Deprecated: use CommunicationRequestBuilder.SetId instead; removed in v2.
 func WithCommunicationRequestId(v string) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.Id = &v
@@ -930,6 +946,8 @@ func WithCommunicationRequestId(v string) CommunicationRequestOption {
 }
 
 // WithCommunicationRequestMeta sets the Meta field.
+//
+// Deprecated: use CommunicationRequestBuilder.SetMeta instead; removed in v2.
 func WithCommunicationRequestMeta(v Meta) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.Meta = &v
@@ -937,6 +955,8 @@ func WithCommunicationRequestMeta(v Meta) CommunicationRequestOption {
 }
 
 // WithCommunicationRequestImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use CommunicationRequestBuilder.SetImplicitRules instead; removed in v2.
 func WithCommunicationRequestImplicitRules(v string) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.ImplicitRules = &v
@@ -944,6 +964,8 @@ func WithCommunicationRequestImplicitRules(v string) CommunicationRequestOption 
 }
 
 // WithCommunicationRequestLanguage sets the Language field.
+//
+// Deprecated: use CommunicationRequestBuilder.SetLanguage instead; removed in v2.
 func WithCommunicationRequestLanguage(v string) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.Language = &v
@@ -951,6 +973,8 @@ func WithCommunicationRequestLanguage(v string) CommunicationRequestOption {
 }
 
 // WithCommunicationRequestText sets the Text field.
+//
+// Deprecated: use CommunicationRequestBuilder.SetText instead; removed in v2.
 func WithCommunicationRequestText(v Narrative) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.Text = &v
@@ -958,6 +982,8 @@ func WithCommunicationRequestText(v Narrative) CommunicationRequestOption {
 }
 
 // WithCommunicationRequestContained adds a Contained to the CommunicationRequest.
+//
+// Deprecated: use CommunicationRequestBuilder.AddContained instead; removed in v2.
 func WithCommunicationRequestContained(v Resource) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.Contained = append(r.Contained, v)
@@ -965,6 +991,8 @@ func WithCommunicationRequestContained(v Resource) CommunicationRequestOption {
 }
 
 // WithCommunicationRequestExtension adds a Extension to the CommunicationRequest.
+//
+// Deprecated: use CommunicationRequestBuilder.AddExtension instead; removed in v2.
 func WithCommunicationRequestExtension(v Extension) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.Extension = append(r.Extension, v)
@@ -972,6 +1000,8 @@ func WithCommunicationRequestExtension(v Extension) CommunicationRequestOption {
 }
 
 // WithCommunicationRequestModifierExtension adds a ModifierExtension to the CommunicationRequest.
+//
+// Deprecated: use CommunicationRequestBuilder.AddModifierExtension instead; removed in v2.
 func WithCommunicationRequestModifierExtension(v Extension) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -979,6 +1009,8 @@ func WithCommunicationRequestModifierExtension(v Extension) CommunicationRequest
 }
 
 // WithCommunicationRequestIdentifier adds a Identifier to the CommunicationRequest.
+//
+// Deprecated: use CommunicationRequestBuilder.AddIdentifier instead; removed in v2.
 func WithCommunicationRequestIdentifier(v Identifier) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.Identifier = append(r.Identifier, v)
@@ -986,6 +1018,8 @@ func WithCommunicationRequestIdentifier(v Identifier) CommunicationRequestOption
 }
 
 // WithCommunicationRequestBasedOn adds a BasedOn to the CommunicationRequest.
+//
+// Deprecated: use CommunicationRequestBuilder.AddBasedOn instead; removed in v2.
 func WithCommunicationRequestBasedOn(v Reference) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -993,6 +1027,8 @@ func WithCommunicationRequestBasedOn(v Reference) CommunicationRequestOption {
 }
 
 // WithCommunicationRequestReplaces adds a Replaces to the CommunicationRequest.
+//
+// Deprecated: use CommunicationRequestBuilder.AddReplaces instead; removed in v2.
 func WithCommunicationRequestReplaces(v Reference) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.Replaces = append(r.Replaces, v)
@@ -1000,6 +1036,8 @@ func WithCommunicationRequestReplaces(v Reference) CommunicationRequestOption {
 }
 
 // WithCommunicationRequestGroupIdentifier sets the GroupIdentifier field.
+//
+// Deprecated: use CommunicationRequestBuilder.SetGroupIdentifier instead; removed in v2.
 func WithCommunicationRequestGroupIdentifier(v Identifier) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.GroupIdentifier = &v
@@ -1007,6 +1045,8 @@ func WithCommunicationRequestGroupIdentifier(v Identifier) CommunicationRequestO
 }
 
 // WithCommunicationRequestStatus sets the Status field.
+//
+// Deprecated: use CommunicationRequestBuilder.SetStatus instead; removed in v2.
 func WithCommunicationRequestStatus(v RequestStatus) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.Status = &v
@@ -1014,6 +1054,8 @@ func WithCommunicationRequestStatus(v RequestStatus) CommunicationRequestOption 
 }
 
 // WithCommunicationRequestStatusReason sets the StatusReason field.
+//
+// Deprecated: use CommunicationRequestBuilder.SetStatusReason instead; removed in v2.
 func WithCommunicationRequestStatusReason(v CodeableConcept) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.StatusReason = &v
@@ -1021,6 +1063,8 @@ func WithCommunicationRequestStatusReason(v CodeableConcept) CommunicationReques
 }
 
 // WithCommunicationRequestCategory adds a Category to the CommunicationRequest.
+//
+// Deprecated: use CommunicationRequestBuilder.AddCategory instead; removed in v2.
 func WithCommunicationRequestCategory(v CodeableConcept) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.Category = append(r.Category, v)
@@ -1028,6 +1072,8 @@ func WithCommunicationRequestCategory(v CodeableConcept) CommunicationRequestOpt
 }
 
 // WithCommunicationRequestPriority sets the Priority field.
+//
+// Deprecated: use CommunicationRequestBuilder.SetPriority instead; removed in v2.
 func WithCommunicationRequestPriority(v RequestPriority) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.Priority = &v
@@ -1035,6 +1081,8 @@ func WithCommunicationRequestPriority(v RequestPriority) CommunicationRequestOpt
 }
 
 // WithCommunicationRequestDoNotPerform sets the DoNotPerform field.
+//
+// Deprecated: use CommunicationRequestBuilder.SetDoNotPerform instead; removed in v2.
 func WithCommunicationRequestDoNotPerform(v bool) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.DoNotPerform = &v
@@ -1042,6 +1090,8 @@ func WithCommunicationRequestDoNotPerform(v bool) CommunicationRequestOption {
 }
 
 // WithCommunicationRequestMedium adds a Medium to the CommunicationRequest.
+//
+// Deprecated: use CommunicationRequestBuilder.AddMedium instead; removed in v2.
 func WithCommunicationRequestMedium(v CodeableConcept) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.Medium = append(r.Medium, v)
@@ -1049,6 +1099,8 @@ func WithCommunicationRequestMedium(v CodeableConcept) CommunicationRequestOptio
 }
 
 // WithCommunicationRequestSubject sets the Subject field.
+//
+// Deprecated: use CommunicationRequestBuilder.SetSubject instead; removed in v2.
 func WithCommunicationRequestSubject(v Reference) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.Subject = &v
@@ -1056,6 +1108,8 @@ func WithCommunicationRequestSubject(v Reference) CommunicationRequestOption {
 }
 
 // WithCommunicationRequestAbout adds a About to the CommunicationRequest.
+//
+// Deprecated: use CommunicationRequestBuilder.AddAbout instead; removed in v2.
 func WithCommunicationRequestAbout(v Reference) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.About = append(r.About, v)
@@ -1063,6 +1117,8 @@ func WithCommunicationRequestAbout(v Reference) CommunicationRequestOption {
 }
 
 // WithCommunicationRequestEncounter sets the Encounter field.
+//
+// Deprecated: use CommunicationRequestBuilder.SetEncounter instead; removed in v2.
 func WithCommunicationRequestEncounter(v Reference) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.Encounter = &v
@@ -1070,6 +1126,8 @@ func WithCommunicationRequestEncounter(v Reference) CommunicationRequestOption {
 }
 
 // WithCommunicationRequestPayload adds a Payload to the CommunicationRequest.
+//
+// Deprecated: use CommunicationRequestBuilder.AddPayload instead; removed in v2.
 func WithCommunicationRequestPayload(v CommunicationRequestPayload) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.Payload = append(r.Payload, v)
@@ -1077,6 +1135,8 @@ func WithCommunicationRequestPayload(v CommunicationRequestPayload) Communicatio
 }
 
 // WithCommunicationRequestOccurrenceDateTime sets the OccurrenceDateTime field.
+//
+// Deprecated: use CommunicationRequestBuilder.SetOccurrenceDateTime instead; removed in v2.
 func WithCommunicationRequestOccurrenceDateTime(v string) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.OccurrenceDateTime = &v
@@ -1084,6 +1144,8 @@ func WithCommunicationRequestOccurrenceDateTime(v string) CommunicationRequestOp
 }
 
 // WithCommunicationRequestOccurrenceDateTimeExt sets the OccurrenceDateTimeExt field.
+//
+// Deprecated: use CommunicationRequestBuilder.SetOccurrenceDateTimeExt instead; removed in v2.
 func WithCommunicationRequestOccurrenceDateTimeExt(v Element) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.OccurrenceDateTimeExt = &v
@@ -1091,6 +1153,8 @@ func WithCommunicationRequestOccurrenceDateTimeExt(v Element) CommunicationReque
 }
 
 // WithCommunicationRequestOccurrencePeriod sets the OccurrencePeriod field.
+//
+// Deprecated: use CommunicationRequestBuilder.SetOccurrencePeriod instead; removed in v2.
 func WithCommunicationRequestOccurrencePeriod(v Period) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.OccurrencePeriod = &v
@@ -1098,6 +1162,8 @@ func WithCommunicationRequestOccurrencePeriod(v Period) CommunicationRequestOpti
 }
 
 // WithCommunicationRequestAuthoredOn sets the AuthoredOn field.
+//
+// Deprecated: use CommunicationRequestBuilder.SetAuthoredOn instead; removed in v2.
 func WithCommunicationRequestAuthoredOn(v string) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.AuthoredOn = &v
@@ -1105,6 +1171,8 @@ func WithCommunicationRequestAuthoredOn(v string) CommunicationRequestOption {
 }
 
 // WithCommunicationRequestRequester sets the Requester field.
+//
+// Deprecated: use CommunicationRequestBuilder.SetRequester instead; removed in v2.
 func WithCommunicationRequestRequester(v Reference) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.Requester = &v
@@ -1112,6 +1180,8 @@ func WithCommunicationRequestRequester(v Reference) CommunicationRequestOption {
 }
 
 // WithCommunicationRequestRecipient adds a Recipient to the CommunicationRequest.
+//
+// Deprecated: use CommunicationRequestBuilder.AddRecipient instead; removed in v2.
 func WithCommunicationRequestRecipient(v Reference) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.Recipient = append(r.Recipient, v)
@@ -1119,6 +1189,8 @@ func WithCommunicationRequestRecipient(v Reference) CommunicationRequestOption {
 }
 
 // WithCommunicationRequestSender sets the Sender field.
+//
+// Deprecated: use CommunicationRequestBuilder.SetSender instead; removed in v2.
 func WithCommunicationRequestSender(v Reference) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.Sender = &v
@@ -1126,6 +1198,8 @@ func WithCommunicationRequestSender(v Reference) CommunicationRequestOption {
 }
 
 // WithCommunicationRequestReasonCode adds a ReasonCode to the CommunicationRequest.
+//
+// Deprecated: use CommunicationRequestBuilder.AddReasonCode instead; removed in v2.
 func WithCommunicationRequestReasonCode(v CodeableConcept) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.ReasonCode = append(r.ReasonCode, v)
@@ -1133,6 +1207,8 @@ func WithCommunicationRequestReasonCode(v CodeableConcept) CommunicationRequestO
 }
 
 // WithCommunicationRequestReasonReference adds a ReasonReference to the CommunicationRequest.
+//
+// Deprecated: use CommunicationRequestBuilder.AddReasonReference instead; removed in v2.
 func WithCommunicationRequestReasonReference(v Reference) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.ReasonReference = append(r.ReasonReference, v)
@@ -1140,6 +1216,8 @@ func WithCommunicationRequestReasonReference(v Reference) CommunicationRequestOp
 }
 
 // WithCommunicationRequestNote adds a Note to the CommunicationRequest.
+//
+// Deprecated: use CommunicationRequestBuilder.AddNote instead; removed in v2.
 func WithCommunicationRequestNote(v Annotation) CommunicationRequestOption {
 	return func(r *CommunicationRequest) {
 		r.Note = append(r.Note, v)

@@ -1134,9 +1134,23 @@ func (b *IngredientBuilder) SetSubstance(v IngredientSubstance) *IngredientBuild
 // =============================================================================
 
 // IngredientOption is a functional option for configuring a Ingredient.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// IngredientBuilder. Every WithIngredient* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type IngredientOption func(*Ingredient)
 
 // NewIngredient creates a new Ingredient with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewIngredientBuilder().SetId("x").Build()
+//
+// Deprecated: use NewIngredientBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewIngredient(opts ...IngredientOption) *Ingredient {
 	r := &Ingredient{ResourceType: "Ingredient"}
 	for _, opt := range opts {
@@ -1146,6 +1160,8 @@ func NewIngredient(opts ...IngredientOption) *Ingredient {
 }
 
 // WithIngredientId sets the Id field.
+//
+// Deprecated: use IngredientBuilder.SetId instead; removed in v2.
 func WithIngredientId(v string) IngredientOption {
 	return func(r *Ingredient) {
 		r.Id = &v
@@ -1153,6 +1169,8 @@ func WithIngredientId(v string) IngredientOption {
 }
 
 // WithIngredientMeta sets the Meta field.
+//
+// Deprecated: use IngredientBuilder.SetMeta instead; removed in v2.
 func WithIngredientMeta(v Meta) IngredientOption {
 	return func(r *Ingredient) {
 		r.Meta = &v
@@ -1160,6 +1178,8 @@ func WithIngredientMeta(v Meta) IngredientOption {
 }
 
 // WithIngredientImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use IngredientBuilder.SetImplicitRules instead; removed in v2.
 func WithIngredientImplicitRules(v string) IngredientOption {
 	return func(r *Ingredient) {
 		r.ImplicitRules = &v
@@ -1167,6 +1187,8 @@ func WithIngredientImplicitRules(v string) IngredientOption {
 }
 
 // WithIngredientLanguage sets the Language field.
+//
+// Deprecated: use IngredientBuilder.SetLanguage instead; removed in v2.
 func WithIngredientLanguage(v string) IngredientOption {
 	return func(r *Ingredient) {
 		r.Language = &v
@@ -1174,6 +1196,8 @@ func WithIngredientLanguage(v string) IngredientOption {
 }
 
 // WithIngredientText sets the Text field.
+//
+// Deprecated: use IngredientBuilder.SetText instead; removed in v2.
 func WithIngredientText(v Narrative) IngredientOption {
 	return func(r *Ingredient) {
 		r.Text = &v
@@ -1181,6 +1205,8 @@ func WithIngredientText(v Narrative) IngredientOption {
 }
 
 // WithIngredientContained adds a Contained to the Ingredient.
+//
+// Deprecated: use IngredientBuilder.AddContained instead; removed in v2.
 func WithIngredientContained(v Resource) IngredientOption {
 	return func(r *Ingredient) {
 		r.Contained = append(r.Contained, v)
@@ -1188,6 +1214,8 @@ func WithIngredientContained(v Resource) IngredientOption {
 }
 
 // WithIngredientExtension adds a Extension to the Ingredient.
+//
+// Deprecated: use IngredientBuilder.AddExtension instead; removed in v2.
 func WithIngredientExtension(v Extension) IngredientOption {
 	return func(r *Ingredient) {
 		r.Extension = append(r.Extension, v)
@@ -1195,6 +1223,8 @@ func WithIngredientExtension(v Extension) IngredientOption {
 }
 
 // WithIngredientModifierExtension adds a ModifierExtension to the Ingredient.
+//
+// Deprecated: use IngredientBuilder.AddModifierExtension instead; removed in v2.
 func WithIngredientModifierExtension(v Extension) IngredientOption {
 	return func(r *Ingredient) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1202,6 +1232,8 @@ func WithIngredientModifierExtension(v Extension) IngredientOption {
 }
 
 // WithIngredientIdentifier sets the Identifier field.
+//
+// Deprecated: use IngredientBuilder.SetIdentifier instead; removed in v2.
 func WithIngredientIdentifier(v Identifier) IngredientOption {
 	return func(r *Ingredient) {
 		r.Identifier = &v
@@ -1209,6 +1241,8 @@ func WithIngredientIdentifier(v Identifier) IngredientOption {
 }
 
 // WithIngredientStatus sets the Status field.
+//
+// Deprecated: use IngredientBuilder.SetStatus instead; removed in v2.
 func WithIngredientStatus(v PublicationStatus) IngredientOption {
 	return func(r *Ingredient) {
 		r.Status = &v
@@ -1216,6 +1250,8 @@ func WithIngredientStatus(v PublicationStatus) IngredientOption {
 }
 
 // WithIngredientFor adds a For to the Ingredient.
+//
+// Deprecated: use IngredientBuilder.AddFor instead; removed in v2.
 func WithIngredientFor(v Reference) IngredientOption {
 	return func(r *Ingredient) {
 		r.For = append(r.For, v)
@@ -1223,6 +1259,8 @@ func WithIngredientFor(v Reference) IngredientOption {
 }
 
 // WithIngredientRole sets the Role field.
+//
+// Deprecated: use IngredientBuilder.SetRole instead; removed in v2.
 func WithIngredientRole(v CodeableConcept) IngredientOption {
 	return func(r *Ingredient) {
 		r.Role = v
@@ -1230,6 +1268,8 @@ func WithIngredientRole(v CodeableConcept) IngredientOption {
 }
 
 // WithIngredientFunction adds a Function to the Ingredient.
+//
+// Deprecated: use IngredientBuilder.AddFunction instead; removed in v2.
 func WithIngredientFunction(v CodeableConcept) IngredientOption {
 	return func(r *Ingredient) {
 		r.Function = append(r.Function, v)
@@ -1237,6 +1277,8 @@ func WithIngredientFunction(v CodeableConcept) IngredientOption {
 }
 
 // WithIngredientGroup sets the Group field.
+//
+// Deprecated: use IngredientBuilder.SetGroup instead; removed in v2.
 func WithIngredientGroup(v CodeableConcept) IngredientOption {
 	return func(r *Ingredient) {
 		r.Group = &v
@@ -1244,6 +1286,8 @@ func WithIngredientGroup(v CodeableConcept) IngredientOption {
 }
 
 // WithIngredientAllergenicIndicator sets the AllergenicIndicator field.
+//
+// Deprecated: use IngredientBuilder.SetAllergenicIndicator instead; removed in v2.
 func WithIngredientAllergenicIndicator(v bool) IngredientOption {
 	return func(r *Ingredient) {
 		r.AllergenicIndicator = &v
@@ -1251,6 +1295,8 @@ func WithIngredientAllergenicIndicator(v bool) IngredientOption {
 }
 
 // WithIngredientComment sets the Comment field.
+//
+// Deprecated: use IngredientBuilder.SetComment instead; removed in v2.
 func WithIngredientComment(v string) IngredientOption {
 	return func(r *Ingredient) {
 		r.Comment = &v
@@ -1258,6 +1304,8 @@ func WithIngredientComment(v string) IngredientOption {
 }
 
 // WithIngredientManufacturer adds a Manufacturer to the Ingredient.
+//
+// Deprecated: use IngredientBuilder.AddManufacturer instead; removed in v2.
 func WithIngredientManufacturer(v IngredientManufacturer) IngredientOption {
 	return func(r *Ingredient) {
 		r.Manufacturer = append(r.Manufacturer, v)
@@ -1265,6 +1313,8 @@ func WithIngredientManufacturer(v IngredientManufacturer) IngredientOption {
 }
 
 // WithIngredientSubstance sets the Substance field.
+//
+// Deprecated: use IngredientBuilder.SetSubstance instead; removed in v2.
 func WithIngredientSubstance(v IngredientSubstance) IngredientOption {
 	return func(r *Ingredient) {
 		r.Substance = &v

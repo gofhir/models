@@ -1414,9 +1414,23 @@ func (b *ConceptMapBuilder) AddGroup(v ConceptMapGroup) *ConceptMapBuilder {
 // =============================================================================
 
 // ConceptMapOption is a functional option for configuring a ConceptMap.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ConceptMapBuilder. Every WithConceptMap* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ConceptMapOption func(*ConceptMap)
 
 // NewConceptMap creates a new ConceptMap with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewConceptMapBuilder().SetId("x").Build()
+//
+// Deprecated: use NewConceptMapBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewConceptMap(opts ...ConceptMapOption) *ConceptMap {
 	r := &ConceptMap{ResourceType: "ConceptMap"}
 	for _, opt := range opts {
@@ -1426,6 +1440,8 @@ func NewConceptMap(opts ...ConceptMapOption) *ConceptMap {
 }
 
 // WithConceptMapId sets the Id field.
+//
+// Deprecated: use ConceptMapBuilder.SetId instead; removed in v2.
 func WithConceptMapId(v string) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Id = &v
@@ -1433,6 +1449,8 @@ func WithConceptMapId(v string) ConceptMapOption {
 }
 
 // WithConceptMapMeta sets the Meta field.
+//
+// Deprecated: use ConceptMapBuilder.SetMeta instead; removed in v2.
 func WithConceptMapMeta(v Meta) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Meta = &v
@@ -1440,6 +1458,8 @@ func WithConceptMapMeta(v Meta) ConceptMapOption {
 }
 
 // WithConceptMapImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ConceptMapBuilder.SetImplicitRules instead; removed in v2.
 func WithConceptMapImplicitRules(v string) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.ImplicitRules = &v
@@ -1447,6 +1467,8 @@ func WithConceptMapImplicitRules(v string) ConceptMapOption {
 }
 
 // WithConceptMapLanguage sets the Language field.
+//
+// Deprecated: use ConceptMapBuilder.SetLanguage instead; removed in v2.
 func WithConceptMapLanguage(v string) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Language = &v
@@ -1454,6 +1476,8 @@ func WithConceptMapLanguage(v string) ConceptMapOption {
 }
 
 // WithConceptMapText sets the Text field.
+//
+// Deprecated: use ConceptMapBuilder.SetText instead; removed in v2.
 func WithConceptMapText(v Narrative) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Text = &v
@@ -1461,6 +1485,8 @@ func WithConceptMapText(v Narrative) ConceptMapOption {
 }
 
 // WithConceptMapContained adds a Contained to the ConceptMap.
+//
+// Deprecated: use ConceptMapBuilder.AddContained instead; removed in v2.
 func WithConceptMapContained(v Resource) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Contained = append(r.Contained, v)
@@ -1468,6 +1494,8 @@ func WithConceptMapContained(v Resource) ConceptMapOption {
 }
 
 // WithConceptMapExtension adds a Extension to the ConceptMap.
+//
+// Deprecated: use ConceptMapBuilder.AddExtension instead; removed in v2.
 func WithConceptMapExtension(v Extension) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Extension = append(r.Extension, v)
@@ -1475,6 +1503,8 @@ func WithConceptMapExtension(v Extension) ConceptMapOption {
 }
 
 // WithConceptMapModifierExtension adds a ModifierExtension to the ConceptMap.
+//
+// Deprecated: use ConceptMapBuilder.AddModifierExtension instead; removed in v2.
 func WithConceptMapModifierExtension(v Extension) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1482,6 +1512,8 @@ func WithConceptMapModifierExtension(v Extension) ConceptMapOption {
 }
 
 // WithConceptMapUrl sets the Url field.
+//
+// Deprecated: use ConceptMapBuilder.SetUrl instead; removed in v2.
 func WithConceptMapUrl(v string) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Url = &v
@@ -1489,6 +1521,8 @@ func WithConceptMapUrl(v string) ConceptMapOption {
 }
 
 // WithConceptMapIdentifier sets the Identifier field.
+//
+// Deprecated: use ConceptMapBuilder.SetIdentifier instead; removed in v2.
 func WithConceptMapIdentifier(v Identifier) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Identifier = &v
@@ -1496,6 +1530,8 @@ func WithConceptMapIdentifier(v Identifier) ConceptMapOption {
 }
 
 // WithConceptMapVersion sets the Version field.
+//
+// Deprecated: use ConceptMapBuilder.SetVersion instead; removed in v2.
 func WithConceptMapVersion(v string) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Version = &v
@@ -1503,6 +1539,8 @@ func WithConceptMapVersion(v string) ConceptMapOption {
 }
 
 // WithConceptMapName sets the Name field.
+//
+// Deprecated: use ConceptMapBuilder.SetName instead; removed in v2.
 func WithConceptMapName(v string) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Name = &v
@@ -1510,6 +1548,8 @@ func WithConceptMapName(v string) ConceptMapOption {
 }
 
 // WithConceptMapTitle sets the Title field.
+//
+// Deprecated: use ConceptMapBuilder.SetTitle instead; removed in v2.
 func WithConceptMapTitle(v string) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Title = &v
@@ -1517,6 +1557,8 @@ func WithConceptMapTitle(v string) ConceptMapOption {
 }
 
 // WithConceptMapStatus sets the Status field.
+//
+// Deprecated: use ConceptMapBuilder.SetStatus instead; removed in v2.
 func WithConceptMapStatus(v PublicationStatus) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Status = &v
@@ -1524,6 +1566,8 @@ func WithConceptMapStatus(v PublicationStatus) ConceptMapOption {
 }
 
 // WithConceptMapExperimental sets the Experimental field.
+//
+// Deprecated: use ConceptMapBuilder.SetExperimental instead; removed in v2.
 func WithConceptMapExperimental(v bool) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Experimental = &v
@@ -1531,6 +1575,8 @@ func WithConceptMapExperimental(v bool) ConceptMapOption {
 }
 
 // WithConceptMapDate sets the Date field.
+//
+// Deprecated: use ConceptMapBuilder.SetDate instead; removed in v2.
 func WithConceptMapDate(v string) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Date = &v
@@ -1538,6 +1584,8 @@ func WithConceptMapDate(v string) ConceptMapOption {
 }
 
 // WithConceptMapPublisher sets the Publisher field.
+//
+// Deprecated: use ConceptMapBuilder.SetPublisher instead; removed in v2.
 func WithConceptMapPublisher(v string) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Publisher = &v
@@ -1545,6 +1593,8 @@ func WithConceptMapPublisher(v string) ConceptMapOption {
 }
 
 // WithConceptMapContact adds a Contact to the ConceptMap.
+//
+// Deprecated: use ConceptMapBuilder.AddContact instead; removed in v2.
 func WithConceptMapContact(v ContactDetail) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Contact = append(r.Contact, v)
@@ -1552,6 +1602,8 @@ func WithConceptMapContact(v ContactDetail) ConceptMapOption {
 }
 
 // WithConceptMapDescription sets the Description field.
+//
+// Deprecated: use ConceptMapBuilder.SetDescription instead; removed in v2.
 func WithConceptMapDescription(v string) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Description = &v
@@ -1559,6 +1611,8 @@ func WithConceptMapDescription(v string) ConceptMapOption {
 }
 
 // WithConceptMapUseContext adds a UseContext to the ConceptMap.
+//
+// Deprecated: use ConceptMapBuilder.AddUseContext instead; removed in v2.
 func WithConceptMapUseContext(v UsageContext) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.UseContext = append(r.UseContext, v)
@@ -1566,6 +1620,8 @@ func WithConceptMapUseContext(v UsageContext) ConceptMapOption {
 }
 
 // WithConceptMapJurisdiction adds a Jurisdiction to the ConceptMap.
+//
+// Deprecated: use ConceptMapBuilder.AddJurisdiction instead; removed in v2.
 func WithConceptMapJurisdiction(v CodeableConcept) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1573,6 +1629,8 @@ func WithConceptMapJurisdiction(v CodeableConcept) ConceptMapOption {
 }
 
 // WithConceptMapPurpose sets the Purpose field.
+//
+// Deprecated: use ConceptMapBuilder.SetPurpose instead; removed in v2.
 func WithConceptMapPurpose(v string) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Purpose = &v
@@ -1580,6 +1638,8 @@ func WithConceptMapPurpose(v string) ConceptMapOption {
 }
 
 // WithConceptMapCopyright sets the Copyright field.
+//
+// Deprecated: use ConceptMapBuilder.SetCopyright instead; removed in v2.
 func WithConceptMapCopyright(v string) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Copyright = &v
@@ -1587,6 +1647,8 @@ func WithConceptMapCopyright(v string) ConceptMapOption {
 }
 
 // WithConceptMapSourceUri sets the SourceUri field.
+//
+// Deprecated: use ConceptMapBuilder.SetSourceUri instead; removed in v2.
 func WithConceptMapSourceUri(v string) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.SourceUri = &v
@@ -1594,6 +1656,8 @@ func WithConceptMapSourceUri(v string) ConceptMapOption {
 }
 
 // WithConceptMapSourceUriExt sets the SourceUriExt field.
+//
+// Deprecated: use ConceptMapBuilder.SetSourceUriExt instead; removed in v2.
 func WithConceptMapSourceUriExt(v Element) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.SourceUriExt = &v
@@ -1601,6 +1665,8 @@ func WithConceptMapSourceUriExt(v Element) ConceptMapOption {
 }
 
 // WithConceptMapSourceCanonical sets the SourceCanonical field.
+//
+// Deprecated: use ConceptMapBuilder.SetSourceCanonical instead; removed in v2.
 func WithConceptMapSourceCanonical(v string) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.SourceCanonical = &v
@@ -1608,6 +1674,8 @@ func WithConceptMapSourceCanonical(v string) ConceptMapOption {
 }
 
 // WithConceptMapSourceCanonicalExt sets the SourceCanonicalExt field.
+//
+// Deprecated: use ConceptMapBuilder.SetSourceCanonicalExt instead; removed in v2.
 func WithConceptMapSourceCanonicalExt(v Element) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.SourceCanonicalExt = &v
@@ -1615,6 +1683,8 @@ func WithConceptMapSourceCanonicalExt(v Element) ConceptMapOption {
 }
 
 // WithConceptMapTargetUri sets the TargetUri field.
+//
+// Deprecated: use ConceptMapBuilder.SetTargetUri instead; removed in v2.
 func WithConceptMapTargetUri(v string) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.TargetUri = &v
@@ -1622,6 +1692,8 @@ func WithConceptMapTargetUri(v string) ConceptMapOption {
 }
 
 // WithConceptMapTargetUriExt sets the TargetUriExt field.
+//
+// Deprecated: use ConceptMapBuilder.SetTargetUriExt instead; removed in v2.
 func WithConceptMapTargetUriExt(v Element) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.TargetUriExt = &v
@@ -1629,6 +1701,8 @@ func WithConceptMapTargetUriExt(v Element) ConceptMapOption {
 }
 
 // WithConceptMapTargetCanonical sets the TargetCanonical field.
+//
+// Deprecated: use ConceptMapBuilder.SetTargetCanonical instead; removed in v2.
 func WithConceptMapTargetCanonical(v string) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.TargetCanonical = &v
@@ -1636,6 +1710,8 @@ func WithConceptMapTargetCanonical(v string) ConceptMapOption {
 }
 
 // WithConceptMapTargetCanonicalExt sets the TargetCanonicalExt field.
+//
+// Deprecated: use ConceptMapBuilder.SetTargetCanonicalExt instead; removed in v2.
 func WithConceptMapTargetCanonicalExt(v Element) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.TargetCanonicalExt = &v
@@ -1643,6 +1719,8 @@ func WithConceptMapTargetCanonicalExt(v Element) ConceptMapOption {
 }
 
 // WithConceptMapGroup adds a Group to the ConceptMap.
+//
+// Deprecated: use ConceptMapBuilder.AddGroup instead; removed in v2.
 func WithConceptMapGroup(v ConceptMapGroup) ConceptMapOption {
 	return func(r *ConceptMap) {
 		r.Group = append(r.Group, v)

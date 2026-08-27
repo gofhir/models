@@ -2919,9 +2919,23 @@ func (b *TestScriptBuilder) SetTeardown(v TestScriptTeardown) *TestScriptBuilder
 // =============================================================================
 
 // TestScriptOption is a functional option for configuring a TestScript.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// TestScriptBuilder. Every WithTestScript* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type TestScriptOption func(*TestScript)
 
 // NewTestScript creates a new TestScript with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewTestScriptBuilder().SetId("x").Build()
+//
+// Deprecated: use NewTestScriptBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewTestScript(opts ...TestScriptOption) *TestScript {
 	r := &TestScript{ResourceType: "TestScript"}
 	for _, opt := range opts {
@@ -2931,6 +2945,8 @@ func NewTestScript(opts ...TestScriptOption) *TestScript {
 }
 
 // WithTestScriptId sets the Id field.
+//
+// Deprecated: use TestScriptBuilder.SetId instead; removed in v2.
 func WithTestScriptId(v string) TestScriptOption {
 	return func(r *TestScript) {
 		r.Id = &v
@@ -2938,6 +2954,8 @@ func WithTestScriptId(v string) TestScriptOption {
 }
 
 // WithTestScriptMeta sets the Meta field.
+//
+// Deprecated: use TestScriptBuilder.SetMeta instead; removed in v2.
 func WithTestScriptMeta(v Meta) TestScriptOption {
 	return func(r *TestScript) {
 		r.Meta = &v
@@ -2945,6 +2963,8 @@ func WithTestScriptMeta(v Meta) TestScriptOption {
 }
 
 // WithTestScriptImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use TestScriptBuilder.SetImplicitRules instead; removed in v2.
 func WithTestScriptImplicitRules(v string) TestScriptOption {
 	return func(r *TestScript) {
 		r.ImplicitRules = &v
@@ -2952,6 +2972,8 @@ func WithTestScriptImplicitRules(v string) TestScriptOption {
 }
 
 // WithTestScriptLanguage sets the Language field.
+//
+// Deprecated: use TestScriptBuilder.SetLanguage instead; removed in v2.
 func WithTestScriptLanguage(v string) TestScriptOption {
 	return func(r *TestScript) {
 		r.Language = &v
@@ -2959,6 +2981,8 @@ func WithTestScriptLanguage(v string) TestScriptOption {
 }
 
 // WithTestScriptText sets the Text field.
+//
+// Deprecated: use TestScriptBuilder.SetText instead; removed in v2.
 func WithTestScriptText(v Narrative) TestScriptOption {
 	return func(r *TestScript) {
 		r.Text = &v
@@ -2966,6 +2990,8 @@ func WithTestScriptText(v Narrative) TestScriptOption {
 }
 
 // WithTestScriptContained adds a Contained to the TestScript.
+//
+// Deprecated: use TestScriptBuilder.AddContained instead; removed in v2.
 func WithTestScriptContained(v Resource) TestScriptOption {
 	return func(r *TestScript) {
 		r.Contained = append(r.Contained, v)
@@ -2973,6 +2999,8 @@ func WithTestScriptContained(v Resource) TestScriptOption {
 }
 
 // WithTestScriptExtension adds a Extension to the TestScript.
+//
+// Deprecated: use TestScriptBuilder.AddExtension instead; removed in v2.
 func WithTestScriptExtension(v Extension) TestScriptOption {
 	return func(r *TestScript) {
 		r.Extension = append(r.Extension, v)
@@ -2980,6 +3008,8 @@ func WithTestScriptExtension(v Extension) TestScriptOption {
 }
 
 // WithTestScriptModifierExtension adds a ModifierExtension to the TestScript.
+//
+// Deprecated: use TestScriptBuilder.AddModifierExtension instead; removed in v2.
 func WithTestScriptModifierExtension(v Extension) TestScriptOption {
 	return func(r *TestScript) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -2987,6 +3017,8 @@ func WithTestScriptModifierExtension(v Extension) TestScriptOption {
 }
 
 // WithTestScriptUrl sets the Url field.
+//
+// Deprecated: use TestScriptBuilder.SetUrl instead; removed in v2.
 func WithTestScriptUrl(v string) TestScriptOption {
 	return func(r *TestScript) {
 		r.Url = &v
@@ -2994,6 +3026,8 @@ func WithTestScriptUrl(v string) TestScriptOption {
 }
 
 // WithTestScriptIdentifier sets the Identifier field.
+//
+// Deprecated: use TestScriptBuilder.SetIdentifier instead; removed in v2.
 func WithTestScriptIdentifier(v Identifier) TestScriptOption {
 	return func(r *TestScript) {
 		r.Identifier = &v
@@ -3001,6 +3035,8 @@ func WithTestScriptIdentifier(v Identifier) TestScriptOption {
 }
 
 // WithTestScriptVersion sets the Version field.
+//
+// Deprecated: use TestScriptBuilder.SetVersion instead; removed in v2.
 func WithTestScriptVersion(v string) TestScriptOption {
 	return func(r *TestScript) {
 		r.Version = &v
@@ -3008,6 +3044,8 @@ func WithTestScriptVersion(v string) TestScriptOption {
 }
 
 // WithTestScriptName sets the Name field.
+//
+// Deprecated: use TestScriptBuilder.SetName instead; removed in v2.
 func WithTestScriptName(v string) TestScriptOption {
 	return func(r *TestScript) {
 		r.Name = &v
@@ -3015,6 +3053,8 @@ func WithTestScriptName(v string) TestScriptOption {
 }
 
 // WithTestScriptTitle sets the Title field.
+//
+// Deprecated: use TestScriptBuilder.SetTitle instead; removed in v2.
 func WithTestScriptTitle(v string) TestScriptOption {
 	return func(r *TestScript) {
 		r.Title = &v
@@ -3022,6 +3062,8 @@ func WithTestScriptTitle(v string) TestScriptOption {
 }
 
 // WithTestScriptStatus sets the Status field.
+//
+// Deprecated: use TestScriptBuilder.SetStatus instead; removed in v2.
 func WithTestScriptStatus(v PublicationStatus) TestScriptOption {
 	return func(r *TestScript) {
 		r.Status = &v
@@ -3029,6 +3071,8 @@ func WithTestScriptStatus(v PublicationStatus) TestScriptOption {
 }
 
 // WithTestScriptExperimental sets the Experimental field.
+//
+// Deprecated: use TestScriptBuilder.SetExperimental instead; removed in v2.
 func WithTestScriptExperimental(v bool) TestScriptOption {
 	return func(r *TestScript) {
 		r.Experimental = &v
@@ -3036,6 +3080,8 @@ func WithTestScriptExperimental(v bool) TestScriptOption {
 }
 
 // WithTestScriptDate sets the Date field.
+//
+// Deprecated: use TestScriptBuilder.SetDate instead; removed in v2.
 func WithTestScriptDate(v string) TestScriptOption {
 	return func(r *TestScript) {
 		r.Date = &v
@@ -3043,6 +3089,8 @@ func WithTestScriptDate(v string) TestScriptOption {
 }
 
 // WithTestScriptPublisher sets the Publisher field.
+//
+// Deprecated: use TestScriptBuilder.SetPublisher instead; removed in v2.
 func WithTestScriptPublisher(v string) TestScriptOption {
 	return func(r *TestScript) {
 		r.Publisher = &v
@@ -3050,6 +3098,8 @@ func WithTestScriptPublisher(v string) TestScriptOption {
 }
 
 // WithTestScriptContact adds a Contact to the TestScript.
+//
+// Deprecated: use TestScriptBuilder.AddContact instead; removed in v2.
 func WithTestScriptContact(v ContactDetail) TestScriptOption {
 	return func(r *TestScript) {
 		r.Contact = append(r.Contact, v)
@@ -3057,6 +3107,8 @@ func WithTestScriptContact(v ContactDetail) TestScriptOption {
 }
 
 // WithTestScriptDescription sets the Description field.
+//
+// Deprecated: use TestScriptBuilder.SetDescription instead; removed in v2.
 func WithTestScriptDescription(v string) TestScriptOption {
 	return func(r *TestScript) {
 		r.Description = &v
@@ -3064,6 +3116,8 @@ func WithTestScriptDescription(v string) TestScriptOption {
 }
 
 // WithTestScriptUseContext adds a UseContext to the TestScript.
+//
+// Deprecated: use TestScriptBuilder.AddUseContext instead; removed in v2.
 func WithTestScriptUseContext(v UsageContext) TestScriptOption {
 	return func(r *TestScript) {
 		r.UseContext = append(r.UseContext, v)
@@ -3071,6 +3125,8 @@ func WithTestScriptUseContext(v UsageContext) TestScriptOption {
 }
 
 // WithTestScriptJurisdiction adds a Jurisdiction to the TestScript.
+//
+// Deprecated: use TestScriptBuilder.AddJurisdiction instead; removed in v2.
 func WithTestScriptJurisdiction(v CodeableConcept) TestScriptOption {
 	return func(r *TestScript) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -3078,6 +3134,8 @@ func WithTestScriptJurisdiction(v CodeableConcept) TestScriptOption {
 }
 
 // WithTestScriptPurpose sets the Purpose field.
+//
+// Deprecated: use TestScriptBuilder.SetPurpose instead; removed in v2.
 func WithTestScriptPurpose(v string) TestScriptOption {
 	return func(r *TestScript) {
 		r.Purpose = &v
@@ -3085,6 +3143,8 @@ func WithTestScriptPurpose(v string) TestScriptOption {
 }
 
 // WithTestScriptCopyright sets the Copyright field.
+//
+// Deprecated: use TestScriptBuilder.SetCopyright instead; removed in v2.
 func WithTestScriptCopyright(v string) TestScriptOption {
 	return func(r *TestScript) {
 		r.Copyright = &v
@@ -3092,6 +3152,8 @@ func WithTestScriptCopyright(v string) TestScriptOption {
 }
 
 // WithTestScriptOrigin adds a Origin to the TestScript.
+//
+// Deprecated: use TestScriptBuilder.AddOrigin instead; removed in v2.
 func WithTestScriptOrigin(v TestScriptOrigin) TestScriptOption {
 	return func(r *TestScript) {
 		r.Origin = append(r.Origin, v)
@@ -3099,6 +3161,8 @@ func WithTestScriptOrigin(v TestScriptOrigin) TestScriptOption {
 }
 
 // WithTestScriptDestination adds a Destination to the TestScript.
+//
+// Deprecated: use TestScriptBuilder.AddDestination instead; removed in v2.
 func WithTestScriptDestination(v TestScriptDestination) TestScriptOption {
 	return func(r *TestScript) {
 		r.Destination = append(r.Destination, v)
@@ -3106,6 +3170,8 @@ func WithTestScriptDestination(v TestScriptDestination) TestScriptOption {
 }
 
 // WithTestScriptMetadata sets the Metadata field.
+//
+// Deprecated: use TestScriptBuilder.SetMetadata instead; removed in v2.
 func WithTestScriptMetadata(v TestScriptMetadata) TestScriptOption {
 	return func(r *TestScript) {
 		r.Metadata = &v
@@ -3113,6 +3179,8 @@ func WithTestScriptMetadata(v TestScriptMetadata) TestScriptOption {
 }
 
 // WithTestScriptFixture adds a Fixture to the TestScript.
+//
+// Deprecated: use TestScriptBuilder.AddFixture instead; removed in v2.
 func WithTestScriptFixture(v TestScriptFixture) TestScriptOption {
 	return func(r *TestScript) {
 		r.Fixture = append(r.Fixture, v)
@@ -3120,6 +3188,8 @@ func WithTestScriptFixture(v TestScriptFixture) TestScriptOption {
 }
 
 // WithTestScriptProfile adds a Profile to the TestScript.
+//
+// Deprecated: use TestScriptBuilder.AddProfile instead; removed in v2.
 func WithTestScriptProfile(v Reference) TestScriptOption {
 	return func(r *TestScript) {
 		r.Profile = append(r.Profile, v)
@@ -3127,6 +3197,8 @@ func WithTestScriptProfile(v Reference) TestScriptOption {
 }
 
 // WithTestScriptVariable adds a Variable to the TestScript.
+//
+// Deprecated: use TestScriptBuilder.AddVariable instead; removed in v2.
 func WithTestScriptVariable(v TestScriptVariable) TestScriptOption {
 	return func(r *TestScript) {
 		r.Variable = append(r.Variable, v)
@@ -3134,6 +3206,8 @@ func WithTestScriptVariable(v TestScriptVariable) TestScriptOption {
 }
 
 // WithTestScriptSetup sets the Setup field.
+//
+// Deprecated: use TestScriptBuilder.SetSetup instead; removed in v2.
 func WithTestScriptSetup(v TestScriptSetup) TestScriptOption {
 	return func(r *TestScript) {
 		r.Setup = &v
@@ -3141,6 +3215,8 @@ func WithTestScriptSetup(v TestScriptSetup) TestScriptOption {
 }
 
 // WithTestScriptTest adds a Test to the TestScript.
+//
+// Deprecated: use TestScriptBuilder.AddTest instead; removed in v2.
 func WithTestScriptTest(v TestScriptTest) TestScriptOption {
 	return func(r *TestScript) {
 		r.Test = append(r.Test, v)
@@ -3148,6 +3224,8 @@ func WithTestScriptTest(v TestScriptTest) TestScriptOption {
 }
 
 // WithTestScriptTeardown sets the Teardown field.
+//
+// Deprecated: use TestScriptBuilder.SetTeardown instead; removed in v2.
 func WithTestScriptTeardown(v TestScriptTeardown) TestScriptOption {
 	return func(r *TestScript) {
 		r.Teardown = &v

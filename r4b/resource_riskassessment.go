@@ -871,9 +871,23 @@ func (b *RiskAssessmentBuilder) AddNote(v Annotation) *RiskAssessmentBuilder {
 // =============================================================================
 
 // RiskAssessmentOption is a functional option for configuring a RiskAssessment.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// RiskAssessmentBuilder. Every WithRiskAssessment* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type RiskAssessmentOption func(*RiskAssessment)
 
 // NewRiskAssessment creates a new RiskAssessment with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewRiskAssessmentBuilder().SetId("x").Build()
+//
+// Deprecated: use NewRiskAssessmentBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewRiskAssessment(opts ...RiskAssessmentOption) *RiskAssessment {
 	r := &RiskAssessment{ResourceType: "RiskAssessment"}
 	for _, opt := range opts {
@@ -883,6 +897,8 @@ func NewRiskAssessment(opts ...RiskAssessmentOption) *RiskAssessment {
 }
 
 // WithRiskAssessmentId sets the Id field.
+//
+// Deprecated: use RiskAssessmentBuilder.SetId instead; removed in v2.
 func WithRiskAssessmentId(v string) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.Id = &v
@@ -890,6 +906,8 @@ func WithRiskAssessmentId(v string) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentMeta sets the Meta field.
+//
+// Deprecated: use RiskAssessmentBuilder.SetMeta instead; removed in v2.
 func WithRiskAssessmentMeta(v Meta) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.Meta = &v
@@ -897,6 +915,8 @@ func WithRiskAssessmentMeta(v Meta) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use RiskAssessmentBuilder.SetImplicitRules instead; removed in v2.
 func WithRiskAssessmentImplicitRules(v string) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.ImplicitRules = &v
@@ -904,6 +924,8 @@ func WithRiskAssessmentImplicitRules(v string) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentLanguage sets the Language field.
+//
+// Deprecated: use RiskAssessmentBuilder.SetLanguage instead; removed in v2.
 func WithRiskAssessmentLanguage(v string) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.Language = &v
@@ -911,6 +933,8 @@ func WithRiskAssessmentLanguage(v string) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentText sets the Text field.
+//
+// Deprecated: use RiskAssessmentBuilder.SetText instead; removed in v2.
 func WithRiskAssessmentText(v Narrative) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.Text = &v
@@ -918,6 +942,8 @@ func WithRiskAssessmentText(v Narrative) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentContained adds a Contained to the RiskAssessment.
+//
+// Deprecated: use RiskAssessmentBuilder.AddContained instead; removed in v2.
 func WithRiskAssessmentContained(v Resource) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.Contained = append(r.Contained, v)
@@ -925,6 +951,8 @@ func WithRiskAssessmentContained(v Resource) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentExtension adds a Extension to the RiskAssessment.
+//
+// Deprecated: use RiskAssessmentBuilder.AddExtension instead; removed in v2.
 func WithRiskAssessmentExtension(v Extension) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.Extension = append(r.Extension, v)
@@ -932,6 +960,8 @@ func WithRiskAssessmentExtension(v Extension) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentModifierExtension adds a ModifierExtension to the RiskAssessment.
+//
+// Deprecated: use RiskAssessmentBuilder.AddModifierExtension instead; removed in v2.
 func WithRiskAssessmentModifierExtension(v Extension) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -939,6 +969,8 @@ func WithRiskAssessmentModifierExtension(v Extension) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentIdentifier adds a Identifier to the RiskAssessment.
+//
+// Deprecated: use RiskAssessmentBuilder.AddIdentifier instead; removed in v2.
 func WithRiskAssessmentIdentifier(v Identifier) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.Identifier = append(r.Identifier, v)
@@ -946,6 +978,8 @@ func WithRiskAssessmentIdentifier(v Identifier) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentBasedOn sets the BasedOn field.
+//
+// Deprecated: use RiskAssessmentBuilder.SetBasedOn instead; removed in v2.
 func WithRiskAssessmentBasedOn(v Reference) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.BasedOn = &v
@@ -953,6 +987,8 @@ func WithRiskAssessmentBasedOn(v Reference) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentParent sets the Parent field.
+//
+// Deprecated: use RiskAssessmentBuilder.SetParent instead; removed in v2.
 func WithRiskAssessmentParent(v Reference) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.Parent = &v
@@ -960,6 +996,8 @@ func WithRiskAssessmentParent(v Reference) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentStatus sets the Status field.
+//
+// Deprecated: use RiskAssessmentBuilder.SetStatus instead; removed in v2.
 func WithRiskAssessmentStatus(v ObservationStatus) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.Status = &v
@@ -967,6 +1005,8 @@ func WithRiskAssessmentStatus(v ObservationStatus) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentMethod sets the Method field.
+//
+// Deprecated: use RiskAssessmentBuilder.SetMethod instead; removed in v2.
 func WithRiskAssessmentMethod(v CodeableConcept) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.Method = &v
@@ -974,6 +1014,8 @@ func WithRiskAssessmentMethod(v CodeableConcept) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentCode sets the Code field.
+//
+// Deprecated: use RiskAssessmentBuilder.SetCode instead; removed in v2.
 func WithRiskAssessmentCode(v CodeableConcept) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.Code = &v
@@ -981,6 +1023,8 @@ func WithRiskAssessmentCode(v CodeableConcept) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentSubject sets the Subject field.
+//
+// Deprecated: use RiskAssessmentBuilder.SetSubject instead; removed in v2.
 func WithRiskAssessmentSubject(v Reference) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.Subject = v
@@ -988,6 +1032,8 @@ func WithRiskAssessmentSubject(v Reference) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentEncounter sets the Encounter field.
+//
+// Deprecated: use RiskAssessmentBuilder.SetEncounter instead; removed in v2.
 func WithRiskAssessmentEncounter(v Reference) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.Encounter = &v
@@ -995,6 +1041,8 @@ func WithRiskAssessmentEncounter(v Reference) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentOccurrenceDateTime sets the OccurrenceDateTime field.
+//
+// Deprecated: use RiskAssessmentBuilder.SetOccurrenceDateTime instead; removed in v2.
 func WithRiskAssessmentOccurrenceDateTime(v string) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.OccurrenceDateTime = &v
@@ -1002,6 +1050,8 @@ func WithRiskAssessmentOccurrenceDateTime(v string) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentOccurrenceDateTimeExt sets the OccurrenceDateTimeExt field.
+//
+// Deprecated: use RiskAssessmentBuilder.SetOccurrenceDateTimeExt instead; removed in v2.
 func WithRiskAssessmentOccurrenceDateTimeExt(v Element) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.OccurrenceDateTimeExt = &v
@@ -1009,6 +1059,8 @@ func WithRiskAssessmentOccurrenceDateTimeExt(v Element) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentOccurrencePeriod sets the OccurrencePeriod field.
+//
+// Deprecated: use RiskAssessmentBuilder.SetOccurrencePeriod instead; removed in v2.
 func WithRiskAssessmentOccurrencePeriod(v Period) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.OccurrencePeriod = &v
@@ -1016,6 +1068,8 @@ func WithRiskAssessmentOccurrencePeriod(v Period) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentCondition sets the Condition field.
+//
+// Deprecated: use RiskAssessmentBuilder.SetCondition instead; removed in v2.
 func WithRiskAssessmentCondition(v Reference) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.Condition = &v
@@ -1023,6 +1077,8 @@ func WithRiskAssessmentCondition(v Reference) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentPerformer sets the Performer field.
+//
+// Deprecated: use RiskAssessmentBuilder.SetPerformer instead; removed in v2.
 func WithRiskAssessmentPerformer(v Reference) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.Performer = &v
@@ -1030,6 +1086,8 @@ func WithRiskAssessmentPerformer(v Reference) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentReasonCode adds a ReasonCode to the RiskAssessment.
+//
+// Deprecated: use RiskAssessmentBuilder.AddReasonCode instead; removed in v2.
 func WithRiskAssessmentReasonCode(v CodeableConcept) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.ReasonCode = append(r.ReasonCode, v)
@@ -1037,6 +1095,8 @@ func WithRiskAssessmentReasonCode(v CodeableConcept) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentReasonReference adds a ReasonReference to the RiskAssessment.
+//
+// Deprecated: use RiskAssessmentBuilder.AddReasonReference instead; removed in v2.
 func WithRiskAssessmentReasonReference(v Reference) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.ReasonReference = append(r.ReasonReference, v)
@@ -1044,6 +1104,8 @@ func WithRiskAssessmentReasonReference(v Reference) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentBasis adds a Basis to the RiskAssessment.
+//
+// Deprecated: use RiskAssessmentBuilder.AddBasis instead; removed in v2.
 func WithRiskAssessmentBasis(v Reference) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.Basis = append(r.Basis, v)
@@ -1051,6 +1113,8 @@ func WithRiskAssessmentBasis(v Reference) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentPrediction adds a Prediction to the RiskAssessment.
+//
+// Deprecated: use RiskAssessmentBuilder.AddPrediction instead; removed in v2.
 func WithRiskAssessmentPrediction(v RiskAssessmentPrediction) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.Prediction = append(r.Prediction, v)
@@ -1058,6 +1122,8 @@ func WithRiskAssessmentPrediction(v RiskAssessmentPrediction) RiskAssessmentOpti
 }
 
 // WithRiskAssessmentMitigation sets the Mitigation field.
+//
+// Deprecated: use RiskAssessmentBuilder.SetMitigation instead; removed in v2.
 func WithRiskAssessmentMitigation(v string) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.Mitigation = &v
@@ -1065,6 +1131,8 @@ func WithRiskAssessmentMitigation(v string) RiskAssessmentOption {
 }
 
 // WithRiskAssessmentNote adds a Note to the RiskAssessment.
+//
+// Deprecated: use RiskAssessmentBuilder.AddNote instead; removed in v2.
 func WithRiskAssessmentNote(v Annotation) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
 		r.Note = append(r.Note, v)

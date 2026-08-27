@@ -2646,9 +2646,23 @@ func (b *TransportBuilder) SetHistory(v Reference) *TransportBuilder {
 // =============================================================================
 
 // TransportOption is a functional option for configuring a Transport.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// TransportBuilder. Every WithTransport* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type TransportOption func(*Transport)
 
 // NewTransport creates a new Transport with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewTransportBuilder().SetId("x").Build()
+//
+// Deprecated: use NewTransportBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewTransport(opts ...TransportOption) *Transport {
 	r := &Transport{ResourceType: "Transport"}
 	for _, opt := range opts {
@@ -2658,6 +2672,8 @@ func NewTransport(opts ...TransportOption) *Transport {
 }
 
 // WithTransportId sets the Id field.
+//
+// Deprecated: use TransportBuilder.SetId instead; removed in v2.
 func WithTransportId(v string) TransportOption {
 	return func(r *Transport) {
 		r.Id = &v
@@ -2665,6 +2681,8 @@ func WithTransportId(v string) TransportOption {
 }
 
 // WithTransportMeta sets the Meta field.
+//
+// Deprecated: use TransportBuilder.SetMeta instead; removed in v2.
 func WithTransportMeta(v Meta) TransportOption {
 	return func(r *Transport) {
 		r.Meta = &v
@@ -2672,6 +2690,8 @@ func WithTransportMeta(v Meta) TransportOption {
 }
 
 // WithTransportImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use TransportBuilder.SetImplicitRules instead; removed in v2.
 func WithTransportImplicitRules(v string) TransportOption {
 	return func(r *Transport) {
 		r.ImplicitRules = &v
@@ -2679,6 +2699,8 @@ func WithTransportImplicitRules(v string) TransportOption {
 }
 
 // WithTransportLanguage sets the Language field.
+//
+// Deprecated: use TransportBuilder.SetLanguage instead; removed in v2.
 func WithTransportLanguage(v string) TransportOption {
 	return func(r *Transport) {
 		r.Language = &v
@@ -2686,6 +2708,8 @@ func WithTransportLanguage(v string) TransportOption {
 }
 
 // WithTransportText sets the Text field.
+//
+// Deprecated: use TransportBuilder.SetText instead; removed in v2.
 func WithTransportText(v Narrative) TransportOption {
 	return func(r *Transport) {
 		r.Text = &v
@@ -2693,6 +2717,8 @@ func WithTransportText(v Narrative) TransportOption {
 }
 
 // WithTransportContained adds a Contained to the Transport.
+//
+// Deprecated: use TransportBuilder.AddContained instead; removed in v2.
 func WithTransportContained(v Resource) TransportOption {
 	return func(r *Transport) {
 		r.Contained = append(r.Contained, v)
@@ -2700,6 +2726,8 @@ func WithTransportContained(v Resource) TransportOption {
 }
 
 // WithTransportExtension adds a Extension to the Transport.
+//
+// Deprecated: use TransportBuilder.AddExtension instead; removed in v2.
 func WithTransportExtension(v Extension) TransportOption {
 	return func(r *Transport) {
 		r.Extension = append(r.Extension, v)
@@ -2707,6 +2735,8 @@ func WithTransportExtension(v Extension) TransportOption {
 }
 
 // WithTransportModifierExtension adds a ModifierExtension to the Transport.
+//
+// Deprecated: use TransportBuilder.AddModifierExtension instead; removed in v2.
 func WithTransportModifierExtension(v Extension) TransportOption {
 	return func(r *Transport) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -2714,6 +2744,8 @@ func WithTransportModifierExtension(v Extension) TransportOption {
 }
 
 // WithTransportIdentifier adds a Identifier to the Transport.
+//
+// Deprecated: use TransportBuilder.AddIdentifier instead; removed in v2.
 func WithTransportIdentifier(v Identifier) TransportOption {
 	return func(r *Transport) {
 		r.Identifier = append(r.Identifier, v)
@@ -2721,6 +2753,8 @@ func WithTransportIdentifier(v Identifier) TransportOption {
 }
 
 // WithTransportInstantiatesCanonical sets the InstantiatesCanonical field.
+//
+// Deprecated: use TransportBuilder.SetInstantiatesCanonical instead; removed in v2.
 func WithTransportInstantiatesCanonical(v string) TransportOption {
 	return func(r *Transport) {
 		r.InstantiatesCanonical = &v
@@ -2728,6 +2762,8 @@ func WithTransportInstantiatesCanonical(v string) TransportOption {
 }
 
 // WithTransportInstantiatesUri sets the InstantiatesUri field.
+//
+// Deprecated: use TransportBuilder.SetInstantiatesUri instead; removed in v2.
 func WithTransportInstantiatesUri(v string) TransportOption {
 	return func(r *Transport) {
 		r.InstantiatesUri = &v
@@ -2735,6 +2771,8 @@ func WithTransportInstantiatesUri(v string) TransportOption {
 }
 
 // WithTransportBasedOn adds a BasedOn to the Transport.
+//
+// Deprecated: use TransportBuilder.AddBasedOn instead; removed in v2.
 func WithTransportBasedOn(v Reference) TransportOption {
 	return func(r *Transport) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -2742,6 +2780,8 @@ func WithTransportBasedOn(v Reference) TransportOption {
 }
 
 // WithTransportGroupIdentifier sets the GroupIdentifier field.
+//
+// Deprecated: use TransportBuilder.SetGroupIdentifier instead; removed in v2.
 func WithTransportGroupIdentifier(v Identifier) TransportOption {
 	return func(r *Transport) {
 		r.GroupIdentifier = &v
@@ -2749,6 +2789,8 @@ func WithTransportGroupIdentifier(v Identifier) TransportOption {
 }
 
 // WithTransportPartOf adds a PartOf to the Transport.
+//
+// Deprecated: use TransportBuilder.AddPartOf instead; removed in v2.
 func WithTransportPartOf(v Reference) TransportOption {
 	return func(r *Transport) {
 		r.PartOf = append(r.PartOf, v)
@@ -2756,6 +2798,8 @@ func WithTransportPartOf(v Reference) TransportOption {
 }
 
 // WithTransportStatus sets the Status field.
+//
+// Deprecated: use TransportBuilder.SetStatus instead; removed in v2.
 func WithTransportStatus(v TransportStatus) TransportOption {
 	return func(r *Transport) {
 		r.Status = &v
@@ -2763,6 +2807,8 @@ func WithTransportStatus(v TransportStatus) TransportOption {
 }
 
 // WithTransportStatusReason sets the StatusReason field.
+//
+// Deprecated: use TransportBuilder.SetStatusReason instead; removed in v2.
 func WithTransportStatusReason(v CodeableConcept) TransportOption {
 	return func(r *Transport) {
 		r.StatusReason = &v
@@ -2770,6 +2816,8 @@ func WithTransportStatusReason(v CodeableConcept) TransportOption {
 }
 
 // WithTransportIntent sets the Intent field.
+//
+// Deprecated: use TransportBuilder.SetIntent instead; removed in v2.
 func WithTransportIntent(v TransportIntent) TransportOption {
 	return func(r *Transport) {
 		r.Intent = &v
@@ -2777,6 +2825,8 @@ func WithTransportIntent(v TransportIntent) TransportOption {
 }
 
 // WithTransportPriority sets the Priority field.
+//
+// Deprecated: use TransportBuilder.SetPriority instead; removed in v2.
 func WithTransportPriority(v RequestPriority) TransportOption {
 	return func(r *Transport) {
 		r.Priority = &v
@@ -2784,6 +2834,8 @@ func WithTransportPriority(v RequestPriority) TransportOption {
 }
 
 // WithTransportCode sets the Code field.
+//
+// Deprecated: use TransportBuilder.SetCode instead; removed in v2.
 func WithTransportCode(v CodeableConcept) TransportOption {
 	return func(r *Transport) {
 		r.Code = &v
@@ -2791,6 +2843,8 @@ func WithTransportCode(v CodeableConcept) TransportOption {
 }
 
 // WithTransportDescription sets the Description field.
+//
+// Deprecated: use TransportBuilder.SetDescription instead; removed in v2.
 func WithTransportDescription(v string) TransportOption {
 	return func(r *Transport) {
 		r.Description = &v
@@ -2798,6 +2852,8 @@ func WithTransportDescription(v string) TransportOption {
 }
 
 // WithTransportFocus sets the Focus field.
+//
+// Deprecated: use TransportBuilder.SetFocus instead; removed in v2.
 func WithTransportFocus(v Reference) TransportOption {
 	return func(r *Transport) {
 		r.Focus = &v
@@ -2805,6 +2861,8 @@ func WithTransportFocus(v Reference) TransportOption {
 }
 
 // WithTransportFor sets the For field.
+//
+// Deprecated: use TransportBuilder.SetFor instead; removed in v2.
 func WithTransportFor(v Reference) TransportOption {
 	return func(r *Transport) {
 		r.For = &v
@@ -2812,6 +2870,8 @@ func WithTransportFor(v Reference) TransportOption {
 }
 
 // WithTransportEncounter sets the Encounter field.
+//
+// Deprecated: use TransportBuilder.SetEncounter instead; removed in v2.
 func WithTransportEncounter(v Reference) TransportOption {
 	return func(r *Transport) {
 		r.Encounter = &v
@@ -2819,6 +2879,8 @@ func WithTransportEncounter(v Reference) TransportOption {
 }
 
 // WithTransportCompletionTime sets the CompletionTime field.
+//
+// Deprecated: use TransportBuilder.SetCompletionTime instead; removed in v2.
 func WithTransportCompletionTime(v string) TransportOption {
 	return func(r *Transport) {
 		r.CompletionTime = &v
@@ -2826,6 +2888,8 @@ func WithTransportCompletionTime(v string) TransportOption {
 }
 
 // WithTransportAuthoredOn sets the AuthoredOn field.
+//
+// Deprecated: use TransportBuilder.SetAuthoredOn instead; removed in v2.
 func WithTransportAuthoredOn(v string) TransportOption {
 	return func(r *Transport) {
 		r.AuthoredOn = &v
@@ -2833,6 +2897,8 @@ func WithTransportAuthoredOn(v string) TransportOption {
 }
 
 // WithTransportLastModified sets the LastModified field.
+//
+// Deprecated: use TransportBuilder.SetLastModified instead; removed in v2.
 func WithTransportLastModified(v string) TransportOption {
 	return func(r *Transport) {
 		r.LastModified = &v
@@ -2840,6 +2906,8 @@ func WithTransportLastModified(v string) TransportOption {
 }
 
 // WithTransportRequester sets the Requester field.
+//
+// Deprecated: use TransportBuilder.SetRequester instead; removed in v2.
 func WithTransportRequester(v Reference) TransportOption {
 	return func(r *Transport) {
 		r.Requester = &v
@@ -2847,6 +2915,8 @@ func WithTransportRequester(v Reference) TransportOption {
 }
 
 // WithTransportPerformerType adds a PerformerType to the Transport.
+//
+// Deprecated: use TransportBuilder.AddPerformerType instead; removed in v2.
 func WithTransportPerformerType(v CodeableConcept) TransportOption {
 	return func(r *Transport) {
 		r.PerformerType = append(r.PerformerType, v)
@@ -2854,6 +2924,8 @@ func WithTransportPerformerType(v CodeableConcept) TransportOption {
 }
 
 // WithTransportOwner sets the Owner field.
+//
+// Deprecated: use TransportBuilder.SetOwner instead; removed in v2.
 func WithTransportOwner(v Reference) TransportOption {
 	return func(r *Transport) {
 		r.Owner = &v
@@ -2861,6 +2933,8 @@ func WithTransportOwner(v Reference) TransportOption {
 }
 
 // WithTransportLocation sets the Location field.
+//
+// Deprecated: use TransportBuilder.SetLocation instead; removed in v2.
 func WithTransportLocation(v Reference) TransportOption {
 	return func(r *Transport) {
 		r.Location = &v
@@ -2868,6 +2942,8 @@ func WithTransportLocation(v Reference) TransportOption {
 }
 
 // WithTransportInsurance adds a Insurance to the Transport.
+//
+// Deprecated: use TransportBuilder.AddInsurance instead; removed in v2.
 func WithTransportInsurance(v Reference) TransportOption {
 	return func(r *Transport) {
 		r.Insurance = append(r.Insurance, v)
@@ -2875,6 +2951,8 @@ func WithTransportInsurance(v Reference) TransportOption {
 }
 
 // WithTransportNote adds a Note to the Transport.
+//
+// Deprecated: use TransportBuilder.AddNote instead; removed in v2.
 func WithTransportNote(v Annotation) TransportOption {
 	return func(r *Transport) {
 		r.Note = append(r.Note, v)
@@ -2882,6 +2960,8 @@ func WithTransportNote(v Annotation) TransportOption {
 }
 
 // WithTransportRelevantHistory adds a RelevantHistory to the Transport.
+//
+// Deprecated: use TransportBuilder.AddRelevantHistory instead; removed in v2.
 func WithTransportRelevantHistory(v Reference) TransportOption {
 	return func(r *Transport) {
 		r.RelevantHistory = append(r.RelevantHistory, v)
@@ -2889,6 +2969,8 @@ func WithTransportRelevantHistory(v Reference) TransportOption {
 }
 
 // WithTransportRestriction sets the Restriction field.
+//
+// Deprecated: use TransportBuilder.SetRestriction instead; removed in v2.
 func WithTransportRestriction(v TransportRestriction) TransportOption {
 	return func(r *Transport) {
 		r.Restriction = &v
@@ -2896,6 +2978,8 @@ func WithTransportRestriction(v TransportRestriction) TransportOption {
 }
 
 // WithTransportInput adds a Input to the Transport.
+//
+// Deprecated: use TransportBuilder.AddInput instead; removed in v2.
 func WithTransportInput(v TransportInput) TransportOption {
 	return func(r *Transport) {
 		r.Input = append(r.Input, v)
@@ -2903,6 +2987,8 @@ func WithTransportInput(v TransportInput) TransportOption {
 }
 
 // WithTransportOutput adds a Output to the Transport.
+//
+// Deprecated: use TransportBuilder.AddOutput instead; removed in v2.
 func WithTransportOutput(v TransportOutput) TransportOption {
 	return func(r *Transport) {
 		r.Output = append(r.Output, v)
@@ -2910,6 +2996,8 @@ func WithTransportOutput(v TransportOutput) TransportOption {
 }
 
 // WithTransportRequestedLocation sets the RequestedLocation field.
+//
+// Deprecated: use TransportBuilder.SetRequestedLocation instead; removed in v2.
 func WithTransportRequestedLocation(v Reference) TransportOption {
 	return func(r *Transport) {
 		r.RequestedLocation = v
@@ -2917,6 +3005,8 @@ func WithTransportRequestedLocation(v Reference) TransportOption {
 }
 
 // WithTransportCurrentLocation sets the CurrentLocation field.
+//
+// Deprecated: use TransportBuilder.SetCurrentLocation instead; removed in v2.
 func WithTransportCurrentLocation(v Reference) TransportOption {
 	return func(r *Transport) {
 		r.CurrentLocation = v
@@ -2924,6 +3014,8 @@ func WithTransportCurrentLocation(v Reference) TransportOption {
 }
 
 // WithTransportReason sets the Reason field.
+//
+// Deprecated: use TransportBuilder.SetReason instead; removed in v2.
 func WithTransportReason(v CodeableReference) TransportOption {
 	return func(r *Transport) {
 		r.Reason = &v
@@ -2931,6 +3023,8 @@ func WithTransportReason(v CodeableReference) TransportOption {
 }
 
 // WithTransportHistory sets the History field.
+//
+// Deprecated: use TransportBuilder.SetHistory instead; removed in v2.
 func WithTransportHistory(v Reference) TransportOption {
 	return func(r *Transport) {
 		r.History = &v

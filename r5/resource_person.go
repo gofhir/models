@@ -824,9 +824,23 @@ func (b *PersonBuilder) AddLink(v PersonLink) *PersonBuilder {
 // =============================================================================
 
 // PersonOption is a functional option for configuring a Person.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// PersonBuilder. Every WithPerson* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type PersonOption func(*Person)
 
 // NewPerson creates a new Person with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewPersonBuilder().SetId("x").Build()
+//
+// Deprecated: use NewPersonBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewPerson(opts ...PersonOption) *Person {
 	r := &Person{ResourceType: "Person"}
 	for _, opt := range opts {
@@ -836,6 +850,8 @@ func NewPerson(opts ...PersonOption) *Person {
 }
 
 // WithPersonId sets the Id field.
+//
+// Deprecated: use PersonBuilder.SetId instead; removed in v2.
 func WithPersonId(v string) PersonOption {
 	return func(r *Person) {
 		r.Id = &v
@@ -843,6 +859,8 @@ func WithPersonId(v string) PersonOption {
 }
 
 // WithPersonMeta sets the Meta field.
+//
+// Deprecated: use PersonBuilder.SetMeta instead; removed in v2.
 func WithPersonMeta(v Meta) PersonOption {
 	return func(r *Person) {
 		r.Meta = &v
@@ -850,6 +868,8 @@ func WithPersonMeta(v Meta) PersonOption {
 }
 
 // WithPersonImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use PersonBuilder.SetImplicitRules instead; removed in v2.
 func WithPersonImplicitRules(v string) PersonOption {
 	return func(r *Person) {
 		r.ImplicitRules = &v
@@ -857,6 +877,8 @@ func WithPersonImplicitRules(v string) PersonOption {
 }
 
 // WithPersonLanguage sets the Language field.
+//
+// Deprecated: use PersonBuilder.SetLanguage instead; removed in v2.
 func WithPersonLanguage(v string) PersonOption {
 	return func(r *Person) {
 		r.Language = &v
@@ -864,6 +886,8 @@ func WithPersonLanguage(v string) PersonOption {
 }
 
 // WithPersonText sets the Text field.
+//
+// Deprecated: use PersonBuilder.SetText instead; removed in v2.
 func WithPersonText(v Narrative) PersonOption {
 	return func(r *Person) {
 		r.Text = &v
@@ -871,6 +895,8 @@ func WithPersonText(v Narrative) PersonOption {
 }
 
 // WithPersonContained adds a Contained to the Person.
+//
+// Deprecated: use PersonBuilder.AddContained instead; removed in v2.
 func WithPersonContained(v Resource) PersonOption {
 	return func(r *Person) {
 		r.Contained = append(r.Contained, v)
@@ -878,6 +904,8 @@ func WithPersonContained(v Resource) PersonOption {
 }
 
 // WithPersonExtension adds a Extension to the Person.
+//
+// Deprecated: use PersonBuilder.AddExtension instead; removed in v2.
 func WithPersonExtension(v Extension) PersonOption {
 	return func(r *Person) {
 		r.Extension = append(r.Extension, v)
@@ -885,6 +913,8 @@ func WithPersonExtension(v Extension) PersonOption {
 }
 
 // WithPersonModifierExtension adds a ModifierExtension to the Person.
+//
+// Deprecated: use PersonBuilder.AddModifierExtension instead; removed in v2.
 func WithPersonModifierExtension(v Extension) PersonOption {
 	return func(r *Person) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -892,6 +922,8 @@ func WithPersonModifierExtension(v Extension) PersonOption {
 }
 
 // WithPersonIdentifier adds a Identifier to the Person.
+//
+// Deprecated: use PersonBuilder.AddIdentifier instead; removed in v2.
 func WithPersonIdentifier(v Identifier) PersonOption {
 	return func(r *Person) {
 		r.Identifier = append(r.Identifier, v)
@@ -899,6 +931,8 @@ func WithPersonIdentifier(v Identifier) PersonOption {
 }
 
 // WithPersonActive sets the Active field.
+//
+// Deprecated: use PersonBuilder.SetActive instead; removed in v2.
 func WithPersonActive(v bool) PersonOption {
 	return func(r *Person) {
 		r.Active = &v
@@ -906,6 +940,8 @@ func WithPersonActive(v bool) PersonOption {
 }
 
 // WithPersonName adds a Name to the Person.
+//
+// Deprecated: use PersonBuilder.AddName instead; removed in v2.
 func WithPersonName(v HumanName) PersonOption {
 	return func(r *Person) {
 		r.Name = append(r.Name, v)
@@ -913,6 +949,8 @@ func WithPersonName(v HumanName) PersonOption {
 }
 
 // WithPersonTelecom adds a Telecom to the Person.
+//
+// Deprecated: use PersonBuilder.AddTelecom instead; removed in v2.
 func WithPersonTelecom(v ContactPoint) PersonOption {
 	return func(r *Person) {
 		r.Telecom = append(r.Telecom, v)
@@ -920,6 +958,8 @@ func WithPersonTelecom(v ContactPoint) PersonOption {
 }
 
 // WithPersonGender sets the Gender field.
+//
+// Deprecated: use PersonBuilder.SetGender instead; removed in v2.
 func WithPersonGender(v AdministrativeGender) PersonOption {
 	return func(r *Person) {
 		r.Gender = &v
@@ -927,6 +967,8 @@ func WithPersonGender(v AdministrativeGender) PersonOption {
 }
 
 // WithPersonBirthDate sets the BirthDate field.
+//
+// Deprecated: use PersonBuilder.SetBirthDate instead; removed in v2.
 func WithPersonBirthDate(v string) PersonOption {
 	return func(r *Person) {
 		r.BirthDate = &v
@@ -934,6 +976,8 @@ func WithPersonBirthDate(v string) PersonOption {
 }
 
 // WithPersonDeceasedBoolean sets the DeceasedBoolean field.
+//
+// Deprecated: use PersonBuilder.SetDeceasedBoolean instead; removed in v2.
 func WithPersonDeceasedBoolean(v bool) PersonOption {
 	return func(r *Person) {
 		r.DeceasedBoolean = &v
@@ -941,6 +985,8 @@ func WithPersonDeceasedBoolean(v bool) PersonOption {
 }
 
 // WithPersonDeceasedBooleanExt sets the DeceasedBooleanExt field.
+//
+// Deprecated: use PersonBuilder.SetDeceasedBooleanExt instead; removed in v2.
 func WithPersonDeceasedBooleanExt(v Element) PersonOption {
 	return func(r *Person) {
 		r.DeceasedBooleanExt = &v
@@ -948,6 +994,8 @@ func WithPersonDeceasedBooleanExt(v Element) PersonOption {
 }
 
 // WithPersonDeceasedDateTime sets the DeceasedDateTime field.
+//
+// Deprecated: use PersonBuilder.SetDeceasedDateTime instead; removed in v2.
 func WithPersonDeceasedDateTime(v string) PersonOption {
 	return func(r *Person) {
 		r.DeceasedDateTime = &v
@@ -955,6 +1003,8 @@ func WithPersonDeceasedDateTime(v string) PersonOption {
 }
 
 // WithPersonDeceasedDateTimeExt sets the DeceasedDateTimeExt field.
+//
+// Deprecated: use PersonBuilder.SetDeceasedDateTimeExt instead; removed in v2.
 func WithPersonDeceasedDateTimeExt(v Element) PersonOption {
 	return func(r *Person) {
 		r.DeceasedDateTimeExt = &v
@@ -962,6 +1012,8 @@ func WithPersonDeceasedDateTimeExt(v Element) PersonOption {
 }
 
 // WithPersonAddress adds a Address to the Person.
+//
+// Deprecated: use PersonBuilder.AddAddress instead; removed in v2.
 func WithPersonAddress(v Address) PersonOption {
 	return func(r *Person) {
 		r.Address = append(r.Address, v)
@@ -969,6 +1021,8 @@ func WithPersonAddress(v Address) PersonOption {
 }
 
 // WithPersonMaritalStatus sets the MaritalStatus field.
+//
+// Deprecated: use PersonBuilder.SetMaritalStatus instead; removed in v2.
 func WithPersonMaritalStatus(v CodeableConcept) PersonOption {
 	return func(r *Person) {
 		r.MaritalStatus = &v
@@ -976,6 +1030,8 @@ func WithPersonMaritalStatus(v CodeableConcept) PersonOption {
 }
 
 // WithPersonPhoto adds a Photo to the Person.
+//
+// Deprecated: use PersonBuilder.AddPhoto instead; removed in v2.
 func WithPersonPhoto(v Attachment) PersonOption {
 	return func(r *Person) {
 		r.Photo = append(r.Photo, v)
@@ -983,6 +1039,8 @@ func WithPersonPhoto(v Attachment) PersonOption {
 }
 
 // WithPersonCommunication adds a Communication to the Person.
+//
+// Deprecated: use PersonBuilder.AddCommunication instead; removed in v2.
 func WithPersonCommunication(v PersonCommunication) PersonOption {
 	return func(r *Person) {
 		r.Communication = append(r.Communication, v)
@@ -990,6 +1048,8 @@ func WithPersonCommunication(v PersonCommunication) PersonOption {
 }
 
 // WithPersonManagingOrganization sets the ManagingOrganization field.
+//
+// Deprecated: use PersonBuilder.SetManagingOrganization instead; removed in v2.
 func WithPersonManagingOrganization(v Reference) PersonOption {
 	return func(r *Person) {
 		r.ManagingOrganization = &v
@@ -997,6 +1057,8 @@ func WithPersonManagingOrganization(v Reference) PersonOption {
 }
 
 // WithPersonLink adds a Link to the Person.
+//
+// Deprecated: use PersonBuilder.AddLink instead; removed in v2.
 func WithPersonLink(v PersonLink) PersonOption {
 	return func(r *Person) {
 		r.Link = append(r.Link, v)

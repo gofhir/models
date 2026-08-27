@@ -889,9 +889,23 @@ func (b *CommunicationBuilder) AddNote(v Annotation) *CommunicationBuilder {
 // =============================================================================
 
 // CommunicationOption is a functional option for configuring a Communication.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// CommunicationBuilder. Every WithCommunication* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type CommunicationOption func(*Communication)
 
 // NewCommunication creates a new Communication with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewCommunicationBuilder().SetId("x").Build()
+//
+// Deprecated: use NewCommunicationBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewCommunication(opts ...CommunicationOption) *Communication {
 	r := &Communication{ResourceType: "Communication"}
 	for _, opt := range opts {
@@ -901,6 +915,8 @@ func NewCommunication(opts ...CommunicationOption) *Communication {
 }
 
 // WithCommunicationId sets the Id field.
+//
+// Deprecated: use CommunicationBuilder.SetId instead; removed in v2.
 func WithCommunicationId(v string) CommunicationOption {
 	return func(r *Communication) {
 		r.Id = &v
@@ -908,6 +924,8 @@ func WithCommunicationId(v string) CommunicationOption {
 }
 
 // WithCommunicationMeta sets the Meta field.
+//
+// Deprecated: use CommunicationBuilder.SetMeta instead; removed in v2.
 func WithCommunicationMeta(v Meta) CommunicationOption {
 	return func(r *Communication) {
 		r.Meta = &v
@@ -915,6 +933,8 @@ func WithCommunicationMeta(v Meta) CommunicationOption {
 }
 
 // WithCommunicationImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use CommunicationBuilder.SetImplicitRules instead; removed in v2.
 func WithCommunicationImplicitRules(v string) CommunicationOption {
 	return func(r *Communication) {
 		r.ImplicitRules = &v
@@ -922,6 +942,8 @@ func WithCommunicationImplicitRules(v string) CommunicationOption {
 }
 
 // WithCommunicationLanguage sets the Language field.
+//
+// Deprecated: use CommunicationBuilder.SetLanguage instead; removed in v2.
 func WithCommunicationLanguage(v string) CommunicationOption {
 	return func(r *Communication) {
 		r.Language = &v
@@ -929,6 +951,8 @@ func WithCommunicationLanguage(v string) CommunicationOption {
 }
 
 // WithCommunicationText sets the Text field.
+//
+// Deprecated: use CommunicationBuilder.SetText instead; removed in v2.
 func WithCommunicationText(v Narrative) CommunicationOption {
 	return func(r *Communication) {
 		r.Text = &v
@@ -936,6 +960,8 @@ func WithCommunicationText(v Narrative) CommunicationOption {
 }
 
 // WithCommunicationContained adds a Contained to the Communication.
+//
+// Deprecated: use CommunicationBuilder.AddContained instead; removed in v2.
 func WithCommunicationContained(v Resource) CommunicationOption {
 	return func(r *Communication) {
 		r.Contained = append(r.Contained, v)
@@ -943,6 +969,8 @@ func WithCommunicationContained(v Resource) CommunicationOption {
 }
 
 // WithCommunicationExtension adds a Extension to the Communication.
+//
+// Deprecated: use CommunicationBuilder.AddExtension instead; removed in v2.
 func WithCommunicationExtension(v Extension) CommunicationOption {
 	return func(r *Communication) {
 		r.Extension = append(r.Extension, v)
@@ -950,6 +978,8 @@ func WithCommunicationExtension(v Extension) CommunicationOption {
 }
 
 // WithCommunicationModifierExtension adds a ModifierExtension to the Communication.
+//
+// Deprecated: use CommunicationBuilder.AddModifierExtension instead; removed in v2.
 func WithCommunicationModifierExtension(v Extension) CommunicationOption {
 	return func(r *Communication) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -957,6 +987,8 @@ func WithCommunicationModifierExtension(v Extension) CommunicationOption {
 }
 
 // WithCommunicationIdentifier adds a Identifier to the Communication.
+//
+// Deprecated: use CommunicationBuilder.AddIdentifier instead; removed in v2.
 func WithCommunicationIdentifier(v Identifier) CommunicationOption {
 	return func(r *Communication) {
 		r.Identifier = append(r.Identifier, v)
@@ -964,6 +996,8 @@ func WithCommunicationIdentifier(v Identifier) CommunicationOption {
 }
 
 // WithCommunicationInstantiatesCanonical adds a InstantiatesCanonical to the Communication.
+//
+// Deprecated: use CommunicationBuilder.AddInstantiatesCanonical instead; removed in v2.
 func WithCommunicationInstantiatesCanonical(v string) CommunicationOption {
 	return func(r *Communication) {
 		r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
@@ -971,6 +1005,8 @@ func WithCommunicationInstantiatesCanonical(v string) CommunicationOption {
 }
 
 // WithCommunicationInstantiatesUri adds a InstantiatesUri to the Communication.
+//
+// Deprecated: use CommunicationBuilder.AddInstantiatesUri instead; removed in v2.
 func WithCommunicationInstantiatesUri(v string) CommunicationOption {
 	return func(r *Communication) {
 		r.InstantiatesUri = append(r.InstantiatesUri, v)
@@ -978,6 +1014,8 @@ func WithCommunicationInstantiatesUri(v string) CommunicationOption {
 }
 
 // WithCommunicationBasedOn adds a BasedOn to the Communication.
+//
+// Deprecated: use CommunicationBuilder.AddBasedOn instead; removed in v2.
 func WithCommunicationBasedOn(v Reference) CommunicationOption {
 	return func(r *Communication) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -985,6 +1023,8 @@ func WithCommunicationBasedOn(v Reference) CommunicationOption {
 }
 
 // WithCommunicationPartOf adds a PartOf to the Communication.
+//
+// Deprecated: use CommunicationBuilder.AddPartOf instead; removed in v2.
 func WithCommunicationPartOf(v Reference) CommunicationOption {
 	return func(r *Communication) {
 		r.PartOf = append(r.PartOf, v)
@@ -992,6 +1032,8 @@ func WithCommunicationPartOf(v Reference) CommunicationOption {
 }
 
 // WithCommunicationInResponseTo adds a InResponseTo to the Communication.
+//
+// Deprecated: use CommunicationBuilder.AddInResponseTo instead; removed in v2.
 func WithCommunicationInResponseTo(v Reference) CommunicationOption {
 	return func(r *Communication) {
 		r.InResponseTo = append(r.InResponseTo, v)
@@ -999,6 +1041,8 @@ func WithCommunicationInResponseTo(v Reference) CommunicationOption {
 }
 
 // WithCommunicationStatus sets the Status field.
+//
+// Deprecated: use CommunicationBuilder.SetStatus instead; removed in v2.
 func WithCommunicationStatus(v EventStatus) CommunicationOption {
 	return func(r *Communication) {
 		r.Status = &v
@@ -1006,6 +1050,8 @@ func WithCommunicationStatus(v EventStatus) CommunicationOption {
 }
 
 // WithCommunicationStatusReason sets the StatusReason field.
+//
+// Deprecated: use CommunicationBuilder.SetStatusReason instead; removed in v2.
 func WithCommunicationStatusReason(v CodeableConcept) CommunicationOption {
 	return func(r *Communication) {
 		r.StatusReason = &v
@@ -1013,6 +1059,8 @@ func WithCommunicationStatusReason(v CodeableConcept) CommunicationOption {
 }
 
 // WithCommunicationCategory adds a Category to the Communication.
+//
+// Deprecated: use CommunicationBuilder.AddCategory instead; removed in v2.
 func WithCommunicationCategory(v CodeableConcept) CommunicationOption {
 	return func(r *Communication) {
 		r.Category = append(r.Category, v)
@@ -1020,6 +1068,8 @@ func WithCommunicationCategory(v CodeableConcept) CommunicationOption {
 }
 
 // WithCommunicationPriority sets the Priority field.
+//
+// Deprecated: use CommunicationBuilder.SetPriority instead; removed in v2.
 func WithCommunicationPriority(v RequestPriority) CommunicationOption {
 	return func(r *Communication) {
 		r.Priority = &v
@@ -1027,6 +1077,8 @@ func WithCommunicationPriority(v RequestPriority) CommunicationOption {
 }
 
 // WithCommunicationMedium adds a Medium to the Communication.
+//
+// Deprecated: use CommunicationBuilder.AddMedium instead; removed in v2.
 func WithCommunicationMedium(v CodeableConcept) CommunicationOption {
 	return func(r *Communication) {
 		r.Medium = append(r.Medium, v)
@@ -1034,6 +1086,8 @@ func WithCommunicationMedium(v CodeableConcept) CommunicationOption {
 }
 
 // WithCommunicationSubject sets the Subject field.
+//
+// Deprecated: use CommunicationBuilder.SetSubject instead; removed in v2.
 func WithCommunicationSubject(v Reference) CommunicationOption {
 	return func(r *Communication) {
 		r.Subject = &v
@@ -1041,6 +1095,8 @@ func WithCommunicationSubject(v Reference) CommunicationOption {
 }
 
 // WithCommunicationTopic sets the Topic field.
+//
+// Deprecated: use CommunicationBuilder.SetTopic instead; removed in v2.
 func WithCommunicationTopic(v CodeableConcept) CommunicationOption {
 	return func(r *Communication) {
 		r.Topic = &v
@@ -1048,6 +1104,8 @@ func WithCommunicationTopic(v CodeableConcept) CommunicationOption {
 }
 
 // WithCommunicationAbout adds a About to the Communication.
+//
+// Deprecated: use CommunicationBuilder.AddAbout instead; removed in v2.
 func WithCommunicationAbout(v Reference) CommunicationOption {
 	return func(r *Communication) {
 		r.About = append(r.About, v)
@@ -1055,6 +1113,8 @@ func WithCommunicationAbout(v Reference) CommunicationOption {
 }
 
 // WithCommunicationEncounter sets the Encounter field.
+//
+// Deprecated: use CommunicationBuilder.SetEncounter instead; removed in v2.
 func WithCommunicationEncounter(v Reference) CommunicationOption {
 	return func(r *Communication) {
 		r.Encounter = &v
@@ -1062,6 +1122,8 @@ func WithCommunicationEncounter(v Reference) CommunicationOption {
 }
 
 // WithCommunicationSent sets the Sent field.
+//
+// Deprecated: use CommunicationBuilder.SetSent instead; removed in v2.
 func WithCommunicationSent(v string) CommunicationOption {
 	return func(r *Communication) {
 		r.Sent = &v
@@ -1069,6 +1131,8 @@ func WithCommunicationSent(v string) CommunicationOption {
 }
 
 // WithCommunicationReceived sets the Received field.
+//
+// Deprecated: use CommunicationBuilder.SetReceived instead; removed in v2.
 func WithCommunicationReceived(v string) CommunicationOption {
 	return func(r *Communication) {
 		r.Received = &v
@@ -1076,6 +1140,8 @@ func WithCommunicationReceived(v string) CommunicationOption {
 }
 
 // WithCommunicationRecipient adds a Recipient to the Communication.
+//
+// Deprecated: use CommunicationBuilder.AddRecipient instead; removed in v2.
 func WithCommunicationRecipient(v Reference) CommunicationOption {
 	return func(r *Communication) {
 		r.Recipient = append(r.Recipient, v)
@@ -1083,6 +1149,8 @@ func WithCommunicationRecipient(v Reference) CommunicationOption {
 }
 
 // WithCommunicationSender sets the Sender field.
+//
+// Deprecated: use CommunicationBuilder.SetSender instead; removed in v2.
 func WithCommunicationSender(v Reference) CommunicationOption {
 	return func(r *Communication) {
 		r.Sender = &v
@@ -1090,6 +1158,8 @@ func WithCommunicationSender(v Reference) CommunicationOption {
 }
 
 // WithCommunicationReason adds a Reason to the Communication.
+//
+// Deprecated: use CommunicationBuilder.AddReason instead; removed in v2.
 func WithCommunicationReason(v CodeableReference) CommunicationOption {
 	return func(r *Communication) {
 		r.Reason = append(r.Reason, v)
@@ -1097,6 +1167,8 @@ func WithCommunicationReason(v CodeableReference) CommunicationOption {
 }
 
 // WithCommunicationPayload adds a Payload to the Communication.
+//
+// Deprecated: use CommunicationBuilder.AddPayload instead; removed in v2.
 func WithCommunicationPayload(v CommunicationPayload) CommunicationOption {
 	return func(r *Communication) {
 		r.Payload = append(r.Payload, v)
@@ -1104,6 +1176,8 @@ func WithCommunicationPayload(v CommunicationPayload) CommunicationOption {
 }
 
 // WithCommunicationNote adds a Note to the Communication.
+//
+// Deprecated: use CommunicationBuilder.AddNote instead; removed in v2.
 func WithCommunicationNote(v Annotation) CommunicationOption {
 	return func(r *Communication) {
 		r.Note = append(r.Note, v)

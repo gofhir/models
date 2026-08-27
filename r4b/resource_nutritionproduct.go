@@ -1040,9 +1040,23 @@ func (b *NutritionProductBuilder) AddNote(v Annotation) *NutritionProductBuilder
 // =============================================================================
 
 // NutritionProductOption is a functional option for configuring a NutritionProduct.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// NutritionProductBuilder. Every WithNutritionProduct* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type NutritionProductOption func(*NutritionProduct)
 
 // NewNutritionProduct creates a new NutritionProduct with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewNutritionProductBuilder().SetId("x").Build()
+//
+// Deprecated: use NewNutritionProductBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewNutritionProduct(opts ...NutritionProductOption) *NutritionProduct {
 	r := &NutritionProduct{ResourceType: "NutritionProduct"}
 	for _, opt := range opts {
@@ -1052,6 +1066,8 @@ func NewNutritionProduct(opts ...NutritionProductOption) *NutritionProduct {
 }
 
 // WithNutritionProductId sets the Id field.
+//
+// Deprecated: use NutritionProductBuilder.SetId instead; removed in v2.
 func WithNutritionProductId(v string) NutritionProductOption {
 	return func(r *NutritionProduct) {
 		r.Id = &v
@@ -1059,6 +1075,8 @@ func WithNutritionProductId(v string) NutritionProductOption {
 }
 
 // WithNutritionProductMeta sets the Meta field.
+//
+// Deprecated: use NutritionProductBuilder.SetMeta instead; removed in v2.
 func WithNutritionProductMeta(v Meta) NutritionProductOption {
 	return func(r *NutritionProduct) {
 		r.Meta = &v
@@ -1066,6 +1084,8 @@ func WithNutritionProductMeta(v Meta) NutritionProductOption {
 }
 
 // WithNutritionProductImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use NutritionProductBuilder.SetImplicitRules instead; removed in v2.
 func WithNutritionProductImplicitRules(v string) NutritionProductOption {
 	return func(r *NutritionProduct) {
 		r.ImplicitRules = &v
@@ -1073,6 +1093,8 @@ func WithNutritionProductImplicitRules(v string) NutritionProductOption {
 }
 
 // WithNutritionProductLanguage sets the Language field.
+//
+// Deprecated: use NutritionProductBuilder.SetLanguage instead; removed in v2.
 func WithNutritionProductLanguage(v string) NutritionProductOption {
 	return func(r *NutritionProduct) {
 		r.Language = &v
@@ -1080,6 +1102,8 @@ func WithNutritionProductLanguage(v string) NutritionProductOption {
 }
 
 // WithNutritionProductText sets the Text field.
+//
+// Deprecated: use NutritionProductBuilder.SetText instead; removed in v2.
 func WithNutritionProductText(v Narrative) NutritionProductOption {
 	return func(r *NutritionProduct) {
 		r.Text = &v
@@ -1087,6 +1111,8 @@ func WithNutritionProductText(v Narrative) NutritionProductOption {
 }
 
 // WithNutritionProductContained adds a Contained to the NutritionProduct.
+//
+// Deprecated: use NutritionProductBuilder.AddContained instead; removed in v2.
 func WithNutritionProductContained(v Resource) NutritionProductOption {
 	return func(r *NutritionProduct) {
 		r.Contained = append(r.Contained, v)
@@ -1094,6 +1120,8 @@ func WithNutritionProductContained(v Resource) NutritionProductOption {
 }
 
 // WithNutritionProductExtension adds a Extension to the NutritionProduct.
+//
+// Deprecated: use NutritionProductBuilder.AddExtension instead; removed in v2.
 func WithNutritionProductExtension(v Extension) NutritionProductOption {
 	return func(r *NutritionProduct) {
 		r.Extension = append(r.Extension, v)
@@ -1101,6 +1129,8 @@ func WithNutritionProductExtension(v Extension) NutritionProductOption {
 }
 
 // WithNutritionProductModifierExtension adds a ModifierExtension to the NutritionProduct.
+//
+// Deprecated: use NutritionProductBuilder.AddModifierExtension instead; removed in v2.
 func WithNutritionProductModifierExtension(v Extension) NutritionProductOption {
 	return func(r *NutritionProduct) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1108,6 +1138,8 @@ func WithNutritionProductModifierExtension(v Extension) NutritionProductOption {
 }
 
 // WithNutritionProductStatus sets the Status field.
+//
+// Deprecated: use NutritionProductBuilder.SetStatus instead; removed in v2.
 func WithNutritionProductStatus(v NutritionProductStatus) NutritionProductOption {
 	return func(r *NutritionProduct) {
 		r.Status = &v
@@ -1115,6 +1147,8 @@ func WithNutritionProductStatus(v NutritionProductStatus) NutritionProductOption
 }
 
 // WithNutritionProductCategory adds a Category to the NutritionProduct.
+//
+// Deprecated: use NutritionProductBuilder.AddCategory instead; removed in v2.
 func WithNutritionProductCategory(v CodeableConcept) NutritionProductOption {
 	return func(r *NutritionProduct) {
 		r.Category = append(r.Category, v)
@@ -1122,6 +1156,8 @@ func WithNutritionProductCategory(v CodeableConcept) NutritionProductOption {
 }
 
 // WithNutritionProductCode sets the Code field.
+//
+// Deprecated: use NutritionProductBuilder.SetCode instead; removed in v2.
 func WithNutritionProductCode(v CodeableConcept) NutritionProductOption {
 	return func(r *NutritionProduct) {
 		r.Code = &v
@@ -1129,6 +1165,8 @@ func WithNutritionProductCode(v CodeableConcept) NutritionProductOption {
 }
 
 // WithNutritionProductManufacturer adds a Manufacturer to the NutritionProduct.
+//
+// Deprecated: use NutritionProductBuilder.AddManufacturer instead; removed in v2.
 func WithNutritionProductManufacturer(v Reference) NutritionProductOption {
 	return func(r *NutritionProduct) {
 		r.Manufacturer = append(r.Manufacturer, v)
@@ -1136,6 +1174,8 @@ func WithNutritionProductManufacturer(v Reference) NutritionProductOption {
 }
 
 // WithNutritionProductNutrient adds a Nutrient to the NutritionProduct.
+//
+// Deprecated: use NutritionProductBuilder.AddNutrient instead; removed in v2.
 func WithNutritionProductNutrient(v NutritionProductNutrient) NutritionProductOption {
 	return func(r *NutritionProduct) {
 		r.Nutrient = append(r.Nutrient, v)
@@ -1143,6 +1183,8 @@ func WithNutritionProductNutrient(v NutritionProductNutrient) NutritionProductOp
 }
 
 // WithNutritionProductIngredient adds a Ingredient to the NutritionProduct.
+//
+// Deprecated: use NutritionProductBuilder.AddIngredient instead; removed in v2.
 func WithNutritionProductIngredient(v NutritionProductIngredient) NutritionProductOption {
 	return func(r *NutritionProduct) {
 		r.Ingredient = append(r.Ingredient, v)
@@ -1150,6 +1192,8 @@ func WithNutritionProductIngredient(v NutritionProductIngredient) NutritionProdu
 }
 
 // WithNutritionProductKnownAllergen adds a KnownAllergen to the NutritionProduct.
+//
+// Deprecated: use NutritionProductBuilder.AddKnownAllergen instead; removed in v2.
 func WithNutritionProductKnownAllergen(v CodeableReference) NutritionProductOption {
 	return func(r *NutritionProduct) {
 		r.KnownAllergen = append(r.KnownAllergen, v)
@@ -1157,6 +1201,8 @@ func WithNutritionProductKnownAllergen(v CodeableReference) NutritionProductOpti
 }
 
 // WithNutritionProductProductCharacteristic adds a ProductCharacteristic to the NutritionProduct.
+//
+// Deprecated: use NutritionProductBuilder.AddProductCharacteristic instead; removed in v2.
 func WithNutritionProductProductCharacteristic(v NutritionProductProductCharacteristic) NutritionProductOption {
 	return func(r *NutritionProduct) {
 		r.ProductCharacteristic = append(r.ProductCharacteristic, v)
@@ -1164,6 +1210,8 @@ func WithNutritionProductProductCharacteristic(v NutritionProductProductCharacte
 }
 
 // WithNutritionProductInstance sets the Instance field.
+//
+// Deprecated: use NutritionProductBuilder.SetInstance instead; removed in v2.
 func WithNutritionProductInstance(v NutritionProductInstance) NutritionProductOption {
 	return func(r *NutritionProduct) {
 		r.Instance = &v
@@ -1171,6 +1219,8 @@ func WithNutritionProductInstance(v NutritionProductInstance) NutritionProductOp
 }
 
 // WithNutritionProductNote adds a Note to the NutritionProduct.
+//
+// Deprecated: use NutritionProductBuilder.AddNote instead; removed in v2.
 func WithNutritionProductNote(v Annotation) NutritionProductOption {
 	return func(r *NutritionProduct) {
 		r.Note = append(r.Note, v)

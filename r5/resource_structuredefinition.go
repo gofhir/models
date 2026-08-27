@@ -1344,9 +1344,23 @@ func (b *StructureDefinitionBuilder) SetDifferential(v StructureDefinitionDiffer
 // =============================================================================
 
 // StructureDefinitionOption is a functional option for configuring a StructureDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// StructureDefinitionBuilder. Every WithStructureDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type StructureDefinitionOption func(*StructureDefinition)
 
 // NewStructureDefinition creates a new StructureDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewStructureDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewStructureDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewStructureDefinition(opts ...StructureDefinitionOption) *StructureDefinition {
 	r := &StructureDefinition{ResourceType: "StructureDefinition"}
 	for _, opt := range opts {
@@ -1356,6 +1370,8 @@ func NewStructureDefinition(opts ...StructureDefinitionOption) *StructureDefinit
 }
 
 // WithStructureDefinitionId sets the Id field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetId instead; removed in v2.
 func WithStructureDefinitionId(v string) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Id = &v
@@ -1363,6 +1379,8 @@ func WithStructureDefinitionId(v string) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionMeta sets the Meta field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetMeta instead; removed in v2.
 func WithStructureDefinitionMeta(v Meta) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Meta = &v
@@ -1370,6 +1388,8 @@ func WithStructureDefinitionMeta(v Meta) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithStructureDefinitionImplicitRules(v string) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.ImplicitRules = &v
@@ -1377,6 +1397,8 @@ func WithStructureDefinitionImplicitRules(v string) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionLanguage sets the Language field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithStructureDefinitionLanguage(v string) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Language = &v
@@ -1384,6 +1406,8 @@ func WithStructureDefinitionLanguage(v string) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionText sets the Text field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetText instead; removed in v2.
 func WithStructureDefinitionText(v Narrative) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Text = &v
@@ -1391,6 +1415,8 @@ func WithStructureDefinitionText(v Narrative) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionContained adds a Contained to the StructureDefinition.
+//
+// Deprecated: use StructureDefinitionBuilder.AddContained instead; removed in v2.
 func WithStructureDefinitionContained(v Resource) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -1398,6 +1424,8 @@ func WithStructureDefinitionContained(v Resource) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionExtension adds a Extension to the StructureDefinition.
+//
+// Deprecated: use StructureDefinitionBuilder.AddExtension instead; removed in v2.
 func WithStructureDefinitionExtension(v Extension) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -1405,6 +1433,8 @@ func WithStructureDefinitionExtension(v Extension) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionModifierExtension adds a ModifierExtension to the StructureDefinition.
+//
+// Deprecated: use StructureDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithStructureDefinitionModifierExtension(v Extension) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1412,6 +1442,8 @@ func WithStructureDefinitionModifierExtension(v Extension) StructureDefinitionOp
 }
 
 // WithStructureDefinitionUrl sets the Url field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetUrl instead; removed in v2.
 func WithStructureDefinitionUrl(v string) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Url = &v
@@ -1419,6 +1451,8 @@ func WithStructureDefinitionUrl(v string) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionIdentifier adds a Identifier to the StructureDefinition.
+//
+// Deprecated: use StructureDefinitionBuilder.AddIdentifier instead; removed in v2.
 func WithStructureDefinitionIdentifier(v Identifier) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Identifier = append(r.Identifier, v)
@@ -1426,6 +1460,8 @@ func WithStructureDefinitionIdentifier(v Identifier) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionVersion sets the Version field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetVersion instead; removed in v2.
 func WithStructureDefinitionVersion(v string) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Version = &v
@@ -1433,6 +1469,8 @@ func WithStructureDefinitionVersion(v string) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionVersionAlgorithmString sets the VersionAlgorithmString field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetVersionAlgorithmString instead; removed in v2.
 func WithStructureDefinitionVersionAlgorithmString(v string) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.VersionAlgorithmString = &v
@@ -1440,6 +1478,8 @@ func WithStructureDefinitionVersionAlgorithmString(v string) StructureDefinition
 }
 
 // WithStructureDefinitionVersionAlgorithmStringExt sets the VersionAlgorithmStringExt field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetVersionAlgorithmStringExt instead; removed in v2.
 func WithStructureDefinitionVersionAlgorithmStringExt(v Element) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.VersionAlgorithmStringExt = &v
@@ -1447,6 +1487,8 @@ func WithStructureDefinitionVersionAlgorithmStringExt(v Element) StructureDefini
 }
 
 // WithStructureDefinitionVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetVersionAlgorithmCoding instead; removed in v2.
 func WithStructureDefinitionVersionAlgorithmCoding(v Coding) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.VersionAlgorithmCoding = &v
@@ -1454,6 +1496,8 @@ func WithStructureDefinitionVersionAlgorithmCoding(v Coding) StructureDefinition
 }
 
 // WithStructureDefinitionName sets the Name field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetName instead; removed in v2.
 func WithStructureDefinitionName(v string) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Name = &v
@@ -1461,6 +1505,8 @@ func WithStructureDefinitionName(v string) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionTitle sets the Title field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetTitle instead; removed in v2.
 func WithStructureDefinitionTitle(v string) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Title = &v
@@ -1468,6 +1514,8 @@ func WithStructureDefinitionTitle(v string) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionStatus sets the Status field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetStatus instead; removed in v2.
 func WithStructureDefinitionStatus(v PublicationStatus) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Status = &v
@@ -1475,6 +1523,8 @@ func WithStructureDefinitionStatus(v PublicationStatus) StructureDefinitionOptio
 }
 
 // WithStructureDefinitionExperimental sets the Experimental field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetExperimental instead; removed in v2.
 func WithStructureDefinitionExperimental(v bool) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Experimental = &v
@@ -1482,6 +1532,8 @@ func WithStructureDefinitionExperimental(v bool) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionDate sets the Date field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetDate instead; removed in v2.
 func WithStructureDefinitionDate(v string) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Date = &v
@@ -1489,6 +1541,8 @@ func WithStructureDefinitionDate(v string) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionPublisher sets the Publisher field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetPublisher instead; removed in v2.
 func WithStructureDefinitionPublisher(v string) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Publisher = &v
@@ -1496,6 +1550,8 @@ func WithStructureDefinitionPublisher(v string) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionContact adds a Contact to the StructureDefinition.
+//
+// Deprecated: use StructureDefinitionBuilder.AddContact instead; removed in v2.
 func WithStructureDefinitionContact(v ContactDetail) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Contact = append(r.Contact, v)
@@ -1503,6 +1559,8 @@ func WithStructureDefinitionContact(v ContactDetail) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionDescription sets the Description field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetDescription instead; removed in v2.
 func WithStructureDefinitionDescription(v string) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Description = &v
@@ -1510,6 +1568,8 @@ func WithStructureDefinitionDescription(v string) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionUseContext adds a UseContext to the StructureDefinition.
+//
+// Deprecated: use StructureDefinitionBuilder.AddUseContext instead; removed in v2.
 func WithStructureDefinitionUseContext(v UsageContext) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.UseContext = append(r.UseContext, v)
@@ -1517,6 +1577,8 @@ func WithStructureDefinitionUseContext(v UsageContext) StructureDefinitionOption
 }
 
 // WithStructureDefinitionJurisdiction adds a Jurisdiction to the StructureDefinition.
+//
+// Deprecated: use StructureDefinitionBuilder.AddJurisdiction instead; removed in v2.
 func WithStructureDefinitionJurisdiction(v CodeableConcept) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1524,6 +1586,8 @@ func WithStructureDefinitionJurisdiction(v CodeableConcept) StructureDefinitionO
 }
 
 // WithStructureDefinitionPurpose sets the Purpose field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetPurpose instead; removed in v2.
 func WithStructureDefinitionPurpose(v string) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Purpose = &v
@@ -1531,6 +1595,8 @@ func WithStructureDefinitionPurpose(v string) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionCopyright sets the Copyright field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetCopyright instead; removed in v2.
 func WithStructureDefinitionCopyright(v string) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Copyright = &v
@@ -1538,6 +1604,8 @@ func WithStructureDefinitionCopyright(v string) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionCopyrightLabel sets the CopyrightLabel field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetCopyrightLabel instead; removed in v2.
 func WithStructureDefinitionCopyrightLabel(v string) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.CopyrightLabel = &v
@@ -1545,6 +1613,8 @@ func WithStructureDefinitionCopyrightLabel(v string) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionKeyword adds a Keyword to the StructureDefinition.
+//
+// Deprecated: use StructureDefinitionBuilder.AddKeyword instead; removed in v2.
 func WithStructureDefinitionKeyword(v Coding) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Keyword = append(r.Keyword, v)
@@ -1552,6 +1622,8 @@ func WithStructureDefinitionKeyword(v Coding) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionFhirVersion sets the FhirVersion field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetFhirVersion instead; removed in v2.
 func WithStructureDefinitionFhirVersion(v FHIRVersion) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.FhirVersion = &v
@@ -1559,6 +1631,8 @@ func WithStructureDefinitionFhirVersion(v FHIRVersion) StructureDefinitionOption
 }
 
 // WithStructureDefinitionMapping adds a Mapping to the StructureDefinition.
+//
+// Deprecated: use StructureDefinitionBuilder.AddMapping instead; removed in v2.
 func WithStructureDefinitionMapping(v StructureDefinitionMapping) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Mapping = append(r.Mapping, v)
@@ -1566,6 +1640,8 @@ func WithStructureDefinitionMapping(v StructureDefinitionMapping) StructureDefin
 }
 
 // WithStructureDefinitionKind sets the Kind field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetKind instead; removed in v2.
 func WithStructureDefinitionKind(v StructureDefinitionKind) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Kind = &v
@@ -1573,6 +1649,8 @@ func WithStructureDefinitionKind(v StructureDefinitionKind) StructureDefinitionO
 }
 
 // WithStructureDefinitionAbstract sets the Abstract field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetAbstract instead; removed in v2.
 func WithStructureDefinitionAbstract(v bool) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Abstract = &v
@@ -1580,6 +1658,8 @@ func WithStructureDefinitionAbstract(v bool) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionContext adds a Context to the StructureDefinition.
+//
+// Deprecated: use StructureDefinitionBuilder.AddContext instead; removed in v2.
 func WithStructureDefinitionContext(v StructureDefinitionContext) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Context = append(r.Context, v)
@@ -1587,6 +1667,8 @@ func WithStructureDefinitionContext(v StructureDefinitionContext) StructureDefin
 }
 
 // WithStructureDefinitionContextInvariant adds a ContextInvariant to the StructureDefinition.
+//
+// Deprecated: use StructureDefinitionBuilder.AddContextInvariant instead; removed in v2.
 func WithStructureDefinitionContextInvariant(v string) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.ContextInvariant = append(r.ContextInvariant, v)
@@ -1594,6 +1676,8 @@ func WithStructureDefinitionContextInvariant(v string) StructureDefinitionOption
 }
 
 // WithStructureDefinitionType sets the Type field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetType instead; removed in v2.
 func WithStructureDefinitionType(v string) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Type = &v
@@ -1601,6 +1685,8 @@ func WithStructureDefinitionType(v string) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionBaseDefinition sets the BaseDefinition field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetBaseDefinition instead; removed in v2.
 func WithStructureDefinitionBaseDefinition(v string) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.BaseDefinition = &v
@@ -1608,6 +1694,8 @@ func WithStructureDefinitionBaseDefinition(v string) StructureDefinitionOption {
 }
 
 // WithStructureDefinitionDerivation sets the Derivation field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetDerivation instead; removed in v2.
 func WithStructureDefinitionDerivation(v TypeDerivationRule) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Derivation = &v
@@ -1615,6 +1703,8 @@ func WithStructureDefinitionDerivation(v TypeDerivationRule) StructureDefinition
 }
 
 // WithStructureDefinitionSnapshot sets the Snapshot field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetSnapshot instead; removed in v2.
 func WithStructureDefinitionSnapshot(v StructureDefinitionSnapshot) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Snapshot = &v
@@ -1622,6 +1712,8 @@ func WithStructureDefinitionSnapshot(v StructureDefinitionSnapshot) StructureDef
 }
 
 // WithStructureDefinitionDifferential sets the Differential field.
+//
+// Deprecated: use StructureDefinitionBuilder.SetDifferential instead; removed in v2.
 func WithStructureDefinitionDifferential(v StructureDefinitionDifferential) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
 		r.Differential = &v

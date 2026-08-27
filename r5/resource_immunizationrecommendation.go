@@ -757,9 +757,23 @@ func (b *ImmunizationRecommendationBuilder) AddRecommendation(v ImmunizationReco
 // =============================================================================
 
 // ImmunizationRecommendationOption is a functional option for configuring a ImmunizationRecommendation.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ImmunizationRecommendationBuilder. Every WithImmunizationRecommendation* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ImmunizationRecommendationOption func(*ImmunizationRecommendation)
 
 // NewImmunizationRecommendation creates a new ImmunizationRecommendation with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewImmunizationRecommendationBuilder().SetId("x").Build()
+//
+// Deprecated: use NewImmunizationRecommendationBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewImmunizationRecommendation(opts ...ImmunizationRecommendationOption) *ImmunizationRecommendation {
 	r := &ImmunizationRecommendation{ResourceType: "ImmunizationRecommendation"}
 	for _, opt := range opts {
@@ -769,6 +783,8 @@ func NewImmunizationRecommendation(opts ...ImmunizationRecommendationOption) *Im
 }
 
 // WithImmunizationRecommendationId sets the Id field.
+//
+// Deprecated: use ImmunizationRecommendationBuilder.SetId instead; removed in v2.
 func WithImmunizationRecommendationId(v string) ImmunizationRecommendationOption {
 	return func(r *ImmunizationRecommendation) {
 		r.Id = &v
@@ -776,6 +792,8 @@ func WithImmunizationRecommendationId(v string) ImmunizationRecommendationOption
 }
 
 // WithImmunizationRecommendationMeta sets the Meta field.
+//
+// Deprecated: use ImmunizationRecommendationBuilder.SetMeta instead; removed in v2.
 func WithImmunizationRecommendationMeta(v Meta) ImmunizationRecommendationOption {
 	return func(r *ImmunizationRecommendation) {
 		r.Meta = &v
@@ -783,6 +801,8 @@ func WithImmunizationRecommendationMeta(v Meta) ImmunizationRecommendationOption
 }
 
 // WithImmunizationRecommendationImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ImmunizationRecommendationBuilder.SetImplicitRules instead; removed in v2.
 func WithImmunizationRecommendationImplicitRules(v string) ImmunizationRecommendationOption {
 	return func(r *ImmunizationRecommendation) {
 		r.ImplicitRules = &v
@@ -790,6 +810,8 @@ func WithImmunizationRecommendationImplicitRules(v string) ImmunizationRecommend
 }
 
 // WithImmunizationRecommendationLanguage sets the Language field.
+//
+// Deprecated: use ImmunizationRecommendationBuilder.SetLanguage instead; removed in v2.
 func WithImmunizationRecommendationLanguage(v string) ImmunizationRecommendationOption {
 	return func(r *ImmunizationRecommendation) {
 		r.Language = &v
@@ -797,6 +819,8 @@ func WithImmunizationRecommendationLanguage(v string) ImmunizationRecommendation
 }
 
 // WithImmunizationRecommendationText sets the Text field.
+//
+// Deprecated: use ImmunizationRecommendationBuilder.SetText instead; removed in v2.
 func WithImmunizationRecommendationText(v Narrative) ImmunizationRecommendationOption {
 	return func(r *ImmunizationRecommendation) {
 		r.Text = &v
@@ -804,6 +828,8 @@ func WithImmunizationRecommendationText(v Narrative) ImmunizationRecommendationO
 }
 
 // WithImmunizationRecommendationContained adds a Contained to the ImmunizationRecommendation.
+//
+// Deprecated: use ImmunizationRecommendationBuilder.AddContained instead; removed in v2.
 func WithImmunizationRecommendationContained(v Resource) ImmunizationRecommendationOption {
 	return func(r *ImmunizationRecommendation) {
 		r.Contained = append(r.Contained, v)
@@ -811,6 +837,8 @@ func WithImmunizationRecommendationContained(v Resource) ImmunizationRecommendat
 }
 
 // WithImmunizationRecommendationExtension adds a Extension to the ImmunizationRecommendation.
+//
+// Deprecated: use ImmunizationRecommendationBuilder.AddExtension instead; removed in v2.
 func WithImmunizationRecommendationExtension(v Extension) ImmunizationRecommendationOption {
 	return func(r *ImmunizationRecommendation) {
 		r.Extension = append(r.Extension, v)
@@ -818,6 +846,8 @@ func WithImmunizationRecommendationExtension(v Extension) ImmunizationRecommenda
 }
 
 // WithImmunizationRecommendationModifierExtension adds a ModifierExtension to the ImmunizationRecommendation.
+//
+// Deprecated: use ImmunizationRecommendationBuilder.AddModifierExtension instead; removed in v2.
 func WithImmunizationRecommendationModifierExtension(v Extension) ImmunizationRecommendationOption {
 	return func(r *ImmunizationRecommendation) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -825,6 +855,8 @@ func WithImmunizationRecommendationModifierExtension(v Extension) ImmunizationRe
 }
 
 // WithImmunizationRecommendationIdentifier adds a Identifier to the ImmunizationRecommendation.
+//
+// Deprecated: use ImmunizationRecommendationBuilder.AddIdentifier instead; removed in v2.
 func WithImmunizationRecommendationIdentifier(v Identifier) ImmunizationRecommendationOption {
 	return func(r *ImmunizationRecommendation) {
 		r.Identifier = append(r.Identifier, v)
@@ -832,6 +864,8 @@ func WithImmunizationRecommendationIdentifier(v Identifier) ImmunizationRecommen
 }
 
 // WithImmunizationRecommendationPatient sets the Patient field.
+//
+// Deprecated: use ImmunizationRecommendationBuilder.SetPatient instead; removed in v2.
 func WithImmunizationRecommendationPatient(v Reference) ImmunizationRecommendationOption {
 	return func(r *ImmunizationRecommendation) {
 		r.Patient = v
@@ -839,6 +873,8 @@ func WithImmunizationRecommendationPatient(v Reference) ImmunizationRecommendati
 }
 
 // WithImmunizationRecommendationDate sets the Date field.
+//
+// Deprecated: use ImmunizationRecommendationBuilder.SetDate instead; removed in v2.
 func WithImmunizationRecommendationDate(v string) ImmunizationRecommendationOption {
 	return func(r *ImmunizationRecommendation) {
 		r.Date = &v
@@ -846,6 +882,8 @@ func WithImmunizationRecommendationDate(v string) ImmunizationRecommendationOpti
 }
 
 // WithImmunizationRecommendationAuthority sets the Authority field.
+//
+// Deprecated: use ImmunizationRecommendationBuilder.SetAuthority instead; removed in v2.
 func WithImmunizationRecommendationAuthority(v Reference) ImmunizationRecommendationOption {
 	return func(r *ImmunizationRecommendation) {
 		r.Authority = &v
@@ -853,6 +891,8 @@ func WithImmunizationRecommendationAuthority(v Reference) ImmunizationRecommenda
 }
 
 // WithImmunizationRecommendationRecommendation adds a Recommendation to the ImmunizationRecommendation.
+//
+// Deprecated: use ImmunizationRecommendationBuilder.AddRecommendation instead; removed in v2.
 func WithImmunizationRecommendationRecommendation(v ImmunizationRecommendationRecommendation) ImmunizationRecommendationOption {
 	return func(r *ImmunizationRecommendation) {
 		r.Recommendation = append(r.Recommendation, v)

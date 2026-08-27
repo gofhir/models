@@ -818,9 +818,23 @@ func (b *DetectedIssueBuilder) AddMitigation(v DetectedIssueMitigation) *Detecte
 // =============================================================================
 
 // DetectedIssueOption is a functional option for configuring a DetectedIssue.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// DetectedIssueBuilder. Every WithDetectedIssue* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type DetectedIssueOption func(*DetectedIssue)
 
 // NewDetectedIssue creates a new DetectedIssue with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewDetectedIssueBuilder().SetId("x").Build()
+//
+// Deprecated: use NewDetectedIssueBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewDetectedIssue(opts ...DetectedIssueOption) *DetectedIssue {
 	r := &DetectedIssue{ResourceType: "DetectedIssue"}
 	for _, opt := range opts {
@@ -830,6 +844,8 @@ func NewDetectedIssue(opts ...DetectedIssueOption) *DetectedIssue {
 }
 
 // WithDetectedIssueId sets the Id field.
+//
+// Deprecated: use DetectedIssueBuilder.SetId instead; removed in v2.
 func WithDetectedIssueId(v string) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.Id = &v
@@ -837,6 +853,8 @@ func WithDetectedIssueId(v string) DetectedIssueOption {
 }
 
 // WithDetectedIssueMeta sets the Meta field.
+//
+// Deprecated: use DetectedIssueBuilder.SetMeta instead; removed in v2.
 func WithDetectedIssueMeta(v Meta) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.Meta = &v
@@ -844,6 +862,8 @@ func WithDetectedIssueMeta(v Meta) DetectedIssueOption {
 }
 
 // WithDetectedIssueImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use DetectedIssueBuilder.SetImplicitRules instead; removed in v2.
 func WithDetectedIssueImplicitRules(v string) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.ImplicitRules = &v
@@ -851,6 +871,8 @@ func WithDetectedIssueImplicitRules(v string) DetectedIssueOption {
 }
 
 // WithDetectedIssueLanguage sets the Language field.
+//
+// Deprecated: use DetectedIssueBuilder.SetLanguage instead; removed in v2.
 func WithDetectedIssueLanguage(v string) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.Language = &v
@@ -858,6 +880,8 @@ func WithDetectedIssueLanguage(v string) DetectedIssueOption {
 }
 
 // WithDetectedIssueText sets the Text field.
+//
+// Deprecated: use DetectedIssueBuilder.SetText instead; removed in v2.
 func WithDetectedIssueText(v Narrative) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.Text = &v
@@ -865,6 +889,8 @@ func WithDetectedIssueText(v Narrative) DetectedIssueOption {
 }
 
 // WithDetectedIssueContained adds a Contained to the DetectedIssue.
+//
+// Deprecated: use DetectedIssueBuilder.AddContained instead; removed in v2.
 func WithDetectedIssueContained(v Resource) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.Contained = append(r.Contained, v)
@@ -872,6 +898,8 @@ func WithDetectedIssueContained(v Resource) DetectedIssueOption {
 }
 
 // WithDetectedIssueExtension adds a Extension to the DetectedIssue.
+//
+// Deprecated: use DetectedIssueBuilder.AddExtension instead; removed in v2.
 func WithDetectedIssueExtension(v Extension) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.Extension = append(r.Extension, v)
@@ -879,6 +907,8 @@ func WithDetectedIssueExtension(v Extension) DetectedIssueOption {
 }
 
 // WithDetectedIssueModifierExtension adds a ModifierExtension to the DetectedIssue.
+//
+// Deprecated: use DetectedIssueBuilder.AddModifierExtension instead; removed in v2.
 func WithDetectedIssueModifierExtension(v Extension) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -886,6 +916,8 @@ func WithDetectedIssueModifierExtension(v Extension) DetectedIssueOption {
 }
 
 // WithDetectedIssueIdentifier adds a Identifier to the DetectedIssue.
+//
+// Deprecated: use DetectedIssueBuilder.AddIdentifier instead; removed in v2.
 func WithDetectedIssueIdentifier(v Identifier) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.Identifier = append(r.Identifier, v)
@@ -893,6 +925,8 @@ func WithDetectedIssueIdentifier(v Identifier) DetectedIssueOption {
 }
 
 // WithDetectedIssueStatus sets the Status field.
+//
+// Deprecated: use DetectedIssueBuilder.SetStatus instead; removed in v2.
 func WithDetectedIssueStatus(v ObservationStatus) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.Status = &v
@@ -900,6 +934,8 @@ func WithDetectedIssueStatus(v ObservationStatus) DetectedIssueOption {
 }
 
 // WithDetectedIssueCode sets the Code field.
+//
+// Deprecated: use DetectedIssueBuilder.SetCode instead; removed in v2.
 func WithDetectedIssueCode(v CodeableConcept) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.Code = &v
@@ -907,6 +943,8 @@ func WithDetectedIssueCode(v CodeableConcept) DetectedIssueOption {
 }
 
 // WithDetectedIssueSeverity sets the Severity field.
+//
+// Deprecated: use DetectedIssueBuilder.SetSeverity instead; removed in v2.
 func WithDetectedIssueSeverity(v DetectedIssueSeverity) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.Severity = &v
@@ -914,6 +952,8 @@ func WithDetectedIssueSeverity(v DetectedIssueSeverity) DetectedIssueOption {
 }
 
 // WithDetectedIssuePatient sets the Patient field.
+//
+// Deprecated: use DetectedIssueBuilder.SetPatient instead; removed in v2.
 func WithDetectedIssuePatient(v Reference) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.Patient = &v
@@ -921,6 +961,8 @@ func WithDetectedIssuePatient(v Reference) DetectedIssueOption {
 }
 
 // WithDetectedIssueIdentifiedDateTime sets the IdentifiedDateTime field.
+//
+// Deprecated: use DetectedIssueBuilder.SetIdentifiedDateTime instead; removed in v2.
 func WithDetectedIssueIdentifiedDateTime(v string) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.IdentifiedDateTime = &v
@@ -928,6 +970,8 @@ func WithDetectedIssueIdentifiedDateTime(v string) DetectedIssueOption {
 }
 
 // WithDetectedIssueIdentifiedDateTimeExt sets the IdentifiedDateTimeExt field.
+//
+// Deprecated: use DetectedIssueBuilder.SetIdentifiedDateTimeExt instead; removed in v2.
 func WithDetectedIssueIdentifiedDateTimeExt(v Element) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.IdentifiedDateTimeExt = &v
@@ -935,6 +979,8 @@ func WithDetectedIssueIdentifiedDateTimeExt(v Element) DetectedIssueOption {
 }
 
 // WithDetectedIssueIdentifiedPeriod sets the IdentifiedPeriod field.
+//
+// Deprecated: use DetectedIssueBuilder.SetIdentifiedPeriod instead; removed in v2.
 func WithDetectedIssueIdentifiedPeriod(v Period) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.IdentifiedPeriod = &v
@@ -942,6 +988,8 @@ func WithDetectedIssueIdentifiedPeriod(v Period) DetectedIssueOption {
 }
 
 // WithDetectedIssueAuthor sets the Author field.
+//
+// Deprecated: use DetectedIssueBuilder.SetAuthor instead; removed in v2.
 func WithDetectedIssueAuthor(v Reference) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.Author = &v
@@ -949,6 +997,8 @@ func WithDetectedIssueAuthor(v Reference) DetectedIssueOption {
 }
 
 // WithDetectedIssueImplicated adds a Implicated to the DetectedIssue.
+//
+// Deprecated: use DetectedIssueBuilder.AddImplicated instead; removed in v2.
 func WithDetectedIssueImplicated(v Reference) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.Implicated = append(r.Implicated, v)
@@ -956,6 +1006,8 @@ func WithDetectedIssueImplicated(v Reference) DetectedIssueOption {
 }
 
 // WithDetectedIssueEvidence adds a Evidence to the DetectedIssue.
+//
+// Deprecated: use DetectedIssueBuilder.AddEvidence instead; removed in v2.
 func WithDetectedIssueEvidence(v DetectedIssueEvidence) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.Evidence = append(r.Evidence, v)
@@ -963,6 +1015,8 @@ func WithDetectedIssueEvidence(v DetectedIssueEvidence) DetectedIssueOption {
 }
 
 // WithDetectedIssueDetail sets the Detail field.
+//
+// Deprecated: use DetectedIssueBuilder.SetDetail instead; removed in v2.
 func WithDetectedIssueDetail(v string) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.Detail = &v
@@ -970,6 +1024,8 @@ func WithDetectedIssueDetail(v string) DetectedIssueOption {
 }
 
 // WithDetectedIssueReference sets the Reference field.
+//
+// Deprecated: use DetectedIssueBuilder.SetReference instead; removed in v2.
 func WithDetectedIssueReference(v string) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.Reference = &v
@@ -977,6 +1033,8 @@ func WithDetectedIssueReference(v string) DetectedIssueOption {
 }
 
 // WithDetectedIssueMitigation adds a Mitigation to the DetectedIssue.
+//
+// Deprecated: use DetectedIssueBuilder.AddMitigation instead; removed in v2.
 func WithDetectedIssueMitigation(v DetectedIssueMitigation) DetectedIssueOption {
 	return func(r *DetectedIssue) {
 		r.Mitigation = append(r.Mitigation, v)

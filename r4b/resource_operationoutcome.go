@@ -515,9 +515,23 @@ func (b *OperationOutcomeBuilder) AddIssue(v OperationOutcomeIssue) *OperationOu
 // =============================================================================
 
 // OperationOutcomeOption is a functional option for configuring a OperationOutcome.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// OperationOutcomeBuilder. Every WithOperationOutcome* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type OperationOutcomeOption func(*OperationOutcome)
 
 // NewOperationOutcome creates a new OperationOutcome with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewOperationOutcomeBuilder().SetId("x").Build()
+//
+// Deprecated: use NewOperationOutcomeBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewOperationOutcome(opts ...OperationOutcomeOption) *OperationOutcome {
 	r := &OperationOutcome{ResourceType: "OperationOutcome"}
 	for _, opt := range opts {
@@ -527,6 +541,8 @@ func NewOperationOutcome(opts ...OperationOutcomeOption) *OperationOutcome {
 }
 
 // WithOperationOutcomeId sets the Id field.
+//
+// Deprecated: use OperationOutcomeBuilder.SetId instead; removed in v2.
 func WithOperationOutcomeId(v string) OperationOutcomeOption {
 	return func(r *OperationOutcome) {
 		r.Id = &v
@@ -534,6 +550,8 @@ func WithOperationOutcomeId(v string) OperationOutcomeOption {
 }
 
 // WithOperationOutcomeMeta sets the Meta field.
+//
+// Deprecated: use OperationOutcomeBuilder.SetMeta instead; removed in v2.
 func WithOperationOutcomeMeta(v Meta) OperationOutcomeOption {
 	return func(r *OperationOutcome) {
 		r.Meta = &v
@@ -541,6 +559,8 @@ func WithOperationOutcomeMeta(v Meta) OperationOutcomeOption {
 }
 
 // WithOperationOutcomeImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use OperationOutcomeBuilder.SetImplicitRules instead; removed in v2.
 func WithOperationOutcomeImplicitRules(v string) OperationOutcomeOption {
 	return func(r *OperationOutcome) {
 		r.ImplicitRules = &v
@@ -548,6 +568,8 @@ func WithOperationOutcomeImplicitRules(v string) OperationOutcomeOption {
 }
 
 // WithOperationOutcomeLanguage sets the Language field.
+//
+// Deprecated: use OperationOutcomeBuilder.SetLanguage instead; removed in v2.
 func WithOperationOutcomeLanguage(v string) OperationOutcomeOption {
 	return func(r *OperationOutcome) {
 		r.Language = &v
@@ -555,6 +577,8 @@ func WithOperationOutcomeLanguage(v string) OperationOutcomeOption {
 }
 
 // WithOperationOutcomeText sets the Text field.
+//
+// Deprecated: use OperationOutcomeBuilder.SetText instead; removed in v2.
 func WithOperationOutcomeText(v Narrative) OperationOutcomeOption {
 	return func(r *OperationOutcome) {
 		r.Text = &v
@@ -562,6 +586,8 @@ func WithOperationOutcomeText(v Narrative) OperationOutcomeOption {
 }
 
 // WithOperationOutcomeContained adds a Contained to the OperationOutcome.
+//
+// Deprecated: use OperationOutcomeBuilder.AddContained instead; removed in v2.
 func WithOperationOutcomeContained(v Resource) OperationOutcomeOption {
 	return func(r *OperationOutcome) {
 		r.Contained = append(r.Contained, v)
@@ -569,6 +595,8 @@ func WithOperationOutcomeContained(v Resource) OperationOutcomeOption {
 }
 
 // WithOperationOutcomeExtension adds a Extension to the OperationOutcome.
+//
+// Deprecated: use OperationOutcomeBuilder.AddExtension instead; removed in v2.
 func WithOperationOutcomeExtension(v Extension) OperationOutcomeOption {
 	return func(r *OperationOutcome) {
 		r.Extension = append(r.Extension, v)
@@ -576,6 +604,8 @@ func WithOperationOutcomeExtension(v Extension) OperationOutcomeOption {
 }
 
 // WithOperationOutcomeModifierExtension adds a ModifierExtension to the OperationOutcome.
+//
+// Deprecated: use OperationOutcomeBuilder.AddModifierExtension instead; removed in v2.
 func WithOperationOutcomeModifierExtension(v Extension) OperationOutcomeOption {
 	return func(r *OperationOutcome) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -583,6 +613,8 @@ func WithOperationOutcomeModifierExtension(v Extension) OperationOutcomeOption {
 }
 
 // WithOperationOutcomeIssue adds a Issue to the OperationOutcome.
+//
+// Deprecated: use OperationOutcomeBuilder.AddIssue instead; removed in v2.
 func WithOperationOutcomeIssue(v OperationOutcomeIssue) OperationOutcomeOption {
 	return func(r *OperationOutcome) {
 		r.Issue = append(r.Issue, v)

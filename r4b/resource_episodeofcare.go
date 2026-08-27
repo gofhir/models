@@ -779,9 +779,23 @@ func (b *EpisodeOfCareBuilder) AddAccount(v Reference) *EpisodeOfCareBuilder {
 // =============================================================================
 
 // EpisodeOfCareOption is a functional option for configuring a EpisodeOfCare.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// EpisodeOfCareBuilder. Every WithEpisodeOfCare* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type EpisodeOfCareOption func(*EpisodeOfCare)
 
 // NewEpisodeOfCare creates a new EpisodeOfCare with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewEpisodeOfCareBuilder().SetId("x").Build()
+//
+// Deprecated: use NewEpisodeOfCareBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewEpisodeOfCare(opts ...EpisodeOfCareOption) *EpisodeOfCare {
 	r := &EpisodeOfCare{ResourceType: "EpisodeOfCare"}
 	for _, opt := range opts {
@@ -791,6 +805,8 @@ func NewEpisodeOfCare(opts ...EpisodeOfCareOption) *EpisodeOfCare {
 }
 
 // WithEpisodeOfCareId sets the Id field.
+//
+// Deprecated: use EpisodeOfCareBuilder.SetId instead; removed in v2.
 func WithEpisodeOfCareId(v string) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
 		r.Id = &v
@@ -798,6 +814,8 @@ func WithEpisodeOfCareId(v string) EpisodeOfCareOption {
 }
 
 // WithEpisodeOfCareMeta sets the Meta field.
+//
+// Deprecated: use EpisodeOfCareBuilder.SetMeta instead; removed in v2.
 func WithEpisodeOfCareMeta(v Meta) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
 		r.Meta = &v
@@ -805,6 +823,8 @@ func WithEpisodeOfCareMeta(v Meta) EpisodeOfCareOption {
 }
 
 // WithEpisodeOfCareImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use EpisodeOfCareBuilder.SetImplicitRules instead; removed in v2.
 func WithEpisodeOfCareImplicitRules(v string) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
 		r.ImplicitRules = &v
@@ -812,6 +832,8 @@ func WithEpisodeOfCareImplicitRules(v string) EpisodeOfCareOption {
 }
 
 // WithEpisodeOfCareLanguage sets the Language field.
+//
+// Deprecated: use EpisodeOfCareBuilder.SetLanguage instead; removed in v2.
 func WithEpisodeOfCareLanguage(v string) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
 		r.Language = &v
@@ -819,6 +841,8 @@ func WithEpisodeOfCareLanguage(v string) EpisodeOfCareOption {
 }
 
 // WithEpisodeOfCareText sets the Text field.
+//
+// Deprecated: use EpisodeOfCareBuilder.SetText instead; removed in v2.
 func WithEpisodeOfCareText(v Narrative) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
 		r.Text = &v
@@ -826,6 +850,8 @@ func WithEpisodeOfCareText(v Narrative) EpisodeOfCareOption {
 }
 
 // WithEpisodeOfCareContained adds a Contained to the EpisodeOfCare.
+//
+// Deprecated: use EpisodeOfCareBuilder.AddContained instead; removed in v2.
 func WithEpisodeOfCareContained(v Resource) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
 		r.Contained = append(r.Contained, v)
@@ -833,6 +859,8 @@ func WithEpisodeOfCareContained(v Resource) EpisodeOfCareOption {
 }
 
 // WithEpisodeOfCareExtension adds a Extension to the EpisodeOfCare.
+//
+// Deprecated: use EpisodeOfCareBuilder.AddExtension instead; removed in v2.
 func WithEpisodeOfCareExtension(v Extension) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
 		r.Extension = append(r.Extension, v)
@@ -840,6 +868,8 @@ func WithEpisodeOfCareExtension(v Extension) EpisodeOfCareOption {
 }
 
 // WithEpisodeOfCareModifierExtension adds a ModifierExtension to the EpisodeOfCare.
+//
+// Deprecated: use EpisodeOfCareBuilder.AddModifierExtension instead; removed in v2.
 func WithEpisodeOfCareModifierExtension(v Extension) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -847,6 +877,8 @@ func WithEpisodeOfCareModifierExtension(v Extension) EpisodeOfCareOption {
 }
 
 // WithEpisodeOfCareIdentifier adds a Identifier to the EpisodeOfCare.
+//
+// Deprecated: use EpisodeOfCareBuilder.AddIdentifier instead; removed in v2.
 func WithEpisodeOfCareIdentifier(v Identifier) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
 		r.Identifier = append(r.Identifier, v)
@@ -854,6 +886,8 @@ func WithEpisodeOfCareIdentifier(v Identifier) EpisodeOfCareOption {
 }
 
 // WithEpisodeOfCareStatus sets the Status field.
+//
+// Deprecated: use EpisodeOfCareBuilder.SetStatus instead; removed in v2.
 func WithEpisodeOfCareStatus(v EpisodeOfCareStatus) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
 		r.Status = &v
@@ -861,6 +895,8 @@ func WithEpisodeOfCareStatus(v EpisodeOfCareStatus) EpisodeOfCareOption {
 }
 
 // WithEpisodeOfCareStatusHistory adds a StatusHistory to the EpisodeOfCare.
+//
+// Deprecated: use EpisodeOfCareBuilder.AddStatusHistory instead; removed in v2.
 func WithEpisodeOfCareStatusHistory(v EpisodeOfCareStatusHistory) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
 		r.StatusHistory = append(r.StatusHistory, v)
@@ -868,6 +904,8 @@ func WithEpisodeOfCareStatusHistory(v EpisodeOfCareStatusHistory) EpisodeOfCareO
 }
 
 // WithEpisodeOfCareType adds a Type to the EpisodeOfCare.
+//
+// Deprecated: use EpisodeOfCareBuilder.AddType instead; removed in v2.
 func WithEpisodeOfCareType(v CodeableConcept) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
 		r.Type = append(r.Type, v)
@@ -875,6 +913,8 @@ func WithEpisodeOfCareType(v CodeableConcept) EpisodeOfCareOption {
 }
 
 // WithEpisodeOfCareDiagnosis adds a Diagnosis to the EpisodeOfCare.
+//
+// Deprecated: use EpisodeOfCareBuilder.AddDiagnosis instead; removed in v2.
 func WithEpisodeOfCareDiagnosis(v EpisodeOfCareDiagnosis) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
 		r.Diagnosis = append(r.Diagnosis, v)
@@ -882,6 +922,8 @@ func WithEpisodeOfCareDiagnosis(v EpisodeOfCareDiagnosis) EpisodeOfCareOption {
 }
 
 // WithEpisodeOfCarePatient sets the Patient field.
+//
+// Deprecated: use EpisodeOfCareBuilder.SetPatient instead; removed in v2.
 func WithEpisodeOfCarePatient(v Reference) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
 		r.Patient = v
@@ -889,6 +931,8 @@ func WithEpisodeOfCarePatient(v Reference) EpisodeOfCareOption {
 }
 
 // WithEpisodeOfCareManagingOrganization sets the ManagingOrganization field.
+//
+// Deprecated: use EpisodeOfCareBuilder.SetManagingOrganization instead; removed in v2.
 func WithEpisodeOfCareManagingOrganization(v Reference) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
 		r.ManagingOrganization = &v
@@ -896,6 +940,8 @@ func WithEpisodeOfCareManagingOrganization(v Reference) EpisodeOfCareOption {
 }
 
 // WithEpisodeOfCarePeriod sets the Period field.
+//
+// Deprecated: use EpisodeOfCareBuilder.SetPeriod instead; removed in v2.
 func WithEpisodeOfCarePeriod(v Period) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
 		r.Period = &v
@@ -903,6 +949,8 @@ func WithEpisodeOfCarePeriod(v Period) EpisodeOfCareOption {
 }
 
 // WithEpisodeOfCareReferralRequest adds a ReferralRequest to the EpisodeOfCare.
+//
+// Deprecated: use EpisodeOfCareBuilder.AddReferralRequest instead; removed in v2.
 func WithEpisodeOfCareReferralRequest(v Reference) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
 		r.ReferralRequest = append(r.ReferralRequest, v)
@@ -910,6 +958,8 @@ func WithEpisodeOfCareReferralRequest(v Reference) EpisodeOfCareOption {
 }
 
 // WithEpisodeOfCareCareManager sets the CareManager field.
+//
+// Deprecated: use EpisodeOfCareBuilder.SetCareManager instead; removed in v2.
 func WithEpisodeOfCareCareManager(v Reference) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
 		r.CareManager = &v
@@ -917,6 +967,8 @@ func WithEpisodeOfCareCareManager(v Reference) EpisodeOfCareOption {
 }
 
 // WithEpisodeOfCareTeam adds a Team to the EpisodeOfCare.
+//
+// Deprecated: use EpisodeOfCareBuilder.AddTeam instead; removed in v2.
 func WithEpisodeOfCareTeam(v Reference) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
 		r.Team = append(r.Team, v)
@@ -924,6 +976,8 @@ func WithEpisodeOfCareTeam(v Reference) EpisodeOfCareOption {
 }
 
 // WithEpisodeOfCareAccount adds a Account to the EpisodeOfCare.
+//
+// Deprecated: use EpisodeOfCareBuilder.AddAccount instead; removed in v2.
 func WithEpisodeOfCareAccount(v Reference) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
 		r.Account = append(r.Account, v)

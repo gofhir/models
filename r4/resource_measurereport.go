@@ -1240,9 +1240,23 @@ func (b *MeasureReportBuilder) AddEvaluatedResource(v Reference) *MeasureReportB
 // =============================================================================
 
 // MeasureReportOption is a functional option for configuring a MeasureReport.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// MeasureReportBuilder. Every WithMeasureReport* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type MeasureReportOption func(*MeasureReport)
 
 // NewMeasureReport creates a new MeasureReport with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewMeasureReportBuilder().SetId("x").Build()
+//
+// Deprecated: use NewMeasureReportBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewMeasureReport(opts ...MeasureReportOption) *MeasureReport {
 	r := &MeasureReport{ResourceType: "MeasureReport"}
 	for _, opt := range opts {
@@ -1252,6 +1266,8 @@ func NewMeasureReport(opts ...MeasureReportOption) *MeasureReport {
 }
 
 // WithMeasureReportId sets the Id field.
+//
+// Deprecated: use MeasureReportBuilder.SetId instead; removed in v2.
 func WithMeasureReportId(v string) MeasureReportOption {
 	return func(r *MeasureReport) {
 		r.Id = &v
@@ -1259,6 +1275,8 @@ func WithMeasureReportId(v string) MeasureReportOption {
 }
 
 // WithMeasureReportMeta sets the Meta field.
+//
+// Deprecated: use MeasureReportBuilder.SetMeta instead; removed in v2.
 func WithMeasureReportMeta(v Meta) MeasureReportOption {
 	return func(r *MeasureReport) {
 		r.Meta = &v
@@ -1266,6 +1284,8 @@ func WithMeasureReportMeta(v Meta) MeasureReportOption {
 }
 
 // WithMeasureReportImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use MeasureReportBuilder.SetImplicitRules instead; removed in v2.
 func WithMeasureReportImplicitRules(v string) MeasureReportOption {
 	return func(r *MeasureReport) {
 		r.ImplicitRules = &v
@@ -1273,6 +1293,8 @@ func WithMeasureReportImplicitRules(v string) MeasureReportOption {
 }
 
 // WithMeasureReportLanguage sets the Language field.
+//
+// Deprecated: use MeasureReportBuilder.SetLanguage instead; removed in v2.
 func WithMeasureReportLanguage(v string) MeasureReportOption {
 	return func(r *MeasureReport) {
 		r.Language = &v
@@ -1280,6 +1302,8 @@ func WithMeasureReportLanguage(v string) MeasureReportOption {
 }
 
 // WithMeasureReportText sets the Text field.
+//
+// Deprecated: use MeasureReportBuilder.SetText instead; removed in v2.
 func WithMeasureReportText(v Narrative) MeasureReportOption {
 	return func(r *MeasureReport) {
 		r.Text = &v
@@ -1287,6 +1311,8 @@ func WithMeasureReportText(v Narrative) MeasureReportOption {
 }
 
 // WithMeasureReportContained adds a Contained to the MeasureReport.
+//
+// Deprecated: use MeasureReportBuilder.AddContained instead; removed in v2.
 func WithMeasureReportContained(v Resource) MeasureReportOption {
 	return func(r *MeasureReport) {
 		r.Contained = append(r.Contained, v)
@@ -1294,6 +1320,8 @@ func WithMeasureReportContained(v Resource) MeasureReportOption {
 }
 
 // WithMeasureReportExtension adds a Extension to the MeasureReport.
+//
+// Deprecated: use MeasureReportBuilder.AddExtension instead; removed in v2.
 func WithMeasureReportExtension(v Extension) MeasureReportOption {
 	return func(r *MeasureReport) {
 		r.Extension = append(r.Extension, v)
@@ -1301,6 +1329,8 @@ func WithMeasureReportExtension(v Extension) MeasureReportOption {
 }
 
 // WithMeasureReportModifierExtension adds a ModifierExtension to the MeasureReport.
+//
+// Deprecated: use MeasureReportBuilder.AddModifierExtension instead; removed in v2.
 func WithMeasureReportModifierExtension(v Extension) MeasureReportOption {
 	return func(r *MeasureReport) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1308,6 +1338,8 @@ func WithMeasureReportModifierExtension(v Extension) MeasureReportOption {
 }
 
 // WithMeasureReportIdentifier adds a Identifier to the MeasureReport.
+//
+// Deprecated: use MeasureReportBuilder.AddIdentifier instead; removed in v2.
 func WithMeasureReportIdentifier(v Identifier) MeasureReportOption {
 	return func(r *MeasureReport) {
 		r.Identifier = append(r.Identifier, v)
@@ -1315,6 +1347,8 @@ func WithMeasureReportIdentifier(v Identifier) MeasureReportOption {
 }
 
 // WithMeasureReportStatus sets the Status field.
+//
+// Deprecated: use MeasureReportBuilder.SetStatus instead; removed in v2.
 func WithMeasureReportStatus(v MeasureReportStatus) MeasureReportOption {
 	return func(r *MeasureReport) {
 		r.Status = &v
@@ -1322,6 +1356,8 @@ func WithMeasureReportStatus(v MeasureReportStatus) MeasureReportOption {
 }
 
 // WithMeasureReportType sets the Type field.
+//
+// Deprecated: use MeasureReportBuilder.SetType instead; removed in v2.
 func WithMeasureReportType(v MeasureReportType) MeasureReportOption {
 	return func(r *MeasureReport) {
 		r.Type = &v
@@ -1329,6 +1365,8 @@ func WithMeasureReportType(v MeasureReportType) MeasureReportOption {
 }
 
 // WithMeasureReportMeasure sets the Measure field.
+//
+// Deprecated: use MeasureReportBuilder.SetMeasure instead; removed in v2.
 func WithMeasureReportMeasure(v string) MeasureReportOption {
 	return func(r *MeasureReport) {
 		r.Measure = &v
@@ -1336,6 +1374,8 @@ func WithMeasureReportMeasure(v string) MeasureReportOption {
 }
 
 // WithMeasureReportSubject sets the Subject field.
+//
+// Deprecated: use MeasureReportBuilder.SetSubject instead; removed in v2.
 func WithMeasureReportSubject(v Reference) MeasureReportOption {
 	return func(r *MeasureReport) {
 		r.Subject = &v
@@ -1343,6 +1383,8 @@ func WithMeasureReportSubject(v Reference) MeasureReportOption {
 }
 
 // WithMeasureReportDate sets the Date field.
+//
+// Deprecated: use MeasureReportBuilder.SetDate instead; removed in v2.
 func WithMeasureReportDate(v string) MeasureReportOption {
 	return func(r *MeasureReport) {
 		r.Date = &v
@@ -1350,6 +1392,8 @@ func WithMeasureReportDate(v string) MeasureReportOption {
 }
 
 // WithMeasureReportReporter sets the Reporter field.
+//
+// Deprecated: use MeasureReportBuilder.SetReporter instead; removed in v2.
 func WithMeasureReportReporter(v Reference) MeasureReportOption {
 	return func(r *MeasureReport) {
 		r.Reporter = &v
@@ -1357,6 +1401,8 @@ func WithMeasureReportReporter(v Reference) MeasureReportOption {
 }
 
 // WithMeasureReportPeriod sets the Period field.
+//
+// Deprecated: use MeasureReportBuilder.SetPeriod instead; removed in v2.
 func WithMeasureReportPeriod(v Period) MeasureReportOption {
 	return func(r *MeasureReport) {
 		r.Period = v
@@ -1364,6 +1410,8 @@ func WithMeasureReportPeriod(v Period) MeasureReportOption {
 }
 
 // WithMeasureReportImprovementNotation sets the ImprovementNotation field.
+//
+// Deprecated: use MeasureReportBuilder.SetImprovementNotation instead; removed in v2.
 func WithMeasureReportImprovementNotation(v CodeableConcept) MeasureReportOption {
 	return func(r *MeasureReport) {
 		r.ImprovementNotation = &v
@@ -1371,6 +1419,8 @@ func WithMeasureReportImprovementNotation(v CodeableConcept) MeasureReportOption
 }
 
 // WithMeasureReportGroup adds a Group to the MeasureReport.
+//
+// Deprecated: use MeasureReportBuilder.AddGroup instead; removed in v2.
 func WithMeasureReportGroup(v MeasureReportGroup) MeasureReportOption {
 	return func(r *MeasureReport) {
 		r.Group = append(r.Group, v)
@@ -1378,6 +1428,8 @@ func WithMeasureReportGroup(v MeasureReportGroup) MeasureReportOption {
 }
 
 // WithMeasureReportEvaluatedResource adds a EvaluatedResource to the MeasureReport.
+//
+// Deprecated: use MeasureReportBuilder.AddEvaluatedResource instead; removed in v2.
 func WithMeasureReportEvaluatedResource(v Reference) MeasureReportOption {
 	return func(r *MeasureReport) {
 		r.EvaluatedResource = append(r.EvaluatedResource, v)

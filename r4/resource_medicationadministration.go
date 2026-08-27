@@ -1017,9 +1017,23 @@ func (b *MedicationAdministrationBuilder) AddEventHistory(v Reference) *Medicati
 // =============================================================================
 
 // MedicationAdministrationOption is a functional option for configuring a MedicationAdministration.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// MedicationAdministrationBuilder. Every WithMedicationAdministration* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type MedicationAdministrationOption func(*MedicationAdministration)
 
 // NewMedicationAdministration creates a new MedicationAdministration with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewMedicationAdministrationBuilder().SetId("x").Build()
+//
+// Deprecated: use NewMedicationAdministrationBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewMedicationAdministration(opts ...MedicationAdministrationOption) *MedicationAdministration {
 	r := &MedicationAdministration{ResourceType: "MedicationAdministration"}
 	for _, opt := range opts {
@@ -1029,6 +1043,8 @@ func NewMedicationAdministration(opts ...MedicationAdministrationOption) *Medica
 }
 
 // WithMedicationAdministrationId sets the Id field.
+//
+// Deprecated: use MedicationAdministrationBuilder.SetId instead; removed in v2.
 func WithMedicationAdministrationId(v string) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.Id = &v
@@ -1036,6 +1052,8 @@ func WithMedicationAdministrationId(v string) MedicationAdministrationOption {
 }
 
 // WithMedicationAdministrationMeta sets the Meta field.
+//
+// Deprecated: use MedicationAdministrationBuilder.SetMeta instead; removed in v2.
 func WithMedicationAdministrationMeta(v Meta) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.Meta = &v
@@ -1043,6 +1061,8 @@ func WithMedicationAdministrationMeta(v Meta) MedicationAdministrationOption {
 }
 
 // WithMedicationAdministrationImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use MedicationAdministrationBuilder.SetImplicitRules instead; removed in v2.
 func WithMedicationAdministrationImplicitRules(v string) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.ImplicitRules = &v
@@ -1050,6 +1070,8 @@ func WithMedicationAdministrationImplicitRules(v string) MedicationAdministratio
 }
 
 // WithMedicationAdministrationLanguage sets the Language field.
+//
+// Deprecated: use MedicationAdministrationBuilder.SetLanguage instead; removed in v2.
 func WithMedicationAdministrationLanguage(v string) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.Language = &v
@@ -1057,6 +1079,8 @@ func WithMedicationAdministrationLanguage(v string) MedicationAdministrationOpti
 }
 
 // WithMedicationAdministrationText sets the Text field.
+//
+// Deprecated: use MedicationAdministrationBuilder.SetText instead; removed in v2.
 func WithMedicationAdministrationText(v Narrative) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.Text = &v
@@ -1064,6 +1088,8 @@ func WithMedicationAdministrationText(v Narrative) MedicationAdministrationOptio
 }
 
 // WithMedicationAdministrationContained adds a Contained to the MedicationAdministration.
+//
+// Deprecated: use MedicationAdministrationBuilder.AddContained instead; removed in v2.
 func WithMedicationAdministrationContained(v Resource) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.Contained = append(r.Contained, v)
@@ -1071,6 +1097,8 @@ func WithMedicationAdministrationContained(v Resource) MedicationAdministrationO
 }
 
 // WithMedicationAdministrationExtension adds a Extension to the MedicationAdministration.
+//
+// Deprecated: use MedicationAdministrationBuilder.AddExtension instead; removed in v2.
 func WithMedicationAdministrationExtension(v Extension) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.Extension = append(r.Extension, v)
@@ -1078,6 +1106,8 @@ func WithMedicationAdministrationExtension(v Extension) MedicationAdministration
 }
 
 // WithMedicationAdministrationModifierExtension adds a ModifierExtension to the MedicationAdministration.
+//
+// Deprecated: use MedicationAdministrationBuilder.AddModifierExtension instead; removed in v2.
 func WithMedicationAdministrationModifierExtension(v Extension) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1085,6 +1115,8 @@ func WithMedicationAdministrationModifierExtension(v Extension) MedicationAdmini
 }
 
 // WithMedicationAdministrationIdentifier adds a Identifier to the MedicationAdministration.
+//
+// Deprecated: use MedicationAdministrationBuilder.AddIdentifier instead; removed in v2.
 func WithMedicationAdministrationIdentifier(v Identifier) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.Identifier = append(r.Identifier, v)
@@ -1092,6 +1124,8 @@ func WithMedicationAdministrationIdentifier(v Identifier) MedicationAdministrati
 }
 
 // WithMedicationAdministrationInstantiates adds a Instantiates to the MedicationAdministration.
+//
+// Deprecated: use MedicationAdministrationBuilder.AddInstantiates instead; removed in v2.
 func WithMedicationAdministrationInstantiates(v string) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.Instantiates = append(r.Instantiates, v)
@@ -1099,6 +1133,8 @@ func WithMedicationAdministrationInstantiates(v string) MedicationAdministration
 }
 
 // WithMedicationAdministrationPartOf adds a PartOf to the MedicationAdministration.
+//
+// Deprecated: use MedicationAdministrationBuilder.AddPartOf instead; removed in v2.
 func WithMedicationAdministrationPartOf(v Reference) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.PartOf = append(r.PartOf, v)
@@ -1106,6 +1142,8 @@ func WithMedicationAdministrationPartOf(v Reference) MedicationAdministrationOpt
 }
 
 // WithMedicationAdministrationStatus sets the Status field.
+//
+// Deprecated: use MedicationAdministrationBuilder.SetStatus instead; removed in v2.
 func WithMedicationAdministrationStatus(v MedicationAdministrationStatusCodes) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.Status = &v
@@ -1113,6 +1151,8 @@ func WithMedicationAdministrationStatus(v MedicationAdministrationStatusCodes) M
 }
 
 // WithMedicationAdministrationStatusReason adds a StatusReason to the MedicationAdministration.
+//
+// Deprecated: use MedicationAdministrationBuilder.AddStatusReason instead; removed in v2.
 func WithMedicationAdministrationStatusReason(v CodeableConcept) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.StatusReason = append(r.StatusReason, v)
@@ -1120,6 +1160,8 @@ func WithMedicationAdministrationStatusReason(v CodeableConcept) MedicationAdmin
 }
 
 // WithMedicationAdministrationCategory sets the Category field.
+//
+// Deprecated: use MedicationAdministrationBuilder.SetCategory instead; removed in v2.
 func WithMedicationAdministrationCategory(v CodeableConcept) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.Category = &v
@@ -1127,6 +1169,8 @@ func WithMedicationAdministrationCategory(v CodeableConcept) MedicationAdministr
 }
 
 // WithMedicationAdministrationMedicationCodeableConcept sets the MedicationCodeableConcept field.
+//
+// Deprecated: use MedicationAdministrationBuilder.SetMedicationCodeableConcept instead; removed in v2.
 func WithMedicationAdministrationMedicationCodeableConcept(v CodeableConcept) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.MedicationCodeableConcept = &v
@@ -1134,6 +1178,8 @@ func WithMedicationAdministrationMedicationCodeableConcept(v CodeableConcept) Me
 }
 
 // WithMedicationAdministrationMedicationReference sets the MedicationReference field.
+//
+// Deprecated: use MedicationAdministrationBuilder.SetMedicationReference instead; removed in v2.
 func WithMedicationAdministrationMedicationReference(v Reference) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.MedicationReference = &v
@@ -1141,6 +1187,8 @@ func WithMedicationAdministrationMedicationReference(v Reference) MedicationAdmi
 }
 
 // WithMedicationAdministrationSubject sets the Subject field.
+//
+// Deprecated: use MedicationAdministrationBuilder.SetSubject instead; removed in v2.
 func WithMedicationAdministrationSubject(v Reference) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.Subject = v
@@ -1148,6 +1196,8 @@ func WithMedicationAdministrationSubject(v Reference) MedicationAdministrationOp
 }
 
 // WithMedicationAdministrationContext sets the Context field.
+//
+// Deprecated: use MedicationAdministrationBuilder.SetContext instead; removed in v2.
 func WithMedicationAdministrationContext(v Reference) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.Context = &v
@@ -1155,6 +1205,8 @@ func WithMedicationAdministrationContext(v Reference) MedicationAdministrationOp
 }
 
 // WithMedicationAdministrationSupportingInformation adds a SupportingInformation to the MedicationAdministration.
+//
+// Deprecated: use MedicationAdministrationBuilder.AddSupportingInformation instead; removed in v2.
 func WithMedicationAdministrationSupportingInformation(v Reference) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.SupportingInformation = append(r.SupportingInformation, v)
@@ -1162,6 +1214,8 @@ func WithMedicationAdministrationSupportingInformation(v Reference) MedicationAd
 }
 
 // WithMedicationAdministrationEffectiveDateTime sets the EffectiveDateTime field.
+//
+// Deprecated: use MedicationAdministrationBuilder.SetEffectiveDateTime instead; removed in v2.
 func WithMedicationAdministrationEffectiveDateTime(v string) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.EffectiveDateTime = &v
@@ -1169,6 +1223,8 @@ func WithMedicationAdministrationEffectiveDateTime(v string) MedicationAdministr
 }
 
 // WithMedicationAdministrationEffectiveDateTimeExt sets the EffectiveDateTimeExt field.
+//
+// Deprecated: use MedicationAdministrationBuilder.SetEffectiveDateTimeExt instead; removed in v2.
 func WithMedicationAdministrationEffectiveDateTimeExt(v Element) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.EffectiveDateTimeExt = &v
@@ -1176,6 +1232,8 @@ func WithMedicationAdministrationEffectiveDateTimeExt(v Element) MedicationAdmin
 }
 
 // WithMedicationAdministrationEffectivePeriod sets the EffectivePeriod field.
+//
+// Deprecated: use MedicationAdministrationBuilder.SetEffectivePeriod instead; removed in v2.
 func WithMedicationAdministrationEffectivePeriod(v Period) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.EffectivePeriod = &v
@@ -1183,6 +1241,8 @@ func WithMedicationAdministrationEffectivePeriod(v Period) MedicationAdministrat
 }
 
 // WithMedicationAdministrationPerformer adds a Performer to the MedicationAdministration.
+//
+// Deprecated: use MedicationAdministrationBuilder.AddPerformer instead; removed in v2.
 func WithMedicationAdministrationPerformer(v MedicationAdministrationPerformer) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.Performer = append(r.Performer, v)
@@ -1190,6 +1250,8 @@ func WithMedicationAdministrationPerformer(v MedicationAdministrationPerformer) 
 }
 
 // WithMedicationAdministrationReasonCode adds a ReasonCode to the MedicationAdministration.
+//
+// Deprecated: use MedicationAdministrationBuilder.AddReasonCode instead; removed in v2.
 func WithMedicationAdministrationReasonCode(v CodeableConcept) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.ReasonCode = append(r.ReasonCode, v)
@@ -1197,6 +1259,8 @@ func WithMedicationAdministrationReasonCode(v CodeableConcept) MedicationAdminis
 }
 
 // WithMedicationAdministrationReasonReference adds a ReasonReference to the MedicationAdministration.
+//
+// Deprecated: use MedicationAdministrationBuilder.AddReasonReference instead; removed in v2.
 func WithMedicationAdministrationReasonReference(v Reference) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.ReasonReference = append(r.ReasonReference, v)
@@ -1204,6 +1268,8 @@ func WithMedicationAdministrationReasonReference(v Reference) MedicationAdminist
 }
 
 // WithMedicationAdministrationRequest sets the Request field.
+//
+// Deprecated: use MedicationAdministrationBuilder.SetRequest instead; removed in v2.
 func WithMedicationAdministrationRequest(v Reference) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.Request = &v
@@ -1211,6 +1277,8 @@ func WithMedicationAdministrationRequest(v Reference) MedicationAdministrationOp
 }
 
 // WithMedicationAdministrationDevice adds a Device to the MedicationAdministration.
+//
+// Deprecated: use MedicationAdministrationBuilder.AddDevice instead; removed in v2.
 func WithMedicationAdministrationDevice(v Reference) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.Device = append(r.Device, v)
@@ -1218,6 +1286,8 @@ func WithMedicationAdministrationDevice(v Reference) MedicationAdministrationOpt
 }
 
 // WithMedicationAdministrationNote adds a Note to the MedicationAdministration.
+//
+// Deprecated: use MedicationAdministrationBuilder.AddNote instead; removed in v2.
 func WithMedicationAdministrationNote(v Annotation) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.Note = append(r.Note, v)
@@ -1225,6 +1295,8 @@ func WithMedicationAdministrationNote(v Annotation) MedicationAdministrationOpti
 }
 
 // WithMedicationAdministrationDosage sets the Dosage field.
+//
+// Deprecated: use MedicationAdministrationBuilder.SetDosage instead; removed in v2.
 func WithMedicationAdministrationDosage(v MedicationAdministrationDosage) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.Dosage = &v
@@ -1232,6 +1304,8 @@ func WithMedicationAdministrationDosage(v MedicationAdministrationDosage) Medica
 }
 
 // WithMedicationAdministrationEventHistory adds a EventHistory to the MedicationAdministration.
+//
+// Deprecated: use MedicationAdministrationBuilder.AddEventHistory instead; removed in v2.
 func WithMedicationAdministrationEventHistory(v Reference) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
 		r.EventHistory = append(r.EventHistory, v)

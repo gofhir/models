@@ -811,9 +811,23 @@ func (b *DiagnosticReportBuilder) AddPresentedForm(v Attachment) *DiagnosticRepo
 // =============================================================================
 
 // DiagnosticReportOption is a functional option for configuring a DiagnosticReport.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// DiagnosticReportBuilder. Every WithDiagnosticReport* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type DiagnosticReportOption func(*DiagnosticReport)
 
 // NewDiagnosticReport creates a new DiagnosticReport with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewDiagnosticReportBuilder().SetId("x").Build()
+//
+// Deprecated: use NewDiagnosticReportBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewDiagnosticReport(opts ...DiagnosticReportOption) *DiagnosticReport {
 	r := &DiagnosticReport{ResourceType: "DiagnosticReport"}
 	for _, opt := range opts {
@@ -823,6 +837,8 @@ func NewDiagnosticReport(opts ...DiagnosticReportOption) *DiagnosticReport {
 }
 
 // WithDiagnosticReportId sets the Id field.
+//
+// Deprecated: use DiagnosticReportBuilder.SetId instead; removed in v2.
 func WithDiagnosticReportId(v string) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.Id = &v
@@ -830,6 +846,8 @@ func WithDiagnosticReportId(v string) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportMeta sets the Meta field.
+//
+// Deprecated: use DiagnosticReportBuilder.SetMeta instead; removed in v2.
 func WithDiagnosticReportMeta(v Meta) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.Meta = &v
@@ -837,6 +855,8 @@ func WithDiagnosticReportMeta(v Meta) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use DiagnosticReportBuilder.SetImplicitRules instead; removed in v2.
 func WithDiagnosticReportImplicitRules(v string) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.ImplicitRules = &v
@@ -844,6 +864,8 @@ func WithDiagnosticReportImplicitRules(v string) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportLanguage sets the Language field.
+//
+// Deprecated: use DiagnosticReportBuilder.SetLanguage instead; removed in v2.
 func WithDiagnosticReportLanguage(v string) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.Language = &v
@@ -851,6 +873,8 @@ func WithDiagnosticReportLanguage(v string) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportText sets the Text field.
+//
+// Deprecated: use DiagnosticReportBuilder.SetText instead; removed in v2.
 func WithDiagnosticReportText(v Narrative) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.Text = &v
@@ -858,6 +882,8 @@ func WithDiagnosticReportText(v Narrative) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportContained adds a Contained to the DiagnosticReport.
+//
+// Deprecated: use DiagnosticReportBuilder.AddContained instead; removed in v2.
 func WithDiagnosticReportContained(v Resource) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.Contained = append(r.Contained, v)
@@ -865,6 +891,8 @@ func WithDiagnosticReportContained(v Resource) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportExtension adds a Extension to the DiagnosticReport.
+//
+// Deprecated: use DiagnosticReportBuilder.AddExtension instead; removed in v2.
 func WithDiagnosticReportExtension(v Extension) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.Extension = append(r.Extension, v)
@@ -872,6 +900,8 @@ func WithDiagnosticReportExtension(v Extension) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportModifierExtension adds a ModifierExtension to the DiagnosticReport.
+//
+// Deprecated: use DiagnosticReportBuilder.AddModifierExtension instead; removed in v2.
 func WithDiagnosticReportModifierExtension(v Extension) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -879,6 +909,8 @@ func WithDiagnosticReportModifierExtension(v Extension) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportIdentifier adds a Identifier to the DiagnosticReport.
+//
+// Deprecated: use DiagnosticReportBuilder.AddIdentifier instead; removed in v2.
 func WithDiagnosticReportIdentifier(v Identifier) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.Identifier = append(r.Identifier, v)
@@ -886,6 +918,8 @@ func WithDiagnosticReportIdentifier(v Identifier) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportBasedOn adds a BasedOn to the DiagnosticReport.
+//
+// Deprecated: use DiagnosticReportBuilder.AddBasedOn instead; removed in v2.
 func WithDiagnosticReportBasedOn(v Reference) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -893,6 +927,8 @@ func WithDiagnosticReportBasedOn(v Reference) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportStatus sets the Status field.
+//
+// Deprecated: use DiagnosticReportBuilder.SetStatus instead; removed in v2.
 func WithDiagnosticReportStatus(v DiagnosticReportStatus) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.Status = &v
@@ -900,6 +936,8 @@ func WithDiagnosticReportStatus(v DiagnosticReportStatus) DiagnosticReportOption
 }
 
 // WithDiagnosticReportCategory adds a Category to the DiagnosticReport.
+//
+// Deprecated: use DiagnosticReportBuilder.AddCategory instead; removed in v2.
 func WithDiagnosticReportCategory(v CodeableConcept) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.Category = append(r.Category, v)
@@ -907,6 +945,8 @@ func WithDiagnosticReportCategory(v CodeableConcept) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportCode sets the Code field.
+//
+// Deprecated: use DiagnosticReportBuilder.SetCode instead; removed in v2.
 func WithDiagnosticReportCode(v CodeableConcept) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.Code = v
@@ -914,6 +954,8 @@ func WithDiagnosticReportCode(v CodeableConcept) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportSubject sets the Subject field.
+//
+// Deprecated: use DiagnosticReportBuilder.SetSubject instead; removed in v2.
 func WithDiagnosticReportSubject(v Reference) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.Subject = &v
@@ -921,6 +963,8 @@ func WithDiagnosticReportSubject(v Reference) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportEncounter sets the Encounter field.
+//
+// Deprecated: use DiagnosticReportBuilder.SetEncounter instead; removed in v2.
 func WithDiagnosticReportEncounter(v Reference) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.Encounter = &v
@@ -928,6 +972,8 @@ func WithDiagnosticReportEncounter(v Reference) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportEffectiveDateTime sets the EffectiveDateTime field.
+//
+// Deprecated: use DiagnosticReportBuilder.SetEffectiveDateTime instead; removed in v2.
 func WithDiagnosticReportEffectiveDateTime(v string) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.EffectiveDateTime = &v
@@ -935,6 +981,8 @@ func WithDiagnosticReportEffectiveDateTime(v string) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportEffectiveDateTimeExt sets the EffectiveDateTimeExt field.
+//
+// Deprecated: use DiagnosticReportBuilder.SetEffectiveDateTimeExt instead; removed in v2.
 func WithDiagnosticReportEffectiveDateTimeExt(v Element) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.EffectiveDateTimeExt = &v
@@ -942,6 +990,8 @@ func WithDiagnosticReportEffectiveDateTimeExt(v Element) DiagnosticReportOption 
 }
 
 // WithDiagnosticReportEffectivePeriod sets the EffectivePeriod field.
+//
+// Deprecated: use DiagnosticReportBuilder.SetEffectivePeriod instead; removed in v2.
 func WithDiagnosticReportEffectivePeriod(v Period) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.EffectivePeriod = &v
@@ -949,6 +999,8 @@ func WithDiagnosticReportEffectivePeriod(v Period) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportIssued sets the Issued field.
+//
+// Deprecated: use DiagnosticReportBuilder.SetIssued instead; removed in v2.
 func WithDiagnosticReportIssued(v string) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.Issued = &v
@@ -956,6 +1008,8 @@ func WithDiagnosticReportIssued(v string) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportPerformer adds a Performer to the DiagnosticReport.
+//
+// Deprecated: use DiagnosticReportBuilder.AddPerformer instead; removed in v2.
 func WithDiagnosticReportPerformer(v Reference) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.Performer = append(r.Performer, v)
@@ -963,6 +1017,8 @@ func WithDiagnosticReportPerformer(v Reference) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportResultsInterpreter adds a ResultsInterpreter to the DiagnosticReport.
+//
+// Deprecated: use DiagnosticReportBuilder.AddResultsInterpreter instead; removed in v2.
 func WithDiagnosticReportResultsInterpreter(v Reference) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.ResultsInterpreter = append(r.ResultsInterpreter, v)
@@ -970,6 +1026,8 @@ func WithDiagnosticReportResultsInterpreter(v Reference) DiagnosticReportOption 
 }
 
 // WithDiagnosticReportSpecimen adds a Specimen to the DiagnosticReport.
+//
+// Deprecated: use DiagnosticReportBuilder.AddSpecimen instead; removed in v2.
 func WithDiagnosticReportSpecimen(v Reference) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.Specimen = append(r.Specimen, v)
@@ -977,6 +1035,8 @@ func WithDiagnosticReportSpecimen(v Reference) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportResult adds a Result to the DiagnosticReport.
+//
+// Deprecated: use DiagnosticReportBuilder.AddResult instead; removed in v2.
 func WithDiagnosticReportResult(v Reference) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.Result = append(r.Result, v)
@@ -984,6 +1044,8 @@ func WithDiagnosticReportResult(v Reference) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportImagingStudy adds a ImagingStudy to the DiagnosticReport.
+//
+// Deprecated: use DiagnosticReportBuilder.AddImagingStudy instead; removed in v2.
 func WithDiagnosticReportImagingStudy(v Reference) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.ImagingStudy = append(r.ImagingStudy, v)
@@ -991,6 +1053,8 @@ func WithDiagnosticReportImagingStudy(v Reference) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportMedia adds a Media to the DiagnosticReport.
+//
+// Deprecated: use DiagnosticReportBuilder.AddMedia instead; removed in v2.
 func WithDiagnosticReportMedia(v DiagnosticReportMedia) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.Media = append(r.Media, v)
@@ -998,6 +1062,8 @@ func WithDiagnosticReportMedia(v DiagnosticReportMedia) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportConclusion sets the Conclusion field.
+//
+// Deprecated: use DiagnosticReportBuilder.SetConclusion instead; removed in v2.
 func WithDiagnosticReportConclusion(v string) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.Conclusion = &v
@@ -1005,6 +1071,8 @@ func WithDiagnosticReportConclusion(v string) DiagnosticReportOption {
 }
 
 // WithDiagnosticReportConclusionCode adds a ConclusionCode to the DiagnosticReport.
+//
+// Deprecated: use DiagnosticReportBuilder.AddConclusionCode instead; removed in v2.
 func WithDiagnosticReportConclusionCode(v CodeableConcept) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.ConclusionCode = append(r.ConclusionCode, v)
@@ -1012,6 +1080,8 @@ func WithDiagnosticReportConclusionCode(v CodeableConcept) DiagnosticReportOptio
 }
 
 // WithDiagnosticReportPresentedForm adds a PresentedForm to the DiagnosticReport.
+//
+// Deprecated: use DiagnosticReportBuilder.AddPresentedForm instead; removed in v2.
 func WithDiagnosticReportPresentedForm(v Attachment) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
 		r.PresentedForm = append(r.PresentedForm, v)

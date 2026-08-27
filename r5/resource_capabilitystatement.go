@@ -2629,9 +2629,23 @@ func (b *CapabilityStatementBuilder) AddDocument(v CapabilityStatementDocument) 
 // =============================================================================
 
 // CapabilityStatementOption is a functional option for configuring a CapabilityStatement.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// CapabilityStatementBuilder. Every WithCapabilityStatement* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type CapabilityStatementOption func(*CapabilityStatement)
 
 // NewCapabilityStatement creates a new CapabilityStatement with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewCapabilityStatementBuilder().SetId("x").Build()
+//
+// Deprecated: use NewCapabilityStatementBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewCapabilityStatement(opts ...CapabilityStatementOption) *CapabilityStatement {
 	r := &CapabilityStatement{ResourceType: "CapabilityStatement"}
 	for _, opt := range opts {
@@ -2641,6 +2655,8 @@ func NewCapabilityStatement(opts ...CapabilityStatementOption) *CapabilityStatem
 }
 
 // WithCapabilityStatementId sets the Id field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetId instead; removed in v2.
 func WithCapabilityStatementId(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Id = &v
@@ -2648,6 +2664,8 @@ func WithCapabilityStatementId(v string) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementMeta sets the Meta field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetMeta instead; removed in v2.
 func WithCapabilityStatementMeta(v Meta) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Meta = &v
@@ -2655,6 +2673,8 @@ func WithCapabilityStatementMeta(v Meta) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetImplicitRules instead; removed in v2.
 func WithCapabilityStatementImplicitRules(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.ImplicitRules = &v
@@ -2662,6 +2682,8 @@ func WithCapabilityStatementImplicitRules(v string) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementLanguage sets the Language field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetLanguage instead; removed in v2.
 func WithCapabilityStatementLanguage(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Language = &v
@@ -2669,6 +2691,8 @@ func WithCapabilityStatementLanguage(v string) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementText sets the Text field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetText instead; removed in v2.
 func WithCapabilityStatementText(v Narrative) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Text = &v
@@ -2676,6 +2700,8 @@ func WithCapabilityStatementText(v Narrative) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementContained adds a Contained to the CapabilityStatement.
+//
+// Deprecated: use CapabilityStatementBuilder.AddContained instead; removed in v2.
 func WithCapabilityStatementContained(v Resource) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Contained = append(r.Contained, v)
@@ -2683,6 +2709,8 @@ func WithCapabilityStatementContained(v Resource) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementExtension adds a Extension to the CapabilityStatement.
+//
+// Deprecated: use CapabilityStatementBuilder.AddExtension instead; removed in v2.
 func WithCapabilityStatementExtension(v Extension) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Extension = append(r.Extension, v)
@@ -2690,6 +2718,8 @@ func WithCapabilityStatementExtension(v Extension) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementModifierExtension adds a ModifierExtension to the CapabilityStatement.
+//
+// Deprecated: use CapabilityStatementBuilder.AddModifierExtension instead; removed in v2.
 func WithCapabilityStatementModifierExtension(v Extension) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -2697,6 +2727,8 @@ func WithCapabilityStatementModifierExtension(v Extension) CapabilityStatementOp
 }
 
 // WithCapabilityStatementUrl sets the Url field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetUrl instead; removed in v2.
 func WithCapabilityStatementUrl(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Url = &v
@@ -2704,6 +2736,8 @@ func WithCapabilityStatementUrl(v string) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementIdentifier adds a Identifier to the CapabilityStatement.
+//
+// Deprecated: use CapabilityStatementBuilder.AddIdentifier instead; removed in v2.
 func WithCapabilityStatementIdentifier(v Identifier) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Identifier = append(r.Identifier, v)
@@ -2711,6 +2745,8 @@ func WithCapabilityStatementIdentifier(v Identifier) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementVersion sets the Version field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetVersion instead; removed in v2.
 func WithCapabilityStatementVersion(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Version = &v
@@ -2718,6 +2754,8 @@ func WithCapabilityStatementVersion(v string) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementVersionAlgorithmString sets the VersionAlgorithmString field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetVersionAlgorithmString instead; removed in v2.
 func WithCapabilityStatementVersionAlgorithmString(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.VersionAlgorithmString = &v
@@ -2725,6 +2763,8 @@ func WithCapabilityStatementVersionAlgorithmString(v string) CapabilityStatement
 }
 
 // WithCapabilityStatementVersionAlgorithmStringExt sets the VersionAlgorithmStringExt field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetVersionAlgorithmStringExt instead; removed in v2.
 func WithCapabilityStatementVersionAlgorithmStringExt(v Element) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.VersionAlgorithmStringExt = &v
@@ -2732,6 +2772,8 @@ func WithCapabilityStatementVersionAlgorithmStringExt(v Element) CapabilityState
 }
 
 // WithCapabilityStatementVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetVersionAlgorithmCoding instead; removed in v2.
 func WithCapabilityStatementVersionAlgorithmCoding(v Coding) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.VersionAlgorithmCoding = &v
@@ -2739,6 +2781,8 @@ func WithCapabilityStatementVersionAlgorithmCoding(v Coding) CapabilityStatement
 }
 
 // WithCapabilityStatementName sets the Name field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetName instead; removed in v2.
 func WithCapabilityStatementName(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Name = &v
@@ -2746,6 +2790,8 @@ func WithCapabilityStatementName(v string) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementTitle sets the Title field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetTitle instead; removed in v2.
 func WithCapabilityStatementTitle(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Title = &v
@@ -2753,6 +2799,8 @@ func WithCapabilityStatementTitle(v string) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementStatus sets the Status field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetStatus instead; removed in v2.
 func WithCapabilityStatementStatus(v PublicationStatus) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Status = &v
@@ -2760,6 +2808,8 @@ func WithCapabilityStatementStatus(v PublicationStatus) CapabilityStatementOptio
 }
 
 // WithCapabilityStatementExperimental sets the Experimental field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetExperimental instead; removed in v2.
 func WithCapabilityStatementExperimental(v bool) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Experimental = &v
@@ -2767,6 +2817,8 @@ func WithCapabilityStatementExperimental(v bool) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementDate sets the Date field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetDate instead; removed in v2.
 func WithCapabilityStatementDate(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Date = &v
@@ -2774,6 +2826,8 @@ func WithCapabilityStatementDate(v string) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementPublisher sets the Publisher field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetPublisher instead; removed in v2.
 func WithCapabilityStatementPublisher(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Publisher = &v
@@ -2781,6 +2835,8 @@ func WithCapabilityStatementPublisher(v string) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementContact adds a Contact to the CapabilityStatement.
+//
+// Deprecated: use CapabilityStatementBuilder.AddContact instead; removed in v2.
 func WithCapabilityStatementContact(v ContactDetail) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Contact = append(r.Contact, v)
@@ -2788,6 +2844,8 @@ func WithCapabilityStatementContact(v ContactDetail) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementDescription sets the Description field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetDescription instead; removed in v2.
 func WithCapabilityStatementDescription(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Description = &v
@@ -2795,6 +2853,8 @@ func WithCapabilityStatementDescription(v string) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementUseContext adds a UseContext to the CapabilityStatement.
+//
+// Deprecated: use CapabilityStatementBuilder.AddUseContext instead; removed in v2.
 func WithCapabilityStatementUseContext(v UsageContext) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.UseContext = append(r.UseContext, v)
@@ -2802,6 +2862,8 @@ func WithCapabilityStatementUseContext(v UsageContext) CapabilityStatementOption
 }
 
 // WithCapabilityStatementJurisdiction adds a Jurisdiction to the CapabilityStatement.
+//
+// Deprecated: use CapabilityStatementBuilder.AddJurisdiction instead; removed in v2.
 func WithCapabilityStatementJurisdiction(v CodeableConcept) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -2809,6 +2871,8 @@ func WithCapabilityStatementJurisdiction(v CodeableConcept) CapabilityStatementO
 }
 
 // WithCapabilityStatementPurpose sets the Purpose field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetPurpose instead; removed in v2.
 func WithCapabilityStatementPurpose(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Purpose = &v
@@ -2816,6 +2880,8 @@ func WithCapabilityStatementPurpose(v string) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementCopyright sets the Copyright field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetCopyright instead; removed in v2.
 func WithCapabilityStatementCopyright(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Copyright = &v
@@ -2823,6 +2889,8 @@ func WithCapabilityStatementCopyright(v string) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementCopyrightLabel sets the CopyrightLabel field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetCopyrightLabel instead; removed in v2.
 func WithCapabilityStatementCopyrightLabel(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.CopyrightLabel = &v
@@ -2830,6 +2898,8 @@ func WithCapabilityStatementCopyrightLabel(v string) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementKind sets the Kind field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetKind instead; removed in v2.
 func WithCapabilityStatementKind(v CapabilityStatementKind) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Kind = &v
@@ -2837,6 +2907,8 @@ func WithCapabilityStatementKind(v CapabilityStatementKind) CapabilityStatementO
 }
 
 // WithCapabilityStatementInstantiates adds a Instantiates to the CapabilityStatement.
+//
+// Deprecated: use CapabilityStatementBuilder.AddInstantiates instead; removed in v2.
 func WithCapabilityStatementInstantiates(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Instantiates = append(r.Instantiates, v)
@@ -2844,6 +2916,8 @@ func WithCapabilityStatementInstantiates(v string) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementImports adds a Imports to the CapabilityStatement.
+//
+// Deprecated: use CapabilityStatementBuilder.AddImports instead; removed in v2.
 func WithCapabilityStatementImports(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Imports = append(r.Imports, v)
@@ -2851,6 +2925,8 @@ func WithCapabilityStatementImports(v string) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementSoftware sets the Software field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetSoftware instead; removed in v2.
 func WithCapabilityStatementSoftware(v CapabilityStatementSoftware) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Software = &v
@@ -2858,6 +2934,8 @@ func WithCapabilityStatementSoftware(v CapabilityStatementSoftware) CapabilitySt
 }
 
 // WithCapabilityStatementImplementation sets the Implementation field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetImplementation instead; removed in v2.
 func WithCapabilityStatementImplementation(v CapabilityStatementImplementation) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Implementation = &v
@@ -2865,6 +2943,8 @@ func WithCapabilityStatementImplementation(v CapabilityStatementImplementation) 
 }
 
 // WithCapabilityStatementFhirVersion sets the FhirVersion field.
+//
+// Deprecated: use CapabilityStatementBuilder.SetFhirVersion instead; removed in v2.
 func WithCapabilityStatementFhirVersion(v FHIRVersion) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.FhirVersion = &v
@@ -2872,6 +2952,8 @@ func WithCapabilityStatementFhirVersion(v FHIRVersion) CapabilityStatementOption
 }
 
 // WithCapabilityStatementFormat adds a Format to the CapabilityStatement.
+//
+// Deprecated: use CapabilityStatementBuilder.AddFormat instead; removed in v2.
 func WithCapabilityStatementFormat(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Format = append(r.Format, v)
@@ -2879,6 +2961,8 @@ func WithCapabilityStatementFormat(v string) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementPatchFormat adds a PatchFormat to the CapabilityStatement.
+//
+// Deprecated: use CapabilityStatementBuilder.AddPatchFormat instead; removed in v2.
 func WithCapabilityStatementPatchFormat(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.PatchFormat = append(r.PatchFormat, v)
@@ -2886,6 +2970,8 @@ func WithCapabilityStatementPatchFormat(v string) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementAcceptLanguage adds a AcceptLanguage to the CapabilityStatement.
+//
+// Deprecated: use CapabilityStatementBuilder.AddAcceptLanguage instead; removed in v2.
 func WithCapabilityStatementAcceptLanguage(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.AcceptLanguage = append(r.AcceptLanguage, v)
@@ -2893,6 +2979,8 @@ func WithCapabilityStatementAcceptLanguage(v string) CapabilityStatementOption {
 }
 
 // WithCapabilityStatementImplementationGuide adds a ImplementationGuide to the CapabilityStatement.
+//
+// Deprecated: use CapabilityStatementBuilder.AddImplementationGuide instead; removed in v2.
 func WithCapabilityStatementImplementationGuide(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.ImplementationGuide = append(r.ImplementationGuide, v)
@@ -2900,6 +2988,8 @@ func WithCapabilityStatementImplementationGuide(v string) CapabilityStatementOpt
 }
 
 // WithCapabilityStatementRest adds a Rest to the CapabilityStatement.
+//
+// Deprecated: use CapabilityStatementBuilder.AddRest instead; removed in v2.
 func WithCapabilityStatementRest(v CapabilityStatementRest) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Rest = append(r.Rest, v)
@@ -2907,6 +2997,8 @@ func WithCapabilityStatementRest(v CapabilityStatementRest) CapabilityStatementO
 }
 
 // WithCapabilityStatementMessaging adds a Messaging to the CapabilityStatement.
+//
+// Deprecated: use CapabilityStatementBuilder.AddMessaging instead; removed in v2.
 func WithCapabilityStatementMessaging(v CapabilityStatementMessaging) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Messaging = append(r.Messaging, v)
@@ -2914,6 +3006,8 @@ func WithCapabilityStatementMessaging(v CapabilityStatementMessaging) Capability
 }
 
 // WithCapabilityStatementDocument adds a Document to the CapabilityStatement.
+//
+// Deprecated: use CapabilityStatementBuilder.AddDocument instead; removed in v2.
 func WithCapabilityStatementDocument(v CapabilityStatementDocument) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
 		r.Document = append(r.Document, v)

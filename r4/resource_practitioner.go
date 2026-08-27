@@ -665,9 +665,23 @@ func (b *PractitionerBuilder) AddCommunication(v CodeableConcept) *PractitionerB
 // =============================================================================
 
 // PractitionerOption is a functional option for configuring a Practitioner.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// PractitionerBuilder. Every WithPractitioner* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type PractitionerOption func(*Practitioner)
 
 // NewPractitioner creates a new Practitioner with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewPractitionerBuilder().SetId("x").Build()
+//
+// Deprecated: use NewPractitionerBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewPractitioner(opts ...PractitionerOption) *Practitioner {
 	r := &Practitioner{ResourceType: "Practitioner"}
 	for _, opt := range opts {
@@ -677,6 +691,8 @@ func NewPractitioner(opts ...PractitionerOption) *Practitioner {
 }
 
 // WithPractitionerId sets the Id field.
+//
+// Deprecated: use PractitionerBuilder.SetId instead; removed in v2.
 func WithPractitionerId(v string) PractitionerOption {
 	return func(r *Practitioner) {
 		r.Id = &v
@@ -684,6 +700,8 @@ func WithPractitionerId(v string) PractitionerOption {
 }
 
 // WithPractitionerMeta sets the Meta field.
+//
+// Deprecated: use PractitionerBuilder.SetMeta instead; removed in v2.
 func WithPractitionerMeta(v Meta) PractitionerOption {
 	return func(r *Practitioner) {
 		r.Meta = &v
@@ -691,6 +709,8 @@ func WithPractitionerMeta(v Meta) PractitionerOption {
 }
 
 // WithPractitionerImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use PractitionerBuilder.SetImplicitRules instead; removed in v2.
 func WithPractitionerImplicitRules(v string) PractitionerOption {
 	return func(r *Practitioner) {
 		r.ImplicitRules = &v
@@ -698,6 +718,8 @@ func WithPractitionerImplicitRules(v string) PractitionerOption {
 }
 
 // WithPractitionerLanguage sets the Language field.
+//
+// Deprecated: use PractitionerBuilder.SetLanguage instead; removed in v2.
 func WithPractitionerLanguage(v string) PractitionerOption {
 	return func(r *Practitioner) {
 		r.Language = &v
@@ -705,6 +727,8 @@ func WithPractitionerLanguage(v string) PractitionerOption {
 }
 
 // WithPractitionerText sets the Text field.
+//
+// Deprecated: use PractitionerBuilder.SetText instead; removed in v2.
 func WithPractitionerText(v Narrative) PractitionerOption {
 	return func(r *Practitioner) {
 		r.Text = &v
@@ -712,6 +736,8 @@ func WithPractitionerText(v Narrative) PractitionerOption {
 }
 
 // WithPractitionerContained adds a Contained to the Practitioner.
+//
+// Deprecated: use PractitionerBuilder.AddContained instead; removed in v2.
 func WithPractitionerContained(v Resource) PractitionerOption {
 	return func(r *Practitioner) {
 		r.Contained = append(r.Contained, v)
@@ -719,6 +745,8 @@ func WithPractitionerContained(v Resource) PractitionerOption {
 }
 
 // WithPractitionerExtension adds a Extension to the Practitioner.
+//
+// Deprecated: use PractitionerBuilder.AddExtension instead; removed in v2.
 func WithPractitionerExtension(v Extension) PractitionerOption {
 	return func(r *Practitioner) {
 		r.Extension = append(r.Extension, v)
@@ -726,6 +754,8 @@ func WithPractitionerExtension(v Extension) PractitionerOption {
 }
 
 // WithPractitionerModifierExtension adds a ModifierExtension to the Practitioner.
+//
+// Deprecated: use PractitionerBuilder.AddModifierExtension instead; removed in v2.
 func WithPractitionerModifierExtension(v Extension) PractitionerOption {
 	return func(r *Practitioner) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -733,6 +763,8 @@ func WithPractitionerModifierExtension(v Extension) PractitionerOption {
 }
 
 // WithPractitionerIdentifier adds a Identifier to the Practitioner.
+//
+// Deprecated: use PractitionerBuilder.AddIdentifier instead; removed in v2.
 func WithPractitionerIdentifier(v Identifier) PractitionerOption {
 	return func(r *Practitioner) {
 		r.Identifier = append(r.Identifier, v)
@@ -740,6 +772,8 @@ func WithPractitionerIdentifier(v Identifier) PractitionerOption {
 }
 
 // WithPractitionerActive sets the Active field.
+//
+// Deprecated: use PractitionerBuilder.SetActive instead; removed in v2.
 func WithPractitionerActive(v bool) PractitionerOption {
 	return func(r *Practitioner) {
 		r.Active = &v
@@ -747,6 +781,8 @@ func WithPractitionerActive(v bool) PractitionerOption {
 }
 
 // WithPractitionerName adds a Name to the Practitioner.
+//
+// Deprecated: use PractitionerBuilder.AddName instead; removed in v2.
 func WithPractitionerName(v HumanName) PractitionerOption {
 	return func(r *Practitioner) {
 		r.Name = append(r.Name, v)
@@ -754,6 +790,8 @@ func WithPractitionerName(v HumanName) PractitionerOption {
 }
 
 // WithPractitionerTelecom adds a Telecom to the Practitioner.
+//
+// Deprecated: use PractitionerBuilder.AddTelecom instead; removed in v2.
 func WithPractitionerTelecom(v ContactPoint) PractitionerOption {
 	return func(r *Practitioner) {
 		r.Telecom = append(r.Telecom, v)
@@ -761,6 +799,8 @@ func WithPractitionerTelecom(v ContactPoint) PractitionerOption {
 }
 
 // WithPractitionerAddress adds a Address to the Practitioner.
+//
+// Deprecated: use PractitionerBuilder.AddAddress instead; removed in v2.
 func WithPractitionerAddress(v Address) PractitionerOption {
 	return func(r *Practitioner) {
 		r.Address = append(r.Address, v)
@@ -768,6 +808,8 @@ func WithPractitionerAddress(v Address) PractitionerOption {
 }
 
 // WithPractitionerGender sets the Gender field.
+//
+// Deprecated: use PractitionerBuilder.SetGender instead; removed in v2.
 func WithPractitionerGender(v AdministrativeGender) PractitionerOption {
 	return func(r *Practitioner) {
 		r.Gender = &v
@@ -775,6 +817,8 @@ func WithPractitionerGender(v AdministrativeGender) PractitionerOption {
 }
 
 // WithPractitionerBirthDate sets the BirthDate field.
+//
+// Deprecated: use PractitionerBuilder.SetBirthDate instead; removed in v2.
 func WithPractitionerBirthDate(v string) PractitionerOption {
 	return func(r *Practitioner) {
 		r.BirthDate = &v
@@ -782,6 +826,8 @@ func WithPractitionerBirthDate(v string) PractitionerOption {
 }
 
 // WithPractitionerPhoto adds a Photo to the Practitioner.
+//
+// Deprecated: use PractitionerBuilder.AddPhoto instead; removed in v2.
 func WithPractitionerPhoto(v Attachment) PractitionerOption {
 	return func(r *Practitioner) {
 		r.Photo = append(r.Photo, v)
@@ -789,6 +835,8 @@ func WithPractitionerPhoto(v Attachment) PractitionerOption {
 }
 
 // WithPractitionerQualification adds a Qualification to the Practitioner.
+//
+// Deprecated: use PractitionerBuilder.AddQualification instead; removed in v2.
 func WithPractitionerQualification(v PractitionerQualification) PractitionerOption {
 	return func(r *Practitioner) {
 		r.Qualification = append(r.Qualification, v)
@@ -796,6 +844,8 @@ func WithPractitionerQualification(v PractitionerQualification) PractitionerOpti
 }
 
 // WithPractitionerCommunication adds a Communication to the Practitioner.
+//
+// Deprecated: use PractitionerBuilder.AddCommunication instead; removed in v2.
 func WithPractitionerCommunication(v CodeableConcept) PractitionerOption {
 	return func(r *Practitioner) {
 		r.Communication = append(r.Communication, v)

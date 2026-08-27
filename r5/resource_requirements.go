@@ -985,9 +985,23 @@ func (b *RequirementsBuilder) AddStatement(v RequirementsStatement) *Requirement
 // =============================================================================
 
 // RequirementsOption is a functional option for configuring a Requirements.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// RequirementsBuilder. Every WithRequirements* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type RequirementsOption func(*Requirements)
 
 // NewRequirements creates a new Requirements with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewRequirementsBuilder().SetId("x").Build()
+//
+// Deprecated: use NewRequirementsBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewRequirements(opts ...RequirementsOption) *Requirements {
 	r := &Requirements{ResourceType: "Requirements"}
 	for _, opt := range opts {
@@ -997,6 +1011,8 @@ func NewRequirements(opts ...RequirementsOption) *Requirements {
 }
 
 // WithRequirementsId sets the Id field.
+//
+// Deprecated: use RequirementsBuilder.SetId instead; removed in v2.
 func WithRequirementsId(v string) RequirementsOption {
 	return func(r *Requirements) {
 		r.Id = &v
@@ -1004,6 +1020,8 @@ func WithRequirementsId(v string) RequirementsOption {
 }
 
 // WithRequirementsMeta sets the Meta field.
+//
+// Deprecated: use RequirementsBuilder.SetMeta instead; removed in v2.
 func WithRequirementsMeta(v Meta) RequirementsOption {
 	return func(r *Requirements) {
 		r.Meta = &v
@@ -1011,6 +1029,8 @@ func WithRequirementsMeta(v Meta) RequirementsOption {
 }
 
 // WithRequirementsImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use RequirementsBuilder.SetImplicitRules instead; removed in v2.
 func WithRequirementsImplicitRules(v string) RequirementsOption {
 	return func(r *Requirements) {
 		r.ImplicitRules = &v
@@ -1018,6 +1038,8 @@ func WithRequirementsImplicitRules(v string) RequirementsOption {
 }
 
 // WithRequirementsLanguage sets the Language field.
+//
+// Deprecated: use RequirementsBuilder.SetLanguage instead; removed in v2.
 func WithRequirementsLanguage(v string) RequirementsOption {
 	return func(r *Requirements) {
 		r.Language = &v
@@ -1025,6 +1047,8 @@ func WithRequirementsLanguage(v string) RequirementsOption {
 }
 
 // WithRequirementsText sets the Text field.
+//
+// Deprecated: use RequirementsBuilder.SetText instead; removed in v2.
 func WithRequirementsText(v Narrative) RequirementsOption {
 	return func(r *Requirements) {
 		r.Text = &v
@@ -1032,6 +1056,8 @@ func WithRequirementsText(v Narrative) RequirementsOption {
 }
 
 // WithRequirementsContained adds a Contained to the Requirements.
+//
+// Deprecated: use RequirementsBuilder.AddContained instead; removed in v2.
 func WithRequirementsContained(v Resource) RequirementsOption {
 	return func(r *Requirements) {
 		r.Contained = append(r.Contained, v)
@@ -1039,6 +1065,8 @@ func WithRequirementsContained(v Resource) RequirementsOption {
 }
 
 // WithRequirementsExtension adds a Extension to the Requirements.
+//
+// Deprecated: use RequirementsBuilder.AddExtension instead; removed in v2.
 func WithRequirementsExtension(v Extension) RequirementsOption {
 	return func(r *Requirements) {
 		r.Extension = append(r.Extension, v)
@@ -1046,6 +1074,8 @@ func WithRequirementsExtension(v Extension) RequirementsOption {
 }
 
 // WithRequirementsModifierExtension adds a ModifierExtension to the Requirements.
+//
+// Deprecated: use RequirementsBuilder.AddModifierExtension instead; removed in v2.
 func WithRequirementsModifierExtension(v Extension) RequirementsOption {
 	return func(r *Requirements) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1053,6 +1083,8 @@ func WithRequirementsModifierExtension(v Extension) RequirementsOption {
 }
 
 // WithRequirementsUrl sets the Url field.
+//
+// Deprecated: use RequirementsBuilder.SetUrl instead; removed in v2.
 func WithRequirementsUrl(v string) RequirementsOption {
 	return func(r *Requirements) {
 		r.Url = &v
@@ -1060,6 +1092,8 @@ func WithRequirementsUrl(v string) RequirementsOption {
 }
 
 // WithRequirementsIdentifier adds a Identifier to the Requirements.
+//
+// Deprecated: use RequirementsBuilder.AddIdentifier instead; removed in v2.
 func WithRequirementsIdentifier(v Identifier) RequirementsOption {
 	return func(r *Requirements) {
 		r.Identifier = append(r.Identifier, v)
@@ -1067,6 +1101,8 @@ func WithRequirementsIdentifier(v Identifier) RequirementsOption {
 }
 
 // WithRequirementsVersion sets the Version field.
+//
+// Deprecated: use RequirementsBuilder.SetVersion instead; removed in v2.
 func WithRequirementsVersion(v string) RequirementsOption {
 	return func(r *Requirements) {
 		r.Version = &v
@@ -1074,6 +1110,8 @@ func WithRequirementsVersion(v string) RequirementsOption {
 }
 
 // WithRequirementsVersionAlgorithmString sets the VersionAlgorithmString field.
+//
+// Deprecated: use RequirementsBuilder.SetVersionAlgorithmString instead; removed in v2.
 func WithRequirementsVersionAlgorithmString(v string) RequirementsOption {
 	return func(r *Requirements) {
 		r.VersionAlgorithmString = &v
@@ -1081,6 +1119,8 @@ func WithRequirementsVersionAlgorithmString(v string) RequirementsOption {
 }
 
 // WithRequirementsVersionAlgorithmStringExt sets the VersionAlgorithmStringExt field.
+//
+// Deprecated: use RequirementsBuilder.SetVersionAlgorithmStringExt instead; removed in v2.
 func WithRequirementsVersionAlgorithmStringExt(v Element) RequirementsOption {
 	return func(r *Requirements) {
 		r.VersionAlgorithmStringExt = &v
@@ -1088,6 +1128,8 @@ func WithRequirementsVersionAlgorithmStringExt(v Element) RequirementsOption {
 }
 
 // WithRequirementsVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+//
+// Deprecated: use RequirementsBuilder.SetVersionAlgorithmCoding instead; removed in v2.
 func WithRequirementsVersionAlgorithmCoding(v Coding) RequirementsOption {
 	return func(r *Requirements) {
 		r.VersionAlgorithmCoding = &v
@@ -1095,6 +1137,8 @@ func WithRequirementsVersionAlgorithmCoding(v Coding) RequirementsOption {
 }
 
 // WithRequirementsName sets the Name field.
+//
+// Deprecated: use RequirementsBuilder.SetName instead; removed in v2.
 func WithRequirementsName(v string) RequirementsOption {
 	return func(r *Requirements) {
 		r.Name = &v
@@ -1102,6 +1146,8 @@ func WithRequirementsName(v string) RequirementsOption {
 }
 
 // WithRequirementsTitle sets the Title field.
+//
+// Deprecated: use RequirementsBuilder.SetTitle instead; removed in v2.
 func WithRequirementsTitle(v string) RequirementsOption {
 	return func(r *Requirements) {
 		r.Title = &v
@@ -1109,6 +1155,8 @@ func WithRequirementsTitle(v string) RequirementsOption {
 }
 
 // WithRequirementsStatus sets the Status field.
+//
+// Deprecated: use RequirementsBuilder.SetStatus instead; removed in v2.
 func WithRequirementsStatus(v PublicationStatus) RequirementsOption {
 	return func(r *Requirements) {
 		r.Status = &v
@@ -1116,6 +1164,8 @@ func WithRequirementsStatus(v PublicationStatus) RequirementsOption {
 }
 
 // WithRequirementsExperimental sets the Experimental field.
+//
+// Deprecated: use RequirementsBuilder.SetExperimental instead; removed in v2.
 func WithRequirementsExperimental(v bool) RequirementsOption {
 	return func(r *Requirements) {
 		r.Experimental = &v
@@ -1123,6 +1173,8 @@ func WithRequirementsExperimental(v bool) RequirementsOption {
 }
 
 // WithRequirementsDate sets the Date field.
+//
+// Deprecated: use RequirementsBuilder.SetDate instead; removed in v2.
 func WithRequirementsDate(v string) RequirementsOption {
 	return func(r *Requirements) {
 		r.Date = &v
@@ -1130,6 +1182,8 @@ func WithRequirementsDate(v string) RequirementsOption {
 }
 
 // WithRequirementsPublisher sets the Publisher field.
+//
+// Deprecated: use RequirementsBuilder.SetPublisher instead; removed in v2.
 func WithRequirementsPublisher(v string) RequirementsOption {
 	return func(r *Requirements) {
 		r.Publisher = &v
@@ -1137,6 +1191,8 @@ func WithRequirementsPublisher(v string) RequirementsOption {
 }
 
 // WithRequirementsContact adds a Contact to the Requirements.
+//
+// Deprecated: use RequirementsBuilder.AddContact instead; removed in v2.
 func WithRequirementsContact(v ContactDetail) RequirementsOption {
 	return func(r *Requirements) {
 		r.Contact = append(r.Contact, v)
@@ -1144,6 +1200,8 @@ func WithRequirementsContact(v ContactDetail) RequirementsOption {
 }
 
 // WithRequirementsDescription sets the Description field.
+//
+// Deprecated: use RequirementsBuilder.SetDescription instead; removed in v2.
 func WithRequirementsDescription(v string) RequirementsOption {
 	return func(r *Requirements) {
 		r.Description = &v
@@ -1151,6 +1209,8 @@ func WithRequirementsDescription(v string) RequirementsOption {
 }
 
 // WithRequirementsUseContext adds a UseContext to the Requirements.
+//
+// Deprecated: use RequirementsBuilder.AddUseContext instead; removed in v2.
 func WithRequirementsUseContext(v UsageContext) RequirementsOption {
 	return func(r *Requirements) {
 		r.UseContext = append(r.UseContext, v)
@@ -1158,6 +1218,8 @@ func WithRequirementsUseContext(v UsageContext) RequirementsOption {
 }
 
 // WithRequirementsJurisdiction adds a Jurisdiction to the Requirements.
+//
+// Deprecated: use RequirementsBuilder.AddJurisdiction instead; removed in v2.
 func WithRequirementsJurisdiction(v CodeableConcept) RequirementsOption {
 	return func(r *Requirements) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1165,6 +1227,8 @@ func WithRequirementsJurisdiction(v CodeableConcept) RequirementsOption {
 }
 
 // WithRequirementsPurpose sets the Purpose field.
+//
+// Deprecated: use RequirementsBuilder.SetPurpose instead; removed in v2.
 func WithRequirementsPurpose(v string) RequirementsOption {
 	return func(r *Requirements) {
 		r.Purpose = &v
@@ -1172,6 +1236,8 @@ func WithRequirementsPurpose(v string) RequirementsOption {
 }
 
 // WithRequirementsCopyright sets the Copyright field.
+//
+// Deprecated: use RequirementsBuilder.SetCopyright instead; removed in v2.
 func WithRequirementsCopyright(v string) RequirementsOption {
 	return func(r *Requirements) {
 		r.Copyright = &v
@@ -1179,6 +1245,8 @@ func WithRequirementsCopyright(v string) RequirementsOption {
 }
 
 // WithRequirementsCopyrightLabel sets the CopyrightLabel field.
+//
+// Deprecated: use RequirementsBuilder.SetCopyrightLabel instead; removed in v2.
 func WithRequirementsCopyrightLabel(v string) RequirementsOption {
 	return func(r *Requirements) {
 		r.CopyrightLabel = &v
@@ -1186,6 +1254,8 @@ func WithRequirementsCopyrightLabel(v string) RequirementsOption {
 }
 
 // WithRequirementsDerivedFrom adds a DerivedFrom to the Requirements.
+//
+// Deprecated: use RequirementsBuilder.AddDerivedFrom instead; removed in v2.
 func WithRequirementsDerivedFrom(v string) RequirementsOption {
 	return func(r *Requirements) {
 		r.DerivedFrom = append(r.DerivedFrom, v)
@@ -1193,6 +1263,8 @@ func WithRequirementsDerivedFrom(v string) RequirementsOption {
 }
 
 // WithRequirementsReference adds a Reference to the Requirements.
+//
+// Deprecated: use RequirementsBuilder.AddReference instead; removed in v2.
 func WithRequirementsReference(v string) RequirementsOption {
 	return func(r *Requirements) {
 		r.Reference = append(r.Reference, v)
@@ -1200,6 +1272,8 @@ func WithRequirementsReference(v string) RequirementsOption {
 }
 
 // WithRequirementsActor adds a Actor to the Requirements.
+//
+// Deprecated: use RequirementsBuilder.AddActor instead; removed in v2.
 func WithRequirementsActor(v string) RequirementsOption {
 	return func(r *Requirements) {
 		r.Actor = append(r.Actor, v)
@@ -1207,6 +1281,8 @@ func WithRequirementsActor(v string) RequirementsOption {
 }
 
 // WithRequirementsStatement adds a Statement to the Requirements.
+//
+// Deprecated: use RequirementsBuilder.AddStatement instead; removed in v2.
 func WithRequirementsStatement(v RequirementsStatement) RequirementsOption {
 	return func(r *Requirements) {
 		r.Statement = append(r.Statement, v)

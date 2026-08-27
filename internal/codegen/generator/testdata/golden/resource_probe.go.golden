@@ -301,9 +301,23 @@ func (b *ProbeBuilder) AddDetail(v ProbeDetail) *ProbeBuilder {
 // =============================================================================
 
 // ProbeOption is a functional option for configuring a Probe.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ProbeBuilder. Every WithProbe* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ProbeOption func(*Probe)
 
 // NewProbe creates a new Probe with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewProbeBuilder().SetId("x").Build()
+//
+// Deprecated: use NewProbeBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewProbe(opts ...ProbeOption) *Probe {
 	r := &Probe{ResourceType: "Probe"}
 	for _, opt := range opts {
@@ -313,6 +327,8 @@ func NewProbe(opts ...ProbeOption) *Probe {
 }
 
 // WithProbeId sets the Id field.
+//
+// Deprecated: use ProbeBuilder.SetId instead; removed in v2.
 func WithProbeId(v string) ProbeOption {
 	return func(r *Probe) {
 		r.Id = &v
@@ -320,6 +336,8 @@ func WithProbeId(v string) ProbeOption {
 }
 
 // WithProbeStatus sets the Status field.
+//
+// Deprecated: use ProbeBuilder.SetStatus instead; removed in v2.
 func WithProbeStatus(v ProbeStatusCodes) ProbeOption {
 	return func(r *Probe) {
 		r.Status = &v
@@ -327,6 +345,8 @@ func WithProbeStatus(v ProbeStatusCodes) ProbeOption {
 }
 
 // WithProbeAlias adds a Alias to the Probe.
+//
+// Deprecated: use ProbeBuilder.AddAlias instead; removed in v2.
 func WithProbeAlias(v string) ProbeOption {
 	return func(r *Probe) {
 		r.Alias = append(r.Alias, v)
@@ -334,6 +354,8 @@ func WithProbeAlias(v string) ProbeOption {
 }
 
 // WithProbeValueBoolean sets the ValueBoolean field.
+//
+// Deprecated: use ProbeBuilder.SetValueBoolean instead; removed in v2.
 func WithProbeValueBoolean(v bool) ProbeOption {
 	return func(r *Probe) {
 		r.ValueBoolean = &v
@@ -341,6 +363,8 @@ func WithProbeValueBoolean(v bool) ProbeOption {
 }
 
 // WithProbeValueBooleanExt sets the ValueBooleanExt field.
+//
+// Deprecated: use ProbeBuilder.SetValueBooleanExt instead; removed in v2.
 func WithProbeValueBooleanExt(v Element) ProbeOption {
 	return func(r *Probe) {
 		r.ValueBooleanExt = &v
@@ -348,6 +372,8 @@ func WithProbeValueBooleanExt(v Element) ProbeOption {
 }
 
 // WithProbeValueString sets the ValueString field.
+//
+// Deprecated: use ProbeBuilder.SetValueString instead; removed in v2.
 func WithProbeValueString(v string) ProbeOption {
 	return func(r *Probe) {
 		r.ValueString = &v
@@ -355,6 +381,8 @@ func WithProbeValueString(v string) ProbeOption {
 }
 
 // WithProbeValueStringExt sets the ValueStringExt field.
+//
+// Deprecated: use ProbeBuilder.SetValueStringExt instead; removed in v2.
 func WithProbeValueStringExt(v Element) ProbeOption {
 	return func(r *Probe) {
 		r.ValueStringExt = &v
@@ -362,6 +390,8 @@ func WithProbeValueStringExt(v Element) ProbeOption {
 }
 
 // WithProbeDetail adds a Detail to the Probe.
+//
+// Deprecated: use ProbeBuilder.AddDetail instead; removed in v2.
 func WithProbeDetail(v ProbeDetail) ProbeOption {
 	return func(r *Probe) {
 		r.Detail = append(r.Detail, v)

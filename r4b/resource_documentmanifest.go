@@ -682,9 +682,23 @@ func (b *DocumentManifestBuilder) AddRelated(v DocumentManifestRelated) *Documen
 // =============================================================================
 
 // DocumentManifestOption is a functional option for configuring a DocumentManifest.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// DocumentManifestBuilder. Every WithDocumentManifest* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type DocumentManifestOption func(*DocumentManifest)
 
 // NewDocumentManifest creates a new DocumentManifest with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewDocumentManifestBuilder().SetId("x").Build()
+//
+// Deprecated: use NewDocumentManifestBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewDocumentManifest(opts ...DocumentManifestOption) *DocumentManifest {
 	r := &DocumentManifest{ResourceType: "DocumentManifest"}
 	for _, opt := range opts {
@@ -694,6 +708,8 @@ func NewDocumentManifest(opts ...DocumentManifestOption) *DocumentManifest {
 }
 
 // WithDocumentManifestId sets the Id field.
+//
+// Deprecated: use DocumentManifestBuilder.SetId instead; removed in v2.
 func WithDocumentManifestId(v string) DocumentManifestOption {
 	return func(r *DocumentManifest) {
 		r.Id = &v
@@ -701,6 +717,8 @@ func WithDocumentManifestId(v string) DocumentManifestOption {
 }
 
 // WithDocumentManifestMeta sets the Meta field.
+//
+// Deprecated: use DocumentManifestBuilder.SetMeta instead; removed in v2.
 func WithDocumentManifestMeta(v Meta) DocumentManifestOption {
 	return func(r *DocumentManifest) {
 		r.Meta = &v
@@ -708,6 +726,8 @@ func WithDocumentManifestMeta(v Meta) DocumentManifestOption {
 }
 
 // WithDocumentManifestImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use DocumentManifestBuilder.SetImplicitRules instead; removed in v2.
 func WithDocumentManifestImplicitRules(v string) DocumentManifestOption {
 	return func(r *DocumentManifest) {
 		r.ImplicitRules = &v
@@ -715,6 +735,8 @@ func WithDocumentManifestImplicitRules(v string) DocumentManifestOption {
 }
 
 // WithDocumentManifestLanguage sets the Language field.
+//
+// Deprecated: use DocumentManifestBuilder.SetLanguage instead; removed in v2.
 func WithDocumentManifestLanguage(v string) DocumentManifestOption {
 	return func(r *DocumentManifest) {
 		r.Language = &v
@@ -722,6 +744,8 @@ func WithDocumentManifestLanguage(v string) DocumentManifestOption {
 }
 
 // WithDocumentManifestText sets the Text field.
+//
+// Deprecated: use DocumentManifestBuilder.SetText instead; removed in v2.
 func WithDocumentManifestText(v Narrative) DocumentManifestOption {
 	return func(r *DocumentManifest) {
 		r.Text = &v
@@ -729,6 +753,8 @@ func WithDocumentManifestText(v Narrative) DocumentManifestOption {
 }
 
 // WithDocumentManifestContained adds a Contained to the DocumentManifest.
+//
+// Deprecated: use DocumentManifestBuilder.AddContained instead; removed in v2.
 func WithDocumentManifestContained(v Resource) DocumentManifestOption {
 	return func(r *DocumentManifest) {
 		r.Contained = append(r.Contained, v)
@@ -736,6 +762,8 @@ func WithDocumentManifestContained(v Resource) DocumentManifestOption {
 }
 
 // WithDocumentManifestExtension adds a Extension to the DocumentManifest.
+//
+// Deprecated: use DocumentManifestBuilder.AddExtension instead; removed in v2.
 func WithDocumentManifestExtension(v Extension) DocumentManifestOption {
 	return func(r *DocumentManifest) {
 		r.Extension = append(r.Extension, v)
@@ -743,6 +771,8 @@ func WithDocumentManifestExtension(v Extension) DocumentManifestOption {
 }
 
 // WithDocumentManifestModifierExtension adds a ModifierExtension to the DocumentManifest.
+//
+// Deprecated: use DocumentManifestBuilder.AddModifierExtension instead; removed in v2.
 func WithDocumentManifestModifierExtension(v Extension) DocumentManifestOption {
 	return func(r *DocumentManifest) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -750,6 +780,8 @@ func WithDocumentManifestModifierExtension(v Extension) DocumentManifestOption {
 }
 
 // WithDocumentManifestMasterIdentifier sets the MasterIdentifier field.
+//
+// Deprecated: use DocumentManifestBuilder.SetMasterIdentifier instead; removed in v2.
 func WithDocumentManifestMasterIdentifier(v Identifier) DocumentManifestOption {
 	return func(r *DocumentManifest) {
 		r.MasterIdentifier = &v
@@ -757,6 +789,8 @@ func WithDocumentManifestMasterIdentifier(v Identifier) DocumentManifestOption {
 }
 
 // WithDocumentManifestIdentifier adds a Identifier to the DocumentManifest.
+//
+// Deprecated: use DocumentManifestBuilder.AddIdentifier instead; removed in v2.
 func WithDocumentManifestIdentifier(v Identifier) DocumentManifestOption {
 	return func(r *DocumentManifest) {
 		r.Identifier = append(r.Identifier, v)
@@ -764,6 +798,8 @@ func WithDocumentManifestIdentifier(v Identifier) DocumentManifestOption {
 }
 
 // WithDocumentManifestStatus sets the Status field.
+//
+// Deprecated: use DocumentManifestBuilder.SetStatus instead; removed in v2.
 func WithDocumentManifestStatus(v DocumentReferenceStatus) DocumentManifestOption {
 	return func(r *DocumentManifest) {
 		r.Status = &v
@@ -771,6 +807,8 @@ func WithDocumentManifestStatus(v DocumentReferenceStatus) DocumentManifestOptio
 }
 
 // WithDocumentManifestType sets the Type field.
+//
+// Deprecated: use DocumentManifestBuilder.SetType instead; removed in v2.
 func WithDocumentManifestType(v CodeableConcept) DocumentManifestOption {
 	return func(r *DocumentManifest) {
 		r.Type = &v
@@ -778,6 +816,8 @@ func WithDocumentManifestType(v CodeableConcept) DocumentManifestOption {
 }
 
 // WithDocumentManifestSubject sets the Subject field.
+//
+// Deprecated: use DocumentManifestBuilder.SetSubject instead; removed in v2.
 func WithDocumentManifestSubject(v Reference) DocumentManifestOption {
 	return func(r *DocumentManifest) {
 		r.Subject = &v
@@ -785,6 +825,8 @@ func WithDocumentManifestSubject(v Reference) DocumentManifestOption {
 }
 
 // WithDocumentManifestCreated sets the Created field.
+//
+// Deprecated: use DocumentManifestBuilder.SetCreated instead; removed in v2.
 func WithDocumentManifestCreated(v string) DocumentManifestOption {
 	return func(r *DocumentManifest) {
 		r.Created = &v
@@ -792,6 +834,8 @@ func WithDocumentManifestCreated(v string) DocumentManifestOption {
 }
 
 // WithDocumentManifestAuthor adds a Author to the DocumentManifest.
+//
+// Deprecated: use DocumentManifestBuilder.AddAuthor instead; removed in v2.
 func WithDocumentManifestAuthor(v Reference) DocumentManifestOption {
 	return func(r *DocumentManifest) {
 		r.Author = append(r.Author, v)
@@ -799,6 +843,8 @@ func WithDocumentManifestAuthor(v Reference) DocumentManifestOption {
 }
 
 // WithDocumentManifestRecipient adds a Recipient to the DocumentManifest.
+//
+// Deprecated: use DocumentManifestBuilder.AddRecipient instead; removed in v2.
 func WithDocumentManifestRecipient(v Reference) DocumentManifestOption {
 	return func(r *DocumentManifest) {
 		r.Recipient = append(r.Recipient, v)
@@ -806,6 +852,8 @@ func WithDocumentManifestRecipient(v Reference) DocumentManifestOption {
 }
 
 // WithDocumentManifestSource sets the Source field.
+//
+// Deprecated: use DocumentManifestBuilder.SetSource instead; removed in v2.
 func WithDocumentManifestSource(v string) DocumentManifestOption {
 	return func(r *DocumentManifest) {
 		r.Source = &v
@@ -813,6 +861,8 @@ func WithDocumentManifestSource(v string) DocumentManifestOption {
 }
 
 // WithDocumentManifestDescription sets the Description field.
+//
+// Deprecated: use DocumentManifestBuilder.SetDescription instead; removed in v2.
 func WithDocumentManifestDescription(v string) DocumentManifestOption {
 	return func(r *DocumentManifest) {
 		r.Description = &v
@@ -820,6 +870,8 @@ func WithDocumentManifestDescription(v string) DocumentManifestOption {
 }
 
 // WithDocumentManifestContent adds a Content to the DocumentManifest.
+//
+// Deprecated: use DocumentManifestBuilder.AddContent instead; removed in v2.
 func WithDocumentManifestContent(v Reference) DocumentManifestOption {
 	return func(r *DocumentManifest) {
 		r.Content = append(r.Content, v)
@@ -827,6 +879,8 @@ func WithDocumentManifestContent(v Reference) DocumentManifestOption {
 }
 
 // WithDocumentManifestRelated adds a Related to the DocumentManifest.
+//
+// Deprecated: use DocumentManifestBuilder.AddRelated instead; removed in v2.
 func WithDocumentManifestRelated(v DocumentManifestRelated) DocumentManifestOption {
 	return func(r *DocumentManifest) {
 		r.Related = append(r.Related, v)

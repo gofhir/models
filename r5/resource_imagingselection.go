@@ -1128,9 +1128,23 @@ func (b *ImagingSelectionBuilder) AddInstance(v ImagingSelectionInstance) *Imagi
 // =============================================================================
 
 // ImagingSelectionOption is a functional option for configuring a ImagingSelection.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ImagingSelectionBuilder. Every WithImagingSelection* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ImagingSelectionOption func(*ImagingSelection)
 
 // NewImagingSelection creates a new ImagingSelection with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewImagingSelectionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewImagingSelectionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewImagingSelection(opts ...ImagingSelectionOption) *ImagingSelection {
 	r := &ImagingSelection{ResourceType: "ImagingSelection"}
 	for _, opt := range opts {
@@ -1140,6 +1154,8 @@ func NewImagingSelection(opts ...ImagingSelectionOption) *ImagingSelection {
 }
 
 // WithImagingSelectionId sets the Id field.
+//
+// Deprecated: use ImagingSelectionBuilder.SetId instead; removed in v2.
 func WithImagingSelectionId(v string) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.Id = &v
@@ -1147,6 +1163,8 @@ func WithImagingSelectionId(v string) ImagingSelectionOption {
 }
 
 // WithImagingSelectionMeta sets the Meta field.
+//
+// Deprecated: use ImagingSelectionBuilder.SetMeta instead; removed in v2.
 func WithImagingSelectionMeta(v Meta) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.Meta = &v
@@ -1154,6 +1172,8 @@ func WithImagingSelectionMeta(v Meta) ImagingSelectionOption {
 }
 
 // WithImagingSelectionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ImagingSelectionBuilder.SetImplicitRules instead; removed in v2.
 func WithImagingSelectionImplicitRules(v string) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.ImplicitRules = &v
@@ -1161,6 +1181,8 @@ func WithImagingSelectionImplicitRules(v string) ImagingSelectionOption {
 }
 
 // WithImagingSelectionLanguage sets the Language field.
+//
+// Deprecated: use ImagingSelectionBuilder.SetLanguage instead; removed in v2.
 func WithImagingSelectionLanguage(v string) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.Language = &v
@@ -1168,6 +1190,8 @@ func WithImagingSelectionLanguage(v string) ImagingSelectionOption {
 }
 
 // WithImagingSelectionText sets the Text field.
+//
+// Deprecated: use ImagingSelectionBuilder.SetText instead; removed in v2.
 func WithImagingSelectionText(v Narrative) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.Text = &v
@@ -1175,6 +1199,8 @@ func WithImagingSelectionText(v Narrative) ImagingSelectionOption {
 }
 
 // WithImagingSelectionContained adds a Contained to the ImagingSelection.
+//
+// Deprecated: use ImagingSelectionBuilder.AddContained instead; removed in v2.
 func WithImagingSelectionContained(v Resource) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.Contained = append(r.Contained, v)
@@ -1182,6 +1208,8 @@ func WithImagingSelectionContained(v Resource) ImagingSelectionOption {
 }
 
 // WithImagingSelectionExtension adds a Extension to the ImagingSelection.
+//
+// Deprecated: use ImagingSelectionBuilder.AddExtension instead; removed in v2.
 func WithImagingSelectionExtension(v Extension) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.Extension = append(r.Extension, v)
@@ -1189,6 +1217,8 @@ func WithImagingSelectionExtension(v Extension) ImagingSelectionOption {
 }
 
 // WithImagingSelectionModifierExtension adds a ModifierExtension to the ImagingSelection.
+//
+// Deprecated: use ImagingSelectionBuilder.AddModifierExtension instead; removed in v2.
 func WithImagingSelectionModifierExtension(v Extension) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1196,6 +1226,8 @@ func WithImagingSelectionModifierExtension(v Extension) ImagingSelectionOption {
 }
 
 // WithImagingSelectionIdentifier adds a Identifier to the ImagingSelection.
+//
+// Deprecated: use ImagingSelectionBuilder.AddIdentifier instead; removed in v2.
 func WithImagingSelectionIdentifier(v Identifier) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.Identifier = append(r.Identifier, v)
@@ -1203,6 +1235,8 @@ func WithImagingSelectionIdentifier(v Identifier) ImagingSelectionOption {
 }
 
 // WithImagingSelectionStatus sets the Status field.
+//
+// Deprecated: use ImagingSelectionBuilder.SetStatus instead; removed in v2.
 func WithImagingSelectionStatus(v ImagingSelectionStatus) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.Status = &v
@@ -1210,6 +1244,8 @@ func WithImagingSelectionStatus(v ImagingSelectionStatus) ImagingSelectionOption
 }
 
 // WithImagingSelectionSubject sets the Subject field.
+//
+// Deprecated: use ImagingSelectionBuilder.SetSubject instead; removed in v2.
 func WithImagingSelectionSubject(v Reference) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.Subject = &v
@@ -1217,6 +1253,8 @@ func WithImagingSelectionSubject(v Reference) ImagingSelectionOption {
 }
 
 // WithImagingSelectionIssued sets the Issued field.
+//
+// Deprecated: use ImagingSelectionBuilder.SetIssued instead; removed in v2.
 func WithImagingSelectionIssued(v string) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.Issued = &v
@@ -1224,6 +1262,8 @@ func WithImagingSelectionIssued(v string) ImagingSelectionOption {
 }
 
 // WithImagingSelectionPerformer adds a Performer to the ImagingSelection.
+//
+// Deprecated: use ImagingSelectionBuilder.AddPerformer instead; removed in v2.
 func WithImagingSelectionPerformer(v ImagingSelectionPerformer) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.Performer = append(r.Performer, v)
@@ -1231,6 +1271,8 @@ func WithImagingSelectionPerformer(v ImagingSelectionPerformer) ImagingSelection
 }
 
 // WithImagingSelectionBasedOn adds a BasedOn to the ImagingSelection.
+//
+// Deprecated: use ImagingSelectionBuilder.AddBasedOn instead; removed in v2.
 func WithImagingSelectionBasedOn(v Reference) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -1238,6 +1280,8 @@ func WithImagingSelectionBasedOn(v Reference) ImagingSelectionOption {
 }
 
 // WithImagingSelectionCategory adds a Category to the ImagingSelection.
+//
+// Deprecated: use ImagingSelectionBuilder.AddCategory instead; removed in v2.
 func WithImagingSelectionCategory(v CodeableConcept) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.Category = append(r.Category, v)
@@ -1245,6 +1289,8 @@ func WithImagingSelectionCategory(v CodeableConcept) ImagingSelectionOption {
 }
 
 // WithImagingSelectionCode sets the Code field.
+//
+// Deprecated: use ImagingSelectionBuilder.SetCode instead; removed in v2.
 func WithImagingSelectionCode(v CodeableConcept) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.Code = v
@@ -1252,6 +1298,8 @@ func WithImagingSelectionCode(v CodeableConcept) ImagingSelectionOption {
 }
 
 // WithImagingSelectionStudyUid sets the StudyUid field.
+//
+// Deprecated: use ImagingSelectionBuilder.SetStudyUid instead; removed in v2.
 func WithImagingSelectionStudyUid(v string) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.StudyUid = &v
@@ -1259,6 +1307,8 @@ func WithImagingSelectionStudyUid(v string) ImagingSelectionOption {
 }
 
 // WithImagingSelectionDerivedFrom adds a DerivedFrom to the ImagingSelection.
+//
+// Deprecated: use ImagingSelectionBuilder.AddDerivedFrom instead; removed in v2.
 func WithImagingSelectionDerivedFrom(v Reference) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.DerivedFrom = append(r.DerivedFrom, v)
@@ -1266,6 +1316,8 @@ func WithImagingSelectionDerivedFrom(v Reference) ImagingSelectionOption {
 }
 
 // WithImagingSelectionEndpoint adds a Endpoint to the ImagingSelection.
+//
+// Deprecated: use ImagingSelectionBuilder.AddEndpoint instead; removed in v2.
 func WithImagingSelectionEndpoint(v Reference) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.Endpoint = append(r.Endpoint, v)
@@ -1273,6 +1325,8 @@ func WithImagingSelectionEndpoint(v Reference) ImagingSelectionOption {
 }
 
 // WithImagingSelectionSeriesUid sets the SeriesUid field.
+//
+// Deprecated: use ImagingSelectionBuilder.SetSeriesUid instead; removed in v2.
 func WithImagingSelectionSeriesUid(v string) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.SeriesUid = &v
@@ -1280,6 +1334,8 @@ func WithImagingSelectionSeriesUid(v string) ImagingSelectionOption {
 }
 
 // WithImagingSelectionSeriesNumber sets the SeriesNumber field.
+//
+// Deprecated: use ImagingSelectionBuilder.SetSeriesNumber instead; removed in v2.
 func WithImagingSelectionSeriesNumber(v uint32) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.SeriesNumber = &v
@@ -1287,6 +1343,8 @@ func WithImagingSelectionSeriesNumber(v uint32) ImagingSelectionOption {
 }
 
 // WithImagingSelectionFrameOfReferenceUid sets the FrameOfReferenceUid field.
+//
+// Deprecated: use ImagingSelectionBuilder.SetFrameOfReferenceUid instead; removed in v2.
 func WithImagingSelectionFrameOfReferenceUid(v string) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.FrameOfReferenceUid = &v
@@ -1294,6 +1352,8 @@ func WithImagingSelectionFrameOfReferenceUid(v string) ImagingSelectionOption {
 }
 
 // WithImagingSelectionBodySite sets the BodySite field.
+//
+// Deprecated: use ImagingSelectionBuilder.SetBodySite instead; removed in v2.
 func WithImagingSelectionBodySite(v CodeableReference) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.BodySite = &v
@@ -1301,6 +1361,8 @@ func WithImagingSelectionBodySite(v CodeableReference) ImagingSelectionOption {
 }
 
 // WithImagingSelectionFocus adds a Focus to the ImagingSelection.
+//
+// Deprecated: use ImagingSelectionBuilder.AddFocus instead; removed in v2.
 func WithImagingSelectionFocus(v Reference) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.Focus = append(r.Focus, v)
@@ -1308,6 +1370,8 @@ func WithImagingSelectionFocus(v Reference) ImagingSelectionOption {
 }
 
 // WithImagingSelectionInstance adds a Instance to the ImagingSelection.
+//
+// Deprecated: use ImagingSelectionBuilder.AddInstance instead; removed in v2.
 func WithImagingSelectionInstance(v ImagingSelectionInstance) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
 		r.Instance = append(r.Instance, v)

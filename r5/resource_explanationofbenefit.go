@@ -5707,9 +5707,23 @@ func (b *ExplanationOfBenefitBuilder) AddBenefitBalance(v ExplanationOfBenefitBe
 // =============================================================================
 
 // ExplanationOfBenefitOption is a functional option for configuring a ExplanationOfBenefit.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ExplanationOfBenefitBuilder. Every WithExplanationOfBenefit* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ExplanationOfBenefitOption func(*ExplanationOfBenefit)
 
 // NewExplanationOfBenefit creates a new ExplanationOfBenefit with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewExplanationOfBenefitBuilder().SetId("x").Build()
+//
+// Deprecated: use NewExplanationOfBenefitBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewExplanationOfBenefit(opts ...ExplanationOfBenefitOption) *ExplanationOfBenefit {
 	r := &ExplanationOfBenefit{ResourceType: "ExplanationOfBenefit"}
 	for _, opt := range opts {
@@ -5719,6 +5733,8 @@ func NewExplanationOfBenefit(opts ...ExplanationOfBenefitOption) *ExplanationOfB
 }
 
 // WithExplanationOfBenefitId sets the Id field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetId instead; removed in v2.
 func WithExplanationOfBenefitId(v string) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Id = &v
@@ -5726,6 +5742,8 @@ func WithExplanationOfBenefitId(v string) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitMeta sets the Meta field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetMeta instead; removed in v2.
 func WithExplanationOfBenefitMeta(v Meta) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Meta = &v
@@ -5733,6 +5751,8 @@ func WithExplanationOfBenefitMeta(v Meta) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetImplicitRules instead; removed in v2.
 func WithExplanationOfBenefitImplicitRules(v string) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.ImplicitRules = &v
@@ -5740,6 +5760,8 @@ func WithExplanationOfBenefitImplicitRules(v string) ExplanationOfBenefitOption 
 }
 
 // WithExplanationOfBenefitLanguage sets the Language field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetLanguage instead; removed in v2.
 func WithExplanationOfBenefitLanguage(v string) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Language = &v
@@ -5747,6 +5769,8 @@ func WithExplanationOfBenefitLanguage(v string) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitText sets the Text field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetText instead; removed in v2.
 func WithExplanationOfBenefitText(v Narrative) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Text = &v
@@ -5754,6 +5778,8 @@ func WithExplanationOfBenefitText(v Narrative) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitContained adds a Contained to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddContained instead; removed in v2.
 func WithExplanationOfBenefitContained(v Resource) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Contained = append(r.Contained, v)
@@ -5761,6 +5787,8 @@ func WithExplanationOfBenefitContained(v Resource) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitExtension adds a Extension to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddExtension instead; removed in v2.
 func WithExplanationOfBenefitExtension(v Extension) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Extension = append(r.Extension, v)
@@ -5768,6 +5796,8 @@ func WithExplanationOfBenefitExtension(v Extension) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitModifierExtension adds a ModifierExtension to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddModifierExtension instead; removed in v2.
 func WithExplanationOfBenefitModifierExtension(v Extension) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -5775,6 +5805,8 @@ func WithExplanationOfBenefitModifierExtension(v Extension) ExplanationOfBenefit
 }
 
 // WithExplanationOfBenefitIdentifier adds a Identifier to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddIdentifier instead; removed in v2.
 func WithExplanationOfBenefitIdentifier(v Identifier) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Identifier = append(r.Identifier, v)
@@ -5782,6 +5814,8 @@ func WithExplanationOfBenefitIdentifier(v Identifier) ExplanationOfBenefitOption
 }
 
 // WithExplanationOfBenefitTraceNumber adds a TraceNumber to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddTraceNumber instead; removed in v2.
 func WithExplanationOfBenefitTraceNumber(v Identifier) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.TraceNumber = append(r.TraceNumber, v)
@@ -5789,6 +5823,8 @@ func WithExplanationOfBenefitTraceNumber(v Identifier) ExplanationOfBenefitOptio
 }
 
 // WithExplanationOfBenefitStatus sets the Status field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetStatus instead; removed in v2.
 func WithExplanationOfBenefitStatus(v ExplanationOfBenefitStatus) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Status = &v
@@ -5796,6 +5832,8 @@ func WithExplanationOfBenefitStatus(v ExplanationOfBenefitStatus) ExplanationOfB
 }
 
 // WithExplanationOfBenefitType sets the Type field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetType instead; removed in v2.
 func WithExplanationOfBenefitType(v CodeableConcept) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Type = v
@@ -5803,6 +5841,8 @@ func WithExplanationOfBenefitType(v CodeableConcept) ExplanationOfBenefitOption 
 }
 
 // WithExplanationOfBenefitSubType sets the SubType field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetSubType instead; removed in v2.
 func WithExplanationOfBenefitSubType(v CodeableConcept) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.SubType = &v
@@ -5810,6 +5850,8 @@ func WithExplanationOfBenefitSubType(v CodeableConcept) ExplanationOfBenefitOpti
 }
 
 // WithExplanationOfBenefitUse sets the Use field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetUse instead; removed in v2.
 func WithExplanationOfBenefitUse(v Use) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Use = &v
@@ -5817,6 +5859,8 @@ func WithExplanationOfBenefitUse(v Use) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitPatient sets the Patient field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetPatient instead; removed in v2.
 func WithExplanationOfBenefitPatient(v Reference) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Patient = v
@@ -5824,6 +5868,8 @@ func WithExplanationOfBenefitPatient(v Reference) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitBillablePeriod sets the BillablePeriod field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetBillablePeriod instead; removed in v2.
 func WithExplanationOfBenefitBillablePeriod(v Period) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.BillablePeriod = &v
@@ -5831,6 +5877,8 @@ func WithExplanationOfBenefitBillablePeriod(v Period) ExplanationOfBenefitOption
 }
 
 // WithExplanationOfBenefitCreated sets the Created field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetCreated instead; removed in v2.
 func WithExplanationOfBenefitCreated(v string) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Created = &v
@@ -5838,6 +5886,8 @@ func WithExplanationOfBenefitCreated(v string) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitEnterer sets the Enterer field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetEnterer instead; removed in v2.
 func WithExplanationOfBenefitEnterer(v Reference) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Enterer = &v
@@ -5845,6 +5895,8 @@ func WithExplanationOfBenefitEnterer(v Reference) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitInsurer sets the Insurer field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetInsurer instead; removed in v2.
 func WithExplanationOfBenefitInsurer(v Reference) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Insurer = &v
@@ -5852,6 +5904,8 @@ func WithExplanationOfBenefitInsurer(v Reference) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitProvider sets the Provider field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetProvider instead; removed in v2.
 func WithExplanationOfBenefitProvider(v Reference) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Provider = &v
@@ -5859,6 +5913,8 @@ func WithExplanationOfBenefitProvider(v Reference) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitPriority sets the Priority field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetPriority instead; removed in v2.
 func WithExplanationOfBenefitPriority(v CodeableConcept) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Priority = &v
@@ -5866,6 +5922,8 @@ func WithExplanationOfBenefitPriority(v CodeableConcept) ExplanationOfBenefitOpt
 }
 
 // WithExplanationOfBenefitFundsReserveRequested sets the FundsReserveRequested field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetFundsReserveRequested instead; removed in v2.
 func WithExplanationOfBenefitFundsReserveRequested(v CodeableConcept) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.FundsReserveRequested = &v
@@ -5873,6 +5931,8 @@ func WithExplanationOfBenefitFundsReserveRequested(v CodeableConcept) Explanatio
 }
 
 // WithExplanationOfBenefitFundsReserve sets the FundsReserve field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetFundsReserve instead; removed in v2.
 func WithExplanationOfBenefitFundsReserve(v CodeableConcept) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.FundsReserve = &v
@@ -5880,6 +5940,8 @@ func WithExplanationOfBenefitFundsReserve(v CodeableConcept) ExplanationOfBenefi
 }
 
 // WithExplanationOfBenefitRelated adds a Related to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddRelated instead; removed in v2.
 func WithExplanationOfBenefitRelated(v ExplanationOfBenefitRelated) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Related = append(r.Related, v)
@@ -5887,6 +5949,8 @@ func WithExplanationOfBenefitRelated(v ExplanationOfBenefitRelated) ExplanationO
 }
 
 // WithExplanationOfBenefitPrescription sets the Prescription field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetPrescription instead; removed in v2.
 func WithExplanationOfBenefitPrescription(v Reference) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Prescription = &v
@@ -5894,6 +5958,8 @@ func WithExplanationOfBenefitPrescription(v Reference) ExplanationOfBenefitOptio
 }
 
 // WithExplanationOfBenefitOriginalPrescription sets the OriginalPrescription field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetOriginalPrescription instead; removed in v2.
 func WithExplanationOfBenefitOriginalPrescription(v Reference) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.OriginalPrescription = &v
@@ -5901,6 +5967,8 @@ func WithExplanationOfBenefitOriginalPrescription(v Reference) ExplanationOfBene
 }
 
 // WithExplanationOfBenefitEvent adds a Event to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddEvent instead; removed in v2.
 func WithExplanationOfBenefitEvent(v ExplanationOfBenefitEvent) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Event = append(r.Event, v)
@@ -5908,6 +5976,8 @@ func WithExplanationOfBenefitEvent(v ExplanationOfBenefitEvent) ExplanationOfBen
 }
 
 // WithExplanationOfBenefitPayee sets the Payee field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetPayee instead; removed in v2.
 func WithExplanationOfBenefitPayee(v ExplanationOfBenefitPayee) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Payee = &v
@@ -5915,6 +5985,8 @@ func WithExplanationOfBenefitPayee(v ExplanationOfBenefitPayee) ExplanationOfBen
 }
 
 // WithExplanationOfBenefitReferral sets the Referral field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetReferral instead; removed in v2.
 func WithExplanationOfBenefitReferral(v Reference) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Referral = &v
@@ -5922,6 +5994,8 @@ func WithExplanationOfBenefitReferral(v Reference) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitEncounter adds a Encounter to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddEncounter instead; removed in v2.
 func WithExplanationOfBenefitEncounter(v Reference) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Encounter = append(r.Encounter, v)
@@ -5929,6 +6003,8 @@ func WithExplanationOfBenefitEncounter(v Reference) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitFacility sets the Facility field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetFacility instead; removed in v2.
 func WithExplanationOfBenefitFacility(v Reference) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Facility = &v
@@ -5936,6 +6012,8 @@ func WithExplanationOfBenefitFacility(v Reference) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitClaim sets the Claim field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetClaim instead; removed in v2.
 func WithExplanationOfBenefitClaim(v Reference) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Claim = &v
@@ -5943,6 +6021,8 @@ func WithExplanationOfBenefitClaim(v Reference) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitClaimResponse sets the ClaimResponse field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetClaimResponse instead; removed in v2.
 func WithExplanationOfBenefitClaimResponse(v Reference) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.ClaimResponse = &v
@@ -5950,6 +6030,8 @@ func WithExplanationOfBenefitClaimResponse(v Reference) ExplanationOfBenefitOpti
 }
 
 // WithExplanationOfBenefitOutcome sets the Outcome field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetOutcome instead; removed in v2.
 func WithExplanationOfBenefitOutcome(v ClaimProcessingCodes) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Outcome = &v
@@ -5957,6 +6039,8 @@ func WithExplanationOfBenefitOutcome(v ClaimProcessingCodes) ExplanationOfBenefi
 }
 
 // WithExplanationOfBenefitDecision sets the Decision field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetDecision instead; removed in v2.
 func WithExplanationOfBenefitDecision(v CodeableConcept) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Decision = &v
@@ -5964,6 +6048,8 @@ func WithExplanationOfBenefitDecision(v CodeableConcept) ExplanationOfBenefitOpt
 }
 
 // WithExplanationOfBenefitDisposition sets the Disposition field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetDisposition instead; removed in v2.
 func WithExplanationOfBenefitDisposition(v string) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Disposition = &v
@@ -5971,6 +6057,8 @@ func WithExplanationOfBenefitDisposition(v string) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitPreAuthRef adds a PreAuthRef to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddPreAuthRef instead; removed in v2.
 func WithExplanationOfBenefitPreAuthRef(v string) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.PreAuthRef = append(r.PreAuthRef, v)
@@ -5978,6 +6066,8 @@ func WithExplanationOfBenefitPreAuthRef(v string) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitPreAuthRefPeriod adds a PreAuthRefPeriod to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddPreAuthRefPeriod instead; removed in v2.
 func WithExplanationOfBenefitPreAuthRefPeriod(v Period) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.PreAuthRefPeriod = append(r.PreAuthRefPeriod, v)
@@ -5985,6 +6075,8 @@ func WithExplanationOfBenefitPreAuthRefPeriod(v Period) ExplanationOfBenefitOpti
 }
 
 // WithExplanationOfBenefitDiagnosisRelatedGroup sets the DiagnosisRelatedGroup field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetDiagnosisRelatedGroup instead; removed in v2.
 func WithExplanationOfBenefitDiagnosisRelatedGroup(v CodeableConcept) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.DiagnosisRelatedGroup = &v
@@ -5992,6 +6084,8 @@ func WithExplanationOfBenefitDiagnosisRelatedGroup(v CodeableConcept) Explanatio
 }
 
 // WithExplanationOfBenefitCareTeam adds a CareTeam to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddCareTeam instead; removed in v2.
 func WithExplanationOfBenefitCareTeam(v ExplanationOfBenefitCareTeam) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.CareTeam = append(r.CareTeam, v)
@@ -5999,6 +6093,8 @@ func WithExplanationOfBenefitCareTeam(v ExplanationOfBenefitCareTeam) Explanatio
 }
 
 // WithExplanationOfBenefitSupportingInfo adds a SupportingInfo to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddSupportingInfo instead; removed in v2.
 func WithExplanationOfBenefitSupportingInfo(v ExplanationOfBenefitSupportingInfo) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.SupportingInfo = append(r.SupportingInfo, v)
@@ -6006,6 +6102,8 @@ func WithExplanationOfBenefitSupportingInfo(v ExplanationOfBenefitSupportingInfo
 }
 
 // WithExplanationOfBenefitDiagnosis adds a Diagnosis to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddDiagnosis instead; removed in v2.
 func WithExplanationOfBenefitDiagnosis(v ExplanationOfBenefitDiagnosis) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Diagnosis = append(r.Diagnosis, v)
@@ -6013,6 +6111,8 @@ func WithExplanationOfBenefitDiagnosis(v ExplanationOfBenefitDiagnosis) Explanat
 }
 
 // WithExplanationOfBenefitProcedure adds a Procedure to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddProcedure instead; removed in v2.
 func WithExplanationOfBenefitProcedure(v ExplanationOfBenefitProcedure) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Procedure = append(r.Procedure, v)
@@ -6020,6 +6120,8 @@ func WithExplanationOfBenefitProcedure(v ExplanationOfBenefitProcedure) Explanat
 }
 
 // WithExplanationOfBenefitPrecedence sets the Precedence field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetPrecedence instead; removed in v2.
 func WithExplanationOfBenefitPrecedence(v uint32) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Precedence = &v
@@ -6027,6 +6129,8 @@ func WithExplanationOfBenefitPrecedence(v uint32) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitInsurance adds a Insurance to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddInsurance instead; removed in v2.
 func WithExplanationOfBenefitInsurance(v ExplanationOfBenefitInsurance) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Insurance = append(r.Insurance, v)
@@ -6034,6 +6138,8 @@ func WithExplanationOfBenefitInsurance(v ExplanationOfBenefitInsurance) Explanat
 }
 
 // WithExplanationOfBenefitAccident sets the Accident field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetAccident instead; removed in v2.
 func WithExplanationOfBenefitAccident(v ExplanationOfBenefitAccident) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Accident = &v
@@ -6041,6 +6147,8 @@ func WithExplanationOfBenefitAccident(v ExplanationOfBenefitAccident) Explanatio
 }
 
 // WithExplanationOfBenefitPatientPaid sets the PatientPaid field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetPatientPaid instead; removed in v2.
 func WithExplanationOfBenefitPatientPaid(v Money) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.PatientPaid = &v
@@ -6048,6 +6156,8 @@ func WithExplanationOfBenefitPatientPaid(v Money) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitItem adds a Item to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddItem instead; removed in v2.
 func WithExplanationOfBenefitItem(v ExplanationOfBenefitItem) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Item = append(r.Item, v)
@@ -6055,6 +6165,8 @@ func WithExplanationOfBenefitItem(v ExplanationOfBenefitItem) ExplanationOfBenef
 }
 
 // WithExplanationOfBenefitAddItem adds a AddItem to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddAddItem instead; removed in v2.
 func WithExplanationOfBenefitAddItem(v ExplanationOfBenefitAddItem) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.AddItem = append(r.AddItem, v)
@@ -6062,6 +6174,8 @@ func WithExplanationOfBenefitAddItem(v ExplanationOfBenefitAddItem) ExplanationO
 }
 
 // WithExplanationOfBenefitAdjudication adds a Adjudication to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddAdjudication instead; removed in v2.
 func WithExplanationOfBenefitAdjudication(v ExplanationOfBenefitItemAdjudication) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Adjudication = append(r.Adjudication, v)
@@ -6069,6 +6183,8 @@ func WithExplanationOfBenefitAdjudication(v ExplanationOfBenefitItemAdjudication
 }
 
 // WithExplanationOfBenefitTotal adds a Total to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddTotal instead; removed in v2.
 func WithExplanationOfBenefitTotal(v ExplanationOfBenefitTotal) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Total = append(r.Total, v)
@@ -6076,6 +6192,8 @@ func WithExplanationOfBenefitTotal(v ExplanationOfBenefitTotal) ExplanationOfBen
 }
 
 // WithExplanationOfBenefitPayment sets the Payment field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetPayment instead; removed in v2.
 func WithExplanationOfBenefitPayment(v ExplanationOfBenefitPayment) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Payment = &v
@@ -6083,6 +6201,8 @@ func WithExplanationOfBenefitPayment(v ExplanationOfBenefitPayment) ExplanationO
 }
 
 // WithExplanationOfBenefitFormCode sets the FormCode field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetFormCode instead; removed in v2.
 func WithExplanationOfBenefitFormCode(v CodeableConcept) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.FormCode = &v
@@ -6090,6 +6210,8 @@ func WithExplanationOfBenefitFormCode(v CodeableConcept) ExplanationOfBenefitOpt
 }
 
 // WithExplanationOfBenefitForm sets the Form field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetForm instead; removed in v2.
 func WithExplanationOfBenefitForm(v Attachment) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.Form = &v
@@ -6097,6 +6219,8 @@ func WithExplanationOfBenefitForm(v Attachment) ExplanationOfBenefitOption {
 }
 
 // WithExplanationOfBenefitProcessNote adds a ProcessNote to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddProcessNote instead; removed in v2.
 func WithExplanationOfBenefitProcessNote(v ExplanationOfBenefitProcessNote) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.ProcessNote = append(r.ProcessNote, v)
@@ -6104,6 +6228,8 @@ func WithExplanationOfBenefitProcessNote(v ExplanationOfBenefitProcessNote) Expl
 }
 
 // WithExplanationOfBenefitBenefitPeriod sets the BenefitPeriod field.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.SetBenefitPeriod instead; removed in v2.
 func WithExplanationOfBenefitBenefitPeriod(v Period) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.BenefitPeriod = &v
@@ -6111,6 +6237,8 @@ func WithExplanationOfBenefitBenefitPeriod(v Period) ExplanationOfBenefitOption 
 }
 
 // WithExplanationOfBenefitBenefitBalance adds a BenefitBalance to the ExplanationOfBenefit.
+//
+// Deprecated: use ExplanationOfBenefitBuilder.AddBenefitBalance instead; removed in v2.
 func WithExplanationOfBenefitBenefitBalance(v ExplanationOfBenefitBenefitBalance) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
 		r.BenefitBalance = append(r.BenefitBalance, v)

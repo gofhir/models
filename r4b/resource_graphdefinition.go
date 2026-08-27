@@ -1056,9 +1056,23 @@ func (b *GraphDefinitionBuilder) AddLink(v GraphDefinitionLink) *GraphDefinition
 // =============================================================================
 
 // GraphDefinitionOption is a functional option for configuring a GraphDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// GraphDefinitionBuilder. Every WithGraphDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type GraphDefinitionOption func(*GraphDefinition)
 
 // NewGraphDefinition creates a new GraphDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewGraphDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewGraphDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewGraphDefinition(opts ...GraphDefinitionOption) *GraphDefinition {
 	r := &GraphDefinition{ResourceType: "GraphDefinition"}
 	for _, opt := range opts {
@@ -1068,6 +1082,8 @@ func NewGraphDefinition(opts ...GraphDefinitionOption) *GraphDefinition {
 }
 
 // WithGraphDefinitionId sets the Id field.
+//
+// Deprecated: use GraphDefinitionBuilder.SetId instead; removed in v2.
 func WithGraphDefinitionId(v string) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.Id = &v
@@ -1075,6 +1091,8 @@ func WithGraphDefinitionId(v string) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionMeta sets the Meta field.
+//
+// Deprecated: use GraphDefinitionBuilder.SetMeta instead; removed in v2.
 func WithGraphDefinitionMeta(v Meta) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.Meta = &v
@@ -1082,6 +1100,8 @@ func WithGraphDefinitionMeta(v Meta) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use GraphDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithGraphDefinitionImplicitRules(v string) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.ImplicitRules = &v
@@ -1089,6 +1109,8 @@ func WithGraphDefinitionImplicitRules(v string) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionLanguage sets the Language field.
+//
+// Deprecated: use GraphDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithGraphDefinitionLanguage(v string) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.Language = &v
@@ -1096,6 +1118,8 @@ func WithGraphDefinitionLanguage(v string) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionText sets the Text field.
+//
+// Deprecated: use GraphDefinitionBuilder.SetText instead; removed in v2.
 func WithGraphDefinitionText(v Narrative) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.Text = &v
@@ -1103,6 +1127,8 @@ func WithGraphDefinitionText(v Narrative) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionContained adds a Contained to the GraphDefinition.
+//
+// Deprecated: use GraphDefinitionBuilder.AddContained instead; removed in v2.
 func WithGraphDefinitionContained(v Resource) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -1110,6 +1136,8 @@ func WithGraphDefinitionContained(v Resource) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionExtension adds a Extension to the GraphDefinition.
+//
+// Deprecated: use GraphDefinitionBuilder.AddExtension instead; removed in v2.
 func WithGraphDefinitionExtension(v Extension) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -1117,6 +1145,8 @@ func WithGraphDefinitionExtension(v Extension) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionModifierExtension adds a ModifierExtension to the GraphDefinition.
+//
+// Deprecated: use GraphDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithGraphDefinitionModifierExtension(v Extension) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1124,6 +1154,8 @@ func WithGraphDefinitionModifierExtension(v Extension) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionUrl sets the Url field.
+//
+// Deprecated: use GraphDefinitionBuilder.SetUrl instead; removed in v2.
 func WithGraphDefinitionUrl(v string) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.Url = &v
@@ -1131,6 +1163,8 @@ func WithGraphDefinitionUrl(v string) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionVersion sets the Version field.
+//
+// Deprecated: use GraphDefinitionBuilder.SetVersion instead; removed in v2.
 func WithGraphDefinitionVersion(v string) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.Version = &v
@@ -1138,6 +1172,8 @@ func WithGraphDefinitionVersion(v string) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionName sets the Name field.
+//
+// Deprecated: use GraphDefinitionBuilder.SetName instead; removed in v2.
 func WithGraphDefinitionName(v string) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.Name = &v
@@ -1145,6 +1181,8 @@ func WithGraphDefinitionName(v string) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionStatus sets the Status field.
+//
+// Deprecated: use GraphDefinitionBuilder.SetStatus instead; removed in v2.
 func WithGraphDefinitionStatus(v PublicationStatus) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.Status = &v
@@ -1152,6 +1190,8 @@ func WithGraphDefinitionStatus(v PublicationStatus) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionExperimental sets the Experimental field.
+//
+// Deprecated: use GraphDefinitionBuilder.SetExperimental instead; removed in v2.
 func WithGraphDefinitionExperimental(v bool) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.Experimental = &v
@@ -1159,6 +1199,8 @@ func WithGraphDefinitionExperimental(v bool) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionDate sets the Date field.
+//
+// Deprecated: use GraphDefinitionBuilder.SetDate instead; removed in v2.
 func WithGraphDefinitionDate(v string) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.Date = &v
@@ -1166,6 +1208,8 @@ func WithGraphDefinitionDate(v string) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionPublisher sets the Publisher field.
+//
+// Deprecated: use GraphDefinitionBuilder.SetPublisher instead; removed in v2.
 func WithGraphDefinitionPublisher(v string) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.Publisher = &v
@@ -1173,6 +1217,8 @@ func WithGraphDefinitionPublisher(v string) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionContact adds a Contact to the GraphDefinition.
+//
+// Deprecated: use GraphDefinitionBuilder.AddContact instead; removed in v2.
 func WithGraphDefinitionContact(v ContactDetail) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.Contact = append(r.Contact, v)
@@ -1180,6 +1226,8 @@ func WithGraphDefinitionContact(v ContactDetail) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionDescription sets the Description field.
+//
+// Deprecated: use GraphDefinitionBuilder.SetDescription instead; removed in v2.
 func WithGraphDefinitionDescription(v string) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.Description = &v
@@ -1187,6 +1235,8 @@ func WithGraphDefinitionDescription(v string) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionUseContext adds a UseContext to the GraphDefinition.
+//
+// Deprecated: use GraphDefinitionBuilder.AddUseContext instead; removed in v2.
 func WithGraphDefinitionUseContext(v UsageContext) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.UseContext = append(r.UseContext, v)
@@ -1194,6 +1244,8 @@ func WithGraphDefinitionUseContext(v UsageContext) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionJurisdiction adds a Jurisdiction to the GraphDefinition.
+//
+// Deprecated: use GraphDefinitionBuilder.AddJurisdiction instead; removed in v2.
 func WithGraphDefinitionJurisdiction(v CodeableConcept) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1201,6 +1253,8 @@ func WithGraphDefinitionJurisdiction(v CodeableConcept) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionPurpose sets the Purpose field.
+//
+// Deprecated: use GraphDefinitionBuilder.SetPurpose instead; removed in v2.
 func WithGraphDefinitionPurpose(v string) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.Purpose = &v
@@ -1208,6 +1262,8 @@ func WithGraphDefinitionPurpose(v string) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionStart sets the Start field.
+//
+// Deprecated: use GraphDefinitionBuilder.SetStart instead; removed in v2.
 func WithGraphDefinitionStart(v string) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.Start = &v
@@ -1215,6 +1271,8 @@ func WithGraphDefinitionStart(v string) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionProfile sets the Profile field.
+//
+// Deprecated: use GraphDefinitionBuilder.SetProfile instead; removed in v2.
 func WithGraphDefinitionProfile(v string) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.Profile = &v
@@ -1222,6 +1280,8 @@ func WithGraphDefinitionProfile(v string) GraphDefinitionOption {
 }
 
 // WithGraphDefinitionLink adds a Link to the GraphDefinition.
+//
+// Deprecated: use GraphDefinitionBuilder.AddLink instead; removed in v2.
 func WithGraphDefinitionLink(v GraphDefinitionLink) GraphDefinitionOption {
 	return func(r *GraphDefinition) {
 		r.Link = append(r.Link, v)

@@ -559,9 +559,23 @@ func (b *EndpointBuilder) AddHeader(v string) *EndpointBuilder {
 // =============================================================================
 
 // EndpointOption is a functional option for configuring a Endpoint.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// EndpointBuilder. Every WithEndpoint* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type EndpointOption func(*Endpoint)
 
 // NewEndpoint creates a new Endpoint with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewEndpointBuilder().SetId("x").Build()
+//
+// Deprecated: use NewEndpointBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewEndpoint(opts ...EndpointOption) *Endpoint {
 	r := &Endpoint{ResourceType: "Endpoint"}
 	for _, opt := range opts {
@@ -571,6 +585,8 @@ func NewEndpoint(opts ...EndpointOption) *Endpoint {
 }
 
 // WithEndpointId sets the Id field.
+//
+// Deprecated: use EndpointBuilder.SetId instead; removed in v2.
 func WithEndpointId(v string) EndpointOption {
 	return func(r *Endpoint) {
 		r.Id = &v
@@ -578,6 +594,8 @@ func WithEndpointId(v string) EndpointOption {
 }
 
 // WithEndpointMeta sets the Meta field.
+//
+// Deprecated: use EndpointBuilder.SetMeta instead; removed in v2.
 func WithEndpointMeta(v Meta) EndpointOption {
 	return func(r *Endpoint) {
 		r.Meta = &v
@@ -585,6 +603,8 @@ func WithEndpointMeta(v Meta) EndpointOption {
 }
 
 // WithEndpointImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use EndpointBuilder.SetImplicitRules instead; removed in v2.
 func WithEndpointImplicitRules(v string) EndpointOption {
 	return func(r *Endpoint) {
 		r.ImplicitRules = &v
@@ -592,6 +612,8 @@ func WithEndpointImplicitRules(v string) EndpointOption {
 }
 
 // WithEndpointLanguage sets the Language field.
+//
+// Deprecated: use EndpointBuilder.SetLanguage instead; removed in v2.
 func WithEndpointLanguage(v string) EndpointOption {
 	return func(r *Endpoint) {
 		r.Language = &v
@@ -599,6 +621,8 @@ func WithEndpointLanguage(v string) EndpointOption {
 }
 
 // WithEndpointText sets the Text field.
+//
+// Deprecated: use EndpointBuilder.SetText instead; removed in v2.
 func WithEndpointText(v Narrative) EndpointOption {
 	return func(r *Endpoint) {
 		r.Text = &v
@@ -606,6 +630,8 @@ func WithEndpointText(v Narrative) EndpointOption {
 }
 
 // WithEndpointContained adds a Contained to the Endpoint.
+//
+// Deprecated: use EndpointBuilder.AddContained instead; removed in v2.
 func WithEndpointContained(v Resource) EndpointOption {
 	return func(r *Endpoint) {
 		r.Contained = append(r.Contained, v)
@@ -613,6 +639,8 @@ func WithEndpointContained(v Resource) EndpointOption {
 }
 
 // WithEndpointExtension adds a Extension to the Endpoint.
+//
+// Deprecated: use EndpointBuilder.AddExtension instead; removed in v2.
 func WithEndpointExtension(v Extension) EndpointOption {
 	return func(r *Endpoint) {
 		r.Extension = append(r.Extension, v)
@@ -620,6 +648,8 @@ func WithEndpointExtension(v Extension) EndpointOption {
 }
 
 // WithEndpointModifierExtension adds a ModifierExtension to the Endpoint.
+//
+// Deprecated: use EndpointBuilder.AddModifierExtension instead; removed in v2.
 func WithEndpointModifierExtension(v Extension) EndpointOption {
 	return func(r *Endpoint) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -627,6 +657,8 @@ func WithEndpointModifierExtension(v Extension) EndpointOption {
 }
 
 // WithEndpointIdentifier adds a Identifier to the Endpoint.
+//
+// Deprecated: use EndpointBuilder.AddIdentifier instead; removed in v2.
 func WithEndpointIdentifier(v Identifier) EndpointOption {
 	return func(r *Endpoint) {
 		r.Identifier = append(r.Identifier, v)
@@ -634,6 +666,8 @@ func WithEndpointIdentifier(v Identifier) EndpointOption {
 }
 
 // WithEndpointStatus sets the Status field.
+//
+// Deprecated: use EndpointBuilder.SetStatus instead; removed in v2.
 func WithEndpointStatus(v EndpointStatus) EndpointOption {
 	return func(r *Endpoint) {
 		r.Status = &v
@@ -641,6 +675,8 @@ func WithEndpointStatus(v EndpointStatus) EndpointOption {
 }
 
 // WithEndpointConnectionType sets the ConnectionType field.
+//
+// Deprecated: use EndpointBuilder.SetConnectionType instead; removed in v2.
 func WithEndpointConnectionType(v Coding) EndpointOption {
 	return func(r *Endpoint) {
 		r.ConnectionType = v
@@ -648,6 +684,8 @@ func WithEndpointConnectionType(v Coding) EndpointOption {
 }
 
 // WithEndpointName sets the Name field.
+//
+// Deprecated: use EndpointBuilder.SetName instead; removed in v2.
 func WithEndpointName(v string) EndpointOption {
 	return func(r *Endpoint) {
 		r.Name = &v
@@ -655,6 +693,8 @@ func WithEndpointName(v string) EndpointOption {
 }
 
 // WithEndpointManagingOrganization sets the ManagingOrganization field.
+//
+// Deprecated: use EndpointBuilder.SetManagingOrganization instead; removed in v2.
 func WithEndpointManagingOrganization(v Reference) EndpointOption {
 	return func(r *Endpoint) {
 		r.ManagingOrganization = &v
@@ -662,6 +702,8 @@ func WithEndpointManagingOrganization(v Reference) EndpointOption {
 }
 
 // WithEndpointContact adds a Contact to the Endpoint.
+//
+// Deprecated: use EndpointBuilder.AddContact instead; removed in v2.
 func WithEndpointContact(v ContactPoint) EndpointOption {
 	return func(r *Endpoint) {
 		r.Contact = append(r.Contact, v)
@@ -669,6 +711,8 @@ func WithEndpointContact(v ContactPoint) EndpointOption {
 }
 
 // WithEndpointPeriod sets the Period field.
+//
+// Deprecated: use EndpointBuilder.SetPeriod instead; removed in v2.
 func WithEndpointPeriod(v Period) EndpointOption {
 	return func(r *Endpoint) {
 		r.Period = &v
@@ -676,6 +720,8 @@ func WithEndpointPeriod(v Period) EndpointOption {
 }
 
 // WithEndpointPayloadType adds a PayloadType to the Endpoint.
+//
+// Deprecated: use EndpointBuilder.AddPayloadType instead; removed in v2.
 func WithEndpointPayloadType(v CodeableConcept) EndpointOption {
 	return func(r *Endpoint) {
 		r.PayloadType = append(r.PayloadType, v)
@@ -683,6 +729,8 @@ func WithEndpointPayloadType(v CodeableConcept) EndpointOption {
 }
 
 // WithEndpointPayloadMimeType adds a PayloadMimeType to the Endpoint.
+//
+// Deprecated: use EndpointBuilder.AddPayloadMimeType instead; removed in v2.
 func WithEndpointPayloadMimeType(v string) EndpointOption {
 	return func(r *Endpoint) {
 		r.PayloadMimeType = append(r.PayloadMimeType, v)
@@ -690,6 +738,8 @@ func WithEndpointPayloadMimeType(v string) EndpointOption {
 }
 
 // WithEndpointAddress sets the Address field.
+//
+// Deprecated: use EndpointBuilder.SetAddress instead; removed in v2.
 func WithEndpointAddress(v string) EndpointOption {
 	return func(r *Endpoint) {
 		r.Address = &v
@@ -697,6 +747,8 @@ func WithEndpointAddress(v string) EndpointOption {
 }
 
 // WithEndpointHeader adds a Header to the Endpoint.
+//
+// Deprecated: use EndpointBuilder.AddHeader instead; removed in v2.
 func WithEndpointHeader(v string) EndpointOption {
 	return func(r *Endpoint) {
 		r.Header = append(r.Header, v)

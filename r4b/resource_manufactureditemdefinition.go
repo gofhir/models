@@ -628,9 +628,23 @@ func (b *ManufacturedItemDefinitionBuilder) AddProperty(v ManufacturedItemDefini
 // =============================================================================
 
 // ManufacturedItemDefinitionOption is a functional option for configuring a ManufacturedItemDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ManufacturedItemDefinitionBuilder. Every WithManufacturedItemDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ManufacturedItemDefinitionOption func(*ManufacturedItemDefinition)
 
 // NewManufacturedItemDefinition creates a new ManufacturedItemDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewManufacturedItemDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewManufacturedItemDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewManufacturedItemDefinition(opts ...ManufacturedItemDefinitionOption) *ManufacturedItemDefinition {
 	r := &ManufacturedItemDefinition{ResourceType: "ManufacturedItemDefinition"}
 	for _, opt := range opts {
@@ -640,6 +654,8 @@ func NewManufacturedItemDefinition(opts ...ManufacturedItemDefinitionOption) *Ma
 }
 
 // WithManufacturedItemDefinitionId sets the Id field.
+//
+// Deprecated: use ManufacturedItemDefinitionBuilder.SetId instead; removed in v2.
 func WithManufacturedItemDefinitionId(v string) ManufacturedItemDefinitionOption {
 	return func(r *ManufacturedItemDefinition) {
 		r.Id = &v
@@ -647,6 +663,8 @@ func WithManufacturedItemDefinitionId(v string) ManufacturedItemDefinitionOption
 }
 
 // WithManufacturedItemDefinitionMeta sets the Meta field.
+//
+// Deprecated: use ManufacturedItemDefinitionBuilder.SetMeta instead; removed in v2.
 func WithManufacturedItemDefinitionMeta(v Meta) ManufacturedItemDefinitionOption {
 	return func(r *ManufacturedItemDefinition) {
 		r.Meta = &v
@@ -654,6 +672,8 @@ func WithManufacturedItemDefinitionMeta(v Meta) ManufacturedItemDefinitionOption
 }
 
 // WithManufacturedItemDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ManufacturedItemDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithManufacturedItemDefinitionImplicitRules(v string) ManufacturedItemDefinitionOption {
 	return func(r *ManufacturedItemDefinition) {
 		r.ImplicitRules = &v
@@ -661,6 +681,8 @@ func WithManufacturedItemDefinitionImplicitRules(v string) ManufacturedItemDefin
 }
 
 // WithManufacturedItemDefinitionLanguage sets the Language field.
+//
+// Deprecated: use ManufacturedItemDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithManufacturedItemDefinitionLanguage(v string) ManufacturedItemDefinitionOption {
 	return func(r *ManufacturedItemDefinition) {
 		r.Language = &v
@@ -668,6 +690,8 @@ func WithManufacturedItemDefinitionLanguage(v string) ManufacturedItemDefinition
 }
 
 // WithManufacturedItemDefinitionText sets the Text field.
+//
+// Deprecated: use ManufacturedItemDefinitionBuilder.SetText instead; removed in v2.
 func WithManufacturedItemDefinitionText(v Narrative) ManufacturedItemDefinitionOption {
 	return func(r *ManufacturedItemDefinition) {
 		r.Text = &v
@@ -675,6 +699,8 @@ func WithManufacturedItemDefinitionText(v Narrative) ManufacturedItemDefinitionO
 }
 
 // WithManufacturedItemDefinitionContained adds a Contained to the ManufacturedItemDefinition.
+//
+// Deprecated: use ManufacturedItemDefinitionBuilder.AddContained instead; removed in v2.
 func WithManufacturedItemDefinitionContained(v Resource) ManufacturedItemDefinitionOption {
 	return func(r *ManufacturedItemDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -682,6 +708,8 @@ func WithManufacturedItemDefinitionContained(v Resource) ManufacturedItemDefinit
 }
 
 // WithManufacturedItemDefinitionExtension adds a Extension to the ManufacturedItemDefinition.
+//
+// Deprecated: use ManufacturedItemDefinitionBuilder.AddExtension instead; removed in v2.
 func WithManufacturedItemDefinitionExtension(v Extension) ManufacturedItemDefinitionOption {
 	return func(r *ManufacturedItemDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -689,6 +717,8 @@ func WithManufacturedItemDefinitionExtension(v Extension) ManufacturedItemDefini
 }
 
 // WithManufacturedItemDefinitionModifierExtension adds a ModifierExtension to the ManufacturedItemDefinition.
+//
+// Deprecated: use ManufacturedItemDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithManufacturedItemDefinitionModifierExtension(v Extension) ManufacturedItemDefinitionOption {
 	return func(r *ManufacturedItemDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -696,6 +726,8 @@ func WithManufacturedItemDefinitionModifierExtension(v Extension) ManufacturedIt
 }
 
 // WithManufacturedItemDefinitionIdentifier adds a Identifier to the ManufacturedItemDefinition.
+//
+// Deprecated: use ManufacturedItemDefinitionBuilder.AddIdentifier instead; removed in v2.
 func WithManufacturedItemDefinitionIdentifier(v Identifier) ManufacturedItemDefinitionOption {
 	return func(r *ManufacturedItemDefinition) {
 		r.Identifier = append(r.Identifier, v)
@@ -703,6 +735,8 @@ func WithManufacturedItemDefinitionIdentifier(v Identifier) ManufacturedItemDefi
 }
 
 // WithManufacturedItemDefinitionStatus sets the Status field.
+//
+// Deprecated: use ManufacturedItemDefinitionBuilder.SetStatus instead; removed in v2.
 func WithManufacturedItemDefinitionStatus(v PublicationStatus) ManufacturedItemDefinitionOption {
 	return func(r *ManufacturedItemDefinition) {
 		r.Status = &v
@@ -710,6 +744,8 @@ func WithManufacturedItemDefinitionStatus(v PublicationStatus) ManufacturedItemD
 }
 
 // WithManufacturedItemDefinitionManufacturedDoseForm sets the ManufacturedDoseForm field.
+//
+// Deprecated: use ManufacturedItemDefinitionBuilder.SetManufacturedDoseForm instead; removed in v2.
 func WithManufacturedItemDefinitionManufacturedDoseForm(v CodeableConcept) ManufacturedItemDefinitionOption {
 	return func(r *ManufacturedItemDefinition) {
 		r.ManufacturedDoseForm = v
@@ -717,6 +753,8 @@ func WithManufacturedItemDefinitionManufacturedDoseForm(v CodeableConcept) Manuf
 }
 
 // WithManufacturedItemDefinitionUnitOfPresentation sets the UnitOfPresentation field.
+//
+// Deprecated: use ManufacturedItemDefinitionBuilder.SetUnitOfPresentation instead; removed in v2.
 func WithManufacturedItemDefinitionUnitOfPresentation(v CodeableConcept) ManufacturedItemDefinitionOption {
 	return func(r *ManufacturedItemDefinition) {
 		r.UnitOfPresentation = &v
@@ -724,6 +762,8 @@ func WithManufacturedItemDefinitionUnitOfPresentation(v CodeableConcept) Manufac
 }
 
 // WithManufacturedItemDefinitionManufacturer adds a Manufacturer to the ManufacturedItemDefinition.
+//
+// Deprecated: use ManufacturedItemDefinitionBuilder.AddManufacturer instead; removed in v2.
 func WithManufacturedItemDefinitionManufacturer(v Reference) ManufacturedItemDefinitionOption {
 	return func(r *ManufacturedItemDefinition) {
 		r.Manufacturer = append(r.Manufacturer, v)
@@ -731,6 +771,8 @@ func WithManufacturedItemDefinitionManufacturer(v Reference) ManufacturedItemDef
 }
 
 // WithManufacturedItemDefinitionIngredient adds a Ingredient to the ManufacturedItemDefinition.
+//
+// Deprecated: use ManufacturedItemDefinitionBuilder.AddIngredient instead; removed in v2.
 func WithManufacturedItemDefinitionIngredient(v CodeableConcept) ManufacturedItemDefinitionOption {
 	return func(r *ManufacturedItemDefinition) {
 		r.Ingredient = append(r.Ingredient, v)
@@ -738,6 +780,8 @@ func WithManufacturedItemDefinitionIngredient(v CodeableConcept) ManufacturedIte
 }
 
 // WithManufacturedItemDefinitionProperty adds a Property to the ManufacturedItemDefinition.
+//
+// Deprecated: use ManufacturedItemDefinitionBuilder.AddProperty instead; removed in v2.
 func WithManufacturedItemDefinitionProperty(v ManufacturedItemDefinitionProperty) ManufacturedItemDefinitionOption {
 	return func(r *ManufacturedItemDefinition) {
 		r.Property = append(r.Property, v)

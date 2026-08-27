@@ -1969,9 +1969,23 @@ func (b *TerminologyCapabilitiesBuilder) SetClosure(v TerminologyCapabilitiesClo
 // =============================================================================
 
 // TerminologyCapabilitiesOption is a functional option for configuring a TerminologyCapabilities.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// TerminologyCapabilitiesBuilder. Every WithTerminologyCapabilities* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type TerminologyCapabilitiesOption func(*TerminologyCapabilities)
 
 // NewTerminologyCapabilities creates a new TerminologyCapabilities with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewTerminologyCapabilitiesBuilder().SetId("x").Build()
+//
+// Deprecated: use NewTerminologyCapabilitiesBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewTerminologyCapabilities(opts ...TerminologyCapabilitiesOption) *TerminologyCapabilities {
 	r := &TerminologyCapabilities{ResourceType: "TerminologyCapabilities"}
 	for _, opt := range opts {
@@ -1981,6 +1995,8 @@ func NewTerminologyCapabilities(opts ...TerminologyCapabilitiesOption) *Terminol
 }
 
 // WithTerminologyCapabilitiesId sets the Id field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetId instead; removed in v2.
 func WithTerminologyCapabilitiesId(v string) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Id = &v
@@ -1988,6 +2004,8 @@ func WithTerminologyCapabilitiesId(v string) TerminologyCapabilitiesOption {
 }
 
 // WithTerminologyCapabilitiesMeta sets the Meta field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetMeta instead; removed in v2.
 func WithTerminologyCapabilitiesMeta(v Meta) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Meta = &v
@@ -1995,6 +2013,8 @@ func WithTerminologyCapabilitiesMeta(v Meta) TerminologyCapabilitiesOption {
 }
 
 // WithTerminologyCapabilitiesImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetImplicitRules instead; removed in v2.
 func WithTerminologyCapabilitiesImplicitRules(v string) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.ImplicitRules = &v
@@ -2002,6 +2022,8 @@ func WithTerminologyCapabilitiesImplicitRules(v string) TerminologyCapabilitiesO
 }
 
 // WithTerminologyCapabilitiesLanguage sets the Language field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetLanguage instead; removed in v2.
 func WithTerminologyCapabilitiesLanguage(v string) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Language = &v
@@ -2009,6 +2031,8 @@ func WithTerminologyCapabilitiesLanguage(v string) TerminologyCapabilitiesOption
 }
 
 // WithTerminologyCapabilitiesText sets the Text field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetText instead; removed in v2.
 func WithTerminologyCapabilitiesText(v Narrative) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Text = &v
@@ -2016,6 +2040,8 @@ func WithTerminologyCapabilitiesText(v Narrative) TerminologyCapabilitiesOption 
 }
 
 // WithTerminologyCapabilitiesContained adds a Contained to the TerminologyCapabilities.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.AddContained instead; removed in v2.
 func WithTerminologyCapabilitiesContained(v Resource) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Contained = append(r.Contained, v)
@@ -2023,6 +2049,8 @@ func WithTerminologyCapabilitiesContained(v Resource) TerminologyCapabilitiesOpt
 }
 
 // WithTerminologyCapabilitiesExtension adds a Extension to the TerminologyCapabilities.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.AddExtension instead; removed in v2.
 func WithTerminologyCapabilitiesExtension(v Extension) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Extension = append(r.Extension, v)
@@ -2030,6 +2058,8 @@ func WithTerminologyCapabilitiesExtension(v Extension) TerminologyCapabilitiesOp
 }
 
 // WithTerminologyCapabilitiesModifierExtension adds a ModifierExtension to the TerminologyCapabilities.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.AddModifierExtension instead; removed in v2.
 func WithTerminologyCapabilitiesModifierExtension(v Extension) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -2037,6 +2067,8 @@ func WithTerminologyCapabilitiesModifierExtension(v Extension) TerminologyCapabi
 }
 
 // WithTerminologyCapabilitiesUrl sets the Url field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetUrl instead; removed in v2.
 func WithTerminologyCapabilitiesUrl(v string) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Url = &v
@@ -2044,6 +2076,8 @@ func WithTerminologyCapabilitiesUrl(v string) TerminologyCapabilitiesOption {
 }
 
 // WithTerminologyCapabilitiesIdentifier adds a Identifier to the TerminologyCapabilities.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.AddIdentifier instead; removed in v2.
 func WithTerminologyCapabilitiesIdentifier(v Identifier) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Identifier = append(r.Identifier, v)
@@ -2051,6 +2085,8 @@ func WithTerminologyCapabilitiesIdentifier(v Identifier) TerminologyCapabilities
 }
 
 // WithTerminologyCapabilitiesVersion sets the Version field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetVersion instead; removed in v2.
 func WithTerminologyCapabilitiesVersion(v string) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Version = &v
@@ -2058,6 +2094,8 @@ func WithTerminologyCapabilitiesVersion(v string) TerminologyCapabilitiesOption 
 }
 
 // WithTerminologyCapabilitiesVersionAlgorithmString sets the VersionAlgorithmString field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetVersionAlgorithmString instead; removed in v2.
 func WithTerminologyCapabilitiesVersionAlgorithmString(v string) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.VersionAlgorithmString = &v
@@ -2065,6 +2103,8 @@ func WithTerminologyCapabilitiesVersionAlgorithmString(v string) TerminologyCapa
 }
 
 // WithTerminologyCapabilitiesVersionAlgorithmStringExt sets the VersionAlgorithmStringExt field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetVersionAlgorithmStringExt instead; removed in v2.
 func WithTerminologyCapabilitiesVersionAlgorithmStringExt(v Element) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.VersionAlgorithmStringExt = &v
@@ -2072,6 +2112,8 @@ func WithTerminologyCapabilitiesVersionAlgorithmStringExt(v Element) Terminology
 }
 
 // WithTerminologyCapabilitiesVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetVersionAlgorithmCoding instead; removed in v2.
 func WithTerminologyCapabilitiesVersionAlgorithmCoding(v Coding) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.VersionAlgorithmCoding = &v
@@ -2079,6 +2121,8 @@ func WithTerminologyCapabilitiesVersionAlgorithmCoding(v Coding) TerminologyCapa
 }
 
 // WithTerminologyCapabilitiesName sets the Name field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetName instead; removed in v2.
 func WithTerminologyCapabilitiesName(v string) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Name = &v
@@ -2086,6 +2130,8 @@ func WithTerminologyCapabilitiesName(v string) TerminologyCapabilitiesOption {
 }
 
 // WithTerminologyCapabilitiesTitle sets the Title field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetTitle instead; removed in v2.
 func WithTerminologyCapabilitiesTitle(v string) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Title = &v
@@ -2093,6 +2139,8 @@ func WithTerminologyCapabilitiesTitle(v string) TerminologyCapabilitiesOption {
 }
 
 // WithTerminologyCapabilitiesStatus sets the Status field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetStatus instead; removed in v2.
 func WithTerminologyCapabilitiesStatus(v PublicationStatus) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Status = &v
@@ -2100,6 +2148,8 @@ func WithTerminologyCapabilitiesStatus(v PublicationStatus) TerminologyCapabilit
 }
 
 // WithTerminologyCapabilitiesExperimental sets the Experimental field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetExperimental instead; removed in v2.
 func WithTerminologyCapabilitiesExperimental(v bool) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Experimental = &v
@@ -2107,6 +2157,8 @@ func WithTerminologyCapabilitiesExperimental(v bool) TerminologyCapabilitiesOpti
 }
 
 // WithTerminologyCapabilitiesDate sets the Date field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetDate instead; removed in v2.
 func WithTerminologyCapabilitiesDate(v string) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Date = &v
@@ -2114,6 +2166,8 @@ func WithTerminologyCapabilitiesDate(v string) TerminologyCapabilitiesOption {
 }
 
 // WithTerminologyCapabilitiesPublisher sets the Publisher field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetPublisher instead; removed in v2.
 func WithTerminologyCapabilitiesPublisher(v string) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Publisher = &v
@@ -2121,6 +2175,8 @@ func WithTerminologyCapabilitiesPublisher(v string) TerminologyCapabilitiesOptio
 }
 
 // WithTerminologyCapabilitiesContact adds a Contact to the TerminologyCapabilities.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.AddContact instead; removed in v2.
 func WithTerminologyCapabilitiesContact(v ContactDetail) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Contact = append(r.Contact, v)
@@ -2128,6 +2184,8 @@ func WithTerminologyCapabilitiesContact(v ContactDetail) TerminologyCapabilities
 }
 
 // WithTerminologyCapabilitiesDescription sets the Description field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetDescription instead; removed in v2.
 func WithTerminologyCapabilitiesDescription(v string) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Description = &v
@@ -2135,6 +2193,8 @@ func WithTerminologyCapabilitiesDescription(v string) TerminologyCapabilitiesOpt
 }
 
 // WithTerminologyCapabilitiesUseContext adds a UseContext to the TerminologyCapabilities.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.AddUseContext instead; removed in v2.
 func WithTerminologyCapabilitiesUseContext(v UsageContext) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.UseContext = append(r.UseContext, v)
@@ -2142,6 +2202,8 @@ func WithTerminologyCapabilitiesUseContext(v UsageContext) TerminologyCapabiliti
 }
 
 // WithTerminologyCapabilitiesJurisdiction adds a Jurisdiction to the TerminologyCapabilities.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.AddJurisdiction instead; removed in v2.
 func WithTerminologyCapabilitiesJurisdiction(v CodeableConcept) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -2149,6 +2211,8 @@ func WithTerminologyCapabilitiesJurisdiction(v CodeableConcept) TerminologyCapab
 }
 
 // WithTerminologyCapabilitiesPurpose sets the Purpose field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetPurpose instead; removed in v2.
 func WithTerminologyCapabilitiesPurpose(v string) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Purpose = &v
@@ -2156,6 +2220,8 @@ func WithTerminologyCapabilitiesPurpose(v string) TerminologyCapabilitiesOption 
 }
 
 // WithTerminologyCapabilitiesCopyright sets the Copyright field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetCopyright instead; removed in v2.
 func WithTerminologyCapabilitiesCopyright(v string) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Copyright = &v
@@ -2163,6 +2229,8 @@ func WithTerminologyCapabilitiesCopyright(v string) TerminologyCapabilitiesOptio
 }
 
 // WithTerminologyCapabilitiesCopyrightLabel sets the CopyrightLabel field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetCopyrightLabel instead; removed in v2.
 func WithTerminologyCapabilitiesCopyrightLabel(v string) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.CopyrightLabel = &v
@@ -2170,6 +2238,8 @@ func WithTerminologyCapabilitiesCopyrightLabel(v string) TerminologyCapabilities
 }
 
 // WithTerminologyCapabilitiesKind sets the Kind field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetKind instead; removed in v2.
 func WithTerminologyCapabilitiesKind(v CapabilityStatementKind) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Kind = &v
@@ -2177,6 +2247,8 @@ func WithTerminologyCapabilitiesKind(v CapabilityStatementKind) TerminologyCapab
 }
 
 // WithTerminologyCapabilitiesSoftware sets the Software field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetSoftware instead; removed in v2.
 func WithTerminologyCapabilitiesSoftware(v TerminologyCapabilitiesSoftware) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Software = &v
@@ -2184,6 +2256,8 @@ func WithTerminologyCapabilitiesSoftware(v TerminologyCapabilitiesSoftware) Term
 }
 
 // WithTerminologyCapabilitiesImplementation sets the Implementation field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetImplementation instead; removed in v2.
 func WithTerminologyCapabilitiesImplementation(v TerminologyCapabilitiesImplementation) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Implementation = &v
@@ -2191,6 +2265,8 @@ func WithTerminologyCapabilitiesImplementation(v TerminologyCapabilitiesImplemen
 }
 
 // WithTerminologyCapabilitiesLockedDate sets the LockedDate field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetLockedDate instead; removed in v2.
 func WithTerminologyCapabilitiesLockedDate(v bool) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.LockedDate = &v
@@ -2198,6 +2274,8 @@ func WithTerminologyCapabilitiesLockedDate(v bool) TerminologyCapabilitiesOption
 }
 
 // WithTerminologyCapabilitiesCodeSystem adds a CodeSystem to the TerminologyCapabilities.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.AddCodeSystem instead; removed in v2.
 func WithTerminologyCapabilitiesCodeSystem(v TerminologyCapabilitiesCodeSystem) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.CodeSystem = append(r.CodeSystem, v)
@@ -2205,6 +2283,8 @@ func WithTerminologyCapabilitiesCodeSystem(v TerminologyCapabilitiesCodeSystem) 
 }
 
 // WithTerminologyCapabilitiesExpansion sets the Expansion field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetExpansion instead; removed in v2.
 func WithTerminologyCapabilitiesExpansion(v TerminologyCapabilitiesExpansion) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Expansion = &v
@@ -2212,6 +2292,8 @@ func WithTerminologyCapabilitiesExpansion(v TerminologyCapabilitiesExpansion) Te
 }
 
 // WithTerminologyCapabilitiesCodeSearch sets the CodeSearch field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetCodeSearch instead; removed in v2.
 func WithTerminologyCapabilitiesCodeSearch(v CodeSearchSupport) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.CodeSearch = &v
@@ -2219,6 +2301,8 @@ func WithTerminologyCapabilitiesCodeSearch(v CodeSearchSupport) TerminologyCapab
 }
 
 // WithTerminologyCapabilitiesValidateCode sets the ValidateCode field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetValidateCode instead; removed in v2.
 func WithTerminologyCapabilitiesValidateCode(v TerminologyCapabilitiesValidateCode) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.ValidateCode = &v
@@ -2226,6 +2310,8 @@ func WithTerminologyCapabilitiesValidateCode(v TerminologyCapabilitiesValidateCo
 }
 
 // WithTerminologyCapabilitiesTranslation sets the Translation field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetTranslation instead; removed in v2.
 func WithTerminologyCapabilitiesTranslation(v TerminologyCapabilitiesTranslation) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Translation = &v
@@ -2233,6 +2319,8 @@ func WithTerminologyCapabilitiesTranslation(v TerminologyCapabilitiesTranslation
 }
 
 // WithTerminologyCapabilitiesClosure sets the Closure field.
+//
+// Deprecated: use TerminologyCapabilitiesBuilder.SetClosure instead; removed in v2.
 func WithTerminologyCapabilitiesClosure(v TerminologyCapabilitiesClosure) TerminologyCapabilitiesOption {
 	return func(r *TerminologyCapabilities) {
 		r.Closure = &v

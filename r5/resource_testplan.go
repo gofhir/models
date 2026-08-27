@@ -1637,9 +1637,23 @@ func (b *TestPlanBuilder) AddTestCase(v TestPlanTestCase) *TestPlanBuilder {
 // =============================================================================
 
 // TestPlanOption is a functional option for configuring a TestPlan.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// TestPlanBuilder. Every WithTestPlan* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type TestPlanOption func(*TestPlan)
 
 // NewTestPlan creates a new TestPlan with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewTestPlanBuilder().SetId("x").Build()
+//
+// Deprecated: use NewTestPlanBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewTestPlan(opts ...TestPlanOption) *TestPlan {
 	r := &TestPlan{ResourceType: "TestPlan"}
 	for _, opt := range opts {
@@ -1649,6 +1663,8 @@ func NewTestPlan(opts ...TestPlanOption) *TestPlan {
 }
 
 // WithTestPlanId sets the Id field.
+//
+// Deprecated: use TestPlanBuilder.SetId instead; removed in v2.
 func WithTestPlanId(v string) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Id = &v
@@ -1656,6 +1672,8 @@ func WithTestPlanId(v string) TestPlanOption {
 }
 
 // WithTestPlanMeta sets the Meta field.
+//
+// Deprecated: use TestPlanBuilder.SetMeta instead; removed in v2.
 func WithTestPlanMeta(v Meta) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Meta = &v
@@ -1663,6 +1681,8 @@ func WithTestPlanMeta(v Meta) TestPlanOption {
 }
 
 // WithTestPlanImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use TestPlanBuilder.SetImplicitRules instead; removed in v2.
 func WithTestPlanImplicitRules(v string) TestPlanOption {
 	return func(r *TestPlan) {
 		r.ImplicitRules = &v
@@ -1670,6 +1690,8 @@ func WithTestPlanImplicitRules(v string) TestPlanOption {
 }
 
 // WithTestPlanLanguage sets the Language field.
+//
+// Deprecated: use TestPlanBuilder.SetLanguage instead; removed in v2.
 func WithTestPlanLanguage(v string) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Language = &v
@@ -1677,6 +1699,8 @@ func WithTestPlanLanguage(v string) TestPlanOption {
 }
 
 // WithTestPlanText sets the Text field.
+//
+// Deprecated: use TestPlanBuilder.SetText instead; removed in v2.
 func WithTestPlanText(v Narrative) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Text = &v
@@ -1684,6 +1708,8 @@ func WithTestPlanText(v Narrative) TestPlanOption {
 }
 
 // WithTestPlanContained adds a Contained to the TestPlan.
+//
+// Deprecated: use TestPlanBuilder.AddContained instead; removed in v2.
 func WithTestPlanContained(v Resource) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Contained = append(r.Contained, v)
@@ -1691,6 +1717,8 @@ func WithTestPlanContained(v Resource) TestPlanOption {
 }
 
 // WithTestPlanExtension adds a Extension to the TestPlan.
+//
+// Deprecated: use TestPlanBuilder.AddExtension instead; removed in v2.
 func WithTestPlanExtension(v Extension) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Extension = append(r.Extension, v)
@@ -1698,6 +1726,8 @@ func WithTestPlanExtension(v Extension) TestPlanOption {
 }
 
 // WithTestPlanModifierExtension adds a ModifierExtension to the TestPlan.
+//
+// Deprecated: use TestPlanBuilder.AddModifierExtension instead; removed in v2.
 func WithTestPlanModifierExtension(v Extension) TestPlanOption {
 	return func(r *TestPlan) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1705,6 +1735,8 @@ func WithTestPlanModifierExtension(v Extension) TestPlanOption {
 }
 
 // WithTestPlanUrl sets the Url field.
+//
+// Deprecated: use TestPlanBuilder.SetUrl instead; removed in v2.
 func WithTestPlanUrl(v string) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Url = &v
@@ -1712,6 +1744,8 @@ func WithTestPlanUrl(v string) TestPlanOption {
 }
 
 // WithTestPlanIdentifier adds a Identifier to the TestPlan.
+//
+// Deprecated: use TestPlanBuilder.AddIdentifier instead; removed in v2.
 func WithTestPlanIdentifier(v Identifier) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Identifier = append(r.Identifier, v)
@@ -1719,6 +1753,8 @@ func WithTestPlanIdentifier(v Identifier) TestPlanOption {
 }
 
 // WithTestPlanVersion sets the Version field.
+//
+// Deprecated: use TestPlanBuilder.SetVersion instead; removed in v2.
 func WithTestPlanVersion(v string) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Version = &v
@@ -1726,6 +1762,8 @@ func WithTestPlanVersion(v string) TestPlanOption {
 }
 
 // WithTestPlanVersionAlgorithmString sets the VersionAlgorithmString field.
+//
+// Deprecated: use TestPlanBuilder.SetVersionAlgorithmString instead; removed in v2.
 func WithTestPlanVersionAlgorithmString(v string) TestPlanOption {
 	return func(r *TestPlan) {
 		r.VersionAlgorithmString = &v
@@ -1733,6 +1771,8 @@ func WithTestPlanVersionAlgorithmString(v string) TestPlanOption {
 }
 
 // WithTestPlanVersionAlgorithmStringExt sets the VersionAlgorithmStringExt field.
+//
+// Deprecated: use TestPlanBuilder.SetVersionAlgorithmStringExt instead; removed in v2.
 func WithTestPlanVersionAlgorithmStringExt(v Element) TestPlanOption {
 	return func(r *TestPlan) {
 		r.VersionAlgorithmStringExt = &v
@@ -1740,6 +1780,8 @@ func WithTestPlanVersionAlgorithmStringExt(v Element) TestPlanOption {
 }
 
 // WithTestPlanVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+//
+// Deprecated: use TestPlanBuilder.SetVersionAlgorithmCoding instead; removed in v2.
 func WithTestPlanVersionAlgorithmCoding(v Coding) TestPlanOption {
 	return func(r *TestPlan) {
 		r.VersionAlgorithmCoding = &v
@@ -1747,6 +1789,8 @@ func WithTestPlanVersionAlgorithmCoding(v Coding) TestPlanOption {
 }
 
 // WithTestPlanName sets the Name field.
+//
+// Deprecated: use TestPlanBuilder.SetName instead; removed in v2.
 func WithTestPlanName(v string) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Name = &v
@@ -1754,6 +1798,8 @@ func WithTestPlanName(v string) TestPlanOption {
 }
 
 // WithTestPlanTitle sets the Title field.
+//
+// Deprecated: use TestPlanBuilder.SetTitle instead; removed in v2.
 func WithTestPlanTitle(v string) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Title = &v
@@ -1761,6 +1807,8 @@ func WithTestPlanTitle(v string) TestPlanOption {
 }
 
 // WithTestPlanStatus sets the Status field.
+//
+// Deprecated: use TestPlanBuilder.SetStatus instead; removed in v2.
 func WithTestPlanStatus(v PublicationStatus) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Status = &v
@@ -1768,6 +1816,8 @@ func WithTestPlanStatus(v PublicationStatus) TestPlanOption {
 }
 
 // WithTestPlanExperimental sets the Experimental field.
+//
+// Deprecated: use TestPlanBuilder.SetExperimental instead; removed in v2.
 func WithTestPlanExperimental(v bool) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Experimental = &v
@@ -1775,6 +1825,8 @@ func WithTestPlanExperimental(v bool) TestPlanOption {
 }
 
 // WithTestPlanDate sets the Date field.
+//
+// Deprecated: use TestPlanBuilder.SetDate instead; removed in v2.
 func WithTestPlanDate(v string) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Date = &v
@@ -1782,6 +1834,8 @@ func WithTestPlanDate(v string) TestPlanOption {
 }
 
 // WithTestPlanPublisher sets the Publisher field.
+//
+// Deprecated: use TestPlanBuilder.SetPublisher instead; removed in v2.
 func WithTestPlanPublisher(v string) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Publisher = &v
@@ -1789,6 +1843,8 @@ func WithTestPlanPublisher(v string) TestPlanOption {
 }
 
 // WithTestPlanContact adds a Contact to the TestPlan.
+//
+// Deprecated: use TestPlanBuilder.AddContact instead; removed in v2.
 func WithTestPlanContact(v ContactDetail) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Contact = append(r.Contact, v)
@@ -1796,6 +1852,8 @@ func WithTestPlanContact(v ContactDetail) TestPlanOption {
 }
 
 // WithTestPlanDescription sets the Description field.
+//
+// Deprecated: use TestPlanBuilder.SetDescription instead; removed in v2.
 func WithTestPlanDescription(v string) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Description = &v
@@ -1803,6 +1861,8 @@ func WithTestPlanDescription(v string) TestPlanOption {
 }
 
 // WithTestPlanUseContext adds a UseContext to the TestPlan.
+//
+// Deprecated: use TestPlanBuilder.AddUseContext instead; removed in v2.
 func WithTestPlanUseContext(v UsageContext) TestPlanOption {
 	return func(r *TestPlan) {
 		r.UseContext = append(r.UseContext, v)
@@ -1810,6 +1870,8 @@ func WithTestPlanUseContext(v UsageContext) TestPlanOption {
 }
 
 // WithTestPlanJurisdiction adds a Jurisdiction to the TestPlan.
+//
+// Deprecated: use TestPlanBuilder.AddJurisdiction instead; removed in v2.
 func WithTestPlanJurisdiction(v CodeableConcept) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1817,6 +1879,8 @@ func WithTestPlanJurisdiction(v CodeableConcept) TestPlanOption {
 }
 
 // WithTestPlanPurpose sets the Purpose field.
+//
+// Deprecated: use TestPlanBuilder.SetPurpose instead; removed in v2.
 func WithTestPlanPurpose(v string) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Purpose = &v
@@ -1824,6 +1888,8 @@ func WithTestPlanPurpose(v string) TestPlanOption {
 }
 
 // WithTestPlanCopyright sets the Copyright field.
+//
+// Deprecated: use TestPlanBuilder.SetCopyright instead; removed in v2.
 func WithTestPlanCopyright(v string) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Copyright = &v
@@ -1831,6 +1897,8 @@ func WithTestPlanCopyright(v string) TestPlanOption {
 }
 
 // WithTestPlanCopyrightLabel sets the CopyrightLabel field.
+//
+// Deprecated: use TestPlanBuilder.SetCopyrightLabel instead; removed in v2.
 func WithTestPlanCopyrightLabel(v string) TestPlanOption {
 	return func(r *TestPlan) {
 		r.CopyrightLabel = &v
@@ -1838,6 +1906,8 @@ func WithTestPlanCopyrightLabel(v string) TestPlanOption {
 }
 
 // WithTestPlanCategory adds a Category to the TestPlan.
+//
+// Deprecated: use TestPlanBuilder.AddCategory instead; removed in v2.
 func WithTestPlanCategory(v CodeableConcept) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Category = append(r.Category, v)
@@ -1845,6 +1915,8 @@ func WithTestPlanCategory(v CodeableConcept) TestPlanOption {
 }
 
 // WithTestPlanScope adds a Scope to the TestPlan.
+//
+// Deprecated: use TestPlanBuilder.AddScope instead; removed in v2.
 func WithTestPlanScope(v Reference) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Scope = append(r.Scope, v)
@@ -1852,6 +1924,8 @@ func WithTestPlanScope(v Reference) TestPlanOption {
 }
 
 // WithTestPlanTestTools sets the TestTools field.
+//
+// Deprecated: use TestPlanBuilder.SetTestTools instead; removed in v2.
 func WithTestPlanTestTools(v string) TestPlanOption {
 	return func(r *TestPlan) {
 		r.TestTools = &v
@@ -1859,6 +1933,8 @@ func WithTestPlanTestTools(v string) TestPlanOption {
 }
 
 // WithTestPlanDependency adds a Dependency to the TestPlan.
+//
+// Deprecated: use TestPlanBuilder.AddDependency instead; removed in v2.
 func WithTestPlanDependency(v TestPlanDependency) TestPlanOption {
 	return func(r *TestPlan) {
 		r.Dependency = append(r.Dependency, v)
@@ -1866,6 +1942,8 @@ func WithTestPlanDependency(v TestPlanDependency) TestPlanOption {
 }
 
 // WithTestPlanExitCriteria sets the ExitCriteria field.
+//
+// Deprecated: use TestPlanBuilder.SetExitCriteria instead; removed in v2.
 func WithTestPlanExitCriteria(v string) TestPlanOption {
 	return func(r *TestPlan) {
 		r.ExitCriteria = &v
@@ -1873,6 +1951,8 @@ func WithTestPlanExitCriteria(v string) TestPlanOption {
 }
 
 // WithTestPlanTestCase adds a TestCase to the TestPlan.
+//
+// Deprecated: use TestPlanBuilder.AddTestCase instead; removed in v2.
 func WithTestPlanTestCase(v TestPlanTestCase) TestPlanOption {
 	return func(r *TestPlan) {
 		r.TestCase = append(r.TestCase, v)

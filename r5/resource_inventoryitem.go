@@ -1413,9 +1413,23 @@ func (b *InventoryItemBuilder) SetProductReference(v Reference) *InventoryItemBu
 // =============================================================================
 
 // InventoryItemOption is a functional option for configuring a InventoryItem.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// InventoryItemBuilder. Every WithInventoryItem* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type InventoryItemOption func(*InventoryItem)
 
 // NewInventoryItem creates a new InventoryItem with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewInventoryItemBuilder().SetId("x").Build()
+//
+// Deprecated: use NewInventoryItemBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewInventoryItem(opts ...InventoryItemOption) *InventoryItem {
 	r := &InventoryItem{ResourceType: "InventoryItem"}
 	for _, opt := range opts {
@@ -1425,6 +1439,8 @@ func NewInventoryItem(opts ...InventoryItemOption) *InventoryItem {
 }
 
 // WithInventoryItemId sets the Id field.
+//
+// Deprecated: use InventoryItemBuilder.SetId instead; removed in v2.
 func WithInventoryItemId(v string) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.Id = &v
@@ -1432,6 +1448,8 @@ func WithInventoryItemId(v string) InventoryItemOption {
 }
 
 // WithInventoryItemMeta sets the Meta field.
+//
+// Deprecated: use InventoryItemBuilder.SetMeta instead; removed in v2.
 func WithInventoryItemMeta(v Meta) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.Meta = &v
@@ -1439,6 +1457,8 @@ func WithInventoryItemMeta(v Meta) InventoryItemOption {
 }
 
 // WithInventoryItemImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use InventoryItemBuilder.SetImplicitRules instead; removed in v2.
 func WithInventoryItemImplicitRules(v string) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.ImplicitRules = &v
@@ -1446,6 +1466,8 @@ func WithInventoryItemImplicitRules(v string) InventoryItemOption {
 }
 
 // WithInventoryItemLanguage sets the Language field.
+//
+// Deprecated: use InventoryItemBuilder.SetLanguage instead; removed in v2.
 func WithInventoryItemLanguage(v string) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.Language = &v
@@ -1453,6 +1475,8 @@ func WithInventoryItemLanguage(v string) InventoryItemOption {
 }
 
 // WithInventoryItemText sets the Text field.
+//
+// Deprecated: use InventoryItemBuilder.SetText instead; removed in v2.
 func WithInventoryItemText(v Narrative) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.Text = &v
@@ -1460,6 +1484,8 @@ func WithInventoryItemText(v Narrative) InventoryItemOption {
 }
 
 // WithInventoryItemContained adds a Contained to the InventoryItem.
+//
+// Deprecated: use InventoryItemBuilder.AddContained instead; removed in v2.
 func WithInventoryItemContained(v Resource) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.Contained = append(r.Contained, v)
@@ -1467,6 +1493,8 @@ func WithInventoryItemContained(v Resource) InventoryItemOption {
 }
 
 // WithInventoryItemExtension adds a Extension to the InventoryItem.
+//
+// Deprecated: use InventoryItemBuilder.AddExtension instead; removed in v2.
 func WithInventoryItemExtension(v Extension) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.Extension = append(r.Extension, v)
@@ -1474,6 +1502,8 @@ func WithInventoryItemExtension(v Extension) InventoryItemOption {
 }
 
 // WithInventoryItemModifierExtension adds a ModifierExtension to the InventoryItem.
+//
+// Deprecated: use InventoryItemBuilder.AddModifierExtension instead; removed in v2.
 func WithInventoryItemModifierExtension(v Extension) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1481,6 +1511,8 @@ func WithInventoryItemModifierExtension(v Extension) InventoryItemOption {
 }
 
 // WithInventoryItemIdentifier adds a Identifier to the InventoryItem.
+//
+// Deprecated: use InventoryItemBuilder.AddIdentifier instead; removed in v2.
 func WithInventoryItemIdentifier(v Identifier) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.Identifier = append(r.Identifier, v)
@@ -1488,6 +1520,8 @@ func WithInventoryItemIdentifier(v Identifier) InventoryItemOption {
 }
 
 // WithInventoryItemStatus sets the Status field.
+//
+// Deprecated: use InventoryItemBuilder.SetStatus instead; removed in v2.
 func WithInventoryItemStatus(v InventoryItemStatusCodes) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.Status = &v
@@ -1495,6 +1529,8 @@ func WithInventoryItemStatus(v InventoryItemStatusCodes) InventoryItemOption {
 }
 
 // WithInventoryItemCategory adds a Category to the InventoryItem.
+//
+// Deprecated: use InventoryItemBuilder.AddCategory instead; removed in v2.
 func WithInventoryItemCategory(v CodeableConcept) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.Category = append(r.Category, v)
@@ -1502,6 +1538,8 @@ func WithInventoryItemCategory(v CodeableConcept) InventoryItemOption {
 }
 
 // WithInventoryItemCode adds a Code to the InventoryItem.
+//
+// Deprecated: use InventoryItemBuilder.AddCode instead; removed in v2.
 func WithInventoryItemCode(v CodeableConcept) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.Code = append(r.Code, v)
@@ -1509,6 +1547,8 @@ func WithInventoryItemCode(v CodeableConcept) InventoryItemOption {
 }
 
 // WithInventoryItemName adds a Name to the InventoryItem.
+//
+// Deprecated: use InventoryItemBuilder.AddName instead; removed in v2.
 func WithInventoryItemName(v InventoryItemName) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.Name = append(r.Name, v)
@@ -1516,6 +1556,8 @@ func WithInventoryItemName(v InventoryItemName) InventoryItemOption {
 }
 
 // WithInventoryItemResponsibleOrganization adds a ResponsibleOrganization to the InventoryItem.
+//
+// Deprecated: use InventoryItemBuilder.AddResponsibleOrganization instead; removed in v2.
 func WithInventoryItemResponsibleOrganization(v InventoryItemResponsibleOrganization) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.ResponsibleOrganization = append(r.ResponsibleOrganization, v)
@@ -1523,6 +1565,8 @@ func WithInventoryItemResponsibleOrganization(v InventoryItemResponsibleOrganiza
 }
 
 // WithInventoryItemDescription sets the Description field.
+//
+// Deprecated: use InventoryItemBuilder.SetDescription instead; removed in v2.
 func WithInventoryItemDescription(v InventoryItemDescription) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.Description = &v
@@ -1530,6 +1574,8 @@ func WithInventoryItemDescription(v InventoryItemDescription) InventoryItemOptio
 }
 
 // WithInventoryItemInventoryStatus adds a InventoryStatus to the InventoryItem.
+//
+// Deprecated: use InventoryItemBuilder.AddInventoryStatus instead; removed in v2.
 func WithInventoryItemInventoryStatus(v CodeableConcept) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.InventoryStatus = append(r.InventoryStatus, v)
@@ -1537,6 +1583,8 @@ func WithInventoryItemInventoryStatus(v CodeableConcept) InventoryItemOption {
 }
 
 // WithInventoryItemBaseUnit sets the BaseUnit field.
+//
+// Deprecated: use InventoryItemBuilder.SetBaseUnit instead; removed in v2.
 func WithInventoryItemBaseUnit(v CodeableConcept) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.BaseUnit = &v
@@ -1544,6 +1592,8 @@ func WithInventoryItemBaseUnit(v CodeableConcept) InventoryItemOption {
 }
 
 // WithInventoryItemNetContent sets the NetContent field.
+//
+// Deprecated: use InventoryItemBuilder.SetNetContent instead; removed in v2.
 func WithInventoryItemNetContent(v Quantity) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.NetContent = &v
@@ -1551,6 +1601,8 @@ func WithInventoryItemNetContent(v Quantity) InventoryItemOption {
 }
 
 // WithInventoryItemAssociation adds a Association to the InventoryItem.
+//
+// Deprecated: use InventoryItemBuilder.AddAssociation instead; removed in v2.
 func WithInventoryItemAssociation(v InventoryItemAssociation) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.Association = append(r.Association, v)
@@ -1558,6 +1610,8 @@ func WithInventoryItemAssociation(v InventoryItemAssociation) InventoryItemOptio
 }
 
 // WithInventoryItemCharacteristic adds a Characteristic to the InventoryItem.
+//
+// Deprecated: use InventoryItemBuilder.AddCharacteristic instead; removed in v2.
 func WithInventoryItemCharacteristic(v InventoryItemCharacteristic) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.Characteristic = append(r.Characteristic, v)
@@ -1565,6 +1619,8 @@ func WithInventoryItemCharacteristic(v InventoryItemCharacteristic) InventoryIte
 }
 
 // WithInventoryItemInstance sets the Instance field.
+//
+// Deprecated: use InventoryItemBuilder.SetInstance instead; removed in v2.
 func WithInventoryItemInstance(v InventoryItemInstance) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.Instance = &v
@@ -1572,6 +1628,8 @@ func WithInventoryItemInstance(v InventoryItemInstance) InventoryItemOption {
 }
 
 // WithInventoryItemProductReference sets the ProductReference field.
+//
+// Deprecated: use InventoryItemBuilder.SetProductReference instead; removed in v2.
 func WithInventoryItemProductReference(v Reference) InventoryItemOption {
 	return func(r *InventoryItem) {
 		r.ProductReference = &v

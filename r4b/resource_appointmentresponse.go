@@ -499,9 +499,23 @@ func (b *AppointmentResponseBuilder) SetComment(v string) *AppointmentResponseBu
 // =============================================================================
 
 // AppointmentResponseOption is a functional option for configuring a AppointmentResponse.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// AppointmentResponseBuilder. Every WithAppointmentResponse* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type AppointmentResponseOption func(*AppointmentResponse)
 
 // NewAppointmentResponse creates a new AppointmentResponse with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewAppointmentResponseBuilder().SetId("x").Build()
+//
+// Deprecated: use NewAppointmentResponseBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewAppointmentResponse(opts ...AppointmentResponseOption) *AppointmentResponse {
 	r := &AppointmentResponse{ResourceType: "AppointmentResponse"}
 	for _, opt := range opts {
@@ -511,6 +525,8 @@ func NewAppointmentResponse(opts ...AppointmentResponseOption) *AppointmentRespo
 }
 
 // WithAppointmentResponseId sets the Id field.
+//
+// Deprecated: use AppointmentResponseBuilder.SetId instead; removed in v2.
 func WithAppointmentResponseId(v string) AppointmentResponseOption {
 	return func(r *AppointmentResponse) {
 		r.Id = &v
@@ -518,6 +534,8 @@ func WithAppointmentResponseId(v string) AppointmentResponseOption {
 }
 
 // WithAppointmentResponseMeta sets the Meta field.
+//
+// Deprecated: use AppointmentResponseBuilder.SetMeta instead; removed in v2.
 func WithAppointmentResponseMeta(v Meta) AppointmentResponseOption {
 	return func(r *AppointmentResponse) {
 		r.Meta = &v
@@ -525,6 +543,8 @@ func WithAppointmentResponseMeta(v Meta) AppointmentResponseOption {
 }
 
 // WithAppointmentResponseImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use AppointmentResponseBuilder.SetImplicitRules instead; removed in v2.
 func WithAppointmentResponseImplicitRules(v string) AppointmentResponseOption {
 	return func(r *AppointmentResponse) {
 		r.ImplicitRules = &v
@@ -532,6 +552,8 @@ func WithAppointmentResponseImplicitRules(v string) AppointmentResponseOption {
 }
 
 // WithAppointmentResponseLanguage sets the Language field.
+//
+// Deprecated: use AppointmentResponseBuilder.SetLanguage instead; removed in v2.
 func WithAppointmentResponseLanguage(v string) AppointmentResponseOption {
 	return func(r *AppointmentResponse) {
 		r.Language = &v
@@ -539,6 +561,8 @@ func WithAppointmentResponseLanguage(v string) AppointmentResponseOption {
 }
 
 // WithAppointmentResponseText sets the Text field.
+//
+// Deprecated: use AppointmentResponseBuilder.SetText instead; removed in v2.
 func WithAppointmentResponseText(v Narrative) AppointmentResponseOption {
 	return func(r *AppointmentResponse) {
 		r.Text = &v
@@ -546,6 +570,8 @@ func WithAppointmentResponseText(v Narrative) AppointmentResponseOption {
 }
 
 // WithAppointmentResponseContained adds a Contained to the AppointmentResponse.
+//
+// Deprecated: use AppointmentResponseBuilder.AddContained instead; removed in v2.
 func WithAppointmentResponseContained(v Resource) AppointmentResponseOption {
 	return func(r *AppointmentResponse) {
 		r.Contained = append(r.Contained, v)
@@ -553,6 +579,8 @@ func WithAppointmentResponseContained(v Resource) AppointmentResponseOption {
 }
 
 // WithAppointmentResponseExtension adds a Extension to the AppointmentResponse.
+//
+// Deprecated: use AppointmentResponseBuilder.AddExtension instead; removed in v2.
 func WithAppointmentResponseExtension(v Extension) AppointmentResponseOption {
 	return func(r *AppointmentResponse) {
 		r.Extension = append(r.Extension, v)
@@ -560,6 +588,8 @@ func WithAppointmentResponseExtension(v Extension) AppointmentResponseOption {
 }
 
 // WithAppointmentResponseModifierExtension adds a ModifierExtension to the AppointmentResponse.
+//
+// Deprecated: use AppointmentResponseBuilder.AddModifierExtension instead; removed in v2.
 func WithAppointmentResponseModifierExtension(v Extension) AppointmentResponseOption {
 	return func(r *AppointmentResponse) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -567,6 +597,8 @@ func WithAppointmentResponseModifierExtension(v Extension) AppointmentResponseOp
 }
 
 // WithAppointmentResponseIdentifier adds a Identifier to the AppointmentResponse.
+//
+// Deprecated: use AppointmentResponseBuilder.AddIdentifier instead; removed in v2.
 func WithAppointmentResponseIdentifier(v Identifier) AppointmentResponseOption {
 	return func(r *AppointmentResponse) {
 		r.Identifier = append(r.Identifier, v)
@@ -574,6 +606,8 @@ func WithAppointmentResponseIdentifier(v Identifier) AppointmentResponseOption {
 }
 
 // WithAppointmentResponseAppointment sets the Appointment field.
+//
+// Deprecated: use AppointmentResponseBuilder.SetAppointment instead; removed in v2.
 func WithAppointmentResponseAppointment(v Reference) AppointmentResponseOption {
 	return func(r *AppointmentResponse) {
 		r.Appointment = v
@@ -581,6 +615,8 @@ func WithAppointmentResponseAppointment(v Reference) AppointmentResponseOption {
 }
 
 // WithAppointmentResponseStart sets the Start field.
+//
+// Deprecated: use AppointmentResponseBuilder.SetStart instead; removed in v2.
 func WithAppointmentResponseStart(v string) AppointmentResponseOption {
 	return func(r *AppointmentResponse) {
 		r.Start = &v
@@ -588,6 +624,8 @@ func WithAppointmentResponseStart(v string) AppointmentResponseOption {
 }
 
 // WithAppointmentResponseEnd sets the End field.
+//
+// Deprecated: use AppointmentResponseBuilder.SetEnd instead; removed in v2.
 func WithAppointmentResponseEnd(v string) AppointmentResponseOption {
 	return func(r *AppointmentResponse) {
 		r.End = &v
@@ -595,6 +633,8 @@ func WithAppointmentResponseEnd(v string) AppointmentResponseOption {
 }
 
 // WithAppointmentResponseParticipantType adds a ParticipantType to the AppointmentResponse.
+//
+// Deprecated: use AppointmentResponseBuilder.AddParticipantType instead; removed in v2.
 func WithAppointmentResponseParticipantType(v CodeableConcept) AppointmentResponseOption {
 	return func(r *AppointmentResponse) {
 		r.ParticipantType = append(r.ParticipantType, v)
@@ -602,6 +642,8 @@ func WithAppointmentResponseParticipantType(v CodeableConcept) AppointmentRespon
 }
 
 // WithAppointmentResponseActor sets the Actor field.
+//
+// Deprecated: use AppointmentResponseBuilder.SetActor instead; removed in v2.
 func WithAppointmentResponseActor(v Reference) AppointmentResponseOption {
 	return func(r *AppointmentResponse) {
 		r.Actor = &v
@@ -609,6 +651,8 @@ func WithAppointmentResponseActor(v Reference) AppointmentResponseOption {
 }
 
 // WithAppointmentResponseParticipantStatus sets the ParticipantStatus field.
+//
+// Deprecated: use AppointmentResponseBuilder.SetParticipantStatus instead; removed in v2.
 func WithAppointmentResponseParticipantStatus(v ParticipationStatus) AppointmentResponseOption {
 	return func(r *AppointmentResponse) {
 		r.ParticipantStatus = &v
@@ -616,6 +660,8 @@ func WithAppointmentResponseParticipantStatus(v ParticipationStatus) Appointment
 }
 
 // WithAppointmentResponseComment sets the Comment field.
+//
+// Deprecated: use AppointmentResponseBuilder.SetComment instead; removed in v2.
 func WithAppointmentResponseComment(v string) AppointmentResponseOption {
 	return func(r *AppointmentResponse) {
 		r.Comment = &v

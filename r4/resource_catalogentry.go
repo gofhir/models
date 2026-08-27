@@ -691,9 +691,23 @@ func (b *CatalogEntryBuilder) AddRelatedEntry(v CatalogEntryRelatedEntry) *Catal
 // =============================================================================
 
 // CatalogEntryOption is a functional option for configuring a CatalogEntry.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// CatalogEntryBuilder. Every WithCatalogEntry* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type CatalogEntryOption func(*CatalogEntry)
 
 // NewCatalogEntry creates a new CatalogEntry with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewCatalogEntryBuilder().SetId("x").Build()
+//
+// Deprecated: use NewCatalogEntryBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewCatalogEntry(opts ...CatalogEntryOption) *CatalogEntry {
 	r := &CatalogEntry{ResourceType: "CatalogEntry"}
 	for _, opt := range opts {
@@ -703,6 +717,8 @@ func NewCatalogEntry(opts ...CatalogEntryOption) *CatalogEntry {
 }
 
 // WithCatalogEntryId sets the Id field.
+//
+// Deprecated: use CatalogEntryBuilder.SetId instead; removed in v2.
 func WithCatalogEntryId(v string) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.Id = &v
@@ -710,6 +726,8 @@ func WithCatalogEntryId(v string) CatalogEntryOption {
 }
 
 // WithCatalogEntryMeta sets the Meta field.
+//
+// Deprecated: use CatalogEntryBuilder.SetMeta instead; removed in v2.
 func WithCatalogEntryMeta(v Meta) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.Meta = &v
@@ -717,6 +735,8 @@ func WithCatalogEntryMeta(v Meta) CatalogEntryOption {
 }
 
 // WithCatalogEntryImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use CatalogEntryBuilder.SetImplicitRules instead; removed in v2.
 func WithCatalogEntryImplicitRules(v string) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.ImplicitRules = &v
@@ -724,6 +744,8 @@ func WithCatalogEntryImplicitRules(v string) CatalogEntryOption {
 }
 
 // WithCatalogEntryLanguage sets the Language field.
+//
+// Deprecated: use CatalogEntryBuilder.SetLanguage instead; removed in v2.
 func WithCatalogEntryLanguage(v string) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.Language = &v
@@ -731,6 +753,8 @@ func WithCatalogEntryLanguage(v string) CatalogEntryOption {
 }
 
 // WithCatalogEntryText sets the Text field.
+//
+// Deprecated: use CatalogEntryBuilder.SetText instead; removed in v2.
 func WithCatalogEntryText(v Narrative) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.Text = &v
@@ -738,6 +762,8 @@ func WithCatalogEntryText(v Narrative) CatalogEntryOption {
 }
 
 // WithCatalogEntryContained adds a Contained to the CatalogEntry.
+//
+// Deprecated: use CatalogEntryBuilder.AddContained instead; removed in v2.
 func WithCatalogEntryContained(v Resource) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.Contained = append(r.Contained, v)
@@ -745,6 +771,8 @@ func WithCatalogEntryContained(v Resource) CatalogEntryOption {
 }
 
 // WithCatalogEntryExtension adds a Extension to the CatalogEntry.
+//
+// Deprecated: use CatalogEntryBuilder.AddExtension instead; removed in v2.
 func WithCatalogEntryExtension(v Extension) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.Extension = append(r.Extension, v)
@@ -752,6 +780,8 @@ func WithCatalogEntryExtension(v Extension) CatalogEntryOption {
 }
 
 // WithCatalogEntryModifierExtension adds a ModifierExtension to the CatalogEntry.
+//
+// Deprecated: use CatalogEntryBuilder.AddModifierExtension instead; removed in v2.
 func WithCatalogEntryModifierExtension(v Extension) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -759,6 +789,8 @@ func WithCatalogEntryModifierExtension(v Extension) CatalogEntryOption {
 }
 
 // WithCatalogEntryIdentifier adds a Identifier to the CatalogEntry.
+//
+// Deprecated: use CatalogEntryBuilder.AddIdentifier instead; removed in v2.
 func WithCatalogEntryIdentifier(v Identifier) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.Identifier = append(r.Identifier, v)
@@ -766,6 +798,8 @@ func WithCatalogEntryIdentifier(v Identifier) CatalogEntryOption {
 }
 
 // WithCatalogEntryType sets the Type field.
+//
+// Deprecated: use CatalogEntryBuilder.SetType instead; removed in v2.
 func WithCatalogEntryType(v CodeableConcept) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.Type = &v
@@ -773,6 +807,8 @@ func WithCatalogEntryType(v CodeableConcept) CatalogEntryOption {
 }
 
 // WithCatalogEntryOrderable sets the Orderable field.
+//
+// Deprecated: use CatalogEntryBuilder.SetOrderable instead; removed in v2.
 func WithCatalogEntryOrderable(v bool) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.Orderable = &v
@@ -780,6 +816,8 @@ func WithCatalogEntryOrderable(v bool) CatalogEntryOption {
 }
 
 // WithCatalogEntryReferencedItem sets the ReferencedItem field.
+//
+// Deprecated: use CatalogEntryBuilder.SetReferencedItem instead; removed in v2.
 func WithCatalogEntryReferencedItem(v Reference) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.ReferencedItem = v
@@ -787,6 +825,8 @@ func WithCatalogEntryReferencedItem(v Reference) CatalogEntryOption {
 }
 
 // WithCatalogEntryAdditionalIdentifier adds a AdditionalIdentifier to the CatalogEntry.
+//
+// Deprecated: use CatalogEntryBuilder.AddAdditionalIdentifier instead; removed in v2.
 func WithCatalogEntryAdditionalIdentifier(v Identifier) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.AdditionalIdentifier = append(r.AdditionalIdentifier, v)
@@ -794,6 +834,8 @@ func WithCatalogEntryAdditionalIdentifier(v Identifier) CatalogEntryOption {
 }
 
 // WithCatalogEntryClassification adds a Classification to the CatalogEntry.
+//
+// Deprecated: use CatalogEntryBuilder.AddClassification instead; removed in v2.
 func WithCatalogEntryClassification(v CodeableConcept) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.Classification = append(r.Classification, v)
@@ -801,6 +843,8 @@ func WithCatalogEntryClassification(v CodeableConcept) CatalogEntryOption {
 }
 
 // WithCatalogEntryStatus sets the Status field.
+//
+// Deprecated: use CatalogEntryBuilder.SetStatus instead; removed in v2.
 func WithCatalogEntryStatus(v PublicationStatus) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.Status = &v
@@ -808,6 +852,8 @@ func WithCatalogEntryStatus(v PublicationStatus) CatalogEntryOption {
 }
 
 // WithCatalogEntryValidityPeriod sets the ValidityPeriod field.
+//
+// Deprecated: use CatalogEntryBuilder.SetValidityPeriod instead; removed in v2.
 func WithCatalogEntryValidityPeriod(v Period) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.ValidityPeriod = &v
@@ -815,6 +861,8 @@ func WithCatalogEntryValidityPeriod(v Period) CatalogEntryOption {
 }
 
 // WithCatalogEntryValidTo sets the ValidTo field.
+//
+// Deprecated: use CatalogEntryBuilder.SetValidTo instead; removed in v2.
 func WithCatalogEntryValidTo(v string) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.ValidTo = &v
@@ -822,6 +870,8 @@ func WithCatalogEntryValidTo(v string) CatalogEntryOption {
 }
 
 // WithCatalogEntryLastUpdated sets the LastUpdated field.
+//
+// Deprecated: use CatalogEntryBuilder.SetLastUpdated instead; removed in v2.
 func WithCatalogEntryLastUpdated(v string) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.LastUpdated = &v
@@ -829,6 +879,8 @@ func WithCatalogEntryLastUpdated(v string) CatalogEntryOption {
 }
 
 // WithCatalogEntryAdditionalCharacteristic adds a AdditionalCharacteristic to the CatalogEntry.
+//
+// Deprecated: use CatalogEntryBuilder.AddAdditionalCharacteristic instead; removed in v2.
 func WithCatalogEntryAdditionalCharacteristic(v CodeableConcept) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.AdditionalCharacteristic = append(r.AdditionalCharacteristic, v)
@@ -836,6 +888,8 @@ func WithCatalogEntryAdditionalCharacteristic(v CodeableConcept) CatalogEntryOpt
 }
 
 // WithCatalogEntryAdditionalClassification adds a AdditionalClassification to the CatalogEntry.
+//
+// Deprecated: use CatalogEntryBuilder.AddAdditionalClassification instead; removed in v2.
 func WithCatalogEntryAdditionalClassification(v CodeableConcept) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.AdditionalClassification = append(r.AdditionalClassification, v)
@@ -843,6 +897,8 @@ func WithCatalogEntryAdditionalClassification(v CodeableConcept) CatalogEntryOpt
 }
 
 // WithCatalogEntryRelatedEntry adds a RelatedEntry to the CatalogEntry.
+//
+// Deprecated: use CatalogEntryBuilder.AddRelatedEntry instead; removed in v2.
 func WithCatalogEntryRelatedEntry(v CatalogEntryRelatedEntry) CatalogEntryOption {
 	return func(r *CatalogEntry) {
 		r.RelatedEntry = append(r.RelatedEntry, v)

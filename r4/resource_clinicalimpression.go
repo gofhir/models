@@ -968,9 +968,23 @@ func (b *ClinicalImpressionBuilder) AddNote(v Annotation) *ClinicalImpressionBui
 // =============================================================================
 
 // ClinicalImpressionOption is a functional option for configuring a ClinicalImpression.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ClinicalImpressionBuilder. Every WithClinicalImpression* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ClinicalImpressionOption func(*ClinicalImpression)
 
 // NewClinicalImpression creates a new ClinicalImpression with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewClinicalImpressionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewClinicalImpressionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewClinicalImpression(opts ...ClinicalImpressionOption) *ClinicalImpression {
 	r := &ClinicalImpression{ResourceType: "ClinicalImpression"}
 	for _, opt := range opts {
@@ -980,6 +994,8 @@ func NewClinicalImpression(opts ...ClinicalImpressionOption) *ClinicalImpression
 }
 
 // WithClinicalImpressionId sets the Id field.
+//
+// Deprecated: use ClinicalImpressionBuilder.SetId instead; removed in v2.
 func WithClinicalImpressionId(v string) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Id = &v
@@ -987,6 +1003,8 @@ func WithClinicalImpressionId(v string) ClinicalImpressionOption {
 }
 
 // WithClinicalImpressionMeta sets the Meta field.
+//
+// Deprecated: use ClinicalImpressionBuilder.SetMeta instead; removed in v2.
 func WithClinicalImpressionMeta(v Meta) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Meta = &v
@@ -994,6 +1012,8 @@ func WithClinicalImpressionMeta(v Meta) ClinicalImpressionOption {
 }
 
 // WithClinicalImpressionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ClinicalImpressionBuilder.SetImplicitRules instead; removed in v2.
 func WithClinicalImpressionImplicitRules(v string) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.ImplicitRules = &v
@@ -1001,6 +1021,8 @@ func WithClinicalImpressionImplicitRules(v string) ClinicalImpressionOption {
 }
 
 // WithClinicalImpressionLanguage sets the Language field.
+//
+// Deprecated: use ClinicalImpressionBuilder.SetLanguage instead; removed in v2.
 func WithClinicalImpressionLanguage(v string) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Language = &v
@@ -1008,6 +1030,8 @@ func WithClinicalImpressionLanguage(v string) ClinicalImpressionOption {
 }
 
 // WithClinicalImpressionText sets the Text field.
+//
+// Deprecated: use ClinicalImpressionBuilder.SetText instead; removed in v2.
 func WithClinicalImpressionText(v Narrative) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Text = &v
@@ -1015,6 +1039,8 @@ func WithClinicalImpressionText(v Narrative) ClinicalImpressionOption {
 }
 
 // WithClinicalImpressionContained adds a Contained to the ClinicalImpression.
+//
+// Deprecated: use ClinicalImpressionBuilder.AddContained instead; removed in v2.
 func WithClinicalImpressionContained(v Resource) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Contained = append(r.Contained, v)
@@ -1022,6 +1048,8 @@ func WithClinicalImpressionContained(v Resource) ClinicalImpressionOption {
 }
 
 // WithClinicalImpressionExtension adds a Extension to the ClinicalImpression.
+//
+// Deprecated: use ClinicalImpressionBuilder.AddExtension instead; removed in v2.
 func WithClinicalImpressionExtension(v Extension) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Extension = append(r.Extension, v)
@@ -1029,6 +1057,8 @@ func WithClinicalImpressionExtension(v Extension) ClinicalImpressionOption {
 }
 
 // WithClinicalImpressionModifierExtension adds a ModifierExtension to the ClinicalImpression.
+//
+// Deprecated: use ClinicalImpressionBuilder.AddModifierExtension instead; removed in v2.
 func WithClinicalImpressionModifierExtension(v Extension) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1036,6 +1066,8 @@ func WithClinicalImpressionModifierExtension(v Extension) ClinicalImpressionOpti
 }
 
 // WithClinicalImpressionIdentifier adds a Identifier to the ClinicalImpression.
+//
+// Deprecated: use ClinicalImpressionBuilder.AddIdentifier instead; removed in v2.
 func WithClinicalImpressionIdentifier(v Identifier) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Identifier = append(r.Identifier, v)
@@ -1043,6 +1075,8 @@ func WithClinicalImpressionIdentifier(v Identifier) ClinicalImpressionOption {
 }
 
 // WithClinicalImpressionStatus sets the Status field.
+//
+// Deprecated: use ClinicalImpressionBuilder.SetStatus instead; removed in v2.
 func WithClinicalImpressionStatus(v ClinicalImpressionStatus) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Status = &v
@@ -1050,6 +1084,8 @@ func WithClinicalImpressionStatus(v ClinicalImpressionStatus) ClinicalImpression
 }
 
 // WithClinicalImpressionStatusReason sets the StatusReason field.
+//
+// Deprecated: use ClinicalImpressionBuilder.SetStatusReason instead; removed in v2.
 func WithClinicalImpressionStatusReason(v CodeableConcept) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.StatusReason = &v
@@ -1057,6 +1093,8 @@ func WithClinicalImpressionStatusReason(v CodeableConcept) ClinicalImpressionOpt
 }
 
 // WithClinicalImpressionCode sets the Code field.
+//
+// Deprecated: use ClinicalImpressionBuilder.SetCode instead; removed in v2.
 func WithClinicalImpressionCode(v CodeableConcept) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Code = &v
@@ -1064,6 +1102,8 @@ func WithClinicalImpressionCode(v CodeableConcept) ClinicalImpressionOption {
 }
 
 // WithClinicalImpressionDescription sets the Description field.
+//
+// Deprecated: use ClinicalImpressionBuilder.SetDescription instead; removed in v2.
 func WithClinicalImpressionDescription(v string) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Description = &v
@@ -1071,6 +1111,8 @@ func WithClinicalImpressionDescription(v string) ClinicalImpressionOption {
 }
 
 // WithClinicalImpressionSubject sets the Subject field.
+//
+// Deprecated: use ClinicalImpressionBuilder.SetSubject instead; removed in v2.
 func WithClinicalImpressionSubject(v Reference) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Subject = v
@@ -1078,6 +1120,8 @@ func WithClinicalImpressionSubject(v Reference) ClinicalImpressionOption {
 }
 
 // WithClinicalImpressionEncounter sets the Encounter field.
+//
+// Deprecated: use ClinicalImpressionBuilder.SetEncounter instead; removed in v2.
 func WithClinicalImpressionEncounter(v Reference) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Encounter = &v
@@ -1085,6 +1129,8 @@ func WithClinicalImpressionEncounter(v Reference) ClinicalImpressionOption {
 }
 
 // WithClinicalImpressionEffectiveDateTime sets the EffectiveDateTime field.
+//
+// Deprecated: use ClinicalImpressionBuilder.SetEffectiveDateTime instead; removed in v2.
 func WithClinicalImpressionEffectiveDateTime(v string) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.EffectiveDateTime = &v
@@ -1092,6 +1138,8 @@ func WithClinicalImpressionEffectiveDateTime(v string) ClinicalImpressionOption 
 }
 
 // WithClinicalImpressionEffectiveDateTimeExt sets the EffectiveDateTimeExt field.
+//
+// Deprecated: use ClinicalImpressionBuilder.SetEffectiveDateTimeExt instead; removed in v2.
 func WithClinicalImpressionEffectiveDateTimeExt(v Element) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.EffectiveDateTimeExt = &v
@@ -1099,6 +1147,8 @@ func WithClinicalImpressionEffectiveDateTimeExt(v Element) ClinicalImpressionOpt
 }
 
 // WithClinicalImpressionEffectivePeriod sets the EffectivePeriod field.
+//
+// Deprecated: use ClinicalImpressionBuilder.SetEffectivePeriod instead; removed in v2.
 func WithClinicalImpressionEffectivePeriod(v Period) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.EffectivePeriod = &v
@@ -1106,6 +1156,8 @@ func WithClinicalImpressionEffectivePeriod(v Period) ClinicalImpressionOption {
 }
 
 // WithClinicalImpressionDate sets the Date field.
+//
+// Deprecated: use ClinicalImpressionBuilder.SetDate instead; removed in v2.
 func WithClinicalImpressionDate(v string) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Date = &v
@@ -1113,6 +1165,8 @@ func WithClinicalImpressionDate(v string) ClinicalImpressionOption {
 }
 
 // WithClinicalImpressionAssessor sets the Assessor field.
+//
+// Deprecated: use ClinicalImpressionBuilder.SetAssessor instead; removed in v2.
 func WithClinicalImpressionAssessor(v Reference) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Assessor = &v
@@ -1120,6 +1174,8 @@ func WithClinicalImpressionAssessor(v Reference) ClinicalImpressionOption {
 }
 
 // WithClinicalImpressionPrevious sets the Previous field.
+//
+// Deprecated: use ClinicalImpressionBuilder.SetPrevious instead; removed in v2.
 func WithClinicalImpressionPrevious(v Reference) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Previous = &v
@@ -1127,6 +1183,8 @@ func WithClinicalImpressionPrevious(v Reference) ClinicalImpressionOption {
 }
 
 // WithClinicalImpressionProblem adds a Problem to the ClinicalImpression.
+//
+// Deprecated: use ClinicalImpressionBuilder.AddProblem instead; removed in v2.
 func WithClinicalImpressionProblem(v Reference) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Problem = append(r.Problem, v)
@@ -1134,6 +1192,8 @@ func WithClinicalImpressionProblem(v Reference) ClinicalImpressionOption {
 }
 
 // WithClinicalImpressionInvestigation adds a Investigation to the ClinicalImpression.
+//
+// Deprecated: use ClinicalImpressionBuilder.AddInvestigation instead; removed in v2.
 func WithClinicalImpressionInvestigation(v ClinicalImpressionInvestigation) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Investigation = append(r.Investigation, v)
@@ -1141,6 +1201,8 @@ func WithClinicalImpressionInvestigation(v ClinicalImpressionInvestigation) Clin
 }
 
 // WithClinicalImpressionProtocol adds a Protocol to the ClinicalImpression.
+//
+// Deprecated: use ClinicalImpressionBuilder.AddProtocol instead; removed in v2.
 func WithClinicalImpressionProtocol(v string) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Protocol = append(r.Protocol, v)
@@ -1148,6 +1210,8 @@ func WithClinicalImpressionProtocol(v string) ClinicalImpressionOption {
 }
 
 // WithClinicalImpressionSummary sets the Summary field.
+//
+// Deprecated: use ClinicalImpressionBuilder.SetSummary instead; removed in v2.
 func WithClinicalImpressionSummary(v string) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Summary = &v
@@ -1155,6 +1219,8 @@ func WithClinicalImpressionSummary(v string) ClinicalImpressionOption {
 }
 
 // WithClinicalImpressionFinding adds a Finding to the ClinicalImpression.
+//
+// Deprecated: use ClinicalImpressionBuilder.AddFinding instead; removed in v2.
 func WithClinicalImpressionFinding(v ClinicalImpressionFinding) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Finding = append(r.Finding, v)
@@ -1162,6 +1228,8 @@ func WithClinicalImpressionFinding(v ClinicalImpressionFinding) ClinicalImpressi
 }
 
 // WithClinicalImpressionPrognosisCodeableConcept adds a PrognosisCodeableConcept to the ClinicalImpression.
+//
+// Deprecated: use ClinicalImpressionBuilder.AddPrognosisCodeableConcept instead; removed in v2.
 func WithClinicalImpressionPrognosisCodeableConcept(v CodeableConcept) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.PrognosisCodeableConcept = append(r.PrognosisCodeableConcept, v)
@@ -1169,6 +1237,8 @@ func WithClinicalImpressionPrognosisCodeableConcept(v CodeableConcept) ClinicalI
 }
 
 // WithClinicalImpressionPrognosisReference adds a PrognosisReference to the ClinicalImpression.
+//
+// Deprecated: use ClinicalImpressionBuilder.AddPrognosisReference instead; removed in v2.
 func WithClinicalImpressionPrognosisReference(v Reference) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.PrognosisReference = append(r.PrognosisReference, v)
@@ -1176,6 +1246,8 @@ func WithClinicalImpressionPrognosisReference(v Reference) ClinicalImpressionOpt
 }
 
 // WithClinicalImpressionSupportingInfo adds a SupportingInfo to the ClinicalImpression.
+//
+// Deprecated: use ClinicalImpressionBuilder.AddSupportingInfo instead; removed in v2.
 func WithClinicalImpressionSupportingInfo(v Reference) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.SupportingInfo = append(r.SupportingInfo, v)
@@ -1183,6 +1255,8 @@ func WithClinicalImpressionSupportingInfo(v Reference) ClinicalImpressionOption 
 }
 
 // WithClinicalImpressionNote adds a Note to the ClinicalImpression.
+//
+// Deprecated: use ClinicalImpressionBuilder.AddNote instead; removed in v2.
 func WithClinicalImpressionNote(v Annotation) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
 		r.Note = append(r.Note, v)

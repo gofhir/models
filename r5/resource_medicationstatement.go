@@ -809,9 +809,23 @@ func (b *MedicationStatementBuilder) SetAdherence(v MedicationStatementAdherence
 // =============================================================================
 
 // MedicationStatementOption is a functional option for configuring a MedicationStatement.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// MedicationStatementBuilder. Every WithMedicationStatement* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type MedicationStatementOption func(*MedicationStatement)
 
 // NewMedicationStatement creates a new MedicationStatement with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewMedicationStatementBuilder().SetId("x").Build()
+//
+// Deprecated: use NewMedicationStatementBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewMedicationStatement(opts ...MedicationStatementOption) *MedicationStatement {
 	r := &MedicationStatement{ResourceType: "MedicationStatement"}
 	for _, opt := range opts {
@@ -821,6 +835,8 @@ func NewMedicationStatement(opts ...MedicationStatementOption) *MedicationStatem
 }
 
 // WithMedicationStatementId sets the Id field.
+//
+// Deprecated: use MedicationStatementBuilder.SetId instead; removed in v2.
 func WithMedicationStatementId(v string) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.Id = &v
@@ -828,6 +844,8 @@ func WithMedicationStatementId(v string) MedicationStatementOption {
 }
 
 // WithMedicationStatementMeta sets the Meta field.
+//
+// Deprecated: use MedicationStatementBuilder.SetMeta instead; removed in v2.
 func WithMedicationStatementMeta(v Meta) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.Meta = &v
@@ -835,6 +853,8 @@ func WithMedicationStatementMeta(v Meta) MedicationStatementOption {
 }
 
 // WithMedicationStatementImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use MedicationStatementBuilder.SetImplicitRules instead; removed in v2.
 func WithMedicationStatementImplicitRules(v string) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.ImplicitRules = &v
@@ -842,6 +862,8 @@ func WithMedicationStatementImplicitRules(v string) MedicationStatementOption {
 }
 
 // WithMedicationStatementLanguage sets the Language field.
+//
+// Deprecated: use MedicationStatementBuilder.SetLanguage instead; removed in v2.
 func WithMedicationStatementLanguage(v string) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.Language = &v
@@ -849,6 +871,8 @@ func WithMedicationStatementLanguage(v string) MedicationStatementOption {
 }
 
 // WithMedicationStatementText sets the Text field.
+//
+// Deprecated: use MedicationStatementBuilder.SetText instead; removed in v2.
 func WithMedicationStatementText(v Narrative) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.Text = &v
@@ -856,6 +880,8 @@ func WithMedicationStatementText(v Narrative) MedicationStatementOption {
 }
 
 // WithMedicationStatementContained adds a Contained to the MedicationStatement.
+//
+// Deprecated: use MedicationStatementBuilder.AddContained instead; removed in v2.
 func WithMedicationStatementContained(v Resource) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.Contained = append(r.Contained, v)
@@ -863,6 +889,8 @@ func WithMedicationStatementContained(v Resource) MedicationStatementOption {
 }
 
 // WithMedicationStatementExtension adds a Extension to the MedicationStatement.
+//
+// Deprecated: use MedicationStatementBuilder.AddExtension instead; removed in v2.
 func WithMedicationStatementExtension(v Extension) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.Extension = append(r.Extension, v)
@@ -870,6 +898,8 @@ func WithMedicationStatementExtension(v Extension) MedicationStatementOption {
 }
 
 // WithMedicationStatementModifierExtension adds a ModifierExtension to the MedicationStatement.
+//
+// Deprecated: use MedicationStatementBuilder.AddModifierExtension instead; removed in v2.
 func WithMedicationStatementModifierExtension(v Extension) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -877,6 +907,8 @@ func WithMedicationStatementModifierExtension(v Extension) MedicationStatementOp
 }
 
 // WithMedicationStatementIdentifier adds a Identifier to the MedicationStatement.
+//
+// Deprecated: use MedicationStatementBuilder.AddIdentifier instead; removed in v2.
 func WithMedicationStatementIdentifier(v Identifier) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.Identifier = append(r.Identifier, v)
@@ -884,6 +916,8 @@ func WithMedicationStatementIdentifier(v Identifier) MedicationStatementOption {
 }
 
 // WithMedicationStatementPartOf adds a PartOf to the MedicationStatement.
+//
+// Deprecated: use MedicationStatementBuilder.AddPartOf instead; removed in v2.
 func WithMedicationStatementPartOf(v Reference) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.PartOf = append(r.PartOf, v)
@@ -891,6 +925,8 @@ func WithMedicationStatementPartOf(v Reference) MedicationStatementOption {
 }
 
 // WithMedicationStatementStatus sets the Status field.
+//
+// Deprecated: use MedicationStatementBuilder.SetStatus instead; removed in v2.
 func WithMedicationStatementStatus(v MedicationStatementStatusCodes) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.Status = &v
@@ -898,6 +934,8 @@ func WithMedicationStatementStatus(v MedicationStatementStatusCodes) MedicationS
 }
 
 // WithMedicationStatementCategory adds a Category to the MedicationStatement.
+//
+// Deprecated: use MedicationStatementBuilder.AddCategory instead; removed in v2.
 func WithMedicationStatementCategory(v CodeableConcept) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.Category = append(r.Category, v)
@@ -905,6 +943,8 @@ func WithMedicationStatementCategory(v CodeableConcept) MedicationStatementOptio
 }
 
 // WithMedicationStatementMedication sets the Medication field.
+//
+// Deprecated: use MedicationStatementBuilder.SetMedication instead; removed in v2.
 func WithMedicationStatementMedication(v CodeableReference) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.Medication = v
@@ -912,6 +952,8 @@ func WithMedicationStatementMedication(v CodeableReference) MedicationStatementO
 }
 
 // WithMedicationStatementSubject sets the Subject field.
+//
+// Deprecated: use MedicationStatementBuilder.SetSubject instead; removed in v2.
 func WithMedicationStatementSubject(v Reference) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.Subject = v
@@ -919,6 +961,8 @@ func WithMedicationStatementSubject(v Reference) MedicationStatementOption {
 }
 
 // WithMedicationStatementEncounter sets the Encounter field.
+//
+// Deprecated: use MedicationStatementBuilder.SetEncounter instead; removed in v2.
 func WithMedicationStatementEncounter(v Reference) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.Encounter = &v
@@ -926,6 +970,8 @@ func WithMedicationStatementEncounter(v Reference) MedicationStatementOption {
 }
 
 // WithMedicationStatementEffectiveDateTime sets the EffectiveDateTime field.
+//
+// Deprecated: use MedicationStatementBuilder.SetEffectiveDateTime instead; removed in v2.
 func WithMedicationStatementEffectiveDateTime(v string) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.EffectiveDateTime = &v
@@ -933,6 +979,8 @@ func WithMedicationStatementEffectiveDateTime(v string) MedicationStatementOptio
 }
 
 // WithMedicationStatementEffectiveDateTimeExt sets the EffectiveDateTimeExt field.
+//
+// Deprecated: use MedicationStatementBuilder.SetEffectiveDateTimeExt instead; removed in v2.
 func WithMedicationStatementEffectiveDateTimeExt(v Element) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.EffectiveDateTimeExt = &v
@@ -940,6 +988,8 @@ func WithMedicationStatementEffectiveDateTimeExt(v Element) MedicationStatementO
 }
 
 // WithMedicationStatementEffectivePeriod sets the EffectivePeriod field.
+//
+// Deprecated: use MedicationStatementBuilder.SetEffectivePeriod instead; removed in v2.
 func WithMedicationStatementEffectivePeriod(v Period) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.EffectivePeriod = &v
@@ -947,6 +997,8 @@ func WithMedicationStatementEffectivePeriod(v Period) MedicationStatementOption 
 }
 
 // WithMedicationStatementEffectiveTiming sets the EffectiveTiming field.
+//
+// Deprecated: use MedicationStatementBuilder.SetEffectiveTiming instead; removed in v2.
 func WithMedicationStatementEffectiveTiming(v Timing) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.EffectiveTiming = &v
@@ -954,6 +1006,8 @@ func WithMedicationStatementEffectiveTiming(v Timing) MedicationStatementOption 
 }
 
 // WithMedicationStatementDateAsserted sets the DateAsserted field.
+//
+// Deprecated: use MedicationStatementBuilder.SetDateAsserted instead; removed in v2.
 func WithMedicationStatementDateAsserted(v string) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.DateAsserted = &v
@@ -961,6 +1015,8 @@ func WithMedicationStatementDateAsserted(v string) MedicationStatementOption {
 }
 
 // WithMedicationStatementInformationSource adds a InformationSource to the MedicationStatement.
+//
+// Deprecated: use MedicationStatementBuilder.AddInformationSource instead; removed in v2.
 func WithMedicationStatementInformationSource(v Reference) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.InformationSource = append(r.InformationSource, v)
@@ -968,6 +1024,8 @@ func WithMedicationStatementInformationSource(v Reference) MedicationStatementOp
 }
 
 // WithMedicationStatementDerivedFrom adds a DerivedFrom to the MedicationStatement.
+//
+// Deprecated: use MedicationStatementBuilder.AddDerivedFrom instead; removed in v2.
 func WithMedicationStatementDerivedFrom(v Reference) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.DerivedFrom = append(r.DerivedFrom, v)
@@ -975,6 +1033,8 @@ func WithMedicationStatementDerivedFrom(v Reference) MedicationStatementOption {
 }
 
 // WithMedicationStatementReason adds a Reason to the MedicationStatement.
+//
+// Deprecated: use MedicationStatementBuilder.AddReason instead; removed in v2.
 func WithMedicationStatementReason(v CodeableReference) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.Reason = append(r.Reason, v)
@@ -982,6 +1042,8 @@ func WithMedicationStatementReason(v CodeableReference) MedicationStatementOptio
 }
 
 // WithMedicationStatementNote adds a Note to the MedicationStatement.
+//
+// Deprecated: use MedicationStatementBuilder.AddNote instead; removed in v2.
 func WithMedicationStatementNote(v Annotation) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.Note = append(r.Note, v)
@@ -989,6 +1051,8 @@ func WithMedicationStatementNote(v Annotation) MedicationStatementOption {
 }
 
 // WithMedicationStatementRelatedClinicalInformation adds a RelatedClinicalInformation to the MedicationStatement.
+//
+// Deprecated: use MedicationStatementBuilder.AddRelatedClinicalInformation instead; removed in v2.
 func WithMedicationStatementRelatedClinicalInformation(v Reference) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.RelatedClinicalInformation = append(r.RelatedClinicalInformation, v)
@@ -996,6 +1060,8 @@ func WithMedicationStatementRelatedClinicalInformation(v Reference) MedicationSt
 }
 
 // WithMedicationStatementRenderedDosageInstruction sets the RenderedDosageInstruction field.
+//
+// Deprecated: use MedicationStatementBuilder.SetRenderedDosageInstruction instead; removed in v2.
 func WithMedicationStatementRenderedDosageInstruction(v string) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.RenderedDosageInstruction = &v
@@ -1003,6 +1069,8 @@ func WithMedicationStatementRenderedDosageInstruction(v string) MedicationStatem
 }
 
 // WithMedicationStatementDosage adds a Dosage to the MedicationStatement.
+//
+// Deprecated: use MedicationStatementBuilder.AddDosage instead; removed in v2.
 func WithMedicationStatementDosage(v Dosage) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.Dosage = append(r.Dosage, v)
@@ -1010,6 +1078,8 @@ func WithMedicationStatementDosage(v Dosage) MedicationStatementOption {
 }
 
 // WithMedicationStatementAdherence sets the Adherence field.
+//
+// Deprecated: use MedicationStatementBuilder.SetAdherence instead; removed in v2.
 func WithMedicationStatementAdherence(v MedicationStatementAdherence) MedicationStatementOption {
 	return func(r *MedicationStatement) {
 		r.Adherence = &v

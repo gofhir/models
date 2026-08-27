@@ -630,9 +630,23 @@ func (b *MedicinalProductIndicationBuilder) AddPopulation(v Population) *Medicin
 // =============================================================================
 
 // MedicinalProductIndicationOption is a functional option for configuring a MedicinalProductIndication.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// MedicinalProductIndicationBuilder. Every WithMedicinalProductIndication* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type MedicinalProductIndicationOption func(*MedicinalProductIndication)
 
 // NewMedicinalProductIndication creates a new MedicinalProductIndication with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewMedicinalProductIndicationBuilder().SetId("x").Build()
+//
+// Deprecated: use NewMedicinalProductIndicationBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewMedicinalProductIndication(opts ...MedicinalProductIndicationOption) *MedicinalProductIndication {
 	r := &MedicinalProductIndication{ResourceType: "MedicinalProductIndication"}
 	for _, opt := range opts {
@@ -642,6 +656,8 @@ func NewMedicinalProductIndication(opts ...MedicinalProductIndicationOption) *Me
 }
 
 // WithMedicinalProductIndicationId sets the Id field.
+//
+// Deprecated: use MedicinalProductIndicationBuilder.SetId instead; removed in v2.
 func WithMedicinalProductIndicationId(v string) MedicinalProductIndicationOption {
 	return func(r *MedicinalProductIndication) {
 		r.Id = &v
@@ -649,6 +665,8 @@ func WithMedicinalProductIndicationId(v string) MedicinalProductIndicationOption
 }
 
 // WithMedicinalProductIndicationMeta sets the Meta field.
+//
+// Deprecated: use MedicinalProductIndicationBuilder.SetMeta instead; removed in v2.
 func WithMedicinalProductIndicationMeta(v Meta) MedicinalProductIndicationOption {
 	return func(r *MedicinalProductIndication) {
 		r.Meta = &v
@@ -656,6 +674,8 @@ func WithMedicinalProductIndicationMeta(v Meta) MedicinalProductIndicationOption
 }
 
 // WithMedicinalProductIndicationImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use MedicinalProductIndicationBuilder.SetImplicitRules instead; removed in v2.
 func WithMedicinalProductIndicationImplicitRules(v string) MedicinalProductIndicationOption {
 	return func(r *MedicinalProductIndication) {
 		r.ImplicitRules = &v
@@ -663,6 +683,8 @@ func WithMedicinalProductIndicationImplicitRules(v string) MedicinalProductIndic
 }
 
 // WithMedicinalProductIndicationLanguage sets the Language field.
+//
+// Deprecated: use MedicinalProductIndicationBuilder.SetLanguage instead; removed in v2.
 func WithMedicinalProductIndicationLanguage(v string) MedicinalProductIndicationOption {
 	return func(r *MedicinalProductIndication) {
 		r.Language = &v
@@ -670,6 +692,8 @@ func WithMedicinalProductIndicationLanguage(v string) MedicinalProductIndication
 }
 
 // WithMedicinalProductIndicationText sets the Text field.
+//
+// Deprecated: use MedicinalProductIndicationBuilder.SetText instead; removed in v2.
 func WithMedicinalProductIndicationText(v Narrative) MedicinalProductIndicationOption {
 	return func(r *MedicinalProductIndication) {
 		r.Text = &v
@@ -677,6 +701,8 @@ func WithMedicinalProductIndicationText(v Narrative) MedicinalProductIndicationO
 }
 
 // WithMedicinalProductIndicationContained adds a Contained to the MedicinalProductIndication.
+//
+// Deprecated: use MedicinalProductIndicationBuilder.AddContained instead; removed in v2.
 func WithMedicinalProductIndicationContained(v Resource) MedicinalProductIndicationOption {
 	return func(r *MedicinalProductIndication) {
 		r.Contained = append(r.Contained, v)
@@ -684,6 +710,8 @@ func WithMedicinalProductIndicationContained(v Resource) MedicinalProductIndicat
 }
 
 // WithMedicinalProductIndicationExtension adds a Extension to the MedicinalProductIndication.
+//
+// Deprecated: use MedicinalProductIndicationBuilder.AddExtension instead; removed in v2.
 func WithMedicinalProductIndicationExtension(v Extension) MedicinalProductIndicationOption {
 	return func(r *MedicinalProductIndication) {
 		r.Extension = append(r.Extension, v)
@@ -691,6 +719,8 @@ func WithMedicinalProductIndicationExtension(v Extension) MedicinalProductIndica
 }
 
 // WithMedicinalProductIndicationModifierExtension adds a ModifierExtension to the MedicinalProductIndication.
+//
+// Deprecated: use MedicinalProductIndicationBuilder.AddModifierExtension instead; removed in v2.
 func WithMedicinalProductIndicationModifierExtension(v Extension) MedicinalProductIndicationOption {
 	return func(r *MedicinalProductIndication) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -698,6 +728,8 @@ func WithMedicinalProductIndicationModifierExtension(v Extension) MedicinalProdu
 }
 
 // WithMedicinalProductIndicationSubject adds a Subject to the MedicinalProductIndication.
+//
+// Deprecated: use MedicinalProductIndicationBuilder.AddSubject instead; removed in v2.
 func WithMedicinalProductIndicationSubject(v Reference) MedicinalProductIndicationOption {
 	return func(r *MedicinalProductIndication) {
 		r.Subject = append(r.Subject, v)
@@ -705,6 +737,8 @@ func WithMedicinalProductIndicationSubject(v Reference) MedicinalProductIndicati
 }
 
 // WithMedicinalProductIndicationDiseaseSymptomProcedure sets the DiseaseSymptomProcedure field.
+//
+// Deprecated: use MedicinalProductIndicationBuilder.SetDiseaseSymptomProcedure instead; removed in v2.
 func WithMedicinalProductIndicationDiseaseSymptomProcedure(v CodeableConcept) MedicinalProductIndicationOption {
 	return func(r *MedicinalProductIndication) {
 		r.DiseaseSymptomProcedure = &v
@@ -712,6 +746,8 @@ func WithMedicinalProductIndicationDiseaseSymptomProcedure(v CodeableConcept) Me
 }
 
 // WithMedicinalProductIndicationDiseaseStatus sets the DiseaseStatus field.
+//
+// Deprecated: use MedicinalProductIndicationBuilder.SetDiseaseStatus instead; removed in v2.
 func WithMedicinalProductIndicationDiseaseStatus(v CodeableConcept) MedicinalProductIndicationOption {
 	return func(r *MedicinalProductIndication) {
 		r.DiseaseStatus = &v
@@ -719,6 +755,8 @@ func WithMedicinalProductIndicationDiseaseStatus(v CodeableConcept) MedicinalPro
 }
 
 // WithMedicinalProductIndicationComorbidity adds a Comorbidity to the MedicinalProductIndication.
+//
+// Deprecated: use MedicinalProductIndicationBuilder.AddComorbidity instead; removed in v2.
 func WithMedicinalProductIndicationComorbidity(v CodeableConcept) MedicinalProductIndicationOption {
 	return func(r *MedicinalProductIndication) {
 		r.Comorbidity = append(r.Comorbidity, v)
@@ -726,6 +764,8 @@ func WithMedicinalProductIndicationComorbidity(v CodeableConcept) MedicinalProdu
 }
 
 // WithMedicinalProductIndicationIntendedEffect sets the IntendedEffect field.
+//
+// Deprecated: use MedicinalProductIndicationBuilder.SetIntendedEffect instead; removed in v2.
 func WithMedicinalProductIndicationIntendedEffect(v CodeableConcept) MedicinalProductIndicationOption {
 	return func(r *MedicinalProductIndication) {
 		r.IntendedEffect = &v
@@ -733,6 +773,8 @@ func WithMedicinalProductIndicationIntendedEffect(v CodeableConcept) MedicinalPr
 }
 
 // WithMedicinalProductIndicationDuration sets the Duration field.
+//
+// Deprecated: use MedicinalProductIndicationBuilder.SetDuration instead; removed in v2.
 func WithMedicinalProductIndicationDuration(v Quantity) MedicinalProductIndicationOption {
 	return func(r *MedicinalProductIndication) {
 		r.Duration = &v
@@ -740,6 +782,8 @@ func WithMedicinalProductIndicationDuration(v Quantity) MedicinalProductIndicati
 }
 
 // WithMedicinalProductIndicationOtherTherapy adds a OtherTherapy to the MedicinalProductIndication.
+//
+// Deprecated: use MedicinalProductIndicationBuilder.AddOtherTherapy instead; removed in v2.
 func WithMedicinalProductIndicationOtherTherapy(v MedicinalProductIndicationOtherTherapy) MedicinalProductIndicationOption {
 	return func(r *MedicinalProductIndication) {
 		r.OtherTherapy = append(r.OtherTherapy, v)
@@ -747,6 +791,8 @@ func WithMedicinalProductIndicationOtherTherapy(v MedicinalProductIndicationOthe
 }
 
 // WithMedicinalProductIndicationUndesirableEffect adds a UndesirableEffect to the MedicinalProductIndication.
+//
+// Deprecated: use MedicinalProductIndicationBuilder.AddUndesirableEffect instead; removed in v2.
 func WithMedicinalProductIndicationUndesirableEffect(v Reference) MedicinalProductIndicationOption {
 	return func(r *MedicinalProductIndication) {
 		r.UndesirableEffect = append(r.UndesirableEffect, v)
@@ -754,6 +800,8 @@ func WithMedicinalProductIndicationUndesirableEffect(v Reference) MedicinalProdu
 }
 
 // WithMedicinalProductIndicationPopulation adds a Population to the MedicinalProductIndication.
+//
+// Deprecated: use MedicinalProductIndicationBuilder.AddPopulation instead; removed in v2.
 func WithMedicinalProductIndicationPopulation(v Population) MedicinalProductIndicationOption {
 	return func(r *MedicinalProductIndication) {
 		r.Population = append(r.Population, v)

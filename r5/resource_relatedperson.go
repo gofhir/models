@@ -671,9 +671,23 @@ func (b *RelatedPersonBuilder) AddCommunication(v RelatedPersonCommunication) *R
 // =============================================================================
 
 // RelatedPersonOption is a functional option for configuring a RelatedPerson.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// RelatedPersonBuilder. Every WithRelatedPerson* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type RelatedPersonOption func(*RelatedPerson)
 
 // NewRelatedPerson creates a new RelatedPerson with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewRelatedPersonBuilder().SetId("x").Build()
+//
+// Deprecated: use NewRelatedPersonBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewRelatedPerson(opts ...RelatedPersonOption) *RelatedPerson {
 	r := &RelatedPerson{ResourceType: "RelatedPerson"}
 	for _, opt := range opts {
@@ -683,6 +697,8 @@ func NewRelatedPerson(opts ...RelatedPersonOption) *RelatedPerson {
 }
 
 // WithRelatedPersonId sets the Id field.
+//
+// Deprecated: use RelatedPersonBuilder.SetId instead; removed in v2.
 func WithRelatedPersonId(v string) RelatedPersonOption {
 	return func(r *RelatedPerson) {
 		r.Id = &v
@@ -690,6 +706,8 @@ func WithRelatedPersonId(v string) RelatedPersonOption {
 }
 
 // WithRelatedPersonMeta sets the Meta field.
+//
+// Deprecated: use RelatedPersonBuilder.SetMeta instead; removed in v2.
 func WithRelatedPersonMeta(v Meta) RelatedPersonOption {
 	return func(r *RelatedPerson) {
 		r.Meta = &v
@@ -697,6 +715,8 @@ func WithRelatedPersonMeta(v Meta) RelatedPersonOption {
 }
 
 // WithRelatedPersonImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use RelatedPersonBuilder.SetImplicitRules instead; removed in v2.
 func WithRelatedPersonImplicitRules(v string) RelatedPersonOption {
 	return func(r *RelatedPerson) {
 		r.ImplicitRules = &v
@@ -704,6 +724,8 @@ func WithRelatedPersonImplicitRules(v string) RelatedPersonOption {
 }
 
 // WithRelatedPersonLanguage sets the Language field.
+//
+// Deprecated: use RelatedPersonBuilder.SetLanguage instead; removed in v2.
 func WithRelatedPersonLanguage(v string) RelatedPersonOption {
 	return func(r *RelatedPerson) {
 		r.Language = &v
@@ -711,6 +733,8 @@ func WithRelatedPersonLanguage(v string) RelatedPersonOption {
 }
 
 // WithRelatedPersonText sets the Text field.
+//
+// Deprecated: use RelatedPersonBuilder.SetText instead; removed in v2.
 func WithRelatedPersonText(v Narrative) RelatedPersonOption {
 	return func(r *RelatedPerson) {
 		r.Text = &v
@@ -718,6 +742,8 @@ func WithRelatedPersonText(v Narrative) RelatedPersonOption {
 }
 
 // WithRelatedPersonContained adds a Contained to the RelatedPerson.
+//
+// Deprecated: use RelatedPersonBuilder.AddContained instead; removed in v2.
 func WithRelatedPersonContained(v Resource) RelatedPersonOption {
 	return func(r *RelatedPerson) {
 		r.Contained = append(r.Contained, v)
@@ -725,6 +751,8 @@ func WithRelatedPersonContained(v Resource) RelatedPersonOption {
 }
 
 // WithRelatedPersonExtension adds a Extension to the RelatedPerson.
+//
+// Deprecated: use RelatedPersonBuilder.AddExtension instead; removed in v2.
 func WithRelatedPersonExtension(v Extension) RelatedPersonOption {
 	return func(r *RelatedPerson) {
 		r.Extension = append(r.Extension, v)
@@ -732,6 +760,8 @@ func WithRelatedPersonExtension(v Extension) RelatedPersonOption {
 }
 
 // WithRelatedPersonModifierExtension adds a ModifierExtension to the RelatedPerson.
+//
+// Deprecated: use RelatedPersonBuilder.AddModifierExtension instead; removed in v2.
 func WithRelatedPersonModifierExtension(v Extension) RelatedPersonOption {
 	return func(r *RelatedPerson) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -739,6 +769,8 @@ func WithRelatedPersonModifierExtension(v Extension) RelatedPersonOption {
 }
 
 // WithRelatedPersonIdentifier adds a Identifier to the RelatedPerson.
+//
+// Deprecated: use RelatedPersonBuilder.AddIdentifier instead; removed in v2.
 func WithRelatedPersonIdentifier(v Identifier) RelatedPersonOption {
 	return func(r *RelatedPerson) {
 		r.Identifier = append(r.Identifier, v)
@@ -746,6 +778,8 @@ func WithRelatedPersonIdentifier(v Identifier) RelatedPersonOption {
 }
 
 // WithRelatedPersonActive sets the Active field.
+//
+// Deprecated: use RelatedPersonBuilder.SetActive instead; removed in v2.
 func WithRelatedPersonActive(v bool) RelatedPersonOption {
 	return func(r *RelatedPerson) {
 		r.Active = &v
@@ -753,6 +787,8 @@ func WithRelatedPersonActive(v bool) RelatedPersonOption {
 }
 
 // WithRelatedPersonPatient sets the Patient field.
+//
+// Deprecated: use RelatedPersonBuilder.SetPatient instead; removed in v2.
 func WithRelatedPersonPatient(v Reference) RelatedPersonOption {
 	return func(r *RelatedPerson) {
 		r.Patient = v
@@ -760,6 +796,8 @@ func WithRelatedPersonPatient(v Reference) RelatedPersonOption {
 }
 
 // WithRelatedPersonRelationship adds a Relationship to the RelatedPerson.
+//
+// Deprecated: use RelatedPersonBuilder.AddRelationship instead; removed in v2.
 func WithRelatedPersonRelationship(v CodeableConcept) RelatedPersonOption {
 	return func(r *RelatedPerson) {
 		r.Relationship = append(r.Relationship, v)
@@ -767,6 +805,8 @@ func WithRelatedPersonRelationship(v CodeableConcept) RelatedPersonOption {
 }
 
 // WithRelatedPersonName adds a Name to the RelatedPerson.
+//
+// Deprecated: use RelatedPersonBuilder.AddName instead; removed in v2.
 func WithRelatedPersonName(v HumanName) RelatedPersonOption {
 	return func(r *RelatedPerson) {
 		r.Name = append(r.Name, v)
@@ -774,6 +814,8 @@ func WithRelatedPersonName(v HumanName) RelatedPersonOption {
 }
 
 // WithRelatedPersonTelecom adds a Telecom to the RelatedPerson.
+//
+// Deprecated: use RelatedPersonBuilder.AddTelecom instead; removed in v2.
 func WithRelatedPersonTelecom(v ContactPoint) RelatedPersonOption {
 	return func(r *RelatedPerson) {
 		r.Telecom = append(r.Telecom, v)
@@ -781,6 +823,8 @@ func WithRelatedPersonTelecom(v ContactPoint) RelatedPersonOption {
 }
 
 // WithRelatedPersonGender sets the Gender field.
+//
+// Deprecated: use RelatedPersonBuilder.SetGender instead; removed in v2.
 func WithRelatedPersonGender(v AdministrativeGender) RelatedPersonOption {
 	return func(r *RelatedPerson) {
 		r.Gender = &v
@@ -788,6 +832,8 @@ func WithRelatedPersonGender(v AdministrativeGender) RelatedPersonOption {
 }
 
 // WithRelatedPersonBirthDate sets the BirthDate field.
+//
+// Deprecated: use RelatedPersonBuilder.SetBirthDate instead; removed in v2.
 func WithRelatedPersonBirthDate(v string) RelatedPersonOption {
 	return func(r *RelatedPerson) {
 		r.BirthDate = &v
@@ -795,6 +841,8 @@ func WithRelatedPersonBirthDate(v string) RelatedPersonOption {
 }
 
 // WithRelatedPersonAddress adds a Address to the RelatedPerson.
+//
+// Deprecated: use RelatedPersonBuilder.AddAddress instead; removed in v2.
 func WithRelatedPersonAddress(v Address) RelatedPersonOption {
 	return func(r *RelatedPerson) {
 		r.Address = append(r.Address, v)
@@ -802,6 +850,8 @@ func WithRelatedPersonAddress(v Address) RelatedPersonOption {
 }
 
 // WithRelatedPersonPhoto adds a Photo to the RelatedPerson.
+//
+// Deprecated: use RelatedPersonBuilder.AddPhoto instead; removed in v2.
 func WithRelatedPersonPhoto(v Attachment) RelatedPersonOption {
 	return func(r *RelatedPerson) {
 		r.Photo = append(r.Photo, v)
@@ -809,6 +859,8 @@ func WithRelatedPersonPhoto(v Attachment) RelatedPersonOption {
 }
 
 // WithRelatedPersonPeriod sets the Period field.
+//
+// Deprecated: use RelatedPersonBuilder.SetPeriod instead; removed in v2.
 func WithRelatedPersonPeriod(v Period) RelatedPersonOption {
 	return func(r *RelatedPerson) {
 		r.Period = &v
@@ -816,6 +868,8 @@ func WithRelatedPersonPeriod(v Period) RelatedPersonOption {
 }
 
 // WithRelatedPersonCommunication adds a Communication to the RelatedPerson.
+//
+// Deprecated: use RelatedPersonBuilder.AddCommunication instead; removed in v2.
 func WithRelatedPersonCommunication(v RelatedPersonCommunication) RelatedPersonOption {
 	return func(r *RelatedPerson) {
 		r.Communication = append(r.Communication, v)

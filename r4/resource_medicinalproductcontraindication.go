@@ -592,9 +592,23 @@ func (b *MedicinalProductContraindicationBuilder) AddPopulation(v Population) *M
 // =============================================================================
 
 // MedicinalProductContraindicationOption is a functional option for configuring a MedicinalProductContraindication.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// MedicinalProductContraindicationBuilder. Every WithMedicinalProductContraindication* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type MedicinalProductContraindicationOption func(*MedicinalProductContraindication)
 
 // NewMedicinalProductContraindication creates a new MedicinalProductContraindication with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewMedicinalProductContraindicationBuilder().SetId("x").Build()
+//
+// Deprecated: use NewMedicinalProductContraindicationBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewMedicinalProductContraindication(opts ...MedicinalProductContraindicationOption) *MedicinalProductContraindication {
 	r := &MedicinalProductContraindication{ResourceType: "MedicinalProductContraindication"}
 	for _, opt := range opts {
@@ -604,6 +618,8 @@ func NewMedicinalProductContraindication(opts ...MedicinalProductContraindicatio
 }
 
 // WithMedicinalProductContraindicationId sets the Id field.
+//
+// Deprecated: use MedicinalProductContraindicationBuilder.SetId instead; removed in v2.
 func WithMedicinalProductContraindicationId(v string) MedicinalProductContraindicationOption {
 	return func(r *MedicinalProductContraindication) {
 		r.Id = &v
@@ -611,6 +627,8 @@ func WithMedicinalProductContraindicationId(v string) MedicinalProductContraindi
 }
 
 // WithMedicinalProductContraindicationMeta sets the Meta field.
+//
+// Deprecated: use MedicinalProductContraindicationBuilder.SetMeta instead; removed in v2.
 func WithMedicinalProductContraindicationMeta(v Meta) MedicinalProductContraindicationOption {
 	return func(r *MedicinalProductContraindication) {
 		r.Meta = &v
@@ -618,6 +636,8 @@ func WithMedicinalProductContraindicationMeta(v Meta) MedicinalProductContraindi
 }
 
 // WithMedicinalProductContraindicationImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use MedicinalProductContraindicationBuilder.SetImplicitRules instead; removed in v2.
 func WithMedicinalProductContraindicationImplicitRules(v string) MedicinalProductContraindicationOption {
 	return func(r *MedicinalProductContraindication) {
 		r.ImplicitRules = &v
@@ -625,6 +645,8 @@ func WithMedicinalProductContraindicationImplicitRules(v string) MedicinalProduc
 }
 
 // WithMedicinalProductContraindicationLanguage sets the Language field.
+//
+// Deprecated: use MedicinalProductContraindicationBuilder.SetLanguage instead; removed in v2.
 func WithMedicinalProductContraindicationLanguage(v string) MedicinalProductContraindicationOption {
 	return func(r *MedicinalProductContraindication) {
 		r.Language = &v
@@ -632,6 +654,8 @@ func WithMedicinalProductContraindicationLanguage(v string) MedicinalProductCont
 }
 
 // WithMedicinalProductContraindicationText sets the Text field.
+//
+// Deprecated: use MedicinalProductContraindicationBuilder.SetText instead; removed in v2.
 func WithMedicinalProductContraindicationText(v Narrative) MedicinalProductContraindicationOption {
 	return func(r *MedicinalProductContraindication) {
 		r.Text = &v
@@ -639,6 +663,8 @@ func WithMedicinalProductContraindicationText(v Narrative) MedicinalProductContr
 }
 
 // WithMedicinalProductContraindicationContained adds a Contained to the MedicinalProductContraindication.
+//
+// Deprecated: use MedicinalProductContraindicationBuilder.AddContained instead; removed in v2.
 func WithMedicinalProductContraindicationContained(v Resource) MedicinalProductContraindicationOption {
 	return func(r *MedicinalProductContraindication) {
 		r.Contained = append(r.Contained, v)
@@ -646,6 +672,8 @@ func WithMedicinalProductContraindicationContained(v Resource) MedicinalProductC
 }
 
 // WithMedicinalProductContraindicationExtension adds a Extension to the MedicinalProductContraindication.
+//
+// Deprecated: use MedicinalProductContraindicationBuilder.AddExtension instead; removed in v2.
 func WithMedicinalProductContraindicationExtension(v Extension) MedicinalProductContraindicationOption {
 	return func(r *MedicinalProductContraindication) {
 		r.Extension = append(r.Extension, v)
@@ -653,6 +681,8 @@ func WithMedicinalProductContraindicationExtension(v Extension) MedicinalProduct
 }
 
 // WithMedicinalProductContraindicationModifierExtension adds a ModifierExtension to the MedicinalProductContraindication.
+//
+// Deprecated: use MedicinalProductContraindicationBuilder.AddModifierExtension instead; removed in v2.
 func WithMedicinalProductContraindicationModifierExtension(v Extension) MedicinalProductContraindicationOption {
 	return func(r *MedicinalProductContraindication) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -660,6 +690,8 @@ func WithMedicinalProductContraindicationModifierExtension(v Extension) Medicina
 }
 
 // WithMedicinalProductContraindicationSubject adds a Subject to the MedicinalProductContraindication.
+//
+// Deprecated: use MedicinalProductContraindicationBuilder.AddSubject instead; removed in v2.
 func WithMedicinalProductContraindicationSubject(v Reference) MedicinalProductContraindicationOption {
 	return func(r *MedicinalProductContraindication) {
 		r.Subject = append(r.Subject, v)
@@ -667,6 +699,8 @@ func WithMedicinalProductContraindicationSubject(v Reference) MedicinalProductCo
 }
 
 // WithMedicinalProductContraindicationDisease sets the Disease field.
+//
+// Deprecated: use MedicinalProductContraindicationBuilder.SetDisease instead; removed in v2.
 func WithMedicinalProductContraindicationDisease(v CodeableConcept) MedicinalProductContraindicationOption {
 	return func(r *MedicinalProductContraindication) {
 		r.Disease = &v
@@ -674,6 +708,8 @@ func WithMedicinalProductContraindicationDisease(v CodeableConcept) MedicinalPro
 }
 
 // WithMedicinalProductContraindicationDiseaseStatus sets the DiseaseStatus field.
+//
+// Deprecated: use MedicinalProductContraindicationBuilder.SetDiseaseStatus instead; removed in v2.
 func WithMedicinalProductContraindicationDiseaseStatus(v CodeableConcept) MedicinalProductContraindicationOption {
 	return func(r *MedicinalProductContraindication) {
 		r.DiseaseStatus = &v
@@ -681,6 +717,8 @@ func WithMedicinalProductContraindicationDiseaseStatus(v CodeableConcept) Medici
 }
 
 // WithMedicinalProductContraindicationComorbidity adds a Comorbidity to the MedicinalProductContraindication.
+//
+// Deprecated: use MedicinalProductContraindicationBuilder.AddComorbidity instead; removed in v2.
 func WithMedicinalProductContraindicationComorbidity(v CodeableConcept) MedicinalProductContraindicationOption {
 	return func(r *MedicinalProductContraindication) {
 		r.Comorbidity = append(r.Comorbidity, v)
@@ -688,6 +726,8 @@ func WithMedicinalProductContraindicationComorbidity(v CodeableConcept) Medicina
 }
 
 // WithMedicinalProductContraindicationTherapeuticIndication adds a TherapeuticIndication to the MedicinalProductContraindication.
+//
+// Deprecated: use MedicinalProductContraindicationBuilder.AddTherapeuticIndication instead; removed in v2.
 func WithMedicinalProductContraindicationTherapeuticIndication(v Reference) MedicinalProductContraindicationOption {
 	return func(r *MedicinalProductContraindication) {
 		r.TherapeuticIndication = append(r.TherapeuticIndication, v)
@@ -695,6 +735,8 @@ func WithMedicinalProductContraindicationTherapeuticIndication(v Reference) Medi
 }
 
 // WithMedicinalProductContraindicationOtherTherapy adds a OtherTherapy to the MedicinalProductContraindication.
+//
+// Deprecated: use MedicinalProductContraindicationBuilder.AddOtherTherapy instead; removed in v2.
 func WithMedicinalProductContraindicationOtherTherapy(v MedicinalProductContraindicationOtherTherapy) MedicinalProductContraindicationOption {
 	return func(r *MedicinalProductContraindication) {
 		r.OtherTherapy = append(r.OtherTherapy, v)
@@ -702,6 +744,8 @@ func WithMedicinalProductContraindicationOtherTherapy(v MedicinalProductContrain
 }
 
 // WithMedicinalProductContraindicationPopulation adds a Population to the MedicinalProductContraindication.
+//
+// Deprecated: use MedicinalProductContraindicationBuilder.AddPopulation instead; removed in v2.
 func WithMedicinalProductContraindicationPopulation(v Population) MedicinalProductContraindicationOption {
 	return func(r *MedicinalProductContraindication) {
 		r.Population = append(r.Population, v)

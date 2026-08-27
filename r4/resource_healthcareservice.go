@@ -1134,9 +1134,23 @@ func (b *HealthcareServiceBuilder) AddEndpoint(v Reference) *HealthcareServiceBu
 // =============================================================================
 
 // HealthcareServiceOption is a functional option for configuring a HealthcareService.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// HealthcareServiceBuilder. Every WithHealthcareService* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type HealthcareServiceOption func(*HealthcareService)
 
 // NewHealthcareService creates a new HealthcareService with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewHealthcareServiceBuilder().SetId("x").Build()
+//
+// Deprecated: use NewHealthcareServiceBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewHealthcareService(opts ...HealthcareServiceOption) *HealthcareService {
 	r := &HealthcareService{ResourceType: "HealthcareService"}
 	for _, opt := range opts {
@@ -1146,6 +1160,8 @@ func NewHealthcareService(opts ...HealthcareServiceOption) *HealthcareService {
 }
 
 // WithHealthcareServiceId sets the Id field.
+//
+// Deprecated: use HealthcareServiceBuilder.SetId instead; removed in v2.
 func WithHealthcareServiceId(v string) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Id = &v
@@ -1153,6 +1169,8 @@ func WithHealthcareServiceId(v string) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceMeta sets the Meta field.
+//
+// Deprecated: use HealthcareServiceBuilder.SetMeta instead; removed in v2.
 func WithHealthcareServiceMeta(v Meta) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Meta = &v
@@ -1160,6 +1178,8 @@ func WithHealthcareServiceMeta(v Meta) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use HealthcareServiceBuilder.SetImplicitRules instead; removed in v2.
 func WithHealthcareServiceImplicitRules(v string) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.ImplicitRules = &v
@@ -1167,6 +1187,8 @@ func WithHealthcareServiceImplicitRules(v string) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceLanguage sets the Language field.
+//
+// Deprecated: use HealthcareServiceBuilder.SetLanguage instead; removed in v2.
 func WithHealthcareServiceLanguage(v string) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Language = &v
@@ -1174,6 +1196,8 @@ func WithHealthcareServiceLanguage(v string) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceText sets the Text field.
+//
+// Deprecated: use HealthcareServiceBuilder.SetText instead; removed in v2.
 func WithHealthcareServiceText(v Narrative) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Text = &v
@@ -1181,6 +1205,8 @@ func WithHealthcareServiceText(v Narrative) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceContained adds a Contained to the HealthcareService.
+//
+// Deprecated: use HealthcareServiceBuilder.AddContained instead; removed in v2.
 func WithHealthcareServiceContained(v Resource) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Contained = append(r.Contained, v)
@@ -1188,6 +1214,8 @@ func WithHealthcareServiceContained(v Resource) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceExtension adds a Extension to the HealthcareService.
+//
+// Deprecated: use HealthcareServiceBuilder.AddExtension instead; removed in v2.
 func WithHealthcareServiceExtension(v Extension) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Extension = append(r.Extension, v)
@@ -1195,6 +1223,8 @@ func WithHealthcareServiceExtension(v Extension) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceModifierExtension adds a ModifierExtension to the HealthcareService.
+//
+// Deprecated: use HealthcareServiceBuilder.AddModifierExtension instead; removed in v2.
 func WithHealthcareServiceModifierExtension(v Extension) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1202,6 +1232,8 @@ func WithHealthcareServiceModifierExtension(v Extension) HealthcareServiceOption
 }
 
 // WithHealthcareServiceIdentifier adds a Identifier to the HealthcareService.
+//
+// Deprecated: use HealthcareServiceBuilder.AddIdentifier instead; removed in v2.
 func WithHealthcareServiceIdentifier(v Identifier) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Identifier = append(r.Identifier, v)
@@ -1209,6 +1241,8 @@ func WithHealthcareServiceIdentifier(v Identifier) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceActive sets the Active field.
+//
+// Deprecated: use HealthcareServiceBuilder.SetActive instead; removed in v2.
 func WithHealthcareServiceActive(v bool) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Active = &v
@@ -1216,6 +1250,8 @@ func WithHealthcareServiceActive(v bool) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceProvidedBy sets the ProvidedBy field.
+//
+// Deprecated: use HealthcareServiceBuilder.SetProvidedBy instead; removed in v2.
 func WithHealthcareServiceProvidedBy(v Reference) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.ProvidedBy = &v
@@ -1223,6 +1259,8 @@ func WithHealthcareServiceProvidedBy(v Reference) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceCategory adds a Category to the HealthcareService.
+//
+// Deprecated: use HealthcareServiceBuilder.AddCategory instead; removed in v2.
 func WithHealthcareServiceCategory(v CodeableConcept) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Category = append(r.Category, v)
@@ -1230,6 +1268,8 @@ func WithHealthcareServiceCategory(v CodeableConcept) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceType adds a Type to the HealthcareService.
+//
+// Deprecated: use HealthcareServiceBuilder.AddType instead; removed in v2.
 func WithHealthcareServiceType(v CodeableConcept) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Type = append(r.Type, v)
@@ -1237,6 +1277,8 @@ func WithHealthcareServiceType(v CodeableConcept) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceSpecialty adds a Specialty to the HealthcareService.
+//
+// Deprecated: use HealthcareServiceBuilder.AddSpecialty instead; removed in v2.
 func WithHealthcareServiceSpecialty(v CodeableConcept) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Specialty = append(r.Specialty, v)
@@ -1244,6 +1286,8 @@ func WithHealthcareServiceSpecialty(v CodeableConcept) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceLocation adds a Location to the HealthcareService.
+//
+// Deprecated: use HealthcareServiceBuilder.AddLocation instead; removed in v2.
 func WithHealthcareServiceLocation(v Reference) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Location = append(r.Location, v)
@@ -1251,6 +1295,8 @@ func WithHealthcareServiceLocation(v Reference) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceName sets the Name field.
+//
+// Deprecated: use HealthcareServiceBuilder.SetName instead; removed in v2.
 func WithHealthcareServiceName(v string) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Name = &v
@@ -1258,6 +1304,8 @@ func WithHealthcareServiceName(v string) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceComment sets the Comment field.
+//
+// Deprecated: use HealthcareServiceBuilder.SetComment instead; removed in v2.
 func WithHealthcareServiceComment(v string) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Comment = &v
@@ -1265,6 +1313,8 @@ func WithHealthcareServiceComment(v string) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceExtraDetails sets the ExtraDetails field.
+//
+// Deprecated: use HealthcareServiceBuilder.SetExtraDetails instead; removed in v2.
 func WithHealthcareServiceExtraDetails(v string) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.ExtraDetails = &v
@@ -1272,6 +1322,8 @@ func WithHealthcareServiceExtraDetails(v string) HealthcareServiceOption {
 }
 
 // WithHealthcareServicePhoto sets the Photo field.
+//
+// Deprecated: use HealthcareServiceBuilder.SetPhoto instead; removed in v2.
 func WithHealthcareServicePhoto(v Attachment) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Photo = &v
@@ -1279,6 +1331,8 @@ func WithHealthcareServicePhoto(v Attachment) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceTelecom adds a Telecom to the HealthcareService.
+//
+// Deprecated: use HealthcareServiceBuilder.AddTelecom instead; removed in v2.
 func WithHealthcareServiceTelecom(v ContactPoint) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Telecom = append(r.Telecom, v)
@@ -1286,6 +1340,8 @@ func WithHealthcareServiceTelecom(v ContactPoint) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceCoverageArea adds a CoverageArea to the HealthcareService.
+//
+// Deprecated: use HealthcareServiceBuilder.AddCoverageArea instead; removed in v2.
 func WithHealthcareServiceCoverageArea(v Reference) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.CoverageArea = append(r.CoverageArea, v)
@@ -1293,6 +1349,8 @@ func WithHealthcareServiceCoverageArea(v Reference) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceServiceProvisionCode adds a ServiceProvisionCode to the HealthcareService.
+//
+// Deprecated: use HealthcareServiceBuilder.AddServiceProvisionCode instead; removed in v2.
 func WithHealthcareServiceServiceProvisionCode(v CodeableConcept) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.ServiceProvisionCode = append(r.ServiceProvisionCode, v)
@@ -1300,6 +1358,8 @@ func WithHealthcareServiceServiceProvisionCode(v CodeableConcept) HealthcareServ
 }
 
 // WithHealthcareServiceEligibility adds a Eligibility to the HealthcareService.
+//
+// Deprecated: use HealthcareServiceBuilder.AddEligibility instead; removed in v2.
 func WithHealthcareServiceEligibility(v HealthcareServiceEligibility) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Eligibility = append(r.Eligibility, v)
@@ -1307,6 +1367,8 @@ func WithHealthcareServiceEligibility(v HealthcareServiceEligibility) Healthcare
 }
 
 // WithHealthcareServiceProgram adds a Program to the HealthcareService.
+//
+// Deprecated: use HealthcareServiceBuilder.AddProgram instead; removed in v2.
 func WithHealthcareServiceProgram(v CodeableConcept) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Program = append(r.Program, v)
@@ -1314,6 +1376,8 @@ func WithHealthcareServiceProgram(v CodeableConcept) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceCharacteristic adds a Characteristic to the HealthcareService.
+//
+// Deprecated: use HealthcareServiceBuilder.AddCharacteristic instead; removed in v2.
 func WithHealthcareServiceCharacteristic(v CodeableConcept) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Characteristic = append(r.Characteristic, v)
@@ -1321,6 +1385,8 @@ func WithHealthcareServiceCharacteristic(v CodeableConcept) HealthcareServiceOpt
 }
 
 // WithHealthcareServiceCommunication adds a Communication to the HealthcareService.
+//
+// Deprecated: use HealthcareServiceBuilder.AddCommunication instead; removed in v2.
 func WithHealthcareServiceCommunication(v CodeableConcept) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Communication = append(r.Communication, v)
@@ -1328,6 +1394,8 @@ func WithHealthcareServiceCommunication(v CodeableConcept) HealthcareServiceOpti
 }
 
 // WithHealthcareServiceReferralMethod adds a ReferralMethod to the HealthcareService.
+//
+// Deprecated: use HealthcareServiceBuilder.AddReferralMethod instead; removed in v2.
 func WithHealthcareServiceReferralMethod(v CodeableConcept) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.ReferralMethod = append(r.ReferralMethod, v)
@@ -1335,6 +1403,8 @@ func WithHealthcareServiceReferralMethod(v CodeableConcept) HealthcareServiceOpt
 }
 
 // WithHealthcareServiceAppointmentRequired sets the AppointmentRequired field.
+//
+// Deprecated: use HealthcareServiceBuilder.SetAppointmentRequired instead; removed in v2.
 func WithHealthcareServiceAppointmentRequired(v bool) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.AppointmentRequired = &v
@@ -1342,6 +1412,8 @@ func WithHealthcareServiceAppointmentRequired(v bool) HealthcareServiceOption {
 }
 
 // WithHealthcareServiceAvailableTime adds a AvailableTime to the HealthcareService.
+//
+// Deprecated: use HealthcareServiceBuilder.AddAvailableTime instead; removed in v2.
 func WithHealthcareServiceAvailableTime(v HealthcareServiceAvailableTime) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.AvailableTime = append(r.AvailableTime, v)
@@ -1349,6 +1421,8 @@ func WithHealthcareServiceAvailableTime(v HealthcareServiceAvailableTime) Health
 }
 
 // WithHealthcareServiceNotAvailable adds a NotAvailable to the HealthcareService.
+//
+// Deprecated: use HealthcareServiceBuilder.AddNotAvailable instead; removed in v2.
 func WithHealthcareServiceNotAvailable(v HealthcareServiceNotAvailable) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.NotAvailable = append(r.NotAvailable, v)
@@ -1356,6 +1430,8 @@ func WithHealthcareServiceNotAvailable(v HealthcareServiceNotAvailable) Healthca
 }
 
 // WithHealthcareServiceAvailabilityExceptions sets the AvailabilityExceptions field.
+//
+// Deprecated: use HealthcareServiceBuilder.SetAvailabilityExceptions instead; removed in v2.
 func WithHealthcareServiceAvailabilityExceptions(v string) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.AvailabilityExceptions = &v
@@ -1363,6 +1439,8 @@ func WithHealthcareServiceAvailabilityExceptions(v string) HealthcareServiceOpti
 }
 
 // WithHealthcareServiceEndpoint adds a Endpoint to the HealthcareService.
+//
+// Deprecated: use HealthcareServiceBuilder.AddEndpoint instead; removed in v2.
 func WithHealthcareServiceEndpoint(v Reference) HealthcareServiceOption {
 	return func(r *HealthcareService) {
 		r.Endpoint = append(r.Endpoint, v)

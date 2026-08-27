@@ -667,9 +667,23 @@ func (b *GuidanceResponseBuilder) AddDataRequirement(v DataRequirement) *Guidanc
 // =============================================================================
 
 // GuidanceResponseOption is a functional option for configuring a GuidanceResponse.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// GuidanceResponseBuilder. Every WithGuidanceResponse* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type GuidanceResponseOption func(*GuidanceResponse)
 
 // NewGuidanceResponse creates a new GuidanceResponse with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewGuidanceResponseBuilder().SetId("x").Build()
+//
+// Deprecated: use NewGuidanceResponseBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewGuidanceResponse(opts ...GuidanceResponseOption) *GuidanceResponse {
 	r := &GuidanceResponse{ResourceType: "GuidanceResponse"}
 	for _, opt := range opts {
@@ -679,6 +693,8 @@ func NewGuidanceResponse(opts ...GuidanceResponseOption) *GuidanceResponse {
 }
 
 // WithGuidanceResponseId sets the Id field.
+//
+// Deprecated: use GuidanceResponseBuilder.SetId instead; removed in v2.
 func WithGuidanceResponseId(v string) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.Id = &v
@@ -686,6 +702,8 @@ func WithGuidanceResponseId(v string) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseMeta sets the Meta field.
+//
+// Deprecated: use GuidanceResponseBuilder.SetMeta instead; removed in v2.
 func WithGuidanceResponseMeta(v Meta) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.Meta = &v
@@ -693,6 +711,8 @@ func WithGuidanceResponseMeta(v Meta) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use GuidanceResponseBuilder.SetImplicitRules instead; removed in v2.
 func WithGuidanceResponseImplicitRules(v string) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.ImplicitRules = &v
@@ -700,6 +720,8 @@ func WithGuidanceResponseImplicitRules(v string) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseLanguage sets the Language field.
+//
+// Deprecated: use GuidanceResponseBuilder.SetLanguage instead; removed in v2.
 func WithGuidanceResponseLanguage(v string) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.Language = &v
@@ -707,6 +729,8 @@ func WithGuidanceResponseLanguage(v string) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseText sets the Text field.
+//
+// Deprecated: use GuidanceResponseBuilder.SetText instead; removed in v2.
 func WithGuidanceResponseText(v Narrative) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.Text = &v
@@ -714,6 +738,8 @@ func WithGuidanceResponseText(v Narrative) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseContained adds a Contained to the GuidanceResponse.
+//
+// Deprecated: use GuidanceResponseBuilder.AddContained instead; removed in v2.
 func WithGuidanceResponseContained(v Resource) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.Contained = append(r.Contained, v)
@@ -721,6 +747,8 @@ func WithGuidanceResponseContained(v Resource) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseExtension adds a Extension to the GuidanceResponse.
+//
+// Deprecated: use GuidanceResponseBuilder.AddExtension instead; removed in v2.
 func WithGuidanceResponseExtension(v Extension) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.Extension = append(r.Extension, v)
@@ -728,6 +756,8 @@ func WithGuidanceResponseExtension(v Extension) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseModifierExtension adds a ModifierExtension to the GuidanceResponse.
+//
+// Deprecated: use GuidanceResponseBuilder.AddModifierExtension instead; removed in v2.
 func WithGuidanceResponseModifierExtension(v Extension) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -735,6 +765,8 @@ func WithGuidanceResponseModifierExtension(v Extension) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseRequestIdentifier sets the RequestIdentifier field.
+//
+// Deprecated: use GuidanceResponseBuilder.SetRequestIdentifier instead; removed in v2.
 func WithGuidanceResponseRequestIdentifier(v Identifier) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.RequestIdentifier = &v
@@ -742,6 +774,8 @@ func WithGuidanceResponseRequestIdentifier(v Identifier) GuidanceResponseOption 
 }
 
 // WithGuidanceResponseIdentifier adds a Identifier to the GuidanceResponse.
+//
+// Deprecated: use GuidanceResponseBuilder.AddIdentifier instead; removed in v2.
 func WithGuidanceResponseIdentifier(v Identifier) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.Identifier = append(r.Identifier, v)
@@ -749,6 +783,8 @@ func WithGuidanceResponseIdentifier(v Identifier) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseModuleUri sets the ModuleUri field.
+//
+// Deprecated: use GuidanceResponseBuilder.SetModuleUri instead; removed in v2.
 func WithGuidanceResponseModuleUri(v string) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.ModuleUri = &v
@@ -756,6 +792,8 @@ func WithGuidanceResponseModuleUri(v string) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseModuleUriExt sets the ModuleUriExt field.
+//
+// Deprecated: use GuidanceResponseBuilder.SetModuleUriExt instead; removed in v2.
 func WithGuidanceResponseModuleUriExt(v Element) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.ModuleUriExt = &v
@@ -763,6 +801,8 @@ func WithGuidanceResponseModuleUriExt(v Element) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseModuleCanonical sets the ModuleCanonical field.
+//
+// Deprecated: use GuidanceResponseBuilder.SetModuleCanonical instead; removed in v2.
 func WithGuidanceResponseModuleCanonical(v string) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.ModuleCanonical = &v
@@ -770,6 +810,8 @@ func WithGuidanceResponseModuleCanonical(v string) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseModuleCanonicalExt sets the ModuleCanonicalExt field.
+//
+// Deprecated: use GuidanceResponseBuilder.SetModuleCanonicalExt instead; removed in v2.
 func WithGuidanceResponseModuleCanonicalExt(v Element) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.ModuleCanonicalExt = &v
@@ -777,6 +819,8 @@ func WithGuidanceResponseModuleCanonicalExt(v Element) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseModuleCodeableConcept sets the ModuleCodeableConcept field.
+//
+// Deprecated: use GuidanceResponseBuilder.SetModuleCodeableConcept instead; removed in v2.
 func WithGuidanceResponseModuleCodeableConcept(v CodeableConcept) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.ModuleCodeableConcept = &v
@@ -784,6 +828,8 @@ func WithGuidanceResponseModuleCodeableConcept(v CodeableConcept) GuidanceRespon
 }
 
 // WithGuidanceResponseStatus sets the Status field.
+//
+// Deprecated: use GuidanceResponseBuilder.SetStatus instead; removed in v2.
 func WithGuidanceResponseStatus(v GuidanceResponseStatus) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.Status = &v
@@ -791,6 +837,8 @@ func WithGuidanceResponseStatus(v GuidanceResponseStatus) GuidanceResponseOption
 }
 
 // WithGuidanceResponseSubject sets the Subject field.
+//
+// Deprecated: use GuidanceResponseBuilder.SetSubject instead; removed in v2.
 func WithGuidanceResponseSubject(v Reference) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.Subject = &v
@@ -798,6 +846,8 @@ func WithGuidanceResponseSubject(v Reference) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseEncounter sets the Encounter field.
+//
+// Deprecated: use GuidanceResponseBuilder.SetEncounter instead; removed in v2.
 func WithGuidanceResponseEncounter(v Reference) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.Encounter = &v
@@ -805,6 +855,8 @@ func WithGuidanceResponseEncounter(v Reference) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseOccurrenceDateTime sets the OccurrenceDateTime field.
+//
+// Deprecated: use GuidanceResponseBuilder.SetOccurrenceDateTime instead; removed in v2.
 func WithGuidanceResponseOccurrenceDateTime(v string) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.OccurrenceDateTime = &v
@@ -812,6 +864,8 @@ func WithGuidanceResponseOccurrenceDateTime(v string) GuidanceResponseOption {
 }
 
 // WithGuidanceResponsePerformer sets the Performer field.
+//
+// Deprecated: use GuidanceResponseBuilder.SetPerformer instead; removed in v2.
 func WithGuidanceResponsePerformer(v Reference) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.Performer = &v
@@ -819,6 +873,8 @@ func WithGuidanceResponsePerformer(v Reference) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseReason adds a Reason to the GuidanceResponse.
+//
+// Deprecated: use GuidanceResponseBuilder.AddReason instead; removed in v2.
 func WithGuidanceResponseReason(v CodeableReference) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.Reason = append(r.Reason, v)
@@ -826,6 +882,8 @@ func WithGuidanceResponseReason(v CodeableReference) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseNote adds a Note to the GuidanceResponse.
+//
+// Deprecated: use GuidanceResponseBuilder.AddNote instead; removed in v2.
 func WithGuidanceResponseNote(v Annotation) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.Note = append(r.Note, v)
@@ -833,6 +891,8 @@ func WithGuidanceResponseNote(v Annotation) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseEvaluationMessage sets the EvaluationMessage field.
+//
+// Deprecated: use GuidanceResponseBuilder.SetEvaluationMessage instead; removed in v2.
 func WithGuidanceResponseEvaluationMessage(v Reference) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.EvaluationMessage = &v
@@ -840,6 +900,8 @@ func WithGuidanceResponseEvaluationMessage(v Reference) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseOutputParameters sets the OutputParameters field.
+//
+// Deprecated: use GuidanceResponseBuilder.SetOutputParameters instead; removed in v2.
 func WithGuidanceResponseOutputParameters(v Reference) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.OutputParameters = &v
@@ -847,6 +909,8 @@ func WithGuidanceResponseOutputParameters(v Reference) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseResult adds a Result to the GuidanceResponse.
+//
+// Deprecated: use GuidanceResponseBuilder.AddResult instead; removed in v2.
 func WithGuidanceResponseResult(v Reference) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.Result = append(r.Result, v)
@@ -854,6 +918,8 @@ func WithGuidanceResponseResult(v Reference) GuidanceResponseOption {
 }
 
 // WithGuidanceResponseDataRequirement adds a DataRequirement to the GuidanceResponse.
+//
+// Deprecated: use GuidanceResponseBuilder.AddDataRequirement instead; removed in v2.
 func WithGuidanceResponseDataRequirement(v DataRequirement) GuidanceResponseOption {
 	return func(r *GuidanceResponse) {
 		r.DataRequirement = append(r.DataRequirement, v)

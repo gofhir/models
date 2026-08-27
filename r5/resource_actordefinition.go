@@ -810,9 +810,23 @@ func (b *ActorDefinitionBuilder) AddDerivedFrom(v string) *ActorDefinitionBuilde
 // =============================================================================
 
 // ActorDefinitionOption is a functional option for configuring a ActorDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ActorDefinitionBuilder. Every WithActorDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ActorDefinitionOption func(*ActorDefinition)
 
 // NewActorDefinition creates a new ActorDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewActorDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewActorDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewActorDefinition(opts ...ActorDefinitionOption) *ActorDefinition {
 	r := &ActorDefinition{ResourceType: "ActorDefinition"}
 	for _, opt := range opts {
@@ -822,6 +836,8 @@ func NewActorDefinition(opts ...ActorDefinitionOption) *ActorDefinition {
 }
 
 // WithActorDefinitionId sets the Id field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetId instead; removed in v2.
 func WithActorDefinitionId(v string) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Id = &v
@@ -829,6 +845,8 @@ func WithActorDefinitionId(v string) ActorDefinitionOption {
 }
 
 // WithActorDefinitionMeta sets the Meta field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetMeta instead; removed in v2.
 func WithActorDefinitionMeta(v Meta) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Meta = &v
@@ -836,6 +854,8 @@ func WithActorDefinitionMeta(v Meta) ActorDefinitionOption {
 }
 
 // WithActorDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithActorDefinitionImplicitRules(v string) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.ImplicitRules = &v
@@ -843,6 +863,8 @@ func WithActorDefinitionImplicitRules(v string) ActorDefinitionOption {
 }
 
 // WithActorDefinitionLanguage sets the Language field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithActorDefinitionLanguage(v string) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Language = &v
@@ -850,6 +872,8 @@ func WithActorDefinitionLanguage(v string) ActorDefinitionOption {
 }
 
 // WithActorDefinitionText sets the Text field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetText instead; removed in v2.
 func WithActorDefinitionText(v Narrative) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Text = &v
@@ -857,6 +881,8 @@ func WithActorDefinitionText(v Narrative) ActorDefinitionOption {
 }
 
 // WithActorDefinitionContained adds a Contained to the ActorDefinition.
+//
+// Deprecated: use ActorDefinitionBuilder.AddContained instead; removed in v2.
 func WithActorDefinitionContained(v Resource) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -864,6 +890,8 @@ func WithActorDefinitionContained(v Resource) ActorDefinitionOption {
 }
 
 // WithActorDefinitionExtension adds a Extension to the ActorDefinition.
+//
+// Deprecated: use ActorDefinitionBuilder.AddExtension instead; removed in v2.
 func WithActorDefinitionExtension(v Extension) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -871,6 +899,8 @@ func WithActorDefinitionExtension(v Extension) ActorDefinitionOption {
 }
 
 // WithActorDefinitionModifierExtension adds a ModifierExtension to the ActorDefinition.
+//
+// Deprecated: use ActorDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithActorDefinitionModifierExtension(v Extension) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -878,6 +908,8 @@ func WithActorDefinitionModifierExtension(v Extension) ActorDefinitionOption {
 }
 
 // WithActorDefinitionUrl sets the Url field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetUrl instead; removed in v2.
 func WithActorDefinitionUrl(v string) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Url = &v
@@ -885,6 +917,8 @@ func WithActorDefinitionUrl(v string) ActorDefinitionOption {
 }
 
 // WithActorDefinitionIdentifier adds a Identifier to the ActorDefinition.
+//
+// Deprecated: use ActorDefinitionBuilder.AddIdentifier instead; removed in v2.
 func WithActorDefinitionIdentifier(v Identifier) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Identifier = append(r.Identifier, v)
@@ -892,6 +926,8 @@ func WithActorDefinitionIdentifier(v Identifier) ActorDefinitionOption {
 }
 
 // WithActorDefinitionVersion sets the Version field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetVersion instead; removed in v2.
 func WithActorDefinitionVersion(v string) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Version = &v
@@ -899,6 +935,8 @@ func WithActorDefinitionVersion(v string) ActorDefinitionOption {
 }
 
 // WithActorDefinitionVersionAlgorithmString sets the VersionAlgorithmString field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetVersionAlgorithmString instead; removed in v2.
 func WithActorDefinitionVersionAlgorithmString(v string) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.VersionAlgorithmString = &v
@@ -906,6 +944,8 @@ func WithActorDefinitionVersionAlgorithmString(v string) ActorDefinitionOption {
 }
 
 // WithActorDefinitionVersionAlgorithmStringExt sets the VersionAlgorithmStringExt field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetVersionAlgorithmStringExt instead; removed in v2.
 func WithActorDefinitionVersionAlgorithmStringExt(v Element) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.VersionAlgorithmStringExt = &v
@@ -913,6 +953,8 @@ func WithActorDefinitionVersionAlgorithmStringExt(v Element) ActorDefinitionOpti
 }
 
 // WithActorDefinitionVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetVersionAlgorithmCoding instead; removed in v2.
 func WithActorDefinitionVersionAlgorithmCoding(v Coding) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.VersionAlgorithmCoding = &v
@@ -920,6 +962,8 @@ func WithActorDefinitionVersionAlgorithmCoding(v Coding) ActorDefinitionOption {
 }
 
 // WithActorDefinitionName sets the Name field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetName instead; removed in v2.
 func WithActorDefinitionName(v string) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Name = &v
@@ -927,6 +971,8 @@ func WithActorDefinitionName(v string) ActorDefinitionOption {
 }
 
 // WithActorDefinitionTitle sets the Title field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetTitle instead; removed in v2.
 func WithActorDefinitionTitle(v string) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Title = &v
@@ -934,6 +980,8 @@ func WithActorDefinitionTitle(v string) ActorDefinitionOption {
 }
 
 // WithActorDefinitionStatus sets the Status field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetStatus instead; removed in v2.
 func WithActorDefinitionStatus(v PublicationStatus) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Status = &v
@@ -941,6 +989,8 @@ func WithActorDefinitionStatus(v PublicationStatus) ActorDefinitionOption {
 }
 
 // WithActorDefinitionExperimental sets the Experimental field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetExperimental instead; removed in v2.
 func WithActorDefinitionExperimental(v bool) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Experimental = &v
@@ -948,6 +998,8 @@ func WithActorDefinitionExperimental(v bool) ActorDefinitionOption {
 }
 
 // WithActorDefinitionDate sets the Date field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetDate instead; removed in v2.
 func WithActorDefinitionDate(v string) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Date = &v
@@ -955,6 +1007,8 @@ func WithActorDefinitionDate(v string) ActorDefinitionOption {
 }
 
 // WithActorDefinitionPublisher sets the Publisher field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetPublisher instead; removed in v2.
 func WithActorDefinitionPublisher(v string) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Publisher = &v
@@ -962,6 +1016,8 @@ func WithActorDefinitionPublisher(v string) ActorDefinitionOption {
 }
 
 // WithActorDefinitionContact adds a Contact to the ActorDefinition.
+//
+// Deprecated: use ActorDefinitionBuilder.AddContact instead; removed in v2.
 func WithActorDefinitionContact(v ContactDetail) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Contact = append(r.Contact, v)
@@ -969,6 +1025,8 @@ func WithActorDefinitionContact(v ContactDetail) ActorDefinitionOption {
 }
 
 // WithActorDefinitionDescription sets the Description field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetDescription instead; removed in v2.
 func WithActorDefinitionDescription(v string) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Description = &v
@@ -976,6 +1034,8 @@ func WithActorDefinitionDescription(v string) ActorDefinitionOption {
 }
 
 // WithActorDefinitionUseContext adds a UseContext to the ActorDefinition.
+//
+// Deprecated: use ActorDefinitionBuilder.AddUseContext instead; removed in v2.
 func WithActorDefinitionUseContext(v UsageContext) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.UseContext = append(r.UseContext, v)
@@ -983,6 +1043,8 @@ func WithActorDefinitionUseContext(v UsageContext) ActorDefinitionOption {
 }
 
 // WithActorDefinitionJurisdiction adds a Jurisdiction to the ActorDefinition.
+//
+// Deprecated: use ActorDefinitionBuilder.AddJurisdiction instead; removed in v2.
 func WithActorDefinitionJurisdiction(v CodeableConcept) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -990,6 +1052,8 @@ func WithActorDefinitionJurisdiction(v CodeableConcept) ActorDefinitionOption {
 }
 
 // WithActorDefinitionPurpose sets the Purpose field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetPurpose instead; removed in v2.
 func WithActorDefinitionPurpose(v string) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Purpose = &v
@@ -997,6 +1061,8 @@ func WithActorDefinitionPurpose(v string) ActorDefinitionOption {
 }
 
 // WithActorDefinitionCopyright sets the Copyright field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetCopyright instead; removed in v2.
 func WithActorDefinitionCopyright(v string) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Copyright = &v
@@ -1004,6 +1070,8 @@ func WithActorDefinitionCopyright(v string) ActorDefinitionOption {
 }
 
 // WithActorDefinitionCopyrightLabel sets the CopyrightLabel field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetCopyrightLabel instead; removed in v2.
 func WithActorDefinitionCopyrightLabel(v string) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.CopyrightLabel = &v
@@ -1011,6 +1079,8 @@ func WithActorDefinitionCopyrightLabel(v string) ActorDefinitionOption {
 }
 
 // WithActorDefinitionType sets the Type field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetType instead; removed in v2.
 func WithActorDefinitionType(v ExampleScenarioActorType) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Type = &v
@@ -1018,6 +1088,8 @@ func WithActorDefinitionType(v ExampleScenarioActorType) ActorDefinitionOption {
 }
 
 // WithActorDefinitionDocumentation sets the Documentation field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetDocumentation instead; removed in v2.
 func WithActorDefinitionDocumentation(v string) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Documentation = &v
@@ -1025,6 +1097,8 @@ func WithActorDefinitionDocumentation(v string) ActorDefinitionOption {
 }
 
 // WithActorDefinitionReference adds a Reference to the ActorDefinition.
+//
+// Deprecated: use ActorDefinitionBuilder.AddReference instead; removed in v2.
 func WithActorDefinitionReference(v string) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Reference = append(r.Reference, v)
@@ -1032,6 +1106,8 @@ func WithActorDefinitionReference(v string) ActorDefinitionOption {
 }
 
 // WithActorDefinitionCapabilities sets the Capabilities field.
+//
+// Deprecated: use ActorDefinitionBuilder.SetCapabilities instead; removed in v2.
 func WithActorDefinitionCapabilities(v string) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.Capabilities = &v
@@ -1039,6 +1115,8 @@ func WithActorDefinitionCapabilities(v string) ActorDefinitionOption {
 }
 
 // WithActorDefinitionDerivedFrom adds a DerivedFrom to the ActorDefinition.
+//
+// Deprecated: use ActorDefinitionBuilder.AddDerivedFrom instead; removed in v2.
 func WithActorDefinitionDerivedFrom(v string) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
 		r.DerivedFrom = append(r.DerivedFrom, v)

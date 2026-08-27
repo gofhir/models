@@ -1630,9 +1630,23 @@ func (b *DeviceBuilder) SetParent(v Reference) *DeviceBuilder {
 // =============================================================================
 
 // DeviceOption is a functional option for configuring a Device.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// DeviceBuilder. Every WithDevice* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type DeviceOption func(*Device)
 
 // NewDevice creates a new Device with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewDeviceBuilder().SetId("x").Build()
+//
+// Deprecated: use NewDeviceBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewDevice(opts ...DeviceOption) *Device {
 	r := &Device{ResourceType: "Device"}
 	for _, opt := range opts {
@@ -1642,6 +1656,8 @@ func NewDevice(opts ...DeviceOption) *Device {
 }
 
 // WithDeviceId sets the Id field.
+//
+// Deprecated: use DeviceBuilder.SetId instead; removed in v2.
 func WithDeviceId(v string) DeviceOption {
 	return func(r *Device) {
 		r.Id = &v
@@ -1649,6 +1665,8 @@ func WithDeviceId(v string) DeviceOption {
 }
 
 // WithDeviceMeta sets the Meta field.
+//
+// Deprecated: use DeviceBuilder.SetMeta instead; removed in v2.
 func WithDeviceMeta(v Meta) DeviceOption {
 	return func(r *Device) {
 		r.Meta = &v
@@ -1656,6 +1674,8 @@ func WithDeviceMeta(v Meta) DeviceOption {
 }
 
 // WithDeviceImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use DeviceBuilder.SetImplicitRules instead; removed in v2.
 func WithDeviceImplicitRules(v string) DeviceOption {
 	return func(r *Device) {
 		r.ImplicitRules = &v
@@ -1663,6 +1683,8 @@ func WithDeviceImplicitRules(v string) DeviceOption {
 }
 
 // WithDeviceLanguage sets the Language field.
+//
+// Deprecated: use DeviceBuilder.SetLanguage instead; removed in v2.
 func WithDeviceLanguage(v string) DeviceOption {
 	return func(r *Device) {
 		r.Language = &v
@@ -1670,6 +1692,8 @@ func WithDeviceLanguage(v string) DeviceOption {
 }
 
 // WithDeviceText sets the Text field.
+//
+// Deprecated: use DeviceBuilder.SetText instead; removed in v2.
 func WithDeviceText(v Narrative) DeviceOption {
 	return func(r *Device) {
 		r.Text = &v
@@ -1677,6 +1701,8 @@ func WithDeviceText(v Narrative) DeviceOption {
 }
 
 // WithDeviceContained adds a Contained to the Device.
+//
+// Deprecated: use DeviceBuilder.AddContained instead; removed in v2.
 func WithDeviceContained(v Resource) DeviceOption {
 	return func(r *Device) {
 		r.Contained = append(r.Contained, v)
@@ -1684,6 +1710,8 @@ func WithDeviceContained(v Resource) DeviceOption {
 }
 
 // WithDeviceExtension adds a Extension to the Device.
+//
+// Deprecated: use DeviceBuilder.AddExtension instead; removed in v2.
 func WithDeviceExtension(v Extension) DeviceOption {
 	return func(r *Device) {
 		r.Extension = append(r.Extension, v)
@@ -1691,6 +1719,8 @@ func WithDeviceExtension(v Extension) DeviceOption {
 }
 
 // WithDeviceModifierExtension adds a ModifierExtension to the Device.
+//
+// Deprecated: use DeviceBuilder.AddModifierExtension instead; removed in v2.
 func WithDeviceModifierExtension(v Extension) DeviceOption {
 	return func(r *Device) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1698,6 +1728,8 @@ func WithDeviceModifierExtension(v Extension) DeviceOption {
 }
 
 // WithDeviceIdentifier adds a Identifier to the Device.
+//
+// Deprecated: use DeviceBuilder.AddIdentifier instead; removed in v2.
 func WithDeviceIdentifier(v Identifier) DeviceOption {
 	return func(r *Device) {
 		r.Identifier = append(r.Identifier, v)
@@ -1705,6 +1737,8 @@ func WithDeviceIdentifier(v Identifier) DeviceOption {
 }
 
 // WithDeviceDisplayName sets the DisplayName field.
+//
+// Deprecated: use DeviceBuilder.SetDisplayName instead; removed in v2.
 func WithDeviceDisplayName(v string) DeviceOption {
 	return func(r *Device) {
 		r.DisplayName = &v
@@ -1712,6 +1746,8 @@ func WithDeviceDisplayName(v string) DeviceOption {
 }
 
 // WithDeviceDefinition sets the Definition field.
+//
+// Deprecated: use DeviceBuilder.SetDefinition instead; removed in v2.
 func WithDeviceDefinition(v CodeableReference) DeviceOption {
 	return func(r *Device) {
 		r.Definition = &v
@@ -1719,6 +1755,8 @@ func WithDeviceDefinition(v CodeableReference) DeviceOption {
 }
 
 // WithDeviceUdiCarrier adds a UdiCarrier to the Device.
+//
+// Deprecated: use DeviceBuilder.AddUdiCarrier instead; removed in v2.
 func WithDeviceUdiCarrier(v DeviceUdiCarrier) DeviceOption {
 	return func(r *Device) {
 		r.UdiCarrier = append(r.UdiCarrier, v)
@@ -1726,6 +1764,8 @@ func WithDeviceUdiCarrier(v DeviceUdiCarrier) DeviceOption {
 }
 
 // WithDeviceStatus sets the Status field.
+//
+// Deprecated: use DeviceBuilder.SetStatus instead; removed in v2.
 func WithDeviceStatus(v FHIRDeviceStatus) DeviceOption {
 	return func(r *Device) {
 		r.Status = &v
@@ -1733,6 +1773,8 @@ func WithDeviceStatus(v FHIRDeviceStatus) DeviceOption {
 }
 
 // WithDeviceAvailabilityStatus sets the AvailabilityStatus field.
+//
+// Deprecated: use DeviceBuilder.SetAvailabilityStatus instead; removed in v2.
 func WithDeviceAvailabilityStatus(v CodeableConcept) DeviceOption {
 	return func(r *Device) {
 		r.AvailabilityStatus = &v
@@ -1740,6 +1782,8 @@ func WithDeviceAvailabilityStatus(v CodeableConcept) DeviceOption {
 }
 
 // WithDeviceBiologicalSourceEvent sets the BiologicalSourceEvent field.
+//
+// Deprecated: use DeviceBuilder.SetBiologicalSourceEvent instead; removed in v2.
 func WithDeviceBiologicalSourceEvent(v Identifier) DeviceOption {
 	return func(r *Device) {
 		r.BiologicalSourceEvent = &v
@@ -1747,6 +1791,8 @@ func WithDeviceBiologicalSourceEvent(v Identifier) DeviceOption {
 }
 
 // WithDeviceManufacturer sets the Manufacturer field.
+//
+// Deprecated: use DeviceBuilder.SetManufacturer instead; removed in v2.
 func WithDeviceManufacturer(v string) DeviceOption {
 	return func(r *Device) {
 		r.Manufacturer = &v
@@ -1754,6 +1800,8 @@ func WithDeviceManufacturer(v string) DeviceOption {
 }
 
 // WithDeviceManufactureDate sets the ManufactureDate field.
+//
+// Deprecated: use DeviceBuilder.SetManufactureDate instead; removed in v2.
 func WithDeviceManufactureDate(v string) DeviceOption {
 	return func(r *Device) {
 		r.ManufactureDate = &v
@@ -1761,6 +1809,8 @@ func WithDeviceManufactureDate(v string) DeviceOption {
 }
 
 // WithDeviceExpirationDate sets the ExpirationDate field.
+//
+// Deprecated: use DeviceBuilder.SetExpirationDate instead; removed in v2.
 func WithDeviceExpirationDate(v string) DeviceOption {
 	return func(r *Device) {
 		r.ExpirationDate = &v
@@ -1768,6 +1818,8 @@ func WithDeviceExpirationDate(v string) DeviceOption {
 }
 
 // WithDeviceLotNumber sets the LotNumber field.
+//
+// Deprecated: use DeviceBuilder.SetLotNumber instead; removed in v2.
 func WithDeviceLotNumber(v string) DeviceOption {
 	return func(r *Device) {
 		r.LotNumber = &v
@@ -1775,6 +1827,8 @@ func WithDeviceLotNumber(v string) DeviceOption {
 }
 
 // WithDeviceSerialNumber sets the SerialNumber field.
+//
+// Deprecated: use DeviceBuilder.SetSerialNumber instead; removed in v2.
 func WithDeviceSerialNumber(v string) DeviceOption {
 	return func(r *Device) {
 		r.SerialNumber = &v
@@ -1782,6 +1836,8 @@ func WithDeviceSerialNumber(v string) DeviceOption {
 }
 
 // WithDeviceName adds a Name to the Device.
+//
+// Deprecated: use DeviceBuilder.AddName instead; removed in v2.
 func WithDeviceName(v DeviceName) DeviceOption {
 	return func(r *Device) {
 		r.Name = append(r.Name, v)
@@ -1789,6 +1845,8 @@ func WithDeviceName(v DeviceName) DeviceOption {
 }
 
 // WithDeviceModelNumber sets the ModelNumber field.
+//
+// Deprecated: use DeviceBuilder.SetModelNumber instead; removed in v2.
 func WithDeviceModelNumber(v string) DeviceOption {
 	return func(r *Device) {
 		r.ModelNumber = &v
@@ -1796,6 +1854,8 @@ func WithDeviceModelNumber(v string) DeviceOption {
 }
 
 // WithDevicePartNumber sets the PartNumber field.
+//
+// Deprecated: use DeviceBuilder.SetPartNumber instead; removed in v2.
 func WithDevicePartNumber(v string) DeviceOption {
 	return func(r *Device) {
 		r.PartNumber = &v
@@ -1803,6 +1863,8 @@ func WithDevicePartNumber(v string) DeviceOption {
 }
 
 // WithDeviceCategory adds a Category to the Device.
+//
+// Deprecated: use DeviceBuilder.AddCategory instead; removed in v2.
 func WithDeviceCategory(v CodeableConcept) DeviceOption {
 	return func(r *Device) {
 		r.Category = append(r.Category, v)
@@ -1810,6 +1872,8 @@ func WithDeviceCategory(v CodeableConcept) DeviceOption {
 }
 
 // WithDeviceType adds a Type to the Device.
+//
+// Deprecated: use DeviceBuilder.AddType instead; removed in v2.
 func WithDeviceType(v CodeableConcept) DeviceOption {
 	return func(r *Device) {
 		r.Type = append(r.Type, v)
@@ -1817,6 +1881,8 @@ func WithDeviceType(v CodeableConcept) DeviceOption {
 }
 
 // WithDeviceVersion adds a Version to the Device.
+//
+// Deprecated: use DeviceBuilder.AddVersion instead; removed in v2.
 func WithDeviceVersion(v DeviceVersion) DeviceOption {
 	return func(r *Device) {
 		r.Version = append(r.Version, v)
@@ -1824,6 +1890,8 @@ func WithDeviceVersion(v DeviceVersion) DeviceOption {
 }
 
 // WithDeviceConformsTo adds a ConformsTo to the Device.
+//
+// Deprecated: use DeviceBuilder.AddConformsTo instead; removed in v2.
 func WithDeviceConformsTo(v DeviceConformsTo) DeviceOption {
 	return func(r *Device) {
 		r.ConformsTo = append(r.ConformsTo, v)
@@ -1831,6 +1899,8 @@ func WithDeviceConformsTo(v DeviceConformsTo) DeviceOption {
 }
 
 // WithDeviceProperty adds a Property to the Device.
+//
+// Deprecated: use DeviceBuilder.AddProperty instead; removed in v2.
 func WithDeviceProperty(v DeviceProperty) DeviceOption {
 	return func(r *Device) {
 		r.Property = append(r.Property, v)
@@ -1838,6 +1908,8 @@ func WithDeviceProperty(v DeviceProperty) DeviceOption {
 }
 
 // WithDeviceMode sets the Mode field.
+//
+// Deprecated: use DeviceBuilder.SetMode instead; removed in v2.
 func WithDeviceMode(v CodeableConcept) DeviceOption {
 	return func(r *Device) {
 		r.Mode = &v
@@ -1845,6 +1917,8 @@ func WithDeviceMode(v CodeableConcept) DeviceOption {
 }
 
 // WithDeviceCycle sets the Cycle field.
+//
+// Deprecated: use DeviceBuilder.SetCycle instead; removed in v2.
 func WithDeviceCycle(v Count) DeviceOption {
 	return func(r *Device) {
 		r.Cycle = &v
@@ -1852,6 +1926,8 @@ func WithDeviceCycle(v Count) DeviceOption {
 }
 
 // WithDeviceDuration sets the Duration field.
+//
+// Deprecated: use DeviceBuilder.SetDuration instead; removed in v2.
 func WithDeviceDuration(v Duration) DeviceOption {
 	return func(r *Device) {
 		r.Duration = &v
@@ -1859,6 +1935,8 @@ func WithDeviceDuration(v Duration) DeviceOption {
 }
 
 // WithDeviceOwner sets the Owner field.
+//
+// Deprecated: use DeviceBuilder.SetOwner instead; removed in v2.
 func WithDeviceOwner(v Reference) DeviceOption {
 	return func(r *Device) {
 		r.Owner = &v
@@ -1866,6 +1944,8 @@ func WithDeviceOwner(v Reference) DeviceOption {
 }
 
 // WithDeviceContact adds a Contact to the Device.
+//
+// Deprecated: use DeviceBuilder.AddContact instead; removed in v2.
 func WithDeviceContact(v ContactPoint) DeviceOption {
 	return func(r *Device) {
 		r.Contact = append(r.Contact, v)
@@ -1873,6 +1953,8 @@ func WithDeviceContact(v ContactPoint) DeviceOption {
 }
 
 // WithDeviceLocation sets the Location field.
+//
+// Deprecated: use DeviceBuilder.SetLocation instead; removed in v2.
 func WithDeviceLocation(v Reference) DeviceOption {
 	return func(r *Device) {
 		r.Location = &v
@@ -1880,6 +1962,8 @@ func WithDeviceLocation(v Reference) DeviceOption {
 }
 
 // WithDeviceUrl sets the Url field.
+//
+// Deprecated: use DeviceBuilder.SetUrl instead; removed in v2.
 func WithDeviceUrl(v string) DeviceOption {
 	return func(r *Device) {
 		r.Url = &v
@@ -1887,6 +1971,8 @@ func WithDeviceUrl(v string) DeviceOption {
 }
 
 // WithDeviceEndpoint adds a Endpoint to the Device.
+//
+// Deprecated: use DeviceBuilder.AddEndpoint instead; removed in v2.
 func WithDeviceEndpoint(v Reference) DeviceOption {
 	return func(r *Device) {
 		r.Endpoint = append(r.Endpoint, v)
@@ -1894,6 +1980,8 @@ func WithDeviceEndpoint(v Reference) DeviceOption {
 }
 
 // WithDeviceGateway adds a Gateway to the Device.
+//
+// Deprecated: use DeviceBuilder.AddGateway instead; removed in v2.
 func WithDeviceGateway(v CodeableReference) DeviceOption {
 	return func(r *Device) {
 		r.Gateway = append(r.Gateway, v)
@@ -1901,6 +1989,8 @@ func WithDeviceGateway(v CodeableReference) DeviceOption {
 }
 
 // WithDeviceNote adds a Note to the Device.
+//
+// Deprecated: use DeviceBuilder.AddNote instead; removed in v2.
 func WithDeviceNote(v Annotation) DeviceOption {
 	return func(r *Device) {
 		r.Note = append(r.Note, v)
@@ -1908,6 +1998,8 @@ func WithDeviceNote(v Annotation) DeviceOption {
 }
 
 // WithDeviceSafety adds a Safety to the Device.
+//
+// Deprecated: use DeviceBuilder.AddSafety instead; removed in v2.
 func WithDeviceSafety(v CodeableConcept) DeviceOption {
 	return func(r *Device) {
 		r.Safety = append(r.Safety, v)
@@ -1915,6 +2007,8 @@ func WithDeviceSafety(v CodeableConcept) DeviceOption {
 }
 
 // WithDeviceParent sets the Parent field.
+//
+// Deprecated: use DeviceBuilder.SetParent instead; removed in v2.
 func WithDeviceParent(v Reference) DeviceOption {
 	return func(r *Device) {
 		r.Parent = &v

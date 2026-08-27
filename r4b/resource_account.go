@@ -766,9 +766,23 @@ func (b *AccountBuilder) SetPartOf(v Reference) *AccountBuilder {
 // =============================================================================
 
 // AccountOption is a functional option for configuring a Account.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// AccountBuilder. Every WithAccount* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type AccountOption func(*Account)
 
 // NewAccount creates a new Account with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewAccountBuilder().SetId("x").Build()
+//
+// Deprecated: use NewAccountBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewAccount(opts ...AccountOption) *Account {
 	r := &Account{ResourceType: "Account"}
 	for _, opt := range opts {
@@ -778,6 +792,8 @@ func NewAccount(opts ...AccountOption) *Account {
 }
 
 // WithAccountId sets the Id field.
+//
+// Deprecated: use AccountBuilder.SetId instead; removed in v2.
 func WithAccountId(v string) AccountOption {
 	return func(r *Account) {
 		r.Id = &v
@@ -785,6 +801,8 @@ func WithAccountId(v string) AccountOption {
 }
 
 // WithAccountMeta sets the Meta field.
+//
+// Deprecated: use AccountBuilder.SetMeta instead; removed in v2.
 func WithAccountMeta(v Meta) AccountOption {
 	return func(r *Account) {
 		r.Meta = &v
@@ -792,6 +810,8 @@ func WithAccountMeta(v Meta) AccountOption {
 }
 
 // WithAccountImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use AccountBuilder.SetImplicitRules instead; removed in v2.
 func WithAccountImplicitRules(v string) AccountOption {
 	return func(r *Account) {
 		r.ImplicitRules = &v
@@ -799,6 +819,8 @@ func WithAccountImplicitRules(v string) AccountOption {
 }
 
 // WithAccountLanguage sets the Language field.
+//
+// Deprecated: use AccountBuilder.SetLanguage instead; removed in v2.
 func WithAccountLanguage(v string) AccountOption {
 	return func(r *Account) {
 		r.Language = &v
@@ -806,6 +828,8 @@ func WithAccountLanguage(v string) AccountOption {
 }
 
 // WithAccountText sets the Text field.
+//
+// Deprecated: use AccountBuilder.SetText instead; removed in v2.
 func WithAccountText(v Narrative) AccountOption {
 	return func(r *Account) {
 		r.Text = &v
@@ -813,6 +837,8 @@ func WithAccountText(v Narrative) AccountOption {
 }
 
 // WithAccountContained adds a Contained to the Account.
+//
+// Deprecated: use AccountBuilder.AddContained instead; removed in v2.
 func WithAccountContained(v Resource) AccountOption {
 	return func(r *Account) {
 		r.Contained = append(r.Contained, v)
@@ -820,6 +846,8 @@ func WithAccountContained(v Resource) AccountOption {
 }
 
 // WithAccountExtension adds a Extension to the Account.
+//
+// Deprecated: use AccountBuilder.AddExtension instead; removed in v2.
 func WithAccountExtension(v Extension) AccountOption {
 	return func(r *Account) {
 		r.Extension = append(r.Extension, v)
@@ -827,6 +855,8 @@ func WithAccountExtension(v Extension) AccountOption {
 }
 
 // WithAccountModifierExtension adds a ModifierExtension to the Account.
+//
+// Deprecated: use AccountBuilder.AddModifierExtension instead; removed in v2.
 func WithAccountModifierExtension(v Extension) AccountOption {
 	return func(r *Account) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -834,6 +864,8 @@ func WithAccountModifierExtension(v Extension) AccountOption {
 }
 
 // WithAccountIdentifier adds a Identifier to the Account.
+//
+// Deprecated: use AccountBuilder.AddIdentifier instead; removed in v2.
 func WithAccountIdentifier(v Identifier) AccountOption {
 	return func(r *Account) {
 		r.Identifier = append(r.Identifier, v)
@@ -841,6 +873,8 @@ func WithAccountIdentifier(v Identifier) AccountOption {
 }
 
 // WithAccountStatus sets the Status field.
+//
+// Deprecated: use AccountBuilder.SetStatus instead; removed in v2.
 func WithAccountStatus(v AccountStatus) AccountOption {
 	return func(r *Account) {
 		r.Status = &v
@@ -848,6 +882,8 @@ func WithAccountStatus(v AccountStatus) AccountOption {
 }
 
 // WithAccountType sets the Type field.
+//
+// Deprecated: use AccountBuilder.SetType instead; removed in v2.
 func WithAccountType(v CodeableConcept) AccountOption {
 	return func(r *Account) {
 		r.Type = &v
@@ -855,6 +891,8 @@ func WithAccountType(v CodeableConcept) AccountOption {
 }
 
 // WithAccountName sets the Name field.
+//
+// Deprecated: use AccountBuilder.SetName instead; removed in v2.
 func WithAccountName(v string) AccountOption {
 	return func(r *Account) {
 		r.Name = &v
@@ -862,6 +900,8 @@ func WithAccountName(v string) AccountOption {
 }
 
 // WithAccountSubject adds a Subject to the Account.
+//
+// Deprecated: use AccountBuilder.AddSubject instead; removed in v2.
 func WithAccountSubject(v Reference) AccountOption {
 	return func(r *Account) {
 		r.Subject = append(r.Subject, v)
@@ -869,6 +909,8 @@ func WithAccountSubject(v Reference) AccountOption {
 }
 
 // WithAccountServicePeriod sets the ServicePeriod field.
+//
+// Deprecated: use AccountBuilder.SetServicePeriod instead; removed in v2.
 func WithAccountServicePeriod(v Period) AccountOption {
 	return func(r *Account) {
 		r.ServicePeriod = &v
@@ -876,6 +918,8 @@ func WithAccountServicePeriod(v Period) AccountOption {
 }
 
 // WithAccountCoverage adds a Coverage to the Account.
+//
+// Deprecated: use AccountBuilder.AddCoverage instead; removed in v2.
 func WithAccountCoverage(v AccountCoverage) AccountOption {
 	return func(r *Account) {
 		r.Coverage = append(r.Coverage, v)
@@ -883,6 +927,8 @@ func WithAccountCoverage(v AccountCoverage) AccountOption {
 }
 
 // WithAccountOwner sets the Owner field.
+//
+// Deprecated: use AccountBuilder.SetOwner instead; removed in v2.
 func WithAccountOwner(v Reference) AccountOption {
 	return func(r *Account) {
 		r.Owner = &v
@@ -890,6 +936,8 @@ func WithAccountOwner(v Reference) AccountOption {
 }
 
 // WithAccountDescription sets the Description field.
+//
+// Deprecated: use AccountBuilder.SetDescription instead; removed in v2.
 func WithAccountDescription(v string) AccountOption {
 	return func(r *Account) {
 		r.Description = &v
@@ -897,6 +945,8 @@ func WithAccountDescription(v string) AccountOption {
 }
 
 // WithAccountGuarantor adds a Guarantor to the Account.
+//
+// Deprecated: use AccountBuilder.AddGuarantor instead; removed in v2.
 func WithAccountGuarantor(v AccountGuarantor) AccountOption {
 	return func(r *Account) {
 		r.Guarantor = append(r.Guarantor, v)
@@ -904,6 +954,8 @@ func WithAccountGuarantor(v AccountGuarantor) AccountOption {
 }
 
 // WithAccountPartOf sets the PartOf field.
+//
+// Deprecated: use AccountBuilder.SetPartOf instead; removed in v2.
 func WithAccountPartOf(v Reference) AccountOption {
 	return func(r *Account) {
 		r.PartOf = &v

@@ -1879,9 +1879,23 @@ func (b *MolecularSequenceBuilder) AddStructureVariant(v MolecularSequenceStruct
 // =============================================================================
 
 // MolecularSequenceOption is a functional option for configuring a MolecularSequence.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// MolecularSequenceBuilder. Every WithMolecularSequence* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type MolecularSequenceOption func(*MolecularSequence)
 
 // NewMolecularSequence creates a new MolecularSequence with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewMolecularSequenceBuilder().SetId("x").Build()
+//
+// Deprecated: use NewMolecularSequenceBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewMolecularSequence(opts ...MolecularSequenceOption) *MolecularSequence {
 	r := &MolecularSequence{ResourceType: "MolecularSequence"}
 	for _, opt := range opts {
@@ -1891,6 +1905,8 @@ func NewMolecularSequence(opts ...MolecularSequenceOption) *MolecularSequence {
 }
 
 // WithMolecularSequenceId sets the Id field.
+//
+// Deprecated: use MolecularSequenceBuilder.SetId instead; removed in v2.
 func WithMolecularSequenceId(v string) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.Id = &v
@@ -1898,6 +1914,8 @@ func WithMolecularSequenceId(v string) MolecularSequenceOption {
 }
 
 // WithMolecularSequenceMeta sets the Meta field.
+//
+// Deprecated: use MolecularSequenceBuilder.SetMeta instead; removed in v2.
 func WithMolecularSequenceMeta(v Meta) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.Meta = &v
@@ -1905,6 +1923,8 @@ func WithMolecularSequenceMeta(v Meta) MolecularSequenceOption {
 }
 
 // WithMolecularSequenceImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use MolecularSequenceBuilder.SetImplicitRules instead; removed in v2.
 func WithMolecularSequenceImplicitRules(v string) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.ImplicitRules = &v
@@ -1912,6 +1932,8 @@ func WithMolecularSequenceImplicitRules(v string) MolecularSequenceOption {
 }
 
 // WithMolecularSequenceLanguage sets the Language field.
+//
+// Deprecated: use MolecularSequenceBuilder.SetLanguage instead; removed in v2.
 func WithMolecularSequenceLanguage(v string) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.Language = &v
@@ -1919,6 +1941,8 @@ func WithMolecularSequenceLanguage(v string) MolecularSequenceOption {
 }
 
 // WithMolecularSequenceText sets the Text field.
+//
+// Deprecated: use MolecularSequenceBuilder.SetText instead; removed in v2.
 func WithMolecularSequenceText(v Narrative) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.Text = &v
@@ -1926,6 +1950,8 @@ func WithMolecularSequenceText(v Narrative) MolecularSequenceOption {
 }
 
 // WithMolecularSequenceContained adds a Contained to the MolecularSequence.
+//
+// Deprecated: use MolecularSequenceBuilder.AddContained instead; removed in v2.
 func WithMolecularSequenceContained(v Resource) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.Contained = append(r.Contained, v)
@@ -1933,6 +1959,8 @@ func WithMolecularSequenceContained(v Resource) MolecularSequenceOption {
 }
 
 // WithMolecularSequenceExtension adds a Extension to the MolecularSequence.
+//
+// Deprecated: use MolecularSequenceBuilder.AddExtension instead; removed in v2.
 func WithMolecularSequenceExtension(v Extension) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.Extension = append(r.Extension, v)
@@ -1940,6 +1968,8 @@ func WithMolecularSequenceExtension(v Extension) MolecularSequenceOption {
 }
 
 // WithMolecularSequenceModifierExtension adds a ModifierExtension to the MolecularSequence.
+//
+// Deprecated: use MolecularSequenceBuilder.AddModifierExtension instead; removed in v2.
 func WithMolecularSequenceModifierExtension(v Extension) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1947,6 +1977,8 @@ func WithMolecularSequenceModifierExtension(v Extension) MolecularSequenceOption
 }
 
 // WithMolecularSequenceIdentifier adds a Identifier to the MolecularSequence.
+//
+// Deprecated: use MolecularSequenceBuilder.AddIdentifier instead; removed in v2.
 func WithMolecularSequenceIdentifier(v Identifier) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.Identifier = append(r.Identifier, v)
@@ -1954,6 +1986,8 @@ func WithMolecularSequenceIdentifier(v Identifier) MolecularSequenceOption {
 }
 
 // WithMolecularSequenceType sets the Type field.
+//
+// Deprecated: use MolecularSequenceBuilder.SetType instead; removed in v2.
 func WithMolecularSequenceType(v SequenceType) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.Type = &v
@@ -1961,6 +1995,8 @@ func WithMolecularSequenceType(v SequenceType) MolecularSequenceOption {
 }
 
 // WithMolecularSequenceCoordinateSystem sets the CoordinateSystem field.
+//
+// Deprecated: use MolecularSequenceBuilder.SetCoordinateSystem instead; removed in v2.
 func WithMolecularSequenceCoordinateSystem(v int) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.CoordinateSystem = &v
@@ -1968,6 +2004,8 @@ func WithMolecularSequenceCoordinateSystem(v int) MolecularSequenceOption {
 }
 
 // WithMolecularSequencePatient sets the Patient field.
+//
+// Deprecated: use MolecularSequenceBuilder.SetPatient instead; removed in v2.
 func WithMolecularSequencePatient(v Reference) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.Patient = &v
@@ -1975,6 +2013,8 @@ func WithMolecularSequencePatient(v Reference) MolecularSequenceOption {
 }
 
 // WithMolecularSequenceSpecimen sets the Specimen field.
+//
+// Deprecated: use MolecularSequenceBuilder.SetSpecimen instead; removed in v2.
 func WithMolecularSequenceSpecimen(v Reference) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.Specimen = &v
@@ -1982,6 +2022,8 @@ func WithMolecularSequenceSpecimen(v Reference) MolecularSequenceOption {
 }
 
 // WithMolecularSequenceDevice sets the Device field.
+//
+// Deprecated: use MolecularSequenceBuilder.SetDevice instead; removed in v2.
 func WithMolecularSequenceDevice(v Reference) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.Device = &v
@@ -1989,6 +2031,8 @@ func WithMolecularSequenceDevice(v Reference) MolecularSequenceOption {
 }
 
 // WithMolecularSequencePerformer sets the Performer field.
+//
+// Deprecated: use MolecularSequenceBuilder.SetPerformer instead; removed in v2.
 func WithMolecularSequencePerformer(v Reference) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.Performer = &v
@@ -1996,6 +2040,8 @@ func WithMolecularSequencePerformer(v Reference) MolecularSequenceOption {
 }
 
 // WithMolecularSequenceQuantity sets the Quantity field.
+//
+// Deprecated: use MolecularSequenceBuilder.SetQuantity instead; removed in v2.
 func WithMolecularSequenceQuantity(v Quantity) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.Quantity = &v
@@ -2003,6 +2049,8 @@ func WithMolecularSequenceQuantity(v Quantity) MolecularSequenceOption {
 }
 
 // WithMolecularSequenceReferenceSeq sets the ReferenceSeq field.
+//
+// Deprecated: use MolecularSequenceBuilder.SetReferenceSeq instead; removed in v2.
 func WithMolecularSequenceReferenceSeq(v MolecularSequenceReferenceSeq) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.ReferenceSeq = &v
@@ -2010,6 +2058,8 @@ func WithMolecularSequenceReferenceSeq(v MolecularSequenceReferenceSeq) Molecula
 }
 
 // WithMolecularSequenceVariant adds a Variant to the MolecularSequence.
+//
+// Deprecated: use MolecularSequenceBuilder.AddVariant instead; removed in v2.
 func WithMolecularSequenceVariant(v MolecularSequenceVariant) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.Variant = append(r.Variant, v)
@@ -2017,6 +2067,8 @@ func WithMolecularSequenceVariant(v MolecularSequenceVariant) MolecularSequenceO
 }
 
 // WithMolecularSequenceObservedSeq sets the ObservedSeq field.
+//
+// Deprecated: use MolecularSequenceBuilder.SetObservedSeq instead; removed in v2.
 func WithMolecularSequenceObservedSeq(v string) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.ObservedSeq = &v
@@ -2024,6 +2076,8 @@ func WithMolecularSequenceObservedSeq(v string) MolecularSequenceOption {
 }
 
 // WithMolecularSequenceQuality adds a Quality to the MolecularSequence.
+//
+// Deprecated: use MolecularSequenceBuilder.AddQuality instead; removed in v2.
 func WithMolecularSequenceQuality(v MolecularSequenceQuality) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.Quality = append(r.Quality, v)
@@ -2031,6 +2085,8 @@ func WithMolecularSequenceQuality(v MolecularSequenceQuality) MolecularSequenceO
 }
 
 // WithMolecularSequenceReadCoverage sets the ReadCoverage field.
+//
+// Deprecated: use MolecularSequenceBuilder.SetReadCoverage instead; removed in v2.
 func WithMolecularSequenceReadCoverage(v int) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.ReadCoverage = &v
@@ -2038,6 +2094,8 @@ func WithMolecularSequenceReadCoverage(v int) MolecularSequenceOption {
 }
 
 // WithMolecularSequenceRepository adds a Repository to the MolecularSequence.
+//
+// Deprecated: use MolecularSequenceBuilder.AddRepository instead; removed in v2.
 func WithMolecularSequenceRepository(v MolecularSequenceRepository) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.Repository = append(r.Repository, v)
@@ -2045,6 +2103,8 @@ func WithMolecularSequenceRepository(v MolecularSequenceRepository) MolecularSeq
 }
 
 // WithMolecularSequencePointer adds a Pointer to the MolecularSequence.
+//
+// Deprecated: use MolecularSequenceBuilder.AddPointer instead; removed in v2.
 func WithMolecularSequencePointer(v Reference) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.Pointer = append(r.Pointer, v)
@@ -2052,6 +2112,8 @@ func WithMolecularSequencePointer(v Reference) MolecularSequenceOption {
 }
 
 // WithMolecularSequenceStructureVariant adds a StructureVariant to the MolecularSequence.
+//
+// Deprecated: use MolecularSequenceBuilder.AddStructureVariant instead; removed in v2.
 func WithMolecularSequenceStructureVariant(v MolecularSequenceStructureVariant) MolecularSequenceOption {
 	return func(r *MolecularSequence) {
 		r.StructureVariant = append(r.StructureVariant, v)

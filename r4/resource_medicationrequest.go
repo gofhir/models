@@ -1390,9 +1390,23 @@ func (b *MedicationRequestBuilder) AddEventHistory(v Reference) *MedicationReque
 // =============================================================================
 
 // MedicationRequestOption is a functional option for configuring a MedicationRequest.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// MedicationRequestBuilder. Every WithMedicationRequest* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type MedicationRequestOption func(*MedicationRequest)
 
 // NewMedicationRequest creates a new MedicationRequest with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewMedicationRequestBuilder().SetId("x").Build()
+//
+// Deprecated: use NewMedicationRequestBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewMedicationRequest(opts ...MedicationRequestOption) *MedicationRequest {
 	r := &MedicationRequest{ResourceType: "MedicationRequest"}
 	for _, opt := range opts {
@@ -1402,6 +1416,8 @@ func NewMedicationRequest(opts ...MedicationRequestOption) *MedicationRequest {
 }
 
 // WithMedicationRequestId sets the Id field.
+//
+// Deprecated: use MedicationRequestBuilder.SetId instead; removed in v2.
 func WithMedicationRequestId(v string) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.Id = &v
@@ -1409,6 +1425,8 @@ func WithMedicationRequestId(v string) MedicationRequestOption {
 }
 
 // WithMedicationRequestMeta sets the Meta field.
+//
+// Deprecated: use MedicationRequestBuilder.SetMeta instead; removed in v2.
 func WithMedicationRequestMeta(v Meta) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.Meta = &v
@@ -1416,6 +1434,8 @@ func WithMedicationRequestMeta(v Meta) MedicationRequestOption {
 }
 
 // WithMedicationRequestImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use MedicationRequestBuilder.SetImplicitRules instead; removed in v2.
 func WithMedicationRequestImplicitRules(v string) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.ImplicitRules = &v
@@ -1423,6 +1443,8 @@ func WithMedicationRequestImplicitRules(v string) MedicationRequestOption {
 }
 
 // WithMedicationRequestLanguage sets the Language field.
+//
+// Deprecated: use MedicationRequestBuilder.SetLanguage instead; removed in v2.
 func WithMedicationRequestLanguage(v string) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.Language = &v
@@ -1430,6 +1452,8 @@ func WithMedicationRequestLanguage(v string) MedicationRequestOption {
 }
 
 // WithMedicationRequestText sets the Text field.
+//
+// Deprecated: use MedicationRequestBuilder.SetText instead; removed in v2.
 func WithMedicationRequestText(v Narrative) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.Text = &v
@@ -1437,6 +1461,8 @@ func WithMedicationRequestText(v Narrative) MedicationRequestOption {
 }
 
 // WithMedicationRequestContained adds a Contained to the MedicationRequest.
+//
+// Deprecated: use MedicationRequestBuilder.AddContained instead; removed in v2.
 func WithMedicationRequestContained(v Resource) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.Contained = append(r.Contained, v)
@@ -1444,6 +1470,8 @@ func WithMedicationRequestContained(v Resource) MedicationRequestOption {
 }
 
 // WithMedicationRequestExtension adds a Extension to the MedicationRequest.
+//
+// Deprecated: use MedicationRequestBuilder.AddExtension instead; removed in v2.
 func WithMedicationRequestExtension(v Extension) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.Extension = append(r.Extension, v)
@@ -1451,6 +1479,8 @@ func WithMedicationRequestExtension(v Extension) MedicationRequestOption {
 }
 
 // WithMedicationRequestModifierExtension adds a ModifierExtension to the MedicationRequest.
+//
+// Deprecated: use MedicationRequestBuilder.AddModifierExtension instead; removed in v2.
 func WithMedicationRequestModifierExtension(v Extension) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1458,6 +1488,8 @@ func WithMedicationRequestModifierExtension(v Extension) MedicationRequestOption
 }
 
 // WithMedicationRequestIdentifier adds a Identifier to the MedicationRequest.
+//
+// Deprecated: use MedicationRequestBuilder.AddIdentifier instead; removed in v2.
 func WithMedicationRequestIdentifier(v Identifier) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.Identifier = append(r.Identifier, v)
@@ -1465,6 +1497,8 @@ func WithMedicationRequestIdentifier(v Identifier) MedicationRequestOption {
 }
 
 // WithMedicationRequestStatus sets the Status field.
+//
+// Deprecated: use MedicationRequestBuilder.SetStatus instead; removed in v2.
 func WithMedicationRequestStatus(v MedicationrequestStatus) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.Status = &v
@@ -1472,6 +1506,8 @@ func WithMedicationRequestStatus(v MedicationrequestStatus) MedicationRequestOpt
 }
 
 // WithMedicationRequestStatusReason sets the StatusReason field.
+//
+// Deprecated: use MedicationRequestBuilder.SetStatusReason instead; removed in v2.
 func WithMedicationRequestStatusReason(v CodeableConcept) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.StatusReason = &v
@@ -1479,6 +1515,8 @@ func WithMedicationRequestStatusReason(v CodeableConcept) MedicationRequestOptio
 }
 
 // WithMedicationRequestIntent sets the Intent field.
+//
+// Deprecated: use MedicationRequestBuilder.SetIntent instead; removed in v2.
 func WithMedicationRequestIntent(v MedicationRequestIntent) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.Intent = &v
@@ -1486,6 +1524,8 @@ func WithMedicationRequestIntent(v MedicationRequestIntent) MedicationRequestOpt
 }
 
 // WithMedicationRequestCategory adds a Category to the MedicationRequest.
+//
+// Deprecated: use MedicationRequestBuilder.AddCategory instead; removed in v2.
 func WithMedicationRequestCategory(v CodeableConcept) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.Category = append(r.Category, v)
@@ -1493,6 +1533,8 @@ func WithMedicationRequestCategory(v CodeableConcept) MedicationRequestOption {
 }
 
 // WithMedicationRequestPriority sets the Priority field.
+//
+// Deprecated: use MedicationRequestBuilder.SetPriority instead; removed in v2.
 func WithMedicationRequestPriority(v RequestPriority) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.Priority = &v
@@ -1500,6 +1542,8 @@ func WithMedicationRequestPriority(v RequestPriority) MedicationRequestOption {
 }
 
 // WithMedicationRequestDoNotPerform sets the DoNotPerform field.
+//
+// Deprecated: use MedicationRequestBuilder.SetDoNotPerform instead; removed in v2.
 func WithMedicationRequestDoNotPerform(v bool) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.DoNotPerform = &v
@@ -1507,6 +1551,8 @@ func WithMedicationRequestDoNotPerform(v bool) MedicationRequestOption {
 }
 
 // WithMedicationRequestReportedBoolean sets the ReportedBoolean field.
+//
+// Deprecated: use MedicationRequestBuilder.SetReportedBoolean instead; removed in v2.
 func WithMedicationRequestReportedBoolean(v bool) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.ReportedBoolean = &v
@@ -1514,6 +1560,8 @@ func WithMedicationRequestReportedBoolean(v bool) MedicationRequestOption {
 }
 
 // WithMedicationRequestReportedBooleanExt sets the ReportedBooleanExt field.
+//
+// Deprecated: use MedicationRequestBuilder.SetReportedBooleanExt instead; removed in v2.
 func WithMedicationRequestReportedBooleanExt(v Element) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.ReportedBooleanExt = &v
@@ -1521,6 +1569,8 @@ func WithMedicationRequestReportedBooleanExt(v Element) MedicationRequestOption 
 }
 
 // WithMedicationRequestReportedReference sets the ReportedReference field.
+//
+// Deprecated: use MedicationRequestBuilder.SetReportedReference instead; removed in v2.
 func WithMedicationRequestReportedReference(v Reference) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.ReportedReference = &v
@@ -1528,6 +1578,8 @@ func WithMedicationRequestReportedReference(v Reference) MedicationRequestOption
 }
 
 // WithMedicationRequestMedicationCodeableConcept sets the MedicationCodeableConcept field.
+//
+// Deprecated: use MedicationRequestBuilder.SetMedicationCodeableConcept instead; removed in v2.
 func WithMedicationRequestMedicationCodeableConcept(v CodeableConcept) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.MedicationCodeableConcept = &v
@@ -1535,6 +1587,8 @@ func WithMedicationRequestMedicationCodeableConcept(v CodeableConcept) Medicatio
 }
 
 // WithMedicationRequestMedicationReference sets the MedicationReference field.
+//
+// Deprecated: use MedicationRequestBuilder.SetMedicationReference instead; removed in v2.
 func WithMedicationRequestMedicationReference(v Reference) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.MedicationReference = &v
@@ -1542,6 +1596,8 @@ func WithMedicationRequestMedicationReference(v Reference) MedicationRequestOpti
 }
 
 // WithMedicationRequestSubject sets the Subject field.
+//
+// Deprecated: use MedicationRequestBuilder.SetSubject instead; removed in v2.
 func WithMedicationRequestSubject(v Reference) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.Subject = v
@@ -1549,6 +1605,8 @@ func WithMedicationRequestSubject(v Reference) MedicationRequestOption {
 }
 
 // WithMedicationRequestEncounter sets the Encounter field.
+//
+// Deprecated: use MedicationRequestBuilder.SetEncounter instead; removed in v2.
 func WithMedicationRequestEncounter(v Reference) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.Encounter = &v
@@ -1556,6 +1614,8 @@ func WithMedicationRequestEncounter(v Reference) MedicationRequestOption {
 }
 
 // WithMedicationRequestSupportingInformation adds a SupportingInformation to the MedicationRequest.
+//
+// Deprecated: use MedicationRequestBuilder.AddSupportingInformation instead; removed in v2.
 func WithMedicationRequestSupportingInformation(v Reference) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.SupportingInformation = append(r.SupportingInformation, v)
@@ -1563,6 +1623,8 @@ func WithMedicationRequestSupportingInformation(v Reference) MedicationRequestOp
 }
 
 // WithMedicationRequestAuthoredOn sets the AuthoredOn field.
+//
+// Deprecated: use MedicationRequestBuilder.SetAuthoredOn instead; removed in v2.
 func WithMedicationRequestAuthoredOn(v string) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.AuthoredOn = &v
@@ -1570,6 +1632,8 @@ func WithMedicationRequestAuthoredOn(v string) MedicationRequestOption {
 }
 
 // WithMedicationRequestRequester sets the Requester field.
+//
+// Deprecated: use MedicationRequestBuilder.SetRequester instead; removed in v2.
 func WithMedicationRequestRequester(v Reference) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.Requester = &v
@@ -1577,6 +1641,8 @@ func WithMedicationRequestRequester(v Reference) MedicationRequestOption {
 }
 
 // WithMedicationRequestPerformer sets the Performer field.
+//
+// Deprecated: use MedicationRequestBuilder.SetPerformer instead; removed in v2.
 func WithMedicationRequestPerformer(v Reference) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.Performer = &v
@@ -1584,6 +1650,8 @@ func WithMedicationRequestPerformer(v Reference) MedicationRequestOption {
 }
 
 // WithMedicationRequestPerformerType sets the PerformerType field.
+//
+// Deprecated: use MedicationRequestBuilder.SetPerformerType instead; removed in v2.
 func WithMedicationRequestPerformerType(v CodeableConcept) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.PerformerType = &v
@@ -1591,6 +1659,8 @@ func WithMedicationRequestPerformerType(v CodeableConcept) MedicationRequestOpti
 }
 
 // WithMedicationRequestRecorder sets the Recorder field.
+//
+// Deprecated: use MedicationRequestBuilder.SetRecorder instead; removed in v2.
 func WithMedicationRequestRecorder(v Reference) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.Recorder = &v
@@ -1598,6 +1668,8 @@ func WithMedicationRequestRecorder(v Reference) MedicationRequestOption {
 }
 
 // WithMedicationRequestReasonCode adds a ReasonCode to the MedicationRequest.
+//
+// Deprecated: use MedicationRequestBuilder.AddReasonCode instead; removed in v2.
 func WithMedicationRequestReasonCode(v CodeableConcept) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.ReasonCode = append(r.ReasonCode, v)
@@ -1605,6 +1677,8 @@ func WithMedicationRequestReasonCode(v CodeableConcept) MedicationRequestOption 
 }
 
 // WithMedicationRequestReasonReference adds a ReasonReference to the MedicationRequest.
+//
+// Deprecated: use MedicationRequestBuilder.AddReasonReference instead; removed in v2.
 func WithMedicationRequestReasonReference(v Reference) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.ReasonReference = append(r.ReasonReference, v)
@@ -1612,6 +1686,8 @@ func WithMedicationRequestReasonReference(v Reference) MedicationRequestOption {
 }
 
 // WithMedicationRequestInstantiatesCanonical adds a InstantiatesCanonical to the MedicationRequest.
+//
+// Deprecated: use MedicationRequestBuilder.AddInstantiatesCanonical instead; removed in v2.
 func WithMedicationRequestInstantiatesCanonical(v string) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
@@ -1619,6 +1695,8 @@ func WithMedicationRequestInstantiatesCanonical(v string) MedicationRequestOptio
 }
 
 // WithMedicationRequestInstantiatesUri adds a InstantiatesUri to the MedicationRequest.
+//
+// Deprecated: use MedicationRequestBuilder.AddInstantiatesUri instead; removed in v2.
 func WithMedicationRequestInstantiatesUri(v string) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.InstantiatesUri = append(r.InstantiatesUri, v)
@@ -1626,6 +1704,8 @@ func WithMedicationRequestInstantiatesUri(v string) MedicationRequestOption {
 }
 
 // WithMedicationRequestBasedOn adds a BasedOn to the MedicationRequest.
+//
+// Deprecated: use MedicationRequestBuilder.AddBasedOn instead; removed in v2.
 func WithMedicationRequestBasedOn(v Reference) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -1633,6 +1713,8 @@ func WithMedicationRequestBasedOn(v Reference) MedicationRequestOption {
 }
 
 // WithMedicationRequestGroupIdentifier sets the GroupIdentifier field.
+//
+// Deprecated: use MedicationRequestBuilder.SetGroupIdentifier instead; removed in v2.
 func WithMedicationRequestGroupIdentifier(v Identifier) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.GroupIdentifier = &v
@@ -1640,6 +1722,8 @@ func WithMedicationRequestGroupIdentifier(v Identifier) MedicationRequestOption 
 }
 
 // WithMedicationRequestCourseOfTherapyType sets the CourseOfTherapyType field.
+//
+// Deprecated: use MedicationRequestBuilder.SetCourseOfTherapyType instead; removed in v2.
 func WithMedicationRequestCourseOfTherapyType(v CodeableConcept) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.CourseOfTherapyType = &v
@@ -1647,6 +1731,8 @@ func WithMedicationRequestCourseOfTherapyType(v CodeableConcept) MedicationReque
 }
 
 // WithMedicationRequestInsurance adds a Insurance to the MedicationRequest.
+//
+// Deprecated: use MedicationRequestBuilder.AddInsurance instead; removed in v2.
 func WithMedicationRequestInsurance(v Reference) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.Insurance = append(r.Insurance, v)
@@ -1654,6 +1740,8 @@ func WithMedicationRequestInsurance(v Reference) MedicationRequestOption {
 }
 
 // WithMedicationRequestNote adds a Note to the MedicationRequest.
+//
+// Deprecated: use MedicationRequestBuilder.AddNote instead; removed in v2.
 func WithMedicationRequestNote(v Annotation) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.Note = append(r.Note, v)
@@ -1661,6 +1749,8 @@ func WithMedicationRequestNote(v Annotation) MedicationRequestOption {
 }
 
 // WithMedicationRequestDosageInstruction adds a DosageInstruction to the MedicationRequest.
+//
+// Deprecated: use MedicationRequestBuilder.AddDosageInstruction instead; removed in v2.
 func WithMedicationRequestDosageInstruction(v Dosage) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.DosageInstruction = append(r.DosageInstruction, v)
@@ -1668,6 +1758,8 @@ func WithMedicationRequestDosageInstruction(v Dosage) MedicationRequestOption {
 }
 
 // WithMedicationRequestDispenseRequest sets the DispenseRequest field.
+//
+// Deprecated: use MedicationRequestBuilder.SetDispenseRequest instead; removed in v2.
 func WithMedicationRequestDispenseRequest(v MedicationRequestDispenseRequest) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.DispenseRequest = &v
@@ -1675,6 +1767,8 @@ func WithMedicationRequestDispenseRequest(v MedicationRequestDispenseRequest) Me
 }
 
 // WithMedicationRequestSubstitution sets the Substitution field.
+//
+// Deprecated: use MedicationRequestBuilder.SetSubstitution instead; removed in v2.
 func WithMedicationRequestSubstitution(v MedicationRequestSubstitution) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.Substitution = &v
@@ -1682,6 +1776,8 @@ func WithMedicationRequestSubstitution(v MedicationRequestSubstitution) Medicati
 }
 
 // WithMedicationRequestPriorPrescription sets the PriorPrescription field.
+//
+// Deprecated: use MedicationRequestBuilder.SetPriorPrescription instead; removed in v2.
 func WithMedicationRequestPriorPrescription(v Reference) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.PriorPrescription = &v
@@ -1689,6 +1785,8 @@ func WithMedicationRequestPriorPrescription(v Reference) MedicationRequestOption
 }
 
 // WithMedicationRequestDetectedIssue adds a DetectedIssue to the MedicationRequest.
+//
+// Deprecated: use MedicationRequestBuilder.AddDetectedIssue instead; removed in v2.
 func WithMedicationRequestDetectedIssue(v Reference) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.DetectedIssue = append(r.DetectedIssue, v)
@@ -1696,6 +1794,8 @@ func WithMedicationRequestDetectedIssue(v Reference) MedicationRequestOption {
 }
 
 // WithMedicationRequestEventHistory adds a EventHistory to the MedicationRequest.
+//
+// Deprecated: use MedicationRequestBuilder.AddEventHistory instead; removed in v2.
 func WithMedicationRequestEventHistory(v Reference) MedicationRequestOption {
 	return func(r *MedicationRequest) {
 		r.EventHistory = append(r.EventHistory, v)

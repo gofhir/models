@@ -1403,9 +1403,23 @@ func (b *SubscriptionTopicBuilder) AddNotificationShape(v SubscriptionTopicNotif
 // =============================================================================
 
 // SubscriptionTopicOption is a functional option for configuring a SubscriptionTopic.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// SubscriptionTopicBuilder. Every WithSubscriptionTopic* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type SubscriptionTopicOption func(*SubscriptionTopic)
 
 // NewSubscriptionTopic creates a new SubscriptionTopic with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewSubscriptionTopicBuilder().SetId("x").Build()
+//
+// Deprecated: use NewSubscriptionTopicBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewSubscriptionTopic(opts ...SubscriptionTopicOption) *SubscriptionTopic {
 	r := &SubscriptionTopic{ResourceType: "SubscriptionTopic"}
 	for _, opt := range opts {
@@ -1415,6 +1429,8 @@ func NewSubscriptionTopic(opts ...SubscriptionTopicOption) *SubscriptionTopic {
 }
 
 // WithSubscriptionTopicId sets the Id field.
+//
+// Deprecated: use SubscriptionTopicBuilder.SetId instead; removed in v2.
 func WithSubscriptionTopicId(v string) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.Id = &v
@@ -1422,6 +1438,8 @@ func WithSubscriptionTopicId(v string) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicMeta sets the Meta field.
+//
+// Deprecated: use SubscriptionTopicBuilder.SetMeta instead; removed in v2.
 func WithSubscriptionTopicMeta(v Meta) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.Meta = &v
@@ -1429,6 +1447,8 @@ func WithSubscriptionTopicMeta(v Meta) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use SubscriptionTopicBuilder.SetImplicitRules instead; removed in v2.
 func WithSubscriptionTopicImplicitRules(v string) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.ImplicitRules = &v
@@ -1436,6 +1456,8 @@ func WithSubscriptionTopicImplicitRules(v string) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicLanguage sets the Language field.
+//
+// Deprecated: use SubscriptionTopicBuilder.SetLanguage instead; removed in v2.
 func WithSubscriptionTopicLanguage(v string) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.Language = &v
@@ -1443,6 +1465,8 @@ func WithSubscriptionTopicLanguage(v string) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicText sets the Text field.
+//
+// Deprecated: use SubscriptionTopicBuilder.SetText instead; removed in v2.
 func WithSubscriptionTopicText(v Narrative) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.Text = &v
@@ -1450,6 +1474,8 @@ func WithSubscriptionTopicText(v Narrative) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicContained adds a Contained to the SubscriptionTopic.
+//
+// Deprecated: use SubscriptionTopicBuilder.AddContained instead; removed in v2.
 func WithSubscriptionTopicContained(v Resource) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.Contained = append(r.Contained, v)
@@ -1457,6 +1483,8 @@ func WithSubscriptionTopicContained(v Resource) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicExtension adds a Extension to the SubscriptionTopic.
+//
+// Deprecated: use SubscriptionTopicBuilder.AddExtension instead; removed in v2.
 func WithSubscriptionTopicExtension(v Extension) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.Extension = append(r.Extension, v)
@@ -1464,6 +1492,8 @@ func WithSubscriptionTopicExtension(v Extension) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicModifierExtension adds a ModifierExtension to the SubscriptionTopic.
+//
+// Deprecated: use SubscriptionTopicBuilder.AddModifierExtension instead; removed in v2.
 func WithSubscriptionTopicModifierExtension(v Extension) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1471,6 +1501,8 @@ func WithSubscriptionTopicModifierExtension(v Extension) SubscriptionTopicOption
 }
 
 // WithSubscriptionTopicUrl sets the Url field.
+//
+// Deprecated: use SubscriptionTopicBuilder.SetUrl instead; removed in v2.
 func WithSubscriptionTopicUrl(v string) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.Url = &v
@@ -1478,6 +1510,8 @@ func WithSubscriptionTopicUrl(v string) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicIdentifier adds a Identifier to the SubscriptionTopic.
+//
+// Deprecated: use SubscriptionTopicBuilder.AddIdentifier instead; removed in v2.
 func WithSubscriptionTopicIdentifier(v Identifier) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.Identifier = append(r.Identifier, v)
@@ -1485,6 +1519,8 @@ func WithSubscriptionTopicIdentifier(v Identifier) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicVersion sets the Version field.
+//
+// Deprecated: use SubscriptionTopicBuilder.SetVersion instead; removed in v2.
 func WithSubscriptionTopicVersion(v string) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.Version = &v
@@ -1492,6 +1528,8 @@ func WithSubscriptionTopicVersion(v string) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicTitle sets the Title field.
+//
+// Deprecated: use SubscriptionTopicBuilder.SetTitle instead; removed in v2.
 func WithSubscriptionTopicTitle(v string) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.Title = &v
@@ -1499,6 +1537,8 @@ func WithSubscriptionTopicTitle(v string) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicDerivedFrom adds a DerivedFrom to the SubscriptionTopic.
+//
+// Deprecated: use SubscriptionTopicBuilder.AddDerivedFrom instead; removed in v2.
 func WithSubscriptionTopicDerivedFrom(v string) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.DerivedFrom = append(r.DerivedFrom, v)
@@ -1506,6 +1546,8 @@ func WithSubscriptionTopicDerivedFrom(v string) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicStatus sets the Status field.
+//
+// Deprecated: use SubscriptionTopicBuilder.SetStatus instead; removed in v2.
 func WithSubscriptionTopicStatus(v PublicationStatus) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.Status = &v
@@ -1513,6 +1555,8 @@ func WithSubscriptionTopicStatus(v PublicationStatus) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicExperimental sets the Experimental field.
+//
+// Deprecated: use SubscriptionTopicBuilder.SetExperimental instead; removed in v2.
 func WithSubscriptionTopicExperimental(v bool) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.Experimental = &v
@@ -1520,6 +1564,8 @@ func WithSubscriptionTopicExperimental(v bool) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicDate sets the Date field.
+//
+// Deprecated: use SubscriptionTopicBuilder.SetDate instead; removed in v2.
 func WithSubscriptionTopicDate(v string) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.Date = &v
@@ -1527,6 +1573,8 @@ func WithSubscriptionTopicDate(v string) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicPublisher sets the Publisher field.
+//
+// Deprecated: use SubscriptionTopicBuilder.SetPublisher instead; removed in v2.
 func WithSubscriptionTopicPublisher(v string) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.Publisher = &v
@@ -1534,6 +1582,8 @@ func WithSubscriptionTopicPublisher(v string) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicContact adds a Contact to the SubscriptionTopic.
+//
+// Deprecated: use SubscriptionTopicBuilder.AddContact instead; removed in v2.
 func WithSubscriptionTopicContact(v ContactDetail) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.Contact = append(r.Contact, v)
@@ -1541,6 +1591,8 @@ func WithSubscriptionTopicContact(v ContactDetail) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicDescription sets the Description field.
+//
+// Deprecated: use SubscriptionTopicBuilder.SetDescription instead; removed in v2.
 func WithSubscriptionTopicDescription(v string) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.Description = &v
@@ -1548,6 +1600,8 @@ func WithSubscriptionTopicDescription(v string) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicUseContext adds a UseContext to the SubscriptionTopic.
+//
+// Deprecated: use SubscriptionTopicBuilder.AddUseContext instead; removed in v2.
 func WithSubscriptionTopicUseContext(v UsageContext) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.UseContext = append(r.UseContext, v)
@@ -1555,6 +1609,8 @@ func WithSubscriptionTopicUseContext(v UsageContext) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicJurisdiction adds a Jurisdiction to the SubscriptionTopic.
+//
+// Deprecated: use SubscriptionTopicBuilder.AddJurisdiction instead; removed in v2.
 func WithSubscriptionTopicJurisdiction(v CodeableConcept) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1562,6 +1618,8 @@ func WithSubscriptionTopicJurisdiction(v CodeableConcept) SubscriptionTopicOptio
 }
 
 // WithSubscriptionTopicPurpose sets the Purpose field.
+//
+// Deprecated: use SubscriptionTopicBuilder.SetPurpose instead; removed in v2.
 func WithSubscriptionTopicPurpose(v string) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.Purpose = &v
@@ -1569,6 +1627,8 @@ func WithSubscriptionTopicPurpose(v string) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicCopyright sets the Copyright field.
+//
+// Deprecated: use SubscriptionTopicBuilder.SetCopyright instead; removed in v2.
 func WithSubscriptionTopicCopyright(v string) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.Copyright = &v
@@ -1576,6 +1636,8 @@ func WithSubscriptionTopicCopyright(v string) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicApprovalDate sets the ApprovalDate field.
+//
+// Deprecated: use SubscriptionTopicBuilder.SetApprovalDate instead; removed in v2.
 func WithSubscriptionTopicApprovalDate(v string) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.ApprovalDate = &v
@@ -1583,6 +1645,8 @@ func WithSubscriptionTopicApprovalDate(v string) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicLastReviewDate sets the LastReviewDate field.
+//
+// Deprecated: use SubscriptionTopicBuilder.SetLastReviewDate instead; removed in v2.
 func WithSubscriptionTopicLastReviewDate(v string) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.LastReviewDate = &v
@@ -1590,6 +1654,8 @@ func WithSubscriptionTopicLastReviewDate(v string) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicEffectivePeriod sets the EffectivePeriod field.
+//
+// Deprecated: use SubscriptionTopicBuilder.SetEffectivePeriod instead; removed in v2.
 func WithSubscriptionTopicEffectivePeriod(v Period) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.EffectivePeriod = &v
@@ -1597,6 +1663,8 @@ func WithSubscriptionTopicEffectivePeriod(v Period) SubscriptionTopicOption {
 }
 
 // WithSubscriptionTopicResourceTrigger adds a ResourceTrigger to the SubscriptionTopic.
+//
+// Deprecated: use SubscriptionTopicBuilder.AddResourceTrigger instead; removed in v2.
 func WithSubscriptionTopicResourceTrigger(v SubscriptionTopicResourceTrigger) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.ResourceTrigger = append(r.ResourceTrigger, v)
@@ -1604,6 +1672,8 @@ func WithSubscriptionTopicResourceTrigger(v SubscriptionTopicResourceTrigger) Su
 }
 
 // WithSubscriptionTopicEventTrigger adds a EventTrigger to the SubscriptionTopic.
+//
+// Deprecated: use SubscriptionTopicBuilder.AddEventTrigger instead; removed in v2.
 func WithSubscriptionTopicEventTrigger(v SubscriptionTopicEventTrigger) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.EventTrigger = append(r.EventTrigger, v)
@@ -1611,6 +1681,8 @@ func WithSubscriptionTopicEventTrigger(v SubscriptionTopicEventTrigger) Subscrip
 }
 
 // WithSubscriptionTopicCanFilterBy adds a CanFilterBy to the SubscriptionTopic.
+//
+// Deprecated: use SubscriptionTopicBuilder.AddCanFilterBy instead; removed in v2.
 func WithSubscriptionTopicCanFilterBy(v SubscriptionTopicCanFilterBy) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.CanFilterBy = append(r.CanFilterBy, v)
@@ -1618,6 +1690,8 @@ func WithSubscriptionTopicCanFilterBy(v SubscriptionTopicCanFilterBy) Subscripti
 }
 
 // WithSubscriptionTopicNotificationShape adds a NotificationShape to the SubscriptionTopic.
+//
+// Deprecated: use SubscriptionTopicBuilder.AddNotificationShape instead; removed in v2.
 func WithSubscriptionTopicNotificationShape(v SubscriptionTopicNotificationShape) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
 		r.NotificationShape = append(r.NotificationShape, v)

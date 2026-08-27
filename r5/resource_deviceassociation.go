@@ -622,9 +622,23 @@ func (b *DeviceAssociationBuilder) AddOperation(v DeviceAssociationOperation) *D
 // =============================================================================
 
 // DeviceAssociationOption is a functional option for configuring a DeviceAssociation.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// DeviceAssociationBuilder. Every WithDeviceAssociation* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type DeviceAssociationOption func(*DeviceAssociation)
 
 // NewDeviceAssociation creates a new DeviceAssociation with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewDeviceAssociationBuilder().SetId("x").Build()
+//
+// Deprecated: use NewDeviceAssociationBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewDeviceAssociation(opts ...DeviceAssociationOption) *DeviceAssociation {
 	r := &DeviceAssociation{ResourceType: "DeviceAssociation"}
 	for _, opt := range opts {
@@ -634,6 +648,8 @@ func NewDeviceAssociation(opts ...DeviceAssociationOption) *DeviceAssociation {
 }
 
 // WithDeviceAssociationId sets the Id field.
+//
+// Deprecated: use DeviceAssociationBuilder.SetId instead; removed in v2.
 func WithDeviceAssociationId(v string) DeviceAssociationOption {
 	return func(r *DeviceAssociation) {
 		r.Id = &v
@@ -641,6 +657,8 @@ func WithDeviceAssociationId(v string) DeviceAssociationOption {
 }
 
 // WithDeviceAssociationMeta sets the Meta field.
+//
+// Deprecated: use DeviceAssociationBuilder.SetMeta instead; removed in v2.
 func WithDeviceAssociationMeta(v Meta) DeviceAssociationOption {
 	return func(r *DeviceAssociation) {
 		r.Meta = &v
@@ -648,6 +666,8 @@ func WithDeviceAssociationMeta(v Meta) DeviceAssociationOption {
 }
 
 // WithDeviceAssociationImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use DeviceAssociationBuilder.SetImplicitRules instead; removed in v2.
 func WithDeviceAssociationImplicitRules(v string) DeviceAssociationOption {
 	return func(r *DeviceAssociation) {
 		r.ImplicitRules = &v
@@ -655,6 +675,8 @@ func WithDeviceAssociationImplicitRules(v string) DeviceAssociationOption {
 }
 
 // WithDeviceAssociationLanguage sets the Language field.
+//
+// Deprecated: use DeviceAssociationBuilder.SetLanguage instead; removed in v2.
 func WithDeviceAssociationLanguage(v string) DeviceAssociationOption {
 	return func(r *DeviceAssociation) {
 		r.Language = &v
@@ -662,6 +684,8 @@ func WithDeviceAssociationLanguage(v string) DeviceAssociationOption {
 }
 
 // WithDeviceAssociationText sets the Text field.
+//
+// Deprecated: use DeviceAssociationBuilder.SetText instead; removed in v2.
 func WithDeviceAssociationText(v Narrative) DeviceAssociationOption {
 	return func(r *DeviceAssociation) {
 		r.Text = &v
@@ -669,6 +693,8 @@ func WithDeviceAssociationText(v Narrative) DeviceAssociationOption {
 }
 
 // WithDeviceAssociationContained adds a Contained to the DeviceAssociation.
+//
+// Deprecated: use DeviceAssociationBuilder.AddContained instead; removed in v2.
 func WithDeviceAssociationContained(v Resource) DeviceAssociationOption {
 	return func(r *DeviceAssociation) {
 		r.Contained = append(r.Contained, v)
@@ -676,6 +702,8 @@ func WithDeviceAssociationContained(v Resource) DeviceAssociationOption {
 }
 
 // WithDeviceAssociationExtension adds a Extension to the DeviceAssociation.
+//
+// Deprecated: use DeviceAssociationBuilder.AddExtension instead; removed in v2.
 func WithDeviceAssociationExtension(v Extension) DeviceAssociationOption {
 	return func(r *DeviceAssociation) {
 		r.Extension = append(r.Extension, v)
@@ -683,6 +711,8 @@ func WithDeviceAssociationExtension(v Extension) DeviceAssociationOption {
 }
 
 // WithDeviceAssociationModifierExtension adds a ModifierExtension to the DeviceAssociation.
+//
+// Deprecated: use DeviceAssociationBuilder.AddModifierExtension instead; removed in v2.
 func WithDeviceAssociationModifierExtension(v Extension) DeviceAssociationOption {
 	return func(r *DeviceAssociation) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -690,6 +720,8 @@ func WithDeviceAssociationModifierExtension(v Extension) DeviceAssociationOption
 }
 
 // WithDeviceAssociationIdentifier adds a Identifier to the DeviceAssociation.
+//
+// Deprecated: use DeviceAssociationBuilder.AddIdentifier instead; removed in v2.
 func WithDeviceAssociationIdentifier(v Identifier) DeviceAssociationOption {
 	return func(r *DeviceAssociation) {
 		r.Identifier = append(r.Identifier, v)
@@ -697,6 +729,8 @@ func WithDeviceAssociationIdentifier(v Identifier) DeviceAssociationOption {
 }
 
 // WithDeviceAssociationDevice sets the Device field.
+//
+// Deprecated: use DeviceAssociationBuilder.SetDevice instead; removed in v2.
 func WithDeviceAssociationDevice(v Reference) DeviceAssociationOption {
 	return func(r *DeviceAssociation) {
 		r.Device = v
@@ -704,6 +738,8 @@ func WithDeviceAssociationDevice(v Reference) DeviceAssociationOption {
 }
 
 // WithDeviceAssociationCategory adds a Category to the DeviceAssociation.
+//
+// Deprecated: use DeviceAssociationBuilder.AddCategory instead; removed in v2.
 func WithDeviceAssociationCategory(v CodeableConcept) DeviceAssociationOption {
 	return func(r *DeviceAssociation) {
 		r.Category = append(r.Category, v)
@@ -711,6 +747,8 @@ func WithDeviceAssociationCategory(v CodeableConcept) DeviceAssociationOption {
 }
 
 // WithDeviceAssociationStatus sets the Status field.
+//
+// Deprecated: use DeviceAssociationBuilder.SetStatus instead; removed in v2.
 func WithDeviceAssociationStatus(v CodeableConcept) DeviceAssociationOption {
 	return func(r *DeviceAssociation) {
 		r.Status = v
@@ -718,6 +756,8 @@ func WithDeviceAssociationStatus(v CodeableConcept) DeviceAssociationOption {
 }
 
 // WithDeviceAssociationStatusReason adds a StatusReason to the DeviceAssociation.
+//
+// Deprecated: use DeviceAssociationBuilder.AddStatusReason instead; removed in v2.
 func WithDeviceAssociationStatusReason(v CodeableConcept) DeviceAssociationOption {
 	return func(r *DeviceAssociation) {
 		r.StatusReason = append(r.StatusReason, v)
@@ -725,6 +765,8 @@ func WithDeviceAssociationStatusReason(v CodeableConcept) DeviceAssociationOptio
 }
 
 // WithDeviceAssociationSubject sets the Subject field.
+//
+// Deprecated: use DeviceAssociationBuilder.SetSubject instead; removed in v2.
 func WithDeviceAssociationSubject(v Reference) DeviceAssociationOption {
 	return func(r *DeviceAssociation) {
 		r.Subject = &v
@@ -732,6 +774,8 @@ func WithDeviceAssociationSubject(v Reference) DeviceAssociationOption {
 }
 
 // WithDeviceAssociationBodyStructure sets the BodyStructure field.
+//
+// Deprecated: use DeviceAssociationBuilder.SetBodyStructure instead; removed in v2.
 func WithDeviceAssociationBodyStructure(v Reference) DeviceAssociationOption {
 	return func(r *DeviceAssociation) {
 		r.BodyStructure = &v
@@ -739,6 +783,8 @@ func WithDeviceAssociationBodyStructure(v Reference) DeviceAssociationOption {
 }
 
 // WithDeviceAssociationPeriod sets the Period field.
+//
+// Deprecated: use DeviceAssociationBuilder.SetPeriod instead; removed in v2.
 func WithDeviceAssociationPeriod(v Period) DeviceAssociationOption {
 	return func(r *DeviceAssociation) {
 		r.Period = &v
@@ -746,6 +792,8 @@ func WithDeviceAssociationPeriod(v Period) DeviceAssociationOption {
 }
 
 // WithDeviceAssociationOperation adds a Operation to the DeviceAssociation.
+//
+// Deprecated: use DeviceAssociationBuilder.AddOperation instead; removed in v2.
 func WithDeviceAssociationOperation(v DeviceAssociationOperation) DeviceAssociationOption {
 	return func(r *DeviceAssociation) {
 		r.Operation = append(r.Operation, v)

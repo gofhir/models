@@ -5,6 +5,14 @@ description: "Crea recursos FHIR usando funciones de opciones funcionales compon
 weight: 3
 ---
 
+{{< callout type="warning" >}}
+**Deprecado desde la v1.6.0. Eliminado en la v2.** Las opciones funcionales se consolidan en el [patrón builder](../builder-pattern/), que llega al mismo resultado mediante métodos encadenados.
+
+Todo lo de esta página sigue funcionando en la v1 y su comportamiento no cambia — pero si estás escribiendo código nuevo, usa el builder. Cada opción `With<Recurso><Campo>` tiene un método de builder con un tipo de parámetro idéntico y comportamiento idéntico: `Set*` para los campos simples, `Add*` para los repetibles. La correspondencia se verificó para las 11.952 opciones, así que el cambio es mecánico.
+
+`staticcheck` o `golangci-lint` te listarán tus llamadas y nombrarán cada reemplazo. Consulta la [guía de migración de v1 a v2](../../migration/v1-to-v2/).
+{{< /callout >}}
+
 El patrón de opciones funcionales usa funciones Go para configurar campos de recursos. Cada tipo de recurso tiene un constructor `New<Resource>(opts...)` y un conjunto de funciones `With<Resource><Field>()`. Este patrón, popularizado por Dave Cheney y Rob Pike, produce sitios de llamada limpios y hace que las opciones sean componibles.
 
 ## Cómo Funciona

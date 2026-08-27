@@ -442,9 +442,23 @@ func (b *MedicinalProductUndesirableEffectBuilder) AddPopulation(v Population) *
 // =============================================================================
 
 // MedicinalProductUndesirableEffectOption is a functional option for configuring a MedicinalProductUndesirableEffect.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// MedicinalProductUndesirableEffectBuilder. Every WithMedicinalProductUndesirableEffect* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type MedicinalProductUndesirableEffectOption func(*MedicinalProductUndesirableEffect)
 
 // NewMedicinalProductUndesirableEffect creates a new MedicinalProductUndesirableEffect with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewMedicinalProductUndesirableEffectBuilder().SetId("x").Build()
+//
+// Deprecated: use NewMedicinalProductUndesirableEffectBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewMedicinalProductUndesirableEffect(opts ...MedicinalProductUndesirableEffectOption) *MedicinalProductUndesirableEffect {
 	r := &MedicinalProductUndesirableEffect{ResourceType: "MedicinalProductUndesirableEffect"}
 	for _, opt := range opts {
@@ -454,6 +468,8 @@ func NewMedicinalProductUndesirableEffect(opts ...MedicinalProductUndesirableEff
 }
 
 // WithMedicinalProductUndesirableEffectId sets the Id field.
+//
+// Deprecated: use MedicinalProductUndesirableEffectBuilder.SetId instead; removed in v2.
 func WithMedicinalProductUndesirableEffectId(v string) MedicinalProductUndesirableEffectOption {
 	return func(r *MedicinalProductUndesirableEffect) {
 		r.Id = &v
@@ -461,6 +477,8 @@ func WithMedicinalProductUndesirableEffectId(v string) MedicinalProductUndesirab
 }
 
 // WithMedicinalProductUndesirableEffectMeta sets the Meta field.
+//
+// Deprecated: use MedicinalProductUndesirableEffectBuilder.SetMeta instead; removed in v2.
 func WithMedicinalProductUndesirableEffectMeta(v Meta) MedicinalProductUndesirableEffectOption {
 	return func(r *MedicinalProductUndesirableEffect) {
 		r.Meta = &v
@@ -468,6 +486,8 @@ func WithMedicinalProductUndesirableEffectMeta(v Meta) MedicinalProductUndesirab
 }
 
 // WithMedicinalProductUndesirableEffectImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use MedicinalProductUndesirableEffectBuilder.SetImplicitRules instead; removed in v2.
 func WithMedicinalProductUndesirableEffectImplicitRules(v string) MedicinalProductUndesirableEffectOption {
 	return func(r *MedicinalProductUndesirableEffect) {
 		r.ImplicitRules = &v
@@ -475,6 +495,8 @@ func WithMedicinalProductUndesirableEffectImplicitRules(v string) MedicinalProdu
 }
 
 // WithMedicinalProductUndesirableEffectLanguage sets the Language field.
+//
+// Deprecated: use MedicinalProductUndesirableEffectBuilder.SetLanguage instead; removed in v2.
 func WithMedicinalProductUndesirableEffectLanguage(v string) MedicinalProductUndesirableEffectOption {
 	return func(r *MedicinalProductUndesirableEffect) {
 		r.Language = &v
@@ -482,6 +504,8 @@ func WithMedicinalProductUndesirableEffectLanguage(v string) MedicinalProductUnd
 }
 
 // WithMedicinalProductUndesirableEffectText sets the Text field.
+//
+// Deprecated: use MedicinalProductUndesirableEffectBuilder.SetText instead; removed in v2.
 func WithMedicinalProductUndesirableEffectText(v Narrative) MedicinalProductUndesirableEffectOption {
 	return func(r *MedicinalProductUndesirableEffect) {
 		r.Text = &v
@@ -489,6 +513,8 @@ func WithMedicinalProductUndesirableEffectText(v Narrative) MedicinalProductUnde
 }
 
 // WithMedicinalProductUndesirableEffectContained adds a Contained to the MedicinalProductUndesirableEffect.
+//
+// Deprecated: use MedicinalProductUndesirableEffectBuilder.AddContained instead; removed in v2.
 func WithMedicinalProductUndesirableEffectContained(v Resource) MedicinalProductUndesirableEffectOption {
 	return func(r *MedicinalProductUndesirableEffect) {
 		r.Contained = append(r.Contained, v)
@@ -496,6 +522,8 @@ func WithMedicinalProductUndesirableEffectContained(v Resource) MedicinalProduct
 }
 
 // WithMedicinalProductUndesirableEffectExtension adds a Extension to the MedicinalProductUndesirableEffect.
+//
+// Deprecated: use MedicinalProductUndesirableEffectBuilder.AddExtension instead; removed in v2.
 func WithMedicinalProductUndesirableEffectExtension(v Extension) MedicinalProductUndesirableEffectOption {
 	return func(r *MedicinalProductUndesirableEffect) {
 		r.Extension = append(r.Extension, v)
@@ -503,6 +531,8 @@ func WithMedicinalProductUndesirableEffectExtension(v Extension) MedicinalProduc
 }
 
 // WithMedicinalProductUndesirableEffectModifierExtension adds a ModifierExtension to the MedicinalProductUndesirableEffect.
+//
+// Deprecated: use MedicinalProductUndesirableEffectBuilder.AddModifierExtension instead; removed in v2.
 func WithMedicinalProductUndesirableEffectModifierExtension(v Extension) MedicinalProductUndesirableEffectOption {
 	return func(r *MedicinalProductUndesirableEffect) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -510,6 +540,8 @@ func WithMedicinalProductUndesirableEffectModifierExtension(v Extension) Medicin
 }
 
 // WithMedicinalProductUndesirableEffectSubject adds a Subject to the MedicinalProductUndesirableEffect.
+//
+// Deprecated: use MedicinalProductUndesirableEffectBuilder.AddSubject instead; removed in v2.
 func WithMedicinalProductUndesirableEffectSubject(v Reference) MedicinalProductUndesirableEffectOption {
 	return func(r *MedicinalProductUndesirableEffect) {
 		r.Subject = append(r.Subject, v)
@@ -517,6 +549,8 @@ func WithMedicinalProductUndesirableEffectSubject(v Reference) MedicinalProductU
 }
 
 // WithMedicinalProductUndesirableEffectSymptomConditionEffect sets the SymptomConditionEffect field.
+//
+// Deprecated: use MedicinalProductUndesirableEffectBuilder.SetSymptomConditionEffect instead; removed in v2.
 func WithMedicinalProductUndesirableEffectSymptomConditionEffect(v CodeableConcept) MedicinalProductUndesirableEffectOption {
 	return func(r *MedicinalProductUndesirableEffect) {
 		r.SymptomConditionEffect = &v
@@ -524,6 +558,8 @@ func WithMedicinalProductUndesirableEffectSymptomConditionEffect(v CodeableConce
 }
 
 // WithMedicinalProductUndesirableEffectClassification sets the Classification field.
+//
+// Deprecated: use MedicinalProductUndesirableEffectBuilder.SetClassification instead; removed in v2.
 func WithMedicinalProductUndesirableEffectClassification(v CodeableConcept) MedicinalProductUndesirableEffectOption {
 	return func(r *MedicinalProductUndesirableEffect) {
 		r.Classification = &v
@@ -531,6 +567,8 @@ func WithMedicinalProductUndesirableEffectClassification(v CodeableConcept) Medi
 }
 
 // WithMedicinalProductUndesirableEffectFrequencyOfOccurrence sets the FrequencyOfOccurrence field.
+//
+// Deprecated: use MedicinalProductUndesirableEffectBuilder.SetFrequencyOfOccurrence instead; removed in v2.
 func WithMedicinalProductUndesirableEffectFrequencyOfOccurrence(v CodeableConcept) MedicinalProductUndesirableEffectOption {
 	return func(r *MedicinalProductUndesirableEffect) {
 		r.FrequencyOfOccurrence = &v
@@ -538,6 +576,8 @@ func WithMedicinalProductUndesirableEffectFrequencyOfOccurrence(v CodeableConcep
 }
 
 // WithMedicinalProductUndesirableEffectPopulation adds a Population to the MedicinalProductUndesirableEffect.
+//
+// Deprecated: use MedicinalProductUndesirableEffectBuilder.AddPopulation instead; removed in v2.
 func WithMedicinalProductUndesirableEffectPopulation(v Population) MedicinalProductUndesirableEffectOption {
 	return func(r *MedicinalProductUndesirableEffect) {
 		r.Population = append(r.Population, v)

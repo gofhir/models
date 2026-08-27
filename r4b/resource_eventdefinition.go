@@ -913,9 +913,23 @@ func (b *EventDefinitionBuilder) AddTrigger(v TriggerDefinition) *EventDefinitio
 // =============================================================================
 
 // EventDefinitionOption is a functional option for configuring a EventDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// EventDefinitionBuilder. Every WithEventDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type EventDefinitionOption func(*EventDefinition)
 
 // NewEventDefinition creates a new EventDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewEventDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewEventDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewEventDefinition(opts ...EventDefinitionOption) *EventDefinition {
 	r := &EventDefinition{ResourceType: "EventDefinition"}
 	for _, opt := range opts {
@@ -925,6 +939,8 @@ func NewEventDefinition(opts ...EventDefinitionOption) *EventDefinition {
 }
 
 // WithEventDefinitionId sets the Id field.
+//
+// Deprecated: use EventDefinitionBuilder.SetId instead; removed in v2.
 func WithEventDefinitionId(v string) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Id = &v
@@ -932,6 +948,8 @@ func WithEventDefinitionId(v string) EventDefinitionOption {
 }
 
 // WithEventDefinitionMeta sets the Meta field.
+//
+// Deprecated: use EventDefinitionBuilder.SetMeta instead; removed in v2.
 func WithEventDefinitionMeta(v Meta) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Meta = &v
@@ -939,6 +957,8 @@ func WithEventDefinitionMeta(v Meta) EventDefinitionOption {
 }
 
 // WithEventDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use EventDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithEventDefinitionImplicitRules(v string) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.ImplicitRules = &v
@@ -946,6 +966,8 @@ func WithEventDefinitionImplicitRules(v string) EventDefinitionOption {
 }
 
 // WithEventDefinitionLanguage sets the Language field.
+//
+// Deprecated: use EventDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithEventDefinitionLanguage(v string) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Language = &v
@@ -953,6 +975,8 @@ func WithEventDefinitionLanguage(v string) EventDefinitionOption {
 }
 
 // WithEventDefinitionText sets the Text field.
+//
+// Deprecated: use EventDefinitionBuilder.SetText instead; removed in v2.
 func WithEventDefinitionText(v Narrative) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Text = &v
@@ -960,6 +984,8 @@ func WithEventDefinitionText(v Narrative) EventDefinitionOption {
 }
 
 // WithEventDefinitionContained adds a Contained to the EventDefinition.
+//
+// Deprecated: use EventDefinitionBuilder.AddContained instead; removed in v2.
 func WithEventDefinitionContained(v Resource) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -967,6 +993,8 @@ func WithEventDefinitionContained(v Resource) EventDefinitionOption {
 }
 
 // WithEventDefinitionExtension adds a Extension to the EventDefinition.
+//
+// Deprecated: use EventDefinitionBuilder.AddExtension instead; removed in v2.
 func WithEventDefinitionExtension(v Extension) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -974,6 +1002,8 @@ func WithEventDefinitionExtension(v Extension) EventDefinitionOption {
 }
 
 // WithEventDefinitionModifierExtension adds a ModifierExtension to the EventDefinition.
+//
+// Deprecated: use EventDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithEventDefinitionModifierExtension(v Extension) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -981,6 +1011,8 @@ func WithEventDefinitionModifierExtension(v Extension) EventDefinitionOption {
 }
 
 // WithEventDefinitionUrl sets the Url field.
+//
+// Deprecated: use EventDefinitionBuilder.SetUrl instead; removed in v2.
 func WithEventDefinitionUrl(v string) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Url = &v
@@ -988,6 +1020,8 @@ func WithEventDefinitionUrl(v string) EventDefinitionOption {
 }
 
 // WithEventDefinitionIdentifier adds a Identifier to the EventDefinition.
+//
+// Deprecated: use EventDefinitionBuilder.AddIdentifier instead; removed in v2.
 func WithEventDefinitionIdentifier(v Identifier) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Identifier = append(r.Identifier, v)
@@ -995,6 +1029,8 @@ func WithEventDefinitionIdentifier(v Identifier) EventDefinitionOption {
 }
 
 // WithEventDefinitionVersion sets the Version field.
+//
+// Deprecated: use EventDefinitionBuilder.SetVersion instead; removed in v2.
 func WithEventDefinitionVersion(v string) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Version = &v
@@ -1002,6 +1038,8 @@ func WithEventDefinitionVersion(v string) EventDefinitionOption {
 }
 
 // WithEventDefinitionName sets the Name field.
+//
+// Deprecated: use EventDefinitionBuilder.SetName instead; removed in v2.
 func WithEventDefinitionName(v string) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Name = &v
@@ -1009,6 +1047,8 @@ func WithEventDefinitionName(v string) EventDefinitionOption {
 }
 
 // WithEventDefinitionTitle sets the Title field.
+//
+// Deprecated: use EventDefinitionBuilder.SetTitle instead; removed in v2.
 func WithEventDefinitionTitle(v string) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Title = &v
@@ -1016,6 +1056,8 @@ func WithEventDefinitionTitle(v string) EventDefinitionOption {
 }
 
 // WithEventDefinitionSubtitle sets the Subtitle field.
+//
+// Deprecated: use EventDefinitionBuilder.SetSubtitle instead; removed in v2.
 func WithEventDefinitionSubtitle(v string) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Subtitle = &v
@@ -1023,6 +1065,8 @@ func WithEventDefinitionSubtitle(v string) EventDefinitionOption {
 }
 
 // WithEventDefinitionStatus sets the Status field.
+//
+// Deprecated: use EventDefinitionBuilder.SetStatus instead; removed in v2.
 func WithEventDefinitionStatus(v PublicationStatus) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Status = &v
@@ -1030,6 +1074,8 @@ func WithEventDefinitionStatus(v PublicationStatus) EventDefinitionOption {
 }
 
 // WithEventDefinitionExperimental sets the Experimental field.
+//
+// Deprecated: use EventDefinitionBuilder.SetExperimental instead; removed in v2.
 func WithEventDefinitionExperimental(v bool) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Experimental = &v
@@ -1037,6 +1083,8 @@ func WithEventDefinitionExperimental(v bool) EventDefinitionOption {
 }
 
 // WithEventDefinitionSubjectCodeableConcept sets the SubjectCodeableConcept field.
+//
+// Deprecated: use EventDefinitionBuilder.SetSubjectCodeableConcept instead; removed in v2.
 func WithEventDefinitionSubjectCodeableConcept(v CodeableConcept) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.SubjectCodeableConcept = &v
@@ -1044,6 +1092,8 @@ func WithEventDefinitionSubjectCodeableConcept(v CodeableConcept) EventDefinitio
 }
 
 // WithEventDefinitionSubjectReference sets the SubjectReference field.
+//
+// Deprecated: use EventDefinitionBuilder.SetSubjectReference instead; removed in v2.
 func WithEventDefinitionSubjectReference(v Reference) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.SubjectReference = &v
@@ -1051,6 +1101,8 @@ func WithEventDefinitionSubjectReference(v Reference) EventDefinitionOption {
 }
 
 // WithEventDefinitionDate sets the Date field.
+//
+// Deprecated: use EventDefinitionBuilder.SetDate instead; removed in v2.
 func WithEventDefinitionDate(v string) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Date = &v
@@ -1058,6 +1110,8 @@ func WithEventDefinitionDate(v string) EventDefinitionOption {
 }
 
 // WithEventDefinitionPublisher sets the Publisher field.
+//
+// Deprecated: use EventDefinitionBuilder.SetPublisher instead; removed in v2.
 func WithEventDefinitionPublisher(v string) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Publisher = &v
@@ -1065,6 +1119,8 @@ func WithEventDefinitionPublisher(v string) EventDefinitionOption {
 }
 
 // WithEventDefinitionContact adds a Contact to the EventDefinition.
+//
+// Deprecated: use EventDefinitionBuilder.AddContact instead; removed in v2.
 func WithEventDefinitionContact(v ContactDetail) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Contact = append(r.Contact, v)
@@ -1072,6 +1128,8 @@ func WithEventDefinitionContact(v ContactDetail) EventDefinitionOption {
 }
 
 // WithEventDefinitionDescription sets the Description field.
+//
+// Deprecated: use EventDefinitionBuilder.SetDescription instead; removed in v2.
 func WithEventDefinitionDescription(v string) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Description = &v
@@ -1079,6 +1137,8 @@ func WithEventDefinitionDescription(v string) EventDefinitionOption {
 }
 
 // WithEventDefinitionUseContext adds a UseContext to the EventDefinition.
+//
+// Deprecated: use EventDefinitionBuilder.AddUseContext instead; removed in v2.
 func WithEventDefinitionUseContext(v UsageContext) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.UseContext = append(r.UseContext, v)
@@ -1086,6 +1146,8 @@ func WithEventDefinitionUseContext(v UsageContext) EventDefinitionOption {
 }
 
 // WithEventDefinitionJurisdiction adds a Jurisdiction to the EventDefinition.
+//
+// Deprecated: use EventDefinitionBuilder.AddJurisdiction instead; removed in v2.
 func WithEventDefinitionJurisdiction(v CodeableConcept) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1093,6 +1155,8 @@ func WithEventDefinitionJurisdiction(v CodeableConcept) EventDefinitionOption {
 }
 
 // WithEventDefinitionPurpose sets the Purpose field.
+//
+// Deprecated: use EventDefinitionBuilder.SetPurpose instead; removed in v2.
 func WithEventDefinitionPurpose(v string) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Purpose = &v
@@ -1100,6 +1164,8 @@ func WithEventDefinitionPurpose(v string) EventDefinitionOption {
 }
 
 // WithEventDefinitionUsage sets the Usage field.
+//
+// Deprecated: use EventDefinitionBuilder.SetUsage instead; removed in v2.
 func WithEventDefinitionUsage(v string) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Usage = &v
@@ -1107,6 +1173,8 @@ func WithEventDefinitionUsage(v string) EventDefinitionOption {
 }
 
 // WithEventDefinitionCopyright sets the Copyright field.
+//
+// Deprecated: use EventDefinitionBuilder.SetCopyright instead; removed in v2.
 func WithEventDefinitionCopyright(v string) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Copyright = &v
@@ -1114,6 +1182,8 @@ func WithEventDefinitionCopyright(v string) EventDefinitionOption {
 }
 
 // WithEventDefinitionApprovalDate sets the ApprovalDate field.
+//
+// Deprecated: use EventDefinitionBuilder.SetApprovalDate instead; removed in v2.
 func WithEventDefinitionApprovalDate(v string) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.ApprovalDate = &v
@@ -1121,6 +1191,8 @@ func WithEventDefinitionApprovalDate(v string) EventDefinitionOption {
 }
 
 // WithEventDefinitionLastReviewDate sets the LastReviewDate field.
+//
+// Deprecated: use EventDefinitionBuilder.SetLastReviewDate instead; removed in v2.
 func WithEventDefinitionLastReviewDate(v string) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.LastReviewDate = &v
@@ -1128,6 +1200,8 @@ func WithEventDefinitionLastReviewDate(v string) EventDefinitionOption {
 }
 
 // WithEventDefinitionEffectivePeriod sets the EffectivePeriod field.
+//
+// Deprecated: use EventDefinitionBuilder.SetEffectivePeriod instead; removed in v2.
 func WithEventDefinitionEffectivePeriod(v Period) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.EffectivePeriod = &v
@@ -1135,6 +1209,8 @@ func WithEventDefinitionEffectivePeriod(v Period) EventDefinitionOption {
 }
 
 // WithEventDefinitionTopic adds a Topic to the EventDefinition.
+//
+// Deprecated: use EventDefinitionBuilder.AddTopic instead; removed in v2.
 func WithEventDefinitionTopic(v CodeableConcept) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Topic = append(r.Topic, v)
@@ -1142,6 +1218,8 @@ func WithEventDefinitionTopic(v CodeableConcept) EventDefinitionOption {
 }
 
 // WithEventDefinitionAuthor adds a Author to the EventDefinition.
+//
+// Deprecated: use EventDefinitionBuilder.AddAuthor instead; removed in v2.
 func WithEventDefinitionAuthor(v ContactDetail) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Author = append(r.Author, v)
@@ -1149,6 +1227,8 @@ func WithEventDefinitionAuthor(v ContactDetail) EventDefinitionOption {
 }
 
 // WithEventDefinitionEditor adds a Editor to the EventDefinition.
+//
+// Deprecated: use EventDefinitionBuilder.AddEditor instead; removed in v2.
 func WithEventDefinitionEditor(v ContactDetail) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Editor = append(r.Editor, v)
@@ -1156,6 +1236,8 @@ func WithEventDefinitionEditor(v ContactDetail) EventDefinitionOption {
 }
 
 // WithEventDefinitionReviewer adds a Reviewer to the EventDefinition.
+//
+// Deprecated: use EventDefinitionBuilder.AddReviewer instead; removed in v2.
 func WithEventDefinitionReviewer(v ContactDetail) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Reviewer = append(r.Reviewer, v)
@@ -1163,6 +1245,8 @@ func WithEventDefinitionReviewer(v ContactDetail) EventDefinitionOption {
 }
 
 // WithEventDefinitionEndorser adds a Endorser to the EventDefinition.
+//
+// Deprecated: use EventDefinitionBuilder.AddEndorser instead; removed in v2.
 func WithEventDefinitionEndorser(v ContactDetail) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Endorser = append(r.Endorser, v)
@@ -1170,6 +1254,8 @@ func WithEventDefinitionEndorser(v ContactDetail) EventDefinitionOption {
 }
 
 // WithEventDefinitionRelatedArtifact adds a RelatedArtifact to the EventDefinition.
+//
+// Deprecated: use EventDefinitionBuilder.AddRelatedArtifact instead; removed in v2.
 func WithEventDefinitionRelatedArtifact(v RelatedArtifact) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.RelatedArtifact = append(r.RelatedArtifact, v)
@@ -1177,6 +1263,8 @@ func WithEventDefinitionRelatedArtifact(v RelatedArtifact) EventDefinitionOption
 }
 
 // WithEventDefinitionTrigger adds a Trigger to the EventDefinition.
+//
+// Deprecated: use EventDefinitionBuilder.AddTrigger instead; removed in v2.
 func WithEventDefinitionTrigger(v TriggerDefinition) EventDefinitionOption {
 	return func(r *EventDefinition) {
 		r.Trigger = append(r.Trigger, v)

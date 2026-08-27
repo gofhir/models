@@ -719,9 +719,23 @@ func (b *ListBuilder) SetEmptyReason(v CodeableConcept) *ListBuilder {
 // =============================================================================
 
 // ListOption is a functional option for configuring a List.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ListBuilder. Every WithList* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ListOption func(*List)
 
 // NewList creates a new List with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewListBuilder().SetId("x").Build()
+//
+// Deprecated: use NewListBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewList(opts ...ListOption) *List {
 	r := &List{ResourceType: "List"}
 	for _, opt := range opts {
@@ -731,6 +745,8 @@ func NewList(opts ...ListOption) *List {
 }
 
 // WithListId sets the Id field.
+//
+// Deprecated: use ListBuilder.SetId instead; removed in v2.
 func WithListId(v string) ListOption {
 	return func(r *List) {
 		r.Id = &v
@@ -738,6 +754,8 @@ func WithListId(v string) ListOption {
 }
 
 // WithListMeta sets the Meta field.
+//
+// Deprecated: use ListBuilder.SetMeta instead; removed in v2.
 func WithListMeta(v Meta) ListOption {
 	return func(r *List) {
 		r.Meta = &v
@@ -745,6 +763,8 @@ func WithListMeta(v Meta) ListOption {
 }
 
 // WithListImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ListBuilder.SetImplicitRules instead; removed in v2.
 func WithListImplicitRules(v string) ListOption {
 	return func(r *List) {
 		r.ImplicitRules = &v
@@ -752,6 +772,8 @@ func WithListImplicitRules(v string) ListOption {
 }
 
 // WithListLanguage sets the Language field.
+//
+// Deprecated: use ListBuilder.SetLanguage instead; removed in v2.
 func WithListLanguage(v string) ListOption {
 	return func(r *List) {
 		r.Language = &v
@@ -759,6 +781,8 @@ func WithListLanguage(v string) ListOption {
 }
 
 // WithListText sets the Text field.
+//
+// Deprecated: use ListBuilder.SetText instead; removed in v2.
 func WithListText(v Narrative) ListOption {
 	return func(r *List) {
 		r.Text = &v
@@ -766,6 +790,8 @@ func WithListText(v Narrative) ListOption {
 }
 
 // WithListContained adds a Contained to the List.
+//
+// Deprecated: use ListBuilder.AddContained instead; removed in v2.
 func WithListContained(v Resource) ListOption {
 	return func(r *List) {
 		r.Contained = append(r.Contained, v)
@@ -773,6 +799,8 @@ func WithListContained(v Resource) ListOption {
 }
 
 // WithListExtension adds a Extension to the List.
+//
+// Deprecated: use ListBuilder.AddExtension instead; removed in v2.
 func WithListExtension(v Extension) ListOption {
 	return func(r *List) {
 		r.Extension = append(r.Extension, v)
@@ -780,6 +808,8 @@ func WithListExtension(v Extension) ListOption {
 }
 
 // WithListModifierExtension adds a ModifierExtension to the List.
+//
+// Deprecated: use ListBuilder.AddModifierExtension instead; removed in v2.
 func WithListModifierExtension(v Extension) ListOption {
 	return func(r *List) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -787,6 +817,8 @@ func WithListModifierExtension(v Extension) ListOption {
 }
 
 // WithListIdentifier adds a Identifier to the List.
+//
+// Deprecated: use ListBuilder.AddIdentifier instead; removed in v2.
 func WithListIdentifier(v Identifier) ListOption {
 	return func(r *List) {
 		r.Identifier = append(r.Identifier, v)
@@ -794,6 +826,8 @@ func WithListIdentifier(v Identifier) ListOption {
 }
 
 // WithListStatus sets the Status field.
+//
+// Deprecated: use ListBuilder.SetStatus instead; removed in v2.
 func WithListStatus(v ListStatus) ListOption {
 	return func(r *List) {
 		r.Status = &v
@@ -801,6 +835,8 @@ func WithListStatus(v ListStatus) ListOption {
 }
 
 // WithListMode sets the Mode field.
+//
+// Deprecated: use ListBuilder.SetMode instead; removed in v2.
 func WithListMode(v ListMode) ListOption {
 	return func(r *List) {
 		r.Mode = &v
@@ -808,6 +844,8 @@ func WithListMode(v ListMode) ListOption {
 }
 
 // WithListTitle sets the Title field.
+//
+// Deprecated: use ListBuilder.SetTitle instead; removed in v2.
 func WithListTitle(v string) ListOption {
 	return func(r *List) {
 		r.Title = &v
@@ -815,6 +853,8 @@ func WithListTitle(v string) ListOption {
 }
 
 // WithListCode sets the Code field.
+//
+// Deprecated: use ListBuilder.SetCode instead; removed in v2.
 func WithListCode(v CodeableConcept) ListOption {
 	return func(r *List) {
 		r.Code = &v
@@ -822,6 +862,8 @@ func WithListCode(v CodeableConcept) ListOption {
 }
 
 // WithListSubject adds a Subject to the List.
+//
+// Deprecated: use ListBuilder.AddSubject instead; removed in v2.
 func WithListSubject(v Reference) ListOption {
 	return func(r *List) {
 		r.Subject = append(r.Subject, v)
@@ -829,6 +871,8 @@ func WithListSubject(v Reference) ListOption {
 }
 
 // WithListEncounter sets the Encounter field.
+//
+// Deprecated: use ListBuilder.SetEncounter instead; removed in v2.
 func WithListEncounter(v Reference) ListOption {
 	return func(r *List) {
 		r.Encounter = &v
@@ -836,6 +880,8 @@ func WithListEncounter(v Reference) ListOption {
 }
 
 // WithListDate sets the Date field.
+//
+// Deprecated: use ListBuilder.SetDate instead; removed in v2.
 func WithListDate(v string) ListOption {
 	return func(r *List) {
 		r.Date = &v
@@ -843,6 +889,8 @@ func WithListDate(v string) ListOption {
 }
 
 // WithListSource sets the Source field.
+//
+// Deprecated: use ListBuilder.SetSource instead; removed in v2.
 func WithListSource(v Reference) ListOption {
 	return func(r *List) {
 		r.Source = &v
@@ -850,6 +898,8 @@ func WithListSource(v Reference) ListOption {
 }
 
 // WithListOrderedBy sets the OrderedBy field.
+//
+// Deprecated: use ListBuilder.SetOrderedBy instead; removed in v2.
 func WithListOrderedBy(v CodeableConcept) ListOption {
 	return func(r *List) {
 		r.OrderedBy = &v
@@ -857,6 +907,8 @@ func WithListOrderedBy(v CodeableConcept) ListOption {
 }
 
 // WithListNote adds a Note to the List.
+//
+// Deprecated: use ListBuilder.AddNote instead; removed in v2.
 func WithListNote(v Annotation) ListOption {
 	return func(r *List) {
 		r.Note = append(r.Note, v)
@@ -864,6 +916,8 @@ func WithListNote(v Annotation) ListOption {
 }
 
 // WithListEntry adds a Entry to the List.
+//
+// Deprecated: use ListBuilder.AddEntry instead; removed in v2.
 func WithListEntry(v ListEntry) ListOption {
 	return func(r *List) {
 		r.Entry = append(r.Entry, v)
@@ -871,6 +925,8 @@ func WithListEntry(v ListEntry) ListOption {
 }
 
 // WithListEmptyReason sets the EmptyReason field.
+//
+// Deprecated: use ListBuilder.SetEmptyReason instead; removed in v2.
 func WithListEmptyReason(v CodeableConcept) ListOption {
 	return func(r *List) {
 		r.EmptyReason = &v

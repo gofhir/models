@@ -2772,9 +2772,23 @@ func (b *TaskBuilder) AddOutput(v TaskOutput) *TaskBuilder {
 // =============================================================================
 
 // TaskOption is a functional option for configuring a Task.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// TaskBuilder. Every WithTask* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type TaskOption func(*Task)
 
 // NewTask creates a new Task with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewTaskBuilder().SetId("x").Build()
+//
+// Deprecated: use NewTaskBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewTask(opts ...TaskOption) *Task {
 	r := &Task{ResourceType: "Task"}
 	for _, opt := range opts {
@@ -2784,6 +2798,8 @@ func NewTask(opts ...TaskOption) *Task {
 }
 
 // WithTaskId sets the Id field.
+//
+// Deprecated: use TaskBuilder.SetId instead; removed in v2.
 func WithTaskId(v string) TaskOption {
 	return func(r *Task) {
 		r.Id = &v
@@ -2791,6 +2807,8 @@ func WithTaskId(v string) TaskOption {
 }
 
 // WithTaskMeta sets the Meta field.
+//
+// Deprecated: use TaskBuilder.SetMeta instead; removed in v2.
 func WithTaskMeta(v Meta) TaskOption {
 	return func(r *Task) {
 		r.Meta = &v
@@ -2798,6 +2816,8 @@ func WithTaskMeta(v Meta) TaskOption {
 }
 
 // WithTaskImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use TaskBuilder.SetImplicitRules instead; removed in v2.
 func WithTaskImplicitRules(v string) TaskOption {
 	return func(r *Task) {
 		r.ImplicitRules = &v
@@ -2805,6 +2825,8 @@ func WithTaskImplicitRules(v string) TaskOption {
 }
 
 // WithTaskLanguage sets the Language field.
+//
+// Deprecated: use TaskBuilder.SetLanguage instead; removed in v2.
 func WithTaskLanguage(v string) TaskOption {
 	return func(r *Task) {
 		r.Language = &v
@@ -2812,6 +2834,8 @@ func WithTaskLanguage(v string) TaskOption {
 }
 
 // WithTaskText sets the Text field.
+//
+// Deprecated: use TaskBuilder.SetText instead; removed in v2.
 func WithTaskText(v Narrative) TaskOption {
 	return func(r *Task) {
 		r.Text = &v
@@ -2819,6 +2843,8 @@ func WithTaskText(v Narrative) TaskOption {
 }
 
 // WithTaskContained adds a Contained to the Task.
+//
+// Deprecated: use TaskBuilder.AddContained instead; removed in v2.
 func WithTaskContained(v Resource) TaskOption {
 	return func(r *Task) {
 		r.Contained = append(r.Contained, v)
@@ -2826,6 +2852,8 @@ func WithTaskContained(v Resource) TaskOption {
 }
 
 // WithTaskExtension adds a Extension to the Task.
+//
+// Deprecated: use TaskBuilder.AddExtension instead; removed in v2.
 func WithTaskExtension(v Extension) TaskOption {
 	return func(r *Task) {
 		r.Extension = append(r.Extension, v)
@@ -2833,6 +2861,8 @@ func WithTaskExtension(v Extension) TaskOption {
 }
 
 // WithTaskModifierExtension adds a ModifierExtension to the Task.
+//
+// Deprecated: use TaskBuilder.AddModifierExtension instead; removed in v2.
 func WithTaskModifierExtension(v Extension) TaskOption {
 	return func(r *Task) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -2840,6 +2870,8 @@ func WithTaskModifierExtension(v Extension) TaskOption {
 }
 
 // WithTaskIdentifier adds a Identifier to the Task.
+//
+// Deprecated: use TaskBuilder.AddIdentifier instead; removed in v2.
 func WithTaskIdentifier(v Identifier) TaskOption {
 	return func(r *Task) {
 		r.Identifier = append(r.Identifier, v)
@@ -2847,6 +2879,8 @@ func WithTaskIdentifier(v Identifier) TaskOption {
 }
 
 // WithTaskInstantiatesCanonical sets the InstantiatesCanonical field.
+//
+// Deprecated: use TaskBuilder.SetInstantiatesCanonical instead; removed in v2.
 func WithTaskInstantiatesCanonical(v string) TaskOption {
 	return func(r *Task) {
 		r.InstantiatesCanonical = &v
@@ -2854,6 +2888,8 @@ func WithTaskInstantiatesCanonical(v string) TaskOption {
 }
 
 // WithTaskInstantiatesUri sets the InstantiatesUri field.
+//
+// Deprecated: use TaskBuilder.SetInstantiatesUri instead; removed in v2.
 func WithTaskInstantiatesUri(v string) TaskOption {
 	return func(r *Task) {
 		r.InstantiatesUri = &v
@@ -2861,6 +2897,8 @@ func WithTaskInstantiatesUri(v string) TaskOption {
 }
 
 // WithTaskBasedOn adds a BasedOn to the Task.
+//
+// Deprecated: use TaskBuilder.AddBasedOn instead; removed in v2.
 func WithTaskBasedOn(v Reference) TaskOption {
 	return func(r *Task) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -2868,6 +2906,8 @@ func WithTaskBasedOn(v Reference) TaskOption {
 }
 
 // WithTaskGroupIdentifier sets the GroupIdentifier field.
+//
+// Deprecated: use TaskBuilder.SetGroupIdentifier instead; removed in v2.
 func WithTaskGroupIdentifier(v Identifier) TaskOption {
 	return func(r *Task) {
 		r.GroupIdentifier = &v
@@ -2875,6 +2915,8 @@ func WithTaskGroupIdentifier(v Identifier) TaskOption {
 }
 
 // WithTaskPartOf adds a PartOf to the Task.
+//
+// Deprecated: use TaskBuilder.AddPartOf instead; removed in v2.
 func WithTaskPartOf(v Reference) TaskOption {
 	return func(r *Task) {
 		r.PartOf = append(r.PartOf, v)
@@ -2882,6 +2924,8 @@ func WithTaskPartOf(v Reference) TaskOption {
 }
 
 // WithTaskStatus sets the Status field.
+//
+// Deprecated: use TaskBuilder.SetStatus instead; removed in v2.
 func WithTaskStatus(v TaskStatus) TaskOption {
 	return func(r *Task) {
 		r.Status = &v
@@ -2889,6 +2933,8 @@ func WithTaskStatus(v TaskStatus) TaskOption {
 }
 
 // WithTaskStatusReason sets the StatusReason field.
+//
+// Deprecated: use TaskBuilder.SetStatusReason instead; removed in v2.
 func WithTaskStatusReason(v CodeableReference) TaskOption {
 	return func(r *Task) {
 		r.StatusReason = &v
@@ -2896,6 +2942,8 @@ func WithTaskStatusReason(v CodeableReference) TaskOption {
 }
 
 // WithTaskBusinessStatus sets the BusinessStatus field.
+//
+// Deprecated: use TaskBuilder.SetBusinessStatus instead; removed in v2.
 func WithTaskBusinessStatus(v CodeableConcept) TaskOption {
 	return func(r *Task) {
 		r.BusinessStatus = &v
@@ -2903,6 +2951,8 @@ func WithTaskBusinessStatus(v CodeableConcept) TaskOption {
 }
 
 // WithTaskIntent sets the Intent field.
+//
+// Deprecated: use TaskBuilder.SetIntent instead; removed in v2.
 func WithTaskIntent(v TaskIntent) TaskOption {
 	return func(r *Task) {
 		r.Intent = &v
@@ -2910,6 +2960,8 @@ func WithTaskIntent(v TaskIntent) TaskOption {
 }
 
 // WithTaskPriority sets the Priority field.
+//
+// Deprecated: use TaskBuilder.SetPriority instead; removed in v2.
 func WithTaskPriority(v RequestPriority) TaskOption {
 	return func(r *Task) {
 		r.Priority = &v
@@ -2917,6 +2969,8 @@ func WithTaskPriority(v RequestPriority) TaskOption {
 }
 
 // WithTaskDoNotPerform sets the DoNotPerform field.
+//
+// Deprecated: use TaskBuilder.SetDoNotPerform instead; removed in v2.
 func WithTaskDoNotPerform(v bool) TaskOption {
 	return func(r *Task) {
 		r.DoNotPerform = &v
@@ -2924,6 +2978,8 @@ func WithTaskDoNotPerform(v bool) TaskOption {
 }
 
 // WithTaskCode sets the Code field.
+//
+// Deprecated: use TaskBuilder.SetCode instead; removed in v2.
 func WithTaskCode(v CodeableConcept) TaskOption {
 	return func(r *Task) {
 		r.Code = &v
@@ -2931,6 +2987,8 @@ func WithTaskCode(v CodeableConcept) TaskOption {
 }
 
 // WithTaskDescription sets the Description field.
+//
+// Deprecated: use TaskBuilder.SetDescription instead; removed in v2.
 func WithTaskDescription(v string) TaskOption {
 	return func(r *Task) {
 		r.Description = &v
@@ -2938,6 +2996,8 @@ func WithTaskDescription(v string) TaskOption {
 }
 
 // WithTaskFocus sets the Focus field.
+//
+// Deprecated: use TaskBuilder.SetFocus instead; removed in v2.
 func WithTaskFocus(v Reference) TaskOption {
 	return func(r *Task) {
 		r.Focus = &v
@@ -2945,6 +3005,8 @@ func WithTaskFocus(v Reference) TaskOption {
 }
 
 // WithTaskFor sets the For field.
+//
+// Deprecated: use TaskBuilder.SetFor instead; removed in v2.
 func WithTaskFor(v Reference) TaskOption {
 	return func(r *Task) {
 		r.For = &v
@@ -2952,6 +3014,8 @@ func WithTaskFor(v Reference) TaskOption {
 }
 
 // WithTaskEncounter sets the Encounter field.
+//
+// Deprecated: use TaskBuilder.SetEncounter instead; removed in v2.
 func WithTaskEncounter(v Reference) TaskOption {
 	return func(r *Task) {
 		r.Encounter = &v
@@ -2959,6 +3023,8 @@ func WithTaskEncounter(v Reference) TaskOption {
 }
 
 // WithTaskRequestedPeriod sets the RequestedPeriod field.
+//
+// Deprecated: use TaskBuilder.SetRequestedPeriod instead; removed in v2.
 func WithTaskRequestedPeriod(v Period) TaskOption {
 	return func(r *Task) {
 		r.RequestedPeriod = &v
@@ -2966,6 +3032,8 @@ func WithTaskRequestedPeriod(v Period) TaskOption {
 }
 
 // WithTaskExecutionPeriod sets the ExecutionPeriod field.
+//
+// Deprecated: use TaskBuilder.SetExecutionPeriod instead; removed in v2.
 func WithTaskExecutionPeriod(v Period) TaskOption {
 	return func(r *Task) {
 		r.ExecutionPeriod = &v
@@ -2973,6 +3041,8 @@ func WithTaskExecutionPeriod(v Period) TaskOption {
 }
 
 // WithTaskAuthoredOn sets the AuthoredOn field.
+//
+// Deprecated: use TaskBuilder.SetAuthoredOn instead; removed in v2.
 func WithTaskAuthoredOn(v string) TaskOption {
 	return func(r *Task) {
 		r.AuthoredOn = &v
@@ -2980,6 +3050,8 @@ func WithTaskAuthoredOn(v string) TaskOption {
 }
 
 // WithTaskLastModified sets the LastModified field.
+//
+// Deprecated: use TaskBuilder.SetLastModified instead; removed in v2.
 func WithTaskLastModified(v string) TaskOption {
 	return func(r *Task) {
 		r.LastModified = &v
@@ -2987,6 +3059,8 @@ func WithTaskLastModified(v string) TaskOption {
 }
 
 // WithTaskRequester sets the Requester field.
+//
+// Deprecated: use TaskBuilder.SetRequester instead; removed in v2.
 func WithTaskRequester(v Reference) TaskOption {
 	return func(r *Task) {
 		r.Requester = &v
@@ -2994,6 +3068,8 @@ func WithTaskRequester(v Reference) TaskOption {
 }
 
 // WithTaskRequestedPerformer adds a RequestedPerformer to the Task.
+//
+// Deprecated: use TaskBuilder.AddRequestedPerformer instead; removed in v2.
 func WithTaskRequestedPerformer(v CodeableReference) TaskOption {
 	return func(r *Task) {
 		r.RequestedPerformer = append(r.RequestedPerformer, v)
@@ -3001,6 +3077,8 @@ func WithTaskRequestedPerformer(v CodeableReference) TaskOption {
 }
 
 // WithTaskOwner sets the Owner field.
+//
+// Deprecated: use TaskBuilder.SetOwner instead; removed in v2.
 func WithTaskOwner(v Reference) TaskOption {
 	return func(r *Task) {
 		r.Owner = &v
@@ -3008,6 +3086,8 @@ func WithTaskOwner(v Reference) TaskOption {
 }
 
 // WithTaskPerformer adds a Performer to the Task.
+//
+// Deprecated: use TaskBuilder.AddPerformer instead; removed in v2.
 func WithTaskPerformer(v TaskPerformer) TaskOption {
 	return func(r *Task) {
 		r.Performer = append(r.Performer, v)
@@ -3015,6 +3095,8 @@ func WithTaskPerformer(v TaskPerformer) TaskOption {
 }
 
 // WithTaskLocation sets the Location field.
+//
+// Deprecated: use TaskBuilder.SetLocation instead; removed in v2.
 func WithTaskLocation(v Reference) TaskOption {
 	return func(r *Task) {
 		r.Location = &v
@@ -3022,6 +3104,8 @@ func WithTaskLocation(v Reference) TaskOption {
 }
 
 // WithTaskReason adds a Reason to the Task.
+//
+// Deprecated: use TaskBuilder.AddReason instead; removed in v2.
 func WithTaskReason(v CodeableReference) TaskOption {
 	return func(r *Task) {
 		r.Reason = append(r.Reason, v)
@@ -3029,6 +3113,8 @@ func WithTaskReason(v CodeableReference) TaskOption {
 }
 
 // WithTaskInsurance adds a Insurance to the Task.
+//
+// Deprecated: use TaskBuilder.AddInsurance instead; removed in v2.
 func WithTaskInsurance(v Reference) TaskOption {
 	return func(r *Task) {
 		r.Insurance = append(r.Insurance, v)
@@ -3036,6 +3122,8 @@ func WithTaskInsurance(v Reference) TaskOption {
 }
 
 // WithTaskNote adds a Note to the Task.
+//
+// Deprecated: use TaskBuilder.AddNote instead; removed in v2.
 func WithTaskNote(v Annotation) TaskOption {
 	return func(r *Task) {
 		r.Note = append(r.Note, v)
@@ -3043,6 +3131,8 @@ func WithTaskNote(v Annotation) TaskOption {
 }
 
 // WithTaskRelevantHistory adds a RelevantHistory to the Task.
+//
+// Deprecated: use TaskBuilder.AddRelevantHistory instead; removed in v2.
 func WithTaskRelevantHistory(v Reference) TaskOption {
 	return func(r *Task) {
 		r.RelevantHistory = append(r.RelevantHistory, v)
@@ -3050,6 +3140,8 @@ func WithTaskRelevantHistory(v Reference) TaskOption {
 }
 
 // WithTaskRestriction sets the Restriction field.
+//
+// Deprecated: use TaskBuilder.SetRestriction instead; removed in v2.
 func WithTaskRestriction(v TaskRestriction) TaskOption {
 	return func(r *Task) {
 		r.Restriction = &v
@@ -3057,6 +3149,8 @@ func WithTaskRestriction(v TaskRestriction) TaskOption {
 }
 
 // WithTaskInput adds a Input to the Task.
+//
+// Deprecated: use TaskBuilder.AddInput instead; removed in v2.
 func WithTaskInput(v TaskInput) TaskOption {
 	return func(r *Task) {
 		r.Input = append(r.Input, v)
@@ -3064,6 +3158,8 @@ func WithTaskInput(v TaskInput) TaskOption {
 }
 
 // WithTaskOutput adds a Output to the Task.
+//
+// Deprecated: use TaskBuilder.AddOutput instead; removed in v2.
 func WithTaskOutput(v TaskOutput) TaskOption {
 	return func(r *Task) {
 		r.Output = append(r.Output, v)

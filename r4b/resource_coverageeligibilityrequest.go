@@ -1161,9 +1161,23 @@ func (b *CoverageEligibilityRequestBuilder) AddItem(v CoverageEligibilityRequest
 // =============================================================================
 
 // CoverageEligibilityRequestOption is a functional option for configuring a CoverageEligibilityRequest.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// CoverageEligibilityRequestBuilder. Every WithCoverageEligibilityRequest* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type CoverageEligibilityRequestOption func(*CoverageEligibilityRequest)
 
 // NewCoverageEligibilityRequest creates a new CoverageEligibilityRequest with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewCoverageEligibilityRequestBuilder().SetId("x").Build()
+//
+// Deprecated: use NewCoverageEligibilityRequestBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewCoverageEligibilityRequest(opts ...CoverageEligibilityRequestOption) *CoverageEligibilityRequest {
 	r := &CoverageEligibilityRequest{ResourceType: "CoverageEligibilityRequest"}
 	for _, opt := range opts {
@@ -1173,6 +1187,8 @@ func NewCoverageEligibilityRequest(opts ...CoverageEligibilityRequestOption) *Co
 }
 
 // WithCoverageEligibilityRequestId sets the Id field.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.SetId instead; removed in v2.
 func WithCoverageEligibilityRequestId(v string) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.Id = &v
@@ -1180,6 +1196,8 @@ func WithCoverageEligibilityRequestId(v string) CoverageEligibilityRequestOption
 }
 
 // WithCoverageEligibilityRequestMeta sets the Meta field.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.SetMeta instead; removed in v2.
 func WithCoverageEligibilityRequestMeta(v Meta) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.Meta = &v
@@ -1187,6 +1205,8 @@ func WithCoverageEligibilityRequestMeta(v Meta) CoverageEligibilityRequestOption
 }
 
 // WithCoverageEligibilityRequestImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.SetImplicitRules instead; removed in v2.
 func WithCoverageEligibilityRequestImplicitRules(v string) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.ImplicitRules = &v
@@ -1194,6 +1214,8 @@ func WithCoverageEligibilityRequestImplicitRules(v string) CoverageEligibilityRe
 }
 
 // WithCoverageEligibilityRequestLanguage sets the Language field.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.SetLanguage instead; removed in v2.
 func WithCoverageEligibilityRequestLanguage(v string) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.Language = &v
@@ -1201,6 +1223,8 @@ func WithCoverageEligibilityRequestLanguage(v string) CoverageEligibilityRequest
 }
 
 // WithCoverageEligibilityRequestText sets the Text field.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.SetText instead; removed in v2.
 func WithCoverageEligibilityRequestText(v Narrative) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.Text = &v
@@ -1208,6 +1232,8 @@ func WithCoverageEligibilityRequestText(v Narrative) CoverageEligibilityRequestO
 }
 
 // WithCoverageEligibilityRequestContained adds a Contained to the CoverageEligibilityRequest.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.AddContained instead; removed in v2.
 func WithCoverageEligibilityRequestContained(v Resource) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.Contained = append(r.Contained, v)
@@ -1215,6 +1241,8 @@ func WithCoverageEligibilityRequestContained(v Resource) CoverageEligibilityRequ
 }
 
 // WithCoverageEligibilityRequestExtension adds a Extension to the CoverageEligibilityRequest.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.AddExtension instead; removed in v2.
 func WithCoverageEligibilityRequestExtension(v Extension) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.Extension = append(r.Extension, v)
@@ -1222,6 +1250,8 @@ func WithCoverageEligibilityRequestExtension(v Extension) CoverageEligibilityReq
 }
 
 // WithCoverageEligibilityRequestModifierExtension adds a ModifierExtension to the CoverageEligibilityRequest.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.AddModifierExtension instead; removed in v2.
 func WithCoverageEligibilityRequestModifierExtension(v Extension) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1229,6 +1259,8 @@ func WithCoverageEligibilityRequestModifierExtension(v Extension) CoverageEligib
 }
 
 // WithCoverageEligibilityRequestIdentifier adds a Identifier to the CoverageEligibilityRequest.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.AddIdentifier instead; removed in v2.
 func WithCoverageEligibilityRequestIdentifier(v Identifier) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.Identifier = append(r.Identifier, v)
@@ -1236,6 +1268,8 @@ func WithCoverageEligibilityRequestIdentifier(v Identifier) CoverageEligibilityR
 }
 
 // WithCoverageEligibilityRequestStatus sets the Status field.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.SetStatus instead; removed in v2.
 func WithCoverageEligibilityRequestStatus(v FinancialResourceStatusCodes) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.Status = &v
@@ -1243,6 +1277,8 @@ func WithCoverageEligibilityRequestStatus(v FinancialResourceStatusCodes) Covera
 }
 
 // WithCoverageEligibilityRequestPriority sets the Priority field.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.SetPriority instead; removed in v2.
 func WithCoverageEligibilityRequestPriority(v CodeableConcept) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.Priority = &v
@@ -1250,6 +1286,8 @@ func WithCoverageEligibilityRequestPriority(v CodeableConcept) CoverageEligibili
 }
 
 // WithCoverageEligibilityRequestPurpose adds a Purpose to the CoverageEligibilityRequest.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.AddPurpose instead; removed in v2.
 func WithCoverageEligibilityRequestPurpose(v EligibilityRequestPurpose) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.Purpose = append(r.Purpose, v)
@@ -1257,6 +1295,8 @@ func WithCoverageEligibilityRequestPurpose(v EligibilityRequestPurpose) Coverage
 }
 
 // WithCoverageEligibilityRequestPatient sets the Patient field.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.SetPatient instead; removed in v2.
 func WithCoverageEligibilityRequestPatient(v Reference) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.Patient = v
@@ -1264,6 +1304,8 @@ func WithCoverageEligibilityRequestPatient(v Reference) CoverageEligibilityReque
 }
 
 // WithCoverageEligibilityRequestServicedDate sets the ServicedDate field.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.SetServicedDate instead; removed in v2.
 func WithCoverageEligibilityRequestServicedDate(v string) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.ServicedDate = &v
@@ -1271,6 +1313,8 @@ func WithCoverageEligibilityRequestServicedDate(v string) CoverageEligibilityReq
 }
 
 // WithCoverageEligibilityRequestServicedDateExt sets the ServicedDateExt field.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.SetServicedDateExt instead; removed in v2.
 func WithCoverageEligibilityRequestServicedDateExt(v Element) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.ServicedDateExt = &v
@@ -1278,6 +1322,8 @@ func WithCoverageEligibilityRequestServicedDateExt(v Element) CoverageEligibilit
 }
 
 // WithCoverageEligibilityRequestServicedPeriod sets the ServicedPeriod field.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.SetServicedPeriod instead; removed in v2.
 func WithCoverageEligibilityRequestServicedPeriod(v Period) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.ServicedPeriod = &v
@@ -1285,6 +1331,8 @@ func WithCoverageEligibilityRequestServicedPeriod(v Period) CoverageEligibilityR
 }
 
 // WithCoverageEligibilityRequestCreated sets the Created field.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.SetCreated instead; removed in v2.
 func WithCoverageEligibilityRequestCreated(v string) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.Created = &v
@@ -1292,6 +1340,8 @@ func WithCoverageEligibilityRequestCreated(v string) CoverageEligibilityRequestO
 }
 
 // WithCoverageEligibilityRequestEnterer sets the Enterer field.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.SetEnterer instead; removed in v2.
 func WithCoverageEligibilityRequestEnterer(v Reference) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.Enterer = &v
@@ -1299,6 +1349,8 @@ func WithCoverageEligibilityRequestEnterer(v Reference) CoverageEligibilityReque
 }
 
 // WithCoverageEligibilityRequestProvider sets the Provider field.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.SetProvider instead; removed in v2.
 func WithCoverageEligibilityRequestProvider(v Reference) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.Provider = &v
@@ -1306,6 +1358,8 @@ func WithCoverageEligibilityRequestProvider(v Reference) CoverageEligibilityRequ
 }
 
 // WithCoverageEligibilityRequestInsurer sets the Insurer field.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.SetInsurer instead; removed in v2.
 func WithCoverageEligibilityRequestInsurer(v Reference) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.Insurer = v
@@ -1313,6 +1367,8 @@ func WithCoverageEligibilityRequestInsurer(v Reference) CoverageEligibilityReque
 }
 
 // WithCoverageEligibilityRequestFacility sets the Facility field.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.SetFacility instead; removed in v2.
 func WithCoverageEligibilityRequestFacility(v Reference) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.Facility = &v
@@ -1320,6 +1376,8 @@ func WithCoverageEligibilityRequestFacility(v Reference) CoverageEligibilityRequ
 }
 
 // WithCoverageEligibilityRequestSupportingInfo adds a SupportingInfo to the CoverageEligibilityRequest.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.AddSupportingInfo instead; removed in v2.
 func WithCoverageEligibilityRequestSupportingInfo(v CoverageEligibilityRequestSupportingInfo) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.SupportingInfo = append(r.SupportingInfo, v)
@@ -1327,6 +1385,8 @@ func WithCoverageEligibilityRequestSupportingInfo(v CoverageEligibilityRequestSu
 }
 
 // WithCoverageEligibilityRequestInsurance adds a Insurance to the CoverageEligibilityRequest.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.AddInsurance instead; removed in v2.
 func WithCoverageEligibilityRequestInsurance(v CoverageEligibilityRequestInsurance) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.Insurance = append(r.Insurance, v)
@@ -1334,6 +1394,8 @@ func WithCoverageEligibilityRequestInsurance(v CoverageEligibilityRequestInsuran
 }
 
 // WithCoverageEligibilityRequestItem adds a Item to the CoverageEligibilityRequest.
+//
+// Deprecated: use CoverageEligibilityRequestBuilder.AddItem instead; removed in v2.
 func WithCoverageEligibilityRequestItem(v CoverageEligibilityRequestItem) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
 		r.Item = append(r.Item, v)

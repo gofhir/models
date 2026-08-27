@@ -1031,9 +1031,23 @@ func (b *LibraryBuilder) AddContent(v Attachment) *LibraryBuilder {
 // =============================================================================
 
 // LibraryOption is a functional option for configuring a Library.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// LibraryBuilder. Every WithLibrary* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type LibraryOption func(*Library)
 
 // NewLibrary creates a new Library with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewLibraryBuilder().SetId("x").Build()
+//
+// Deprecated: use NewLibraryBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewLibrary(opts ...LibraryOption) *Library {
 	r := &Library{ResourceType: "Library"}
 	for _, opt := range opts {
@@ -1043,6 +1057,8 @@ func NewLibrary(opts ...LibraryOption) *Library {
 }
 
 // WithLibraryId sets the Id field.
+//
+// Deprecated: use LibraryBuilder.SetId instead; removed in v2.
 func WithLibraryId(v string) LibraryOption {
 	return func(r *Library) {
 		r.Id = &v
@@ -1050,6 +1066,8 @@ func WithLibraryId(v string) LibraryOption {
 }
 
 // WithLibraryMeta sets the Meta field.
+//
+// Deprecated: use LibraryBuilder.SetMeta instead; removed in v2.
 func WithLibraryMeta(v Meta) LibraryOption {
 	return func(r *Library) {
 		r.Meta = &v
@@ -1057,6 +1075,8 @@ func WithLibraryMeta(v Meta) LibraryOption {
 }
 
 // WithLibraryImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use LibraryBuilder.SetImplicitRules instead; removed in v2.
 func WithLibraryImplicitRules(v string) LibraryOption {
 	return func(r *Library) {
 		r.ImplicitRules = &v
@@ -1064,6 +1084,8 @@ func WithLibraryImplicitRules(v string) LibraryOption {
 }
 
 // WithLibraryLanguage sets the Language field.
+//
+// Deprecated: use LibraryBuilder.SetLanguage instead; removed in v2.
 func WithLibraryLanguage(v string) LibraryOption {
 	return func(r *Library) {
 		r.Language = &v
@@ -1071,6 +1093,8 @@ func WithLibraryLanguage(v string) LibraryOption {
 }
 
 // WithLibraryText sets the Text field.
+//
+// Deprecated: use LibraryBuilder.SetText instead; removed in v2.
 func WithLibraryText(v Narrative) LibraryOption {
 	return func(r *Library) {
 		r.Text = &v
@@ -1078,6 +1102,8 @@ func WithLibraryText(v Narrative) LibraryOption {
 }
 
 // WithLibraryContained adds a Contained to the Library.
+//
+// Deprecated: use LibraryBuilder.AddContained instead; removed in v2.
 func WithLibraryContained(v Resource) LibraryOption {
 	return func(r *Library) {
 		r.Contained = append(r.Contained, v)
@@ -1085,6 +1111,8 @@ func WithLibraryContained(v Resource) LibraryOption {
 }
 
 // WithLibraryExtension adds a Extension to the Library.
+//
+// Deprecated: use LibraryBuilder.AddExtension instead; removed in v2.
 func WithLibraryExtension(v Extension) LibraryOption {
 	return func(r *Library) {
 		r.Extension = append(r.Extension, v)
@@ -1092,6 +1120,8 @@ func WithLibraryExtension(v Extension) LibraryOption {
 }
 
 // WithLibraryModifierExtension adds a ModifierExtension to the Library.
+//
+// Deprecated: use LibraryBuilder.AddModifierExtension instead; removed in v2.
 func WithLibraryModifierExtension(v Extension) LibraryOption {
 	return func(r *Library) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1099,6 +1129,8 @@ func WithLibraryModifierExtension(v Extension) LibraryOption {
 }
 
 // WithLibraryUrl sets the Url field.
+//
+// Deprecated: use LibraryBuilder.SetUrl instead; removed in v2.
 func WithLibraryUrl(v string) LibraryOption {
 	return func(r *Library) {
 		r.Url = &v
@@ -1106,6 +1138,8 @@ func WithLibraryUrl(v string) LibraryOption {
 }
 
 // WithLibraryIdentifier adds a Identifier to the Library.
+//
+// Deprecated: use LibraryBuilder.AddIdentifier instead; removed in v2.
 func WithLibraryIdentifier(v Identifier) LibraryOption {
 	return func(r *Library) {
 		r.Identifier = append(r.Identifier, v)
@@ -1113,6 +1147,8 @@ func WithLibraryIdentifier(v Identifier) LibraryOption {
 }
 
 // WithLibraryVersion sets the Version field.
+//
+// Deprecated: use LibraryBuilder.SetVersion instead; removed in v2.
 func WithLibraryVersion(v string) LibraryOption {
 	return func(r *Library) {
 		r.Version = &v
@@ -1120,6 +1156,8 @@ func WithLibraryVersion(v string) LibraryOption {
 }
 
 // WithLibraryVersionAlgorithmString sets the VersionAlgorithmString field.
+//
+// Deprecated: use LibraryBuilder.SetVersionAlgorithmString instead; removed in v2.
 func WithLibraryVersionAlgorithmString(v string) LibraryOption {
 	return func(r *Library) {
 		r.VersionAlgorithmString = &v
@@ -1127,6 +1165,8 @@ func WithLibraryVersionAlgorithmString(v string) LibraryOption {
 }
 
 // WithLibraryVersionAlgorithmStringExt sets the VersionAlgorithmStringExt field.
+//
+// Deprecated: use LibraryBuilder.SetVersionAlgorithmStringExt instead; removed in v2.
 func WithLibraryVersionAlgorithmStringExt(v Element) LibraryOption {
 	return func(r *Library) {
 		r.VersionAlgorithmStringExt = &v
@@ -1134,6 +1174,8 @@ func WithLibraryVersionAlgorithmStringExt(v Element) LibraryOption {
 }
 
 // WithLibraryVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+//
+// Deprecated: use LibraryBuilder.SetVersionAlgorithmCoding instead; removed in v2.
 func WithLibraryVersionAlgorithmCoding(v Coding) LibraryOption {
 	return func(r *Library) {
 		r.VersionAlgorithmCoding = &v
@@ -1141,6 +1183,8 @@ func WithLibraryVersionAlgorithmCoding(v Coding) LibraryOption {
 }
 
 // WithLibraryName sets the Name field.
+//
+// Deprecated: use LibraryBuilder.SetName instead; removed in v2.
 func WithLibraryName(v string) LibraryOption {
 	return func(r *Library) {
 		r.Name = &v
@@ -1148,6 +1192,8 @@ func WithLibraryName(v string) LibraryOption {
 }
 
 // WithLibraryTitle sets the Title field.
+//
+// Deprecated: use LibraryBuilder.SetTitle instead; removed in v2.
 func WithLibraryTitle(v string) LibraryOption {
 	return func(r *Library) {
 		r.Title = &v
@@ -1155,6 +1201,8 @@ func WithLibraryTitle(v string) LibraryOption {
 }
 
 // WithLibrarySubtitle sets the Subtitle field.
+//
+// Deprecated: use LibraryBuilder.SetSubtitle instead; removed in v2.
 func WithLibrarySubtitle(v string) LibraryOption {
 	return func(r *Library) {
 		r.Subtitle = &v
@@ -1162,6 +1210,8 @@ func WithLibrarySubtitle(v string) LibraryOption {
 }
 
 // WithLibraryStatus sets the Status field.
+//
+// Deprecated: use LibraryBuilder.SetStatus instead; removed in v2.
 func WithLibraryStatus(v PublicationStatus) LibraryOption {
 	return func(r *Library) {
 		r.Status = &v
@@ -1169,6 +1219,8 @@ func WithLibraryStatus(v PublicationStatus) LibraryOption {
 }
 
 // WithLibraryExperimental sets the Experimental field.
+//
+// Deprecated: use LibraryBuilder.SetExperimental instead; removed in v2.
 func WithLibraryExperimental(v bool) LibraryOption {
 	return func(r *Library) {
 		r.Experimental = &v
@@ -1176,6 +1228,8 @@ func WithLibraryExperimental(v bool) LibraryOption {
 }
 
 // WithLibraryType sets the Type field.
+//
+// Deprecated: use LibraryBuilder.SetType instead; removed in v2.
 func WithLibraryType(v CodeableConcept) LibraryOption {
 	return func(r *Library) {
 		r.Type = v
@@ -1183,6 +1237,8 @@ func WithLibraryType(v CodeableConcept) LibraryOption {
 }
 
 // WithLibrarySubjectCodeableConcept sets the SubjectCodeableConcept field.
+//
+// Deprecated: use LibraryBuilder.SetSubjectCodeableConcept instead; removed in v2.
 func WithLibrarySubjectCodeableConcept(v CodeableConcept) LibraryOption {
 	return func(r *Library) {
 		r.SubjectCodeableConcept = &v
@@ -1190,6 +1246,8 @@ func WithLibrarySubjectCodeableConcept(v CodeableConcept) LibraryOption {
 }
 
 // WithLibrarySubjectReference sets the SubjectReference field.
+//
+// Deprecated: use LibraryBuilder.SetSubjectReference instead; removed in v2.
 func WithLibrarySubjectReference(v Reference) LibraryOption {
 	return func(r *Library) {
 		r.SubjectReference = &v
@@ -1197,6 +1255,8 @@ func WithLibrarySubjectReference(v Reference) LibraryOption {
 }
 
 // WithLibraryDate sets the Date field.
+//
+// Deprecated: use LibraryBuilder.SetDate instead; removed in v2.
 func WithLibraryDate(v string) LibraryOption {
 	return func(r *Library) {
 		r.Date = &v
@@ -1204,6 +1264,8 @@ func WithLibraryDate(v string) LibraryOption {
 }
 
 // WithLibraryPublisher sets the Publisher field.
+//
+// Deprecated: use LibraryBuilder.SetPublisher instead; removed in v2.
 func WithLibraryPublisher(v string) LibraryOption {
 	return func(r *Library) {
 		r.Publisher = &v
@@ -1211,6 +1273,8 @@ func WithLibraryPublisher(v string) LibraryOption {
 }
 
 // WithLibraryContact adds a Contact to the Library.
+//
+// Deprecated: use LibraryBuilder.AddContact instead; removed in v2.
 func WithLibraryContact(v ContactDetail) LibraryOption {
 	return func(r *Library) {
 		r.Contact = append(r.Contact, v)
@@ -1218,6 +1282,8 @@ func WithLibraryContact(v ContactDetail) LibraryOption {
 }
 
 // WithLibraryDescription sets the Description field.
+//
+// Deprecated: use LibraryBuilder.SetDescription instead; removed in v2.
 func WithLibraryDescription(v string) LibraryOption {
 	return func(r *Library) {
 		r.Description = &v
@@ -1225,6 +1291,8 @@ func WithLibraryDescription(v string) LibraryOption {
 }
 
 // WithLibraryUseContext adds a UseContext to the Library.
+//
+// Deprecated: use LibraryBuilder.AddUseContext instead; removed in v2.
 func WithLibraryUseContext(v UsageContext) LibraryOption {
 	return func(r *Library) {
 		r.UseContext = append(r.UseContext, v)
@@ -1232,6 +1300,8 @@ func WithLibraryUseContext(v UsageContext) LibraryOption {
 }
 
 // WithLibraryJurisdiction adds a Jurisdiction to the Library.
+//
+// Deprecated: use LibraryBuilder.AddJurisdiction instead; removed in v2.
 func WithLibraryJurisdiction(v CodeableConcept) LibraryOption {
 	return func(r *Library) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1239,6 +1309,8 @@ func WithLibraryJurisdiction(v CodeableConcept) LibraryOption {
 }
 
 // WithLibraryPurpose sets the Purpose field.
+//
+// Deprecated: use LibraryBuilder.SetPurpose instead; removed in v2.
 func WithLibraryPurpose(v string) LibraryOption {
 	return func(r *Library) {
 		r.Purpose = &v
@@ -1246,6 +1318,8 @@ func WithLibraryPurpose(v string) LibraryOption {
 }
 
 // WithLibraryUsage sets the Usage field.
+//
+// Deprecated: use LibraryBuilder.SetUsage instead; removed in v2.
 func WithLibraryUsage(v string) LibraryOption {
 	return func(r *Library) {
 		r.Usage = &v
@@ -1253,6 +1327,8 @@ func WithLibraryUsage(v string) LibraryOption {
 }
 
 // WithLibraryCopyright sets the Copyright field.
+//
+// Deprecated: use LibraryBuilder.SetCopyright instead; removed in v2.
 func WithLibraryCopyright(v string) LibraryOption {
 	return func(r *Library) {
 		r.Copyright = &v
@@ -1260,6 +1336,8 @@ func WithLibraryCopyright(v string) LibraryOption {
 }
 
 // WithLibraryCopyrightLabel sets the CopyrightLabel field.
+//
+// Deprecated: use LibraryBuilder.SetCopyrightLabel instead; removed in v2.
 func WithLibraryCopyrightLabel(v string) LibraryOption {
 	return func(r *Library) {
 		r.CopyrightLabel = &v
@@ -1267,6 +1345,8 @@ func WithLibraryCopyrightLabel(v string) LibraryOption {
 }
 
 // WithLibraryApprovalDate sets the ApprovalDate field.
+//
+// Deprecated: use LibraryBuilder.SetApprovalDate instead; removed in v2.
 func WithLibraryApprovalDate(v string) LibraryOption {
 	return func(r *Library) {
 		r.ApprovalDate = &v
@@ -1274,6 +1354,8 @@ func WithLibraryApprovalDate(v string) LibraryOption {
 }
 
 // WithLibraryLastReviewDate sets the LastReviewDate field.
+//
+// Deprecated: use LibraryBuilder.SetLastReviewDate instead; removed in v2.
 func WithLibraryLastReviewDate(v string) LibraryOption {
 	return func(r *Library) {
 		r.LastReviewDate = &v
@@ -1281,6 +1363,8 @@ func WithLibraryLastReviewDate(v string) LibraryOption {
 }
 
 // WithLibraryEffectivePeriod sets the EffectivePeriod field.
+//
+// Deprecated: use LibraryBuilder.SetEffectivePeriod instead; removed in v2.
 func WithLibraryEffectivePeriod(v Period) LibraryOption {
 	return func(r *Library) {
 		r.EffectivePeriod = &v
@@ -1288,6 +1372,8 @@ func WithLibraryEffectivePeriod(v Period) LibraryOption {
 }
 
 // WithLibraryTopic adds a Topic to the Library.
+//
+// Deprecated: use LibraryBuilder.AddTopic instead; removed in v2.
 func WithLibraryTopic(v CodeableConcept) LibraryOption {
 	return func(r *Library) {
 		r.Topic = append(r.Topic, v)
@@ -1295,6 +1381,8 @@ func WithLibraryTopic(v CodeableConcept) LibraryOption {
 }
 
 // WithLibraryAuthor adds a Author to the Library.
+//
+// Deprecated: use LibraryBuilder.AddAuthor instead; removed in v2.
 func WithLibraryAuthor(v ContactDetail) LibraryOption {
 	return func(r *Library) {
 		r.Author = append(r.Author, v)
@@ -1302,6 +1390,8 @@ func WithLibraryAuthor(v ContactDetail) LibraryOption {
 }
 
 // WithLibraryEditor adds a Editor to the Library.
+//
+// Deprecated: use LibraryBuilder.AddEditor instead; removed in v2.
 func WithLibraryEditor(v ContactDetail) LibraryOption {
 	return func(r *Library) {
 		r.Editor = append(r.Editor, v)
@@ -1309,6 +1399,8 @@ func WithLibraryEditor(v ContactDetail) LibraryOption {
 }
 
 // WithLibraryReviewer adds a Reviewer to the Library.
+//
+// Deprecated: use LibraryBuilder.AddReviewer instead; removed in v2.
 func WithLibraryReviewer(v ContactDetail) LibraryOption {
 	return func(r *Library) {
 		r.Reviewer = append(r.Reviewer, v)
@@ -1316,6 +1408,8 @@ func WithLibraryReviewer(v ContactDetail) LibraryOption {
 }
 
 // WithLibraryEndorser adds a Endorser to the Library.
+//
+// Deprecated: use LibraryBuilder.AddEndorser instead; removed in v2.
 func WithLibraryEndorser(v ContactDetail) LibraryOption {
 	return func(r *Library) {
 		r.Endorser = append(r.Endorser, v)
@@ -1323,6 +1417,8 @@ func WithLibraryEndorser(v ContactDetail) LibraryOption {
 }
 
 // WithLibraryRelatedArtifact adds a RelatedArtifact to the Library.
+//
+// Deprecated: use LibraryBuilder.AddRelatedArtifact instead; removed in v2.
 func WithLibraryRelatedArtifact(v RelatedArtifact) LibraryOption {
 	return func(r *Library) {
 		r.RelatedArtifact = append(r.RelatedArtifact, v)
@@ -1330,6 +1426,8 @@ func WithLibraryRelatedArtifact(v RelatedArtifact) LibraryOption {
 }
 
 // WithLibraryParameter adds a Parameter to the Library.
+//
+// Deprecated: use LibraryBuilder.AddParameter instead; removed in v2.
 func WithLibraryParameter(v ParameterDefinition) LibraryOption {
 	return func(r *Library) {
 		r.Parameter = append(r.Parameter, v)
@@ -1337,6 +1435,8 @@ func WithLibraryParameter(v ParameterDefinition) LibraryOption {
 }
 
 // WithLibraryDataRequirement adds a DataRequirement to the Library.
+//
+// Deprecated: use LibraryBuilder.AddDataRequirement instead; removed in v2.
 func WithLibraryDataRequirement(v DataRequirement) LibraryOption {
 	return func(r *Library) {
 		r.DataRequirement = append(r.DataRequirement, v)
@@ -1344,6 +1444,8 @@ func WithLibraryDataRequirement(v DataRequirement) LibraryOption {
 }
 
 // WithLibraryContent adds a Content to the Library.
+//
+// Deprecated: use LibraryBuilder.AddContent instead; removed in v2.
 func WithLibraryContent(v Attachment) LibraryOption {
 	return func(r *Library) {
 		r.Content = append(r.Content, v)

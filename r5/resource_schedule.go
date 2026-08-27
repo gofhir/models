@@ -521,9 +521,23 @@ func (b *ScheduleBuilder) SetComment(v string) *ScheduleBuilder {
 // =============================================================================
 
 // ScheduleOption is a functional option for configuring a Schedule.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ScheduleBuilder. Every WithSchedule* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ScheduleOption func(*Schedule)
 
 // NewSchedule creates a new Schedule with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewScheduleBuilder().SetId("x").Build()
+//
+// Deprecated: use NewScheduleBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewSchedule(opts ...ScheduleOption) *Schedule {
 	r := &Schedule{ResourceType: "Schedule"}
 	for _, opt := range opts {
@@ -533,6 +547,8 @@ func NewSchedule(opts ...ScheduleOption) *Schedule {
 }
 
 // WithScheduleId sets the Id field.
+//
+// Deprecated: use ScheduleBuilder.SetId instead; removed in v2.
 func WithScheduleId(v string) ScheduleOption {
 	return func(r *Schedule) {
 		r.Id = &v
@@ -540,6 +556,8 @@ func WithScheduleId(v string) ScheduleOption {
 }
 
 // WithScheduleMeta sets the Meta field.
+//
+// Deprecated: use ScheduleBuilder.SetMeta instead; removed in v2.
 func WithScheduleMeta(v Meta) ScheduleOption {
 	return func(r *Schedule) {
 		r.Meta = &v
@@ -547,6 +565,8 @@ func WithScheduleMeta(v Meta) ScheduleOption {
 }
 
 // WithScheduleImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ScheduleBuilder.SetImplicitRules instead; removed in v2.
 func WithScheduleImplicitRules(v string) ScheduleOption {
 	return func(r *Schedule) {
 		r.ImplicitRules = &v
@@ -554,6 +574,8 @@ func WithScheduleImplicitRules(v string) ScheduleOption {
 }
 
 // WithScheduleLanguage sets the Language field.
+//
+// Deprecated: use ScheduleBuilder.SetLanguage instead; removed in v2.
 func WithScheduleLanguage(v string) ScheduleOption {
 	return func(r *Schedule) {
 		r.Language = &v
@@ -561,6 +583,8 @@ func WithScheduleLanguage(v string) ScheduleOption {
 }
 
 // WithScheduleText sets the Text field.
+//
+// Deprecated: use ScheduleBuilder.SetText instead; removed in v2.
 func WithScheduleText(v Narrative) ScheduleOption {
 	return func(r *Schedule) {
 		r.Text = &v
@@ -568,6 +592,8 @@ func WithScheduleText(v Narrative) ScheduleOption {
 }
 
 // WithScheduleContained adds a Contained to the Schedule.
+//
+// Deprecated: use ScheduleBuilder.AddContained instead; removed in v2.
 func WithScheduleContained(v Resource) ScheduleOption {
 	return func(r *Schedule) {
 		r.Contained = append(r.Contained, v)
@@ -575,6 +601,8 @@ func WithScheduleContained(v Resource) ScheduleOption {
 }
 
 // WithScheduleExtension adds a Extension to the Schedule.
+//
+// Deprecated: use ScheduleBuilder.AddExtension instead; removed in v2.
 func WithScheduleExtension(v Extension) ScheduleOption {
 	return func(r *Schedule) {
 		r.Extension = append(r.Extension, v)
@@ -582,6 +610,8 @@ func WithScheduleExtension(v Extension) ScheduleOption {
 }
 
 // WithScheduleModifierExtension adds a ModifierExtension to the Schedule.
+//
+// Deprecated: use ScheduleBuilder.AddModifierExtension instead; removed in v2.
 func WithScheduleModifierExtension(v Extension) ScheduleOption {
 	return func(r *Schedule) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -589,6 +619,8 @@ func WithScheduleModifierExtension(v Extension) ScheduleOption {
 }
 
 // WithScheduleIdentifier adds a Identifier to the Schedule.
+//
+// Deprecated: use ScheduleBuilder.AddIdentifier instead; removed in v2.
 func WithScheduleIdentifier(v Identifier) ScheduleOption {
 	return func(r *Schedule) {
 		r.Identifier = append(r.Identifier, v)
@@ -596,6 +628,8 @@ func WithScheduleIdentifier(v Identifier) ScheduleOption {
 }
 
 // WithScheduleActive sets the Active field.
+//
+// Deprecated: use ScheduleBuilder.SetActive instead; removed in v2.
 func WithScheduleActive(v bool) ScheduleOption {
 	return func(r *Schedule) {
 		r.Active = &v
@@ -603,6 +637,8 @@ func WithScheduleActive(v bool) ScheduleOption {
 }
 
 // WithScheduleServiceCategory adds a ServiceCategory to the Schedule.
+//
+// Deprecated: use ScheduleBuilder.AddServiceCategory instead; removed in v2.
 func WithScheduleServiceCategory(v CodeableConcept) ScheduleOption {
 	return func(r *Schedule) {
 		r.ServiceCategory = append(r.ServiceCategory, v)
@@ -610,6 +646,8 @@ func WithScheduleServiceCategory(v CodeableConcept) ScheduleOption {
 }
 
 // WithScheduleServiceType adds a ServiceType to the Schedule.
+//
+// Deprecated: use ScheduleBuilder.AddServiceType instead; removed in v2.
 func WithScheduleServiceType(v CodeableReference) ScheduleOption {
 	return func(r *Schedule) {
 		r.ServiceType = append(r.ServiceType, v)
@@ -617,6 +655,8 @@ func WithScheduleServiceType(v CodeableReference) ScheduleOption {
 }
 
 // WithScheduleSpecialty adds a Specialty to the Schedule.
+//
+// Deprecated: use ScheduleBuilder.AddSpecialty instead; removed in v2.
 func WithScheduleSpecialty(v CodeableConcept) ScheduleOption {
 	return func(r *Schedule) {
 		r.Specialty = append(r.Specialty, v)
@@ -624,6 +664,8 @@ func WithScheduleSpecialty(v CodeableConcept) ScheduleOption {
 }
 
 // WithScheduleName sets the Name field.
+//
+// Deprecated: use ScheduleBuilder.SetName instead; removed in v2.
 func WithScheduleName(v string) ScheduleOption {
 	return func(r *Schedule) {
 		r.Name = &v
@@ -631,6 +673,8 @@ func WithScheduleName(v string) ScheduleOption {
 }
 
 // WithScheduleActor adds a Actor to the Schedule.
+//
+// Deprecated: use ScheduleBuilder.AddActor instead; removed in v2.
 func WithScheduleActor(v Reference) ScheduleOption {
 	return func(r *Schedule) {
 		r.Actor = append(r.Actor, v)
@@ -638,6 +682,8 @@ func WithScheduleActor(v Reference) ScheduleOption {
 }
 
 // WithSchedulePlanningHorizon sets the PlanningHorizon field.
+//
+// Deprecated: use ScheduleBuilder.SetPlanningHorizon instead; removed in v2.
 func WithSchedulePlanningHorizon(v Period) ScheduleOption {
 	return func(r *Schedule) {
 		r.PlanningHorizon = &v
@@ -645,6 +691,8 @@ func WithSchedulePlanningHorizon(v Period) ScheduleOption {
 }
 
 // WithScheduleComment sets the Comment field.
+//
+// Deprecated: use ScheduleBuilder.SetComment instead; removed in v2.
 func WithScheduleComment(v string) ScheduleOption {
 	return func(r *Schedule) {
 		r.Comment = &v

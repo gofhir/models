@@ -805,9 +805,23 @@ func (b *LocationBuilder) AddEndpoint(v Reference) *LocationBuilder {
 // =============================================================================
 
 // LocationOption is a functional option for configuring a Location.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// LocationBuilder. Every WithLocation* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type LocationOption func(*Location)
 
 // NewLocation creates a new Location with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewLocationBuilder().SetId("x").Build()
+//
+// Deprecated: use NewLocationBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewLocation(opts ...LocationOption) *Location {
 	r := &Location{ResourceType: "Location"}
 	for _, opt := range opts {
@@ -817,6 +831,8 @@ func NewLocation(opts ...LocationOption) *Location {
 }
 
 // WithLocationId sets the Id field.
+//
+// Deprecated: use LocationBuilder.SetId instead; removed in v2.
 func WithLocationId(v string) LocationOption {
 	return func(r *Location) {
 		r.Id = &v
@@ -824,6 +840,8 @@ func WithLocationId(v string) LocationOption {
 }
 
 // WithLocationMeta sets the Meta field.
+//
+// Deprecated: use LocationBuilder.SetMeta instead; removed in v2.
 func WithLocationMeta(v Meta) LocationOption {
 	return func(r *Location) {
 		r.Meta = &v
@@ -831,6 +849,8 @@ func WithLocationMeta(v Meta) LocationOption {
 }
 
 // WithLocationImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use LocationBuilder.SetImplicitRules instead; removed in v2.
 func WithLocationImplicitRules(v string) LocationOption {
 	return func(r *Location) {
 		r.ImplicitRules = &v
@@ -838,6 +858,8 @@ func WithLocationImplicitRules(v string) LocationOption {
 }
 
 // WithLocationLanguage sets the Language field.
+//
+// Deprecated: use LocationBuilder.SetLanguage instead; removed in v2.
 func WithLocationLanguage(v string) LocationOption {
 	return func(r *Location) {
 		r.Language = &v
@@ -845,6 +867,8 @@ func WithLocationLanguage(v string) LocationOption {
 }
 
 // WithLocationText sets the Text field.
+//
+// Deprecated: use LocationBuilder.SetText instead; removed in v2.
 func WithLocationText(v Narrative) LocationOption {
 	return func(r *Location) {
 		r.Text = &v
@@ -852,6 +876,8 @@ func WithLocationText(v Narrative) LocationOption {
 }
 
 // WithLocationContained adds a Contained to the Location.
+//
+// Deprecated: use LocationBuilder.AddContained instead; removed in v2.
 func WithLocationContained(v Resource) LocationOption {
 	return func(r *Location) {
 		r.Contained = append(r.Contained, v)
@@ -859,6 +885,8 @@ func WithLocationContained(v Resource) LocationOption {
 }
 
 // WithLocationExtension adds a Extension to the Location.
+//
+// Deprecated: use LocationBuilder.AddExtension instead; removed in v2.
 func WithLocationExtension(v Extension) LocationOption {
 	return func(r *Location) {
 		r.Extension = append(r.Extension, v)
@@ -866,6 +894,8 @@ func WithLocationExtension(v Extension) LocationOption {
 }
 
 // WithLocationModifierExtension adds a ModifierExtension to the Location.
+//
+// Deprecated: use LocationBuilder.AddModifierExtension instead; removed in v2.
 func WithLocationModifierExtension(v Extension) LocationOption {
 	return func(r *Location) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -873,6 +903,8 @@ func WithLocationModifierExtension(v Extension) LocationOption {
 }
 
 // WithLocationIdentifier adds a Identifier to the Location.
+//
+// Deprecated: use LocationBuilder.AddIdentifier instead; removed in v2.
 func WithLocationIdentifier(v Identifier) LocationOption {
 	return func(r *Location) {
 		r.Identifier = append(r.Identifier, v)
@@ -880,6 +912,8 @@ func WithLocationIdentifier(v Identifier) LocationOption {
 }
 
 // WithLocationStatus sets the Status field.
+//
+// Deprecated: use LocationBuilder.SetStatus instead; removed in v2.
 func WithLocationStatus(v LocationStatus) LocationOption {
 	return func(r *Location) {
 		r.Status = &v
@@ -887,6 +921,8 @@ func WithLocationStatus(v LocationStatus) LocationOption {
 }
 
 // WithLocationOperationalStatus sets the OperationalStatus field.
+//
+// Deprecated: use LocationBuilder.SetOperationalStatus instead; removed in v2.
 func WithLocationOperationalStatus(v Coding) LocationOption {
 	return func(r *Location) {
 		r.OperationalStatus = &v
@@ -894,6 +930,8 @@ func WithLocationOperationalStatus(v Coding) LocationOption {
 }
 
 // WithLocationName sets the Name field.
+//
+// Deprecated: use LocationBuilder.SetName instead; removed in v2.
 func WithLocationName(v string) LocationOption {
 	return func(r *Location) {
 		r.Name = &v
@@ -901,6 +939,8 @@ func WithLocationName(v string) LocationOption {
 }
 
 // WithLocationAlias adds a Alias to the Location.
+//
+// Deprecated: use LocationBuilder.AddAlias instead; removed in v2.
 func WithLocationAlias(v string) LocationOption {
 	return func(r *Location) {
 		r.Alias = append(r.Alias, v)
@@ -908,6 +948,8 @@ func WithLocationAlias(v string) LocationOption {
 }
 
 // WithLocationDescription sets the Description field.
+//
+// Deprecated: use LocationBuilder.SetDescription instead; removed in v2.
 func WithLocationDescription(v string) LocationOption {
 	return func(r *Location) {
 		r.Description = &v
@@ -915,6 +957,8 @@ func WithLocationDescription(v string) LocationOption {
 }
 
 // WithLocationMode sets the Mode field.
+//
+// Deprecated: use LocationBuilder.SetMode instead; removed in v2.
 func WithLocationMode(v LocationMode) LocationOption {
 	return func(r *Location) {
 		r.Mode = &v
@@ -922,6 +966,8 @@ func WithLocationMode(v LocationMode) LocationOption {
 }
 
 // WithLocationType adds a Type to the Location.
+//
+// Deprecated: use LocationBuilder.AddType instead; removed in v2.
 func WithLocationType(v CodeableConcept) LocationOption {
 	return func(r *Location) {
 		r.Type = append(r.Type, v)
@@ -929,6 +975,8 @@ func WithLocationType(v CodeableConcept) LocationOption {
 }
 
 // WithLocationContact adds a Contact to the Location.
+//
+// Deprecated: use LocationBuilder.AddContact instead; removed in v2.
 func WithLocationContact(v ExtendedContactDetail) LocationOption {
 	return func(r *Location) {
 		r.Contact = append(r.Contact, v)
@@ -936,6 +984,8 @@ func WithLocationContact(v ExtendedContactDetail) LocationOption {
 }
 
 // WithLocationAddress sets the Address field.
+//
+// Deprecated: use LocationBuilder.SetAddress instead; removed in v2.
 func WithLocationAddress(v Address) LocationOption {
 	return func(r *Location) {
 		r.Address = &v
@@ -943,6 +993,8 @@ func WithLocationAddress(v Address) LocationOption {
 }
 
 // WithLocationForm sets the Form field.
+//
+// Deprecated: use LocationBuilder.SetForm instead; removed in v2.
 func WithLocationForm(v CodeableConcept) LocationOption {
 	return func(r *Location) {
 		r.Form = &v
@@ -950,6 +1002,8 @@ func WithLocationForm(v CodeableConcept) LocationOption {
 }
 
 // WithLocationPosition sets the Position field.
+//
+// Deprecated: use LocationBuilder.SetPosition instead; removed in v2.
 func WithLocationPosition(v LocationPosition) LocationOption {
 	return func(r *Location) {
 		r.Position = &v
@@ -957,6 +1011,8 @@ func WithLocationPosition(v LocationPosition) LocationOption {
 }
 
 // WithLocationManagingOrganization sets the ManagingOrganization field.
+//
+// Deprecated: use LocationBuilder.SetManagingOrganization instead; removed in v2.
 func WithLocationManagingOrganization(v Reference) LocationOption {
 	return func(r *Location) {
 		r.ManagingOrganization = &v
@@ -964,6 +1020,8 @@ func WithLocationManagingOrganization(v Reference) LocationOption {
 }
 
 // WithLocationPartOf sets the PartOf field.
+//
+// Deprecated: use LocationBuilder.SetPartOf instead; removed in v2.
 func WithLocationPartOf(v Reference) LocationOption {
 	return func(r *Location) {
 		r.PartOf = &v
@@ -971,6 +1029,8 @@ func WithLocationPartOf(v Reference) LocationOption {
 }
 
 // WithLocationCharacteristic adds a Characteristic to the Location.
+//
+// Deprecated: use LocationBuilder.AddCharacteristic instead; removed in v2.
 func WithLocationCharacteristic(v CodeableConcept) LocationOption {
 	return func(r *Location) {
 		r.Characteristic = append(r.Characteristic, v)
@@ -978,6 +1038,8 @@ func WithLocationCharacteristic(v CodeableConcept) LocationOption {
 }
 
 // WithLocationHoursOfOperation adds a HoursOfOperation to the Location.
+//
+// Deprecated: use LocationBuilder.AddHoursOfOperation instead; removed in v2.
 func WithLocationHoursOfOperation(v Availability) LocationOption {
 	return func(r *Location) {
 		r.HoursOfOperation = append(r.HoursOfOperation, v)
@@ -985,6 +1047,8 @@ func WithLocationHoursOfOperation(v Availability) LocationOption {
 }
 
 // WithLocationVirtualService adds a VirtualService to the Location.
+//
+// Deprecated: use LocationBuilder.AddVirtualService instead; removed in v2.
 func WithLocationVirtualService(v VirtualServiceDetail) LocationOption {
 	return func(r *Location) {
 		r.VirtualService = append(r.VirtualService, v)
@@ -992,6 +1056,8 @@ func WithLocationVirtualService(v VirtualServiceDetail) LocationOption {
 }
 
 // WithLocationEndpoint adds a Endpoint to the Location.
+//
+// Deprecated: use LocationBuilder.AddEndpoint instead; removed in v2.
 func WithLocationEndpoint(v Reference) LocationOption {
 	return func(r *Location) {
 		r.Endpoint = append(r.Endpoint, v)

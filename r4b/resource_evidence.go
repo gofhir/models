@@ -1918,9 +1918,23 @@ func (b *EvidenceBuilder) AddCertainty(v EvidenceCertainty) *EvidenceBuilder {
 // =============================================================================
 
 // EvidenceOption is a functional option for configuring a Evidence.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// EvidenceBuilder. Every WithEvidence* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type EvidenceOption func(*Evidence)
 
 // NewEvidence creates a new Evidence with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewEvidenceBuilder().SetId("x").Build()
+//
+// Deprecated: use NewEvidenceBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewEvidence(opts ...EvidenceOption) *Evidence {
 	r := &Evidence{ResourceType: "Evidence"}
 	for _, opt := range opts {
@@ -1930,6 +1944,8 @@ func NewEvidence(opts ...EvidenceOption) *Evidence {
 }
 
 // WithEvidenceId sets the Id field.
+//
+// Deprecated: use EvidenceBuilder.SetId instead; removed in v2.
 func WithEvidenceId(v string) EvidenceOption {
 	return func(r *Evidence) {
 		r.Id = &v
@@ -1937,6 +1953,8 @@ func WithEvidenceId(v string) EvidenceOption {
 }
 
 // WithEvidenceMeta sets the Meta field.
+//
+// Deprecated: use EvidenceBuilder.SetMeta instead; removed in v2.
 func WithEvidenceMeta(v Meta) EvidenceOption {
 	return func(r *Evidence) {
 		r.Meta = &v
@@ -1944,6 +1962,8 @@ func WithEvidenceMeta(v Meta) EvidenceOption {
 }
 
 // WithEvidenceImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use EvidenceBuilder.SetImplicitRules instead; removed in v2.
 func WithEvidenceImplicitRules(v string) EvidenceOption {
 	return func(r *Evidence) {
 		r.ImplicitRules = &v
@@ -1951,6 +1971,8 @@ func WithEvidenceImplicitRules(v string) EvidenceOption {
 }
 
 // WithEvidenceLanguage sets the Language field.
+//
+// Deprecated: use EvidenceBuilder.SetLanguage instead; removed in v2.
 func WithEvidenceLanguage(v string) EvidenceOption {
 	return func(r *Evidence) {
 		r.Language = &v
@@ -1958,6 +1980,8 @@ func WithEvidenceLanguage(v string) EvidenceOption {
 }
 
 // WithEvidenceText sets the Text field.
+//
+// Deprecated: use EvidenceBuilder.SetText instead; removed in v2.
 func WithEvidenceText(v Narrative) EvidenceOption {
 	return func(r *Evidence) {
 		r.Text = &v
@@ -1965,6 +1989,8 @@ func WithEvidenceText(v Narrative) EvidenceOption {
 }
 
 // WithEvidenceContained adds a Contained to the Evidence.
+//
+// Deprecated: use EvidenceBuilder.AddContained instead; removed in v2.
 func WithEvidenceContained(v Resource) EvidenceOption {
 	return func(r *Evidence) {
 		r.Contained = append(r.Contained, v)
@@ -1972,6 +1998,8 @@ func WithEvidenceContained(v Resource) EvidenceOption {
 }
 
 // WithEvidenceExtension adds a Extension to the Evidence.
+//
+// Deprecated: use EvidenceBuilder.AddExtension instead; removed in v2.
 func WithEvidenceExtension(v Extension) EvidenceOption {
 	return func(r *Evidence) {
 		r.Extension = append(r.Extension, v)
@@ -1979,6 +2007,8 @@ func WithEvidenceExtension(v Extension) EvidenceOption {
 }
 
 // WithEvidenceModifierExtension adds a ModifierExtension to the Evidence.
+//
+// Deprecated: use EvidenceBuilder.AddModifierExtension instead; removed in v2.
 func WithEvidenceModifierExtension(v Extension) EvidenceOption {
 	return func(r *Evidence) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1986,6 +2016,8 @@ func WithEvidenceModifierExtension(v Extension) EvidenceOption {
 }
 
 // WithEvidenceUrl sets the Url field.
+//
+// Deprecated: use EvidenceBuilder.SetUrl instead; removed in v2.
 func WithEvidenceUrl(v string) EvidenceOption {
 	return func(r *Evidence) {
 		r.Url = &v
@@ -1993,6 +2025,8 @@ func WithEvidenceUrl(v string) EvidenceOption {
 }
 
 // WithEvidenceIdentifier adds a Identifier to the Evidence.
+//
+// Deprecated: use EvidenceBuilder.AddIdentifier instead; removed in v2.
 func WithEvidenceIdentifier(v Identifier) EvidenceOption {
 	return func(r *Evidence) {
 		r.Identifier = append(r.Identifier, v)
@@ -2000,6 +2034,8 @@ func WithEvidenceIdentifier(v Identifier) EvidenceOption {
 }
 
 // WithEvidenceVersion sets the Version field.
+//
+// Deprecated: use EvidenceBuilder.SetVersion instead; removed in v2.
 func WithEvidenceVersion(v string) EvidenceOption {
 	return func(r *Evidence) {
 		r.Version = &v
@@ -2007,6 +2043,8 @@ func WithEvidenceVersion(v string) EvidenceOption {
 }
 
 // WithEvidenceTitle sets the Title field.
+//
+// Deprecated: use EvidenceBuilder.SetTitle instead; removed in v2.
 func WithEvidenceTitle(v string) EvidenceOption {
 	return func(r *Evidence) {
 		r.Title = &v
@@ -2014,6 +2052,8 @@ func WithEvidenceTitle(v string) EvidenceOption {
 }
 
 // WithEvidenceCiteAsReference sets the CiteAsReference field.
+//
+// Deprecated: use EvidenceBuilder.SetCiteAsReference instead; removed in v2.
 func WithEvidenceCiteAsReference(v Reference) EvidenceOption {
 	return func(r *Evidence) {
 		r.CiteAsReference = &v
@@ -2021,6 +2061,8 @@ func WithEvidenceCiteAsReference(v Reference) EvidenceOption {
 }
 
 // WithEvidenceCiteAsMarkdown sets the CiteAsMarkdown field.
+//
+// Deprecated: use EvidenceBuilder.SetCiteAsMarkdown instead; removed in v2.
 func WithEvidenceCiteAsMarkdown(v string) EvidenceOption {
 	return func(r *Evidence) {
 		r.CiteAsMarkdown = &v
@@ -2028,6 +2070,8 @@ func WithEvidenceCiteAsMarkdown(v string) EvidenceOption {
 }
 
 // WithEvidenceCiteAsMarkdownExt sets the CiteAsMarkdownExt field.
+//
+// Deprecated: use EvidenceBuilder.SetCiteAsMarkdownExt instead; removed in v2.
 func WithEvidenceCiteAsMarkdownExt(v Element) EvidenceOption {
 	return func(r *Evidence) {
 		r.CiteAsMarkdownExt = &v
@@ -2035,6 +2079,8 @@ func WithEvidenceCiteAsMarkdownExt(v Element) EvidenceOption {
 }
 
 // WithEvidenceStatus sets the Status field.
+//
+// Deprecated: use EvidenceBuilder.SetStatus instead; removed in v2.
 func WithEvidenceStatus(v PublicationStatus) EvidenceOption {
 	return func(r *Evidence) {
 		r.Status = &v
@@ -2042,6 +2088,8 @@ func WithEvidenceStatus(v PublicationStatus) EvidenceOption {
 }
 
 // WithEvidenceDate sets the Date field.
+//
+// Deprecated: use EvidenceBuilder.SetDate instead; removed in v2.
 func WithEvidenceDate(v string) EvidenceOption {
 	return func(r *Evidence) {
 		r.Date = &v
@@ -2049,6 +2097,8 @@ func WithEvidenceDate(v string) EvidenceOption {
 }
 
 // WithEvidenceUseContext adds a UseContext to the Evidence.
+//
+// Deprecated: use EvidenceBuilder.AddUseContext instead; removed in v2.
 func WithEvidenceUseContext(v UsageContext) EvidenceOption {
 	return func(r *Evidence) {
 		r.UseContext = append(r.UseContext, v)
@@ -2056,6 +2106,8 @@ func WithEvidenceUseContext(v UsageContext) EvidenceOption {
 }
 
 // WithEvidenceApprovalDate sets the ApprovalDate field.
+//
+// Deprecated: use EvidenceBuilder.SetApprovalDate instead; removed in v2.
 func WithEvidenceApprovalDate(v string) EvidenceOption {
 	return func(r *Evidence) {
 		r.ApprovalDate = &v
@@ -2063,6 +2115,8 @@ func WithEvidenceApprovalDate(v string) EvidenceOption {
 }
 
 // WithEvidenceLastReviewDate sets the LastReviewDate field.
+//
+// Deprecated: use EvidenceBuilder.SetLastReviewDate instead; removed in v2.
 func WithEvidenceLastReviewDate(v string) EvidenceOption {
 	return func(r *Evidence) {
 		r.LastReviewDate = &v
@@ -2070,6 +2124,8 @@ func WithEvidenceLastReviewDate(v string) EvidenceOption {
 }
 
 // WithEvidencePublisher sets the Publisher field.
+//
+// Deprecated: use EvidenceBuilder.SetPublisher instead; removed in v2.
 func WithEvidencePublisher(v string) EvidenceOption {
 	return func(r *Evidence) {
 		r.Publisher = &v
@@ -2077,6 +2133,8 @@ func WithEvidencePublisher(v string) EvidenceOption {
 }
 
 // WithEvidenceContact adds a Contact to the Evidence.
+//
+// Deprecated: use EvidenceBuilder.AddContact instead; removed in v2.
 func WithEvidenceContact(v ContactDetail) EvidenceOption {
 	return func(r *Evidence) {
 		r.Contact = append(r.Contact, v)
@@ -2084,6 +2142,8 @@ func WithEvidenceContact(v ContactDetail) EvidenceOption {
 }
 
 // WithEvidenceAuthor adds a Author to the Evidence.
+//
+// Deprecated: use EvidenceBuilder.AddAuthor instead; removed in v2.
 func WithEvidenceAuthor(v ContactDetail) EvidenceOption {
 	return func(r *Evidence) {
 		r.Author = append(r.Author, v)
@@ -2091,6 +2151,8 @@ func WithEvidenceAuthor(v ContactDetail) EvidenceOption {
 }
 
 // WithEvidenceEditor adds a Editor to the Evidence.
+//
+// Deprecated: use EvidenceBuilder.AddEditor instead; removed in v2.
 func WithEvidenceEditor(v ContactDetail) EvidenceOption {
 	return func(r *Evidence) {
 		r.Editor = append(r.Editor, v)
@@ -2098,6 +2160,8 @@ func WithEvidenceEditor(v ContactDetail) EvidenceOption {
 }
 
 // WithEvidenceReviewer adds a Reviewer to the Evidence.
+//
+// Deprecated: use EvidenceBuilder.AddReviewer instead; removed in v2.
 func WithEvidenceReviewer(v ContactDetail) EvidenceOption {
 	return func(r *Evidence) {
 		r.Reviewer = append(r.Reviewer, v)
@@ -2105,6 +2169,8 @@ func WithEvidenceReviewer(v ContactDetail) EvidenceOption {
 }
 
 // WithEvidenceEndorser adds a Endorser to the Evidence.
+//
+// Deprecated: use EvidenceBuilder.AddEndorser instead; removed in v2.
 func WithEvidenceEndorser(v ContactDetail) EvidenceOption {
 	return func(r *Evidence) {
 		r.Endorser = append(r.Endorser, v)
@@ -2112,6 +2178,8 @@ func WithEvidenceEndorser(v ContactDetail) EvidenceOption {
 }
 
 // WithEvidenceRelatedArtifact adds a RelatedArtifact to the Evidence.
+//
+// Deprecated: use EvidenceBuilder.AddRelatedArtifact instead; removed in v2.
 func WithEvidenceRelatedArtifact(v RelatedArtifact) EvidenceOption {
 	return func(r *Evidence) {
 		r.RelatedArtifact = append(r.RelatedArtifact, v)
@@ -2119,6 +2187,8 @@ func WithEvidenceRelatedArtifact(v RelatedArtifact) EvidenceOption {
 }
 
 // WithEvidenceDescription sets the Description field.
+//
+// Deprecated: use EvidenceBuilder.SetDescription instead; removed in v2.
 func WithEvidenceDescription(v string) EvidenceOption {
 	return func(r *Evidence) {
 		r.Description = &v
@@ -2126,6 +2196,8 @@ func WithEvidenceDescription(v string) EvidenceOption {
 }
 
 // WithEvidenceAssertion sets the Assertion field.
+//
+// Deprecated: use EvidenceBuilder.SetAssertion instead; removed in v2.
 func WithEvidenceAssertion(v string) EvidenceOption {
 	return func(r *Evidence) {
 		r.Assertion = &v
@@ -2133,6 +2205,8 @@ func WithEvidenceAssertion(v string) EvidenceOption {
 }
 
 // WithEvidenceNote adds a Note to the Evidence.
+//
+// Deprecated: use EvidenceBuilder.AddNote instead; removed in v2.
 func WithEvidenceNote(v Annotation) EvidenceOption {
 	return func(r *Evidence) {
 		r.Note = append(r.Note, v)
@@ -2140,6 +2214,8 @@ func WithEvidenceNote(v Annotation) EvidenceOption {
 }
 
 // WithEvidenceVariableDefinition adds a VariableDefinition to the Evidence.
+//
+// Deprecated: use EvidenceBuilder.AddVariableDefinition instead; removed in v2.
 func WithEvidenceVariableDefinition(v EvidenceVariableDefinition) EvidenceOption {
 	return func(r *Evidence) {
 		r.VariableDefinition = append(r.VariableDefinition, v)
@@ -2147,6 +2223,8 @@ func WithEvidenceVariableDefinition(v EvidenceVariableDefinition) EvidenceOption
 }
 
 // WithEvidenceSynthesisType sets the SynthesisType field.
+//
+// Deprecated: use EvidenceBuilder.SetSynthesisType instead; removed in v2.
 func WithEvidenceSynthesisType(v CodeableConcept) EvidenceOption {
 	return func(r *Evidence) {
 		r.SynthesisType = &v
@@ -2154,6 +2232,8 @@ func WithEvidenceSynthesisType(v CodeableConcept) EvidenceOption {
 }
 
 // WithEvidenceStudyType sets the StudyType field.
+//
+// Deprecated: use EvidenceBuilder.SetStudyType instead; removed in v2.
 func WithEvidenceStudyType(v CodeableConcept) EvidenceOption {
 	return func(r *Evidence) {
 		r.StudyType = &v
@@ -2161,6 +2241,8 @@ func WithEvidenceStudyType(v CodeableConcept) EvidenceOption {
 }
 
 // WithEvidenceStatistic adds a Statistic to the Evidence.
+//
+// Deprecated: use EvidenceBuilder.AddStatistic instead; removed in v2.
 func WithEvidenceStatistic(v EvidenceStatistic) EvidenceOption {
 	return func(r *Evidence) {
 		r.Statistic = append(r.Statistic, v)
@@ -2168,6 +2250,8 @@ func WithEvidenceStatistic(v EvidenceStatistic) EvidenceOption {
 }
 
 // WithEvidenceCertainty adds a Certainty to the Evidence.
+//
+// Deprecated: use EvidenceBuilder.AddCertainty instead; removed in v2.
 func WithEvidenceCertainty(v EvidenceCertainty) EvidenceOption {
 	return func(r *Evidence) {
 		r.Certainty = append(r.Certainty, v)

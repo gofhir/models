@@ -1115,9 +1115,23 @@ func (b *CompositionBuilder) AddSection(v CompositionSection) *CompositionBuilde
 // =============================================================================
 
 // CompositionOption is a functional option for configuring a Composition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// CompositionBuilder. Every WithComposition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type CompositionOption func(*Composition)
 
 // NewComposition creates a new Composition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewCompositionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewCompositionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewComposition(opts ...CompositionOption) *Composition {
 	r := &Composition{ResourceType: "Composition"}
 	for _, opt := range opts {
@@ -1127,6 +1141,8 @@ func NewComposition(opts ...CompositionOption) *Composition {
 }
 
 // WithCompositionId sets the Id field.
+//
+// Deprecated: use CompositionBuilder.SetId instead; removed in v2.
 func WithCompositionId(v string) CompositionOption {
 	return func(r *Composition) {
 		r.Id = &v
@@ -1134,6 +1150,8 @@ func WithCompositionId(v string) CompositionOption {
 }
 
 // WithCompositionMeta sets the Meta field.
+//
+// Deprecated: use CompositionBuilder.SetMeta instead; removed in v2.
 func WithCompositionMeta(v Meta) CompositionOption {
 	return func(r *Composition) {
 		r.Meta = &v
@@ -1141,6 +1159,8 @@ func WithCompositionMeta(v Meta) CompositionOption {
 }
 
 // WithCompositionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use CompositionBuilder.SetImplicitRules instead; removed in v2.
 func WithCompositionImplicitRules(v string) CompositionOption {
 	return func(r *Composition) {
 		r.ImplicitRules = &v
@@ -1148,6 +1168,8 @@ func WithCompositionImplicitRules(v string) CompositionOption {
 }
 
 // WithCompositionLanguage sets the Language field.
+//
+// Deprecated: use CompositionBuilder.SetLanguage instead; removed in v2.
 func WithCompositionLanguage(v string) CompositionOption {
 	return func(r *Composition) {
 		r.Language = &v
@@ -1155,6 +1177,8 @@ func WithCompositionLanguage(v string) CompositionOption {
 }
 
 // WithCompositionText sets the Text field.
+//
+// Deprecated: use CompositionBuilder.SetText instead; removed in v2.
 func WithCompositionText(v Narrative) CompositionOption {
 	return func(r *Composition) {
 		r.Text = &v
@@ -1162,6 +1186,8 @@ func WithCompositionText(v Narrative) CompositionOption {
 }
 
 // WithCompositionContained adds a Contained to the Composition.
+//
+// Deprecated: use CompositionBuilder.AddContained instead; removed in v2.
 func WithCompositionContained(v Resource) CompositionOption {
 	return func(r *Composition) {
 		r.Contained = append(r.Contained, v)
@@ -1169,6 +1195,8 @@ func WithCompositionContained(v Resource) CompositionOption {
 }
 
 // WithCompositionExtension adds a Extension to the Composition.
+//
+// Deprecated: use CompositionBuilder.AddExtension instead; removed in v2.
 func WithCompositionExtension(v Extension) CompositionOption {
 	return func(r *Composition) {
 		r.Extension = append(r.Extension, v)
@@ -1176,6 +1204,8 @@ func WithCompositionExtension(v Extension) CompositionOption {
 }
 
 // WithCompositionModifierExtension adds a ModifierExtension to the Composition.
+//
+// Deprecated: use CompositionBuilder.AddModifierExtension instead; removed in v2.
 func WithCompositionModifierExtension(v Extension) CompositionOption {
 	return func(r *Composition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1183,6 +1213,8 @@ func WithCompositionModifierExtension(v Extension) CompositionOption {
 }
 
 // WithCompositionUrl sets the Url field.
+//
+// Deprecated: use CompositionBuilder.SetUrl instead; removed in v2.
 func WithCompositionUrl(v string) CompositionOption {
 	return func(r *Composition) {
 		r.Url = &v
@@ -1190,6 +1222,8 @@ func WithCompositionUrl(v string) CompositionOption {
 }
 
 // WithCompositionIdentifier adds a Identifier to the Composition.
+//
+// Deprecated: use CompositionBuilder.AddIdentifier instead; removed in v2.
 func WithCompositionIdentifier(v Identifier) CompositionOption {
 	return func(r *Composition) {
 		r.Identifier = append(r.Identifier, v)
@@ -1197,6 +1231,8 @@ func WithCompositionIdentifier(v Identifier) CompositionOption {
 }
 
 // WithCompositionVersion sets the Version field.
+//
+// Deprecated: use CompositionBuilder.SetVersion instead; removed in v2.
 func WithCompositionVersion(v string) CompositionOption {
 	return func(r *Composition) {
 		r.Version = &v
@@ -1204,6 +1240,8 @@ func WithCompositionVersion(v string) CompositionOption {
 }
 
 // WithCompositionStatus sets the Status field.
+//
+// Deprecated: use CompositionBuilder.SetStatus instead; removed in v2.
 func WithCompositionStatus(v CompositionStatus) CompositionOption {
 	return func(r *Composition) {
 		r.Status = &v
@@ -1211,6 +1249,8 @@ func WithCompositionStatus(v CompositionStatus) CompositionOption {
 }
 
 // WithCompositionType sets the Type field.
+//
+// Deprecated: use CompositionBuilder.SetType instead; removed in v2.
 func WithCompositionType(v CodeableConcept) CompositionOption {
 	return func(r *Composition) {
 		r.Type = v
@@ -1218,6 +1258,8 @@ func WithCompositionType(v CodeableConcept) CompositionOption {
 }
 
 // WithCompositionCategory adds a Category to the Composition.
+//
+// Deprecated: use CompositionBuilder.AddCategory instead; removed in v2.
 func WithCompositionCategory(v CodeableConcept) CompositionOption {
 	return func(r *Composition) {
 		r.Category = append(r.Category, v)
@@ -1225,6 +1267,8 @@ func WithCompositionCategory(v CodeableConcept) CompositionOption {
 }
 
 // WithCompositionSubject adds a Subject to the Composition.
+//
+// Deprecated: use CompositionBuilder.AddSubject instead; removed in v2.
 func WithCompositionSubject(v Reference) CompositionOption {
 	return func(r *Composition) {
 		r.Subject = append(r.Subject, v)
@@ -1232,6 +1276,8 @@ func WithCompositionSubject(v Reference) CompositionOption {
 }
 
 // WithCompositionEncounter sets the Encounter field.
+//
+// Deprecated: use CompositionBuilder.SetEncounter instead; removed in v2.
 func WithCompositionEncounter(v Reference) CompositionOption {
 	return func(r *Composition) {
 		r.Encounter = &v
@@ -1239,6 +1285,8 @@ func WithCompositionEncounter(v Reference) CompositionOption {
 }
 
 // WithCompositionDate sets the Date field.
+//
+// Deprecated: use CompositionBuilder.SetDate instead; removed in v2.
 func WithCompositionDate(v string) CompositionOption {
 	return func(r *Composition) {
 		r.Date = &v
@@ -1246,6 +1294,8 @@ func WithCompositionDate(v string) CompositionOption {
 }
 
 // WithCompositionUseContext adds a UseContext to the Composition.
+//
+// Deprecated: use CompositionBuilder.AddUseContext instead; removed in v2.
 func WithCompositionUseContext(v UsageContext) CompositionOption {
 	return func(r *Composition) {
 		r.UseContext = append(r.UseContext, v)
@@ -1253,6 +1303,8 @@ func WithCompositionUseContext(v UsageContext) CompositionOption {
 }
 
 // WithCompositionAuthor adds a Author to the Composition.
+//
+// Deprecated: use CompositionBuilder.AddAuthor instead; removed in v2.
 func WithCompositionAuthor(v Reference) CompositionOption {
 	return func(r *Composition) {
 		r.Author = append(r.Author, v)
@@ -1260,6 +1312,8 @@ func WithCompositionAuthor(v Reference) CompositionOption {
 }
 
 // WithCompositionName sets the Name field.
+//
+// Deprecated: use CompositionBuilder.SetName instead; removed in v2.
 func WithCompositionName(v string) CompositionOption {
 	return func(r *Composition) {
 		r.Name = &v
@@ -1267,6 +1321,8 @@ func WithCompositionName(v string) CompositionOption {
 }
 
 // WithCompositionTitle sets the Title field.
+//
+// Deprecated: use CompositionBuilder.SetTitle instead; removed in v2.
 func WithCompositionTitle(v string) CompositionOption {
 	return func(r *Composition) {
 		r.Title = &v
@@ -1274,6 +1330,8 @@ func WithCompositionTitle(v string) CompositionOption {
 }
 
 // WithCompositionNote adds a Note to the Composition.
+//
+// Deprecated: use CompositionBuilder.AddNote instead; removed in v2.
 func WithCompositionNote(v Annotation) CompositionOption {
 	return func(r *Composition) {
 		r.Note = append(r.Note, v)
@@ -1281,6 +1339,8 @@ func WithCompositionNote(v Annotation) CompositionOption {
 }
 
 // WithCompositionAttester adds a Attester to the Composition.
+//
+// Deprecated: use CompositionBuilder.AddAttester instead; removed in v2.
 func WithCompositionAttester(v CompositionAttester) CompositionOption {
 	return func(r *Composition) {
 		r.Attester = append(r.Attester, v)
@@ -1288,6 +1348,8 @@ func WithCompositionAttester(v CompositionAttester) CompositionOption {
 }
 
 // WithCompositionCustodian sets the Custodian field.
+//
+// Deprecated: use CompositionBuilder.SetCustodian instead; removed in v2.
 func WithCompositionCustodian(v Reference) CompositionOption {
 	return func(r *Composition) {
 		r.Custodian = &v
@@ -1295,6 +1357,8 @@ func WithCompositionCustodian(v Reference) CompositionOption {
 }
 
 // WithCompositionRelatesTo adds a RelatesTo to the Composition.
+//
+// Deprecated: use CompositionBuilder.AddRelatesTo instead; removed in v2.
 func WithCompositionRelatesTo(v RelatedArtifact) CompositionOption {
 	return func(r *Composition) {
 		r.RelatesTo = append(r.RelatesTo, v)
@@ -1302,6 +1366,8 @@ func WithCompositionRelatesTo(v RelatedArtifact) CompositionOption {
 }
 
 // WithCompositionEvent adds a Event to the Composition.
+//
+// Deprecated: use CompositionBuilder.AddEvent instead; removed in v2.
 func WithCompositionEvent(v CompositionEvent) CompositionOption {
 	return func(r *Composition) {
 		r.Event = append(r.Event, v)
@@ -1309,6 +1375,8 @@ func WithCompositionEvent(v CompositionEvent) CompositionOption {
 }
 
 // WithCompositionSection adds a Section to the Composition.
+//
+// Deprecated: use CompositionBuilder.AddSection instead; removed in v2.
 func WithCompositionSection(v CompositionSection) CompositionOption {
 	return func(r *Composition) {
 		r.Section = append(r.Section, v)

@@ -700,9 +700,23 @@ func (b *CareTeamBuilder) AddNote(v Annotation) *CareTeamBuilder {
 // =============================================================================
 
 // CareTeamOption is a functional option for configuring a CareTeam.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// CareTeamBuilder. Every WithCareTeam* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type CareTeamOption func(*CareTeam)
 
 // NewCareTeam creates a new CareTeam with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewCareTeamBuilder().SetId("x").Build()
+//
+// Deprecated: use NewCareTeamBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewCareTeam(opts ...CareTeamOption) *CareTeam {
 	r := &CareTeam{ResourceType: "CareTeam"}
 	for _, opt := range opts {
@@ -712,6 +726,8 @@ func NewCareTeam(opts ...CareTeamOption) *CareTeam {
 }
 
 // WithCareTeamId sets the Id field.
+//
+// Deprecated: use CareTeamBuilder.SetId instead; removed in v2.
 func WithCareTeamId(v string) CareTeamOption {
 	return func(r *CareTeam) {
 		r.Id = &v
@@ -719,6 +735,8 @@ func WithCareTeamId(v string) CareTeamOption {
 }
 
 // WithCareTeamMeta sets the Meta field.
+//
+// Deprecated: use CareTeamBuilder.SetMeta instead; removed in v2.
 func WithCareTeamMeta(v Meta) CareTeamOption {
 	return func(r *CareTeam) {
 		r.Meta = &v
@@ -726,6 +744,8 @@ func WithCareTeamMeta(v Meta) CareTeamOption {
 }
 
 // WithCareTeamImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use CareTeamBuilder.SetImplicitRules instead; removed in v2.
 func WithCareTeamImplicitRules(v string) CareTeamOption {
 	return func(r *CareTeam) {
 		r.ImplicitRules = &v
@@ -733,6 +753,8 @@ func WithCareTeamImplicitRules(v string) CareTeamOption {
 }
 
 // WithCareTeamLanguage sets the Language field.
+//
+// Deprecated: use CareTeamBuilder.SetLanguage instead; removed in v2.
 func WithCareTeamLanguage(v string) CareTeamOption {
 	return func(r *CareTeam) {
 		r.Language = &v
@@ -740,6 +762,8 @@ func WithCareTeamLanguage(v string) CareTeamOption {
 }
 
 // WithCareTeamText sets the Text field.
+//
+// Deprecated: use CareTeamBuilder.SetText instead; removed in v2.
 func WithCareTeamText(v Narrative) CareTeamOption {
 	return func(r *CareTeam) {
 		r.Text = &v
@@ -747,6 +771,8 @@ func WithCareTeamText(v Narrative) CareTeamOption {
 }
 
 // WithCareTeamContained adds a Contained to the CareTeam.
+//
+// Deprecated: use CareTeamBuilder.AddContained instead; removed in v2.
 func WithCareTeamContained(v Resource) CareTeamOption {
 	return func(r *CareTeam) {
 		r.Contained = append(r.Contained, v)
@@ -754,6 +780,8 @@ func WithCareTeamContained(v Resource) CareTeamOption {
 }
 
 // WithCareTeamExtension adds a Extension to the CareTeam.
+//
+// Deprecated: use CareTeamBuilder.AddExtension instead; removed in v2.
 func WithCareTeamExtension(v Extension) CareTeamOption {
 	return func(r *CareTeam) {
 		r.Extension = append(r.Extension, v)
@@ -761,6 +789,8 @@ func WithCareTeamExtension(v Extension) CareTeamOption {
 }
 
 // WithCareTeamModifierExtension adds a ModifierExtension to the CareTeam.
+//
+// Deprecated: use CareTeamBuilder.AddModifierExtension instead; removed in v2.
 func WithCareTeamModifierExtension(v Extension) CareTeamOption {
 	return func(r *CareTeam) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -768,6 +798,8 @@ func WithCareTeamModifierExtension(v Extension) CareTeamOption {
 }
 
 // WithCareTeamIdentifier adds a Identifier to the CareTeam.
+//
+// Deprecated: use CareTeamBuilder.AddIdentifier instead; removed in v2.
 func WithCareTeamIdentifier(v Identifier) CareTeamOption {
 	return func(r *CareTeam) {
 		r.Identifier = append(r.Identifier, v)
@@ -775,6 +807,8 @@ func WithCareTeamIdentifier(v Identifier) CareTeamOption {
 }
 
 // WithCareTeamStatus sets the Status field.
+//
+// Deprecated: use CareTeamBuilder.SetStatus instead; removed in v2.
 func WithCareTeamStatus(v CareTeamStatus) CareTeamOption {
 	return func(r *CareTeam) {
 		r.Status = &v
@@ -782,6 +816,8 @@ func WithCareTeamStatus(v CareTeamStatus) CareTeamOption {
 }
 
 // WithCareTeamCategory adds a Category to the CareTeam.
+//
+// Deprecated: use CareTeamBuilder.AddCategory instead; removed in v2.
 func WithCareTeamCategory(v CodeableConcept) CareTeamOption {
 	return func(r *CareTeam) {
 		r.Category = append(r.Category, v)
@@ -789,6 +825,8 @@ func WithCareTeamCategory(v CodeableConcept) CareTeamOption {
 }
 
 // WithCareTeamName sets the Name field.
+//
+// Deprecated: use CareTeamBuilder.SetName instead; removed in v2.
 func WithCareTeamName(v string) CareTeamOption {
 	return func(r *CareTeam) {
 		r.Name = &v
@@ -796,6 +834,8 @@ func WithCareTeamName(v string) CareTeamOption {
 }
 
 // WithCareTeamSubject sets the Subject field.
+//
+// Deprecated: use CareTeamBuilder.SetSubject instead; removed in v2.
 func WithCareTeamSubject(v Reference) CareTeamOption {
 	return func(r *CareTeam) {
 		r.Subject = &v
@@ -803,6 +843,8 @@ func WithCareTeamSubject(v Reference) CareTeamOption {
 }
 
 // WithCareTeamPeriod sets the Period field.
+//
+// Deprecated: use CareTeamBuilder.SetPeriod instead; removed in v2.
 func WithCareTeamPeriod(v Period) CareTeamOption {
 	return func(r *CareTeam) {
 		r.Period = &v
@@ -810,6 +852,8 @@ func WithCareTeamPeriod(v Period) CareTeamOption {
 }
 
 // WithCareTeamParticipant adds a Participant to the CareTeam.
+//
+// Deprecated: use CareTeamBuilder.AddParticipant instead; removed in v2.
 func WithCareTeamParticipant(v CareTeamParticipant) CareTeamOption {
 	return func(r *CareTeam) {
 		r.Participant = append(r.Participant, v)
@@ -817,6 +861,8 @@ func WithCareTeamParticipant(v CareTeamParticipant) CareTeamOption {
 }
 
 // WithCareTeamReason adds a Reason to the CareTeam.
+//
+// Deprecated: use CareTeamBuilder.AddReason instead; removed in v2.
 func WithCareTeamReason(v CodeableReference) CareTeamOption {
 	return func(r *CareTeam) {
 		r.Reason = append(r.Reason, v)
@@ -824,6 +870,8 @@ func WithCareTeamReason(v CodeableReference) CareTeamOption {
 }
 
 // WithCareTeamManagingOrganization adds a ManagingOrganization to the CareTeam.
+//
+// Deprecated: use CareTeamBuilder.AddManagingOrganization instead; removed in v2.
 func WithCareTeamManagingOrganization(v Reference) CareTeamOption {
 	return func(r *CareTeam) {
 		r.ManagingOrganization = append(r.ManagingOrganization, v)
@@ -831,6 +879,8 @@ func WithCareTeamManagingOrganization(v Reference) CareTeamOption {
 }
 
 // WithCareTeamTelecom adds a Telecom to the CareTeam.
+//
+// Deprecated: use CareTeamBuilder.AddTelecom instead; removed in v2.
 func WithCareTeamTelecom(v ContactPoint) CareTeamOption {
 	return func(r *CareTeam) {
 		r.Telecom = append(r.Telecom, v)
@@ -838,6 +888,8 @@ func WithCareTeamTelecom(v ContactPoint) CareTeamOption {
 }
 
 // WithCareTeamNote adds a Note to the CareTeam.
+//
+// Deprecated: use CareTeamBuilder.AddNote instead; removed in v2.
 func WithCareTeamNote(v Annotation) CareTeamOption {
 	return func(r *CareTeam) {
 		r.Note = append(r.Note, v)

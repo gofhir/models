@@ -1275,9 +1275,23 @@ func (b *CoverageEligibilityResponseBuilder) AddError(v CoverageEligibilityRespo
 // =============================================================================
 
 // CoverageEligibilityResponseOption is a functional option for configuring a CoverageEligibilityResponse.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// CoverageEligibilityResponseBuilder. Every WithCoverageEligibilityResponse* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type CoverageEligibilityResponseOption func(*CoverageEligibilityResponse)
 
 // NewCoverageEligibilityResponse creates a new CoverageEligibilityResponse with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewCoverageEligibilityResponseBuilder().SetId("x").Build()
+//
+// Deprecated: use NewCoverageEligibilityResponseBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewCoverageEligibilityResponse(opts ...CoverageEligibilityResponseOption) *CoverageEligibilityResponse {
 	r := &CoverageEligibilityResponse{ResourceType: "CoverageEligibilityResponse"}
 	for _, opt := range opts {
@@ -1287,6 +1301,8 @@ func NewCoverageEligibilityResponse(opts ...CoverageEligibilityResponseOption) *
 }
 
 // WithCoverageEligibilityResponseId sets the Id field.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.SetId instead; removed in v2.
 func WithCoverageEligibilityResponseId(v string) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.Id = &v
@@ -1294,6 +1310,8 @@ func WithCoverageEligibilityResponseId(v string) CoverageEligibilityResponseOpti
 }
 
 // WithCoverageEligibilityResponseMeta sets the Meta field.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.SetMeta instead; removed in v2.
 func WithCoverageEligibilityResponseMeta(v Meta) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.Meta = &v
@@ -1301,6 +1319,8 @@ func WithCoverageEligibilityResponseMeta(v Meta) CoverageEligibilityResponseOpti
 }
 
 // WithCoverageEligibilityResponseImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.SetImplicitRules instead; removed in v2.
 func WithCoverageEligibilityResponseImplicitRules(v string) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.ImplicitRules = &v
@@ -1308,6 +1328,8 @@ func WithCoverageEligibilityResponseImplicitRules(v string) CoverageEligibilityR
 }
 
 // WithCoverageEligibilityResponseLanguage sets the Language field.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.SetLanguage instead; removed in v2.
 func WithCoverageEligibilityResponseLanguage(v string) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.Language = &v
@@ -1315,6 +1337,8 @@ func WithCoverageEligibilityResponseLanguage(v string) CoverageEligibilityRespon
 }
 
 // WithCoverageEligibilityResponseText sets the Text field.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.SetText instead; removed in v2.
 func WithCoverageEligibilityResponseText(v Narrative) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.Text = &v
@@ -1322,6 +1346,8 @@ func WithCoverageEligibilityResponseText(v Narrative) CoverageEligibilityRespons
 }
 
 // WithCoverageEligibilityResponseContained adds a Contained to the CoverageEligibilityResponse.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.AddContained instead; removed in v2.
 func WithCoverageEligibilityResponseContained(v Resource) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.Contained = append(r.Contained, v)
@@ -1329,6 +1355,8 @@ func WithCoverageEligibilityResponseContained(v Resource) CoverageEligibilityRes
 }
 
 // WithCoverageEligibilityResponseExtension adds a Extension to the CoverageEligibilityResponse.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.AddExtension instead; removed in v2.
 func WithCoverageEligibilityResponseExtension(v Extension) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.Extension = append(r.Extension, v)
@@ -1336,6 +1364,8 @@ func WithCoverageEligibilityResponseExtension(v Extension) CoverageEligibilityRe
 }
 
 // WithCoverageEligibilityResponseModifierExtension adds a ModifierExtension to the CoverageEligibilityResponse.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.AddModifierExtension instead; removed in v2.
 func WithCoverageEligibilityResponseModifierExtension(v Extension) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1343,6 +1373,8 @@ func WithCoverageEligibilityResponseModifierExtension(v Extension) CoverageEligi
 }
 
 // WithCoverageEligibilityResponseIdentifier adds a Identifier to the CoverageEligibilityResponse.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.AddIdentifier instead; removed in v2.
 func WithCoverageEligibilityResponseIdentifier(v Identifier) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.Identifier = append(r.Identifier, v)
@@ -1350,6 +1382,8 @@ func WithCoverageEligibilityResponseIdentifier(v Identifier) CoverageEligibility
 }
 
 // WithCoverageEligibilityResponseStatus sets the Status field.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.SetStatus instead; removed in v2.
 func WithCoverageEligibilityResponseStatus(v FinancialResourceStatusCodes) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.Status = &v
@@ -1357,6 +1391,8 @@ func WithCoverageEligibilityResponseStatus(v FinancialResourceStatusCodes) Cover
 }
 
 // WithCoverageEligibilityResponsePurpose adds a Purpose to the CoverageEligibilityResponse.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.AddPurpose instead; removed in v2.
 func WithCoverageEligibilityResponsePurpose(v EligibilityResponsePurpose) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.Purpose = append(r.Purpose, v)
@@ -1364,6 +1400,8 @@ func WithCoverageEligibilityResponsePurpose(v EligibilityResponsePurpose) Covera
 }
 
 // WithCoverageEligibilityResponsePatient sets the Patient field.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.SetPatient instead; removed in v2.
 func WithCoverageEligibilityResponsePatient(v Reference) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.Patient = v
@@ -1371,6 +1409,8 @@ func WithCoverageEligibilityResponsePatient(v Reference) CoverageEligibilityResp
 }
 
 // WithCoverageEligibilityResponseServicedDate sets the ServicedDate field.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.SetServicedDate instead; removed in v2.
 func WithCoverageEligibilityResponseServicedDate(v string) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.ServicedDate = &v
@@ -1378,6 +1418,8 @@ func WithCoverageEligibilityResponseServicedDate(v string) CoverageEligibilityRe
 }
 
 // WithCoverageEligibilityResponseServicedDateExt sets the ServicedDateExt field.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.SetServicedDateExt instead; removed in v2.
 func WithCoverageEligibilityResponseServicedDateExt(v Element) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.ServicedDateExt = &v
@@ -1385,6 +1427,8 @@ func WithCoverageEligibilityResponseServicedDateExt(v Element) CoverageEligibili
 }
 
 // WithCoverageEligibilityResponseServicedPeriod sets the ServicedPeriod field.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.SetServicedPeriod instead; removed in v2.
 func WithCoverageEligibilityResponseServicedPeriod(v Period) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.ServicedPeriod = &v
@@ -1392,6 +1436,8 @@ func WithCoverageEligibilityResponseServicedPeriod(v Period) CoverageEligibility
 }
 
 // WithCoverageEligibilityResponseCreated sets the Created field.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.SetCreated instead; removed in v2.
 func WithCoverageEligibilityResponseCreated(v string) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.Created = &v
@@ -1399,6 +1445,8 @@ func WithCoverageEligibilityResponseCreated(v string) CoverageEligibilityRespons
 }
 
 // WithCoverageEligibilityResponseRequestor sets the Requestor field.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.SetRequestor instead; removed in v2.
 func WithCoverageEligibilityResponseRequestor(v Reference) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.Requestor = &v
@@ -1406,6 +1454,8 @@ func WithCoverageEligibilityResponseRequestor(v Reference) CoverageEligibilityRe
 }
 
 // WithCoverageEligibilityResponseRequest sets the Request field.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.SetRequest instead; removed in v2.
 func WithCoverageEligibilityResponseRequest(v Reference) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.Request = v
@@ -1413,6 +1463,8 @@ func WithCoverageEligibilityResponseRequest(v Reference) CoverageEligibilityResp
 }
 
 // WithCoverageEligibilityResponseOutcome sets the Outcome field.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.SetOutcome instead; removed in v2.
 func WithCoverageEligibilityResponseOutcome(v RemittanceOutcome) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.Outcome = &v
@@ -1420,6 +1472,8 @@ func WithCoverageEligibilityResponseOutcome(v RemittanceOutcome) CoverageEligibi
 }
 
 // WithCoverageEligibilityResponseDisposition sets the Disposition field.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.SetDisposition instead; removed in v2.
 func WithCoverageEligibilityResponseDisposition(v string) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.Disposition = &v
@@ -1427,6 +1481,8 @@ func WithCoverageEligibilityResponseDisposition(v string) CoverageEligibilityRes
 }
 
 // WithCoverageEligibilityResponseInsurer sets the Insurer field.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.SetInsurer instead; removed in v2.
 func WithCoverageEligibilityResponseInsurer(v Reference) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.Insurer = v
@@ -1434,6 +1490,8 @@ func WithCoverageEligibilityResponseInsurer(v Reference) CoverageEligibilityResp
 }
 
 // WithCoverageEligibilityResponseInsurance adds a Insurance to the CoverageEligibilityResponse.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.AddInsurance instead; removed in v2.
 func WithCoverageEligibilityResponseInsurance(v CoverageEligibilityResponseInsurance) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.Insurance = append(r.Insurance, v)
@@ -1441,6 +1499,8 @@ func WithCoverageEligibilityResponseInsurance(v CoverageEligibilityResponseInsur
 }
 
 // WithCoverageEligibilityResponsePreAuthRef sets the PreAuthRef field.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.SetPreAuthRef instead; removed in v2.
 func WithCoverageEligibilityResponsePreAuthRef(v string) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.PreAuthRef = &v
@@ -1448,6 +1508,8 @@ func WithCoverageEligibilityResponsePreAuthRef(v string) CoverageEligibilityResp
 }
 
 // WithCoverageEligibilityResponseForm sets the Form field.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.SetForm instead; removed in v2.
 func WithCoverageEligibilityResponseForm(v CodeableConcept) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.Form = &v
@@ -1455,6 +1517,8 @@ func WithCoverageEligibilityResponseForm(v CodeableConcept) CoverageEligibilityR
 }
 
 // WithCoverageEligibilityResponseError adds a Error to the CoverageEligibilityResponse.
+//
+// Deprecated: use CoverageEligibilityResponseBuilder.AddError instead; removed in v2.
 func WithCoverageEligibilityResponseError(v CoverageEligibilityResponseError) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
 		r.Error = append(r.Error, v)

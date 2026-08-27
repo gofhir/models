@@ -1071,9 +1071,23 @@ func (b *AdministrableProductDefinitionBuilder) AddRouteOfAdministration(v Admin
 // =============================================================================
 
 // AdministrableProductDefinitionOption is a functional option for configuring a AdministrableProductDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// AdministrableProductDefinitionBuilder. Every WithAdministrableProductDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type AdministrableProductDefinitionOption func(*AdministrableProductDefinition)
 
 // NewAdministrableProductDefinition creates a new AdministrableProductDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewAdministrableProductDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewAdministrableProductDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewAdministrableProductDefinition(opts ...AdministrableProductDefinitionOption) *AdministrableProductDefinition {
 	r := &AdministrableProductDefinition{ResourceType: "AdministrableProductDefinition"}
 	for _, opt := range opts {
@@ -1083,6 +1097,8 @@ func NewAdministrableProductDefinition(opts ...AdministrableProductDefinitionOpt
 }
 
 // WithAdministrableProductDefinitionId sets the Id field.
+//
+// Deprecated: use AdministrableProductDefinitionBuilder.SetId instead; removed in v2.
 func WithAdministrableProductDefinitionId(v string) AdministrableProductDefinitionOption {
 	return func(r *AdministrableProductDefinition) {
 		r.Id = &v
@@ -1090,6 +1106,8 @@ func WithAdministrableProductDefinitionId(v string) AdministrableProductDefiniti
 }
 
 // WithAdministrableProductDefinitionMeta sets the Meta field.
+//
+// Deprecated: use AdministrableProductDefinitionBuilder.SetMeta instead; removed in v2.
 func WithAdministrableProductDefinitionMeta(v Meta) AdministrableProductDefinitionOption {
 	return func(r *AdministrableProductDefinition) {
 		r.Meta = &v
@@ -1097,6 +1115,8 @@ func WithAdministrableProductDefinitionMeta(v Meta) AdministrableProductDefiniti
 }
 
 // WithAdministrableProductDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use AdministrableProductDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithAdministrableProductDefinitionImplicitRules(v string) AdministrableProductDefinitionOption {
 	return func(r *AdministrableProductDefinition) {
 		r.ImplicitRules = &v
@@ -1104,6 +1124,8 @@ func WithAdministrableProductDefinitionImplicitRules(v string) AdministrableProd
 }
 
 // WithAdministrableProductDefinitionLanguage sets the Language field.
+//
+// Deprecated: use AdministrableProductDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithAdministrableProductDefinitionLanguage(v string) AdministrableProductDefinitionOption {
 	return func(r *AdministrableProductDefinition) {
 		r.Language = &v
@@ -1111,6 +1133,8 @@ func WithAdministrableProductDefinitionLanguage(v string) AdministrableProductDe
 }
 
 // WithAdministrableProductDefinitionText sets the Text field.
+//
+// Deprecated: use AdministrableProductDefinitionBuilder.SetText instead; removed in v2.
 func WithAdministrableProductDefinitionText(v Narrative) AdministrableProductDefinitionOption {
 	return func(r *AdministrableProductDefinition) {
 		r.Text = &v
@@ -1118,6 +1142,8 @@ func WithAdministrableProductDefinitionText(v Narrative) AdministrableProductDef
 }
 
 // WithAdministrableProductDefinitionContained adds a Contained to the AdministrableProductDefinition.
+//
+// Deprecated: use AdministrableProductDefinitionBuilder.AddContained instead; removed in v2.
 func WithAdministrableProductDefinitionContained(v Resource) AdministrableProductDefinitionOption {
 	return func(r *AdministrableProductDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -1125,6 +1151,8 @@ func WithAdministrableProductDefinitionContained(v Resource) AdministrableProduc
 }
 
 // WithAdministrableProductDefinitionExtension adds a Extension to the AdministrableProductDefinition.
+//
+// Deprecated: use AdministrableProductDefinitionBuilder.AddExtension instead; removed in v2.
 func WithAdministrableProductDefinitionExtension(v Extension) AdministrableProductDefinitionOption {
 	return func(r *AdministrableProductDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -1132,6 +1160,8 @@ func WithAdministrableProductDefinitionExtension(v Extension) AdministrableProdu
 }
 
 // WithAdministrableProductDefinitionModifierExtension adds a ModifierExtension to the AdministrableProductDefinition.
+//
+// Deprecated: use AdministrableProductDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithAdministrableProductDefinitionModifierExtension(v Extension) AdministrableProductDefinitionOption {
 	return func(r *AdministrableProductDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1139,6 +1169,8 @@ func WithAdministrableProductDefinitionModifierExtension(v Extension) Administra
 }
 
 // WithAdministrableProductDefinitionIdentifier adds a Identifier to the AdministrableProductDefinition.
+//
+// Deprecated: use AdministrableProductDefinitionBuilder.AddIdentifier instead; removed in v2.
 func WithAdministrableProductDefinitionIdentifier(v Identifier) AdministrableProductDefinitionOption {
 	return func(r *AdministrableProductDefinition) {
 		r.Identifier = append(r.Identifier, v)
@@ -1146,6 +1178,8 @@ func WithAdministrableProductDefinitionIdentifier(v Identifier) AdministrablePro
 }
 
 // WithAdministrableProductDefinitionStatus sets the Status field.
+//
+// Deprecated: use AdministrableProductDefinitionBuilder.SetStatus instead; removed in v2.
 func WithAdministrableProductDefinitionStatus(v PublicationStatus) AdministrableProductDefinitionOption {
 	return func(r *AdministrableProductDefinition) {
 		r.Status = &v
@@ -1153,6 +1187,8 @@ func WithAdministrableProductDefinitionStatus(v PublicationStatus) Administrable
 }
 
 // WithAdministrableProductDefinitionFormOf adds a FormOf to the AdministrableProductDefinition.
+//
+// Deprecated: use AdministrableProductDefinitionBuilder.AddFormOf instead; removed in v2.
 func WithAdministrableProductDefinitionFormOf(v Reference) AdministrableProductDefinitionOption {
 	return func(r *AdministrableProductDefinition) {
 		r.FormOf = append(r.FormOf, v)
@@ -1160,6 +1196,8 @@ func WithAdministrableProductDefinitionFormOf(v Reference) AdministrableProductD
 }
 
 // WithAdministrableProductDefinitionAdministrableDoseForm sets the AdministrableDoseForm field.
+//
+// Deprecated: use AdministrableProductDefinitionBuilder.SetAdministrableDoseForm instead; removed in v2.
 func WithAdministrableProductDefinitionAdministrableDoseForm(v CodeableConcept) AdministrableProductDefinitionOption {
 	return func(r *AdministrableProductDefinition) {
 		r.AdministrableDoseForm = &v
@@ -1167,6 +1205,8 @@ func WithAdministrableProductDefinitionAdministrableDoseForm(v CodeableConcept) 
 }
 
 // WithAdministrableProductDefinitionUnitOfPresentation sets the UnitOfPresentation field.
+//
+// Deprecated: use AdministrableProductDefinitionBuilder.SetUnitOfPresentation instead; removed in v2.
 func WithAdministrableProductDefinitionUnitOfPresentation(v CodeableConcept) AdministrableProductDefinitionOption {
 	return func(r *AdministrableProductDefinition) {
 		r.UnitOfPresentation = &v
@@ -1174,6 +1214,8 @@ func WithAdministrableProductDefinitionUnitOfPresentation(v CodeableConcept) Adm
 }
 
 // WithAdministrableProductDefinitionProducedFrom adds a ProducedFrom to the AdministrableProductDefinition.
+//
+// Deprecated: use AdministrableProductDefinitionBuilder.AddProducedFrom instead; removed in v2.
 func WithAdministrableProductDefinitionProducedFrom(v Reference) AdministrableProductDefinitionOption {
 	return func(r *AdministrableProductDefinition) {
 		r.ProducedFrom = append(r.ProducedFrom, v)
@@ -1181,6 +1223,8 @@ func WithAdministrableProductDefinitionProducedFrom(v Reference) AdministrablePr
 }
 
 // WithAdministrableProductDefinitionIngredient adds a Ingredient to the AdministrableProductDefinition.
+//
+// Deprecated: use AdministrableProductDefinitionBuilder.AddIngredient instead; removed in v2.
 func WithAdministrableProductDefinitionIngredient(v CodeableConcept) AdministrableProductDefinitionOption {
 	return func(r *AdministrableProductDefinition) {
 		r.Ingredient = append(r.Ingredient, v)
@@ -1188,6 +1232,8 @@ func WithAdministrableProductDefinitionIngredient(v CodeableConcept) Administrab
 }
 
 // WithAdministrableProductDefinitionDevice sets the Device field.
+//
+// Deprecated: use AdministrableProductDefinitionBuilder.SetDevice instead; removed in v2.
 func WithAdministrableProductDefinitionDevice(v Reference) AdministrableProductDefinitionOption {
 	return func(r *AdministrableProductDefinition) {
 		r.Device = &v
@@ -1195,6 +1241,8 @@ func WithAdministrableProductDefinitionDevice(v Reference) AdministrableProductD
 }
 
 // WithAdministrableProductDefinitionProperty adds a Property to the AdministrableProductDefinition.
+//
+// Deprecated: use AdministrableProductDefinitionBuilder.AddProperty instead; removed in v2.
 func WithAdministrableProductDefinitionProperty(v AdministrableProductDefinitionProperty) AdministrableProductDefinitionOption {
 	return func(r *AdministrableProductDefinition) {
 		r.Property = append(r.Property, v)
@@ -1202,6 +1250,8 @@ func WithAdministrableProductDefinitionProperty(v AdministrableProductDefinition
 }
 
 // WithAdministrableProductDefinitionRouteOfAdministration adds a RouteOfAdministration to the AdministrableProductDefinition.
+//
+// Deprecated: use AdministrableProductDefinitionBuilder.AddRouteOfAdministration instead; removed in v2.
 func WithAdministrableProductDefinitionRouteOfAdministration(v AdministrableProductDefinitionRouteOfAdministration) AdministrableProductDefinitionOption {
 	return func(r *AdministrableProductDefinition) {
 		r.RouteOfAdministration = append(r.RouteOfAdministration, v)

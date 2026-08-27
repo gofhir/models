@@ -880,9 +880,23 @@ func (b *GoalBuilder) AddOutcome(v CodeableReference) *GoalBuilder {
 // =============================================================================
 
 // GoalOption is a functional option for configuring a Goal.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// GoalBuilder. Every WithGoal* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type GoalOption func(*Goal)
 
 // NewGoal creates a new Goal with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewGoalBuilder().SetId("x").Build()
+//
+// Deprecated: use NewGoalBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewGoal(opts ...GoalOption) *Goal {
 	r := &Goal{ResourceType: "Goal"}
 	for _, opt := range opts {
@@ -892,6 +906,8 @@ func NewGoal(opts ...GoalOption) *Goal {
 }
 
 // WithGoalId sets the Id field.
+//
+// Deprecated: use GoalBuilder.SetId instead; removed in v2.
 func WithGoalId(v string) GoalOption {
 	return func(r *Goal) {
 		r.Id = &v
@@ -899,6 +915,8 @@ func WithGoalId(v string) GoalOption {
 }
 
 // WithGoalMeta sets the Meta field.
+//
+// Deprecated: use GoalBuilder.SetMeta instead; removed in v2.
 func WithGoalMeta(v Meta) GoalOption {
 	return func(r *Goal) {
 		r.Meta = &v
@@ -906,6 +924,8 @@ func WithGoalMeta(v Meta) GoalOption {
 }
 
 // WithGoalImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use GoalBuilder.SetImplicitRules instead; removed in v2.
 func WithGoalImplicitRules(v string) GoalOption {
 	return func(r *Goal) {
 		r.ImplicitRules = &v
@@ -913,6 +933,8 @@ func WithGoalImplicitRules(v string) GoalOption {
 }
 
 // WithGoalLanguage sets the Language field.
+//
+// Deprecated: use GoalBuilder.SetLanguage instead; removed in v2.
 func WithGoalLanguage(v string) GoalOption {
 	return func(r *Goal) {
 		r.Language = &v
@@ -920,6 +942,8 @@ func WithGoalLanguage(v string) GoalOption {
 }
 
 // WithGoalText sets the Text field.
+//
+// Deprecated: use GoalBuilder.SetText instead; removed in v2.
 func WithGoalText(v Narrative) GoalOption {
 	return func(r *Goal) {
 		r.Text = &v
@@ -927,6 +951,8 @@ func WithGoalText(v Narrative) GoalOption {
 }
 
 // WithGoalContained adds a Contained to the Goal.
+//
+// Deprecated: use GoalBuilder.AddContained instead; removed in v2.
 func WithGoalContained(v Resource) GoalOption {
 	return func(r *Goal) {
 		r.Contained = append(r.Contained, v)
@@ -934,6 +960,8 @@ func WithGoalContained(v Resource) GoalOption {
 }
 
 // WithGoalExtension adds a Extension to the Goal.
+//
+// Deprecated: use GoalBuilder.AddExtension instead; removed in v2.
 func WithGoalExtension(v Extension) GoalOption {
 	return func(r *Goal) {
 		r.Extension = append(r.Extension, v)
@@ -941,6 +969,8 @@ func WithGoalExtension(v Extension) GoalOption {
 }
 
 // WithGoalModifierExtension adds a ModifierExtension to the Goal.
+//
+// Deprecated: use GoalBuilder.AddModifierExtension instead; removed in v2.
 func WithGoalModifierExtension(v Extension) GoalOption {
 	return func(r *Goal) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -948,6 +978,8 @@ func WithGoalModifierExtension(v Extension) GoalOption {
 }
 
 // WithGoalIdentifier adds a Identifier to the Goal.
+//
+// Deprecated: use GoalBuilder.AddIdentifier instead; removed in v2.
 func WithGoalIdentifier(v Identifier) GoalOption {
 	return func(r *Goal) {
 		r.Identifier = append(r.Identifier, v)
@@ -955,6 +987,8 @@ func WithGoalIdentifier(v Identifier) GoalOption {
 }
 
 // WithGoalLifecycleStatus sets the LifecycleStatus field.
+//
+// Deprecated: use GoalBuilder.SetLifecycleStatus instead; removed in v2.
 func WithGoalLifecycleStatus(v GoalLifecycleStatus) GoalOption {
 	return func(r *Goal) {
 		r.LifecycleStatus = &v
@@ -962,6 +996,8 @@ func WithGoalLifecycleStatus(v GoalLifecycleStatus) GoalOption {
 }
 
 // WithGoalAchievementStatus sets the AchievementStatus field.
+//
+// Deprecated: use GoalBuilder.SetAchievementStatus instead; removed in v2.
 func WithGoalAchievementStatus(v CodeableConcept) GoalOption {
 	return func(r *Goal) {
 		r.AchievementStatus = &v
@@ -969,6 +1005,8 @@ func WithGoalAchievementStatus(v CodeableConcept) GoalOption {
 }
 
 // WithGoalCategory adds a Category to the Goal.
+//
+// Deprecated: use GoalBuilder.AddCategory instead; removed in v2.
 func WithGoalCategory(v CodeableConcept) GoalOption {
 	return func(r *Goal) {
 		r.Category = append(r.Category, v)
@@ -976,6 +1014,8 @@ func WithGoalCategory(v CodeableConcept) GoalOption {
 }
 
 // WithGoalContinuous sets the Continuous field.
+//
+// Deprecated: use GoalBuilder.SetContinuous instead; removed in v2.
 func WithGoalContinuous(v bool) GoalOption {
 	return func(r *Goal) {
 		r.Continuous = &v
@@ -983,6 +1023,8 @@ func WithGoalContinuous(v bool) GoalOption {
 }
 
 // WithGoalPriority sets the Priority field.
+//
+// Deprecated: use GoalBuilder.SetPriority instead; removed in v2.
 func WithGoalPriority(v CodeableConcept) GoalOption {
 	return func(r *Goal) {
 		r.Priority = &v
@@ -990,6 +1032,8 @@ func WithGoalPriority(v CodeableConcept) GoalOption {
 }
 
 // WithGoalDescription sets the Description field.
+//
+// Deprecated: use GoalBuilder.SetDescription instead; removed in v2.
 func WithGoalDescription(v CodeableConcept) GoalOption {
 	return func(r *Goal) {
 		r.Description = v
@@ -997,6 +1041,8 @@ func WithGoalDescription(v CodeableConcept) GoalOption {
 }
 
 // WithGoalSubject sets the Subject field.
+//
+// Deprecated: use GoalBuilder.SetSubject instead; removed in v2.
 func WithGoalSubject(v Reference) GoalOption {
 	return func(r *Goal) {
 		r.Subject = v
@@ -1004,6 +1050,8 @@ func WithGoalSubject(v Reference) GoalOption {
 }
 
 // WithGoalStartDate sets the StartDate field.
+//
+// Deprecated: use GoalBuilder.SetStartDate instead; removed in v2.
 func WithGoalStartDate(v string) GoalOption {
 	return func(r *Goal) {
 		r.StartDate = &v
@@ -1011,6 +1059,8 @@ func WithGoalStartDate(v string) GoalOption {
 }
 
 // WithGoalStartDateExt sets the StartDateExt field.
+//
+// Deprecated: use GoalBuilder.SetStartDateExt instead; removed in v2.
 func WithGoalStartDateExt(v Element) GoalOption {
 	return func(r *Goal) {
 		r.StartDateExt = &v
@@ -1018,6 +1068,8 @@ func WithGoalStartDateExt(v Element) GoalOption {
 }
 
 // WithGoalStartCodeableConcept sets the StartCodeableConcept field.
+//
+// Deprecated: use GoalBuilder.SetStartCodeableConcept instead; removed in v2.
 func WithGoalStartCodeableConcept(v CodeableConcept) GoalOption {
 	return func(r *Goal) {
 		r.StartCodeableConcept = &v
@@ -1025,6 +1077,8 @@ func WithGoalStartCodeableConcept(v CodeableConcept) GoalOption {
 }
 
 // WithGoalTarget adds a Target to the Goal.
+//
+// Deprecated: use GoalBuilder.AddTarget instead; removed in v2.
 func WithGoalTarget(v GoalTarget) GoalOption {
 	return func(r *Goal) {
 		r.Target = append(r.Target, v)
@@ -1032,6 +1086,8 @@ func WithGoalTarget(v GoalTarget) GoalOption {
 }
 
 // WithGoalStatusDate sets the StatusDate field.
+//
+// Deprecated: use GoalBuilder.SetStatusDate instead; removed in v2.
 func WithGoalStatusDate(v string) GoalOption {
 	return func(r *Goal) {
 		r.StatusDate = &v
@@ -1039,6 +1095,8 @@ func WithGoalStatusDate(v string) GoalOption {
 }
 
 // WithGoalStatusReason sets the StatusReason field.
+//
+// Deprecated: use GoalBuilder.SetStatusReason instead; removed in v2.
 func WithGoalStatusReason(v string) GoalOption {
 	return func(r *Goal) {
 		r.StatusReason = &v
@@ -1046,6 +1104,8 @@ func WithGoalStatusReason(v string) GoalOption {
 }
 
 // WithGoalSource sets the Source field.
+//
+// Deprecated: use GoalBuilder.SetSource instead; removed in v2.
 func WithGoalSource(v Reference) GoalOption {
 	return func(r *Goal) {
 		r.Source = &v
@@ -1053,6 +1113,8 @@ func WithGoalSource(v Reference) GoalOption {
 }
 
 // WithGoalAddresses adds a Addresses to the Goal.
+//
+// Deprecated: use GoalBuilder.AddAddresses instead; removed in v2.
 func WithGoalAddresses(v Reference) GoalOption {
 	return func(r *Goal) {
 		r.Addresses = append(r.Addresses, v)
@@ -1060,6 +1122,8 @@ func WithGoalAddresses(v Reference) GoalOption {
 }
 
 // WithGoalNote adds a Note to the Goal.
+//
+// Deprecated: use GoalBuilder.AddNote instead; removed in v2.
 func WithGoalNote(v Annotation) GoalOption {
 	return func(r *Goal) {
 		r.Note = append(r.Note, v)
@@ -1067,6 +1131,8 @@ func WithGoalNote(v Annotation) GoalOption {
 }
 
 // WithGoalOutcome adds a Outcome to the Goal.
+//
+// Deprecated: use GoalBuilder.AddOutcome instead; removed in v2.
 func WithGoalOutcome(v CodeableReference) GoalOption {
 	return func(r *Goal) {
 		r.Outcome = append(r.Outcome, v)

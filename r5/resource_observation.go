@@ -1786,9 +1786,23 @@ func (b *ObservationBuilder) AddComponent(v ObservationComponent) *ObservationBu
 // =============================================================================
 
 // ObservationOption is a functional option for configuring a Observation.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ObservationBuilder. Every WithObservation* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ObservationOption func(*Observation)
 
 // NewObservation creates a new Observation with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewObservationBuilder().SetId("x").Build()
+//
+// Deprecated: use NewObservationBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewObservation(opts ...ObservationOption) *Observation {
 	r := &Observation{ResourceType: "Observation"}
 	for _, opt := range opts {
@@ -1798,6 +1812,8 @@ func NewObservation(opts ...ObservationOption) *Observation {
 }
 
 // WithObservationId sets the Id field.
+//
+// Deprecated: use ObservationBuilder.SetId instead; removed in v2.
 func WithObservationId(v string) ObservationOption {
 	return func(r *Observation) {
 		r.Id = &v
@@ -1805,6 +1821,8 @@ func WithObservationId(v string) ObservationOption {
 }
 
 // WithObservationMeta sets the Meta field.
+//
+// Deprecated: use ObservationBuilder.SetMeta instead; removed in v2.
 func WithObservationMeta(v Meta) ObservationOption {
 	return func(r *Observation) {
 		r.Meta = &v
@@ -1812,6 +1830,8 @@ func WithObservationMeta(v Meta) ObservationOption {
 }
 
 // WithObservationImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ObservationBuilder.SetImplicitRules instead; removed in v2.
 func WithObservationImplicitRules(v string) ObservationOption {
 	return func(r *Observation) {
 		r.ImplicitRules = &v
@@ -1819,6 +1839,8 @@ func WithObservationImplicitRules(v string) ObservationOption {
 }
 
 // WithObservationLanguage sets the Language field.
+//
+// Deprecated: use ObservationBuilder.SetLanguage instead; removed in v2.
 func WithObservationLanguage(v string) ObservationOption {
 	return func(r *Observation) {
 		r.Language = &v
@@ -1826,6 +1848,8 @@ func WithObservationLanguage(v string) ObservationOption {
 }
 
 // WithObservationText sets the Text field.
+//
+// Deprecated: use ObservationBuilder.SetText instead; removed in v2.
 func WithObservationText(v Narrative) ObservationOption {
 	return func(r *Observation) {
 		r.Text = &v
@@ -1833,6 +1857,8 @@ func WithObservationText(v Narrative) ObservationOption {
 }
 
 // WithObservationContained adds a Contained to the Observation.
+//
+// Deprecated: use ObservationBuilder.AddContained instead; removed in v2.
 func WithObservationContained(v Resource) ObservationOption {
 	return func(r *Observation) {
 		r.Contained = append(r.Contained, v)
@@ -1840,6 +1866,8 @@ func WithObservationContained(v Resource) ObservationOption {
 }
 
 // WithObservationExtension adds a Extension to the Observation.
+//
+// Deprecated: use ObservationBuilder.AddExtension instead; removed in v2.
 func WithObservationExtension(v Extension) ObservationOption {
 	return func(r *Observation) {
 		r.Extension = append(r.Extension, v)
@@ -1847,6 +1875,8 @@ func WithObservationExtension(v Extension) ObservationOption {
 }
 
 // WithObservationModifierExtension adds a ModifierExtension to the Observation.
+//
+// Deprecated: use ObservationBuilder.AddModifierExtension instead; removed in v2.
 func WithObservationModifierExtension(v Extension) ObservationOption {
 	return func(r *Observation) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1854,6 +1884,8 @@ func WithObservationModifierExtension(v Extension) ObservationOption {
 }
 
 // WithObservationIdentifier adds a Identifier to the Observation.
+//
+// Deprecated: use ObservationBuilder.AddIdentifier instead; removed in v2.
 func WithObservationIdentifier(v Identifier) ObservationOption {
 	return func(r *Observation) {
 		r.Identifier = append(r.Identifier, v)
@@ -1861,6 +1893,8 @@ func WithObservationIdentifier(v Identifier) ObservationOption {
 }
 
 // WithObservationInstantiatesCanonical sets the InstantiatesCanonical field.
+//
+// Deprecated: use ObservationBuilder.SetInstantiatesCanonical instead; removed in v2.
 func WithObservationInstantiatesCanonical(v string) ObservationOption {
 	return func(r *Observation) {
 		r.InstantiatesCanonical = &v
@@ -1868,6 +1902,8 @@ func WithObservationInstantiatesCanonical(v string) ObservationOption {
 }
 
 // WithObservationInstantiatesCanonicalExt sets the InstantiatesCanonicalExt field.
+//
+// Deprecated: use ObservationBuilder.SetInstantiatesCanonicalExt instead; removed in v2.
 func WithObservationInstantiatesCanonicalExt(v Element) ObservationOption {
 	return func(r *Observation) {
 		r.InstantiatesCanonicalExt = &v
@@ -1875,6 +1911,8 @@ func WithObservationInstantiatesCanonicalExt(v Element) ObservationOption {
 }
 
 // WithObservationInstantiatesReference sets the InstantiatesReference field.
+//
+// Deprecated: use ObservationBuilder.SetInstantiatesReference instead; removed in v2.
 func WithObservationInstantiatesReference(v Reference) ObservationOption {
 	return func(r *Observation) {
 		r.InstantiatesReference = &v
@@ -1882,6 +1920,8 @@ func WithObservationInstantiatesReference(v Reference) ObservationOption {
 }
 
 // WithObservationBasedOn adds a BasedOn to the Observation.
+//
+// Deprecated: use ObservationBuilder.AddBasedOn instead; removed in v2.
 func WithObservationBasedOn(v Reference) ObservationOption {
 	return func(r *Observation) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -1889,6 +1929,8 @@ func WithObservationBasedOn(v Reference) ObservationOption {
 }
 
 // WithObservationTriggeredBy adds a TriggeredBy to the Observation.
+//
+// Deprecated: use ObservationBuilder.AddTriggeredBy instead; removed in v2.
 func WithObservationTriggeredBy(v ObservationTriggeredBy) ObservationOption {
 	return func(r *Observation) {
 		r.TriggeredBy = append(r.TriggeredBy, v)
@@ -1896,6 +1938,8 @@ func WithObservationTriggeredBy(v ObservationTriggeredBy) ObservationOption {
 }
 
 // WithObservationPartOf adds a PartOf to the Observation.
+//
+// Deprecated: use ObservationBuilder.AddPartOf instead; removed in v2.
 func WithObservationPartOf(v Reference) ObservationOption {
 	return func(r *Observation) {
 		r.PartOf = append(r.PartOf, v)
@@ -1903,6 +1947,8 @@ func WithObservationPartOf(v Reference) ObservationOption {
 }
 
 // WithObservationStatus sets the Status field.
+//
+// Deprecated: use ObservationBuilder.SetStatus instead; removed in v2.
 func WithObservationStatus(v ObservationStatus) ObservationOption {
 	return func(r *Observation) {
 		r.Status = &v
@@ -1910,6 +1956,8 @@ func WithObservationStatus(v ObservationStatus) ObservationOption {
 }
 
 // WithObservationCategory adds a Category to the Observation.
+//
+// Deprecated: use ObservationBuilder.AddCategory instead; removed in v2.
 func WithObservationCategory(v CodeableConcept) ObservationOption {
 	return func(r *Observation) {
 		r.Category = append(r.Category, v)
@@ -1917,6 +1965,8 @@ func WithObservationCategory(v CodeableConcept) ObservationOption {
 }
 
 // WithObservationCode sets the Code field.
+//
+// Deprecated: use ObservationBuilder.SetCode instead; removed in v2.
 func WithObservationCode(v CodeableConcept) ObservationOption {
 	return func(r *Observation) {
 		r.Code = v
@@ -1924,6 +1974,8 @@ func WithObservationCode(v CodeableConcept) ObservationOption {
 }
 
 // WithObservationSubject sets the Subject field.
+//
+// Deprecated: use ObservationBuilder.SetSubject instead; removed in v2.
 func WithObservationSubject(v Reference) ObservationOption {
 	return func(r *Observation) {
 		r.Subject = &v
@@ -1931,6 +1983,8 @@ func WithObservationSubject(v Reference) ObservationOption {
 }
 
 // WithObservationFocus adds a Focus to the Observation.
+//
+// Deprecated: use ObservationBuilder.AddFocus instead; removed in v2.
 func WithObservationFocus(v Reference) ObservationOption {
 	return func(r *Observation) {
 		r.Focus = append(r.Focus, v)
@@ -1938,6 +1992,8 @@ func WithObservationFocus(v Reference) ObservationOption {
 }
 
 // WithObservationEncounter sets the Encounter field.
+//
+// Deprecated: use ObservationBuilder.SetEncounter instead; removed in v2.
 func WithObservationEncounter(v Reference) ObservationOption {
 	return func(r *Observation) {
 		r.Encounter = &v
@@ -1945,6 +2001,8 @@ func WithObservationEncounter(v Reference) ObservationOption {
 }
 
 // WithObservationEffectiveDateTime sets the EffectiveDateTime field.
+//
+// Deprecated: use ObservationBuilder.SetEffectiveDateTime instead; removed in v2.
 func WithObservationEffectiveDateTime(v string) ObservationOption {
 	return func(r *Observation) {
 		r.EffectiveDateTime = &v
@@ -1952,6 +2010,8 @@ func WithObservationEffectiveDateTime(v string) ObservationOption {
 }
 
 // WithObservationEffectiveDateTimeExt sets the EffectiveDateTimeExt field.
+//
+// Deprecated: use ObservationBuilder.SetEffectiveDateTimeExt instead; removed in v2.
 func WithObservationEffectiveDateTimeExt(v Element) ObservationOption {
 	return func(r *Observation) {
 		r.EffectiveDateTimeExt = &v
@@ -1959,6 +2019,8 @@ func WithObservationEffectiveDateTimeExt(v Element) ObservationOption {
 }
 
 // WithObservationEffectivePeriod sets the EffectivePeriod field.
+//
+// Deprecated: use ObservationBuilder.SetEffectivePeriod instead; removed in v2.
 func WithObservationEffectivePeriod(v Period) ObservationOption {
 	return func(r *Observation) {
 		r.EffectivePeriod = &v
@@ -1966,6 +2028,8 @@ func WithObservationEffectivePeriod(v Period) ObservationOption {
 }
 
 // WithObservationEffectiveTiming sets the EffectiveTiming field.
+//
+// Deprecated: use ObservationBuilder.SetEffectiveTiming instead; removed in v2.
 func WithObservationEffectiveTiming(v Timing) ObservationOption {
 	return func(r *Observation) {
 		r.EffectiveTiming = &v
@@ -1973,6 +2037,8 @@ func WithObservationEffectiveTiming(v Timing) ObservationOption {
 }
 
 // WithObservationEffectiveInstant sets the EffectiveInstant field.
+//
+// Deprecated: use ObservationBuilder.SetEffectiveInstant instead; removed in v2.
 func WithObservationEffectiveInstant(v string) ObservationOption {
 	return func(r *Observation) {
 		r.EffectiveInstant = &v
@@ -1980,6 +2046,8 @@ func WithObservationEffectiveInstant(v string) ObservationOption {
 }
 
 // WithObservationEffectiveInstantExt sets the EffectiveInstantExt field.
+//
+// Deprecated: use ObservationBuilder.SetEffectiveInstantExt instead; removed in v2.
 func WithObservationEffectiveInstantExt(v Element) ObservationOption {
 	return func(r *Observation) {
 		r.EffectiveInstantExt = &v
@@ -1987,6 +2055,8 @@ func WithObservationEffectiveInstantExt(v Element) ObservationOption {
 }
 
 // WithObservationIssued sets the Issued field.
+//
+// Deprecated: use ObservationBuilder.SetIssued instead; removed in v2.
 func WithObservationIssued(v string) ObservationOption {
 	return func(r *Observation) {
 		r.Issued = &v
@@ -1994,6 +2064,8 @@ func WithObservationIssued(v string) ObservationOption {
 }
 
 // WithObservationPerformer adds a Performer to the Observation.
+//
+// Deprecated: use ObservationBuilder.AddPerformer instead; removed in v2.
 func WithObservationPerformer(v Reference) ObservationOption {
 	return func(r *Observation) {
 		r.Performer = append(r.Performer, v)
@@ -2001,6 +2073,8 @@ func WithObservationPerformer(v Reference) ObservationOption {
 }
 
 // WithObservationValueQuantity sets the ValueQuantity field.
+//
+// Deprecated: use ObservationBuilder.SetValueQuantity instead; removed in v2.
 func WithObservationValueQuantity(v Quantity) ObservationOption {
 	return func(r *Observation) {
 		r.ValueQuantity = &v
@@ -2008,6 +2082,8 @@ func WithObservationValueQuantity(v Quantity) ObservationOption {
 }
 
 // WithObservationValueCodeableConcept sets the ValueCodeableConcept field.
+//
+// Deprecated: use ObservationBuilder.SetValueCodeableConcept instead; removed in v2.
 func WithObservationValueCodeableConcept(v CodeableConcept) ObservationOption {
 	return func(r *Observation) {
 		r.ValueCodeableConcept = &v
@@ -2015,6 +2091,8 @@ func WithObservationValueCodeableConcept(v CodeableConcept) ObservationOption {
 }
 
 // WithObservationValueString sets the ValueString field.
+//
+// Deprecated: use ObservationBuilder.SetValueString instead; removed in v2.
 func WithObservationValueString(v string) ObservationOption {
 	return func(r *Observation) {
 		r.ValueString = &v
@@ -2022,6 +2100,8 @@ func WithObservationValueString(v string) ObservationOption {
 }
 
 // WithObservationValueStringExt sets the ValueStringExt field.
+//
+// Deprecated: use ObservationBuilder.SetValueStringExt instead; removed in v2.
 func WithObservationValueStringExt(v Element) ObservationOption {
 	return func(r *Observation) {
 		r.ValueStringExt = &v
@@ -2029,6 +2109,8 @@ func WithObservationValueStringExt(v Element) ObservationOption {
 }
 
 // WithObservationValueBoolean sets the ValueBoolean field.
+//
+// Deprecated: use ObservationBuilder.SetValueBoolean instead; removed in v2.
 func WithObservationValueBoolean(v bool) ObservationOption {
 	return func(r *Observation) {
 		r.ValueBoolean = &v
@@ -2036,6 +2118,8 @@ func WithObservationValueBoolean(v bool) ObservationOption {
 }
 
 // WithObservationValueBooleanExt sets the ValueBooleanExt field.
+//
+// Deprecated: use ObservationBuilder.SetValueBooleanExt instead; removed in v2.
 func WithObservationValueBooleanExt(v Element) ObservationOption {
 	return func(r *Observation) {
 		r.ValueBooleanExt = &v
@@ -2043,6 +2127,8 @@ func WithObservationValueBooleanExt(v Element) ObservationOption {
 }
 
 // WithObservationValueInteger sets the ValueInteger field.
+//
+// Deprecated: use ObservationBuilder.SetValueInteger instead; removed in v2.
 func WithObservationValueInteger(v int) ObservationOption {
 	return func(r *Observation) {
 		r.ValueInteger = &v
@@ -2050,6 +2136,8 @@ func WithObservationValueInteger(v int) ObservationOption {
 }
 
 // WithObservationValueIntegerExt sets the ValueIntegerExt field.
+//
+// Deprecated: use ObservationBuilder.SetValueIntegerExt instead; removed in v2.
 func WithObservationValueIntegerExt(v Element) ObservationOption {
 	return func(r *Observation) {
 		r.ValueIntegerExt = &v
@@ -2057,6 +2145,8 @@ func WithObservationValueIntegerExt(v Element) ObservationOption {
 }
 
 // WithObservationValueRange sets the ValueRange field.
+//
+// Deprecated: use ObservationBuilder.SetValueRange instead; removed in v2.
 func WithObservationValueRange(v Range) ObservationOption {
 	return func(r *Observation) {
 		r.ValueRange = &v
@@ -2064,6 +2154,8 @@ func WithObservationValueRange(v Range) ObservationOption {
 }
 
 // WithObservationValueRatio sets the ValueRatio field.
+//
+// Deprecated: use ObservationBuilder.SetValueRatio instead; removed in v2.
 func WithObservationValueRatio(v Ratio) ObservationOption {
 	return func(r *Observation) {
 		r.ValueRatio = &v
@@ -2071,6 +2163,8 @@ func WithObservationValueRatio(v Ratio) ObservationOption {
 }
 
 // WithObservationValueSampledData sets the ValueSampledData field.
+//
+// Deprecated: use ObservationBuilder.SetValueSampledData instead; removed in v2.
 func WithObservationValueSampledData(v SampledData) ObservationOption {
 	return func(r *Observation) {
 		r.ValueSampledData = &v
@@ -2078,6 +2172,8 @@ func WithObservationValueSampledData(v SampledData) ObservationOption {
 }
 
 // WithObservationValueTime sets the ValueTime field.
+//
+// Deprecated: use ObservationBuilder.SetValueTime instead; removed in v2.
 func WithObservationValueTime(v string) ObservationOption {
 	return func(r *Observation) {
 		r.ValueTime = &v
@@ -2085,6 +2181,8 @@ func WithObservationValueTime(v string) ObservationOption {
 }
 
 // WithObservationValueTimeExt sets the ValueTimeExt field.
+//
+// Deprecated: use ObservationBuilder.SetValueTimeExt instead; removed in v2.
 func WithObservationValueTimeExt(v Element) ObservationOption {
 	return func(r *Observation) {
 		r.ValueTimeExt = &v
@@ -2092,6 +2190,8 @@ func WithObservationValueTimeExt(v Element) ObservationOption {
 }
 
 // WithObservationValueDateTime sets the ValueDateTime field.
+//
+// Deprecated: use ObservationBuilder.SetValueDateTime instead; removed in v2.
 func WithObservationValueDateTime(v string) ObservationOption {
 	return func(r *Observation) {
 		r.ValueDateTime = &v
@@ -2099,6 +2199,8 @@ func WithObservationValueDateTime(v string) ObservationOption {
 }
 
 // WithObservationValueDateTimeExt sets the ValueDateTimeExt field.
+//
+// Deprecated: use ObservationBuilder.SetValueDateTimeExt instead; removed in v2.
 func WithObservationValueDateTimeExt(v Element) ObservationOption {
 	return func(r *Observation) {
 		r.ValueDateTimeExt = &v
@@ -2106,6 +2208,8 @@ func WithObservationValueDateTimeExt(v Element) ObservationOption {
 }
 
 // WithObservationValuePeriod sets the ValuePeriod field.
+//
+// Deprecated: use ObservationBuilder.SetValuePeriod instead; removed in v2.
 func WithObservationValuePeriod(v Period) ObservationOption {
 	return func(r *Observation) {
 		r.ValuePeriod = &v
@@ -2113,6 +2217,8 @@ func WithObservationValuePeriod(v Period) ObservationOption {
 }
 
 // WithObservationValueAttachment sets the ValueAttachment field.
+//
+// Deprecated: use ObservationBuilder.SetValueAttachment instead; removed in v2.
 func WithObservationValueAttachment(v Attachment) ObservationOption {
 	return func(r *Observation) {
 		r.ValueAttachment = &v
@@ -2120,6 +2226,8 @@ func WithObservationValueAttachment(v Attachment) ObservationOption {
 }
 
 // WithObservationValueReference sets the ValueReference field.
+//
+// Deprecated: use ObservationBuilder.SetValueReference instead; removed in v2.
 func WithObservationValueReference(v Reference) ObservationOption {
 	return func(r *Observation) {
 		r.ValueReference = &v
@@ -2127,6 +2235,8 @@ func WithObservationValueReference(v Reference) ObservationOption {
 }
 
 // WithObservationDataAbsentReason sets the DataAbsentReason field.
+//
+// Deprecated: use ObservationBuilder.SetDataAbsentReason instead; removed in v2.
 func WithObservationDataAbsentReason(v CodeableConcept) ObservationOption {
 	return func(r *Observation) {
 		r.DataAbsentReason = &v
@@ -2134,6 +2244,8 @@ func WithObservationDataAbsentReason(v CodeableConcept) ObservationOption {
 }
 
 // WithObservationInterpretation adds a Interpretation to the Observation.
+//
+// Deprecated: use ObservationBuilder.AddInterpretation instead; removed in v2.
 func WithObservationInterpretation(v CodeableConcept) ObservationOption {
 	return func(r *Observation) {
 		r.Interpretation = append(r.Interpretation, v)
@@ -2141,6 +2253,8 @@ func WithObservationInterpretation(v CodeableConcept) ObservationOption {
 }
 
 // WithObservationNote adds a Note to the Observation.
+//
+// Deprecated: use ObservationBuilder.AddNote instead; removed in v2.
 func WithObservationNote(v Annotation) ObservationOption {
 	return func(r *Observation) {
 		r.Note = append(r.Note, v)
@@ -2148,6 +2262,8 @@ func WithObservationNote(v Annotation) ObservationOption {
 }
 
 // WithObservationBodySite sets the BodySite field.
+//
+// Deprecated: use ObservationBuilder.SetBodySite instead; removed in v2.
 func WithObservationBodySite(v CodeableConcept) ObservationOption {
 	return func(r *Observation) {
 		r.BodySite = &v
@@ -2155,6 +2271,8 @@ func WithObservationBodySite(v CodeableConcept) ObservationOption {
 }
 
 // WithObservationBodyStructure sets the BodyStructure field.
+//
+// Deprecated: use ObservationBuilder.SetBodyStructure instead; removed in v2.
 func WithObservationBodyStructure(v Reference) ObservationOption {
 	return func(r *Observation) {
 		r.BodyStructure = &v
@@ -2162,6 +2280,8 @@ func WithObservationBodyStructure(v Reference) ObservationOption {
 }
 
 // WithObservationMethod sets the Method field.
+//
+// Deprecated: use ObservationBuilder.SetMethod instead; removed in v2.
 func WithObservationMethod(v CodeableConcept) ObservationOption {
 	return func(r *Observation) {
 		r.Method = &v
@@ -2169,6 +2289,8 @@ func WithObservationMethod(v CodeableConcept) ObservationOption {
 }
 
 // WithObservationSpecimen sets the Specimen field.
+//
+// Deprecated: use ObservationBuilder.SetSpecimen instead; removed in v2.
 func WithObservationSpecimen(v Reference) ObservationOption {
 	return func(r *Observation) {
 		r.Specimen = &v
@@ -2176,6 +2298,8 @@ func WithObservationSpecimen(v Reference) ObservationOption {
 }
 
 // WithObservationDevice sets the Device field.
+//
+// Deprecated: use ObservationBuilder.SetDevice instead; removed in v2.
 func WithObservationDevice(v Reference) ObservationOption {
 	return func(r *Observation) {
 		r.Device = &v
@@ -2183,6 +2307,8 @@ func WithObservationDevice(v Reference) ObservationOption {
 }
 
 // WithObservationReferenceRange adds a ReferenceRange to the Observation.
+//
+// Deprecated: use ObservationBuilder.AddReferenceRange instead; removed in v2.
 func WithObservationReferenceRange(v ObservationReferenceRange) ObservationOption {
 	return func(r *Observation) {
 		r.ReferenceRange = append(r.ReferenceRange, v)
@@ -2190,6 +2316,8 @@ func WithObservationReferenceRange(v ObservationReferenceRange) ObservationOptio
 }
 
 // WithObservationHasMember adds a HasMember to the Observation.
+//
+// Deprecated: use ObservationBuilder.AddHasMember instead; removed in v2.
 func WithObservationHasMember(v Reference) ObservationOption {
 	return func(r *Observation) {
 		r.HasMember = append(r.HasMember, v)
@@ -2197,6 +2325,8 @@ func WithObservationHasMember(v Reference) ObservationOption {
 }
 
 // WithObservationDerivedFrom adds a DerivedFrom to the Observation.
+//
+// Deprecated: use ObservationBuilder.AddDerivedFrom instead; removed in v2.
 func WithObservationDerivedFrom(v Reference) ObservationOption {
 	return func(r *Observation) {
 		r.DerivedFrom = append(r.DerivedFrom, v)
@@ -2204,6 +2334,8 @@ func WithObservationDerivedFrom(v Reference) ObservationOption {
 }
 
 // WithObservationComponent adds a Component to the Observation.
+//
+// Deprecated: use ObservationBuilder.AddComponent instead; removed in v2.
 func WithObservationComponent(v ObservationComponent) ObservationOption {
 	return func(r *Observation) {
 		r.Component = append(r.Component, v)

@@ -503,9 +503,23 @@ func (b *EnrollmentResponseBuilder) SetRequestProvider(v Reference) *EnrollmentR
 // =============================================================================
 
 // EnrollmentResponseOption is a functional option for configuring a EnrollmentResponse.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// EnrollmentResponseBuilder. Every WithEnrollmentResponse* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type EnrollmentResponseOption func(*EnrollmentResponse)
 
 // NewEnrollmentResponse creates a new EnrollmentResponse with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewEnrollmentResponseBuilder().SetId("x").Build()
+//
+// Deprecated: use NewEnrollmentResponseBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewEnrollmentResponse(opts ...EnrollmentResponseOption) *EnrollmentResponse {
 	r := &EnrollmentResponse{ResourceType: "EnrollmentResponse"}
 	for _, opt := range opts {
@@ -515,6 +529,8 @@ func NewEnrollmentResponse(opts ...EnrollmentResponseOption) *EnrollmentResponse
 }
 
 // WithEnrollmentResponseId sets the Id field.
+//
+// Deprecated: use EnrollmentResponseBuilder.SetId instead; removed in v2.
 func WithEnrollmentResponseId(v string) EnrollmentResponseOption {
 	return func(r *EnrollmentResponse) {
 		r.Id = &v
@@ -522,6 +538,8 @@ func WithEnrollmentResponseId(v string) EnrollmentResponseOption {
 }
 
 // WithEnrollmentResponseMeta sets the Meta field.
+//
+// Deprecated: use EnrollmentResponseBuilder.SetMeta instead; removed in v2.
 func WithEnrollmentResponseMeta(v Meta) EnrollmentResponseOption {
 	return func(r *EnrollmentResponse) {
 		r.Meta = &v
@@ -529,6 +547,8 @@ func WithEnrollmentResponseMeta(v Meta) EnrollmentResponseOption {
 }
 
 // WithEnrollmentResponseImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use EnrollmentResponseBuilder.SetImplicitRules instead; removed in v2.
 func WithEnrollmentResponseImplicitRules(v string) EnrollmentResponseOption {
 	return func(r *EnrollmentResponse) {
 		r.ImplicitRules = &v
@@ -536,6 +556,8 @@ func WithEnrollmentResponseImplicitRules(v string) EnrollmentResponseOption {
 }
 
 // WithEnrollmentResponseLanguage sets the Language field.
+//
+// Deprecated: use EnrollmentResponseBuilder.SetLanguage instead; removed in v2.
 func WithEnrollmentResponseLanguage(v string) EnrollmentResponseOption {
 	return func(r *EnrollmentResponse) {
 		r.Language = &v
@@ -543,6 +565,8 @@ func WithEnrollmentResponseLanguage(v string) EnrollmentResponseOption {
 }
 
 // WithEnrollmentResponseText sets the Text field.
+//
+// Deprecated: use EnrollmentResponseBuilder.SetText instead; removed in v2.
 func WithEnrollmentResponseText(v Narrative) EnrollmentResponseOption {
 	return func(r *EnrollmentResponse) {
 		r.Text = &v
@@ -550,6 +574,8 @@ func WithEnrollmentResponseText(v Narrative) EnrollmentResponseOption {
 }
 
 // WithEnrollmentResponseContained adds a Contained to the EnrollmentResponse.
+//
+// Deprecated: use EnrollmentResponseBuilder.AddContained instead; removed in v2.
 func WithEnrollmentResponseContained(v Resource) EnrollmentResponseOption {
 	return func(r *EnrollmentResponse) {
 		r.Contained = append(r.Contained, v)
@@ -557,6 +583,8 @@ func WithEnrollmentResponseContained(v Resource) EnrollmentResponseOption {
 }
 
 // WithEnrollmentResponseExtension adds a Extension to the EnrollmentResponse.
+//
+// Deprecated: use EnrollmentResponseBuilder.AddExtension instead; removed in v2.
 func WithEnrollmentResponseExtension(v Extension) EnrollmentResponseOption {
 	return func(r *EnrollmentResponse) {
 		r.Extension = append(r.Extension, v)
@@ -564,6 +592,8 @@ func WithEnrollmentResponseExtension(v Extension) EnrollmentResponseOption {
 }
 
 // WithEnrollmentResponseModifierExtension adds a ModifierExtension to the EnrollmentResponse.
+//
+// Deprecated: use EnrollmentResponseBuilder.AddModifierExtension instead; removed in v2.
 func WithEnrollmentResponseModifierExtension(v Extension) EnrollmentResponseOption {
 	return func(r *EnrollmentResponse) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -571,6 +601,8 @@ func WithEnrollmentResponseModifierExtension(v Extension) EnrollmentResponseOpti
 }
 
 // WithEnrollmentResponseIdentifier adds a Identifier to the EnrollmentResponse.
+//
+// Deprecated: use EnrollmentResponseBuilder.AddIdentifier instead; removed in v2.
 func WithEnrollmentResponseIdentifier(v Identifier) EnrollmentResponseOption {
 	return func(r *EnrollmentResponse) {
 		r.Identifier = append(r.Identifier, v)
@@ -578,6 +610,8 @@ func WithEnrollmentResponseIdentifier(v Identifier) EnrollmentResponseOption {
 }
 
 // WithEnrollmentResponseStatus sets the Status field.
+//
+// Deprecated: use EnrollmentResponseBuilder.SetStatus instead; removed in v2.
 func WithEnrollmentResponseStatus(v FinancialResourceStatusCodes) EnrollmentResponseOption {
 	return func(r *EnrollmentResponse) {
 		r.Status = &v
@@ -585,6 +619,8 @@ func WithEnrollmentResponseStatus(v FinancialResourceStatusCodes) EnrollmentResp
 }
 
 // WithEnrollmentResponseRequest sets the Request field.
+//
+// Deprecated: use EnrollmentResponseBuilder.SetRequest instead; removed in v2.
 func WithEnrollmentResponseRequest(v Reference) EnrollmentResponseOption {
 	return func(r *EnrollmentResponse) {
 		r.Request = &v
@@ -592,6 +628,8 @@ func WithEnrollmentResponseRequest(v Reference) EnrollmentResponseOption {
 }
 
 // WithEnrollmentResponseOutcome sets the Outcome field.
+//
+// Deprecated: use EnrollmentResponseBuilder.SetOutcome instead; removed in v2.
 func WithEnrollmentResponseOutcome(v RemittanceOutcome) EnrollmentResponseOption {
 	return func(r *EnrollmentResponse) {
 		r.Outcome = &v
@@ -599,6 +637,8 @@ func WithEnrollmentResponseOutcome(v RemittanceOutcome) EnrollmentResponseOption
 }
 
 // WithEnrollmentResponseDisposition sets the Disposition field.
+//
+// Deprecated: use EnrollmentResponseBuilder.SetDisposition instead; removed in v2.
 func WithEnrollmentResponseDisposition(v string) EnrollmentResponseOption {
 	return func(r *EnrollmentResponse) {
 		r.Disposition = &v
@@ -606,6 +646,8 @@ func WithEnrollmentResponseDisposition(v string) EnrollmentResponseOption {
 }
 
 // WithEnrollmentResponseCreated sets the Created field.
+//
+// Deprecated: use EnrollmentResponseBuilder.SetCreated instead; removed in v2.
 func WithEnrollmentResponseCreated(v string) EnrollmentResponseOption {
 	return func(r *EnrollmentResponse) {
 		r.Created = &v
@@ -613,6 +655,8 @@ func WithEnrollmentResponseCreated(v string) EnrollmentResponseOption {
 }
 
 // WithEnrollmentResponseOrganization sets the Organization field.
+//
+// Deprecated: use EnrollmentResponseBuilder.SetOrganization instead; removed in v2.
 func WithEnrollmentResponseOrganization(v Reference) EnrollmentResponseOption {
 	return func(r *EnrollmentResponse) {
 		r.Organization = &v
@@ -620,6 +664,8 @@ func WithEnrollmentResponseOrganization(v Reference) EnrollmentResponseOption {
 }
 
 // WithEnrollmentResponseRequestProvider sets the RequestProvider field.
+//
+// Deprecated: use EnrollmentResponseBuilder.SetRequestProvider instead; removed in v2.
 func WithEnrollmentResponseRequestProvider(v Reference) EnrollmentResponseOption {
 	return func(r *EnrollmentResponse) {
 		r.RequestProvider = &v

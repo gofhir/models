@@ -828,9 +828,23 @@ func (b *VisionPrescriptionBuilder) AddLensSpecification(v VisionPrescriptionLen
 // =============================================================================
 
 // VisionPrescriptionOption is a functional option for configuring a VisionPrescription.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// VisionPrescriptionBuilder. Every WithVisionPrescription* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type VisionPrescriptionOption func(*VisionPrescription)
 
 // NewVisionPrescription creates a new VisionPrescription with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewVisionPrescriptionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewVisionPrescriptionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewVisionPrescription(opts ...VisionPrescriptionOption) *VisionPrescription {
 	r := &VisionPrescription{ResourceType: "VisionPrescription"}
 	for _, opt := range opts {
@@ -840,6 +854,8 @@ func NewVisionPrescription(opts ...VisionPrescriptionOption) *VisionPrescription
 }
 
 // WithVisionPrescriptionId sets the Id field.
+//
+// Deprecated: use VisionPrescriptionBuilder.SetId instead; removed in v2.
 func WithVisionPrescriptionId(v string) VisionPrescriptionOption {
 	return func(r *VisionPrescription) {
 		r.Id = &v
@@ -847,6 +863,8 @@ func WithVisionPrescriptionId(v string) VisionPrescriptionOption {
 }
 
 // WithVisionPrescriptionMeta sets the Meta field.
+//
+// Deprecated: use VisionPrescriptionBuilder.SetMeta instead; removed in v2.
 func WithVisionPrescriptionMeta(v Meta) VisionPrescriptionOption {
 	return func(r *VisionPrescription) {
 		r.Meta = &v
@@ -854,6 +872,8 @@ func WithVisionPrescriptionMeta(v Meta) VisionPrescriptionOption {
 }
 
 // WithVisionPrescriptionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use VisionPrescriptionBuilder.SetImplicitRules instead; removed in v2.
 func WithVisionPrescriptionImplicitRules(v string) VisionPrescriptionOption {
 	return func(r *VisionPrescription) {
 		r.ImplicitRules = &v
@@ -861,6 +881,8 @@ func WithVisionPrescriptionImplicitRules(v string) VisionPrescriptionOption {
 }
 
 // WithVisionPrescriptionLanguage sets the Language field.
+//
+// Deprecated: use VisionPrescriptionBuilder.SetLanguage instead; removed in v2.
 func WithVisionPrescriptionLanguage(v string) VisionPrescriptionOption {
 	return func(r *VisionPrescription) {
 		r.Language = &v
@@ -868,6 +890,8 @@ func WithVisionPrescriptionLanguage(v string) VisionPrescriptionOption {
 }
 
 // WithVisionPrescriptionText sets the Text field.
+//
+// Deprecated: use VisionPrescriptionBuilder.SetText instead; removed in v2.
 func WithVisionPrescriptionText(v Narrative) VisionPrescriptionOption {
 	return func(r *VisionPrescription) {
 		r.Text = &v
@@ -875,6 +899,8 @@ func WithVisionPrescriptionText(v Narrative) VisionPrescriptionOption {
 }
 
 // WithVisionPrescriptionContained adds a Contained to the VisionPrescription.
+//
+// Deprecated: use VisionPrescriptionBuilder.AddContained instead; removed in v2.
 func WithVisionPrescriptionContained(v Resource) VisionPrescriptionOption {
 	return func(r *VisionPrescription) {
 		r.Contained = append(r.Contained, v)
@@ -882,6 +908,8 @@ func WithVisionPrescriptionContained(v Resource) VisionPrescriptionOption {
 }
 
 // WithVisionPrescriptionExtension adds a Extension to the VisionPrescription.
+//
+// Deprecated: use VisionPrescriptionBuilder.AddExtension instead; removed in v2.
 func WithVisionPrescriptionExtension(v Extension) VisionPrescriptionOption {
 	return func(r *VisionPrescription) {
 		r.Extension = append(r.Extension, v)
@@ -889,6 +917,8 @@ func WithVisionPrescriptionExtension(v Extension) VisionPrescriptionOption {
 }
 
 // WithVisionPrescriptionModifierExtension adds a ModifierExtension to the VisionPrescription.
+//
+// Deprecated: use VisionPrescriptionBuilder.AddModifierExtension instead; removed in v2.
 func WithVisionPrescriptionModifierExtension(v Extension) VisionPrescriptionOption {
 	return func(r *VisionPrescription) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -896,6 +926,8 @@ func WithVisionPrescriptionModifierExtension(v Extension) VisionPrescriptionOpti
 }
 
 // WithVisionPrescriptionIdentifier adds a Identifier to the VisionPrescription.
+//
+// Deprecated: use VisionPrescriptionBuilder.AddIdentifier instead; removed in v2.
 func WithVisionPrescriptionIdentifier(v Identifier) VisionPrescriptionOption {
 	return func(r *VisionPrescription) {
 		r.Identifier = append(r.Identifier, v)
@@ -903,6 +935,8 @@ func WithVisionPrescriptionIdentifier(v Identifier) VisionPrescriptionOption {
 }
 
 // WithVisionPrescriptionStatus sets the Status field.
+//
+// Deprecated: use VisionPrescriptionBuilder.SetStatus instead; removed in v2.
 func WithVisionPrescriptionStatus(v FinancialResourceStatusCodes) VisionPrescriptionOption {
 	return func(r *VisionPrescription) {
 		r.Status = &v
@@ -910,6 +944,8 @@ func WithVisionPrescriptionStatus(v FinancialResourceStatusCodes) VisionPrescrip
 }
 
 // WithVisionPrescriptionCreated sets the Created field.
+//
+// Deprecated: use VisionPrescriptionBuilder.SetCreated instead; removed in v2.
 func WithVisionPrescriptionCreated(v string) VisionPrescriptionOption {
 	return func(r *VisionPrescription) {
 		r.Created = &v
@@ -917,6 +953,8 @@ func WithVisionPrescriptionCreated(v string) VisionPrescriptionOption {
 }
 
 // WithVisionPrescriptionPatient sets the Patient field.
+//
+// Deprecated: use VisionPrescriptionBuilder.SetPatient instead; removed in v2.
 func WithVisionPrescriptionPatient(v Reference) VisionPrescriptionOption {
 	return func(r *VisionPrescription) {
 		r.Patient = v
@@ -924,6 +962,8 @@ func WithVisionPrescriptionPatient(v Reference) VisionPrescriptionOption {
 }
 
 // WithVisionPrescriptionEncounter sets the Encounter field.
+//
+// Deprecated: use VisionPrescriptionBuilder.SetEncounter instead; removed in v2.
 func WithVisionPrescriptionEncounter(v Reference) VisionPrescriptionOption {
 	return func(r *VisionPrescription) {
 		r.Encounter = &v
@@ -931,6 +971,8 @@ func WithVisionPrescriptionEncounter(v Reference) VisionPrescriptionOption {
 }
 
 // WithVisionPrescriptionDateWritten sets the DateWritten field.
+//
+// Deprecated: use VisionPrescriptionBuilder.SetDateWritten instead; removed in v2.
 func WithVisionPrescriptionDateWritten(v string) VisionPrescriptionOption {
 	return func(r *VisionPrescription) {
 		r.DateWritten = &v
@@ -938,6 +980,8 @@ func WithVisionPrescriptionDateWritten(v string) VisionPrescriptionOption {
 }
 
 // WithVisionPrescriptionPrescriber sets the Prescriber field.
+//
+// Deprecated: use VisionPrescriptionBuilder.SetPrescriber instead; removed in v2.
 func WithVisionPrescriptionPrescriber(v Reference) VisionPrescriptionOption {
 	return func(r *VisionPrescription) {
 		r.Prescriber = v
@@ -945,6 +989,8 @@ func WithVisionPrescriptionPrescriber(v Reference) VisionPrescriptionOption {
 }
 
 // WithVisionPrescriptionLensSpecification adds a LensSpecification to the VisionPrescription.
+//
+// Deprecated: use VisionPrescriptionBuilder.AddLensSpecification instead; removed in v2.
 func WithVisionPrescriptionLensSpecification(v VisionPrescriptionLensSpecification) VisionPrescriptionOption {
 	return func(r *VisionPrescription) {
 		r.LensSpecification = append(r.LensSpecification, v)

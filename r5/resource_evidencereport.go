@@ -1451,9 +1451,23 @@ func (b *EvidenceReportBuilder) AddSection(v EvidenceReportSection) *EvidenceRep
 // =============================================================================
 
 // EvidenceReportOption is a functional option for configuring a EvidenceReport.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// EvidenceReportBuilder. Every WithEvidenceReport* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type EvidenceReportOption func(*EvidenceReport)
 
 // NewEvidenceReport creates a new EvidenceReport with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewEvidenceReportBuilder().SetId("x").Build()
+//
+// Deprecated: use NewEvidenceReportBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewEvidenceReport(opts ...EvidenceReportOption) *EvidenceReport {
 	r := &EvidenceReport{ResourceType: "EvidenceReport"}
 	for _, opt := range opts {
@@ -1463,6 +1477,8 @@ func NewEvidenceReport(opts ...EvidenceReportOption) *EvidenceReport {
 }
 
 // WithEvidenceReportId sets the Id field.
+//
+// Deprecated: use EvidenceReportBuilder.SetId instead; removed in v2.
 func WithEvidenceReportId(v string) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.Id = &v
@@ -1470,6 +1486,8 @@ func WithEvidenceReportId(v string) EvidenceReportOption {
 }
 
 // WithEvidenceReportMeta sets the Meta field.
+//
+// Deprecated: use EvidenceReportBuilder.SetMeta instead; removed in v2.
 func WithEvidenceReportMeta(v Meta) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.Meta = &v
@@ -1477,6 +1495,8 @@ func WithEvidenceReportMeta(v Meta) EvidenceReportOption {
 }
 
 // WithEvidenceReportImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use EvidenceReportBuilder.SetImplicitRules instead; removed in v2.
 func WithEvidenceReportImplicitRules(v string) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.ImplicitRules = &v
@@ -1484,6 +1504,8 @@ func WithEvidenceReportImplicitRules(v string) EvidenceReportOption {
 }
 
 // WithEvidenceReportLanguage sets the Language field.
+//
+// Deprecated: use EvidenceReportBuilder.SetLanguage instead; removed in v2.
 func WithEvidenceReportLanguage(v string) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.Language = &v
@@ -1491,6 +1513,8 @@ func WithEvidenceReportLanguage(v string) EvidenceReportOption {
 }
 
 // WithEvidenceReportText sets the Text field.
+//
+// Deprecated: use EvidenceReportBuilder.SetText instead; removed in v2.
 func WithEvidenceReportText(v Narrative) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.Text = &v
@@ -1498,6 +1522,8 @@ func WithEvidenceReportText(v Narrative) EvidenceReportOption {
 }
 
 // WithEvidenceReportContained adds a Contained to the EvidenceReport.
+//
+// Deprecated: use EvidenceReportBuilder.AddContained instead; removed in v2.
 func WithEvidenceReportContained(v Resource) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.Contained = append(r.Contained, v)
@@ -1505,6 +1531,8 @@ func WithEvidenceReportContained(v Resource) EvidenceReportOption {
 }
 
 // WithEvidenceReportExtension adds a Extension to the EvidenceReport.
+//
+// Deprecated: use EvidenceReportBuilder.AddExtension instead; removed in v2.
 func WithEvidenceReportExtension(v Extension) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.Extension = append(r.Extension, v)
@@ -1512,6 +1540,8 @@ func WithEvidenceReportExtension(v Extension) EvidenceReportOption {
 }
 
 // WithEvidenceReportModifierExtension adds a ModifierExtension to the EvidenceReport.
+//
+// Deprecated: use EvidenceReportBuilder.AddModifierExtension instead; removed in v2.
 func WithEvidenceReportModifierExtension(v Extension) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1519,6 +1549,8 @@ func WithEvidenceReportModifierExtension(v Extension) EvidenceReportOption {
 }
 
 // WithEvidenceReportUrl sets the Url field.
+//
+// Deprecated: use EvidenceReportBuilder.SetUrl instead; removed in v2.
 func WithEvidenceReportUrl(v string) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.Url = &v
@@ -1526,6 +1558,8 @@ func WithEvidenceReportUrl(v string) EvidenceReportOption {
 }
 
 // WithEvidenceReportStatus sets the Status field.
+//
+// Deprecated: use EvidenceReportBuilder.SetStatus instead; removed in v2.
 func WithEvidenceReportStatus(v PublicationStatus) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.Status = &v
@@ -1533,6 +1567,8 @@ func WithEvidenceReportStatus(v PublicationStatus) EvidenceReportOption {
 }
 
 // WithEvidenceReportUseContext adds a UseContext to the EvidenceReport.
+//
+// Deprecated: use EvidenceReportBuilder.AddUseContext instead; removed in v2.
 func WithEvidenceReportUseContext(v UsageContext) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.UseContext = append(r.UseContext, v)
@@ -1540,6 +1576,8 @@ func WithEvidenceReportUseContext(v UsageContext) EvidenceReportOption {
 }
 
 // WithEvidenceReportIdentifier adds a Identifier to the EvidenceReport.
+//
+// Deprecated: use EvidenceReportBuilder.AddIdentifier instead; removed in v2.
 func WithEvidenceReportIdentifier(v Identifier) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.Identifier = append(r.Identifier, v)
@@ -1547,6 +1585,8 @@ func WithEvidenceReportIdentifier(v Identifier) EvidenceReportOption {
 }
 
 // WithEvidenceReportRelatedIdentifier adds a RelatedIdentifier to the EvidenceReport.
+//
+// Deprecated: use EvidenceReportBuilder.AddRelatedIdentifier instead; removed in v2.
 func WithEvidenceReportRelatedIdentifier(v Identifier) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.RelatedIdentifier = append(r.RelatedIdentifier, v)
@@ -1554,6 +1594,8 @@ func WithEvidenceReportRelatedIdentifier(v Identifier) EvidenceReportOption {
 }
 
 // WithEvidenceReportCiteAsReference sets the CiteAsReference field.
+//
+// Deprecated: use EvidenceReportBuilder.SetCiteAsReference instead; removed in v2.
 func WithEvidenceReportCiteAsReference(v Reference) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.CiteAsReference = &v
@@ -1561,6 +1603,8 @@ func WithEvidenceReportCiteAsReference(v Reference) EvidenceReportOption {
 }
 
 // WithEvidenceReportCiteAsMarkdown sets the CiteAsMarkdown field.
+//
+// Deprecated: use EvidenceReportBuilder.SetCiteAsMarkdown instead; removed in v2.
 func WithEvidenceReportCiteAsMarkdown(v string) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.CiteAsMarkdown = &v
@@ -1568,6 +1612,8 @@ func WithEvidenceReportCiteAsMarkdown(v string) EvidenceReportOption {
 }
 
 // WithEvidenceReportCiteAsMarkdownExt sets the CiteAsMarkdownExt field.
+//
+// Deprecated: use EvidenceReportBuilder.SetCiteAsMarkdownExt instead; removed in v2.
 func WithEvidenceReportCiteAsMarkdownExt(v Element) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.CiteAsMarkdownExt = &v
@@ -1575,6 +1621,8 @@ func WithEvidenceReportCiteAsMarkdownExt(v Element) EvidenceReportOption {
 }
 
 // WithEvidenceReportType sets the Type field.
+//
+// Deprecated: use EvidenceReportBuilder.SetType instead; removed in v2.
 func WithEvidenceReportType(v CodeableConcept) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.Type = &v
@@ -1582,6 +1630,8 @@ func WithEvidenceReportType(v CodeableConcept) EvidenceReportOption {
 }
 
 // WithEvidenceReportNote adds a Note to the EvidenceReport.
+//
+// Deprecated: use EvidenceReportBuilder.AddNote instead; removed in v2.
 func WithEvidenceReportNote(v Annotation) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.Note = append(r.Note, v)
@@ -1589,6 +1639,8 @@ func WithEvidenceReportNote(v Annotation) EvidenceReportOption {
 }
 
 // WithEvidenceReportRelatedArtifact adds a RelatedArtifact to the EvidenceReport.
+//
+// Deprecated: use EvidenceReportBuilder.AddRelatedArtifact instead; removed in v2.
 func WithEvidenceReportRelatedArtifact(v RelatedArtifact) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.RelatedArtifact = append(r.RelatedArtifact, v)
@@ -1596,6 +1648,8 @@ func WithEvidenceReportRelatedArtifact(v RelatedArtifact) EvidenceReportOption {
 }
 
 // WithEvidenceReportSubject sets the Subject field.
+//
+// Deprecated: use EvidenceReportBuilder.SetSubject instead; removed in v2.
 func WithEvidenceReportSubject(v EvidenceReportSubject) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.Subject = &v
@@ -1603,6 +1657,8 @@ func WithEvidenceReportSubject(v EvidenceReportSubject) EvidenceReportOption {
 }
 
 // WithEvidenceReportPublisher sets the Publisher field.
+//
+// Deprecated: use EvidenceReportBuilder.SetPublisher instead; removed in v2.
 func WithEvidenceReportPublisher(v string) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.Publisher = &v
@@ -1610,6 +1666,8 @@ func WithEvidenceReportPublisher(v string) EvidenceReportOption {
 }
 
 // WithEvidenceReportContact adds a Contact to the EvidenceReport.
+//
+// Deprecated: use EvidenceReportBuilder.AddContact instead; removed in v2.
 func WithEvidenceReportContact(v ContactDetail) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.Contact = append(r.Contact, v)
@@ -1617,6 +1675,8 @@ func WithEvidenceReportContact(v ContactDetail) EvidenceReportOption {
 }
 
 // WithEvidenceReportAuthor adds a Author to the EvidenceReport.
+//
+// Deprecated: use EvidenceReportBuilder.AddAuthor instead; removed in v2.
 func WithEvidenceReportAuthor(v ContactDetail) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.Author = append(r.Author, v)
@@ -1624,6 +1684,8 @@ func WithEvidenceReportAuthor(v ContactDetail) EvidenceReportOption {
 }
 
 // WithEvidenceReportEditor adds a Editor to the EvidenceReport.
+//
+// Deprecated: use EvidenceReportBuilder.AddEditor instead; removed in v2.
 func WithEvidenceReportEditor(v ContactDetail) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.Editor = append(r.Editor, v)
@@ -1631,6 +1693,8 @@ func WithEvidenceReportEditor(v ContactDetail) EvidenceReportOption {
 }
 
 // WithEvidenceReportReviewer adds a Reviewer to the EvidenceReport.
+//
+// Deprecated: use EvidenceReportBuilder.AddReviewer instead; removed in v2.
 func WithEvidenceReportReviewer(v ContactDetail) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.Reviewer = append(r.Reviewer, v)
@@ -1638,6 +1702,8 @@ func WithEvidenceReportReviewer(v ContactDetail) EvidenceReportOption {
 }
 
 // WithEvidenceReportEndorser adds a Endorser to the EvidenceReport.
+//
+// Deprecated: use EvidenceReportBuilder.AddEndorser instead; removed in v2.
 func WithEvidenceReportEndorser(v ContactDetail) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.Endorser = append(r.Endorser, v)
@@ -1645,6 +1711,8 @@ func WithEvidenceReportEndorser(v ContactDetail) EvidenceReportOption {
 }
 
 // WithEvidenceReportRelatesTo adds a RelatesTo to the EvidenceReport.
+//
+// Deprecated: use EvidenceReportBuilder.AddRelatesTo instead; removed in v2.
 func WithEvidenceReportRelatesTo(v EvidenceReportRelatesTo) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.RelatesTo = append(r.RelatesTo, v)
@@ -1652,6 +1720,8 @@ func WithEvidenceReportRelatesTo(v EvidenceReportRelatesTo) EvidenceReportOption
 }
 
 // WithEvidenceReportSection adds a Section to the EvidenceReport.
+//
+// Deprecated: use EvidenceReportBuilder.AddSection instead; removed in v2.
 func WithEvidenceReportSection(v EvidenceReportSection) EvidenceReportOption {
 	return func(r *EvidenceReport) {
 		r.Section = append(r.Section, v)

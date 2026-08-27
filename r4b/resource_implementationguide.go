@@ -2071,9 +2071,23 @@ func (b *ImplementationGuideBuilder) SetManifest(v ImplementationGuideManifest) 
 // =============================================================================
 
 // ImplementationGuideOption is a functional option for configuring a ImplementationGuide.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ImplementationGuideBuilder. Every WithImplementationGuide* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ImplementationGuideOption func(*ImplementationGuide)
 
 // NewImplementationGuide creates a new ImplementationGuide with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewImplementationGuideBuilder().SetId("x").Build()
+//
+// Deprecated: use NewImplementationGuideBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewImplementationGuide(opts ...ImplementationGuideOption) *ImplementationGuide {
 	r := &ImplementationGuide{ResourceType: "ImplementationGuide"}
 	for _, opt := range opts {
@@ -2083,6 +2097,8 @@ func NewImplementationGuide(opts ...ImplementationGuideOption) *ImplementationGu
 }
 
 // WithImplementationGuideId sets the Id field.
+//
+// Deprecated: use ImplementationGuideBuilder.SetId instead; removed in v2.
 func WithImplementationGuideId(v string) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Id = &v
@@ -2090,6 +2106,8 @@ func WithImplementationGuideId(v string) ImplementationGuideOption {
 }
 
 // WithImplementationGuideMeta sets the Meta field.
+//
+// Deprecated: use ImplementationGuideBuilder.SetMeta instead; removed in v2.
 func WithImplementationGuideMeta(v Meta) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Meta = &v
@@ -2097,6 +2115,8 @@ func WithImplementationGuideMeta(v Meta) ImplementationGuideOption {
 }
 
 // WithImplementationGuideImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ImplementationGuideBuilder.SetImplicitRules instead; removed in v2.
 func WithImplementationGuideImplicitRules(v string) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.ImplicitRules = &v
@@ -2104,6 +2124,8 @@ func WithImplementationGuideImplicitRules(v string) ImplementationGuideOption {
 }
 
 // WithImplementationGuideLanguage sets the Language field.
+//
+// Deprecated: use ImplementationGuideBuilder.SetLanguage instead; removed in v2.
 func WithImplementationGuideLanguage(v string) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Language = &v
@@ -2111,6 +2133,8 @@ func WithImplementationGuideLanguage(v string) ImplementationGuideOption {
 }
 
 // WithImplementationGuideText sets the Text field.
+//
+// Deprecated: use ImplementationGuideBuilder.SetText instead; removed in v2.
 func WithImplementationGuideText(v Narrative) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Text = &v
@@ -2118,6 +2142,8 @@ func WithImplementationGuideText(v Narrative) ImplementationGuideOption {
 }
 
 // WithImplementationGuideContained adds a Contained to the ImplementationGuide.
+//
+// Deprecated: use ImplementationGuideBuilder.AddContained instead; removed in v2.
 func WithImplementationGuideContained(v Resource) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Contained = append(r.Contained, v)
@@ -2125,6 +2151,8 @@ func WithImplementationGuideContained(v Resource) ImplementationGuideOption {
 }
 
 // WithImplementationGuideExtension adds a Extension to the ImplementationGuide.
+//
+// Deprecated: use ImplementationGuideBuilder.AddExtension instead; removed in v2.
 func WithImplementationGuideExtension(v Extension) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Extension = append(r.Extension, v)
@@ -2132,6 +2160,8 @@ func WithImplementationGuideExtension(v Extension) ImplementationGuideOption {
 }
 
 // WithImplementationGuideModifierExtension adds a ModifierExtension to the ImplementationGuide.
+//
+// Deprecated: use ImplementationGuideBuilder.AddModifierExtension instead; removed in v2.
 func WithImplementationGuideModifierExtension(v Extension) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -2139,6 +2169,8 @@ func WithImplementationGuideModifierExtension(v Extension) ImplementationGuideOp
 }
 
 // WithImplementationGuideUrl sets the Url field.
+//
+// Deprecated: use ImplementationGuideBuilder.SetUrl instead; removed in v2.
 func WithImplementationGuideUrl(v string) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Url = &v
@@ -2146,6 +2178,8 @@ func WithImplementationGuideUrl(v string) ImplementationGuideOption {
 }
 
 // WithImplementationGuideVersion sets the Version field.
+//
+// Deprecated: use ImplementationGuideBuilder.SetVersion instead; removed in v2.
 func WithImplementationGuideVersion(v string) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Version = &v
@@ -2153,6 +2187,8 @@ func WithImplementationGuideVersion(v string) ImplementationGuideOption {
 }
 
 // WithImplementationGuideName sets the Name field.
+//
+// Deprecated: use ImplementationGuideBuilder.SetName instead; removed in v2.
 func WithImplementationGuideName(v string) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Name = &v
@@ -2160,6 +2196,8 @@ func WithImplementationGuideName(v string) ImplementationGuideOption {
 }
 
 // WithImplementationGuideTitle sets the Title field.
+//
+// Deprecated: use ImplementationGuideBuilder.SetTitle instead; removed in v2.
 func WithImplementationGuideTitle(v string) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Title = &v
@@ -2167,6 +2205,8 @@ func WithImplementationGuideTitle(v string) ImplementationGuideOption {
 }
 
 // WithImplementationGuideStatus sets the Status field.
+//
+// Deprecated: use ImplementationGuideBuilder.SetStatus instead; removed in v2.
 func WithImplementationGuideStatus(v PublicationStatus) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Status = &v
@@ -2174,6 +2214,8 @@ func WithImplementationGuideStatus(v PublicationStatus) ImplementationGuideOptio
 }
 
 // WithImplementationGuideExperimental sets the Experimental field.
+//
+// Deprecated: use ImplementationGuideBuilder.SetExperimental instead; removed in v2.
 func WithImplementationGuideExperimental(v bool) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Experimental = &v
@@ -2181,6 +2223,8 @@ func WithImplementationGuideExperimental(v bool) ImplementationGuideOption {
 }
 
 // WithImplementationGuideDate sets the Date field.
+//
+// Deprecated: use ImplementationGuideBuilder.SetDate instead; removed in v2.
 func WithImplementationGuideDate(v string) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Date = &v
@@ -2188,6 +2232,8 @@ func WithImplementationGuideDate(v string) ImplementationGuideOption {
 }
 
 // WithImplementationGuidePublisher sets the Publisher field.
+//
+// Deprecated: use ImplementationGuideBuilder.SetPublisher instead; removed in v2.
 func WithImplementationGuidePublisher(v string) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Publisher = &v
@@ -2195,6 +2241,8 @@ func WithImplementationGuidePublisher(v string) ImplementationGuideOption {
 }
 
 // WithImplementationGuideContact adds a Contact to the ImplementationGuide.
+//
+// Deprecated: use ImplementationGuideBuilder.AddContact instead; removed in v2.
 func WithImplementationGuideContact(v ContactDetail) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Contact = append(r.Contact, v)
@@ -2202,6 +2250,8 @@ func WithImplementationGuideContact(v ContactDetail) ImplementationGuideOption {
 }
 
 // WithImplementationGuideDescription sets the Description field.
+//
+// Deprecated: use ImplementationGuideBuilder.SetDescription instead; removed in v2.
 func WithImplementationGuideDescription(v string) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Description = &v
@@ -2209,6 +2259,8 @@ func WithImplementationGuideDescription(v string) ImplementationGuideOption {
 }
 
 // WithImplementationGuideUseContext adds a UseContext to the ImplementationGuide.
+//
+// Deprecated: use ImplementationGuideBuilder.AddUseContext instead; removed in v2.
 func WithImplementationGuideUseContext(v UsageContext) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.UseContext = append(r.UseContext, v)
@@ -2216,6 +2268,8 @@ func WithImplementationGuideUseContext(v UsageContext) ImplementationGuideOption
 }
 
 // WithImplementationGuideJurisdiction adds a Jurisdiction to the ImplementationGuide.
+//
+// Deprecated: use ImplementationGuideBuilder.AddJurisdiction instead; removed in v2.
 func WithImplementationGuideJurisdiction(v CodeableConcept) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -2223,6 +2277,8 @@ func WithImplementationGuideJurisdiction(v CodeableConcept) ImplementationGuideO
 }
 
 // WithImplementationGuideCopyright sets the Copyright field.
+//
+// Deprecated: use ImplementationGuideBuilder.SetCopyright instead; removed in v2.
 func WithImplementationGuideCopyright(v string) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Copyright = &v
@@ -2230,6 +2286,8 @@ func WithImplementationGuideCopyright(v string) ImplementationGuideOption {
 }
 
 // WithImplementationGuidePackageId sets the PackageId field.
+//
+// Deprecated: use ImplementationGuideBuilder.SetPackageId instead; removed in v2.
 func WithImplementationGuidePackageId(v string) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.PackageId = &v
@@ -2237,6 +2295,8 @@ func WithImplementationGuidePackageId(v string) ImplementationGuideOption {
 }
 
 // WithImplementationGuideLicense sets the License field.
+//
+// Deprecated: use ImplementationGuideBuilder.SetLicense instead; removed in v2.
 func WithImplementationGuideLicense(v string) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.License = &v
@@ -2244,6 +2304,8 @@ func WithImplementationGuideLicense(v string) ImplementationGuideOption {
 }
 
 // WithImplementationGuideFhirVersion adds a FhirVersion to the ImplementationGuide.
+//
+// Deprecated: use ImplementationGuideBuilder.AddFhirVersion instead; removed in v2.
 func WithImplementationGuideFhirVersion(v FHIRVersion) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.FhirVersion = append(r.FhirVersion, v)
@@ -2251,6 +2313,8 @@ func WithImplementationGuideFhirVersion(v FHIRVersion) ImplementationGuideOption
 }
 
 // WithImplementationGuideDependsOn adds a DependsOn to the ImplementationGuide.
+//
+// Deprecated: use ImplementationGuideBuilder.AddDependsOn instead; removed in v2.
 func WithImplementationGuideDependsOn(v ImplementationGuideDependsOn) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.DependsOn = append(r.DependsOn, v)
@@ -2258,6 +2322,8 @@ func WithImplementationGuideDependsOn(v ImplementationGuideDependsOn) Implementa
 }
 
 // WithImplementationGuideGlobal adds a Global to the ImplementationGuide.
+//
+// Deprecated: use ImplementationGuideBuilder.AddGlobal instead; removed in v2.
 func WithImplementationGuideGlobal(v ImplementationGuideGlobal) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Global = append(r.Global, v)
@@ -2265,6 +2331,8 @@ func WithImplementationGuideGlobal(v ImplementationGuideGlobal) ImplementationGu
 }
 
 // WithImplementationGuideDefinition sets the Definition field.
+//
+// Deprecated: use ImplementationGuideBuilder.SetDefinition instead; removed in v2.
 func WithImplementationGuideDefinition(v ImplementationGuideDefinition) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Definition = &v
@@ -2272,6 +2340,8 @@ func WithImplementationGuideDefinition(v ImplementationGuideDefinition) Implemen
 }
 
 // WithImplementationGuideManifest sets the Manifest field.
+//
+// Deprecated: use ImplementationGuideBuilder.SetManifest instead; removed in v2.
 func WithImplementationGuideManifest(v ImplementationGuideManifest) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
 		r.Manifest = &v

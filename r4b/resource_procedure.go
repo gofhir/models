@@ -1181,9 +1181,23 @@ func (b *ProcedureBuilder) AddUsedCode(v CodeableConcept) *ProcedureBuilder {
 // =============================================================================
 
 // ProcedureOption is a functional option for configuring a Procedure.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ProcedureBuilder. Every WithProcedure* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ProcedureOption func(*Procedure)
 
 // NewProcedure creates a new Procedure with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewProcedureBuilder().SetId("x").Build()
+//
+// Deprecated: use NewProcedureBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewProcedure(opts ...ProcedureOption) *Procedure {
 	r := &Procedure{ResourceType: "Procedure"}
 	for _, opt := range opts {
@@ -1193,6 +1207,8 @@ func NewProcedure(opts ...ProcedureOption) *Procedure {
 }
 
 // WithProcedureId sets the Id field.
+//
+// Deprecated: use ProcedureBuilder.SetId instead; removed in v2.
 func WithProcedureId(v string) ProcedureOption {
 	return func(r *Procedure) {
 		r.Id = &v
@@ -1200,6 +1216,8 @@ func WithProcedureId(v string) ProcedureOption {
 }
 
 // WithProcedureMeta sets the Meta field.
+//
+// Deprecated: use ProcedureBuilder.SetMeta instead; removed in v2.
 func WithProcedureMeta(v Meta) ProcedureOption {
 	return func(r *Procedure) {
 		r.Meta = &v
@@ -1207,6 +1225,8 @@ func WithProcedureMeta(v Meta) ProcedureOption {
 }
 
 // WithProcedureImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ProcedureBuilder.SetImplicitRules instead; removed in v2.
 func WithProcedureImplicitRules(v string) ProcedureOption {
 	return func(r *Procedure) {
 		r.ImplicitRules = &v
@@ -1214,6 +1234,8 @@ func WithProcedureImplicitRules(v string) ProcedureOption {
 }
 
 // WithProcedureLanguage sets the Language field.
+//
+// Deprecated: use ProcedureBuilder.SetLanguage instead; removed in v2.
 func WithProcedureLanguage(v string) ProcedureOption {
 	return func(r *Procedure) {
 		r.Language = &v
@@ -1221,6 +1243,8 @@ func WithProcedureLanguage(v string) ProcedureOption {
 }
 
 // WithProcedureText sets the Text field.
+//
+// Deprecated: use ProcedureBuilder.SetText instead; removed in v2.
 func WithProcedureText(v Narrative) ProcedureOption {
 	return func(r *Procedure) {
 		r.Text = &v
@@ -1228,6 +1252,8 @@ func WithProcedureText(v Narrative) ProcedureOption {
 }
 
 // WithProcedureContained adds a Contained to the Procedure.
+//
+// Deprecated: use ProcedureBuilder.AddContained instead; removed in v2.
 func WithProcedureContained(v Resource) ProcedureOption {
 	return func(r *Procedure) {
 		r.Contained = append(r.Contained, v)
@@ -1235,6 +1261,8 @@ func WithProcedureContained(v Resource) ProcedureOption {
 }
 
 // WithProcedureExtension adds a Extension to the Procedure.
+//
+// Deprecated: use ProcedureBuilder.AddExtension instead; removed in v2.
 func WithProcedureExtension(v Extension) ProcedureOption {
 	return func(r *Procedure) {
 		r.Extension = append(r.Extension, v)
@@ -1242,6 +1270,8 @@ func WithProcedureExtension(v Extension) ProcedureOption {
 }
 
 // WithProcedureModifierExtension adds a ModifierExtension to the Procedure.
+//
+// Deprecated: use ProcedureBuilder.AddModifierExtension instead; removed in v2.
 func WithProcedureModifierExtension(v Extension) ProcedureOption {
 	return func(r *Procedure) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1249,6 +1279,8 @@ func WithProcedureModifierExtension(v Extension) ProcedureOption {
 }
 
 // WithProcedureIdentifier adds a Identifier to the Procedure.
+//
+// Deprecated: use ProcedureBuilder.AddIdentifier instead; removed in v2.
 func WithProcedureIdentifier(v Identifier) ProcedureOption {
 	return func(r *Procedure) {
 		r.Identifier = append(r.Identifier, v)
@@ -1256,6 +1288,8 @@ func WithProcedureIdentifier(v Identifier) ProcedureOption {
 }
 
 // WithProcedureInstantiatesCanonical adds a InstantiatesCanonical to the Procedure.
+//
+// Deprecated: use ProcedureBuilder.AddInstantiatesCanonical instead; removed in v2.
 func WithProcedureInstantiatesCanonical(v string) ProcedureOption {
 	return func(r *Procedure) {
 		r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
@@ -1263,6 +1297,8 @@ func WithProcedureInstantiatesCanonical(v string) ProcedureOption {
 }
 
 // WithProcedureInstantiatesUri adds a InstantiatesUri to the Procedure.
+//
+// Deprecated: use ProcedureBuilder.AddInstantiatesUri instead; removed in v2.
 func WithProcedureInstantiatesUri(v string) ProcedureOption {
 	return func(r *Procedure) {
 		r.InstantiatesUri = append(r.InstantiatesUri, v)
@@ -1270,6 +1306,8 @@ func WithProcedureInstantiatesUri(v string) ProcedureOption {
 }
 
 // WithProcedureBasedOn adds a BasedOn to the Procedure.
+//
+// Deprecated: use ProcedureBuilder.AddBasedOn instead; removed in v2.
 func WithProcedureBasedOn(v Reference) ProcedureOption {
 	return func(r *Procedure) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -1277,6 +1315,8 @@ func WithProcedureBasedOn(v Reference) ProcedureOption {
 }
 
 // WithProcedurePartOf adds a PartOf to the Procedure.
+//
+// Deprecated: use ProcedureBuilder.AddPartOf instead; removed in v2.
 func WithProcedurePartOf(v Reference) ProcedureOption {
 	return func(r *Procedure) {
 		r.PartOf = append(r.PartOf, v)
@@ -1284,6 +1324,8 @@ func WithProcedurePartOf(v Reference) ProcedureOption {
 }
 
 // WithProcedureStatus sets the Status field.
+//
+// Deprecated: use ProcedureBuilder.SetStatus instead; removed in v2.
 func WithProcedureStatus(v EventStatus) ProcedureOption {
 	return func(r *Procedure) {
 		r.Status = &v
@@ -1291,6 +1333,8 @@ func WithProcedureStatus(v EventStatus) ProcedureOption {
 }
 
 // WithProcedureStatusReason sets the StatusReason field.
+//
+// Deprecated: use ProcedureBuilder.SetStatusReason instead; removed in v2.
 func WithProcedureStatusReason(v CodeableConcept) ProcedureOption {
 	return func(r *Procedure) {
 		r.StatusReason = &v
@@ -1298,6 +1342,8 @@ func WithProcedureStatusReason(v CodeableConcept) ProcedureOption {
 }
 
 // WithProcedureCategory sets the Category field.
+//
+// Deprecated: use ProcedureBuilder.SetCategory instead; removed in v2.
 func WithProcedureCategory(v CodeableConcept) ProcedureOption {
 	return func(r *Procedure) {
 		r.Category = &v
@@ -1305,6 +1351,8 @@ func WithProcedureCategory(v CodeableConcept) ProcedureOption {
 }
 
 // WithProcedureCode sets the Code field.
+//
+// Deprecated: use ProcedureBuilder.SetCode instead; removed in v2.
 func WithProcedureCode(v CodeableConcept) ProcedureOption {
 	return func(r *Procedure) {
 		r.Code = &v
@@ -1312,6 +1360,8 @@ func WithProcedureCode(v CodeableConcept) ProcedureOption {
 }
 
 // WithProcedureSubject sets the Subject field.
+//
+// Deprecated: use ProcedureBuilder.SetSubject instead; removed in v2.
 func WithProcedureSubject(v Reference) ProcedureOption {
 	return func(r *Procedure) {
 		r.Subject = v
@@ -1319,6 +1369,8 @@ func WithProcedureSubject(v Reference) ProcedureOption {
 }
 
 // WithProcedureEncounter sets the Encounter field.
+//
+// Deprecated: use ProcedureBuilder.SetEncounter instead; removed in v2.
 func WithProcedureEncounter(v Reference) ProcedureOption {
 	return func(r *Procedure) {
 		r.Encounter = &v
@@ -1326,6 +1378,8 @@ func WithProcedureEncounter(v Reference) ProcedureOption {
 }
 
 // WithProcedurePerformedDateTime sets the PerformedDateTime field.
+//
+// Deprecated: use ProcedureBuilder.SetPerformedDateTime instead; removed in v2.
 func WithProcedurePerformedDateTime(v string) ProcedureOption {
 	return func(r *Procedure) {
 		r.PerformedDateTime = &v
@@ -1333,6 +1387,8 @@ func WithProcedurePerformedDateTime(v string) ProcedureOption {
 }
 
 // WithProcedurePerformedDateTimeExt sets the PerformedDateTimeExt field.
+//
+// Deprecated: use ProcedureBuilder.SetPerformedDateTimeExt instead; removed in v2.
 func WithProcedurePerformedDateTimeExt(v Element) ProcedureOption {
 	return func(r *Procedure) {
 		r.PerformedDateTimeExt = &v
@@ -1340,6 +1396,8 @@ func WithProcedurePerformedDateTimeExt(v Element) ProcedureOption {
 }
 
 // WithProcedurePerformedPeriod sets the PerformedPeriod field.
+//
+// Deprecated: use ProcedureBuilder.SetPerformedPeriod instead; removed in v2.
 func WithProcedurePerformedPeriod(v Period) ProcedureOption {
 	return func(r *Procedure) {
 		r.PerformedPeriod = &v
@@ -1347,6 +1405,8 @@ func WithProcedurePerformedPeriod(v Period) ProcedureOption {
 }
 
 // WithProcedurePerformedString sets the PerformedString field.
+//
+// Deprecated: use ProcedureBuilder.SetPerformedString instead; removed in v2.
 func WithProcedurePerformedString(v string) ProcedureOption {
 	return func(r *Procedure) {
 		r.PerformedString = &v
@@ -1354,6 +1414,8 @@ func WithProcedurePerformedString(v string) ProcedureOption {
 }
 
 // WithProcedurePerformedStringExt sets the PerformedStringExt field.
+//
+// Deprecated: use ProcedureBuilder.SetPerformedStringExt instead; removed in v2.
 func WithProcedurePerformedStringExt(v Element) ProcedureOption {
 	return func(r *Procedure) {
 		r.PerformedStringExt = &v
@@ -1361,6 +1423,8 @@ func WithProcedurePerformedStringExt(v Element) ProcedureOption {
 }
 
 // WithProcedurePerformedAge sets the PerformedAge field.
+//
+// Deprecated: use ProcedureBuilder.SetPerformedAge instead; removed in v2.
 func WithProcedurePerformedAge(v Age) ProcedureOption {
 	return func(r *Procedure) {
 		r.PerformedAge = &v
@@ -1368,6 +1432,8 @@ func WithProcedurePerformedAge(v Age) ProcedureOption {
 }
 
 // WithProcedurePerformedRange sets the PerformedRange field.
+//
+// Deprecated: use ProcedureBuilder.SetPerformedRange instead; removed in v2.
 func WithProcedurePerformedRange(v Range) ProcedureOption {
 	return func(r *Procedure) {
 		r.PerformedRange = &v
@@ -1375,6 +1441,8 @@ func WithProcedurePerformedRange(v Range) ProcedureOption {
 }
 
 // WithProcedureRecorder sets the Recorder field.
+//
+// Deprecated: use ProcedureBuilder.SetRecorder instead; removed in v2.
 func WithProcedureRecorder(v Reference) ProcedureOption {
 	return func(r *Procedure) {
 		r.Recorder = &v
@@ -1382,6 +1450,8 @@ func WithProcedureRecorder(v Reference) ProcedureOption {
 }
 
 // WithProcedureAsserter sets the Asserter field.
+//
+// Deprecated: use ProcedureBuilder.SetAsserter instead; removed in v2.
 func WithProcedureAsserter(v Reference) ProcedureOption {
 	return func(r *Procedure) {
 		r.Asserter = &v
@@ -1389,6 +1459,8 @@ func WithProcedureAsserter(v Reference) ProcedureOption {
 }
 
 // WithProcedurePerformer adds a Performer to the Procedure.
+//
+// Deprecated: use ProcedureBuilder.AddPerformer instead; removed in v2.
 func WithProcedurePerformer(v ProcedurePerformer) ProcedureOption {
 	return func(r *Procedure) {
 		r.Performer = append(r.Performer, v)
@@ -1396,6 +1468,8 @@ func WithProcedurePerformer(v ProcedurePerformer) ProcedureOption {
 }
 
 // WithProcedureLocation sets the Location field.
+//
+// Deprecated: use ProcedureBuilder.SetLocation instead; removed in v2.
 func WithProcedureLocation(v Reference) ProcedureOption {
 	return func(r *Procedure) {
 		r.Location = &v
@@ -1403,6 +1477,8 @@ func WithProcedureLocation(v Reference) ProcedureOption {
 }
 
 // WithProcedureReasonCode adds a ReasonCode to the Procedure.
+//
+// Deprecated: use ProcedureBuilder.AddReasonCode instead; removed in v2.
 func WithProcedureReasonCode(v CodeableConcept) ProcedureOption {
 	return func(r *Procedure) {
 		r.ReasonCode = append(r.ReasonCode, v)
@@ -1410,6 +1486,8 @@ func WithProcedureReasonCode(v CodeableConcept) ProcedureOption {
 }
 
 // WithProcedureReasonReference adds a ReasonReference to the Procedure.
+//
+// Deprecated: use ProcedureBuilder.AddReasonReference instead; removed in v2.
 func WithProcedureReasonReference(v Reference) ProcedureOption {
 	return func(r *Procedure) {
 		r.ReasonReference = append(r.ReasonReference, v)
@@ -1417,6 +1495,8 @@ func WithProcedureReasonReference(v Reference) ProcedureOption {
 }
 
 // WithProcedureBodySite adds a BodySite to the Procedure.
+//
+// Deprecated: use ProcedureBuilder.AddBodySite instead; removed in v2.
 func WithProcedureBodySite(v CodeableConcept) ProcedureOption {
 	return func(r *Procedure) {
 		r.BodySite = append(r.BodySite, v)
@@ -1424,6 +1504,8 @@ func WithProcedureBodySite(v CodeableConcept) ProcedureOption {
 }
 
 // WithProcedureOutcome sets the Outcome field.
+//
+// Deprecated: use ProcedureBuilder.SetOutcome instead; removed in v2.
 func WithProcedureOutcome(v CodeableConcept) ProcedureOption {
 	return func(r *Procedure) {
 		r.Outcome = &v
@@ -1431,6 +1513,8 @@ func WithProcedureOutcome(v CodeableConcept) ProcedureOption {
 }
 
 // WithProcedureReport adds a Report to the Procedure.
+//
+// Deprecated: use ProcedureBuilder.AddReport instead; removed in v2.
 func WithProcedureReport(v Reference) ProcedureOption {
 	return func(r *Procedure) {
 		r.Report = append(r.Report, v)
@@ -1438,6 +1522,8 @@ func WithProcedureReport(v Reference) ProcedureOption {
 }
 
 // WithProcedureComplication adds a Complication to the Procedure.
+//
+// Deprecated: use ProcedureBuilder.AddComplication instead; removed in v2.
 func WithProcedureComplication(v CodeableConcept) ProcedureOption {
 	return func(r *Procedure) {
 		r.Complication = append(r.Complication, v)
@@ -1445,6 +1531,8 @@ func WithProcedureComplication(v CodeableConcept) ProcedureOption {
 }
 
 // WithProcedureComplicationDetail adds a ComplicationDetail to the Procedure.
+//
+// Deprecated: use ProcedureBuilder.AddComplicationDetail instead; removed in v2.
 func WithProcedureComplicationDetail(v Reference) ProcedureOption {
 	return func(r *Procedure) {
 		r.ComplicationDetail = append(r.ComplicationDetail, v)
@@ -1452,6 +1540,8 @@ func WithProcedureComplicationDetail(v Reference) ProcedureOption {
 }
 
 // WithProcedureFollowUp adds a FollowUp to the Procedure.
+//
+// Deprecated: use ProcedureBuilder.AddFollowUp instead; removed in v2.
 func WithProcedureFollowUp(v CodeableConcept) ProcedureOption {
 	return func(r *Procedure) {
 		r.FollowUp = append(r.FollowUp, v)
@@ -1459,6 +1549,8 @@ func WithProcedureFollowUp(v CodeableConcept) ProcedureOption {
 }
 
 // WithProcedureNote adds a Note to the Procedure.
+//
+// Deprecated: use ProcedureBuilder.AddNote instead; removed in v2.
 func WithProcedureNote(v Annotation) ProcedureOption {
 	return func(r *Procedure) {
 		r.Note = append(r.Note, v)
@@ -1466,6 +1558,8 @@ func WithProcedureNote(v Annotation) ProcedureOption {
 }
 
 // WithProcedureFocalDevice adds a FocalDevice to the Procedure.
+//
+// Deprecated: use ProcedureBuilder.AddFocalDevice instead; removed in v2.
 func WithProcedureFocalDevice(v ProcedureFocalDevice) ProcedureOption {
 	return func(r *Procedure) {
 		r.FocalDevice = append(r.FocalDevice, v)
@@ -1473,6 +1567,8 @@ func WithProcedureFocalDevice(v ProcedureFocalDevice) ProcedureOption {
 }
 
 // WithProcedureUsedReference adds a UsedReference to the Procedure.
+//
+// Deprecated: use ProcedureBuilder.AddUsedReference instead; removed in v2.
 func WithProcedureUsedReference(v Reference) ProcedureOption {
 	return func(r *Procedure) {
 		r.UsedReference = append(r.UsedReference, v)
@@ -1480,6 +1576,8 @@ func WithProcedureUsedReference(v Reference) ProcedureOption {
 }
 
 // WithProcedureUsedCode adds a UsedCode to the Procedure.
+//
+// Deprecated: use ProcedureBuilder.AddUsedCode instead; removed in v2.
 func WithProcedureUsedCode(v CodeableConcept) ProcedureOption {
 	return func(r *Procedure) {
 		r.UsedCode = append(r.UsedCode, v)

@@ -1281,9 +1281,23 @@ func (b *AuditEventBuilder) AddEntity(v AuditEventEntity) *AuditEventBuilder {
 // =============================================================================
 
 // AuditEventOption is a functional option for configuring a AuditEvent.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// AuditEventBuilder. Every WithAuditEvent* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type AuditEventOption func(*AuditEvent)
 
 // NewAuditEvent creates a new AuditEvent with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewAuditEventBuilder().SetId("x").Build()
+//
+// Deprecated: use NewAuditEventBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewAuditEvent(opts ...AuditEventOption) *AuditEvent {
 	r := &AuditEvent{ResourceType: "AuditEvent"}
 	for _, opt := range opts {
@@ -1293,6 +1307,8 @@ func NewAuditEvent(opts ...AuditEventOption) *AuditEvent {
 }
 
 // WithAuditEventId sets the Id field.
+//
+// Deprecated: use AuditEventBuilder.SetId instead; removed in v2.
 func WithAuditEventId(v string) AuditEventOption {
 	return func(r *AuditEvent) {
 		r.Id = &v
@@ -1300,6 +1316,8 @@ func WithAuditEventId(v string) AuditEventOption {
 }
 
 // WithAuditEventMeta sets the Meta field.
+//
+// Deprecated: use AuditEventBuilder.SetMeta instead; removed in v2.
 func WithAuditEventMeta(v Meta) AuditEventOption {
 	return func(r *AuditEvent) {
 		r.Meta = &v
@@ -1307,6 +1325,8 @@ func WithAuditEventMeta(v Meta) AuditEventOption {
 }
 
 // WithAuditEventImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use AuditEventBuilder.SetImplicitRules instead; removed in v2.
 func WithAuditEventImplicitRules(v string) AuditEventOption {
 	return func(r *AuditEvent) {
 		r.ImplicitRules = &v
@@ -1314,6 +1334,8 @@ func WithAuditEventImplicitRules(v string) AuditEventOption {
 }
 
 // WithAuditEventLanguage sets the Language field.
+//
+// Deprecated: use AuditEventBuilder.SetLanguage instead; removed in v2.
 func WithAuditEventLanguage(v string) AuditEventOption {
 	return func(r *AuditEvent) {
 		r.Language = &v
@@ -1321,6 +1343,8 @@ func WithAuditEventLanguage(v string) AuditEventOption {
 }
 
 // WithAuditEventText sets the Text field.
+//
+// Deprecated: use AuditEventBuilder.SetText instead; removed in v2.
 func WithAuditEventText(v Narrative) AuditEventOption {
 	return func(r *AuditEvent) {
 		r.Text = &v
@@ -1328,6 +1352,8 @@ func WithAuditEventText(v Narrative) AuditEventOption {
 }
 
 // WithAuditEventContained adds a Contained to the AuditEvent.
+//
+// Deprecated: use AuditEventBuilder.AddContained instead; removed in v2.
 func WithAuditEventContained(v Resource) AuditEventOption {
 	return func(r *AuditEvent) {
 		r.Contained = append(r.Contained, v)
@@ -1335,6 +1361,8 @@ func WithAuditEventContained(v Resource) AuditEventOption {
 }
 
 // WithAuditEventExtension adds a Extension to the AuditEvent.
+//
+// Deprecated: use AuditEventBuilder.AddExtension instead; removed in v2.
 func WithAuditEventExtension(v Extension) AuditEventOption {
 	return func(r *AuditEvent) {
 		r.Extension = append(r.Extension, v)
@@ -1342,6 +1370,8 @@ func WithAuditEventExtension(v Extension) AuditEventOption {
 }
 
 // WithAuditEventModifierExtension adds a ModifierExtension to the AuditEvent.
+//
+// Deprecated: use AuditEventBuilder.AddModifierExtension instead; removed in v2.
 func WithAuditEventModifierExtension(v Extension) AuditEventOption {
 	return func(r *AuditEvent) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1349,6 +1379,8 @@ func WithAuditEventModifierExtension(v Extension) AuditEventOption {
 }
 
 // WithAuditEventType sets the Type field.
+//
+// Deprecated: use AuditEventBuilder.SetType instead; removed in v2.
 func WithAuditEventType(v Coding) AuditEventOption {
 	return func(r *AuditEvent) {
 		r.Type = v
@@ -1356,6 +1388,8 @@ func WithAuditEventType(v Coding) AuditEventOption {
 }
 
 // WithAuditEventSubtype adds a Subtype to the AuditEvent.
+//
+// Deprecated: use AuditEventBuilder.AddSubtype instead; removed in v2.
 func WithAuditEventSubtype(v Coding) AuditEventOption {
 	return func(r *AuditEvent) {
 		r.Subtype = append(r.Subtype, v)
@@ -1363,6 +1397,8 @@ func WithAuditEventSubtype(v Coding) AuditEventOption {
 }
 
 // WithAuditEventAction sets the Action field.
+//
+// Deprecated: use AuditEventBuilder.SetAction instead; removed in v2.
 func WithAuditEventAction(v AuditEventAction) AuditEventOption {
 	return func(r *AuditEvent) {
 		r.Action = &v
@@ -1370,6 +1406,8 @@ func WithAuditEventAction(v AuditEventAction) AuditEventOption {
 }
 
 // WithAuditEventPeriod sets the Period field.
+//
+// Deprecated: use AuditEventBuilder.SetPeriod instead; removed in v2.
 func WithAuditEventPeriod(v Period) AuditEventOption {
 	return func(r *AuditEvent) {
 		r.Period = &v
@@ -1377,6 +1415,8 @@ func WithAuditEventPeriod(v Period) AuditEventOption {
 }
 
 // WithAuditEventRecorded sets the Recorded field.
+//
+// Deprecated: use AuditEventBuilder.SetRecorded instead; removed in v2.
 func WithAuditEventRecorded(v string) AuditEventOption {
 	return func(r *AuditEvent) {
 		r.Recorded = &v
@@ -1384,6 +1424,8 @@ func WithAuditEventRecorded(v string) AuditEventOption {
 }
 
 // WithAuditEventOutcome sets the Outcome field.
+//
+// Deprecated: use AuditEventBuilder.SetOutcome instead; removed in v2.
 func WithAuditEventOutcome(v AuditEventOutcome) AuditEventOption {
 	return func(r *AuditEvent) {
 		r.Outcome = &v
@@ -1391,6 +1433,8 @@ func WithAuditEventOutcome(v AuditEventOutcome) AuditEventOption {
 }
 
 // WithAuditEventOutcomeDesc sets the OutcomeDesc field.
+//
+// Deprecated: use AuditEventBuilder.SetOutcomeDesc instead; removed in v2.
 func WithAuditEventOutcomeDesc(v string) AuditEventOption {
 	return func(r *AuditEvent) {
 		r.OutcomeDesc = &v
@@ -1398,6 +1442,8 @@ func WithAuditEventOutcomeDesc(v string) AuditEventOption {
 }
 
 // WithAuditEventPurposeOfEvent adds a PurposeOfEvent to the AuditEvent.
+//
+// Deprecated: use AuditEventBuilder.AddPurposeOfEvent instead; removed in v2.
 func WithAuditEventPurposeOfEvent(v CodeableConcept) AuditEventOption {
 	return func(r *AuditEvent) {
 		r.PurposeOfEvent = append(r.PurposeOfEvent, v)
@@ -1405,6 +1451,8 @@ func WithAuditEventPurposeOfEvent(v CodeableConcept) AuditEventOption {
 }
 
 // WithAuditEventAgent adds a Agent to the AuditEvent.
+//
+// Deprecated: use AuditEventBuilder.AddAgent instead; removed in v2.
 func WithAuditEventAgent(v AuditEventAgent) AuditEventOption {
 	return func(r *AuditEvent) {
 		r.Agent = append(r.Agent, v)
@@ -1412,6 +1460,8 @@ func WithAuditEventAgent(v AuditEventAgent) AuditEventOption {
 }
 
 // WithAuditEventSource sets the Source field.
+//
+// Deprecated: use AuditEventBuilder.SetSource instead; removed in v2.
 func WithAuditEventSource(v AuditEventSource) AuditEventOption {
 	return func(r *AuditEvent) {
 		r.Source = &v
@@ -1419,6 +1469,8 @@ func WithAuditEventSource(v AuditEventSource) AuditEventOption {
 }
 
 // WithAuditEventEntity adds a Entity to the AuditEvent.
+//
+// Deprecated: use AuditEventBuilder.AddEntity instead; removed in v2.
 func WithAuditEventEntity(v AuditEventEntity) AuditEventOption {
 	return func(r *AuditEvent) {
 		r.Entity = append(r.Entity, v)

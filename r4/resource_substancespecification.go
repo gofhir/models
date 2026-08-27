@@ -2288,9 +2288,23 @@ func (b *SubstanceSpecificationBuilder) SetSourceMaterial(v Reference) *Substanc
 // =============================================================================
 
 // SubstanceSpecificationOption is a functional option for configuring a SubstanceSpecification.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// SubstanceSpecificationBuilder. Every WithSubstanceSpecification* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type SubstanceSpecificationOption func(*SubstanceSpecification)
 
 // NewSubstanceSpecification creates a new SubstanceSpecification with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewSubstanceSpecificationBuilder().SetId("x").Build()
+//
+// Deprecated: use NewSubstanceSpecificationBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewSubstanceSpecification(opts ...SubstanceSpecificationOption) *SubstanceSpecification {
 	r := &SubstanceSpecification{ResourceType: "SubstanceSpecification"}
 	for _, opt := range opts {
@@ -2300,6 +2314,8 @@ func NewSubstanceSpecification(opts ...SubstanceSpecificationOption) *SubstanceS
 }
 
 // WithSubstanceSpecificationId sets the Id field.
+//
+// Deprecated: use SubstanceSpecificationBuilder.SetId instead; removed in v2.
 func WithSubstanceSpecificationId(v string) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Id = &v
@@ -2307,6 +2323,8 @@ func WithSubstanceSpecificationId(v string) SubstanceSpecificationOption {
 }
 
 // WithSubstanceSpecificationMeta sets the Meta field.
+//
+// Deprecated: use SubstanceSpecificationBuilder.SetMeta instead; removed in v2.
 func WithSubstanceSpecificationMeta(v Meta) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Meta = &v
@@ -2314,6 +2332,8 @@ func WithSubstanceSpecificationMeta(v Meta) SubstanceSpecificationOption {
 }
 
 // WithSubstanceSpecificationImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use SubstanceSpecificationBuilder.SetImplicitRules instead; removed in v2.
 func WithSubstanceSpecificationImplicitRules(v string) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.ImplicitRules = &v
@@ -2321,6 +2341,8 @@ func WithSubstanceSpecificationImplicitRules(v string) SubstanceSpecificationOpt
 }
 
 // WithSubstanceSpecificationLanguage sets the Language field.
+//
+// Deprecated: use SubstanceSpecificationBuilder.SetLanguage instead; removed in v2.
 func WithSubstanceSpecificationLanguage(v string) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Language = &v
@@ -2328,6 +2350,8 @@ func WithSubstanceSpecificationLanguage(v string) SubstanceSpecificationOption {
 }
 
 // WithSubstanceSpecificationText sets the Text field.
+//
+// Deprecated: use SubstanceSpecificationBuilder.SetText instead; removed in v2.
 func WithSubstanceSpecificationText(v Narrative) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Text = &v
@@ -2335,6 +2359,8 @@ func WithSubstanceSpecificationText(v Narrative) SubstanceSpecificationOption {
 }
 
 // WithSubstanceSpecificationContained adds a Contained to the SubstanceSpecification.
+//
+// Deprecated: use SubstanceSpecificationBuilder.AddContained instead; removed in v2.
 func WithSubstanceSpecificationContained(v Resource) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Contained = append(r.Contained, v)
@@ -2342,6 +2368,8 @@ func WithSubstanceSpecificationContained(v Resource) SubstanceSpecificationOptio
 }
 
 // WithSubstanceSpecificationExtension adds a Extension to the SubstanceSpecification.
+//
+// Deprecated: use SubstanceSpecificationBuilder.AddExtension instead; removed in v2.
 func WithSubstanceSpecificationExtension(v Extension) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Extension = append(r.Extension, v)
@@ -2349,6 +2377,8 @@ func WithSubstanceSpecificationExtension(v Extension) SubstanceSpecificationOpti
 }
 
 // WithSubstanceSpecificationModifierExtension adds a ModifierExtension to the SubstanceSpecification.
+//
+// Deprecated: use SubstanceSpecificationBuilder.AddModifierExtension instead; removed in v2.
 func WithSubstanceSpecificationModifierExtension(v Extension) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -2356,6 +2386,8 @@ func WithSubstanceSpecificationModifierExtension(v Extension) SubstanceSpecifica
 }
 
 // WithSubstanceSpecificationIdentifier sets the Identifier field.
+//
+// Deprecated: use SubstanceSpecificationBuilder.SetIdentifier instead; removed in v2.
 func WithSubstanceSpecificationIdentifier(v Identifier) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Identifier = &v
@@ -2363,6 +2395,8 @@ func WithSubstanceSpecificationIdentifier(v Identifier) SubstanceSpecificationOp
 }
 
 // WithSubstanceSpecificationType sets the Type field.
+//
+// Deprecated: use SubstanceSpecificationBuilder.SetType instead; removed in v2.
 func WithSubstanceSpecificationType(v CodeableConcept) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Type = &v
@@ -2370,6 +2404,8 @@ func WithSubstanceSpecificationType(v CodeableConcept) SubstanceSpecificationOpt
 }
 
 // WithSubstanceSpecificationStatus sets the Status field.
+//
+// Deprecated: use SubstanceSpecificationBuilder.SetStatus instead; removed in v2.
 func WithSubstanceSpecificationStatus(v CodeableConcept) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Status = &v
@@ -2377,6 +2413,8 @@ func WithSubstanceSpecificationStatus(v CodeableConcept) SubstanceSpecificationO
 }
 
 // WithSubstanceSpecificationDomain sets the Domain field.
+//
+// Deprecated: use SubstanceSpecificationBuilder.SetDomain instead; removed in v2.
 func WithSubstanceSpecificationDomain(v CodeableConcept) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Domain = &v
@@ -2384,6 +2422,8 @@ func WithSubstanceSpecificationDomain(v CodeableConcept) SubstanceSpecificationO
 }
 
 // WithSubstanceSpecificationDescription sets the Description field.
+//
+// Deprecated: use SubstanceSpecificationBuilder.SetDescription instead; removed in v2.
 func WithSubstanceSpecificationDescription(v string) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Description = &v
@@ -2391,6 +2431,8 @@ func WithSubstanceSpecificationDescription(v string) SubstanceSpecificationOptio
 }
 
 // WithSubstanceSpecificationSource adds a Source to the SubstanceSpecification.
+//
+// Deprecated: use SubstanceSpecificationBuilder.AddSource instead; removed in v2.
 func WithSubstanceSpecificationSource(v Reference) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Source = append(r.Source, v)
@@ -2398,6 +2440,8 @@ func WithSubstanceSpecificationSource(v Reference) SubstanceSpecificationOption 
 }
 
 // WithSubstanceSpecificationComment sets the Comment field.
+//
+// Deprecated: use SubstanceSpecificationBuilder.SetComment instead; removed in v2.
 func WithSubstanceSpecificationComment(v string) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Comment = &v
@@ -2405,6 +2449,8 @@ func WithSubstanceSpecificationComment(v string) SubstanceSpecificationOption {
 }
 
 // WithSubstanceSpecificationMoiety adds a Moiety to the SubstanceSpecification.
+//
+// Deprecated: use SubstanceSpecificationBuilder.AddMoiety instead; removed in v2.
 func WithSubstanceSpecificationMoiety(v SubstanceSpecificationMoiety) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Moiety = append(r.Moiety, v)
@@ -2412,6 +2458,8 @@ func WithSubstanceSpecificationMoiety(v SubstanceSpecificationMoiety) SubstanceS
 }
 
 // WithSubstanceSpecificationProperty adds a Property to the SubstanceSpecification.
+//
+// Deprecated: use SubstanceSpecificationBuilder.AddProperty instead; removed in v2.
 func WithSubstanceSpecificationProperty(v SubstanceSpecificationProperty) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Property = append(r.Property, v)
@@ -2419,6 +2467,8 @@ func WithSubstanceSpecificationProperty(v SubstanceSpecificationProperty) Substa
 }
 
 // WithSubstanceSpecificationReferenceInformation sets the ReferenceInformation field.
+//
+// Deprecated: use SubstanceSpecificationBuilder.SetReferenceInformation instead; removed in v2.
 func WithSubstanceSpecificationReferenceInformation(v Reference) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.ReferenceInformation = &v
@@ -2426,6 +2476,8 @@ func WithSubstanceSpecificationReferenceInformation(v Reference) SubstanceSpecif
 }
 
 // WithSubstanceSpecificationStructure sets the Structure field.
+//
+// Deprecated: use SubstanceSpecificationBuilder.SetStructure instead; removed in v2.
 func WithSubstanceSpecificationStructure(v SubstanceSpecificationStructure) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Structure = &v
@@ -2433,6 +2485,8 @@ func WithSubstanceSpecificationStructure(v SubstanceSpecificationStructure) Subs
 }
 
 // WithSubstanceSpecificationCode adds a Code to the SubstanceSpecification.
+//
+// Deprecated: use SubstanceSpecificationBuilder.AddCode instead; removed in v2.
 func WithSubstanceSpecificationCode(v SubstanceSpecificationCode) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Code = append(r.Code, v)
@@ -2440,6 +2494,8 @@ func WithSubstanceSpecificationCode(v SubstanceSpecificationCode) SubstanceSpeci
 }
 
 // WithSubstanceSpecificationName adds a Name to the SubstanceSpecification.
+//
+// Deprecated: use SubstanceSpecificationBuilder.AddName instead; removed in v2.
 func WithSubstanceSpecificationName(v SubstanceSpecificationName) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Name = append(r.Name, v)
@@ -2447,6 +2503,8 @@ func WithSubstanceSpecificationName(v SubstanceSpecificationName) SubstanceSpeci
 }
 
 // WithSubstanceSpecificationMolecularWeight adds a MolecularWeight to the SubstanceSpecification.
+//
+// Deprecated: use SubstanceSpecificationBuilder.AddMolecularWeight instead; removed in v2.
 func WithSubstanceSpecificationMolecularWeight(v SubstanceSpecificationStructureIsotopeMolecularWeight) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.MolecularWeight = append(r.MolecularWeight, v)
@@ -2454,6 +2512,8 @@ func WithSubstanceSpecificationMolecularWeight(v SubstanceSpecificationStructure
 }
 
 // WithSubstanceSpecificationRelationship adds a Relationship to the SubstanceSpecification.
+//
+// Deprecated: use SubstanceSpecificationBuilder.AddRelationship instead; removed in v2.
 func WithSubstanceSpecificationRelationship(v SubstanceSpecificationRelationship) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Relationship = append(r.Relationship, v)
@@ -2461,6 +2521,8 @@ func WithSubstanceSpecificationRelationship(v SubstanceSpecificationRelationship
 }
 
 // WithSubstanceSpecificationNucleicAcid sets the NucleicAcid field.
+//
+// Deprecated: use SubstanceSpecificationBuilder.SetNucleicAcid instead; removed in v2.
 func WithSubstanceSpecificationNucleicAcid(v Reference) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.NucleicAcid = &v
@@ -2468,6 +2530,8 @@ func WithSubstanceSpecificationNucleicAcid(v Reference) SubstanceSpecificationOp
 }
 
 // WithSubstanceSpecificationPolymer sets the Polymer field.
+//
+// Deprecated: use SubstanceSpecificationBuilder.SetPolymer instead; removed in v2.
 func WithSubstanceSpecificationPolymer(v Reference) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Polymer = &v
@@ -2475,6 +2539,8 @@ func WithSubstanceSpecificationPolymer(v Reference) SubstanceSpecificationOption
 }
 
 // WithSubstanceSpecificationProtein sets the Protein field.
+//
+// Deprecated: use SubstanceSpecificationBuilder.SetProtein instead; removed in v2.
 func WithSubstanceSpecificationProtein(v Reference) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.Protein = &v
@@ -2482,6 +2548,8 @@ func WithSubstanceSpecificationProtein(v Reference) SubstanceSpecificationOption
 }
 
 // WithSubstanceSpecificationSourceMaterial sets the SourceMaterial field.
+//
+// Deprecated: use SubstanceSpecificationBuilder.SetSourceMaterial instead; removed in v2.
 func WithSubstanceSpecificationSourceMaterial(v Reference) SubstanceSpecificationOption {
 	return func(r *SubstanceSpecification) {
 		r.SourceMaterial = &v

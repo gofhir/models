@@ -472,9 +472,23 @@ func (b *MedicinalProductManufacturedBuilder) AddOtherCharacteristics(v Codeable
 // =============================================================================
 
 // MedicinalProductManufacturedOption is a functional option for configuring a MedicinalProductManufactured.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// MedicinalProductManufacturedBuilder. Every WithMedicinalProductManufactured* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type MedicinalProductManufacturedOption func(*MedicinalProductManufactured)
 
 // NewMedicinalProductManufactured creates a new MedicinalProductManufactured with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewMedicinalProductManufacturedBuilder().SetId("x").Build()
+//
+// Deprecated: use NewMedicinalProductManufacturedBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewMedicinalProductManufactured(opts ...MedicinalProductManufacturedOption) *MedicinalProductManufactured {
 	r := &MedicinalProductManufactured{ResourceType: "MedicinalProductManufactured"}
 	for _, opt := range opts {
@@ -484,6 +498,8 @@ func NewMedicinalProductManufactured(opts ...MedicinalProductManufacturedOption)
 }
 
 // WithMedicinalProductManufacturedId sets the Id field.
+//
+// Deprecated: use MedicinalProductManufacturedBuilder.SetId instead; removed in v2.
 func WithMedicinalProductManufacturedId(v string) MedicinalProductManufacturedOption {
 	return func(r *MedicinalProductManufactured) {
 		r.Id = &v
@@ -491,6 +507,8 @@ func WithMedicinalProductManufacturedId(v string) MedicinalProductManufacturedOp
 }
 
 // WithMedicinalProductManufacturedMeta sets the Meta field.
+//
+// Deprecated: use MedicinalProductManufacturedBuilder.SetMeta instead; removed in v2.
 func WithMedicinalProductManufacturedMeta(v Meta) MedicinalProductManufacturedOption {
 	return func(r *MedicinalProductManufactured) {
 		r.Meta = &v
@@ -498,6 +516,8 @@ func WithMedicinalProductManufacturedMeta(v Meta) MedicinalProductManufacturedOp
 }
 
 // WithMedicinalProductManufacturedImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use MedicinalProductManufacturedBuilder.SetImplicitRules instead; removed in v2.
 func WithMedicinalProductManufacturedImplicitRules(v string) MedicinalProductManufacturedOption {
 	return func(r *MedicinalProductManufactured) {
 		r.ImplicitRules = &v
@@ -505,6 +525,8 @@ func WithMedicinalProductManufacturedImplicitRules(v string) MedicinalProductMan
 }
 
 // WithMedicinalProductManufacturedLanguage sets the Language field.
+//
+// Deprecated: use MedicinalProductManufacturedBuilder.SetLanguage instead; removed in v2.
 func WithMedicinalProductManufacturedLanguage(v string) MedicinalProductManufacturedOption {
 	return func(r *MedicinalProductManufactured) {
 		r.Language = &v
@@ -512,6 +534,8 @@ func WithMedicinalProductManufacturedLanguage(v string) MedicinalProductManufact
 }
 
 // WithMedicinalProductManufacturedText sets the Text field.
+//
+// Deprecated: use MedicinalProductManufacturedBuilder.SetText instead; removed in v2.
 func WithMedicinalProductManufacturedText(v Narrative) MedicinalProductManufacturedOption {
 	return func(r *MedicinalProductManufactured) {
 		r.Text = &v
@@ -519,6 +543,8 @@ func WithMedicinalProductManufacturedText(v Narrative) MedicinalProductManufactu
 }
 
 // WithMedicinalProductManufacturedContained adds a Contained to the MedicinalProductManufactured.
+//
+// Deprecated: use MedicinalProductManufacturedBuilder.AddContained instead; removed in v2.
 func WithMedicinalProductManufacturedContained(v Resource) MedicinalProductManufacturedOption {
 	return func(r *MedicinalProductManufactured) {
 		r.Contained = append(r.Contained, v)
@@ -526,6 +552,8 @@ func WithMedicinalProductManufacturedContained(v Resource) MedicinalProductManuf
 }
 
 // WithMedicinalProductManufacturedExtension adds a Extension to the MedicinalProductManufactured.
+//
+// Deprecated: use MedicinalProductManufacturedBuilder.AddExtension instead; removed in v2.
 func WithMedicinalProductManufacturedExtension(v Extension) MedicinalProductManufacturedOption {
 	return func(r *MedicinalProductManufactured) {
 		r.Extension = append(r.Extension, v)
@@ -533,6 +561,8 @@ func WithMedicinalProductManufacturedExtension(v Extension) MedicinalProductManu
 }
 
 // WithMedicinalProductManufacturedModifierExtension adds a ModifierExtension to the MedicinalProductManufactured.
+//
+// Deprecated: use MedicinalProductManufacturedBuilder.AddModifierExtension instead; removed in v2.
 func WithMedicinalProductManufacturedModifierExtension(v Extension) MedicinalProductManufacturedOption {
 	return func(r *MedicinalProductManufactured) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -540,6 +570,8 @@ func WithMedicinalProductManufacturedModifierExtension(v Extension) MedicinalPro
 }
 
 // WithMedicinalProductManufacturedManufacturedDoseForm sets the ManufacturedDoseForm field.
+//
+// Deprecated: use MedicinalProductManufacturedBuilder.SetManufacturedDoseForm instead; removed in v2.
 func WithMedicinalProductManufacturedManufacturedDoseForm(v CodeableConcept) MedicinalProductManufacturedOption {
 	return func(r *MedicinalProductManufactured) {
 		r.ManufacturedDoseForm = v
@@ -547,6 +579,8 @@ func WithMedicinalProductManufacturedManufacturedDoseForm(v CodeableConcept) Med
 }
 
 // WithMedicinalProductManufacturedUnitOfPresentation sets the UnitOfPresentation field.
+//
+// Deprecated: use MedicinalProductManufacturedBuilder.SetUnitOfPresentation instead; removed in v2.
 func WithMedicinalProductManufacturedUnitOfPresentation(v CodeableConcept) MedicinalProductManufacturedOption {
 	return func(r *MedicinalProductManufactured) {
 		r.UnitOfPresentation = &v
@@ -554,6 +588,8 @@ func WithMedicinalProductManufacturedUnitOfPresentation(v CodeableConcept) Medic
 }
 
 // WithMedicinalProductManufacturedQuantity sets the Quantity field.
+//
+// Deprecated: use MedicinalProductManufacturedBuilder.SetQuantity instead; removed in v2.
 func WithMedicinalProductManufacturedQuantity(v Quantity) MedicinalProductManufacturedOption {
 	return func(r *MedicinalProductManufactured) {
 		r.Quantity = v
@@ -561,6 +597,8 @@ func WithMedicinalProductManufacturedQuantity(v Quantity) MedicinalProductManufa
 }
 
 // WithMedicinalProductManufacturedManufacturer adds a Manufacturer to the MedicinalProductManufactured.
+//
+// Deprecated: use MedicinalProductManufacturedBuilder.AddManufacturer instead; removed in v2.
 func WithMedicinalProductManufacturedManufacturer(v Reference) MedicinalProductManufacturedOption {
 	return func(r *MedicinalProductManufactured) {
 		r.Manufacturer = append(r.Manufacturer, v)
@@ -568,6 +606,8 @@ func WithMedicinalProductManufacturedManufacturer(v Reference) MedicinalProductM
 }
 
 // WithMedicinalProductManufacturedIngredient adds a Ingredient to the MedicinalProductManufactured.
+//
+// Deprecated: use MedicinalProductManufacturedBuilder.AddIngredient instead; removed in v2.
 func WithMedicinalProductManufacturedIngredient(v Reference) MedicinalProductManufacturedOption {
 	return func(r *MedicinalProductManufactured) {
 		r.Ingredient = append(r.Ingredient, v)
@@ -575,6 +615,8 @@ func WithMedicinalProductManufacturedIngredient(v Reference) MedicinalProductMan
 }
 
 // WithMedicinalProductManufacturedPhysicalCharacteristics sets the PhysicalCharacteristics field.
+//
+// Deprecated: use MedicinalProductManufacturedBuilder.SetPhysicalCharacteristics instead; removed in v2.
 func WithMedicinalProductManufacturedPhysicalCharacteristics(v ProdCharacteristic) MedicinalProductManufacturedOption {
 	return func(r *MedicinalProductManufactured) {
 		r.PhysicalCharacteristics = &v
@@ -582,6 +624,8 @@ func WithMedicinalProductManufacturedPhysicalCharacteristics(v ProdCharacteristi
 }
 
 // WithMedicinalProductManufacturedOtherCharacteristics adds a OtherCharacteristics to the MedicinalProductManufactured.
+//
+// Deprecated: use MedicinalProductManufacturedBuilder.AddOtherCharacteristics instead; removed in v2.
 func WithMedicinalProductManufacturedOtherCharacteristics(v CodeableConcept) MedicinalProductManufacturedOption {
 	return func(r *MedicinalProductManufactured) {
 		r.OtherCharacteristics = append(r.OtherCharacteristics, v)

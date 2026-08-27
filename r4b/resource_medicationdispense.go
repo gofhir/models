@@ -1070,9 +1070,23 @@ func (b *MedicationDispenseBuilder) AddEventHistory(v Reference) *MedicationDisp
 // =============================================================================
 
 // MedicationDispenseOption is a functional option for configuring a MedicationDispense.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// MedicationDispenseBuilder. Every WithMedicationDispense* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type MedicationDispenseOption func(*MedicationDispense)
 
 // NewMedicationDispense creates a new MedicationDispense with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewMedicationDispenseBuilder().SetId("x").Build()
+//
+// Deprecated: use NewMedicationDispenseBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewMedicationDispense(opts ...MedicationDispenseOption) *MedicationDispense {
 	r := &MedicationDispense{ResourceType: "MedicationDispense"}
 	for _, opt := range opts {
@@ -1082,6 +1096,8 @@ func NewMedicationDispense(opts ...MedicationDispenseOption) *MedicationDispense
 }
 
 // WithMedicationDispenseId sets the Id field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetId instead; removed in v2.
 func WithMedicationDispenseId(v string) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.Id = &v
@@ -1089,6 +1105,8 @@ func WithMedicationDispenseId(v string) MedicationDispenseOption {
 }
 
 // WithMedicationDispenseMeta sets the Meta field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetMeta instead; removed in v2.
 func WithMedicationDispenseMeta(v Meta) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.Meta = &v
@@ -1096,6 +1114,8 @@ func WithMedicationDispenseMeta(v Meta) MedicationDispenseOption {
 }
 
 // WithMedicationDispenseImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetImplicitRules instead; removed in v2.
 func WithMedicationDispenseImplicitRules(v string) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.ImplicitRules = &v
@@ -1103,6 +1123,8 @@ func WithMedicationDispenseImplicitRules(v string) MedicationDispenseOption {
 }
 
 // WithMedicationDispenseLanguage sets the Language field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetLanguage instead; removed in v2.
 func WithMedicationDispenseLanguage(v string) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.Language = &v
@@ -1110,6 +1132,8 @@ func WithMedicationDispenseLanguage(v string) MedicationDispenseOption {
 }
 
 // WithMedicationDispenseText sets the Text field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetText instead; removed in v2.
 func WithMedicationDispenseText(v Narrative) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.Text = &v
@@ -1117,6 +1141,8 @@ func WithMedicationDispenseText(v Narrative) MedicationDispenseOption {
 }
 
 // WithMedicationDispenseContained adds a Contained to the MedicationDispense.
+//
+// Deprecated: use MedicationDispenseBuilder.AddContained instead; removed in v2.
 func WithMedicationDispenseContained(v Resource) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.Contained = append(r.Contained, v)
@@ -1124,6 +1150,8 @@ func WithMedicationDispenseContained(v Resource) MedicationDispenseOption {
 }
 
 // WithMedicationDispenseExtension adds a Extension to the MedicationDispense.
+//
+// Deprecated: use MedicationDispenseBuilder.AddExtension instead; removed in v2.
 func WithMedicationDispenseExtension(v Extension) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.Extension = append(r.Extension, v)
@@ -1131,6 +1159,8 @@ func WithMedicationDispenseExtension(v Extension) MedicationDispenseOption {
 }
 
 // WithMedicationDispenseModifierExtension adds a ModifierExtension to the MedicationDispense.
+//
+// Deprecated: use MedicationDispenseBuilder.AddModifierExtension instead; removed in v2.
 func WithMedicationDispenseModifierExtension(v Extension) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1138,6 +1168,8 @@ func WithMedicationDispenseModifierExtension(v Extension) MedicationDispenseOpti
 }
 
 // WithMedicationDispenseIdentifier adds a Identifier to the MedicationDispense.
+//
+// Deprecated: use MedicationDispenseBuilder.AddIdentifier instead; removed in v2.
 func WithMedicationDispenseIdentifier(v Identifier) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.Identifier = append(r.Identifier, v)
@@ -1145,6 +1177,8 @@ func WithMedicationDispenseIdentifier(v Identifier) MedicationDispenseOption {
 }
 
 // WithMedicationDispensePartOf adds a PartOf to the MedicationDispense.
+//
+// Deprecated: use MedicationDispenseBuilder.AddPartOf instead; removed in v2.
 func WithMedicationDispensePartOf(v Reference) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.PartOf = append(r.PartOf, v)
@@ -1152,6 +1186,8 @@ func WithMedicationDispensePartOf(v Reference) MedicationDispenseOption {
 }
 
 // WithMedicationDispenseStatus sets the Status field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetStatus instead; removed in v2.
 func WithMedicationDispenseStatus(v MedicationDispenseStatusCodes) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.Status = &v
@@ -1159,6 +1195,8 @@ func WithMedicationDispenseStatus(v MedicationDispenseStatusCodes) MedicationDis
 }
 
 // WithMedicationDispenseStatusReasonCodeableConcept sets the StatusReasonCodeableConcept field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetStatusReasonCodeableConcept instead; removed in v2.
 func WithMedicationDispenseStatusReasonCodeableConcept(v CodeableConcept) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.StatusReasonCodeableConcept = &v
@@ -1166,6 +1204,8 @@ func WithMedicationDispenseStatusReasonCodeableConcept(v CodeableConcept) Medica
 }
 
 // WithMedicationDispenseStatusReasonReference sets the StatusReasonReference field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetStatusReasonReference instead; removed in v2.
 func WithMedicationDispenseStatusReasonReference(v Reference) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.StatusReasonReference = &v
@@ -1173,6 +1213,8 @@ func WithMedicationDispenseStatusReasonReference(v Reference) MedicationDispense
 }
 
 // WithMedicationDispenseCategory sets the Category field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetCategory instead; removed in v2.
 func WithMedicationDispenseCategory(v CodeableConcept) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.Category = &v
@@ -1180,6 +1222,8 @@ func WithMedicationDispenseCategory(v CodeableConcept) MedicationDispenseOption 
 }
 
 // WithMedicationDispenseMedicationCodeableConcept sets the MedicationCodeableConcept field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetMedicationCodeableConcept instead; removed in v2.
 func WithMedicationDispenseMedicationCodeableConcept(v CodeableConcept) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.MedicationCodeableConcept = &v
@@ -1187,6 +1231,8 @@ func WithMedicationDispenseMedicationCodeableConcept(v CodeableConcept) Medicati
 }
 
 // WithMedicationDispenseMedicationReference sets the MedicationReference field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetMedicationReference instead; removed in v2.
 func WithMedicationDispenseMedicationReference(v Reference) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.MedicationReference = &v
@@ -1194,6 +1240,8 @@ func WithMedicationDispenseMedicationReference(v Reference) MedicationDispenseOp
 }
 
 // WithMedicationDispenseSubject sets the Subject field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetSubject instead; removed in v2.
 func WithMedicationDispenseSubject(v Reference) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.Subject = &v
@@ -1201,6 +1249,8 @@ func WithMedicationDispenseSubject(v Reference) MedicationDispenseOption {
 }
 
 // WithMedicationDispenseContext sets the Context field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetContext instead; removed in v2.
 func WithMedicationDispenseContext(v Reference) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.Context = &v
@@ -1208,6 +1258,8 @@ func WithMedicationDispenseContext(v Reference) MedicationDispenseOption {
 }
 
 // WithMedicationDispenseSupportingInformation adds a SupportingInformation to the MedicationDispense.
+//
+// Deprecated: use MedicationDispenseBuilder.AddSupportingInformation instead; removed in v2.
 func WithMedicationDispenseSupportingInformation(v Reference) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.SupportingInformation = append(r.SupportingInformation, v)
@@ -1215,6 +1267,8 @@ func WithMedicationDispenseSupportingInformation(v Reference) MedicationDispense
 }
 
 // WithMedicationDispensePerformer adds a Performer to the MedicationDispense.
+//
+// Deprecated: use MedicationDispenseBuilder.AddPerformer instead; removed in v2.
 func WithMedicationDispensePerformer(v MedicationDispensePerformer) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.Performer = append(r.Performer, v)
@@ -1222,6 +1276,8 @@ func WithMedicationDispensePerformer(v MedicationDispensePerformer) MedicationDi
 }
 
 // WithMedicationDispenseLocation sets the Location field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetLocation instead; removed in v2.
 func WithMedicationDispenseLocation(v Reference) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.Location = &v
@@ -1229,6 +1285,8 @@ func WithMedicationDispenseLocation(v Reference) MedicationDispenseOption {
 }
 
 // WithMedicationDispenseAuthorizingPrescription adds a AuthorizingPrescription to the MedicationDispense.
+//
+// Deprecated: use MedicationDispenseBuilder.AddAuthorizingPrescription instead; removed in v2.
 func WithMedicationDispenseAuthorizingPrescription(v Reference) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.AuthorizingPrescription = append(r.AuthorizingPrescription, v)
@@ -1236,6 +1294,8 @@ func WithMedicationDispenseAuthorizingPrescription(v Reference) MedicationDispen
 }
 
 // WithMedicationDispenseType sets the Type field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetType instead; removed in v2.
 func WithMedicationDispenseType(v CodeableConcept) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.Type = &v
@@ -1243,6 +1303,8 @@ func WithMedicationDispenseType(v CodeableConcept) MedicationDispenseOption {
 }
 
 // WithMedicationDispenseQuantity sets the Quantity field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetQuantity instead; removed in v2.
 func WithMedicationDispenseQuantity(v Quantity) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.Quantity = &v
@@ -1250,6 +1312,8 @@ func WithMedicationDispenseQuantity(v Quantity) MedicationDispenseOption {
 }
 
 // WithMedicationDispenseDaysSupply sets the DaysSupply field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetDaysSupply instead; removed in v2.
 func WithMedicationDispenseDaysSupply(v Quantity) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.DaysSupply = &v
@@ -1257,6 +1321,8 @@ func WithMedicationDispenseDaysSupply(v Quantity) MedicationDispenseOption {
 }
 
 // WithMedicationDispenseWhenPrepared sets the WhenPrepared field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetWhenPrepared instead; removed in v2.
 func WithMedicationDispenseWhenPrepared(v string) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.WhenPrepared = &v
@@ -1264,6 +1330,8 @@ func WithMedicationDispenseWhenPrepared(v string) MedicationDispenseOption {
 }
 
 // WithMedicationDispenseWhenHandedOver sets the WhenHandedOver field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetWhenHandedOver instead; removed in v2.
 func WithMedicationDispenseWhenHandedOver(v string) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.WhenHandedOver = &v
@@ -1271,6 +1339,8 @@ func WithMedicationDispenseWhenHandedOver(v string) MedicationDispenseOption {
 }
 
 // WithMedicationDispenseDestination sets the Destination field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetDestination instead; removed in v2.
 func WithMedicationDispenseDestination(v Reference) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.Destination = &v
@@ -1278,6 +1348,8 @@ func WithMedicationDispenseDestination(v Reference) MedicationDispenseOption {
 }
 
 // WithMedicationDispenseReceiver adds a Receiver to the MedicationDispense.
+//
+// Deprecated: use MedicationDispenseBuilder.AddReceiver instead; removed in v2.
 func WithMedicationDispenseReceiver(v Reference) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.Receiver = append(r.Receiver, v)
@@ -1285,6 +1357,8 @@ func WithMedicationDispenseReceiver(v Reference) MedicationDispenseOption {
 }
 
 // WithMedicationDispenseNote adds a Note to the MedicationDispense.
+//
+// Deprecated: use MedicationDispenseBuilder.AddNote instead; removed in v2.
 func WithMedicationDispenseNote(v Annotation) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.Note = append(r.Note, v)
@@ -1292,6 +1366,8 @@ func WithMedicationDispenseNote(v Annotation) MedicationDispenseOption {
 }
 
 // WithMedicationDispenseDosageInstruction adds a DosageInstruction to the MedicationDispense.
+//
+// Deprecated: use MedicationDispenseBuilder.AddDosageInstruction instead; removed in v2.
 func WithMedicationDispenseDosageInstruction(v Dosage) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.DosageInstruction = append(r.DosageInstruction, v)
@@ -1299,6 +1375,8 @@ func WithMedicationDispenseDosageInstruction(v Dosage) MedicationDispenseOption 
 }
 
 // WithMedicationDispenseSubstitution sets the Substitution field.
+//
+// Deprecated: use MedicationDispenseBuilder.SetSubstitution instead; removed in v2.
 func WithMedicationDispenseSubstitution(v MedicationDispenseSubstitution) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.Substitution = &v
@@ -1306,6 +1384,8 @@ func WithMedicationDispenseSubstitution(v MedicationDispenseSubstitution) Medica
 }
 
 // WithMedicationDispenseDetectedIssue adds a DetectedIssue to the MedicationDispense.
+//
+// Deprecated: use MedicationDispenseBuilder.AddDetectedIssue instead; removed in v2.
 func WithMedicationDispenseDetectedIssue(v Reference) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.DetectedIssue = append(r.DetectedIssue, v)
@@ -1313,6 +1393,8 @@ func WithMedicationDispenseDetectedIssue(v Reference) MedicationDispenseOption {
 }
 
 // WithMedicationDispenseEventHistory adds a EventHistory to the MedicationDispense.
+//
+// Deprecated: use MedicationDispenseBuilder.AddEventHistory instead; removed in v2.
 func WithMedicationDispenseEventHistory(v Reference) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
 		r.EventHistory = append(r.EventHistory, v)

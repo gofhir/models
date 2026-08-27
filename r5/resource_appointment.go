@@ -1679,9 +1679,23 @@ func (b *AppointmentBuilder) AddRecurrenceTemplate(v AppointmentRecurrenceTempla
 // =============================================================================
 
 // AppointmentOption is a functional option for configuring a Appointment.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// AppointmentBuilder. Every WithAppointment* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type AppointmentOption func(*Appointment)
 
 // NewAppointment creates a new Appointment with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewAppointmentBuilder().SetId("x").Build()
+//
+// Deprecated: use NewAppointmentBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewAppointment(opts ...AppointmentOption) *Appointment {
 	r := &Appointment{ResourceType: "Appointment"}
 	for _, opt := range opts {
@@ -1691,6 +1705,8 @@ func NewAppointment(opts ...AppointmentOption) *Appointment {
 }
 
 // WithAppointmentId sets the Id field.
+//
+// Deprecated: use AppointmentBuilder.SetId instead; removed in v2.
 func WithAppointmentId(v string) AppointmentOption {
 	return func(r *Appointment) {
 		r.Id = &v
@@ -1698,6 +1714,8 @@ func WithAppointmentId(v string) AppointmentOption {
 }
 
 // WithAppointmentMeta sets the Meta field.
+//
+// Deprecated: use AppointmentBuilder.SetMeta instead; removed in v2.
 func WithAppointmentMeta(v Meta) AppointmentOption {
 	return func(r *Appointment) {
 		r.Meta = &v
@@ -1705,6 +1723,8 @@ func WithAppointmentMeta(v Meta) AppointmentOption {
 }
 
 // WithAppointmentImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use AppointmentBuilder.SetImplicitRules instead; removed in v2.
 func WithAppointmentImplicitRules(v string) AppointmentOption {
 	return func(r *Appointment) {
 		r.ImplicitRules = &v
@@ -1712,6 +1732,8 @@ func WithAppointmentImplicitRules(v string) AppointmentOption {
 }
 
 // WithAppointmentLanguage sets the Language field.
+//
+// Deprecated: use AppointmentBuilder.SetLanguage instead; removed in v2.
 func WithAppointmentLanguage(v string) AppointmentOption {
 	return func(r *Appointment) {
 		r.Language = &v
@@ -1719,6 +1741,8 @@ func WithAppointmentLanguage(v string) AppointmentOption {
 }
 
 // WithAppointmentText sets the Text field.
+//
+// Deprecated: use AppointmentBuilder.SetText instead; removed in v2.
 func WithAppointmentText(v Narrative) AppointmentOption {
 	return func(r *Appointment) {
 		r.Text = &v
@@ -1726,6 +1750,8 @@ func WithAppointmentText(v Narrative) AppointmentOption {
 }
 
 // WithAppointmentContained adds a Contained to the Appointment.
+//
+// Deprecated: use AppointmentBuilder.AddContained instead; removed in v2.
 func WithAppointmentContained(v Resource) AppointmentOption {
 	return func(r *Appointment) {
 		r.Contained = append(r.Contained, v)
@@ -1733,6 +1759,8 @@ func WithAppointmentContained(v Resource) AppointmentOption {
 }
 
 // WithAppointmentExtension adds a Extension to the Appointment.
+//
+// Deprecated: use AppointmentBuilder.AddExtension instead; removed in v2.
 func WithAppointmentExtension(v Extension) AppointmentOption {
 	return func(r *Appointment) {
 		r.Extension = append(r.Extension, v)
@@ -1740,6 +1768,8 @@ func WithAppointmentExtension(v Extension) AppointmentOption {
 }
 
 // WithAppointmentModifierExtension adds a ModifierExtension to the Appointment.
+//
+// Deprecated: use AppointmentBuilder.AddModifierExtension instead; removed in v2.
 func WithAppointmentModifierExtension(v Extension) AppointmentOption {
 	return func(r *Appointment) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1747,6 +1777,8 @@ func WithAppointmentModifierExtension(v Extension) AppointmentOption {
 }
 
 // WithAppointmentIdentifier adds a Identifier to the Appointment.
+//
+// Deprecated: use AppointmentBuilder.AddIdentifier instead; removed in v2.
 func WithAppointmentIdentifier(v Identifier) AppointmentOption {
 	return func(r *Appointment) {
 		r.Identifier = append(r.Identifier, v)
@@ -1754,6 +1786,8 @@ func WithAppointmentIdentifier(v Identifier) AppointmentOption {
 }
 
 // WithAppointmentStatus sets the Status field.
+//
+// Deprecated: use AppointmentBuilder.SetStatus instead; removed in v2.
 func WithAppointmentStatus(v AppointmentStatus) AppointmentOption {
 	return func(r *Appointment) {
 		r.Status = &v
@@ -1761,6 +1795,8 @@ func WithAppointmentStatus(v AppointmentStatus) AppointmentOption {
 }
 
 // WithAppointmentCancellationReason sets the CancellationReason field.
+//
+// Deprecated: use AppointmentBuilder.SetCancellationReason instead; removed in v2.
 func WithAppointmentCancellationReason(v CodeableConcept) AppointmentOption {
 	return func(r *Appointment) {
 		r.CancellationReason = &v
@@ -1768,6 +1804,8 @@ func WithAppointmentCancellationReason(v CodeableConcept) AppointmentOption {
 }
 
 // WithAppointmentClass adds a Class to the Appointment.
+//
+// Deprecated: use AppointmentBuilder.AddClass instead; removed in v2.
 func WithAppointmentClass(v CodeableConcept) AppointmentOption {
 	return func(r *Appointment) {
 		r.Class = append(r.Class, v)
@@ -1775,6 +1813,8 @@ func WithAppointmentClass(v CodeableConcept) AppointmentOption {
 }
 
 // WithAppointmentServiceCategory adds a ServiceCategory to the Appointment.
+//
+// Deprecated: use AppointmentBuilder.AddServiceCategory instead; removed in v2.
 func WithAppointmentServiceCategory(v CodeableConcept) AppointmentOption {
 	return func(r *Appointment) {
 		r.ServiceCategory = append(r.ServiceCategory, v)
@@ -1782,6 +1822,8 @@ func WithAppointmentServiceCategory(v CodeableConcept) AppointmentOption {
 }
 
 // WithAppointmentServiceType adds a ServiceType to the Appointment.
+//
+// Deprecated: use AppointmentBuilder.AddServiceType instead; removed in v2.
 func WithAppointmentServiceType(v CodeableReference) AppointmentOption {
 	return func(r *Appointment) {
 		r.ServiceType = append(r.ServiceType, v)
@@ -1789,6 +1831,8 @@ func WithAppointmentServiceType(v CodeableReference) AppointmentOption {
 }
 
 // WithAppointmentSpecialty adds a Specialty to the Appointment.
+//
+// Deprecated: use AppointmentBuilder.AddSpecialty instead; removed in v2.
 func WithAppointmentSpecialty(v CodeableConcept) AppointmentOption {
 	return func(r *Appointment) {
 		r.Specialty = append(r.Specialty, v)
@@ -1796,6 +1840,8 @@ func WithAppointmentSpecialty(v CodeableConcept) AppointmentOption {
 }
 
 // WithAppointmentAppointmentType sets the AppointmentType field.
+//
+// Deprecated: use AppointmentBuilder.SetAppointmentType instead; removed in v2.
 func WithAppointmentAppointmentType(v CodeableConcept) AppointmentOption {
 	return func(r *Appointment) {
 		r.AppointmentType = &v
@@ -1803,6 +1849,8 @@ func WithAppointmentAppointmentType(v CodeableConcept) AppointmentOption {
 }
 
 // WithAppointmentReason adds a Reason to the Appointment.
+//
+// Deprecated: use AppointmentBuilder.AddReason instead; removed in v2.
 func WithAppointmentReason(v CodeableReference) AppointmentOption {
 	return func(r *Appointment) {
 		r.Reason = append(r.Reason, v)
@@ -1810,6 +1858,8 @@ func WithAppointmentReason(v CodeableReference) AppointmentOption {
 }
 
 // WithAppointmentPriority sets the Priority field.
+//
+// Deprecated: use AppointmentBuilder.SetPriority instead; removed in v2.
 func WithAppointmentPriority(v CodeableConcept) AppointmentOption {
 	return func(r *Appointment) {
 		r.Priority = &v
@@ -1817,6 +1867,8 @@ func WithAppointmentPriority(v CodeableConcept) AppointmentOption {
 }
 
 // WithAppointmentDescription sets the Description field.
+//
+// Deprecated: use AppointmentBuilder.SetDescription instead; removed in v2.
 func WithAppointmentDescription(v string) AppointmentOption {
 	return func(r *Appointment) {
 		r.Description = &v
@@ -1824,6 +1876,8 @@ func WithAppointmentDescription(v string) AppointmentOption {
 }
 
 // WithAppointmentReplaces adds a Replaces to the Appointment.
+//
+// Deprecated: use AppointmentBuilder.AddReplaces instead; removed in v2.
 func WithAppointmentReplaces(v Reference) AppointmentOption {
 	return func(r *Appointment) {
 		r.Replaces = append(r.Replaces, v)
@@ -1831,6 +1885,8 @@ func WithAppointmentReplaces(v Reference) AppointmentOption {
 }
 
 // WithAppointmentVirtualService adds a VirtualService to the Appointment.
+//
+// Deprecated: use AppointmentBuilder.AddVirtualService instead; removed in v2.
 func WithAppointmentVirtualService(v VirtualServiceDetail) AppointmentOption {
 	return func(r *Appointment) {
 		r.VirtualService = append(r.VirtualService, v)
@@ -1838,6 +1894,8 @@ func WithAppointmentVirtualService(v VirtualServiceDetail) AppointmentOption {
 }
 
 // WithAppointmentSupportingInformation adds a SupportingInformation to the Appointment.
+//
+// Deprecated: use AppointmentBuilder.AddSupportingInformation instead; removed in v2.
 func WithAppointmentSupportingInformation(v Reference) AppointmentOption {
 	return func(r *Appointment) {
 		r.SupportingInformation = append(r.SupportingInformation, v)
@@ -1845,6 +1903,8 @@ func WithAppointmentSupportingInformation(v Reference) AppointmentOption {
 }
 
 // WithAppointmentPreviousAppointment sets the PreviousAppointment field.
+//
+// Deprecated: use AppointmentBuilder.SetPreviousAppointment instead; removed in v2.
 func WithAppointmentPreviousAppointment(v Reference) AppointmentOption {
 	return func(r *Appointment) {
 		r.PreviousAppointment = &v
@@ -1852,6 +1912,8 @@ func WithAppointmentPreviousAppointment(v Reference) AppointmentOption {
 }
 
 // WithAppointmentOriginatingAppointment sets the OriginatingAppointment field.
+//
+// Deprecated: use AppointmentBuilder.SetOriginatingAppointment instead; removed in v2.
 func WithAppointmentOriginatingAppointment(v Reference) AppointmentOption {
 	return func(r *Appointment) {
 		r.OriginatingAppointment = &v
@@ -1859,6 +1921,8 @@ func WithAppointmentOriginatingAppointment(v Reference) AppointmentOption {
 }
 
 // WithAppointmentStart sets the Start field.
+//
+// Deprecated: use AppointmentBuilder.SetStart instead; removed in v2.
 func WithAppointmentStart(v string) AppointmentOption {
 	return func(r *Appointment) {
 		r.Start = &v
@@ -1866,6 +1930,8 @@ func WithAppointmentStart(v string) AppointmentOption {
 }
 
 // WithAppointmentEnd sets the End field.
+//
+// Deprecated: use AppointmentBuilder.SetEnd instead; removed in v2.
 func WithAppointmentEnd(v string) AppointmentOption {
 	return func(r *Appointment) {
 		r.End = &v
@@ -1873,6 +1939,8 @@ func WithAppointmentEnd(v string) AppointmentOption {
 }
 
 // WithAppointmentMinutesDuration sets the MinutesDuration field.
+//
+// Deprecated: use AppointmentBuilder.SetMinutesDuration instead; removed in v2.
 func WithAppointmentMinutesDuration(v uint32) AppointmentOption {
 	return func(r *Appointment) {
 		r.MinutesDuration = &v
@@ -1880,6 +1948,8 @@ func WithAppointmentMinutesDuration(v uint32) AppointmentOption {
 }
 
 // WithAppointmentRequestedPeriod adds a RequestedPeriod to the Appointment.
+//
+// Deprecated: use AppointmentBuilder.AddRequestedPeriod instead; removed in v2.
 func WithAppointmentRequestedPeriod(v Period) AppointmentOption {
 	return func(r *Appointment) {
 		r.RequestedPeriod = append(r.RequestedPeriod, v)
@@ -1887,6 +1957,8 @@ func WithAppointmentRequestedPeriod(v Period) AppointmentOption {
 }
 
 // WithAppointmentSlot adds a Slot to the Appointment.
+//
+// Deprecated: use AppointmentBuilder.AddSlot instead; removed in v2.
 func WithAppointmentSlot(v Reference) AppointmentOption {
 	return func(r *Appointment) {
 		r.Slot = append(r.Slot, v)
@@ -1894,6 +1966,8 @@ func WithAppointmentSlot(v Reference) AppointmentOption {
 }
 
 // WithAppointmentAccount adds a Account to the Appointment.
+//
+// Deprecated: use AppointmentBuilder.AddAccount instead; removed in v2.
 func WithAppointmentAccount(v Reference) AppointmentOption {
 	return func(r *Appointment) {
 		r.Account = append(r.Account, v)
@@ -1901,6 +1975,8 @@ func WithAppointmentAccount(v Reference) AppointmentOption {
 }
 
 // WithAppointmentCreated sets the Created field.
+//
+// Deprecated: use AppointmentBuilder.SetCreated instead; removed in v2.
 func WithAppointmentCreated(v string) AppointmentOption {
 	return func(r *Appointment) {
 		r.Created = &v
@@ -1908,6 +1984,8 @@ func WithAppointmentCreated(v string) AppointmentOption {
 }
 
 // WithAppointmentCancellationDate sets the CancellationDate field.
+//
+// Deprecated: use AppointmentBuilder.SetCancellationDate instead; removed in v2.
 func WithAppointmentCancellationDate(v string) AppointmentOption {
 	return func(r *Appointment) {
 		r.CancellationDate = &v
@@ -1915,6 +1993,8 @@ func WithAppointmentCancellationDate(v string) AppointmentOption {
 }
 
 // WithAppointmentNote adds a Note to the Appointment.
+//
+// Deprecated: use AppointmentBuilder.AddNote instead; removed in v2.
 func WithAppointmentNote(v Annotation) AppointmentOption {
 	return func(r *Appointment) {
 		r.Note = append(r.Note, v)
@@ -1922,6 +2002,8 @@ func WithAppointmentNote(v Annotation) AppointmentOption {
 }
 
 // WithAppointmentPatientInstruction adds a PatientInstruction to the Appointment.
+//
+// Deprecated: use AppointmentBuilder.AddPatientInstruction instead; removed in v2.
 func WithAppointmentPatientInstruction(v CodeableReference) AppointmentOption {
 	return func(r *Appointment) {
 		r.PatientInstruction = append(r.PatientInstruction, v)
@@ -1929,6 +2011,8 @@ func WithAppointmentPatientInstruction(v CodeableReference) AppointmentOption {
 }
 
 // WithAppointmentBasedOn adds a BasedOn to the Appointment.
+//
+// Deprecated: use AppointmentBuilder.AddBasedOn instead; removed in v2.
 func WithAppointmentBasedOn(v Reference) AppointmentOption {
 	return func(r *Appointment) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -1936,6 +2020,8 @@ func WithAppointmentBasedOn(v Reference) AppointmentOption {
 }
 
 // WithAppointmentSubject sets the Subject field.
+//
+// Deprecated: use AppointmentBuilder.SetSubject instead; removed in v2.
 func WithAppointmentSubject(v Reference) AppointmentOption {
 	return func(r *Appointment) {
 		r.Subject = &v
@@ -1943,6 +2029,8 @@ func WithAppointmentSubject(v Reference) AppointmentOption {
 }
 
 // WithAppointmentParticipant adds a Participant to the Appointment.
+//
+// Deprecated: use AppointmentBuilder.AddParticipant instead; removed in v2.
 func WithAppointmentParticipant(v AppointmentParticipant) AppointmentOption {
 	return func(r *Appointment) {
 		r.Participant = append(r.Participant, v)
@@ -1950,6 +2038,8 @@ func WithAppointmentParticipant(v AppointmentParticipant) AppointmentOption {
 }
 
 // WithAppointmentRecurrenceId sets the RecurrenceId field.
+//
+// Deprecated: use AppointmentBuilder.SetRecurrenceId instead; removed in v2.
 func WithAppointmentRecurrenceId(v uint32) AppointmentOption {
 	return func(r *Appointment) {
 		r.RecurrenceId = &v
@@ -1957,6 +2047,8 @@ func WithAppointmentRecurrenceId(v uint32) AppointmentOption {
 }
 
 // WithAppointmentOccurrenceChanged sets the OccurrenceChanged field.
+//
+// Deprecated: use AppointmentBuilder.SetOccurrenceChanged instead; removed in v2.
 func WithAppointmentOccurrenceChanged(v bool) AppointmentOption {
 	return func(r *Appointment) {
 		r.OccurrenceChanged = &v
@@ -1964,6 +2056,8 @@ func WithAppointmentOccurrenceChanged(v bool) AppointmentOption {
 }
 
 // WithAppointmentRecurrenceTemplate adds a RecurrenceTemplate to the Appointment.
+//
+// Deprecated: use AppointmentBuilder.AddRecurrenceTemplate instead; removed in v2.
 func WithAppointmentRecurrenceTemplate(v AppointmentRecurrenceTemplate) AppointmentOption {
 	return func(r *Appointment) {
 		r.RecurrenceTemplate = append(r.RecurrenceTemplate, v)

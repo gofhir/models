@@ -1516,9 +1516,23 @@ func (b *EncounterBuilder) SetPartOf(v Reference) *EncounterBuilder {
 // =============================================================================
 
 // EncounterOption is a functional option for configuring a Encounter.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// EncounterBuilder. Every WithEncounter* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type EncounterOption func(*Encounter)
 
 // NewEncounter creates a new Encounter with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewEncounterBuilder().SetId("x").Build()
+//
+// Deprecated: use NewEncounterBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewEncounter(opts ...EncounterOption) *Encounter {
 	r := &Encounter{ResourceType: "Encounter"}
 	for _, opt := range opts {
@@ -1528,6 +1542,8 @@ func NewEncounter(opts ...EncounterOption) *Encounter {
 }
 
 // WithEncounterId sets the Id field.
+//
+// Deprecated: use EncounterBuilder.SetId instead; removed in v2.
 func WithEncounterId(v string) EncounterOption {
 	return func(r *Encounter) {
 		r.Id = &v
@@ -1535,6 +1551,8 @@ func WithEncounterId(v string) EncounterOption {
 }
 
 // WithEncounterMeta sets the Meta field.
+//
+// Deprecated: use EncounterBuilder.SetMeta instead; removed in v2.
 func WithEncounterMeta(v Meta) EncounterOption {
 	return func(r *Encounter) {
 		r.Meta = &v
@@ -1542,6 +1560,8 @@ func WithEncounterMeta(v Meta) EncounterOption {
 }
 
 // WithEncounterImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use EncounterBuilder.SetImplicitRules instead; removed in v2.
 func WithEncounterImplicitRules(v string) EncounterOption {
 	return func(r *Encounter) {
 		r.ImplicitRules = &v
@@ -1549,6 +1569,8 @@ func WithEncounterImplicitRules(v string) EncounterOption {
 }
 
 // WithEncounterLanguage sets the Language field.
+//
+// Deprecated: use EncounterBuilder.SetLanguage instead; removed in v2.
 func WithEncounterLanguage(v string) EncounterOption {
 	return func(r *Encounter) {
 		r.Language = &v
@@ -1556,6 +1578,8 @@ func WithEncounterLanguage(v string) EncounterOption {
 }
 
 // WithEncounterText sets the Text field.
+//
+// Deprecated: use EncounterBuilder.SetText instead; removed in v2.
 func WithEncounterText(v Narrative) EncounterOption {
 	return func(r *Encounter) {
 		r.Text = &v
@@ -1563,6 +1587,8 @@ func WithEncounterText(v Narrative) EncounterOption {
 }
 
 // WithEncounterContained adds a Contained to the Encounter.
+//
+// Deprecated: use EncounterBuilder.AddContained instead; removed in v2.
 func WithEncounterContained(v Resource) EncounterOption {
 	return func(r *Encounter) {
 		r.Contained = append(r.Contained, v)
@@ -1570,6 +1596,8 @@ func WithEncounterContained(v Resource) EncounterOption {
 }
 
 // WithEncounterExtension adds a Extension to the Encounter.
+//
+// Deprecated: use EncounterBuilder.AddExtension instead; removed in v2.
 func WithEncounterExtension(v Extension) EncounterOption {
 	return func(r *Encounter) {
 		r.Extension = append(r.Extension, v)
@@ -1577,6 +1605,8 @@ func WithEncounterExtension(v Extension) EncounterOption {
 }
 
 // WithEncounterModifierExtension adds a ModifierExtension to the Encounter.
+//
+// Deprecated: use EncounterBuilder.AddModifierExtension instead; removed in v2.
 func WithEncounterModifierExtension(v Extension) EncounterOption {
 	return func(r *Encounter) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1584,6 +1614,8 @@ func WithEncounterModifierExtension(v Extension) EncounterOption {
 }
 
 // WithEncounterIdentifier adds a Identifier to the Encounter.
+//
+// Deprecated: use EncounterBuilder.AddIdentifier instead; removed in v2.
 func WithEncounterIdentifier(v Identifier) EncounterOption {
 	return func(r *Encounter) {
 		r.Identifier = append(r.Identifier, v)
@@ -1591,6 +1623,8 @@ func WithEncounterIdentifier(v Identifier) EncounterOption {
 }
 
 // WithEncounterStatus sets the Status field.
+//
+// Deprecated: use EncounterBuilder.SetStatus instead; removed in v2.
 func WithEncounterStatus(v EncounterStatus) EncounterOption {
 	return func(r *Encounter) {
 		r.Status = &v
@@ -1598,6 +1632,8 @@ func WithEncounterStatus(v EncounterStatus) EncounterOption {
 }
 
 // WithEncounterStatusHistory adds a StatusHistory to the Encounter.
+//
+// Deprecated: use EncounterBuilder.AddStatusHistory instead; removed in v2.
 func WithEncounterStatusHistory(v EncounterStatusHistory) EncounterOption {
 	return func(r *Encounter) {
 		r.StatusHistory = append(r.StatusHistory, v)
@@ -1605,6 +1641,8 @@ func WithEncounterStatusHistory(v EncounterStatusHistory) EncounterOption {
 }
 
 // WithEncounterClass sets the Class field.
+//
+// Deprecated: use EncounterBuilder.SetClass instead; removed in v2.
 func WithEncounterClass(v Coding) EncounterOption {
 	return func(r *Encounter) {
 		r.Class = v
@@ -1612,6 +1650,8 @@ func WithEncounterClass(v Coding) EncounterOption {
 }
 
 // WithEncounterClassHistory adds a ClassHistory to the Encounter.
+//
+// Deprecated: use EncounterBuilder.AddClassHistory instead; removed in v2.
 func WithEncounterClassHistory(v EncounterClassHistory) EncounterOption {
 	return func(r *Encounter) {
 		r.ClassHistory = append(r.ClassHistory, v)
@@ -1619,6 +1659,8 @@ func WithEncounterClassHistory(v EncounterClassHistory) EncounterOption {
 }
 
 // WithEncounterType adds a Type to the Encounter.
+//
+// Deprecated: use EncounterBuilder.AddType instead; removed in v2.
 func WithEncounterType(v CodeableConcept) EncounterOption {
 	return func(r *Encounter) {
 		r.Type = append(r.Type, v)
@@ -1626,6 +1668,8 @@ func WithEncounterType(v CodeableConcept) EncounterOption {
 }
 
 // WithEncounterServiceType sets the ServiceType field.
+//
+// Deprecated: use EncounterBuilder.SetServiceType instead; removed in v2.
 func WithEncounterServiceType(v CodeableConcept) EncounterOption {
 	return func(r *Encounter) {
 		r.ServiceType = &v
@@ -1633,6 +1677,8 @@ func WithEncounterServiceType(v CodeableConcept) EncounterOption {
 }
 
 // WithEncounterPriority sets the Priority field.
+//
+// Deprecated: use EncounterBuilder.SetPriority instead; removed in v2.
 func WithEncounterPriority(v CodeableConcept) EncounterOption {
 	return func(r *Encounter) {
 		r.Priority = &v
@@ -1640,6 +1686,8 @@ func WithEncounterPriority(v CodeableConcept) EncounterOption {
 }
 
 // WithEncounterSubject sets the Subject field.
+//
+// Deprecated: use EncounterBuilder.SetSubject instead; removed in v2.
 func WithEncounterSubject(v Reference) EncounterOption {
 	return func(r *Encounter) {
 		r.Subject = &v
@@ -1647,6 +1695,8 @@ func WithEncounterSubject(v Reference) EncounterOption {
 }
 
 // WithEncounterEpisodeOfCare adds a EpisodeOfCare to the Encounter.
+//
+// Deprecated: use EncounterBuilder.AddEpisodeOfCare instead; removed in v2.
 func WithEncounterEpisodeOfCare(v Reference) EncounterOption {
 	return func(r *Encounter) {
 		r.EpisodeOfCare = append(r.EpisodeOfCare, v)
@@ -1654,6 +1704,8 @@ func WithEncounterEpisodeOfCare(v Reference) EncounterOption {
 }
 
 // WithEncounterBasedOn adds a BasedOn to the Encounter.
+//
+// Deprecated: use EncounterBuilder.AddBasedOn instead; removed in v2.
 func WithEncounterBasedOn(v Reference) EncounterOption {
 	return func(r *Encounter) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -1661,6 +1713,8 @@ func WithEncounterBasedOn(v Reference) EncounterOption {
 }
 
 // WithEncounterParticipant adds a Participant to the Encounter.
+//
+// Deprecated: use EncounterBuilder.AddParticipant instead; removed in v2.
 func WithEncounterParticipant(v EncounterParticipant) EncounterOption {
 	return func(r *Encounter) {
 		r.Participant = append(r.Participant, v)
@@ -1668,6 +1722,8 @@ func WithEncounterParticipant(v EncounterParticipant) EncounterOption {
 }
 
 // WithEncounterAppointment adds a Appointment to the Encounter.
+//
+// Deprecated: use EncounterBuilder.AddAppointment instead; removed in v2.
 func WithEncounterAppointment(v Reference) EncounterOption {
 	return func(r *Encounter) {
 		r.Appointment = append(r.Appointment, v)
@@ -1675,6 +1731,8 @@ func WithEncounterAppointment(v Reference) EncounterOption {
 }
 
 // WithEncounterPeriod sets the Period field.
+//
+// Deprecated: use EncounterBuilder.SetPeriod instead; removed in v2.
 func WithEncounterPeriod(v Period) EncounterOption {
 	return func(r *Encounter) {
 		r.Period = &v
@@ -1682,6 +1740,8 @@ func WithEncounterPeriod(v Period) EncounterOption {
 }
 
 // WithEncounterLength sets the Length field.
+//
+// Deprecated: use EncounterBuilder.SetLength instead; removed in v2.
 func WithEncounterLength(v Duration) EncounterOption {
 	return func(r *Encounter) {
 		r.Length = &v
@@ -1689,6 +1749,8 @@ func WithEncounterLength(v Duration) EncounterOption {
 }
 
 // WithEncounterReasonCode adds a ReasonCode to the Encounter.
+//
+// Deprecated: use EncounterBuilder.AddReasonCode instead; removed in v2.
 func WithEncounterReasonCode(v CodeableConcept) EncounterOption {
 	return func(r *Encounter) {
 		r.ReasonCode = append(r.ReasonCode, v)
@@ -1696,6 +1758,8 @@ func WithEncounterReasonCode(v CodeableConcept) EncounterOption {
 }
 
 // WithEncounterReasonReference adds a ReasonReference to the Encounter.
+//
+// Deprecated: use EncounterBuilder.AddReasonReference instead; removed in v2.
 func WithEncounterReasonReference(v Reference) EncounterOption {
 	return func(r *Encounter) {
 		r.ReasonReference = append(r.ReasonReference, v)
@@ -1703,6 +1767,8 @@ func WithEncounterReasonReference(v Reference) EncounterOption {
 }
 
 // WithEncounterDiagnosis adds a Diagnosis to the Encounter.
+//
+// Deprecated: use EncounterBuilder.AddDiagnosis instead; removed in v2.
 func WithEncounterDiagnosis(v EncounterDiagnosis) EncounterOption {
 	return func(r *Encounter) {
 		r.Diagnosis = append(r.Diagnosis, v)
@@ -1710,6 +1776,8 @@ func WithEncounterDiagnosis(v EncounterDiagnosis) EncounterOption {
 }
 
 // WithEncounterAccount adds a Account to the Encounter.
+//
+// Deprecated: use EncounterBuilder.AddAccount instead; removed in v2.
 func WithEncounterAccount(v Reference) EncounterOption {
 	return func(r *Encounter) {
 		r.Account = append(r.Account, v)
@@ -1717,6 +1785,8 @@ func WithEncounterAccount(v Reference) EncounterOption {
 }
 
 // WithEncounterHospitalization sets the Hospitalization field.
+//
+// Deprecated: use EncounterBuilder.SetHospitalization instead; removed in v2.
 func WithEncounterHospitalization(v EncounterHospitalization) EncounterOption {
 	return func(r *Encounter) {
 		r.Hospitalization = &v
@@ -1724,6 +1794,8 @@ func WithEncounterHospitalization(v EncounterHospitalization) EncounterOption {
 }
 
 // WithEncounterLocation adds a Location to the Encounter.
+//
+// Deprecated: use EncounterBuilder.AddLocation instead; removed in v2.
 func WithEncounterLocation(v EncounterLocation) EncounterOption {
 	return func(r *Encounter) {
 		r.Location = append(r.Location, v)
@@ -1731,6 +1803,8 @@ func WithEncounterLocation(v EncounterLocation) EncounterOption {
 }
 
 // WithEncounterServiceProvider sets the ServiceProvider field.
+//
+// Deprecated: use EncounterBuilder.SetServiceProvider instead; removed in v2.
 func WithEncounterServiceProvider(v Reference) EncounterOption {
 	return func(r *Encounter) {
 		r.ServiceProvider = &v
@@ -1738,6 +1812,8 @@ func WithEncounterServiceProvider(v Reference) EncounterOption {
 }
 
 // WithEncounterPartOf sets the PartOf field.
+//
+// Deprecated: use EncounterBuilder.SetPartOf instead; removed in v2.
 func WithEncounterPartOf(v Reference) EncounterOption {
 	return func(r *Encounter) {
 		r.PartOf = &v

@@ -1767,9 +1767,23 @@ func (b *MeasureBuilder) AddSupplementalData(v MeasureSupplementalData) *Measure
 // =============================================================================
 
 // MeasureOption is a functional option for configuring a Measure.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// MeasureBuilder. Every WithMeasure* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type MeasureOption func(*Measure)
 
 // NewMeasure creates a new Measure with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewMeasureBuilder().SetId("x").Build()
+//
+// Deprecated: use NewMeasureBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewMeasure(opts ...MeasureOption) *Measure {
 	r := &Measure{ResourceType: "Measure"}
 	for _, opt := range opts {
@@ -1779,6 +1793,8 @@ func NewMeasure(opts ...MeasureOption) *Measure {
 }
 
 // WithMeasureId sets the Id field.
+//
+// Deprecated: use MeasureBuilder.SetId instead; removed in v2.
 func WithMeasureId(v string) MeasureOption {
 	return func(r *Measure) {
 		r.Id = &v
@@ -1786,6 +1802,8 @@ func WithMeasureId(v string) MeasureOption {
 }
 
 // WithMeasureMeta sets the Meta field.
+//
+// Deprecated: use MeasureBuilder.SetMeta instead; removed in v2.
 func WithMeasureMeta(v Meta) MeasureOption {
 	return func(r *Measure) {
 		r.Meta = &v
@@ -1793,6 +1811,8 @@ func WithMeasureMeta(v Meta) MeasureOption {
 }
 
 // WithMeasureImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use MeasureBuilder.SetImplicitRules instead; removed in v2.
 func WithMeasureImplicitRules(v string) MeasureOption {
 	return func(r *Measure) {
 		r.ImplicitRules = &v
@@ -1800,6 +1820,8 @@ func WithMeasureImplicitRules(v string) MeasureOption {
 }
 
 // WithMeasureLanguage sets the Language field.
+//
+// Deprecated: use MeasureBuilder.SetLanguage instead; removed in v2.
 func WithMeasureLanguage(v string) MeasureOption {
 	return func(r *Measure) {
 		r.Language = &v
@@ -1807,6 +1829,8 @@ func WithMeasureLanguage(v string) MeasureOption {
 }
 
 // WithMeasureText sets the Text field.
+//
+// Deprecated: use MeasureBuilder.SetText instead; removed in v2.
 func WithMeasureText(v Narrative) MeasureOption {
 	return func(r *Measure) {
 		r.Text = &v
@@ -1814,6 +1838,8 @@ func WithMeasureText(v Narrative) MeasureOption {
 }
 
 // WithMeasureContained adds a Contained to the Measure.
+//
+// Deprecated: use MeasureBuilder.AddContained instead; removed in v2.
 func WithMeasureContained(v Resource) MeasureOption {
 	return func(r *Measure) {
 		r.Contained = append(r.Contained, v)
@@ -1821,6 +1847,8 @@ func WithMeasureContained(v Resource) MeasureOption {
 }
 
 // WithMeasureExtension adds a Extension to the Measure.
+//
+// Deprecated: use MeasureBuilder.AddExtension instead; removed in v2.
 func WithMeasureExtension(v Extension) MeasureOption {
 	return func(r *Measure) {
 		r.Extension = append(r.Extension, v)
@@ -1828,6 +1856,8 @@ func WithMeasureExtension(v Extension) MeasureOption {
 }
 
 // WithMeasureModifierExtension adds a ModifierExtension to the Measure.
+//
+// Deprecated: use MeasureBuilder.AddModifierExtension instead; removed in v2.
 func WithMeasureModifierExtension(v Extension) MeasureOption {
 	return func(r *Measure) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1835,6 +1865,8 @@ func WithMeasureModifierExtension(v Extension) MeasureOption {
 }
 
 // WithMeasureUrl sets the Url field.
+//
+// Deprecated: use MeasureBuilder.SetUrl instead; removed in v2.
 func WithMeasureUrl(v string) MeasureOption {
 	return func(r *Measure) {
 		r.Url = &v
@@ -1842,6 +1874,8 @@ func WithMeasureUrl(v string) MeasureOption {
 }
 
 // WithMeasureIdentifier adds a Identifier to the Measure.
+//
+// Deprecated: use MeasureBuilder.AddIdentifier instead; removed in v2.
 func WithMeasureIdentifier(v Identifier) MeasureOption {
 	return func(r *Measure) {
 		r.Identifier = append(r.Identifier, v)
@@ -1849,6 +1883,8 @@ func WithMeasureIdentifier(v Identifier) MeasureOption {
 }
 
 // WithMeasureVersion sets the Version field.
+//
+// Deprecated: use MeasureBuilder.SetVersion instead; removed in v2.
 func WithMeasureVersion(v string) MeasureOption {
 	return func(r *Measure) {
 		r.Version = &v
@@ -1856,6 +1892,8 @@ func WithMeasureVersion(v string) MeasureOption {
 }
 
 // WithMeasureName sets the Name field.
+//
+// Deprecated: use MeasureBuilder.SetName instead; removed in v2.
 func WithMeasureName(v string) MeasureOption {
 	return func(r *Measure) {
 		r.Name = &v
@@ -1863,6 +1901,8 @@ func WithMeasureName(v string) MeasureOption {
 }
 
 // WithMeasureTitle sets the Title field.
+//
+// Deprecated: use MeasureBuilder.SetTitle instead; removed in v2.
 func WithMeasureTitle(v string) MeasureOption {
 	return func(r *Measure) {
 		r.Title = &v
@@ -1870,6 +1910,8 @@ func WithMeasureTitle(v string) MeasureOption {
 }
 
 // WithMeasureSubtitle sets the Subtitle field.
+//
+// Deprecated: use MeasureBuilder.SetSubtitle instead; removed in v2.
 func WithMeasureSubtitle(v string) MeasureOption {
 	return func(r *Measure) {
 		r.Subtitle = &v
@@ -1877,6 +1919,8 @@ func WithMeasureSubtitle(v string) MeasureOption {
 }
 
 // WithMeasureStatus sets the Status field.
+//
+// Deprecated: use MeasureBuilder.SetStatus instead; removed in v2.
 func WithMeasureStatus(v PublicationStatus) MeasureOption {
 	return func(r *Measure) {
 		r.Status = &v
@@ -1884,6 +1928,8 @@ func WithMeasureStatus(v PublicationStatus) MeasureOption {
 }
 
 // WithMeasureExperimental sets the Experimental field.
+//
+// Deprecated: use MeasureBuilder.SetExperimental instead; removed in v2.
 func WithMeasureExperimental(v bool) MeasureOption {
 	return func(r *Measure) {
 		r.Experimental = &v
@@ -1891,6 +1937,8 @@ func WithMeasureExperimental(v bool) MeasureOption {
 }
 
 // WithMeasureSubjectCodeableConcept sets the SubjectCodeableConcept field.
+//
+// Deprecated: use MeasureBuilder.SetSubjectCodeableConcept instead; removed in v2.
 func WithMeasureSubjectCodeableConcept(v CodeableConcept) MeasureOption {
 	return func(r *Measure) {
 		r.SubjectCodeableConcept = &v
@@ -1898,6 +1946,8 @@ func WithMeasureSubjectCodeableConcept(v CodeableConcept) MeasureOption {
 }
 
 // WithMeasureSubjectReference sets the SubjectReference field.
+//
+// Deprecated: use MeasureBuilder.SetSubjectReference instead; removed in v2.
 func WithMeasureSubjectReference(v Reference) MeasureOption {
 	return func(r *Measure) {
 		r.SubjectReference = &v
@@ -1905,6 +1955,8 @@ func WithMeasureSubjectReference(v Reference) MeasureOption {
 }
 
 // WithMeasureDate sets the Date field.
+//
+// Deprecated: use MeasureBuilder.SetDate instead; removed in v2.
 func WithMeasureDate(v string) MeasureOption {
 	return func(r *Measure) {
 		r.Date = &v
@@ -1912,6 +1964,8 @@ func WithMeasureDate(v string) MeasureOption {
 }
 
 // WithMeasurePublisher sets the Publisher field.
+//
+// Deprecated: use MeasureBuilder.SetPublisher instead; removed in v2.
 func WithMeasurePublisher(v string) MeasureOption {
 	return func(r *Measure) {
 		r.Publisher = &v
@@ -1919,6 +1973,8 @@ func WithMeasurePublisher(v string) MeasureOption {
 }
 
 // WithMeasureContact adds a Contact to the Measure.
+//
+// Deprecated: use MeasureBuilder.AddContact instead; removed in v2.
 func WithMeasureContact(v ContactDetail) MeasureOption {
 	return func(r *Measure) {
 		r.Contact = append(r.Contact, v)
@@ -1926,6 +1982,8 @@ func WithMeasureContact(v ContactDetail) MeasureOption {
 }
 
 // WithMeasureDescription sets the Description field.
+//
+// Deprecated: use MeasureBuilder.SetDescription instead; removed in v2.
 func WithMeasureDescription(v string) MeasureOption {
 	return func(r *Measure) {
 		r.Description = &v
@@ -1933,6 +1991,8 @@ func WithMeasureDescription(v string) MeasureOption {
 }
 
 // WithMeasureUseContext adds a UseContext to the Measure.
+//
+// Deprecated: use MeasureBuilder.AddUseContext instead; removed in v2.
 func WithMeasureUseContext(v UsageContext) MeasureOption {
 	return func(r *Measure) {
 		r.UseContext = append(r.UseContext, v)
@@ -1940,6 +2000,8 @@ func WithMeasureUseContext(v UsageContext) MeasureOption {
 }
 
 // WithMeasureJurisdiction adds a Jurisdiction to the Measure.
+//
+// Deprecated: use MeasureBuilder.AddJurisdiction instead; removed in v2.
 func WithMeasureJurisdiction(v CodeableConcept) MeasureOption {
 	return func(r *Measure) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1947,6 +2009,8 @@ func WithMeasureJurisdiction(v CodeableConcept) MeasureOption {
 }
 
 // WithMeasurePurpose sets the Purpose field.
+//
+// Deprecated: use MeasureBuilder.SetPurpose instead; removed in v2.
 func WithMeasurePurpose(v string) MeasureOption {
 	return func(r *Measure) {
 		r.Purpose = &v
@@ -1954,6 +2018,8 @@ func WithMeasurePurpose(v string) MeasureOption {
 }
 
 // WithMeasureUsage sets the Usage field.
+//
+// Deprecated: use MeasureBuilder.SetUsage instead; removed in v2.
 func WithMeasureUsage(v string) MeasureOption {
 	return func(r *Measure) {
 		r.Usage = &v
@@ -1961,6 +2027,8 @@ func WithMeasureUsage(v string) MeasureOption {
 }
 
 // WithMeasureCopyright sets the Copyright field.
+//
+// Deprecated: use MeasureBuilder.SetCopyright instead; removed in v2.
 func WithMeasureCopyright(v string) MeasureOption {
 	return func(r *Measure) {
 		r.Copyright = &v
@@ -1968,6 +2036,8 @@ func WithMeasureCopyright(v string) MeasureOption {
 }
 
 // WithMeasureApprovalDate sets the ApprovalDate field.
+//
+// Deprecated: use MeasureBuilder.SetApprovalDate instead; removed in v2.
 func WithMeasureApprovalDate(v string) MeasureOption {
 	return func(r *Measure) {
 		r.ApprovalDate = &v
@@ -1975,6 +2045,8 @@ func WithMeasureApprovalDate(v string) MeasureOption {
 }
 
 // WithMeasureLastReviewDate sets the LastReviewDate field.
+//
+// Deprecated: use MeasureBuilder.SetLastReviewDate instead; removed in v2.
 func WithMeasureLastReviewDate(v string) MeasureOption {
 	return func(r *Measure) {
 		r.LastReviewDate = &v
@@ -1982,6 +2054,8 @@ func WithMeasureLastReviewDate(v string) MeasureOption {
 }
 
 // WithMeasureEffectivePeriod sets the EffectivePeriod field.
+//
+// Deprecated: use MeasureBuilder.SetEffectivePeriod instead; removed in v2.
 func WithMeasureEffectivePeriod(v Period) MeasureOption {
 	return func(r *Measure) {
 		r.EffectivePeriod = &v
@@ -1989,6 +2063,8 @@ func WithMeasureEffectivePeriod(v Period) MeasureOption {
 }
 
 // WithMeasureTopic adds a Topic to the Measure.
+//
+// Deprecated: use MeasureBuilder.AddTopic instead; removed in v2.
 func WithMeasureTopic(v CodeableConcept) MeasureOption {
 	return func(r *Measure) {
 		r.Topic = append(r.Topic, v)
@@ -1996,6 +2072,8 @@ func WithMeasureTopic(v CodeableConcept) MeasureOption {
 }
 
 // WithMeasureAuthor adds a Author to the Measure.
+//
+// Deprecated: use MeasureBuilder.AddAuthor instead; removed in v2.
 func WithMeasureAuthor(v ContactDetail) MeasureOption {
 	return func(r *Measure) {
 		r.Author = append(r.Author, v)
@@ -2003,6 +2081,8 @@ func WithMeasureAuthor(v ContactDetail) MeasureOption {
 }
 
 // WithMeasureEditor adds a Editor to the Measure.
+//
+// Deprecated: use MeasureBuilder.AddEditor instead; removed in v2.
 func WithMeasureEditor(v ContactDetail) MeasureOption {
 	return func(r *Measure) {
 		r.Editor = append(r.Editor, v)
@@ -2010,6 +2090,8 @@ func WithMeasureEditor(v ContactDetail) MeasureOption {
 }
 
 // WithMeasureReviewer adds a Reviewer to the Measure.
+//
+// Deprecated: use MeasureBuilder.AddReviewer instead; removed in v2.
 func WithMeasureReviewer(v ContactDetail) MeasureOption {
 	return func(r *Measure) {
 		r.Reviewer = append(r.Reviewer, v)
@@ -2017,6 +2099,8 @@ func WithMeasureReviewer(v ContactDetail) MeasureOption {
 }
 
 // WithMeasureEndorser adds a Endorser to the Measure.
+//
+// Deprecated: use MeasureBuilder.AddEndorser instead; removed in v2.
 func WithMeasureEndorser(v ContactDetail) MeasureOption {
 	return func(r *Measure) {
 		r.Endorser = append(r.Endorser, v)
@@ -2024,6 +2108,8 @@ func WithMeasureEndorser(v ContactDetail) MeasureOption {
 }
 
 // WithMeasureRelatedArtifact adds a RelatedArtifact to the Measure.
+//
+// Deprecated: use MeasureBuilder.AddRelatedArtifact instead; removed in v2.
 func WithMeasureRelatedArtifact(v RelatedArtifact) MeasureOption {
 	return func(r *Measure) {
 		r.RelatedArtifact = append(r.RelatedArtifact, v)
@@ -2031,6 +2117,8 @@ func WithMeasureRelatedArtifact(v RelatedArtifact) MeasureOption {
 }
 
 // WithMeasureLibrary adds a Library to the Measure.
+//
+// Deprecated: use MeasureBuilder.AddLibrary instead; removed in v2.
 func WithMeasureLibrary(v string) MeasureOption {
 	return func(r *Measure) {
 		r.Library = append(r.Library, v)
@@ -2038,6 +2126,8 @@ func WithMeasureLibrary(v string) MeasureOption {
 }
 
 // WithMeasureDisclaimer sets the Disclaimer field.
+//
+// Deprecated: use MeasureBuilder.SetDisclaimer instead; removed in v2.
 func WithMeasureDisclaimer(v string) MeasureOption {
 	return func(r *Measure) {
 		r.Disclaimer = &v
@@ -2045,6 +2135,8 @@ func WithMeasureDisclaimer(v string) MeasureOption {
 }
 
 // WithMeasureScoring sets the Scoring field.
+//
+// Deprecated: use MeasureBuilder.SetScoring instead; removed in v2.
 func WithMeasureScoring(v CodeableConcept) MeasureOption {
 	return func(r *Measure) {
 		r.Scoring = &v
@@ -2052,6 +2144,8 @@ func WithMeasureScoring(v CodeableConcept) MeasureOption {
 }
 
 // WithMeasureCompositeScoring sets the CompositeScoring field.
+//
+// Deprecated: use MeasureBuilder.SetCompositeScoring instead; removed in v2.
 func WithMeasureCompositeScoring(v CodeableConcept) MeasureOption {
 	return func(r *Measure) {
 		r.CompositeScoring = &v
@@ -2059,6 +2153,8 @@ func WithMeasureCompositeScoring(v CodeableConcept) MeasureOption {
 }
 
 // WithMeasureType adds a Type to the Measure.
+//
+// Deprecated: use MeasureBuilder.AddType instead; removed in v2.
 func WithMeasureType(v CodeableConcept) MeasureOption {
 	return func(r *Measure) {
 		r.Type = append(r.Type, v)
@@ -2066,6 +2162,8 @@ func WithMeasureType(v CodeableConcept) MeasureOption {
 }
 
 // WithMeasureRiskAdjustment sets the RiskAdjustment field.
+//
+// Deprecated: use MeasureBuilder.SetRiskAdjustment instead; removed in v2.
 func WithMeasureRiskAdjustment(v string) MeasureOption {
 	return func(r *Measure) {
 		r.RiskAdjustment = &v
@@ -2073,6 +2171,8 @@ func WithMeasureRiskAdjustment(v string) MeasureOption {
 }
 
 // WithMeasureRateAggregation sets the RateAggregation field.
+//
+// Deprecated: use MeasureBuilder.SetRateAggregation instead; removed in v2.
 func WithMeasureRateAggregation(v string) MeasureOption {
 	return func(r *Measure) {
 		r.RateAggregation = &v
@@ -2080,6 +2180,8 @@ func WithMeasureRateAggregation(v string) MeasureOption {
 }
 
 // WithMeasureRationale sets the Rationale field.
+//
+// Deprecated: use MeasureBuilder.SetRationale instead; removed in v2.
 func WithMeasureRationale(v string) MeasureOption {
 	return func(r *Measure) {
 		r.Rationale = &v
@@ -2087,6 +2189,8 @@ func WithMeasureRationale(v string) MeasureOption {
 }
 
 // WithMeasureClinicalRecommendationStatement sets the ClinicalRecommendationStatement field.
+//
+// Deprecated: use MeasureBuilder.SetClinicalRecommendationStatement instead; removed in v2.
 func WithMeasureClinicalRecommendationStatement(v string) MeasureOption {
 	return func(r *Measure) {
 		r.ClinicalRecommendationStatement = &v
@@ -2094,6 +2198,8 @@ func WithMeasureClinicalRecommendationStatement(v string) MeasureOption {
 }
 
 // WithMeasureImprovementNotation sets the ImprovementNotation field.
+//
+// Deprecated: use MeasureBuilder.SetImprovementNotation instead; removed in v2.
 func WithMeasureImprovementNotation(v CodeableConcept) MeasureOption {
 	return func(r *Measure) {
 		r.ImprovementNotation = &v
@@ -2101,6 +2207,8 @@ func WithMeasureImprovementNotation(v CodeableConcept) MeasureOption {
 }
 
 // WithMeasureDefinition adds a Definition to the Measure.
+//
+// Deprecated: use MeasureBuilder.AddDefinition instead; removed in v2.
 func WithMeasureDefinition(v string) MeasureOption {
 	return func(r *Measure) {
 		r.Definition = append(r.Definition, v)
@@ -2108,6 +2216,8 @@ func WithMeasureDefinition(v string) MeasureOption {
 }
 
 // WithMeasureGuidance sets the Guidance field.
+//
+// Deprecated: use MeasureBuilder.SetGuidance instead; removed in v2.
 func WithMeasureGuidance(v string) MeasureOption {
 	return func(r *Measure) {
 		r.Guidance = &v
@@ -2115,6 +2225,8 @@ func WithMeasureGuidance(v string) MeasureOption {
 }
 
 // WithMeasureGroup adds a Group to the Measure.
+//
+// Deprecated: use MeasureBuilder.AddGroup instead; removed in v2.
 func WithMeasureGroup(v MeasureGroup) MeasureOption {
 	return func(r *Measure) {
 		r.Group = append(r.Group, v)
@@ -2122,6 +2234,8 @@ func WithMeasureGroup(v MeasureGroup) MeasureOption {
 }
 
 // WithMeasureSupplementalData adds a SupplementalData to the Measure.
+//
+// Deprecated: use MeasureBuilder.AddSupplementalData instead; removed in v2.
 func WithMeasureSupplementalData(v MeasureSupplementalData) MeasureOption {
 	return func(r *Measure) {
 		r.SupplementalData = append(r.SupplementalData, v)

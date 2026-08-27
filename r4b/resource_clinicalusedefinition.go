@@ -1437,9 +1437,23 @@ func (b *ClinicalUseDefinitionBuilder) SetWarning(v ClinicalUseDefinitionWarning
 // =============================================================================
 
 // ClinicalUseDefinitionOption is a functional option for configuring a ClinicalUseDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ClinicalUseDefinitionBuilder. Every WithClinicalUseDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ClinicalUseDefinitionOption func(*ClinicalUseDefinition)
 
 // NewClinicalUseDefinition creates a new ClinicalUseDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewClinicalUseDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewClinicalUseDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewClinicalUseDefinition(opts ...ClinicalUseDefinitionOption) *ClinicalUseDefinition {
 	r := &ClinicalUseDefinition{ResourceType: "ClinicalUseDefinition"}
 	for _, opt := range opts {
@@ -1449,6 +1463,8 @@ func NewClinicalUseDefinition(opts ...ClinicalUseDefinitionOption) *ClinicalUseD
 }
 
 // WithClinicalUseDefinitionId sets the Id field.
+//
+// Deprecated: use ClinicalUseDefinitionBuilder.SetId instead; removed in v2.
 func WithClinicalUseDefinitionId(v string) ClinicalUseDefinitionOption {
 	return func(r *ClinicalUseDefinition) {
 		r.Id = &v
@@ -1456,6 +1472,8 @@ func WithClinicalUseDefinitionId(v string) ClinicalUseDefinitionOption {
 }
 
 // WithClinicalUseDefinitionMeta sets the Meta field.
+//
+// Deprecated: use ClinicalUseDefinitionBuilder.SetMeta instead; removed in v2.
 func WithClinicalUseDefinitionMeta(v Meta) ClinicalUseDefinitionOption {
 	return func(r *ClinicalUseDefinition) {
 		r.Meta = &v
@@ -1463,6 +1481,8 @@ func WithClinicalUseDefinitionMeta(v Meta) ClinicalUseDefinitionOption {
 }
 
 // WithClinicalUseDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ClinicalUseDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithClinicalUseDefinitionImplicitRules(v string) ClinicalUseDefinitionOption {
 	return func(r *ClinicalUseDefinition) {
 		r.ImplicitRules = &v
@@ -1470,6 +1490,8 @@ func WithClinicalUseDefinitionImplicitRules(v string) ClinicalUseDefinitionOptio
 }
 
 // WithClinicalUseDefinitionLanguage sets the Language field.
+//
+// Deprecated: use ClinicalUseDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithClinicalUseDefinitionLanguage(v string) ClinicalUseDefinitionOption {
 	return func(r *ClinicalUseDefinition) {
 		r.Language = &v
@@ -1477,6 +1499,8 @@ func WithClinicalUseDefinitionLanguage(v string) ClinicalUseDefinitionOption {
 }
 
 // WithClinicalUseDefinitionText sets the Text field.
+//
+// Deprecated: use ClinicalUseDefinitionBuilder.SetText instead; removed in v2.
 func WithClinicalUseDefinitionText(v Narrative) ClinicalUseDefinitionOption {
 	return func(r *ClinicalUseDefinition) {
 		r.Text = &v
@@ -1484,6 +1508,8 @@ func WithClinicalUseDefinitionText(v Narrative) ClinicalUseDefinitionOption {
 }
 
 // WithClinicalUseDefinitionContained adds a Contained to the ClinicalUseDefinition.
+//
+// Deprecated: use ClinicalUseDefinitionBuilder.AddContained instead; removed in v2.
 func WithClinicalUseDefinitionContained(v Resource) ClinicalUseDefinitionOption {
 	return func(r *ClinicalUseDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -1491,6 +1517,8 @@ func WithClinicalUseDefinitionContained(v Resource) ClinicalUseDefinitionOption 
 }
 
 // WithClinicalUseDefinitionExtension adds a Extension to the ClinicalUseDefinition.
+//
+// Deprecated: use ClinicalUseDefinitionBuilder.AddExtension instead; removed in v2.
 func WithClinicalUseDefinitionExtension(v Extension) ClinicalUseDefinitionOption {
 	return func(r *ClinicalUseDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -1498,6 +1526,8 @@ func WithClinicalUseDefinitionExtension(v Extension) ClinicalUseDefinitionOption
 }
 
 // WithClinicalUseDefinitionModifierExtension adds a ModifierExtension to the ClinicalUseDefinition.
+//
+// Deprecated: use ClinicalUseDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithClinicalUseDefinitionModifierExtension(v Extension) ClinicalUseDefinitionOption {
 	return func(r *ClinicalUseDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1505,6 +1535,8 @@ func WithClinicalUseDefinitionModifierExtension(v Extension) ClinicalUseDefiniti
 }
 
 // WithClinicalUseDefinitionIdentifier adds a Identifier to the ClinicalUseDefinition.
+//
+// Deprecated: use ClinicalUseDefinitionBuilder.AddIdentifier instead; removed in v2.
 func WithClinicalUseDefinitionIdentifier(v Identifier) ClinicalUseDefinitionOption {
 	return func(r *ClinicalUseDefinition) {
 		r.Identifier = append(r.Identifier, v)
@@ -1512,6 +1544,8 @@ func WithClinicalUseDefinitionIdentifier(v Identifier) ClinicalUseDefinitionOpti
 }
 
 // WithClinicalUseDefinitionType sets the Type field.
+//
+// Deprecated: use ClinicalUseDefinitionBuilder.SetType instead; removed in v2.
 func WithClinicalUseDefinitionType(v ClinicalUseDefinitionType) ClinicalUseDefinitionOption {
 	return func(r *ClinicalUseDefinition) {
 		r.Type = &v
@@ -1519,6 +1553,8 @@ func WithClinicalUseDefinitionType(v ClinicalUseDefinitionType) ClinicalUseDefin
 }
 
 // WithClinicalUseDefinitionCategory adds a Category to the ClinicalUseDefinition.
+//
+// Deprecated: use ClinicalUseDefinitionBuilder.AddCategory instead; removed in v2.
 func WithClinicalUseDefinitionCategory(v CodeableConcept) ClinicalUseDefinitionOption {
 	return func(r *ClinicalUseDefinition) {
 		r.Category = append(r.Category, v)
@@ -1526,6 +1562,8 @@ func WithClinicalUseDefinitionCategory(v CodeableConcept) ClinicalUseDefinitionO
 }
 
 // WithClinicalUseDefinitionSubject adds a Subject to the ClinicalUseDefinition.
+//
+// Deprecated: use ClinicalUseDefinitionBuilder.AddSubject instead; removed in v2.
 func WithClinicalUseDefinitionSubject(v Reference) ClinicalUseDefinitionOption {
 	return func(r *ClinicalUseDefinition) {
 		r.Subject = append(r.Subject, v)
@@ -1533,6 +1571,8 @@ func WithClinicalUseDefinitionSubject(v Reference) ClinicalUseDefinitionOption {
 }
 
 // WithClinicalUseDefinitionStatus sets the Status field.
+//
+// Deprecated: use ClinicalUseDefinitionBuilder.SetStatus instead; removed in v2.
 func WithClinicalUseDefinitionStatus(v CodeableConcept) ClinicalUseDefinitionOption {
 	return func(r *ClinicalUseDefinition) {
 		r.Status = &v
@@ -1540,6 +1580,8 @@ func WithClinicalUseDefinitionStatus(v CodeableConcept) ClinicalUseDefinitionOpt
 }
 
 // WithClinicalUseDefinitionContraindication sets the Contraindication field.
+//
+// Deprecated: use ClinicalUseDefinitionBuilder.SetContraindication instead; removed in v2.
 func WithClinicalUseDefinitionContraindication(v ClinicalUseDefinitionContraindication) ClinicalUseDefinitionOption {
 	return func(r *ClinicalUseDefinition) {
 		r.Contraindication = &v
@@ -1547,6 +1589,8 @@ func WithClinicalUseDefinitionContraindication(v ClinicalUseDefinitionContraindi
 }
 
 // WithClinicalUseDefinitionIndication sets the Indication field.
+//
+// Deprecated: use ClinicalUseDefinitionBuilder.SetIndication instead; removed in v2.
 func WithClinicalUseDefinitionIndication(v ClinicalUseDefinitionIndication) ClinicalUseDefinitionOption {
 	return func(r *ClinicalUseDefinition) {
 		r.Indication = &v
@@ -1554,6 +1598,8 @@ func WithClinicalUseDefinitionIndication(v ClinicalUseDefinitionIndication) Clin
 }
 
 // WithClinicalUseDefinitionInteraction sets the Interaction field.
+//
+// Deprecated: use ClinicalUseDefinitionBuilder.SetInteraction instead; removed in v2.
 func WithClinicalUseDefinitionInteraction(v ClinicalUseDefinitionInteraction) ClinicalUseDefinitionOption {
 	return func(r *ClinicalUseDefinition) {
 		r.Interaction = &v
@@ -1561,6 +1607,8 @@ func WithClinicalUseDefinitionInteraction(v ClinicalUseDefinitionInteraction) Cl
 }
 
 // WithClinicalUseDefinitionPopulation adds a Population to the ClinicalUseDefinition.
+//
+// Deprecated: use ClinicalUseDefinitionBuilder.AddPopulation instead; removed in v2.
 func WithClinicalUseDefinitionPopulation(v Reference) ClinicalUseDefinitionOption {
 	return func(r *ClinicalUseDefinition) {
 		r.Population = append(r.Population, v)
@@ -1568,6 +1616,8 @@ func WithClinicalUseDefinitionPopulation(v Reference) ClinicalUseDefinitionOptio
 }
 
 // WithClinicalUseDefinitionUndesirableEffect sets the UndesirableEffect field.
+//
+// Deprecated: use ClinicalUseDefinitionBuilder.SetUndesirableEffect instead; removed in v2.
 func WithClinicalUseDefinitionUndesirableEffect(v ClinicalUseDefinitionUndesirableEffect) ClinicalUseDefinitionOption {
 	return func(r *ClinicalUseDefinition) {
 		r.UndesirableEffect = &v
@@ -1575,6 +1625,8 @@ func WithClinicalUseDefinitionUndesirableEffect(v ClinicalUseDefinitionUndesirab
 }
 
 // WithClinicalUseDefinitionWarning sets the Warning field.
+//
+// Deprecated: use ClinicalUseDefinitionBuilder.SetWarning instead; removed in v2.
 func WithClinicalUseDefinitionWarning(v ClinicalUseDefinitionWarning) ClinicalUseDefinitionOption {
 	return func(r *ClinicalUseDefinition) {
 		r.Warning = &v

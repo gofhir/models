@@ -1408,9 +1408,23 @@ func (b *ImmunizationBuilder) AddProtocolApplied(v ImmunizationProtocolApplied) 
 // =============================================================================
 
 // ImmunizationOption is a functional option for configuring a Immunization.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ImmunizationBuilder. Every WithImmunization* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ImmunizationOption func(*Immunization)
 
 // NewImmunization creates a new Immunization with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewImmunizationBuilder().SetId("x").Build()
+//
+// Deprecated: use NewImmunizationBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewImmunization(opts ...ImmunizationOption) *Immunization {
 	r := &Immunization{ResourceType: "Immunization"}
 	for _, opt := range opts {
@@ -1420,6 +1434,8 @@ func NewImmunization(opts ...ImmunizationOption) *Immunization {
 }
 
 // WithImmunizationId sets the Id field.
+//
+// Deprecated: use ImmunizationBuilder.SetId instead; removed in v2.
 func WithImmunizationId(v string) ImmunizationOption {
 	return func(r *Immunization) {
 		r.Id = &v
@@ -1427,6 +1443,8 @@ func WithImmunizationId(v string) ImmunizationOption {
 }
 
 // WithImmunizationMeta sets the Meta field.
+//
+// Deprecated: use ImmunizationBuilder.SetMeta instead; removed in v2.
 func WithImmunizationMeta(v Meta) ImmunizationOption {
 	return func(r *Immunization) {
 		r.Meta = &v
@@ -1434,6 +1452,8 @@ func WithImmunizationMeta(v Meta) ImmunizationOption {
 }
 
 // WithImmunizationImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ImmunizationBuilder.SetImplicitRules instead; removed in v2.
 func WithImmunizationImplicitRules(v string) ImmunizationOption {
 	return func(r *Immunization) {
 		r.ImplicitRules = &v
@@ -1441,6 +1461,8 @@ func WithImmunizationImplicitRules(v string) ImmunizationOption {
 }
 
 // WithImmunizationLanguage sets the Language field.
+//
+// Deprecated: use ImmunizationBuilder.SetLanguage instead; removed in v2.
 func WithImmunizationLanguage(v string) ImmunizationOption {
 	return func(r *Immunization) {
 		r.Language = &v
@@ -1448,6 +1470,8 @@ func WithImmunizationLanguage(v string) ImmunizationOption {
 }
 
 // WithImmunizationText sets the Text field.
+//
+// Deprecated: use ImmunizationBuilder.SetText instead; removed in v2.
 func WithImmunizationText(v Narrative) ImmunizationOption {
 	return func(r *Immunization) {
 		r.Text = &v
@@ -1455,6 +1479,8 @@ func WithImmunizationText(v Narrative) ImmunizationOption {
 }
 
 // WithImmunizationContained adds a Contained to the Immunization.
+//
+// Deprecated: use ImmunizationBuilder.AddContained instead; removed in v2.
 func WithImmunizationContained(v Resource) ImmunizationOption {
 	return func(r *Immunization) {
 		r.Contained = append(r.Contained, v)
@@ -1462,6 +1488,8 @@ func WithImmunizationContained(v Resource) ImmunizationOption {
 }
 
 // WithImmunizationExtension adds a Extension to the Immunization.
+//
+// Deprecated: use ImmunizationBuilder.AddExtension instead; removed in v2.
 func WithImmunizationExtension(v Extension) ImmunizationOption {
 	return func(r *Immunization) {
 		r.Extension = append(r.Extension, v)
@@ -1469,6 +1497,8 @@ func WithImmunizationExtension(v Extension) ImmunizationOption {
 }
 
 // WithImmunizationModifierExtension adds a ModifierExtension to the Immunization.
+//
+// Deprecated: use ImmunizationBuilder.AddModifierExtension instead; removed in v2.
 func WithImmunizationModifierExtension(v Extension) ImmunizationOption {
 	return func(r *Immunization) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1476,6 +1506,8 @@ func WithImmunizationModifierExtension(v Extension) ImmunizationOption {
 }
 
 // WithImmunizationIdentifier adds a Identifier to the Immunization.
+//
+// Deprecated: use ImmunizationBuilder.AddIdentifier instead; removed in v2.
 func WithImmunizationIdentifier(v Identifier) ImmunizationOption {
 	return func(r *Immunization) {
 		r.Identifier = append(r.Identifier, v)
@@ -1483,6 +1515,8 @@ func WithImmunizationIdentifier(v Identifier) ImmunizationOption {
 }
 
 // WithImmunizationStatus sets the Status field.
+//
+// Deprecated: use ImmunizationBuilder.SetStatus instead; removed in v2.
 func WithImmunizationStatus(v ImmunizationStatusCodes) ImmunizationOption {
 	return func(r *Immunization) {
 		r.Status = &v
@@ -1490,6 +1524,8 @@ func WithImmunizationStatus(v ImmunizationStatusCodes) ImmunizationOption {
 }
 
 // WithImmunizationStatusReason sets the StatusReason field.
+//
+// Deprecated: use ImmunizationBuilder.SetStatusReason instead; removed in v2.
 func WithImmunizationStatusReason(v CodeableConcept) ImmunizationOption {
 	return func(r *Immunization) {
 		r.StatusReason = &v
@@ -1497,6 +1533,8 @@ func WithImmunizationStatusReason(v CodeableConcept) ImmunizationOption {
 }
 
 // WithImmunizationVaccineCode sets the VaccineCode field.
+//
+// Deprecated: use ImmunizationBuilder.SetVaccineCode instead; removed in v2.
 func WithImmunizationVaccineCode(v CodeableConcept) ImmunizationOption {
 	return func(r *Immunization) {
 		r.VaccineCode = v
@@ -1504,6 +1542,8 @@ func WithImmunizationVaccineCode(v CodeableConcept) ImmunizationOption {
 }
 
 // WithImmunizationPatient sets the Patient field.
+//
+// Deprecated: use ImmunizationBuilder.SetPatient instead; removed in v2.
 func WithImmunizationPatient(v Reference) ImmunizationOption {
 	return func(r *Immunization) {
 		r.Patient = v
@@ -1511,6 +1551,8 @@ func WithImmunizationPatient(v Reference) ImmunizationOption {
 }
 
 // WithImmunizationEncounter sets the Encounter field.
+//
+// Deprecated: use ImmunizationBuilder.SetEncounter instead; removed in v2.
 func WithImmunizationEncounter(v Reference) ImmunizationOption {
 	return func(r *Immunization) {
 		r.Encounter = &v
@@ -1518,6 +1560,8 @@ func WithImmunizationEncounter(v Reference) ImmunizationOption {
 }
 
 // WithImmunizationOccurrenceDateTime sets the OccurrenceDateTime field.
+//
+// Deprecated: use ImmunizationBuilder.SetOccurrenceDateTime instead; removed in v2.
 func WithImmunizationOccurrenceDateTime(v string) ImmunizationOption {
 	return func(r *Immunization) {
 		r.OccurrenceDateTime = &v
@@ -1525,6 +1569,8 @@ func WithImmunizationOccurrenceDateTime(v string) ImmunizationOption {
 }
 
 // WithImmunizationOccurrenceDateTimeExt sets the OccurrenceDateTimeExt field.
+//
+// Deprecated: use ImmunizationBuilder.SetOccurrenceDateTimeExt instead; removed in v2.
 func WithImmunizationOccurrenceDateTimeExt(v Element) ImmunizationOption {
 	return func(r *Immunization) {
 		r.OccurrenceDateTimeExt = &v
@@ -1532,6 +1578,8 @@ func WithImmunizationOccurrenceDateTimeExt(v Element) ImmunizationOption {
 }
 
 // WithImmunizationOccurrenceString sets the OccurrenceString field.
+//
+// Deprecated: use ImmunizationBuilder.SetOccurrenceString instead; removed in v2.
 func WithImmunizationOccurrenceString(v string) ImmunizationOption {
 	return func(r *Immunization) {
 		r.OccurrenceString = &v
@@ -1539,6 +1587,8 @@ func WithImmunizationOccurrenceString(v string) ImmunizationOption {
 }
 
 // WithImmunizationOccurrenceStringExt sets the OccurrenceStringExt field.
+//
+// Deprecated: use ImmunizationBuilder.SetOccurrenceStringExt instead; removed in v2.
 func WithImmunizationOccurrenceStringExt(v Element) ImmunizationOption {
 	return func(r *Immunization) {
 		r.OccurrenceStringExt = &v
@@ -1546,6 +1596,8 @@ func WithImmunizationOccurrenceStringExt(v Element) ImmunizationOption {
 }
 
 // WithImmunizationRecorded sets the Recorded field.
+//
+// Deprecated: use ImmunizationBuilder.SetRecorded instead; removed in v2.
 func WithImmunizationRecorded(v string) ImmunizationOption {
 	return func(r *Immunization) {
 		r.Recorded = &v
@@ -1553,6 +1605,8 @@ func WithImmunizationRecorded(v string) ImmunizationOption {
 }
 
 // WithImmunizationPrimarySource sets the PrimarySource field.
+//
+// Deprecated: use ImmunizationBuilder.SetPrimarySource instead; removed in v2.
 func WithImmunizationPrimarySource(v bool) ImmunizationOption {
 	return func(r *Immunization) {
 		r.PrimarySource = &v
@@ -1560,6 +1614,8 @@ func WithImmunizationPrimarySource(v bool) ImmunizationOption {
 }
 
 // WithImmunizationReportOrigin sets the ReportOrigin field.
+//
+// Deprecated: use ImmunizationBuilder.SetReportOrigin instead; removed in v2.
 func WithImmunizationReportOrigin(v CodeableConcept) ImmunizationOption {
 	return func(r *Immunization) {
 		r.ReportOrigin = &v
@@ -1567,6 +1623,8 @@ func WithImmunizationReportOrigin(v CodeableConcept) ImmunizationOption {
 }
 
 // WithImmunizationLocation sets the Location field.
+//
+// Deprecated: use ImmunizationBuilder.SetLocation instead; removed in v2.
 func WithImmunizationLocation(v Reference) ImmunizationOption {
 	return func(r *Immunization) {
 		r.Location = &v
@@ -1574,6 +1632,8 @@ func WithImmunizationLocation(v Reference) ImmunizationOption {
 }
 
 // WithImmunizationManufacturer sets the Manufacturer field.
+//
+// Deprecated: use ImmunizationBuilder.SetManufacturer instead; removed in v2.
 func WithImmunizationManufacturer(v Reference) ImmunizationOption {
 	return func(r *Immunization) {
 		r.Manufacturer = &v
@@ -1581,6 +1641,8 @@ func WithImmunizationManufacturer(v Reference) ImmunizationOption {
 }
 
 // WithImmunizationLotNumber sets the LotNumber field.
+//
+// Deprecated: use ImmunizationBuilder.SetLotNumber instead; removed in v2.
 func WithImmunizationLotNumber(v string) ImmunizationOption {
 	return func(r *Immunization) {
 		r.LotNumber = &v
@@ -1588,6 +1650,8 @@ func WithImmunizationLotNumber(v string) ImmunizationOption {
 }
 
 // WithImmunizationExpirationDate sets the ExpirationDate field.
+//
+// Deprecated: use ImmunizationBuilder.SetExpirationDate instead; removed in v2.
 func WithImmunizationExpirationDate(v string) ImmunizationOption {
 	return func(r *Immunization) {
 		r.ExpirationDate = &v
@@ -1595,6 +1659,8 @@ func WithImmunizationExpirationDate(v string) ImmunizationOption {
 }
 
 // WithImmunizationSite sets the Site field.
+//
+// Deprecated: use ImmunizationBuilder.SetSite instead; removed in v2.
 func WithImmunizationSite(v CodeableConcept) ImmunizationOption {
 	return func(r *Immunization) {
 		r.Site = &v
@@ -1602,6 +1668,8 @@ func WithImmunizationSite(v CodeableConcept) ImmunizationOption {
 }
 
 // WithImmunizationRoute sets the Route field.
+//
+// Deprecated: use ImmunizationBuilder.SetRoute instead; removed in v2.
 func WithImmunizationRoute(v CodeableConcept) ImmunizationOption {
 	return func(r *Immunization) {
 		r.Route = &v
@@ -1609,6 +1677,8 @@ func WithImmunizationRoute(v CodeableConcept) ImmunizationOption {
 }
 
 // WithImmunizationDoseQuantity sets the DoseQuantity field.
+//
+// Deprecated: use ImmunizationBuilder.SetDoseQuantity instead; removed in v2.
 func WithImmunizationDoseQuantity(v Quantity) ImmunizationOption {
 	return func(r *Immunization) {
 		r.DoseQuantity = &v
@@ -1616,6 +1686,8 @@ func WithImmunizationDoseQuantity(v Quantity) ImmunizationOption {
 }
 
 // WithImmunizationPerformer adds a Performer to the Immunization.
+//
+// Deprecated: use ImmunizationBuilder.AddPerformer instead; removed in v2.
 func WithImmunizationPerformer(v ImmunizationPerformer) ImmunizationOption {
 	return func(r *Immunization) {
 		r.Performer = append(r.Performer, v)
@@ -1623,6 +1695,8 @@ func WithImmunizationPerformer(v ImmunizationPerformer) ImmunizationOption {
 }
 
 // WithImmunizationNote adds a Note to the Immunization.
+//
+// Deprecated: use ImmunizationBuilder.AddNote instead; removed in v2.
 func WithImmunizationNote(v Annotation) ImmunizationOption {
 	return func(r *Immunization) {
 		r.Note = append(r.Note, v)
@@ -1630,6 +1704,8 @@ func WithImmunizationNote(v Annotation) ImmunizationOption {
 }
 
 // WithImmunizationReasonCode adds a ReasonCode to the Immunization.
+//
+// Deprecated: use ImmunizationBuilder.AddReasonCode instead; removed in v2.
 func WithImmunizationReasonCode(v CodeableConcept) ImmunizationOption {
 	return func(r *Immunization) {
 		r.ReasonCode = append(r.ReasonCode, v)
@@ -1637,6 +1713,8 @@ func WithImmunizationReasonCode(v CodeableConcept) ImmunizationOption {
 }
 
 // WithImmunizationReasonReference adds a ReasonReference to the Immunization.
+//
+// Deprecated: use ImmunizationBuilder.AddReasonReference instead; removed in v2.
 func WithImmunizationReasonReference(v Reference) ImmunizationOption {
 	return func(r *Immunization) {
 		r.ReasonReference = append(r.ReasonReference, v)
@@ -1644,6 +1722,8 @@ func WithImmunizationReasonReference(v Reference) ImmunizationOption {
 }
 
 // WithImmunizationIsSubpotent sets the IsSubpotent field.
+//
+// Deprecated: use ImmunizationBuilder.SetIsSubpotent instead; removed in v2.
 func WithImmunizationIsSubpotent(v bool) ImmunizationOption {
 	return func(r *Immunization) {
 		r.IsSubpotent = &v
@@ -1651,6 +1731,8 @@ func WithImmunizationIsSubpotent(v bool) ImmunizationOption {
 }
 
 // WithImmunizationSubpotentReason adds a SubpotentReason to the Immunization.
+//
+// Deprecated: use ImmunizationBuilder.AddSubpotentReason instead; removed in v2.
 func WithImmunizationSubpotentReason(v CodeableConcept) ImmunizationOption {
 	return func(r *Immunization) {
 		r.SubpotentReason = append(r.SubpotentReason, v)
@@ -1658,6 +1740,8 @@ func WithImmunizationSubpotentReason(v CodeableConcept) ImmunizationOption {
 }
 
 // WithImmunizationEducation adds a Education to the Immunization.
+//
+// Deprecated: use ImmunizationBuilder.AddEducation instead; removed in v2.
 func WithImmunizationEducation(v ImmunizationEducation) ImmunizationOption {
 	return func(r *Immunization) {
 		r.Education = append(r.Education, v)
@@ -1665,6 +1749,8 @@ func WithImmunizationEducation(v ImmunizationEducation) ImmunizationOption {
 }
 
 // WithImmunizationProgramEligibility adds a ProgramEligibility to the Immunization.
+//
+// Deprecated: use ImmunizationBuilder.AddProgramEligibility instead; removed in v2.
 func WithImmunizationProgramEligibility(v CodeableConcept) ImmunizationOption {
 	return func(r *Immunization) {
 		r.ProgramEligibility = append(r.ProgramEligibility, v)
@@ -1672,6 +1758,8 @@ func WithImmunizationProgramEligibility(v CodeableConcept) ImmunizationOption {
 }
 
 // WithImmunizationFundingSource sets the FundingSource field.
+//
+// Deprecated: use ImmunizationBuilder.SetFundingSource instead; removed in v2.
 func WithImmunizationFundingSource(v CodeableConcept) ImmunizationOption {
 	return func(r *Immunization) {
 		r.FundingSource = &v
@@ -1679,6 +1767,8 @@ func WithImmunizationFundingSource(v CodeableConcept) ImmunizationOption {
 }
 
 // WithImmunizationReaction adds a Reaction to the Immunization.
+//
+// Deprecated: use ImmunizationBuilder.AddReaction instead; removed in v2.
 func WithImmunizationReaction(v ImmunizationReaction) ImmunizationOption {
 	return func(r *Immunization) {
 		r.Reaction = append(r.Reaction, v)
@@ -1686,6 +1776,8 @@ func WithImmunizationReaction(v ImmunizationReaction) ImmunizationOption {
 }
 
 // WithImmunizationProtocolApplied adds a ProtocolApplied to the Immunization.
+//
+// Deprecated: use ImmunizationBuilder.AddProtocolApplied instead; removed in v2.
 func WithImmunizationProtocolApplied(v ImmunizationProtocolApplied) ImmunizationOption {
 	return func(r *Immunization) {
 		r.ProtocolApplied = append(r.ProtocolApplied, v)

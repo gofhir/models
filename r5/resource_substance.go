@@ -634,9 +634,23 @@ func (b *SubstanceBuilder) AddIngredient(v SubstanceIngredient) *SubstanceBuilde
 // =============================================================================
 
 // SubstanceOption is a functional option for configuring a Substance.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// SubstanceBuilder. Every WithSubstance* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type SubstanceOption func(*Substance)
 
 // NewSubstance creates a new Substance with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewSubstanceBuilder().SetId("x").Build()
+//
+// Deprecated: use NewSubstanceBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewSubstance(opts ...SubstanceOption) *Substance {
 	r := &Substance{ResourceType: "Substance"}
 	for _, opt := range opts {
@@ -646,6 +660,8 @@ func NewSubstance(opts ...SubstanceOption) *Substance {
 }
 
 // WithSubstanceId sets the Id field.
+//
+// Deprecated: use SubstanceBuilder.SetId instead; removed in v2.
 func WithSubstanceId(v string) SubstanceOption {
 	return func(r *Substance) {
 		r.Id = &v
@@ -653,6 +669,8 @@ func WithSubstanceId(v string) SubstanceOption {
 }
 
 // WithSubstanceMeta sets the Meta field.
+//
+// Deprecated: use SubstanceBuilder.SetMeta instead; removed in v2.
 func WithSubstanceMeta(v Meta) SubstanceOption {
 	return func(r *Substance) {
 		r.Meta = &v
@@ -660,6 +678,8 @@ func WithSubstanceMeta(v Meta) SubstanceOption {
 }
 
 // WithSubstanceImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use SubstanceBuilder.SetImplicitRules instead; removed in v2.
 func WithSubstanceImplicitRules(v string) SubstanceOption {
 	return func(r *Substance) {
 		r.ImplicitRules = &v
@@ -667,6 +687,8 @@ func WithSubstanceImplicitRules(v string) SubstanceOption {
 }
 
 // WithSubstanceLanguage sets the Language field.
+//
+// Deprecated: use SubstanceBuilder.SetLanguage instead; removed in v2.
 func WithSubstanceLanguage(v string) SubstanceOption {
 	return func(r *Substance) {
 		r.Language = &v
@@ -674,6 +696,8 @@ func WithSubstanceLanguage(v string) SubstanceOption {
 }
 
 // WithSubstanceText sets the Text field.
+//
+// Deprecated: use SubstanceBuilder.SetText instead; removed in v2.
 func WithSubstanceText(v Narrative) SubstanceOption {
 	return func(r *Substance) {
 		r.Text = &v
@@ -681,6 +705,8 @@ func WithSubstanceText(v Narrative) SubstanceOption {
 }
 
 // WithSubstanceContained adds a Contained to the Substance.
+//
+// Deprecated: use SubstanceBuilder.AddContained instead; removed in v2.
 func WithSubstanceContained(v Resource) SubstanceOption {
 	return func(r *Substance) {
 		r.Contained = append(r.Contained, v)
@@ -688,6 +714,8 @@ func WithSubstanceContained(v Resource) SubstanceOption {
 }
 
 // WithSubstanceExtension adds a Extension to the Substance.
+//
+// Deprecated: use SubstanceBuilder.AddExtension instead; removed in v2.
 func WithSubstanceExtension(v Extension) SubstanceOption {
 	return func(r *Substance) {
 		r.Extension = append(r.Extension, v)
@@ -695,6 +723,8 @@ func WithSubstanceExtension(v Extension) SubstanceOption {
 }
 
 // WithSubstanceModifierExtension adds a ModifierExtension to the Substance.
+//
+// Deprecated: use SubstanceBuilder.AddModifierExtension instead; removed in v2.
 func WithSubstanceModifierExtension(v Extension) SubstanceOption {
 	return func(r *Substance) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -702,6 +732,8 @@ func WithSubstanceModifierExtension(v Extension) SubstanceOption {
 }
 
 // WithSubstanceIdentifier adds a Identifier to the Substance.
+//
+// Deprecated: use SubstanceBuilder.AddIdentifier instead; removed in v2.
 func WithSubstanceIdentifier(v Identifier) SubstanceOption {
 	return func(r *Substance) {
 		r.Identifier = append(r.Identifier, v)
@@ -709,6 +741,8 @@ func WithSubstanceIdentifier(v Identifier) SubstanceOption {
 }
 
 // WithSubstanceInstance sets the Instance field.
+//
+// Deprecated: use SubstanceBuilder.SetInstance instead; removed in v2.
 func WithSubstanceInstance(v bool) SubstanceOption {
 	return func(r *Substance) {
 		r.Instance = &v
@@ -716,6 +750,8 @@ func WithSubstanceInstance(v bool) SubstanceOption {
 }
 
 // WithSubstanceStatus sets the Status field.
+//
+// Deprecated: use SubstanceBuilder.SetStatus instead; removed in v2.
 func WithSubstanceStatus(v FHIRSubstanceStatus) SubstanceOption {
 	return func(r *Substance) {
 		r.Status = &v
@@ -723,6 +759,8 @@ func WithSubstanceStatus(v FHIRSubstanceStatus) SubstanceOption {
 }
 
 // WithSubstanceCategory adds a Category to the Substance.
+//
+// Deprecated: use SubstanceBuilder.AddCategory instead; removed in v2.
 func WithSubstanceCategory(v CodeableConcept) SubstanceOption {
 	return func(r *Substance) {
 		r.Category = append(r.Category, v)
@@ -730,6 +768,8 @@ func WithSubstanceCategory(v CodeableConcept) SubstanceOption {
 }
 
 // WithSubstanceCode sets the Code field.
+//
+// Deprecated: use SubstanceBuilder.SetCode instead; removed in v2.
 func WithSubstanceCode(v CodeableReference) SubstanceOption {
 	return func(r *Substance) {
 		r.Code = v
@@ -737,6 +777,8 @@ func WithSubstanceCode(v CodeableReference) SubstanceOption {
 }
 
 // WithSubstanceDescription sets the Description field.
+//
+// Deprecated: use SubstanceBuilder.SetDescription instead; removed in v2.
 func WithSubstanceDescription(v string) SubstanceOption {
 	return func(r *Substance) {
 		r.Description = &v
@@ -744,6 +786,8 @@ func WithSubstanceDescription(v string) SubstanceOption {
 }
 
 // WithSubstanceExpiry sets the Expiry field.
+//
+// Deprecated: use SubstanceBuilder.SetExpiry instead; removed in v2.
 func WithSubstanceExpiry(v string) SubstanceOption {
 	return func(r *Substance) {
 		r.Expiry = &v
@@ -751,6 +795,8 @@ func WithSubstanceExpiry(v string) SubstanceOption {
 }
 
 // WithSubstanceQuantity sets the Quantity field.
+//
+// Deprecated: use SubstanceBuilder.SetQuantity instead; removed in v2.
 func WithSubstanceQuantity(v Quantity) SubstanceOption {
 	return func(r *Substance) {
 		r.Quantity = &v
@@ -758,6 +804,8 @@ func WithSubstanceQuantity(v Quantity) SubstanceOption {
 }
 
 // WithSubstanceIngredient adds a Ingredient to the Substance.
+//
+// Deprecated: use SubstanceBuilder.AddIngredient instead; removed in v2.
 func WithSubstanceIngredient(v SubstanceIngredient) SubstanceOption {
 	return func(r *Substance) {
 		r.Ingredient = append(r.Ingredient, v)

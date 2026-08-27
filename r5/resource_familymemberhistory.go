@@ -1364,9 +1364,23 @@ func (b *FamilyMemberHistoryBuilder) AddProcedure(v FamilyMemberHistoryProcedure
 // =============================================================================
 
 // FamilyMemberHistoryOption is a functional option for configuring a FamilyMemberHistory.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// FamilyMemberHistoryBuilder. Every WithFamilyMemberHistory* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type FamilyMemberHistoryOption func(*FamilyMemberHistory)
 
 // NewFamilyMemberHistory creates a new FamilyMemberHistory with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewFamilyMemberHistoryBuilder().SetId("x").Build()
+//
+// Deprecated: use NewFamilyMemberHistoryBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewFamilyMemberHistory(opts ...FamilyMemberHistoryOption) *FamilyMemberHistory {
 	r := &FamilyMemberHistory{ResourceType: "FamilyMemberHistory"}
 	for _, opt := range opts {
@@ -1376,6 +1390,8 @@ func NewFamilyMemberHistory(opts ...FamilyMemberHistoryOption) *FamilyMemberHist
 }
 
 // WithFamilyMemberHistoryId sets the Id field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetId instead; removed in v2.
 func WithFamilyMemberHistoryId(v string) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.Id = &v
@@ -1383,6 +1399,8 @@ func WithFamilyMemberHistoryId(v string) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryMeta sets the Meta field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetMeta instead; removed in v2.
 func WithFamilyMemberHistoryMeta(v Meta) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.Meta = &v
@@ -1390,6 +1408,8 @@ func WithFamilyMemberHistoryMeta(v Meta) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetImplicitRules instead; removed in v2.
 func WithFamilyMemberHistoryImplicitRules(v string) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.ImplicitRules = &v
@@ -1397,6 +1417,8 @@ func WithFamilyMemberHistoryImplicitRules(v string) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryLanguage sets the Language field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetLanguage instead; removed in v2.
 func WithFamilyMemberHistoryLanguage(v string) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.Language = &v
@@ -1404,6 +1426,8 @@ func WithFamilyMemberHistoryLanguage(v string) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryText sets the Text field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetText instead; removed in v2.
 func WithFamilyMemberHistoryText(v Narrative) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.Text = &v
@@ -1411,6 +1435,8 @@ func WithFamilyMemberHistoryText(v Narrative) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryContained adds a Contained to the FamilyMemberHistory.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.AddContained instead; removed in v2.
 func WithFamilyMemberHistoryContained(v Resource) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.Contained = append(r.Contained, v)
@@ -1418,6 +1444,8 @@ func WithFamilyMemberHistoryContained(v Resource) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryExtension adds a Extension to the FamilyMemberHistory.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.AddExtension instead; removed in v2.
 func WithFamilyMemberHistoryExtension(v Extension) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.Extension = append(r.Extension, v)
@@ -1425,6 +1453,8 @@ func WithFamilyMemberHistoryExtension(v Extension) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryModifierExtension adds a ModifierExtension to the FamilyMemberHistory.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.AddModifierExtension instead; removed in v2.
 func WithFamilyMemberHistoryModifierExtension(v Extension) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1432,6 +1462,8 @@ func WithFamilyMemberHistoryModifierExtension(v Extension) FamilyMemberHistoryOp
 }
 
 // WithFamilyMemberHistoryIdentifier adds a Identifier to the FamilyMemberHistory.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.AddIdentifier instead; removed in v2.
 func WithFamilyMemberHistoryIdentifier(v Identifier) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.Identifier = append(r.Identifier, v)
@@ -1439,6 +1471,8 @@ func WithFamilyMemberHistoryIdentifier(v Identifier) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryInstantiatesCanonical adds a InstantiatesCanonical to the FamilyMemberHistory.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.AddInstantiatesCanonical instead; removed in v2.
 func WithFamilyMemberHistoryInstantiatesCanonical(v string) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
@@ -1446,6 +1480,8 @@ func WithFamilyMemberHistoryInstantiatesCanonical(v string) FamilyMemberHistoryO
 }
 
 // WithFamilyMemberHistoryInstantiatesUri adds a InstantiatesUri to the FamilyMemberHistory.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.AddInstantiatesUri instead; removed in v2.
 func WithFamilyMemberHistoryInstantiatesUri(v string) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.InstantiatesUri = append(r.InstantiatesUri, v)
@@ -1453,6 +1489,8 @@ func WithFamilyMemberHistoryInstantiatesUri(v string) FamilyMemberHistoryOption 
 }
 
 // WithFamilyMemberHistoryStatus sets the Status field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetStatus instead; removed in v2.
 func WithFamilyMemberHistoryStatus(v FamilyHistoryStatus) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.Status = &v
@@ -1460,6 +1498,8 @@ func WithFamilyMemberHistoryStatus(v FamilyHistoryStatus) FamilyMemberHistoryOpt
 }
 
 // WithFamilyMemberHistoryDataAbsentReason sets the DataAbsentReason field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetDataAbsentReason instead; removed in v2.
 func WithFamilyMemberHistoryDataAbsentReason(v CodeableConcept) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.DataAbsentReason = &v
@@ -1467,6 +1507,8 @@ func WithFamilyMemberHistoryDataAbsentReason(v CodeableConcept) FamilyMemberHist
 }
 
 // WithFamilyMemberHistoryPatient sets the Patient field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetPatient instead; removed in v2.
 func WithFamilyMemberHistoryPatient(v Reference) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.Patient = v
@@ -1474,6 +1516,8 @@ func WithFamilyMemberHistoryPatient(v Reference) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryDate sets the Date field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetDate instead; removed in v2.
 func WithFamilyMemberHistoryDate(v string) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.Date = &v
@@ -1481,6 +1525,8 @@ func WithFamilyMemberHistoryDate(v string) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryParticipant adds a Participant to the FamilyMemberHistory.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.AddParticipant instead; removed in v2.
 func WithFamilyMemberHistoryParticipant(v FamilyMemberHistoryParticipant) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.Participant = append(r.Participant, v)
@@ -1488,6 +1534,8 @@ func WithFamilyMemberHistoryParticipant(v FamilyMemberHistoryParticipant) Family
 }
 
 // WithFamilyMemberHistoryName sets the Name field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetName instead; removed in v2.
 func WithFamilyMemberHistoryName(v string) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.Name = &v
@@ -1495,6 +1543,8 @@ func WithFamilyMemberHistoryName(v string) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryRelationship sets the Relationship field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetRelationship instead; removed in v2.
 func WithFamilyMemberHistoryRelationship(v CodeableConcept) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.Relationship = v
@@ -1502,6 +1552,8 @@ func WithFamilyMemberHistoryRelationship(v CodeableConcept) FamilyMemberHistoryO
 }
 
 // WithFamilyMemberHistorySex sets the Sex field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetSex instead; removed in v2.
 func WithFamilyMemberHistorySex(v CodeableConcept) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.Sex = &v
@@ -1509,6 +1561,8 @@ func WithFamilyMemberHistorySex(v CodeableConcept) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryBornPeriod sets the BornPeriod field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetBornPeriod instead; removed in v2.
 func WithFamilyMemberHistoryBornPeriod(v Period) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.BornPeriod = &v
@@ -1516,6 +1570,8 @@ func WithFamilyMemberHistoryBornPeriod(v Period) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryBornDate sets the BornDate field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetBornDate instead; removed in v2.
 func WithFamilyMemberHistoryBornDate(v string) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.BornDate = &v
@@ -1523,6 +1579,8 @@ func WithFamilyMemberHistoryBornDate(v string) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryBornDateExt sets the BornDateExt field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetBornDateExt instead; removed in v2.
 func WithFamilyMemberHistoryBornDateExt(v Element) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.BornDateExt = &v
@@ -1530,6 +1588,8 @@ func WithFamilyMemberHistoryBornDateExt(v Element) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryBornString sets the BornString field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetBornString instead; removed in v2.
 func WithFamilyMemberHistoryBornString(v string) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.BornString = &v
@@ -1537,6 +1597,8 @@ func WithFamilyMemberHistoryBornString(v string) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryBornStringExt sets the BornStringExt field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetBornStringExt instead; removed in v2.
 func WithFamilyMemberHistoryBornStringExt(v Element) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.BornStringExt = &v
@@ -1544,6 +1606,8 @@ func WithFamilyMemberHistoryBornStringExt(v Element) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryAgeAge sets the AgeAge field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetAgeAge instead; removed in v2.
 func WithFamilyMemberHistoryAgeAge(v Age) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.AgeAge = &v
@@ -1551,6 +1615,8 @@ func WithFamilyMemberHistoryAgeAge(v Age) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryAgeRange sets the AgeRange field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetAgeRange instead; removed in v2.
 func WithFamilyMemberHistoryAgeRange(v Range) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.AgeRange = &v
@@ -1558,6 +1624,8 @@ func WithFamilyMemberHistoryAgeRange(v Range) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryAgeString sets the AgeString field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetAgeString instead; removed in v2.
 func WithFamilyMemberHistoryAgeString(v string) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.AgeString = &v
@@ -1565,6 +1633,8 @@ func WithFamilyMemberHistoryAgeString(v string) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryAgeStringExt sets the AgeStringExt field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetAgeStringExt instead; removed in v2.
 func WithFamilyMemberHistoryAgeStringExt(v Element) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.AgeStringExt = &v
@@ -1572,6 +1642,8 @@ func WithFamilyMemberHistoryAgeStringExt(v Element) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryEstimatedAge sets the EstimatedAge field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetEstimatedAge instead; removed in v2.
 func WithFamilyMemberHistoryEstimatedAge(v bool) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.EstimatedAge = &v
@@ -1579,6 +1651,8 @@ func WithFamilyMemberHistoryEstimatedAge(v bool) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryDeceasedBoolean sets the DeceasedBoolean field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetDeceasedBoolean instead; removed in v2.
 func WithFamilyMemberHistoryDeceasedBoolean(v bool) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.DeceasedBoolean = &v
@@ -1586,6 +1660,8 @@ func WithFamilyMemberHistoryDeceasedBoolean(v bool) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryDeceasedBooleanExt sets the DeceasedBooleanExt field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetDeceasedBooleanExt instead; removed in v2.
 func WithFamilyMemberHistoryDeceasedBooleanExt(v Element) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.DeceasedBooleanExt = &v
@@ -1593,6 +1669,8 @@ func WithFamilyMemberHistoryDeceasedBooleanExt(v Element) FamilyMemberHistoryOpt
 }
 
 // WithFamilyMemberHistoryDeceasedAge sets the DeceasedAge field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetDeceasedAge instead; removed in v2.
 func WithFamilyMemberHistoryDeceasedAge(v Age) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.DeceasedAge = &v
@@ -1600,6 +1678,8 @@ func WithFamilyMemberHistoryDeceasedAge(v Age) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryDeceasedRange sets the DeceasedRange field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetDeceasedRange instead; removed in v2.
 func WithFamilyMemberHistoryDeceasedRange(v Range) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.DeceasedRange = &v
@@ -1607,6 +1687,8 @@ func WithFamilyMemberHistoryDeceasedRange(v Range) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryDeceasedDate sets the DeceasedDate field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetDeceasedDate instead; removed in v2.
 func WithFamilyMemberHistoryDeceasedDate(v string) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.DeceasedDate = &v
@@ -1614,6 +1696,8 @@ func WithFamilyMemberHistoryDeceasedDate(v string) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryDeceasedDateExt sets the DeceasedDateExt field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetDeceasedDateExt instead; removed in v2.
 func WithFamilyMemberHistoryDeceasedDateExt(v Element) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.DeceasedDateExt = &v
@@ -1621,6 +1705,8 @@ func WithFamilyMemberHistoryDeceasedDateExt(v Element) FamilyMemberHistoryOption
 }
 
 // WithFamilyMemberHistoryDeceasedString sets the DeceasedString field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetDeceasedString instead; removed in v2.
 func WithFamilyMemberHistoryDeceasedString(v string) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.DeceasedString = &v
@@ -1628,6 +1714,8 @@ func WithFamilyMemberHistoryDeceasedString(v string) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryDeceasedStringExt sets the DeceasedStringExt field.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.SetDeceasedStringExt instead; removed in v2.
 func WithFamilyMemberHistoryDeceasedStringExt(v Element) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.DeceasedStringExt = &v
@@ -1635,6 +1723,8 @@ func WithFamilyMemberHistoryDeceasedStringExt(v Element) FamilyMemberHistoryOpti
 }
 
 // WithFamilyMemberHistoryReason adds a Reason to the FamilyMemberHistory.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.AddReason instead; removed in v2.
 func WithFamilyMemberHistoryReason(v CodeableReference) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.Reason = append(r.Reason, v)
@@ -1642,6 +1732,8 @@ func WithFamilyMemberHistoryReason(v CodeableReference) FamilyMemberHistoryOptio
 }
 
 // WithFamilyMemberHistoryNote adds a Note to the FamilyMemberHistory.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.AddNote instead; removed in v2.
 func WithFamilyMemberHistoryNote(v Annotation) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.Note = append(r.Note, v)
@@ -1649,6 +1741,8 @@ func WithFamilyMemberHistoryNote(v Annotation) FamilyMemberHistoryOption {
 }
 
 // WithFamilyMemberHistoryCondition adds a Condition to the FamilyMemberHistory.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.AddCondition instead; removed in v2.
 func WithFamilyMemberHistoryCondition(v FamilyMemberHistoryCondition) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.Condition = append(r.Condition, v)
@@ -1656,6 +1750,8 @@ func WithFamilyMemberHistoryCondition(v FamilyMemberHistoryCondition) FamilyMemb
 }
 
 // WithFamilyMemberHistoryProcedure adds a Procedure to the FamilyMemberHistory.
+//
+// Deprecated: use FamilyMemberHistoryBuilder.AddProcedure instead; removed in v2.
 func WithFamilyMemberHistoryProcedure(v FamilyMemberHistoryProcedure) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
 		r.Procedure = append(r.Procedure, v)

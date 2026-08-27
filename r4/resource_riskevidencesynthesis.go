@@ -1564,9 +1564,23 @@ func (b *RiskEvidenceSynthesisBuilder) AddCertainty(v RiskEvidenceSynthesisCerta
 // =============================================================================
 
 // RiskEvidenceSynthesisOption is a functional option for configuring a RiskEvidenceSynthesis.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// RiskEvidenceSynthesisBuilder. Every WithRiskEvidenceSynthesis* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type RiskEvidenceSynthesisOption func(*RiskEvidenceSynthesis)
 
 // NewRiskEvidenceSynthesis creates a new RiskEvidenceSynthesis with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewRiskEvidenceSynthesisBuilder().SetId("x").Build()
+//
+// Deprecated: use NewRiskEvidenceSynthesisBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewRiskEvidenceSynthesis(opts ...RiskEvidenceSynthesisOption) *RiskEvidenceSynthesis {
 	r := &RiskEvidenceSynthesis{ResourceType: "RiskEvidenceSynthesis"}
 	for _, opt := range opts {
@@ -1576,6 +1590,8 @@ func NewRiskEvidenceSynthesis(opts ...RiskEvidenceSynthesisOption) *RiskEvidence
 }
 
 // WithRiskEvidenceSynthesisId sets the Id field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetId instead; removed in v2.
 func WithRiskEvidenceSynthesisId(v string) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Id = &v
@@ -1583,6 +1599,8 @@ func WithRiskEvidenceSynthesisId(v string) RiskEvidenceSynthesisOption {
 }
 
 // WithRiskEvidenceSynthesisMeta sets the Meta field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetMeta instead; removed in v2.
 func WithRiskEvidenceSynthesisMeta(v Meta) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Meta = &v
@@ -1590,6 +1608,8 @@ func WithRiskEvidenceSynthesisMeta(v Meta) RiskEvidenceSynthesisOption {
 }
 
 // WithRiskEvidenceSynthesisImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetImplicitRules instead; removed in v2.
 func WithRiskEvidenceSynthesisImplicitRules(v string) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.ImplicitRules = &v
@@ -1597,6 +1617,8 @@ func WithRiskEvidenceSynthesisImplicitRules(v string) RiskEvidenceSynthesisOptio
 }
 
 // WithRiskEvidenceSynthesisLanguage sets the Language field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetLanguage instead; removed in v2.
 func WithRiskEvidenceSynthesisLanguage(v string) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Language = &v
@@ -1604,6 +1626,8 @@ func WithRiskEvidenceSynthesisLanguage(v string) RiskEvidenceSynthesisOption {
 }
 
 // WithRiskEvidenceSynthesisText sets the Text field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetText instead; removed in v2.
 func WithRiskEvidenceSynthesisText(v Narrative) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Text = &v
@@ -1611,6 +1635,8 @@ func WithRiskEvidenceSynthesisText(v Narrative) RiskEvidenceSynthesisOption {
 }
 
 // WithRiskEvidenceSynthesisContained adds a Contained to the RiskEvidenceSynthesis.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.AddContained instead; removed in v2.
 func WithRiskEvidenceSynthesisContained(v Resource) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Contained = append(r.Contained, v)
@@ -1618,6 +1644,8 @@ func WithRiskEvidenceSynthesisContained(v Resource) RiskEvidenceSynthesisOption 
 }
 
 // WithRiskEvidenceSynthesisExtension adds a Extension to the RiskEvidenceSynthesis.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.AddExtension instead; removed in v2.
 func WithRiskEvidenceSynthesisExtension(v Extension) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Extension = append(r.Extension, v)
@@ -1625,6 +1653,8 @@ func WithRiskEvidenceSynthesisExtension(v Extension) RiskEvidenceSynthesisOption
 }
 
 // WithRiskEvidenceSynthesisModifierExtension adds a ModifierExtension to the RiskEvidenceSynthesis.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.AddModifierExtension instead; removed in v2.
 func WithRiskEvidenceSynthesisModifierExtension(v Extension) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1632,6 +1662,8 @@ func WithRiskEvidenceSynthesisModifierExtension(v Extension) RiskEvidenceSynthes
 }
 
 // WithRiskEvidenceSynthesisUrl sets the Url field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetUrl instead; removed in v2.
 func WithRiskEvidenceSynthesisUrl(v string) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Url = &v
@@ -1639,6 +1671,8 @@ func WithRiskEvidenceSynthesisUrl(v string) RiskEvidenceSynthesisOption {
 }
 
 // WithRiskEvidenceSynthesisIdentifier adds a Identifier to the RiskEvidenceSynthesis.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.AddIdentifier instead; removed in v2.
 func WithRiskEvidenceSynthesisIdentifier(v Identifier) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Identifier = append(r.Identifier, v)
@@ -1646,6 +1680,8 @@ func WithRiskEvidenceSynthesisIdentifier(v Identifier) RiskEvidenceSynthesisOpti
 }
 
 // WithRiskEvidenceSynthesisVersion sets the Version field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetVersion instead; removed in v2.
 func WithRiskEvidenceSynthesisVersion(v string) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Version = &v
@@ -1653,6 +1689,8 @@ func WithRiskEvidenceSynthesisVersion(v string) RiskEvidenceSynthesisOption {
 }
 
 // WithRiskEvidenceSynthesisName sets the Name field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetName instead; removed in v2.
 func WithRiskEvidenceSynthesisName(v string) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Name = &v
@@ -1660,6 +1698,8 @@ func WithRiskEvidenceSynthesisName(v string) RiskEvidenceSynthesisOption {
 }
 
 // WithRiskEvidenceSynthesisTitle sets the Title field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetTitle instead; removed in v2.
 func WithRiskEvidenceSynthesisTitle(v string) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Title = &v
@@ -1667,6 +1707,8 @@ func WithRiskEvidenceSynthesisTitle(v string) RiskEvidenceSynthesisOption {
 }
 
 // WithRiskEvidenceSynthesisStatus sets the Status field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetStatus instead; removed in v2.
 func WithRiskEvidenceSynthesisStatus(v PublicationStatus) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Status = &v
@@ -1674,6 +1716,8 @@ func WithRiskEvidenceSynthesisStatus(v PublicationStatus) RiskEvidenceSynthesisO
 }
 
 // WithRiskEvidenceSynthesisDate sets the Date field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetDate instead; removed in v2.
 func WithRiskEvidenceSynthesisDate(v string) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Date = &v
@@ -1681,6 +1725,8 @@ func WithRiskEvidenceSynthesisDate(v string) RiskEvidenceSynthesisOption {
 }
 
 // WithRiskEvidenceSynthesisPublisher sets the Publisher field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetPublisher instead; removed in v2.
 func WithRiskEvidenceSynthesisPublisher(v string) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Publisher = &v
@@ -1688,6 +1734,8 @@ func WithRiskEvidenceSynthesisPublisher(v string) RiskEvidenceSynthesisOption {
 }
 
 // WithRiskEvidenceSynthesisContact adds a Contact to the RiskEvidenceSynthesis.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.AddContact instead; removed in v2.
 func WithRiskEvidenceSynthesisContact(v ContactDetail) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Contact = append(r.Contact, v)
@@ -1695,6 +1743,8 @@ func WithRiskEvidenceSynthesisContact(v ContactDetail) RiskEvidenceSynthesisOpti
 }
 
 // WithRiskEvidenceSynthesisDescription sets the Description field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetDescription instead; removed in v2.
 func WithRiskEvidenceSynthesisDescription(v string) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Description = &v
@@ -1702,6 +1752,8 @@ func WithRiskEvidenceSynthesisDescription(v string) RiskEvidenceSynthesisOption 
 }
 
 // WithRiskEvidenceSynthesisNote adds a Note to the RiskEvidenceSynthesis.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.AddNote instead; removed in v2.
 func WithRiskEvidenceSynthesisNote(v Annotation) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Note = append(r.Note, v)
@@ -1709,6 +1761,8 @@ func WithRiskEvidenceSynthesisNote(v Annotation) RiskEvidenceSynthesisOption {
 }
 
 // WithRiskEvidenceSynthesisUseContext adds a UseContext to the RiskEvidenceSynthesis.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.AddUseContext instead; removed in v2.
 func WithRiskEvidenceSynthesisUseContext(v UsageContext) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.UseContext = append(r.UseContext, v)
@@ -1716,6 +1770,8 @@ func WithRiskEvidenceSynthesisUseContext(v UsageContext) RiskEvidenceSynthesisOp
 }
 
 // WithRiskEvidenceSynthesisJurisdiction adds a Jurisdiction to the RiskEvidenceSynthesis.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.AddJurisdiction instead; removed in v2.
 func WithRiskEvidenceSynthesisJurisdiction(v CodeableConcept) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1723,6 +1779,8 @@ func WithRiskEvidenceSynthesisJurisdiction(v CodeableConcept) RiskEvidenceSynthe
 }
 
 // WithRiskEvidenceSynthesisCopyright sets the Copyright field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetCopyright instead; removed in v2.
 func WithRiskEvidenceSynthesisCopyright(v string) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Copyright = &v
@@ -1730,6 +1788,8 @@ func WithRiskEvidenceSynthesisCopyright(v string) RiskEvidenceSynthesisOption {
 }
 
 // WithRiskEvidenceSynthesisApprovalDate sets the ApprovalDate field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetApprovalDate instead; removed in v2.
 func WithRiskEvidenceSynthesisApprovalDate(v string) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.ApprovalDate = &v
@@ -1737,6 +1797,8 @@ func WithRiskEvidenceSynthesisApprovalDate(v string) RiskEvidenceSynthesisOption
 }
 
 // WithRiskEvidenceSynthesisLastReviewDate sets the LastReviewDate field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetLastReviewDate instead; removed in v2.
 func WithRiskEvidenceSynthesisLastReviewDate(v string) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.LastReviewDate = &v
@@ -1744,6 +1806,8 @@ func WithRiskEvidenceSynthesisLastReviewDate(v string) RiskEvidenceSynthesisOpti
 }
 
 // WithRiskEvidenceSynthesisEffectivePeriod sets the EffectivePeriod field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetEffectivePeriod instead; removed in v2.
 func WithRiskEvidenceSynthesisEffectivePeriod(v Period) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.EffectivePeriod = &v
@@ -1751,6 +1815,8 @@ func WithRiskEvidenceSynthesisEffectivePeriod(v Period) RiskEvidenceSynthesisOpt
 }
 
 // WithRiskEvidenceSynthesisTopic adds a Topic to the RiskEvidenceSynthesis.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.AddTopic instead; removed in v2.
 func WithRiskEvidenceSynthesisTopic(v CodeableConcept) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Topic = append(r.Topic, v)
@@ -1758,6 +1824,8 @@ func WithRiskEvidenceSynthesisTopic(v CodeableConcept) RiskEvidenceSynthesisOpti
 }
 
 // WithRiskEvidenceSynthesisAuthor adds a Author to the RiskEvidenceSynthesis.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.AddAuthor instead; removed in v2.
 func WithRiskEvidenceSynthesisAuthor(v ContactDetail) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Author = append(r.Author, v)
@@ -1765,6 +1833,8 @@ func WithRiskEvidenceSynthesisAuthor(v ContactDetail) RiskEvidenceSynthesisOptio
 }
 
 // WithRiskEvidenceSynthesisEditor adds a Editor to the RiskEvidenceSynthesis.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.AddEditor instead; removed in v2.
 func WithRiskEvidenceSynthesisEditor(v ContactDetail) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Editor = append(r.Editor, v)
@@ -1772,6 +1842,8 @@ func WithRiskEvidenceSynthesisEditor(v ContactDetail) RiskEvidenceSynthesisOptio
 }
 
 // WithRiskEvidenceSynthesisReviewer adds a Reviewer to the RiskEvidenceSynthesis.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.AddReviewer instead; removed in v2.
 func WithRiskEvidenceSynthesisReviewer(v ContactDetail) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Reviewer = append(r.Reviewer, v)
@@ -1779,6 +1851,8 @@ func WithRiskEvidenceSynthesisReviewer(v ContactDetail) RiskEvidenceSynthesisOpt
 }
 
 // WithRiskEvidenceSynthesisEndorser adds a Endorser to the RiskEvidenceSynthesis.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.AddEndorser instead; removed in v2.
 func WithRiskEvidenceSynthesisEndorser(v ContactDetail) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Endorser = append(r.Endorser, v)
@@ -1786,6 +1860,8 @@ func WithRiskEvidenceSynthesisEndorser(v ContactDetail) RiskEvidenceSynthesisOpt
 }
 
 // WithRiskEvidenceSynthesisRelatedArtifact adds a RelatedArtifact to the RiskEvidenceSynthesis.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.AddRelatedArtifact instead; removed in v2.
 func WithRiskEvidenceSynthesisRelatedArtifact(v RelatedArtifact) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.RelatedArtifact = append(r.RelatedArtifact, v)
@@ -1793,6 +1869,8 @@ func WithRiskEvidenceSynthesisRelatedArtifact(v RelatedArtifact) RiskEvidenceSyn
 }
 
 // WithRiskEvidenceSynthesisSynthesisType sets the SynthesisType field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetSynthesisType instead; removed in v2.
 func WithRiskEvidenceSynthesisSynthesisType(v CodeableConcept) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.SynthesisType = &v
@@ -1800,6 +1878,8 @@ func WithRiskEvidenceSynthesisSynthesisType(v CodeableConcept) RiskEvidenceSynth
 }
 
 // WithRiskEvidenceSynthesisStudyType sets the StudyType field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetStudyType instead; removed in v2.
 func WithRiskEvidenceSynthesisStudyType(v CodeableConcept) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.StudyType = &v
@@ -1807,6 +1887,8 @@ func WithRiskEvidenceSynthesisStudyType(v CodeableConcept) RiskEvidenceSynthesis
 }
 
 // WithRiskEvidenceSynthesisPopulation sets the Population field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetPopulation instead; removed in v2.
 func WithRiskEvidenceSynthesisPopulation(v Reference) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Population = v
@@ -1814,6 +1896,8 @@ func WithRiskEvidenceSynthesisPopulation(v Reference) RiskEvidenceSynthesisOptio
 }
 
 // WithRiskEvidenceSynthesisExposure sets the Exposure field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetExposure instead; removed in v2.
 func WithRiskEvidenceSynthesisExposure(v Reference) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Exposure = &v
@@ -1821,6 +1905,8 @@ func WithRiskEvidenceSynthesisExposure(v Reference) RiskEvidenceSynthesisOption 
 }
 
 // WithRiskEvidenceSynthesisOutcome sets the Outcome field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetOutcome instead; removed in v2.
 func WithRiskEvidenceSynthesisOutcome(v Reference) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Outcome = v
@@ -1828,6 +1914,8 @@ func WithRiskEvidenceSynthesisOutcome(v Reference) RiskEvidenceSynthesisOption {
 }
 
 // WithRiskEvidenceSynthesisSampleSize sets the SampleSize field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetSampleSize instead; removed in v2.
 func WithRiskEvidenceSynthesisSampleSize(v RiskEvidenceSynthesisSampleSize) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.SampleSize = &v
@@ -1835,6 +1923,8 @@ func WithRiskEvidenceSynthesisSampleSize(v RiskEvidenceSynthesisSampleSize) Risk
 }
 
 // WithRiskEvidenceSynthesisRiskEstimate sets the RiskEstimate field.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.SetRiskEstimate instead; removed in v2.
 func WithRiskEvidenceSynthesisRiskEstimate(v RiskEvidenceSynthesisRiskEstimate) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.RiskEstimate = &v
@@ -1842,6 +1932,8 @@ func WithRiskEvidenceSynthesisRiskEstimate(v RiskEvidenceSynthesisRiskEstimate) 
 }
 
 // WithRiskEvidenceSynthesisCertainty adds a Certainty to the RiskEvidenceSynthesis.
+//
+// Deprecated: use RiskEvidenceSynthesisBuilder.AddCertainty instead; removed in v2.
 func WithRiskEvidenceSynthesisCertainty(v RiskEvidenceSynthesisCertainty) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
 		r.Certainty = append(r.Certainty, v)

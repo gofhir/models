@@ -839,9 +839,23 @@ func (b *PractitionerRoleBuilder) AddEndpoint(v Reference) *PractitionerRoleBuil
 // =============================================================================
 
 // PractitionerRoleOption is a functional option for configuring a PractitionerRole.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// PractitionerRoleBuilder. Every WithPractitionerRole* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type PractitionerRoleOption func(*PractitionerRole)
 
 // NewPractitionerRole creates a new PractitionerRole with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewPractitionerRoleBuilder().SetId("x").Build()
+//
+// Deprecated: use NewPractitionerRoleBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewPractitionerRole(opts ...PractitionerRoleOption) *PractitionerRole {
 	r := &PractitionerRole{ResourceType: "PractitionerRole"}
 	for _, opt := range opts {
@@ -851,6 +865,8 @@ func NewPractitionerRole(opts ...PractitionerRoleOption) *PractitionerRole {
 }
 
 // WithPractitionerRoleId sets the Id field.
+//
+// Deprecated: use PractitionerRoleBuilder.SetId instead; removed in v2.
 func WithPractitionerRoleId(v string) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.Id = &v
@@ -858,6 +874,8 @@ func WithPractitionerRoleId(v string) PractitionerRoleOption {
 }
 
 // WithPractitionerRoleMeta sets the Meta field.
+//
+// Deprecated: use PractitionerRoleBuilder.SetMeta instead; removed in v2.
 func WithPractitionerRoleMeta(v Meta) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.Meta = &v
@@ -865,6 +883,8 @@ func WithPractitionerRoleMeta(v Meta) PractitionerRoleOption {
 }
 
 // WithPractitionerRoleImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use PractitionerRoleBuilder.SetImplicitRules instead; removed in v2.
 func WithPractitionerRoleImplicitRules(v string) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.ImplicitRules = &v
@@ -872,6 +892,8 @@ func WithPractitionerRoleImplicitRules(v string) PractitionerRoleOption {
 }
 
 // WithPractitionerRoleLanguage sets the Language field.
+//
+// Deprecated: use PractitionerRoleBuilder.SetLanguage instead; removed in v2.
 func WithPractitionerRoleLanguage(v string) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.Language = &v
@@ -879,6 +901,8 @@ func WithPractitionerRoleLanguage(v string) PractitionerRoleOption {
 }
 
 // WithPractitionerRoleText sets the Text field.
+//
+// Deprecated: use PractitionerRoleBuilder.SetText instead; removed in v2.
 func WithPractitionerRoleText(v Narrative) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.Text = &v
@@ -886,6 +910,8 @@ func WithPractitionerRoleText(v Narrative) PractitionerRoleOption {
 }
 
 // WithPractitionerRoleContained adds a Contained to the PractitionerRole.
+//
+// Deprecated: use PractitionerRoleBuilder.AddContained instead; removed in v2.
 func WithPractitionerRoleContained(v Resource) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.Contained = append(r.Contained, v)
@@ -893,6 +919,8 @@ func WithPractitionerRoleContained(v Resource) PractitionerRoleOption {
 }
 
 // WithPractitionerRoleExtension adds a Extension to the PractitionerRole.
+//
+// Deprecated: use PractitionerRoleBuilder.AddExtension instead; removed in v2.
 func WithPractitionerRoleExtension(v Extension) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.Extension = append(r.Extension, v)
@@ -900,6 +928,8 @@ func WithPractitionerRoleExtension(v Extension) PractitionerRoleOption {
 }
 
 // WithPractitionerRoleModifierExtension adds a ModifierExtension to the PractitionerRole.
+//
+// Deprecated: use PractitionerRoleBuilder.AddModifierExtension instead; removed in v2.
 func WithPractitionerRoleModifierExtension(v Extension) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -907,6 +937,8 @@ func WithPractitionerRoleModifierExtension(v Extension) PractitionerRoleOption {
 }
 
 // WithPractitionerRoleIdentifier adds a Identifier to the PractitionerRole.
+//
+// Deprecated: use PractitionerRoleBuilder.AddIdentifier instead; removed in v2.
 func WithPractitionerRoleIdentifier(v Identifier) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.Identifier = append(r.Identifier, v)
@@ -914,6 +946,8 @@ func WithPractitionerRoleIdentifier(v Identifier) PractitionerRoleOption {
 }
 
 // WithPractitionerRoleActive sets the Active field.
+//
+// Deprecated: use PractitionerRoleBuilder.SetActive instead; removed in v2.
 func WithPractitionerRoleActive(v bool) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.Active = &v
@@ -921,6 +955,8 @@ func WithPractitionerRoleActive(v bool) PractitionerRoleOption {
 }
 
 // WithPractitionerRolePeriod sets the Period field.
+//
+// Deprecated: use PractitionerRoleBuilder.SetPeriod instead; removed in v2.
 func WithPractitionerRolePeriod(v Period) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.Period = &v
@@ -928,6 +964,8 @@ func WithPractitionerRolePeriod(v Period) PractitionerRoleOption {
 }
 
 // WithPractitionerRolePractitioner sets the Practitioner field.
+//
+// Deprecated: use PractitionerRoleBuilder.SetPractitioner instead; removed in v2.
 func WithPractitionerRolePractitioner(v Reference) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.Practitioner = &v
@@ -935,6 +973,8 @@ func WithPractitionerRolePractitioner(v Reference) PractitionerRoleOption {
 }
 
 // WithPractitionerRoleOrganization sets the Organization field.
+//
+// Deprecated: use PractitionerRoleBuilder.SetOrganization instead; removed in v2.
 func WithPractitionerRoleOrganization(v Reference) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.Organization = &v
@@ -942,6 +982,8 @@ func WithPractitionerRoleOrganization(v Reference) PractitionerRoleOption {
 }
 
 // WithPractitionerRoleCode adds a Code to the PractitionerRole.
+//
+// Deprecated: use PractitionerRoleBuilder.AddCode instead; removed in v2.
 func WithPractitionerRoleCode(v CodeableConcept) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.Code = append(r.Code, v)
@@ -949,6 +991,8 @@ func WithPractitionerRoleCode(v CodeableConcept) PractitionerRoleOption {
 }
 
 // WithPractitionerRoleSpecialty adds a Specialty to the PractitionerRole.
+//
+// Deprecated: use PractitionerRoleBuilder.AddSpecialty instead; removed in v2.
 func WithPractitionerRoleSpecialty(v CodeableConcept) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.Specialty = append(r.Specialty, v)
@@ -956,6 +1000,8 @@ func WithPractitionerRoleSpecialty(v CodeableConcept) PractitionerRoleOption {
 }
 
 // WithPractitionerRoleLocation adds a Location to the PractitionerRole.
+//
+// Deprecated: use PractitionerRoleBuilder.AddLocation instead; removed in v2.
 func WithPractitionerRoleLocation(v Reference) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.Location = append(r.Location, v)
@@ -963,6 +1009,8 @@ func WithPractitionerRoleLocation(v Reference) PractitionerRoleOption {
 }
 
 // WithPractitionerRoleHealthcareService adds a HealthcareService to the PractitionerRole.
+//
+// Deprecated: use PractitionerRoleBuilder.AddHealthcareService instead; removed in v2.
 func WithPractitionerRoleHealthcareService(v Reference) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.HealthcareService = append(r.HealthcareService, v)
@@ -970,6 +1018,8 @@ func WithPractitionerRoleHealthcareService(v Reference) PractitionerRoleOption {
 }
 
 // WithPractitionerRoleTelecom adds a Telecom to the PractitionerRole.
+//
+// Deprecated: use PractitionerRoleBuilder.AddTelecom instead; removed in v2.
 func WithPractitionerRoleTelecom(v ContactPoint) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.Telecom = append(r.Telecom, v)
@@ -977,6 +1027,8 @@ func WithPractitionerRoleTelecom(v ContactPoint) PractitionerRoleOption {
 }
 
 // WithPractitionerRoleAvailableTime adds a AvailableTime to the PractitionerRole.
+//
+// Deprecated: use PractitionerRoleBuilder.AddAvailableTime instead; removed in v2.
 func WithPractitionerRoleAvailableTime(v PractitionerRoleAvailableTime) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.AvailableTime = append(r.AvailableTime, v)
@@ -984,6 +1036,8 @@ func WithPractitionerRoleAvailableTime(v PractitionerRoleAvailableTime) Practiti
 }
 
 // WithPractitionerRoleNotAvailable adds a NotAvailable to the PractitionerRole.
+//
+// Deprecated: use PractitionerRoleBuilder.AddNotAvailable instead; removed in v2.
 func WithPractitionerRoleNotAvailable(v PractitionerRoleNotAvailable) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.NotAvailable = append(r.NotAvailable, v)
@@ -991,6 +1045,8 @@ func WithPractitionerRoleNotAvailable(v PractitionerRoleNotAvailable) Practition
 }
 
 // WithPractitionerRoleAvailabilityExceptions sets the AvailabilityExceptions field.
+//
+// Deprecated: use PractitionerRoleBuilder.SetAvailabilityExceptions instead; removed in v2.
 func WithPractitionerRoleAvailabilityExceptions(v string) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.AvailabilityExceptions = &v
@@ -998,6 +1054,8 @@ func WithPractitionerRoleAvailabilityExceptions(v string) PractitionerRoleOption
 }
 
 // WithPractitionerRoleEndpoint adds a Endpoint to the PractitionerRole.
+//
+// Deprecated: use PractitionerRoleBuilder.AddEndpoint instead; removed in v2.
 func WithPractitionerRoleEndpoint(v Reference) PractitionerRoleOption {
 	return func(r *PractitionerRole) {
 		r.Endpoint = append(r.Endpoint, v)

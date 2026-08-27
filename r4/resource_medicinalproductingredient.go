@@ -976,9 +976,23 @@ func (b *MedicinalProductIngredientBuilder) SetSubstance(v MedicinalProductIngre
 // =============================================================================
 
 // MedicinalProductIngredientOption is a functional option for configuring a MedicinalProductIngredient.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// MedicinalProductIngredientBuilder. Every WithMedicinalProductIngredient* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type MedicinalProductIngredientOption func(*MedicinalProductIngredient)
 
 // NewMedicinalProductIngredient creates a new MedicinalProductIngredient with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewMedicinalProductIngredientBuilder().SetId("x").Build()
+//
+// Deprecated: use NewMedicinalProductIngredientBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewMedicinalProductIngredient(opts ...MedicinalProductIngredientOption) *MedicinalProductIngredient {
 	r := &MedicinalProductIngredient{ResourceType: "MedicinalProductIngredient"}
 	for _, opt := range opts {
@@ -988,6 +1002,8 @@ func NewMedicinalProductIngredient(opts ...MedicinalProductIngredientOption) *Me
 }
 
 // WithMedicinalProductIngredientId sets the Id field.
+//
+// Deprecated: use MedicinalProductIngredientBuilder.SetId instead; removed in v2.
 func WithMedicinalProductIngredientId(v string) MedicinalProductIngredientOption {
 	return func(r *MedicinalProductIngredient) {
 		r.Id = &v
@@ -995,6 +1011,8 @@ func WithMedicinalProductIngredientId(v string) MedicinalProductIngredientOption
 }
 
 // WithMedicinalProductIngredientMeta sets the Meta field.
+//
+// Deprecated: use MedicinalProductIngredientBuilder.SetMeta instead; removed in v2.
 func WithMedicinalProductIngredientMeta(v Meta) MedicinalProductIngredientOption {
 	return func(r *MedicinalProductIngredient) {
 		r.Meta = &v
@@ -1002,6 +1020,8 @@ func WithMedicinalProductIngredientMeta(v Meta) MedicinalProductIngredientOption
 }
 
 // WithMedicinalProductIngredientImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use MedicinalProductIngredientBuilder.SetImplicitRules instead; removed in v2.
 func WithMedicinalProductIngredientImplicitRules(v string) MedicinalProductIngredientOption {
 	return func(r *MedicinalProductIngredient) {
 		r.ImplicitRules = &v
@@ -1009,6 +1029,8 @@ func WithMedicinalProductIngredientImplicitRules(v string) MedicinalProductIngre
 }
 
 // WithMedicinalProductIngredientLanguage sets the Language field.
+//
+// Deprecated: use MedicinalProductIngredientBuilder.SetLanguage instead; removed in v2.
 func WithMedicinalProductIngredientLanguage(v string) MedicinalProductIngredientOption {
 	return func(r *MedicinalProductIngredient) {
 		r.Language = &v
@@ -1016,6 +1038,8 @@ func WithMedicinalProductIngredientLanguage(v string) MedicinalProductIngredient
 }
 
 // WithMedicinalProductIngredientText sets the Text field.
+//
+// Deprecated: use MedicinalProductIngredientBuilder.SetText instead; removed in v2.
 func WithMedicinalProductIngredientText(v Narrative) MedicinalProductIngredientOption {
 	return func(r *MedicinalProductIngredient) {
 		r.Text = &v
@@ -1023,6 +1047,8 @@ func WithMedicinalProductIngredientText(v Narrative) MedicinalProductIngredientO
 }
 
 // WithMedicinalProductIngredientContained adds a Contained to the MedicinalProductIngredient.
+//
+// Deprecated: use MedicinalProductIngredientBuilder.AddContained instead; removed in v2.
 func WithMedicinalProductIngredientContained(v Resource) MedicinalProductIngredientOption {
 	return func(r *MedicinalProductIngredient) {
 		r.Contained = append(r.Contained, v)
@@ -1030,6 +1056,8 @@ func WithMedicinalProductIngredientContained(v Resource) MedicinalProductIngredi
 }
 
 // WithMedicinalProductIngredientExtension adds a Extension to the MedicinalProductIngredient.
+//
+// Deprecated: use MedicinalProductIngredientBuilder.AddExtension instead; removed in v2.
 func WithMedicinalProductIngredientExtension(v Extension) MedicinalProductIngredientOption {
 	return func(r *MedicinalProductIngredient) {
 		r.Extension = append(r.Extension, v)
@@ -1037,6 +1065,8 @@ func WithMedicinalProductIngredientExtension(v Extension) MedicinalProductIngred
 }
 
 // WithMedicinalProductIngredientModifierExtension adds a ModifierExtension to the MedicinalProductIngredient.
+//
+// Deprecated: use MedicinalProductIngredientBuilder.AddModifierExtension instead; removed in v2.
 func WithMedicinalProductIngredientModifierExtension(v Extension) MedicinalProductIngredientOption {
 	return func(r *MedicinalProductIngredient) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1044,6 +1074,8 @@ func WithMedicinalProductIngredientModifierExtension(v Extension) MedicinalProdu
 }
 
 // WithMedicinalProductIngredientIdentifier sets the Identifier field.
+//
+// Deprecated: use MedicinalProductIngredientBuilder.SetIdentifier instead; removed in v2.
 func WithMedicinalProductIngredientIdentifier(v Identifier) MedicinalProductIngredientOption {
 	return func(r *MedicinalProductIngredient) {
 		r.Identifier = &v
@@ -1051,6 +1083,8 @@ func WithMedicinalProductIngredientIdentifier(v Identifier) MedicinalProductIngr
 }
 
 // WithMedicinalProductIngredientRole sets the Role field.
+//
+// Deprecated: use MedicinalProductIngredientBuilder.SetRole instead; removed in v2.
 func WithMedicinalProductIngredientRole(v CodeableConcept) MedicinalProductIngredientOption {
 	return func(r *MedicinalProductIngredient) {
 		r.Role = v
@@ -1058,6 +1092,8 @@ func WithMedicinalProductIngredientRole(v CodeableConcept) MedicinalProductIngre
 }
 
 // WithMedicinalProductIngredientAllergenicIndicator sets the AllergenicIndicator field.
+//
+// Deprecated: use MedicinalProductIngredientBuilder.SetAllergenicIndicator instead; removed in v2.
 func WithMedicinalProductIngredientAllergenicIndicator(v bool) MedicinalProductIngredientOption {
 	return func(r *MedicinalProductIngredient) {
 		r.AllergenicIndicator = &v
@@ -1065,6 +1101,8 @@ func WithMedicinalProductIngredientAllergenicIndicator(v bool) MedicinalProductI
 }
 
 // WithMedicinalProductIngredientManufacturer adds a Manufacturer to the MedicinalProductIngredient.
+//
+// Deprecated: use MedicinalProductIngredientBuilder.AddManufacturer instead; removed in v2.
 func WithMedicinalProductIngredientManufacturer(v Reference) MedicinalProductIngredientOption {
 	return func(r *MedicinalProductIngredient) {
 		r.Manufacturer = append(r.Manufacturer, v)
@@ -1072,6 +1110,8 @@ func WithMedicinalProductIngredientManufacturer(v Reference) MedicinalProductIng
 }
 
 // WithMedicinalProductIngredientSpecifiedSubstance adds a SpecifiedSubstance to the MedicinalProductIngredient.
+//
+// Deprecated: use MedicinalProductIngredientBuilder.AddSpecifiedSubstance instead; removed in v2.
 func WithMedicinalProductIngredientSpecifiedSubstance(v MedicinalProductIngredientSpecifiedSubstance) MedicinalProductIngredientOption {
 	return func(r *MedicinalProductIngredient) {
 		r.SpecifiedSubstance = append(r.SpecifiedSubstance, v)
@@ -1079,6 +1119,8 @@ func WithMedicinalProductIngredientSpecifiedSubstance(v MedicinalProductIngredie
 }
 
 // WithMedicinalProductIngredientSubstance sets the Substance field.
+//
+// Deprecated: use MedicinalProductIngredientBuilder.SetSubstance instead; removed in v2.
 func WithMedicinalProductIngredientSubstance(v MedicinalProductIngredientSubstance) MedicinalProductIngredientOption {
 	return func(r *MedicinalProductIngredient) {
 		r.Substance = &v

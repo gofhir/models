@@ -775,9 +775,23 @@ func (b *InventoryReportBuilder) AddNote(v Annotation) *InventoryReportBuilder {
 // =============================================================================
 
 // InventoryReportOption is a functional option for configuring a InventoryReport.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// InventoryReportBuilder. Every WithInventoryReport* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type InventoryReportOption func(*InventoryReport)
 
 // NewInventoryReport creates a new InventoryReport with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewInventoryReportBuilder().SetId("x").Build()
+//
+// Deprecated: use NewInventoryReportBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewInventoryReport(opts ...InventoryReportOption) *InventoryReport {
 	r := &InventoryReport{ResourceType: "InventoryReport"}
 	for _, opt := range opts {
@@ -787,6 +801,8 @@ func NewInventoryReport(opts ...InventoryReportOption) *InventoryReport {
 }
 
 // WithInventoryReportId sets the Id field.
+//
+// Deprecated: use InventoryReportBuilder.SetId instead; removed in v2.
 func WithInventoryReportId(v string) InventoryReportOption {
 	return func(r *InventoryReport) {
 		r.Id = &v
@@ -794,6 +810,8 @@ func WithInventoryReportId(v string) InventoryReportOption {
 }
 
 // WithInventoryReportMeta sets the Meta field.
+//
+// Deprecated: use InventoryReportBuilder.SetMeta instead; removed in v2.
 func WithInventoryReportMeta(v Meta) InventoryReportOption {
 	return func(r *InventoryReport) {
 		r.Meta = &v
@@ -801,6 +819,8 @@ func WithInventoryReportMeta(v Meta) InventoryReportOption {
 }
 
 // WithInventoryReportImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use InventoryReportBuilder.SetImplicitRules instead; removed in v2.
 func WithInventoryReportImplicitRules(v string) InventoryReportOption {
 	return func(r *InventoryReport) {
 		r.ImplicitRules = &v
@@ -808,6 +828,8 @@ func WithInventoryReportImplicitRules(v string) InventoryReportOption {
 }
 
 // WithInventoryReportLanguage sets the Language field.
+//
+// Deprecated: use InventoryReportBuilder.SetLanguage instead; removed in v2.
 func WithInventoryReportLanguage(v string) InventoryReportOption {
 	return func(r *InventoryReport) {
 		r.Language = &v
@@ -815,6 +837,8 @@ func WithInventoryReportLanguage(v string) InventoryReportOption {
 }
 
 // WithInventoryReportText sets the Text field.
+//
+// Deprecated: use InventoryReportBuilder.SetText instead; removed in v2.
 func WithInventoryReportText(v Narrative) InventoryReportOption {
 	return func(r *InventoryReport) {
 		r.Text = &v
@@ -822,6 +846,8 @@ func WithInventoryReportText(v Narrative) InventoryReportOption {
 }
 
 // WithInventoryReportContained adds a Contained to the InventoryReport.
+//
+// Deprecated: use InventoryReportBuilder.AddContained instead; removed in v2.
 func WithInventoryReportContained(v Resource) InventoryReportOption {
 	return func(r *InventoryReport) {
 		r.Contained = append(r.Contained, v)
@@ -829,6 +855,8 @@ func WithInventoryReportContained(v Resource) InventoryReportOption {
 }
 
 // WithInventoryReportExtension adds a Extension to the InventoryReport.
+//
+// Deprecated: use InventoryReportBuilder.AddExtension instead; removed in v2.
 func WithInventoryReportExtension(v Extension) InventoryReportOption {
 	return func(r *InventoryReport) {
 		r.Extension = append(r.Extension, v)
@@ -836,6 +864,8 @@ func WithInventoryReportExtension(v Extension) InventoryReportOption {
 }
 
 // WithInventoryReportModifierExtension adds a ModifierExtension to the InventoryReport.
+//
+// Deprecated: use InventoryReportBuilder.AddModifierExtension instead; removed in v2.
 func WithInventoryReportModifierExtension(v Extension) InventoryReportOption {
 	return func(r *InventoryReport) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -843,6 +873,8 @@ func WithInventoryReportModifierExtension(v Extension) InventoryReportOption {
 }
 
 // WithInventoryReportIdentifier adds a Identifier to the InventoryReport.
+//
+// Deprecated: use InventoryReportBuilder.AddIdentifier instead; removed in v2.
 func WithInventoryReportIdentifier(v Identifier) InventoryReportOption {
 	return func(r *InventoryReport) {
 		r.Identifier = append(r.Identifier, v)
@@ -850,6 +882,8 @@ func WithInventoryReportIdentifier(v Identifier) InventoryReportOption {
 }
 
 // WithInventoryReportStatus sets the Status field.
+//
+// Deprecated: use InventoryReportBuilder.SetStatus instead; removed in v2.
 func WithInventoryReportStatus(v InventoryReportStatus) InventoryReportOption {
 	return func(r *InventoryReport) {
 		r.Status = &v
@@ -857,6 +891,8 @@ func WithInventoryReportStatus(v InventoryReportStatus) InventoryReportOption {
 }
 
 // WithInventoryReportCountType sets the CountType field.
+//
+// Deprecated: use InventoryReportBuilder.SetCountType instead; removed in v2.
 func WithInventoryReportCountType(v InventoryCountType) InventoryReportOption {
 	return func(r *InventoryReport) {
 		r.CountType = &v
@@ -864,6 +900,8 @@ func WithInventoryReportCountType(v InventoryCountType) InventoryReportOption {
 }
 
 // WithInventoryReportOperationType sets the OperationType field.
+//
+// Deprecated: use InventoryReportBuilder.SetOperationType instead; removed in v2.
 func WithInventoryReportOperationType(v CodeableConcept) InventoryReportOption {
 	return func(r *InventoryReport) {
 		r.OperationType = &v
@@ -871,6 +909,8 @@ func WithInventoryReportOperationType(v CodeableConcept) InventoryReportOption {
 }
 
 // WithInventoryReportOperationTypeReason sets the OperationTypeReason field.
+//
+// Deprecated: use InventoryReportBuilder.SetOperationTypeReason instead; removed in v2.
 func WithInventoryReportOperationTypeReason(v CodeableConcept) InventoryReportOption {
 	return func(r *InventoryReport) {
 		r.OperationTypeReason = &v
@@ -878,6 +918,8 @@ func WithInventoryReportOperationTypeReason(v CodeableConcept) InventoryReportOp
 }
 
 // WithInventoryReportReportedDateTime sets the ReportedDateTime field.
+//
+// Deprecated: use InventoryReportBuilder.SetReportedDateTime instead; removed in v2.
 func WithInventoryReportReportedDateTime(v string) InventoryReportOption {
 	return func(r *InventoryReport) {
 		r.ReportedDateTime = &v
@@ -885,6 +927,8 @@ func WithInventoryReportReportedDateTime(v string) InventoryReportOption {
 }
 
 // WithInventoryReportReporter sets the Reporter field.
+//
+// Deprecated: use InventoryReportBuilder.SetReporter instead; removed in v2.
 func WithInventoryReportReporter(v Reference) InventoryReportOption {
 	return func(r *InventoryReport) {
 		r.Reporter = &v
@@ -892,6 +936,8 @@ func WithInventoryReportReporter(v Reference) InventoryReportOption {
 }
 
 // WithInventoryReportReportingPeriod sets the ReportingPeriod field.
+//
+// Deprecated: use InventoryReportBuilder.SetReportingPeriod instead; removed in v2.
 func WithInventoryReportReportingPeriod(v Period) InventoryReportOption {
 	return func(r *InventoryReport) {
 		r.ReportingPeriod = &v
@@ -899,6 +945,8 @@ func WithInventoryReportReportingPeriod(v Period) InventoryReportOption {
 }
 
 // WithInventoryReportInventoryListing adds a InventoryListing to the InventoryReport.
+//
+// Deprecated: use InventoryReportBuilder.AddInventoryListing instead; removed in v2.
 func WithInventoryReportInventoryListing(v InventoryReportInventoryListing) InventoryReportOption {
 	return func(r *InventoryReport) {
 		r.InventoryListing = append(r.InventoryListing, v)
@@ -906,6 +954,8 @@ func WithInventoryReportInventoryListing(v InventoryReportInventoryListing) Inve
 }
 
 // WithInventoryReportNote adds a Note to the InventoryReport.
+//
+// Deprecated: use InventoryReportBuilder.AddNote instead; removed in v2.
 func WithInventoryReportNote(v Annotation) InventoryReportOption {
 	return func(r *InventoryReport) {
 		r.Note = append(r.Note, v)

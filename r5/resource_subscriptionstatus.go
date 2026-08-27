@@ -605,9 +605,23 @@ func (b *SubscriptionStatusBuilder) AddError(v CodeableConcept) *SubscriptionSta
 // =============================================================================
 
 // SubscriptionStatusOption is a functional option for configuring a SubscriptionStatus.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// SubscriptionStatusBuilder. Every WithSubscriptionStatus* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type SubscriptionStatusOption func(*SubscriptionStatus)
 
 // NewSubscriptionStatus creates a new SubscriptionStatus with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewSubscriptionStatusBuilder().SetId("x").Build()
+//
+// Deprecated: use NewSubscriptionStatusBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewSubscriptionStatus(opts ...SubscriptionStatusOption) *SubscriptionStatus {
 	r := &SubscriptionStatus{ResourceType: "SubscriptionStatus"}
 	for _, opt := range opts {
@@ -617,6 +631,8 @@ func NewSubscriptionStatus(opts ...SubscriptionStatusOption) *SubscriptionStatus
 }
 
 // WithSubscriptionStatusId sets the Id field.
+//
+// Deprecated: use SubscriptionStatusBuilder.SetId instead; removed in v2.
 func WithSubscriptionStatusId(v string) SubscriptionStatusOption {
 	return func(r *SubscriptionStatus) {
 		r.Id = &v
@@ -624,6 +640,8 @@ func WithSubscriptionStatusId(v string) SubscriptionStatusOption {
 }
 
 // WithSubscriptionStatusMeta sets the Meta field.
+//
+// Deprecated: use SubscriptionStatusBuilder.SetMeta instead; removed in v2.
 func WithSubscriptionStatusMeta(v Meta) SubscriptionStatusOption {
 	return func(r *SubscriptionStatus) {
 		r.Meta = &v
@@ -631,6 +649,8 @@ func WithSubscriptionStatusMeta(v Meta) SubscriptionStatusOption {
 }
 
 // WithSubscriptionStatusImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use SubscriptionStatusBuilder.SetImplicitRules instead; removed in v2.
 func WithSubscriptionStatusImplicitRules(v string) SubscriptionStatusOption {
 	return func(r *SubscriptionStatus) {
 		r.ImplicitRules = &v
@@ -638,6 +658,8 @@ func WithSubscriptionStatusImplicitRules(v string) SubscriptionStatusOption {
 }
 
 // WithSubscriptionStatusLanguage sets the Language field.
+//
+// Deprecated: use SubscriptionStatusBuilder.SetLanguage instead; removed in v2.
 func WithSubscriptionStatusLanguage(v string) SubscriptionStatusOption {
 	return func(r *SubscriptionStatus) {
 		r.Language = &v
@@ -645,6 +667,8 @@ func WithSubscriptionStatusLanguage(v string) SubscriptionStatusOption {
 }
 
 // WithSubscriptionStatusText sets the Text field.
+//
+// Deprecated: use SubscriptionStatusBuilder.SetText instead; removed in v2.
 func WithSubscriptionStatusText(v Narrative) SubscriptionStatusOption {
 	return func(r *SubscriptionStatus) {
 		r.Text = &v
@@ -652,6 +676,8 @@ func WithSubscriptionStatusText(v Narrative) SubscriptionStatusOption {
 }
 
 // WithSubscriptionStatusContained adds a Contained to the SubscriptionStatus.
+//
+// Deprecated: use SubscriptionStatusBuilder.AddContained instead; removed in v2.
 func WithSubscriptionStatusContained(v Resource) SubscriptionStatusOption {
 	return func(r *SubscriptionStatus) {
 		r.Contained = append(r.Contained, v)
@@ -659,6 +685,8 @@ func WithSubscriptionStatusContained(v Resource) SubscriptionStatusOption {
 }
 
 // WithSubscriptionStatusExtension adds a Extension to the SubscriptionStatus.
+//
+// Deprecated: use SubscriptionStatusBuilder.AddExtension instead; removed in v2.
 func WithSubscriptionStatusExtension(v Extension) SubscriptionStatusOption {
 	return func(r *SubscriptionStatus) {
 		r.Extension = append(r.Extension, v)
@@ -666,6 +694,8 @@ func WithSubscriptionStatusExtension(v Extension) SubscriptionStatusOption {
 }
 
 // WithSubscriptionStatusModifierExtension adds a ModifierExtension to the SubscriptionStatus.
+//
+// Deprecated: use SubscriptionStatusBuilder.AddModifierExtension instead; removed in v2.
 func WithSubscriptionStatusModifierExtension(v Extension) SubscriptionStatusOption {
 	return func(r *SubscriptionStatus) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -673,6 +703,8 @@ func WithSubscriptionStatusModifierExtension(v Extension) SubscriptionStatusOpti
 }
 
 // WithSubscriptionStatusStatus sets the Status field.
+//
+// Deprecated: use SubscriptionStatusBuilder.SetStatus instead; removed in v2.
 func WithSubscriptionStatusStatus(v SubscriptionStatusCodes) SubscriptionStatusOption {
 	return func(r *SubscriptionStatus) {
 		r.Status = &v
@@ -680,6 +712,8 @@ func WithSubscriptionStatusStatus(v SubscriptionStatusCodes) SubscriptionStatusO
 }
 
 // WithSubscriptionStatusType sets the Type field.
+//
+// Deprecated: use SubscriptionStatusBuilder.SetType instead; removed in v2.
 func WithSubscriptionStatusType(v SubscriptionNotificationType) SubscriptionStatusOption {
 	return func(r *SubscriptionStatus) {
 		r.Type = &v
@@ -687,6 +721,8 @@ func WithSubscriptionStatusType(v SubscriptionNotificationType) SubscriptionStat
 }
 
 // WithSubscriptionStatusEventsSinceSubscriptionStart sets the EventsSinceSubscriptionStart field.
+//
+// Deprecated: use SubscriptionStatusBuilder.SetEventsSinceSubscriptionStart instead; removed in v2.
 func WithSubscriptionStatusEventsSinceSubscriptionStart(v int64) SubscriptionStatusOption {
 	return func(r *SubscriptionStatus) {
 		r.EventsSinceSubscriptionStart = &v
@@ -694,6 +730,8 @@ func WithSubscriptionStatusEventsSinceSubscriptionStart(v int64) SubscriptionSta
 }
 
 // WithSubscriptionStatusNotificationEvent adds a NotificationEvent to the SubscriptionStatus.
+//
+// Deprecated: use SubscriptionStatusBuilder.AddNotificationEvent instead; removed in v2.
 func WithSubscriptionStatusNotificationEvent(v SubscriptionStatusNotificationEvent) SubscriptionStatusOption {
 	return func(r *SubscriptionStatus) {
 		r.NotificationEvent = append(r.NotificationEvent, v)
@@ -701,6 +739,8 @@ func WithSubscriptionStatusNotificationEvent(v SubscriptionStatusNotificationEve
 }
 
 // WithSubscriptionStatusSubscription sets the Subscription field.
+//
+// Deprecated: use SubscriptionStatusBuilder.SetSubscription instead; removed in v2.
 func WithSubscriptionStatusSubscription(v Reference) SubscriptionStatusOption {
 	return func(r *SubscriptionStatus) {
 		r.Subscription = v
@@ -708,6 +748,8 @@ func WithSubscriptionStatusSubscription(v Reference) SubscriptionStatusOption {
 }
 
 // WithSubscriptionStatusTopic sets the Topic field.
+//
+// Deprecated: use SubscriptionStatusBuilder.SetTopic instead; removed in v2.
 func WithSubscriptionStatusTopic(v string) SubscriptionStatusOption {
 	return func(r *SubscriptionStatus) {
 		r.Topic = &v
@@ -715,6 +757,8 @@ func WithSubscriptionStatusTopic(v string) SubscriptionStatusOption {
 }
 
 // WithSubscriptionStatusError adds a Error to the SubscriptionStatus.
+//
+// Deprecated: use SubscriptionStatusBuilder.AddError instead; removed in v2.
 func WithSubscriptionStatusError(v CodeableConcept) SubscriptionStatusOption {
 	return func(r *SubscriptionStatus) {
 		r.Error = append(r.Error, v)

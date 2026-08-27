@@ -837,9 +837,23 @@ func (b *SupplyRequestBuilder) SetDeliverTo(v Reference) *SupplyRequestBuilder {
 // =============================================================================
 
 // SupplyRequestOption is a functional option for configuring a SupplyRequest.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// SupplyRequestBuilder. Every WithSupplyRequest* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type SupplyRequestOption func(*SupplyRequest)
 
 // NewSupplyRequest creates a new SupplyRequest with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewSupplyRequestBuilder().SetId("x").Build()
+//
+// Deprecated: use NewSupplyRequestBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewSupplyRequest(opts ...SupplyRequestOption) *SupplyRequest {
 	r := &SupplyRequest{ResourceType: "SupplyRequest"}
 	for _, opt := range opts {
@@ -849,6 +863,8 @@ func NewSupplyRequest(opts ...SupplyRequestOption) *SupplyRequest {
 }
 
 // WithSupplyRequestId sets the Id field.
+//
+// Deprecated: use SupplyRequestBuilder.SetId instead; removed in v2.
 func WithSupplyRequestId(v string) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.Id = &v
@@ -856,6 +872,8 @@ func WithSupplyRequestId(v string) SupplyRequestOption {
 }
 
 // WithSupplyRequestMeta sets the Meta field.
+//
+// Deprecated: use SupplyRequestBuilder.SetMeta instead; removed in v2.
 func WithSupplyRequestMeta(v Meta) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.Meta = &v
@@ -863,6 +881,8 @@ func WithSupplyRequestMeta(v Meta) SupplyRequestOption {
 }
 
 // WithSupplyRequestImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use SupplyRequestBuilder.SetImplicitRules instead; removed in v2.
 func WithSupplyRequestImplicitRules(v string) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.ImplicitRules = &v
@@ -870,6 +890,8 @@ func WithSupplyRequestImplicitRules(v string) SupplyRequestOption {
 }
 
 // WithSupplyRequestLanguage sets the Language field.
+//
+// Deprecated: use SupplyRequestBuilder.SetLanguage instead; removed in v2.
 func WithSupplyRequestLanguage(v string) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.Language = &v
@@ -877,6 +899,8 @@ func WithSupplyRequestLanguage(v string) SupplyRequestOption {
 }
 
 // WithSupplyRequestText sets the Text field.
+//
+// Deprecated: use SupplyRequestBuilder.SetText instead; removed in v2.
 func WithSupplyRequestText(v Narrative) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.Text = &v
@@ -884,6 +908,8 @@ func WithSupplyRequestText(v Narrative) SupplyRequestOption {
 }
 
 // WithSupplyRequestContained adds a Contained to the SupplyRequest.
+//
+// Deprecated: use SupplyRequestBuilder.AddContained instead; removed in v2.
 func WithSupplyRequestContained(v Resource) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.Contained = append(r.Contained, v)
@@ -891,6 +917,8 @@ func WithSupplyRequestContained(v Resource) SupplyRequestOption {
 }
 
 // WithSupplyRequestExtension adds a Extension to the SupplyRequest.
+//
+// Deprecated: use SupplyRequestBuilder.AddExtension instead; removed in v2.
 func WithSupplyRequestExtension(v Extension) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.Extension = append(r.Extension, v)
@@ -898,6 +926,8 @@ func WithSupplyRequestExtension(v Extension) SupplyRequestOption {
 }
 
 // WithSupplyRequestModifierExtension adds a ModifierExtension to the SupplyRequest.
+//
+// Deprecated: use SupplyRequestBuilder.AddModifierExtension instead; removed in v2.
 func WithSupplyRequestModifierExtension(v Extension) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -905,6 +935,8 @@ func WithSupplyRequestModifierExtension(v Extension) SupplyRequestOption {
 }
 
 // WithSupplyRequestIdentifier adds a Identifier to the SupplyRequest.
+//
+// Deprecated: use SupplyRequestBuilder.AddIdentifier instead; removed in v2.
 func WithSupplyRequestIdentifier(v Identifier) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.Identifier = append(r.Identifier, v)
@@ -912,6 +944,8 @@ func WithSupplyRequestIdentifier(v Identifier) SupplyRequestOption {
 }
 
 // WithSupplyRequestStatus sets the Status field.
+//
+// Deprecated: use SupplyRequestBuilder.SetStatus instead; removed in v2.
 func WithSupplyRequestStatus(v SupplyRequestStatus) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.Status = &v
@@ -919,6 +953,8 @@ func WithSupplyRequestStatus(v SupplyRequestStatus) SupplyRequestOption {
 }
 
 // WithSupplyRequestCategory sets the Category field.
+//
+// Deprecated: use SupplyRequestBuilder.SetCategory instead; removed in v2.
 func WithSupplyRequestCategory(v CodeableConcept) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.Category = &v
@@ -926,6 +962,8 @@ func WithSupplyRequestCategory(v CodeableConcept) SupplyRequestOption {
 }
 
 // WithSupplyRequestPriority sets the Priority field.
+//
+// Deprecated: use SupplyRequestBuilder.SetPriority instead; removed in v2.
 func WithSupplyRequestPriority(v RequestPriority) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.Priority = &v
@@ -933,6 +971,8 @@ func WithSupplyRequestPriority(v RequestPriority) SupplyRequestOption {
 }
 
 // WithSupplyRequestItemCodeableConcept sets the ItemCodeableConcept field.
+//
+// Deprecated: use SupplyRequestBuilder.SetItemCodeableConcept instead; removed in v2.
 func WithSupplyRequestItemCodeableConcept(v CodeableConcept) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.ItemCodeableConcept = &v
@@ -940,6 +980,8 @@ func WithSupplyRequestItemCodeableConcept(v CodeableConcept) SupplyRequestOption
 }
 
 // WithSupplyRequestItemReference sets the ItemReference field.
+//
+// Deprecated: use SupplyRequestBuilder.SetItemReference instead; removed in v2.
 func WithSupplyRequestItemReference(v Reference) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.ItemReference = &v
@@ -947,6 +989,8 @@ func WithSupplyRequestItemReference(v Reference) SupplyRequestOption {
 }
 
 // WithSupplyRequestQuantity sets the Quantity field.
+//
+// Deprecated: use SupplyRequestBuilder.SetQuantity instead; removed in v2.
 func WithSupplyRequestQuantity(v Quantity) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.Quantity = v
@@ -954,6 +998,8 @@ func WithSupplyRequestQuantity(v Quantity) SupplyRequestOption {
 }
 
 // WithSupplyRequestParameter adds a Parameter to the SupplyRequest.
+//
+// Deprecated: use SupplyRequestBuilder.AddParameter instead; removed in v2.
 func WithSupplyRequestParameter(v SupplyRequestParameter) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.Parameter = append(r.Parameter, v)
@@ -961,6 +1007,8 @@ func WithSupplyRequestParameter(v SupplyRequestParameter) SupplyRequestOption {
 }
 
 // WithSupplyRequestOccurrenceDateTime sets the OccurrenceDateTime field.
+//
+// Deprecated: use SupplyRequestBuilder.SetOccurrenceDateTime instead; removed in v2.
 func WithSupplyRequestOccurrenceDateTime(v string) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.OccurrenceDateTime = &v
@@ -968,6 +1016,8 @@ func WithSupplyRequestOccurrenceDateTime(v string) SupplyRequestOption {
 }
 
 // WithSupplyRequestOccurrenceDateTimeExt sets the OccurrenceDateTimeExt field.
+//
+// Deprecated: use SupplyRequestBuilder.SetOccurrenceDateTimeExt instead; removed in v2.
 func WithSupplyRequestOccurrenceDateTimeExt(v Element) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.OccurrenceDateTimeExt = &v
@@ -975,6 +1025,8 @@ func WithSupplyRequestOccurrenceDateTimeExt(v Element) SupplyRequestOption {
 }
 
 // WithSupplyRequestOccurrencePeriod sets the OccurrencePeriod field.
+//
+// Deprecated: use SupplyRequestBuilder.SetOccurrencePeriod instead; removed in v2.
 func WithSupplyRequestOccurrencePeriod(v Period) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.OccurrencePeriod = &v
@@ -982,6 +1034,8 @@ func WithSupplyRequestOccurrencePeriod(v Period) SupplyRequestOption {
 }
 
 // WithSupplyRequestOccurrenceTiming sets the OccurrenceTiming field.
+//
+// Deprecated: use SupplyRequestBuilder.SetOccurrenceTiming instead; removed in v2.
 func WithSupplyRequestOccurrenceTiming(v Timing) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.OccurrenceTiming = &v
@@ -989,6 +1043,8 @@ func WithSupplyRequestOccurrenceTiming(v Timing) SupplyRequestOption {
 }
 
 // WithSupplyRequestAuthoredOn sets the AuthoredOn field.
+//
+// Deprecated: use SupplyRequestBuilder.SetAuthoredOn instead; removed in v2.
 func WithSupplyRequestAuthoredOn(v string) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.AuthoredOn = &v
@@ -996,6 +1052,8 @@ func WithSupplyRequestAuthoredOn(v string) SupplyRequestOption {
 }
 
 // WithSupplyRequestRequester sets the Requester field.
+//
+// Deprecated: use SupplyRequestBuilder.SetRequester instead; removed in v2.
 func WithSupplyRequestRequester(v Reference) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.Requester = &v
@@ -1003,6 +1061,8 @@ func WithSupplyRequestRequester(v Reference) SupplyRequestOption {
 }
 
 // WithSupplyRequestSupplier adds a Supplier to the SupplyRequest.
+//
+// Deprecated: use SupplyRequestBuilder.AddSupplier instead; removed in v2.
 func WithSupplyRequestSupplier(v Reference) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.Supplier = append(r.Supplier, v)
@@ -1010,6 +1070,8 @@ func WithSupplyRequestSupplier(v Reference) SupplyRequestOption {
 }
 
 // WithSupplyRequestReasonCode adds a ReasonCode to the SupplyRequest.
+//
+// Deprecated: use SupplyRequestBuilder.AddReasonCode instead; removed in v2.
 func WithSupplyRequestReasonCode(v CodeableConcept) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.ReasonCode = append(r.ReasonCode, v)
@@ -1017,6 +1079,8 @@ func WithSupplyRequestReasonCode(v CodeableConcept) SupplyRequestOption {
 }
 
 // WithSupplyRequestReasonReference adds a ReasonReference to the SupplyRequest.
+//
+// Deprecated: use SupplyRequestBuilder.AddReasonReference instead; removed in v2.
 func WithSupplyRequestReasonReference(v Reference) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.ReasonReference = append(r.ReasonReference, v)
@@ -1024,6 +1088,8 @@ func WithSupplyRequestReasonReference(v Reference) SupplyRequestOption {
 }
 
 // WithSupplyRequestDeliverFrom sets the DeliverFrom field.
+//
+// Deprecated: use SupplyRequestBuilder.SetDeliverFrom instead; removed in v2.
 func WithSupplyRequestDeliverFrom(v Reference) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.DeliverFrom = &v
@@ -1031,6 +1097,8 @@ func WithSupplyRequestDeliverFrom(v Reference) SupplyRequestOption {
 }
 
 // WithSupplyRequestDeliverTo sets the DeliverTo field.
+//
+// Deprecated: use SupplyRequestBuilder.SetDeliverTo instead; removed in v2.
 func WithSupplyRequestDeliverTo(v Reference) SupplyRequestOption {
 	return func(r *SupplyRequest) {
 		r.DeliverTo = &v

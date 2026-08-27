@@ -718,9 +718,23 @@ func (b *SupplyDeliveryBuilder) AddReceiver(v Reference) *SupplyDeliveryBuilder 
 // =============================================================================
 
 // SupplyDeliveryOption is a functional option for configuring a SupplyDelivery.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// SupplyDeliveryBuilder. Every WithSupplyDelivery* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type SupplyDeliveryOption func(*SupplyDelivery)
 
 // NewSupplyDelivery creates a new SupplyDelivery with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewSupplyDeliveryBuilder().SetId("x").Build()
+//
+// Deprecated: use NewSupplyDeliveryBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewSupplyDelivery(opts ...SupplyDeliveryOption) *SupplyDelivery {
 	r := &SupplyDelivery{ResourceType: "SupplyDelivery"}
 	for _, opt := range opts {
@@ -730,6 +744,8 @@ func NewSupplyDelivery(opts ...SupplyDeliveryOption) *SupplyDelivery {
 }
 
 // WithSupplyDeliveryId sets the Id field.
+//
+// Deprecated: use SupplyDeliveryBuilder.SetId instead; removed in v2.
 func WithSupplyDeliveryId(v string) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.Id = &v
@@ -737,6 +753,8 @@ func WithSupplyDeliveryId(v string) SupplyDeliveryOption {
 }
 
 // WithSupplyDeliveryMeta sets the Meta field.
+//
+// Deprecated: use SupplyDeliveryBuilder.SetMeta instead; removed in v2.
 func WithSupplyDeliveryMeta(v Meta) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.Meta = &v
@@ -744,6 +762,8 @@ func WithSupplyDeliveryMeta(v Meta) SupplyDeliveryOption {
 }
 
 // WithSupplyDeliveryImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use SupplyDeliveryBuilder.SetImplicitRules instead; removed in v2.
 func WithSupplyDeliveryImplicitRules(v string) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.ImplicitRules = &v
@@ -751,6 +771,8 @@ func WithSupplyDeliveryImplicitRules(v string) SupplyDeliveryOption {
 }
 
 // WithSupplyDeliveryLanguage sets the Language field.
+//
+// Deprecated: use SupplyDeliveryBuilder.SetLanguage instead; removed in v2.
 func WithSupplyDeliveryLanguage(v string) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.Language = &v
@@ -758,6 +780,8 @@ func WithSupplyDeliveryLanguage(v string) SupplyDeliveryOption {
 }
 
 // WithSupplyDeliveryText sets the Text field.
+//
+// Deprecated: use SupplyDeliveryBuilder.SetText instead; removed in v2.
 func WithSupplyDeliveryText(v Narrative) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.Text = &v
@@ -765,6 +789,8 @@ func WithSupplyDeliveryText(v Narrative) SupplyDeliveryOption {
 }
 
 // WithSupplyDeliveryContained adds a Contained to the SupplyDelivery.
+//
+// Deprecated: use SupplyDeliveryBuilder.AddContained instead; removed in v2.
 func WithSupplyDeliveryContained(v Resource) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.Contained = append(r.Contained, v)
@@ -772,6 +798,8 @@ func WithSupplyDeliveryContained(v Resource) SupplyDeliveryOption {
 }
 
 // WithSupplyDeliveryExtension adds a Extension to the SupplyDelivery.
+//
+// Deprecated: use SupplyDeliveryBuilder.AddExtension instead; removed in v2.
 func WithSupplyDeliveryExtension(v Extension) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.Extension = append(r.Extension, v)
@@ -779,6 +807,8 @@ func WithSupplyDeliveryExtension(v Extension) SupplyDeliveryOption {
 }
 
 // WithSupplyDeliveryModifierExtension adds a ModifierExtension to the SupplyDelivery.
+//
+// Deprecated: use SupplyDeliveryBuilder.AddModifierExtension instead; removed in v2.
 func WithSupplyDeliveryModifierExtension(v Extension) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -786,6 +816,8 @@ func WithSupplyDeliveryModifierExtension(v Extension) SupplyDeliveryOption {
 }
 
 // WithSupplyDeliveryIdentifier adds a Identifier to the SupplyDelivery.
+//
+// Deprecated: use SupplyDeliveryBuilder.AddIdentifier instead; removed in v2.
 func WithSupplyDeliveryIdentifier(v Identifier) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.Identifier = append(r.Identifier, v)
@@ -793,6 +825,8 @@ func WithSupplyDeliveryIdentifier(v Identifier) SupplyDeliveryOption {
 }
 
 // WithSupplyDeliveryBasedOn adds a BasedOn to the SupplyDelivery.
+//
+// Deprecated: use SupplyDeliveryBuilder.AddBasedOn instead; removed in v2.
 func WithSupplyDeliveryBasedOn(v Reference) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -800,6 +834,8 @@ func WithSupplyDeliveryBasedOn(v Reference) SupplyDeliveryOption {
 }
 
 // WithSupplyDeliveryPartOf adds a PartOf to the SupplyDelivery.
+//
+// Deprecated: use SupplyDeliveryBuilder.AddPartOf instead; removed in v2.
 func WithSupplyDeliveryPartOf(v Reference) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.PartOf = append(r.PartOf, v)
@@ -807,6 +843,8 @@ func WithSupplyDeliveryPartOf(v Reference) SupplyDeliveryOption {
 }
 
 // WithSupplyDeliveryStatus sets the Status field.
+//
+// Deprecated: use SupplyDeliveryBuilder.SetStatus instead; removed in v2.
 func WithSupplyDeliveryStatus(v SupplyDeliveryStatus) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.Status = &v
@@ -814,6 +852,8 @@ func WithSupplyDeliveryStatus(v SupplyDeliveryStatus) SupplyDeliveryOption {
 }
 
 // WithSupplyDeliveryPatient sets the Patient field.
+//
+// Deprecated: use SupplyDeliveryBuilder.SetPatient instead; removed in v2.
 func WithSupplyDeliveryPatient(v Reference) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.Patient = &v
@@ -821,6 +861,8 @@ func WithSupplyDeliveryPatient(v Reference) SupplyDeliveryOption {
 }
 
 // WithSupplyDeliveryType sets the Type field.
+//
+// Deprecated: use SupplyDeliveryBuilder.SetType instead; removed in v2.
 func WithSupplyDeliveryType(v CodeableConcept) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.Type = &v
@@ -828,6 +870,8 @@ func WithSupplyDeliveryType(v CodeableConcept) SupplyDeliveryOption {
 }
 
 // WithSupplyDeliverySuppliedItem sets the SuppliedItem field.
+//
+// Deprecated: use SupplyDeliveryBuilder.SetSuppliedItem instead; removed in v2.
 func WithSupplyDeliverySuppliedItem(v SupplyDeliverySuppliedItem) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.SuppliedItem = &v
@@ -835,6 +879,8 @@ func WithSupplyDeliverySuppliedItem(v SupplyDeliverySuppliedItem) SupplyDelivery
 }
 
 // WithSupplyDeliveryOccurrenceDateTime sets the OccurrenceDateTime field.
+//
+// Deprecated: use SupplyDeliveryBuilder.SetOccurrenceDateTime instead; removed in v2.
 func WithSupplyDeliveryOccurrenceDateTime(v string) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.OccurrenceDateTime = &v
@@ -842,6 +888,8 @@ func WithSupplyDeliveryOccurrenceDateTime(v string) SupplyDeliveryOption {
 }
 
 // WithSupplyDeliveryOccurrenceDateTimeExt sets the OccurrenceDateTimeExt field.
+//
+// Deprecated: use SupplyDeliveryBuilder.SetOccurrenceDateTimeExt instead; removed in v2.
 func WithSupplyDeliveryOccurrenceDateTimeExt(v Element) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.OccurrenceDateTimeExt = &v
@@ -849,6 +897,8 @@ func WithSupplyDeliveryOccurrenceDateTimeExt(v Element) SupplyDeliveryOption {
 }
 
 // WithSupplyDeliveryOccurrencePeriod sets the OccurrencePeriod field.
+//
+// Deprecated: use SupplyDeliveryBuilder.SetOccurrencePeriod instead; removed in v2.
 func WithSupplyDeliveryOccurrencePeriod(v Period) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.OccurrencePeriod = &v
@@ -856,6 +906,8 @@ func WithSupplyDeliveryOccurrencePeriod(v Period) SupplyDeliveryOption {
 }
 
 // WithSupplyDeliveryOccurrenceTiming sets the OccurrenceTiming field.
+//
+// Deprecated: use SupplyDeliveryBuilder.SetOccurrenceTiming instead; removed in v2.
 func WithSupplyDeliveryOccurrenceTiming(v Timing) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.OccurrenceTiming = &v
@@ -863,6 +915,8 @@ func WithSupplyDeliveryOccurrenceTiming(v Timing) SupplyDeliveryOption {
 }
 
 // WithSupplyDeliverySupplier sets the Supplier field.
+//
+// Deprecated: use SupplyDeliveryBuilder.SetSupplier instead; removed in v2.
 func WithSupplyDeliverySupplier(v Reference) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.Supplier = &v
@@ -870,6 +924,8 @@ func WithSupplyDeliverySupplier(v Reference) SupplyDeliveryOption {
 }
 
 // WithSupplyDeliveryDestination sets the Destination field.
+//
+// Deprecated: use SupplyDeliveryBuilder.SetDestination instead; removed in v2.
 func WithSupplyDeliveryDestination(v Reference) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.Destination = &v
@@ -877,6 +933,8 @@ func WithSupplyDeliveryDestination(v Reference) SupplyDeliveryOption {
 }
 
 // WithSupplyDeliveryReceiver adds a Receiver to the SupplyDelivery.
+//
+// Deprecated: use SupplyDeliveryBuilder.AddReceiver instead; removed in v2.
 func WithSupplyDeliveryReceiver(v Reference) SupplyDeliveryOption {
 	return func(r *SupplyDelivery) {
 		r.Receiver = append(r.Receiver, v)

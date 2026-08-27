@@ -597,9 +597,23 @@ func (b *SubstanceProteinBuilder) AddSubunit(v SubstanceProteinSubunit) *Substan
 // =============================================================================
 
 // SubstanceProteinOption is a functional option for configuring a SubstanceProtein.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// SubstanceProteinBuilder. Every WithSubstanceProtein* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type SubstanceProteinOption func(*SubstanceProtein)
 
 // NewSubstanceProtein creates a new SubstanceProtein with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewSubstanceProteinBuilder().SetId("x").Build()
+//
+// Deprecated: use NewSubstanceProteinBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewSubstanceProtein(opts ...SubstanceProteinOption) *SubstanceProtein {
 	r := &SubstanceProtein{ResourceType: "SubstanceProtein"}
 	for _, opt := range opts {
@@ -609,6 +623,8 @@ func NewSubstanceProtein(opts ...SubstanceProteinOption) *SubstanceProtein {
 }
 
 // WithSubstanceProteinId sets the Id field.
+//
+// Deprecated: use SubstanceProteinBuilder.SetId instead; removed in v2.
 func WithSubstanceProteinId(v string) SubstanceProteinOption {
 	return func(r *SubstanceProtein) {
 		r.Id = &v
@@ -616,6 +632,8 @@ func WithSubstanceProteinId(v string) SubstanceProteinOption {
 }
 
 // WithSubstanceProteinMeta sets the Meta field.
+//
+// Deprecated: use SubstanceProteinBuilder.SetMeta instead; removed in v2.
 func WithSubstanceProteinMeta(v Meta) SubstanceProteinOption {
 	return func(r *SubstanceProtein) {
 		r.Meta = &v
@@ -623,6 +641,8 @@ func WithSubstanceProteinMeta(v Meta) SubstanceProteinOption {
 }
 
 // WithSubstanceProteinImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use SubstanceProteinBuilder.SetImplicitRules instead; removed in v2.
 func WithSubstanceProteinImplicitRules(v string) SubstanceProteinOption {
 	return func(r *SubstanceProtein) {
 		r.ImplicitRules = &v
@@ -630,6 +650,8 @@ func WithSubstanceProteinImplicitRules(v string) SubstanceProteinOption {
 }
 
 // WithSubstanceProteinLanguage sets the Language field.
+//
+// Deprecated: use SubstanceProteinBuilder.SetLanguage instead; removed in v2.
 func WithSubstanceProteinLanguage(v string) SubstanceProteinOption {
 	return func(r *SubstanceProtein) {
 		r.Language = &v
@@ -637,6 +659,8 @@ func WithSubstanceProteinLanguage(v string) SubstanceProteinOption {
 }
 
 // WithSubstanceProteinText sets the Text field.
+//
+// Deprecated: use SubstanceProteinBuilder.SetText instead; removed in v2.
 func WithSubstanceProteinText(v Narrative) SubstanceProteinOption {
 	return func(r *SubstanceProtein) {
 		r.Text = &v
@@ -644,6 +668,8 @@ func WithSubstanceProteinText(v Narrative) SubstanceProteinOption {
 }
 
 // WithSubstanceProteinContained adds a Contained to the SubstanceProtein.
+//
+// Deprecated: use SubstanceProteinBuilder.AddContained instead; removed in v2.
 func WithSubstanceProteinContained(v Resource) SubstanceProteinOption {
 	return func(r *SubstanceProtein) {
 		r.Contained = append(r.Contained, v)
@@ -651,6 +677,8 @@ func WithSubstanceProteinContained(v Resource) SubstanceProteinOption {
 }
 
 // WithSubstanceProteinExtension adds a Extension to the SubstanceProtein.
+//
+// Deprecated: use SubstanceProteinBuilder.AddExtension instead; removed in v2.
 func WithSubstanceProteinExtension(v Extension) SubstanceProteinOption {
 	return func(r *SubstanceProtein) {
 		r.Extension = append(r.Extension, v)
@@ -658,6 +686,8 @@ func WithSubstanceProteinExtension(v Extension) SubstanceProteinOption {
 }
 
 // WithSubstanceProteinModifierExtension adds a ModifierExtension to the SubstanceProtein.
+//
+// Deprecated: use SubstanceProteinBuilder.AddModifierExtension instead; removed in v2.
 func WithSubstanceProteinModifierExtension(v Extension) SubstanceProteinOption {
 	return func(r *SubstanceProtein) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -665,6 +695,8 @@ func WithSubstanceProteinModifierExtension(v Extension) SubstanceProteinOption {
 }
 
 // WithSubstanceProteinSequenceType sets the SequenceType field.
+//
+// Deprecated: use SubstanceProteinBuilder.SetSequenceType instead; removed in v2.
 func WithSubstanceProteinSequenceType(v CodeableConcept) SubstanceProteinOption {
 	return func(r *SubstanceProtein) {
 		r.SequenceType = &v
@@ -672,6 +704,8 @@ func WithSubstanceProteinSequenceType(v CodeableConcept) SubstanceProteinOption 
 }
 
 // WithSubstanceProteinNumberOfSubunits sets the NumberOfSubunits field.
+//
+// Deprecated: use SubstanceProteinBuilder.SetNumberOfSubunits instead; removed in v2.
 func WithSubstanceProteinNumberOfSubunits(v int) SubstanceProteinOption {
 	return func(r *SubstanceProtein) {
 		r.NumberOfSubunits = &v
@@ -679,6 +713,8 @@ func WithSubstanceProteinNumberOfSubunits(v int) SubstanceProteinOption {
 }
 
 // WithSubstanceProteinDisulfideLinkage adds a DisulfideLinkage to the SubstanceProtein.
+//
+// Deprecated: use SubstanceProteinBuilder.AddDisulfideLinkage instead; removed in v2.
 func WithSubstanceProteinDisulfideLinkage(v string) SubstanceProteinOption {
 	return func(r *SubstanceProtein) {
 		r.DisulfideLinkage = append(r.DisulfideLinkage, v)
@@ -686,6 +722,8 @@ func WithSubstanceProteinDisulfideLinkage(v string) SubstanceProteinOption {
 }
 
 // WithSubstanceProteinSubunit adds a Subunit to the SubstanceProtein.
+//
+// Deprecated: use SubstanceProteinBuilder.AddSubunit instead; removed in v2.
 func WithSubstanceProteinSubunit(v SubstanceProteinSubunit) SubstanceProteinOption {
 	return func(r *SubstanceProtein) {
 		r.Subunit = append(r.Subunit, v)

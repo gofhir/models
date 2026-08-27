@@ -727,9 +727,23 @@ func (b *{{$r.Name}}Builder) Set{{.Name}}(v {{.GoType}}) *{{$r.Name}}Builder {
 // =============================================================================
 
 // {{$r.Name}}Option is a functional option for configuring a {{$r.Name}}.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// {{$r.Name}}Builder. Every With{{$r.Name}}* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type {{$r.Name}}Option func(*{{$r.Name}})
 
 // New{{$r.Name}} creates a new {{$r.Name}} with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	New{{$r.Name}}Builder().SetId("x").Build()
+//
+// Deprecated: use New{{$r.Name}}Builder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func New{{$r.Name}}(opts ...{{$r.Name}}Option) *{{$r.Name}} {
 	r := &{{$r.Name}}{ResourceType: "{{$r.FHIRName}}"}
 	for _, opt := range opts {
@@ -740,8 +754,16 @@ func New{{$r.Name}}(opts ...{{$r.Name}}Option) *{{$r.Name}} {
 
 {{range $r.Properties}}
 {{- if not (eq .GoType "*interface{}")}}
+{{- /*
+	Each option carries a Deprecated line naming its exact builder replacement:
+	Add* for arrays, Set* otherwise, mirroring the split above. The message is kept
+	to one line on purpose — it is emitted ~12,000 times across the three modules,
+	and the full explanation lives on the Option type and the New* constructor.
+*/ -}}
 {{- if .IsArray}}
 // With{{$r.Name}}{{.Name}} adds a {{.Name}} to the {{$r.Name}}.
+//
+// Deprecated: use {{$r.Name}}Builder.Add{{.Name}} instead; removed in v2.
 func With{{$r.Name}}{{.Name}}(v {{.ElementType}}) {{$r.Name}}Option {
 	return func(r *{{$r.Name}}) {
 		r.{{.Name}} = append(r.{{.Name}}, v)
@@ -750,6 +772,8 @@ func With{{$r.Name}}{{.Name}}(v {{.ElementType}}) {{$r.Name}}Option {
 
 {{- else if .IsPointer}}
 // With{{$r.Name}}{{.Name}} sets the {{.Name}} field.
+//
+// Deprecated: use {{$r.Name}}Builder.Set{{.Name}} instead; removed in v2.
 func With{{$r.Name}}{{.Name}}(v {{.BaseType}}) {{$r.Name}}Option {
 	return func(r *{{$r.Name}}) {
 		r.{{.Name}} = &v
@@ -758,6 +782,8 @@ func With{{$r.Name}}{{.Name}}(v {{.BaseType}}) {{$r.Name}}Option {
 
 {{- else}}
 // With{{$r.Name}}{{.Name}} sets the {{.Name}} field.
+//
+// Deprecated: use {{$r.Name}}Builder.Set{{.Name}} instead; removed in v2.
 func With{{$r.Name}}{{.Name}}(v {{.GoType}}) {{$r.Name}}Option {
 	return func(r *{{$r.Name}}) {
 		r.{{.Name}} = v

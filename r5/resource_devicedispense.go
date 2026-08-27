@@ -841,9 +841,23 @@ func (b *DeviceDispenseBuilder) AddEventHistory(v Reference) *DeviceDispenseBuil
 // =============================================================================
 
 // DeviceDispenseOption is a functional option for configuring a DeviceDispense.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// DeviceDispenseBuilder. Every WithDeviceDispense* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type DeviceDispenseOption func(*DeviceDispense)
 
 // NewDeviceDispense creates a new DeviceDispense with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewDeviceDispenseBuilder().SetId("x").Build()
+//
+// Deprecated: use NewDeviceDispenseBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewDeviceDispense(opts ...DeviceDispenseOption) *DeviceDispense {
 	r := &DeviceDispense{ResourceType: "DeviceDispense"}
 	for _, opt := range opts {
@@ -853,6 +867,8 @@ func NewDeviceDispense(opts ...DeviceDispenseOption) *DeviceDispense {
 }
 
 // WithDeviceDispenseId sets the Id field.
+//
+// Deprecated: use DeviceDispenseBuilder.SetId instead; removed in v2.
 func WithDeviceDispenseId(v string) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.Id = &v
@@ -860,6 +876,8 @@ func WithDeviceDispenseId(v string) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseMeta sets the Meta field.
+//
+// Deprecated: use DeviceDispenseBuilder.SetMeta instead; removed in v2.
 func WithDeviceDispenseMeta(v Meta) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.Meta = &v
@@ -867,6 +885,8 @@ func WithDeviceDispenseMeta(v Meta) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use DeviceDispenseBuilder.SetImplicitRules instead; removed in v2.
 func WithDeviceDispenseImplicitRules(v string) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.ImplicitRules = &v
@@ -874,6 +894,8 @@ func WithDeviceDispenseImplicitRules(v string) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseLanguage sets the Language field.
+//
+// Deprecated: use DeviceDispenseBuilder.SetLanguage instead; removed in v2.
 func WithDeviceDispenseLanguage(v string) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.Language = &v
@@ -881,6 +903,8 @@ func WithDeviceDispenseLanguage(v string) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseText sets the Text field.
+//
+// Deprecated: use DeviceDispenseBuilder.SetText instead; removed in v2.
 func WithDeviceDispenseText(v Narrative) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.Text = &v
@@ -888,6 +912,8 @@ func WithDeviceDispenseText(v Narrative) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseContained adds a Contained to the DeviceDispense.
+//
+// Deprecated: use DeviceDispenseBuilder.AddContained instead; removed in v2.
 func WithDeviceDispenseContained(v Resource) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.Contained = append(r.Contained, v)
@@ -895,6 +921,8 @@ func WithDeviceDispenseContained(v Resource) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseExtension adds a Extension to the DeviceDispense.
+//
+// Deprecated: use DeviceDispenseBuilder.AddExtension instead; removed in v2.
 func WithDeviceDispenseExtension(v Extension) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.Extension = append(r.Extension, v)
@@ -902,6 +930,8 @@ func WithDeviceDispenseExtension(v Extension) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseModifierExtension adds a ModifierExtension to the DeviceDispense.
+//
+// Deprecated: use DeviceDispenseBuilder.AddModifierExtension instead; removed in v2.
 func WithDeviceDispenseModifierExtension(v Extension) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -909,6 +939,8 @@ func WithDeviceDispenseModifierExtension(v Extension) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseIdentifier adds a Identifier to the DeviceDispense.
+//
+// Deprecated: use DeviceDispenseBuilder.AddIdentifier instead; removed in v2.
 func WithDeviceDispenseIdentifier(v Identifier) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.Identifier = append(r.Identifier, v)
@@ -916,6 +948,8 @@ func WithDeviceDispenseIdentifier(v Identifier) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseBasedOn adds a BasedOn to the DeviceDispense.
+//
+// Deprecated: use DeviceDispenseBuilder.AddBasedOn instead; removed in v2.
 func WithDeviceDispenseBasedOn(v Reference) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -923,6 +957,8 @@ func WithDeviceDispenseBasedOn(v Reference) DeviceDispenseOption {
 }
 
 // WithDeviceDispensePartOf adds a PartOf to the DeviceDispense.
+//
+// Deprecated: use DeviceDispenseBuilder.AddPartOf instead; removed in v2.
 func WithDeviceDispensePartOf(v Reference) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.PartOf = append(r.PartOf, v)
@@ -930,6 +966,8 @@ func WithDeviceDispensePartOf(v Reference) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseStatus sets the Status field.
+//
+// Deprecated: use DeviceDispenseBuilder.SetStatus instead; removed in v2.
 func WithDeviceDispenseStatus(v DeviceDispenseStatusCodes) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.Status = &v
@@ -937,6 +975,8 @@ func WithDeviceDispenseStatus(v DeviceDispenseStatusCodes) DeviceDispenseOption 
 }
 
 // WithDeviceDispenseStatusReason sets the StatusReason field.
+//
+// Deprecated: use DeviceDispenseBuilder.SetStatusReason instead; removed in v2.
 func WithDeviceDispenseStatusReason(v CodeableReference) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.StatusReason = &v
@@ -944,6 +984,8 @@ func WithDeviceDispenseStatusReason(v CodeableReference) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseCategory adds a Category to the DeviceDispense.
+//
+// Deprecated: use DeviceDispenseBuilder.AddCategory instead; removed in v2.
 func WithDeviceDispenseCategory(v CodeableConcept) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.Category = append(r.Category, v)
@@ -951,6 +993,8 @@ func WithDeviceDispenseCategory(v CodeableConcept) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseDevice sets the Device field.
+//
+// Deprecated: use DeviceDispenseBuilder.SetDevice instead; removed in v2.
 func WithDeviceDispenseDevice(v CodeableReference) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.Device = v
@@ -958,6 +1002,8 @@ func WithDeviceDispenseDevice(v CodeableReference) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseSubject sets the Subject field.
+//
+// Deprecated: use DeviceDispenseBuilder.SetSubject instead; removed in v2.
 func WithDeviceDispenseSubject(v Reference) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.Subject = v
@@ -965,6 +1011,8 @@ func WithDeviceDispenseSubject(v Reference) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseReceiver sets the Receiver field.
+//
+// Deprecated: use DeviceDispenseBuilder.SetReceiver instead; removed in v2.
 func WithDeviceDispenseReceiver(v Reference) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.Receiver = &v
@@ -972,6 +1020,8 @@ func WithDeviceDispenseReceiver(v Reference) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseEncounter sets the Encounter field.
+//
+// Deprecated: use DeviceDispenseBuilder.SetEncounter instead; removed in v2.
 func WithDeviceDispenseEncounter(v Reference) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.Encounter = &v
@@ -979,6 +1029,8 @@ func WithDeviceDispenseEncounter(v Reference) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseSupportingInformation adds a SupportingInformation to the DeviceDispense.
+//
+// Deprecated: use DeviceDispenseBuilder.AddSupportingInformation instead; removed in v2.
 func WithDeviceDispenseSupportingInformation(v Reference) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.SupportingInformation = append(r.SupportingInformation, v)
@@ -986,6 +1038,8 @@ func WithDeviceDispenseSupportingInformation(v Reference) DeviceDispenseOption {
 }
 
 // WithDeviceDispensePerformer adds a Performer to the DeviceDispense.
+//
+// Deprecated: use DeviceDispenseBuilder.AddPerformer instead; removed in v2.
 func WithDeviceDispensePerformer(v DeviceDispensePerformer) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.Performer = append(r.Performer, v)
@@ -993,6 +1047,8 @@ func WithDeviceDispensePerformer(v DeviceDispensePerformer) DeviceDispenseOption
 }
 
 // WithDeviceDispenseLocation sets the Location field.
+//
+// Deprecated: use DeviceDispenseBuilder.SetLocation instead; removed in v2.
 func WithDeviceDispenseLocation(v Reference) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.Location = &v
@@ -1000,6 +1056,8 @@ func WithDeviceDispenseLocation(v Reference) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseType sets the Type field.
+//
+// Deprecated: use DeviceDispenseBuilder.SetType instead; removed in v2.
 func WithDeviceDispenseType(v CodeableConcept) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.Type = &v
@@ -1007,6 +1065,8 @@ func WithDeviceDispenseType(v CodeableConcept) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseQuantity sets the Quantity field.
+//
+// Deprecated: use DeviceDispenseBuilder.SetQuantity instead; removed in v2.
 func WithDeviceDispenseQuantity(v Quantity) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.Quantity = &v
@@ -1014,6 +1074,8 @@ func WithDeviceDispenseQuantity(v Quantity) DeviceDispenseOption {
 }
 
 // WithDeviceDispensePreparedDate sets the PreparedDate field.
+//
+// Deprecated: use DeviceDispenseBuilder.SetPreparedDate instead; removed in v2.
 func WithDeviceDispensePreparedDate(v string) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.PreparedDate = &v
@@ -1021,6 +1083,8 @@ func WithDeviceDispensePreparedDate(v string) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseWhenHandedOver sets the WhenHandedOver field.
+//
+// Deprecated: use DeviceDispenseBuilder.SetWhenHandedOver instead; removed in v2.
 func WithDeviceDispenseWhenHandedOver(v string) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.WhenHandedOver = &v
@@ -1028,6 +1092,8 @@ func WithDeviceDispenseWhenHandedOver(v string) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseDestination sets the Destination field.
+//
+// Deprecated: use DeviceDispenseBuilder.SetDestination instead; removed in v2.
 func WithDeviceDispenseDestination(v Reference) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.Destination = &v
@@ -1035,6 +1101,8 @@ func WithDeviceDispenseDestination(v Reference) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseNote adds a Note to the DeviceDispense.
+//
+// Deprecated: use DeviceDispenseBuilder.AddNote instead; removed in v2.
 func WithDeviceDispenseNote(v Annotation) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.Note = append(r.Note, v)
@@ -1042,6 +1110,8 @@ func WithDeviceDispenseNote(v Annotation) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseUsageInstruction sets the UsageInstruction field.
+//
+// Deprecated: use DeviceDispenseBuilder.SetUsageInstruction instead; removed in v2.
 func WithDeviceDispenseUsageInstruction(v string) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.UsageInstruction = &v
@@ -1049,6 +1119,8 @@ func WithDeviceDispenseUsageInstruction(v string) DeviceDispenseOption {
 }
 
 // WithDeviceDispenseEventHistory adds a EventHistory to the DeviceDispense.
+//
+// Deprecated: use DeviceDispenseBuilder.AddEventHistory instead; removed in v2.
 func WithDeviceDispenseEventHistory(v Reference) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
 		r.EventHistory = append(r.EventHistory, v)

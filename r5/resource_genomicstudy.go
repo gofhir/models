@@ -1374,9 +1374,23 @@ func (b *GenomicStudyBuilder) AddAnalysis(v GenomicStudyAnalysis) *GenomicStudyB
 // =============================================================================
 
 // GenomicStudyOption is a functional option for configuring a GenomicStudy.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// GenomicStudyBuilder. Every WithGenomicStudy* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type GenomicStudyOption func(*GenomicStudy)
 
 // NewGenomicStudy creates a new GenomicStudy with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewGenomicStudyBuilder().SetId("x").Build()
+//
+// Deprecated: use NewGenomicStudyBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewGenomicStudy(opts ...GenomicStudyOption) *GenomicStudy {
 	r := &GenomicStudy{ResourceType: "GenomicStudy"}
 	for _, opt := range opts {
@@ -1386,6 +1400,8 @@ func NewGenomicStudy(opts ...GenomicStudyOption) *GenomicStudy {
 }
 
 // WithGenomicStudyId sets the Id field.
+//
+// Deprecated: use GenomicStudyBuilder.SetId instead; removed in v2.
 func WithGenomicStudyId(v string) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.Id = &v
@@ -1393,6 +1409,8 @@ func WithGenomicStudyId(v string) GenomicStudyOption {
 }
 
 // WithGenomicStudyMeta sets the Meta field.
+//
+// Deprecated: use GenomicStudyBuilder.SetMeta instead; removed in v2.
 func WithGenomicStudyMeta(v Meta) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.Meta = &v
@@ -1400,6 +1418,8 @@ func WithGenomicStudyMeta(v Meta) GenomicStudyOption {
 }
 
 // WithGenomicStudyImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use GenomicStudyBuilder.SetImplicitRules instead; removed in v2.
 func WithGenomicStudyImplicitRules(v string) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.ImplicitRules = &v
@@ -1407,6 +1427,8 @@ func WithGenomicStudyImplicitRules(v string) GenomicStudyOption {
 }
 
 // WithGenomicStudyLanguage sets the Language field.
+//
+// Deprecated: use GenomicStudyBuilder.SetLanguage instead; removed in v2.
 func WithGenomicStudyLanguage(v string) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.Language = &v
@@ -1414,6 +1436,8 @@ func WithGenomicStudyLanguage(v string) GenomicStudyOption {
 }
 
 // WithGenomicStudyText sets the Text field.
+//
+// Deprecated: use GenomicStudyBuilder.SetText instead; removed in v2.
 func WithGenomicStudyText(v Narrative) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.Text = &v
@@ -1421,6 +1445,8 @@ func WithGenomicStudyText(v Narrative) GenomicStudyOption {
 }
 
 // WithGenomicStudyContained adds a Contained to the GenomicStudy.
+//
+// Deprecated: use GenomicStudyBuilder.AddContained instead; removed in v2.
 func WithGenomicStudyContained(v Resource) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.Contained = append(r.Contained, v)
@@ -1428,6 +1454,8 @@ func WithGenomicStudyContained(v Resource) GenomicStudyOption {
 }
 
 // WithGenomicStudyExtension adds a Extension to the GenomicStudy.
+//
+// Deprecated: use GenomicStudyBuilder.AddExtension instead; removed in v2.
 func WithGenomicStudyExtension(v Extension) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.Extension = append(r.Extension, v)
@@ -1435,6 +1463,8 @@ func WithGenomicStudyExtension(v Extension) GenomicStudyOption {
 }
 
 // WithGenomicStudyModifierExtension adds a ModifierExtension to the GenomicStudy.
+//
+// Deprecated: use GenomicStudyBuilder.AddModifierExtension instead; removed in v2.
 func WithGenomicStudyModifierExtension(v Extension) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1442,6 +1472,8 @@ func WithGenomicStudyModifierExtension(v Extension) GenomicStudyOption {
 }
 
 // WithGenomicStudyIdentifier adds a Identifier to the GenomicStudy.
+//
+// Deprecated: use GenomicStudyBuilder.AddIdentifier instead; removed in v2.
 func WithGenomicStudyIdentifier(v Identifier) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.Identifier = append(r.Identifier, v)
@@ -1449,6 +1481,8 @@ func WithGenomicStudyIdentifier(v Identifier) GenomicStudyOption {
 }
 
 // WithGenomicStudyStatus sets the Status field.
+//
+// Deprecated: use GenomicStudyBuilder.SetStatus instead; removed in v2.
 func WithGenomicStudyStatus(v GenomicStudyStatus) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.Status = &v
@@ -1456,6 +1490,8 @@ func WithGenomicStudyStatus(v GenomicStudyStatus) GenomicStudyOption {
 }
 
 // WithGenomicStudyType adds a Type to the GenomicStudy.
+//
+// Deprecated: use GenomicStudyBuilder.AddType instead; removed in v2.
 func WithGenomicStudyType(v CodeableConcept) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.Type = append(r.Type, v)
@@ -1463,6 +1499,8 @@ func WithGenomicStudyType(v CodeableConcept) GenomicStudyOption {
 }
 
 // WithGenomicStudySubject sets the Subject field.
+//
+// Deprecated: use GenomicStudyBuilder.SetSubject instead; removed in v2.
 func WithGenomicStudySubject(v Reference) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.Subject = v
@@ -1470,6 +1508,8 @@ func WithGenomicStudySubject(v Reference) GenomicStudyOption {
 }
 
 // WithGenomicStudyEncounter sets the Encounter field.
+//
+// Deprecated: use GenomicStudyBuilder.SetEncounter instead; removed in v2.
 func WithGenomicStudyEncounter(v Reference) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.Encounter = &v
@@ -1477,6 +1517,8 @@ func WithGenomicStudyEncounter(v Reference) GenomicStudyOption {
 }
 
 // WithGenomicStudyStartDate sets the StartDate field.
+//
+// Deprecated: use GenomicStudyBuilder.SetStartDate instead; removed in v2.
 func WithGenomicStudyStartDate(v string) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.StartDate = &v
@@ -1484,6 +1526,8 @@ func WithGenomicStudyStartDate(v string) GenomicStudyOption {
 }
 
 // WithGenomicStudyBasedOn adds a BasedOn to the GenomicStudy.
+//
+// Deprecated: use GenomicStudyBuilder.AddBasedOn instead; removed in v2.
 func WithGenomicStudyBasedOn(v Reference) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -1491,6 +1535,8 @@ func WithGenomicStudyBasedOn(v Reference) GenomicStudyOption {
 }
 
 // WithGenomicStudyReferrer sets the Referrer field.
+//
+// Deprecated: use GenomicStudyBuilder.SetReferrer instead; removed in v2.
 func WithGenomicStudyReferrer(v Reference) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.Referrer = &v
@@ -1498,6 +1544,8 @@ func WithGenomicStudyReferrer(v Reference) GenomicStudyOption {
 }
 
 // WithGenomicStudyInterpreter adds a Interpreter to the GenomicStudy.
+//
+// Deprecated: use GenomicStudyBuilder.AddInterpreter instead; removed in v2.
 func WithGenomicStudyInterpreter(v Reference) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.Interpreter = append(r.Interpreter, v)
@@ -1505,6 +1553,8 @@ func WithGenomicStudyInterpreter(v Reference) GenomicStudyOption {
 }
 
 // WithGenomicStudyReason adds a Reason to the GenomicStudy.
+//
+// Deprecated: use GenomicStudyBuilder.AddReason instead; removed in v2.
 func WithGenomicStudyReason(v CodeableReference) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.Reason = append(r.Reason, v)
@@ -1512,6 +1562,8 @@ func WithGenomicStudyReason(v CodeableReference) GenomicStudyOption {
 }
 
 // WithGenomicStudyInstantiatesCanonical sets the InstantiatesCanonical field.
+//
+// Deprecated: use GenomicStudyBuilder.SetInstantiatesCanonical instead; removed in v2.
 func WithGenomicStudyInstantiatesCanonical(v string) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.InstantiatesCanonical = &v
@@ -1519,6 +1571,8 @@ func WithGenomicStudyInstantiatesCanonical(v string) GenomicStudyOption {
 }
 
 // WithGenomicStudyInstantiatesUri sets the InstantiatesUri field.
+//
+// Deprecated: use GenomicStudyBuilder.SetInstantiatesUri instead; removed in v2.
 func WithGenomicStudyInstantiatesUri(v string) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.InstantiatesUri = &v
@@ -1526,6 +1580,8 @@ func WithGenomicStudyInstantiatesUri(v string) GenomicStudyOption {
 }
 
 // WithGenomicStudyNote adds a Note to the GenomicStudy.
+//
+// Deprecated: use GenomicStudyBuilder.AddNote instead; removed in v2.
 func WithGenomicStudyNote(v Annotation) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.Note = append(r.Note, v)
@@ -1533,6 +1589,8 @@ func WithGenomicStudyNote(v Annotation) GenomicStudyOption {
 }
 
 // WithGenomicStudyDescription sets the Description field.
+//
+// Deprecated: use GenomicStudyBuilder.SetDescription instead; removed in v2.
 func WithGenomicStudyDescription(v string) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.Description = &v
@@ -1540,6 +1598,8 @@ func WithGenomicStudyDescription(v string) GenomicStudyOption {
 }
 
 // WithGenomicStudyAnalysis adds a Analysis to the GenomicStudy.
+//
+// Deprecated: use GenomicStudyBuilder.AddAnalysis instead; removed in v2.
 func WithGenomicStudyAnalysis(v GenomicStudyAnalysis) GenomicStudyOption {
 	return func(r *GenomicStudy) {
 		r.Analysis = append(r.Analysis, v)

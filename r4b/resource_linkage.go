@@ -502,9 +502,23 @@ func (b *LinkageBuilder) AddItem(v LinkageItem) *LinkageBuilder {
 // =============================================================================
 
 // LinkageOption is a functional option for configuring a Linkage.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// LinkageBuilder. Every WithLinkage* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type LinkageOption func(*Linkage)
 
 // NewLinkage creates a new Linkage with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewLinkageBuilder().SetId("x").Build()
+//
+// Deprecated: use NewLinkageBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewLinkage(opts ...LinkageOption) *Linkage {
 	r := &Linkage{ResourceType: "Linkage"}
 	for _, opt := range opts {
@@ -514,6 +528,8 @@ func NewLinkage(opts ...LinkageOption) *Linkage {
 }
 
 // WithLinkageId sets the Id field.
+//
+// Deprecated: use LinkageBuilder.SetId instead; removed in v2.
 func WithLinkageId(v string) LinkageOption {
 	return func(r *Linkage) {
 		r.Id = &v
@@ -521,6 +537,8 @@ func WithLinkageId(v string) LinkageOption {
 }
 
 // WithLinkageMeta sets the Meta field.
+//
+// Deprecated: use LinkageBuilder.SetMeta instead; removed in v2.
 func WithLinkageMeta(v Meta) LinkageOption {
 	return func(r *Linkage) {
 		r.Meta = &v
@@ -528,6 +546,8 @@ func WithLinkageMeta(v Meta) LinkageOption {
 }
 
 // WithLinkageImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use LinkageBuilder.SetImplicitRules instead; removed in v2.
 func WithLinkageImplicitRules(v string) LinkageOption {
 	return func(r *Linkage) {
 		r.ImplicitRules = &v
@@ -535,6 +555,8 @@ func WithLinkageImplicitRules(v string) LinkageOption {
 }
 
 // WithLinkageLanguage sets the Language field.
+//
+// Deprecated: use LinkageBuilder.SetLanguage instead; removed in v2.
 func WithLinkageLanguage(v string) LinkageOption {
 	return func(r *Linkage) {
 		r.Language = &v
@@ -542,6 +564,8 @@ func WithLinkageLanguage(v string) LinkageOption {
 }
 
 // WithLinkageText sets the Text field.
+//
+// Deprecated: use LinkageBuilder.SetText instead; removed in v2.
 func WithLinkageText(v Narrative) LinkageOption {
 	return func(r *Linkage) {
 		r.Text = &v
@@ -549,6 +573,8 @@ func WithLinkageText(v Narrative) LinkageOption {
 }
 
 // WithLinkageContained adds a Contained to the Linkage.
+//
+// Deprecated: use LinkageBuilder.AddContained instead; removed in v2.
 func WithLinkageContained(v Resource) LinkageOption {
 	return func(r *Linkage) {
 		r.Contained = append(r.Contained, v)
@@ -556,6 +582,8 @@ func WithLinkageContained(v Resource) LinkageOption {
 }
 
 // WithLinkageExtension adds a Extension to the Linkage.
+//
+// Deprecated: use LinkageBuilder.AddExtension instead; removed in v2.
 func WithLinkageExtension(v Extension) LinkageOption {
 	return func(r *Linkage) {
 		r.Extension = append(r.Extension, v)
@@ -563,6 +591,8 @@ func WithLinkageExtension(v Extension) LinkageOption {
 }
 
 // WithLinkageModifierExtension adds a ModifierExtension to the Linkage.
+//
+// Deprecated: use LinkageBuilder.AddModifierExtension instead; removed in v2.
 func WithLinkageModifierExtension(v Extension) LinkageOption {
 	return func(r *Linkage) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -570,6 +600,8 @@ func WithLinkageModifierExtension(v Extension) LinkageOption {
 }
 
 // WithLinkageActive sets the Active field.
+//
+// Deprecated: use LinkageBuilder.SetActive instead; removed in v2.
 func WithLinkageActive(v bool) LinkageOption {
 	return func(r *Linkage) {
 		r.Active = &v
@@ -577,6 +609,8 @@ func WithLinkageActive(v bool) LinkageOption {
 }
 
 // WithLinkageAuthor sets the Author field.
+//
+// Deprecated: use LinkageBuilder.SetAuthor instead; removed in v2.
 func WithLinkageAuthor(v Reference) LinkageOption {
 	return func(r *Linkage) {
 		r.Author = &v
@@ -584,6 +618,8 @@ func WithLinkageAuthor(v Reference) LinkageOption {
 }
 
 // WithLinkageItem adds a Item to the Linkage.
+//
+// Deprecated: use LinkageBuilder.AddItem instead; removed in v2.
 func WithLinkageItem(v LinkageItem) LinkageOption {
 	return func(r *Linkage) {
 		r.Item = append(r.Item, v)

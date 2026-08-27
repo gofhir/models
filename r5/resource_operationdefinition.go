@@ -1498,9 +1498,23 @@ func (b *OperationDefinitionBuilder) AddOverload(v OperationDefinitionOverload) 
 // =============================================================================
 
 // OperationDefinitionOption is a functional option for configuring a OperationDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// OperationDefinitionBuilder. Every WithOperationDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type OperationDefinitionOption func(*OperationDefinition)
 
 // NewOperationDefinition creates a new OperationDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewOperationDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewOperationDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewOperationDefinition(opts ...OperationDefinitionOption) *OperationDefinition {
 	r := &OperationDefinition{ResourceType: "OperationDefinition"}
 	for _, opt := range opts {
@@ -1510,6 +1524,8 @@ func NewOperationDefinition(opts ...OperationDefinitionOption) *OperationDefinit
 }
 
 // WithOperationDefinitionId sets the Id field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetId instead; removed in v2.
 func WithOperationDefinitionId(v string) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Id = &v
@@ -1517,6 +1533,8 @@ func WithOperationDefinitionId(v string) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionMeta sets the Meta field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetMeta instead; removed in v2.
 func WithOperationDefinitionMeta(v Meta) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Meta = &v
@@ -1524,6 +1542,8 @@ func WithOperationDefinitionMeta(v Meta) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithOperationDefinitionImplicitRules(v string) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.ImplicitRules = &v
@@ -1531,6 +1551,8 @@ func WithOperationDefinitionImplicitRules(v string) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionLanguage sets the Language field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithOperationDefinitionLanguage(v string) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Language = &v
@@ -1538,6 +1560,8 @@ func WithOperationDefinitionLanguage(v string) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionText sets the Text field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetText instead; removed in v2.
 func WithOperationDefinitionText(v Narrative) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Text = &v
@@ -1545,6 +1569,8 @@ func WithOperationDefinitionText(v Narrative) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionContained adds a Contained to the OperationDefinition.
+//
+// Deprecated: use OperationDefinitionBuilder.AddContained instead; removed in v2.
 func WithOperationDefinitionContained(v Resource) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -1552,6 +1578,8 @@ func WithOperationDefinitionContained(v Resource) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionExtension adds a Extension to the OperationDefinition.
+//
+// Deprecated: use OperationDefinitionBuilder.AddExtension instead; removed in v2.
 func WithOperationDefinitionExtension(v Extension) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -1559,6 +1587,8 @@ func WithOperationDefinitionExtension(v Extension) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionModifierExtension adds a ModifierExtension to the OperationDefinition.
+//
+// Deprecated: use OperationDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithOperationDefinitionModifierExtension(v Extension) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1566,6 +1596,8 @@ func WithOperationDefinitionModifierExtension(v Extension) OperationDefinitionOp
 }
 
 // WithOperationDefinitionUrl sets the Url field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetUrl instead; removed in v2.
 func WithOperationDefinitionUrl(v string) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Url = &v
@@ -1573,6 +1605,8 @@ func WithOperationDefinitionUrl(v string) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionIdentifier adds a Identifier to the OperationDefinition.
+//
+// Deprecated: use OperationDefinitionBuilder.AddIdentifier instead; removed in v2.
 func WithOperationDefinitionIdentifier(v Identifier) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Identifier = append(r.Identifier, v)
@@ -1580,6 +1614,8 @@ func WithOperationDefinitionIdentifier(v Identifier) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionVersion sets the Version field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetVersion instead; removed in v2.
 func WithOperationDefinitionVersion(v string) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Version = &v
@@ -1587,6 +1623,8 @@ func WithOperationDefinitionVersion(v string) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionVersionAlgorithmString sets the VersionAlgorithmString field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetVersionAlgorithmString instead; removed in v2.
 func WithOperationDefinitionVersionAlgorithmString(v string) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.VersionAlgorithmString = &v
@@ -1594,6 +1632,8 @@ func WithOperationDefinitionVersionAlgorithmString(v string) OperationDefinition
 }
 
 // WithOperationDefinitionVersionAlgorithmStringExt sets the VersionAlgorithmStringExt field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetVersionAlgorithmStringExt instead; removed in v2.
 func WithOperationDefinitionVersionAlgorithmStringExt(v Element) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.VersionAlgorithmStringExt = &v
@@ -1601,6 +1641,8 @@ func WithOperationDefinitionVersionAlgorithmStringExt(v Element) OperationDefini
 }
 
 // WithOperationDefinitionVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetVersionAlgorithmCoding instead; removed in v2.
 func WithOperationDefinitionVersionAlgorithmCoding(v Coding) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.VersionAlgorithmCoding = &v
@@ -1608,6 +1650,8 @@ func WithOperationDefinitionVersionAlgorithmCoding(v Coding) OperationDefinition
 }
 
 // WithOperationDefinitionName sets the Name field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetName instead; removed in v2.
 func WithOperationDefinitionName(v string) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Name = &v
@@ -1615,6 +1659,8 @@ func WithOperationDefinitionName(v string) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionTitle sets the Title field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetTitle instead; removed in v2.
 func WithOperationDefinitionTitle(v string) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Title = &v
@@ -1622,6 +1668,8 @@ func WithOperationDefinitionTitle(v string) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionStatus sets the Status field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetStatus instead; removed in v2.
 func WithOperationDefinitionStatus(v PublicationStatus) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Status = &v
@@ -1629,6 +1677,8 @@ func WithOperationDefinitionStatus(v PublicationStatus) OperationDefinitionOptio
 }
 
 // WithOperationDefinitionKind sets the Kind field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetKind instead; removed in v2.
 func WithOperationDefinitionKind(v OperationKind) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Kind = &v
@@ -1636,6 +1686,8 @@ func WithOperationDefinitionKind(v OperationKind) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionExperimental sets the Experimental field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetExperimental instead; removed in v2.
 func WithOperationDefinitionExperimental(v bool) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Experimental = &v
@@ -1643,6 +1695,8 @@ func WithOperationDefinitionExperimental(v bool) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionDate sets the Date field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetDate instead; removed in v2.
 func WithOperationDefinitionDate(v string) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Date = &v
@@ -1650,6 +1704,8 @@ func WithOperationDefinitionDate(v string) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionPublisher sets the Publisher field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetPublisher instead; removed in v2.
 func WithOperationDefinitionPublisher(v string) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Publisher = &v
@@ -1657,6 +1713,8 @@ func WithOperationDefinitionPublisher(v string) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionContact adds a Contact to the OperationDefinition.
+//
+// Deprecated: use OperationDefinitionBuilder.AddContact instead; removed in v2.
 func WithOperationDefinitionContact(v ContactDetail) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Contact = append(r.Contact, v)
@@ -1664,6 +1722,8 @@ func WithOperationDefinitionContact(v ContactDetail) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionDescription sets the Description field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetDescription instead; removed in v2.
 func WithOperationDefinitionDescription(v string) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Description = &v
@@ -1671,6 +1731,8 @@ func WithOperationDefinitionDescription(v string) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionUseContext adds a UseContext to the OperationDefinition.
+//
+// Deprecated: use OperationDefinitionBuilder.AddUseContext instead; removed in v2.
 func WithOperationDefinitionUseContext(v UsageContext) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.UseContext = append(r.UseContext, v)
@@ -1678,6 +1740,8 @@ func WithOperationDefinitionUseContext(v UsageContext) OperationDefinitionOption
 }
 
 // WithOperationDefinitionJurisdiction adds a Jurisdiction to the OperationDefinition.
+//
+// Deprecated: use OperationDefinitionBuilder.AddJurisdiction instead; removed in v2.
 func WithOperationDefinitionJurisdiction(v CodeableConcept) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1685,6 +1749,8 @@ func WithOperationDefinitionJurisdiction(v CodeableConcept) OperationDefinitionO
 }
 
 // WithOperationDefinitionPurpose sets the Purpose field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetPurpose instead; removed in v2.
 func WithOperationDefinitionPurpose(v string) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Purpose = &v
@@ -1692,6 +1758,8 @@ func WithOperationDefinitionPurpose(v string) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionCopyright sets the Copyright field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetCopyright instead; removed in v2.
 func WithOperationDefinitionCopyright(v string) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Copyright = &v
@@ -1699,6 +1767,8 @@ func WithOperationDefinitionCopyright(v string) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionCopyrightLabel sets the CopyrightLabel field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetCopyrightLabel instead; removed in v2.
 func WithOperationDefinitionCopyrightLabel(v string) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.CopyrightLabel = &v
@@ -1706,6 +1776,8 @@ func WithOperationDefinitionCopyrightLabel(v string) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionAffectsState sets the AffectsState field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetAffectsState instead; removed in v2.
 func WithOperationDefinitionAffectsState(v bool) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.AffectsState = &v
@@ -1713,6 +1785,8 @@ func WithOperationDefinitionAffectsState(v bool) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionCode sets the Code field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetCode instead; removed in v2.
 func WithOperationDefinitionCode(v string) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Code = &v
@@ -1720,6 +1794,8 @@ func WithOperationDefinitionCode(v string) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionComment sets the Comment field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetComment instead; removed in v2.
 func WithOperationDefinitionComment(v string) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Comment = &v
@@ -1727,6 +1803,8 @@ func WithOperationDefinitionComment(v string) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionBase sets the Base field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetBase instead; removed in v2.
 func WithOperationDefinitionBase(v string) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Base = &v
@@ -1734,6 +1812,8 @@ func WithOperationDefinitionBase(v string) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionResource adds a Resource to the OperationDefinition.
+//
+// Deprecated: use OperationDefinitionBuilder.AddResource instead; removed in v2.
 func WithOperationDefinitionResource(v VersionIndependentResourceTypesAll) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Resource = append(r.Resource, v)
@@ -1741,6 +1821,8 @@ func WithOperationDefinitionResource(v VersionIndependentResourceTypesAll) Opera
 }
 
 // WithOperationDefinitionSystem sets the System field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetSystem instead; removed in v2.
 func WithOperationDefinitionSystem(v bool) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.System = &v
@@ -1748,6 +1830,8 @@ func WithOperationDefinitionSystem(v bool) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionType sets the Type field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetType instead; removed in v2.
 func WithOperationDefinitionType(v bool) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Type = &v
@@ -1755,6 +1839,8 @@ func WithOperationDefinitionType(v bool) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionInstance sets the Instance field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetInstance instead; removed in v2.
 func WithOperationDefinitionInstance(v bool) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Instance = &v
@@ -1762,6 +1848,8 @@ func WithOperationDefinitionInstance(v bool) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionInputProfile sets the InputProfile field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetInputProfile instead; removed in v2.
 func WithOperationDefinitionInputProfile(v string) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.InputProfile = &v
@@ -1769,6 +1857,8 @@ func WithOperationDefinitionInputProfile(v string) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionOutputProfile sets the OutputProfile field.
+//
+// Deprecated: use OperationDefinitionBuilder.SetOutputProfile instead; removed in v2.
 func WithOperationDefinitionOutputProfile(v string) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.OutputProfile = &v
@@ -1776,6 +1866,8 @@ func WithOperationDefinitionOutputProfile(v string) OperationDefinitionOption {
 }
 
 // WithOperationDefinitionParameter adds a Parameter to the OperationDefinition.
+//
+// Deprecated: use OperationDefinitionBuilder.AddParameter instead; removed in v2.
 func WithOperationDefinitionParameter(v OperationDefinitionParameter) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Parameter = append(r.Parameter, v)
@@ -1783,6 +1875,8 @@ func WithOperationDefinitionParameter(v OperationDefinitionParameter) OperationD
 }
 
 // WithOperationDefinitionOverload adds a Overload to the OperationDefinition.
+//
+// Deprecated: use OperationDefinitionBuilder.AddOverload instead; removed in v2.
 func WithOperationDefinitionOverload(v OperationDefinitionOverload) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
 		r.Overload = append(r.Overload, v)

@@ -1056,9 +1056,23 @@ func (b *PermissionBuilder) AddRule(v PermissionRule) *PermissionBuilder {
 // =============================================================================
 
 // PermissionOption is a functional option for configuring a Permission.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// PermissionBuilder. Every WithPermission* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type PermissionOption func(*Permission)
 
 // NewPermission creates a new Permission with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewPermissionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewPermissionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewPermission(opts ...PermissionOption) *Permission {
 	r := &Permission{ResourceType: "Permission"}
 	for _, opt := range opts {
@@ -1068,6 +1082,8 @@ func NewPermission(opts ...PermissionOption) *Permission {
 }
 
 // WithPermissionId sets the Id field.
+//
+// Deprecated: use PermissionBuilder.SetId instead; removed in v2.
 func WithPermissionId(v string) PermissionOption {
 	return func(r *Permission) {
 		r.Id = &v
@@ -1075,6 +1091,8 @@ func WithPermissionId(v string) PermissionOption {
 }
 
 // WithPermissionMeta sets the Meta field.
+//
+// Deprecated: use PermissionBuilder.SetMeta instead; removed in v2.
 func WithPermissionMeta(v Meta) PermissionOption {
 	return func(r *Permission) {
 		r.Meta = &v
@@ -1082,6 +1100,8 @@ func WithPermissionMeta(v Meta) PermissionOption {
 }
 
 // WithPermissionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use PermissionBuilder.SetImplicitRules instead; removed in v2.
 func WithPermissionImplicitRules(v string) PermissionOption {
 	return func(r *Permission) {
 		r.ImplicitRules = &v
@@ -1089,6 +1109,8 @@ func WithPermissionImplicitRules(v string) PermissionOption {
 }
 
 // WithPermissionLanguage sets the Language field.
+//
+// Deprecated: use PermissionBuilder.SetLanguage instead; removed in v2.
 func WithPermissionLanguage(v string) PermissionOption {
 	return func(r *Permission) {
 		r.Language = &v
@@ -1096,6 +1118,8 @@ func WithPermissionLanguage(v string) PermissionOption {
 }
 
 // WithPermissionText sets the Text field.
+//
+// Deprecated: use PermissionBuilder.SetText instead; removed in v2.
 func WithPermissionText(v Narrative) PermissionOption {
 	return func(r *Permission) {
 		r.Text = &v
@@ -1103,6 +1127,8 @@ func WithPermissionText(v Narrative) PermissionOption {
 }
 
 // WithPermissionContained adds a Contained to the Permission.
+//
+// Deprecated: use PermissionBuilder.AddContained instead; removed in v2.
 func WithPermissionContained(v Resource) PermissionOption {
 	return func(r *Permission) {
 		r.Contained = append(r.Contained, v)
@@ -1110,6 +1136,8 @@ func WithPermissionContained(v Resource) PermissionOption {
 }
 
 // WithPermissionExtension adds a Extension to the Permission.
+//
+// Deprecated: use PermissionBuilder.AddExtension instead; removed in v2.
 func WithPermissionExtension(v Extension) PermissionOption {
 	return func(r *Permission) {
 		r.Extension = append(r.Extension, v)
@@ -1117,6 +1145,8 @@ func WithPermissionExtension(v Extension) PermissionOption {
 }
 
 // WithPermissionModifierExtension adds a ModifierExtension to the Permission.
+//
+// Deprecated: use PermissionBuilder.AddModifierExtension instead; removed in v2.
 func WithPermissionModifierExtension(v Extension) PermissionOption {
 	return func(r *Permission) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1124,6 +1154,8 @@ func WithPermissionModifierExtension(v Extension) PermissionOption {
 }
 
 // WithPermissionStatus sets the Status field.
+//
+// Deprecated: use PermissionBuilder.SetStatus instead; removed in v2.
 func WithPermissionStatus(v PermissionStatus) PermissionOption {
 	return func(r *Permission) {
 		r.Status = &v
@@ -1131,6 +1163,8 @@ func WithPermissionStatus(v PermissionStatus) PermissionOption {
 }
 
 // WithPermissionAsserter sets the Asserter field.
+//
+// Deprecated: use PermissionBuilder.SetAsserter instead; removed in v2.
 func WithPermissionAsserter(v Reference) PermissionOption {
 	return func(r *Permission) {
 		r.Asserter = &v
@@ -1138,6 +1172,8 @@ func WithPermissionAsserter(v Reference) PermissionOption {
 }
 
 // WithPermissionDate adds a Date to the Permission.
+//
+// Deprecated: use PermissionBuilder.AddDate instead; removed in v2.
 func WithPermissionDate(v string) PermissionOption {
 	return func(r *Permission) {
 		r.Date = append(r.Date, v)
@@ -1145,6 +1181,8 @@ func WithPermissionDate(v string) PermissionOption {
 }
 
 // WithPermissionValidity sets the Validity field.
+//
+// Deprecated: use PermissionBuilder.SetValidity instead; removed in v2.
 func WithPermissionValidity(v Period) PermissionOption {
 	return func(r *Permission) {
 		r.Validity = &v
@@ -1152,6 +1190,8 @@ func WithPermissionValidity(v Period) PermissionOption {
 }
 
 // WithPermissionJustification sets the Justification field.
+//
+// Deprecated: use PermissionBuilder.SetJustification instead; removed in v2.
 func WithPermissionJustification(v PermissionJustification) PermissionOption {
 	return func(r *Permission) {
 		r.Justification = &v
@@ -1159,6 +1199,8 @@ func WithPermissionJustification(v PermissionJustification) PermissionOption {
 }
 
 // WithPermissionCombining sets the Combining field.
+//
+// Deprecated: use PermissionBuilder.SetCombining instead; removed in v2.
 func WithPermissionCombining(v PermissionRuleCombining) PermissionOption {
 	return func(r *Permission) {
 		r.Combining = &v
@@ -1166,6 +1208,8 @@ func WithPermissionCombining(v PermissionRuleCombining) PermissionOption {
 }
 
 // WithPermissionRule adds a Rule to the Permission.
+//
+// Deprecated: use PermissionBuilder.AddRule instead; removed in v2.
 func WithPermissionRule(v PermissionRule) PermissionOption {
 	return func(r *Permission) {
 		r.Rule = append(r.Rule, v)

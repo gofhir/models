@@ -3993,9 +3993,23 @@ func (b *CitationBuilder) SetCitedArtifact(v CitationCitedArtifact) *CitationBui
 // =============================================================================
 
 // CitationOption is a functional option for configuring a Citation.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// CitationBuilder. Every WithCitation* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type CitationOption func(*Citation)
 
 // NewCitation creates a new Citation with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewCitationBuilder().SetId("x").Build()
+//
+// Deprecated: use NewCitationBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewCitation(opts ...CitationOption) *Citation {
 	r := &Citation{ResourceType: "Citation"}
 	for _, opt := range opts {
@@ -4005,6 +4019,8 @@ func NewCitation(opts ...CitationOption) *Citation {
 }
 
 // WithCitationId sets the Id field.
+//
+// Deprecated: use CitationBuilder.SetId instead; removed in v2.
 func WithCitationId(v string) CitationOption {
 	return func(r *Citation) {
 		r.Id = &v
@@ -4012,6 +4028,8 @@ func WithCitationId(v string) CitationOption {
 }
 
 // WithCitationMeta sets the Meta field.
+//
+// Deprecated: use CitationBuilder.SetMeta instead; removed in v2.
 func WithCitationMeta(v Meta) CitationOption {
 	return func(r *Citation) {
 		r.Meta = &v
@@ -4019,6 +4037,8 @@ func WithCitationMeta(v Meta) CitationOption {
 }
 
 // WithCitationImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use CitationBuilder.SetImplicitRules instead; removed in v2.
 func WithCitationImplicitRules(v string) CitationOption {
 	return func(r *Citation) {
 		r.ImplicitRules = &v
@@ -4026,6 +4046,8 @@ func WithCitationImplicitRules(v string) CitationOption {
 }
 
 // WithCitationLanguage sets the Language field.
+//
+// Deprecated: use CitationBuilder.SetLanguage instead; removed in v2.
 func WithCitationLanguage(v string) CitationOption {
 	return func(r *Citation) {
 		r.Language = &v
@@ -4033,6 +4055,8 @@ func WithCitationLanguage(v string) CitationOption {
 }
 
 // WithCitationText sets the Text field.
+//
+// Deprecated: use CitationBuilder.SetText instead; removed in v2.
 func WithCitationText(v Narrative) CitationOption {
 	return func(r *Citation) {
 		r.Text = &v
@@ -4040,6 +4064,8 @@ func WithCitationText(v Narrative) CitationOption {
 }
 
 // WithCitationContained adds a Contained to the Citation.
+//
+// Deprecated: use CitationBuilder.AddContained instead; removed in v2.
 func WithCitationContained(v Resource) CitationOption {
 	return func(r *Citation) {
 		r.Contained = append(r.Contained, v)
@@ -4047,6 +4073,8 @@ func WithCitationContained(v Resource) CitationOption {
 }
 
 // WithCitationExtension adds a Extension to the Citation.
+//
+// Deprecated: use CitationBuilder.AddExtension instead; removed in v2.
 func WithCitationExtension(v Extension) CitationOption {
 	return func(r *Citation) {
 		r.Extension = append(r.Extension, v)
@@ -4054,6 +4082,8 @@ func WithCitationExtension(v Extension) CitationOption {
 }
 
 // WithCitationModifierExtension adds a ModifierExtension to the Citation.
+//
+// Deprecated: use CitationBuilder.AddModifierExtension instead; removed in v2.
 func WithCitationModifierExtension(v Extension) CitationOption {
 	return func(r *Citation) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -4061,6 +4091,8 @@ func WithCitationModifierExtension(v Extension) CitationOption {
 }
 
 // WithCitationUrl sets the Url field.
+//
+// Deprecated: use CitationBuilder.SetUrl instead; removed in v2.
 func WithCitationUrl(v string) CitationOption {
 	return func(r *Citation) {
 		r.Url = &v
@@ -4068,6 +4100,8 @@ func WithCitationUrl(v string) CitationOption {
 }
 
 // WithCitationIdentifier adds a Identifier to the Citation.
+//
+// Deprecated: use CitationBuilder.AddIdentifier instead; removed in v2.
 func WithCitationIdentifier(v Identifier) CitationOption {
 	return func(r *Citation) {
 		r.Identifier = append(r.Identifier, v)
@@ -4075,6 +4109,8 @@ func WithCitationIdentifier(v Identifier) CitationOption {
 }
 
 // WithCitationVersion sets the Version field.
+//
+// Deprecated: use CitationBuilder.SetVersion instead; removed in v2.
 func WithCitationVersion(v string) CitationOption {
 	return func(r *Citation) {
 		r.Version = &v
@@ -4082,6 +4118,8 @@ func WithCitationVersion(v string) CitationOption {
 }
 
 // WithCitationName sets the Name field.
+//
+// Deprecated: use CitationBuilder.SetName instead; removed in v2.
 func WithCitationName(v string) CitationOption {
 	return func(r *Citation) {
 		r.Name = &v
@@ -4089,6 +4127,8 @@ func WithCitationName(v string) CitationOption {
 }
 
 // WithCitationTitle sets the Title field.
+//
+// Deprecated: use CitationBuilder.SetTitle instead; removed in v2.
 func WithCitationTitle(v string) CitationOption {
 	return func(r *Citation) {
 		r.Title = &v
@@ -4096,6 +4136,8 @@ func WithCitationTitle(v string) CitationOption {
 }
 
 // WithCitationStatus sets the Status field.
+//
+// Deprecated: use CitationBuilder.SetStatus instead; removed in v2.
 func WithCitationStatus(v PublicationStatus) CitationOption {
 	return func(r *Citation) {
 		r.Status = &v
@@ -4103,6 +4145,8 @@ func WithCitationStatus(v PublicationStatus) CitationOption {
 }
 
 // WithCitationExperimental sets the Experimental field.
+//
+// Deprecated: use CitationBuilder.SetExperimental instead; removed in v2.
 func WithCitationExperimental(v bool) CitationOption {
 	return func(r *Citation) {
 		r.Experimental = &v
@@ -4110,6 +4154,8 @@ func WithCitationExperimental(v bool) CitationOption {
 }
 
 // WithCitationDate sets the Date field.
+//
+// Deprecated: use CitationBuilder.SetDate instead; removed in v2.
 func WithCitationDate(v string) CitationOption {
 	return func(r *Citation) {
 		r.Date = &v
@@ -4117,6 +4163,8 @@ func WithCitationDate(v string) CitationOption {
 }
 
 // WithCitationPublisher sets the Publisher field.
+//
+// Deprecated: use CitationBuilder.SetPublisher instead; removed in v2.
 func WithCitationPublisher(v string) CitationOption {
 	return func(r *Citation) {
 		r.Publisher = &v
@@ -4124,6 +4172,8 @@ func WithCitationPublisher(v string) CitationOption {
 }
 
 // WithCitationContact adds a Contact to the Citation.
+//
+// Deprecated: use CitationBuilder.AddContact instead; removed in v2.
 func WithCitationContact(v ContactDetail) CitationOption {
 	return func(r *Citation) {
 		r.Contact = append(r.Contact, v)
@@ -4131,6 +4181,8 @@ func WithCitationContact(v ContactDetail) CitationOption {
 }
 
 // WithCitationDescription sets the Description field.
+//
+// Deprecated: use CitationBuilder.SetDescription instead; removed in v2.
 func WithCitationDescription(v string) CitationOption {
 	return func(r *Citation) {
 		r.Description = &v
@@ -4138,6 +4190,8 @@ func WithCitationDescription(v string) CitationOption {
 }
 
 // WithCitationUseContext adds a UseContext to the Citation.
+//
+// Deprecated: use CitationBuilder.AddUseContext instead; removed in v2.
 func WithCitationUseContext(v UsageContext) CitationOption {
 	return func(r *Citation) {
 		r.UseContext = append(r.UseContext, v)
@@ -4145,6 +4199,8 @@ func WithCitationUseContext(v UsageContext) CitationOption {
 }
 
 // WithCitationJurisdiction adds a Jurisdiction to the Citation.
+//
+// Deprecated: use CitationBuilder.AddJurisdiction instead; removed in v2.
 func WithCitationJurisdiction(v CodeableConcept) CitationOption {
 	return func(r *Citation) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -4152,6 +4208,8 @@ func WithCitationJurisdiction(v CodeableConcept) CitationOption {
 }
 
 // WithCitationPurpose sets the Purpose field.
+//
+// Deprecated: use CitationBuilder.SetPurpose instead; removed in v2.
 func WithCitationPurpose(v string) CitationOption {
 	return func(r *Citation) {
 		r.Purpose = &v
@@ -4159,6 +4217,8 @@ func WithCitationPurpose(v string) CitationOption {
 }
 
 // WithCitationCopyright sets the Copyright field.
+//
+// Deprecated: use CitationBuilder.SetCopyright instead; removed in v2.
 func WithCitationCopyright(v string) CitationOption {
 	return func(r *Citation) {
 		r.Copyright = &v
@@ -4166,6 +4226,8 @@ func WithCitationCopyright(v string) CitationOption {
 }
 
 // WithCitationApprovalDate sets the ApprovalDate field.
+//
+// Deprecated: use CitationBuilder.SetApprovalDate instead; removed in v2.
 func WithCitationApprovalDate(v string) CitationOption {
 	return func(r *Citation) {
 		r.ApprovalDate = &v
@@ -4173,6 +4235,8 @@ func WithCitationApprovalDate(v string) CitationOption {
 }
 
 // WithCitationLastReviewDate sets the LastReviewDate field.
+//
+// Deprecated: use CitationBuilder.SetLastReviewDate instead; removed in v2.
 func WithCitationLastReviewDate(v string) CitationOption {
 	return func(r *Citation) {
 		r.LastReviewDate = &v
@@ -4180,6 +4244,8 @@ func WithCitationLastReviewDate(v string) CitationOption {
 }
 
 // WithCitationEffectivePeriod sets the EffectivePeriod field.
+//
+// Deprecated: use CitationBuilder.SetEffectivePeriod instead; removed in v2.
 func WithCitationEffectivePeriod(v Period) CitationOption {
 	return func(r *Citation) {
 		r.EffectivePeriod = &v
@@ -4187,6 +4253,8 @@ func WithCitationEffectivePeriod(v Period) CitationOption {
 }
 
 // WithCitationAuthor adds a Author to the Citation.
+//
+// Deprecated: use CitationBuilder.AddAuthor instead; removed in v2.
 func WithCitationAuthor(v ContactDetail) CitationOption {
 	return func(r *Citation) {
 		r.Author = append(r.Author, v)
@@ -4194,6 +4262,8 @@ func WithCitationAuthor(v ContactDetail) CitationOption {
 }
 
 // WithCitationEditor adds a Editor to the Citation.
+//
+// Deprecated: use CitationBuilder.AddEditor instead; removed in v2.
 func WithCitationEditor(v ContactDetail) CitationOption {
 	return func(r *Citation) {
 		r.Editor = append(r.Editor, v)
@@ -4201,6 +4271,8 @@ func WithCitationEditor(v ContactDetail) CitationOption {
 }
 
 // WithCitationReviewer adds a Reviewer to the Citation.
+//
+// Deprecated: use CitationBuilder.AddReviewer instead; removed in v2.
 func WithCitationReviewer(v ContactDetail) CitationOption {
 	return func(r *Citation) {
 		r.Reviewer = append(r.Reviewer, v)
@@ -4208,6 +4280,8 @@ func WithCitationReviewer(v ContactDetail) CitationOption {
 }
 
 // WithCitationEndorser adds a Endorser to the Citation.
+//
+// Deprecated: use CitationBuilder.AddEndorser instead; removed in v2.
 func WithCitationEndorser(v ContactDetail) CitationOption {
 	return func(r *Citation) {
 		r.Endorser = append(r.Endorser, v)
@@ -4215,6 +4289,8 @@ func WithCitationEndorser(v ContactDetail) CitationOption {
 }
 
 // WithCitationSummary adds a Summary to the Citation.
+//
+// Deprecated: use CitationBuilder.AddSummary instead; removed in v2.
 func WithCitationSummary(v CitationSummary) CitationOption {
 	return func(r *Citation) {
 		r.Summary = append(r.Summary, v)
@@ -4222,6 +4298,8 @@ func WithCitationSummary(v CitationSummary) CitationOption {
 }
 
 // WithCitationClassification adds a Classification to the Citation.
+//
+// Deprecated: use CitationBuilder.AddClassification instead; removed in v2.
 func WithCitationClassification(v CitationClassification) CitationOption {
 	return func(r *Citation) {
 		r.Classification = append(r.Classification, v)
@@ -4229,6 +4307,8 @@ func WithCitationClassification(v CitationClassification) CitationOption {
 }
 
 // WithCitationNote adds a Note to the Citation.
+//
+// Deprecated: use CitationBuilder.AddNote instead; removed in v2.
 func WithCitationNote(v Annotation) CitationOption {
 	return func(r *Citation) {
 		r.Note = append(r.Note, v)
@@ -4236,6 +4316,8 @@ func WithCitationNote(v Annotation) CitationOption {
 }
 
 // WithCitationCurrentState adds a CurrentState to the Citation.
+//
+// Deprecated: use CitationBuilder.AddCurrentState instead; removed in v2.
 func WithCitationCurrentState(v CodeableConcept) CitationOption {
 	return func(r *Citation) {
 		r.CurrentState = append(r.CurrentState, v)
@@ -4243,6 +4325,8 @@ func WithCitationCurrentState(v CodeableConcept) CitationOption {
 }
 
 // WithCitationStatusDate adds a StatusDate to the Citation.
+//
+// Deprecated: use CitationBuilder.AddStatusDate instead; removed in v2.
 func WithCitationStatusDate(v CitationStatusDate) CitationOption {
 	return func(r *Citation) {
 		r.StatusDate = append(r.StatusDate, v)
@@ -4250,6 +4334,8 @@ func WithCitationStatusDate(v CitationStatusDate) CitationOption {
 }
 
 // WithCitationRelatesTo adds a RelatesTo to the Citation.
+//
+// Deprecated: use CitationBuilder.AddRelatesTo instead; removed in v2.
 func WithCitationRelatesTo(v CitationRelatesTo) CitationOption {
 	return func(r *Citation) {
 		r.RelatesTo = append(r.RelatesTo, v)
@@ -4257,6 +4343,8 @@ func WithCitationRelatesTo(v CitationRelatesTo) CitationOption {
 }
 
 // WithCitationCitedArtifact sets the CitedArtifact field.
+//
+// Deprecated: use CitationBuilder.SetCitedArtifact instead; removed in v2.
 func WithCitationCitedArtifact(v CitationCitedArtifact) CitationOption {
 	return func(r *Citation) {
 		r.CitedArtifact = &v

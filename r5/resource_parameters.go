@@ -1080,9 +1080,23 @@ func (b *ParametersBuilder) AddParameter(v ParametersParameter) *ParametersBuild
 // =============================================================================
 
 // ParametersOption is a functional option for configuring a Parameters.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ParametersBuilder. Every WithParameters* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ParametersOption func(*Parameters)
 
 // NewParameters creates a new Parameters with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewParametersBuilder().SetId("x").Build()
+//
+// Deprecated: use NewParametersBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewParameters(opts ...ParametersOption) *Parameters {
 	r := &Parameters{ResourceType: "Parameters"}
 	for _, opt := range opts {
@@ -1092,6 +1106,8 @@ func NewParameters(opts ...ParametersOption) *Parameters {
 }
 
 // WithParametersId sets the Id field.
+//
+// Deprecated: use ParametersBuilder.SetId instead; removed in v2.
 func WithParametersId(v string) ParametersOption {
 	return func(r *Parameters) {
 		r.Id = &v
@@ -1099,6 +1115,8 @@ func WithParametersId(v string) ParametersOption {
 }
 
 // WithParametersMeta sets the Meta field.
+//
+// Deprecated: use ParametersBuilder.SetMeta instead; removed in v2.
 func WithParametersMeta(v Meta) ParametersOption {
 	return func(r *Parameters) {
 		r.Meta = &v
@@ -1106,6 +1124,8 @@ func WithParametersMeta(v Meta) ParametersOption {
 }
 
 // WithParametersImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ParametersBuilder.SetImplicitRules instead; removed in v2.
 func WithParametersImplicitRules(v string) ParametersOption {
 	return func(r *Parameters) {
 		r.ImplicitRules = &v
@@ -1113,6 +1133,8 @@ func WithParametersImplicitRules(v string) ParametersOption {
 }
 
 // WithParametersLanguage sets the Language field.
+//
+// Deprecated: use ParametersBuilder.SetLanguage instead; removed in v2.
 func WithParametersLanguage(v string) ParametersOption {
 	return func(r *Parameters) {
 		r.Language = &v
@@ -1120,6 +1142,8 @@ func WithParametersLanguage(v string) ParametersOption {
 }
 
 // WithParametersParameter adds a Parameter to the Parameters.
+//
+// Deprecated: use ParametersBuilder.AddParameter instead; removed in v2.
 func WithParametersParameter(v ParametersParameter) ParametersOption {
 	return func(r *Parameters) {
 		r.Parameter = append(r.Parameter, v)

@@ -794,9 +794,23 @@ func (b *MediaBuilder) AddNote(v Annotation) *MediaBuilder {
 // =============================================================================
 
 // MediaOption is a functional option for configuring a Media.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// MediaBuilder. Every WithMedia* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type MediaOption func(*Media)
 
 // NewMedia creates a new Media with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewMediaBuilder().SetId("x").Build()
+//
+// Deprecated: use NewMediaBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewMedia(opts ...MediaOption) *Media {
 	r := &Media{ResourceType: "Media"}
 	for _, opt := range opts {
@@ -806,6 +820,8 @@ func NewMedia(opts ...MediaOption) *Media {
 }
 
 // WithMediaId sets the Id field.
+//
+// Deprecated: use MediaBuilder.SetId instead; removed in v2.
 func WithMediaId(v string) MediaOption {
 	return func(r *Media) {
 		r.Id = &v
@@ -813,6 +829,8 @@ func WithMediaId(v string) MediaOption {
 }
 
 // WithMediaMeta sets the Meta field.
+//
+// Deprecated: use MediaBuilder.SetMeta instead; removed in v2.
 func WithMediaMeta(v Meta) MediaOption {
 	return func(r *Media) {
 		r.Meta = &v
@@ -820,6 +838,8 @@ func WithMediaMeta(v Meta) MediaOption {
 }
 
 // WithMediaImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use MediaBuilder.SetImplicitRules instead; removed in v2.
 func WithMediaImplicitRules(v string) MediaOption {
 	return func(r *Media) {
 		r.ImplicitRules = &v
@@ -827,6 +847,8 @@ func WithMediaImplicitRules(v string) MediaOption {
 }
 
 // WithMediaLanguage sets the Language field.
+//
+// Deprecated: use MediaBuilder.SetLanguage instead; removed in v2.
 func WithMediaLanguage(v string) MediaOption {
 	return func(r *Media) {
 		r.Language = &v
@@ -834,6 +856,8 @@ func WithMediaLanguage(v string) MediaOption {
 }
 
 // WithMediaText sets the Text field.
+//
+// Deprecated: use MediaBuilder.SetText instead; removed in v2.
 func WithMediaText(v Narrative) MediaOption {
 	return func(r *Media) {
 		r.Text = &v
@@ -841,6 +865,8 @@ func WithMediaText(v Narrative) MediaOption {
 }
 
 // WithMediaContained adds a Contained to the Media.
+//
+// Deprecated: use MediaBuilder.AddContained instead; removed in v2.
 func WithMediaContained(v Resource) MediaOption {
 	return func(r *Media) {
 		r.Contained = append(r.Contained, v)
@@ -848,6 +874,8 @@ func WithMediaContained(v Resource) MediaOption {
 }
 
 // WithMediaExtension adds a Extension to the Media.
+//
+// Deprecated: use MediaBuilder.AddExtension instead; removed in v2.
 func WithMediaExtension(v Extension) MediaOption {
 	return func(r *Media) {
 		r.Extension = append(r.Extension, v)
@@ -855,6 +883,8 @@ func WithMediaExtension(v Extension) MediaOption {
 }
 
 // WithMediaModifierExtension adds a ModifierExtension to the Media.
+//
+// Deprecated: use MediaBuilder.AddModifierExtension instead; removed in v2.
 func WithMediaModifierExtension(v Extension) MediaOption {
 	return func(r *Media) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -862,6 +892,8 @@ func WithMediaModifierExtension(v Extension) MediaOption {
 }
 
 // WithMediaIdentifier adds a Identifier to the Media.
+//
+// Deprecated: use MediaBuilder.AddIdentifier instead; removed in v2.
 func WithMediaIdentifier(v Identifier) MediaOption {
 	return func(r *Media) {
 		r.Identifier = append(r.Identifier, v)
@@ -869,6 +901,8 @@ func WithMediaIdentifier(v Identifier) MediaOption {
 }
 
 // WithMediaBasedOn adds a BasedOn to the Media.
+//
+// Deprecated: use MediaBuilder.AddBasedOn instead; removed in v2.
 func WithMediaBasedOn(v Reference) MediaOption {
 	return func(r *Media) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -876,6 +910,8 @@ func WithMediaBasedOn(v Reference) MediaOption {
 }
 
 // WithMediaPartOf adds a PartOf to the Media.
+//
+// Deprecated: use MediaBuilder.AddPartOf instead; removed in v2.
 func WithMediaPartOf(v Reference) MediaOption {
 	return func(r *Media) {
 		r.PartOf = append(r.PartOf, v)
@@ -883,6 +919,8 @@ func WithMediaPartOf(v Reference) MediaOption {
 }
 
 // WithMediaStatus sets the Status field.
+//
+// Deprecated: use MediaBuilder.SetStatus instead; removed in v2.
 func WithMediaStatus(v EventStatus) MediaOption {
 	return func(r *Media) {
 		r.Status = &v
@@ -890,6 +928,8 @@ func WithMediaStatus(v EventStatus) MediaOption {
 }
 
 // WithMediaType sets the Type field.
+//
+// Deprecated: use MediaBuilder.SetType instead; removed in v2.
 func WithMediaType(v CodeableConcept) MediaOption {
 	return func(r *Media) {
 		r.Type = &v
@@ -897,6 +937,8 @@ func WithMediaType(v CodeableConcept) MediaOption {
 }
 
 // WithMediaModality sets the Modality field.
+//
+// Deprecated: use MediaBuilder.SetModality instead; removed in v2.
 func WithMediaModality(v CodeableConcept) MediaOption {
 	return func(r *Media) {
 		r.Modality = &v
@@ -904,6 +946,8 @@ func WithMediaModality(v CodeableConcept) MediaOption {
 }
 
 // WithMediaView sets the View field.
+//
+// Deprecated: use MediaBuilder.SetView instead; removed in v2.
 func WithMediaView(v CodeableConcept) MediaOption {
 	return func(r *Media) {
 		r.View = &v
@@ -911,6 +955,8 @@ func WithMediaView(v CodeableConcept) MediaOption {
 }
 
 // WithMediaSubject sets the Subject field.
+//
+// Deprecated: use MediaBuilder.SetSubject instead; removed in v2.
 func WithMediaSubject(v Reference) MediaOption {
 	return func(r *Media) {
 		r.Subject = &v
@@ -918,6 +964,8 @@ func WithMediaSubject(v Reference) MediaOption {
 }
 
 // WithMediaEncounter sets the Encounter field.
+//
+// Deprecated: use MediaBuilder.SetEncounter instead; removed in v2.
 func WithMediaEncounter(v Reference) MediaOption {
 	return func(r *Media) {
 		r.Encounter = &v
@@ -925,6 +973,8 @@ func WithMediaEncounter(v Reference) MediaOption {
 }
 
 // WithMediaCreatedDateTime sets the CreatedDateTime field.
+//
+// Deprecated: use MediaBuilder.SetCreatedDateTime instead; removed in v2.
 func WithMediaCreatedDateTime(v string) MediaOption {
 	return func(r *Media) {
 		r.CreatedDateTime = &v
@@ -932,6 +982,8 @@ func WithMediaCreatedDateTime(v string) MediaOption {
 }
 
 // WithMediaCreatedDateTimeExt sets the CreatedDateTimeExt field.
+//
+// Deprecated: use MediaBuilder.SetCreatedDateTimeExt instead; removed in v2.
 func WithMediaCreatedDateTimeExt(v Element) MediaOption {
 	return func(r *Media) {
 		r.CreatedDateTimeExt = &v
@@ -939,6 +991,8 @@ func WithMediaCreatedDateTimeExt(v Element) MediaOption {
 }
 
 // WithMediaCreatedPeriod sets the CreatedPeriod field.
+//
+// Deprecated: use MediaBuilder.SetCreatedPeriod instead; removed in v2.
 func WithMediaCreatedPeriod(v Period) MediaOption {
 	return func(r *Media) {
 		r.CreatedPeriod = &v
@@ -946,6 +1000,8 @@ func WithMediaCreatedPeriod(v Period) MediaOption {
 }
 
 // WithMediaIssued sets the Issued field.
+//
+// Deprecated: use MediaBuilder.SetIssued instead; removed in v2.
 func WithMediaIssued(v string) MediaOption {
 	return func(r *Media) {
 		r.Issued = &v
@@ -953,6 +1009,8 @@ func WithMediaIssued(v string) MediaOption {
 }
 
 // WithMediaOperator sets the Operator field.
+//
+// Deprecated: use MediaBuilder.SetOperator instead; removed in v2.
 func WithMediaOperator(v Reference) MediaOption {
 	return func(r *Media) {
 		r.Operator = &v
@@ -960,6 +1018,8 @@ func WithMediaOperator(v Reference) MediaOption {
 }
 
 // WithMediaReasonCode adds a ReasonCode to the Media.
+//
+// Deprecated: use MediaBuilder.AddReasonCode instead; removed in v2.
 func WithMediaReasonCode(v CodeableConcept) MediaOption {
 	return func(r *Media) {
 		r.ReasonCode = append(r.ReasonCode, v)
@@ -967,6 +1027,8 @@ func WithMediaReasonCode(v CodeableConcept) MediaOption {
 }
 
 // WithMediaBodySite sets the BodySite field.
+//
+// Deprecated: use MediaBuilder.SetBodySite instead; removed in v2.
 func WithMediaBodySite(v CodeableConcept) MediaOption {
 	return func(r *Media) {
 		r.BodySite = &v
@@ -974,6 +1036,8 @@ func WithMediaBodySite(v CodeableConcept) MediaOption {
 }
 
 // WithMediaDeviceName sets the DeviceName field.
+//
+// Deprecated: use MediaBuilder.SetDeviceName instead; removed in v2.
 func WithMediaDeviceName(v string) MediaOption {
 	return func(r *Media) {
 		r.DeviceName = &v
@@ -981,6 +1045,8 @@ func WithMediaDeviceName(v string) MediaOption {
 }
 
 // WithMediaDevice sets the Device field.
+//
+// Deprecated: use MediaBuilder.SetDevice instead; removed in v2.
 func WithMediaDevice(v Reference) MediaOption {
 	return func(r *Media) {
 		r.Device = &v
@@ -988,6 +1054,8 @@ func WithMediaDevice(v Reference) MediaOption {
 }
 
 // WithMediaHeight sets the Height field.
+//
+// Deprecated: use MediaBuilder.SetHeight instead; removed in v2.
 func WithMediaHeight(v uint32) MediaOption {
 	return func(r *Media) {
 		r.Height = &v
@@ -995,6 +1063,8 @@ func WithMediaHeight(v uint32) MediaOption {
 }
 
 // WithMediaWidth sets the Width field.
+//
+// Deprecated: use MediaBuilder.SetWidth instead; removed in v2.
 func WithMediaWidth(v uint32) MediaOption {
 	return func(r *Media) {
 		r.Width = &v
@@ -1002,6 +1072,8 @@ func WithMediaWidth(v uint32) MediaOption {
 }
 
 // WithMediaFrames sets the Frames field.
+//
+// Deprecated: use MediaBuilder.SetFrames instead; removed in v2.
 func WithMediaFrames(v uint32) MediaOption {
 	return func(r *Media) {
 		r.Frames = &v
@@ -1009,6 +1081,8 @@ func WithMediaFrames(v uint32) MediaOption {
 }
 
 // WithMediaDuration sets the Duration field.
+//
+// Deprecated: use MediaBuilder.SetDuration instead; removed in v2.
 func WithMediaDuration(v Decimal) MediaOption {
 	return func(r *Media) {
 		r.Duration = &v
@@ -1016,6 +1090,8 @@ func WithMediaDuration(v Decimal) MediaOption {
 }
 
 // WithMediaContent sets the Content field.
+//
+// Deprecated: use MediaBuilder.SetContent instead; removed in v2.
 func WithMediaContent(v Attachment) MediaOption {
 	return func(r *Media) {
 		r.Content = v
@@ -1023,6 +1099,8 @@ func WithMediaContent(v Attachment) MediaOption {
 }
 
 // WithMediaNote adds a Note to the Media.
+//
+// Deprecated: use MediaBuilder.AddNote instead; removed in v2.
 func WithMediaNote(v Annotation) MediaOption {
 	return func(r *Media) {
 		r.Note = append(r.Note, v)

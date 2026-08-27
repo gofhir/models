@@ -1212,9 +1212,23 @@ func (b *CoverageBuilder) SetInsurancePlan(v Reference) *CoverageBuilder {
 // =============================================================================
 
 // CoverageOption is a functional option for configuring a Coverage.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// CoverageBuilder. Every WithCoverage* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type CoverageOption func(*Coverage)
 
 // NewCoverage creates a new Coverage with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewCoverageBuilder().SetId("x").Build()
+//
+// Deprecated: use NewCoverageBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewCoverage(opts ...CoverageOption) *Coverage {
 	r := &Coverage{ResourceType: "Coverage"}
 	for _, opt := range opts {
@@ -1224,6 +1238,8 @@ func NewCoverage(opts ...CoverageOption) *Coverage {
 }
 
 // WithCoverageId sets the Id field.
+//
+// Deprecated: use CoverageBuilder.SetId instead; removed in v2.
 func WithCoverageId(v string) CoverageOption {
 	return func(r *Coverage) {
 		r.Id = &v
@@ -1231,6 +1247,8 @@ func WithCoverageId(v string) CoverageOption {
 }
 
 // WithCoverageMeta sets the Meta field.
+//
+// Deprecated: use CoverageBuilder.SetMeta instead; removed in v2.
 func WithCoverageMeta(v Meta) CoverageOption {
 	return func(r *Coverage) {
 		r.Meta = &v
@@ -1238,6 +1256,8 @@ func WithCoverageMeta(v Meta) CoverageOption {
 }
 
 // WithCoverageImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use CoverageBuilder.SetImplicitRules instead; removed in v2.
 func WithCoverageImplicitRules(v string) CoverageOption {
 	return func(r *Coverage) {
 		r.ImplicitRules = &v
@@ -1245,6 +1265,8 @@ func WithCoverageImplicitRules(v string) CoverageOption {
 }
 
 // WithCoverageLanguage sets the Language field.
+//
+// Deprecated: use CoverageBuilder.SetLanguage instead; removed in v2.
 func WithCoverageLanguage(v string) CoverageOption {
 	return func(r *Coverage) {
 		r.Language = &v
@@ -1252,6 +1274,8 @@ func WithCoverageLanguage(v string) CoverageOption {
 }
 
 // WithCoverageText sets the Text field.
+//
+// Deprecated: use CoverageBuilder.SetText instead; removed in v2.
 func WithCoverageText(v Narrative) CoverageOption {
 	return func(r *Coverage) {
 		r.Text = &v
@@ -1259,6 +1283,8 @@ func WithCoverageText(v Narrative) CoverageOption {
 }
 
 // WithCoverageContained adds a Contained to the Coverage.
+//
+// Deprecated: use CoverageBuilder.AddContained instead; removed in v2.
 func WithCoverageContained(v Resource) CoverageOption {
 	return func(r *Coverage) {
 		r.Contained = append(r.Contained, v)
@@ -1266,6 +1292,8 @@ func WithCoverageContained(v Resource) CoverageOption {
 }
 
 // WithCoverageExtension adds a Extension to the Coverage.
+//
+// Deprecated: use CoverageBuilder.AddExtension instead; removed in v2.
 func WithCoverageExtension(v Extension) CoverageOption {
 	return func(r *Coverage) {
 		r.Extension = append(r.Extension, v)
@@ -1273,6 +1301,8 @@ func WithCoverageExtension(v Extension) CoverageOption {
 }
 
 // WithCoverageModifierExtension adds a ModifierExtension to the Coverage.
+//
+// Deprecated: use CoverageBuilder.AddModifierExtension instead; removed in v2.
 func WithCoverageModifierExtension(v Extension) CoverageOption {
 	return func(r *Coverage) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1280,6 +1310,8 @@ func WithCoverageModifierExtension(v Extension) CoverageOption {
 }
 
 // WithCoverageIdentifier adds a Identifier to the Coverage.
+//
+// Deprecated: use CoverageBuilder.AddIdentifier instead; removed in v2.
 func WithCoverageIdentifier(v Identifier) CoverageOption {
 	return func(r *Coverage) {
 		r.Identifier = append(r.Identifier, v)
@@ -1287,6 +1319,8 @@ func WithCoverageIdentifier(v Identifier) CoverageOption {
 }
 
 // WithCoverageStatus sets the Status field.
+//
+// Deprecated: use CoverageBuilder.SetStatus instead; removed in v2.
 func WithCoverageStatus(v FinancialResourceStatusCodes) CoverageOption {
 	return func(r *Coverage) {
 		r.Status = &v
@@ -1294,6 +1328,8 @@ func WithCoverageStatus(v FinancialResourceStatusCodes) CoverageOption {
 }
 
 // WithCoverageKind sets the Kind field.
+//
+// Deprecated: use CoverageBuilder.SetKind instead; removed in v2.
 func WithCoverageKind(v Kind) CoverageOption {
 	return func(r *Coverage) {
 		r.Kind = &v
@@ -1301,6 +1337,8 @@ func WithCoverageKind(v Kind) CoverageOption {
 }
 
 // WithCoveragePaymentBy adds a PaymentBy to the Coverage.
+//
+// Deprecated: use CoverageBuilder.AddPaymentBy instead; removed in v2.
 func WithCoveragePaymentBy(v CoveragePaymentBy) CoverageOption {
 	return func(r *Coverage) {
 		r.PaymentBy = append(r.PaymentBy, v)
@@ -1308,6 +1346,8 @@ func WithCoveragePaymentBy(v CoveragePaymentBy) CoverageOption {
 }
 
 // WithCoverageType sets the Type field.
+//
+// Deprecated: use CoverageBuilder.SetType instead; removed in v2.
 func WithCoverageType(v CodeableConcept) CoverageOption {
 	return func(r *Coverage) {
 		r.Type = &v
@@ -1315,6 +1355,8 @@ func WithCoverageType(v CodeableConcept) CoverageOption {
 }
 
 // WithCoveragePolicyHolder sets the PolicyHolder field.
+//
+// Deprecated: use CoverageBuilder.SetPolicyHolder instead; removed in v2.
 func WithCoveragePolicyHolder(v Reference) CoverageOption {
 	return func(r *Coverage) {
 		r.PolicyHolder = &v
@@ -1322,6 +1364,8 @@ func WithCoveragePolicyHolder(v Reference) CoverageOption {
 }
 
 // WithCoverageSubscriber sets the Subscriber field.
+//
+// Deprecated: use CoverageBuilder.SetSubscriber instead; removed in v2.
 func WithCoverageSubscriber(v Reference) CoverageOption {
 	return func(r *Coverage) {
 		r.Subscriber = &v
@@ -1329,6 +1373,8 @@ func WithCoverageSubscriber(v Reference) CoverageOption {
 }
 
 // WithCoverageSubscriberId adds a SubscriberId to the Coverage.
+//
+// Deprecated: use CoverageBuilder.AddSubscriberId instead; removed in v2.
 func WithCoverageSubscriberId(v Identifier) CoverageOption {
 	return func(r *Coverage) {
 		r.SubscriberId = append(r.SubscriberId, v)
@@ -1336,6 +1382,8 @@ func WithCoverageSubscriberId(v Identifier) CoverageOption {
 }
 
 // WithCoverageBeneficiary sets the Beneficiary field.
+//
+// Deprecated: use CoverageBuilder.SetBeneficiary instead; removed in v2.
 func WithCoverageBeneficiary(v Reference) CoverageOption {
 	return func(r *Coverage) {
 		r.Beneficiary = v
@@ -1343,6 +1391,8 @@ func WithCoverageBeneficiary(v Reference) CoverageOption {
 }
 
 // WithCoverageDependent sets the Dependent field.
+//
+// Deprecated: use CoverageBuilder.SetDependent instead; removed in v2.
 func WithCoverageDependent(v string) CoverageOption {
 	return func(r *Coverage) {
 		r.Dependent = &v
@@ -1350,6 +1400,8 @@ func WithCoverageDependent(v string) CoverageOption {
 }
 
 // WithCoverageRelationship sets the Relationship field.
+//
+// Deprecated: use CoverageBuilder.SetRelationship instead; removed in v2.
 func WithCoverageRelationship(v CodeableConcept) CoverageOption {
 	return func(r *Coverage) {
 		r.Relationship = &v
@@ -1357,6 +1409,8 @@ func WithCoverageRelationship(v CodeableConcept) CoverageOption {
 }
 
 // WithCoveragePeriod sets the Period field.
+//
+// Deprecated: use CoverageBuilder.SetPeriod instead; removed in v2.
 func WithCoveragePeriod(v Period) CoverageOption {
 	return func(r *Coverage) {
 		r.Period = &v
@@ -1364,6 +1418,8 @@ func WithCoveragePeriod(v Period) CoverageOption {
 }
 
 // WithCoverageInsurer sets the Insurer field.
+//
+// Deprecated: use CoverageBuilder.SetInsurer instead; removed in v2.
 func WithCoverageInsurer(v Reference) CoverageOption {
 	return func(r *Coverage) {
 		r.Insurer = &v
@@ -1371,6 +1427,8 @@ func WithCoverageInsurer(v Reference) CoverageOption {
 }
 
 // WithCoverageClass adds a Class to the Coverage.
+//
+// Deprecated: use CoverageBuilder.AddClass instead; removed in v2.
 func WithCoverageClass(v CoverageClass) CoverageOption {
 	return func(r *Coverage) {
 		r.Class = append(r.Class, v)
@@ -1378,6 +1436,8 @@ func WithCoverageClass(v CoverageClass) CoverageOption {
 }
 
 // WithCoverageOrder sets the Order field.
+//
+// Deprecated: use CoverageBuilder.SetOrder instead; removed in v2.
 func WithCoverageOrder(v uint32) CoverageOption {
 	return func(r *Coverage) {
 		r.Order = &v
@@ -1385,6 +1445,8 @@ func WithCoverageOrder(v uint32) CoverageOption {
 }
 
 // WithCoverageNetwork sets the Network field.
+//
+// Deprecated: use CoverageBuilder.SetNetwork instead; removed in v2.
 func WithCoverageNetwork(v string) CoverageOption {
 	return func(r *Coverage) {
 		r.Network = &v
@@ -1392,6 +1454,8 @@ func WithCoverageNetwork(v string) CoverageOption {
 }
 
 // WithCoverageCostToBeneficiary adds a CostToBeneficiary to the Coverage.
+//
+// Deprecated: use CoverageBuilder.AddCostToBeneficiary instead; removed in v2.
 func WithCoverageCostToBeneficiary(v CoverageCostToBeneficiary) CoverageOption {
 	return func(r *Coverage) {
 		r.CostToBeneficiary = append(r.CostToBeneficiary, v)
@@ -1399,6 +1463,8 @@ func WithCoverageCostToBeneficiary(v CoverageCostToBeneficiary) CoverageOption {
 }
 
 // WithCoverageSubrogation sets the Subrogation field.
+//
+// Deprecated: use CoverageBuilder.SetSubrogation instead; removed in v2.
 func WithCoverageSubrogation(v bool) CoverageOption {
 	return func(r *Coverage) {
 		r.Subrogation = &v
@@ -1406,6 +1472,8 @@ func WithCoverageSubrogation(v bool) CoverageOption {
 }
 
 // WithCoverageContract adds a Contract to the Coverage.
+//
+// Deprecated: use CoverageBuilder.AddContract instead; removed in v2.
 func WithCoverageContract(v Reference) CoverageOption {
 	return func(r *Coverage) {
 		r.Contract = append(r.Contract, v)
@@ -1413,6 +1481,8 @@ func WithCoverageContract(v Reference) CoverageOption {
 }
 
 // WithCoverageInsurancePlan sets the InsurancePlan field.
+//
+// Deprecated: use CoverageBuilder.SetInsurancePlan instead; removed in v2.
 func WithCoverageInsurancePlan(v Reference) CoverageOption {
 	return func(r *Coverage) {
 		r.InsurancePlan = &v

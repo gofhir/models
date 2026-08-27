@@ -736,9 +736,23 @@ func (b *NamingSystemBuilder) AddUniqueId(v NamingSystemUniqueId) *NamingSystemB
 // =============================================================================
 
 // NamingSystemOption is a functional option for configuring a NamingSystem.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// NamingSystemBuilder. Every WithNamingSystem* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type NamingSystemOption func(*NamingSystem)
 
 // NewNamingSystem creates a new NamingSystem with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewNamingSystemBuilder().SetId("x").Build()
+//
+// Deprecated: use NewNamingSystemBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewNamingSystem(opts ...NamingSystemOption) *NamingSystem {
 	r := &NamingSystem{ResourceType: "NamingSystem"}
 	for _, opt := range opts {
@@ -748,6 +762,8 @@ func NewNamingSystem(opts ...NamingSystemOption) *NamingSystem {
 }
 
 // WithNamingSystemId sets the Id field.
+//
+// Deprecated: use NamingSystemBuilder.SetId instead; removed in v2.
 func WithNamingSystemId(v string) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.Id = &v
@@ -755,6 +771,8 @@ func WithNamingSystemId(v string) NamingSystemOption {
 }
 
 // WithNamingSystemMeta sets the Meta field.
+//
+// Deprecated: use NamingSystemBuilder.SetMeta instead; removed in v2.
 func WithNamingSystemMeta(v Meta) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.Meta = &v
@@ -762,6 +780,8 @@ func WithNamingSystemMeta(v Meta) NamingSystemOption {
 }
 
 // WithNamingSystemImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use NamingSystemBuilder.SetImplicitRules instead; removed in v2.
 func WithNamingSystemImplicitRules(v string) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.ImplicitRules = &v
@@ -769,6 +789,8 @@ func WithNamingSystemImplicitRules(v string) NamingSystemOption {
 }
 
 // WithNamingSystemLanguage sets the Language field.
+//
+// Deprecated: use NamingSystemBuilder.SetLanguage instead; removed in v2.
 func WithNamingSystemLanguage(v string) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.Language = &v
@@ -776,6 +798,8 @@ func WithNamingSystemLanguage(v string) NamingSystemOption {
 }
 
 // WithNamingSystemText sets the Text field.
+//
+// Deprecated: use NamingSystemBuilder.SetText instead; removed in v2.
 func WithNamingSystemText(v Narrative) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.Text = &v
@@ -783,6 +807,8 @@ func WithNamingSystemText(v Narrative) NamingSystemOption {
 }
 
 // WithNamingSystemContained adds a Contained to the NamingSystem.
+//
+// Deprecated: use NamingSystemBuilder.AddContained instead; removed in v2.
 func WithNamingSystemContained(v Resource) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.Contained = append(r.Contained, v)
@@ -790,6 +816,8 @@ func WithNamingSystemContained(v Resource) NamingSystemOption {
 }
 
 // WithNamingSystemExtension adds a Extension to the NamingSystem.
+//
+// Deprecated: use NamingSystemBuilder.AddExtension instead; removed in v2.
 func WithNamingSystemExtension(v Extension) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.Extension = append(r.Extension, v)
@@ -797,6 +825,8 @@ func WithNamingSystemExtension(v Extension) NamingSystemOption {
 }
 
 // WithNamingSystemModifierExtension adds a ModifierExtension to the NamingSystem.
+//
+// Deprecated: use NamingSystemBuilder.AddModifierExtension instead; removed in v2.
 func WithNamingSystemModifierExtension(v Extension) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -804,6 +834,8 @@ func WithNamingSystemModifierExtension(v Extension) NamingSystemOption {
 }
 
 // WithNamingSystemName sets the Name field.
+//
+// Deprecated: use NamingSystemBuilder.SetName instead; removed in v2.
 func WithNamingSystemName(v string) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.Name = &v
@@ -811,6 +843,8 @@ func WithNamingSystemName(v string) NamingSystemOption {
 }
 
 // WithNamingSystemStatus sets the Status field.
+//
+// Deprecated: use NamingSystemBuilder.SetStatus instead; removed in v2.
 func WithNamingSystemStatus(v PublicationStatus) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.Status = &v
@@ -818,6 +852,8 @@ func WithNamingSystemStatus(v PublicationStatus) NamingSystemOption {
 }
 
 // WithNamingSystemKind sets the Kind field.
+//
+// Deprecated: use NamingSystemBuilder.SetKind instead; removed in v2.
 func WithNamingSystemKind(v NamingSystemType) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.Kind = &v
@@ -825,6 +861,8 @@ func WithNamingSystemKind(v NamingSystemType) NamingSystemOption {
 }
 
 // WithNamingSystemDate sets the Date field.
+//
+// Deprecated: use NamingSystemBuilder.SetDate instead; removed in v2.
 func WithNamingSystemDate(v string) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.Date = &v
@@ -832,6 +870,8 @@ func WithNamingSystemDate(v string) NamingSystemOption {
 }
 
 // WithNamingSystemPublisher sets the Publisher field.
+//
+// Deprecated: use NamingSystemBuilder.SetPublisher instead; removed in v2.
 func WithNamingSystemPublisher(v string) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.Publisher = &v
@@ -839,6 +879,8 @@ func WithNamingSystemPublisher(v string) NamingSystemOption {
 }
 
 // WithNamingSystemContact adds a Contact to the NamingSystem.
+//
+// Deprecated: use NamingSystemBuilder.AddContact instead; removed in v2.
 func WithNamingSystemContact(v ContactDetail) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.Contact = append(r.Contact, v)
@@ -846,6 +888,8 @@ func WithNamingSystemContact(v ContactDetail) NamingSystemOption {
 }
 
 // WithNamingSystemResponsible sets the Responsible field.
+//
+// Deprecated: use NamingSystemBuilder.SetResponsible instead; removed in v2.
 func WithNamingSystemResponsible(v string) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.Responsible = &v
@@ -853,6 +897,8 @@ func WithNamingSystemResponsible(v string) NamingSystemOption {
 }
 
 // WithNamingSystemType sets the Type field.
+//
+// Deprecated: use NamingSystemBuilder.SetType instead; removed in v2.
 func WithNamingSystemType(v CodeableConcept) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.Type = &v
@@ -860,6 +906,8 @@ func WithNamingSystemType(v CodeableConcept) NamingSystemOption {
 }
 
 // WithNamingSystemDescription sets the Description field.
+//
+// Deprecated: use NamingSystemBuilder.SetDescription instead; removed in v2.
 func WithNamingSystemDescription(v string) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.Description = &v
@@ -867,6 +915,8 @@ func WithNamingSystemDescription(v string) NamingSystemOption {
 }
 
 // WithNamingSystemUseContext adds a UseContext to the NamingSystem.
+//
+// Deprecated: use NamingSystemBuilder.AddUseContext instead; removed in v2.
 func WithNamingSystemUseContext(v UsageContext) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.UseContext = append(r.UseContext, v)
@@ -874,6 +924,8 @@ func WithNamingSystemUseContext(v UsageContext) NamingSystemOption {
 }
 
 // WithNamingSystemJurisdiction adds a Jurisdiction to the NamingSystem.
+//
+// Deprecated: use NamingSystemBuilder.AddJurisdiction instead; removed in v2.
 func WithNamingSystemJurisdiction(v CodeableConcept) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -881,6 +933,8 @@ func WithNamingSystemJurisdiction(v CodeableConcept) NamingSystemOption {
 }
 
 // WithNamingSystemUsage sets the Usage field.
+//
+// Deprecated: use NamingSystemBuilder.SetUsage instead; removed in v2.
 func WithNamingSystemUsage(v string) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.Usage = &v
@@ -888,6 +942,8 @@ func WithNamingSystemUsage(v string) NamingSystemOption {
 }
 
 // WithNamingSystemUniqueId adds a UniqueId to the NamingSystem.
+//
+// Deprecated: use NamingSystemBuilder.AddUniqueId instead; removed in v2.
 func WithNamingSystemUniqueId(v NamingSystemUniqueId) NamingSystemOption {
 	return func(r *NamingSystem) {
 		r.UniqueId = append(r.UniqueId, v)

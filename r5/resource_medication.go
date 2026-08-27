@@ -754,9 +754,23 @@ func (b *MedicationBuilder) SetDefinition(v Reference) *MedicationBuilder {
 // =============================================================================
 
 // MedicationOption is a functional option for configuring a Medication.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// MedicationBuilder. Every WithMedication* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type MedicationOption func(*Medication)
 
 // NewMedication creates a new Medication with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewMedicationBuilder().SetId("x").Build()
+//
+// Deprecated: use NewMedicationBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewMedication(opts ...MedicationOption) *Medication {
 	r := &Medication{ResourceType: "Medication"}
 	for _, opt := range opts {
@@ -766,6 +780,8 @@ func NewMedication(opts ...MedicationOption) *Medication {
 }
 
 // WithMedicationId sets the Id field.
+//
+// Deprecated: use MedicationBuilder.SetId instead; removed in v2.
 func WithMedicationId(v string) MedicationOption {
 	return func(r *Medication) {
 		r.Id = &v
@@ -773,6 +789,8 @@ func WithMedicationId(v string) MedicationOption {
 }
 
 // WithMedicationMeta sets the Meta field.
+//
+// Deprecated: use MedicationBuilder.SetMeta instead; removed in v2.
 func WithMedicationMeta(v Meta) MedicationOption {
 	return func(r *Medication) {
 		r.Meta = &v
@@ -780,6 +798,8 @@ func WithMedicationMeta(v Meta) MedicationOption {
 }
 
 // WithMedicationImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use MedicationBuilder.SetImplicitRules instead; removed in v2.
 func WithMedicationImplicitRules(v string) MedicationOption {
 	return func(r *Medication) {
 		r.ImplicitRules = &v
@@ -787,6 +807,8 @@ func WithMedicationImplicitRules(v string) MedicationOption {
 }
 
 // WithMedicationLanguage sets the Language field.
+//
+// Deprecated: use MedicationBuilder.SetLanguage instead; removed in v2.
 func WithMedicationLanguage(v string) MedicationOption {
 	return func(r *Medication) {
 		r.Language = &v
@@ -794,6 +816,8 @@ func WithMedicationLanguage(v string) MedicationOption {
 }
 
 // WithMedicationText sets the Text field.
+//
+// Deprecated: use MedicationBuilder.SetText instead; removed in v2.
 func WithMedicationText(v Narrative) MedicationOption {
 	return func(r *Medication) {
 		r.Text = &v
@@ -801,6 +825,8 @@ func WithMedicationText(v Narrative) MedicationOption {
 }
 
 // WithMedicationContained adds a Contained to the Medication.
+//
+// Deprecated: use MedicationBuilder.AddContained instead; removed in v2.
 func WithMedicationContained(v Resource) MedicationOption {
 	return func(r *Medication) {
 		r.Contained = append(r.Contained, v)
@@ -808,6 +834,8 @@ func WithMedicationContained(v Resource) MedicationOption {
 }
 
 // WithMedicationExtension adds a Extension to the Medication.
+//
+// Deprecated: use MedicationBuilder.AddExtension instead; removed in v2.
 func WithMedicationExtension(v Extension) MedicationOption {
 	return func(r *Medication) {
 		r.Extension = append(r.Extension, v)
@@ -815,6 +843,8 @@ func WithMedicationExtension(v Extension) MedicationOption {
 }
 
 // WithMedicationModifierExtension adds a ModifierExtension to the Medication.
+//
+// Deprecated: use MedicationBuilder.AddModifierExtension instead; removed in v2.
 func WithMedicationModifierExtension(v Extension) MedicationOption {
 	return func(r *Medication) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -822,6 +852,8 @@ func WithMedicationModifierExtension(v Extension) MedicationOption {
 }
 
 // WithMedicationIdentifier adds a Identifier to the Medication.
+//
+// Deprecated: use MedicationBuilder.AddIdentifier instead; removed in v2.
 func WithMedicationIdentifier(v Identifier) MedicationOption {
 	return func(r *Medication) {
 		r.Identifier = append(r.Identifier, v)
@@ -829,6 +861,8 @@ func WithMedicationIdentifier(v Identifier) MedicationOption {
 }
 
 // WithMedicationCode sets the Code field.
+//
+// Deprecated: use MedicationBuilder.SetCode instead; removed in v2.
 func WithMedicationCode(v CodeableConcept) MedicationOption {
 	return func(r *Medication) {
 		r.Code = &v
@@ -836,6 +870,8 @@ func WithMedicationCode(v CodeableConcept) MedicationOption {
 }
 
 // WithMedicationStatus sets the Status field.
+//
+// Deprecated: use MedicationBuilder.SetStatus instead; removed in v2.
 func WithMedicationStatus(v MedicationStatusCodes) MedicationOption {
 	return func(r *Medication) {
 		r.Status = &v
@@ -843,6 +879,8 @@ func WithMedicationStatus(v MedicationStatusCodes) MedicationOption {
 }
 
 // WithMedicationMarketingAuthorizationHolder sets the MarketingAuthorizationHolder field.
+//
+// Deprecated: use MedicationBuilder.SetMarketingAuthorizationHolder instead; removed in v2.
 func WithMedicationMarketingAuthorizationHolder(v Reference) MedicationOption {
 	return func(r *Medication) {
 		r.MarketingAuthorizationHolder = &v
@@ -850,6 +888,8 @@ func WithMedicationMarketingAuthorizationHolder(v Reference) MedicationOption {
 }
 
 // WithMedicationDoseForm sets the DoseForm field.
+//
+// Deprecated: use MedicationBuilder.SetDoseForm instead; removed in v2.
 func WithMedicationDoseForm(v CodeableConcept) MedicationOption {
 	return func(r *Medication) {
 		r.DoseForm = &v
@@ -857,6 +897,8 @@ func WithMedicationDoseForm(v CodeableConcept) MedicationOption {
 }
 
 // WithMedicationTotalVolume sets the TotalVolume field.
+//
+// Deprecated: use MedicationBuilder.SetTotalVolume instead; removed in v2.
 func WithMedicationTotalVolume(v Quantity) MedicationOption {
 	return func(r *Medication) {
 		r.TotalVolume = &v
@@ -864,6 +906,8 @@ func WithMedicationTotalVolume(v Quantity) MedicationOption {
 }
 
 // WithMedicationIngredient adds a Ingredient to the Medication.
+//
+// Deprecated: use MedicationBuilder.AddIngredient instead; removed in v2.
 func WithMedicationIngredient(v MedicationIngredient) MedicationOption {
 	return func(r *Medication) {
 		r.Ingredient = append(r.Ingredient, v)
@@ -871,6 +915,8 @@ func WithMedicationIngredient(v MedicationIngredient) MedicationOption {
 }
 
 // WithMedicationBatch sets the Batch field.
+//
+// Deprecated: use MedicationBuilder.SetBatch instead; removed in v2.
 func WithMedicationBatch(v MedicationBatch) MedicationOption {
 	return func(r *Medication) {
 		r.Batch = &v
@@ -878,6 +924,8 @@ func WithMedicationBatch(v MedicationBatch) MedicationOption {
 }
 
 // WithMedicationDefinition sets the Definition field.
+//
+// Deprecated: use MedicationBuilder.SetDefinition instead; removed in v2.
 func WithMedicationDefinition(v Reference) MedicationOption {
 	return func(r *Medication) {
 		r.Definition = &v

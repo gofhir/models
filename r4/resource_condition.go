@@ -1066,9 +1066,23 @@ func (b *ConditionBuilder) AddNote(v Annotation) *ConditionBuilder {
 // =============================================================================
 
 // ConditionOption is a functional option for configuring a Condition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ConditionBuilder. Every WithCondition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ConditionOption func(*Condition)
 
 // NewCondition creates a new Condition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewConditionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewConditionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewCondition(opts ...ConditionOption) *Condition {
 	r := &Condition{ResourceType: "Condition"}
 	for _, opt := range opts {
@@ -1078,6 +1092,8 @@ func NewCondition(opts ...ConditionOption) *Condition {
 }
 
 // WithConditionId sets the Id field.
+//
+// Deprecated: use ConditionBuilder.SetId instead; removed in v2.
 func WithConditionId(v string) ConditionOption {
 	return func(r *Condition) {
 		r.Id = &v
@@ -1085,6 +1101,8 @@ func WithConditionId(v string) ConditionOption {
 }
 
 // WithConditionMeta sets the Meta field.
+//
+// Deprecated: use ConditionBuilder.SetMeta instead; removed in v2.
 func WithConditionMeta(v Meta) ConditionOption {
 	return func(r *Condition) {
 		r.Meta = &v
@@ -1092,6 +1110,8 @@ func WithConditionMeta(v Meta) ConditionOption {
 }
 
 // WithConditionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ConditionBuilder.SetImplicitRules instead; removed in v2.
 func WithConditionImplicitRules(v string) ConditionOption {
 	return func(r *Condition) {
 		r.ImplicitRules = &v
@@ -1099,6 +1119,8 @@ func WithConditionImplicitRules(v string) ConditionOption {
 }
 
 // WithConditionLanguage sets the Language field.
+//
+// Deprecated: use ConditionBuilder.SetLanguage instead; removed in v2.
 func WithConditionLanguage(v string) ConditionOption {
 	return func(r *Condition) {
 		r.Language = &v
@@ -1106,6 +1128,8 @@ func WithConditionLanguage(v string) ConditionOption {
 }
 
 // WithConditionText sets the Text field.
+//
+// Deprecated: use ConditionBuilder.SetText instead; removed in v2.
 func WithConditionText(v Narrative) ConditionOption {
 	return func(r *Condition) {
 		r.Text = &v
@@ -1113,6 +1137,8 @@ func WithConditionText(v Narrative) ConditionOption {
 }
 
 // WithConditionContained adds a Contained to the Condition.
+//
+// Deprecated: use ConditionBuilder.AddContained instead; removed in v2.
 func WithConditionContained(v Resource) ConditionOption {
 	return func(r *Condition) {
 		r.Contained = append(r.Contained, v)
@@ -1120,6 +1146,8 @@ func WithConditionContained(v Resource) ConditionOption {
 }
 
 // WithConditionExtension adds a Extension to the Condition.
+//
+// Deprecated: use ConditionBuilder.AddExtension instead; removed in v2.
 func WithConditionExtension(v Extension) ConditionOption {
 	return func(r *Condition) {
 		r.Extension = append(r.Extension, v)
@@ -1127,6 +1155,8 @@ func WithConditionExtension(v Extension) ConditionOption {
 }
 
 // WithConditionModifierExtension adds a ModifierExtension to the Condition.
+//
+// Deprecated: use ConditionBuilder.AddModifierExtension instead; removed in v2.
 func WithConditionModifierExtension(v Extension) ConditionOption {
 	return func(r *Condition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1134,6 +1164,8 @@ func WithConditionModifierExtension(v Extension) ConditionOption {
 }
 
 // WithConditionIdentifier adds a Identifier to the Condition.
+//
+// Deprecated: use ConditionBuilder.AddIdentifier instead; removed in v2.
 func WithConditionIdentifier(v Identifier) ConditionOption {
 	return func(r *Condition) {
 		r.Identifier = append(r.Identifier, v)
@@ -1141,6 +1173,8 @@ func WithConditionIdentifier(v Identifier) ConditionOption {
 }
 
 // WithConditionClinicalStatus sets the ClinicalStatus field.
+//
+// Deprecated: use ConditionBuilder.SetClinicalStatus instead; removed in v2.
 func WithConditionClinicalStatus(v CodeableConcept) ConditionOption {
 	return func(r *Condition) {
 		r.ClinicalStatus = &v
@@ -1148,6 +1182,8 @@ func WithConditionClinicalStatus(v CodeableConcept) ConditionOption {
 }
 
 // WithConditionVerificationStatus sets the VerificationStatus field.
+//
+// Deprecated: use ConditionBuilder.SetVerificationStatus instead; removed in v2.
 func WithConditionVerificationStatus(v CodeableConcept) ConditionOption {
 	return func(r *Condition) {
 		r.VerificationStatus = &v
@@ -1155,6 +1191,8 @@ func WithConditionVerificationStatus(v CodeableConcept) ConditionOption {
 }
 
 // WithConditionCategory adds a Category to the Condition.
+//
+// Deprecated: use ConditionBuilder.AddCategory instead; removed in v2.
 func WithConditionCategory(v CodeableConcept) ConditionOption {
 	return func(r *Condition) {
 		r.Category = append(r.Category, v)
@@ -1162,6 +1200,8 @@ func WithConditionCategory(v CodeableConcept) ConditionOption {
 }
 
 // WithConditionSeverity sets the Severity field.
+//
+// Deprecated: use ConditionBuilder.SetSeverity instead; removed in v2.
 func WithConditionSeverity(v CodeableConcept) ConditionOption {
 	return func(r *Condition) {
 		r.Severity = &v
@@ -1169,6 +1209,8 @@ func WithConditionSeverity(v CodeableConcept) ConditionOption {
 }
 
 // WithConditionCode sets the Code field.
+//
+// Deprecated: use ConditionBuilder.SetCode instead; removed in v2.
 func WithConditionCode(v CodeableConcept) ConditionOption {
 	return func(r *Condition) {
 		r.Code = &v
@@ -1176,6 +1218,8 @@ func WithConditionCode(v CodeableConcept) ConditionOption {
 }
 
 // WithConditionBodySite adds a BodySite to the Condition.
+//
+// Deprecated: use ConditionBuilder.AddBodySite instead; removed in v2.
 func WithConditionBodySite(v CodeableConcept) ConditionOption {
 	return func(r *Condition) {
 		r.BodySite = append(r.BodySite, v)
@@ -1183,6 +1227,8 @@ func WithConditionBodySite(v CodeableConcept) ConditionOption {
 }
 
 // WithConditionSubject sets the Subject field.
+//
+// Deprecated: use ConditionBuilder.SetSubject instead; removed in v2.
 func WithConditionSubject(v Reference) ConditionOption {
 	return func(r *Condition) {
 		r.Subject = v
@@ -1190,6 +1236,8 @@ func WithConditionSubject(v Reference) ConditionOption {
 }
 
 // WithConditionEncounter sets the Encounter field.
+//
+// Deprecated: use ConditionBuilder.SetEncounter instead; removed in v2.
 func WithConditionEncounter(v Reference) ConditionOption {
 	return func(r *Condition) {
 		r.Encounter = &v
@@ -1197,6 +1245,8 @@ func WithConditionEncounter(v Reference) ConditionOption {
 }
 
 // WithConditionOnsetDateTime sets the OnsetDateTime field.
+//
+// Deprecated: use ConditionBuilder.SetOnsetDateTime instead; removed in v2.
 func WithConditionOnsetDateTime(v string) ConditionOption {
 	return func(r *Condition) {
 		r.OnsetDateTime = &v
@@ -1204,6 +1254,8 @@ func WithConditionOnsetDateTime(v string) ConditionOption {
 }
 
 // WithConditionOnsetDateTimeExt sets the OnsetDateTimeExt field.
+//
+// Deprecated: use ConditionBuilder.SetOnsetDateTimeExt instead; removed in v2.
 func WithConditionOnsetDateTimeExt(v Element) ConditionOption {
 	return func(r *Condition) {
 		r.OnsetDateTimeExt = &v
@@ -1211,6 +1263,8 @@ func WithConditionOnsetDateTimeExt(v Element) ConditionOption {
 }
 
 // WithConditionOnsetAge sets the OnsetAge field.
+//
+// Deprecated: use ConditionBuilder.SetOnsetAge instead; removed in v2.
 func WithConditionOnsetAge(v Age) ConditionOption {
 	return func(r *Condition) {
 		r.OnsetAge = &v
@@ -1218,6 +1272,8 @@ func WithConditionOnsetAge(v Age) ConditionOption {
 }
 
 // WithConditionOnsetPeriod sets the OnsetPeriod field.
+//
+// Deprecated: use ConditionBuilder.SetOnsetPeriod instead; removed in v2.
 func WithConditionOnsetPeriod(v Period) ConditionOption {
 	return func(r *Condition) {
 		r.OnsetPeriod = &v
@@ -1225,6 +1281,8 @@ func WithConditionOnsetPeriod(v Period) ConditionOption {
 }
 
 // WithConditionOnsetRange sets the OnsetRange field.
+//
+// Deprecated: use ConditionBuilder.SetOnsetRange instead; removed in v2.
 func WithConditionOnsetRange(v Range) ConditionOption {
 	return func(r *Condition) {
 		r.OnsetRange = &v
@@ -1232,6 +1290,8 @@ func WithConditionOnsetRange(v Range) ConditionOption {
 }
 
 // WithConditionOnsetString sets the OnsetString field.
+//
+// Deprecated: use ConditionBuilder.SetOnsetString instead; removed in v2.
 func WithConditionOnsetString(v string) ConditionOption {
 	return func(r *Condition) {
 		r.OnsetString = &v
@@ -1239,6 +1299,8 @@ func WithConditionOnsetString(v string) ConditionOption {
 }
 
 // WithConditionOnsetStringExt sets the OnsetStringExt field.
+//
+// Deprecated: use ConditionBuilder.SetOnsetStringExt instead; removed in v2.
 func WithConditionOnsetStringExt(v Element) ConditionOption {
 	return func(r *Condition) {
 		r.OnsetStringExt = &v
@@ -1246,6 +1308,8 @@ func WithConditionOnsetStringExt(v Element) ConditionOption {
 }
 
 // WithConditionAbatementDateTime sets the AbatementDateTime field.
+//
+// Deprecated: use ConditionBuilder.SetAbatementDateTime instead; removed in v2.
 func WithConditionAbatementDateTime(v string) ConditionOption {
 	return func(r *Condition) {
 		r.AbatementDateTime = &v
@@ -1253,6 +1317,8 @@ func WithConditionAbatementDateTime(v string) ConditionOption {
 }
 
 // WithConditionAbatementDateTimeExt sets the AbatementDateTimeExt field.
+//
+// Deprecated: use ConditionBuilder.SetAbatementDateTimeExt instead; removed in v2.
 func WithConditionAbatementDateTimeExt(v Element) ConditionOption {
 	return func(r *Condition) {
 		r.AbatementDateTimeExt = &v
@@ -1260,6 +1326,8 @@ func WithConditionAbatementDateTimeExt(v Element) ConditionOption {
 }
 
 // WithConditionAbatementAge sets the AbatementAge field.
+//
+// Deprecated: use ConditionBuilder.SetAbatementAge instead; removed in v2.
 func WithConditionAbatementAge(v Age) ConditionOption {
 	return func(r *Condition) {
 		r.AbatementAge = &v
@@ -1267,6 +1335,8 @@ func WithConditionAbatementAge(v Age) ConditionOption {
 }
 
 // WithConditionAbatementPeriod sets the AbatementPeriod field.
+//
+// Deprecated: use ConditionBuilder.SetAbatementPeriod instead; removed in v2.
 func WithConditionAbatementPeriod(v Period) ConditionOption {
 	return func(r *Condition) {
 		r.AbatementPeriod = &v
@@ -1274,6 +1344,8 @@ func WithConditionAbatementPeriod(v Period) ConditionOption {
 }
 
 // WithConditionAbatementRange sets the AbatementRange field.
+//
+// Deprecated: use ConditionBuilder.SetAbatementRange instead; removed in v2.
 func WithConditionAbatementRange(v Range) ConditionOption {
 	return func(r *Condition) {
 		r.AbatementRange = &v
@@ -1281,6 +1353,8 @@ func WithConditionAbatementRange(v Range) ConditionOption {
 }
 
 // WithConditionAbatementString sets the AbatementString field.
+//
+// Deprecated: use ConditionBuilder.SetAbatementString instead; removed in v2.
 func WithConditionAbatementString(v string) ConditionOption {
 	return func(r *Condition) {
 		r.AbatementString = &v
@@ -1288,6 +1362,8 @@ func WithConditionAbatementString(v string) ConditionOption {
 }
 
 // WithConditionAbatementStringExt sets the AbatementStringExt field.
+//
+// Deprecated: use ConditionBuilder.SetAbatementStringExt instead; removed in v2.
 func WithConditionAbatementStringExt(v Element) ConditionOption {
 	return func(r *Condition) {
 		r.AbatementStringExt = &v
@@ -1295,6 +1371,8 @@ func WithConditionAbatementStringExt(v Element) ConditionOption {
 }
 
 // WithConditionRecordedDate sets the RecordedDate field.
+//
+// Deprecated: use ConditionBuilder.SetRecordedDate instead; removed in v2.
 func WithConditionRecordedDate(v string) ConditionOption {
 	return func(r *Condition) {
 		r.RecordedDate = &v
@@ -1302,6 +1380,8 @@ func WithConditionRecordedDate(v string) ConditionOption {
 }
 
 // WithConditionRecorder sets the Recorder field.
+//
+// Deprecated: use ConditionBuilder.SetRecorder instead; removed in v2.
 func WithConditionRecorder(v Reference) ConditionOption {
 	return func(r *Condition) {
 		r.Recorder = &v
@@ -1309,6 +1389,8 @@ func WithConditionRecorder(v Reference) ConditionOption {
 }
 
 // WithConditionAsserter sets the Asserter field.
+//
+// Deprecated: use ConditionBuilder.SetAsserter instead; removed in v2.
 func WithConditionAsserter(v Reference) ConditionOption {
 	return func(r *Condition) {
 		r.Asserter = &v
@@ -1316,6 +1398,8 @@ func WithConditionAsserter(v Reference) ConditionOption {
 }
 
 // WithConditionStage adds a Stage to the Condition.
+//
+// Deprecated: use ConditionBuilder.AddStage instead; removed in v2.
 func WithConditionStage(v ConditionStage) ConditionOption {
 	return func(r *Condition) {
 		r.Stage = append(r.Stage, v)
@@ -1323,6 +1407,8 @@ func WithConditionStage(v ConditionStage) ConditionOption {
 }
 
 // WithConditionEvidence adds a Evidence to the Condition.
+//
+// Deprecated: use ConditionBuilder.AddEvidence instead; removed in v2.
 func WithConditionEvidence(v ConditionEvidence) ConditionOption {
 	return func(r *Condition) {
 		r.Evidence = append(r.Evidence, v)
@@ -1330,6 +1416,8 @@ func WithConditionEvidence(v ConditionEvidence) ConditionOption {
 }
 
 // WithConditionNote adds a Note to the Condition.
+//
+// Deprecated: use ConditionBuilder.AddNote instead; removed in v2.
 func WithConditionNote(v Annotation) ConditionOption {
 	return func(r *Condition) {
 		r.Note = append(r.Note, v)

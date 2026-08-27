@@ -789,9 +789,23 @@ func (b *RegulatedAuthorizationBuilder) SetCase(v RegulatedAuthorizationCase) *R
 // =============================================================================
 
 // RegulatedAuthorizationOption is a functional option for configuring a RegulatedAuthorization.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// RegulatedAuthorizationBuilder. Every WithRegulatedAuthorization* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type RegulatedAuthorizationOption func(*RegulatedAuthorization)
 
 // NewRegulatedAuthorization creates a new RegulatedAuthorization with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewRegulatedAuthorizationBuilder().SetId("x").Build()
+//
+// Deprecated: use NewRegulatedAuthorizationBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewRegulatedAuthorization(opts ...RegulatedAuthorizationOption) *RegulatedAuthorization {
 	r := &RegulatedAuthorization{ResourceType: "RegulatedAuthorization"}
 	for _, opt := range opts {
@@ -801,6 +815,8 @@ func NewRegulatedAuthorization(opts ...RegulatedAuthorizationOption) *RegulatedA
 }
 
 // WithRegulatedAuthorizationId sets the Id field.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.SetId instead; removed in v2.
 func WithRegulatedAuthorizationId(v string) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.Id = &v
@@ -808,6 +824,8 @@ func WithRegulatedAuthorizationId(v string) RegulatedAuthorizationOption {
 }
 
 // WithRegulatedAuthorizationMeta sets the Meta field.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.SetMeta instead; removed in v2.
 func WithRegulatedAuthorizationMeta(v Meta) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.Meta = &v
@@ -815,6 +833,8 @@ func WithRegulatedAuthorizationMeta(v Meta) RegulatedAuthorizationOption {
 }
 
 // WithRegulatedAuthorizationImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.SetImplicitRules instead; removed in v2.
 func WithRegulatedAuthorizationImplicitRules(v string) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.ImplicitRules = &v
@@ -822,6 +842,8 @@ func WithRegulatedAuthorizationImplicitRules(v string) RegulatedAuthorizationOpt
 }
 
 // WithRegulatedAuthorizationLanguage sets the Language field.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.SetLanguage instead; removed in v2.
 func WithRegulatedAuthorizationLanguage(v string) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.Language = &v
@@ -829,6 +851,8 @@ func WithRegulatedAuthorizationLanguage(v string) RegulatedAuthorizationOption {
 }
 
 // WithRegulatedAuthorizationText sets the Text field.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.SetText instead; removed in v2.
 func WithRegulatedAuthorizationText(v Narrative) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.Text = &v
@@ -836,6 +860,8 @@ func WithRegulatedAuthorizationText(v Narrative) RegulatedAuthorizationOption {
 }
 
 // WithRegulatedAuthorizationContained adds a Contained to the RegulatedAuthorization.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.AddContained instead; removed in v2.
 func WithRegulatedAuthorizationContained(v Resource) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.Contained = append(r.Contained, v)
@@ -843,6 +869,8 @@ func WithRegulatedAuthorizationContained(v Resource) RegulatedAuthorizationOptio
 }
 
 // WithRegulatedAuthorizationExtension adds a Extension to the RegulatedAuthorization.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.AddExtension instead; removed in v2.
 func WithRegulatedAuthorizationExtension(v Extension) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.Extension = append(r.Extension, v)
@@ -850,6 +878,8 @@ func WithRegulatedAuthorizationExtension(v Extension) RegulatedAuthorizationOpti
 }
 
 // WithRegulatedAuthorizationModifierExtension adds a ModifierExtension to the RegulatedAuthorization.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.AddModifierExtension instead; removed in v2.
 func WithRegulatedAuthorizationModifierExtension(v Extension) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -857,6 +887,8 @@ func WithRegulatedAuthorizationModifierExtension(v Extension) RegulatedAuthoriza
 }
 
 // WithRegulatedAuthorizationIdentifier adds a Identifier to the RegulatedAuthorization.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.AddIdentifier instead; removed in v2.
 func WithRegulatedAuthorizationIdentifier(v Identifier) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.Identifier = append(r.Identifier, v)
@@ -864,6 +896,8 @@ func WithRegulatedAuthorizationIdentifier(v Identifier) RegulatedAuthorizationOp
 }
 
 // WithRegulatedAuthorizationSubject adds a Subject to the RegulatedAuthorization.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.AddSubject instead; removed in v2.
 func WithRegulatedAuthorizationSubject(v Reference) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.Subject = append(r.Subject, v)
@@ -871,6 +905,8 @@ func WithRegulatedAuthorizationSubject(v Reference) RegulatedAuthorizationOption
 }
 
 // WithRegulatedAuthorizationType sets the Type field.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.SetType instead; removed in v2.
 func WithRegulatedAuthorizationType(v CodeableConcept) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.Type = &v
@@ -878,6 +914,8 @@ func WithRegulatedAuthorizationType(v CodeableConcept) RegulatedAuthorizationOpt
 }
 
 // WithRegulatedAuthorizationDescription sets the Description field.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.SetDescription instead; removed in v2.
 func WithRegulatedAuthorizationDescription(v string) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.Description = &v
@@ -885,6 +923,8 @@ func WithRegulatedAuthorizationDescription(v string) RegulatedAuthorizationOptio
 }
 
 // WithRegulatedAuthorizationRegion adds a Region to the RegulatedAuthorization.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.AddRegion instead; removed in v2.
 func WithRegulatedAuthorizationRegion(v CodeableConcept) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.Region = append(r.Region, v)
@@ -892,6 +932,8 @@ func WithRegulatedAuthorizationRegion(v CodeableConcept) RegulatedAuthorizationO
 }
 
 // WithRegulatedAuthorizationStatus sets the Status field.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.SetStatus instead; removed in v2.
 func WithRegulatedAuthorizationStatus(v CodeableConcept) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.Status = &v
@@ -899,6 +941,8 @@ func WithRegulatedAuthorizationStatus(v CodeableConcept) RegulatedAuthorizationO
 }
 
 // WithRegulatedAuthorizationStatusDate sets the StatusDate field.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.SetStatusDate instead; removed in v2.
 func WithRegulatedAuthorizationStatusDate(v string) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.StatusDate = &v
@@ -906,6 +950,8 @@ func WithRegulatedAuthorizationStatusDate(v string) RegulatedAuthorizationOption
 }
 
 // WithRegulatedAuthorizationValidityPeriod sets the ValidityPeriod field.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.SetValidityPeriod instead; removed in v2.
 func WithRegulatedAuthorizationValidityPeriod(v Period) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.ValidityPeriod = &v
@@ -913,6 +959,8 @@ func WithRegulatedAuthorizationValidityPeriod(v Period) RegulatedAuthorizationOp
 }
 
 // WithRegulatedAuthorizationIndication adds a Indication to the RegulatedAuthorization.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.AddIndication instead; removed in v2.
 func WithRegulatedAuthorizationIndication(v CodeableReference) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.Indication = append(r.Indication, v)
@@ -920,6 +968,8 @@ func WithRegulatedAuthorizationIndication(v CodeableReference) RegulatedAuthoriz
 }
 
 // WithRegulatedAuthorizationIntendedUse sets the IntendedUse field.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.SetIntendedUse instead; removed in v2.
 func WithRegulatedAuthorizationIntendedUse(v CodeableConcept) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.IntendedUse = &v
@@ -927,6 +977,8 @@ func WithRegulatedAuthorizationIntendedUse(v CodeableConcept) RegulatedAuthoriza
 }
 
 // WithRegulatedAuthorizationBasis adds a Basis to the RegulatedAuthorization.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.AddBasis instead; removed in v2.
 func WithRegulatedAuthorizationBasis(v CodeableConcept) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.Basis = append(r.Basis, v)
@@ -934,6 +986,8 @@ func WithRegulatedAuthorizationBasis(v CodeableConcept) RegulatedAuthorizationOp
 }
 
 // WithRegulatedAuthorizationHolder sets the Holder field.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.SetHolder instead; removed in v2.
 func WithRegulatedAuthorizationHolder(v Reference) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.Holder = &v
@@ -941,6 +995,8 @@ func WithRegulatedAuthorizationHolder(v Reference) RegulatedAuthorizationOption 
 }
 
 // WithRegulatedAuthorizationRegulator sets the Regulator field.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.SetRegulator instead; removed in v2.
 func WithRegulatedAuthorizationRegulator(v Reference) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.Regulator = &v
@@ -948,6 +1004,8 @@ func WithRegulatedAuthorizationRegulator(v Reference) RegulatedAuthorizationOpti
 }
 
 // WithRegulatedAuthorizationAttachedDocument adds a AttachedDocument to the RegulatedAuthorization.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.AddAttachedDocument instead; removed in v2.
 func WithRegulatedAuthorizationAttachedDocument(v Reference) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.AttachedDocument = append(r.AttachedDocument, v)
@@ -955,6 +1013,8 @@ func WithRegulatedAuthorizationAttachedDocument(v Reference) RegulatedAuthorizat
 }
 
 // WithRegulatedAuthorizationCase sets the Case field.
+//
+// Deprecated: use RegulatedAuthorizationBuilder.SetCase instead; removed in v2.
 func WithRegulatedAuthorizationCase(v RegulatedAuthorizationCase) RegulatedAuthorizationOption {
 	return func(r *RegulatedAuthorization) {
 		r.Case = &v

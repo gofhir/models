@@ -439,9 +439,23 @@ func (b *BasicBuilder) SetAuthor(v Reference) *BasicBuilder {
 // =============================================================================
 
 // BasicOption is a functional option for configuring a Basic.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// BasicBuilder. Every WithBasic* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type BasicOption func(*Basic)
 
 // NewBasic creates a new Basic with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewBasicBuilder().SetId("x").Build()
+//
+// Deprecated: use NewBasicBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewBasic(opts ...BasicOption) *Basic {
 	r := &Basic{ResourceType: "Basic"}
 	for _, opt := range opts {
@@ -451,6 +465,8 @@ func NewBasic(opts ...BasicOption) *Basic {
 }
 
 // WithBasicId sets the Id field.
+//
+// Deprecated: use BasicBuilder.SetId instead; removed in v2.
 func WithBasicId(v string) BasicOption {
 	return func(r *Basic) {
 		r.Id = &v
@@ -458,6 +474,8 @@ func WithBasicId(v string) BasicOption {
 }
 
 // WithBasicMeta sets the Meta field.
+//
+// Deprecated: use BasicBuilder.SetMeta instead; removed in v2.
 func WithBasicMeta(v Meta) BasicOption {
 	return func(r *Basic) {
 		r.Meta = &v
@@ -465,6 +483,8 @@ func WithBasicMeta(v Meta) BasicOption {
 }
 
 // WithBasicImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use BasicBuilder.SetImplicitRules instead; removed in v2.
 func WithBasicImplicitRules(v string) BasicOption {
 	return func(r *Basic) {
 		r.ImplicitRules = &v
@@ -472,6 +492,8 @@ func WithBasicImplicitRules(v string) BasicOption {
 }
 
 // WithBasicLanguage sets the Language field.
+//
+// Deprecated: use BasicBuilder.SetLanguage instead; removed in v2.
 func WithBasicLanguage(v string) BasicOption {
 	return func(r *Basic) {
 		r.Language = &v
@@ -479,6 +501,8 @@ func WithBasicLanguage(v string) BasicOption {
 }
 
 // WithBasicText sets the Text field.
+//
+// Deprecated: use BasicBuilder.SetText instead; removed in v2.
 func WithBasicText(v Narrative) BasicOption {
 	return func(r *Basic) {
 		r.Text = &v
@@ -486,6 +510,8 @@ func WithBasicText(v Narrative) BasicOption {
 }
 
 // WithBasicContained adds a Contained to the Basic.
+//
+// Deprecated: use BasicBuilder.AddContained instead; removed in v2.
 func WithBasicContained(v Resource) BasicOption {
 	return func(r *Basic) {
 		r.Contained = append(r.Contained, v)
@@ -493,6 +519,8 @@ func WithBasicContained(v Resource) BasicOption {
 }
 
 // WithBasicExtension adds a Extension to the Basic.
+//
+// Deprecated: use BasicBuilder.AddExtension instead; removed in v2.
 func WithBasicExtension(v Extension) BasicOption {
 	return func(r *Basic) {
 		r.Extension = append(r.Extension, v)
@@ -500,6 +528,8 @@ func WithBasicExtension(v Extension) BasicOption {
 }
 
 // WithBasicModifierExtension adds a ModifierExtension to the Basic.
+//
+// Deprecated: use BasicBuilder.AddModifierExtension instead; removed in v2.
 func WithBasicModifierExtension(v Extension) BasicOption {
 	return func(r *Basic) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -507,6 +537,8 @@ func WithBasicModifierExtension(v Extension) BasicOption {
 }
 
 // WithBasicIdentifier adds a Identifier to the Basic.
+//
+// Deprecated: use BasicBuilder.AddIdentifier instead; removed in v2.
 func WithBasicIdentifier(v Identifier) BasicOption {
 	return func(r *Basic) {
 		r.Identifier = append(r.Identifier, v)
@@ -514,6 +546,8 @@ func WithBasicIdentifier(v Identifier) BasicOption {
 }
 
 // WithBasicCode sets the Code field.
+//
+// Deprecated: use BasicBuilder.SetCode instead; removed in v2.
 func WithBasicCode(v CodeableConcept) BasicOption {
 	return func(r *Basic) {
 		r.Code = v
@@ -521,6 +555,8 @@ func WithBasicCode(v CodeableConcept) BasicOption {
 }
 
 // WithBasicSubject sets the Subject field.
+//
+// Deprecated: use BasicBuilder.SetSubject instead; removed in v2.
 func WithBasicSubject(v Reference) BasicOption {
 	return func(r *Basic) {
 		r.Subject = &v
@@ -528,6 +564,8 @@ func WithBasicSubject(v Reference) BasicOption {
 }
 
 // WithBasicCreated sets the Created field.
+//
+// Deprecated: use BasicBuilder.SetCreated instead; removed in v2.
 func WithBasicCreated(v string) BasicOption {
 	return func(r *Basic) {
 		r.Created = &v
@@ -535,6 +573,8 @@ func WithBasicCreated(v string) BasicOption {
 }
 
 // WithBasicAuthor sets the Author field.
+//
+// Deprecated: use BasicBuilder.SetAuthor instead; removed in v2.
 func WithBasicAuthor(v Reference) BasicOption {
 	return func(r *Basic) {
 		r.Author = &v

@@ -3303,9 +3303,23 @@ func (b *ClaimBuilder) SetTotal(v Money) *ClaimBuilder {
 // =============================================================================
 
 // ClaimOption is a functional option for configuring a Claim.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ClaimBuilder. Every WithClaim* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ClaimOption func(*Claim)
 
 // NewClaim creates a new Claim with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewClaimBuilder().SetId("x").Build()
+//
+// Deprecated: use NewClaimBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewClaim(opts ...ClaimOption) *Claim {
 	r := &Claim{ResourceType: "Claim"}
 	for _, opt := range opts {
@@ -3315,6 +3329,8 @@ func NewClaim(opts ...ClaimOption) *Claim {
 }
 
 // WithClaimId sets the Id field.
+//
+// Deprecated: use ClaimBuilder.SetId instead; removed in v2.
 func WithClaimId(v string) ClaimOption {
 	return func(r *Claim) {
 		r.Id = &v
@@ -3322,6 +3338,8 @@ func WithClaimId(v string) ClaimOption {
 }
 
 // WithClaimMeta sets the Meta field.
+//
+// Deprecated: use ClaimBuilder.SetMeta instead; removed in v2.
 func WithClaimMeta(v Meta) ClaimOption {
 	return func(r *Claim) {
 		r.Meta = &v
@@ -3329,6 +3347,8 @@ func WithClaimMeta(v Meta) ClaimOption {
 }
 
 // WithClaimImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ClaimBuilder.SetImplicitRules instead; removed in v2.
 func WithClaimImplicitRules(v string) ClaimOption {
 	return func(r *Claim) {
 		r.ImplicitRules = &v
@@ -3336,6 +3356,8 @@ func WithClaimImplicitRules(v string) ClaimOption {
 }
 
 // WithClaimLanguage sets the Language field.
+//
+// Deprecated: use ClaimBuilder.SetLanguage instead; removed in v2.
 func WithClaimLanguage(v string) ClaimOption {
 	return func(r *Claim) {
 		r.Language = &v
@@ -3343,6 +3365,8 @@ func WithClaimLanguage(v string) ClaimOption {
 }
 
 // WithClaimText sets the Text field.
+//
+// Deprecated: use ClaimBuilder.SetText instead; removed in v2.
 func WithClaimText(v Narrative) ClaimOption {
 	return func(r *Claim) {
 		r.Text = &v
@@ -3350,6 +3374,8 @@ func WithClaimText(v Narrative) ClaimOption {
 }
 
 // WithClaimContained adds a Contained to the Claim.
+//
+// Deprecated: use ClaimBuilder.AddContained instead; removed in v2.
 func WithClaimContained(v Resource) ClaimOption {
 	return func(r *Claim) {
 		r.Contained = append(r.Contained, v)
@@ -3357,6 +3383,8 @@ func WithClaimContained(v Resource) ClaimOption {
 }
 
 // WithClaimExtension adds a Extension to the Claim.
+//
+// Deprecated: use ClaimBuilder.AddExtension instead; removed in v2.
 func WithClaimExtension(v Extension) ClaimOption {
 	return func(r *Claim) {
 		r.Extension = append(r.Extension, v)
@@ -3364,6 +3392,8 @@ func WithClaimExtension(v Extension) ClaimOption {
 }
 
 // WithClaimModifierExtension adds a ModifierExtension to the Claim.
+//
+// Deprecated: use ClaimBuilder.AddModifierExtension instead; removed in v2.
 func WithClaimModifierExtension(v Extension) ClaimOption {
 	return func(r *Claim) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -3371,6 +3401,8 @@ func WithClaimModifierExtension(v Extension) ClaimOption {
 }
 
 // WithClaimIdentifier adds a Identifier to the Claim.
+//
+// Deprecated: use ClaimBuilder.AddIdentifier instead; removed in v2.
 func WithClaimIdentifier(v Identifier) ClaimOption {
 	return func(r *Claim) {
 		r.Identifier = append(r.Identifier, v)
@@ -3378,6 +3410,8 @@ func WithClaimIdentifier(v Identifier) ClaimOption {
 }
 
 // WithClaimTraceNumber adds a TraceNumber to the Claim.
+//
+// Deprecated: use ClaimBuilder.AddTraceNumber instead; removed in v2.
 func WithClaimTraceNumber(v Identifier) ClaimOption {
 	return func(r *Claim) {
 		r.TraceNumber = append(r.TraceNumber, v)
@@ -3385,6 +3419,8 @@ func WithClaimTraceNumber(v Identifier) ClaimOption {
 }
 
 // WithClaimStatus sets the Status field.
+//
+// Deprecated: use ClaimBuilder.SetStatus instead; removed in v2.
 func WithClaimStatus(v FinancialResourceStatusCodes) ClaimOption {
 	return func(r *Claim) {
 		r.Status = &v
@@ -3392,6 +3428,8 @@ func WithClaimStatus(v FinancialResourceStatusCodes) ClaimOption {
 }
 
 // WithClaimType sets the Type field.
+//
+// Deprecated: use ClaimBuilder.SetType instead; removed in v2.
 func WithClaimType(v CodeableConcept) ClaimOption {
 	return func(r *Claim) {
 		r.Type = v
@@ -3399,6 +3437,8 @@ func WithClaimType(v CodeableConcept) ClaimOption {
 }
 
 // WithClaimSubType sets the SubType field.
+//
+// Deprecated: use ClaimBuilder.SetSubType instead; removed in v2.
 func WithClaimSubType(v CodeableConcept) ClaimOption {
 	return func(r *Claim) {
 		r.SubType = &v
@@ -3406,6 +3446,8 @@ func WithClaimSubType(v CodeableConcept) ClaimOption {
 }
 
 // WithClaimUse sets the Use field.
+//
+// Deprecated: use ClaimBuilder.SetUse instead; removed in v2.
 func WithClaimUse(v Use) ClaimOption {
 	return func(r *Claim) {
 		r.Use = &v
@@ -3413,6 +3455,8 @@ func WithClaimUse(v Use) ClaimOption {
 }
 
 // WithClaimPatient sets the Patient field.
+//
+// Deprecated: use ClaimBuilder.SetPatient instead; removed in v2.
 func WithClaimPatient(v Reference) ClaimOption {
 	return func(r *Claim) {
 		r.Patient = v
@@ -3420,6 +3464,8 @@ func WithClaimPatient(v Reference) ClaimOption {
 }
 
 // WithClaimBillablePeriod sets the BillablePeriod field.
+//
+// Deprecated: use ClaimBuilder.SetBillablePeriod instead; removed in v2.
 func WithClaimBillablePeriod(v Period) ClaimOption {
 	return func(r *Claim) {
 		r.BillablePeriod = &v
@@ -3427,6 +3473,8 @@ func WithClaimBillablePeriod(v Period) ClaimOption {
 }
 
 // WithClaimCreated sets the Created field.
+//
+// Deprecated: use ClaimBuilder.SetCreated instead; removed in v2.
 func WithClaimCreated(v string) ClaimOption {
 	return func(r *Claim) {
 		r.Created = &v
@@ -3434,6 +3482,8 @@ func WithClaimCreated(v string) ClaimOption {
 }
 
 // WithClaimEnterer sets the Enterer field.
+//
+// Deprecated: use ClaimBuilder.SetEnterer instead; removed in v2.
 func WithClaimEnterer(v Reference) ClaimOption {
 	return func(r *Claim) {
 		r.Enterer = &v
@@ -3441,6 +3491,8 @@ func WithClaimEnterer(v Reference) ClaimOption {
 }
 
 // WithClaimInsurer sets the Insurer field.
+//
+// Deprecated: use ClaimBuilder.SetInsurer instead; removed in v2.
 func WithClaimInsurer(v Reference) ClaimOption {
 	return func(r *Claim) {
 		r.Insurer = &v
@@ -3448,6 +3500,8 @@ func WithClaimInsurer(v Reference) ClaimOption {
 }
 
 // WithClaimProvider sets the Provider field.
+//
+// Deprecated: use ClaimBuilder.SetProvider instead; removed in v2.
 func WithClaimProvider(v Reference) ClaimOption {
 	return func(r *Claim) {
 		r.Provider = &v
@@ -3455,6 +3509,8 @@ func WithClaimProvider(v Reference) ClaimOption {
 }
 
 // WithClaimPriority sets the Priority field.
+//
+// Deprecated: use ClaimBuilder.SetPriority instead; removed in v2.
 func WithClaimPriority(v CodeableConcept) ClaimOption {
 	return func(r *Claim) {
 		r.Priority = &v
@@ -3462,6 +3518,8 @@ func WithClaimPriority(v CodeableConcept) ClaimOption {
 }
 
 // WithClaimFundsReserve sets the FundsReserve field.
+//
+// Deprecated: use ClaimBuilder.SetFundsReserve instead; removed in v2.
 func WithClaimFundsReserve(v CodeableConcept) ClaimOption {
 	return func(r *Claim) {
 		r.FundsReserve = &v
@@ -3469,6 +3527,8 @@ func WithClaimFundsReserve(v CodeableConcept) ClaimOption {
 }
 
 // WithClaimRelated adds a Related to the Claim.
+//
+// Deprecated: use ClaimBuilder.AddRelated instead; removed in v2.
 func WithClaimRelated(v ClaimRelated) ClaimOption {
 	return func(r *Claim) {
 		r.Related = append(r.Related, v)
@@ -3476,6 +3536,8 @@ func WithClaimRelated(v ClaimRelated) ClaimOption {
 }
 
 // WithClaimPrescription sets the Prescription field.
+//
+// Deprecated: use ClaimBuilder.SetPrescription instead; removed in v2.
 func WithClaimPrescription(v Reference) ClaimOption {
 	return func(r *Claim) {
 		r.Prescription = &v
@@ -3483,6 +3545,8 @@ func WithClaimPrescription(v Reference) ClaimOption {
 }
 
 // WithClaimOriginalPrescription sets the OriginalPrescription field.
+//
+// Deprecated: use ClaimBuilder.SetOriginalPrescription instead; removed in v2.
 func WithClaimOriginalPrescription(v Reference) ClaimOption {
 	return func(r *Claim) {
 		r.OriginalPrescription = &v
@@ -3490,6 +3554,8 @@ func WithClaimOriginalPrescription(v Reference) ClaimOption {
 }
 
 // WithClaimPayee sets the Payee field.
+//
+// Deprecated: use ClaimBuilder.SetPayee instead; removed in v2.
 func WithClaimPayee(v ClaimPayee) ClaimOption {
 	return func(r *Claim) {
 		r.Payee = &v
@@ -3497,6 +3563,8 @@ func WithClaimPayee(v ClaimPayee) ClaimOption {
 }
 
 // WithClaimReferral sets the Referral field.
+//
+// Deprecated: use ClaimBuilder.SetReferral instead; removed in v2.
 func WithClaimReferral(v Reference) ClaimOption {
 	return func(r *Claim) {
 		r.Referral = &v
@@ -3504,6 +3572,8 @@ func WithClaimReferral(v Reference) ClaimOption {
 }
 
 // WithClaimEncounter adds a Encounter to the Claim.
+//
+// Deprecated: use ClaimBuilder.AddEncounter instead; removed in v2.
 func WithClaimEncounter(v Reference) ClaimOption {
 	return func(r *Claim) {
 		r.Encounter = append(r.Encounter, v)
@@ -3511,6 +3581,8 @@ func WithClaimEncounter(v Reference) ClaimOption {
 }
 
 // WithClaimFacility sets the Facility field.
+//
+// Deprecated: use ClaimBuilder.SetFacility instead; removed in v2.
 func WithClaimFacility(v Reference) ClaimOption {
 	return func(r *Claim) {
 		r.Facility = &v
@@ -3518,6 +3590,8 @@ func WithClaimFacility(v Reference) ClaimOption {
 }
 
 // WithClaimDiagnosisRelatedGroup sets the DiagnosisRelatedGroup field.
+//
+// Deprecated: use ClaimBuilder.SetDiagnosisRelatedGroup instead; removed in v2.
 func WithClaimDiagnosisRelatedGroup(v CodeableConcept) ClaimOption {
 	return func(r *Claim) {
 		r.DiagnosisRelatedGroup = &v
@@ -3525,6 +3599,8 @@ func WithClaimDiagnosisRelatedGroup(v CodeableConcept) ClaimOption {
 }
 
 // WithClaimEvent adds a Event to the Claim.
+//
+// Deprecated: use ClaimBuilder.AddEvent instead; removed in v2.
 func WithClaimEvent(v ClaimEvent) ClaimOption {
 	return func(r *Claim) {
 		r.Event = append(r.Event, v)
@@ -3532,6 +3608,8 @@ func WithClaimEvent(v ClaimEvent) ClaimOption {
 }
 
 // WithClaimCareTeam adds a CareTeam to the Claim.
+//
+// Deprecated: use ClaimBuilder.AddCareTeam instead; removed in v2.
 func WithClaimCareTeam(v ClaimCareTeam) ClaimOption {
 	return func(r *Claim) {
 		r.CareTeam = append(r.CareTeam, v)
@@ -3539,6 +3617,8 @@ func WithClaimCareTeam(v ClaimCareTeam) ClaimOption {
 }
 
 // WithClaimSupportingInfo adds a SupportingInfo to the Claim.
+//
+// Deprecated: use ClaimBuilder.AddSupportingInfo instead; removed in v2.
 func WithClaimSupportingInfo(v ClaimSupportingInfo) ClaimOption {
 	return func(r *Claim) {
 		r.SupportingInfo = append(r.SupportingInfo, v)
@@ -3546,6 +3626,8 @@ func WithClaimSupportingInfo(v ClaimSupportingInfo) ClaimOption {
 }
 
 // WithClaimDiagnosis adds a Diagnosis to the Claim.
+//
+// Deprecated: use ClaimBuilder.AddDiagnosis instead; removed in v2.
 func WithClaimDiagnosis(v ClaimDiagnosis) ClaimOption {
 	return func(r *Claim) {
 		r.Diagnosis = append(r.Diagnosis, v)
@@ -3553,6 +3635,8 @@ func WithClaimDiagnosis(v ClaimDiagnosis) ClaimOption {
 }
 
 // WithClaimProcedure adds a Procedure to the Claim.
+//
+// Deprecated: use ClaimBuilder.AddProcedure instead; removed in v2.
 func WithClaimProcedure(v ClaimProcedure) ClaimOption {
 	return func(r *Claim) {
 		r.Procedure = append(r.Procedure, v)
@@ -3560,6 +3644,8 @@ func WithClaimProcedure(v ClaimProcedure) ClaimOption {
 }
 
 // WithClaimInsurance adds a Insurance to the Claim.
+//
+// Deprecated: use ClaimBuilder.AddInsurance instead; removed in v2.
 func WithClaimInsurance(v ClaimInsurance) ClaimOption {
 	return func(r *Claim) {
 		r.Insurance = append(r.Insurance, v)
@@ -3567,6 +3653,8 @@ func WithClaimInsurance(v ClaimInsurance) ClaimOption {
 }
 
 // WithClaimAccident sets the Accident field.
+//
+// Deprecated: use ClaimBuilder.SetAccident instead; removed in v2.
 func WithClaimAccident(v ClaimAccident) ClaimOption {
 	return func(r *Claim) {
 		r.Accident = &v
@@ -3574,6 +3662,8 @@ func WithClaimAccident(v ClaimAccident) ClaimOption {
 }
 
 // WithClaimPatientPaid sets the PatientPaid field.
+//
+// Deprecated: use ClaimBuilder.SetPatientPaid instead; removed in v2.
 func WithClaimPatientPaid(v Money) ClaimOption {
 	return func(r *Claim) {
 		r.PatientPaid = &v
@@ -3581,6 +3671,8 @@ func WithClaimPatientPaid(v Money) ClaimOption {
 }
 
 // WithClaimItem adds a Item to the Claim.
+//
+// Deprecated: use ClaimBuilder.AddItem instead; removed in v2.
 func WithClaimItem(v ClaimItem) ClaimOption {
 	return func(r *Claim) {
 		r.Item = append(r.Item, v)
@@ -3588,6 +3680,8 @@ func WithClaimItem(v ClaimItem) ClaimOption {
 }
 
 // WithClaimTotal sets the Total field.
+//
+// Deprecated: use ClaimBuilder.SetTotal instead; removed in v2.
 func WithClaimTotal(v Money) ClaimOption {
 	return func(r *Claim) {
 		r.Total = &v

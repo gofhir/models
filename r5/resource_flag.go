@@ -492,9 +492,23 @@ func (b *FlagBuilder) SetAuthor(v Reference) *FlagBuilder {
 // =============================================================================
 
 // FlagOption is a functional option for configuring a Flag.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// FlagBuilder. Every WithFlag* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type FlagOption func(*Flag)
 
 // NewFlag creates a new Flag with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewFlagBuilder().SetId("x").Build()
+//
+// Deprecated: use NewFlagBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewFlag(opts ...FlagOption) *Flag {
 	r := &Flag{ResourceType: "Flag"}
 	for _, opt := range opts {
@@ -504,6 +518,8 @@ func NewFlag(opts ...FlagOption) *Flag {
 }
 
 // WithFlagId sets the Id field.
+//
+// Deprecated: use FlagBuilder.SetId instead; removed in v2.
 func WithFlagId(v string) FlagOption {
 	return func(r *Flag) {
 		r.Id = &v
@@ -511,6 +527,8 @@ func WithFlagId(v string) FlagOption {
 }
 
 // WithFlagMeta sets the Meta field.
+//
+// Deprecated: use FlagBuilder.SetMeta instead; removed in v2.
 func WithFlagMeta(v Meta) FlagOption {
 	return func(r *Flag) {
 		r.Meta = &v
@@ -518,6 +536,8 @@ func WithFlagMeta(v Meta) FlagOption {
 }
 
 // WithFlagImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use FlagBuilder.SetImplicitRules instead; removed in v2.
 func WithFlagImplicitRules(v string) FlagOption {
 	return func(r *Flag) {
 		r.ImplicitRules = &v
@@ -525,6 +545,8 @@ func WithFlagImplicitRules(v string) FlagOption {
 }
 
 // WithFlagLanguage sets the Language field.
+//
+// Deprecated: use FlagBuilder.SetLanguage instead; removed in v2.
 func WithFlagLanguage(v string) FlagOption {
 	return func(r *Flag) {
 		r.Language = &v
@@ -532,6 +554,8 @@ func WithFlagLanguage(v string) FlagOption {
 }
 
 // WithFlagText sets the Text field.
+//
+// Deprecated: use FlagBuilder.SetText instead; removed in v2.
 func WithFlagText(v Narrative) FlagOption {
 	return func(r *Flag) {
 		r.Text = &v
@@ -539,6 +563,8 @@ func WithFlagText(v Narrative) FlagOption {
 }
 
 // WithFlagContained adds a Contained to the Flag.
+//
+// Deprecated: use FlagBuilder.AddContained instead; removed in v2.
 func WithFlagContained(v Resource) FlagOption {
 	return func(r *Flag) {
 		r.Contained = append(r.Contained, v)
@@ -546,6 +572,8 @@ func WithFlagContained(v Resource) FlagOption {
 }
 
 // WithFlagExtension adds a Extension to the Flag.
+//
+// Deprecated: use FlagBuilder.AddExtension instead; removed in v2.
 func WithFlagExtension(v Extension) FlagOption {
 	return func(r *Flag) {
 		r.Extension = append(r.Extension, v)
@@ -553,6 +581,8 @@ func WithFlagExtension(v Extension) FlagOption {
 }
 
 // WithFlagModifierExtension adds a ModifierExtension to the Flag.
+//
+// Deprecated: use FlagBuilder.AddModifierExtension instead; removed in v2.
 func WithFlagModifierExtension(v Extension) FlagOption {
 	return func(r *Flag) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -560,6 +590,8 @@ func WithFlagModifierExtension(v Extension) FlagOption {
 }
 
 // WithFlagIdentifier adds a Identifier to the Flag.
+//
+// Deprecated: use FlagBuilder.AddIdentifier instead; removed in v2.
 func WithFlagIdentifier(v Identifier) FlagOption {
 	return func(r *Flag) {
 		r.Identifier = append(r.Identifier, v)
@@ -567,6 +599,8 @@ func WithFlagIdentifier(v Identifier) FlagOption {
 }
 
 // WithFlagStatus sets the Status field.
+//
+// Deprecated: use FlagBuilder.SetStatus instead; removed in v2.
 func WithFlagStatus(v FlagStatus) FlagOption {
 	return func(r *Flag) {
 		r.Status = &v
@@ -574,6 +608,8 @@ func WithFlagStatus(v FlagStatus) FlagOption {
 }
 
 // WithFlagCategory adds a Category to the Flag.
+//
+// Deprecated: use FlagBuilder.AddCategory instead; removed in v2.
 func WithFlagCategory(v CodeableConcept) FlagOption {
 	return func(r *Flag) {
 		r.Category = append(r.Category, v)
@@ -581,6 +617,8 @@ func WithFlagCategory(v CodeableConcept) FlagOption {
 }
 
 // WithFlagCode sets the Code field.
+//
+// Deprecated: use FlagBuilder.SetCode instead; removed in v2.
 func WithFlagCode(v CodeableConcept) FlagOption {
 	return func(r *Flag) {
 		r.Code = v
@@ -588,6 +626,8 @@ func WithFlagCode(v CodeableConcept) FlagOption {
 }
 
 // WithFlagSubject sets the Subject field.
+//
+// Deprecated: use FlagBuilder.SetSubject instead; removed in v2.
 func WithFlagSubject(v Reference) FlagOption {
 	return func(r *Flag) {
 		r.Subject = v
@@ -595,6 +635,8 @@ func WithFlagSubject(v Reference) FlagOption {
 }
 
 // WithFlagPeriod sets the Period field.
+//
+// Deprecated: use FlagBuilder.SetPeriod instead; removed in v2.
 func WithFlagPeriod(v Period) FlagOption {
 	return func(r *Flag) {
 		r.Period = &v
@@ -602,6 +644,8 @@ func WithFlagPeriod(v Period) FlagOption {
 }
 
 // WithFlagEncounter sets the Encounter field.
+//
+// Deprecated: use FlagBuilder.SetEncounter instead; removed in v2.
 func WithFlagEncounter(v Reference) FlagOption {
 	return func(r *Flag) {
 		r.Encounter = &v
@@ -609,6 +653,8 @@ func WithFlagEncounter(v Reference) FlagOption {
 }
 
 // WithFlagAuthor sets the Author field.
+//
+// Deprecated: use FlagBuilder.SetAuthor instead; removed in v2.
 func WithFlagAuthor(v Reference) FlagOption {
 	return func(r *Flag) {
 		r.Author = &v

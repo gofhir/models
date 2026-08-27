@@ -1106,9 +1106,23 @@ func (b *ChargeItemDefinitionBuilder) AddPropertyGroup(v ChargeItemDefinitionPro
 // =============================================================================
 
 // ChargeItemDefinitionOption is a functional option for configuring a ChargeItemDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ChargeItemDefinitionBuilder. Every WithChargeItemDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ChargeItemDefinitionOption func(*ChargeItemDefinition)
 
 // NewChargeItemDefinition creates a new ChargeItemDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewChargeItemDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewChargeItemDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewChargeItemDefinition(opts ...ChargeItemDefinitionOption) *ChargeItemDefinition {
 	r := &ChargeItemDefinition{ResourceType: "ChargeItemDefinition"}
 	for _, opt := range opts {
@@ -1118,6 +1132,8 @@ func NewChargeItemDefinition(opts ...ChargeItemDefinitionOption) *ChargeItemDefi
 }
 
 // WithChargeItemDefinitionId sets the Id field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetId instead; removed in v2.
 func WithChargeItemDefinitionId(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Id = &v
@@ -1125,6 +1141,8 @@ func WithChargeItemDefinitionId(v string) ChargeItemDefinitionOption {
 }
 
 // WithChargeItemDefinitionMeta sets the Meta field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetMeta instead; removed in v2.
 func WithChargeItemDefinitionMeta(v Meta) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Meta = &v
@@ -1132,6 +1150,8 @@ func WithChargeItemDefinitionMeta(v Meta) ChargeItemDefinitionOption {
 }
 
 // WithChargeItemDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithChargeItemDefinitionImplicitRules(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.ImplicitRules = &v
@@ -1139,6 +1159,8 @@ func WithChargeItemDefinitionImplicitRules(v string) ChargeItemDefinitionOption 
 }
 
 // WithChargeItemDefinitionLanguage sets the Language field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithChargeItemDefinitionLanguage(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Language = &v
@@ -1146,6 +1168,8 @@ func WithChargeItemDefinitionLanguage(v string) ChargeItemDefinitionOption {
 }
 
 // WithChargeItemDefinitionText sets the Text field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetText instead; removed in v2.
 func WithChargeItemDefinitionText(v Narrative) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Text = &v
@@ -1153,6 +1177,8 @@ func WithChargeItemDefinitionText(v Narrative) ChargeItemDefinitionOption {
 }
 
 // WithChargeItemDefinitionContained adds a Contained to the ChargeItemDefinition.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.AddContained instead; removed in v2.
 func WithChargeItemDefinitionContained(v Resource) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -1160,6 +1186,8 @@ func WithChargeItemDefinitionContained(v Resource) ChargeItemDefinitionOption {
 }
 
 // WithChargeItemDefinitionExtension adds a Extension to the ChargeItemDefinition.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.AddExtension instead; removed in v2.
 func WithChargeItemDefinitionExtension(v Extension) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -1167,6 +1195,8 @@ func WithChargeItemDefinitionExtension(v Extension) ChargeItemDefinitionOption {
 }
 
 // WithChargeItemDefinitionModifierExtension adds a ModifierExtension to the ChargeItemDefinition.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithChargeItemDefinitionModifierExtension(v Extension) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1174,6 +1204,8 @@ func WithChargeItemDefinitionModifierExtension(v Extension) ChargeItemDefinition
 }
 
 // WithChargeItemDefinitionUrl sets the Url field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetUrl instead; removed in v2.
 func WithChargeItemDefinitionUrl(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Url = &v
@@ -1181,6 +1213,8 @@ func WithChargeItemDefinitionUrl(v string) ChargeItemDefinitionOption {
 }
 
 // WithChargeItemDefinitionIdentifier adds a Identifier to the ChargeItemDefinition.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.AddIdentifier instead; removed in v2.
 func WithChargeItemDefinitionIdentifier(v Identifier) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Identifier = append(r.Identifier, v)
@@ -1188,6 +1222,8 @@ func WithChargeItemDefinitionIdentifier(v Identifier) ChargeItemDefinitionOption
 }
 
 // WithChargeItemDefinitionVersion sets the Version field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetVersion instead; removed in v2.
 func WithChargeItemDefinitionVersion(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Version = &v
@@ -1195,6 +1231,8 @@ func WithChargeItemDefinitionVersion(v string) ChargeItemDefinitionOption {
 }
 
 // WithChargeItemDefinitionVersionAlgorithmString sets the VersionAlgorithmString field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetVersionAlgorithmString instead; removed in v2.
 func WithChargeItemDefinitionVersionAlgorithmString(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.VersionAlgorithmString = &v
@@ -1202,6 +1240,8 @@ func WithChargeItemDefinitionVersionAlgorithmString(v string) ChargeItemDefiniti
 }
 
 // WithChargeItemDefinitionVersionAlgorithmStringExt sets the VersionAlgorithmStringExt field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetVersionAlgorithmStringExt instead; removed in v2.
 func WithChargeItemDefinitionVersionAlgorithmStringExt(v Element) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.VersionAlgorithmStringExt = &v
@@ -1209,6 +1249,8 @@ func WithChargeItemDefinitionVersionAlgorithmStringExt(v Element) ChargeItemDefi
 }
 
 // WithChargeItemDefinitionVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetVersionAlgorithmCoding instead; removed in v2.
 func WithChargeItemDefinitionVersionAlgorithmCoding(v Coding) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.VersionAlgorithmCoding = &v
@@ -1216,6 +1258,8 @@ func WithChargeItemDefinitionVersionAlgorithmCoding(v Coding) ChargeItemDefiniti
 }
 
 // WithChargeItemDefinitionName sets the Name field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetName instead; removed in v2.
 func WithChargeItemDefinitionName(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Name = &v
@@ -1223,6 +1267,8 @@ func WithChargeItemDefinitionName(v string) ChargeItemDefinitionOption {
 }
 
 // WithChargeItemDefinitionTitle sets the Title field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetTitle instead; removed in v2.
 func WithChargeItemDefinitionTitle(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Title = &v
@@ -1230,6 +1276,8 @@ func WithChargeItemDefinitionTitle(v string) ChargeItemDefinitionOption {
 }
 
 // WithChargeItemDefinitionDerivedFromUri adds a DerivedFromUri to the ChargeItemDefinition.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.AddDerivedFromUri instead; removed in v2.
 func WithChargeItemDefinitionDerivedFromUri(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.DerivedFromUri = append(r.DerivedFromUri, v)
@@ -1237,6 +1285,8 @@ func WithChargeItemDefinitionDerivedFromUri(v string) ChargeItemDefinitionOption
 }
 
 // WithChargeItemDefinitionPartOf adds a PartOf to the ChargeItemDefinition.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.AddPartOf instead; removed in v2.
 func WithChargeItemDefinitionPartOf(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.PartOf = append(r.PartOf, v)
@@ -1244,6 +1294,8 @@ func WithChargeItemDefinitionPartOf(v string) ChargeItemDefinitionOption {
 }
 
 // WithChargeItemDefinitionReplaces adds a Replaces to the ChargeItemDefinition.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.AddReplaces instead; removed in v2.
 func WithChargeItemDefinitionReplaces(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Replaces = append(r.Replaces, v)
@@ -1251,6 +1303,8 @@ func WithChargeItemDefinitionReplaces(v string) ChargeItemDefinitionOption {
 }
 
 // WithChargeItemDefinitionStatus sets the Status field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetStatus instead; removed in v2.
 func WithChargeItemDefinitionStatus(v PublicationStatus) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Status = &v
@@ -1258,6 +1312,8 @@ func WithChargeItemDefinitionStatus(v PublicationStatus) ChargeItemDefinitionOpt
 }
 
 // WithChargeItemDefinitionExperimental sets the Experimental field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetExperimental instead; removed in v2.
 func WithChargeItemDefinitionExperimental(v bool) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Experimental = &v
@@ -1265,6 +1321,8 @@ func WithChargeItemDefinitionExperimental(v bool) ChargeItemDefinitionOption {
 }
 
 // WithChargeItemDefinitionDate sets the Date field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetDate instead; removed in v2.
 func WithChargeItemDefinitionDate(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Date = &v
@@ -1272,6 +1330,8 @@ func WithChargeItemDefinitionDate(v string) ChargeItemDefinitionOption {
 }
 
 // WithChargeItemDefinitionPublisher sets the Publisher field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetPublisher instead; removed in v2.
 func WithChargeItemDefinitionPublisher(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Publisher = &v
@@ -1279,6 +1339,8 @@ func WithChargeItemDefinitionPublisher(v string) ChargeItemDefinitionOption {
 }
 
 // WithChargeItemDefinitionContact adds a Contact to the ChargeItemDefinition.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.AddContact instead; removed in v2.
 func WithChargeItemDefinitionContact(v ContactDetail) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Contact = append(r.Contact, v)
@@ -1286,6 +1348,8 @@ func WithChargeItemDefinitionContact(v ContactDetail) ChargeItemDefinitionOption
 }
 
 // WithChargeItemDefinitionDescription sets the Description field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetDescription instead; removed in v2.
 func WithChargeItemDefinitionDescription(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Description = &v
@@ -1293,6 +1357,8 @@ func WithChargeItemDefinitionDescription(v string) ChargeItemDefinitionOption {
 }
 
 // WithChargeItemDefinitionUseContext adds a UseContext to the ChargeItemDefinition.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.AddUseContext instead; removed in v2.
 func WithChargeItemDefinitionUseContext(v UsageContext) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.UseContext = append(r.UseContext, v)
@@ -1300,6 +1366,8 @@ func WithChargeItemDefinitionUseContext(v UsageContext) ChargeItemDefinitionOpti
 }
 
 // WithChargeItemDefinitionJurisdiction adds a Jurisdiction to the ChargeItemDefinition.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.AddJurisdiction instead; removed in v2.
 func WithChargeItemDefinitionJurisdiction(v CodeableConcept) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1307,6 +1375,8 @@ func WithChargeItemDefinitionJurisdiction(v CodeableConcept) ChargeItemDefinitio
 }
 
 // WithChargeItemDefinitionPurpose sets the Purpose field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetPurpose instead; removed in v2.
 func WithChargeItemDefinitionPurpose(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Purpose = &v
@@ -1314,6 +1384,8 @@ func WithChargeItemDefinitionPurpose(v string) ChargeItemDefinitionOption {
 }
 
 // WithChargeItemDefinitionCopyright sets the Copyright field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetCopyright instead; removed in v2.
 func WithChargeItemDefinitionCopyright(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Copyright = &v
@@ -1321,6 +1393,8 @@ func WithChargeItemDefinitionCopyright(v string) ChargeItemDefinitionOption {
 }
 
 // WithChargeItemDefinitionCopyrightLabel sets the CopyrightLabel field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetCopyrightLabel instead; removed in v2.
 func WithChargeItemDefinitionCopyrightLabel(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.CopyrightLabel = &v
@@ -1328,6 +1402,8 @@ func WithChargeItemDefinitionCopyrightLabel(v string) ChargeItemDefinitionOption
 }
 
 // WithChargeItemDefinitionApprovalDate sets the ApprovalDate field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetApprovalDate instead; removed in v2.
 func WithChargeItemDefinitionApprovalDate(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.ApprovalDate = &v
@@ -1335,6 +1411,8 @@ func WithChargeItemDefinitionApprovalDate(v string) ChargeItemDefinitionOption {
 }
 
 // WithChargeItemDefinitionLastReviewDate sets the LastReviewDate field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetLastReviewDate instead; removed in v2.
 func WithChargeItemDefinitionLastReviewDate(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.LastReviewDate = &v
@@ -1342,6 +1420,8 @@ func WithChargeItemDefinitionLastReviewDate(v string) ChargeItemDefinitionOption
 }
 
 // WithChargeItemDefinitionCode sets the Code field.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.SetCode instead; removed in v2.
 func WithChargeItemDefinitionCode(v CodeableConcept) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Code = &v
@@ -1349,6 +1429,8 @@ func WithChargeItemDefinitionCode(v CodeableConcept) ChargeItemDefinitionOption 
 }
 
 // WithChargeItemDefinitionInstance adds a Instance to the ChargeItemDefinition.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.AddInstance instead; removed in v2.
 func WithChargeItemDefinitionInstance(v Reference) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Instance = append(r.Instance, v)
@@ -1356,6 +1438,8 @@ func WithChargeItemDefinitionInstance(v Reference) ChargeItemDefinitionOption {
 }
 
 // WithChargeItemDefinitionApplicability adds a Applicability to the ChargeItemDefinition.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.AddApplicability instead; removed in v2.
 func WithChargeItemDefinitionApplicability(v ChargeItemDefinitionApplicability) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.Applicability = append(r.Applicability, v)
@@ -1363,6 +1447,8 @@ func WithChargeItemDefinitionApplicability(v ChargeItemDefinitionApplicability) 
 }
 
 // WithChargeItemDefinitionPropertyGroup adds a PropertyGroup to the ChargeItemDefinition.
+//
+// Deprecated: use ChargeItemDefinitionBuilder.AddPropertyGroup instead; removed in v2.
 func WithChargeItemDefinitionPropertyGroup(v ChargeItemDefinitionPropertyGroup) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
 		r.PropertyGroup = append(r.PropertyGroup, v)

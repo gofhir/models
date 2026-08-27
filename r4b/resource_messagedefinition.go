@@ -1069,9 +1069,23 @@ func (b *MessageDefinitionBuilder) AddGraph(v string) *MessageDefinitionBuilder 
 // =============================================================================
 
 // MessageDefinitionOption is a functional option for configuring a MessageDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// MessageDefinitionBuilder. Every WithMessageDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type MessageDefinitionOption func(*MessageDefinition)
 
 // NewMessageDefinition creates a new MessageDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewMessageDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewMessageDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewMessageDefinition(opts ...MessageDefinitionOption) *MessageDefinition {
 	r := &MessageDefinition{ResourceType: "MessageDefinition"}
 	for _, opt := range opts {
@@ -1081,6 +1095,8 @@ func NewMessageDefinition(opts ...MessageDefinitionOption) *MessageDefinition {
 }
 
 // WithMessageDefinitionId sets the Id field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetId instead; removed in v2.
 func WithMessageDefinitionId(v string) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Id = &v
@@ -1088,6 +1104,8 @@ func WithMessageDefinitionId(v string) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionMeta sets the Meta field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetMeta instead; removed in v2.
 func WithMessageDefinitionMeta(v Meta) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Meta = &v
@@ -1095,6 +1113,8 @@ func WithMessageDefinitionMeta(v Meta) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithMessageDefinitionImplicitRules(v string) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.ImplicitRules = &v
@@ -1102,6 +1122,8 @@ func WithMessageDefinitionImplicitRules(v string) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionLanguage sets the Language field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithMessageDefinitionLanguage(v string) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Language = &v
@@ -1109,6 +1131,8 @@ func WithMessageDefinitionLanguage(v string) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionText sets the Text field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetText instead; removed in v2.
 func WithMessageDefinitionText(v Narrative) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Text = &v
@@ -1116,6 +1140,8 @@ func WithMessageDefinitionText(v Narrative) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionContained adds a Contained to the MessageDefinition.
+//
+// Deprecated: use MessageDefinitionBuilder.AddContained instead; removed in v2.
 func WithMessageDefinitionContained(v Resource) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -1123,6 +1149,8 @@ func WithMessageDefinitionContained(v Resource) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionExtension adds a Extension to the MessageDefinition.
+//
+// Deprecated: use MessageDefinitionBuilder.AddExtension instead; removed in v2.
 func WithMessageDefinitionExtension(v Extension) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -1130,6 +1158,8 @@ func WithMessageDefinitionExtension(v Extension) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionModifierExtension adds a ModifierExtension to the MessageDefinition.
+//
+// Deprecated: use MessageDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithMessageDefinitionModifierExtension(v Extension) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1137,6 +1167,8 @@ func WithMessageDefinitionModifierExtension(v Extension) MessageDefinitionOption
 }
 
 // WithMessageDefinitionUrl sets the Url field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetUrl instead; removed in v2.
 func WithMessageDefinitionUrl(v string) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Url = &v
@@ -1144,6 +1176,8 @@ func WithMessageDefinitionUrl(v string) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionIdentifier adds a Identifier to the MessageDefinition.
+//
+// Deprecated: use MessageDefinitionBuilder.AddIdentifier instead; removed in v2.
 func WithMessageDefinitionIdentifier(v Identifier) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Identifier = append(r.Identifier, v)
@@ -1151,6 +1185,8 @@ func WithMessageDefinitionIdentifier(v Identifier) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionVersion sets the Version field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetVersion instead; removed in v2.
 func WithMessageDefinitionVersion(v string) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Version = &v
@@ -1158,6 +1194,8 @@ func WithMessageDefinitionVersion(v string) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionName sets the Name field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetName instead; removed in v2.
 func WithMessageDefinitionName(v string) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Name = &v
@@ -1165,6 +1203,8 @@ func WithMessageDefinitionName(v string) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionTitle sets the Title field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetTitle instead; removed in v2.
 func WithMessageDefinitionTitle(v string) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Title = &v
@@ -1172,6 +1212,8 @@ func WithMessageDefinitionTitle(v string) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionReplaces adds a Replaces to the MessageDefinition.
+//
+// Deprecated: use MessageDefinitionBuilder.AddReplaces instead; removed in v2.
 func WithMessageDefinitionReplaces(v string) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Replaces = append(r.Replaces, v)
@@ -1179,6 +1221,8 @@ func WithMessageDefinitionReplaces(v string) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionStatus sets the Status field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetStatus instead; removed in v2.
 func WithMessageDefinitionStatus(v PublicationStatus) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Status = &v
@@ -1186,6 +1230,8 @@ func WithMessageDefinitionStatus(v PublicationStatus) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionExperimental sets the Experimental field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetExperimental instead; removed in v2.
 func WithMessageDefinitionExperimental(v bool) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Experimental = &v
@@ -1193,6 +1239,8 @@ func WithMessageDefinitionExperimental(v bool) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionDate sets the Date field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetDate instead; removed in v2.
 func WithMessageDefinitionDate(v string) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Date = &v
@@ -1200,6 +1248,8 @@ func WithMessageDefinitionDate(v string) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionPublisher sets the Publisher field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetPublisher instead; removed in v2.
 func WithMessageDefinitionPublisher(v string) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Publisher = &v
@@ -1207,6 +1257,8 @@ func WithMessageDefinitionPublisher(v string) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionContact adds a Contact to the MessageDefinition.
+//
+// Deprecated: use MessageDefinitionBuilder.AddContact instead; removed in v2.
 func WithMessageDefinitionContact(v ContactDetail) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Contact = append(r.Contact, v)
@@ -1214,6 +1266,8 @@ func WithMessageDefinitionContact(v ContactDetail) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionDescription sets the Description field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetDescription instead; removed in v2.
 func WithMessageDefinitionDescription(v string) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Description = &v
@@ -1221,6 +1275,8 @@ func WithMessageDefinitionDescription(v string) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionUseContext adds a UseContext to the MessageDefinition.
+//
+// Deprecated: use MessageDefinitionBuilder.AddUseContext instead; removed in v2.
 func WithMessageDefinitionUseContext(v UsageContext) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.UseContext = append(r.UseContext, v)
@@ -1228,6 +1284,8 @@ func WithMessageDefinitionUseContext(v UsageContext) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionJurisdiction adds a Jurisdiction to the MessageDefinition.
+//
+// Deprecated: use MessageDefinitionBuilder.AddJurisdiction instead; removed in v2.
 func WithMessageDefinitionJurisdiction(v CodeableConcept) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1235,6 +1293,8 @@ func WithMessageDefinitionJurisdiction(v CodeableConcept) MessageDefinitionOptio
 }
 
 // WithMessageDefinitionPurpose sets the Purpose field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetPurpose instead; removed in v2.
 func WithMessageDefinitionPurpose(v string) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Purpose = &v
@@ -1242,6 +1302,8 @@ func WithMessageDefinitionPurpose(v string) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionCopyright sets the Copyright field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetCopyright instead; removed in v2.
 func WithMessageDefinitionCopyright(v string) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Copyright = &v
@@ -1249,6 +1311,8 @@ func WithMessageDefinitionCopyright(v string) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionBase sets the Base field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetBase instead; removed in v2.
 func WithMessageDefinitionBase(v string) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Base = &v
@@ -1256,6 +1320,8 @@ func WithMessageDefinitionBase(v string) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionParent adds a Parent to the MessageDefinition.
+//
+// Deprecated: use MessageDefinitionBuilder.AddParent instead; removed in v2.
 func WithMessageDefinitionParent(v string) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Parent = append(r.Parent, v)
@@ -1263,6 +1329,8 @@ func WithMessageDefinitionParent(v string) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionEventCoding sets the EventCoding field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetEventCoding instead; removed in v2.
 func WithMessageDefinitionEventCoding(v Coding) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.EventCoding = &v
@@ -1270,6 +1338,8 @@ func WithMessageDefinitionEventCoding(v Coding) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionEventUri sets the EventUri field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetEventUri instead; removed in v2.
 func WithMessageDefinitionEventUri(v string) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.EventUri = &v
@@ -1277,6 +1347,8 @@ func WithMessageDefinitionEventUri(v string) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionEventUriExt sets the EventUriExt field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetEventUriExt instead; removed in v2.
 func WithMessageDefinitionEventUriExt(v Element) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.EventUriExt = &v
@@ -1284,6 +1356,8 @@ func WithMessageDefinitionEventUriExt(v Element) MessageDefinitionOption {
 }
 
 // WithMessageDefinitionCategory sets the Category field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetCategory instead; removed in v2.
 func WithMessageDefinitionCategory(v MessageSignificanceCategory) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Category = &v
@@ -1291,6 +1365,8 @@ func WithMessageDefinitionCategory(v MessageSignificanceCategory) MessageDefinit
 }
 
 // WithMessageDefinitionFocus adds a Focus to the MessageDefinition.
+//
+// Deprecated: use MessageDefinitionBuilder.AddFocus instead; removed in v2.
 func WithMessageDefinitionFocus(v MessageDefinitionFocus) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Focus = append(r.Focus, v)
@@ -1298,6 +1374,8 @@ func WithMessageDefinitionFocus(v MessageDefinitionFocus) MessageDefinitionOptio
 }
 
 // WithMessageDefinitionResponseRequired sets the ResponseRequired field.
+//
+// Deprecated: use MessageDefinitionBuilder.SetResponseRequired instead; removed in v2.
 func WithMessageDefinitionResponseRequired(v Messageheaderresponserequest) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.ResponseRequired = &v
@@ -1305,6 +1383,8 @@ func WithMessageDefinitionResponseRequired(v Messageheaderresponserequest) Messa
 }
 
 // WithMessageDefinitionAllowedResponse adds a AllowedResponse to the MessageDefinition.
+//
+// Deprecated: use MessageDefinitionBuilder.AddAllowedResponse instead; removed in v2.
 func WithMessageDefinitionAllowedResponse(v MessageDefinitionAllowedResponse) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.AllowedResponse = append(r.AllowedResponse, v)
@@ -1312,6 +1392,8 @@ func WithMessageDefinitionAllowedResponse(v MessageDefinitionAllowedResponse) Me
 }
 
 // WithMessageDefinitionGraph adds a Graph to the MessageDefinition.
+//
+// Deprecated: use MessageDefinitionBuilder.AddGraph instead; removed in v2.
 func WithMessageDefinitionGraph(v string) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
 		r.Graph = append(r.Graph, v)

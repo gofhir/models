@@ -1232,9 +1232,23 @@ func (b *ConsentBuilder) SetProvision(v ConsentProvision) *ConsentBuilder {
 // =============================================================================
 
 // ConsentOption is a functional option for configuring a Consent.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ConsentBuilder. Every WithConsent* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ConsentOption func(*Consent)
 
 // NewConsent creates a new Consent with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewConsentBuilder().SetId("x").Build()
+//
+// Deprecated: use NewConsentBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewConsent(opts ...ConsentOption) *Consent {
 	r := &Consent{ResourceType: "Consent"}
 	for _, opt := range opts {
@@ -1244,6 +1258,8 @@ func NewConsent(opts ...ConsentOption) *Consent {
 }
 
 // WithConsentId sets the Id field.
+//
+// Deprecated: use ConsentBuilder.SetId instead; removed in v2.
 func WithConsentId(v string) ConsentOption {
 	return func(r *Consent) {
 		r.Id = &v
@@ -1251,6 +1267,8 @@ func WithConsentId(v string) ConsentOption {
 }
 
 // WithConsentMeta sets the Meta field.
+//
+// Deprecated: use ConsentBuilder.SetMeta instead; removed in v2.
 func WithConsentMeta(v Meta) ConsentOption {
 	return func(r *Consent) {
 		r.Meta = &v
@@ -1258,6 +1276,8 @@ func WithConsentMeta(v Meta) ConsentOption {
 }
 
 // WithConsentImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ConsentBuilder.SetImplicitRules instead; removed in v2.
 func WithConsentImplicitRules(v string) ConsentOption {
 	return func(r *Consent) {
 		r.ImplicitRules = &v
@@ -1265,6 +1285,8 @@ func WithConsentImplicitRules(v string) ConsentOption {
 }
 
 // WithConsentLanguage sets the Language field.
+//
+// Deprecated: use ConsentBuilder.SetLanguage instead; removed in v2.
 func WithConsentLanguage(v string) ConsentOption {
 	return func(r *Consent) {
 		r.Language = &v
@@ -1272,6 +1294,8 @@ func WithConsentLanguage(v string) ConsentOption {
 }
 
 // WithConsentText sets the Text field.
+//
+// Deprecated: use ConsentBuilder.SetText instead; removed in v2.
 func WithConsentText(v Narrative) ConsentOption {
 	return func(r *Consent) {
 		r.Text = &v
@@ -1279,6 +1303,8 @@ func WithConsentText(v Narrative) ConsentOption {
 }
 
 // WithConsentContained adds a Contained to the Consent.
+//
+// Deprecated: use ConsentBuilder.AddContained instead; removed in v2.
 func WithConsentContained(v Resource) ConsentOption {
 	return func(r *Consent) {
 		r.Contained = append(r.Contained, v)
@@ -1286,6 +1312,8 @@ func WithConsentContained(v Resource) ConsentOption {
 }
 
 // WithConsentExtension adds a Extension to the Consent.
+//
+// Deprecated: use ConsentBuilder.AddExtension instead; removed in v2.
 func WithConsentExtension(v Extension) ConsentOption {
 	return func(r *Consent) {
 		r.Extension = append(r.Extension, v)
@@ -1293,6 +1321,8 @@ func WithConsentExtension(v Extension) ConsentOption {
 }
 
 // WithConsentModifierExtension adds a ModifierExtension to the Consent.
+//
+// Deprecated: use ConsentBuilder.AddModifierExtension instead; removed in v2.
 func WithConsentModifierExtension(v Extension) ConsentOption {
 	return func(r *Consent) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1300,6 +1330,8 @@ func WithConsentModifierExtension(v Extension) ConsentOption {
 }
 
 // WithConsentIdentifier adds a Identifier to the Consent.
+//
+// Deprecated: use ConsentBuilder.AddIdentifier instead; removed in v2.
 func WithConsentIdentifier(v Identifier) ConsentOption {
 	return func(r *Consent) {
 		r.Identifier = append(r.Identifier, v)
@@ -1307,6 +1339,8 @@ func WithConsentIdentifier(v Identifier) ConsentOption {
 }
 
 // WithConsentStatus sets the Status field.
+//
+// Deprecated: use ConsentBuilder.SetStatus instead; removed in v2.
 func WithConsentStatus(v ConsentState) ConsentOption {
 	return func(r *Consent) {
 		r.Status = &v
@@ -1314,6 +1348,8 @@ func WithConsentStatus(v ConsentState) ConsentOption {
 }
 
 // WithConsentScope sets the Scope field.
+//
+// Deprecated: use ConsentBuilder.SetScope instead; removed in v2.
 func WithConsentScope(v CodeableConcept) ConsentOption {
 	return func(r *Consent) {
 		r.Scope = v
@@ -1321,6 +1357,8 @@ func WithConsentScope(v CodeableConcept) ConsentOption {
 }
 
 // WithConsentCategory adds a Category to the Consent.
+//
+// Deprecated: use ConsentBuilder.AddCategory instead; removed in v2.
 func WithConsentCategory(v CodeableConcept) ConsentOption {
 	return func(r *Consent) {
 		r.Category = append(r.Category, v)
@@ -1328,6 +1366,8 @@ func WithConsentCategory(v CodeableConcept) ConsentOption {
 }
 
 // WithConsentPatient sets the Patient field.
+//
+// Deprecated: use ConsentBuilder.SetPatient instead; removed in v2.
 func WithConsentPatient(v Reference) ConsentOption {
 	return func(r *Consent) {
 		r.Patient = &v
@@ -1335,6 +1375,8 @@ func WithConsentPatient(v Reference) ConsentOption {
 }
 
 // WithConsentDateTime sets the DateTime field.
+//
+// Deprecated: use ConsentBuilder.SetDateTime instead; removed in v2.
 func WithConsentDateTime(v string) ConsentOption {
 	return func(r *Consent) {
 		r.DateTime = &v
@@ -1342,6 +1384,8 @@ func WithConsentDateTime(v string) ConsentOption {
 }
 
 // WithConsentPerformer adds a Performer to the Consent.
+//
+// Deprecated: use ConsentBuilder.AddPerformer instead; removed in v2.
 func WithConsentPerformer(v Reference) ConsentOption {
 	return func(r *Consent) {
 		r.Performer = append(r.Performer, v)
@@ -1349,6 +1393,8 @@ func WithConsentPerformer(v Reference) ConsentOption {
 }
 
 // WithConsentOrganization adds a Organization to the Consent.
+//
+// Deprecated: use ConsentBuilder.AddOrganization instead; removed in v2.
 func WithConsentOrganization(v Reference) ConsentOption {
 	return func(r *Consent) {
 		r.Organization = append(r.Organization, v)
@@ -1356,6 +1402,8 @@ func WithConsentOrganization(v Reference) ConsentOption {
 }
 
 // WithConsentSourceAttachment sets the SourceAttachment field.
+//
+// Deprecated: use ConsentBuilder.SetSourceAttachment instead; removed in v2.
 func WithConsentSourceAttachment(v Attachment) ConsentOption {
 	return func(r *Consent) {
 		r.SourceAttachment = &v
@@ -1363,6 +1411,8 @@ func WithConsentSourceAttachment(v Attachment) ConsentOption {
 }
 
 // WithConsentSourceReference sets the SourceReference field.
+//
+// Deprecated: use ConsentBuilder.SetSourceReference instead; removed in v2.
 func WithConsentSourceReference(v Reference) ConsentOption {
 	return func(r *Consent) {
 		r.SourceReference = &v
@@ -1370,6 +1420,8 @@ func WithConsentSourceReference(v Reference) ConsentOption {
 }
 
 // WithConsentPolicy adds a Policy to the Consent.
+//
+// Deprecated: use ConsentBuilder.AddPolicy instead; removed in v2.
 func WithConsentPolicy(v ConsentPolicy) ConsentOption {
 	return func(r *Consent) {
 		r.Policy = append(r.Policy, v)
@@ -1377,6 +1429,8 @@ func WithConsentPolicy(v ConsentPolicy) ConsentOption {
 }
 
 // WithConsentPolicyRule sets the PolicyRule field.
+//
+// Deprecated: use ConsentBuilder.SetPolicyRule instead; removed in v2.
 func WithConsentPolicyRule(v CodeableConcept) ConsentOption {
 	return func(r *Consent) {
 		r.PolicyRule = &v
@@ -1384,6 +1438,8 @@ func WithConsentPolicyRule(v CodeableConcept) ConsentOption {
 }
 
 // WithConsentVerification adds a Verification to the Consent.
+//
+// Deprecated: use ConsentBuilder.AddVerification instead; removed in v2.
 func WithConsentVerification(v ConsentVerification) ConsentOption {
 	return func(r *Consent) {
 		r.Verification = append(r.Verification, v)
@@ -1391,6 +1447,8 @@ func WithConsentVerification(v ConsentVerification) ConsentOption {
 }
 
 // WithConsentProvision sets the Provision field.
+//
+// Deprecated: use ConsentBuilder.SetProvision instead; removed in v2.
 func WithConsentProvision(v ConsentProvision) ConsentOption {
 	return func(r *Consent) {
 		r.Provision = &v

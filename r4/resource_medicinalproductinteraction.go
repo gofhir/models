@@ -584,9 +584,23 @@ func (b *MedicinalProductInteractionBuilder) SetManagement(v CodeableConcept) *M
 // =============================================================================
 
 // MedicinalProductInteractionOption is a functional option for configuring a MedicinalProductInteraction.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// MedicinalProductInteractionBuilder. Every WithMedicinalProductInteraction* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type MedicinalProductInteractionOption func(*MedicinalProductInteraction)
 
 // NewMedicinalProductInteraction creates a new MedicinalProductInteraction with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewMedicinalProductInteractionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewMedicinalProductInteractionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewMedicinalProductInteraction(opts ...MedicinalProductInteractionOption) *MedicinalProductInteraction {
 	r := &MedicinalProductInteraction{ResourceType: "MedicinalProductInteraction"}
 	for _, opt := range opts {
@@ -596,6 +610,8 @@ func NewMedicinalProductInteraction(opts ...MedicinalProductInteractionOption) *
 }
 
 // WithMedicinalProductInteractionId sets the Id field.
+//
+// Deprecated: use MedicinalProductInteractionBuilder.SetId instead; removed in v2.
 func WithMedicinalProductInteractionId(v string) MedicinalProductInteractionOption {
 	return func(r *MedicinalProductInteraction) {
 		r.Id = &v
@@ -603,6 +619,8 @@ func WithMedicinalProductInteractionId(v string) MedicinalProductInteractionOpti
 }
 
 // WithMedicinalProductInteractionMeta sets the Meta field.
+//
+// Deprecated: use MedicinalProductInteractionBuilder.SetMeta instead; removed in v2.
 func WithMedicinalProductInteractionMeta(v Meta) MedicinalProductInteractionOption {
 	return func(r *MedicinalProductInteraction) {
 		r.Meta = &v
@@ -610,6 +628,8 @@ func WithMedicinalProductInteractionMeta(v Meta) MedicinalProductInteractionOpti
 }
 
 // WithMedicinalProductInteractionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use MedicinalProductInteractionBuilder.SetImplicitRules instead; removed in v2.
 func WithMedicinalProductInteractionImplicitRules(v string) MedicinalProductInteractionOption {
 	return func(r *MedicinalProductInteraction) {
 		r.ImplicitRules = &v
@@ -617,6 +637,8 @@ func WithMedicinalProductInteractionImplicitRules(v string) MedicinalProductInte
 }
 
 // WithMedicinalProductInteractionLanguage sets the Language field.
+//
+// Deprecated: use MedicinalProductInteractionBuilder.SetLanguage instead; removed in v2.
 func WithMedicinalProductInteractionLanguage(v string) MedicinalProductInteractionOption {
 	return func(r *MedicinalProductInteraction) {
 		r.Language = &v
@@ -624,6 +646,8 @@ func WithMedicinalProductInteractionLanguage(v string) MedicinalProductInteracti
 }
 
 // WithMedicinalProductInteractionText sets the Text field.
+//
+// Deprecated: use MedicinalProductInteractionBuilder.SetText instead; removed in v2.
 func WithMedicinalProductInteractionText(v Narrative) MedicinalProductInteractionOption {
 	return func(r *MedicinalProductInteraction) {
 		r.Text = &v
@@ -631,6 +655,8 @@ func WithMedicinalProductInteractionText(v Narrative) MedicinalProductInteractio
 }
 
 // WithMedicinalProductInteractionContained adds a Contained to the MedicinalProductInteraction.
+//
+// Deprecated: use MedicinalProductInteractionBuilder.AddContained instead; removed in v2.
 func WithMedicinalProductInteractionContained(v Resource) MedicinalProductInteractionOption {
 	return func(r *MedicinalProductInteraction) {
 		r.Contained = append(r.Contained, v)
@@ -638,6 +664,8 @@ func WithMedicinalProductInteractionContained(v Resource) MedicinalProductIntera
 }
 
 // WithMedicinalProductInteractionExtension adds a Extension to the MedicinalProductInteraction.
+//
+// Deprecated: use MedicinalProductInteractionBuilder.AddExtension instead; removed in v2.
 func WithMedicinalProductInteractionExtension(v Extension) MedicinalProductInteractionOption {
 	return func(r *MedicinalProductInteraction) {
 		r.Extension = append(r.Extension, v)
@@ -645,6 +673,8 @@ func WithMedicinalProductInteractionExtension(v Extension) MedicinalProductInter
 }
 
 // WithMedicinalProductInteractionModifierExtension adds a ModifierExtension to the MedicinalProductInteraction.
+//
+// Deprecated: use MedicinalProductInteractionBuilder.AddModifierExtension instead; removed in v2.
 func WithMedicinalProductInteractionModifierExtension(v Extension) MedicinalProductInteractionOption {
 	return func(r *MedicinalProductInteraction) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -652,6 +682,8 @@ func WithMedicinalProductInteractionModifierExtension(v Extension) MedicinalProd
 }
 
 // WithMedicinalProductInteractionSubject adds a Subject to the MedicinalProductInteraction.
+//
+// Deprecated: use MedicinalProductInteractionBuilder.AddSubject instead; removed in v2.
 func WithMedicinalProductInteractionSubject(v Reference) MedicinalProductInteractionOption {
 	return func(r *MedicinalProductInteraction) {
 		r.Subject = append(r.Subject, v)
@@ -659,6 +691,8 @@ func WithMedicinalProductInteractionSubject(v Reference) MedicinalProductInterac
 }
 
 // WithMedicinalProductInteractionDescription sets the Description field.
+//
+// Deprecated: use MedicinalProductInteractionBuilder.SetDescription instead; removed in v2.
 func WithMedicinalProductInteractionDescription(v string) MedicinalProductInteractionOption {
 	return func(r *MedicinalProductInteraction) {
 		r.Description = &v
@@ -666,6 +700,8 @@ func WithMedicinalProductInteractionDescription(v string) MedicinalProductIntera
 }
 
 // WithMedicinalProductInteractionInteractant adds a Interactant to the MedicinalProductInteraction.
+//
+// Deprecated: use MedicinalProductInteractionBuilder.AddInteractant instead; removed in v2.
 func WithMedicinalProductInteractionInteractant(v MedicinalProductInteractionInteractant) MedicinalProductInteractionOption {
 	return func(r *MedicinalProductInteraction) {
 		r.Interactant = append(r.Interactant, v)
@@ -673,6 +709,8 @@ func WithMedicinalProductInteractionInteractant(v MedicinalProductInteractionInt
 }
 
 // WithMedicinalProductInteractionType sets the Type field.
+//
+// Deprecated: use MedicinalProductInteractionBuilder.SetType instead; removed in v2.
 func WithMedicinalProductInteractionType(v CodeableConcept) MedicinalProductInteractionOption {
 	return func(r *MedicinalProductInteraction) {
 		r.Type = &v
@@ -680,6 +718,8 @@ func WithMedicinalProductInteractionType(v CodeableConcept) MedicinalProductInte
 }
 
 // WithMedicinalProductInteractionEffect sets the Effect field.
+//
+// Deprecated: use MedicinalProductInteractionBuilder.SetEffect instead; removed in v2.
 func WithMedicinalProductInteractionEffect(v CodeableConcept) MedicinalProductInteractionOption {
 	return func(r *MedicinalProductInteraction) {
 		r.Effect = &v
@@ -687,6 +727,8 @@ func WithMedicinalProductInteractionEffect(v CodeableConcept) MedicinalProductIn
 }
 
 // WithMedicinalProductInteractionIncidence sets the Incidence field.
+//
+// Deprecated: use MedicinalProductInteractionBuilder.SetIncidence instead; removed in v2.
 func WithMedicinalProductInteractionIncidence(v CodeableConcept) MedicinalProductInteractionOption {
 	return func(r *MedicinalProductInteraction) {
 		r.Incidence = &v
@@ -694,6 +736,8 @@ func WithMedicinalProductInteractionIncidence(v CodeableConcept) MedicinalProduc
 }
 
 // WithMedicinalProductInteractionManagement sets the Management field.
+//
+// Deprecated: use MedicinalProductInteractionBuilder.SetManagement instead; removed in v2.
 func WithMedicinalProductInteractionManagement(v CodeableConcept) MedicinalProductInteractionOption {
 	return func(r *MedicinalProductInteraction) {
 		r.Management = &v

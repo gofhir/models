@@ -667,9 +667,23 @@ func (b *OrganizationBuilder) AddQualification(v OrganizationQualification) *Org
 // =============================================================================
 
 // OrganizationOption is a functional option for configuring a Organization.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// OrganizationBuilder. Every WithOrganization* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type OrganizationOption func(*Organization)
 
 // NewOrganization creates a new Organization with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewOrganizationBuilder().SetId("x").Build()
+//
+// Deprecated: use NewOrganizationBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewOrganization(opts ...OrganizationOption) *Organization {
 	r := &Organization{ResourceType: "Organization"}
 	for _, opt := range opts {
@@ -679,6 +693,8 @@ func NewOrganization(opts ...OrganizationOption) *Organization {
 }
 
 // WithOrganizationId sets the Id field.
+//
+// Deprecated: use OrganizationBuilder.SetId instead; removed in v2.
 func WithOrganizationId(v string) OrganizationOption {
 	return func(r *Organization) {
 		r.Id = &v
@@ -686,6 +702,8 @@ func WithOrganizationId(v string) OrganizationOption {
 }
 
 // WithOrganizationMeta sets the Meta field.
+//
+// Deprecated: use OrganizationBuilder.SetMeta instead; removed in v2.
 func WithOrganizationMeta(v Meta) OrganizationOption {
 	return func(r *Organization) {
 		r.Meta = &v
@@ -693,6 +711,8 @@ func WithOrganizationMeta(v Meta) OrganizationOption {
 }
 
 // WithOrganizationImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use OrganizationBuilder.SetImplicitRules instead; removed in v2.
 func WithOrganizationImplicitRules(v string) OrganizationOption {
 	return func(r *Organization) {
 		r.ImplicitRules = &v
@@ -700,6 +720,8 @@ func WithOrganizationImplicitRules(v string) OrganizationOption {
 }
 
 // WithOrganizationLanguage sets the Language field.
+//
+// Deprecated: use OrganizationBuilder.SetLanguage instead; removed in v2.
 func WithOrganizationLanguage(v string) OrganizationOption {
 	return func(r *Organization) {
 		r.Language = &v
@@ -707,6 +729,8 @@ func WithOrganizationLanguage(v string) OrganizationOption {
 }
 
 // WithOrganizationText sets the Text field.
+//
+// Deprecated: use OrganizationBuilder.SetText instead; removed in v2.
 func WithOrganizationText(v Narrative) OrganizationOption {
 	return func(r *Organization) {
 		r.Text = &v
@@ -714,6 +738,8 @@ func WithOrganizationText(v Narrative) OrganizationOption {
 }
 
 // WithOrganizationContained adds a Contained to the Organization.
+//
+// Deprecated: use OrganizationBuilder.AddContained instead; removed in v2.
 func WithOrganizationContained(v Resource) OrganizationOption {
 	return func(r *Organization) {
 		r.Contained = append(r.Contained, v)
@@ -721,6 +747,8 @@ func WithOrganizationContained(v Resource) OrganizationOption {
 }
 
 // WithOrganizationExtension adds a Extension to the Organization.
+//
+// Deprecated: use OrganizationBuilder.AddExtension instead; removed in v2.
 func WithOrganizationExtension(v Extension) OrganizationOption {
 	return func(r *Organization) {
 		r.Extension = append(r.Extension, v)
@@ -728,6 +756,8 @@ func WithOrganizationExtension(v Extension) OrganizationOption {
 }
 
 // WithOrganizationModifierExtension adds a ModifierExtension to the Organization.
+//
+// Deprecated: use OrganizationBuilder.AddModifierExtension instead; removed in v2.
 func WithOrganizationModifierExtension(v Extension) OrganizationOption {
 	return func(r *Organization) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -735,6 +765,8 @@ func WithOrganizationModifierExtension(v Extension) OrganizationOption {
 }
 
 // WithOrganizationIdentifier adds a Identifier to the Organization.
+//
+// Deprecated: use OrganizationBuilder.AddIdentifier instead; removed in v2.
 func WithOrganizationIdentifier(v Identifier) OrganizationOption {
 	return func(r *Organization) {
 		r.Identifier = append(r.Identifier, v)
@@ -742,6 +774,8 @@ func WithOrganizationIdentifier(v Identifier) OrganizationOption {
 }
 
 // WithOrganizationActive sets the Active field.
+//
+// Deprecated: use OrganizationBuilder.SetActive instead; removed in v2.
 func WithOrganizationActive(v bool) OrganizationOption {
 	return func(r *Organization) {
 		r.Active = &v
@@ -749,6 +783,8 @@ func WithOrganizationActive(v bool) OrganizationOption {
 }
 
 // WithOrganizationType adds a Type to the Organization.
+//
+// Deprecated: use OrganizationBuilder.AddType instead; removed in v2.
 func WithOrganizationType(v CodeableConcept) OrganizationOption {
 	return func(r *Organization) {
 		r.Type = append(r.Type, v)
@@ -756,6 +792,8 @@ func WithOrganizationType(v CodeableConcept) OrganizationOption {
 }
 
 // WithOrganizationName sets the Name field.
+//
+// Deprecated: use OrganizationBuilder.SetName instead; removed in v2.
 func WithOrganizationName(v string) OrganizationOption {
 	return func(r *Organization) {
 		r.Name = &v
@@ -763,6 +801,8 @@ func WithOrganizationName(v string) OrganizationOption {
 }
 
 // WithOrganizationAlias adds a Alias to the Organization.
+//
+// Deprecated: use OrganizationBuilder.AddAlias instead; removed in v2.
 func WithOrganizationAlias(v string) OrganizationOption {
 	return func(r *Organization) {
 		r.Alias = append(r.Alias, v)
@@ -770,6 +810,8 @@ func WithOrganizationAlias(v string) OrganizationOption {
 }
 
 // WithOrganizationDescription sets the Description field.
+//
+// Deprecated: use OrganizationBuilder.SetDescription instead; removed in v2.
 func WithOrganizationDescription(v string) OrganizationOption {
 	return func(r *Organization) {
 		r.Description = &v
@@ -777,6 +819,8 @@ func WithOrganizationDescription(v string) OrganizationOption {
 }
 
 // WithOrganizationContact adds a Contact to the Organization.
+//
+// Deprecated: use OrganizationBuilder.AddContact instead; removed in v2.
 func WithOrganizationContact(v ExtendedContactDetail) OrganizationOption {
 	return func(r *Organization) {
 		r.Contact = append(r.Contact, v)
@@ -784,6 +828,8 @@ func WithOrganizationContact(v ExtendedContactDetail) OrganizationOption {
 }
 
 // WithOrganizationPartOf sets the PartOf field.
+//
+// Deprecated: use OrganizationBuilder.SetPartOf instead; removed in v2.
 func WithOrganizationPartOf(v Reference) OrganizationOption {
 	return func(r *Organization) {
 		r.PartOf = &v
@@ -791,6 +837,8 @@ func WithOrganizationPartOf(v Reference) OrganizationOption {
 }
 
 // WithOrganizationEndpoint adds a Endpoint to the Organization.
+//
+// Deprecated: use OrganizationBuilder.AddEndpoint instead; removed in v2.
 func WithOrganizationEndpoint(v Reference) OrganizationOption {
 	return func(r *Organization) {
 		r.Endpoint = append(r.Endpoint, v)
@@ -798,6 +846,8 @@ func WithOrganizationEndpoint(v Reference) OrganizationOption {
 }
 
 // WithOrganizationQualification adds a Qualification to the Organization.
+//
+// Deprecated: use OrganizationBuilder.AddQualification instead; removed in v2.
 func WithOrganizationQualification(v OrganizationQualification) OrganizationOption {
 	return func(r *Organization) {
 		r.Qualification = append(r.Qualification, v)

@@ -1213,9 +1213,23 @@ func (b *SubstancePolymerBuilder) AddRepeat(v SubstancePolymerRepeat) *Substance
 // =============================================================================
 
 // SubstancePolymerOption is a functional option for configuring a SubstancePolymer.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// SubstancePolymerBuilder. Every WithSubstancePolymer* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type SubstancePolymerOption func(*SubstancePolymer)
 
 // NewSubstancePolymer creates a new SubstancePolymer with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewSubstancePolymerBuilder().SetId("x").Build()
+//
+// Deprecated: use NewSubstancePolymerBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewSubstancePolymer(opts ...SubstancePolymerOption) *SubstancePolymer {
 	r := &SubstancePolymer{ResourceType: "SubstancePolymer"}
 	for _, opt := range opts {
@@ -1225,6 +1239,8 @@ func NewSubstancePolymer(opts ...SubstancePolymerOption) *SubstancePolymer {
 }
 
 // WithSubstancePolymerId sets the Id field.
+//
+// Deprecated: use SubstancePolymerBuilder.SetId instead; removed in v2.
 func WithSubstancePolymerId(v string) SubstancePolymerOption {
 	return func(r *SubstancePolymer) {
 		r.Id = &v
@@ -1232,6 +1248,8 @@ func WithSubstancePolymerId(v string) SubstancePolymerOption {
 }
 
 // WithSubstancePolymerMeta sets the Meta field.
+//
+// Deprecated: use SubstancePolymerBuilder.SetMeta instead; removed in v2.
 func WithSubstancePolymerMeta(v Meta) SubstancePolymerOption {
 	return func(r *SubstancePolymer) {
 		r.Meta = &v
@@ -1239,6 +1257,8 @@ func WithSubstancePolymerMeta(v Meta) SubstancePolymerOption {
 }
 
 // WithSubstancePolymerImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use SubstancePolymerBuilder.SetImplicitRules instead; removed in v2.
 func WithSubstancePolymerImplicitRules(v string) SubstancePolymerOption {
 	return func(r *SubstancePolymer) {
 		r.ImplicitRules = &v
@@ -1246,6 +1266,8 @@ func WithSubstancePolymerImplicitRules(v string) SubstancePolymerOption {
 }
 
 // WithSubstancePolymerLanguage sets the Language field.
+//
+// Deprecated: use SubstancePolymerBuilder.SetLanguage instead; removed in v2.
 func WithSubstancePolymerLanguage(v string) SubstancePolymerOption {
 	return func(r *SubstancePolymer) {
 		r.Language = &v
@@ -1253,6 +1275,8 @@ func WithSubstancePolymerLanguage(v string) SubstancePolymerOption {
 }
 
 // WithSubstancePolymerText sets the Text field.
+//
+// Deprecated: use SubstancePolymerBuilder.SetText instead; removed in v2.
 func WithSubstancePolymerText(v Narrative) SubstancePolymerOption {
 	return func(r *SubstancePolymer) {
 		r.Text = &v
@@ -1260,6 +1284,8 @@ func WithSubstancePolymerText(v Narrative) SubstancePolymerOption {
 }
 
 // WithSubstancePolymerContained adds a Contained to the SubstancePolymer.
+//
+// Deprecated: use SubstancePolymerBuilder.AddContained instead; removed in v2.
 func WithSubstancePolymerContained(v Resource) SubstancePolymerOption {
 	return func(r *SubstancePolymer) {
 		r.Contained = append(r.Contained, v)
@@ -1267,6 +1293,8 @@ func WithSubstancePolymerContained(v Resource) SubstancePolymerOption {
 }
 
 // WithSubstancePolymerExtension adds a Extension to the SubstancePolymer.
+//
+// Deprecated: use SubstancePolymerBuilder.AddExtension instead; removed in v2.
 func WithSubstancePolymerExtension(v Extension) SubstancePolymerOption {
 	return func(r *SubstancePolymer) {
 		r.Extension = append(r.Extension, v)
@@ -1274,6 +1302,8 @@ func WithSubstancePolymerExtension(v Extension) SubstancePolymerOption {
 }
 
 // WithSubstancePolymerModifierExtension adds a ModifierExtension to the SubstancePolymer.
+//
+// Deprecated: use SubstancePolymerBuilder.AddModifierExtension instead; removed in v2.
 func WithSubstancePolymerModifierExtension(v Extension) SubstancePolymerOption {
 	return func(r *SubstancePolymer) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1281,6 +1311,8 @@ func WithSubstancePolymerModifierExtension(v Extension) SubstancePolymerOption {
 }
 
 // WithSubstancePolymerIdentifier sets the Identifier field.
+//
+// Deprecated: use SubstancePolymerBuilder.SetIdentifier instead; removed in v2.
 func WithSubstancePolymerIdentifier(v Identifier) SubstancePolymerOption {
 	return func(r *SubstancePolymer) {
 		r.Identifier = &v
@@ -1288,6 +1320,8 @@ func WithSubstancePolymerIdentifier(v Identifier) SubstancePolymerOption {
 }
 
 // WithSubstancePolymerClass sets the Class field.
+//
+// Deprecated: use SubstancePolymerBuilder.SetClass instead; removed in v2.
 func WithSubstancePolymerClass(v CodeableConcept) SubstancePolymerOption {
 	return func(r *SubstancePolymer) {
 		r.Class = &v
@@ -1295,6 +1329,8 @@ func WithSubstancePolymerClass(v CodeableConcept) SubstancePolymerOption {
 }
 
 // WithSubstancePolymerGeometry sets the Geometry field.
+//
+// Deprecated: use SubstancePolymerBuilder.SetGeometry instead; removed in v2.
 func WithSubstancePolymerGeometry(v CodeableConcept) SubstancePolymerOption {
 	return func(r *SubstancePolymer) {
 		r.Geometry = &v
@@ -1302,6 +1338,8 @@ func WithSubstancePolymerGeometry(v CodeableConcept) SubstancePolymerOption {
 }
 
 // WithSubstancePolymerCopolymerConnectivity adds a CopolymerConnectivity to the SubstancePolymer.
+//
+// Deprecated: use SubstancePolymerBuilder.AddCopolymerConnectivity instead; removed in v2.
 func WithSubstancePolymerCopolymerConnectivity(v CodeableConcept) SubstancePolymerOption {
 	return func(r *SubstancePolymer) {
 		r.CopolymerConnectivity = append(r.CopolymerConnectivity, v)
@@ -1309,6 +1347,8 @@ func WithSubstancePolymerCopolymerConnectivity(v CodeableConcept) SubstancePolym
 }
 
 // WithSubstancePolymerModification sets the Modification field.
+//
+// Deprecated: use SubstancePolymerBuilder.SetModification instead; removed in v2.
 func WithSubstancePolymerModification(v string) SubstancePolymerOption {
 	return func(r *SubstancePolymer) {
 		r.Modification = &v
@@ -1316,6 +1356,8 @@ func WithSubstancePolymerModification(v string) SubstancePolymerOption {
 }
 
 // WithSubstancePolymerMonomerSet adds a MonomerSet to the SubstancePolymer.
+//
+// Deprecated: use SubstancePolymerBuilder.AddMonomerSet instead; removed in v2.
 func WithSubstancePolymerMonomerSet(v SubstancePolymerMonomerSet) SubstancePolymerOption {
 	return func(r *SubstancePolymer) {
 		r.MonomerSet = append(r.MonomerSet, v)
@@ -1323,6 +1365,8 @@ func WithSubstancePolymerMonomerSet(v SubstancePolymerMonomerSet) SubstancePolym
 }
 
 // WithSubstancePolymerRepeat adds a Repeat to the SubstancePolymer.
+//
+// Deprecated: use SubstancePolymerBuilder.AddRepeat instead; removed in v2.
 func WithSubstancePolymerRepeat(v SubstancePolymerRepeat) SubstancePolymerOption {
 	return func(r *SubstancePolymer) {
 		r.Repeat = append(r.Repeat, v)

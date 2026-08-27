@@ -1080,9 +1080,23 @@ func (b *PatientBuilder) AddLink(v PatientLink) *PatientBuilder {
 // =============================================================================
 
 // PatientOption is a functional option for configuring a Patient.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// PatientBuilder. Every WithPatient* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type PatientOption func(*Patient)
 
 // NewPatient creates a new Patient with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewPatientBuilder().SetId("x").Build()
+//
+// Deprecated: use NewPatientBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewPatient(opts ...PatientOption) *Patient {
 	r := &Patient{ResourceType: "Patient"}
 	for _, opt := range opts {
@@ -1092,6 +1106,8 @@ func NewPatient(opts ...PatientOption) *Patient {
 }
 
 // WithPatientId sets the Id field.
+//
+// Deprecated: use PatientBuilder.SetId instead; removed in v2.
 func WithPatientId(v string) PatientOption {
 	return func(r *Patient) {
 		r.Id = &v
@@ -1099,6 +1115,8 @@ func WithPatientId(v string) PatientOption {
 }
 
 // WithPatientMeta sets the Meta field.
+//
+// Deprecated: use PatientBuilder.SetMeta instead; removed in v2.
 func WithPatientMeta(v Meta) PatientOption {
 	return func(r *Patient) {
 		r.Meta = &v
@@ -1106,6 +1124,8 @@ func WithPatientMeta(v Meta) PatientOption {
 }
 
 // WithPatientImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use PatientBuilder.SetImplicitRules instead; removed in v2.
 func WithPatientImplicitRules(v string) PatientOption {
 	return func(r *Patient) {
 		r.ImplicitRules = &v
@@ -1113,6 +1133,8 @@ func WithPatientImplicitRules(v string) PatientOption {
 }
 
 // WithPatientLanguage sets the Language field.
+//
+// Deprecated: use PatientBuilder.SetLanguage instead; removed in v2.
 func WithPatientLanguage(v string) PatientOption {
 	return func(r *Patient) {
 		r.Language = &v
@@ -1120,6 +1142,8 @@ func WithPatientLanguage(v string) PatientOption {
 }
 
 // WithPatientText sets the Text field.
+//
+// Deprecated: use PatientBuilder.SetText instead; removed in v2.
 func WithPatientText(v Narrative) PatientOption {
 	return func(r *Patient) {
 		r.Text = &v
@@ -1127,6 +1151,8 @@ func WithPatientText(v Narrative) PatientOption {
 }
 
 // WithPatientContained adds a Contained to the Patient.
+//
+// Deprecated: use PatientBuilder.AddContained instead; removed in v2.
 func WithPatientContained(v Resource) PatientOption {
 	return func(r *Patient) {
 		r.Contained = append(r.Contained, v)
@@ -1134,6 +1160,8 @@ func WithPatientContained(v Resource) PatientOption {
 }
 
 // WithPatientExtension adds a Extension to the Patient.
+//
+// Deprecated: use PatientBuilder.AddExtension instead; removed in v2.
 func WithPatientExtension(v Extension) PatientOption {
 	return func(r *Patient) {
 		r.Extension = append(r.Extension, v)
@@ -1141,6 +1169,8 @@ func WithPatientExtension(v Extension) PatientOption {
 }
 
 // WithPatientModifierExtension adds a ModifierExtension to the Patient.
+//
+// Deprecated: use PatientBuilder.AddModifierExtension instead; removed in v2.
 func WithPatientModifierExtension(v Extension) PatientOption {
 	return func(r *Patient) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1148,6 +1178,8 @@ func WithPatientModifierExtension(v Extension) PatientOption {
 }
 
 // WithPatientIdentifier adds a Identifier to the Patient.
+//
+// Deprecated: use PatientBuilder.AddIdentifier instead; removed in v2.
 func WithPatientIdentifier(v Identifier) PatientOption {
 	return func(r *Patient) {
 		r.Identifier = append(r.Identifier, v)
@@ -1155,6 +1187,8 @@ func WithPatientIdentifier(v Identifier) PatientOption {
 }
 
 // WithPatientActive sets the Active field.
+//
+// Deprecated: use PatientBuilder.SetActive instead; removed in v2.
 func WithPatientActive(v bool) PatientOption {
 	return func(r *Patient) {
 		r.Active = &v
@@ -1162,6 +1196,8 @@ func WithPatientActive(v bool) PatientOption {
 }
 
 // WithPatientName adds a Name to the Patient.
+//
+// Deprecated: use PatientBuilder.AddName instead; removed in v2.
 func WithPatientName(v HumanName) PatientOption {
 	return func(r *Patient) {
 		r.Name = append(r.Name, v)
@@ -1169,6 +1205,8 @@ func WithPatientName(v HumanName) PatientOption {
 }
 
 // WithPatientTelecom adds a Telecom to the Patient.
+//
+// Deprecated: use PatientBuilder.AddTelecom instead; removed in v2.
 func WithPatientTelecom(v ContactPoint) PatientOption {
 	return func(r *Patient) {
 		r.Telecom = append(r.Telecom, v)
@@ -1176,6 +1214,8 @@ func WithPatientTelecom(v ContactPoint) PatientOption {
 }
 
 // WithPatientGender sets the Gender field.
+//
+// Deprecated: use PatientBuilder.SetGender instead; removed in v2.
 func WithPatientGender(v AdministrativeGender) PatientOption {
 	return func(r *Patient) {
 		r.Gender = &v
@@ -1183,6 +1223,8 @@ func WithPatientGender(v AdministrativeGender) PatientOption {
 }
 
 // WithPatientBirthDate sets the BirthDate field.
+//
+// Deprecated: use PatientBuilder.SetBirthDate instead; removed in v2.
 func WithPatientBirthDate(v string) PatientOption {
 	return func(r *Patient) {
 		r.BirthDate = &v
@@ -1190,6 +1232,8 @@ func WithPatientBirthDate(v string) PatientOption {
 }
 
 // WithPatientDeceasedBoolean sets the DeceasedBoolean field.
+//
+// Deprecated: use PatientBuilder.SetDeceasedBoolean instead; removed in v2.
 func WithPatientDeceasedBoolean(v bool) PatientOption {
 	return func(r *Patient) {
 		r.DeceasedBoolean = &v
@@ -1197,6 +1241,8 @@ func WithPatientDeceasedBoolean(v bool) PatientOption {
 }
 
 // WithPatientDeceasedBooleanExt sets the DeceasedBooleanExt field.
+//
+// Deprecated: use PatientBuilder.SetDeceasedBooleanExt instead; removed in v2.
 func WithPatientDeceasedBooleanExt(v Element) PatientOption {
 	return func(r *Patient) {
 		r.DeceasedBooleanExt = &v
@@ -1204,6 +1250,8 @@ func WithPatientDeceasedBooleanExt(v Element) PatientOption {
 }
 
 // WithPatientDeceasedDateTime sets the DeceasedDateTime field.
+//
+// Deprecated: use PatientBuilder.SetDeceasedDateTime instead; removed in v2.
 func WithPatientDeceasedDateTime(v string) PatientOption {
 	return func(r *Patient) {
 		r.DeceasedDateTime = &v
@@ -1211,6 +1259,8 @@ func WithPatientDeceasedDateTime(v string) PatientOption {
 }
 
 // WithPatientDeceasedDateTimeExt sets the DeceasedDateTimeExt field.
+//
+// Deprecated: use PatientBuilder.SetDeceasedDateTimeExt instead; removed in v2.
 func WithPatientDeceasedDateTimeExt(v Element) PatientOption {
 	return func(r *Patient) {
 		r.DeceasedDateTimeExt = &v
@@ -1218,6 +1268,8 @@ func WithPatientDeceasedDateTimeExt(v Element) PatientOption {
 }
 
 // WithPatientAddress adds a Address to the Patient.
+//
+// Deprecated: use PatientBuilder.AddAddress instead; removed in v2.
 func WithPatientAddress(v Address) PatientOption {
 	return func(r *Patient) {
 		r.Address = append(r.Address, v)
@@ -1225,6 +1277,8 @@ func WithPatientAddress(v Address) PatientOption {
 }
 
 // WithPatientMaritalStatus sets the MaritalStatus field.
+//
+// Deprecated: use PatientBuilder.SetMaritalStatus instead; removed in v2.
 func WithPatientMaritalStatus(v CodeableConcept) PatientOption {
 	return func(r *Patient) {
 		r.MaritalStatus = &v
@@ -1232,6 +1286,8 @@ func WithPatientMaritalStatus(v CodeableConcept) PatientOption {
 }
 
 // WithPatientMultipleBirthBoolean sets the MultipleBirthBoolean field.
+//
+// Deprecated: use PatientBuilder.SetMultipleBirthBoolean instead; removed in v2.
 func WithPatientMultipleBirthBoolean(v bool) PatientOption {
 	return func(r *Patient) {
 		r.MultipleBirthBoolean = &v
@@ -1239,6 +1295,8 @@ func WithPatientMultipleBirthBoolean(v bool) PatientOption {
 }
 
 // WithPatientMultipleBirthBooleanExt sets the MultipleBirthBooleanExt field.
+//
+// Deprecated: use PatientBuilder.SetMultipleBirthBooleanExt instead; removed in v2.
 func WithPatientMultipleBirthBooleanExt(v Element) PatientOption {
 	return func(r *Patient) {
 		r.MultipleBirthBooleanExt = &v
@@ -1246,6 +1304,8 @@ func WithPatientMultipleBirthBooleanExt(v Element) PatientOption {
 }
 
 // WithPatientMultipleBirthInteger sets the MultipleBirthInteger field.
+//
+// Deprecated: use PatientBuilder.SetMultipleBirthInteger instead; removed in v2.
 func WithPatientMultipleBirthInteger(v int) PatientOption {
 	return func(r *Patient) {
 		r.MultipleBirthInteger = &v
@@ -1253,6 +1313,8 @@ func WithPatientMultipleBirthInteger(v int) PatientOption {
 }
 
 // WithPatientMultipleBirthIntegerExt sets the MultipleBirthIntegerExt field.
+//
+// Deprecated: use PatientBuilder.SetMultipleBirthIntegerExt instead; removed in v2.
 func WithPatientMultipleBirthIntegerExt(v Element) PatientOption {
 	return func(r *Patient) {
 		r.MultipleBirthIntegerExt = &v
@@ -1260,6 +1322,8 @@ func WithPatientMultipleBirthIntegerExt(v Element) PatientOption {
 }
 
 // WithPatientPhoto adds a Photo to the Patient.
+//
+// Deprecated: use PatientBuilder.AddPhoto instead; removed in v2.
 func WithPatientPhoto(v Attachment) PatientOption {
 	return func(r *Patient) {
 		r.Photo = append(r.Photo, v)
@@ -1267,6 +1331,8 @@ func WithPatientPhoto(v Attachment) PatientOption {
 }
 
 // WithPatientContact adds a Contact to the Patient.
+//
+// Deprecated: use PatientBuilder.AddContact instead; removed in v2.
 func WithPatientContact(v PatientContact) PatientOption {
 	return func(r *Patient) {
 		r.Contact = append(r.Contact, v)
@@ -1274,6 +1340,8 @@ func WithPatientContact(v PatientContact) PatientOption {
 }
 
 // WithPatientCommunication adds a Communication to the Patient.
+//
+// Deprecated: use PatientBuilder.AddCommunication instead; removed in v2.
 func WithPatientCommunication(v PatientCommunication) PatientOption {
 	return func(r *Patient) {
 		r.Communication = append(r.Communication, v)
@@ -1281,6 +1349,8 @@ func WithPatientCommunication(v PatientCommunication) PatientOption {
 }
 
 // WithPatientGeneralPractitioner adds a GeneralPractitioner to the Patient.
+//
+// Deprecated: use PatientBuilder.AddGeneralPractitioner instead; removed in v2.
 func WithPatientGeneralPractitioner(v Reference) PatientOption {
 	return func(r *Patient) {
 		r.GeneralPractitioner = append(r.GeneralPractitioner, v)
@@ -1288,6 +1358,8 @@ func WithPatientGeneralPractitioner(v Reference) PatientOption {
 }
 
 // WithPatientManagingOrganization sets the ManagingOrganization field.
+//
+// Deprecated: use PatientBuilder.SetManagingOrganization instead; removed in v2.
 func WithPatientManagingOrganization(v Reference) PatientOption {
 	return func(r *Patient) {
 		r.ManagingOrganization = &v
@@ -1295,6 +1367,8 @@ func WithPatientManagingOrganization(v Reference) PatientOption {
 }
 
 // WithPatientLink adds a Link to the Patient.
+//
+// Deprecated: use PatientBuilder.AddLink instead; removed in v2.
 func WithPatientLink(v PatientLink) PatientOption {
 	return func(r *Patient) {
 		r.Link = append(r.Link, v)

@@ -1006,9 +1006,23 @@ func (b *InvoiceBuilder) AddNote(v Annotation) *InvoiceBuilder {
 // =============================================================================
 
 // InvoiceOption is a functional option for configuring a Invoice.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// InvoiceBuilder. Every WithInvoice* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type InvoiceOption func(*Invoice)
 
 // NewInvoice creates a new Invoice with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewInvoiceBuilder().SetId("x").Build()
+//
+// Deprecated: use NewInvoiceBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewInvoice(opts ...InvoiceOption) *Invoice {
 	r := &Invoice{ResourceType: "Invoice"}
 	for _, opt := range opts {
@@ -1018,6 +1032,8 @@ func NewInvoice(opts ...InvoiceOption) *Invoice {
 }
 
 // WithInvoiceId sets the Id field.
+//
+// Deprecated: use InvoiceBuilder.SetId instead; removed in v2.
 func WithInvoiceId(v string) InvoiceOption {
 	return func(r *Invoice) {
 		r.Id = &v
@@ -1025,6 +1041,8 @@ func WithInvoiceId(v string) InvoiceOption {
 }
 
 // WithInvoiceMeta sets the Meta field.
+//
+// Deprecated: use InvoiceBuilder.SetMeta instead; removed in v2.
 func WithInvoiceMeta(v Meta) InvoiceOption {
 	return func(r *Invoice) {
 		r.Meta = &v
@@ -1032,6 +1050,8 @@ func WithInvoiceMeta(v Meta) InvoiceOption {
 }
 
 // WithInvoiceImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use InvoiceBuilder.SetImplicitRules instead; removed in v2.
 func WithInvoiceImplicitRules(v string) InvoiceOption {
 	return func(r *Invoice) {
 		r.ImplicitRules = &v
@@ -1039,6 +1059,8 @@ func WithInvoiceImplicitRules(v string) InvoiceOption {
 }
 
 // WithInvoiceLanguage sets the Language field.
+//
+// Deprecated: use InvoiceBuilder.SetLanguage instead; removed in v2.
 func WithInvoiceLanguage(v string) InvoiceOption {
 	return func(r *Invoice) {
 		r.Language = &v
@@ -1046,6 +1068,8 @@ func WithInvoiceLanguage(v string) InvoiceOption {
 }
 
 // WithInvoiceText sets the Text field.
+//
+// Deprecated: use InvoiceBuilder.SetText instead; removed in v2.
 func WithInvoiceText(v Narrative) InvoiceOption {
 	return func(r *Invoice) {
 		r.Text = &v
@@ -1053,6 +1077,8 @@ func WithInvoiceText(v Narrative) InvoiceOption {
 }
 
 // WithInvoiceContained adds a Contained to the Invoice.
+//
+// Deprecated: use InvoiceBuilder.AddContained instead; removed in v2.
 func WithInvoiceContained(v Resource) InvoiceOption {
 	return func(r *Invoice) {
 		r.Contained = append(r.Contained, v)
@@ -1060,6 +1086,8 @@ func WithInvoiceContained(v Resource) InvoiceOption {
 }
 
 // WithInvoiceExtension adds a Extension to the Invoice.
+//
+// Deprecated: use InvoiceBuilder.AddExtension instead; removed in v2.
 func WithInvoiceExtension(v Extension) InvoiceOption {
 	return func(r *Invoice) {
 		r.Extension = append(r.Extension, v)
@@ -1067,6 +1095,8 @@ func WithInvoiceExtension(v Extension) InvoiceOption {
 }
 
 // WithInvoiceModifierExtension adds a ModifierExtension to the Invoice.
+//
+// Deprecated: use InvoiceBuilder.AddModifierExtension instead; removed in v2.
 func WithInvoiceModifierExtension(v Extension) InvoiceOption {
 	return func(r *Invoice) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1074,6 +1104,8 @@ func WithInvoiceModifierExtension(v Extension) InvoiceOption {
 }
 
 // WithInvoiceIdentifier adds a Identifier to the Invoice.
+//
+// Deprecated: use InvoiceBuilder.AddIdentifier instead; removed in v2.
 func WithInvoiceIdentifier(v Identifier) InvoiceOption {
 	return func(r *Invoice) {
 		r.Identifier = append(r.Identifier, v)
@@ -1081,6 +1113,8 @@ func WithInvoiceIdentifier(v Identifier) InvoiceOption {
 }
 
 // WithInvoiceStatus sets the Status field.
+//
+// Deprecated: use InvoiceBuilder.SetStatus instead; removed in v2.
 func WithInvoiceStatus(v InvoiceStatus) InvoiceOption {
 	return func(r *Invoice) {
 		r.Status = &v
@@ -1088,6 +1122,8 @@ func WithInvoiceStatus(v InvoiceStatus) InvoiceOption {
 }
 
 // WithInvoiceCancelledReason sets the CancelledReason field.
+//
+// Deprecated: use InvoiceBuilder.SetCancelledReason instead; removed in v2.
 func WithInvoiceCancelledReason(v string) InvoiceOption {
 	return func(r *Invoice) {
 		r.CancelledReason = &v
@@ -1095,6 +1131,8 @@ func WithInvoiceCancelledReason(v string) InvoiceOption {
 }
 
 // WithInvoiceType sets the Type field.
+//
+// Deprecated: use InvoiceBuilder.SetType instead; removed in v2.
 func WithInvoiceType(v CodeableConcept) InvoiceOption {
 	return func(r *Invoice) {
 		r.Type = &v
@@ -1102,6 +1140,8 @@ func WithInvoiceType(v CodeableConcept) InvoiceOption {
 }
 
 // WithInvoiceSubject sets the Subject field.
+//
+// Deprecated: use InvoiceBuilder.SetSubject instead; removed in v2.
 func WithInvoiceSubject(v Reference) InvoiceOption {
 	return func(r *Invoice) {
 		r.Subject = &v
@@ -1109,6 +1149,8 @@ func WithInvoiceSubject(v Reference) InvoiceOption {
 }
 
 // WithInvoiceRecipient sets the Recipient field.
+//
+// Deprecated: use InvoiceBuilder.SetRecipient instead; removed in v2.
 func WithInvoiceRecipient(v Reference) InvoiceOption {
 	return func(r *Invoice) {
 		r.Recipient = &v
@@ -1116,6 +1158,8 @@ func WithInvoiceRecipient(v Reference) InvoiceOption {
 }
 
 // WithInvoiceDate sets the Date field.
+//
+// Deprecated: use InvoiceBuilder.SetDate instead; removed in v2.
 func WithInvoiceDate(v string) InvoiceOption {
 	return func(r *Invoice) {
 		r.Date = &v
@@ -1123,6 +1167,8 @@ func WithInvoiceDate(v string) InvoiceOption {
 }
 
 // WithInvoiceParticipant adds a Participant to the Invoice.
+//
+// Deprecated: use InvoiceBuilder.AddParticipant instead; removed in v2.
 func WithInvoiceParticipant(v InvoiceParticipant) InvoiceOption {
 	return func(r *Invoice) {
 		r.Participant = append(r.Participant, v)
@@ -1130,6 +1176,8 @@ func WithInvoiceParticipant(v InvoiceParticipant) InvoiceOption {
 }
 
 // WithInvoiceIssuer sets the Issuer field.
+//
+// Deprecated: use InvoiceBuilder.SetIssuer instead; removed in v2.
 func WithInvoiceIssuer(v Reference) InvoiceOption {
 	return func(r *Invoice) {
 		r.Issuer = &v
@@ -1137,6 +1185,8 @@ func WithInvoiceIssuer(v Reference) InvoiceOption {
 }
 
 // WithInvoiceAccount sets the Account field.
+//
+// Deprecated: use InvoiceBuilder.SetAccount instead; removed in v2.
 func WithInvoiceAccount(v Reference) InvoiceOption {
 	return func(r *Invoice) {
 		r.Account = &v
@@ -1144,6 +1194,8 @@ func WithInvoiceAccount(v Reference) InvoiceOption {
 }
 
 // WithInvoiceLineItem adds a LineItem to the Invoice.
+//
+// Deprecated: use InvoiceBuilder.AddLineItem instead; removed in v2.
 func WithInvoiceLineItem(v InvoiceLineItem) InvoiceOption {
 	return func(r *Invoice) {
 		r.LineItem = append(r.LineItem, v)
@@ -1151,6 +1203,8 @@ func WithInvoiceLineItem(v InvoiceLineItem) InvoiceOption {
 }
 
 // WithInvoiceTotalPriceComponent adds a TotalPriceComponent to the Invoice.
+//
+// Deprecated: use InvoiceBuilder.AddTotalPriceComponent instead; removed in v2.
 func WithInvoiceTotalPriceComponent(v InvoiceLineItemPriceComponent) InvoiceOption {
 	return func(r *Invoice) {
 		r.TotalPriceComponent = append(r.TotalPriceComponent, v)
@@ -1158,6 +1212,8 @@ func WithInvoiceTotalPriceComponent(v InvoiceLineItemPriceComponent) InvoiceOpti
 }
 
 // WithInvoiceTotalNet sets the TotalNet field.
+//
+// Deprecated: use InvoiceBuilder.SetTotalNet instead; removed in v2.
 func WithInvoiceTotalNet(v Money) InvoiceOption {
 	return func(r *Invoice) {
 		r.TotalNet = &v
@@ -1165,6 +1221,8 @@ func WithInvoiceTotalNet(v Money) InvoiceOption {
 }
 
 // WithInvoiceTotalGross sets the TotalGross field.
+//
+// Deprecated: use InvoiceBuilder.SetTotalGross instead; removed in v2.
 func WithInvoiceTotalGross(v Money) InvoiceOption {
 	return func(r *Invoice) {
 		r.TotalGross = &v
@@ -1172,6 +1230,8 @@ func WithInvoiceTotalGross(v Money) InvoiceOption {
 }
 
 // WithInvoicePaymentTerms sets the PaymentTerms field.
+//
+// Deprecated: use InvoiceBuilder.SetPaymentTerms instead; removed in v2.
 func WithInvoicePaymentTerms(v string) InvoiceOption {
 	return func(r *Invoice) {
 		r.PaymentTerms = &v
@@ -1179,6 +1239,8 @@ func WithInvoicePaymentTerms(v string) InvoiceOption {
 }
 
 // WithInvoiceNote adds a Note to the Invoice.
+//
+// Deprecated: use InvoiceBuilder.AddNote instead; removed in v2.
 func WithInvoiceNote(v Annotation) InvoiceOption {
 	return func(r *Invoice) {
 		r.Note = append(r.Note, v)

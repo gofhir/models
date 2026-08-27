@@ -1028,9 +1028,23 @@ func (b *ResearchDefinitionBuilder) SetOutcome(v Reference) *ResearchDefinitionB
 // =============================================================================
 
 // ResearchDefinitionOption is a functional option for configuring a ResearchDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ResearchDefinitionBuilder. Every WithResearchDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ResearchDefinitionOption func(*ResearchDefinition)
 
 // NewResearchDefinition creates a new ResearchDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewResearchDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewResearchDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewResearchDefinition(opts ...ResearchDefinitionOption) *ResearchDefinition {
 	r := &ResearchDefinition{ResourceType: "ResearchDefinition"}
 	for _, opt := range opts {
@@ -1040,6 +1054,8 @@ func NewResearchDefinition(opts ...ResearchDefinitionOption) *ResearchDefinition
 }
 
 // WithResearchDefinitionId sets the Id field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetId instead; removed in v2.
 func WithResearchDefinitionId(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Id = &v
@@ -1047,6 +1063,8 @@ func WithResearchDefinitionId(v string) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionMeta sets the Meta field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetMeta instead; removed in v2.
 func WithResearchDefinitionMeta(v Meta) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Meta = &v
@@ -1054,6 +1072,8 @@ func WithResearchDefinitionMeta(v Meta) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithResearchDefinitionImplicitRules(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.ImplicitRules = &v
@@ -1061,6 +1081,8 @@ func WithResearchDefinitionImplicitRules(v string) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionLanguage sets the Language field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithResearchDefinitionLanguage(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Language = &v
@@ -1068,6 +1090,8 @@ func WithResearchDefinitionLanguage(v string) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionText sets the Text field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetText instead; removed in v2.
 func WithResearchDefinitionText(v Narrative) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Text = &v
@@ -1075,6 +1099,8 @@ func WithResearchDefinitionText(v Narrative) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionContained adds a Contained to the ResearchDefinition.
+//
+// Deprecated: use ResearchDefinitionBuilder.AddContained instead; removed in v2.
 func WithResearchDefinitionContained(v Resource) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -1082,6 +1108,8 @@ func WithResearchDefinitionContained(v Resource) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionExtension adds a Extension to the ResearchDefinition.
+//
+// Deprecated: use ResearchDefinitionBuilder.AddExtension instead; removed in v2.
 func WithResearchDefinitionExtension(v Extension) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -1089,6 +1117,8 @@ func WithResearchDefinitionExtension(v Extension) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionModifierExtension adds a ModifierExtension to the ResearchDefinition.
+//
+// Deprecated: use ResearchDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithResearchDefinitionModifierExtension(v Extension) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1096,6 +1126,8 @@ func WithResearchDefinitionModifierExtension(v Extension) ResearchDefinitionOpti
 }
 
 // WithResearchDefinitionUrl sets the Url field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetUrl instead; removed in v2.
 func WithResearchDefinitionUrl(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Url = &v
@@ -1103,6 +1135,8 @@ func WithResearchDefinitionUrl(v string) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionIdentifier adds a Identifier to the ResearchDefinition.
+//
+// Deprecated: use ResearchDefinitionBuilder.AddIdentifier instead; removed in v2.
 func WithResearchDefinitionIdentifier(v Identifier) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Identifier = append(r.Identifier, v)
@@ -1110,6 +1144,8 @@ func WithResearchDefinitionIdentifier(v Identifier) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionVersion sets the Version field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetVersion instead; removed in v2.
 func WithResearchDefinitionVersion(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Version = &v
@@ -1117,6 +1153,8 @@ func WithResearchDefinitionVersion(v string) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionName sets the Name field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetName instead; removed in v2.
 func WithResearchDefinitionName(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Name = &v
@@ -1124,6 +1162,8 @@ func WithResearchDefinitionName(v string) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionTitle sets the Title field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetTitle instead; removed in v2.
 func WithResearchDefinitionTitle(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Title = &v
@@ -1131,6 +1171,8 @@ func WithResearchDefinitionTitle(v string) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionShortTitle sets the ShortTitle field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetShortTitle instead; removed in v2.
 func WithResearchDefinitionShortTitle(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.ShortTitle = &v
@@ -1138,6 +1180,8 @@ func WithResearchDefinitionShortTitle(v string) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionSubtitle sets the Subtitle field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetSubtitle instead; removed in v2.
 func WithResearchDefinitionSubtitle(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Subtitle = &v
@@ -1145,6 +1189,8 @@ func WithResearchDefinitionSubtitle(v string) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionStatus sets the Status field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetStatus instead; removed in v2.
 func WithResearchDefinitionStatus(v PublicationStatus) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Status = &v
@@ -1152,6 +1198,8 @@ func WithResearchDefinitionStatus(v PublicationStatus) ResearchDefinitionOption 
 }
 
 // WithResearchDefinitionExperimental sets the Experimental field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetExperimental instead; removed in v2.
 func WithResearchDefinitionExperimental(v bool) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Experimental = &v
@@ -1159,6 +1207,8 @@ func WithResearchDefinitionExperimental(v bool) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionSubjectCodeableConcept sets the SubjectCodeableConcept field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetSubjectCodeableConcept instead; removed in v2.
 func WithResearchDefinitionSubjectCodeableConcept(v CodeableConcept) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.SubjectCodeableConcept = &v
@@ -1166,6 +1216,8 @@ func WithResearchDefinitionSubjectCodeableConcept(v CodeableConcept) ResearchDef
 }
 
 // WithResearchDefinitionSubjectReference sets the SubjectReference field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetSubjectReference instead; removed in v2.
 func WithResearchDefinitionSubjectReference(v Reference) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.SubjectReference = &v
@@ -1173,6 +1225,8 @@ func WithResearchDefinitionSubjectReference(v Reference) ResearchDefinitionOptio
 }
 
 // WithResearchDefinitionDate sets the Date field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetDate instead; removed in v2.
 func WithResearchDefinitionDate(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Date = &v
@@ -1180,6 +1234,8 @@ func WithResearchDefinitionDate(v string) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionPublisher sets the Publisher field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetPublisher instead; removed in v2.
 func WithResearchDefinitionPublisher(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Publisher = &v
@@ -1187,6 +1243,8 @@ func WithResearchDefinitionPublisher(v string) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionContact adds a Contact to the ResearchDefinition.
+//
+// Deprecated: use ResearchDefinitionBuilder.AddContact instead; removed in v2.
 func WithResearchDefinitionContact(v ContactDetail) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Contact = append(r.Contact, v)
@@ -1194,6 +1252,8 @@ func WithResearchDefinitionContact(v ContactDetail) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionDescription sets the Description field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetDescription instead; removed in v2.
 func WithResearchDefinitionDescription(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Description = &v
@@ -1201,6 +1261,8 @@ func WithResearchDefinitionDescription(v string) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionComment adds a Comment to the ResearchDefinition.
+//
+// Deprecated: use ResearchDefinitionBuilder.AddComment instead; removed in v2.
 func WithResearchDefinitionComment(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Comment = append(r.Comment, v)
@@ -1208,6 +1270,8 @@ func WithResearchDefinitionComment(v string) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionUseContext adds a UseContext to the ResearchDefinition.
+//
+// Deprecated: use ResearchDefinitionBuilder.AddUseContext instead; removed in v2.
 func WithResearchDefinitionUseContext(v UsageContext) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.UseContext = append(r.UseContext, v)
@@ -1215,6 +1279,8 @@ func WithResearchDefinitionUseContext(v UsageContext) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionJurisdiction adds a Jurisdiction to the ResearchDefinition.
+//
+// Deprecated: use ResearchDefinitionBuilder.AddJurisdiction instead; removed in v2.
 func WithResearchDefinitionJurisdiction(v CodeableConcept) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1222,6 +1288,8 @@ func WithResearchDefinitionJurisdiction(v CodeableConcept) ResearchDefinitionOpt
 }
 
 // WithResearchDefinitionPurpose sets the Purpose field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetPurpose instead; removed in v2.
 func WithResearchDefinitionPurpose(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Purpose = &v
@@ -1229,6 +1297,8 @@ func WithResearchDefinitionPurpose(v string) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionUsage sets the Usage field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetUsage instead; removed in v2.
 func WithResearchDefinitionUsage(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Usage = &v
@@ -1236,6 +1306,8 @@ func WithResearchDefinitionUsage(v string) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionCopyright sets the Copyright field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetCopyright instead; removed in v2.
 func WithResearchDefinitionCopyright(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Copyright = &v
@@ -1243,6 +1315,8 @@ func WithResearchDefinitionCopyright(v string) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionApprovalDate sets the ApprovalDate field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetApprovalDate instead; removed in v2.
 func WithResearchDefinitionApprovalDate(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.ApprovalDate = &v
@@ -1250,6 +1324,8 @@ func WithResearchDefinitionApprovalDate(v string) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionLastReviewDate sets the LastReviewDate field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetLastReviewDate instead; removed in v2.
 func WithResearchDefinitionLastReviewDate(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.LastReviewDate = &v
@@ -1257,6 +1333,8 @@ func WithResearchDefinitionLastReviewDate(v string) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionEffectivePeriod sets the EffectivePeriod field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetEffectivePeriod instead; removed in v2.
 func WithResearchDefinitionEffectivePeriod(v Period) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.EffectivePeriod = &v
@@ -1264,6 +1342,8 @@ func WithResearchDefinitionEffectivePeriod(v Period) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionTopic adds a Topic to the ResearchDefinition.
+//
+// Deprecated: use ResearchDefinitionBuilder.AddTopic instead; removed in v2.
 func WithResearchDefinitionTopic(v CodeableConcept) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Topic = append(r.Topic, v)
@@ -1271,6 +1351,8 @@ func WithResearchDefinitionTopic(v CodeableConcept) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionAuthor adds a Author to the ResearchDefinition.
+//
+// Deprecated: use ResearchDefinitionBuilder.AddAuthor instead; removed in v2.
 func WithResearchDefinitionAuthor(v ContactDetail) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Author = append(r.Author, v)
@@ -1278,6 +1360,8 @@ func WithResearchDefinitionAuthor(v ContactDetail) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionEditor adds a Editor to the ResearchDefinition.
+//
+// Deprecated: use ResearchDefinitionBuilder.AddEditor instead; removed in v2.
 func WithResearchDefinitionEditor(v ContactDetail) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Editor = append(r.Editor, v)
@@ -1285,6 +1369,8 @@ func WithResearchDefinitionEditor(v ContactDetail) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionReviewer adds a Reviewer to the ResearchDefinition.
+//
+// Deprecated: use ResearchDefinitionBuilder.AddReviewer instead; removed in v2.
 func WithResearchDefinitionReviewer(v ContactDetail) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Reviewer = append(r.Reviewer, v)
@@ -1292,6 +1378,8 @@ func WithResearchDefinitionReviewer(v ContactDetail) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionEndorser adds a Endorser to the ResearchDefinition.
+//
+// Deprecated: use ResearchDefinitionBuilder.AddEndorser instead; removed in v2.
 func WithResearchDefinitionEndorser(v ContactDetail) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Endorser = append(r.Endorser, v)
@@ -1299,6 +1387,8 @@ func WithResearchDefinitionEndorser(v ContactDetail) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionRelatedArtifact adds a RelatedArtifact to the ResearchDefinition.
+//
+// Deprecated: use ResearchDefinitionBuilder.AddRelatedArtifact instead; removed in v2.
 func WithResearchDefinitionRelatedArtifact(v RelatedArtifact) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.RelatedArtifact = append(r.RelatedArtifact, v)
@@ -1306,6 +1396,8 @@ func WithResearchDefinitionRelatedArtifact(v RelatedArtifact) ResearchDefinition
 }
 
 // WithResearchDefinitionLibrary adds a Library to the ResearchDefinition.
+//
+// Deprecated: use ResearchDefinitionBuilder.AddLibrary instead; removed in v2.
 func WithResearchDefinitionLibrary(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Library = append(r.Library, v)
@@ -1313,6 +1405,8 @@ func WithResearchDefinitionLibrary(v string) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionPopulation sets the Population field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetPopulation instead; removed in v2.
 func WithResearchDefinitionPopulation(v Reference) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Population = v
@@ -1320,6 +1414,8 @@ func WithResearchDefinitionPopulation(v Reference) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionExposure sets the Exposure field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetExposure instead; removed in v2.
 func WithResearchDefinitionExposure(v Reference) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Exposure = &v
@@ -1327,6 +1423,8 @@ func WithResearchDefinitionExposure(v Reference) ResearchDefinitionOption {
 }
 
 // WithResearchDefinitionExposureAlternative sets the ExposureAlternative field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetExposureAlternative instead; removed in v2.
 func WithResearchDefinitionExposureAlternative(v Reference) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.ExposureAlternative = &v
@@ -1334,6 +1432,8 @@ func WithResearchDefinitionExposureAlternative(v Reference) ResearchDefinitionOp
 }
 
 // WithResearchDefinitionOutcome sets the Outcome field.
+//
+// Deprecated: use ResearchDefinitionBuilder.SetOutcome instead; removed in v2.
 func WithResearchDefinitionOutcome(v Reference) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
 		r.Outcome = &v

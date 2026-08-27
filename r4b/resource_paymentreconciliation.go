@@ -933,9 +933,23 @@ func (b *PaymentReconciliationBuilder) AddProcessNote(v PaymentReconciliationPro
 // =============================================================================
 
 // PaymentReconciliationOption is a functional option for configuring a PaymentReconciliation.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// PaymentReconciliationBuilder. Every WithPaymentReconciliation* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type PaymentReconciliationOption func(*PaymentReconciliation)
 
 // NewPaymentReconciliation creates a new PaymentReconciliation with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewPaymentReconciliationBuilder().SetId("x").Build()
+//
+// Deprecated: use NewPaymentReconciliationBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewPaymentReconciliation(opts ...PaymentReconciliationOption) *PaymentReconciliation {
 	r := &PaymentReconciliation{ResourceType: "PaymentReconciliation"}
 	for _, opt := range opts {
@@ -945,6 +959,8 @@ func NewPaymentReconciliation(opts ...PaymentReconciliationOption) *PaymentRecon
 }
 
 // WithPaymentReconciliationId sets the Id field.
+//
+// Deprecated: use PaymentReconciliationBuilder.SetId instead; removed in v2.
 func WithPaymentReconciliationId(v string) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.Id = &v
@@ -952,6 +968,8 @@ func WithPaymentReconciliationId(v string) PaymentReconciliationOption {
 }
 
 // WithPaymentReconciliationMeta sets the Meta field.
+//
+// Deprecated: use PaymentReconciliationBuilder.SetMeta instead; removed in v2.
 func WithPaymentReconciliationMeta(v Meta) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.Meta = &v
@@ -959,6 +977,8 @@ func WithPaymentReconciliationMeta(v Meta) PaymentReconciliationOption {
 }
 
 // WithPaymentReconciliationImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use PaymentReconciliationBuilder.SetImplicitRules instead; removed in v2.
 func WithPaymentReconciliationImplicitRules(v string) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.ImplicitRules = &v
@@ -966,6 +986,8 @@ func WithPaymentReconciliationImplicitRules(v string) PaymentReconciliationOptio
 }
 
 // WithPaymentReconciliationLanguage sets the Language field.
+//
+// Deprecated: use PaymentReconciliationBuilder.SetLanguage instead; removed in v2.
 func WithPaymentReconciliationLanguage(v string) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.Language = &v
@@ -973,6 +995,8 @@ func WithPaymentReconciliationLanguage(v string) PaymentReconciliationOption {
 }
 
 // WithPaymentReconciliationText sets the Text field.
+//
+// Deprecated: use PaymentReconciliationBuilder.SetText instead; removed in v2.
 func WithPaymentReconciliationText(v Narrative) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.Text = &v
@@ -980,6 +1004,8 @@ func WithPaymentReconciliationText(v Narrative) PaymentReconciliationOption {
 }
 
 // WithPaymentReconciliationContained adds a Contained to the PaymentReconciliation.
+//
+// Deprecated: use PaymentReconciliationBuilder.AddContained instead; removed in v2.
 func WithPaymentReconciliationContained(v Resource) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.Contained = append(r.Contained, v)
@@ -987,6 +1013,8 @@ func WithPaymentReconciliationContained(v Resource) PaymentReconciliationOption 
 }
 
 // WithPaymentReconciliationExtension adds a Extension to the PaymentReconciliation.
+//
+// Deprecated: use PaymentReconciliationBuilder.AddExtension instead; removed in v2.
 func WithPaymentReconciliationExtension(v Extension) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.Extension = append(r.Extension, v)
@@ -994,6 +1022,8 @@ func WithPaymentReconciliationExtension(v Extension) PaymentReconciliationOption
 }
 
 // WithPaymentReconciliationModifierExtension adds a ModifierExtension to the PaymentReconciliation.
+//
+// Deprecated: use PaymentReconciliationBuilder.AddModifierExtension instead; removed in v2.
 func WithPaymentReconciliationModifierExtension(v Extension) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1001,6 +1031,8 @@ func WithPaymentReconciliationModifierExtension(v Extension) PaymentReconciliati
 }
 
 // WithPaymentReconciliationIdentifier adds a Identifier to the PaymentReconciliation.
+//
+// Deprecated: use PaymentReconciliationBuilder.AddIdentifier instead; removed in v2.
 func WithPaymentReconciliationIdentifier(v Identifier) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.Identifier = append(r.Identifier, v)
@@ -1008,6 +1040,8 @@ func WithPaymentReconciliationIdentifier(v Identifier) PaymentReconciliationOpti
 }
 
 // WithPaymentReconciliationStatus sets the Status field.
+//
+// Deprecated: use PaymentReconciliationBuilder.SetStatus instead; removed in v2.
 func WithPaymentReconciliationStatus(v FinancialResourceStatusCodes) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.Status = &v
@@ -1015,6 +1049,8 @@ func WithPaymentReconciliationStatus(v FinancialResourceStatusCodes) PaymentReco
 }
 
 // WithPaymentReconciliationPeriod sets the Period field.
+//
+// Deprecated: use PaymentReconciliationBuilder.SetPeriod instead; removed in v2.
 func WithPaymentReconciliationPeriod(v Period) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.Period = &v
@@ -1022,6 +1058,8 @@ func WithPaymentReconciliationPeriod(v Period) PaymentReconciliationOption {
 }
 
 // WithPaymentReconciliationCreated sets the Created field.
+//
+// Deprecated: use PaymentReconciliationBuilder.SetCreated instead; removed in v2.
 func WithPaymentReconciliationCreated(v string) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.Created = &v
@@ -1029,6 +1067,8 @@ func WithPaymentReconciliationCreated(v string) PaymentReconciliationOption {
 }
 
 // WithPaymentReconciliationPaymentIssuer sets the PaymentIssuer field.
+//
+// Deprecated: use PaymentReconciliationBuilder.SetPaymentIssuer instead; removed in v2.
 func WithPaymentReconciliationPaymentIssuer(v Reference) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.PaymentIssuer = &v
@@ -1036,6 +1076,8 @@ func WithPaymentReconciliationPaymentIssuer(v Reference) PaymentReconciliationOp
 }
 
 // WithPaymentReconciliationRequest sets the Request field.
+//
+// Deprecated: use PaymentReconciliationBuilder.SetRequest instead; removed in v2.
 func WithPaymentReconciliationRequest(v Reference) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.Request = &v
@@ -1043,6 +1085,8 @@ func WithPaymentReconciliationRequest(v Reference) PaymentReconciliationOption {
 }
 
 // WithPaymentReconciliationRequestor sets the Requestor field.
+//
+// Deprecated: use PaymentReconciliationBuilder.SetRequestor instead; removed in v2.
 func WithPaymentReconciliationRequestor(v Reference) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.Requestor = &v
@@ -1050,6 +1094,8 @@ func WithPaymentReconciliationRequestor(v Reference) PaymentReconciliationOption
 }
 
 // WithPaymentReconciliationOutcome sets the Outcome field.
+//
+// Deprecated: use PaymentReconciliationBuilder.SetOutcome instead; removed in v2.
 func WithPaymentReconciliationOutcome(v RemittanceOutcome) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.Outcome = &v
@@ -1057,6 +1103,8 @@ func WithPaymentReconciliationOutcome(v RemittanceOutcome) PaymentReconciliation
 }
 
 // WithPaymentReconciliationDisposition sets the Disposition field.
+//
+// Deprecated: use PaymentReconciliationBuilder.SetDisposition instead; removed in v2.
 func WithPaymentReconciliationDisposition(v string) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.Disposition = &v
@@ -1064,6 +1112,8 @@ func WithPaymentReconciliationDisposition(v string) PaymentReconciliationOption 
 }
 
 // WithPaymentReconciliationPaymentDate sets the PaymentDate field.
+//
+// Deprecated: use PaymentReconciliationBuilder.SetPaymentDate instead; removed in v2.
 func WithPaymentReconciliationPaymentDate(v string) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.PaymentDate = &v
@@ -1071,6 +1121,8 @@ func WithPaymentReconciliationPaymentDate(v string) PaymentReconciliationOption 
 }
 
 // WithPaymentReconciliationPaymentAmount sets the PaymentAmount field.
+//
+// Deprecated: use PaymentReconciliationBuilder.SetPaymentAmount instead; removed in v2.
 func WithPaymentReconciliationPaymentAmount(v Money) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.PaymentAmount = v
@@ -1078,6 +1130,8 @@ func WithPaymentReconciliationPaymentAmount(v Money) PaymentReconciliationOption
 }
 
 // WithPaymentReconciliationPaymentIdentifier sets the PaymentIdentifier field.
+//
+// Deprecated: use PaymentReconciliationBuilder.SetPaymentIdentifier instead; removed in v2.
 func WithPaymentReconciliationPaymentIdentifier(v Identifier) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.PaymentIdentifier = &v
@@ -1085,6 +1139,8 @@ func WithPaymentReconciliationPaymentIdentifier(v Identifier) PaymentReconciliat
 }
 
 // WithPaymentReconciliationDetail adds a Detail to the PaymentReconciliation.
+//
+// Deprecated: use PaymentReconciliationBuilder.AddDetail instead; removed in v2.
 func WithPaymentReconciliationDetail(v PaymentReconciliationDetail) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.Detail = append(r.Detail, v)
@@ -1092,6 +1148,8 @@ func WithPaymentReconciliationDetail(v PaymentReconciliationDetail) PaymentRecon
 }
 
 // WithPaymentReconciliationFormCode sets the FormCode field.
+//
+// Deprecated: use PaymentReconciliationBuilder.SetFormCode instead; removed in v2.
 func WithPaymentReconciliationFormCode(v CodeableConcept) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.FormCode = &v
@@ -1099,6 +1157,8 @@ func WithPaymentReconciliationFormCode(v CodeableConcept) PaymentReconciliationO
 }
 
 // WithPaymentReconciliationProcessNote adds a ProcessNote to the PaymentReconciliation.
+//
+// Deprecated: use PaymentReconciliationBuilder.AddProcessNote instead; removed in v2.
 func WithPaymentReconciliationProcessNote(v PaymentReconciliationProcessNote) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
 		r.ProcessNote = append(r.ProcessNote, v)

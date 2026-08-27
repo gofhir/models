@@ -1092,9 +1092,23 @@ func (b *BundleBuilder) SetIssues(v Resource) *BundleBuilder {
 // =============================================================================
 
 // BundleOption is a functional option for configuring a Bundle.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// BundleBuilder. Every WithBundle* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type BundleOption func(*Bundle)
 
 // NewBundle creates a new Bundle with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewBundleBuilder().SetId("x").Build()
+//
+// Deprecated: use NewBundleBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewBundle(opts ...BundleOption) *Bundle {
 	r := &Bundle{ResourceType: "Bundle"}
 	for _, opt := range opts {
@@ -1104,6 +1118,8 @@ func NewBundle(opts ...BundleOption) *Bundle {
 }
 
 // WithBundleId sets the Id field.
+//
+// Deprecated: use BundleBuilder.SetId instead; removed in v2.
 func WithBundleId(v string) BundleOption {
 	return func(r *Bundle) {
 		r.Id = &v
@@ -1111,6 +1127,8 @@ func WithBundleId(v string) BundleOption {
 }
 
 // WithBundleMeta sets the Meta field.
+//
+// Deprecated: use BundleBuilder.SetMeta instead; removed in v2.
 func WithBundleMeta(v Meta) BundleOption {
 	return func(r *Bundle) {
 		r.Meta = &v
@@ -1118,6 +1136,8 @@ func WithBundleMeta(v Meta) BundleOption {
 }
 
 // WithBundleImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use BundleBuilder.SetImplicitRules instead; removed in v2.
 func WithBundleImplicitRules(v string) BundleOption {
 	return func(r *Bundle) {
 		r.ImplicitRules = &v
@@ -1125,6 +1145,8 @@ func WithBundleImplicitRules(v string) BundleOption {
 }
 
 // WithBundleLanguage sets the Language field.
+//
+// Deprecated: use BundleBuilder.SetLanguage instead; removed in v2.
 func WithBundleLanguage(v string) BundleOption {
 	return func(r *Bundle) {
 		r.Language = &v
@@ -1132,6 +1154,8 @@ func WithBundleLanguage(v string) BundleOption {
 }
 
 // WithBundleIdentifier sets the Identifier field.
+//
+// Deprecated: use BundleBuilder.SetIdentifier instead; removed in v2.
 func WithBundleIdentifier(v Identifier) BundleOption {
 	return func(r *Bundle) {
 		r.Identifier = &v
@@ -1139,6 +1163,8 @@ func WithBundleIdentifier(v Identifier) BundleOption {
 }
 
 // WithBundleType sets the Type field.
+//
+// Deprecated: use BundleBuilder.SetType instead; removed in v2.
 func WithBundleType(v BundleType) BundleOption {
 	return func(r *Bundle) {
 		r.Type = &v
@@ -1146,6 +1172,8 @@ func WithBundleType(v BundleType) BundleOption {
 }
 
 // WithBundleTimestamp sets the Timestamp field.
+//
+// Deprecated: use BundleBuilder.SetTimestamp instead; removed in v2.
 func WithBundleTimestamp(v string) BundleOption {
 	return func(r *Bundle) {
 		r.Timestamp = &v
@@ -1153,6 +1181,8 @@ func WithBundleTimestamp(v string) BundleOption {
 }
 
 // WithBundleTotal sets the Total field.
+//
+// Deprecated: use BundleBuilder.SetTotal instead; removed in v2.
 func WithBundleTotal(v uint32) BundleOption {
 	return func(r *Bundle) {
 		r.Total = &v
@@ -1160,6 +1190,8 @@ func WithBundleTotal(v uint32) BundleOption {
 }
 
 // WithBundleLink adds a Link to the Bundle.
+//
+// Deprecated: use BundleBuilder.AddLink instead; removed in v2.
 func WithBundleLink(v BundleLink) BundleOption {
 	return func(r *Bundle) {
 		r.Link = append(r.Link, v)
@@ -1167,6 +1199,8 @@ func WithBundleLink(v BundleLink) BundleOption {
 }
 
 // WithBundleEntry adds a Entry to the Bundle.
+//
+// Deprecated: use BundleBuilder.AddEntry instead; removed in v2.
 func WithBundleEntry(v BundleEntry) BundleOption {
 	return func(r *Bundle) {
 		r.Entry = append(r.Entry, v)
@@ -1174,6 +1208,8 @@ func WithBundleEntry(v BundleEntry) BundleOption {
 }
 
 // WithBundleSignature sets the Signature field.
+//
+// Deprecated: use BundleBuilder.SetSignature instead; removed in v2.
 func WithBundleSignature(v Signature) BundleOption {
 	return func(r *Bundle) {
 		r.Signature = &v
@@ -1181,6 +1217,8 @@ func WithBundleSignature(v Signature) BundleOption {
 }
 
 // WithBundleIssues sets the Issues field.
+//
+// Deprecated: use BundleBuilder.SetIssues instead; removed in v2.
 func WithBundleIssues(v Resource) BundleOption {
 	return func(r *Bundle) {
 		r.Issues = v

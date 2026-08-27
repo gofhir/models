@@ -497,9 +497,23 @@ func (b *BodyStructureBuilder) SetPatient(v Reference) *BodyStructureBuilder {
 // =============================================================================
 
 // BodyStructureOption is a functional option for configuring a BodyStructure.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// BodyStructureBuilder. Every WithBodyStructure* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type BodyStructureOption func(*BodyStructure)
 
 // NewBodyStructure creates a new BodyStructure with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewBodyStructureBuilder().SetId("x").Build()
+//
+// Deprecated: use NewBodyStructureBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewBodyStructure(opts ...BodyStructureOption) *BodyStructure {
 	r := &BodyStructure{ResourceType: "BodyStructure"}
 	for _, opt := range opts {
@@ -509,6 +523,8 @@ func NewBodyStructure(opts ...BodyStructureOption) *BodyStructure {
 }
 
 // WithBodyStructureId sets the Id field.
+//
+// Deprecated: use BodyStructureBuilder.SetId instead; removed in v2.
 func WithBodyStructureId(v string) BodyStructureOption {
 	return func(r *BodyStructure) {
 		r.Id = &v
@@ -516,6 +532,8 @@ func WithBodyStructureId(v string) BodyStructureOption {
 }
 
 // WithBodyStructureMeta sets the Meta field.
+//
+// Deprecated: use BodyStructureBuilder.SetMeta instead; removed in v2.
 func WithBodyStructureMeta(v Meta) BodyStructureOption {
 	return func(r *BodyStructure) {
 		r.Meta = &v
@@ -523,6 +541,8 @@ func WithBodyStructureMeta(v Meta) BodyStructureOption {
 }
 
 // WithBodyStructureImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use BodyStructureBuilder.SetImplicitRules instead; removed in v2.
 func WithBodyStructureImplicitRules(v string) BodyStructureOption {
 	return func(r *BodyStructure) {
 		r.ImplicitRules = &v
@@ -530,6 +550,8 @@ func WithBodyStructureImplicitRules(v string) BodyStructureOption {
 }
 
 // WithBodyStructureLanguage sets the Language field.
+//
+// Deprecated: use BodyStructureBuilder.SetLanguage instead; removed in v2.
 func WithBodyStructureLanguage(v string) BodyStructureOption {
 	return func(r *BodyStructure) {
 		r.Language = &v
@@ -537,6 +559,8 @@ func WithBodyStructureLanguage(v string) BodyStructureOption {
 }
 
 // WithBodyStructureText sets the Text field.
+//
+// Deprecated: use BodyStructureBuilder.SetText instead; removed in v2.
 func WithBodyStructureText(v Narrative) BodyStructureOption {
 	return func(r *BodyStructure) {
 		r.Text = &v
@@ -544,6 +568,8 @@ func WithBodyStructureText(v Narrative) BodyStructureOption {
 }
 
 // WithBodyStructureContained adds a Contained to the BodyStructure.
+//
+// Deprecated: use BodyStructureBuilder.AddContained instead; removed in v2.
 func WithBodyStructureContained(v Resource) BodyStructureOption {
 	return func(r *BodyStructure) {
 		r.Contained = append(r.Contained, v)
@@ -551,6 +577,8 @@ func WithBodyStructureContained(v Resource) BodyStructureOption {
 }
 
 // WithBodyStructureExtension adds a Extension to the BodyStructure.
+//
+// Deprecated: use BodyStructureBuilder.AddExtension instead; removed in v2.
 func WithBodyStructureExtension(v Extension) BodyStructureOption {
 	return func(r *BodyStructure) {
 		r.Extension = append(r.Extension, v)
@@ -558,6 +586,8 @@ func WithBodyStructureExtension(v Extension) BodyStructureOption {
 }
 
 // WithBodyStructureModifierExtension adds a ModifierExtension to the BodyStructure.
+//
+// Deprecated: use BodyStructureBuilder.AddModifierExtension instead; removed in v2.
 func WithBodyStructureModifierExtension(v Extension) BodyStructureOption {
 	return func(r *BodyStructure) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -565,6 +595,8 @@ func WithBodyStructureModifierExtension(v Extension) BodyStructureOption {
 }
 
 // WithBodyStructureIdentifier adds a Identifier to the BodyStructure.
+//
+// Deprecated: use BodyStructureBuilder.AddIdentifier instead; removed in v2.
 func WithBodyStructureIdentifier(v Identifier) BodyStructureOption {
 	return func(r *BodyStructure) {
 		r.Identifier = append(r.Identifier, v)
@@ -572,6 +604,8 @@ func WithBodyStructureIdentifier(v Identifier) BodyStructureOption {
 }
 
 // WithBodyStructureActive sets the Active field.
+//
+// Deprecated: use BodyStructureBuilder.SetActive instead; removed in v2.
 func WithBodyStructureActive(v bool) BodyStructureOption {
 	return func(r *BodyStructure) {
 		r.Active = &v
@@ -579,6 +613,8 @@ func WithBodyStructureActive(v bool) BodyStructureOption {
 }
 
 // WithBodyStructureMorphology sets the Morphology field.
+//
+// Deprecated: use BodyStructureBuilder.SetMorphology instead; removed in v2.
 func WithBodyStructureMorphology(v CodeableConcept) BodyStructureOption {
 	return func(r *BodyStructure) {
 		r.Morphology = &v
@@ -586,6 +622,8 @@ func WithBodyStructureMorphology(v CodeableConcept) BodyStructureOption {
 }
 
 // WithBodyStructureLocation sets the Location field.
+//
+// Deprecated: use BodyStructureBuilder.SetLocation instead; removed in v2.
 func WithBodyStructureLocation(v CodeableConcept) BodyStructureOption {
 	return func(r *BodyStructure) {
 		r.Location = &v
@@ -593,6 +631,8 @@ func WithBodyStructureLocation(v CodeableConcept) BodyStructureOption {
 }
 
 // WithBodyStructureLocationQualifier adds a LocationQualifier to the BodyStructure.
+//
+// Deprecated: use BodyStructureBuilder.AddLocationQualifier instead; removed in v2.
 func WithBodyStructureLocationQualifier(v CodeableConcept) BodyStructureOption {
 	return func(r *BodyStructure) {
 		r.LocationQualifier = append(r.LocationQualifier, v)
@@ -600,6 +640,8 @@ func WithBodyStructureLocationQualifier(v CodeableConcept) BodyStructureOption {
 }
 
 // WithBodyStructureDescription sets the Description field.
+//
+// Deprecated: use BodyStructureBuilder.SetDescription instead; removed in v2.
 func WithBodyStructureDescription(v string) BodyStructureOption {
 	return func(r *BodyStructure) {
 		r.Description = &v
@@ -607,6 +649,8 @@ func WithBodyStructureDescription(v string) BodyStructureOption {
 }
 
 // WithBodyStructureImage adds a Image to the BodyStructure.
+//
+// Deprecated: use BodyStructureBuilder.AddImage instead; removed in v2.
 func WithBodyStructureImage(v Attachment) BodyStructureOption {
 	return func(r *BodyStructure) {
 		r.Image = append(r.Image, v)
@@ -614,6 +658,8 @@ func WithBodyStructureImage(v Attachment) BodyStructureOption {
 }
 
 // WithBodyStructurePatient sets the Patient field.
+//
+// Deprecated: use BodyStructureBuilder.SetPatient instead; removed in v2.
 func WithBodyStructurePatient(v Reference) BodyStructureOption {
 	return func(r *BodyStructure) {
 		r.Patient = v

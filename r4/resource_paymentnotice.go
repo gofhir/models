@@ -566,9 +566,23 @@ func (b *PaymentNoticeBuilder) SetPaymentStatus(v CodeableConcept) *PaymentNotic
 // =============================================================================
 
 // PaymentNoticeOption is a functional option for configuring a PaymentNotice.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// PaymentNoticeBuilder. Every WithPaymentNotice* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type PaymentNoticeOption func(*PaymentNotice)
 
 // NewPaymentNotice creates a new PaymentNotice with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewPaymentNoticeBuilder().SetId("x").Build()
+//
+// Deprecated: use NewPaymentNoticeBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewPaymentNotice(opts ...PaymentNoticeOption) *PaymentNotice {
 	r := &PaymentNotice{ResourceType: "PaymentNotice"}
 	for _, opt := range opts {
@@ -578,6 +592,8 @@ func NewPaymentNotice(opts ...PaymentNoticeOption) *PaymentNotice {
 }
 
 // WithPaymentNoticeId sets the Id field.
+//
+// Deprecated: use PaymentNoticeBuilder.SetId instead; removed in v2.
 func WithPaymentNoticeId(v string) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
 		r.Id = &v
@@ -585,6 +601,8 @@ func WithPaymentNoticeId(v string) PaymentNoticeOption {
 }
 
 // WithPaymentNoticeMeta sets the Meta field.
+//
+// Deprecated: use PaymentNoticeBuilder.SetMeta instead; removed in v2.
 func WithPaymentNoticeMeta(v Meta) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
 		r.Meta = &v
@@ -592,6 +610,8 @@ func WithPaymentNoticeMeta(v Meta) PaymentNoticeOption {
 }
 
 // WithPaymentNoticeImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use PaymentNoticeBuilder.SetImplicitRules instead; removed in v2.
 func WithPaymentNoticeImplicitRules(v string) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
 		r.ImplicitRules = &v
@@ -599,6 +619,8 @@ func WithPaymentNoticeImplicitRules(v string) PaymentNoticeOption {
 }
 
 // WithPaymentNoticeLanguage sets the Language field.
+//
+// Deprecated: use PaymentNoticeBuilder.SetLanguage instead; removed in v2.
 func WithPaymentNoticeLanguage(v string) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
 		r.Language = &v
@@ -606,6 +628,8 @@ func WithPaymentNoticeLanguage(v string) PaymentNoticeOption {
 }
 
 // WithPaymentNoticeText sets the Text field.
+//
+// Deprecated: use PaymentNoticeBuilder.SetText instead; removed in v2.
 func WithPaymentNoticeText(v Narrative) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
 		r.Text = &v
@@ -613,6 +637,8 @@ func WithPaymentNoticeText(v Narrative) PaymentNoticeOption {
 }
 
 // WithPaymentNoticeContained adds a Contained to the PaymentNotice.
+//
+// Deprecated: use PaymentNoticeBuilder.AddContained instead; removed in v2.
 func WithPaymentNoticeContained(v Resource) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
 		r.Contained = append(r.Contained, v)
@@ -620,6 +646,8 @@ func WithPaymentNoticeContained(v Resource) PaymentNoticeOption {
 }
 
 // WithPaymentNoticeExtension adds a Extension to the PaymentNotice.
+//
+// Deprecated: use PaymentNoticeBuilder.AddExtension instead; removed in v2.
 func WithPaymentNoticeExtension(v Extension) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
 		r.Extension = append(r.Extension, v)
@@ -627,6 +655,8 @@ func WithPaymentNoticeExtension(v Extension) PaymentNoticeOption {
 }
 
 // WithPaymentNoticeModifierExtension adds a ModifierExtension to the PaymentNotice.
+//
+// Deprecated: use PaymentNoticeBuilder.AddModifierExtension instead; removed in v2.
 func WithPaymentNoticeModifierExtension(v Extension) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -634,6 +664,8 @@ func WithPaymentNoticeModifierExtension(v Extension) PaymentNoticeOption {
 }
 
 // WithPaymentNoticeIdentifier adds a Identifier to the PaymentNotice.
+//
+// Deprecated: use PaymentNoticeBuilder.AddIdentifier instead; removed in v2.
 func WithPaymentNoticeIdentifier(v Identifier) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
 		r.Identifier = append(r.Identifier, v)
@@ -641,6 +673,8 @@ func WithPaymentNoticeIdentifier(v Identifier) PaymentNoticeOption {
 }
 
 // WithPaymentNoticeStatus sets the Status field.
+//
+// Deprecated: use PaymentNoticeBuilder.SetStatus instead; removed in v2.
 func WithPaymentNoticeStatus(v FinancialResourceStatusCodes) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
 		r.Status = &v
@@ -648,6 +682,8 @@ func WithPaymentNoticeStatus(v FinancialResourceStatusCodes) PaymentNoticeOption
 }
 
 // WithPaymentNoticeRequest sets the Request field.
+//
+// Deprecated: use PaymentNoticeBuilder.SetRequest instead; removed in v2.
 func WithPaymentNoticeRequest(v Reference) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
 		r.Request = &v
@@ -655,6 +691,8 @@ func WithPaymentNoticeRequest(v Reference) PaymentNoticeOption {
 }
 
 // WithPaymentNoticeResponse sets the Response field.
+//
+// Deprecated: use PaymentNoticeBuilder.SetResponse instead; removed in v2.
 func WithPaymentNoticeResponse(v Reference) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
 		r.Response = &v
@@ -662,6 +700,8 @@ func WithPaymentNoticeResponse(v Reference) PaymentNoticeOption {
 }
 
 // WithPaymentNoticeCreated sets the Created field.
+//
+// Deprecated: use PaymentNoticeBuilder.SetCreated instead; removed in v2.
 func WithPaymentNoticeCreated(v string) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
 		r.Created = &v
@@ -669,6 +709,8 @@ func WithPaymentNoticeCreated(v string) PaymentNoticeOption {
 }
 
 // WithPaymentNoticeProvider sets the Provider field.
+//
+// Deprecated: use PaymentNoticeBuilder.SetProvider instead; removed in v2.
 func WithPaymentNoticeProvider(v Reference) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
 		r.Provider = &v
@@ -676,6 +718,8 @@ func WithPaymentNoticeProvider(v Reference) PaymentNoticeOption {
 }
 
 // WithPaymentNoticePayment sets the Payment field.
+//
+// Deprecated: use PaymentNoticeBuilder.SetPayment instead; removed in v2.
 func WithPaymentNoticePayment(v Reference) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
 		r.Payment = v
@@ -683,6 +727,8 @@ func WithPaymentNoticePayment(v Reference) PaymentNoticeOption {
 }
 
 // WithPaymentNoticePaymentDate sets the PaymentDate field.
+//
+// Deprecated: use PaymentNoticeBuilder.SetPaymentDate instead; removed in v2.
 func WithPaymentNoticePaymentDate(v string) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
 		r.PaymentDate = &v
@@ -690,6 +736,8 @@ func WithPaymentNoticePaymentDate(v string) PaymentNoticeOption {
 }
 
 // WithPaymentNoticePayee sets the Payee field.
+//
+// Deprecated: use PaymentNoticeBuilder.SetPayee instead; removed in v2.
 func WithPaymentNoticePayee(v Reference) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
 		r.Payee = &v
@@ -697,6 +745,8 @@ func WithPaymentNoticePayee(v Reference) PaymentNoticeOption {
 }
 
 // WithPaymentNoticeRecipient sets the Recipient field.
+//
+// Deprecated: use PaymentNoticeBuilder.SetRecipient instead; removed in v2.
 func WithPaymentNoticeRecipient(v Reference) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
 		r.Recipient = v
@@ -704,6 +754,8 @@ func WithPaymentNoticeRecipient(v Reference) PaymentNoticeOption {
 }
 
 // WithPaymentNoticeAmount sets the Amount field.
+//
+// Deprecated: use PaymentNoticeBuilder.SetAmount instead; removed in v2.
 func WithPaymentNoticeAmount(v Money) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
 		r.Amount = v
@@ -711,6 +763,8 @@ func WithPaymentNoticeAmount(v Money) PaymentNoticeOption {
 }
 
 // WithPaymentNoticePaymentStatus sets the PaymentStatus field.
+//
+// Deprecated: use PaymentNoticeBuilder.SetPaymentStatus instead; removed in v2.
 func WithPaymentNoticePaymentStatus(v CodeableConcept) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
 		r.PaymentStatus = &v

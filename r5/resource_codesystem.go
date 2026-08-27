@@ -1795,9 +1795,23 @@ func (b *CodeSystemBuilder) AddConcept(v CodeSystemConcept) *CodeSystemBuilder {
 // =============================================================================
 
 // CodeSystemOption is a functional option for configuring a CodeSystem.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// CodeSystemBuilder. Every WithCodeSystem* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type CodeSystemOption func(*CodeSystem)
 
 // NewCodeSystem creates a new CodeSystem with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewCodeSystemBuilder().SetId("x").Build()
+//
+// Deprecated: use NewCodeSystemBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewCodeSystem(opts ...CodeSystemOption) *CodeSystem {
 	r := &CodeSystem{ResourceType: "CodeSystem"}
 	for _, opt := range opts {
@@ -1807,6 +1821,8 @@ func NewCodeSystem(opts ...CodeSystemOption) *CodeSystem {
 }
 
 // WithCodeSystemId sets the Id field.
+//
+// Deprecated: use CodeSystemBuilder.SetId instead; removed in v2.
 func WithCodeSystemId(v string) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Id = &v
@@ -1814,6 +1830,8 @@ func WithCodeSystemId(v string) CodeSystemOption {
 }
 
 // WithCodeSystemMeta sets the Meta field.
+//
+// Deprecated: use CodeSystemBuilder.SetMeta instead; removed in v2.
 func WithCodeSystemMeta(v Meta) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Meta = &v
@@ -1821,6 +1839,8 @@ func WithCodeSystemMeta(v Meta) CodeSystemOption {
 }
 
 // WithCodeSystemImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use CodeSystemBuilder.SetImplicitRules instead; removed in v2.
 func WithCodeSystemImplicitRules(v string) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.ImplicitRules = &v
@@ -1828,6 +1848,8 @@ func WithCodeSystemImplicitRules(v string) CodeSystemOption {
 }
 
 // WithCodeSystemLanguage sets the Language field.
+//
+// Deprecated: use CodeSystemBuilder.SetLanguage instead; removed in v2.
 func WithCodeSystemLanguage(v string) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Language = &v
@@ -1835,6 +1857,8 @@ func WithCodeSystemLanguage(v string) CodeSystemOption {
 }
 
 // WithCodeSystemText sets the Text field.
+//
+// Deprecated: use CodeSystemBuilder.SetText instead; removed in v2.
 func WithCodeSystemText(v Narrative) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Text = &v
@@ -1842,6 +1866,8 @@ func WithCodeSystemText(v Narrative) CodeSystemOption {
 }
 
 // WithCodeSystemContained adds a Contained to the CodeSystem.
+//
+// Deprecated: use CodeSystemBuilder.AddContained instead; removed in v2.
 func WithCodeSystemContained(v Resource) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Contained = append(r.Contained, v)
@@ -1849,6 +1875,8 @@ func WithCodeSystemContained(v Resource) CodeSystemOption {
 }
 
 // WithCodeSystemExtension adds a Extension to the CodeSystem.
+//
+// Deprecated: use CodeSystemBuilder.AddExtension instead; removed in v2.
 func WithCodeSystemExtension(v Extension) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Extension = append(r.Extension, v)
@@ -1856,6 +1884,8 @@ func WithCodeSystemExtension(v Extension) CodeSystemOption {
 }
 
 // WithCodeSystemModifierExtension adds a ModifierExtension to the CodeSystem.
+//
+// Deprecated: use CodeSystemBuilder.AddModifierExtension instead; removed in v2.
 func WithCodeSystemModifierExtension(v Extension) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1863,6 +1893,8 @@ func WithCodeSystemModifierExtension(v Extension) CodeSystemOption {
 }
 
 // WithCodeSystemUrl sets the Url field.
+//
+// Deprecated: use CodeSystemBuilder.SetUrl instead; removed in v2.
 func WithCodeSystemUrl(v string) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Url = &v
@@ -1870,6 +1902,8 @@ func WithCodeSystemUrl(v string) CodeSystemOption {
 }
 
 // WithCodeSystemIdentifier adds a Identifier to the CodeSystem.
+//
+// Deprecated: use CodeSystemBuilder.AddIdentifier instead; removed in v2.
 func WithCodeSystemIdentifier(v Identifier) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Identifier = append(r.Identifier, v)
@@ -1877,6 +1911,8 @@ func WithCodeSystemIdentifier(v Identifier) CodeSystemOption {
 }
 
 // WithCodeSystemVersion sets the Version field.
+//
+// Deprecated: use CodeSystemBuilder.SetVersion instead; removed in v2.
 func WithCodeSystemVersion(v string) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Version = &v
@@ -1884,6 +1920,8 @@ func WithCodeSystemVersion(v string) CodeSystemOption {
 }
 
 // WithCodeSystemVersionAlgorithmString sets the VersionAlgorithmString field.
+//
+// Deprecated: use CodeSystemBuilder.SetVersionAlgorithmString instead; removed in v2.
 func WithCodeSystemVersionAlgorithmString(v string) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.VersionAlgorithmString = &v
@@ -1891,6 +1929,8 @@ func WithCodeSystemVersionAlgorithmString(v string) CodeSystemOption {
 }
 
 // WithCodeSystemVersionAlgorithmStringExt sets the VersionAlgorithmStringExt field.
+//
+// Deprecated: use CodeSystemBuilder.SetVersionAlgorithmStringExt instead; removed in v2.
 func WithCodeSystemVersionAlgorithmStringExt(v Element) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.VersionAlgorithmStringExt = &v
@@ -1898,6 +1938,8 @@ func WithCodeSystemVersionAlgorithmStringExt(v Element) CodeSystemOption {
 }
 
 // WithCodeSystemVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+//
+// Deprecated: use CodeSystemBuilder.SetVersionAlgorithmCoding instead; removed in v2.
 func WithCodeSystemVersionAlgorithmCoding(v Coding) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.VersionAlgorithmCoding = &v
@@ -1905,6 +1947,8 @@ func WithCodeSystemVersionAlgorithmCoding(v Coding) CodeSystemOption {
 }
 
 // WithCodeSystemName sets the Name field.
+//
+// Deprecated: use CodeSystemBuilder.SetName instead; removed in v2.
 func WithCodeSystemName(v string) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Name = &v
@@ -1912,6 +1956,8 @@ func WithCodeSystemName(v string) CodeSystemOption {
 }
 
 // WithCodeSystemTitle sets the Title field.
+//
+// Deprecated: use CodeSystemBuilder.SetTitle instead; removed in v2.
 func WithCodeSystemTitle(v string) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Title = &v
@@ -1919,6 +1965,8 @@ func WithCodeSystemTitle(v string) CodeSystemOption {
 }
 
 // WithCodeSystemStatus sets the Status field.
+//
+// Deprecated: use CodeSystemBuilder.SetStatus instead; removed in v2.
 func WithCodeSystemStatus(v PublicationStatus) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Status = &v
@@ -1926,6 +1974,8 @@ func WithCodeSystemStatus(v PublicationStatus) CodeSystemOption {
 }
 
 // WithCodeSystemExperimental sets the Experimental field.
+//
+// Deprecated: use CodeSystemBuilder.SetExperimental instead; removed in v2.
 func WithCodeSystemExperimental(v bool) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Experimental = &v
@@ -1933,6 +1983,8 @@ func WithCodeSystemExperimental(v bool) CodeSystemOption {
 }
 
 // WithCodeSystemDate sets the Date field.
+//
+// Deprecated: use CodeSystemBuilder.SetDate instead; removed in v2.
 func WithCodeSystemDate(v string) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Date = &v
@@ -1940,6 +1992,8 @@ func WithCodeSystemDate(v string) CodeSystemOption {
 }
 
 // WithCodeSystemPublisher sets the Publisher field.
+//
+// Deprecated: use CodeSystemBuilder.SetPublisher instead; removed in v2.
 func WithCodeSystemPublisher(v string) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Publisher = &v
@@ -1947,6 +2001,8 @@ func WithCodeSystemPublisher(v string) CodeSystemOption {
 }
 
 // WithCodeSystemContact adds a Contact to the CodeSystem.
+//
+// Deprecated: use CodeSystemBuilder.AddContact instead; removed in v2.
 func WithCodeSystemContact(v ContactDetail) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Contact = append(r.Contact, v)
@@ -1954,6 +2010,8 @@ func WithCodeSystemContact(v ContactDetail) CodeSystemOption {
 }
 
 // WithCodeSystemDescription sets the Description field.
+//
+// Deprecated: use CodeSystemBuilder.SetDescription instead; removed in v2.
 func WithCodeSystemDescription(v string) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Description = &v
@@ -1961,6 +2019,8 @@ func WithCodeSystemDescription(v string) CodeSystemOption {
 }
 
 // WithCodeSystemUseContext adds a UseContext to the CodeSystem.
+//
+// Deprecated: use CodeSystemBuilder.AddUseContext instead; removed in v2.
 func WithCodeSystemUseContext(v UsageContext) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.UseContext = append(r.UseContext, v)
@@ -1968,6 +2028,8 @@ func WithCodeSystemUseContext(v UsageContext) CodeSystemOption {
 }
 
 // WithCodeSystemJurisdiction adds a Jurisdiction to the CodeSystem.
+//
+// Deprecated: use CodeSystemBuilder.AddJurisdiction instead; removed in v2.
 func WithCodeSystemJurisdiction(v CodeableConcept) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1975,6 +2037,8 @@ func WithCodeSystemJurisdiction(v CodeableConcept) CodeSystemOption {
 }
 
 // WithCodeSystemPurpose sets the Purpose field.
+//
+// Deprecated: use CodeSystemBuilder.SetPurpose instead; removed in v2.
 func WithCodeSystemPurpose(v string) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Purpose = &v
@@ -1982,6 +2046,8 @@ func WithCodeSystemPurpose(v string) CodeSystemOption {
 }
 
 // WithCodeSystemCopyright sets the Copyright field.
+//
+// Deprecated: use CodeSystemBuilder.SetCopyright instead; removed in v2.
 func WithCodeSystemCopyright(v string) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Copyright = &v
@@ -1989,6 +2055,8 @@ func WithCodeSystemCopyright(v string) CodeSystemOption {
 }
 
 // WithCodeSystemCopyrightLabel sets the CopyrightLabel field.
+//
+// Deprecated: use CodeSystemBuilder.SetCopyrightLabel instead; removed in v2.
 func WithCodeSystemCopyrightLabel(v string) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.CopyrightLabel = &v
@@ -1996,6 +2064,8 @@ func WithCodeSystemCopyrightLabel(v string) CodeSystemOption {
 }
 
 // WithCodeSystemApprovalDate sets the ApprovalDate field.
+//
+// Deprecated: use CodeSystemBuilder.SetApprovalDate instead; removed in v2.
 func WithCodeSystemApprovalDate(v string) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.ApprovalDate = &v
@@ -2003,6 +2073,8 @@ func WithCodeSystemApprovalDate(v string) CodeSystemOption {
 }
 
 // WithCodeSystemLastReviewDate sets the LastReviewDate field.
+//
+// Deprecated: use CodeSystemBuilder.SetLastReviewDate instead; removed in v2.
 func WithCodeSystemLastReviewDate(v string) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.LastReviewDate = &v
@@ -2010,6 +2082,8 @@ func WithCodeSystemLastReviewDate(v string) CodeSystemOption {
 }
 
 // WithCodeSystemEffectivePeriod sets the EffectivePeriod field.
+//
+// Deprecated: use CodeSystemBuilder.SetEffectivePeriod instead; removed in v2.
 func WithCodeSystemEffectivePeriod(v Period) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.EffectivePeriod = &v
@@ -2017,6 +2091,8 @@ func WithCodeSystemEffectivePeriod(v Period) CodeSystemOption {
 }
 
 // WithCodeSystemTopic adds a Topic to the CodeSystem.
+//
+// Deprecated: use CodeSystemBuilder.AddTopic instead; removed in v2.
 func WithCodeSystemTopic(v CodeableConcept) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Topic = append(r.Topic, v)
@@ -2024,6 +2100,8 @@ func WithCodeSystemTopic(v CodeableConcept) CodeSystemOption {
 }
 
 // WithCodeSystemAuthor adds a Author to the CodeSystem.
+//
+// Deprecated: use CodeSystemBuilder.AddAuthor instead; removed in v2.
 func WithCodeSystemAuthor(v ContactDetail) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Author = append(r.Author, v)
@@ -2031,6 +2109,8 @@ func WithCodeSystemAuthor(v ContactDetail) CodeSystemOption {
 }
 
 // WithCodeSystemEditor adds a Editor to the CodeSystem.
+//
+// Deprecated: use CodeSystemBuilder.AddEditor instead; removed in v2.
 func WithCodeSystemEditor(v ContactDetail) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Editor = append(r.Editor, v)
@@ -2038,6 +2118,8 @@ func WithCodeSystemEditor(v ContactDetail) CodeSystemOption {
 }
 
 // WithCodeSystemReviewer adds a Reviewer to the CodeSystem.
+//
+// Deprecated: use CodeSystemBuilder.AddReviewer instead; removed in v2.
 func WithCodeSystemReviewer(v ContactDetail) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Reviewer = append(r.Reviewer, v)
@@ -2045,6 +2127,8 @@ func WithCodeSystemReviewer(v ContactDetail) CodeSystemOption {
 }
 
 // WithCodeSystemEndorser adds a Endorser to the CodeSystem.
+//
+// Deprecated: use CodeSystemBuilder.AddEndorser instead; removed in v2.
 func WithCodeSystemEndorser(v ContactDetail) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Endorser = append(r.Endorser, v)
@@ -2052,6 +2136,8 @@ func WithCodeSystemEndorser(v ContactDetail) CodeSystemOption {
 }
 
 // WithCodeSystemRelatedArtifact adds a RelatedArtifact to the CodeSystem.
+//
+// Deprecated: use CodeSystemBuilder.AddRelatedArtifact instead; removed in v2.
 func WithCodeSystemRelatedArtifact(v RelatedArtifact) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.RelatedArtifact = append(r.RelatedArtifact, v)
@@ -2059,6 +2145,8 @@ func WithCodeSystemRelatedArtifact(v RelatedArtifact) CodeSystemOption {
 }
 
 // WithCodeSystemCaseSensitive sets the CaseSensitive field.
+//
+// Deprecated: use CodeSystemBuilder.SetCaseSensitive instead; removed in v2.
 func WithCodeSystemCaseSensitive(v bool) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.CaseSensitive = &v
@@ -2066,6 +2154,8 @@ func WithCodeSystemCaseSensitive(v bool) CodeSystemOption {
 }
 
 // WithCodeSystemValueSet sets the ValueSet field.
+//
+// Deprecated: use CodeSystemBuilder.SetValueSet instead; removed in v2.
 func WithCodeSystemValueSet(v string) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.ValueSet = &v
@@ -2073,6 +2163,8 @@ func WithCodeSystemValueSet(v string) CodeSystemOption {
 }
 
 // WithCodeSystemHierarchyMeaning sets the HierarchyMeaning field.
+//
+// Deprecated: use CodeSystemBuilder.SetHierarchyMeaning instead; removed in v2.
 func WithCodeSystemHierarchyMeaning(v CodeSystemHierarchyMeaning) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.HierarchyMeaning = &v
@@ -2080,6 +2172,8 @@ func WithCodeSystemHierarchyMeaning(v CodeSystemHierarchyMeaning) CodeSystemOpti
 }
 
 // WithCodeSystemCompositional sets the Compositional field.
+//
+// Deprecated: use CodeSystemBuilder.SetCompositional instead; removed in v2.
 func WithCodeSystemCompositional(v bool) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Compositional = &v
@@ -2087,6 +2181,8 @@ func WithCodeSystemCompositional(v bool) CodeSystemOption {
 }
 
 // WithCodeSystemVersionNeeded sets the VersionNeeded field.
+//
+// Deprecated: use CodeSystemBuilder.SetVersionNeeded instead; removed in v2.
 func WithCodeSystemVersionNeeded(v bool) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.VersionNeeded = &v
@@ -2094,6 +2190,8 @@ func WithCodeSystemVersionNeeded(v bool) CodeSystemOption {
 }
 
 // WithCodeSystemContent sets the Content field.
+//
+// Deprecated: use CodeSystemBuilder.SetContent instead; removed in v2.
 func WithCodeSystemContent(v CodeSystemContentMode) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Content = &v
@@ -2101,6 +2199,8 @@ func WithCodeSystemContent(v CodeSystemContentMode) CodeSystemOption {
 }
 
 // WithCodeSystemSupplements sets the Supplements field.
+//
+// Deprecated: use CodeSystemBuilder.SetSupplements instead; removed in v2.
 func WithCodeSystemSupplements(v string) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Supplements = &v
@@ -2108,6 +2208,8 @@ func WithCodeSystemSupplements(v string) CodeSystemOption {
 }
 
 // WithCodeSystemCount sets the Count field.
+//
+// Deprecated: use CodeSystemBuilder.SetCount instead; removed in v2.
 func WithCodeSystemCount(v uint32) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Count = &v
@@ -2115,6 +2217,8 @@ func WithCodeSystemCount(v uint32) CodeSystemOption {
 }
 
 // WithCodeSystemFilter adds a Filter to the CodeSystem.
+//
+// Deprecated: use CodeSystemBuilder.AddFilter instead; removed in v2.
 func WithCodeSystemFilter(v CodeSystemFilter) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Filter = append(r.Filter, v)
@@ -2122,6 +2226,8 @@ func WithCodeSystemFilter(v CodeSystemFilter) CodeSystemOption {
 }
 
 // WithCodeSystemProperty adds a Property to the CodeSystem.
+//
+// Deprecated: use CodeSystemBuilder.AddProperty instead; removed in v2.
 func WithCodeSystemProperty(v CodeSystemProperty) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Property = append(r.Property, v)
@@ -2129,6 +2235,8 @@ func WithCodeSystemProperty(v CodeSystemProperty) CodeSystemOption {
 }
 
 // WithCodeSystemConcept adds a Concept to the CodeSystem.
+//
+// Deprecated: use CodeSystemBuilder.AddConcept instead; removed in v2.
 func WithCodeSystemConcept(v CodeSystemConcept) CodeSystemOption {
 	return func(r *CodeSystem) {
 		r.Concept = append(r.Concept, v)

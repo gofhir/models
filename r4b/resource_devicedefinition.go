@@ -1423,9 +1423,23 @@ func (b *DeviceDefinitionBuilder) AddMaterial(v DeviceDefinitionMaterial) *Devic
 // =============================================================================
 
 // DeviceDefinitionOption is a functional option for configuring a DeviceDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// DeviceDefinitionBuilder. Every WithDeviceDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type DeviceDefinitionOption func(*DeviceDefinition)
 
 // NewDeviceDefinition creates a new DeviceDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewDeviceDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewDeviceDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewDeviceDefinition(opts ...DeviceDefinitionOption) *DeviceDefinition {
 	r := &DeviceDefinition{ResourceType: "DeviceDefinition"}
 	for _, opt := range opts {
@@ -1435,6 +1449,8 @@ func NewDeviceDefinition(opts ...DeviceDefinitionOption) *DeviceDefinition {
 }
 
 // WithDeviceDefinitionId sets the Id field.
+//
+// Deprecated: use DeviceDefinitionBuilder.SetId instead; removed in v2.
 func WithDeviceDefinitionId(v string) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.Id = &v
@@ -1442,6 +1458,8 @@ func WithDeviceDefinitionId(v string) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionMeta sets the Meta field.
+//
+// Deprecated: use DeviceDefinitionBuilder.SetMeta instead; removed in v2.
 func WithDeviceDefinitionMeta(v Meta) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.Meta = &v
@@ -1449,6 +1467,8 @@ func WithDeviceDefinitionMeta(v Meta) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use DeviceDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithDeviceDefinitionImplicitRules(v string) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.ImplicitRules = &v
@@ -1456,6 +1476,8 @@ func WithDeviceDefinitionImplicitRules(v string) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionLanguage sets the Language field.
+//
+// Deprecated: use DeviceDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithDeviceDefinitionLanguage(v string) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.Language = &v
@@ -1463,6 +1485,8 @@ func WithDeviceDefinitionLanguage(v string) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionText sets the Text field.
+//
+// Deprecated: use DeviceDefinitionBuilder.SetText instead; removed in v2.
 func WithDeviceDefinitionText(v Narrative) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.Text = &v
@@ -1470,6 +1494,8 @@ func WithDeviceDefinitionText(v Narrative) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionContained adds a Contained to the DeviceDefinition.
+//
+// Deprecated: use DeviceDefinitionBuilder.AddContained instead; removed in v2.
 func WithDeviceDefinitionContained(v Resource) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -1477,6 +1503,8 @@ func WithDeviceDefinitionContained(v Resource) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionExtension adds a Extension to the DeviceDefinition.
+//
+// Deprecated: use DeviceDefinitionBuilder.AddExtension instead; removed in v2.
 func WithDeviceDefinitionExtension(v Extension) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -1484,6 +1512,8 @@ func WithDeviceDefinitionExtension(v Extension) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionModifierExtension adds a ModifierExtension to the DeviceDefinition.
+//
+// Deprecated: use DeviceDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithDeviceDefinitionModifierExtension(v Extension) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1491,6 +1521,8 @@ func WithDeviceDefinitionModifierExtension(v Extension) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionIdentifier adds a Identifier to the DeviceDefinition.
+//
+// Deprecated: use DeviceDefinitionBuilder.AddIdentifier instead; removed in v2.
 func WithDeviceDefinitionIdentifier(v Identifier) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.Identifier = append(r.Identifier, v)
@@ -1498,6 +1530,8 @@ func WithDeviceDefinitionIdentifier(v Identifier) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionUdiDeviceIdentifier adds a UdiDeviceIdentifier to the DeviceDefinition.
+//
+// Deprecated: use DeviceDefinitionBuilder.AddUdiDeviceIdentifier instead; removed in v2.
 func WithDeviceDefinitionUdiDeviceIdentifier(v DeviceDefinitionUdiDeviceIdentifier) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.UdiDeviceIdentifier = append(r.UdiDeviceIdentifier, v)
@@ -1505,6 +1539,8 @@ func WithDeviceDefinitionUdiDeviceIdentifier(v DeviceDefinitionUdiDeviceIdentifi
 }
 
 // WithDeviceDefinitionManufacturerString sets the ManufacturerString field.
+//
+// Deprecated: use DeviceDefinitionBuilder.SetManufacturerString instead; removed in v2.
 func WithDeviceDefinitionManufacturerString(v string) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.ManufacturerString = &v
@@ -1512,6 +1548,8 @@ func WithDeviceDefinitionManufacturerString(v string) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionManufacturerStringExt sets the ManufacturerStringExt field.
+//
+// Deprecated: use DeviceDefinitionBuilder.SetManufacturerStringExt instead; removed in v2.
 func WithDeviceDefinitionManufacturerStringExt(v Element) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.ManufacturerStringExt = &v
@@ -1519,6 +1557,8 @@ func WithDeviceDefinitionManufacturerStringExt(v Element) DeviceDefinitionOption
 }
 
 // WithDeviceDefinitionManufacturerReference sets the ManufacturerReference field.
+//
+// Deprecated: use DeviceDefinitionBuilder.SetManufacturerReference instead; removed in v2.
 func WithDeviceDefinitionManufacturerReference(v Reference) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.ManufacturerReference = &v
@@ -1526,6 +1566,8 @@ func WithDeviceDefinitionManufacturerReference(v Reference) DeviceDefinitionOpti
 }
 
 // WithDeviceDefinitionDeviceName adds a DeviceName to the DeviceDefinition.
+//
+// Deprecated: use DeviceDefinitionBuilder.AddDeviceName instead; removed in v2.
 func WithDeviceDefinitionDeviceName(v DeviceDefinitionDeviceName) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.DeviceName = append(r.DeviceName, v)
@@ -1533,6 +1575,8 @@ func WithDeviceDefinitionDeviceName(v DeviceDefinitionDeviceName) DeviceDefiniti
 }
 
 // WithDeviceDefinitionModelNumber sets the ModelNumber field.
+//
+// Deprecated: use DeviceDefinitionBuilder.SetModelNumber instead; removed in v2.
 func WithDeviceDefinitionModelNumber(v string) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.ModelNumber = &v
@@ -1540,6 +1584,8 @@ func WithDeviceDefinitionModelNumber(v string) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionType sets the Type field.
+//
+// Deprecated: use DeviceDefinitionBuilder.SetType instead; removed in v2.
 func WithDeviceDefinitionType(v CodeableConcept) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.Type = &v
@@ -1547,6 +1593,8 @@ func WithDeviceDefinitionType(v CodeableConcept) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionSpecialization adds a Specialization to the DeviceDefinition.
+//
+// Deprecated: use DeviceDefinitionBuilder.AddSpecialization instead; removed in v2.
 func WithDeviceDefinitionSpecialization(v DeviceDefinitionSpecialization) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.Specialization = append(r.Specialization, v)
@@ -1554,6 +1602,8 @@ func WithDeviceDefinitionSpecialization(v DeviceDefinitionSpecialization) Device
 }
 
 // WithDeviceDefinitionVersion adds a Version to the DeviceDefinition.
+//
+// Deprecated: use DeviceDefinitionBuilder.AddVersion instead; removed in v2.
 func WithDeviceDefinitionVersion(v string) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.Version = append(r.Version, v)
@@ -1561,6 +1611,8 @@ func WithDeviceDefinitionVersion(v string) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionSafety adds a Safety to the DeviceDefinition.
+//
+// Deprecated: use DeviceDefinitionBuilder.AddSafety instead; removed in v2.
 func WithDeviceDefinitionSafety(v CodeableConcept) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.Safety = append(r.Safety, v)
@@ -1568,6 +1620,8 @@ func WithDeviceDefinitionSafety(v CodeableConcept) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionShelfLifeStorage adds a ShelfLifeStorage to the DeviceDefinition.
+//
+// Deprecated: use DeviceDefinitionBuilder.AddShelfLifeStorage instead; removed in v2.
 func WithDeviceDefinitionShelfLifeStorage(v ProductShelfLife) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.ShelfLifeStorage = append(r.ShelfLifeStorage, v)
@@ -1575,6 +1629,8 @@ func WithDeviceDefinitionShelfLifeStorage(v ProductShelfLife) DeviceDefinitionOp
 }
 
 // WithDeviceDefinitionPhysicalCharacteristics sets the PhysicalCharacteristics field.
+//
+// Deprecated: use DeviceDefinitionBuilder.SetPhysicalCharacteristics instead; removed in v2.
 func WithDeviceDefinitionPhysicalCharacteristics(v ProdCharacteristic) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.PhysicalCharacteristics = &v
@@ -1582,6 +1638,8 @@ func WithDeviceDefinitionPhysicalCharacteristics(v ProdCharacteristic) DeviceDef
 }
 
 // WithDeviceDefinitionLanguageCode adds a LanguageCode to the DeviceDefinition.
+//
+// Deprecated: use DeviceDefinitionBuilder.AddLanguageCode instead; removed in v2.
 func WithDeviceDefinitionLanguageCode(v CodeableConcept) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.LanguageCode = append(r.LanguageCode, v)
@@ -1589,6 +1647,8 @@ func WithDeviceDefinitionLanguageCode(v CodeableConcept) DeviceDefinitionOption 
 }
 
 // WithDeviceDefinitionCapability adds a Capability to the DeviceDefinition.
+//
+// Deprecated: use DeviceDefinitionBuilder.AddCapability instead; removed in v2.
 func WithDeviceDefinitionCapability(v DeviceDefinitionCapability) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.Capability = append(r.Capability, v)
@@ -1596,6 +1656,8 @@ func WithDeviceDefinitionCapability(v DeviceDefinitionCapability) DeviceDefiniti
 }
 
 // WithDeviceDefinitionProperty adds a Property to the DeviceDefinition.
+//
+// Deprecated: use DeviceDefinitionBuilder.AddProperty instead; removed in v2.
 func WithDeviceDefinitionProperty(v DeviceDefinitionProperty) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.Property = append(r.Property, v)
@@ -1603,6 +1665,8 @@ func WithDeviceDefinitionProperty(v DeviceDefinitionProperty) DeviceDefinitionOp
 }
 
 // WithDeviceDefinitionOwner sets the Owner field.
+//
+// Deprecated: use DeviceDefinitionBuilder.SetOwner instead; removed in v2.
 func WithDeviceDefinitionOwner(v Reference) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.Owner = &v
@@ -1610,6 +1674,8 @@ func WithDeviceDefinitionOwner(v Reference) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionContact adds a Contact to the DeviceDefinition.
+//
+// Deprecated: use DeviceDefinitionBuilder.AddContact instead; removed in v2.
 func WithDeviceDefinitionContact(v ContactPoint) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.Contact = append(r.Contact, v)
@@ -1617,6 +1683,8 @@ func WithDeviceDefinitionContact(v ContactPoint) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionUrl sets the Url field.
+//
+// Deprecated: use DeviceDefinitionBuilder.SetUrl instead; removed in v2.
 func WithDeviceDefinitionUrl(v string) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.Url = &v
@@ -1624,6 +1692,8 @@ func WithDeviceDefinitionUrl(v string) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionOnlineInformation sets the OnlineInformation field.
+//
+// Deprecated: use DeviceDefinitionBuilder.SetOnlineInformation instead; removed in v2.
 func WithDeviceDefinitionOnlineInformation(v string) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.OnlineInformation = &v
@@ -1631,6 +1701,8 @@ func WithDeviceDefinitionOnlineInformation(v string) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionNote adds a Note to the DeviceDefinition.
+//
+// Deprecated: use DeviceDefinitionBuilder.AddNote instead; removed in v2.
 func WithDeviceDefinitionNote(v Annotation) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.Note = append(r.Note, v)
@@ -1638,6 +1710,8 @@ func WithDeviceDefinitionNote(v Annotation) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionQuantity sets the Quantity field.
+//
+// Deprecated: use DeviceDefinitionBuilder.SetQuantity instead; removed in v2.
 func WithDeviceDefinitionQuantity(v Quantity) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.Quantity = &v
@@ -1645,6 +1719,8 @@ func WithDeviceDefinitionQuantity(v Quantity) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionParentDevice sets the ParentDevice field.
+//
+// Deprecated: use DeviceDefinitionBuilder.SetParentDevice instead; removed in v2.
 func WithDeviceDefinitionParentDevice(v Reference) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.ParentDevice = &v
@@ -1652,6 +1728,8 @@ func WithDeviceDefinitionParentDevice(v Reference) DeviceDefinitionOption {
 }
 
 // WithDeviceDefinitionMaterial adds a Material to the DeviceDefinition.
+//
+// Deprecated: use DeviceDefinitionBuilder.AddMaterial instead; removed in v2.
 func WithDeviceDefinitionMaterial(v DeviceDefinitionMaterial) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
 		r.Material = append(r.Material, v)

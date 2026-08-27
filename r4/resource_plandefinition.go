@@ -2203,9 +2203,23 @@ func (b *PlanDefinitionBuilder) AddAction(v PlanDefinitionAction) *PlanDefinitio
 // =============================================================================
 
 // PlanDefinitionOption is a functional option for configuring a PlanDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// PlanDefinitionBuilder. Every WithPlanDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type PlanDefinitionOption func(*PlanDefinition)
 
 // NewPlanDefinition creates a new PlanDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewPlanDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewPlanDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewPlanDefinition(opts ...PlanDefinitionOption) *PlanDefinition {
 	r := &PlanDefinition{ResourceType: "PlanDefinition"}
 	for _, opt := range opts {
@@ -2215,6 +2229,8 @@ func NewPlanDefinition(opts ...PlanDefinitionOption) *PlanDefinition {
 }
 
 // WithPlanDefinitionId sets the Id field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetId instead; removed in v2.
 func WithPlanDefinitionId(v string) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Id = &v
@@ -2222,6 +2238,8 @@ func WithPlanDefinitionId(v string) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionMeta sets the Meta field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetMeta instead; removed in v2.
 func WithPlanDefinitionMeta(v Meta) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Meta = &v
@@ -2229,6 +2247,8 @@ func WithPlanDefinitionMeta(v Meta) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithPlanDefinitionImplicitRules(v string) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.ImplicitRules = &v
@@ -2236,6 +2256,8 @@ func WithPlanDefinitionImplicitRules(v string) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionLanguage sets the Language field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithPlanDefinitionLanguage(v string) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Language = &v
@@ -2243,6 +2265,8 @@ func WithPlanDefinitionLanguage(v string) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionText sets the Text field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetText instead; removed in v2.
 func WithPlanDefinitionText(v Narrative) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Text = &v
@@ -2250,6 +2274,8 @@ func WithPlanDefinitionText(v Narrative) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionContained adds a Contained to the PlanDefinition.
+//
+// Deprecated: use PlanDefinitionBuilder.AddContained instead; removed in v2.
 func WithPlanDefinitionContained(v Resource) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -2257,6 +2283,8 @@ func WithPlanDefinitionContained(v Resource) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionExtension adds a Extension to the PlanDefinition.
+//
+// Deprecated: use PlanDefinitionBuilder.AddExtension instead; removed in v2.
 func WithPlanDefinitionExtension(v Extension) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -2264,6 +2292,8 @@ func WithPlanDefinitionExtension(v Extension) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionModifierExtension adds a ModifierExtension to the PlanDefinition.
+//
+// Deprecated: use PlanDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithPlanDefinitionModifierExtension(v Extension) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -2271,6 +2301,8 @@ func WithPlanDefinitionModifierExtension(v Extension) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionUrl sets the Url field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetUrl instead; removed in v2.
 func WithPlanDefinitionUrl(v string) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Url = &v
@@ -2278,6 +2310,8 @@ func WithPlanDefinitionUrl(v string) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionIdentifier adds a Identifier to the PlanDefinition.
+//
+// Deprecated: use PlanDefinitionBuilder.AddIdentifier instead; removed in v2.
 func WithPlanDefinitionIdentifier(v Identifier) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Identifier = append(r.Identifier, v)
@@ -2285,6 +2319,8 @@ func WithPlanDefinitionIdentifier(v Identifier) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionVersion sets the Version field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetVersion instead; removed in v2.
 func WithPlanDefinitionVersion(v string) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Version = &v
@@ -2292,6 +2328,8 @@ func WithPlanDefinitionVersion(v string) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionName sets the Name field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetName instead; removed in v2.
 func WithPlanDefinitionName(v string) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Name = &v
@@ -2299,6 +2337,8 @@ func WithPlanDefinitionName(v string) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionTitle sets the Title field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetTitle instead; removed in v2.
 func WithPlanDefinitionTitle(v string) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Title = &v
@@ -2306,6 +2346,8 @@ func WithPlanDefinitionTitle(v string) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionSubtitle sets the Subtitle field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetSubtitle instead; removed in v2.
 func WithPlanDefinitionSubtitle(v string) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Subtitle = &v
@@ -2313,6 +2355,8 @@ func WithPlanDefinitionSubtitle(v string) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionType sets the Type field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetType instead; removed in v2.
 func WithPlanDefinitionType(v CodeableConcept) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Type = &v
@@ -2320,6 +2364,8 @@ func WithPlanDefinitionType(v CodeableConcept) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionStatus sets the Status field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetStatus instead; removed in v2.
 func WithPlanDefinitionStatus(v PublicationStatus) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Status = &v
@@ -2327,6 +2373,8 @@ func WithPlanDefinitionStatus(v PublicationStatus) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionExperimental sets the Experimental field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetExperimental instead; removed in v2.
 func WithPlanDefinitionExperimental(v bool) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Experimental = &v
@@ -2334,6 +2382,8 @@ func WithPlanDefinitionExperimental(v bool) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionSubjectCodeableConcept sets the SubjectCodeableConcept field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetSubjectCodeableConcept instead; removed in v2.
 func WithPlanDefinitionSubjectCodeableConcept(v CodeableConcept) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.SubjectCodeableConcept = &v
@@ -2341,6 +2391,8 @@ func WithPlanDefinitionSubjectCodeableConcept(v CodeableConcept) PlanDefinitionO
 }
 
 // WithPlanDefinitionSubjectReference sets the SubjectReference field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetSubjectReference instead; removed in v2.
 func WithPlanDefinitionSubjectReference(v Reference) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.SubjectReference = &v
@@ -2348,6 +2400,8 @@ func WithPlanDefinitionSubjectReference(v Reference) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionDate sets the Date field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetDate instead; removed in v2.
 func WithPlanDefinitionDate(v string) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Date = &v
@@ -2355,6 +2409,8 @@ func WithPlanDefinitionDate(v string) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionPublisher sets the Publisher field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetPublisher instead; removed in v2.
 func WithPlanDefinitionPublisher(v string) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Publisher = &v
@@ -2362,6 +2418,8 @@ func WithPlanDefinitionPublisher(v string) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionContact adds a Contact to the PlanDefinition.
+//
+// Deprecated: use PlanDefinitionBuilder.AddContact instead; removed in v2.
 func WithPlanDefinitionContact(v ContactDetail) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Contact = append(r.Contact, v)
@@ -2369,6 +2427,8 @@ func WithPlanDefinitionContact(v ContactDetail) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionDescription sets the Description field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetDescription instead; removed in v2.
 func WithPlanDefinitionDescription(v string) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Description = &v
@@ -2376,6 +2436,8 @@ func WithPlanDefinitionDescription(v string) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionUseContext adds a UseContext to the PlanDefinition.
+//
+// Deprecated: use PlanDefinitionBuilder.AddUseContext instead; removed in v2.
 func WithPlanDefinitionUseContext(v UsageContext) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.UseContext = append(r.UseContext, v)
@@ -2383,6 +2445,8 @@ func WithPlanDefinitionUseContext(v UsageContext) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionJurisdiction adds a Jurisdiction to the PlanDefinition.
+//
+// Deprecated: use PlanDefinitionBuilder.AddJurisdiction instead; removed in v2.
 func WithPlanDefinitionJurisdiction(v CodeableConcept) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -2390,6 +2454,8 @@ func WithPlanDefinitionJurisdiction(v CodeableConcept) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionPurpose sets the Purpose field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetPurpose instead; removed in v2.
 func WithPlanDefinitionPurpose(v string) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Purpose = &v
@@ -2397,6 +2463,8 @@ func WithPlanDefinitionPurpose(v string) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionUsage sets the Usage field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetUsage instead; removed in v2.
 func WithPlanDefinitionUsage(v string) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Usage = &v
@@ -2404,6 +2472,8 @@ func WithPlanDefinitionUsage(v string) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionCopyright sets the Copyright field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetCopyright instead; removed in v2.
 func WithPlanDefinitionCopyright(v string) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Copyright = &v
@@ -2411,6 +2481,8 @@ func WithPlanDefinitionCopyright(v string) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionApprovalDate sets the ApprovalDate field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetApprovalDate instead; removed in v2.
 func WithPlanDefinitionApprovalDate(v string) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.ApprovalDate = &v
@@ -2418,6 +2490,8 @@ func WithPlanDefinitionApprovalDate(v string) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionLastReviewDate sets the LastReviewDate field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetLastReviewDate instead; removed in v2.
 func WithPlanDefinitionLastReviewDate(v string) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.LastReviewDate = &v
@@ -2425,6 +2499,8 @@ func WithPlanDefinitionLastReviewDate(v string) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionEffectivePeriod sets the EffectivePeriod field.
+//
+// Deprecated: use PlanDefinitionBuilder.SetEffectivePeriod instead; removed in v2.
 func WithPlanDefinitionEffectivePeriod(v Period) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.EffectivePeriod = &v
@@ -2432,6 +2508,8 @@ func WithPlanDefinitionEffectivePeriod(v Period) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionTopic adds a Topic to the PlanDefinition.
+//
+// Deprecated: use PlanDefinitionBuilder.AddTopic instead; removed in v2.
 func WithPlanDefinitionTopic(v CodeableConcept) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Topic = append(r.Topic, v)
@@ -2439,6 +2517,8 @@ func WithPlanDefinitionTopic(v CodeableConcept) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionAuthor adds a Author to the PlanDefinition.
+//
+// Deprecated: use PlanDefinitionBuilder.AddAuthor instead; removed in v2.
 func WithPlanDefinitionAuthor(v ContactDetail) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Author = append(r.Author, v)
@@ -2446,6 +2526,8 @@ func WithPlanDefinitionAuthor(v ContactDetail) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionEditor adds a Editor to the PlanDefinition.
+//
+// Deprecated: use PlanDefinitionBuilder.AddEditor instead; removed in v2.
 func WithPlanDefinitionEditor(v ContactDetail) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Editor = append(r.Editor, v)
@@ -2453,6 +2535,8 @@ func WithPlanDefinitionEditor(v ContactDetail) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionReviewer adds a Reviewer to the PlanDefinition.
+//
+// Deprecated: use PlanDefinitionBuilder.AddReviewer instead; removed in v2.
 func WithPlanDefinitionReviewer(v ContactDetail) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Reviewer = append(r.Reviewer, v)
@@ -2460,6 +2544,8 @@ func WithPlanDefinitionReviewer(v ContactDetail) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionEndorser adds a Endorser to the PlanDefinition.
+//
+// Deprecated: use PlanDefinitionBuilder.AddEndorser instead; removed in v2.
 func WithPlanDefinitionEndorser(v ContactDetail) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Endorser = append(r.Endorser, v)
@@ -2467,6 +2553,8 @@ func WithPlanDefinitionEndorser(v ContactDetail) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionRelatedArtifact adds a RelatedArtifact to the PlanDefinition.
+//
+// Deprecated: use PlanDefinitionBuilder.AddRelatedArtifact instead; removed in v2.
 func WithPlanDefinitionRelatedArtifact(v RelatedArtifact) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.RelatedArtifact = append(r.RelatedArtifact, v)
@@ -2474,6 +2562,8 @@ func WithPlanDefinitionRelatedArtifact(v RelatedArtifact) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionLibrary adds a Library to the PlanDefinition.
+//
+// Deprecated: use PlanDefinitionBuilder.AddLibrary instead; removed in v2.
 func WithPlanDefinitionLibrary(v string) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Library = append(r.Library, v)
@@ -2481,6 +2571,8 @@ func WithPlanDefinitionLibrary(v string) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionGoal adds a Goal to the PlanDefinition.
+//
+// Deprecated: use PlanDefinitionBuilder.AddGoal instead; removed in v2.
 func WithPlanDefinitionGoal(v PlanDefinitionGoal) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Goal = append(r.Goal, v)
@@ -2488,6 +2580,8 @@ func WithPlanDefinitionGoal(v PlanDefinitionGoal) PlanDefinitionOption {
 }
 
 // WithPlanDefinitionAction adds a Action to the PlanDefinition.
+//
+// Deprecated: use PlanDefinitionBuilder.AddAction instead; removed in v2.
 func WithPlanDefinitionAction(v PlanDefinitionAction) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
 		r.Action = append(r.Action, v)

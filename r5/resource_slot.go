@@ -557,9 +557,23 @@ func (b *SlotBuilder) SetComment(v string) *SlotBuilder {
 // =============================================================================
 
 // SlotOption is a functional option for configuring a Slot.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// SlotBuilder. Every WithSlot* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type SlotOption func(*Slot)
 
 // NewSlot creates a new Slot with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewSlotBuilder().SetId("x").Build()
+//
+// Deprecated: use NewSlotBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewSlot(opts ...SlotOption) *Slot {
 	r := &Slot{ResourceType: "Slot"}
 	for _, opt := range opts {
@@ -569,6 +583,8 @@ func NewSlot(opts ...SlotOption) *Slot {
 }
 
 // WithSlotId sets the Id field.
+//
+// Deprecated: use SlotBuilder.SetId instead; removed in v2.
 func WithSlotId(v string) SlotOption {
 	return func(r *Slot) {
 		r.Id = &v
@@ -576,6 +592,8 @@ func WithSlotId(v string) SlotOption {
 }
 
 // WithSlotMeta sets the Meta field.
+//
+// Deprecated: use SlotBuilder.SetMeta instead; removed in v2.
 func WithSlotMeta(v Meta) SlotOption {
 	return func(r *Slot) {
 		r.Meta = &v
@@ -583,6 +601,8 @@ func WithSlotMeta(v Meta) SlotOption {
 }
 
 // WithSlotImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use SlotBuilder.SetImplicitRules instead; removed in v2.
 func WithSlotImplicitRules(v string) SlotOption {
 	return func(r *Slot) {
 		r.ImplicitRules = &v
@@ -590,6 +610,8 @@ func WithSlotImplicitRules(v string) SlotOption {
 }
 
 // WithSlotLanguage sets the Language field.
+//
+// Deprecated: use SlotBuilder.SetLanguage instead; removed in v2.
 func WithSlotLanguage(v string) SlotOption {
 	return func(r *Slot) {
 		r.Language = &v
@@ -597,6 +619,8 @@ func WithSlotLanguage(v string) SlotOption {
 }
 
 // WithSlotText sets the Text field.
+//
+// Deprecated: use SlotBuilder.SetText instead; removed in v2.
 func WithSlotText(v Narrative) SlotOption {
 	return func(r *Slot) {
 		r.Text = &v
@@ -604,6 +628,8 @@ func WithSlotText(v Narrative) SlotOption {
 }
 
 // WithSlotContained adds a Contained to the Slot.
+//
+// Deprecated: use SlotBuilder.AddContained instead; removed in v2.
 func WithSlotContained(v Resource) SlotOption {
 	return func(r *Slot) {
 		r.Contained = append(r.Contained, v)
@@ -611,6 +637,8 @@ func WithSlotContained(v Resource) SlotOption {
 }
 
 // WithSlotExtension adds a Extension to the Slot.
+//
+// Deprecated: use SlotBuilder.AddExtension instead; removed in v2.
 func WithSlotExtension(v Extension) SlotOption {
 	return func(r *Slot) {
 		r.Extension = append(r.Extension, v)
@@ -618,6 +646,8 @@ func WithSlotExtension(v Extension) SlotOption {
 }
 
 // WithSlotModifierExtension adds a ModifierExtension to the Slot.
+//
+// Deprecated: use SlotBuilder.AddModifierExtension instead; removed in v2.
 func WithSlotModifierExtension(v Extension) SlotOption {
 	return func(r *Slot) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -625,6 +655,8 @@ func WithSlotModifierExtension(v Extension) SlotOption {
 }
 
 // WithSlotIdentifier adds a Identifier to the Slot.
+//
+// Deprecated: use SlotBuilder.AddIdentifier instead; removed in v2.
 func WithSlotIdentifier(v Identifier) SlotOption {
 	return func(r *Slot) {
 		r.Identifier = append(r.Identifier, v)
@@ -632,6 +664,8 @@ func WithSlotIdentifier(v Identifier) SlotOption {
 }
 
 // WithSlotServiceCategory adds a ServiceCategory to the Slot.
+//
+// Deprecated: use SlotBuilder.AddServiceCategory instead; removed in v2.
 func WithSlotServiceCategory(v CodeableConcept) SlotOption {
 	return func(r *Slot) {
 		r.ServiceCategory = append(r.ServiceCategory, v)
@@ -639,6 +673,8 @@ func WithSlotServiceCategory(v CodeableConcept) SlotOption {
 }
 
 // WithSlotServiceType adds a ServiceType to the Slot.
+//
+// Deprecated: use SlotBuilder.AddServiceType instead; removed in v2.
 func WithSlotServiceType(v CodeableReference) SlotOption {
 	return func(r *Slot) {
 		r.ServiceType = append(r.ServiceType, v)
@@ -646,6 +682,8 @@ func WithSlotServiceType(v CodeableReference) SlotOption {
 }
 
 // WithSlotSpecialty adds a Specialty to the Slot.
+//
+// Deprecated: use SlotBuilder.AddSpecialty instead; removed in v2.
 func WithSlotSpecialty(v CodeableConcept) SlotOption {
 	return func(r *Slot) {
 		r.Specialty = append(r.Specialty, v)
@@ -653,6 +691,8 @@ func WithSlotSpecialty(v CodeableConcept) SlotOption {
 }
 
 // WithSlotAppointmentType adds a AppointmentType to the Slot.
+//
+// Deprecated: use SlotBuilder.AddAppointmentType instead; removed in v2.
 func WithSlotAppointmentType(v CodeableConcept) SlotOption {
 	return func(r *Slot) {
 		r.AppointmentType = append(r.AppointmentType, v)
@@ -660,6 +700,8 @@ func WithSlotAppointmentType(v CodeableConcept) SlotOption {
 }
 
 // WithSlotSchedule sets the Schedule field.
+//
+// Deprecated: use SlotBuilder.SetSchedule instead; removed in v2.
 func WithSlotSchedule(v Reference) SlotOption {
 	return func(r *Slot) {
 		r.Schedule = v
@@ -667,6 +709,8 @@ func WithSlotSchedule(v Reference) SlotOption {
 }
 
 // WithSlotStatus sets the Status field.
+//
+// Deprecated: use SlotBuilder.SetStatus instead; removed in v2.
 func WithSlotStatus(v SlotStatus) SlotOption {
 	return func(r *Slot) {
 		r.Status = &v
@@ -674,6 +718,8 @@ func WithSlotStatus(v SlotStatus) SlotOption {
 }
 
 // WithSlotStart sets the Start field.
+//
+// Deprecated: use SlotBuilder.SetStart instead; removed in v2.
 func WithSlotStart(v string) SlotOption {
 	return func(r *Slot) {
 		r.Start = &v
@@ -681,6 +727,8 @@ func WithSlotStart(v string) SlotOption {
 }
 
 // WithSlotEnd sets the End field.
+//
+// Deprecated: use SlotBuilder.SetEnd instead; removed in v2.
 func WithSlotEnd(v string) SlotOption {
 	return func(r *Slot) {
 		r.End = &v
@@ -688,6 +736,8 @@ func WithSlotEnd(v string) SlotOption {
 }
 
 // WithSlotOverbooked sets the Overbooked field.
+//
+// Deprecated: use SlotBuilder.SetOverbooked instead; removed in v2.
 func WithSlotOverbooked(v bool) SlotOption {
 	return func(r *Slot) {
 		r.Overbooked = &v
@@ -695,6 +745,8 @@ func WithSlotOverbooked(v bool) SlotOption {
 }
 
 // WithSlotComment sets the Comment field.
+//
+// Deprecated: use SlotBuilder.SetComment instead; removed in v2.
 func WithSlotComment(v string) SlotOption {
 	return func(r *Slot) {
 		r.Comment = &v

@@ -1760,9 +1760,23 @@ func (b *QuestionnaireBuilder) AddItem(v QuestionnaireItem) *QuestionnaireBuilde
 // =============================================================================
 
 // QuestionnaireOption is a functional option for configuring a Questionnaire.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// QuestionnaireBuilder. Every WithQuestionnaire* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type QuestionnaireOption func(*Questionnaire)
 
 // NewQuestionnaire creates a new Questionnaire with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewQuestionnaireBuilder().SetId("x").Build()
+//
+// Deprecated: use NewQuestionnaireBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewQuestionnaire(opts ...QuestionnaireOption) *Questionnaire {
 	r := &Questionnaire{ResourceType: "Questionnaire"}
 	for _, opt := range opts {
@@ -1772,6 +1786,8 @@ func NewQuestionnaire(opts ...QuestionnaireOption) *Questionnaire {
 }
 
 // WithQuestionnaireId sets the Id field.
+//
+// Deprecated: use QuestionnaireBuilder.SetId instead; removed in v2.
 func WithQuestionnaireId(v string) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Id = &v
@@ -1779,6 +1795,8 @@ func WithQuestionnaireId(v string) QuestionnaireOption {
 }
 
 // WithQuestionnaireMeta sets the Meta field.
+//
+// Deprecated: use QuestionnaireBuilder.SetMeta instead; removed in v2.
 func WithQuestionnaireMeta(v Meta) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Meta = &v
@@ -1786,6 +1804,8 @@ func WithQuestionnaireMeta(v Meta) QuestionnaireOption {
 }
 
 // WithQuestionnaireImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use QuestionnaireBuilder.SetImplicitRules instead; removed in v2.
 func WithQuestionnaireImplicitRules(v string) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.ImplicitRules = &v
@@ -1793,6 +1813,8 @@ func WithQuestionnaireImplicitRules(v string) QuestionnaireOption {
 }
 
 // WithQuestionnaireLanguage sets the Language field.
+//
+// Deprecated: use QuestionnaireBuilder.SetLanguage instead; removed in v2.
 func WithQuestionnaireLanguage(v string) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Language = &v
@@ -1800,6 +1822,8 @@ func WithQuestionnaireLanguage(v string) QuestionnaireOption {
 }
 
 // WithQuestionnaireText sets the Text field.
+//
+// Deprecated: use QuestionnaireBuilder.SetText instead; removed in v2.
 func WithQuestionnaireText(v Narrative) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Text = &v
@@ -1807,6 +1831,8 @@ func WithQuestionnaireText(v Narrative) QuestionnaireOption {
 }
 
 // WithQuestionnaireContained adds a Contained to the Questionnaire.
+//
+// Deprecated: use QuestionnaireBuilder.AddContained instead; removed in v2.
 func WithQuestionnaireContained(v Resource) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Contained = append(r.Contained, v)
@@ -1814,6 +1840,8 @@ func WithQuestionnaireContained(v Resource) QuestionnaireOption {
 }
 
 // WithQuestionnaireExtension adds a Extension to the Questionnaire.
+//
+// Deprecated: use QuestionnaireBuilder.AddExtension instead; removed in v2.
 func WithQuestionnaireExtension(v Extension) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Extension = append(r.Extension, v)
@@ -1821,6 +1849,8 @@ func WithQuestionnaireExtension(v Extension) QuestionnaireOption {
 }
 
 // WithQuestionnaireModifierExtension adds a ModifierExtension to the Questionnaire.
+//
+// Deprecated: use QuestionnaireBuilder.AddModifierExtension instead; removed in v2.
 func WithQuestionnaireModifierExtension(v Extension) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1828,6 +1858,8 @@ func WithQuestionnaireModifierExtension(v Extension) QuestionnaireOption {
 }
 
 // WithQuestionnaireUrl sets the Url field.
+//
+// Deprecated: use QuestionnaireBuilder.SetUrl instead; removed in v2.
 func WithQuestionnaireUrl(v string) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Url = &v
@@ -1835,6 +1867,8 @@ func WithQuestionnaireUrl(v string) QuestionnaireOption {
 }
 
 // WithQuestionnaireIdentifier adds a Identifier to the Questionnaire.
+//
+// Deprecated: use QuestionnaireBuilder.AddIdentifier instead; removed in v2.
 func WithQuestionnaireIdentifier(v Identifier) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Identifier = append(r.Identifier, v)
@@ -1842,6 +1876,8 @@ func WithQuestionnaireIdentifier(v Identifier) QuestionnaireOption {
 }
 
 // WithQuestionnaireVersion sets the Version field.
+//
+// Deprecated: use QuestionnaireBuilder.SetVersion instead; removed in v2.
 func WithQuestionnaireVersion(v string) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Version = &v
@@ -1849,6 +1885,8 @@ func WithQuestionnaireVersion(v string) QuestionnaireOption {
 }
 
 // WithQuestionnaireVersionAlgorithmString sets the VersionAlgorithmString field.
+//
+// Deprecated: use QuestionnaireBuilder.SetVersionAlgorithmString instead; removed in v2.
 func WithQuestionnaireVersionAlgorithmString(v string) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.VersionAlgorithmString = &v
@@ -1856,6 +1894,8 @@ func WithQuestionnaireVersionAlgorithmString(v string) QuestionnaireOption {
 }
 
 // WithQuestionnaireVersionAlgorithmStringExt sets the VersionAlgorithmStringExt field.
+//
+// Deprecated: use QuestionnaireBuilder.SetVersionAlgorithmStringExt instead; removed in v2.
 func WithQuestionnaireVersionAlgorithmStringExt(v Element) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.VersionAlgorithmStringExt = &v
@@ -1863,6 +1903,8 @@ func WithQuestionnaireVersionAlgorithmStringExt(v Element) QuestionnaireOption {
 }
 
 // WithQuestionnaireVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+//
+// Deprecated: use QuestionnaireBuilder.SetVersionAlgorithmCoding instead; removed in v2.
 func WithQuestionnaireVersionAlgorithmCoding(v Coding) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.VersionAlgorithmCoding = &v
@@ -1870,6 +1912,8 @@ func WithQuestionnaireVersionAlgorithmCoding(v Coding) QuestionnaireOption {
 }
 
 // WithQuestionnaireName sets the Name field.
+//
+// Deprecated: use QuestionnaireBuilder.SetName instead; removed in v2.
 func WithQuestionnaireName(v string) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Name = &v
@@ -1877,6 +1921,8 @@ func WithQuestionnaireName(v string) QuestionnaireOption {
 }
 
 // WithQuestionnaireTitle sets the Title field.
+//
+// Deprecated: use QuestionnaireBuilder.SetTitle instead; removed in v2.
 func WithQuestionnaireTitle(v string) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Title = &v
@@ -1884,6 +1930,8 @@ func WithQuestionnaireTitle(v string) QuestionnaireOption {
 }
 
 // WithQuestionnaireDerivedFrom adds a DerivedFrom to the Questionnaire.
+//
+// Deprecated: use QuestionnaireBuilder.AddDerivedFrom instead; removed in v2.
 func WithQuestionnaireDerivedFrom(v string) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.DerivedFrom = append(r.DerivedFrom, v)
@@ -1891,6 +1939,8 @@ func WithQuestionnaireDerivedFrom(v string) QuestionnaireOption {
 }
 
 // WithQuestionnaireStatus sets the Status field.
+//
+// Deprecated: use QuestionnaireBuilder.SetStatus instead; removed in v2.
 func WithQuestionnaireStatus(v PublicationStatus) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Status = &v
@@ -1898,6 +1948,8 @@ func WithQuestionnaireStatus(v PublicationStatus) QuestionnaireOption {
 }
 
 // WithQuestionnaireExperimental sets the Experimental field.
+//
+// Deprecated: use QuestionnaireBuilder.SetExperimental instead; removed in v2.
 func WithQuestionnaireExperimental(v bool) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Experimental = &v
@@ -1905,6 +1957,8 @@ func WithQuestionnaireExperimental(v bool) QuestionnaireOption {
 }
 
 // WithQuestionnaireSubjectType adds a SubjectType to the Questionnaire.
+//
+// Deprecated: use QuestionnaireBuilder.AddSubjectType instead; removed in v2.
 func WithQuestionnaireSubjectType(v string) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.SubjectType = append(r.SubjectType, v)
@@ -1912,6 +1966,8 @@ func WithQuestionnaireSubjectType(v string) QuestionnaireOption {
 }
 
 // WithQuestionnaireDate sets the Date field.
+//
+// Deprecated: use QuestionnaireBuilder.SetDate instead; removed in v2.
 func WithQuestionnaireDate(v string) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Date = &v
@@ -1919,6 +1975,8 @@ func WithQuestionnaireDate(v string) QuestionnaireOption {
 }
 
 // WithQuestionnairePublisher sets the Publisher field.
+//
+// Deprecated: use QuestionnaireBuilder.SetPublisher instead; removed in v2.
 func WithQuestionnairePublisher(v string) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Publisher = &v
@@ -1926,6 +1984,8 @@ func WithQuestionnairePublisher(v string) QuestionnaireOption {
 }
 
 // WithQuestionnaireContact adds a Contact to the Questionnaire.
+//
+// Deprecated: use QuestionnaireBuilder.AddContact instead; removed in v2.
 func WithQuestionnaireContact(v ContactDetail) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Contact = append(r.Contact, v)
@@ -1933,6 +1993,8 @@ func WithQuestionnaireContact(v ContactDetail) QuestionnaireOption {
 }
 
 // WithQuestionnaireDescription sets the Description field.
+//
+// Deprecated: use QuestionnaireBuilder.SetDescription instead; removed in v2.
 func WithQuestionnaireDescription(v string) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Description = &v
@@ -1940,6 +2002,8 @@ func WithQuestionnaireDescription(v string) QuestionnaireOption {
 }
 
 // WithQuestionnaireUseContext adds a UseContext to the Questionnaire.
+//
+// Deprecated: use QuestionnaireBuilder.AddUseContext instead; removed in v2.
 func WithQuestionnaireUseContext(v UsageContext) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.UseContext = append(r.UseContext, v)
@@ -1947,6 +2011,8 @@ func WithQuestionnaireUseContext(v UsageContext) QuestionnaireOption {
 }
 
 // WithQuestionnaireJurisdiction adds a Jurisdiction to the Questionnaire.
+//
+// Deprecated: use QuestionnaireBuilder.AddJurisdiction instead; removed in v2.
 func WithQuestionnaireJurisdiction(v CodeableConcept) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1954,6 +2020,8 @@ func WithQuestionnaireJurisdiction(v CodeableConcept) QuestionnaireOption {
 }
 
 // WithQuestionnairePurpose sets the Purpose field.
+//
+// Deprecated: use QuestionnaireBuilder.SetPurpose instead; removed in v2.
 func WithQuestionnairePurpose(v string) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Purpose = &v
@@ -1961,6 +2029,8 @@ func WithQuestionnairePurpose(v string) QuestionnaireOption {
 }
 
 // WithQuestionnaireCopyright sets the Copyright field.
+//
+// Deprecated: use QuestionnaireBuilder.SetCopyright instead; removed in v2.
 func WithQuestionnaireCopyright(v string) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Copyright = &v
@@ -1968,6 +2038,8 @@ func WithQuestionnaireCopyright(v string) QuestionnaireOption {
 }
 
 // WithQuestionnaireCopyrightLabel sets the CopyrightLabel field.
+//
+// Deprecated: use QuestionnaireBuilder.SetCopyrightLabel instead; removed in v2.
 func WithQuestionnaireCopyrightLabel(v string) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.CopyrightLabel = &v
@@ -1975,6 +2047,8 @@ func WithQuestionnaireCopyrightLabel(v string) QuestionnaireOption {
 }
 
 // WithQuestionnaireApprovalDate sets the ApprovalDate field.
+//
+// Deprecated: use QuestionnaireBuilder.SetApprovalDate instead; removed in v2.
 func WithQuestionnaireApprovalDate(v string) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.ApprovalDate = &v
@@ -1982,6 +2056,8 @@ func WithQuestionnaireApprovalDate(v string) QuestionnaireOption {
 }
 
 // WithQuestionnaireLastReviewDate sets the LastReviewDate field.
+//
+// Deprecated: use QuestionnaireBuilder.SetLastReviewDate instead; removed in v2.
 func WithQuestionnaireLastReviewDate(v string) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.LastReviewDate = &v
@@ -1989,6 +2065,8 @@ func WithQuestionnaireLastReviewDate(v string) QuestionnaireOption {
 }
 
 // WithQuestionnaireEffectivePeriod sets the EffectivePeriod field.
+//
+// Deprecated: use QuestionnaireBuilder.SetEffectivePeriod instead; removed in v2.
 func WithQuestionnaireEffectivePeriod(v Period) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.EffectivePeriod = &v
@@ -1996,6 +2074,8 @@ func WithQuestionnaireEffectivePeriod(v Period) QuestionnaireOption {
 }
 
 // WithQuestionnaireCode adds a Code to the Questionnaire.
+//
+// Deprecated: use QuestionnaireBuilder.AddCode instead; removed in v2.
 func WithQuestionnaireCode(v Coding) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Code = append(r.Code, v)
@@ -2003,6 +2083,8 @@ func WithQuestionnaireCode(v Coding) QuestionnaireOption {
 }
 
 // WithQuestionnaireItem adds a Item to the Questionnaire.
+//
+// Deprecated: use QuestionnaireBuilder.AddItem instead; removed in v2.
 func WithQuestionnaireItem(v QuestionnaireItem) QuestionnaireOption {
 	return func(r *Questionnaire) {
 		r.Item = append(r.Item, v)

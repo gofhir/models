@@ -827,9 +827,23 @@ func (b *GroupBuilder) AddMember(v GroupMember) *GroupBuilder {
 // =============================================================================
 
 // GroupOption is a functional option for configuring a Group.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// GroupBuilder. Every WithGroup* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type GroupOption func(*Group)
 
 // NewGroup creates a new Group with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewGroupBuilder().SetId("x").Build()
+//
+// Deprecated: use NewGroupBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewGroup(opts ...GroupOption) *Group {
 	r := &Group{ResourceType: "Group"}
 	for _, opt := range opts {
@@ -839,6 +853,8 @@ func NewGroup(opts ...GroupOption) *Group {
 }
 
 // WithGroupId sets the Id field.
+//
+// Deprecated: use GroupBuilder.SetId instead; removed in v2.
 func WithGroupId(v string) GroupOption {
 	return func(r *Group) {
 		r.Id = &v
@@ -846,6 +862,8 @@ func WithGroupId(v string) GroupOption {
 }
 
 // WithGroupMeta sets the Meta field.
+//
+// Deprecated: use GroupBuilder.SetMeta instead; removed in v2.
 func WithGroupMeta(v Meta) GroupOption {
 	return func(r *Group) {
 		r.Meta = &v
@@ -853,6 +871,8 @@ func WithGroupMeta(v Meta) GroupOption {
 }
 
 // WithGroupImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use GroupBuilder.SetImplicitRules instead; removed in v2.
 func WithGroupImplicitRules(v string) GroupOption {
 	return func(r *Group) {
 		r.ImplicitRules = &v
@@ -860,6 +880,8 @@ func WithGroupImplicitRules(v string) GroupOption {
 }
 
 // WithGroupLanguage sets the Language field.
+//
+// Deprecated: use GroupBuilder.SetLanguage instead; removed in v2.
 func WithGroupLanguage(v string) GroupOption {
 	return func(r *Group) {
 		r.Language = &v
@@ -867,6 +889,8 @@ func WithGroupLanguage(v string) GroupOption {
 }
 
 // WithGroupText sets the Text field.
+//
+// Deprecated: use GroupBuilder.SetText instead; removed in v2.
 func WithGroupText(v Narrative) GroupOption {
 	return func(r *Group) {
 		r.Text = &v
@@ -874,6 +898,8 @@ func WithGroupText(v Narrative) GroupOption {
 }
 
 // WithGroupContained adds a Contained to the Group.
+//
+// Deprecated: use GroupBuilder.AddContained instead; removed in v2.
 func WithGroupContained(v Resource) GroupOption {
 	return func(r *Group) {
 		r.Contained = append(r.Contained, v)
@@ -881,6 +907,8 @@ func WithGroupContained(v Resource) GroupOption {
 }
 
 // WithGroupExtension adds a Extension to the Group.
+//
+// Deprecated: use GroupBuilder.AddExtension instead; removed in v2.
 func WithGroupExtension(v Extension) GroupOption {
 	return func(r *Group) {
 		r.Extension = append(r.Extension, v)
@@ -888,6 +916,8 @@ func WithGroupExtension(v Extension) GroupOption {
 }
 
 // WithGroupModifierExtension adds a ModifierExtension to the Group.
+//
+// Deprecated: use GroupBuilder.AddModifierExtension instead; removed in v2.
 func WithGroupModifierExtension(v Extension) GroupOption {
 	return func(r *Group) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -895,6 +925,8 @@ func WithGroupModifierExtension(v Extension) GroupOption {
 }
 
 // WithGroupIdentifier adds a Identifier to the Group.
+//
+// Deprecated: use GroupBuilder.AddIdentifier instead; removed in v2.
 func WithGroupIdentifier(v Identifier) GroupOption {
 	return func(r *Group) {
 		r.Identifier = append(r.Identifier, v)
@@ -902,6 +934,8 @@ func WithGroupIdentifier(v Identifier) GroupOption {
 }
 
 // WithGroupActive sets the Active field.
+//
+// Deprecated: use GroupBuilder.SetActive instead; removed in v2.
 func WithGroupActive(v bool) GroupOption {
 	return func(r *Group) {
 		r.Active = &v
@@ -909,6 +943,8 @@ func WithGroupActive(v bool) GroupOption {
 }
 
 // WithGroupType sets the Type field.
+//
+// Deprecated: use GroupBuilder.SetType instead; removed in v2.
 func WithGroupType(v GroupType) GroupOption {
 	return func(r *Group) {
 		r.Type = &v
@@ -916,6 +952,8 @@ func WithGroupType(v GroupType) GroupOption {
 }
 
 // WithGroupActual sets the Actual field.
+//
+// Deprecated: use GroupBuilder.SetActual instead; removed in v2.
 func WithGroupActual(v bool) GroupOption {
 	return func(r *Group) {
 		r.Actual = &v
@@ -923,6 +961,8 @@ func WithGroupActual(v bool) GroupOption {
 }
 
 // WithGroupCode sets the Code field.
+//
+// Deprecated: use GroupBuilder.SetCode instead; removed in v2.
 func WithGroupCode(v CodeableConcept) GroupOption {
 	return func(r *Group) {
 		r.Code = &v
@@ -930,6 +970,8 @@ func WithGroupCode(v CodeableConcept) GroupOption {
 }
 
 // WithGroupName sets the Name field.
+//
+// Deprecated: use GroupBuilder.SetName instead; removed in v2.
 func WithGroupName(v string) GroupOption {
 	return func(r *Group) {
 		r.Name = &v
@@ -937,6 +979,8 @@ func WithGroupName(v string) GroupOption {
 }
 
 // WithGroupQuantity sets the Quantity field.
+//
+// Deprecated: use GroupBuilder.SetQuantity instead; removed in v2.
 func WithGroupQuantity(v uint32) GroupOption {
 	return func(r *Group) {
 		r.Quantity = &v
@@ -944,6 +988,8 @@ func WithGroupQuantity(v uint32) GroupOption {
 }
 
 // WithGroupManagingEntity sets the ManagingEntity field.
+//
+// Deprecated: use GroupBuilder.SetManagingEntity instead; removed in v2.
 func WithGroupManagingEntity(v Reference) GroupOption {
 	return func(r *Group) {
 		r.ManagingEntity = &v
@@ -951,6 +997,8 @@ func WithGroupManagingEntity(v Reference) GroupOption {
 }
 
 // WithGroupCharacteristic adds a Characteristic to the Group.
+//
+// Deprecated: use GroupBuilder.AddCharacteristic instead; removed in v2.
 func WithGroupCharacteristic(v GroupCharacteristic) GroupOption {
 	return func(r *Group) {
 		r.Characteristic = append(r.Characteristic, v)
@@ -958,6 +1006,8 @@ func WithGroupCharacteristic(v GroupCharacteristic) GroupOption {
 }
 
 // WithGroupMember adds a Member to the Group.
+//
+// Deprecated: use GroupBuilder.AddMember instead; removed in v2.
 func WithGroupMember(v GroupMember) GroupOption {
 	return func(r *Group) {
 		r.Member = append(r.Member, v)

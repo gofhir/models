@@ -935,9 +935,23 @@ func (b *MedicinalProductAuthorizationBuilder) SetProcedure(v MedicinalProductAu
 // =============================================================================
 
 // MedicinalProductAuthorizationOption is a functional option for configuring a MedicinalProductAuthorization.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// MedicinalProductAuthorizationBuilder. Every WithMedicinalProductAuthorization* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type MedicinalProductAuthorizationOption func(*MedicinalProductAuthorization)
 
 // NewMedicinalProductAuthorization creates a new MedicinalProductAuthorization with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewMedicinalProductAuthorizationBuilder().SetId("x").Build()
+//
+// Deprecated: use NewMedicinalProductAuthorizationBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewMedicinalProductAuthorization(opts ...MedicinalProductAuthorizationOption) *MedicinalProductAuthorization {
 	r := &MedicinalProductAuthorization{ResourceType: "MedicinalProductAuthorization"}
 	for _, opt := range opts {
@@ -947,6 +961,8 @@ func NewMedicinalProductAuthorization(opts ...MedicinalProductAuthorizationOptio
 }
 
 // WithMedicinalProductAuthorizationId sets the Id field.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.SetId instead; removed in v2.
 func WithMedicinalProductAuthorizationId(v string) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.Id = &v
@@ -954,6 +970,8 @@ func WithMedicinalProductAuthorizationId(v string) MedicinalProductAuthorization
 }
 
 // WithMedicinalProductAuthorizationMeta sets the Meta field.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.SetMeta instead; removed in v2.
 func WithMedicinalProductAuthorizationMeta(v Meta) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.Meta = &v
@@ -961,6 +979,8 @@ func WithMedicinalProductAuthorizationMeta(v Meta) MedicinalProductAuthorization
 }
 
 // WithMedicinalProductAuthorizationImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.SetImplicitRules instead; removed in v2.
 func WithMedicinalProductAuthorizationImplicitRules(v string) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.ImplicitRules = &v
@@ -968,6 +988,8 @@ func WithMedicinalProductAuthorizationImplicitRules(v string) MedicinalProductAu
 }
 
 // WithMedicinalProductAuthorizationLanguage sets the Language field.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.SetLanguage instead; removed in v2.
 func WithMedicinalProductAuthorizationLanguage(v string) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.Language = &v
@@ -975,6 +997,8 @@ func WithMedicinalProductAuthorizationLanguage(v string) MedicinalProductAuthori
 }
 
 // WithMedicinalProductAuthorizationText sets the Text field.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.SetText instead; removed in v2.
 func WithMedicinalProductAuthorizationText(v Narrative) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.Text = &v
@@ -982,6 +1006,8 @@ func WithMedicinalProductAuthorizationText(v Narrative) MedicinalProductAuthoriz
 }
 
 // WithMedicinalProductAuthorizationContained adds a Contained to the MedicinalProductAuthorization.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.AddContained instead; removed in v2.
 func WithMedicinalProductAuthorizationContained(v Resource) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.Contained = append(r.Contained, v)
@@ -989,6 +1015,8 @@ func WithMedicinalProductAuthorizationContained(v Resource) MedicinalProductAuth
 }
 
 // WithMedicinalProductAuthorizationExtension adds a Extension to the MedicinalProductAuthorization.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.AddExtension instead; removed in v2.
 func WithMedicinalProductAuthorizationExtension(v Extension) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.Extension = append(r.Extension, v)
@@ -996,6 +1024,8 @@ func WithMedicinalProductAuthorizationExtension(v Extension) MedicinalProductAut
 }
 
 // WithMedicinalProductAuthorizationModifierExtension adds a ModifierExtension to the MedicinalProductAuthorization.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.AddModifierExtension instead; removed in v2.
 func WithMedicinalProductAuthorizationModifierExtension(v Extension) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1003,6 +1033,8 @@ func WithMedicinalProductAuthorizationModifierExtension(v Extension) MedicinalPr
 }
 
 // WithMedicinalProductAuthorizationIdentifier adds a Identifier to the MedicinalProductAuthorization.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.AddIdentifier instead; removed in v2.
 func WithMedicinalProductAuthorizationIdentifier(v Identifier) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.Identifier = append(r.Identifier, v)
@@ -1010,6 +1042,8 @@ func WithMedicinalProductAuthorizationIdentifier(v Identifier) MedicinalProductA
 }
 
 // WithMedicinalProductAuthorizationSubject sets the Subject field.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.SetSubject instead; removed in v2.
 func WithMedicinalProductAuthorizationSubject(v Reference) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.Subject = &v
@@ -1017,6 +1051,8 @@ func WithMedicinalProductAuthorizationSubject(v Reference) MedicinalProductAutho
 }
 
 // WithMedicinalProductAuthorizationCountry adds a Country to the MedicinalProductAuthorization.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.AddCountry instead; removed in v2.
 func WithMedicinalProductAuthorizationCountry(v CodeableConcept) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.Country = append(r.Country, v)
@@ -1024,6 +1060,8 @@ func WithMedicinalProductAuthorizationCountry(v CodeableConcept) MedicinalProduc
 }
 
 // WithMedicinalProductAuthorizationJurisdiction adds a Jurisdiction to the MedicinalProductAuthorization.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.AddJurisdiction instead; removed in v2.
 func WithMedicinalProductAuthorizationJurisdiction(v CodeableConcept) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1031,6 +1069,8 @@ func WithMedicinalProductAuthorizationJurisdiction(v CodeableConcept) MedicinalP
 }
 
 // WithMedicinalProductAuthorizationStatus sets the Status field.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.SetStatus instead; removed in v2.
 func WithMedicinalProductAuthorizationStatus(v CodeableConcept) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.Status = &v
@@ -1038,6 +1078,8 @@ func WithMedicinalProductAuthorizationStatus(v CodeableConcept) MedicinalProduct
 }
 
 // WithMedicinalProductAuthorizationStatusDate sets the StatusDate field.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.SetStatusDate instead; removed in v2.
 func WithMedicinalProductAuthorizationStatusDate(v string) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.StatusDate = &v
@@ -1045,6 +1087,8 @@ func WithMedicinalProductAuthorizationStatusDate(v string) MedicinalProductAutho
 }
 
 // WithMedicinalProductAuthorizationRestoreDate sets the RestoreDate field.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.SetRestoreDate instead; removed in v2.
 func WithMedicinalProductAuthorizationRestoreDate(v string) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.RestoreDate = &v
@@ -1052,6 +1096,8 @@ func WithMedicinalProductAuthorizationRestoreDate(v string) MedicinalProductAuth
 }
 
 // WithMedicinalProductAuthorizationValidityPeriod sets the ValidityPeriod field.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.SetValidityPeriod instead; removed in v2.
 func WithMedicinalProductAuthorizationValidityPeriod(v Period) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.ValidityPeriod = &v
@@ -1059,6 +1105,8 @@ func WithMedicinalProductAuthorizationValidityPeriod(v Period) MedicinalProductA
 }
 
 // WithMedicinalProductAuthorizationDataExclusivityPeriod sets the DataExclusivityPeriod field.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.SetDataExclusivityPeriod instead; removed in v2.
 func WithMedicinalProductAuthorizationDataExclusivityPeriod(v Period) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.DataExclusivityPeriod = &v
@@ -1066,6 +1114,8 @@ func WithMedicinalProductAuthorizationDataExclusivityPeriod(v Period) MedicinalP
 }
 
 // WithMedicinalProductAuthorizationDateOfFirstAuthorization sets the DateOfFirstAuthorization field.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.SetDateOfFirstAuthorization instead; removed in v2.
 func WithMedicinalProductAuthorizationDateOfFirstAuthorization(v string) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.DateOfFirstAuthorization = &v
@@ -1073,6 +1123,8 @@ func WithMedicinalProductAuthorizationDateOfFirstAuthorization(v string) Medicin
 }
 
 // WithMedicinalProductAuthorizationInternationalBirthDate sets the InternationalBirthDate field.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.SetInternationalBirthDate instead; removed in v2.
 func WithMedicinalProductAuthorizationInternationalBirthDate(v string) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.InternationalBirthDate = &v
@@ -1080,6 +1132,8 @@ func WithMedicinalProductAuthorizationInternationalBirthDate(v string) Medicinal
 }
 
 // WithMedicinalProductAuthorizationLegalBasis sets the LegalBasis field.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.SetLegalBasis instead; removed in v2.
 func WithMedicinalProductAuthorizationLegalBasis(v CodeableConcept) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.LegalBasis = &v
@@ -1087,6 +1141,8 @@ func WithMedicinalProductAuthorizationLegalBasis(v CodeableConcept) MedicinalPro
 }
 
 // WithMedicinalProductAuthorizationJurisdictionalAuthorization adds a JurisdictionalAuthorization to the MedicinalProductAuthorization.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.AddJurisdictionalAuthorization instead; removed in v2.
 func WithMedicinalProductAuthorizationJurisdictionalAuthorization(v MedicinalProductAuthorizationJurisdictionalAuthorization) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.JurisdictionalAuthorization = append(r.JurisdictionalAuthorization, v)
@@ -1094,6 +1150,8 @@ func WithMedicinalProductAuthorizationJurisdictionalAuthorization(v MedicinalPro
 }
 
 // WithMedicinalProductAuthorizationHolder sets the Holder field.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.SetHolder instead; removed in v2.
 func WithMedicinalProductAuthorizationHolder(v Reference) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.Holder = &v
@@ -1101,6 +1159,8 @@ func WithMedicinalProductAuthorizationHolder(v Reference) MedicinalProductAuthor
 }
 
 // WithMedicinalProductAuthorizationRegulator sets the Regulator field.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.SetRegulator instead; removed in v2.
 func WithMedicinalProductAuthorizationRegulator(v Reference) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.Regulator = &v
@@ -1108,6 +1168,8 @@ func WithMedicinalProductAuthorizationRegulator(v Reference) MedicinalProductAut
 }
 
 // WithMedicinalProductAuthorizationProcedure sets the Procedure field.
+//
+// Deprecated: use MedicinalProductAuthorizationBuilder.SetProcedure instead; removed in v2.
 func WithMedicinalProductAuthorizationProcedure(v MedicinalProductAuthorizationProcedure) MedicinalProductAuthorizationOption {
 	return func(r *MedicinalProductAuthorization) {
 		r.Procedure = &v

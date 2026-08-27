@@ -1592,9 +1592,23 @@ func (b *AdverseEventBuilder) AddNote(v Annotation) *AdverseEventBuilder {
 // =============================================================================
 
 // AdverseEventOption is a functional option for configuring a AdverseEvent.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// AdverseEventBuilder. Every WithAdverseEvent* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type AdverseEventOption func(*AdverseEvent)
 
 // NewAdverseEvent creates a new AdverseEvent with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewAdverseEventBuilder().SetId("x").Build()
+//
+// Deprecated: use NewAdverseEventBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewAdverseEvent(opts ...AdverseEventOption) *AdverseEvent {
 	r := &AdverseEvent{ResourceType: "AdverseEvent"}
 	for _, opt := range opts {
@@ -1604,6 +1618,8 @@ func NewAdverseEvent(opts ...AdverseEventOption) *AdverseEvent {
 }
 
 // WithAdverseEventId sets the Id field.
+//
+// Deprecated: use AdverseEventBuilder.SetId instead; removed in v2.
 func WithAdverseEventId(v string) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Id = &v
@@ -1611,6 +1627,8 @@ func WithAdverseEventId(v string) AdverseEventOption {
 }
 
 // WithAdverseEventMeta sets the Meta field.
+//
+// Deprecated: use AdverseEventBuilder.SetMeta instead; removed in v2.
 func WithAdverseEventMeta(v Meta) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Meta = &v
@@ -1618,6 +1636,8 @@ func WithAdverseEventMeta(v Meta) AdverseEventOption {
 }
 
 // WithAdverseEventImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use AdverseEventBuilder.SetImplicitRules instead; removed in v2.
 func WithAdverseEventImplicitRules(v string) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.ImplicitRules = &v
@@ -1625,6 +1645,8 @@ func WithAdverseEventImplicitRules(v string) AdverseEventOption {
 }
 
 // WithAdverseEventLanguage sets the Language field.
+//
+// Deprecated: use AdverseEventBuilder.SetLanguage instead; removed in v2.
 func WithAdverseEventLanguage(v string) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Language = &v
@@ -1632,6 +1654,8 @@ func WithAdverseEventLanguage(v string) AdverseEventOption {
 }
 
 // WithAdverseEventText sets the Text field.
+//
+// Deprecated: use AdverseEventBuilder.SetText instead; removed in v2.
 func WithAdverseEventText(v Narrative) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Text = &v
@@ -1639,6 +1663,8 @@ func WithAdverseEventText(v Narrative) AdverseEventOption {
 }
 
 // WithAdverseEventContained adds a Contained to the AdverseEvent.
+//
+// Deprecated: use AdverseEventBuilder.AddContained instead; removed in v2.
 func WithAdverseEventContained(v Resource) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Contained = append(r.Contained, v)
@@ -1646,6 +1672,8 @@ func WithAdverseEventContained(v Resource) AdverseEventOption {
 }
 
 // WithAdverseEventExtension adds a Extension to the AdverseEvent.
+//
+// Deprecated: use AdverseEventBuilder.AddExtension instead; removed in v2.
 func WithAdverseEventExtension(v Extension) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Extension = append(r.Extension, v)
@@ -1653,6 +1681,8 @@ func WithAdverseEventExtension(v Extension) AdverseEventOption {
 }
 
 // WithAdverseEventModifierExtension adds a ModifierExtension to the AdverseEvent.
+//
+// Deprecated: use AdverseEventBuilder.AddModifierExtension instead; removed in v2.
 func WithAdverseEventModifierExtension(v Extension) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1660,6 +1690,8 @@ func WithAdverseEventModifierExtension(v Extension) AdverseEventOption {
 }
 
 // WithAdverseEventIdentifier adds a Identifier to the AdverseEvent.
+//
+// Deprecated: use AdverseEventBuilder.AddIdentifier instead; removed in v2.
 func WithAdverseEventIdentifier(v Identifier) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Identifier = append(r.Identifier, v)
@@ -1667,6 +1699,8 @@ func WithAdverseEventIdentifier(v Identifier) AdverseEventOption {
 }
 
 // WithAdverseEventStatus sets the Status field.
+//
+// Deprecated: use AdverseEventBuilder.SetStatus instead; removed in v2.
 func WithAdverseEventStatus(v AdverseEventStatus) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Status = &v
@@ -1674,6 +1708,8 @@ func WithAdverseEventStatus(v AdverseEventStatus) AdverseEventOption {
 }
 
 // WithAdverseEventActuality sets the Actuality field.
+//
+// Deprecated: use AdverseEventBuilder.SetActuality instead; removed in v2.
 func WithAdverseEventActuality(v AdverseEventActuality) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Actuality = &v
@@ -1681,6 +1717,8 @@ func WithAdverseEventActuality(v AdverseEventActuality) AdverseEventOption {
 }
 
 // WithAdverseEventCategory adds a Category to the AdverseEvent.
+//
+// Deprecated: use AdverseEventBuilder.AddCategory instead; removed in v2.
 func WithAdverseEventCategory(v CodeableConcept) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Category = append(r.Category, v)
@@ -1688,6 +1726,8 @@ func WithAdverseEventCategory(v CodeableConcept) AdverseEventOption {
 }
 
 // WithAdverseEventCode sets the Code field.
+//
+// Deprecated: use AdverseEventBuilder.SetCode instead; removed in v2.
 func WithAdverseEventCode(v CodeableConcept) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Code = &v
@@ -1695,6 +1735,8 @@ func WithAdverseEventCode(v CodeableConcept) AdverseEventOption {
 }
 
 // WithAdverseEventSubject sets the Subject field.
+//
+// Deprecated: use AdverseEventBuilder.SetSubject instead; removed in v2.
 func WithAdverseEventSubject(v Reference) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Subject = v
@@ -1702,6 +1744,8 @@ func WithAdverseEventSubject(v Reference) AdverseEventOption {
 }
 
 // WithAdverseEventEncounter sets the Encounter field.
+//
+// Deprecated: use AdverseEventBuilder.SetEncounter instead; removed in v2.
 func WithAdverseEventEncounter(v Reference) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Encounter = &v
@@ -1709,6 +1753,8 @@ func WithAdverseEventEncounter(v Reference) AdverseEventOption {
 }
 
 // WithAdverseEventOccurrenceDateTime sets the OccurrenceDateTime field.
+//
+// Deprecated: use AdverseEventBuilder.SetOccurrenceDateTime instead; removed in v2.
 func WithAdverseEventOccurrenceDateTime(v string) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.OccurrenceDateTime = &v
@@ -1716,6 +1762,8 @@ func WithAdverseEventOccurrenceDateTime(v string) AdverseEventOption {
 }
 
 // WithAdverseEventOccurrenceDateTimeExt sets the OccurrenceDateTimeExt field.
+//
+// Deprecated: use AdverseEventBuilder.SetOccurrenceDateTimeExt instead; removed in v2.
 func WithAdverseEventOccurrenceDateTimeExt(v Element) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.OccurrenceDateTimeExt = &v
@@ -1723,6 +1771,8 @@ func WithAdverseEventOccurrenceDateTimeExt(v Element) AdverseEventOption {
 }
 
 // WithAdverseEventOccurrencePeriod sets the OccurrencePeriod field.
+//
+// Deprecated: use AdverseEventBuilder.SetOccurrencePeriod instead; removed in v2.
 func WithAdverseEventOccurrencePeriod(v Period) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.OccurrencePeriod = &v
@@ -1730,6 +1780,8 @@ func WithAdverseEventOccurrencePeriod(v Period) AdverseEventOption {
 }
 
 // WithAdverseEventOccurrenceTiming sets the OccurrenceTiming field.
+//
+// Deprecated: use AdverseEventBuilder.SetOccurrenceTiming instead; removed in v2.
 func WithAdverseEventOccurrenceTiming(v Timing) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.OccurrenceTiming = &v
@@ -1737,6 +1789,8 @@ func WithAdverseEventOccurrenceTiming(v Timing) AdverseEventOption {
 }
 
 // WithAdverseEventDetected sets the Detected field.
+//
+// Deprecated: use AdverseEventBuilder.SetDetected instead; removed in v2.
 func WithAdverseEventDetected(v string) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Detected = &v
@@ -1744,6 +1798,8 @@ func WithAdverseEventDetected(v string) AdverseEventOption {
 }
 
 // WithAdverseEventRecordedDate sets the RecordedDate field.
+//
+// Deprecated: use AdverseEventBuilder.SetRecordedDate instead; removed in v2.
 func WithAdverseEventRecordedDate(v string) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.RecordedDate = &v
@@ -1751,6 +1807,8 @@ func WithAdverseEventRecordedDate(v string) AdverseEventOption {
 }
 
 // WithAdverseEventResultingEffect adds a ResultingEffect to the AdverseEvent.
+//
+// Deprecated: use AdverseEventBuilder.AddResultingEffect instead; removed in v2.
 func WithAdverseEventResultingEffect(v Reference) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.ResultingEffect = append(r.ResultingEffect, v)
@@ -1758,6 +1816,8 @@ func WithAdverseEventResultingEffect(v Reference) AdverseEventOption {
 }
 
 // WithAdverseEventLocation sets the Location field.
+//
+// Deprecated: use AdverseEventBuilder.SetLocation instead; removed in v2.
 func WithAdverseEventLocation(v Reference) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Location = &v
@@ -1765,6 +1825,8 @@ func WithAdverseEventLocation(v Reference) AdverseEventOption {
 }
 
 // WithAdverseEventSeriousness sets the Seriousness field.
+//
+// Deprecated: use AdverseEventBuilder.SetSeriousness instead; removed in v2.
 func WithAdverseEventSeriousness(v CodeableConcept) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Seriousness = &v
@@ -1772,6 +1834,8 @@ func WithAdverseEventSeriousness(v CodeableConcept) AdverseEventOption {
 }
 
 // WithAdverseEventOutcome adds a Outcome to the AdverseEvent.
+//
+// Deprecated: use AdverseEventBuilder.AddOutcome instead; removed in v2.
 func WithAdverseEventOutcome(v CodeableConcept) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Outcome = append(r.Outcome, v)
@@ -1779,6 +1843,8 @@ func WithAdverseEventOutcome(v CodeableConcept) AdverseEventOption {
 }
 
 // WithAdverseEventRecorder sets the Recorder field.
+//
+// Deprecated: use AdverseEventBuilder.SetRecorder instead; removed in v2.
 func WithAdverseEventRecorder(v Reference) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Recorder = &v
@@ -1786,6 +1852,8 @@ func WithAdverseEventRecorder(v Reference) AdverseEventOption {
 }
 
 // WithAdverseEventParticipant adds a Participant to the AdverseEvent.
+//
+// Deprecated: use AdverseEventBuilder.AddParticipant instead; removed in v2.
 func WithAdverseEventParticipant(v AdverseEventParticipant) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Participant = append(r.Participant, v)
@@ -1793,6 +1861,8 @@ func WithAdverseEventParticipant(v AdverseEventParticipant) AdverseEventOption {
 }
 
 // WithAdverseEventStudy adds a Study to the AdverseEvent.
+//
+// Deprecated: use AdverseEventBuilder.AddStudy instead; removed in v2.
 func WithAdverseEventStudy(v Reference) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Study = append(r.Study, v)
@@ -1800,6 +1870,8 @@ func WithAdverseEventStudy(v Reference) AdverseEventOption {
 }
 
 // WithAdverseEventExpectedInResearchStudy sets the ExpectedInResearchStudy field.
+//
+// Deprecated: use AdverseEventBuilder.SetExpectedInResearchStudy instead; removed in v2.
 func WithAdverseEventExpectedInResearchStudy(v bool) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.ExpectedInResearchStudy = &v
@@ -1807,6 +1879,8 @@ func WithAdverseEventExpectedInResearchStudy(v bool) AdverseEventOption {
 }
 
 // WithAdverseEventSuspectEntity adds a SuspectEntity to the AdverseEvent.
+//
+// Deprecated: use AdverseEventBuilder.AddSuspectEntity instead; removed in v2.
 func WithAdverseEventSuspectEntity(v AdverseEventSuspectEntity) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.SuspectEntity = append(r.SuspectEntity, v)
@@ -1814,6 +1888,8 @@ func WithAdverseEventSuspectEntity(v AdverseEventSuspectEntity) AdverseEventOpti
 }
 
 // WithAdverseEventContributingFactor adds a ContributingFactor to the AdverseEvent.
+//
+// Deprecated: use AdverseEventBuilder.AddContributingFactor instead; removed in v2.
 func WithAdverseEventContributingFactor(v AdverseEventContributingFactor) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.ContributingFactor = append(r.ContributingFactor, v)
@@ -1821,6 +1897,8 @@ func WithAdverseEventContributingFactor(v AdverseEventContributingFactor) Advers
 }
 
 // WithAdverseEventPreventiveAction adds a PreventiveAction to the AdverseEvent.
+//
+// Deprecated: use AdverseEventBuilder.AddPreventiveAction instead; removed in v2.
 func WithAdverseEventPreventiveAction(v AdverseEventPreventiveAction) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.PreventiveAction = append(r.PreventiveAction, v)
@@ -1828,6 +1906,8 @@ func WithAdverseEventPreventiveAction(v AdverseEventPreventiveAction) AdverseEve
 }
 
 // WithAdverseEventMitigatingAction adds a MitigatingAction to the AdverseEvent.
+//
+// Deprecated: use AdverseEventBuilder.AddMitigatingAction instead; removed in v2.
 func WithAdverseEventMitigatingAction(v AdverseEventMitigatingAction) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.MitigatingAction = append(r.MitigatingAction, v)
@@ -1835,6 +1915,8 @@ func WithAdverseEventMitigatingAction(v AdverseEventMitigatingAction) AdverseEve
 }
 
 // WithAdverseEventSupportingInfo adds a SupportingInfo to the AdverseEvent.
+//
+// Deprecated: use AdverseEventBuilder.AddSupportingInfo instead; removed in v2.
 func WithAdverseEventSupportingInfo(v AdverseEventSupportingInfo) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.SupportingInfo = append(r.SupportingInfo, v)
@@ -1842,6 +1924,8 @@ func WithAdverseEventSupportingInfo(v AdverseEventSupportingInfo) AdverseEventOp
 }
 
 // WithAdverseEventNote adds a Note to the AdverseEvent.
+//
+// Deprecated: use AdverseEventBuilder.AddNote instead; removed in v2.
 func WithAdverseEventNote(v Annotation) AdverseEventOption {
 	return func(r *AdverseEvent) {
 		r.Note = append(r.Note, v)

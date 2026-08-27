@@ -1821,9 +1821,23 @@ func (b *ResearchStudyBuilder) AddResult(v Reference) *ResearchStudyBuilder {
 // =============================================================================
 
 // ResearchStudyOption is a functional option for configuring a ResearchStudy.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ResearchStudyBuilder. Every WithResearchStudy* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ResearchStudyOption func(*ResearchStudy)
 
 // NewResearchStudy creates a new ResearchStudy with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewResearchStudyBuilder().SetId("x").Build()
+//
+// Deprecated: use NewResearchStudyBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewResearchStudy(opts ...ResearchStudyOption) *ResearchStudy {
 	r := &ResearchStudy{ResourceType: "ResearchStudy"}
 	for _, opt := range opts {
@@ -1833,6 +1847,8 @@ func NewResearchStudy(opts ...ResearchStudyOption) *ResearchStudy {
 }
 
 // WithResearchStudyId sets the Id field.
+//
+// Deprecated: use ResearchStudyBuilder.SetId instead; removed in v2.
 func WithResearchStudyId(v string) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Id = &v
@@ -1840,6 +1856,8 @@ func WithResearchStudyId(v string) ResearchStudyOption {
 }
 
 // WithResearchStudyMeta sets the Meta field.
+//
+// Deprecated: use ResearchStudyBuilder.SetMeta instead; removed in v2.
 func WithResearchStudyMeta(v Meta) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Meta = &v
@@ -1847,6 +1865,8 @@ func WithResearchStudyMeta(v Meta) ResearchStudyOption {
 }
 
 // WithResearchStudyImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ResearchStudyBuilder.SetImplicitRules instead; removed in v2.
 func WithResearchStudyImplicitRules(v string) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.ImplicitRules = &v
@@ -1854,6 +1874,8 @@ func WithResearchStudyImplicitRules(v string) ResearchStudyOption {
 }
 
 // WithResearchStudyLanguage sets the Language field.
+//
+// Deprecated: use ResearchStudyBuilder.SetLanguage instead; removed in v2.
 func WithResearchStudyLanguage(v string) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Language = &v
@@ -1861,6 +1883,8 @@ func WithResearchStudyLanguage(v string) ResearchStudyOption {
 }
 
 // WithResearchStudyText sets the Text field.
+//
+// Deprecated: use ResearchStudyBuilder.SetText instead; removed in v2.
 func WithResearchStudyText(v Narrative) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Text = &v
@@ -1868,6 +1892,8 @@ func WithResearchStudyText(v Narrative) ResearchStudyOption {
 }
 
 // WithResearchStudyContained adds a Contained to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddContained instead; removed in v2.
 func WithResearchStudyContained(v Resource) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Contained = append(r.Contained, v)
@@ -1875,6 +1901,8 @@ func WithResearchStudyContained(v Resource) ResearchStudyOption {
 }
 
 // WithResearchStudyExtension adds a Extension to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddExtension instead; removed in v2.
 func WithResearchStudyExtension(v Extension) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Extension = append(r.Extension, v)
@@ -1882,6 +1910,8 @@ func WithResearchStudyExtension(v Extension) ResearchStudyOption {
 }
 
 // WithResearchStudyModifierExtension adds a ModifierExtension to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddModifierExtension instead; removed in v2.
 func WithResearchStudyModifierExtension(v Extension) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1889,6 +1919,8 @@ func WithResearchStudyModifierExtension(v Extension) ResearchStudyOption {
 }
 
 // WithResearchStudyUrl sets the Url field.
+//
+// Deprecated: use ResearchStudyBuilder.SetUrl instead; removed in v2.
 func WithResearchStudyUrl(v string) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Url = &v
@@ -1896,6 +1928,8 @@ func WithResearchStudyUrl(v string) ResearchStudyOption {
 }
 
 // WithResearchStudyIdentifier adds a Identifier to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddIdentifier instead; removed in v2.
 func WithResearchStudyIdentifier(v Identifier) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Identifier = append(r.Identifier, v)
@@ -1903,6 +1937,8 @@ func WithResearchStudyIdentifier(v Identifier) ResearchStudyOption {
 }
 
 // WithResearchStudyVersion sets the Version field.
+//
+// Deprecated: use ResearchStudyBuilder.SetVersion instead; removed in v2.
 func WithResearchStudyVersion(v string) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Version = &v
@@ -1910,6 +1946,8 @@ func WithResearchStudyVersion(v string) ResearchStudyOption {
 }
 
 // WithResearchStudyName sets the Name field.
+//
+// Deprecated: use ResearchStudyBuilder.SetName instead; removed in v2.
 func WithResearchStudyName(v string) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Name = &v
@@ -1917,6 +1955,8 @@ func WithResearchStudyName(v string) ResearchStudyOption {
 }
 
 // WithResearchStudyTitle sets the Title field.
+//
+// Deprecated: use ResearchStudyBuilder.SetTitle instead; removed in v2.
 func WithResearchStudyTitle(v string) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Title = &v
@@ -1924,6 +1964,8 @@ func WithResearchStudyTitle(v string) ResearchStudyOption {
 }
 
 // WithResearchStudyLabel adds a Label to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddLabel instead; removed in v2.
 func WithResearchStudyLabel(v ResearchStudyLabel) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Label = append(r.Label, v)
@@ -1931,6 +1973,8 @@ func WithResearchStudyLabel(v ResearchStudyLabel) ResearchStudyOption {
 }
 
 // WithResearchStudyProtocol adds a Protocol to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddProtocol instead; removed in v2.
 func WithResearchStudyProtocol(v Reference) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Protocol = append(r.Protocol, v)
@@ -1938,6 +1982,8 @@ func WithResearchStudyProtocol(v Reference) ResearchStudyOption {
 }
 
 // WithResearchStudyPartOf adds a PartOf to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddPartOf instead; removed in v2.
 func WithResearchStudyPartOf(v Reference) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.PartOf = append(r.PartOf, v)
@@ -1945,6 +1991,8 @@ func WithResearchStudyPartOf(v Reference) ResearchStudyOption {
 }
 
 // WithResearchStudyRelatedArtifact adds a RelatedArtifact to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddRelatedArtifact instead; removed in v2.
 func WithResearchStudyRelatedArtifact(v RelatedArtifact) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.RelatedArtifact = append(r.RelatedArtifact, v)
@@ -1952,6 +2000,8 @@ func WithResearchStudyRelatedArtifact(v RelatedArtifact) ResearchStudyOption {
 }
 
 // WithResearchStudyDate sets the Date field.
+//
+// Deprecated: use ResearchStudyBuilder.SetDate instead; removed in v2.
 func WithResearchStudyDate(v string) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Date = &v
@@ -1959,6 +2009,8 @@ func WithResearchStudyDate(v string) ResearchStudyOption {
 }
 
 // WithResearchStudyStatus sets the Status field.
+//
+// Deprecated: use ResearchStudyBuilder.SetStatus instead; removed in v2.
 func WithResearchStudyStatus(v PublicationStatus) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Status = &v
@@ -1966,6 +2018,8 @@ func WithResearchStudyStatus(v PublicationStatus) ResearchStudyOption {
 }
 
 // WithResearchStudyPrimaryPurposeType sets the PrimaryPurposeType field.
+//
+// Deprecated: use ResearchStudyBuilder.SetPrimaryPurposeType instead; removed in v2.
 func WithResearchStudyPrimaryPurposeType(v CodeableConcept) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.PrimaryPurposeType = &v
@@ -1973,6 +2027,8 @@ func WithResearchStudyPrimaryPurposeType(v CodeableConcept) ResearchStudyOption 
 }
 
 // WithResearchStudyPhase sets the Phase field.
+//
+// Deprecated: use ResearchStudyBuilder.SetPhase instead; removed in v2.
 func WithResearchStudyPhase(v CodeableConcept) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Phase = &v
@@ -1980,6 +2036,8 @@ func WithResearchStudyPhase(v CodeableConcept) ResearchStudyOption {
 }
 
 // WithResearchStudyStudyDesign adds a StudyDesign to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddStudyDesign instead; removed in v2.
 func WithResearchStudyStudyDesign(v CodeableConcept) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.StudyDesign = append(r.StudyDesign, v)
@@ -1987,6 +2045,8 @@ func WithResearchStudyStudyDesign(v CodeableConcept) ResearchStudyOption {
 }
 
 // WithResearchStudyFocus adds a Focus to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddFocus instead; removed in v2.
 func WithResearchStudyFocus(v CodeableReference) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Focus = append(r.Focus, v)
@@ -1994,6 +2054,8 @@ func WithResearchStudyFocus(v CodeableReference) ResearchStudyOption {
 }
 
 // WithResearchStudyCondition adds a Condition to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddCondition instead; removed in v2.
 func WithResearchStudyCondition(v CodeableConcept) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Condition = append(r.Condition, v)
@@ -2001,6 +2063,8 @@ func WithResearchStudyCondition(v CodeableConcept) ResearchStudyOption {
 }
 
 // WithResearchStudyKeyword adds a Keyword to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddKeyword instead; removed in v2.
 func WithResearchStudyKeyword(v CodeableConcept) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Keyword = append(r.Keyword, v)
@@ -2008,6 +2072,8 @@ func WithResearchStudyKeyword(v CodeableConcept) ResearchStudyOption {
 }
 
 // WithResearchStudyRegion adds a Region to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddRegion instead; removed in v2.
 func WithResearchStudyRegion(v CodeableConcept) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Region = append(r.Region, v)
@@ -2015,6 +2081,8 @@ func WithResearchStudyRegion(v CodeableConcept) ResearchStudyOption {
 }
 
 // WithResearchStudyDescriptionSummary sets the DescriptionSummary field.
+//
+// Deprecated: use ResearchStudyBuilder.SetDescriptionSummary instead; removed in v2.
 func WithResearchStudyDescriptionSummary(v string) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.DescriptionSummary = &v
@@ -2022,6 +2090,8 @@ func WithResearchStudyDescriptionSummary(v string) ResearchStudyOption {
 }
 
 // WithResearchStudyDescription sets the Description field.
+//
+// Deprecated: use ResearchStudyBuilder.SetDescription instead; removed in v2.
 func WithResearchStudyDescription(v string) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Description = &v
@@ -2029,6 +2099,8 @@ func WithResearchStudyDescription(v string) ResearchStudyOption {
 }
 
 // WithResearchStudyPeriod sets the Period field.
+//
+// Deprecated: use ResearchStudyBuilder.SetPeriod instead; removed in v2.
 func WithResearchStudyPeriod(v Period) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Period = &v
@@ -2036,6 +2108,8 @@ func WithResearchStudyPeriod(v Period) ResearchStudyOption {
 }
 
 // WithResearchStudySite adds a Site to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddSite instead; removed in v2.
 func WithResearchStudySite(v Reference) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Site = append(r.Site, v)
@@ -2043,6 +2117,8 @@ func WithResearchStudySite(v Reference) ResearchStudyOption {
 }
 
 // WithResearchStudyNote adds a Note to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddNote instead; removed in v2.
 func WithResearchStudyNote(v Annotation) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Note = append(r.Note, v)
@@ -2050,6 +2126,8 @@ func WithResearchStudyNote(v Annotation) ResearchStudyOption {
 }
 
 // WithResearchStudyClassifier adds a Classifier to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddClassifier instead; removed in v2.
 func WithResearchStudyClassifier(v CodeableConcept) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Classifier = append(r.Classifier, v)
@@ -2057,6 +2135,8 @@ func WithResearchStudyClassifier(v CodeableConcept) ResearchStudyOption {
 }
 
 // WithResearchStudyAssociatedParty adds a AssociatedParty to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddAssociatedParty instead; removed in v2.
 func WithResearchStudyAssociatedParty(v ResearchStudyAssociatedParty) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.AssociatedParty = append(r.AssociatedParty, v)
@@ -2064,6 +2144,8 @@ func WithResearchStudyAssociatedParty(v ResearchStudyAssociatedParty) ResearchSt
 }
 
 // WithResearchStudyProgressStatus adds a ProgressStatus to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddProgressStatus instead; removed in v2.
 func WithResearchStudyProgressStatus(v ResearchStudyProgressStatus) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.ProgressStatus = append(r.ProgressStatus, v)
@@ -2071,6 +2153,8 @@ func WithResearchStudyProgressStatus(v ResearchStudyProgressStatus) ResearchStud
 }
 
 // WithResearchStudyWhyStopped sets the WhyStopped field.
+//
+// Deprecated: use ResearchStudyBuilder.SetWhyStopped instead; removed in v2.
 func WithResearchStudyWhyStopped(v CodeableConcept) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.WhyStopped = &v
@@ -2078,6 +2162,8 @@ func WithResearchStudyWhyStopped(v CodeableConcept) ResearchStudyOption {
 }
 
 // WithResearchStudyRecruitment sets the Recruitment field.
+//
+// Deprecated: use ResearchStudyBuilder.SetRecruitment instead; removed in v2.
 func WithResearchStudyRecruitment(v ResearchStudyRecruitment) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Recruitment = &v
@@ -2085,6 +2171,8 @@ func WithResearchStudyRecruitment(v ResearchStudyRecruitment) ResearchStudyOptio
 }
 
 // WithResearchStudyComparisonGroup adds a ComparisonGroup to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddComparisonGroup instead; removed in v2.
 func WithResearchStudyComparisonGroup(v ResearchStudyComparisonGroup) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.ComparisonGroup = append(r.ComparisonGroup, v)
@@ -2092,6 +2180,8 @@ func WithResearchStudyComparisonGroup(v ResearchStudyComparisonGroup) ResearchSt
 }
 
 // WithResearchStudyObjective adds a Objective to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddObjective instead; removed in v2.
 func WithResearchStudyObjective(v ResearchStudyObjective) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Objective = append(r.Objective, v)
@@ -2099,6 +2189,8 @@ func WithResearchStudyObjective(v ResearchStudyObjective) ResearchStudyOption {
 }
 
 // WithResearchStudyOutcomeMeasure adds a OutcomeMeasure to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddOutcomeMeasure instead; removed in v2.
 func WithResearchStudyOutcomeMeasure(v ResearchStudyOutcomeMeasure) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.OutcomeMeasure = append(r.OutcomeMeasure, v)
@@ -2106,6 +2198,8 @@ func WithResearchStudyOutcomeMeasure(v ResearchStudyOutcomeMeasure) ResearchStud
 }
 
 // WithResearchStudyResult adds a Result to the ResearchStudy.
+//
+// Deprecated: use ResearchStudyBuilder.AddResult instead; removed in v2.
 func WithResearchStudyResult(v Reference) ResearchStudyOption {
 	return func(r *ResearchStudy) {
 		r.Result = append(r.Result, v)

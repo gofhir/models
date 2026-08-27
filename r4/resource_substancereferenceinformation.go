@@ -1011,9 +1011,23 @@ func (b *SubstanceReferenceInformationBuilder) AddTarget(v SubstanceReferenceInf
 // =============================================================================
 
 // SubstanceReferenceInformationOption is a functional option for configuring a SubstanceReferenceInformation.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// SubstanceReferenceInformationBuilder. Every WithSubstanceReferenceInformation* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type SubstanceReferenceInformationOption func(*SubstanceReferenceInformation)
 
 // NewSubstanceReferenceInformation creates a new SubstanceReferenceInformation with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewSubstanceReferenceInformationBuilder().SetId("x").Build()
+//
+// Deprecated: use NewSubstanceReferenceInformationBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewSubstanceReferenceInformation(opts ...SubstanceReferenceInformationOption) *SubstanceReferenceInformation {
 	r := &SubstanceReferenceInformation{ResourceType: "SubstanceReferenceInformation"}
 	for _, opt := range opts {
@@ -1023,6 +1037,8 @@ func NewSubstanceReferenceInformation(opts ...SubstanceReferenceInformationOptio
 }
 
 // WithSubstanceReferenceInformationId sets the Id field.
+//
+// Deprecated: use SubstanceReferenceInformationBuilder.SetId instead; removed in v2.
 func WithSubstanceReferenceInformationId(v string) SubstanceReferenceInformationOption {
 	return func(r *SubstanceReferenceInformation) {
 		r.Id = &v
@@ -1030,6 +1046,8 @@ func WithSubstanceReferenceInformationId(v string) SubstanceReferenceInformation
 }
 
 // WithSubstanceReferenceInformationMeta sets the Meta field.
+//
+// Deprecated: use SubstanceReferenceInformationBuilder.SetMeta instead; removed in v2.
 func WithSubstanceReferenceInformationMeta(v Meta) SubstanceReferenceInformationOption {
 	return func(r *SubstanceReferenceInformation) {
 		r.Meta = &v
@@ -1037,6 +1055,8 @@ func WithSubstanceReferenceInformationMeta(v Meta) SubstanceReferenceInformation
 }
 
 // WithSubstanceReferenceInformationImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use SubstanceReferenceInformationBuilder.SetImplicitRules instead; removed in v2.
 func WithSubstanceReferenceInformationImplicitRules(v string) SubstanceReferenceInformationOption {
 	return func(r *SubstanceReferenceInformation) {
 		r.ImplicitRules = &v
@@ -1044,6 +1064,8 @@ func WithSubstanceReferenceInformationImplicitRules(v string) SubstanceReference
 }
 
 // WithSubstanceReferenceInformationLanguage sets the Language field.
+//
+// Deprecated: use SubstanceReferenceInformationBuilder.SetLanguage instead; removed in v2.
 func WithSubstanceReferenceInformationLanguage(v string) SubstanceReferenceInformationOption {
 	return func(r *SubstanceReferenceInformation) {
 		r.Language = &v
@@ -1051,6 +1073,8 @@ func WithSubstanceReferenceInformationLanguage(v string) SubstanceReferenceInfor
 }
 
 // WithSubstanceReferenceInformationText sets the Text field.
+//
+// Deprecated: use SubstanceReferenceInformationBuilder.SetText instead; removed in v2.
 func WithSubstanceReferenceInformationText(v Narrative) SubstanceReferenceInformationOption {
 	return func(r *SubstanceReferenceInformation) {
 		r.Text = &v
@@ -1058,6 +1082,8 @@ func WithSubstanceReferenceInformationText(v Narrative) SubstanceReferenceInform
 }
 
 // WithSubstanceReferenceInformationContained adds a Contained to the SubstanceReferenceInformation.
+//
+// Deprecated: use SubstanceReferenceInformationBuilder.AddContained instead; removed in v2.
 func WithSubstanceReferenceInformationContained(v Resource) SubstanceReferenceInformationOption {
 	return func(r *SubstanceReferenceInformation) {
 		r.Contained = append(r.Contained, v)
@@ -1065,6 +1091,8 @@ func WithSubstanceReferenceInformationContained(v Resource) SubstanceReferenceIn
 }
 
 // WithSubstanceReferenceInformationExtension adds a Extension to the SubstanceReferenceInformation.
+//
+// Deprecated: use SubstanceReferenceInformationBuilder.AddExtension instead; removed in v2.
 func WithSubstanceReferenceInformationExtension(v Extension) SubstanceReferenceInformationOption {
 	return func(r *SubstanceReferenceInformation) {
 		r.Extension = append(r.Extension, v)
@@ -1072,6 +1100,8 @@ func WithSubstanceReferenceInformationExtension(v Extension) SubstanceReferenceI
 }
 
 // WithSubstanceReferenceInformationModifierExtension adds a ModifierExtension to the SubstanceReferenceInformation.
+//
+// Deprecated: use SubstanceReferenceInformationBuilder.AddModifierExtension instead; removed in v2.
 func WithSubstanceReferenceInformationModifierExtension(v Extension) SubstanceReferenceInformationOption {
 	return func(r *SubstanceReferenceInformation) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1079,6 +1109,8 @@ func WithSubstanceReferenceInformationModifierExtension(v Extension) SubstanceRe
 }
 
 // WithSubstanceReferenceInformationComment sets the Comment field.
+//
+// Deprecated: use SubstanceReferenceInformationBuilder.SetComment instead; removed in v2.
 func WithSubstanceReferenceInformationComment(v string) SubstanceReferenceInformationOption {
 	return func(r *SubstanceReferenceInformation) {
 		r.Comment = &v
@@ -1086,6 +1118,8 @@ func WithSubstanceReferenceInformationComment(v string) SubstanceReferenceInform
 }
 
 // WithSubstanceReferenceInformationGene adds a Gene to the SubstanceReferenceInformation.
+//
+// Deprecated: use SubstanceReferenceInformationBuilder.AddGene instead; removed in v2.
 func WithSubstanceReferenceInformationGene(v SubstanceReferenceInformationGene) SubstanceReferenceInformationOption {
 	return func(r *SubstanceReferenceInformation) {
 		r.Gene = append(r.Gene, v)
@@ -1093,6 +1127,8 @@ func WithSubstanceReferenceInformationGene(v SubstanceReferenceInformationGene) 
 }
 
 // WithSubstanceReferenceInformationGeneElement adds a GeneElement to the SubstanceReferenceInformation.
+//
+// Deprecated: use SubstanceReferenceInformationBuilder.AddGeneElement instead; removed in v2.
 func WithSubstanceReferenceInformationGeneElement(v SubstanceReferenceInformationGeneElement) SubstanceReferenceInformationOption {
 	return func(r *SubstanceReferenceInformation) {
 		r.GeneElement = append(r.GeneElement, v)
@@ -1100,6 +1136,8 @@ func WithSubstanceReferenceInformationGeneElement(v SubstanceReferenceInformatio
 }
 
 // WithSubstanceReferenceInformationClassification adds a Classification to the SubstanceReferenceInformation.
+//
+// Deprecated: use SubstanceReferenceInformationBuilder.AddClassification instead; removed in v2.
 func WithSubstanceReferenceInformationClassification(v SubstanceReferenceInformationClassification) SubstanceReferenceInformationOption {
 	return func(r *SubstanceReferenceInformation) {
 		r.Classification = append(r.Classification, v)
@@ -1107,6 +1145,8 @@ func WithSubstanceReferenceInformationClassification(v SubstanceReferenceInforma
 }
 
 // WithSubstanceReferenceInformationTarget adds a Target to the SubstanceReferenceInformation.
+//
+// Deprecated: use SubstanceReferenceInformationBuilder.AddTarget instead; removed in v2.
 func WithSubstanceReferenceInformationTarget(v SubstanceReferenceInformationTarget) SubstanceReferenceInformationOption {
 	return func(r *SubstanceReferenceInformation) {
 		r.Target = append(r.Target, v)

@@ -1460,9 +1460,23 @@ func (b *ConditionDefinitionBuilder) AddPlan(v ConditionDefinitionPlan) *Conditi
 // =============================================================================
 
 // ConditionDefinitionOption is a functional option for configuring a ConditionDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ConditionDefinitionBuilder. Every WithConditionDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ConditionDefinitionOption func(*ConditionDefinition)
 
 // NewConditionDefinition creates a new ConditionDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewConditionDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewConditionDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewConditionDefinition(opts ...ConditionDefinitionOption) *ConditionDefinition {
 	r := &ConditionDefinition{ResourceType: "ConditionDefinition"}
 	for _, opt := range opts {
@@ -1472,6 +1486,8 @@ func NewConditionDefinition(opts ...ConditionDefinitionOption) *ConditionDefinit
 }
 
 // WithConditionDefinitionId sets the Id field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetId instead; removed in v2.
 func WithConditionDefinitionId(v string) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Id = &v
@@ -1479,6 +1495,8 @@ func WithConditionDefinitionId(v string) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionMeta sets the Meta field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetMeta instead; removed in v2.
 func WithConditionDefinitionMeta(v Meta) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Meta = &v
@@ -1486,6 +1504,8 @@ func WithConditionDefinitionMeta(v Meta) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithConditionDefinitionImplicitRules(v string) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.ImplicitRules = &v
@@ -1493,6 +1513,8 @@ func WithConditionDefinitionImplicitRules(v string) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionLanguage sets the Language field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithConditionDefinitionLanguage(v string) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Language = &v
@@ -1500,6 +1522,8 @@ func WithConditionDefinitionLanguage(v string) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionText sets the Text field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetText instead; removed in v2.
 func WithConditionDefinitionText(v Narrative) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Text = &v
@@ -1507,6 +1531,8 @@ func WithConditionDefinitionText(v Narrative) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionContained adds a Contained to the ConditionDefinition.
+//
+// Deprecated: use ConditionDefinitionBuilder.AddContained instead; removed in v2.
 func WithConditionDefinitionContained(v Resource) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -1514,6 +1540,8 @@ func WithConditionDefinitionContained(v Resource) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionExtension adds a Extension to the ConditionDefinition.
+//
+// Deprecated: use ConditionDefinitionBuilder.AddExtension instead; removed in v2.
 func WithConditionDefinitionExtension(v Extension) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -1521,6 +1549,8 @@ func WithConditionDefinitionExtension(v Extension) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionModifierExtension adds a ModifierExtension to the ConditionDefinition.
+//
+// Deprecated: use ConditionDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithConditionDefinitionModifierExtension(v Extension) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1528,6 +1558,8 @@ func WithConditionDefinitionModifierExtension(v Extension) ConditionDefinitionOp
 }
 
 // WithConditionDefinitionUrl sets the Url field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetUrl instead; removed in v2.
 func WithConditionDefinitionUrl(v string) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Url = &v
@@ -1535,6 +1567,8 @@ func WithConditionDefinitionUrl(v string) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionIdentifier adds a Identifier to the ConditionDefinition.
+//
+// Deprecated: use ConditionDefinitionBuilder.AddIdentifier instead; removed in v2.
 func WithConditionDefinitionIdentifier(v Identifier) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Identifier = append(r.Identifier, v)
@@ -1542,6 +1576,8 @@ func WithConditionDefinitionIdentifier(v Identifier) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionVersion sets the Version field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetVersion instead; removed in v2.
 func WithConditionDefinitionVersion(v string) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Version = &v
@@ -1549,6 +1585,8 @@ func WithConditionDefinitionVersion(v string) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionVersionAlgorithmString sets the VersionAlgorithmString field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetVersionAlgorithmString instead; removed in v2.
 func WithConditionDefinitionVersionAlgorithmString(v string) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.VersionAlgorithmString = &v
@@ -1556,6 +1594,8 @@ func WithConditionDefinitionVersionAlgorithmString(v string) ConditionDefinition
 }
 
 // WithConditionDefinitionVersionAlgorithmStringExt sets the VersionAlgorithmStringExt field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetVersionAlgorithmStringExt instead; removed in v2.
 func WithConditionDefinitionVersionAlgorithmStringExt(v Element) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.VersionAlgorithmStringExt = &v
@@ -1563,6 +1603,8 @@ func WithConditionDefinitionVersionAlgorithmStringExt(v Element) ConditionDefini
 }
 
 // WithConditionDefinitionVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetVersionAlgorithmCoding instead; removed in v2.
 func WithConditionDefinitionVersionAlgorithmCoding(v Coding) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.VersionAlgorithmCoding = &v
@@ -1570,6 +1612,8 @@ func WithConditionDefinitionVersionAlgorithmCoding(v Coding) ConditionDefinition
 }
 
 // WithConditionDefinitionName sets the Name field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetName instead; removed in v2.
 func WithConditionDefinitionName(v string) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Name = &v
@@ -1577,6 +1621,8 @@ func WithConditionDefinitionName(v string) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionTitle sets the Title field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetTitle instead; removed in v2.
 func WithConditionDefinitionTitle(v string) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Title = &v
@@ -1584,6 +1630,8 @@ func WithConditionDefinitionTitle(v string) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionSubtitle sets the Subtitle field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetSubtitle instead; removed in v2.
 func WithConditionDefinitionSubtitle(v string) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Subtitle = &v
@@ -1591,6 +1639,8 @@ func WithConditionDefinitionSubtitle(v string) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionStatus sets the Status field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetStatus instead; removed in v2.
 func WithConditionDefinitionStatus(v PublicationStatus) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Status = &v
@@ -1598,6 +1648,8 @@ func WithConditionDefinitionStatus(v PublicationStatus) ConditionDefinitionOptio
 }
 
 // WithConditionDefinitionExperimental sets the Experimental field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetExperimental instead; removed in v2.
 func WithConditionDefinitionExperimental(v bool) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Experimental = &v
@@ -1605,6 +1657,8 @@ func WithConditionDefinitionExperimental(v bool) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionDate sets the Date field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetDate instead; removed in v2.
 func WithConditionDefinitionDate(v string) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Date = &v
@@ -1612,6 +1666,8 @@ func WithConditionDefinitionDate(v string) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionPublisher sets the Publisher field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetPublisher instead; removed in v2.
 func WithConditionDefinitionPublisher(v string) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Publisher = &v
@@ -1619,6 +1675,8 @@ func WithConditionDefinitionPublisher(v string) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionContact adds a Contact to the ConditionDefinition.
+//
+// Deprecated: use ConditionDefinitionBuilder.AddContact instead; removed in v2.
 func WithConditionDefinitionContact(v ContactDetail) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Contact = append(r.Contact, v)
@@ -1626,6 +1684,8 @@ func WithConditionDefinitionContact(v ContactDetail) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionDescription sets the Description field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetDescription instead; removed in v2.
 func WithConditionDefinitionDescription(v string) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Description = &v
@@ -1633,6 +1693,8 @@ func WithConditionDefinitionDescription(v string) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionUseContext adds a UseContext to the ConditionDefinition.
+//
+// Deprecated: use ConditionDefinitionBuilder.AddUseContext instead; removed in v2.
 func WithConditionDefinitionUseContext(v UsageContext) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.UseContext = append(r.UseContext, v)
@@ -1640,6 +1702,8 @@ func WithConditionDefinitionUseContext(v UsageContext) ConditionDefinitionOption
 }
 
 // WithConditionDefinitionJurisdiction adds a Jurisdiction to the ConditionDefinition.
+//
+// Deprecated: use ConditionDefinitionBuilder.AddJurisdiction instead; removed in v2.
 func WithConditionDefinitionJurisdiction(v CodeableConcept) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1647,6 +1711,8 @@ func WithConditionDefinitionJurisdiction(v CodeableConcept) ConditionDefinitionO
 }
 
 // WithConditionDefinitionCode sets the Code field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetCode instead; removed in v2.
 func WithConditionDefinitionCode(v CodeableConcept) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Code = v
@@ -1654,6 +1720,8 @@ func WithConditionDefinitionCode(v CodeableConcept) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionSeverity sets the Severity field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetSeverity instead; removed in v2.
 func WithConditionDefinitionSeverity(v CodeableConcept) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Severity = &v
@@ -1661,6 +1729,8 @@ func WithConditionDefinitionSeverity(v CodeableConcept) ConditionDefinitionOptio
 }
 
 // WithConditionDefinitionBodySite sets the BodySite field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetBodySite instead; removed in v2.
 func WithConditionDefinitionBodySite(v CodeableConcept) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.BodySite = &v
@@ -1668,6 +1738,8 @@ func WithConditionDefinitionBodySite(v CodeableConcept) ConditionDefinitionOptio
 }
 
 // WithConditionDefinitionStage sets the Stage field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetStage instead; removed in v2.
 func WithConditionDefinitionStage(v CodeableConcept) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Stage = &v
@@ -1675,6 +1747,8 @@ func WithConditionDefinitionStage(v CodeableConcept) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionHasSeverity sets the HasSeverity field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetHasSeverity instead; removed in v2.
 func WithConditionDefinitionHasSeverity(v bool) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.HasSeverity = &v
@@ -1682,6 +1756,8 @@ func WithConditionDefinitionHasSeverity(v bool) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionHasBodySite sets the HasBodySite field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetHasBodySite instead; removed in v2.
 func WithConditionDefinitionHasBodySite(v bool) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.HasBodySite = &v
@@ -1689,6 +1765,8 @@ func WithConditionDefinitionHasBodySite(v bool) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionHasStage sets the HasStage field.
+//
+// Deprecated: use ConditionDefinitionBuilder.SetHasStage instead; removed in v2.
 func WithConditionDefinitionHasStage(v bool) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.HasStage = &v
@@ -1696,6 +1774,8 @@ func WithConditionDefinitionHasStage(v bool) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionDefinition adds a Definition to the ConditionDefinition.
+//
+// Deprecated: use ConditionDefinitionBuilder.AddDefinition instead; removed in v2.
 func WithConditionDefinitionDefinition(v string) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Definition = append(r.Definition, v)
@@ -1703,6 +1783,8 @@ func WithConditionDefinitionDefinition(v string) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionObservation adds a Observation to the ConditionDefinition.
+//
+// Deprecated: use ConditionDefinitionBuilder.AddObservation instead; removed in v2.
 func WithConditionDefinitionObservation(v ConditionDefinitionObservation) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Observation = append(r.Observation, v)
@@ -1710,6 +1792,8 @@ func WithConditionDefinitionObservation(v ConditionDefinitionObservation) Condit
 }
 
 // WithConditionDefinitionMedication adds a Medication to the ConditionDefinition.
+//
+// Deprecated: use ConditionDefinitionBuilder.AddMedication instead; removed in v2.
 func WithConditionDefinitionMedication(v ConditionDefinitionMedication) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Medication = append(r.Medication, v)
@@ -1717,6 +1801,8 @@ func WithConditionDefinitionMedication(v ConditionDefinitionMedication) Conditio
 }
 
 // WithConditionDefinitionPrecondition adds a Precondition to the ConditionDefinition.
+//
+// Deprecated: use ConditionDefinitionBuilder.AddPrecondition instead; removed in v2.
 func WithConditionDefinitionPrecondition(v ConditionDefinitionPrecondition) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Precondition = append(r.Precondition, v)
@@ -1724,6 +1810,8 @@ func WithConditionDefinitionPrecondition(v ConditionDefinitionPrecondition) Cond
 }
 
 // WithConditionDefinitionTeam adds a Team to the ConditionDefinition.
+//
+// Deprecated: use ConditionDefinitionBuilder.AddTeam instead; removed in v2.
 func WithConditionDefinitionTeam(v Reference) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Team = append(r.Team, v)
@@ -1731,6 +1819,8 @@ func WithConditionDefinitionTeam(v Reference) ConditionDefinitionOption {
 }
 
 // WithConditionDefinitionQuestionnaire adds a Questionnaire to the ConditionDefinition.
+//
+// Deprecated: use ConditionDefinitionBuilder.AddQuestionnaire instead; removed in v2.
 func WithConditionDefinitionQuestionnaire(v ConditionDefinitionQuestionnaire) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Questionnaire = append(r.Questionnaire, v)
@@ -1738,6 +1828,8 @@ func WithConditionDefinitionQuestionnaire(v ConditionDefinitionQuestionnaire) Co
 }
 
 // WithConditionDefinitionPlan adds a Plan to the ConditionDefinition.
+//
+// Deprecated: use ConditionDefinitionBuilder.AddPlan instead; removed in v2.
 func WithConditionDefinitionPlan(v ConditionDefinitionPlan) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
 		r.Plan = append(r.Plan, v)

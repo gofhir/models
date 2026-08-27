@@ -1019,9 +1019,23 @@ func (b *DocumentReferenceBuilder) SetContext(v DocumentReferenceContext) *Docum
 // =============================================================================
 
 // DocumentReferenceOption is a functional option for configuring a DocumentReference.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// DocumentReferenceBuilder. Every WithDocumentReference* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type DocumentReferenceOption func(*DocumentReference)
 
 // NewDocumentReference creates a new DocumentReference with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewDocumentReferenceBuilder().SetId("x").Build()
+//
+// Deprecated: use NewDocumentReferenceBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewDocumentReference(opts ...DocumentReferenceOption) *DocumentReference {
 	r := &DocumentReference{ResourceType: "DocumentReference"}
 	for _, opt := range opts {
@@ -1031,6 +1045,8 @@ func NewDocumentReference(opts ...DocumentReferenceOption) *DocumentReference {
 }
 
 // WithDocumentReferenceId sets the Id field.
+//
+// Deprecated: use DocumentReferenceBuilder.SetId instead; removed in v2.
 func WithDocumentReferenceId(v string) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.Id = &v
@@ -1038,6 +1054,8 @@ func WithDocumentReferenceId(v string) DocumentReferenceOption {
 }
 
 // WithDocumentReferenceMeta sets the Meta field.
+//
+// Deprecated: use DocumentReferenceBuilder.SetMeta instead; removed in v2.
 func WithDocumentReferenceMeta(v Meta) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.Meta = &v
@@ -1045,6 +1063,8 @@ func WithDocumentReferenceMeta(v Meta) DocumentReferenceOption {
 }
 
 // WithDocumentReferenceImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use DocumentReferenceBuilder.SetImplicitRules instead; removed in v2.
 func WithDocumentReferenceImplicitRules(v string) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.ImplicitRules = &v
@@ -1052,6 +1072,8 @@ func WithDocumentReferenceImplicitRules(v string) DocumentReferenceOption {
 }
 
 // WithDocumentReferenceLanguage sets the Language field.
+//
+// Deprecated: use DocumentReferenceBuilder.SetLanguage instead; removed in v2.
 func WithDocumentReferenceLanguage(v string) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.Language = &v
@@ -1059,6 +1081,8 @@ func WithDocumentReferenceLanguage(v string) DocumentReferenceOption {
 }
 
 // WithDocumentReferenceText sets the Text field.
+//
+// Deprecated: use DocumentReferenceBuilder.SetText instead; removed in v2.
 func WithDocumentReferenceText(v Narrative) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.Text = &v
@@ -1066,6 +1090,8 @@ func WithDocumentReferenceText(v Narrative) DocumentReferenceOption {
 }
 
 // WithDocumentReferenceContained adds a Contained to the DocumentReference.
+//
+// Deprecated: use DocumentReferenceBuilder.AddContained instead; removed in v2.
 func WithDocumentReferenceContained(v Resource) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.Contained = append(r.Contained, v)
@@ -1073,6 +1099,8 @@ func WithDocumentReferenceContained(v Resource) DocumentReferenceOption {
 }
 
 // WithDocumentReferenceExtension adds a Extension to the DocumentReference.
+//
+// Deprecated: use DocumentReferenceBuilder.AddExtension instead; removed in v2.
 func WithDocumentReferenceExtension(v Extension) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.Extension = append(r.Extension, v)
@@ -1080,6 +1108,8 @@ func WithDocumentReferenceExtension(v Extension) DocumentReferenceOption {
 }
 
 // WithDocumentReferenceModifierExtension adds a ModifierExtension to the DocumentReference.
+//
+// Deprecated: use DocumentReferenceBuilder.AddModifierExtension instead; removed in v2.
 func WithDocumentReferenceModifierExtension(v Extension) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1087,6 +1117,8 @@ func WithDocumentReferenceModifierExtension(v Extension) DocumentReferenceOption
 }
 
 // WithDocumentReferenceMasterIdentifier sets the MasterIdentifier field.
+//
+// Deprecated: use DocumentReferenceBuilder.SetMasterIdentifier instead; removed in v2.
 func WithDocumentReferenceMasterIdentifier(v Identifier) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.MasterIdentifier = &v
@@ -1094,6 +1126,8 @@ func WithDocumentReferenceMasterIdentifier(v Identifier) DocumentReferenceOption
 }
 
 // WithDocumentReferenceIdentifier adds a Identifier to the DocumentReference.
+//
+// Deprecated: use DocumentReferenceBuilder.AddIdentifier instead; removed in v2.
 func WithDocumentReferenceIdentifier(v Identifier) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.Identifier = append(r.Identifier, v)
@@ -1101,6 +1135,8 @@ func WithDocumentReferenceIdentifier(v Identifier) DocumentReferenceOption {
 }
 
 // WithDocumentReferenceStatus sets the Status field.
+//
+// Deprecated: use DocumentReferenceBuilder.SetStatus instead; removed in v2.
 func WithDocumentReferenceStatus(v DocumentReferenceStatus) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.Status = &v
@@ -1108,6 +1144,8 @@ func WithDocumentReferenceStatus(v DocumentReferenceStatus) DocumentReferenceOpt
 }
 
 // WithDocumentReferenceDocStatus sets the DocStatus field.
+//
+// Deprecated: use DocumentReferenceBuilder.SetDocStatus instead; removed in v2.
 func WithDocumentReferenceDocStatus(v CompositionStatus) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.DocStatus = &v
@@ -1115,6 +1153,8 @@ func WithDocumentReferenceDocStatus(v CompositionStatus) DocumentReferenceOption
 }
 
 // WithDocumentReferenceType sets the Type field.
+//
+// Deprecated: use DocumentReferenceBuilder.SetType instead; removed in v2.
 func WithDocumentReferenceType(v CodeableConcept) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.Type = &v
@@ -1122,6 +1162,8 @@ func WithDocumentReferenceType(v CodeableConcept) DocumentReferenceOption {
 }
 
 // WithDocumentReferenceCategory adds a Category to the DocumentReference.
+//
+// Deprecated: use DocumentReferenceBuilder.AddCategory instead; removed in v2.
 func WithDocumentReferenceCategory(v CodeableConcept) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.Category = append(r.Category, v)
@@ -1129,6 +1171,8 @@ func WithDocumentReferenceCategory(v CodeableConcept) DocumentReferenceOption {
 }
 
 // WithDocumentReferenceSubject sets the Subject field.
+//
+// Deprecated: use DocumentReferenceBuilder.SetSubject instead; removed in v2.
 func WithDocumentReferenceSubject(v Reference) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.Subject = &v
@@ -1136,6 +1180,8 @@ func WithDocumentReferenceSubject(v Reference) DocumentReferenceOption {
 }
 
 // WithDocumentReferenceDate sets the Date field.
+//
+// Deprecated: use DocumentReferenceBuilder.SetDate instead; removed in v2.
 func WithDocumentReferenceDate(v string) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.Date = &v
@@ -1143,6 +1189,8 @@ func WithDocumentReferenceDate(v string) DocumentReferenceOption {
 }
 
 // WithDocumentReferenceAuthor adds a Author to the DocumentReference.
+//
+// Deprecated: use DocumentReferenceBuilder.AddAuthor instead; removed in v2.
 func WithDocumentReferenceAuthor(v Reference) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.Author = append(r.Author, v)
@@ -1150,6 +1198,8 @@ func WithDocumentReferenceAuthor(v Reference) DocumentReferenceOption {
 }
 
 // WithDocumentReferenceAuthenticator sets the Authenticator field.
+//
+// Deprecated: use DocumentReferenceBuilder.SetAuthenticator instead; removed in v2.
 func WithDocumentReferenceAuthenticator(v Reference) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.Authenticator = &v
@@ -1157,6 +1207,8 @@ func WithDocumentReferenceAuthenticator(v Reference) DocumentReferenceOption {
 }
 
 // WithDocumentReferenceCustodian sets the Custodian field.
+//
+// Deprecated: use DocumentReferenceBuilder.SetCustodian instead; removed in v2.
 func WithDocumentReferenceCustodian(v Reference) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.Custodian = &v
@@ -1164,6 +1216,8 @@ func WithDocumentReferenceCustodian(v Reference) DocumentReferenceOption {
 }
 
 // WithDocumentReferenceRelatesTo adds a RelatesTo to the DocumentReference.
+//
+// Deprecated: use DocumentReferenceBuilder.AddRelatesTo instead; removed in v2.
 func WithDocumentReferenceRelatesTo(v DocumentReferenceRelatesTo) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.RelatesTo = append(r.RelatesTo, v)
@@ -1171,6 +1225,8 @@ func WithDocumentReferenceRelatesTo(v DocumentReferenceRelatesTo) DocumentRefere
 }
 
 // WithDocumentReferenceDescription sets the Description field.
+//
+// Deprecated: use DocumentReferenceBuilder.SetDescription instead; removed in v2.
 func WithDocumentReferenceDescription(v string) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.Description = &v
@@ -1178,6 +1234,8 @@ func WithDocumentReferenceDescription(v string) DocumentReferenceOption {
 }
 
 // WithDocumentReferenceSecurityLabel adds a SecurityLabel to the DocumentReference.
+//
+// Deprecated: use DocumentReferenceBuilder.AddSecurityLabel instead; removed in v2.
 func WithDocumentReferenceSecurityLabel(v CodeableConcept) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.SecurityLabel = append(r.SecurityLabel, v)
@@ -1185,6 +1243,8 @@ func WithDocumentReferenceSecurityLabel(v CodeableConcept) DocumentReferenceOpti
 }
 
 // WithDocumentReferenceContent adds a Content to the DocumentReference.
+//
+// Deprecated: use DocumentReferenceBuilder.AddContent instead; removed in v2.
 func WithDocumentReferenceContent(v DocumentReferenceContent) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.Content = append(r.Content, v)
@@ -1192,6 +1252,8 @@ func WithDocumentReferenceContent(v DocumentReferenceContent) DocumentReferenceO
 }
 
 // WithDocumentReferenceContext sets the Context field.
+//
+// Deprecated: use DocumentReferenceBuilder.SetContext instead; removed in v2.
 func WithDocumentReferenceContext(v DocumentReferenceContext) DocumentReferenceOption {
 	return func(r *DocumentReference) {
 		r.Context = &v

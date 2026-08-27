@@ -1013,9 +1013,23 @@ func (b *DeviceRequestBuilder) AddRelevantHistory(v Reference) *DeviceRequestBui
 // =============================================================================
 
 // DeviceRequestOption is a functional option for configuring a DeviceRequest.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// DeviceRequestBuilder. Every WithDeviceRequest* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type DeviceRequestOption func(*DeviceRequest)
 
 // NewDeviceRequest creates a new DeviceRequest with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewDeviceRequestBuilder().SetId("x").Build()
+//
+// Deprecated: use NewDeviceRequestBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewDeviceRequest(opts ...DeviceRequestOption) *DeviceRequest {
 	r := &DeviceRequest{ResourceType: "DeviceRequest"}
 	for _, opt := range opts {
@@ -1025,6 +1039,8 @@ func NewDeviceRequest(opts ...DeviceRequestOption) *DeviceRequest {
 }
 
 // WithDeviceRequestId sets the Id field.
+//
+// Deprecated: use DeviceRequestBuilder.SetId instead; removed in v2.
 func WithDeviceRequestId(v string) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.Id = &v
@@ -1032,6 +1048,8 @@ func WithDeviceRequestId(v string) DeviceRequestOption {
 }
 
 // WithDeviceRequestMeta sets the Meta field.
+//
+// Deprecated: use DeviceRequestBuilder.SetMeta instead; removed in v2.
 func WithDeviceRequestMeta(v Meta) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.Meta = &v
@@ -1039,6 +1057,8 @@ func WithDeviceRequestMeta(v Meta) DeviceRequestOption {
 }
 
 // WithDeviceRequestImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use DeviceRequestBuilder.SetImplicitRules instead; removed in v2.
 func WithDeviceRequestImplicitRules(v string) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.ImplicitRules = &v
@@ -1046,6 +1066,8 @@ func WithDeviceRequestImplicitRules(v string) DeviceRequestOption {
 }
 
 // WithDeviceRequestLanguage sets the Language field.
+//
+// Deprecated: use DeviceRequestBuilder.SetLanguage instead; removed in v2.
 func WithDeviceRequestLanguage(v string) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.Language = &v
@@ -1053,6 +1075,8 @@ func WithDeviceRequestLanguage(v string) DeviceRequestOption {
 }
 
 // WithDeviceRequestText sets the Text field.
+//
+// Deprecated: use DeviceRequestBuilder.SetText instead; removed in v2.
 func WithDeviceRequestText(v Narrative) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.Text = &v
@@ -1060,6 +1084,8 @@ func WithDeviceRequestText(v Narrative) DeviceRequestOption {
 }
 
 // WithDeviceRequestContained adds a Contained to the DeviceRequest.
+//
+// Deprecated: use DeviceRequestBuilder.AddContained instead; removed in v2.
 func WithDeviceRequestContained(v Resource) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.Contained = append(r.Contained, v)
@@ -1067,6 +1093,8 @@ func WithDeviceRequestContained(v Resource) DeviceRequestOption {
 }
 
 // WithDeviceRequestExtension adds a Extension to the DeviceRequest.
+//
+// Deprecated: use DeviceRequestBuilder.AddExtension instead; removed in v2.
 func WithDeviceRequestExtension(v Extension) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.Extension = append(r.Extension, v)
@@ -1074,6 +1102,8 @@ func WithDeviceRequestExtension(v Extension) DeviceRequestOption {
 }
 
 // WithDeviceRequestModifierExtension adds a ModifierExtension to the DeviceRequest.
+//
+// Deprecated: use DeviceRequestBuilder.AddModifierExtension instead; removed in v2.
 func WithDeviceRequestModifierExtension(v Extension) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1081,6 +1111,8 @@ func WithDeviceRequestModifierExtension(v Extension) DeviceRequestOption {
 }
 
 // WithDeviceRequestIdentifier adds a Identifier to the DeviceRequest.
+//
+// Deprecated: use DeviceRequestBuilder.AddIdentifier instead; removed in v2.
 func WithDeviceRequestIdentifier(v Identifier) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.Identifier = append(r.Identifier, v)
@@ -1088,6 +1120,8 @@ func WithDeviceRequestIdentifier(v Identifier) DeviceRequestOption {
 }
 
 // WithDeviceRequestInstantiatesCanonical adds a InstantiatesCanonical to the DeviceRequest.
+//
+// Deprecated: use DeviceRequestBuilder.AddInstantiatesCanonical instead; removed in v2.
 func WithDeviceRequestInstantiatesCanonical(v string) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
@@ -1095,6 +1129,8 @@ func WithDeviceRequestInstantiatesCanonical(v string) DeviceRequestOption {
 }
 
 // WithDeviceRequestInstantiatesUri adds a InstantiatesUri to the DeviceRequest.
+//
+// Deprecated: use DeviceRequestBuilder.AddInstantiatesUri instead; removed in v2.
 func WithDeviceRequestInstantiatesUri(v string) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.InstantiatesUri = append(r.InstantiatesUri, v)
@@ -1102,6 +1138,8 @@ func WithDeviceRequestInstantiatesUri(v string) DeviceRequestOption {
 }
 
 // WithDeviceRequestBasedOn adds a BasedOn to the DeviceRequest.
+//
+// Deprecated: use DeviceRequestBuilder.AddBasedOn instead; removed in v2.
 func WithDeviceRequestBasedOn(v Reference) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -1109,6 +1147,8 @@ func WithDeviceRequestBasedOn(v Reference) DeviceRequestOption {
 }
 
 // WithDeviceRequestPriorRequest adds a PriorRequest to the DeviceRequest.
+//
+// Deprecated: use DeviceRequestBuilder.AddPriorRequest instead; removed in v2.
 func WithDeviceRequestPriorRequest(v Reference) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.PriorRequest = append(r.PriorRequest, v)
@@ -1116,6 +1156,8 @@ func WithDeviceRequestPriorRequest(v Reference) DeviceRequestOption {
 }
 
 // WithDeviceRequestGroupIdentifier sets the GroupIdentifier field.
+//
+// Deprecated: use DeviceRequestBuilder.SetGroupIdentifier instead; removed in v2.
 func WithDeviceRequestGroupIdentifier(v Identifier) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.GroupIdentifier = &v
@@ -1123,6 +1165,8 @@ func WithDeviceRequestGroupIdentifier(v Identifier) DeviceRequestOption {
 }
 
 // WithDeviceRequestStatus sets the Status field.
+//
+// Deprecated: use DeviceRequestBuilder.SetStatus instead; removed in v2.
 func WithDeviceRequestStatus(v RequestStatus) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.Status = &v
@@ -1130,6 +1174,8 @@ func WithDeviceRequestStatus(v RequestStatus) DeviceRequestOption {
 }
 
 // WithDeviceRequestIntent sets the Intent field.
+//
+// Deprecated: use DeviceRequestBuilder.SetIntent instead; removed in v2.
 func WithDeviceRequestIntent(v RequestIntent) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.Intent = &v
@@ -1137,6 +1183,8 @@ func WithDeviceRequestIntent(v RequestIntent) DeviceRequestOption {
 }
 
 // WithDeviceRequestPriority sets the Priority field.
+//
+// Deprecated: use DeviceRequestBuilder.SetPriority instead; removed in v2.
 func WithDeviceRequestPriority(v RequestPriority) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.Priority = &v
@@ -1144,6 +1192,8 @@ func WithDeviceRequestPriority(v RequestPriority) DeviceRequestOption {
 }
 
 // WithDeviceRequestCodeReference sets the CodeReference field.
+//
+// Deprecated: use DeviceRequestBuilder.SetCodeReference instead; removed in v2.
 func WithDeviceRequestCodeReference(v Reference) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.CodeReference = &v
@@ -1151,6 +1201,8 @@ func WithDeviceRequestCodeReference(v Reference) DeviceRequestOption {
 }
 
 // WithDeviceRequestCodeCodeableConcept sets the CodeCodeableConcept field.
+//
+// Deprecated: use DeviceRequestBuilder.SetCodeCodeableConcept instead; removed in v2.
 func WithDeviceRequestCodeCodeableConcept(v CodeableConcept) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.CodeCodeableConcept = &v
@@ -1158,6 +1210,8 @@ func WithDeviceRequestCodeCodeableConcept(v CodeableConcept) DeviceRequestOption
 }
 
 // WithDeviceRequestParameter adds a Parameter to the DeviceRequest.
+//
+// Deprecated: use DeviceRequestBuilder.AddParameter instead; removed in v2.
 func WithDeviceRequestParameter(v DeviceRequestParameter) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.Parameter = append(r.Parameter, v)
@@ -1165,6 +1219,8 @@ func WithDeviceRequestParameter(v DeviceRequestParameter) DeviceRequestOption {
 }
 
 // WithDeviceRequestSubject sets the Subject field.
+//
+// Deprecated: use DeviceRequestBuilder.SetSubject instead; removed in v2.
 func WithDeviceRequestSubject(v Reference) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.Subject = v
@@ -1172,6 +1228,8 @@ func WithDeviceRequestSubject(v Reference) DeviceRequestOption {
 }
 
 // WithDeviceRequestEncounter sets the Encounter field.
+//
+// Deprecated: use DeviceRequestBuilder.SetEncounter instead; removed in v2.
 func WithDeviceRequestEncounter(v Reference) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.Encounter = &v
@@ -1179,6 +1237,8 @@ func WithDeviceRequestEncounter(v Reference) DeviceRequestOption {
 }
 
 // WithDeviceRequestOccurrenceDateTime sets the OccurrenceDateTime field.
+//
+// Deprecated: use DeviceRequestBuilder.SetOccurrenceDateTime instead; removed in v2.
 func WithDeviceRequestOccurrenceDateTime(v string) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.OccurrenceDateTime = &v
@@ -1186,6 +1246,8 @@ func WithDeviceRequestOccurrenceDateTime(v string) DeviceRequestOption {
 }
 
 // WithDeviceRequestOccurrenceDateTimeExt sets the OccurrenceDateTimeExt field.
+//
+// Deprecated: use DeviceRequestBuilder.SetOccurrenceDateTimeExt instead; removed in v2.
 func WithDeviceRequestOccurrenceDateTimeExt(v Element) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.OccurrenceDateTimeExt = &v
@@ -1193,6 +1255,8 @@ func WithDeviceRequestOccurrenceDateTimeExt(v Element) DeviceRequestOption {
 }
 
 // WithDeviceRequestOccurrencePeriod sets the OccurrencePeriod field.
+//
+// Deprecated: use DeviceRequestBuilder.SetOccurrencePeriod instead; removed in v2.
 func WithDeviceRequestOccurrencePeriod(v Period) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.OccurrencePeriod = &v
@@ -1200,6 +1264,8 @@ func WithDeviceRequestOccurrencePeriod(v Period) DeviceRequestOption {
 }
 
 // WithDeviceRequestOccurrenceTiming sets the OccurrenceTiming field.
+//
+// Deprecated: use DeviceRequestBuilder.SetOccurrenceTiming instead; removed in v2.
 func WithDeviceRequestOccurrenceTiming(v Timing) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.OccurrenceTiming = &v
@@ -1207,6 +1273,8 @@ func WithDeviceRequestOccurrenceTiming(v Timing) DeviceRequestOption {
 }
 
 // WithDeviceRequestAuthoredOn sets the AuthoredOn field.
+//
+// Deprecated: use DeviceRequestBuilder.SetAuthoredOn instead; removed in v2.
 func WithDeviceRequestAuthoredOn(v string) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.AuthoredOn = &v
@@ -1214,6 +1282,8 @@ func WithDeviceRequestAuthoredOn(v string) DeviceRequestOption {
 }
 
 // WithDeviceRequestRequester sets the Requester field.
+//
+// Deprecated: use DeviceRequestBuilder.SetRequester instead; removed in v2.
 func WithDeviceRequestRequester(v Reference) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.Requester = &v
@@ -1221,6 +1291,8 @@ func WithDeviceRequestRequester(v Reference) DeviceRequestOption {
 }
 
 // WithDeviceRequestPerformerType sets the PerformerType field.
+//
+// Deprecated: use DeviceRequestBuilder.SetPerformerType instead; removed in v2.
 func WithDeviceRequestPerformerType(v CodeableConcept) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.PerformerType = &v
@@ -1228,6 +1300,8 @@ func WithDeviceRequestPerformerType(v CodeableConcept) DeviceRequestOption {
 }
 
 // WithDeviceRequestPerformer sets the Performer field.
+//
+// Deprecated: use DeviceRequestBuilder.SetPerformer instead; removed in v2.
 func WithDeviceRequestPerformer(v Reference) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.Performer = &v
@@ -1235,6 +1309,8 @@ func WithDeviceRequestPerformer(v Reference) DeviceRequestOption {
 }
 
 // WithDeviceRequestReasonCode adds a ReasonCode to the DeviceRequest.
+//
+// Deprecated: use DeviceRequestBuilder.AddReasonCode instead; removed in v2.
 func WithDeviceRequestReasonCode(v CodeableConcept) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.ReasonCode = append(r.ReasonCode, v)
@@ -1242,6 +1318,8 @@ func WithDeviceRequestReasonCode(v CodeableConcept) DeviceRequestOption {
 }
 
 // WithDeviceRequestReasonReference adds a ReasonReference to the DeviceRequest.
+//
+// Deprecated: use DeviceRequestBuilder.AddReasonReference instead; removed in v2.
 func WithDeviceRequestReasonReference(v Reference) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.ReasonReference = append(r.ReasonReference, v)
@@ -1249,6 +1327,8 @@ func WithDeviceRequestReasonReference(v Reference) DeviceRequestOption {
 }
 
 // WithDeviceRequestInsurance adds a Insurance to the DeviceRequest.
+//
+// Deprecated: use DeviceRequestBuilder.AddInsurance instead; removed in v2.
 func WithDeviceRequestInsurance(v Reference) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.Insurance = append(r.Insurance, v)
@@ -1256,6 +1336,8 @@ func WithDeviceRequestInsurance(v Reference) DeviceRequestOption {
 }
 
 // WithDeviceRequestSupportingInfo adds a SupportingInfo to the DeviceRequest.
+//
+// Deprecated: use DeviceRequestBuilder.AddSupportingInfo instead; removed in v2.
 func WithDeviceRequestSupportingInfo(v Reference) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.SupportingInfo = append(r.SupportingInfo, v)
@@ -1263,6 +1345,8 @@ func WithDeviceRequestSupportingInfo(v Reference) DeviceRequestOption {
 }
 
 // WithDeviceRequestNote adds a Note to the DeviceRequest.
+//
+// Deprecated: use DeviceRequestBuilder.AddNote instead; removed in v2.
 func WithDeviceRequestNote(v Annotation) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.Note = append(r.Note, v)
@@ -1270,6 +1354,8 @@ func WithDeviceRequestNote(v Annotation) DeviceRequestOption {
 }
 
 // WithDeviceRequestRelevantHistory adds a RelevantHistory to the DeviceRequest.
+//
+// Deprecated: use DeviceRequestBuilder.AddRelevantHistory instead; removed in v2.
 func WithDeviceRequestRelevantHistory(v Reference) DeviceRequestOption {
 	return func(r *DeviceRequest) {
 		r.RelevantHistory = append(r.RelevantHistory, v)

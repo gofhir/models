@@ -1905,9 +1905,23 @@ func (b *RequestOrchestrationBuilder) AddAction(v RequestOrchestrationAction) *R
 // =============================================================================
 
 // RequestOrchestrationOption is a functional option for configuring a RequestOrchestration.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// RequestOrchestrationBuilder. Every WithRequestOrchestration* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type RequestOrchestrationOption func(*RequestOrchestration)
 
 // NewRequestOrchestration creates a new RequestOrchestration with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewRequestOrchestrationBuilder().SetId("x").Build()
+//
+// Deprecated: use NewRequestOrchestrationBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewRequestOrchestration(opts ...RequestOrchestrationOption) *RequestOrchestration {
 	r := &RequestOrchestration{ResourceType: "RequestOrchestration"}
 	for _, opt := range opts {
@@ -1917,6 +1931,8 @@ func NewRequestOrchestration(opts ...RequestOrchestrationOption) *RequestOrchest
 }
 
 // WithRequestOrchestrationId sets the Id field.
+//
+// Deprecated: use RequestOrchestrationBuilder.SetId instead; removed in v2.
 func WithRequestOrchestrationId(v string) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.Id = &v
@@ -1924,6 +1940,8 @@ func WithRequestOrchestrationId(v string) RequestOrchestrationOption {
 }
 
 // WithRequestOrchestrationMeta sets the Meta field.
+//
+// Deprecated: use RequestOrchestrationBuilder.SetMeta instead; removed in v2.
 func WithRequestOrchestrationMeta(v Meta) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.Meta = &v
@@ -1931,6 +1949,8 @@ func WithRequestOrchestrationMeta(v Meta) RequestOrchestrationOption {
 }
 
 // WithRequestOrchestrationImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use RequestOrchestrationBuilder.SetImplicitRules instead; removed in v2.
 func WithRequestOrchestrationImplicitRules(v string) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.ImplicitRules = &v
@@ -1938,6 +1958,8 @@ func WithRequestOrchestrationImplicitRules(v string) RequestOrchestrationOption 
 }
 
 // WithRequestOrchestrationLanguage sets the Language field.
+//
+// Deprecated: use RequestOrchestrationBuilder.SetLanguage instead; removed in v2.
 func WithRequestOrchestrationLanguage(v string) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.Language = &v
@@ -1945,6 +1967,8 @@ func WithRequestOrchestrationLanguage(v string) RequestOrchestrationOption {
 }
 
 // WithRequestOrchestrationText sets the Text field.
+//
+// Deprecated: use RequestOrchestrationBuilder.SetText instead; removed in v2.
 func WithRequestOrchestrationText(v Narrative) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.Text = &v
@@ -1952,6 +1976,8 @@ func WithRequestOrchestrationText(v Narrative) RequestOrchestrationOption {
 }
 
 // WithRequestOrchestrationContained adds a Contained to the RequestOrchestration.
+//
+// Deprecated: use RequestOrchestrationBuilder.AddContained instead; removed in v2.
 func WithRequestOrchestrationContained(v Resource) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.Contained = append(r.Contained, v)
@@ -1959,6 +1985,8 @@ func WithRequestOrchestrationContained(v Resource) RequestOrchestrationOption {
 }
 
 // WithRequestOrchestrationExtension adds a Extension to the RequestOrchestration.
+//
+// Deprecated: use RequestOrchestrationBuilder.AddExtension instead; removed in v2.
 func WithRequestOrchestrationExtension(v Extension) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.Extension = append(r.Extension, v)
@@ -1966,6 +1994,8 @@ func WithRequestOrchestrationExtension(v Extension) RequestOrchestrationOption {
 }
 
 // WithRequestOrchestrationModifierExtension adds a ModifierExtension to the RequestOrchestration.
+//
+// Deprecated: use RequestOrchestrationBuilder.AddModifierExtension instead; removed in v2.
 func WithRequestOrchestrationModifierExtension(v Extension) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1973,6 +2003,8 @@ func WithRequestOrchestrationModifierExtension(v Extension) RequestOrchestration
 }
 
 // WithRequestOrchestrationIdentifier adds a Identifier to the RequestOrchestration.
+//
+// Deprecated: use RequestOrchestrationBuilder.AddIdentifier instead; removed in v2.
 func WithRequestOrchestrationIdentifier(v Identifier) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.Identifier = append(r.Identifier, v)
@@ -1980,6 +2012,8 @@ func WithRequestOrchestrationIdentifier(v Identifier) RequestOrchestrationOption
 }
 
 // WithRequestOrchestrationInstantiatesCanonical adds a InstantiatesCanonical to the RequestOrchestration.
+//
+// Deprecated: use RequestOrchestrationBuilder.AddInstantiatesCanonical instead; removed in v2.
 func WithRequestOrchestrationInstantiatesCanonical(v string) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
@@ -1987,6 +2021,8 @@ func WithRequestOrchestrationInstantiatesCanonical(v string) RequestOrchestratio
 }
 
 // WithRequestOrchestrationInstantiatesUri adds a InstantiatesUri to the RequestOrchestration.
+//
+// Deprecated: use RequestOrchestrationBuilder.AddInstantiatesUri instead; removed in v2.
 func WithRequestOrchestrationInstantiatesUri(v string) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.InstantiatesUri = append(r.InstantiatesUri, v)
@@ -1994,6 +2030,8 @@ func WithRequestOrchestrationInstantiatesUri(v string) RequestOrchestrationOptio
 }
 
 // WithRequestOrchestrationBasedOn adds a BasedOn to the RequestOrchestration.
+//
+// Deprecated: use RequestOrchestrationBuilder.AddBasedOn instead; removed in v2.
 func WithRequestOrchestrationBasedOn(v Reference) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -2001,6 +2039,8 @@ func WithRequestOrchestrationBasedOn(v Reference) RequestOrchestrationOption {
 }
 
 // WithRequestOrchestrationReplaces adds a Replaces to the RequestOrchestration.
+//
+// Deprecated: use RequestOrchestrationBuilder.AddReplaces instead; removed in v2.
 func WithRequestOrchestrationReplaces(v Reference) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.Replaces = append(r.Replaces, v)
@@ -2008,6 +2048,8 @@ func WithRequestOrchestrationReplaces(v Reference) RequestOrchestrationOption {
 }
 
 // WithRequestOrchestrationGroupIdentifier sets the GroupIdentifier field.
+//
+// Deprecated: use RequestOrchestrationBuilder.SetGroupIdentifier instead; removed in v2.
 func WithRequestOrchestrationGroupIdentifier(v Identifier) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.GroupIdentifier = &v
@@ -2015,6 +2057,8 @@ func WithRequestOrchestrationGroupIdentifier(v Identifier) RequestOrchestrationO
 }
 
 // WithRequestOrchestrationStatus sets the Status field.
+//
+// Deprecated: use RequestOrchestrationBuilder.SetStatus instead; removed in v2.
 func WithRequestOrchestrationStatus(v RequestStatus) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.Status = &v
@@ -2022,6 +2066,8 @@ func WithRequestOrchestrationStatus(v RequestStatus) RequestOrchestrationOption 
 }
 
 // WithRequestOrchestrationIntent sets the Intent field.
+//
+// Deprecated: use RequestOrchestrationBuilder.SetIntent instead; removed in v2.
 func WithRequestOrchestrationIntent(v RequestIntent) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.Intent = &v
@@ -2029,6 +2075,8 @@ func WithRequestOrchestrationIntent(v RequestIntent) RequestOrchestrationOption 
 }
 
 // WithRequestOrchestrationPriority sets the Priority field.
+//
+// Deprecated: use RequestOrchestrationBuilder.SetPriority instead; removed in v2.
 func WithRequestOrchestrationPriority(v RequestPriority) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.Priority = &v
@@ -2036,6 +2084,8 @@ func WithRequestOrchestrationPriority(v RequestPriority) RequestOrchestrationOpt
 }
 
 // WithRequestOrchestrationCode sets the Code field.
+//
+// Deprecated: use RequestOrchestrationBuilder.SetCode instead; removed in v2.
 func WithRequestOrchestrationCode(v CodeableConcept) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.Code = &v
@@ -2043,6 +2093,8 @@ func WithRequestOrchestrationCode(v CodeableConcept) RequestOrchestrationOption 
 }
 
 // WithRequestOrchestrationSubject sets the Subject field.
+//
+// Deprecated: use RequestOrchestrationBuilder.SetSubject instead; removed in v2.
 func WithRequestOrchestrationSubject(v Reference) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.Subject = &v
@@ -2050,6 +2102,8 @@ func WithRequestOrchestrationSubject(v Reference) RequestOrchestrationOption {
 }
 
 // WithRequestOrchestrationEncounter sets the Encounter field.
+//
+// Deprecated: use RequestOrchestrationBuilder.SetEncounter instead; removed in v2.
 func WithRequestOrchestrationEncounter(v Reference) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.Encounter = &v
@@ -2057,6 +2111,8 @@ func WithRequestOrchestrationEncounter(v Reference) RequestOrchestrationOption {
 }
 
 // WithRequestOrchestrationAuthoredOn sets the AuthoredOn field.
+//
+// Deprecated: use RequestOrchestrationBuilder.SetAuthoredOn instead; removed in v2.
 func WithRequestOrchestrationAuthoredOn(v string) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.AuthoredOn = &v
@@ -2064,6 +2120,8 @@ func WithRequestOrchestrationAuthoredOn(v string) RequestOrchestrationOption {
 }
 
 // WithRequestOrchestrationAuthor sets the Author field.
+//
+// Deprecated: use RequestOrchestrationBuilder.SetAuthor instead; removed in v2.
 func WithRequestOrchestrationAuthor(v Reference) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.Author = &v
@@ -2071,6 +2129,8 @@ func WithRequestOrchestrationAuthor(v Reference) RequestOrchestrationOption {
 }
 
 // WithRequestOrchestrationReason adds a Reason to the RequestOrchestration.
+//
+// Deprecated: use RequestOrchestrationBuilder.AddReason instead; removed in v2.
 func WithRequestOrchestrationReason(v CodeableReference) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.Reason = append(r.Reason, v)
@@ -2078,6 +2138,8 @@ func WithRequestOrchestrationReason(v CodeableReference) RequestOrchestrationOpt
 }
 
 // WithRequestOrchestrationGoal adds a Goal to the RequestOrchestration.
+//
+// Deprecated: use RequestOrchestrationBuilder.AddGoal instead; removed in v2.
 func WithRequestOrchestrationGoal(v Reference) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.Goal = append(r.Goal, v)
@@ -2085,6 +2147,8 @@ func WithRequestOrchestrationGoal(v Reference) RequestOrchestrationOption {
 }
 
 // WithRequestOrchestrationNote adds a Note to the RequestOrchestration.
+//
+// Deprecated: use RequestOrchestrationBuilder.AddNote instead; removed in v2.
 func WithRequestOrchestrationNote(v Annotation) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.Note = append(r.Note, v)
@@ -2092,6 +2156,8 @@ func WithRequestOrchestrationNote(v Annotation) RequestOrchestrationOption {
 }
 
 // WithRequestOrchestrationAction adds a Action to the RequestOrchestration.
+//
+// Deprecated: use RequestOrchestrationBuilder.AddAction instead; removed in v2.
 func WithRequestOrchestrationAction(v RequestOrchestrationAction) RequestOrchestrationOption {
 	return func(r *RequestOrchestration) {
 		r.Action = append(r.Action, v)

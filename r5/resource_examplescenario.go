@@ -1880,9 +1880,23 @@ func (b *ExampleScenarioBuilder) AddProcess(v ExampleScenarioProcess) *ExampleSc
 // =============================================================================
 
 // ExampleScenarioOption is a functional option for configuring a ExampleScenario.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ExampleScenarioBuilder. Every WithExampleScenario* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ExampleScenarioOption func(*ExampleScenario)
 
 // NewExampleScenario creates a new ExampleScenario with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewExampleScenarioBuilder().SetId("x").Build()
+//
+// Deprecated: use NewExampleScenarioBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewExampleScenario(opts ...ExampleScenarioOption) *ExampleScenario {
 	r := &ExampleScenario{ResourceType: "ExampleScenario"}
 	for _, opt := range opts {
@@ -1892,6 +1906,8 @@ func NewExampleScenario(opts ...ExampleScenarioOption) *ExampleScenario {
 }
 
 // WithExampleScenarioId sets the Id field.
+//
+// Deprecated: use ExampleScenarioBuilder.SetId instead; removed in v2.
 func WithExampleScenarioId(v string) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Id = &v
@@ -1899,6 +1915,8 @@ func WithExampleScenarioId(v string) ExampleScenarioOption {
 }
 
 // WithExampleScenarioMeta sets the Meta field.
+//
+// Deprecated: use ExampleScenarioBuilder.SetMeta instead; removed in v2.
 func WithExampleScenarioMeta(v Meta) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Meta = &v
@@ -1906,6 +1924,8 @@ func WithExampleScenarioMeta(v Meta) ExampleScenarioOption {
 }
 
 // WithExampleScenarioImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ExampleScenarioBuilder.SetImplicitRules instead; removed in v2.
 func WithExampleScenarioImplicitRules(v string) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.ImplicitRules = &v
@@ -1913,6 +1933,8 @@ func WithExampleScenarioImplicitRules(v string) ExampleScenarioOption {
 }
 
 // WithExampleScenarioLanguage sets the Language field.
+//
+// Deprecated: use ExampleScenarioBuilder.SetLanguage instead; removed in v2.
 func WithExampleScenarioLanguage(v string) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Language = &v
@@ -1920,6 +1942,8 @@ func WithExampleScenarioLanguage(v string) ExampleScenarioOption {
 }
 
 // WithExampleScenarioText sets the Text field.
+//
+// Deprecated: use ExampleScenarioBuilder.SetText instead; removed in v2.
 func WithExampleScenarioText(v Narrative) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Text = &v
@@ -1927,6 +1951,8 @@ func WithExampleScenarioText(v Narrative) ExampleScenarioOption {
 }
 
 // WithExampleScenarioContained adds a Contained to the ExampleScenario.
+//
+// Deprecated: use ExampleScenarioBuilder.AddContained instead; removed in v2.
 func WithExampleScenarioContained(v Resource) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Contained = append(r.Contained, v)
@@ -1934,6 +1960,8 @@ func WithExampleScenarioContained(v Resource) ExampleScenarioOption {
 }
 
 // WithExampleScenarioExtension adds a Extension to the ExampleScenario.
+//
+// Deprecated: use ExampleScenarioBuilder.AddExtension instead; removed in v2.
 func WithExampleScenarioExtension(v Extension) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Extension = append(r.Extension, v)
@@ -1941,6 +1969,8 @@ func WithExampleScenarioExtension(v Extension) ExampleScenarioOption {
 }
 
 // WithExampleScenarioModifierExtension adds a ModifierExtension to the ExampleScenario.
+//
+// Deprecated: use ExampleScenarioBuilder.AddModifierExtension instead; removed in v2.
 func WithExampleScenarioModifierExtension(v Extension) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1948,6 +1978,8 @@ func WithExampleScenarioModifierExtension(v Extension) ExampleScenarioOption {
 }
 
 // WithExampleScenarioUrl sets the Url field.
+//
+// Deprecated: use ExampleScenarioBuilder.SetUrl instead; removed in v2.
 func WithExampleScenarioUrl(v string) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Url = &v
@@ -1955,6 +1987,8 @@ func WithExampleScenarioUrl(v string) ExampleScenarioOption {
 }
 
 // WithExampleScenarioIdentifier adds a Identifier to the ExampleScenario.
+//
+// Deprecated: use ExampleScenarioBuilder.AddIdentifier instead; removed in v2.
 func WithExampleScenarioIdentifier(v Identifier) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Identifier = append(r.Identifier, v)
@@ -1962,6 +1996,8 @@ func WithExampleScenarioIdentifier(v Identifier) ExampleScenarioOption {
 }
 
 // WithExampleScenarioVersion sets the Version field.
+//
+// Deprecated: use ExampleScenarioBuilder.SetVersion instead; removed in v2.
 func WithExampleScenarioVersion(v string) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Version = &v
@@ -1969,6 +2005,8 @@ func WithExampleScenarioVersion(v string) ExampleScenarioOption {
 }
 
 // WithExampleScenarioVersionAlgorithmString sets the VersionAlgorithmString field.
+//
+// Deprecated: use ExampleScenarioBuilder.SetVersionAlgorithmString instead; removed in v2.
 func WithExampleScenarioVersionAlgorithmString(v string) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.VersionAlgorithmString = &v
@@ -1976,6 +2014,8 @@ func WithExampleScenarioVersionAlgorithmString(v string) ExampleScenarioOption {
 }
 
 // WithExampleScenarioVersionAlgorithmStringExt sets the VersionAlgorithmStringExt field.
+//
+// Deprecated: use ExampleScenarioBuilder.SetVersionAlgorithmStringExt instead; removed in v2.
 func WithExampleScenarioVersionAlgorithmStringExt(v Element) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.VersionAlgorithmStringExt = &v
@@ -1983,6 +2023,8 @@ func WithExampleScenarioVersionAlgorithmStringExt(v Element) ExampleScenarioOpti
 }
 
 // WithExampleScenarioVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+//
+// Deprecated: use ExampleScenarioBuilder.SetVersionAlgorithmCoding instead; removed in v2.
 func WithExampleScenarioVersionAlgorithmCoding(v Coding) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.VersionAlgorithmCoding = &v
@@ -1990,6 +2032,8 @@ func WithExampleScenarioVersionAlgorithmCoding(v Coding) ExampleScenarioOption {
 }
 
 // WithExampleScenarioName sets the Name field.
+//
+// Deprecated: use ExampleScenarioBuilder.SetName instead; removed in v2.
 func WithExampleScenarioName(v string) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Name = &v
@@ -1997,6 +2041,8 @@ func WithExampleScenarioName(v string) ExampleScenarioOption {
 }
 
 // WithExampleScenarioTitle sets the Title field.
+//
+// Deprecated: use ExampleScenarioBuilder.SetTitle instead; removed in v2.
 func WithExampleScenarioTitle(v string) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Title = &v
@@ -2004,6 +2050,8 @@ func WithExampleScenarioTitle(v string) ExampleScenarioOption {
 }
 
 // WithExampleScenarioStatus sets the Status field.
+//
+// Deprecated: use ExampleScenarioBuilder.SetStatus instead; removed in v2.
 func WithExampleScenarioStatus(v PublicationStatus) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Status = &v
@@ -2011,6 +2059,8 @@ func WithExampleScenarioStatus(v PublicationStatus) ExampleScenarioOption {
 }
 
 // WithExampleScenarioExperimental sets the Experimental field.
+//
+// Deprecated: use ExampleScenarioBuilder.SetExperimental instead; removed in v2.
 func WithExampleScenarioExperimental(v bool) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Experimental = &v
@@ -2018,6 +2068,8 @@ func WithExampleScenarioExperimental(v bool) ExampleScenarioOption {
 }
 
 // WithExampleScenarioDate sets the Date field.
+//
+// Deprecated: use ExampleScenarioBuilder.SetDate instead; removed in v2.
 func WithExampleScenarioDate(v string) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Date = &v
@@ -2025,6 +2077,8 @@ func WithExampleScenarioDate(v string) ExampleScenarioOption {
 }
 
 // WithExampleScenarioPublisher sets the Publisher field.
+//
+// Deprecated: use ExampleScenarioBuilder.SetPublisher instead; removed in v2.
 func WithExampleScenarioPublisher(v string) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Publisher = &v
@@ -2032,6 +2086,8 @@ func WithExampleScenarioPublisher(v string) ExampleScenarioOption {
 }
 
 // WithExampleScenarioContact adds a Contact to the ExampleScenario.
+//
+// Deprecated: use ExampleScenarioBuilder.AddContact instead; removed in v2.
 func WithExampleScenarioContact(v ContactDetail) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Contact = append(r.Contact, v)
@@ -2039,6 +2095,8 @@ func WithExampleScenarioContact(v ContactDetail) ExampleScenarioOption {
 }
 
 // WithExampleScenarioDescription sets the Description field.
+//
+// Deprecated: use ExampleScenarioBuilder.SetDescription instead; removed in v2.
 func WithExampleScenarioDescription(v string) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Description = &v
@@ -2046,6 +2104,8 @@ func WithExampleScenarioDescription(v string) ExampleScenarioOption {
 }
 
 // WithExampleScenarioUseContext adds a UseContext to the ExampleScenario.
+//
+// Deprecated: use ExampleScenarioBuilder.AddUseContext instead; removed in v2.
 func WithExampleScenarioUseContext(v UsageContext) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.UseContext = append(r.UseContext, v)
@@ -2053,6 +2113,8 @@ func WithExampleScenarioUseContext(v UsageContext) ExampleScenarioOption {
 }
 
 // WithExampleScenarioJurisdiction adds a Jurisdiction to the ExampleScenario.
+//
+// Deprecated: use ExampleScenarioBuilder.AddJurisdiction instead; removed in v2.
 func WithExampleScenarioJurisdiction(v CodeableConcept) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -2060,6 +2122,8 @@ func WithExampleScenarioJurisdiction(v CodeableConcept) ExampleScenarioOption {
 }
 
 // WithExampleScenarioPurpose sets the Purpose field.
+//
+// Deprecated: use ExampleScenarioBuilder.SetPurpose instead; removed in v2.
 func WithExampleScenarioPurpose(v string) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Purpose = &v
@@ -2067,6 +2131,8 @@ func WithExampleScenarioPurpose(v string) ExampleScenarioOption {
 }
 
 // WithExampleScenarioCopyright sets the Copyright field.
+//
+// Deprecated: use ExampleScenarioBuilder.SetCopyright instead; removed in v2.
 func WithExampleScenarioCopyright(v string) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Copyright = &v
@@ -2074,6 +2140,8 @@ func WithExampleScenarioCopyright(v string) ExampleScenarioOption {
 }
 
 // WithExampleScenarioCopyrightLabel sets the CopyrightLabel field.
+//
+// Deprecated: use ExampleScenarioBuilder.SetCopyrightLabel instead; removed in v2.
 func WithExampleScenarioCopyrightLabel(v string) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.CopyrightLabel = &v
@@ -2081,6 +2149,8 @@ func WithExampleScenarioCopyrightLabel(v string) ExampleScenarioOption {
 }
 
 // WithExampleScenarioActor adds a Actor to the ExampleScenario.
+//
+// Deprecated: use ExampleScenarioBuilder.AddActor instead; removed in v2.
 func WithExampleScenarioActor(v ExampleScenarioActor) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Actor = append(r.Actor, v)
@@ -2088,6 +2158,8 @@ func WithExampleScenarioActor(v ExampleScenarioActor) ExampleScenarioOption {
 }
 
 // WithExampleScenarioInstance adds a Instance to the ExampleScenario.
+//
+// Deprecated: use ExampleScenarioBuilder.AddInstance instead; removed in v2.
 func WithExampleScenarioInstance(v ExampleScenarioInstance) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Instance = append(r.Instance, v)
@@ -2095,6 +2167,8 @@ func WithExampleScenarioInstance(v ExampleScenarioInstance) ExampleScenarioOptio
 }
 
 // WithExampleScenarioProcess adds a Process to the ExampleScenario.
+//
+// Deprecated: use ExampleScenarioBuilder.AddProcess instead; removed in v2.
 func WithExampleScenarioProcess(v ExampleScenarioProcess) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
 		r.Process = append(r.Process, v)

@@ -823,9 +823,23 @@ func (b *CompartmentDefinitionBuilder) AddResource(v CompartmentDefinitionResour
 // =============================================================================
 
 // CompartmentDefinitionOption is a functional option for configuring a CompartmentDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// CompartmentDefinitionBuilder. Every WithCompartmentDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type CompartmentDefinitionOption func(*CompartmentDefinition)
 
 // NewCompartmentDefinition creates a new CompartmentDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewCompartmentDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewCompartmentDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewCompartmentDefinition(opts ...CompartmentDefinitionOption) *CompartmentDefinition {
 	r := &CompartmentDefinition{ResourceType: "CompartmentDefinition"}
 	for _, opt := range opts {
@@ -835,6 +849,8 @@ func NewCompartmentDefinition(opts ...CompartmentDefinitionOption) *CompartmentD
 }
 
 // WithCompartmentDefinitionId sets the Id field.
+//
+// Deprecated: use CompartmentDefinitionBuilder.SetId instead; removed in v2.
 func WithCompartmentDefinitionId(v string) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.Id = &v
@@ -842,6 +858,8 @@ func WithCompartmentDefinitionId(v string) CompartmentDefinitionOption {
 }
 
 // WithCompartmentDefinitionMeta sets the Meta field.
+//
+// Deprecated: use CompartmentDefinitionBuilder.SetMeta instead; removed in v2.
 func WithCompartmentDefinitionMeta(v Meta) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.Meta = &v
@@ -849,6 +867,8 @@ func WithCompartmentDefinitionMeta(v Meta) CompartmentDefinitionOption {
 }
 
 // WithCompartmentDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use CompartmentDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithCompartmentDefinitionImplicitRules(v string) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.ImplicitRules = &v
@@ -856,6 +876,8 @@ func WithCompartmentDefinitionImplicitRules(v string) CompartmentDefinitionOptio
 }
 
 // WithCompartmentDefinitionLanguage sets the Language field.
+//
+// Deprecated: use CompartmentDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithCompartmentDefinitionLanguage(v string) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.Language = &v
@@ -863,6 +885,8 @@ func WithCompartmentDefinitionLanguage(v string) CompartmentDefinitionOption {
 }
 
 // WithCompartmentDefinitionText sets the Text field.
+//
+// Deprecated: use CompartmentDefinitionBuilder.SetText instead; removed in v2.
 func WithCompartmentDefinitionText(v Narrative) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.Text = &v
@@ -870,6 +894,8 @@ func WithCompartmentDefinitionText(v Narrative) CompartmentDefinitionOption {
 }
 
 // WithCompartmentDefinitionContained adds a Contained to the CompartmentDefinition.
+//
+// Deprecated: use CompartmentDefinitionBuilder.AddContained instead; removed in v2.
 func WithCompartmentDefinitionContained(v Resource) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -877,6 +903,8 @@ func WithCompartmentDefinitionContained(v Resource) CompartmentDefinitionOption 
 }
 
 // WithCompartmentDefinitionExtension adds a Extension to the CompartmentDefinition.
+//
+// Deprecated: use CompartmentDefinitionBuilder.AddExtension instead; removed in v2.
 func WithCompartmentDefinitionExtension(v Extension) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -884,6 +912,8 @@ func WithCompartmentDefinitionExtension(v Extension) CompartmentDefinitionOption
 }
 
 // WithCompartmentDefinitionModifierExtension adds a ModifierExtension to the CompartmentDefinition.
+//
+// Deprecated: use CompartmentDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithCompartmentDefinitionModifierExtension(v Extension) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -891,6 +921,8 @@ func WithCompartmentDefinitionModifierExtension(v Extension) CompartmentDefiniti
 }
 
 // WithCompartmentDefinitionUrl sets the Url field.
+//
+// Deprecated: use CompartmentDefinitionBuilder.SetUrl instead; removed in v2.
 func WithCompartmentDefinitionUrl(v string) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.Url = &v
@@ -898,6 +930,8 @@ func WithCompartmentDefinitionUrl(v string) CompartmentDefinitionOption {
 }
 
 // WithCompartmentDefinitionVersion sets the Version field.
+//
+// Deprecated: use CompartmentDefinitionBuilder.SetVersion instead; removed in v2.
 func WithCompartmentDefinitionVersion(v string) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.Version = &v
@@ -905,6 +939,8 @@ func WithCompartmentDefinitionVersion(v string) CompartmentDefinitionOption {
 }
 
 // WithCompartmentDefinitionVersionAlgorithmString sets the VersionAlgorithmString field.
+//
+// Deprecated: use CompartmentDefinitionBuilder.SetVersionAlgorithmString instead; removed in v2.
 func WithCompartmentDefinitionVersionAlgorithmString(v string) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.VersionAlgorithmString = &v
@@ -912,6 +948,8 @@ func WithCompartmentDefinitionVersionAlgorithmString(v string) CompartmentDefini
 }
 
 // WithCompartmentDefinitionVersionAlgorithmStringExt sets the VersionAlgorithmStringExt field.
+//
+// Deprecated: use CompartmentDefinitionBuilder.SetVersionAlgorithmStringExt instead; removed in v2.
 func WithCompartmentDefinitionVersionAlgorithmStringExt(v Element) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.VersionAlgorithmStringExt = &v
@@ -919,6 +957,8 @@ func WithCompartmentDefinitionVersionAlgorithmStringExt(v Element) CompartmentDe
 }
 
 // WithCompartmentDefinitionVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+//
+// Deprecated: use CompartmentDefinitionBuilder.SetVersionAlgorithmCoding instead; removed in v2.
 func WithCompartmentDefinitionVersionAlgorithmCoding(v Coding) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.VersionAlgorithmCoding = &v
@@ -926,6 +966,8 @@ func WithCompartmentDefinitionVersionAlgorithmCoding(v Coding) CompartmentDefini
 }
 
 // WithCompartmentDefinitionName sets the Name field.
+//
+// Deprecated: use CompartmentDefinitionBuilder.SetName instead; removed in v2.
 func WithCompartmentDefinitionName(v string) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.Name = &v
@@ -933,6 +975,8 @@ func WithCompartmentDefinitionName(v string) CompartmentDefinitionOption {
 }
 
 // WithCompartmentDefinitionTitle sets the Title field.
+//
+// Deprecated: use CompartmentDefinitionBuilder.SetTitle instead; removed in v2.
 func WithCompartmentDefinitionTitle(v string) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.Title = &v
@@ -940,6 +984,8 @@ func WithCompartmentDefinitionTitle(v string) CompartmentDefinitionOption {
 }
 
 // WithCompartmentDefinitionStatus sets the Status field.
+//
+// Deprecated: use CompartmentDefinitionBuilder.SetStatus instead; removed in v2.
 func WithCompartmentDefinitionStatus(v PublicationStatus) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.Status = &v
@@ -947,6 +993,8 @@ func WithCompartmentDefinitionStatus(v PublicationStatus) CompartmentDefinitionO
 }
 
 // WithCompartmentDefinitionExperimental sets the Experimental field.
+//
+// Deprecated: use CompartmentDefinitionBuilder.SetExperimental instead; removed in v2.
 func WithCompartmentDefinitionExperimental(v bool) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.Experimental = &v
@@ -954,6 +1002,8 @@ func WithCompartmentDefinitionExperimental(v bool) CompartmentDefinitionOption {
 }
 
 // WithCompartmentDefinitionDate sets the Date field.
+//
+// Deprecated: use CompartmentDefinitionBuilder.SetDate instead; removed in v2.
 func WithCompartmentDefinitionDate(v string) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.Date = &v
@@ -961,6 +1011,8 @@ func WithCompartmentDefinitionDate(v string) CompartmentDefinitionOption {
 }
 
 // WithCompartmentDefinitionPublisher sets the Publisher field.
+//
+// Deprecated: use CompartmentDefinitionBuilder.SetPublisher instead; removed in v2.
 func WithCompartmentDefinitionPublisher(v string) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.Publisher = &v
@@ -968,6 +1020,8 @@ func WithCompartmentDefinitionPublisher(v string) CompartmentDefinitionOption {
 }
 
 // WithCompartmentDefinitionContact adds a Contact to the CompartmentDefinition.
+//
+// Deprecated: use CompartmentDefinitionBuilder.AddContact instead; removed in v2.
 func WithCompartmentDefinitionContact(v ContactDetail) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.Contact = append(r.Contact, v)
@@ -975,6 +1029,8 @@ func WithCompartmentDefinitionContact(v ContactDetail) CompartmentDefinitionOpti
 }
 
 // WithCompartmentDefinitionDescription sets the Description field.
+//
+// Deprecated: use CompartmentDefinitionBuilder.SetDescription instead; removed in v2.
 func WithCompartmentDefinitionDescription(v string) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.Description = &v
@@ -982,6 +1038,8 @@ func WithCompartmentDefinitionDescription(v string) CompartmentDefinitionOption 
 }
 
 // WithCompartmentDefinitionUseContext adds a UseContext to the CompartmentDefinition.
+//
+// Deprecated: use CompartmentDefinitionBuilder.AddUseContext instead; removed in v2.
 func WithCompartmentDefinitionUseContext(v UsageContext) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.UseContext = append(r.UseContext, v)
@@ -989,6 +1047,8 @@ func WithCompartmentDefinitionUseContext(v UsageContext) CompartmentDefinitionOp
 }
 
 // WithCompartmentDefinitionPurpose sets the Purpose field.
+//
+// Deprecated: use CompartmentDefinitionBuilder.SetPurpose instead; removed in v2.
 func WithCompartmentDefinitionPurpose(v string) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.Purpose = &v
@@ -996,6 +1056,8 @@ func WithCompartmentDefinitionPurpose(v string) CompartmentDefinitionOption {
 }
 
 // WithCompartmentDefinitionCode sets the Code field.
+//
+// Deprecated: use CompartmentDefinitionBuilder.SetCode instead; removed in v2.
 func WithCompartmentDefinitionCode(v CompartmentType) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.Code = &v
@@ -1003,6 +1065,8 @@ func WithCompartmentDefinitionCode(v CompartmentType) CompartmentDefinitionOptio
 }
 
 // WithCompartmentDefinitionSearch sets the Search field.
+//
+// Deprecated: use CompartmentDefinitionBuilder.SetSearch instead; removed in v2.
 func WithCompartmentDefinitionSearch(v bool) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.Search = &v
@@ -1010,6 +1074,8 @@ func WithCompartmentDefinitionSearch(v bool) CompartmentDefinitionOption {
 }
 
 // WithCompartmentDefinitionResource adds a Resource to the CompartmentDefinition.
+//
+// Deprecated: use CompartmentDefinitionBuilder.AddResource instead; removed in v2.
 func WithCompartmentDefinitionResource(v CompartmentDefinitionResource) CompartmentDefinitionOption {
 	return func(r *CompartmentDefinition) {
 		r.Resource = append(r.Resource, v)

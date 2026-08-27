@@ -1706,9 +1706,23 @@ func (b *EffectEvidenceSynthesisBuilder) AddCertainty(v EffectEvidenceSynthesisC
 // =============================================================================
 
 // EffectEvidenceSynthesisOption is a functional option for configuring a EffectEvidenceSynthesis.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// EffectEvidenceSynthesisBuilder. Every WithEffectEvidenceSynthesis* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type EffectEvidenceSynthesisOption func(*EffectEvidenceSynthesis)
 
 // NewEffectEvidenceSynthesis creates a new EffectEvidenceSynthesis with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewEffectEvidenceSynthesisBuilder().SetId("x").Build()
+//
+// Deprecated: use NewEffectEvidenceSynthesisBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewEffectEvidenceSynthesis(opts ...EffectEvidenceSynthesisOption) *EffectEvidenceSynthesis {
 	r := &EffectEvidenceSynthesis{ResourceType: "EffectEvidenceSynthesis"}
 	for _, opt := range opts {
@@ -1718,6 +1732,8 @@ func NewEffectEvidenceSynthesis(opts ...EffectEvidenceSynthesisOption) *EffectEv
 }
 
 // WithEffectEvidenceSynthesisId sets the Id field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetId instead; removed in v2.
 func WithEffectEvidenceSynthesisId(v string) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Id = &v
@@ -1725,6 +1741,8 @@ func WithEffectEvidenceSynthesisId(v string) EffectEvidenceSynthesisOption {
 }
 
 // WithEffectEvidenceSynthesisMeta sets the Meta field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetMeta instead; removed in v2.
 func WithEffectEvidenceSynthesisMeta(v Meta) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Meta = &v
@@ -1732,6 +1750,8 @@ func WithEffectEvidenceSynthesisMeta(v Meta) EffectEvidenceSynthesisOption {
 }
 
 // WithEffectEvidenceSynthesisImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetImplicitRules instead; removed in v2.
 func WithEffectEvidenceSynthesisImplicitRules(v string) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.ImplicitRules = &v
@@ -1739,6 +1759,8 @@ func WithEffectEvidenceSynthesisImplicitRules(v string) EffectEvidenceSynthesisO
 }
 
 // WithEffectEvidenceSynthesisLanguage sets the Language field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetLanguage instead; removed in v2.
 func WithEffectEvidenceSynthesisLanguage(v string) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Language = &v
@@ -1746,6 +1768,8 @@ func WithEffectEvidenceSynthesisLanguage(v string) EffectEvidenceSynthesisOption
 }
 
 // WithEffectEvidenceSynthesisText sets the Text field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetText instead; removed in v2.
 func WithEffectEvidenceSynthesisText(v Narrative) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Text = &v
@@ -1753,6 +1777,8 @@ func WithEffectEvidenceSynthesisText(v Narrative) EffectEvidenceSynthesisOption 
 }
 
 // WithEffectEvidenceSynthesisContained adds a Contained to the EffectEvidenceSynthesis.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.AddContained instead; removed in v2.
 func WithEffectEvidenceSynthesisContained(v Resource) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Contained = append(r.Contained, v)
@@ -1760,6 +1786,8 @@ func WithEffectEvidenceSynthesisContained(v Resource) EffectEvidenceSynthesisOpt
 }
 
 // WithEffectEvidenceSynthesisExtension adds a Extension to the EffectEvidenceSynthesis.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.AddExtension instead; removed in v2.
 func WithEffectEvidenceSynthesisExtension(v Extension) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Extension = append(r.Extension, v)
@@ -1767,6 +1795,8 @@ func WithEffectEvidenceSynthesisExtension(v Extension) EffectEvidenceSynthesisOp
 }
 
 // WithEffectEvidenceSynthesisModifierExtension adds a ModifierExtension to the EffectEvidenceSynthesis.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.AddModifierExtension instead; removed in v2.
 func WithEffectEvidenceSynthesisModifierExtension(v Extension) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1774,6 +1804,8 @@ func WithEffectEvidenceSynthesisModifierExtension(v Extension) EffectEvidenceSyn
 }
 
 // WithEffectEvidenceSynthesisUrl sets the Url field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetUrl instead; removed in v2.
 func WithEffectEvidenceSynthesisUrl(v string) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Url = &v
@@ -1781,6 +1813,8 @@ func WithEffectEvidenceSynthesisUrl(v string) EffectEvidenceSynthesisOption {
 }
 
 // WithEffectEvidenceSynthesisIdentifier adds a Identifier to the EffectEvidenceSynthesis.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.AddIdentifier instead; removed in v2.
 func WithEffectEvidenceSynthesisIdentifier(v Identifier) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Identifier = append(r.Identifier, v)
@@ -1788,6 +1822,8 @@ func WithEffectEvidenceSynthesisIdentifier(v Identifier) EffectEvidenceSynthesis
 }
 
 // WithEffectEvidenceSynthesisVersion sets the Version field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetVersion instead; removed in v2.
 func WithEffectEvidenceSynthesisVersion(v string) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Version = &v
@@ -1795,6 +1831,8 @@ func WithEffectEvidenceSynthesisVersion(v string) EffectEvidenceSynthesisOption 
 }
 
 // WithEffectEvidenceSynthesisName sets the Name field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetName instead; removed in v2.
 func WithEffectEvidenceSynthesisName(v string) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Name = &v
@@ -1802,6 +1840,8 @@ func WithEffectEvidenceSynthesisName(v string) EffectEvidenceSynthesisOption {
 }
 
 // WithEffectEvidenceSynthesisTitle sets the Title field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetTitle instead; removed in v2.
 func WithEffectEvidenceSynthesisTitle(v string) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Title = &v
@@ -1809,6 +1849,8 @@ func WithEffectEvidenceSynthesisTitle(v string) EffectEvidenceSynthesisOption {
 }
 
 // WithEffectEvidenceSynthesisStatus sets the Status field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetStatus instead; removed in v2.
 func WithEffectEvidenceSynthesisStatus(v PublicationStatus) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Status = &v
@@ -1816,6 +1858,8 @@ func WithEffectEvidenceSynthesisStatus(v PublicationStatus) EffectEvidenceSynthe
 }
 
 // WithEffectEvidenceSynthesisDate sets the Date field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetDate instead; removed in v2.
 func WithEffectEvidenceSynthesisDate(v string) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Date = &v
@@ -1823,6 +1867,8 @@ func WithEffectEvidenceSynthesisDate(v string) EffectEvidenceSynthesisOption {
 }
 
 // WithEffectEvidenceSynthesisPublisher sets the Publisher field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetPublisher instead; removed in v2.
 func WithEffectEvidenceSynthesisPublisher(v string) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Publisher = &v
@@ -1830,6 +1876,8 @@ func WithEffectEvidenceSynthesisPublisher(v string) EffectEvidenceSynthesisOptio
 }
 
 // WithEffectEvidenceSynthesisContact adds a Contact to the EffectEvidenceSynthesis.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.AddContact instead; removed in v2.
 func WithEffectEvidenceSynthesisContact(v ContactDetail) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Contact = append(r.Contact, v)
@@ -1837,6 +1885,8 @@ func WithEffectEvidenceSynthesisContact(v ContactDetail) EffectEvidenceSynthesis
 }
 
 // WithEffectEvidenceSynthesisDescription sets the Description field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetDescription instead; removed in v2.
 func WithEffectEvidenceSynthesisDescription(v string) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Description = &v
@@ -1844,6 +1894,8 @@ func WithEffectEvidenceSynthesisDescription(v string) EffectEvidenceSynthesisOpt
 }
 
 // WithEffectEvidenceSynthesisNote adds a Note to the EffectEvidenceSynthesis.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.AddNote instead; removed in v2.
 func WithEffectEvidenceSynthesisNote(v Annotation) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Note = append(r.Note, v)
@@ -1851,6 +1903,8 @@ func WithEffectEvidenceSynthesisNote(v Annotation) EffectEvidenceSynthesisOption
 }
 
 // WithEffectEvidenceSynthesisUseContext adds a UseContext to the EffectEvidenceSynthesis.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.AddUseContext instead; removed in v2.
 func WithEffectEvidenceSynthesisUseContext(v UsageContext) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.UseContext = append(r.UseContext, v)
@@ -1858,6 +1912,8 @@ func WithEffectEvidenceSynthesisUseContext(v UsageContext) EffectEvidenceSynthes
 }
 
 // WithEffectEvidenceSynthesisJurisdiction adds a Jurisdiction to the EffectEvidenceSynthesis.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.AddJurisdiction instead; removed in v2.
 func WithEffectEvidenceSynthesisJurisdiction(v CodeableConcept) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1865,6 +1921,8 @@ func WithEffectEvidenceSynthesisJurisdiction(v CodeableConcept) EffectEvidenceSy
 }
 
 // WithEffectEvidenceSynthesisCopyright sets the Copyright field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetCopyright instead; removed in v2.
 func WithEffectEvidenceSynthesisCopyright(v string) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Copyright = &v
@@ -1872,6 +1930,8 @@ func WithEffectEvidenceSynthesisCopyright(v string) EffectEvidenceSynthesisOptio
 }
 
 // WithEffectEvidenceSynthesisApprovalDate sets the ApprovalDate field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetApprovalDate instead; removed in v2.
 func WithEffectEvidenceSynthesisApprovalDate(v string) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.ApprovalDate = &v
@@ -1879,6 +1939,8 @@ func WithEffectEvidenceSynthesisApprovalDate(v string) EffectEvidenceSynthesisOp
 }
 
 // WithEffectEvidenceSynthesisLastReviewDate sets the LastReviewDate field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetLastReviewDate instead; removed in v2.
 func WithEffectEvidenceSynthesisLastReviewDate(v string) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.LastReviewDate = &v
@@ -1886,6 +1948,8 @@ func WithEffectEvidenceSynthesisLastReviewDate(v string) EffectEvidenceSynthesis
 }
 
 // WithEffectEvidenceSynthesisEffectivePeriod sets the EffectivePeriod field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetEffectivePeriod instead; removed in v2.
 func WithEffectEvidenceSynthesisEffectivePeriod(v Period) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.EffectivePeriod = &v
@@ -1893,6 +1957,8 @@ func WithEffectEvidenceSynthesisEffectivePeriod(v Period) EffectEvidenceSynthesi
 }
 
 // WithEffectEvidenceSynthesisTopic adds a Topic to the EffectEvidenceSynthesis.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.AddTopic instead; removed in v2.
 func WithEffectEvidenceSynthesisTopic(v CodeableConcept) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Topic = append(r.Topic, v)
@@ -1900,6 +1966,8 @@ func WithEffectEvidenceSynthesisTopic(v CodeableConcept) EffectEvidenceSynthesis
 }
 
 // WithEffectEvidenceSynthesisAuthor adds a Author to the EffectEvidenceSynthesis.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.AddAuthor instead; removed in v2.
 func WithEffectEvidenceSynthesisAuthor(v ContactDetail) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Author = append(r.Author, v)
@@ -1907,6 +1975,8 @@ func WithEffectEvidenceSynthesisAuthor(v ContactDetail) EffectEvidenceSynthesisO
 }
 
 // WithEffectEvidenceSynthesisEditor adds a Editor to the EffectEvidenceSynthesis.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.AddEditor instead; removed in v2.
 func WithEffectEvidenceSynthesisEditor(v ContactDetail) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Editor = append(r.Editor, v)
@@ -1914,6 +1984,8 @@ func WithEffectEvidenceSynthesisEditor(v ContactDetail) EffectEvidenceSynthesisO
 }
 
 // WithEffectEvidenceSynthesisReviewer adds a Reviewer to the EffectEvidenceSynthesis.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.AddReviewer instead; removed in v2.
 func WithEffectEvidenceSynthesisReviewer(v ContactDetail) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Reviewer = append(r.Reviewer, v)
@@ -1921,6 +1993,8 @@ func WithEffectEvidenceSynthesisReviewer(v ContactDetail) EffectEvidenceSynthesi
 }
 
 // WithEffectEvidenceSynthesisEndorser adds a Endorser to the EffectEvidenceSynthesis.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.AddEndorser instead; removed in v2.
 func WithEffectEvidenceSynthesisEndorser(v ContactDetail) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Endorser = append(r.Endorser, v)
@@ -1928,6 +2002,8 @@ func WithEffectEvidenceSynthesisEndorser(v ContactDetail) EffectEvidenceSynthesi
 }
 
 // WithEffectEvidenceSynthesisRelatedArtifact adds a RelatedArtifact to the EffectEvidenceSynthesis.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.AddRelatedArtifact instead; removed in v2.
 func WithEffectEvidenceSynthesisRelatedArtifact(v RelatedArtifact) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.RelatedArtifact = append(r.RelatedArtifact, v)
@@ -1935,6 +2011,8 @@ func WithEffectEvidenceSynthesisRelatedArtifact(v RelatedArtifact) EffectEvidenc
 }
 
 // WithEffectEvidenceSynthesisSynthesisType sets the SynthesisType field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetSynthesisType instead; removed in v2.
 func WithEffectEvidenceSynthesisSynthesisType(v CodeableConcept) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.SynthesisType = &v
@@ -1942,6 +2020,8 @@ func WithEffectEvidenceSynthesisSynthesisType(v CodeableConcept) EffectEvidenceS
 }
 
 // WithEffectEvidenceSynthesisStudyType sets the StudyType field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetStudyType instead; removed in v2.
 func WithEffectEvidenceSynthesisStudyType(v CodeableConcept) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.StudyType = &v
@@ -1949,6 +2029,8 @@ func WithEffectEvidenceSynthesisStudyType(v CodeableConcept) EffectEvidenceSynth
 }
 
 // WithEffectEvidenceSynthesisPopulation sets the Population field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetPopulation instead; removed in v2.
 func WithEffectEvidenceSynthesisPopulation(v Reference) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Population = v
@@ -1956,6 +2038,8 @@ func WithEffectEvidenceSynthesisPopulation(v Reference) EffectEvidenceSynthesisO
 }
 
 // WithEffectEvidenceSynthesisExposure sets the Exposure field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetExposure instead; removed in v2.
 func WithEffectEvidenceSynthesisExposure(v Reference) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Exposure = v
@@ -1963,6 +2047,8 @@ func WithEffectEvidenceSynthesisExposure(v Reference) EffectEvidenceSynthesisOpt
 }
 
 // WithEffectEvidenceSynthesisExposureAlternative sets the ExposureAlternative field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetExposureAlternative instead; removed in v2.
 func WithEffectEvidenceSynthesisExposureAlternative(v Reference) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.ExposureAlternative = v
@@ -1970,6 +2056,8 @@ func WithEffectEvidenceSynthesisExposureAlternative(v Reference) EffectEvidenceS
 }
 
 // WithEffectEvidenceSynthesisOutcome sets the Outcome field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetOutcome instead; removed in v2.
 func WithEffectEvidenceSynthesisOutcome(v Reference) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Outcome = v
@@ -1977,6 +2065,8 @@ func WithEffectEvidenceSynthesisOutcome(v Reference) EffectEvidenceSynthesisOpti
 }
 
 // WithEffectEvidenceSynthesisSampleSize sets the SampleSize field.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.SetSampleSize instead; removed in v2.
 func WithEffectEvidenceSynthesisSampleSize(v EffectEvidenceSynthesisSampleSize) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.SampleSize = &v
@@ -1984,6 +2074,8 @@ func WithEffectEvidenceSynthesisSampleSize(v EffectEvidenceSynthesisSampleSize) 
 }
 
 // WithEffectEvidenceSynthesisResultsByExposure adds a ResultsByExposure to the EffectEvidenceSynthesis.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.AddResultsByExposure instead; removed in v2.
 func WithEffectEvidenceSynthesisResultsByExposure(v EffectEvidenceSynthesisResultsByExposure) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.ResultsByExposure = append(r.ResultsByExposure, v)
@@ -1991,6 +2083,8 @@ func WithEffectEvidenceSynthesisResultsByExposure(v EffectEvidenceSynthesisResul
 }
 
 // WithEffectEvidenceSynthesisEffectEstimate adds a EffectEstimate to the EffectEvidenceSynthesis.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.AddEffectEstimate instead; removed in v2.
 func WithEffectEvidenceSynthesisEffectEstimate(v EffectEvidenceSynthesisEffectEstimate) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.EffectEstimate = append(r.EffectEstimate, v)
@@ -1998,6 +2092,8 @@ func WithEffectEvidenceSynthesisEffectEstimate(v EffectEvidenceSynthesisEffectEs
 }
 
 // WithEffectEvidenceSynthesisCertainty adds a Certainty to the EffectEvidenceSynthesis.
+//
+// Deprecated: use EffectEvidenceSynthesisBuilder.AddCertainty instead; removed in v2.
 func WithEffectEvidenceSynthesisCertainty(v EffectEvidenceSynthesisCertainty) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
 		r.Certainty = append(r.Certainty, v)

@@ -1355,9 +1355,23 @@ func (b *ResearchElementDefinitionBuilder) AddCharacteristic(v ResearchElementDe
 // =============================================================================
 
 // ResearchElementDefinitionOption is a functional option for configuring a ResearchElementDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ResearchElementDefinitionBuilder. Every WithResearchElementDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ResearchElementDefinitionOption func(*ResearchElementDefinition)
 
 // NewResearchElementDefinition creates a new ResearchElementDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewResearchElementDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewResearchElementDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewResearchElementDefinition(opts ...ResearchElementDefinitionOption) *ResearchElementDefinition {
 	r := &ResearchElementDefinition{ResourceType: "ResearchElementDefinition"}
 	for _, opt := range opts {
@@ -1367,6 +1381,8 @@ func NewResearchElementDefinition(opts ...ResearchElementDefinitionOption) *Rese
 }
 
 // WithResearchElementDefinitionId sets the Id field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetId instead; removed in v2.
 func WithResearchElementDefinitionId(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Id = &v
@@ -1374,6 +1390,8 @@ func WithResearchElementDefinitionId(v string) ResearchElementDefinitionOption {
 }
 
 // WithResearchElementDefinitionMeta sets the Meta field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetMeta instead; removed in v2.
 func WithResearchElementDefinitionMeta(v Meta) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Meta = &v
@@ -1381,6 +1399,8 @@ func WithResearchElementDefinitionMeta(v Meta) ResearchElementDefinitionOption {
 }
 
 // WithResearchElementDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithResearchElementDefinitionImplicitRules(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.ImplicitRules = &v
@@ -1388,6 +1408,8 @@ func WithResearchElementDefinitionImplicitRules(v string) ResearchElementDefinit
 }
 
 // WithResearchElementDefinitionLanguage sets the Language field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithResearchElementDefinitionLanguage(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Language = &v
@@ -1395,6 +1417,8 @@ func WithResearchElementDefinitionLanguage(v string) ResearchElementDefinitionOp
 }
 
 // WithResearchElementDefinitionText sets the Text field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetText instead; removed in v2.
 func WithResearchElementDefinitionText(v Narrative) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Text = &v
@@ -1402,6 +1426,8 @@ func WithResearchElementDefinitionText(v Narrative) ResearchElementDefinitionOpt
 }
 
 // WithResearchElementDefinitionContained adds a Contained to the ResearchElementDefinition.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.AddContained instead; removed in v2.
 func WithResearchElementDefinitionContained(v Resource) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -1409,6 +1435,8 @@ func WithResearchElementDefinitionContained(v Resource) ResearchElementDefinitio
 }
 
 // WithResearchElementDefinitionExtension adds a Extension to the ResearchElementDefinition.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.AddExtension instead; removed in v2.
 func WithResearchElementDefinitionExtension(v Extension) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -1416,6 +1444,8 @@ func WithResearchElementDefinitionExtension(v Extension) ResearchElementDefiniti
 }
 
 // WithResearchElementDefinitionModifierExtension adds a ModifierExtension to the ResearchElementDefinition.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithResearchElementDefinitionModifierExtension(v Extension) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1423,6 +1453,8 @@ func WithResearchElementDefinitionModifierExtension(v Extension) ResearchElement
 }
 
 // WithResearchElementDefinitionUrl sets the Url field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetUrl instead; removed in v2.
 func WithResearchElementDefinitionUrl(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Url = &v
@@ -1430,6 +1462,8 @@ func WithResearchElementDefinitionUrl(v string) ResearchElementDefinitionOption 
 }
 
 // WithResearchElementDefinitionIdentifier adds a Identifier to the ResearchElementDefinition.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.AddIdentifier instead; removed in v2.
 func WithResearchElementDefinitionIdentifier(v Identifier) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Identifier = append(r.Identifier, v)
@@ -1437,6 +1471,8 @@ func WithResearchElementDefinitionIdentifier(v Identifier) ResearchElementDefini
 }
 
 // WithResearchElementDefinitionVersion sets the Version field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetVersion instead; removed in v2.
 func WithResearchElementDefinitionVersion(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Version = &v
@@ -1444,6 +1480,8 @@ func WithResearchElementDefinitionVersion(v string) ResearchElementDefinitionOpt
 }
 
 // WithResearchElementDefinitionName sets the Name field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetName instead; removed in v2.
 func WithResearchElementDefinitionName(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Name = &v
@@ -1451,6 +1489,8 @@ func WithResearchElementDefinitionName(v string) ResearchElementDefinitionOption
 }
 
 // WithResearchElementDefinitionTitle sets the Title field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetTitle instead; removed in v2.
 func WithResearchElementDefinitionTitle(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Title = &v
@@ -1458,6 +1498,8 @@ func WithResearchElementDefinitionTitle(v string) ResearchElementDefinitionOptio
 }
 
 // WithResearchElementDefinitionShortTitle sets the ShortTitle field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetShortTitle instead; removed in v2.
 func WithResearchElementDefinitionShortTitle(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.ShortTitle = &v
@@ -1465,6 +1507,8 @@ func WithResearchElementDefinitionShortTitle(v string) ResearchElementDefinition
 }
 
 // WithResearchElementDefinitionSubtitle sets the Subtitle field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetSubtitle instead; removed in v2.
 func WithResearchElementDefinitionSubtitle(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Subtitle = &v
@@ -1472,6 +1516,8 @@ func WithResearchElementDefinitionSubtitle(v string) ResearchElementDefinitionOp
 }
 
 // WithResearchElementDefinitionStatus sets the Status field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetStatus instead; removed in v2.
 func WithResearchElementDefinitionStatus(v PublicationStatus) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Status = &v
@@ -1479,6 +1525,8 @@ func WithResearchElementDefinitionStatus(v PublicationStatus) ResearchElementDef
 }
 
 // WithResearchElementDefinitionExperimental sets the Experimental field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetExperimental instead; removed in v2.
 func WithResearchElementDefinitionExperimental(v bool) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Experimental = &v
@@ -1486,6 +1534,8 @@ func WithResearchElementDefinitionExperimental(v bool) ResearchElementDefinition
 }
 
 // WithResearchElementDefinitionSubjectCodeableConcept sets the SubjectCodeableConcept field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetSubjectCodeableConcept instead; removed in v2.
 func WithResearchElementDefinitionSubjectCodeableConcept(v CodeableConcept) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.SubjectCodeableConcept = &v
@@ -1493,6 +1543,8 @@ func WithResearchElementDefinitionSubjectCodeableConcept(v CodeableConcept) Rese
 }
 
 // WithResearchElementDefinitionSubjectReference sets the SubjectReference field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetSubjectReference instead; removed in v2.
 func WithResearchElementDefinitionSubjectReference(v Reference) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.SubjectReference = &v
@@ -1500,6 +1552,8 @@ func WithResearchElementDefinitionSubjectReference(v Reference) ResearchElementD
 }
 
 // WithResearchElementDefinitionDate sets the Date field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetDate instead; removed in v2.
 func WithResearchElementDefinitionDate(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Date = &v
@@ -1507,6 +1561,8 @@ func WithResearchElementDefinitionDate(v string) ResearchElementDefinitionOption
 }
 
 // WithResearchElementDefinitionPublisher sets the Publisher field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetPublisher instead; removed in v2.
 func WithResearchElementDefinitionPublisher(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Publisher = &v
@@ -1514,6 +1570,8 @@ func WithResearchElementDefinitionPublisher(v string) ResearchElementDefinitionO
 }
 
 // WithResearchElementDefinitionContact adds a Contact to the ResearchElementDefinition.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.AddContact instead; removed in v2.
 func WithResearchElementDefinitionContact(v ContactDetail) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Contact = append(r.Contact, v)
@@ -1521,6 +1579,8 @@ func WithResearchElementDefinitionContact(v ContactDetail) ResearchElementDefini
 }
 
 // WithResearchElementDefinitionDescription sets the Description field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetDescription instead; removed in v2.
 func WithResearchElementDefinitionDescription(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Description = &v
@@ -1528,6 +1588,8 @@ func WithResearchElementDefinitionDescription(v string) ResearchElementDefinitio
 }
 
 // WithResearchElementDefinitionComment adds a Comment to the ResearchElementDefinition.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.AddComment instead; removed in v2.
 func WithResearchElementDefinitionComment(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Comment = append(r.Comment, v)
@@ -1535,6 +1597,8 @@ func WithResearchElementDefinitionComment(v string) ResearchElementDefinitionOpt
 }
 
 // WithResearchElementDefinitionUseContext adds a UseContext to the ResearchElementDefinition.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.AddUseContext instead; removed in v2.
 func WithResearchElementDefinitionUseContext(v UsageContext) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.UseContext = append(r.UseContext, v)
@@ -1542,6 +1606,8 @@ func WithResearchElementDefinitionUseContext(v UsageContext) ResearchElementDefi
 }
 
 // WithResearchElementDefinitionJurisdiction adds a Jurisdiction to the ResearchElementDefinition.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.AddJurisdiction instead; removed in v2.
 func WithResearchElementDefinitionJurisdiction(v CodeableConcept) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1549,6 +1615,8 @@ func WithResearchElementDefinitionJurisdiction(v CodeableConcept) ResearchElemen
 }
 
 // WithResearchElementDefinitionPurpose sets the Purpose field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetPurpose instead; removed in v2.
 func WithResearchElementDefinitionPurpose(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Purpose = &v
@@ -1556,6 +1624,8 @@ func WithResearchElementDefinitionPurpose(v string) ResearchElementDefinitionOpt
 }
 
 // WithResearchElementDefinitionUsage sets the Usage field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetUsage instead; removed in v2.
 func WithResearchElementDefinitionUsage(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Usage = &v
@@ -1563,6 +1633,8 @@ func WithResearchElementDefinitionUsage(v string) ResearchElementDefinitionOptio
 }
 
 // WithResearchElementDefinitionCopyright sets the Copyright field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetCopyright instead; removed in v2.
 func WithResearchElementDefinitionCopyright(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Copyright = &v
@@ -1570,6 +1642,8 @@ func WithResearchElementDefinitionCopyright(v string) ResearchElementDefinitionO
 }
 
 // WithResearchElementDefinitionApprovalDate sets the ApprovalDate field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetApprovalDate instead; removed in v2.
 func WithResearchElementDefinitionApprovalDate(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.ApprovalDate = &v
@@ -1577,6 +1651,8 @@ func WithResearchElementDefinitionApprovalDate(v string) ResearchElementDefiniti
 }
 
 // WithResearchElementDefinitionLastReviewDate sets the LastReviewDate field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetLastReviewDate instead; removed in v2.
 func WithResearchElementDefinitionLastReviewDate(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.LastReviewDate = &v
@@ -1584,6 +1660,8 @@ func WithResearchElementDefinitionLastReviewDate(v string) ResearchElementDefini
 }
 
 // WithResearchElementDefinitionEffectivePeriod sets the EffectivePeriod field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetEffectivePeriod instead; removed in v2.
 func WithResearchElementDefinitionEffectivePeriod(v Period) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.EffectivePeriod = &v
@@ -1591,6 +1669,8 @@ func WithResearchElementDefinitionEffectivePeriod(v Period) ResearchElementDefin
 }
 
 // WithResearchElementDefinitionTopic adds a Topic to the ResearchElementDefinition.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.AddTopic instead; removed in v2.
 func WithResearchElementDefinitionTopic(v CodeableConcept) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Topic = append(r.Topic, v)
@@ -1598,6 +1678,8 @@ func WithResearchElementDefinitionTopic(v CodeableConcept) ResearchElementDefini
 }
 
 // WithResearchElementDefinitionAuthor adds a Author to the ResearchElementDefinition.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.AddAuthor instead; removed in v2.
 func WithResearchElementDefinitionAuthor(v ContactDetail) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Author = append(r.Author, v)
@@ -1605,6 +1687,8 @@ func WithResearchElementDefinitionAuthor(v ContactDetail) ResearchElementDefinit
 }
 
 // WithResearchElementDefinitionEditor adds a Editor to the ResearchElementDefinition.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.AddEditor instead; removed in v2.
 func WithResearchElementDefinitionEditor(v ContactDetail) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Editor = append(r.Editor, v)
@@ -1612,6 +1696,8 @@ func WithResearchElementDefinitionEditor(v ContactDetail) ResearchElementDefinit
 }
 
 // WithResearchElementDefinitionReviewer adds a Reviewer to the ResearchElementDefinition.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.AddReviewer instead; removed in v2.
 func WithResearchElementDefinitionReviewer(v ContactDetail) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Reviewer = append(r.Reviewer, v)
@@ -1619,6 +1705,8 @@ func WithResearchElementDefinitionReviewer(v ContactDetail) ResearchElementDefin
 }
 
 // WithResearchElementDefinitionEndorser adds a Endorser to the ResearchElementDefinition.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.AddEndorser instead; removed in v2.
 func WithResearchElementDefinitionEndorser(v ContactDetail) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Endorser = append(r.Endorser, v)
@@ -1626,6 +1714,8 @@ func WithResearchElementDefinitionEndorser(v ContactDetail) ResearchElementDefin
 }
 
 // WithResearchElementDefinitionRelatedArtifact adds a RelatedArtifact to the ResearchElementDefinition.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.AddRelatedArtifact instead; removed in v2.
 func WithResearchElementDefinitionRelatedArtifact(v RelatedArtifact) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.RelatedArtifact = append(r.RelatedArtifact, v)
@@ -1633,6 +1723,8 @@ func WithResearchElementDefinitionRelatedArtifact(v RelatedArtifact) ResearchEle
 }
 
 // WithResearchElementDefinitionLibrary adds a Library to the ResearchElementDefinition.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.AddLibrary instead; removed in v2.
 func WithResearchElementDefinitionLibrary(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Library = append(r.Library, v)
@@ -1640,6 +1732,8 @@ func WithResearchElementDefinitionLibrary(v string) ResearchElementDefinitionOpt
 }
 
 // WithResearchElementDefinitionType sets the Type field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetType instead; removed in v2.
 func WithResearchElementDefinitionType(v ResearchElementType) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Type = &v
@@ -1647,6 +1741,8 @@ func WithResearchElementDefinitionType(v ResearchElementType) ResearchElementDef
 }
 
 // WithResearchElementDefinitionVariableType sets the VariableType field.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.SetVariableType instead; removed in v2.
 func WithResearchElementDefinitionVariableType(v EvidenceVariableType) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.VariableType = &v
@@ -1654,6 +1750,8 @@ func WithResearchElementDefinitionVariableType(v EvidenceVariableType) ResearchE
 }
 
 // WithResearchElementDefinitionCharacteristic adds a Characteristic to the ResearchElementDefinition.
+//
+// Deprecated: use ResearchElementDefinitionBuilder.AddCharacteristic instead; removed in v2.
 func WithResearchElementDefinitionCharacteristic(v ResearchElementDefinitionCharacteristic) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
 		r.Characteristic = append(r.Characteristic, v)

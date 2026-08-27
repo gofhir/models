@@ -584,9 +584,23 @@ func (b *ImmunizationEvaluationBuilder) SetSeriesDoses(v string) *ImmunizationEv
 // =============================================================================
 
 // ImmunizationEvaluationOption is a functional option for configuring a ImmunizationEvaluation.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ImmunizationEvaluationBuilder. Every WithImmunizationEvaluation* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ImmunizationEvaluationOption func(*ImmunizationEvaluation)
 
 // NewImmunizationEvaluation creates a new ImmunizationEvaluation with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewImmunizationEvaluationBuilder().SetId("x").Build()
+//
+// Deprecated: use NewImmunizationEvaluationBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewImmunizationEvaluation(opts ...ImmunizationEvaluationOption) *ImmunizationEvaluation {
 	r := &ImmunizationEvaluation{ResourceType: "ImmunizationEvaluation"}
 	for _, opt := range opts {
@@ -596,6 +610,8 @@ func NewImmunizationEvaluation(opts ...ImmunizationEvaluationOption) *Immunizati
 }
 
 // WithImmunizationEvaluationId sets the Id field.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.SetId instead; removed in v2.
 func WithImmunizationEvaluationId(v string) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.Id = &v
@@ -603,6 +619,8 @@ func WithImmunizationEvaluationId(v string) ImmunizationEvaluationOption {
 }
 
 // WithImmunizationEvaluationMeta sets the Meta field.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.SetMeta instead; removed in v2.
 func WithImmunizationEvaluationMeta(v Meta) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.Meta = &v
@@ -610,6 +628,8 @@ func WithImmunizationEvaluationMeta(v Meta) ImmunizationEvaluationOption {
 }
 
 // WithImmunizationEvaluationImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.SetImplicitRules instead; removed in v2.
 func WithImmunizationEvaluationImplicitRules(v string) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.ImplicitRules = &v
@@ -617,6 +637,8 @@ func WithImmunizationEvaluationImplicitRules(v string) ImmunizationEvaluationOpt
 }
 
 // WithImmunizationEvaluationLanguage sets the Language field.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.SetLanguage instead; removed in v2.
 func WithImmunizationEvaluationLanguage(v string) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.Language = &v
@@ -624,6 +646,8 @@ func WithImmunizationEvaluationLanguage(v string) ImmunizationEvaluationOption {
 }
 
 // WithImmunizationEvaluationText sets the Text field.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.SetText instead; removed in v2.
 func WithImmunizationEvaluationText(v Narrative) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.Text = &v
@@ -631,6 +655,8 @@ func WithImmunizationEvaluationText(v Narrative) ImmunizationEvaluationOption {
 }
 
 // WithImmunizationEvaluationContained adds a Contained to the ImmunizationEvaluation.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.AddContained instead; removed in v2.
 func WithImmunizationEvaluationContained(v Resource) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.Contained = append(r.Contained, v)
@@ -638,6 +664,8 @@ func WithImmunizationEvaluationContained(v Resource) ImmunizationEvaluationOptio
 }
 
 // WithImmunizationEvaluationExtension adds a Extension to the ImmunizationEvaluation.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.AddExtension instead; removed in v2.
 func WithImmunizationEvaluationExtension(v Extension) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.Extension = append(r.Extension, v)
@@ -645,6 +673,8 @@ func WithImmunizationEvaluationExtension(v Extension) ImmunizationEvaluationOpti
 }
 
 // WithImmunizationEvaluationModifierExtension adds a ModifierExtension to the ImmunizationEvaluation.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.AddModifierExtension instead; removed in v2.
 func WithImmunizationEvaluationModifierExtension(v Extension) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -652,6 +682,8 @@ func WithImmunizationEvaluationModifierExtension(v Extension) ImmunizationEvalua
 }
 
 // WithImmunizationEvaluationIdentifier adds a Identifier to the ImmunizationEvaluation.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.AddIdentifier instead; removed in v2.
 func WithImmunizationEvaluationIdentifier(v Identifier) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.Identifier = append(r.Identifier, v)
@@ -659,6 +691,8 @@ func WithImmunizationEvaluationIdentifier(v Identifier) ImmunizationEvaluationOp
 }
 
 // WithImmunizationEvaluationStatus sets the Status field.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.SetStatus instead; removed in v2.
 func WithImmunizationEvaluationStatus(v ImmunizationEvaluationStatusCodes) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.Status = &v
@@ -666,6 +700,8 @@ func WithImmunizationEvaluationStatus(v ImmunizationEvaluationStatusCodes) Immun
 }
 
 // WithImmunizationEvaluationPatient sets the Patient field.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.SetPatient instead; removed in v2.
 func WithImmunizationEvaluationPatient(v Reference) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.Patient = v
@@ -673,6 +709,8 @@ func WithImmunizationEvaluationPatient(v Reference) ImmunizationEvaluationOption
 }
 
 // WithImmunizationEvaluationDate sets the Date field.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.SetDate instead; removed in v2.
 func WithImmunizationEvaluationDate(v string) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.Date = &v
@@ -680,6 +718,8 @@ func WithImmunizationEvaluationDate(v string) ImmunizationEvaluationOption {
 }
 
 // WithImmunizationEvaluationAuthority sets the Authority field.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.SetAuthority instead; removed in v2.
 func WithImmunizationEvaluationAuthority(v Reference) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.Authority = &v
@@ -687,6 +727,8 @@ func WithImmunizationEvaluationAuthority(v Reference) ImmunizationEvaluationOpti
 }
 
 // WithImmunizationEvaluationTargetDisease sets the TargetDisease field.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.SetTargetDisease instead; removed in v2.
 func WithImmunizationEvaluationTargetDisease(v CodeableConcept) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.TargetDisease = v
@@ -694,6 +736,8 @@ func WithImmunizationEvaluationTargetDisease(v CodeableConcept) ImmunizationEval
 }
 
 // WithImmunizationEvaluationImmunizationEvent sets the ImmunizationEvent field.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.SetImmunizationEvent instead; removed in v2.
 func WithImmunizationEvaluationImmunizationEvent(v Reference) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.ImmunizationEvent = v
@@ -701,6 +745,8 @@ func WithImmunizationEvaluationImmunizationEvent(v Reference) ImmunizationEvalua
 }
 
 // WithImmunizationEvaluationDoseStatus sets the DoseStatus field.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.SetDoseStatus instead; removed in v2.
 func WithImmunizationEvaluationDoseStatus(v CodeableConcept) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.DoseStatus = v
@@ -708,6 +754,8 @@ func WithImmunizationEvaluationDoseStatus(v CodeableConcept) ImmunizationEvaluat
 }
 
 // WithImmunizationEvaluationDoseStatusReason adds a DoseStatusReason to the ImmunizationEvaluation.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.AddDoseStatusReason instead; removed in v2.
 func WithImmunizationEvaluationDoseStatusReason(v CodeableConcept) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.DoseStatusReason = append(r.DoseStatusReason, v)
@@ -715,6 +763,8 @@ func WithImmunizationEvaluationDoseStatusReason(v CodeableConcept) ImmunizationE
 }
 
 // WithImmunizationEvaluationDescription sets the Description field.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.SetDescription instead; removed in v2.
 func WithImmunizationEvaluationDescription(v string) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.Description = &v
@@ -722,6 +772,8 @@ func WithImmunizationEvaluationDescription(v string) ImmunizationEvaluationOptio
 }
 
 // WithImmunizationEvaluationSeries sets the Series field.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.SetSeries instead; removed in v2.
 func WithImmunizationEvaluationSeries(v string) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.Series = &v
@@ -729,6 +781,8 @@ func WithImmunizationEvaluationSeries(v string) ImmunizationEvaluationOption {
 }
 
 // WithImmunizationEvaluationDoseNumber sets the DoseNumber field.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.SetDoseNumber instead; removed in v2.
 func WithImmunizationEvaluationDoseNumber(v string) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.DoseNumber = &v
@@ -736,6 +790,8 @@ func WithImmunizationEvaluationDoseNumber(v string) ImmunizationEvaluationOption
 }
 
 // WithImmunizationEvaluationSeriesDoses sets the SeriesDoses field.
+//
+// Deprecated: use ImmunizationEvaluationBuilder.SetSeriesDoses instead; removed in v2.
 func WithImmunizationEvaluationSeriesDoses(v string) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
 		r.SeriesDoses = &v

@@ -1292,9 +1292,23 @@ func (b *RequestGroupBuilder) AddAction(v RequestGroupAction) *RequestGroupBuild
 // =============================================================================
 
 // RequestGroupOption is a functional option for configuring a RequestGroup.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// RequestGroupBuilder. Every WithRequestGroup* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type RequestGroupOption func(*RequestGroup)
 
 // NewRequestGroup creates a new RequestGroup with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewRequestGroupBuilder().SetId("x").Build()
+//
+// Deprecated: use NewRequestGroupBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewRequestGroup(opts ...RequestGroupOption) *RequestGroup {
 	r := &RequestGroup{ResourceType: "RequestGroup"}
 	for _, opt := range opts {
@@ -1304,6 +1318,8 @@ func NewRequestGroup(opts ...RequestGroupOption) *RequestGroup {
 }
 
 // WithRequestGroupId sets the Id field.
+//
+// Deprecated: use RequestGroupBuilder.SetId instead; removed in v2.
 func WithRequestGroupId(v string) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.Id = &v
@@ -1311,6 +1327,8 @@ func WithRequestGroupId(v string) RequestGroupOption {
 }
 
 // WithRequestGroupMeta sets the Meta field.
+//
+// Deprecated: use RequestGroupBuilder.SetMeta instead; removed in v2.
 func WithRequestGroupMeta(v Meta) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.Meta = &v
@@ -1318,6 +1336,8 @@ func WithRequestGroupMeta(v Meta) RequestGroupOption {
 }
 
 // WithRequestGroupImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use RequestGroupBuilder.SetImplicitRules instead; removed in v2.
 func WithRequestGroupImplicitRules(v string) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.ImplicitRules = &v
@@ -1325,6 +1345,8 @@ func WithRequestGroupImplicitRules(v string) RequestGroupOption {
 }
 
 // WithRequestGroupLanguage sets the Language field.
+//
+// Deprecated: use RequestGroupBuilder.SetLanguage instead; removed in v2.
 func WithRequestGroupLanguage(v string) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.Language = &v
@@ -1332,6 +1354,8 @@ func WithRequestGroupLanguage(v string) RequestGroupOption {
 }
 
 // WithRequestGroupText sets the Text field.
+//
+// Deprecated: use RequestGroupBuilder.SetText instead; removed in v2.
 func WithRequestGroupText(v Narrative) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.Text = &v
@@ -1339,6 +1363,8 @@ func WithRequestGroupText(v Narrative) RequestGroupOption {
 }
 
 // WithRequestGroupContained adds a Contained to the RequestGroup.
+//
+// Deprecated: use RequestGroupBuilder.AddContained instead; removed in v2.
 func WithRequestGroupContained(v Resource) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.Contained = append(r.Contained, v)
@@ -1346,6 +1372,8 @@ func WithRequestGroupContained(v Resource) RequestGroupOption {
 }
 
 // WithRequestGroupExtension adds a Extension to the RequestGroup.
+//
+// Deprecated: use RequestGroupBuilder.AddExtension instead; removed in v2.
 func WithRequestGroupExtension(v Extension) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.Extension = append(r.Extension, v)
@@ -1353,6 +1381,8 @@ func WithRequestGroupExtension(v Extension) RequestGroupOption {
 }
 
 // WithRequestGroupModifierExtension adds a ModifierExtension to the RequestGroup.
+//
+// Deprecated: use RequestGroupBuilder.AddModifierExtension instead; removed in v2.
 func WithRequestGroupModifierExtension(v Extension) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1360,6 +1390,8 @@ func WithRequestGroupModifierExtension(v Extension) RequestGroupOption {
 }
 
 // WithRequestGroupIdentifier adds a Identifier to the RequestGroup.
+//
+// Deprecated: use RequestGroupBuilder.AddIdentifier instead; removed in v2.
 func WithRequestGroupIdentifier(v Identifier) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.Identifier = append(r.Identifier, v)
@@ -1367,6 +1399,8 @@ func WithRequestGroupIdentifier(v Identifier) RequestGroupOption {
 }
 
 // WithRequestGroupInstantiatesCanonical adds a InstantiatesCanonical to the RequestGroup.
+//
+// Deprecated: use RequestGroupBuilder.AddInstantiatesCanonical instead; removed in v2.
 func WithRequestGroupInstantiatesCanonical(v string) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
@@ -1374,6 +1408,8 @@ func WithRequestGroupInstantiatesCanonical(v string) RequestGroupOption {
 }
 
 // WithRequestGroupInstantiatesUri adds a InstantiatesUri to the RequestGroup.
+//
+// Deprecated: use RequestGroupBuilder.AddInstantiatesUri instead; removed in v2.
 func WithRequestGroupInstantiatesUri(v string) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.InstantiatesUri = append(r.InstantiatesUri, v)
@@ -1381,6 +1417,8 @@ func WithRequestGroupInstantiatesUri(v string) RequestGroupOption {
 }
 
 // WithRequestGroupBasedOn adds a BasedOn to the RequestGroup.
+//
+// Deprecated: use RequestGroupBuilder.AddBasedOn instead; removed in v2.
 func WithRequestGroupBasedOn(v Reference) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.BasedOn = append(r.BasedOn, v)
@@ -1388,6 +1426,8 @@ func WithRequestGroupBasedOn(v Reference) RequestGroupOption {
 }
 
 // WithRequestGroupReplaces adds a Replaces to the RequestGroup.
+//
+// Deprecated: use RequestGroupBuilder.AddReplaces instead; removed in v2.
 func WithRequestGroupReplaces(v Reference) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.Replaces = append(r.Replaces, v)
@@ -1395,6 +1435,8 @@ func WithRequestGroupReplaces(v Reference) RequestGroupOption {
 }
 
 // WithRequestGroupGroupIdentifier sets the GroupIdentifier field.
+//
+// Deprecated: use RequestGroupBuilder.SetGroupIdentifier instead; removed in v2.
 func WithRequestGroupGroupIdentifier(v Identifier) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.GroupIdentifier = &v
@@ -1402,6 +1444,8 @@ func WithRequestGroupGroupIdentifier(v Identifier) RequestGroupOption {
 }
 
 // WithRequestGroupStatus sets the Status field.
+//
+// Deprecated: use RequestGroupBuilder.SetStatus instead; removed in v2.
 func WithRequestGroupStatus(v RequestStatus) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.Status = &v
@@ -1409,6 +1453,8 @@ func WithRequestGroupStatus(v RequestStatus) RequestGroupOption {
 }
 
 // WithRequestGroupIntent sets the Intent field.
+//
+// Deprecated: use RequestGroupBuilder.SetIntent instead; removed in v2.
 func WithRequestGroupIntent(v RequestIntent) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.Intent = &v
@@ -1416,6 +1462,8 @@ func WithRequestGroupIntent(v RequestIntent) RequestGroupOption {
 }
 
 // WithRequestGroupPriority sets the Priority field.
+//
+// Deprecated: use RequestGroupBuilder.SetPriority instead; removed in v2.
 func WithRequestGroupPriority(v RequestPriority) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.Priority = &v
@@ -1423,6 +1471,8 @@ func WithRequestGroupPriority(v RequestPriority) RequestGroupOption {
 }
 
 // WithRequestGroupCode sets the Code field.
+//
+// Deprecated: use RequestGroupBuilder.SetCode instead; removed in v2.
 func WithRequestGroupCode(v CodeableConcept) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.Code = &v
@@ -1430,6 +1480,8 @@ func WithRequestGroupCode(v CodeableConcept) RequestGroupOption {
 }
 
 // WithRequestGroupSubject sets the Subject field.
+//
+// Deprecated: use RequestGroupBuilder.SetSubject instead; removed in v2.
 func WithRequestGroupSubject(v Reference) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.Subject = &v
@@ -1437,6 +1489,8 @@ func WithRequestGroupSubject(v Reference) RequestGroupOption {
 }
 
 // WithRequestGroupEncounter sets the Encounter field.
+//
+// Deprecated: use RequestGroupBuilder.SetEncounter instead; removed in v2.
 func WithRequestGroupEncounter(v Reference) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.Encounter = &v
@@ -1444,6 +1498,8 @@ func WithRequestGroupEncounter(v Reference) RequestGroupOption {
 }
 
 // WithRequestGroupAuthoredOn sets the AuthoredOn field.
+//
+// Deprecated: use RequestGroupBuilder.SetAuthoredOn instead; removed in v2.
 func WithRequestGroupAuthoredOn(v string) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.AuthoredOn = &v
@@ -1451,6 +1507,8 @@ func WithRequestGroupAuthoredOn(v string) RequestGroupOption {
 }
 
 // WithRequestGroupAuthor sets the Author field.
+//
+// Deprecated: use RequestGroupBuilder.SetAuthor instead; removed in v2.
 func WithRequestGroupAuthor(v Reference) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.Author = &v
@@ -1458,6 +1516,8 @@ func WithRequestGroupAuthor(v Reference) RequestGroupOption {
 }
 
 // WithRequestGroupReasonCode adds a ReasonCode to the RequestGroup.
+//
+// Deprecated: use RequestGroupBuilder.AddReasonCode instead; removed in v2.
 func WithRequestGroupReasonCode(v CodeableConcept) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.ReasonCode = append(r.ReasonCode, v)
@@ -1465,6 +1525,8 @@ func WithRequestGroupReasonCode(v CodeableConcept) RequestGroupOption {
 }
 
 // WithRequestGroupReasonReference adds a ReasonReference to the RequestGroup.
+//
+// Deprecated: use RequestGroupBuilder.AddReasonReference instead; removed in v2.
 func WithRequestGroupReasonReference(v Reference) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.ReasonReference = append(r.ReasonReference, v)
@@ -1472,6 +1534,8 @@ func WithRequestGroupReasonReference(v Reference) RequestGroupOption {
 }
 
 // WithRequestGroupNote adds a Note to the RequestGroup.
+//
+// Deprecated: use RequestGroupBuilder.AddNote instead; removed in v2.
 func WithRequestGroupNote(v Annotation) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.Note = append(r.Note, v)
@@ -1479,6 +1543,8 @@ func WithRequestGroupNote(v Annotation) RequestGroupOption {
 }
 
 // WithRequestGroupAction adds a Action to the RequestGroup.
+//
+// Deprecated: use RequestGroupBuilder.AddAction instead; removed in v2.
 func WithRequestGroupAction(v RequestGroupAction) RequestGroupOption {
 	return func(r *RequestGroup) {
 		r.Action = append(r.Action, v)

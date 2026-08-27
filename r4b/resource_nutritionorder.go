@@ -1489,9 +1489,23 @@ func (b *NutritionOrderBuilder) AddNote(v Annotation) *NutritionOrderBuilder {
 // =============================================================================
 
 // NutritionOrderOption is a functional option for configuring a NutritionOrder.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// NutritionOrderBuilder. Every WithNutritionOrder* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type NutritionOrderOption func(*NutritionOrder)
 
 // NewNutritionOrder creates a new NutritionOrder with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewNutritionOrderBuilder().SetId("x").Build()
+//
+// Deprecated: use NewNutritionOrderBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewNutritionOrder(opts ...NutritionOrderOption) *NutritionOrder {
 	r := &NutritionOrder{ResourceType: "NutritionOrder"}
 	for _, opt := range opts {
@@ -1501,6 +1515,8 @@ func NewNutritionOrder(opts ...NutritionOrderOption) *NutritionOrder {
 }
 
 // WithNutritionOrderId sets the Id field.
+//
+// Deprecated: use NutritionOrderBuilder.SetId instead; removed in v2.
 func WithNutritionOrderId(v string) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.Id = &v
@@ -1508,6 +1524,8 @@ func WithNutritionOrderId(v string) NutritionOrderOption {
 }
 
 // WithNutritionOrderMeta sets the Meta field.
+//
+// Deprecated: use NutritionOrderBuilder.SetMeta instead; removed in v2.
 func WithNutritionOrderMeta(v Meta) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.Meta = &v
@@ -1515,6 +1533,8 @@ func WithNutritionOrderMeta(v Meta) NutritionOrderOption {
 }
 
 // WithNutritionOrderImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use NutritionOrderBuilder.SetImplicitRules instead; removed in v2.
 func WithNutritionOrderImplicitRules(v string) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.ImplicitRules = &v
@@ -1522,6 +1542,8 @@ func WithNutritionOrderImplicitRules(v string) NutritionOrderOption {
 }
 
 // WithNutritionOrderLanguage sets the Language field.
+//
+// Deprecated: use NutritionOrderBuilder.SetLanguage instead; removed in v2.
 func WithNutritionOrderLanguage(v string) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.Language = &v
@@ -1529,6 +1551,8 @@ func WithNutritionOrderLanguage(v string) NutritionOrderOption {
 }
 
 // WithNutritionOrderText sets the Text field.
+//
+// Deprecated: use NutritionOrderBuilder.SetText instead; removed in v2.
 func WithNutritionOrderText(v Narrative) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.Text = &v
@@ -1536,6 +1560,8 @@ func WithNutritionOrderText(v Narrative) NutritionOrderOption {
 }
 
 // WithNutritionOrderContained adds a Contained to the NutritionOrder.
+//
+// Deprecated: use NutritionOrderBuilder.AddContained instead; removed in v2.
 func WithNutritionOrderContained(v Resource) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.Contained = append(r.Contained, v)
@@ -1543,6 +1569,8 @@ func WithNutritionOrderContained(v Resource) NutritionOrderOption {
 }
 
 // WithNutritionOrderExtension adds a Extension to the NutritionOrder.
+//
+// Deprecated: use NutritionOrderBuilder.AddExtension instead; removed in v2.
 func WithNutritionOrderExtension(v Extension) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.Extension = append(r.Extension, v)
@@ -1550,6 +1578,8 @@ func WithNutritionOrderExtension(v Extension) NutritionOrderOption {
 }
 
 // WithNutritionOrderModifierExtension adds a ModifierExtension to the NutritionOrder.
+//
+// Deprecated: use NutritionOrderBuilder.AddModifierExtension instead; removed in v2.
 func WithNutritionOrderModifierExtension(v Extension) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1557,6 +1587,8 @@ func WithNutritionOrderModifierExtension(v Extension) NutritionOrderOption {
 }
 
 // WithNutritionOrderIdentifier adds a Identifier to the NutritionOrder.
+//
+// Deprecated: use NutritionOrderBuilder.AddIdentifier instead; removed in v2.
 func WithNutritionOrderIdentifier(v Identifier) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.Identifier = append(r.Identifier, v)
@@ -1564,6 +1596,8 @@ func WithNutritionOrderIdentifier(v Identifier) NutritionOrderOption {
 }
 
 // WithNutritionOrderInstantiatesCanonical adds a InstantiatesCanonical to the NutritionOrder.
+//
+// Deprecated: use NutritionOrderBuilder.AddInstantiatesCanonical instead; removed in v2.
 func WithNutritionOrderInstantiatesCanonical(v string) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
@@ -1571,6 +1605,8 @@ func WithNutritionOrderInstantiatesCanonical(v string) NutritionOrderOption {
 }
 
 // WithNutritionOrderInstantiatesUri adds a InstantiatesUri to the NutritionOrder.
+//
+// Deprecated: use NutritionOrderBuilder.AddInstantiatesUri instead; removed in v2.
 func WithNutritionOrderInstantiatesUri(v string) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.InstantiatesUri = append(r.InstantiatesUri, v)
@@ -1578,6 +1614,8 @@ func WithNutritionOrderInstantiatesUri(v string) NutritionOrderOption {
 }
 
 // WithNutritionOrderInstantiates adds a Instantiates to the NutritionOrder.
+//
+// Deprecated: use NutritionOrderBuilder.AddInstantiates instead; removed in v2.
 func WithNutritionOrderInstantiates(v string) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.Instantiates = append(r.Instantiates, v)
@@ -1585,6 +1623,8 @@ func WithNutritionOrderInstantiates(v string) NutritionOrderOption {
 }
 
 // WithNutritionOrderStatus sets the Status field.
+//
+// Deprecated: use NutritionOrderBuilder.SetStatus instead; removed in v2.
 func WithNutritionOrderStatus(v RequestStatus) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.Status = &v
@@ -1592,6 +1632,8 @@ func WithNutritionOrderStatus(v RequestStatus) NutritionOrderOption {
 }
 
 // WithNutritionOrderIntent sets the Intent field.
+//
+// Deprecated: use NutritionOrderBuilder.SetIntent instead; removed in v2.
 func WithNutritionOrderIntent(v RequestIntent) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.Intent = &v
@@ -1599,6 +1641,8 @@ func WithNutritionOrderIntent(v RequestIntent) NutritionOrderOption {
 }
 
 // WithNutritionOrderPatient sets the Patient field.
+//
+// Deprecated: use NutritionOrderBuilder.SetPatient instead; removed in v2.
 func WithNutritionOrderPatient(v Reference) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.Patient = v
@@ -1606,6 +1650,8 @@ func WithNutritionOrderPatient(v Reference) NutritionOrderOption {
 }
 
 // WithNutritionOrderEncounter sets the Encounter field.
+//
+// Deprecated: use NutritionOrderBuilder.SetEncounter instead; removed in v2.
 func WithNutritionOrderEncounter(v Reference) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.Encounter = &v
@@ -1613,6 +1659,8 @@ func WithNutritionOrderEncounter(v Reference) NutritionOrderOption {
 }
 
 // WithNutritionOrderDateTime sets the DateTime field.
+//
+// Deprecated: use NutritionOrderBuilder.SetDateTime instead; removed in v2.
 func WithNutritionOrderDateTime(v string) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.DateTime = &v
@@ -1620,6 +1668,8 @@ func WithNutritionOrderDateTime(v string) NutritionOrderOption {
 }
 
 // WithNutritionOrderOrderer sets the Orderer field.
+//
+// Deprecated: use NutritionOrderBuilder.SetOrderer instead; removed in v2.
 func WithNutritionOrderOrderer(v Reference) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.Orderer = &v
@@ -1627,6 +1677,8 @@ func WithNutritionOrderOrderer(v Reference) NutritionOrderOption {
 }
 
 // WithNutritionOrderAllergyIntolerance adds a AllergyIntolerance to the NutritionOrder.
+//
+// Deprecated: use NutritionOrderBuilder.AddAllergyIntolerance instead; removed in v2.
 func WithNutritionOrderAllergyIntolerance(v Reference) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.AllergyIntolerance = append(r.AllergyIntolerance, v)
@@ -1634,6 +1686,8 @@ func WithNutritionOrderAllergyIntolerance(v Reference) NutritionOrderOption {
 }
 
 // WithNutritionOrderFoodPreferenceModifier adds a FoodPreferenceModifier to the NutritionOrder.
+//
+// Deprecated: use NutritionOrderBuilder.AddFoodPreferenceModifier instead; removed in v2.
 func WithNutritionOrderFoodPreferenceModifier(v CodeableConcept) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.FoodPreferenceModifier = append(r.FoodPreferenceModifier, v)
@@ -1641,6 +1695,8 @@ func WithNutritionOrderFoodPreferenceModifier(v CodeableConcept) NutritionOrderO
 }
 
 // WithNutritionOrderExcludeFoodModifier adds a ExcludeFoodModifier to the NutritionOrder.
+//
+// Deprecated: use NutritionOrderBuilder.AddExcludeFoodModifier instead; removed in v2.
 func WithNutritionOrderExcludeFoodModifier(v CodeableConcept) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.ExcludeFoodModifier = append(r.ExcludeFoodModifier, v)
@@ -1648,6 +1704,8 @@ func WithNutritionOrderExcludeFoodModifier(v CodeableConcept) NutritionOrderOpti
 }
 
 // WithNutritionOrderOralDiet sets the OralDiet field.
+//
+// Deprecated: use NutritionOrderBuilder.SetOralDiet instead; removed in v2.
 func WithNutritionOrderOralDiet(v NutritionOrderOralDiet) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.OralDiet = &v
@@ -1655,6 +1713,8 @@ func WithNutritionOrderOralDiet(v NutritionOrderOralDiet) NutritionOrderOption {
 }
 
 // WithNutritionOrderSupplement adds a Supplement to the NutritionOrder.
+//
+// Deprecated: use NutritionOrderBuilder.AddSupplement instead; removed in v2.
 func WithNutritionOrderSupplement(v NutritionOrderSupplement) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.Supplement = append(r.Supplement, v)
@@ -1662,6 +1722,8 @@ func WithNutritionOrderSupplement(v NutritionOrderSupplement) NutritionOrderOpti
 }
 
 // WithNutritionOrderEnteralFormula sets the EnteralFormula field.
+//
+// Deprecated: use NutritionOrderBuilder.SetEnteralFormula instead; removed in v2.
 func WithNutritionOrderEnteralFormula(v NutritionOrderEnteralFormula) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.EnteralFormula = &v
@@ -1669,6 +1731,8 @@ func WithNutritionOrderEnteralFormula(v NutritionOrderEnteralFormula) NutritionO
 }
 
 // WithNutritionOrderNote adds a Note to the NutritionOrder.
+//
+// Deprecated: use NutritionOrderBuilder.AddNote instead; removed in v2.
 func WithNutritionOrderNote(v Annotation) NutritionOrderOption {
 	return func(r *NutritionOrder) {
 		r.Note = append(r.Note, v)

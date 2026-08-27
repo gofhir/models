@@ -905,9 +905,23 @@ func (b *AllergyIntoleranceBuilder) AddReaction(v AllergyIntoleranceReaction) *A
 // =============================================================================
 
 // AllergyIntoleranceOption is a functional option for configuring a AllergyIntolerance.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// AllergyIntoleranceBuilder. Every WithAllergyIntolerance* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type AllergyIntoleranceOption func(*AllergyIntolerance)
 
 // NewAllergyIntolerance creates a new AllergyIntolerance with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewAllergyIntoleranceBuilder().SetId("x").Build()
+//
+// Deprecated: use NewAllergyIntoleranceBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewAllergyIntolerance(opts ...AllergyIntoleranceOption) *AllergyIntolerance {
 	r := &AllergyIntolerance{ResourceType: "AllergyIntolerance"}
 	for _, opt := range opts {
@@ -917,6 +931,8 @@ func NewAllergyIntolerance(opts ...AllergyIntoleranceOption) *AllergyIntolerance
 }
 
 // WithAllergyIntoleranceId sets the Id field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetId instead; removed in v2.
 func WithAllergyIntoleranceId(v string) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.Id = &v
@@ -924,6 +940,8 @@ func WithAllergyIntoleranceId(v string) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceMeta sets the Meta field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetMeta instead; removed in v2.
 func WithAllergyIntoleranceMeta(v Meta) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.Meta = &v
@@ -931,6 +949,8 @@ func WithAllergyIntoleranceMeta(v Meta) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetImplicitRules instead; removed in v2.
 func WithAllergyIntoleranceImplicitRules(v string) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.ImplicitRules = &v
@@ -938,6 +958,8 @@ func WithAllergyIntoleranceImplicitRules(v string) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceLanguage sets the Language field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetLanguage instead; removed in v2.
 func WithAllergyIntoleranceLanguage(v string) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.Language = &v
@@ -945,6 +967,8 @@ func WithAllergyIntoleranceLanguage(v string) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceText sets the Text field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetText instead; removed in v2.
 func WithAllergyIntoleranceText(v Narrative) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.Text = &v
@@ -952,6 +976,8 @@ func WithAllergyIntoleranceText(v Narrative) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceContained adds a Contained to the AllergyIntolerance.
+//
+// Deprecated: use AllergyIntoleranceBuilder.AddContained instead; removed in v2.
 func WithAllergyIntoleranceContained(v Resource) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.Contained = append(r.Contained, v)
@@ -959,6 +985,8 @@ func WithAllergyIntoleranceContained(v Resource) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceExtension adds a Extension to the AllergyIntolerance.
+//
+// Deprecated: use AllergyIntoleranceBuilder.AddExtension instead; removed in v2.
 func WithAllergyIntoleranceExtension(v Extension) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.Extension = append(r.Extension, v)
@@ -966,6 +994,8 @@ func WithAllergyIntoleranceExtension(v Extension) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceModifierExtension adds a ModifierExtension to the AllergyIntolerance.
+//
+// Deprecated: use AllergyIntoleranceBuilder.AddModifierExtension instead; removed in v2.
 func WithAllergyIntoleranceModifierExtension(v Extension) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -973,6 +1003,8 @@ func WithAllergyIntoleranceModifierExtension(v Extension) AllergyIntoleranceOpti
 }
 
 // WithAllergyIntoleranceIdentifier adds a Identifier to the AllergyIntolerance.
+//
+// Deprecated: use AllergyIntoleranceBuilder.AddIdentifier instead; removed in v2.
 func WithAllergyIntoleranceIdentifier(v Identifier) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.Identifier = append(r.Identifier, v)
@@ -980,6 +1012,8 @@ func WithAllergyIntoleranceIdentifier(v Identifier) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceClinicalStatus sets the ClinicalStatus field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetClinicalStatus instead; removed in v2.
 func WithAllergyIntoleranceClinicalStatus(v CodeableConcept) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.ClinicalStatus = &v
@@ -987,6 +1021,8 @@ func WithAllergyIntoleranceClinicalStatus(v CodeableConcept) AllergyIntoleranceO
 }
 
 // WithAllergyIntoleranceVerificationStatus sets the VerificationStatus field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetVerificationStatus instead; removed in v2.
 func WithAllergyIntoleranceVerificationStatus(v CodeableConcept) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.VerificationStatus = &v
@@ -994,6 +1030,8 @@ func WithAllergyIntoleranceVerificationStatus(v CodeableConcept) AllergyIntolera
 }
 
 // WithAllergyIntoleranceType sets the Type field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetType instead; removed in v2.
 func WithAllergyIntoleranceType(v AllergyIntoleranceType) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.Type = &v
@@ -1001,6 +1039,8 @@ func WithAllergyIntoleranceType(v AllergyIntoleranceType) AllergyIntoleranceOpti
 }
 
 // WithAllergyIntoleranceCategory adds a Category to the AllergyIntolerance.
+//
+// Deprecated: use AllergyIntoleranceBuilder.AddCategory instead; removed in v2.
 func WithAllergyIntoleranceCategory(v AllergyIntoleranceCategory) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.Category = append(r.Category, v)
@@ -1008,6 +1048,8 @@ func WithAllergyIntoleranceCategory(v AllergyIntoleranceCategory) AllergyIntoler
 }
 
 // WithAllergyIntoleranceCriticality sets the Criticality field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetCriticality instead; removed in v2.
 func WithAllergyIntoleranceCriticality(v AllergyIntoleranceCriticality) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.Criticality = &v
@@ -1015,6 +1057,8 @@ func WithAllergyIntoleranceCriticality(v AllergyIntoleranceCriticality) AllergyI
 }
 
 // WithAllergyIntoleranceCode sets the Code field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetCode instead; removed in v2.
 func WithAllergyIntoleranceCode(v CodeableConcept) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.Code = &v
@@ -1022,6 +1066,8 @@ func WithAllergyIntoleranceCode(v CodeableConcept) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntolerancePatient sets the Patient field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetPatient instead; removed in v2.
 func WithAllergyIntolerancePatient(v Reference) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.Patient = v
@@ -1029,6 +1075,8 @@ func WithAllergyIntolerancePatient(v Reference) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceEncounter sets the Encounter field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetEncounter instead; removed in v2.
 func WithAllergyIntoleranceEncounter(v Reference) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.Encounter = &v
@@ -1036,6 +1084,8 @@ func WithAllergyIntoleranceEncounter(v Reference) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceOnsetDateTime sets the OnsetDateTime field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetOnsetDateTime instead; removed in v2.
 func WithAllergyIntoleranceOnsetDateTime(v string) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.OnsetDateTime = &v
@@ -1043,6 +1093,8 @@ func WithAllergyIntoleranceOnsetDateTime(v string) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceOnsetDateTimeExt sets the OnsetDateTimeExt field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetOnsetDateTimeExt instead; removed in v2.
 func WithAllergyIntoleranceOnsetDateTimeExt(v Element) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.OnsetDateTimeExt = &v
@@ -1050,6 +1102,8 @@ func WithAllergyIntoleranceOnsetDateTimeExt(v Element) AllergyIntoleranceOption 
 }
 
 // WithAllergyIntoleranceOnsetAge sets the OnsetAge field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetOnsetAge instead; removed in v2.
 func WithAllergyIntoleranceOnsetAge(v Age) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.OnsetAge = &v
@@ -1057,6 +1111,8 @@ func WithAllergyIntoleranceOnsetAge(v Age) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceOnsetPeriod sets the OnsetPeriod field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetOnsetPeriod instead; removed in v2.
 func WithAllergyIntoleranceOnsetPeriod(v Period) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.OnsetPeriod = &v
@@ -1064,6 +1120,8 @@ func WithAllergyIntoleranceOnsetPeriod(v Period) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceOnsetRange sets the OnsetRange field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetOnsetRange instead; removed in v2.
 func WithAllergyIntoleranceOnsetRange(v Range) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.OnsetRange = &v
@@ -1071,6 +1129,8 @@ func WithAllergyIntoleranceOnsetRange(v Range) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceOnsetString sets the OnsetString field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetOnsetString instead; removed in v2.
 func WithAllergyIntoleranceOnsetString(v string) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.OnsetString = &v
@@ -1078,6 +1138,8 @@ func WithAllergyIntoleranceOnsetString(v string) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceOnsetStringExt sets the OnsetStringExt field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetOnsetStringExt instead; removed in v2.
 func WithAllergyIntoleranceOnsetStringExt(v Element) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.OnsetStringExt = &v
@@ -1085,6 +1147,8 @@ func WithAllergyIntoleranceOnsetStringExt(v Element) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceRecordedDate sets the RecordedDate field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetRecordedDate instead; removed in v2.
 func WithAllergyIntoleranceRecordedDate(v string) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.RecordedDate = &v
@@ -1092,6 +1156,8 @@ func WithAllergyIntoleranceRecordedDate(v string) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceRecorder sets the Recorder field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetRecorder instead; removed in v2.
 func WithAllergyIntoleranceRecorder(v Reference) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.Recorder = &v
@@ -1099,6 +1165,8 @@ func WithAllergyIntoleranceRecorder(v Reference) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceAsserter sets the Asserter field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetAsserter instead; removed in v2.
 func WithAllergyIntoleranceAsserter(v Reference) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.Asserter = &v
@@ -1106,6 +1174,8 @@ func WithAllergyIntoleranceAsserter(v Reference) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceLastOccurrence sets the LastOccurrence field.
+//
+// Deprecated: use AllergyIntoleranceBuilder.SetLastOccurrence instead; removed in v2.
 func WithAllergyIntoleranceLastOccurrence(v string) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.LastOccurrence = &v
@@ -1113,6 +1183,8 @@ func WithAllergyIntoleranceLastOccurrence(v string) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceNote adds a Note to the AllergyIntolerance.
+//
+// Deprecated: use AllergyIntoleranceBuilder.AddNote instead; removed in v2.
 func WithAllergyIntoleranceNote(v Annotation) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.Note = append(r.Note, v)
@@ -1120,6 +1192,8 @@ func WithAllergyIntoleranceNote(v Annotation) AllergyIntoleranceOption {
 }
 
 // WithAllergyIntoleranceReaction adds a Reaction to the AllergyIntolerance.
+//
+// Deprecated: use AllergyIntoleranceBuilder.AddReaction instead; removed in v2.
 func WithAllergyIntoleranceReaction(v AllergyIntoleranceReaction) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
 		r.Reaction = append(r.Reaction, v)

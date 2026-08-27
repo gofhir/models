@@ -1438,9 +1438,23 @@ func (b *ObservationDefinitionBuilder) AddComponent(v ObservationDefinitionCompo
 // =============================================================================
 
 // ObservationDefinitionOption is a functional option for configuring a ObservationDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ObservationDefinitionBuilder. Every WithObservationDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ObservationDefinitionOption func(*ObservationDefinition)
 
 // NewObservationDefinition creates a new ObservationDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewObservationDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewObservationDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewObservationDefinition(opts ...ObservationDefinitionOption) *ObservationDefinition {
 	r := &ObservationDefinition{ResourceType: "ObservationDefinition"}
 	for _, opt := range opts {
@@ -1450,6 +1464,8 @@ func NewObservationDefinition(opts ...ObservationDefinitionOption) *ObservationD
 }
 
 // WithObservationDefinitionId sets the Id field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetId instead; removed in v2.
 func WithObservationDefinitionId(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Id = &v
@@ -1457,6 +1473,8 @@ func WithObservationDefinitionId(v string) ObservationDefinitionOption {
 }
 
 // WithObservationDefinitionMeta sets the Meta field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetMeta instead; removed in v2.
 func WithObservationDefinitionMeta(v Meta) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Meta = &v
@@ -1464,6 +1482,8 @@ func WithObservationDefinitionMeta(v Meta) ObservationDefinitionOption {
 }
 
 // WithObservationDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithObservationDefinitionImplicitRules(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.ImplicitRules = &v
@@ -1471,6 +1491,8 @@ func WithObservationDefinitionImplicitRules(v string) ObservationDefinitionOptio
 }
 
 // WithObservationDefinitionLanguage sets the Language field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithObservationDefinitionLanguage(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Language = &v
@@ -1478,6 +1500,8 @@ func WithObservationDefinitionLanguage(v string) ObservationDefinitionOption {
 }
 
 // WithObservationDefinitionText sets the Text field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetText instead; removed in v2.
 func WithObservationDefinitionText(v Narrative) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Text = &v
@@ -1485,6 +1509,8 @@ func WithObservationDefinitionText(v Narrative) ObservationDefinitionOption {
 }
 
 // WithObservationDefinitionContained adds a Contained to the ObservationDefinition.
+//
+// Deprecated: use ObservationDefinitionBuilder.AddContained instead; removed in v2.
 func WithObservationDefinitionContained(v Resource) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -1492,6 +1518,8 @@ func WithObservationDefinitionContained(v Resource) ObservationDefinitionOption 
 }
 
 // WithObservationDefinitionExtension adds a Extension to the ObservationDefinition.
+//
+// Deprecated: use ObservationDefinitionBuilder.AddExtension instead; removed in v2.
 func WithObservationDefinitionExtension(v Extension) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -1499,6 +1527,8 @@ func WithObservationDefinitionExtension(v Extension) ObservationDefinitionOption
 }
 
 // WithObservationDefinitionModifierExtension adds a ModifierExtension to the ObservationDefinition.
+//
+// Deprecated: use ObservationDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithObservationDefinitionModifierExtension(v Extension) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1506,6 +1536,8 @@ func WithObservationDefinitionModifierExtension(v Extension) ObservationDefiniti
 }
 
 // WithObservationDefinitionUrl sets the Url field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetUrl instead; removed in v2.
 func WithObservationDefinitionUrl(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Url = &v
@@ -1513,6 +1545,8 @@ func WithObservationDefinitionUrl(v string) ObservationDefinitionOption {
 }
 
 // WithObservationDefinitionIdentifier sets the Identifier field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetIdentifier instead; removed in v2.
 func WithObservationDefinitionIdentifier(v Identifier) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Identifier = &v
@@ -1520,6 +1554,8 @@ func WithObservationDefinitionIdentifier(v Identifier) ObservationDefinitionOpti
 }
 
 // WithObservationDefinitionVersion sets the Version field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetVersion instead; removed in v2.
 func WithObservationDefinitionVersion(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Version = &v
@@ -1527,6 +1563,8 @@ func WithObservationDefinitionVersion(v string) ObservationDefinitionOption {
 }
 
 // WithObservationDefinitionVersionAlgorithmString sets the VersionAlgorithmString field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetVersionAlgorithmString instead; removed in v2.
 func WithObservationDefinitionVersionAlgorithmString(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.VersionAlgorithmString = &v
@@ -1534,6 +1572,8 @@ func WithObservationDefinitionVersionAlgorithmString(v string) ObservationDefini
 }
 
 // WithObservationDefinitionVersionAlgorithmStringExt sets the VersionAlgorithmStringExt field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetVersionAlgorithmStringExt instead; removed in v2.
 func WithObservationDefinitionVersionAlgorithmStringExt(v Element) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.VersionAlgorithmStringExt = &v
@@ -1541,6 +1581,8 @@ func WithObservationDefinitionVersionAlgorithmStringExt(v Element) ObservationDe
 }
 
 // WithObservationDefinitionVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetVersionAlgorithmCoding instead; removed in v2.
 func WithObservationDefinitionVersionAlgorithmCoding(v Coding) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.VersionAlgorithmCoding = &v
@@ -1548,6 +1590,8 @@ func WithObservationDefinitionVersionAlgorithmCoding(v Coding) ObservationDefini
 }
 
 // WithObservationDefinitionName sets the Name field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetName instead; removed in v2.
 func WithObservationDefinitionName(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Name = &v
@@ -1555,6 +1599,8 @@ func WithObservationDefinitionName(v string) ObservationDefinitionOption {
 }
 
 // WithObservationDefinitionTitle sets the Title field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetTitle instead; removed in v2.
 func WithObservationDefinitionTitle(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Title = &v
@@ -1562,6 +1608,8 @@ func WithObservationDefinitionTitle(v string) ObservationDefinitionOption {
 }
 
 // WithObservationDefinitionStatus sets the Status field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetStatus instead; removed in v2.
 func WithObservationDefinitionStatus(v PublicationStatus) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Status = &v
@@ -1569,6 +1617,8 @@ func WithObservationDefinitionStatus(v PublicationStatus) ObservationDefinitionO
 }
 
 // WithObservationDefinitionExperimental sets the Experimental field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetExperimental instead; removed in v2.
 func WithObservationDefinitionExperimental(v bool) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Experimental = &v
@@ -1576,6 +1626,8 @@ func WithObservationDefinitionExperimental(v bool) ObservationDefinitionOption {
 }
 
 // WithObservationDefinitionDate sets the Date field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetDate instead; removed in v2.
 func WithObservationDefinitionDate(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Date = &v
@@ -1583,6 +1635,8 @@ func WithObservationDefinitionDate(v string) ObservationDefinitionOption {
 }
 
 // WithObservationDefinitionPublisher sets the Publisher field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetPublisher instead; removed in v2.
 func WithObservationDefinitionPublisher(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Publisher = &v
@@ -1590,6 +1644,8 @@ func WithObservationDefinitionPublisher(v string) ObservationDefinitionOption {
 }
 
 // WithObservationDefinitionContact adds a Contact to the ObservationDefinition.
+//
+// Deprecated: use ObservationDefinitionBuilder.AddContact instead; removed in v2.
 func WithObservationDefinitionContact(v ContactDetail) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Contact = append(r.Contact, v)
@@ -1597,6 +1653,8 @@ func WithObservationDefinitionContact(v ContactDetail) ObservationDefinitionOpti
 }
 
 // WithObservationDefinitionDescription sets the Description field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetDescription instead; removed in v2.
 func WithObservationDefinitionDescription(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Description = &v
@@ -1604,6 +1662,8 @@ func WithObservationDefinitionDescription(v string) ObservationDefinitionOption 
 }
 
 // WithObservationDefinitionUseContext adds a UseContext to the ObservationDefinition.
+//
+// Deprecated: use ObservationDefinitionBuilder.AddUseContext instead; removed in v2.
 func WithObservationDefinitionUseContext(v UsageContext) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.UseContext = append(r.UseContext, v)
@@ -1611,6 +1671,8 @@ func WithObservationDefinitionUseContext(v UsageContext) ObservationDefinitionOp
 }
 
 // WithObservationDefinitionJurisdiction adds a Jurisdiction to the ObservationDefinition.
+//
+// Deprecated: use ObservationDefinitionBuilder.AddJurisdiction instead; removed in v2.
 func WithObservationDefinitionJurisdiction(v CodeableConcept) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Jurisdiction = append(r.Jurisdiction, v)
@@ -1618,6 +1680,8 @@ func WithObservationDefinitionJurisdiction(v CodeableConcept) ObservationDefinit
 }
 
 // WithObservationDefinitionPurpose sets the Purpose field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetPurpose instead; removed in v2.
 func WithObservationDefinitionPurpose(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Purpose = &v
@@ -1625,6 +1689,8 @@ func WithObservationDefinitionPurpose(v string) ObservationDefinitionOption {
 }
 
 // WithObservationDefinitionCopyright sets the Copyright field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetCopyright instead; removed in v2.
 func WithObservationDefinitionCopyright(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Copyright = &v
@@ -1632,6 +1698,8 @@ func WithObservationDefinitionCopyright(v string) ObservationDefinitionOption {
 }
 
 // WithObservationDefinitionCopyrightLabel sets the CopyrightLabel field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetCopyrightLabel instead; removed in v2.
 func WithObservationDefinitionCopyrightLabel(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.CopyrightLabel = &v
@@ -1639,6 +1707,8 @@ func WithObservationDefinitionCopyrightLabel(v string) ObservationDefinitionOpti
 }
 
 // WithObservationDefinitionApprovalDate sets the ApprovalDate field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetApprovalDate instead; removed in v2.
 func WithObservationDefinitionApprovalDate(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.ApprovalDate = &v
@@ -1646,6 +1716,8 @@ func WithObservationDefinitionApprovalDate(v string) ObservationDefinitionOption
 }
 
 // WithObservationDefinitionLastReviewDate sets the LastReviewDate field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetLastReviewDate instead; removed in v2.
 func WithObservationDefinitionLastReviewDate(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.LastReviewDate = &v
@@ -1653,6 +1725,8 @@ func WithObservationDefinitionLastReviewDate(v string) ObservationDefinitionOpti
 }
 
 // WithObservationDefinitionEffectivePeriod sets the EffectivePeriod field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetEffectivePeriod instead; removed in v2.
 func WithObservationDefinitionEffectivePeriod(v Period) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.EffectivePeriod = &v
@@ -1660,6 +1734,8 @@ func WithObservationDefinitionEffectivePeriod(v Period) ObservationDefinitionOpt
 }
 
 // WithObservationDefinitionDerivedFromCanonical adds a DerivedFromCanonical to the ObservationDefinition.
+//
+// Deprecated: use ObservationDefinitionBuilder.AddDerivedFromCanonical instead; removed in v2.
 func WithObservationDefinitionDerivedFromCanonical(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.DerivedFromCanonical = append(r.DerivedFromCanonical, v)
@@ -1667,6 +1743,8 @@ func WithObservationDefinitionDerivedFromCanonical(v string) ObservationDefiniti
 }
 
 // WithObservationDefinitionDerivedFromUri adds a DerivedFromUri to the ObservationDefinition.
+//
+// Deprecated: use ObservationDefinitionBuilder.AddDerivedFromUri instead; removed in v2.
 func WithObservationDefinitionDerivedFromUri(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.DerivedFromUri = append(r.DerivedFromUri, v)
@@ -1674,6 +1752,8 @@ func WithObservationDefinitionDerivedFromUri(v string) ObservationDefinitionOpti
 }
 
 // WithObservationDefinitionSubject adds a Subject to the ObservationDefinition.
+//
+// Deprecated: use ObservationDefinitionBuilder.AddSubject instead; removed in v2.
 func WithObservationDefinitionSubject(v CodeableConcept) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Subject = append(r.Subject, v)
@@ -1681,6 +1761,8 @@ func WithObservationDefinitionSubject(v CodeableConcept) ObservationDefinitionOp
 }
 
 // WithObservationDefinitionPerformerType sets the PerformerType field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetPerformerType instead; removed in v2.
 func WithObservationDefinitionPerformerType(v CodeableConcept) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.PerformerType = &v
@@ -1688,6 +1770,8 @@ func WithObservationDefinitionPerformerType(v CodeableConcept) ObservationDefini
 }
 
 // WithObservationDefinitionCategory adds a Category to the ObservationDefinition.
+//
+// Deprecated: use ObservationDefinitionBuilder.AddCategory instead; removed in v2.
 func WithObservationDefinitionCategory(v CodeableConcept) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Category = append(r.Category, v)
@@ -1695,6 +1779,8 @@ func WithObservationDefinitionCategory(v CodeableConcept) ObservationDefinitionO
 }
 
 // WithObservationDefinitionCode sets the Code field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetCode instead; removed in v2.
 func WithObservationDefinitionCode(v CodeableConcept) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Code = v
@@ -1702,6 +1788,8 @@ func WithObservationDefinitionCode(v CodeableConcept) ObservationDefinitionOptio
 }
 
 // WithObservationDefinitionPermittedDataType adds a PermittedDataType to the ObservationDefinition.
+//
+// Deprecated: use ObservationDefinitionBuilder.AddPermittedDataType instead; removed in v2.
 func WithObservationDefinitionPermittedDataType(v ObservationDataType) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.PermittedDataType = append(r.PermittedDataType, v)
@@ -1709,6 +1797,8 @@ func WithObservationDefinitionPermittedDataType(v ObservationDataType) Observati
 }
 
 // WithObservationDefinitionMultipleResultsAllowed sets the MultipleResultsAllowed field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetMultipleResultsAllowed instead; removed in v2.
 func WithObservationDefinitionMultipleResultsAllowed(v bool) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.MultipleResultsAllowed = &v
@@ -1716,6 +1806,8 @@ func WithObservationDefinitionMultipleResultsAllowed(v bool) ObservationDefiniti
 }
 
 // WithObservationDefinitionBodySite sets the BodySite field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetBodySite instead; removed in v2.
 func WithObservationDefinitionBodySite(v CodeableConcept) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.BodySite = &v
@@ -1723,6 +1815,8 @@ func WithObservationDefinitionBodySite(v CodeableConcept) ObservationDefinitionO
 }
 
 // WithObservationDefinitionMethod sets the Method field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetMethod instead; removed in v2.
 func WithObservationDefinitionMethod(v CodeableConcept) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Method = &v
@@ -1730,6 +1824,8 @@ func WithObservationDefinitionMethod(v CodeableConcept) ObservationDefinitionOpt
 }
 
 // WithObservationDefinitionSpecimen adds a Specimen to the ObservationDefinition.
+//
+// Deprecated: use ObservationDefinitionBuilder.AddSpecimen instead; removed in v2.
 func WithObservationDefinitionSpecimen(v Reference) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Specimen = append(r.Specimen, v)
@@ -1737,6 +1833,8 @@ func WithObservationDefinitionSpecimen(v Reference) ObservationDefinitionOption 
 }
 
 // WithObservationDefinitionDevice adds a Device to the ObservationDefinition.
+//
+// Deprecated: use ObservationDefinitionBuilder.AddDevice instead; removed in v2.
 func WithObservationDefinitionDevice(v Reference) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Device = append(r.Device, v)
@@ -1744,6 +1842,8 @@ func WithObservationDefinitionDevice(v Reference) ObservationDefinitionOption {
 }
 
 // WithObservationDefinitionPreferredReportName sets the PreferredReportName field.
+//
+// Deprecated: use ObservationDefinitionBuilder.SetPreferredReportName instead; removed in v2.
 func WithObservationDefinitionPreferredReportName(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.PreferredReportName = &v
@@ -1751,6 +1851,8 @@ func WithObservationDefinitionPreferredReportName(v string) ObservationDefinitio
 }
 
 // WithObservationDefinitionPermittedUnit adds a PermittedUnit to the ObservationDefinition.
+//
+// Deprecated: use ObservationDefinitionBuilder.AddPermittedUnit instead; removed in v2.
 func WithObservationDefinitionPermittedUnit(v Coding) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.PermittedUnit = append(r.PermittedUnit, v)
@@ -1758,6 +1860,8 @@ func WithObservationDefinitionPermittedUnit(v Coding) ObservationDefinitionOptio
 }
 
 // WithObservationDefinitionQualifiedValue adds a QualifiedValue to the ObservationDefinition.
+//
+// Deprecated: use ObservationDefinitionBuilder.AddQualifiedValue instead; removed in v2.
 func WithObservationDefinitionQualifiedValue(v ObservationDefinitionQualifiedValue) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.QualifiedValue = append(r.QualifiedValue, v)
@@ -1765,6 +1869,8 @@ func WithObservationDefinitionQualifiedValue(v ObservationDefinitionQualifiedVal
 }
 
 // WithObservationDefinitionHasMember adds a HasMember to the ObservationDefinition.
+//
+// Deprecated: use ObservationDefinitionBuilder.AddHasMember instead; removed in v2.
 func WithObservationDefinitionHasMember(v Reference) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.HasMember = append(r.HasMember, v)
@@ -1772,6 +1878,8 @@ func WithObservationDefinitionHasMember(v Reference) ObservationDefinitionOption
 }
 
 // WithObservationDefinitionComponent adds a Component to the ObservationDefinition.
+//
+// Deprecated: use ObservationDefinitionBuilder.AddComponent instead; removed in v2.
 func WithObservationDefinitionComponent(v ObservationDefinitionComponent) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
 		r.Component = append(r.Component, v)

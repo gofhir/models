@@ -1205,9 +1205,23 @@ func (b *PackagedProductDefinitionBuilder) AddCharacteristic(v PackagedProductDe
 // =============================================================================
 
 // PackagedProductDefinitionOption is a functional option for configuring a PackagedProductDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// PackagedProductDefinitionBuilder. Every WithPackagedProductDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type PackagedProductDefinitionOption func(*PackagedProductDefinition)
 
 // NewPackagedProductDefinition creates a new PackagedProductDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewPackagedProductDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewPackagedProductDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewPackagedProductDefinition(opts ...PackagedProductDefinitionOption) *PackagedProductDefinition {
 	r := &PackagedProductDefinition{ResourceType: "PackagedProductDefinition"}
 	for _, opt := range opts {
@@ -1217,6 +1231,8 @@ func NewPackagedProductDefinition(opts ...PackagedProductDefinitionOption) *Pack
 }
 
 // WithPackagedProductDefinitionId sets the Id field.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.SetId instead; removed in v2.
 func WithPackagedProductDefinitionId(v string) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.Id = &v
@@ -1224,6 +1240,8 @@ func WithPackagedProductDefinitionId(v string) PackagedProductDefinitionOption {
 }
 
 // WithPackagedProductDefinitionMeta sets the Meta field.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.SetMeta instead; removed in v2.
 func WithPackagedProductDefinitionMeta(v Meta) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.Meta = &v
@@ -1231,6 +1249,8 @@ func WithPackagedProductDefinitionMeta(v Meta) PackagedProductDefinitionOption {
 }
 
 // WithPackagedProductDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithPackagedProductDefinitionImplicitRules(v string) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.ImplicitRules = &v
@@ -1238,6 +1258,8 @@ func WithPackagedProductDefinitionImplicitRules(v string) PackagedProductDefinit
 }
 
 // WithPackagedProductDefinitionLanguage sets the Language field.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithPackagedProductDefinitionLanguage(v string) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.Language = &v
@@ -1245,6 +1267,8 @@ func WithPackagedProductDefinitionLanguage(v string) PackagedProductDefinitionOp
 }
 
 // WithPackagedProductDefinitionText sets the Text field.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.SetText instead; removed in v2.
 func WithPackagedProductDefinitionText(v Narrative) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.Text = &v
@@ -1252,6 +1276,8 @@ func WithPackagedProductDefinitionText(v Narrative) PackagedProductDefinitionOpt
 }
 
 // WithPackagedProductDefinitionContained adds a Contained to the PackagedProductDefinition.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.AddContained instead; removed in v2.
 func WithPackagedProductDefinitionContained(v Resource) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -1259,6 +1285,8 @@ func WithPackagedProductDefinitionContained(v Resource) PackagedProductDefinitio
 }
 
 // WithPackagedProductDefinitionExtension adds a Extension to the PackagedProductDefinition.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.AddExtension instead; removed in v2.
 func WithPackagedProductDefinitionExtension(v Extension) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -1266,6 +1294,8 @@ func WithPackagedProductDefinitionExtension(v Extension) PackagedProductDefiniti
 }
 
 // WithPackagedProductDefinitionModifierExtension adds a ModifierExtension to the PackagedProductDefinition.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithPackagedProductDefinitionModifierExtension(v Extension) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1273,6 +1303,8 @@ func WithPackagedProductDefinitionModifierExtension(v Extension) PackagedProduct
 }
 
 // WithPackagedProductDefinitionIdentifier adds a Identifier to the PackagedProductDefinition.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.AddIdentifier instead; removed in v2.
 func WithPackagedProductDefinitionIdentifier(v Identifier) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.Identifier = append(r.Identifier, v)
@@ -1280,6 +1312,8 @@ func WithPackagedProductDefinitionIdentifier(v Identifier) PackagedProductDefini
 }
 
 // WithPackagedProductDefinitionName sets the Name field.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.SetName instead; removed in v2.
 func WithPackagedProductDefinitionName(v string) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.Name = &v
@@ -1287,6 +1321,8 @@ func WithPackagedProductDefinitionName(v string) PackagedProductDefinitionOption
 }
 
 // WithPackagedProductDefinitionType sets the Type field.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.SetType instead; removed in v2.
 func WithPackagedProductDefinitionType(v CodeableConcept) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.Type = &v
@@ -1294,6 +1330,8 @@ func WithPackagedProductDefinitionType(v CodeableConcept) PackagedProductDefinit
 }
 
 // WithPackagedProductDefinitionPackageFor adds a PackageFor to the PackagedProductDefinition.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.AddPackageFor instead; removed in v2.
 func WithPackagedProductDefinitionPackageFor(v Reference) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.PackageFor = append(r.PackageFor, v)
@@ -1301,6 +1339,8 @@ func WithPackagedProductDefinitionPackageFor(v Reference) PackagedProductDefinit
 }
 
 // WithPackagedProductDefinitionStatus sets the Status field.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.SetStatus instead; removed in v2.
 func WithPackagedProductDefinitionStatus(v CodeableConcept) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.Status = &v
@@ -1308,6 +1348,8 @@ func WithPackagedProductDefinitionStatus(v CodeableConcept) PackagedProductDefin
 }
 
 // WithPackagedProductDefinitionStatusDate sets the StatusDate field.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.SetStatusDate instead; removed in v2.
 func WithPackagedProductDefinitionStatusDate(v string) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.StatusDate = &v
@@ -1315,6 +1357,8 @@ func WithPackagedProductDefinitionStatusDate(v string) PackagedProductDefinition
 }
 
 // WithPackagedProductDefinitionContainedItemQuantity adds a ContainedItemQuantity to the PackagedProductDefinition.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.AddContainedItemQuantity instead; removed in v2.
 func WithPackagedProductDefinitionContainedItemQuantity(v Quantity) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.ContainedItemQuantity = append(r.ContainedItemQuantity, v)
@@ -1322,6 +1366,8 @@ func WithPackagedProductDefinitionContainedItemQuantity(v Quantity) PackagedProd
 }
 
 // WithPackagedProductDefinitionDescription sets the Description field.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.SetDescription instead; removed in v2.
 func WithPackagedProductDefinitionDescription(v string) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.Description = &v
@@ -1329,6 +1375,8 @@ func WithPackagedProductDefinitionDescription(v string) PackagedProductDefinitio
 }
 
 // WithPackagedProductDefinitionLegalStatusOfSupply adds a LegalStatusOfSupply to the PackagedProductDefinition.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.AddLegalStatusOfSupply instead; removed in v2.
 func WithPackagedProductDefinitionLegalStatusOfSupply(v PackagedProductDefinitionLegalStatusOfSupply) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.LegalStatusOfSupply = append(r.LegalStatusOfSupply, v)
@@ -1336,6 +1384,8 @@ func WithPackagedProductDefinitionLegalStatusOfSupply(v PackagedProductDefinitio
 }
 
 // WithPackagedProductDefinitionMarketingStatus adds a MarketingStatus to the PackagedProductDefinition.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.AddMarketingStatus instead; removed in v2.
 func WithPackagedProductDefinitionMarketingStatus(v MarketingStatus) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.MarketingStatus = append(r.MarketingStatus, v)
@@ -1343,6 +1393,8 @@ func WithPackagedProductDefinitionMarketingStatus(v MarketingStatus) PackagedPro
 }
 
 // WithPackagedProductDefinitionCopackagedIndicator sets the CopackagedIndicator field.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.SetCopackagedIndicator instead; removed in v2.
 func WithPackagedProductDefinitionCopackagedIndicator(v bool) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.CopackagedIndicator = &v
@@ -1350,6 +1402,8 @@ func WithPackagedProductDefinitionCopackagedIndicator(v bool) PackagedProductDef
 }
 
 // WithPackagedProductDefinitionManufacturer adds a Manufacturer to the PackagedProductDefinition.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.AddManufacturer instead; removed in v2.
 func WithPackagedProductDefinitionManufacturer(v Reference) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.Manufacturer = append(r.Manufacturer, v)
@@ -1357,6 +1411,8 @@ func WithPackagedProductDefinitionManufacturer(v Reference) PackagedProductDefin
 }
 
 // WithPackagedProductDefinitionAttachedDocument adds a AttachedDocument to the PackagedProductDefinition.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.AddAttachedDocument instead; removed in v2.
 func WithPackagedProductDefinitionAttachedDocument(v Reference) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.AttachedDocument = append(r.AttachedDocument, v)
@@ -1364,6 +1420,8 @@ func WithPackagedProductDefinitionAttachedDocument(v Reference) PackagedProductD
 }
 
 // WithPackagedProductDefinitionPackaging sets the Packaging field.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.SetPackaging instead; removed in v2.
 func WithPackagedProductDefinitionPackaging(v PackagedProductDefinitionPackaging) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.Packaging = &v
@@ -1371,6 +1429,8 @@ func WithPackagedProductDefinitionPackaging(v PackagedProductDefinitionPackaging
 }
 
 // WithPackagedProductDefinitionCharacteristic adds a Characteristic to the PackagedProductDefinition.
+//
+// Deprecated: use PackagedProductDefinitionBuilder.AddCharacteristic instead; removed in v2.
 func WithPackagedProductDefinitionCharacteristic(v PackagedProductDefinitionPackagingProperty) PackagedProductDefinitionOption {
 	return func(r *PackagedProductDefinition) {
 		r.Characteristic = append(r.Characteristic, v)

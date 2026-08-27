@@ -1057,9 +1057,23 @@ func (b *SpecimenDefinitionBuilder) AddTypeTested(v SpecimenDefinitionTypeTested
 // =============================================================================
 
 // SpecimenDefinitionOption is a functional option for configuring a SpecimenDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// SpecimenDefinitionBuilder. Every WithSpecimenDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type SpecimenDefinitionOption func(*SpecimenDefinition)
 
 // NewSpecimenDefinition creates a new SpecimenDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewSpecimenDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewSpecimenDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewSpecimenDefinition(opts ...SpecimenDefinitionOption) *SpecimenDefinition {
 	r := &SpecimenDefinition{ResourceType: "SpecimenDefinition"}
 	for _, opt := range opts {
@@ -1069,6 +1083,8 @@ func NewSpecimenDefinition(opts ...SpecimenDefinitionOption) *SpecimenDefinition
 }
 
 // WithSpecimenDefinitionId sets the Id field.
+//
+// Deprecated: use SpecimenDefinitionBuilder.SetId instead; removed in v2.
 func WithSpecimenDefinitionId(v string) SpecimenDefinitionOption {
 	return func(r *SpecimenDefinition) {
 		r.Id = &v
@@ -1076,6 +1092,8 @@ func WithSpecimenDefinitionId(v string) SpecimenDefinitionOption {
 }
 
 // WithSpecimenDefinitionMeta sets the Meta field.
+//
+// Deprecated: use SpecimenDefinitionBuilder.SetMeta instead; removed in v2.
 func WithSpecimenDefinitionMeta(v Meta) SpecimenDefinitionOption {
 	return func(r *SpecimenDefinition) {
 		r.Meta = &v
@@ -1083,6 +1101,8 @@ func WithSpecimenDefinitionMeta(v Meta) SpecimenDefinitionOption {
 }
 
 // WithSpecimenDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use SpecimenDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithSpecimenDefinitionImplicitRules(v string) SpecimenDefinitionOption {
 	return func(r *SpecimenDefinition) {
 		r.ImplicitRules = &v
@@ -1090,6 +1110,8 @@ func WithSpecimenDefinitionImplicitRules(v string) SpecimenDefinitionOption {
 }
 
 // WithSpecimenDefinitionLanguage sets the Language field.
+//
+// Deprecated: use SpecimenDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithSpecimenDefinitionLanguage(v string) SpecimenDefinitionOption {
 	return func(r *SpecimenDefinition) {
 		r.Language = &v
@@ -1097,6 +1119,8 @@ func WithSpecimenDefinitionLanguage(v string) SpecimenDefinitionOption {
 }
 
 // WithSpecimenDefinitionText sets the Text field.
+//
+// Deprecated: use SpecimenDefinitionBuilder.SetText instead; removed in v2.
 func WithSpecimenDefinitionText(v Narrative) SpecimenDefinitionOption {
 	return func(r *SpecimenDefinition) {
 		r.Text = &v
@@ -1104,6 +1128,8 @@ func WithSpecimenDefinitionText(v Narrative) SpecimenDefinitionOption {
 }
 
 // WithSpecimenDefinitionContained adds a Contained to the SpecimenDefinition.
+//
+// Deprecated: use SpecimenDefinitionBuilder.AddContained instead; removed in v2.
 func WithSpecimenDefinitionContained(v Resource) SpecimenDefinitionOption {
 	return func(r *SpecimenDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -1111,6 +1137,8 @@ func WithSpecimenDefinitionContained(v Resource) SpecimenDefinitionOption {
 }
 
 // WithSpecimenDefinitionExtension adds a Extension to the SpecimenDefinition.
+//
+// Deprecated: use SpecimenDefinitionBuilder.AddExtension instead; removed in v2.
 func WithSpecimenDefinitionExtension(v Extension) SpecimenDefinitionOption {
 	return func(r *SpecimenDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -1118,6 +1146,8 @@ func WithSpecimenDefinitionExtension(v Extension) SpecimenDefinitionOption {
 }
 
 // WithSpecimenDefinitionModifierExtension adds a ModifierExtension to the SpecimenDefinition.
+//
+// Deprecated: use SpecimenDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithSpecimenDefinitionModifierExtension(v Extension) SpecimenDefinitionOption {
 	return func(r *SpecimenDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1125,6 +1155,8 @@ func WithSpecimenDefinitionModifierExtension(v Extension) SpecimenDefinitionOpti
 }
 
 // WithSpecimenDefinitionIdentifier sets the Identifier field.
+//
+// Deprecated: use SpecimenDefinitionBuilder.SetIdentifier instead; removed in v2.
 func WithSpecimenDefinitionIdentifier(v Identifier) SpecimenDefinitionOption {
 	return func(r *SpecimenDefinition) {
 		r.Identifier = &v
@@ -1132,6 +1164,8 @@ func WithSpecimenDefinitionIdentifier(v Identifier) SpecimenDefinitionOption {
 }
 
 // WithSpecimenDefinitionTypeCollected sets the TypeCollected field.
+//
+// Deprecated: use SpecimenDefinitionBuilder.SetTypeCollected instead; removed in v2.
 func WithSpecimenDefinitionTypeCollected(v CodeableConcept) SpecimenDefinitionOption {
 	return func(r *SpecimenDefinition) {
 		r.TypeCollected = &v
@@ -1139,6 +1173,8 @@ func WithSpecimenDefinitionTypeCollected(v CodeableConcept) SpecimenDefinitionOp
 }
 
 // WithSpecimenDefinitionPatientPreparation adds a PatientPreparation to the SpecimenDefinition.
+//
+// Deprecated: use SpecimenDefinitionBuilder.AddPatientPreparation instead; removed in v2.
 func WithSpecimenDefinitionPatientPreparation(v CodeableConcept) SpecimenDefinitionOption {
 	return func(r *SpecimenDefinition) {
 		r.PatientPreparation = append(r.PatientPreparation, v)
@@ -1146,6 +1182,8 @@ func WithSpecimenDefinitionPatientPreparation(v CodeableConcept) SpecimenDefinit
 }
 
 // WithSpecimenDefinitionTimeAspect sets the TimeAspect field.
+//
+// Deprecated: use SpecimenDefinitionBuilder.SetTimeAspect instead; removed in v2.
 func WithSpecimenDefinitionTimeAspect(v string) SpecimenDefinitionOption {
 	return func(r *SpecimenDefinition) {
 		r.TimeAspect = &v
@@ -1153,6 +1191,8 @@ func WithSpecimenDefinitionTimeAspect(v string) SpecimenDefinitionOption {
 }
 
 // WithSpecimenDefinitionCollection adds a Collection to the SpecimenDefinition.
+//
+// Deprecated: use SpecimenDefinitionBuilder.AddCollection instead; removed in v2.
 func WithSpecimenDefinitionCollection(v CodeableConcept) SpecimenDefinitionOption {
 	return func(r *SpecimenDefinition) {
 		r.Collection = append(r.Collection, v)
@@ -1160,6 +1200,8 @@ func WithSpecimenDefinitionCollection(v CodeableConcept) SpecimenDefinitionOptio
 }
 
 // WithSpecimenDefinitionTypeTested adds a TypeTested to the SpecimenDefinition.
+//
+// Deprecated: use SpecimenDefinitionBuilder.AddTypeTested instead; removed in v2.
 func WithSpecimenDefinitionTypeTested(v SpecimenDefinitionTypeTested) SpecimenDefinitionOption {
 	return func(r *SpecimenDefinition) {
 		r.TypeTested = append(r.TypeTested, v)

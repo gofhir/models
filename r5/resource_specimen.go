@@ -1223,9 +1223,23 @@ func (b *SpecimenBuilder) AddNote(v Annotation) *SpecimenBuilder {
 // =============================================================================
 
 // SpecimenOption is a functional option for configuring a Specimen.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// SpecimenBuilder. Every WithSpecimen* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type SpecimenOption func(*Specimen)
 
 // NewSpecimen creates a new Specimen with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewSpecimenBuilder().SetId("x").Build()
+//
+// Deprecated: use NewSpecimenBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewSpecimen(opts ...SpecimenOption) *Specimen {
 	r := &Specimen{ResourceType: "Specimen"}
 	for _, opt := range opts {
@@ -1235,6 +1249,8 @@ func NewSpecimen(opts ...SpecimenOption) *Specimen {
 }
 
 // WithSpecimenId sets the Id field.
+//
+// Deprecated: use SpecimenBuilder.SetId instead; removed in v2.
 func WithSpecimenId(v string) SpecimenOption {
 	return func(r *Specimen) {
 		r.Id = &v
@@ -1242,6 +1258,8 @@ func WithSpecimenId(v string) SpecimenOption {
 }
 
 // WithSpecimenMeta sets the Meta field.
+//
+// Deprecated: use SpecimenBuilder.SetMeta instead; removed in v2.
 func WithSpecimenMeta(v Meta) SpecimenOption {
 	return func(r *Specimen) {
 		r.Meta = &v
@@ -1249,6 +1267,8 @@ func WithSpecimenMeta(v Meta) SpecimenOption {
 }
 
 // WithSpecimenImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use SpecimenBuilder.SetImplicitRules instead; removed in v2.
 func WithSpecimenImplicitRules(v string) SpecimenOption {
 	return func(r *Specimen) {
 		r.ImplicitRules = &v
@@ -1256,6 +1276,8 @@ func WithSpecimenImplicitRules(v string) SpecimenOption {
 }
 
 // WithSpecimenLanguage sets the Language field.
+//
+// Deprecated: use SpecimenBuilder.SetLanguage instead; removed in v2.
 func WithSpecimenLanguage(v string) SpecimenOption {
 	return func(r *Specimen) {
 		r.Language = &v
@@ -1263,6 +1285,8 @@ func WithSpecimenLanguage(v string) SpecimenOption {
 }
 
 // WithSpecimenText sets the Text field.
+//
+// Deprecated: use SpecimenBuilder.SetText instead; removed in v2.
 func WithSpecimenText(v Narrative) SpecimenOption {
 	return func(r *Specimen) {
 		r.Text = &v
@@ -1270,6 +1294,8 @@ func WithSpecimenText(v Narrative) SpecimenOption {
 }
 
 // WithSpecimenContained adds a Contained to the Specimen.
+//
+// Deprecated: use SpecimenBuilder.AddContained instead; removed in v2.
 func WithSpecimenContained(v Resource) SpecimenOption {
 	return func(r *Specimen) {
 		r.Contained = append(r.Contained, v)
@@ -1277,6 +1303,8 @@ func WithSpecimenContained(v Resource) SpecimenOption {
 }
 
 // WithSpecimenExtension adds a Extension to the Specimen.
+//
+// Deprecated: use SpecimenBuilder.AddExtension instead; removed in v2.
 func WithSpecimenExtension(v Extension) SpecimenOption {
 	return func(r *Specimen) {
 		r.Extension = append(r.Extension, v)
@@ -1284,6 +1312,8 @@ func WithSpecimenExtension(v Extension) SpecimenOption {
 }
 
 // WithSpecimenModifierExtension adds a ModifierExtension to the Specimen.
+//
+// Deprecated: use SpecimenBuilder.AddModifierExtension instead; removed in v2.
 func WithSpecimenModifierExtension(v Extension) SpecimenOption {
 	return func(r *Specimen) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -1291,6 +1321,8 @@ func WithSpecimenModifierExtension(v Extension) SpecimenOption {
 }
 
 // WithSpecimenIdentifier adds a Identifier to the Specimen.
+//
+// Deprecated: use SpecimenBuilder.AddIdentifier instead; removed in v2.
 func WithSpecimenIdentifier(v Identifier) SpecimenOption {
 	return func(r *Specimen) {
 		r.Identifier = append(r.Identifier, v)
@@ -1298,6 +1330,8 @@ func WithSpecimenIdentifier(v Identifier) SpecimenOption {
 }
 
 // WithSpecimenAccessionIdentifier sets the AccessionIdentifier field.
+//
+// Deprecated: use SpecimenBuilder.SetAccessionIdentifier instead; removed in v2.
 func WithSpecimenAccessionIdentifier(v Identifier) SpecimenOption {
 	return func(r *Specimen) {
 		r.AccessionIdentifier = &v
@@ -1305,6 +1339,8 @@ func WithSpecimenAccessionIdentifier(v Identifier) SpecimenOption {
 }
 
 // WithSpecimenStatus sets the Status field.
+//
+// Deprecated: use SpecimenBuilder.SetStatus instead; removed in v2.
 func WithSpecimenStatus(v SpecimenStatus) SpecimenOption {
 	return func(r *Specimen) {
 		r.Status = &v
@@ -1312,6 +1348,8 @@ func WithSpecimenStatus(v SpecimenStatus) SpecimenOption {
 }
 
 // WithSpecimenType sets the Type field.
+//
+// Deprecated: use SpecimenBuilder.SetType instead; removed in v2.
 func WithSpecimenType(v CodeableConcept) SpecimenOption {
 	return func(r *Specimen) {
 		r.Type = &v
@@ -1319,6 +1357,8 @@ func WithSpecimenType(v CodeableConcept) SpecimenOption {
 }
 
 // WithSpecimenSubject sets the Subject field.
+//
+// Deprecated: use SpecimenBuilder.SetSubject instead; removed in v2.
 func WithSpecimenSubject(v Reference) SpecimenOption {
 	return func(r *Specimen) {
 		r.Subject = &v
@@ -1326,6 +1366,8 @@ func WithSpecimenSubject(v Reference) SpecimenOption {
 }
 
 // WithSpecimenReceivedTime sets the ReceivedTime field.
+//
+// Deprecated: use SpecimenBuilder.SetReceivedTime instead; removed in v2.
 func WithSpecimenReceivedTime(v string) SpecimenOption {
 	return func(r *Specimen) {
 		r.ReceivedTime = &v
@@ -1333,6 +1375,8 @@ func WithSpecimenReceivedTime(v string) SpecimenOption {
 }
 
 // WithSpecimenParent adds a Parent to the Specimen.
+//
+// Deprecated: use SpecimenBuilder.AddParent instead; removed in v2.
 func WithSpecimenParent(v Reference) SpecimenOption {
 	return func(r *Specimen) {
 		r.Parent = append(r.Parent, v)
@@ -1340,6 +1384,8 @@ func WithSpecimenParent(v Reference) SpecimenOption {
 }
 
 // WithSpecimenRequest adds a Request to the Specimen.
+//
+// Deprecated: use SpecimenBuilder.AddRequest instead; removed in v2.
 func WithSpecimenRequest(v Reference) SpecimenOption {
 	return func(r *Specimen) {
 		r.Request = append(r.Request, v)
@@ -1347,6 +1393,8 @@ func WithSpecimenRequest(v Reference) SpecimenOption {
 }
 
 // WithSpecimenCombined sets the Combined field.
+//
+// Deprecated: use SpecimenBuilder.SetCombined instead; removed in v2.
 func WithSpecimenCombined(v SpecimenCombined) SpecimenOption {
 	return func(r *Specimen) {
 		r.Combined = &v
@@ -1354,6 +1402,8 @@ func WithSpecimenCombined(v SpecimenCombined) SpecimenOption {
 }
 
 // WithSpecimenRole adds a Role to the Specimen.
+//
+// Deprecated: use SpecimenBuilder.AddRole instead; removed in v2.
 func WithSpecimenRole(v CodeableConcept) SpecimenOption {
 	return func(r *Specimen) {
 		r.Role = append(r.Role, v)
@@ -1361,6 +1411,8 @@ func WithSpecimenRole(v CodeableConcept) SpecimenOption {
 }
 
 // WithSpecimenFeature adds a Feature to the Specimen.
+//
+// Deprecated: use SpecimenBuilder.AddFeature instead; removed in v2.
 func WithSpecimenFeature(v SpecimenFeature) SpecimenOption {
 	return func(r *Specimen) {
 		r.Feature = append(r.Feature, v)
@@ -1368,6 +1420,8 @@ func WithSpecimenFeature(v SpecimenFeature) SpecimenOption {
 }
 
 // WithSpecimenCollection sets the Collection field.
+//
+// Deprecated: use SpecimenBuilder.SetCollection instead; removed in v2.
 func WithSpecimenCollection(v SpecimenCollection) SpecimenOption {
 	return func(r *Specimen) {
 		r.Collection = &v
@@ -1375,6 +1429,8 @@ func WithSpecimenCollection(v SpecimenCollection) SpecimenOption {
 }
 
 // WithSpecimenProcessing adds a Processing to the Specimen.
+//
+// Deprecated: use SpecimenBuilder.AddProcessing instead; removed in v2.
 func WithSpecimenProcessing(v SpecimenProcessing) SpecimenOption {
 	return func(r *Specimen) {
 		r.Processing = append(r.Processing, v)
@@ -1382,6 +1438,8 @@ func WithSpecimenProcessing(v SpecimenProcessing) SpecimenOption {
 }
 
 // WithSpecimenContainer adds a Container to the Specimen.
+//
+// Deprecated: use SpecimenBuilder.AddContainer instead; removed in v2.
 func WithSpecimenContainer(v SpecimenContainer) SpecimenOption {
 	return func(r *Specimen) {
 		r.Container = append(r.Container, v)
@@ -1389,6 +1447,8 @@ func WithSpecimenContainer(v SpecimenContainer) SpecimenOption {
 }
 
 // WithSpecimenCondition adds a Condition to the Specimen.
+//
+// Deprecated: use SpecimenBuilder.AddCondition instead; removed in v2.
 func WithSpecimenCondition(v CodeableConcept) SpecimenOption {
 	return func(r *Specimen) {
 		r.Condition = append(r.Condition, v)
@@ -1396,6 +1456,8 @@ func WithSpecimenCondition(v CodeableConcept) SpecimenOption {
 }
 
 // WithSpecimenNote adds a Note to the Specimen.
+//
+// Deprecated: use SpecimenBuilder.AddNote instead; removed in v2.
 func WithSpecimenNote(v Annotation) SpecimenOption {
 	return func(r *Specimen) {
 		r.Note = append(r.Note, v)

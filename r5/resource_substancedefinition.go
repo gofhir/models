@@ -2502,9 +2502,23 @@ func (b *SubstanceDefinitionBuilder) SetSourceMaterial(v SubstanceDefinitionSour
 // =============================================================================
 
 // SubstanceDefinitionOption is a functional option for configuring a SubstanceDefinition.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// SubstanceDefinitionBuilder. Every WithSubstanceDefinition* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type SubstanceDefinitionOption func(*SubstanceDefinition)
 
 // NewSubstanceDefinition creates a new SubstanceDefinition with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewSubstanceDefinitionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewSubstanceDefinitionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewSubstanceDefinition(opts ...SubstanceDefinitionOption) *SubstanceDefinition {
 	r := &SubstanceDefinition{ResourceType: "SubstanceDefinition"}
 	for _, opt := range opts {
@@ -2514,6 +2528,8 @@ func NewSubstanceDefinition(opts ...SubstanceDefinitionOption) *SubstanceDefinit
 }
 
 // WithSubstanceDefinitionId sets the Id field.
+//
+// Deprecated: use SubstanceDefinitionBuilder.SetId instead; removed in v2.
 func WithSubstanceDefinitionId(v string) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Id = &v
@@ -2521,6 +2537,8 @@ func WithSubstanceDefinitionId(v string) SubstanceDefinitionOption {
 }
 
 // WithSubstanceDefinitionMeta sets the Meta field.
+//
+// Deprecated: use SubstanceDefinitionBuilder.SetMeta instead; removed in v2.
 func WithSubstanceDefinitionMeta(v Meta) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Meta = &v
@@ -2528,6 +2546,8 @@ func WithSubstanceDefinitionMeta(v Meta) SubstanceDefinitionOption {
 }
 
 // WithSubstanceDefinitionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use SubstanceDefinitionBuilder.SetImplicitRules instead; removed in v2.
 func WithSubstanceDefinitionImplicitRules(v string) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.ImplicitRules = &v
@@ -2535,6 +2555,8 @@ func WithSubstanceDefinitionImplicitRules(v string) SubstanceDefinitionOption {
 }
 
 // WithSubstanceDefinitionLanguage sets the Language field.
+//
+// Deprecated: use SubstanceDefinitionBuilder.SetLanguage instead; removed in v2.
 func WithSubstanceDefinitionLanguage(v string) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Language = &v
@@ -2542,6 +2564,8 @@ func WithSubstanceDefinitionLanguage(v string) SubstanceDefinitionOption {
 }
 
 // WithSubstanceDefinitionText sets the Text field.
+//
+// Deprecated: use SubstanceDefinitionBuilder.SetText instead; removed in v2.
 func WithSubstanceDefinitionText(v Narrative) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Text = &v
@@ -2549,6 +2573,8 @@ func WithSubstanceDefinitionText(v Narrative) SubstanceDefinitionOption {
 }
 
 // WithSubstanceDefinitionContained adds a Contained to the SubstanceDefinition.
+//
+// Deprecated: use SubstanceDefinitionBuilder.AddContained instead; removed in v2.
 func WithSubstanceDefinitionContained(v Resource) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Contained = append(r.Contained, v)
@@ -2556,6 +2582,8 @@ func WithSubstanceDefinitionContained(v Resource) SubstanceDefinitionOption {
 }
 
 // WithSubstanceDefinitionExtension adds a Extension to the SubstanceDefinition.
+//
+// Deprecated: use SubstanceDefinitionBuilder.AddExtension instead; removed in v2.
 func WithSubstanceDefinitionExtension(v Extension) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Extension = append(r.Extension, v)
@@ -2563,6 +2591,8 @@ func WithSubstanceDefinitionExtension(v Extension) SubstanceDefinitionOption {
 }
 
 // WithSubstanceDefinitionModifierExtension adds a ModifierExtension to the SubstanceDefinition.
+//
+// Deprecated: use SubstanceDefinitionBuilder.AddModifierExtension instead; removed in v2.
 func WithSubstanceDefinitionModifierExtension(v Extension) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -2570,6 +2600,8 @@ func WithSubstanceDefinitionModifierExtension(v Extension) SubstanceDefinitionOp
 }
 
 // WithSubstanceDefinitionIdentifier adds a Identifier to the SubstanceDefinition.
+//
+// Deprecated: use SubstanceDefinitionBuilder.AddIdentifier instead; removed in v2.
 func WithSubstanceDefinitionIdentifier(v Identifier) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Identifier = append(r.Identifier, v)
@@ -2577,6 +2609,8 @@ func WithSubstanceDefinitionIdentifier(v Identifier) SubstanceDefinitionOption {
 }
 
 // WithSubstanceDefinitionVersion sets the Version field.
+//
+// Deprecated: use SubstanceDefinitionBuilder.SetVersion instead; removed in v2.
 func WithSubstanceDefinitionVersion(v string) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Version = &v
@@ -2584,6 +2618,8 @@ func WithSubstanceDefinitionVersion(v string) SubstanceDefinitionOption {
 }
 
 // WithSubstanceDefinitionStatus sets the Status field.
+//
+// Deprecated: use SubstanceDefinitionBuilder.SetStatus instead; removed in v2.
 func WithSubstanceDefinitionStatus(v CodeableConcept) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Status = &v
@@ -2591,6 +2627,8 @@ func WithSubstanceDefinitionStatus(v CodeableConcept) SubstanceDefinitionOption 
 }
 
 // WithSubstanceDefinitionClassification adds a Classification to the SubstanceDefinition.
+//
+// Deprecated: use SubstanceDefinitionBuilder.AddClassification instead; removed in v2.
 func WithSubstanceDefinitionClassification(v CodeableConcept) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Classification = append(r.Classification, v)
@@ -2598,6 +2636,8 @@ func WithSubstanceDefinitionClassification(v CodeableConcept) SubstanceDefinitio
 }
 
 // WithSubstanceDefinitionDomain sets the Domain field.
+//
+// Deprecated: use SubstanceDefinitionBuilder.SetDomain instead; removed in v2.
 func WithSubstanceDefinitionDomain(v CodeableConcept) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Domain = &v
@@ -2605,6 +2645,8 @@ func WithSubstanceDefinitionDomain(v CodeableConcept) SubstanceDefinitionOption 
 }
 
 // WithSubstanceDefinitionGrade adds a Grade to the SubstanceDefinition.
+//
+// Deprecated: use SubstanceDefinitionBuilder.AddGrade instead; removed in v2.
 func WithSubstanceDefinitionGrade(v CodeableConcept) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Grade = append(r.Grade, v)
@@ -2612,6 +2654,8 @@ func WithSubstanceDefinitionGrade(v CodeableConcept) SubstanceDefinitionOption {
 }
 
 // WithSubstanceDefinitionDescription sets the Description field.
+//
+// Deprecated: use SubstanceDefinitionBuilder.SetDescription instead; removed in v2.
 func WithSubstanceDefinitionDescription(v string) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Description = &v
@@ -2619,6 +2663,8 @@ func WithSubstanceDefinitionDescription(v string) SubstanceDefinitionOption {
 }
 
 // WithSubstanceDefinitionInformationSource adds a InformationSource to the SubstanceDefinition.
+//
+// Deprecated: use SubstanceDefinitionBuilder.AddInformationSource instead; removed in v2.
 func WithSubstanceDefinitionInformationSource(v Reference) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.InformationSource = append(r.InformationSource, v)
@@ -2626,6 +2672,8 @@ func WithSubstanceDefinitionInformationSource(v Reference) SubstanceDefinitionOp
 }
 
 // WithSubstanceDefinitionNote adds a Note to the SubstanceDefinition.
+//
+// Deprecated: use SubstanceDefinitionBuilder.AddNote instead; removed in v2.
 func WithSubstanceDefinitionNote(v Annotation) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Note = append(r.Note, v)
@@ -2633,6 +2681,8 @@ func WithSubstanceDefinitionNote(v Annotation) SubstanceDefinitionOption {
 }
 
 // WithSubstanceDefinitionManufacturer adds a Manufacturer to the SubstanceDefinition.
+//
+// Deprecated: use SubstanceDefinitionBuilder.AddManufacturer instead; removed in v2.
 func WithSubstanceDefinitionManufacturer(v Reference) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Manufacturer = append(r.Manufacturer, v)
@@ -2640,6 +2690,8 @@ func WithSubstanceDefinitionManufacturer(v Reference) SubstanceDefinitionOption 
 }
 
 // WithSubstanceDefinitionSupplier adds a Supplier to the SubstanceDefinition.
+//
+// Deprecated: use SubstanceDefinitionBuilder.AddSupplier instead; removed in v2.
 func WithSubstanceDefinitionSupplier(v Reference) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Supplier = append(r.Supplier, v)
@@ -2647,6 +2699,8 @@ func WithSubstanceDefinitionSupplier(v Reference) SubstanceDefinitionOption {
 }
 
 // WithSubstanceDefinitionMoiety adds a Moiety to the SubstanceDefinition.
+//
+// Deprecated: use SubstanceDefinitionBuilder.AddMoiety instead; removed in v2.
 func WithSubstanceDefinitionMoiety(v SubstanceDefinitionMoiety) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Moiety = append(r.Moiety, v)
@@ -2654,6 +2708,8 @@ func WithSubstanceDefinitionMoiety(v SubstanceDefinitionMoiety) SubstanceDefinit
 }
 
 // WithSubstanceDefinitionCharacterization adds a Characterization to the SubstanceDefinition.
+//
+// Deprecated: use SubstanceDefinitionBuilder.AddCharacterization instead; removed in v2.
 func WithSubstanceDefinitionCharacterization(v SubstanceDefinitionCharacterization) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Characterization = append(r.Characterization, v)
@@ -2661,6 +2717,8 @@ func WithSubstanceDefinitionCharacterization(v SubstanceDefinitionCharacterizati
 }
 
 // WithSubstanceDefinitionProperty adds a Property to the SubstanceDefinition.
+//
+// Deprecated: use SubstanceDefinitionBuilder.AddProperty instead; removed in v2.
 func WithSubstanceDefinitionProperty(v SubstanceDefinitionProperty) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Property = append(r.Property, v)
@@ -2668,6 +2726,8 @@ func WithSubstanceDefinitionProperty(v SubstanceDefinitionProperty) SubstanceDef
 }
 
 // WithSubstanceDefinitionReferenceInformation sets the ReferenceInformation field.
+//
+// Deprecated: use SubstanceDefinitionBuilder.SetReferenceInformation instead; removed in v2.
 func WithSubstanceDefinitionReferenceInformation(v Reference) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.ReferenceInformation = &v
@@ -2675,6 +2735,8 @@ func WithSubstanceDefinitionReferenceInformation(v Reference) SubstanceDefinitio
 }
 
 // WithSubstanceDefinitionMolecularWeight adds a MolecularWeight to the SubstanceDefinition.
+//
+// Deprecated: use SubstanceDefinitionBuilder.AddMolecularWeight instead; removed in v2.
 func WithSubstanceDefinitionMolecularWeight(v SubstanceDefinitionMolecularWeight) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.MolecularWeight = append(r.MolecularWeight, v)
@@ -2682,6 +2744,8 @@ func WithSubstanceDefinitionMolecularWeight(v SubstanceDefinitionMolecularWeight
 }
 
 // WithSubstanceDefinitionStructure sets the Structure field.
+//
+// Deprecated: use SubstanceDefinitionBuilder.SetStructure instead; removed in v2.
 func WithSubstanceDefinitionStructure(v SubstanceDefinitionStructure) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Structure = &v
@@ -2689,6 +2753,8 @@ func WithSubstanceDefinitionStructure(v SubstanceDefinitionStructure) SubstanceD
 }
 
 // WithSubstanceDefinitionCode adds a Code to the SubstanceDefinition.
+//
+// Deprecated: use SubstanceDefinitionBuilder.AddCode instead; removed in v2.
 func WithSubstanceDefinitionCode(v SubstanceDefinitionCode) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Code = append(r.Code, v)
@@ -2696,6 +2762,8 @@ func WithSubstanceDefinitionCode(v SubstanceDefinitionCode) SubstanceDefinitionO
 }
 
 // WithSubstanceDefinitionName adds a Name to the SubstanceDefinition.
+//
+// Deprecated: use SubstanceDefinitionBuilder.AddName instead; removed in v2.
 func WithSubstanceDefinitionName(v SubstanceDefinitionName) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Name = append(r.Name, v)
@@ -2703,6 +2771,8 @@ func WithSubstanceDefinitionName(v SubstanceDefinitionName) SubstanceDefinitionO
 }
 
 // WithSubstanceDefinitionRelationship adds a Relationship to the SubstanceDefinition.
+//
+// Deprecated: use SubstanceDefinitionBuilder.AddRelationship instead; removed in v2.
 func WithSubstanceDefinitionRelationship(v SubstanceDefinitionRelationship) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Relationship = append(r.Relationship, v)
@@ -2710,6 +2780,8 @@ func WithSubstanceDefinitionRelationship(v SubstanceDefinitionRelationship) Subs
 }
 
 // WithSubstanceDefinitionNucleicAcid sets the NucleicAcid field.
+//
+// Deprecated: use SubstanceDefinitionBuilder.SetNucleicAcid instead; removed in v2.
 func WithSubstanceDefinitionNucleicAcid(v Reference) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.NucleicAcid = &v
@@ -2717,6 +2789,8 @@ func WithSubstanceDefinitionNucleicAcid(v Reference) SubstanceDefinitionOption {
 }
 
 // WithSubstanceDefinitionPolymer sets the Polymer field.
+//
+// Deprecated: use SubstanceDefinitionBuilder.SetPolymer instead; removed in v2.
 func WithSubstanceDefinitionPolymer(v Reference) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Polymer = &v
@@ -2724,6 +2798,8 @@ func WithSubstanceDefinitionPolymer(v Reference) SubstanceDefinitionOption {
 }
 
 // WithSubstanceDefinitionProtein sets the Protein field.
+//
+// Deprecated: use SubstanceDefinitionBuilder.SetProtein instead; removed in v2.
 func WithSubstanceDefinitionProtein(v Reference) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.Protein = &v
@@ -2731,6 +2807,8 @@ func WithSubstanceDefinitionProtein(v Reference) SubstanceDefinitionOption {
 }
 
 // WithSubstanceDefinitionSourceMaterial sets the SourceMaterial field.
+//
+// Deprecated: use SubstanceDefinitionBuilder.SetSourceMaterial instead; removed in v2.
 func WithSubstanceDefinitionSourceMaterial(v SubstanceDefinitionSourceMaterial) SubstanceDefinitionOption {
 	return func(r *SubstanceDefinition) {
 		r.SourceMaterial = &v

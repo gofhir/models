@@ -608,9 +608,23 @@ func (b *SubscriptionBuilder) SetChannel(v SubscriptionChannel) *SubscriptionBui
 // =============================================================================
 
 // SubscriptionOption is a functional option for configuring a Subscription.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// SubscriptionBuilder. Every WithSubscription* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type SubscriptionOption func(*Subscription)
 
 // NewSubscription creates a new Subscription with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewSubscriptionBuilder().SetId("x").Build()
+//
+// Deprecated: use NewSubscriptionBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewSubscription(opts ...SubscriptionOption) *Subscription {
 	r := &Subscription{ResourceType: "Subscription"}
 	for _, opt := range opts {
@@ -620,6 +634,8 @@ func NewSubscription(opts ...SubscriptionOption) *Subscription {
 }
 
 // WithSubscriptionId sets the Id field.
+//
+// Deprecated: use SubscriptionBuilder.SetId instead; removed in v2.
 func WithSubscriptionId(v string) SubscriptionOption {
 	return func(r *Subscription) {
 		r.Id = &v
@@ -627,6 +643,8 @@ func WithSubscriptionId(v string) SubscriptionOption {
 }
 
 // WithSubscriptionMeta sets the Meta field.
+//
+// Deprecated: use SubscriptionBuilder.SetMeta instead; removed in v2.
 func WithSubscriptionMeta(v Meta) SubscriptionOption {
 	return func(r *Subscription) {
 		r.Meta = &v
@@ -634,6 +652,8 @@ func WithSubscriptionMeta(v Meta) SubscriptionOption {
 }
 
 // WithSubscriptionImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use SubscriptionBuilder.SetImplicitRules instead; removed in v2.
 func WithSubscriptionImplicitRules(v string) SubscriptionOption {
 	return func(r *Subscription) {
 		r.ImplicitRules = &v
@@ -641,6 +661,8 @@ func WithSubscriptionImplicitRules(v string) SubscriptionOption {
 }
 
 // WithSubscriptionLanguage sets the Language field.
+//
+// Deprecated: use SubscriptionBuilder.SetLanguage instead; removed in v2.
 func WithSubscriptionLanguage(v string) SubscriptionOption {
 	return func(r *Subscription) {
 		r.Language = &v
@@ -648,6 +670,8 @@ func WithSubscriptionLanguage(v string) SubscriptionOption {
 }
 
 // WithSubscriptionText sets the Text field.
+//
+// Deprecated: use SubscriptionBuilder.SetText instead; removed in v2.
 func WithSubscriptionText(v Narrative) SubscriptionOption {
 	return func(r *Subscription) {
 		r.Text = &v
@@ -655,6 +679,8 @@ func WithSubscriptionText(v Narrative) SubscriptionOption {
 }
 
 // WithSubscriptionContained adds a Contained to the Subscription.
+//
+// Deprecated: use SubscriptionBuilder.AddContained instead; removed in v2.
 func WithSubscriptionContained(v Resource) SubscriptionOption {
 	return func(r *Subscription) {
 		r.Contained = append(r.Contained, v)
@@ -662,6 +688,8 @@ func WithSubscriptionContained(v Resource) SubscriptionOption {
 }
 
 // WithSubscriptionExtension adds a Extension to the Subscription.
+//
+// Deprecated: use SubscriptionBuilder.AddExtension instead; removed in v2.
 func WithSubscriptionExtension(v Extension) SubscriptionOption {
 	return func(r *Subscription) {
 		r.Extension = append(r.Extension, v)
@@ -669,6 +697,8 @@ func WithSubscriptionExtension(v Extension) SubscriptionOption {
 }
 
 // WithSubscriptionModifierExtension adds a ModifierExtension to the Subscription.
+//
+// Deprecated: use SubscriptionBuilder.AddModifierExtension instead; removed in v2.
 func WithSubscriptionModifierExtension(v Extension) SubscriptionOption {
 	return func(r *Subscription) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -676,6 +706,8 @@ func WithSubscriptionModifierExtension(v Extension) SubscriptionOption {
 }
 
 // WithSubscriptionStatus sets the Status field.
+//
+// Deprecated: use SubscriptionBuilder.SetStatus instead; removed in v2.
 func WithSubscriptionStatus(v SubscriptionStatus) SubscriptionOption {
 	return func(r *Subscription) {
 		r.Status = &v
@@ -683,6 +715,8 @@ func WithSubscriptionStatus(v SubscriptionStatus) SubscriptionOption {
 }
 
 // WithSubscriptionContact adds a Contact to the Subscription.
+//
+// Deprecated: use SubscriptionBuilder.AddContact instead; removed in v2.
 func WithSubscriptionContact(v ContactPoint) SubscriptionOption {
 	return func(r *Subscription) {
 		r.Contact = append(r.Contact, v)
@@ -690,6 +724,8 @@ func WithSubscriptionContact(v ContactPoint) SubscriptionOption {
 }
 
 // WithSubscriptionEnd sets the End field.
+//
+// Deprecated: use SubscriptionBuilder.SetEnd instead; removed in v2.
 func WithSubscriptionEnd(v string) SubscriptionOption {
 	return func(r *Subscription) {
 		r.End = &v
@@ -697,6 +733,8 @@ func WithSubscriptionEnd(v string) SubscriptionOption {
 }
 
 // WithSubscriptionReason sets the Reason field.
+//
+// Deprecated: use SubscriptionBuilder.SetReason instead; removed in v2.
 func WithSubscriptionReason(v string) SubscriptionOption {
 	return func(r *Subscription) {
 		r.Reason = &v
@@ -704,6 +742,8 @@ func WithSubscriptionReason(v string) SubscriptionOption {
 }
 
 // WithSubscriptionCriteria sets the Criteria field.
+//
+// Deprecated: use SubscriptionBuilder.SetCriteria instead; removed in v2.
 func WithSubscriptionCriteria(v string) SubscriptionOption {
 	return func(r *Subscription) {
 		r.Criteria = &v
@@ -711,6 +751,8 @@ func WithSubscriptionCriteria(v string) SubscriptionOption {
 }
 
 // WithSubscriptionError sets the Error field.
+//
+// Deprecated: use SubscriptionBuilder.SetError instead; removed in v2.
 func WithSubscriptionError(v string) SubscriptionOption {
 	return func(r *Subscription) {
 		r.Error = &v
@@ -718,6 +760,8 @@ func WithSubscriptionError(v string) SubscriptionOption {
 }
 
 // WithSubscriptionChannel sets the Channel field.
+//
+// Deprecated: use SubscriptionBuilder.SetChannel instead; removed in v2.
 func WithSubscriptionChannel(v SubscriptionChannel) SubscriptionOption {
 	return func(r *Subscription) {
 		r.Channel = &v

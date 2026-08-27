@@ -2666,9 +2666,23 @@ func (b *ClaimResponseBuilder) AddError(v ClaimResponseError) *ClaimResponseBuil
 // =============================================================================
 
 // ClaimResponseOption is a functional option for configuring a ClaimResponse.
+//
+// Deprecated: the functional options are removed in v2, consolidated into
+// ClaimResponseBuilder. Every WithClaimResponse* option has a builder method with an
+// identical signature and identical behavior, so the change is mechanical.
+// Migration guide: https://gofhir.github.io/models/docs/migration/v1-to-v2/
 type ClaimResponseOption func(*ClaimResponse)
 
 // NewClaimResponse creates a new ClaimResponse with the given options.
+//
+// Example using the builder that replaces it:
+//
+//	NewClaimResponseBuilder().SetId("x").Build()
+//
+// Deprecated: use NewClaimResponseBuilder() instead, which reaches the same result
+// through chained methods rather than options, with Build() returning the
+// resource. Removed in v2. Migration guide:
+// https://gofhir.github.io/models/docs/migration/v1-to-v2/
 func NewClaimResponse(opts ...ClaimResponseOption) *ClaimResponse {
 	r := &ClaimResponse{ResourceType: "ClaimResponse"}
 	for _, opt := range opts {
@@ -2678,6 +2692,8 @@ func NewClaimResponse(opts ...ClaimResponseOption) *ClaimResponse {
 }
 
 // WithClaimResponseId sets the Id field.
+//
+// Deprecated: use ClaimResponseBuilder.SetId instead; removed in v2.
 func WithClaimResponseId(v string) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Id = &v
@@ -2685,6 +2701,8 @@ func WithClaimResponseId(v string) ClaimResponseOption {
 }
 
 // WithClaimResponseMeta sets the Meta field.
+//
+// Deprecated: use ClaimResponseBuilder.SetMeta instead; removed in v2.
 func WithClaimResponseMeta(v Meta) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Meta = &v
@@ -2692,6 +2710,8 @@ func WithClaimResponseMeta(v Meta) ClaimResponseOption {
 }
 
 // WithClaimResponseImplicitRules sets the ImplicitRules field.
+//
+// Deprecated: use ClaimResponseBuilder.SetImplicitRules instead; removed in v2.
 func WithClaimResponseImplicitRules(v string) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.ImplicitRules = &v
@@ -2699,6 +2719,8 @@ func WithClaimResponseImplicitRules(v string) ClaimResponseOption {
 }
 
 // WithClaimResponseLanguage sets the Language field.
+//
+// Deprecated: use ClaimResponseBuilder.SetLanguage instead; removed in v2.
 func WithClaimResponseLanguage(v string) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Language = &v
@@ -2706,6 +2728,8 @@ func WithClaimResponseLanguage(v string) ClaimResponseOption {
 }
 
 // WithClaimResponseText sets the Text field.
+//
+// Deprecated: use ClaimResponseBuilder.SetText instead; removed in v2.
 func WithClaimResponseText(v Narrative) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Text = &v
@@ -2713,6 +2737,8 @@ func WithClaimResponseText(v Narrative) ClaimResponseOption {
 }
 
 // WithClaimResponseContained adds a Contained to the ClaimResponse.
+//
+// Deprecated: use ClaimResponseBuilder.AddContained instead; removed in v2.
 func WithClaimResponseContained(v Resource) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Contained = append(r.Contained, v)
@@ -2720,6 +2746,8 @@ func WithClaimResponseContained(v Resource) ClaimResponseOption {
 }
 
 // WithClaimResponseExtension adds a Extension to the ClaimResponse.
+//
+// Deprecated: use ClaimResponseBuilder.AddExtension instead; removed in v2.
 func WithClaimResponseExtension(v Extension) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Extension = append(r.Extension, v)
@@ -2727,6 +2755,8 @@ func WithClaimResponseExtension(v Extension) ClaimResponseOption {
 }
 
 // WithClaimResponseModifierExtension adds a ModifierExtension to the ClaimResponse.
+//
+// Deprecated: use ClaimResponseBuilder.AddModifierExtension instead; removed in v2.
 func WithClaimResponseModifierExtension(v Extension) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.ModifierExtension = append(r.ModifierExtension, v)
@@ -2734,6 +2764,8 @@ func WithClaimResponseModifierExtension(v Extension) ClaimResponseOption {
 }
 
 // WithClaimResponseIdentifier adds a Identifier to the ClaimResponse.
+//
+// Deprecated: use ClaimResponseBuilder.AddIdentifier instead; removed in v2.
 func WithClaimResponseIdentifier(v Identifier) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Identifier = append(r.Identifier, v)
@@ -2741,6 +2773,8 @@ func WithClaimResponseIdentifier(v Identifier) ClaimResponseOption {
 }
 
 // WithClaimResponseStatus sets the Status field.
+//
+// Deprecated: use ClaimResponseBuilder.SetStatus instead; removed in v2.
 func WithClaimResponseStatus(v FinancialResourceStatusCodes) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Status = &v
@@ -2748,6 +2782,8 @@ func WithClaimResponseStatus(v FinancialResourceStatusCodes) ClaimResponseOption
 }
 
 // WithClaimResponseType sets the Type field.
+//
+// Deprecated: use ClaimResponseBuilder.SetType instead; removed in v2.
 func WithClaimResponseType(v CodeableConcept) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Type = v
@@ -2755,6 +2791,8 @@ func WithClaimResponseType(v CodeableConcept) ClaimResponseOption {
 }
 
 // WithClaimResponseSubType sets the SubType field.
+//
+// Deprecated: use ClaimResponseBuilder.SetSubType instead; removed in v2.
 func WithClaimResponseSubType(v CodeableConcept) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.SubType = &v
@@ -2762,6 +2800,8 @@ func WithClaimResponseSubType(v CodeableConcept) ClaimResponseOption {
 }
 
 // WithClaimResponseUse sets the Use field.
+//
+// Deprecated: use ClaimResponseBuilder.SetUse instead; removed in v2.
 func WithClaimResponseUse(v Use) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Use = &v
@@ -2769,6 +2809,8 @@ func WithClaimResponseUse(v Use) ClaimResponseOption {
 }
 
 // WithClaimResponsePatient sets the Patient field.
+//
+// Deprecated: use ClaimResponseBuilder.SetPatient instead; removed in v2.
 func WithClaimResponsePatient(v Reference) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Patient = v
@@ -2776,6 +2818,8 @@ func WithClaimResponsePatient(v Reference) ClaimResponseOption {
 }
 
 // WithClaimResponseCreated sets the Created field.
+//
+// Deprecated: use ClaimResponseBuilder.SetCreated instead; removed in v2.
 func WithClaimResponseCreated(v string) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Created = &v
@@ -2783,6 +2827,8 @@ func WithClaimResponseCreated(v string) ClaimResponseOption {
 }
 
 // WithClaimResponseInsurer sets the Insurer field.
+//
+// Deprecated: use ClaimResponseBuilder.SetInsurer instead; removed in v2.
 func WithClaimResponseInsurer(v Reference) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Insurer = v
@@ -2790,6 +2836,8 @@ func WithClaimResponseInsurer(v Reference) ClaimResponseOption {
 }
 
 // WithClaimResponseRequestor sets the Requestor field.
+//
+// Deprecated: use ClaimResponseBuilder.SetRequestor instead; removed in v2.
 func WithClaimResponseRequestor(v Reference) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Requestor = &v
@@ -2797,6 +2845,8 @@ func WithClaimResponseRequestor(v Reference) ClaimResponseOption {
 }
 
 // WithClaimResponseRequest sets the Request field.
+//
+// Deprecated: use ClaimResponseBuilder.SetRequest instead; removed in v2.
 func WithClaimResponseRequest(v Reference) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Request = &v
@@ -2804,6 +2854,8 @@ func WithClaimResponseRequest(v Reference) ClaimResponseOption {
 }
 
 // WithClaimResponseOutcome sets the Outcome field.
+//
+// Deprecated: use ClaimResponseBuilder.SetOutcome instead; removed in v2.
 func WithClaimResponseOutcome(v RemittanceOutcome) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Outcome = &v
@@ -2811,6 +2863,8 @@ func WithClaimResponseOutcome(v RemittanceOutcome) ClaimResponseOption {
 }
 
 // WithClaimResponseDisposition sets the Disposition field.
+//
+// Deprecated: use ClaimResponseBuilder.SetDisposition instead; removed in v2.
 func WithClaimResponseDisposition(v string) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Disposition = &v
@@ -2818,6 +2872,8 @@ func WithClaimResponseDisposition(v string) ClaimResponseOption {
 }
 
 // WithClaimResponsePreAuthRef sets the PreAuthRef field.
+//
+// Deprecated: use ClaimResponseBuilder.SetPreAuthRef instead; removed in v2.
 func WithClaimResponsePreAuthRef(v string) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.PreAuthRef = &v
@@ -2825,6 +2881,8 @@ func WithClaimResponsePreAuthRef(v string) ClaimResponseOption {
 }
 
 // WithClaimResponsePreAuthPeriod sets the PreAuthPeriod field.
+//
+// Deprecated: use ClaimResponseBuilder.SetPreAuthPeriod instead; removed in v2.
 func WithClaimResponsePreAuthPeriod(v Period) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.PreAuthPeriod = &v
@@ -2832,6 +2890,8 @@ func WithClaimResponsePreAuthPeriod(v Period) ClaimResponseOption {
 }
 
 // WithClaimResponsePayeeType sets the PayeeType field.
+//
+// Deprecated: use ClaimResponseBuilder.SetPayeeType instead; removed in v2.
 func WithClaimResponsePayeeType(v CodeableConcept) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.PayeeType = &v
@@ -2839,6 +2899,8 @@ func WithClaimResponsePayeeType(v CodeableConcept) ClaimResponseOption {
 }
 
 // WithClaimResponseItem adds a Item to the ClaimResponse.
+//
+// Deprecated: use ClaimResponseBuilder.AddItem instead; removed in v2.
 func WithClaimResponseItem(v ClaimResponseItem) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Item = append(r.Item, v)
@@ -2846,6 +2908,8 @@ func WithClaimResponseItem(v ClaimResponseItem) ClaimResponseOption {
 }
 
 // WithClaimResponseAddItem adds a AddItem to the ClaimResponse.
+//
+// Deprecated: use ClaimResponseBuilder.AddAddItem instead; removed in v2.
 func WithClaimResponseAddItem(v ClaimResponseAddItem) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.AddItem = append(r.AddItem, v)
@@ -2853,6 +2917,8 @@ func WithClaimResponseAddItem(v ClaimResponseAddItem) ClaimResponseOption {
 }
 
 // WithClaimResponseAdjudication adds a Adjudication to the ClaimResponse.
+//
+// Deprecated: use ClaimResponseBuilder.AddAdjudication instead; removed in v2.
 func WithClaimResponseAdjudication(v ClaimResponseItemAdjudication) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Adjudication = append(r.Adjudication, v)
@@ -2860,6 +2926,8 @@ func WithClaimResponseAdjudication(v ClaimResponseItemAdjudication) ClaimRespons
 }
 
 // WithClaimResponseTotal adds a Total to the ClaimResponse.
+//
+// Deprecated: use ClaimResponseBuilder.AddTotal instead; removed in v2.
 func WithClaimResponseTotal(v ClaimResponseTotal) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Total = append(r.Total, v)
@@ -2867,6 +2935,8 @@ func WithClaimResponseTotal(v ClaimResponseTotal) ClaimResponseOption {
 }
 
 // WithClaimResponsePayment sets the Payment field.
+//
+// Deprecated: use ClaimResponseBuilder.SetPayment instead; removed in v2.
 func WithClaimResponsePayment(v ClaimResponsePayment) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Payment = &v
@@ -2874,6 +2944,8 @@ func WithClaimResponsePayment(v ClaimResponsePayment) ClaimResponseOption {
 }
 
 // WithClaimResponseFundsReserve sets the FundsReserve field.
+//
+// Deprecated: use ClaimResponseBuilder.SetFundsReserve instead; removed in v2.
 func WithClaimResponseFundsReserve(v CodeableConcept) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.FundsReserve = &v
@@ -2881,6 +2953,8 @@ func WithClaimResponseFundsReserve(v CodeableConcept) ClaimResponseOption {
 }
 
 // WithClaimResponseFormCode sets the FormCode field.
+//
+// Deprecated: use ClaimResponseBuilder.SetFormCode instead; removed in v2.
 func WithClaimResponseFormCode(v CodeableConcept) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.FormCode = &v
@@ -2888,6 +2962,8 @@ func WithClaimResponseFormCode(v CodeableConcept) ClaimResponseOption {
 }
 
 // WithClaimResponseForm sets the Form field.
+//
+// Deprecated: use ClaimResponseBuilder.SetForm instead; removed in v2.
 func WithClaimResponseForm(v Attachment) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Form = &v
@@ -2895,6 +2971,8 @@ func WithClaimResponseForm(v Attachment) ClaimResponseOption {
 }
 
 // WithClaimResponseProcessNote adds a ProcessNote to the ClaimResponse.
+//
+// Deprecated: use ClaimResponseBuilder.AddProcessNote instead; removed in v2.
 func WithClaimResponseProcessNote(v ClaimResponseProcessNote) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.ProcessNote = append(r.ProcessNote, v)
@@ -2902,6 +2980,8 @@ func WithClaimResponseProcessNote(v ClaimResponseProcessNote) ClaimResponseOptio
 }
 
 // WithClaimResponseCommunicationRequest adds a CommunicationRequest to the ClaimResponse.
+//
+// Deprecated: use ClaimResponseBuilder.AddCommunicationRequest instead; removed in v2.
 func WithClaimResponseCommunicationRequest(v Reference) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.CommunicationRequest = append(r.CommunicationRequest, v)
@@ -2909,6 +2989,8 @@ func WithClaimResponseCommunicationRequest(v Reference) ClaimResponseOption {
 }
 
 // WithClaimResponseInsurance adds a Insurance to the ClaimResponse.
+//
+// Deprecated: use ClaimResponseBuilder.AddInsurance instead; removed in v2.
 func WithClaimResponseInsurance(v ClaimResponseInsurance) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Insurance = append(r.Insurance, v)
@@ -2916,6 +2998,8 @@ func WithClaimResponseInsurance(v ClaimResponseInsurance) ClaimResponseOption {
 }
 
 // WithClaimResponseError adds a Error to the ClaimResponse.
+//
+// Deprecated: use ClaimResponseBuilder.AddError instead; removed in v2.
 func WithClaimResponseError(v ClaimResponseError) ClaimResponseOption {
 	return func(r *ClaimResponse) {
 		r.Error = append(r.Error, v)
