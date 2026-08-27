@@ -52,9 +52,9 @@ type MedicationKnowledge struct {
 	// Codes that identify the different jurisdictions for which the information of this resource was created
 	IntendedJurisdiction []CodeableConcept `json:"intendedJurisdiction,omitempty"`
 	// A name associated with the medication being described
-	Name []string `json:"name,omitempty"`
+	Name []*string `json:"name,omitempty"`
 	// Extension for Name
-	NameExt []Element `json:"_name,omitempty"`
+	NameExt []*Element `json:"_name,omitempty"`
 	// Associated or related medication information
 	RelatedMedicationKnowledge []MedicationKnowledgeRelatedMedicationKnowledge `json:"relatedMedicationKnowledge,omitempty"`
 	// The set of medication resources that are associated with this medication
@@ -435,9 +435,8 @@ func (r *MedicationKnowledge) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Name = append(r.Name, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Name = append(r.Name, v)
 			case "relatedMedicationKnowledge":
 				var v MedicationKnowledgeRelatedMedicationKnowledge
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2768,8 +2767,12 @@ func (b *MedicationKnowledgeBuilder) AddIntendedJurisdiction(v CodeableConcept) 
 }
 
 // AddName adds a Name element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *MedicationKnowledgeBuilder) AddName(v string) *MedicationKnowledgeBuilder {
-	b.medicationKnowledge.Name = append(b.medicationKnowledge.Name, v)
+	b.medicationKnowledge.Name = append(b.medicationKnowledge.Name, &v)
 	return b
 }
 
@@ -2967,7 +2970,7 @@ func WithMedicationKnowledgeIntendedJurisdiction(v CodeableConcept) MedicationKn
 // WithMedicationKnowledgeName adds a Name to the MedicationKnowledge.
 func WithMedicationKnowledgeName(v string) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
-		r.Name = append(r.Name, v)
+		r.Name = append(r.Name, &v)
 	}
 }
 

@@ -598,7 +598,7 @@ type HealthcareServiceAvailableTime struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// mon | tue | wed | thu | fri | sat | sun
-	DaysOfWeek []DaysOfWeek `json:"daysOfWeek,omitempty"`
+	DaysOfWeek []*DaysOfWeek `json:"daysOfWeek,omitempty"`
 	// Always available? e.g. 24 hour service
 	AllDay *bool `json:"allDay,omitempty"`
 	// Opening time of day (ignored if allDay = true)
@@ -679,9 +679,8 @@ func (r *HealthcareServiceAvailableTime) UnmarshalXML(d *xml.Decoder, start xml.
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.DaysOfWeek = append(r.DaysOfWeek, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.DaysOfWeek = append(r.DaysOfWeek, v)
 			case "allDay":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {

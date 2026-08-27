@@ -106,9 +106,9 @@ type OperationDefinition struct {
 	// Extension for Base
 	BaseExt *Element `json:"_base,omitempty"`
 	// Types this operation applies to
-	Resource []string `json:"resource,omitempty"`
+	Resource []*string `json:"resource,omitempty"`
 	// Extension for Resource
-	ResourceExt []Element `json:"_resource,omitempty"`
+	ResourceExt []*Element `json:"_resource,omitempty"`
 	// Invoke at the system level?
 	System *bool `json:"system,omitempty"`
 	// Extension for System
@@ -569,9 +569,8 @@ func (r *OperationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Resource = append(r.Resource, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Resource = append(r.Resource, v)
 			case "system":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -640,7 +639,7 @@ type OperationDefinitionOverload struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Name of parameter to include in overload
-	ParameterName []string `json:"parameterName,omitempty"`
+	ParameterName []*string `json:"parameterName,omitempty"`
 	// Comments to go on overload
 	Comment *string `json:"comment,omitempty"`
 }
@@ -711,9 +710,8 @@ func (r *OperationDefinitionOverload) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.ParameterName = append(r.ParameterName, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.ParameterName = append(r.ParameterName, v)
 			case "comment":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -753,7 +751,7 @@ type OperationDefinitionParameter struct {
 	// What type this parameter has
 	Type *string `json:"type,omitempty"`
 	// If type is Reference | canonical, allowed targets
-	TargetProfile []string `json:"targetProfile,omitempty"`
+	TargetProfile []*string `json:"targetProfile,omitempty"`
 	// number | date | string | token | reference | composite | quantity | uri | special
 	SearchType *SearchParamType `json:"searchType,omitempty"`
 	// ValueSet details if this is coded
@@ -899,9 +897,8 @@ func (r *OperationDefinitionParameter) UnmarshalXML(d *xml.Decoder, start xml.St
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.TargetProfile = append(r.TargetProfile, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.TargetProfile = append(r.TargetProfile, v)
 			case "searchType":
 				v, _, err := xmlDecodePrimitiveCode[SearchParamType](d, t)
 				if err != nil {
@@ -1316,8 +1313,12 @@ func (b *OperationDefinitionBuilder) SetBase(v string) *OperationDefinitionBuild
 }
 
 // AddResource adds a Resource element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *OperationDefinitionBuilder) AddResource(v string) *OperationDefinitionBuilder {
-	b.operationDefinition.Resource = append(b.operationDefinition.Resource, v)
+	b.operationDefinition.Resource = append(b.operationDefinition.Resource, &v)
 	return b
 }
 
@@ -1564,7 +1565,7 @@ func WithOperationDefinitionBase(v string) OperationDefinitionOption {
 // WithOperationDefinitionResource adds a Resource to the OperationDefinition.
 func WithOperationDefinitionResource(v string) OperationDefinitionOption {
 	return func(r *OperationDefinition) {
-		r.Resource = append(r.Resource, v)
+		r.Resource = append(r.Resource, &v)
 	}
 }
 

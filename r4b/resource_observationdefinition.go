@@ -46,9 +46,9 @@ type ObservationDefinition struct {
 	// Business identifier for this ObservationDefinition instance
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// Quantity | CodeableConcept | string | boolean | integer | Range | Ratio | SampledData | time | dateTime | Period
-	PermittedDataType []ObservationDataType `json:"permittedDataType,omitempty"`
+	PermittedDataType []*ObservationDataType `json:"permittedDataType,omitempty"`
 	// Extension for PermittedDataType
-	PermittedDataTypeExt []Element `json:"_permittedDataType,omitempty"`
+	PermittedDataTypeExt []*Element `json:"_permittedDataType,omitempty"`
 	// Multiple results allowed
 	MultipleResultsAllowed *bool `json:"multipleResultsAllowed,omitempty"`
 	// Extension for MultipleResultsAllowed
@@ -369,9 +369,8 @@ func (r *ObservationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.PermittedDataType = append(r.PermittedDataType, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.PermittedDataType = append(r.PermittedDataType, v)
 			case "multipleResultsAllowed":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -830,8 +829,12 @@ func (b *ObservationDefinitionBuilder) AddIdentifier(v Identifier) *ObservationD
 }
 
 // AddPermittedDataType adds a PermittedDataType element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ObservationDefinitionBuilder) AddPermittedDataType(v ObservationDataType) *ObservationDefinitionBuilder {
-	b.observationDefinition.PermittedDataType = append(b.observationDefinition.PermittedDataType, v)
+	b.observationDefinition.PermittedDataType = append(b.observationDefinition.PermittedDataType, &v)
 	return b
 }
 
@@ -985,7 +988,7 @@ func WithObservationDefinitionIdentifier(v Identifier) ObservationDefinitionOpti
 // WithObservationDefinitionPermittedDataType adds a PermittedDataType to the ObservationDefinition.
 func WithObservationDefinitionPermittedDataType(v ObservationDataType) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
-		r.PermittedDataType = append(r.PermittedDataType, v)
+		r.PermittedDataType = append(r.PermittedDataType, &v)
 	}
 }
 

@@ -52,9 +52,9 @@ type MedicinalProduct struct {
 	// Whether the Medicinal Product is subject to additional monitoring for regulatory reasons
 	AdditionalMonitoringIndicator *CodeableConcept `json:"additionalMonitoringIndicator,omitempty"`
 	// Whether the Medicinal Product is subject to special measures for regulatory reasons
-	SpecialMeasures []string `json:"specialMeasures,omitempty"`
+	SpecialMeasures []*string `json:"specialMeasures,omitempty"`
 	// Extension for SpecialMeasures
-	SpecialMeasuresExt []Element `json:"_specialMeasures,omitempty"`
+	SpecialMeasuresExt []*Element `json:"_specialMeasures,omitempty"`
 	// If authorised for use in children
 	PaediatricUseIndicator *CodeableConcept `json:"paediatricUseIndicator,omitempty"`
 	// Allows the product to be classified by various systems
@@ -440,9 +440,8 @@ func (r *MedicinalProduct) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.SpecialMeasures = append(r.SpecialMeasures, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.SpecialMeasures = append(r.SpecialMeasures, v)
 			case "paediatricUseIndicator":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1292,8 +1291,12 @@ func (b *MedicinalProductBuilder) SetAdditionalMonitoringIndicator(v CodeableCon
 }
 
 // AddSpecialMeasures adds a SpecialMeasures element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *MedicinalProductBuilder) AddSpecialMeasures(v string) *MedicinalProductBuilder {
-	b.medicinalProduct.SpecialMeasures = append(b.medicinalProduct.SpecialMeasures, v)
+	b.medicinalProduct.SpecialMeasures = append(b.medicinalProduct.SpecialMeasures, &v)
 	return b
 }
 
@@ -1492,7 +1495,7 @@ func WithMedicinalProductAdditionalMonitoringIndicator(v CodeableConcept) Medici
 // WithMedicinalProductSpecialMeasures adds a SpecialMeasures to the MedicinalProduct.
 func WithMedicinalProductSpecialMeasures(v string) MedicinalProductOption {
 	return func(r *MedicinalProduct) {
-		r.SpecialMeasures = append(r.SpecialMeasures, v)
+		r.SpecialMeasures = append(r.SpecialMeasures, &v)
 	}
 }
 

@@ -42,17 +42,17 @@ type NutritionOrder struct {
 	// Identifiers assigned to this order
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// Instantiates FHIR protocol or definition
-	InstantiatesCanonical []string `json:"instantiatesCanonical,omitempty"`
+	InstantiatesCanonical []*string `json:"instantiatesCanonical,omitempty"`
 	// Extension for InstantiatesCanonical
-	InstantiatesCanonicalExt []Element `json:"_instantiatesCanonical,omitempty"`
+	InstantiatesCanonicalExt []*Element `json:"_instantiatesCanonical,omitempty"`
 	// Instantiates external protocol or definition
-	InstantiatesUri []string `json:"instantiatesUri,omitempty"`
+	InstantiatesUri []*string `json:"instantiatesUri,omitempty"`
 	// Extension for InstantiatesUri
-	InstantiatesUriExt []Element `json:"_instantiatesUri,omitempty"`
+	InstantiatesUriExt []*Element `json:"_instantiatesUri,omitempty"`
 	// Instantiates protocol or definition
-	Instantiates []string `json:"instantiates,omitempty"`
+	Instantiates []*string `json:"instantiates,omitempty"`
 	// Extension for Instantiates
-	InstantiatesExt []Element `json:"_instantiates,omitempty"`
+	InstantiatesExt []*Element `json:"_instantiates,omitempty"`
 	// What this order fulfills
 	BasedOn []Reference `json:"basedOn,omitempty"`
 	// Composite Request ID
@@ -429,25 +429,22 @@ func (r *NutritionOrder) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.InstantiatesCanonical = append(r.InstantiatesCanonical, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
 			case "instantiatesUri":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.InstantiatesUri = append(r.InstantiatesUri, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.InstantiatesUri = append(r.InstantiatesUri, v)
 			case "instantiates":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Instantiates = append(r.Instantiates, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Instantiates = append(r.Instantiates, v)
 			case "basedOn":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1927,20 +1924,32 @@ func (b *NutritionOrderBuilder) AddIdentifier(v Identifier) *NutritionOrderBuild
 }
 
 // AddInstantiatesCanonical adds a InstantiatesCanonical element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *NutritionOrderBuilder) AddInstantiatesCanonical(v string) *NutritionOrderBuilder {
-	b.nutritionOrder.InstantiatesCanonical = append(b.nutritionOrder.InstantiatesCanonical, v)
+	b.nutritionOrder.InstantiatesCanonical = append(b.nutritionOrder.InstantiatesCanonical, &v)
 	return b
 }
 
 // AddInstantiatesUri adds a InstantiatesUri element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *NutritionOrderBuilder) AddInstantiatesUri(v string) *NutritionOrderBuilder {
-	b.nutritionOrder.InstantiatesUri = append(b.nutritionOrder.InstantiatesUri, v)
+	b.nutritionOrder.InstantiatesUri = append(b.nutritionOrder.InstantiatesUri, &v)
 	return b
 }
 
 // AddInstantiates adds a Instantiates element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *NutritionOrderBuilder) AddInstantiates(v string) *NutritionOrderBuilder {
-	b.nutritionOrder.Instantiates = append(b.nutritionOrder.Instantiates, v)
+	b.nutritionOrder.Instantiates = append(b.nutritionOrder.Instantiates, &v)
 	return b
 }
 
@@ -2140,21 +2149,21 @@ func WithNutritionOrderIdentifier(v Identifier) NutritionOrderOption {
 // WithNutritionOrderInstantiatesCanonical adds a InstantiatesCanonical to the NutritionOrder.
 func WithNutritionOrderInstantiatesCanonical(v string) NutritionOrderOption {
 	return func(r *NutritionOrder) {
-		r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
+		r.InstantiatesCanonical = append(r.InstantiatesCanonical, &v)
 	}
 }
 
 // WithNutritionOrderInstantiatesUri adds a InstantiatesUri to the NutritionOrder.
 func WithNutritionOrderInstantiatesUri(v string) NutritionOrderOption {
 	return func(r *NutritionOrder) {
-		r.InstantiatesUri = append(r.InstantiatesUri, v)
+		r.InstantiatesUri = append(r.InstantiatesUri, &v)
 	}
 }
 
 // WithNutritionOrderInstantiates adds a Instantiates to the NutritionOrder.
 func WithNutritionOrderInstantiates(v string) NutritionOrderOption {
 	return func(r *NutritionOrder) {
-		r.Instantiates = append(r.Instantiates, v)
+		r.Instantiates = append(r.Instantiates, &v)
 	}
 }
 

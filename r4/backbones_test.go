@@ -22,7 +22,7 @@ func TestResourceBackboneElements(t *testing.T) {
 			},
 			Name: &r4.HumanName{
 				Family: ptrStringB("Smith"),
-				Given:  []string{"Jane"},
+				Given:  r4.PtrSlice("Jane"),
 			},
 		}
 
@@ -237,8 +237,8 @@ func TestDatatypeBackboneElements(t *testing.T) {
 			Frequency:   ptrUint32B(2),
 			Period:      ptrDecimalB(1),
 			PeriodUnit:  &periodUnit,
-			DayOfWeek:   []r4.DaysOfWeek{"mon", "wed", "fri"},
-			TimeOfDay:   []string{"08:00:00", "18:00:00"},
+			DayOfWeek:   r4.PtrSlice[r4.DaysOfWeek]("mon", "wed", "fri"),
+			TimeOfDay:   r4.PtrSlice("08:00:00", "18:00:00"),
 			Duration:    ptrDecimalB(30),
 			DurationMax: ptrDecimalB(60),
 		}
@@ -254,8 +254,8 @@ func TestDatatypeBackboneElements(t *testing.T) {
 		assert.Equal(t, uint32(2), *decoded.Frequency)
 		assert.Equal(t, "1", decoded.Period.String())
 		assert.Equal(t, r4.UnitsOfTime("d"), *decoded.PeriodUnit)
-		assert.Equal(t, []r4.DaysOfWeek{"mon", "wed", "fri"}, decoded.DayOfWeek)
-		assert.Equal(t, []string{"08:00:00", "18:00:00"}, decoded.TimeOfDay)
+		assert.Equal(t, r4.PtrSlice[r4.DaysOfWeek]("mon", "wed", "fri"), decoded.DayOfWeek)
+		assert.Equal(t, r4.PtrSlice("08:00:00", "18:00:00"), decoded.TimeOfDay)
 	})
 
 	t.Run("ElementDefinitionSlicing", func(t *testing.T) {
@@ -305,8 +305,8 @@ func TestDatatypeBackboneElements(t *testing.T) {
 		elemType := r4.ElementDefinitionType{
 			Id:            ptrStringB("type-1"),
 			Code:          ptrStringB("Reference"),
-			TargetProfile: []string{"http://hl7.org/fhir/StructureDefinition/Patient"},
-			Aggregation:   []r4.AggregationMode{"referenced", "bundled"},
+			TargetProfile: r4.PtrSlice("http://hl7.org/fhir/StructureDefinition/Patient"),
+			Aggregation:   r4.PtrSlice[r4.AggregationMode]("referenced", "bundled"),
 			Versioning:    &versioning,
 		}
 
@@ -319,8 +319,9 @@ func TestDatatypeBackboneElements(t *testing.T) {
 
 		assert.Equal(t, "type-1", *decoded.Id)
 		assert.Equal(t, "Reference", *decoded.Code)
-		assert.Contains(t, decoded.TargetProfile, "http://hl7.org/fhir/StructureDefinition/Patient")
-		assert.Equal(t, []r4.AggregationMode{"referenced", "bundled"}, decoded.Aggregation)
+		// TargetProfile is []*string now, so compare the dereferenced values.
+		assert.Contains(t, r4.Vals(decoded.TargetProfile), "http://hl7.org/fhir/StructureDefinition/Patient")
+		assert.Equal(t, r4.PtrSlice[r4.AggregationMode]("referenced", "bundled"), decoded.Aggregation)
 	})
 
 	t.Run("ElementDefinitionBinding", func(t *testing.T) {
@@ -494,7 +495,7 @@ func TestBackboneJSONSerialization(t *testing.T) {
 		require.Len(t, contact.Relationship, 1)
 		assert.Equal(t, "C", *contact.Relationship[0].Coding[0].Code)
 		assert.Equal(t, "Smith", *contact.Name.Family)
-		assert.Equal(t, []string{"John", "Michael"}, contact.Name.Given)
+		assert.Equal(t, r4.PtrSlice("John", "Michael"), contact.Name.Given)
 		require.Len(t, contact.Telecom, 1)
 		assert.Equal(t, "+1-555-555-5555", *contact.Telecom[0].Value)
 

@@ -110,17 +110,17 @@ type ActorDefinition struct {
 	// Extension for Documentation
 	DocumentationExt *Element `json:"_documentation,omitempty"`
 	// Reference to more information about the actor
-	Reference []string `json:"reference,omitempty"`
+	Reference []*string `json:"reference,omitempty"`
 	// Extension for Reference
-	ReferenceExt []Element `json:"_reference,omitempty"`
+	ReferenceExt []*Element `json:"_reference,omitempty"`
 	// CapabilityStatement for the actor (if applicable)
 	Capabilities *string `json:"capabilities,omitempty"`
 	// Extension for Capabilities
 	CapabilitiesExt *Element `json:"_capabilities,omitempty"`
 	// Definition of this actor in another context / IG
-	DerivedFrom []string `json:"derivedFrom,omitempty"`
+	DerivedFrom []*string `json:"derivedFrom,omitempty"`
 	// Extension for DerivedFrom
-	DerivedFromExt []Element `json:"_derivedFrom,omitempty"`
+	DerivedFromExt []*Element `json:"_derivedFrom,omitempty"`
 }
 
 // GetResourceType returns the FHIR resource type.
@@ -560,9 +560,8 @@ func (r *ActorDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Reference = append(r.Reference, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Reference = append(r.Reference, v)
 			case "capabilities":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -575,9 +574,8 @@ func (r *ActorDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.DerivedFrom = append(r.DerivedFrom, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.DerivedFrom = append(r.DerivedFrom, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -788,8 +786,12 @@ func (b *ActorDefinitionBuilder) SetDocumentation(v string) *ActorDefinitionBuil
 }
 
 // AddReference adds a Reference element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ActorDefinitionBuilder) AddReference(v string) *ActorDefinitionBuilder {
-	b.actorDefinition.Reference = append(b.actorDefinition.Reference, v)
+	b.actorDefinition.Reference = append(b.actorDefinition.Reference, &v)
 	return b
 }
 
@@ -800,8 +802,12 @@ func (b *ActorDefinitionBuilder) SetCapabilities(v string) *ActorDefinitionBuild
 }
 
 // AddDerivedFrom adds a DerivedFrom element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ActorDefinitionBuilder) AddDerivedFrom(v string) *ActorDefinitionBuilder {
-	b.actorDefinition.DerivedFrom = append(b.actorDefinition.DerivedFrom, v)
+	b.actorDefinition.DerivedFrom = append(b.actorDefinition.DerivedFrom, &v)
 	return b
 }
 
@@ -1027,7 +1033,7 @@ func WithActorDefinitionDocumentation(v string) ActorDefinitionOption {
 // WithActorDefinitionReference adds a Reference to the ActorDefinition.
 func WithActorDefinitionReference(v string) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
-		r.Reference = append(r.Reference, v)
+		r.Reference = append(r.Reference, &v)
 	}
 }
 
@@ -1041,6 +1047,6 @@ func WithActorDefinitionCapabilities(v string) ActorDefinitionOption {
 // WithActorDefinitionDerivedFrom adds a DerivedFrom to the ActorDefinition.
 func WithActorDefinitionDerivedFrom(v string) ActorDefinitionOption {
 	return func(r *ActorDefinition) {
-		r.DerivedFrom = append(r.DerivedFrom, v)
+		r.DerivedFrom = append(r.DerivedFrom, &v)
 	}
 }

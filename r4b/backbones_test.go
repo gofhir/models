@@ -22,7 +22,7 @@ func TestResourceBackboneElements(t *testing.T) {
 			},
 			Name: &r4b.HumanName{
 				Family: ptrStringBB("Smith"),
-				Given:  []string{"Jane"},
+				Given:  r4b.PtrSlice("Jane"),
 			},
 		}
 
@@ -172,8 +172,8 @@ func TestDatatypeBackboneElements(t *testing.T) {
 			Frequency:   ptrUint32BB(2),
 			Period:      ptrDecimalBB(1),
 			PeriodUnit:  &periodUnit,
-			DayOfWeek:   []r4b.DaysOfWeek{"mon", "wed", "fri"},
-			TimeOfDay:   []string{"08:00:00", "18:00:00"},
+			DayOfWeek:   r4b.PtrSlice[r4b.DaysOfWeek]("mon", "wed", "fri"),
+			TimeOfDay:   r4b.PtrSlice("08:00:00", "18:00:00"),
 			Duration:    ptrDecimalBB(30),
 			DurationMax: ptrDecimalBB(60),
 		}

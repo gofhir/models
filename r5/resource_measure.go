@@ -140,9 +140,9 @@ type Measure struct {
 	// Additional documentation, citations, etc
 	RelatedArtifact []RelatedArtifact `json:"relatedArtifact,omitempty"`
 	// Logic used by the measure
-	Library []string `json:"library,omitempty"`
+	Library []*string `json:"library,omitempty"`
 	// Extension for Library
-	LibraryExt []Element `json:"_library,omitempty"`
+	LibraryExt []*Element `json:"_library,omitempty"`
 	// Disclaimer for use of the measure or its referenced content
 	Disclaimer *string `json:"disclaimer,omitempty"`
 	// Extension for Disclaimer
@@ -803,9 +803,8 @@ func (r *Measure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Library = append(r.Library, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Library = append(r.Library, v)
 			case "disclaimer":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -939,7 +938,7 @@ type MeasureGroup struct {
 	// increase | decrease
 	ImprovementNotation *CodeableConcept `json:"improvementNotation,omitempty"`
 	// Logic used by the measure group
-	Library []string `json:"library,omitempty"`
+	Library []*string `json:"library,omitempty"`
 	// Population criteria
 	Population []MeasureGroupPopulation `json:"population,omitempty"`
 	// Stratifier criteria for the measure
@@ -1132,9 +1131,8 @@ func (r *MeasureGroup) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Library = append(r.Library, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Library = append(r.Library, v)
 			case "population":
 				var v MeasureGroupPopulation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2115,8 +2113,12 @@ func (b *MeasureBuilder) AddRelatedArtifact(v RelatedArtifact) *MeasureBuilder {
 }
 
 // AddLibrary adds a Library element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *MeasureBuilder) AddLibrary(v string) *MeasureBuilder {
-	b.measure.Library = append(b.measure.Library, v)
+	b.measure.Library = append(b.measure.Library, &v)
 	return b
 }
 
@@ -2510,7 +2512,7 @@ func WithMeasureRelatedArtifact(v RelatedArtifact) MeasureOption {
 // WithMeasureLibrary adds a Library to the Measure.
 func WithMeasureLibrary(v string) MeasureOption {
 	return func(r *Measure) {
-		r.Library = append(r.Library, v)
+		r.Library = append(r.Library, &v)
 	}
 }
 

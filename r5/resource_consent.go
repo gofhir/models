@@ -1059,7 +1059,7 @@ type ConsentVerification struct {
 	// Person who verified
 	VerifiedWith *Reference `json:"verifiedWith,omitempty"`
 	// When consent verified
-	VerificationDate []string `json:"verificationDate,omitempty"`
+	VerificationDate []*string `json:"verificationDate,omitempty"`
 }
 
 // MarshalXML serializes ConsentVerification to FHIR-conformant XML.
@@ -1167,9 +1167,8 @@ func (r *ConsentVerification) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.VerificationDate = append(r.VerificationDate, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.VerificationDate = append(r.VerificationDate, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err

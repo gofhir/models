@@ -1042,7 +1042,7 @@ type ClaimInsurance struct {
 	// Additional provider contract number
 	BusinessArrangement *string `json:"businessArrangement,omitempty"`
 	// Prior authorization reference number
-	PreAuthRef []string `json:"preAuthRef,omitempty"`
+	PreAuthRef []*string `json:"preAuthRef,omitempty"`
 	// Adjudication results
 	ClaimResponse *Reference `json:"claimResponse,omitempty"`
 }
@@ -1160,9 +1160,8 @@ func (r *ClaimInsurance) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.PreAuthRef = append(r.PreAuthRef, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.PreAuthRef = append(r.PreAuthRef, v)
 			case "claimResponse":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1192,13 +1191,13 @@ type ClaimItem struct {
 	// Item instance identifier
 	Sequence *uint32 `json:"sequence,omitempty"`
 	// Applicable careTeam members
-	CareTeamSequence []uint32 `json:"careTeamSequence,omitempty"`
+	CareTeamSequence []*uint32 `json:"careTeamSequence,omitempty"`
 	// Applicable diagnoses
-	DiagnosisSequence []uint32 `json:"diagnosisSequence,omitempty"`
+	DiagnosisSequence []*uint32 `json:"diagnosisSequence,omitempty"`
 	// Applicable procedures
-	ProcedureSequence []uint32 `json:"procedureSequence,omitempty"`
+	ProcedureSequence []*uint32 `json:"procedureSequence,omitempty"`
 	// Applicable exception and supporting information
-	InformationSequence []uint32 `json:"informationSequence,omitempty"`
+	InformationSequence []*uint32 `json:"informationSequence,omitempty"`
 	// Revenue or cost center code
 	Revenue *CodeableConcept `json:"revenue,omitempty"`
 	// Benefit classification
@@ -1411,33 +1410,29 @@ func (r *ClaimItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.CareTeamSequence = append(r.CareTeamSequence, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.CareTeamSequence = append(r.CareTeamSequence, v)
 			case "diagnosisSequence":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.DiagnosisSequence = append(r.DiagnosisSequence, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.DiagnosisSequence = append(r.DiagnosisSequence, v)
 			case "procedureSequence":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.ProcedureSequence = append(r.ProcedureSequence, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.ProcedureSequence = append(r.ProcedureSequence, v)
 			case "informationSequence":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.InformationSequence = append(r.InformationSequence, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.InformationSequence = append(r.InformationSequence, v)
 			case "revenue":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

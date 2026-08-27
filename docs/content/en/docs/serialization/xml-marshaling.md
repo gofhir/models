@@ -15,7 +15,7 @@ One defect accounted for nearly all of the difference: `Narrative.Div` was emitt
 | r4 XML | 1138 | **100%** |
 | r4b XML | 1156 | **100%** |
 | r5 XML | 1359 | **100%** |
-| JSON, all three | 8758 | 99.8% |
+| JSON, all three | 8758 | 99.9% |
 
 Verified as working: primitives as `value=` attributes, element ordering per the StructureDefinition, the FHIR namespace on the root element, `contained` resources, choice types, `Element.id` as an attribute, resource-valued elements such as `Bundle.entry.resource`, decimal precision, and the XHTML narrative.
 
@@ -256,7 +256,7 @@ Measured over the published example corpora:
 | r4 XML | 1138 | **100%** |
 | r4b XML | 1156 | **100%** |
 | r5 XML | 1359 | **100%** |
-| JSON, all three versions | 8758 | 99.8% |
+| JSON, all three versions | 8758 | 99.9% |
 
 The conformance suite in `conformance/` tracks this file by file, so these numbers are measured rather than estimated.
 

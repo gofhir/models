@@ -76,9 +76,9 @@ type ClinicalImpression struct {
 	// One or more sets of investigations (signs, symptoms, etc.)
 	Investigation []ClinicalImpressionInvestigation `json:"investigation,omitempty"`
 	// Clinical Protocol followed
-	Protocol []string `json:"protocol,omitempty"`
+	Protocol []*string `json:"protocol,omitempty"`
 	// Extension for Protocol
-	ProtocolExt []Element `json:"_protocol,omitempty"`
+	ProtocolExt []*Element `json:"_protocol,omitempty"`
 	// Summary of the assessment
 	Summary *string `json:"summary,omitempty"`
 	// Extension for Summary
@@ -495,9 +495,8 @@ func (r *ClinicalImpression) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Protocol = append(r.Protocol, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Protocol = append(r.Protocol, v)
 			case "summary":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -922,8 +921,12 @@ func (b *ClinicalImpressionBuilder) AddInvestigation(v ClinicalImpressionInvesti
 }
 
 // AddProtocol adds a Protocol element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ClinicalImpressionBuilder) AddProtocol(v string) *ClinicalImpressionBuilder {
-	b.clinicalImpression.Protocol = append(b.clinicalImpression.Protocol, v)
+	b.clinicalImpression.Protocol = append(b.clinicalImpression.Protocol, &v)
 	return b
 }
 
@@ -1143,7 +1146,7 @@ func WithClinicalImpressionInvestigation(v ClinicalImpressionInvestigation) Clin
 // WithClinicalImpressionProtocol adds a Protocol to the ClinicalImpression.
 func WithClinicalImpressionProtocol(v string) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
-		r.Protocol = append(r.Protocol, v)
+		r.Protocol = append(r.Protocol, &v)
 	}
 }
 

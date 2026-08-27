@@ -60,9 +60,9 @@ type DeviceDefinition struct {
 	// The capabilities supported on a  device, the standards to which the device conforms for a particular purpose, and used for the communication
 	Specialization []DeviceDefinitionSpecialization `json:"specialization,omitempty"`
 	// Available versions
-	Version []string `json:"version,omitempty"`
+	Version []*string `json:"version,omitempty"`
 	// Extension for Version
-	VersionExt []Element `json:"_version,omitempty"`
+	VersionExt []*Element `json:"_version,omitempty"`
 	// Safety characteristics of the device
 	Safety []CodeableConcept `json:"safety,omitempty"`
 	// Shelf Life and storage information
@@ -475,9 +475,8 @@ func (r *DeviceDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Version = append(r.Version, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Version = append(r.Version, v)
 			case "safety":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1329,8 +1328,12 @@ func (b *DeviceDefinitionBuilder) AddSpecialization(v DeviceDefinitionSpecializa
 }
 
 // AddVersion adds a Version element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *DeviceDefinitionBuilder) AddVersion(v string) *DeviceDefinitionBuilder {
-	b.deviceDefinition.Version = append(b.deviceDefinition.Version, v)
+	b.deviceDefinition.Version = append(b.deviceDefinition.Version, &v)
 	return b
 }
 
@@ -1556,7 +1559,7 @@ func WithDeviceDefinitionSpecialization(v DeviceDefinitionSpecialization) Device
 // WithDeviceDefinitionVersion adds a Version to the DeviceDefinition.
 func WithDeviceDefinitionVersion(v string) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
-		r.Version = append(r.Version, v)
+		r.Version = append(r.Version, &v)
 	}
 }
 

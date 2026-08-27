@@ -128,7 +128,7 @@ func TestPatient_MarshalXML_RepeatingElements(t *testing.T) {
 		Name: []HumanName{
 			{
 				Family: ptr("Smith"),
-				Given:  []string{"John", "Robert"},
+				Given:  PtrSlice("John", "Robert"),
 			},
 		},
 	}

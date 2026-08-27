@@ -485,7 +485,7 @@ type AuditEventAgent struct {
 	// The agent location when the event occurred
 	Location *Reference `json:"location,omitempty"`
 	// Policy that authorized the agent participation in the event
-	Policy []string `json:"policy,omitempty"`
+	Policy []*string `json:"policy,omitempty"`
 	// This agent network location for the activity
 	NetworkReference *Reference `json:"networkReference,omitempty"`
 	// This agent network location for the activity
@@ -628,9 +628,8 @@ func (r *AuditEventAgent) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Policy = append(r.Policy, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Policy = append(r.Policy, v)
 			case "networkReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

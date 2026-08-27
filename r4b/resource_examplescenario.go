@@ -90,9 +90,9 @@ type ExampleScenario struct {
 	// Each major process - a group of operations
 	Process []ExampleScenarioProcess `json:"process,omitempty"`
 	// Another nested workflow
-	Workflow []string `json:"workflow,omitempty"`
+	Workflow []*string `json:"workflow,omitempty"`
 	// Extension for Workflow
-	WorkflowExt []Element `json:"_workflow,omitempty"`
+	WorkflowExt []*Element `json:"_workflow,omitempty"`
 }
 
 // GetResourceType returns the FHIR resource type.
@@ -488,9 +488,8 @@ func (r *ExampleScenario) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Workflow = append(r.Workflow, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Workflow = append(r.Workflow, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1701,8 +1700,12 @@ func (b *ExampleScenarioBuilder) AddProcess(v ExampleScenarioProcess) *ExampleSc
 }
 
 // AddWorkflow adds a Workflow element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ExampleScenarioBuilder) AddWorkflow(v string) *ExampleScenarioBuilder {
-	b.exampleScenario.Workflow = append(b.exampleScenario.Workflow, v)
+	b.exampleScenario.Workflow = append(b.exampleScenario.Workflow, &v)
 	return b
 }
 
@@ -1893,6 +1896,6 @@ func WithExampleScenarioProcess(v ExampleScenarioProcess) ExampleScenarioOption 
 // WithExampleScenarioWorkflow adds a Workflow to the ExampleScenario.
 func WithExampleScenarioWorkflow(v string) ExampleScenarioOption {
 	return func(r *ExampleScenario) {
-		r.Workflow = append(r.Workflow, v)
+		r.Workflow = append(r.Workflow, &v)
 	}
 }

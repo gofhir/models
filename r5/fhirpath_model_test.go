@@ -19,8 +19,7 @@ func TestFHIRPathModel_FHIRVersion(t *testing.T) {
 func TestFHIRPathModel_HasType(t *testing.T) {
 	m := FHIRPathModel()
 
-	for _, name := range []string{
-		"Patient", "Observation", "Bundle",
+	for _, name := range []string{"Patient", "Observation", "Bundle",
 		"HumanName", "Quantity", "CodeableConcept",
 		"string", "code", "dateTime", "boolean",
 	} {

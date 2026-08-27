@@ -42,13 +42,13 @@ type Procedure struct {
 	// External Identifiers for this procedure
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// Instantiates FHIR protocol or definition
-	InstantiatesCanonical []string `json:"instantiatesCanonical,omitempty"`
+	InstantiatesCanonical []*string `json:"instantiatesCanonical,omitempty"`
 	// Extension for InstantiatesCanonical
-	InstantiatesCanonicalExt []Element `json:"_instantiatesCanonical,omitempty"`
+	InstantiatesCanonicalExt []*Element `json:"_instantiatesCanonical,omitempty"`
 	// Instantiates external protocol or definition
-	InstantiatesUri []string `json:"instantiatesUri,omitempty"`
+	InstantiatesUri []*string `json:"instantiatesUri,omitempty"`
 	// Extension for InstantiatesUri
-	InstantiatesUriExt []Element `json:"_instantiatesUri,omitempty"`
+	InstantiatesUriExt []*Element `json:"_instantiatesUri,omitempty"`
 	// A request for this procedure
 	BasedOn []Reference `json:"basedOn,omitempty"`
 	// Part of referenced event
@@ -506,17 +506,15 @@ func (r *Procedure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.InstantiatesCanonical = append(r.InstantiatesCanonical, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
 			case "instantiatesUri":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.InstantiatesUri = append(r.InstantiatesUri, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.InstantiatesUri = append(r.InstantiatesUri, v)
 			case "basedOn":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1020,14 +1018,22 @@ func (b *ProcedureBuilder) AddIdentifier(v Identifier) *ProcedureBuilder {
 }
 
 // AddInstantiatesCanonical adds a InstantiatesCanonical element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ProcedureBuilder) AddInstantiatesCanonical(v string) *ProcedureBuilder {
-	b.procedure.InstantiatesCanonical = append(b.procedure.InstantiatesCanonical, v)
+	b.procedure.InstantiatesCanonical = append(b.procedure.InstantiatesCanonical, &v)
 	return b
 }
 
 // AddInstantiatesUri adds a InstantiatesUri element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ProcedureBuilder) AddInstantiatesUri(v string) *ProcedureBuilder {
-	b.procedure.InstantiatesUri = append(b.procedure.InstantiatesUri, v)
+	b.procedure.InstantiatesUri = append(b.procedure.InstantiatesUri, &v)
 	return b
 }
 
@@ -1317,14 +1323,14 @@ func WithProcedureIdentifier(v Identifier) ProcedureOption {
 // WithProcedureInstantiatesCanonical adds a InstantiatesCanonical to the Procedure.
 func WithProcedureInstantiatesCanonical(v string) ProcedureOption {
 	return func(r *Procedure) {
-		r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
+		r.InstantiatesCanonical = append(r.InstantiatesCanonical, &v)
 	}
 }
 
 // WithProcedureInstantiatesUri adds a InstantiatesUri to the Procedure.
 func WithProcedureInstantiatesUri(v string) ProcedureOption {
 	return func(r *Procedure) {
-		r.InstantiatesUri = append(r.InstantiatesUri, v)
+		r.InstantiatesUri = append(r.InstantiatesUri, &v)
 	}
 }
 

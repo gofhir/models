@@ -382,7 +382,7 @@ type SubscriptionChannel struct {
 	// MIME type to send, or omit for no payload
 	Payload *string `json:"payload,omitempty"`
 	// Usage depends on the channel type
-	Header []string `json:"header,omitempty"`
+	Header []*string `json:"header,omitempty"`
 }
 
 // MarshalXML serializes SubscriptionChannel to FHIR-conformant XML.
@@ -475,9 +475,8 @@ func (r *SubscriptionChannel) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Header = append(r.Header, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Header = append(r.Header, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err

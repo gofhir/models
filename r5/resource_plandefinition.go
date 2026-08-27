@@ -142,9 +142,9 @@ type PlanDefinition struct {
 	// Additional documentation, citations
 	RelatedArtifact []RelatedArtifact `json:"relatedArtifact,omitempty"`
 	// Logic used by the plan definition
-	Library []string `json:"library,omitempty"`
+	Library []*string `json:"library,omitempty"`
 	// Extension for Library
-	LibraryExt []Element `json:"_library,omitempty"`
+	LibraryExt []*Element `json:"_library,omitempty"`
 	// What the plan is trying to accomplish
 	Goal []PlanDefinitionGoal `json:"goal,omitempty"`
 	// Actors within the plan
@@ -753,9 +753,8 @@ func (r *PlanDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Library = append(r.Library, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Library = append(r.Library, v)
 			case "goal":
 				var v PlanDefinitionGoal
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -826,7 +825,7 @@ type PlanDefinitionAction struct {
 	// Supporting documentation for the intended performer of the action
 	Documentation []RelatedArtifact `json:"documentation,omitempty"`
 	// What goals this action supports
-	GoalId []string `json:"goalId,omitempty"`
+	GoalId []*string `json:"goalId,omitempty"`
 	// Type of individual the action is focused on
 	SubjectCodeableConcept *CodeableConcept `json:"subjectCodeableConcept,omitempty"`
 	// Type of individual the action is focused on
@@ -1142,9 +1141,8 @@ func (r *PlanDefinitionAction) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.GoalId = append(r.GoalId, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.GoalId = append(r.GoalId, v)
 			case "subjectCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2895,8 +2893,12 @@ func (b *PlanDefinitionBuilder) AddRelatedArtifact(v RelatedArtifact) *PlanDefin
 }
 
 // AddLibrary adds a Library element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *PlanDefinitionBuilder) AddLibrary(v string) *PlanDefinitionBuilder {
-	b.planDefinition.Library = append(b.planDefinition.Library, v)
+	b.planDefinition.Library = append(b.planDefinition.Library, &v)
 	return b
 }
 
@@ -3256,7 +3258,7 @@ func WithPlanDefinitionRelatedArtifact(v RelatedArtifact) PlanDefinitionOption {
 // WithPlanDefinitionLibrary adds a Library to the PlanDefinition.
 func WithPlanDefinitionLibrary(v string) PlanDefinitionOption {
 	return func(r *PlanDefinition) {
-		r.Library = append(r.Library, v)
+		r.Library = append(r.Library, &v)
 	}
 }
 

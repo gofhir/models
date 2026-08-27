@@ -64,9 +64,9 @@ type SubscriptionTopic struct {
 	// Extension for Title
 	TitleExt *Element `json:"_title,omitempty"`
 	// Based on FHIR protocol or definition
-	DerivedFrom []string `json:"derivedFrom,omitempty"`
+	DerivedFrom []*string `json:"derivedFrom,omitempty"`
 	// Extension for DerivedFrom
-	DerivedFromExt []Element `json:"_derivedFrom,omitempty"`
+	DerivedFromExt []*Element `json:"_derivedFrom,omitempty"`
 	// draft | active | retired | unknown
 	Status *PublicationStatus `json:"status,omitempty"`
 	// Extension for Status
@@ -493,9 +493,8 @@ func (r *SubscriptionTopic) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.DerivedFrom = append(r.DerivedFrom, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.DerivedFrom = append(r.DerivedFrom, v)
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {
@@ -643,9 +642,9 @@ type SubscriptionTopicCanFilterBy struct {
 	// Canonical URL for a filterParameter definition
 	FilterDefinition *string `json:"filterDefinition,omitempty"`
 	// eq | ne | gt | lt | ge | le | sa | eb | ap
-	Comparator []SearchComparator `json:"comparator,omitempty"`
+	Comparator []*SearchComparator `json:"comparator,omitempty"`
 	// missing | exact | contains | not | text | in | not-in | below | above | type | identifier | of-type | code-text | text-advanced | iterate
-	Modifier []SearchModifierCode `json:"modifier,omitempty"`
+	Modifier []*SearchModifierCode `json:"modifier,omitempty"`
 }
 
 // MarshalXML serializes SubscriptionTopicCanFilterBy to FHIR-conformant XML.
@@ -750,17 +749,15 @@ func (r *SubscriptionTopicCanFilterBy) UnmarshalXML(d *xml.Decoder, start xml.St
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Comparator = append(r.Comparator, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Comparator = append(r.Comparator, v)
 			case "modifier":
 				v, _, err := xmlDecodePrimitiveCode[SearchModifierCode](d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Modifier = append(r.Modifier, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Modifier = append(r.Modifier, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -892,9 +889,9 @@ type SubscriptionTopicNotificationShape struct {
 	// URL of the Resource that is the focus (main) resource in a notification shape
 	Resource *string `json:"resource,omitempty"`
 	// Include directives, rooted in the resource for this shape
-	Include []string `json:"include,omitempty"`
+	Include []*string `json:"include,omitempty"`
 	// Reverse include directives, rooted in the resource for this shape
-	RevInclude []string `json:"revInclude,omitempty"`
+	RevInclude []*string `json:"revInclude,omitempty"`
 }
 
 // MarshalXML serializes SubscriptionTopicNotificationShape to FHIR-conformant XML.
@@ -972,17 +969,15 @@ func (r *SubscriptionTopicNotificationShape) UnmarshalXML(d *xml.Decoder, start 
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Include = append(r.Include, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Include = append(r.Include, v)
 			case "revInclude":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.RevInclude = append(r.RevInclude, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.RevInclude = append(r.RevInclude, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1008,7 +1003,7 @@ type SubscriptionTopicResourceTrigger struct {
 	// Data Type or Resource (reference to definition) for this trigger definition
 	Resource *string `json:"resource,omitempty"`
 	// create | update | delete
-	SupportedInteraction []InteractionTrigger `json:"supportedInteraction,omitempty"`
+	SupportedInteraction []*InteractionTrigger `json:"supportedInteraction,omitempty"`
 	// Query based trigger rule
 	QueryCriteria *SubscriptionTopicResourceTriggerQueryCriteria `json:"queryCriteria,omitempty"`
 	// FHIRPath based trigger rule
@@ -1104,9 +1099,8 @@ func (r *SubscriptionTopicResourceTrigger) UnmarshalXML(d *xml.Decoder, start xm
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.SupportedInteraction = append(r.SupportedInteraction, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.SupportedInteraction = append(r.SupportedInteraction, v)
 			case "queryCriteria":
 				var v SubscriptionTopicResourceTriggerQueryCriteria
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1383,8 +1377,12 @@ func (b *SubscriptionTopicBuilder) SetTitle(v string) *SubscriptionTopicBuilder 
 }
 
 // AddDerivedFrom adds a DerivedFrom element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *SubscriptionTopicBuilder) AddDerivedFrom(v string) *SubscriptionTopicBuilder {
-	b.subscriptionTopic.DerivedFrom = append(b.subscriptionTopic.DerivedFrom, v)
+	b.subscriptionTopic.DerivedFrom = append(b.subscriptionTopic.DerivedFrom, &v)
 	return b
 }
 
@@ -1627,7 +1625,7 @@ func WithSubscriptionTopicTitle(v string) SubscriptionTopicOption {
 // WithSubscriptionTopicDerivedFrom adds a DerivedFrom to the SubscriptionTopic.
 func WithSubscriptionTopicDerivedFrom(v string) SubscriptionTopicOption {
 	return func(r *SubscriptionTopic) {
-		r.DerivedFrom = append(r.DerivedFrom, v)
+		r.DerivedFrom = append(r.DerivedFrom, &v)
 	}
 }
 

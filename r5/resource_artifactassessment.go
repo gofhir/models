@@ -484,7 +484,7 @@ type ArtifactAssessmentContent struct {
 	// Who authored the content
 	Author *Reference `json:"author,omitempty"`
 	// What the comment is directed to
-	Path []string `json:"path,omitempty"`
+	Path []*string `json:"path,omitempty"`
 	// Additional information
 	RelatedArtifact []RelatedArtifact `json:"relatedArtifact,omitempty"`
 	// Acceptable to publicly share the resource content
@@ -631,9 +631,8 @@ func (r *ArtifactAssessmentContent) UnmarshalXML(d *xml.Decoder, start xml.Start
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Path = append(r.Path, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Path = append(r.Path, v)
 			case "relatedArtifact":
 				var v RelatedArtifact
 				if err := v.UnmarshalXML(d, t); err != nil {

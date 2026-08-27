@@ -138,7 +138,7 @@ func TestUnmarshalResourceRoundTrip(t *testing.T) {
 		Name: []r5.HumanName{
 			{
 				Family: ptrString("Smith"),
-				Given:  []string{"John"},
+				Given:  r5.PtrSlice("John"),
 			},
 		},
 	}
@@ -167,7 +167,7 @@ func TestUnmarshalResourceRoundTrip(t *testing.T) {
 	assert.True(t, *patient.Active)
 	require.Len(t, patient.Name, 1)
 	assert.Equal(t, "Smith", *patient.Name[0].Family)
-	assert.Equal(t, []string{"John"}, patient.Name[0].Given)
+	assert.Equal(t, r5.PtrSlice("John"), patient.Name[0].Given)
 }
 
 func TestGetResourceType(t *testing.T) {

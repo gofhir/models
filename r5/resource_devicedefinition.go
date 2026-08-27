@@ -90,9 +90,9 @@ type DeviceDefinition struct {
 	// A substance used to create the material(s) of which the device is made
 	Material []DeviceDefinitionMaterial `json:"material,omitempty"`
 	// lot-number | manufactured-date | serial-number | expiration-date | biological-source | software-version
-	ProductionIdentifierInUDI []DeviceProductionIdentifierInUDI `json:"productionIdentifierInUDI,omitempty"`
+	ProductionIdentifierInUDI []*DeviceProductionIdentifierInUDI `json:"productionIdentifierInUDI,omitempty"`
 	// Extension for ProductionIdentifierInUDI
-	ProductionIdentifierInUDIExt []Element `json:"_productionIdentifierInUDI,omitempty"`
+	ProductionIdentifierInUDIExt []*Element `json:"_productionIdentifierInUDI,omitempty"`
 	// Information aimed at providing directions for the usage of this model of device
 	Guideline *DeviceDefinitionGuideline `json:"guideline,omitempty"`
 	// Tracking of latest field safety corrective action
@@ -581,9 +581,8 @@ func (r *DeviceDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.ProductionIdentifierInUDI = append(r.ProductionIdentifierInUDI, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.ProductionIdentifierInUDI = append(r.ProductionIdentifierInUDI, v)
 			case "guideline":
 				var v DeviceDefinitionGuideline
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -847,7 +846,7 @@ type DeviceDefinitionConformsTo struct {
 	// Identifies the standard, specification, or formal guidance that the device adheres to the Device Specification type
 	Specification CodeableConcept `json:"specification,omitempty"`
 	// The specific form or variant of the standard, specification or formal guidance
-	Version []string `json:"version,omitempty"`
+	Version []*string `json:"version,omitempty"`
 	// Standard, regulation, certification, or guidance website, document, or other publication, or similar, supporting the conformance
 	Source []RelatedArtifact `json:"source,omitempty"`
 }
@@ -938,9 +937,8 @@ func (r *DeviceDefinitionConformsTo) UnmarshalXML(d *xml.Decoder, start xml.Star
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Version = append(r.Version, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Version = append(r.Version, v)
 			case "source":
 				var v RelatedArtifact
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2720,8 +2718,12 @@ func (b *DeviceDefinitionBuilder) AddMaterial(v DeviceDefinitionMaterial) *Devic
 }
 
 // AddProductionIdentifierInUDI adds a ProductionIdentifierInUDI element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *DeviceDefinitionBuilder) AddProductionIdentifierInUDI(v DeviceProductionIdentifierInUDI) *DeviceDefinitionBuilder {
-	b.deviceDefinition.ProductionIdentifierInUDI = append(b.deviceDefinition.ProductionIdentifierInUDI, v)
+	b.deviceDefinition.ProductionIdentifierInUDI = append(b.deviceDefinition.ProductionIdentifierInUDI, &v)
 	return b
 }
 
@@ -2972,7 +2974,7 @@ func WithDeviceDefinitionMaterial(v DeviceDefinitionMaterial) DeviceDefinitionOp
 // WithDeviceDefinitionProductionIdentifierInUDI adds a ProductionIdentifierInUDI to the DeviceDefinition.
 func WithDeviceDefinitionProductionIdentifierInUDI(v DeviceProductionIdentifierInUDI) DeviceDefinitionOption {
 	return func(r *DeviceDefinition) {
-		r.ProductionIdentifierInUDI = append(r.ProductionIdentifierInUDI, v)
+		r.ProductionIdentifierInUDI = append(r.ProductionIdentifierInUDI, &v)
 	}
 }
 

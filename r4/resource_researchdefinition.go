@@ -92,9 +92,9 @@ type ResearchDefinition struct {
 	// Extension for Description
 	DescriptionExt *Element `json:"_description,omitempty"`
 	// Used for footnotes or explanatory notes
-	Comment []string `json:"comment,omitempty"`
+	Comment []*string `json:"comment,omitempty"`
 	// Extension for Comment
-	CommentExt []Element `json:"_comment,omitempty"`
+	CommentExt []*Element `json:"_comment,omitempty"`
 	// The context that the content is intended to support
 	UseContext []UsageContext `json:"useContext,omitempty"`
 	// Intended jurisdiction for research definition (if applicable)
@@ -134,9 +134,9 @@ type ResearchDefinition struct {
 	// Additional documentation, citations, etc.
 	RelatedArtifact []RelatedArtifact `json:"relatedArtifact,omitempty"`
 	// Logic used by the ResearchDefinition
-	Library []string `json:"library,omitempty"`
+	Library []*string `json:"library,omitempty"`
 	// Extension for Library
-	LibraryExt []Element `json:"_library,omitempty"`
+	LibraryExt []*Element `json:"_library,omitempty"`
 	// What population?
 	Population Reference `json:"population"`
 	// What exposure?
@@ -608,9 +608,8 @@ func (r *ResearchDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Comment = append(r.Comment, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Comment = append(r.Comment, v)
 			case "useContext":
 				var v UsageContext
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -705,9 +704,8 @@ func (r *ResearchDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Library = append(r.Library, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Library = append(r.Library, v)
 			case "population":
 				if err := r.Population.UnmarshalXML(d, t); err != nil {
 					return err
@@ -904,8 +902,12 @@ func (b *ResearchDefinitionBuilder) SetDescription(v string) *ResearchDefinition
 }
 
 // AddComment adds a Comment element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ResearchDefinitionBuilder) AddComment(v string) *ResearchDefinitionBuilder {
-	b.researchDefinition.Comment = append(b.researchDefinition.Comment, v)
+	b.researchDefinition.Comment = append(b.researchDefinition.Comment, &v)
 	return b
 }
 
@@ -994,8 +996,12 @@ func (b *ResearchDefinitionBuilder) AddRelatedArtifact(v RelatedArtifact) *Resea
 }
 
 // AddLibrary adds a Library element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ResearchDefinitionBuilder) AddLibrary(v string) *ResearchDefinitionBuilder {
-	b.researchDefinition.Library = append(b.researchDefinition.Library, v)
+	b.researchDefinition.Library = append(b.researchDefinition.Library, &v)
 	return b
 }
 
@@ -1203,7 +1209,7 @@ func WithResearchDefinitionDescription(v string) ResearchDefinitionOption {
 // WithResearchDefinitionComment adds a Comment to the ResearchDefinition.
 func WithResearchDefinitionComment(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
-		r.Comment = append(r.Comment, v)
+		r.Comment = append(r.Comment, &v)
 	}
 }
 
@@ -1308,7 +1314,7 @@ func WithResearchDefinitionRelatedArtifact(v RelatedArtifact) ResearchDefinition
 // WithResearchDefinitionLibrary adds a Library to the ResearchDefinition.
 func WithResearchDefinitionLibrary(v string) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
-		r.Library = append(r.Library, v)
+		r.Library = append(r.Library, &v)
 	}
 }
 

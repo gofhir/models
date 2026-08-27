@@ -46,9 +46,9 @@ type SubstanceProtein struct {
 	// Extension for NumberOfSubunits
 	NumberOfSubunitsExt *Element `json:"_numberOfSubunits,omitempty"`
 	// The disulphide bond between two cysteine residues either on the same subunit or on two different subunits shall be described. The position of the disulfide bonds in the SubstanceProtein shall be listed in increasing order of subunit number and position within subunit followed by the abbreviation of the amino acids involved. The disulfide linkage positions shall actually contain the amino acid Cysteine at the respective positions
-	DisulfideLinkage []string `json:"disulfideLinkage,omitempty"`
+	DisulfideLinkage []*string `json:"disulfideLinkage,omitempty"`
 	// Extension for DisulfideLinkage
-	DisulfideLinkageExt []Element `json:"_disulfideLinkage,omitempty"`
+	DisulfideLinkageExt []*Element `json:"_disulfideLinkage,omitempty"`
 	// This subclause refers to the description of each subunit constituting the SubstanceProtein. A subunit is a linear sequence of amino acids linked through peptide bonds. The Subunit information shall be provided when the finished SubstanceProtein is a complex of multiple sequences; subunits are not used to delineate domains within a single sequence. Subunits are listed in order of decreasing length; sequences of the same length will be ordered by decreasing molecular weight; subunits that have identical sequences will be repeated multiple times
 	Subunit []SubstanceProteinSubunit `json:"subunit,omitempty"`
 }
@@ -305,9 +305,8 @@ func (r *SubstanceProtein) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.DisulfideLinkage = append(r.DisulfideLinkage, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.DisulfideLinkage = append(r.DisulfideLinkage, v)
 			case "subunit":
 				var v SubstanceProteinSubunit
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -581,8 +580,12 @@ func (b *SubstanceProteinBuilder) SetNumberOfSubunits(v int) *SubstanceProteinBu
 }
 
 // AddDisulfideLinkage adds a DisulfideLinkage element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *SubstanceProteinBuilder) AddDisulfideLinkage(v string) *SubstanceProteinBuilder {
-	b.substanceProtein.DisulfideLinkage = append(b.substanceProtein.DisulfideLinkage, v)
+	b.substanceProtein.DisulfideLinkage = append(b.substanceProtein.DisulfideLinkage, &v)
 	return b
 }
 
@@ -681,7 +684,7 @@ func WithSubstanceProteinNumberOfSubunits(v int) SubstanceProteinOption {
 // WithSubstanceProteinDisulfideLinkage adds a DisulfideLinkage to the SubstanceProtein.
 func WithSubstanceProteinDisulfideLinkage(v string) SubstanceProteinOption {
 	return func(r *SubstanceProtein) {
-		r.DisulfideLinkage = append(r.DisulfideLinkage, v)
+		r.DisulfideLinkage = append(r.DisulfideLinkage, &v)
 	}
 }
 

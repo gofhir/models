@@ -49,7 +49,7 @@ type {{.Name}} struct {
 	{{- if and .HasExtension (not .IsChoice)}}
 	// Extension for {{.Name}}
 	{{- if .IsArray}}
-	{{.Name}}Ext []Element `json:"_{{.JSONName}},omitempty"`
+	{{.Name}}Ext []*Element `json:"_{{.JSONName}},omitempty"`
 	{{- else}}
 	{{.Name}}Ext *Element `json:"_{{.JSONName}},omitempty"`
 	{{- end}}
@@ -386,9 +386,8 @@ func (r *{{.Name}}) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.{{.Name}} = append(r.{{.Name}}, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.{{.Name}} = append(r.{{.Name}}, v)
 {{- /* Polymorphic Resource field */ -}}
 {{- else if eq .GoType "Resource"}}
 {{- /* Handled via inline resource - should not appear on resources */ -}}
@@ -604,9 +603,8 @@ func (r *{{.Name}}) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.{{.Name}} = append(r.{{.Name}}, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.{{.Name}} = append(r.{{.Name}}, v)
 {{- /* Complex type arrays */ -}}
 {{- else if .IsArray}}
 			case "{{.JSONName}}":
@@ -698,11 +696,23 @@ func (b *{{$r.Name}}Builder) Build() *{{$r.Name}} {
 {{range $r.Properties}}
 {{- if not (eq .GoType "*interface{}")}}
 {{- if .IsArray}}
+{{ if hasPrefix .ElementType "*" -}}
+// Add{{.Name}} adds a {{.Name}} element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *{{$r.Name}}Builder) Add{{.Name}}(v {{derefType .ElementType}}) *{{$r.Name}}Builder {
+	b.{{$r.LowerName}}.{{.Name}} = append(b.{{$r.LowerName}}.{{.Name}}, &v)
+	return b
+}
+{{- else -}}
 // Add{{.Name}} adds a {{.Name}} element.
 func (b *{{$r.Name}}Builder) Add{{.Name}}(v {{.ElementType}}) *{{$r.Name}}Builder {
 	b.{{$r.LowerName}}.{{.Name}} = append(b.{{$r.LowerName}}.{{.Name}}, v)
 	return b
 }
+{{- end }}
 
 {{- else if .IsPointer}}
 // Set{{.Name}} sets the {{.Name}} field.
@@ -742,11 +752,19 @@ func New{{$r.Name}}(opts ...{{$r.Name}}Option) *{{$r.Name}} {
 {{- if not (eq .GoType "*interface{}")}}
 {{- if .IsArray}}
 // With{{$r.Name}}{{.Name}} adds a {{.Name}} to the {{$r.Name}}.
+{{ if hasPrefix .ElementType "*" -}}
+func With{{$r.Name}}{{.Name}}(v {{derefType .ElementType}}) {{$r.Name}}Option {
+	return func(r *{{$r.Name}}) {
+		r.{{.Name}} = append(r.{{.Name}}, &v)
+	}
+}
+{{- else -}}
 func With{{$r.Name}}{{.Name}}(v {{.ElementType}}) {{$r.Name}}Option {
 	return func(r *{{$r.Name}}) {
 		r.{{.Name}} = append(r.{{.Name}}, v)
 	}
 }
+{{- end }}
 
 {{- else if .IsPointer}}
 // With{{$r.Name}}{{.Name}} sets the {{.Name}} field.

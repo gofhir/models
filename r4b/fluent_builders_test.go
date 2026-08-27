@@ -23,7 +23,7 @@ func TestPatientBuilder(t *testing.T) {
 			AddName(r4b.HumanName{
 				Use:    &use,
 				Family: &family,
-				Given:  []string{"Maria"},
+				Given:  r4b.PtrSlice("Maria"),
 			}).
 			Build()
 
@@ -62,7 +62,7 @@ func TestPatientBuilder(t *testing.T) {
 			SetId("pt-json").
 			SetActive(true).
 			SetGender(r4b.AdministrativeGenderMale).
-			AddName(r4b.HumanName{Family: &family, Given: []string{"Robert"}}).
+			AddName(r4b.HumanName{Family: &family, Given: r4b.PtrSlice("Robert")}).
 			AddAddress(r4b.Address{Use: &use, City: &city}).
 			Build()
 
@@ -161,8 +161,8 @@ func TestPractitionerBuilder(t *testing.T) {
 			AddName(r4b.HumanName{
 				Use:    &use,
 				Family: &family,
-				Given:  []string{"Sarah"},
-				Prefix: []string{"Dr."},
+				Given:  r4b.PtrSlice("Sarah"),
+				Prefix: r4b.PtrSlice("Dr."),
 			}).
 			Build()
 

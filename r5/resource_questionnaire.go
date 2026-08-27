@@ -64,9 +64,9 @@ type Questionnaire struct {
 	// Extension for Title
 	TitleExt *Element `json:"_title,omitempty"`
 	// Based on Questionnaire
-	DerivedFrom []string `json:"derivedFrom,omitempty"`
+	DerivedFrom []*string `json:"derivedFrom,omitempty"`
 	// Extension for DerivedFrom
-	DerivedFromExt []Element `json:"_derivedFrom,omitempty"`
+	DerivedFromExt []*Element `json:"_derivedFrom,omitempty"`
 	// draft | active | retired | unknown
 	Status *PublicationStatus `json:"status,omitempty"`
 	// Extension for Status
@@ -76,9 +76,9 @@ type Questionnaire struct {
 	// Extension for Experimental
 	ExperimentalExt *Element `json:"_experimental,omitempty"`
 	// Resource that can be subject of QuestionnaireResponse
-	SubjectType []string `json:"subjectType,omitempty"`
+	SubjectType []*string `json:"subjectType,omitempty"`
 	// Extension for SubjectType
-	SubjectTypeExt []Element `json:"_subjectType,omitempty"`
+	SubjectTypeExt []*Element `json:"_subjectType,omitempty"`
 	// Date last changed
 	Date *string `json:"date,omitempty"`
 	// Extension for Date
@@ -486,9 +486,8 @@ func (r *Questionnaire) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.DerivedFrom = append(r.DerivedFrom, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.DerivedFrom = append(r.DerivedFrom, v)
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {
@@ -508,9 +507,8 @@ func (r *Questionnaire) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.SubjectType = append(r.SubjectType, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.SubjectType = append(r.SubjectType, v)
 			case "date":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1648,8 +1646,12 @@ func (b *QuestionnaireBuilder) SetTitle(v string) *QuestionnaireBuilder {
 }
 
 // AddDerivedFrom adds a DerivedFrom element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *QuestionnaireBuilder) AddDerivedFrom(v string) *QuestionnaireBuilder {
-	b.questionnaire.DerivedFrom = append(b.questionnaire.DerivedFrom, v)
+	b.questionnaire.DerivedFrom = append(b.questionnaire.DerivedFrom, &v)
 	return b
 }
 
@@ -1666,8 +1668,12 @@ func (b *QuestionnaireBuilder) SetExperimental(v bool) *QuestionnaireBuilder {
 }
 
 // AddSubjectType adds a SubjectType element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *QuestionnaireBuilder) AddSubjectType(v string) *QuestionnaireBuilder {
-	b.questionnaire.SubjectType = append(b.questionnaire.SubjectType, v)
+	b.questionnaire.SubjectType = append(b.questionnaire.SubjectType, &v)
 	return b
 }
 
@@ -1886,7 +1892,7 @@ func WithQuestionnaireTitle(v string) QuestionnaireOption {
 // WithQuestionnaireDerivedFrom adds a DerivedFrom to the Questionnaire.
 func WithQuestionnaireDerivedFrom(v string) QuestionnaireOption {
 	return func(r *Questionnaire) {
-		r.DerivedFrom = append(r.DerivedFrom, v)
+		r.DerivedFrom = append(r.DerivedFrom, &v)
 	}
 }
 
@@ -1907,7 +1913,7 @@ func WithQuestionnaireExperimental(v bool) QuestionnaireOption {
 // WithQuestionnaireSubjectType adds a SubjectType to the Questionnaire.
 func WithQuestionnaireSubjectType(v string) QuestionnaireOption {
 	return func(r *Questionnaire) {
-		r.SubjectType = append(r.SubjectType, v)
+		r.SubjectType = append(r.SubjectType, &v)
 	}
 }
 

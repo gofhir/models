@@ -86,11 +86,10 @@ Required fields like `ResourceType` do not use `omitempty`, ensuring they are al
 
 The library aims for round-trip fidelity: marshaling a resource to JSON and then unmarshaling it back produces an identical struct. This is critical for FHIR systems that need to store and retrieve resources without data loss.
 
-Measured over the official example corpora, 8738 of 8758 JSON files (99.8%) survive a round-trip unchanged. Classifying the 20 that do not, by every difference present rather than only the first:
+Measured over the official example corpora, 8751 of 8758 JSON files (99.9%) survive a round-trip unchanged. Classifying the 7 that do not, by every difference present rather than only the first:
 
 | Defect | Files | Detected? | Effect |
 |---|---:|---|---|
-| Positional `null` in a primitive array | 13 | silent | FHIR uses `null` to align a `_field` array with its values, and neither side can represent it: a `null` value comes back as `""` (9 files), and a `null` in the `_field` array itself comes back as `{}` (4 files, e.g. `_base` in `search-parameters.json`). An absent value becomes an empty one |
 | Extensions on primitives dropped | 6 | silent | Where no companion field exists at all — primitives inside backbone elements, such as `_text` on `Questionnaire.item`. All 6 measured cases are backbone elements |
 | Not a FHIR resource | 1 | error | `package-min-ver.json` is a package manifest with no `resourceType`; corpus noise, not a defect |
 

@@ -17,7 +17,7 @@ func Example() {
 		Name: []r4.HumanName{
 			{
 				Family: r4.Ptr("Smith"),
-				Given:  []string{"John"},
+				Given:  r4.PtrSlice("John"),
 			},
 		},
 	}

@@ -126,9 +126,9 @@ type Measure struct {
 	// Additional documentation, citations, etc.
 	RelatedArtifact []RelatedArtifact `json:"relatedArtifact,omitempty"`
 	// Logic used by the measure
-	Library []string `json:"library,omitempty"`
+	Library []*string `json:"library,omitempty"`
 	// Extension for Library
-	LibraryExt []Element `json:"_library,omitempty"`
+	LibraryExt []*Element `json:"_library,omitempty"`
 	// Disclaimer for use of the measure or its referenced content
 	Disclaimer *string `json:"disclaimer,omitempty"`
 	// Extension for Disclaimer
@@ -158,9 +158,9 @@ type Measure struct {
 	// increase | decrease
 	ImprovementNotation *CodeableConcept `json:"improvementNotation,omitempty"`
 	// Defined terms used in the measure documentation
-	Definition []string `json:"definition,omitempty"`
+	Definition []*string `json:"definition,omitempty"`
 	// Extension for Definition
-	DefinitionExt []Element `json:"_definition,omitempty"`
+	DefinitionExt []*Element `json:"_definition,omitempty"`
 	// Additional guidance for implementers
 	Guidance *string `json:"guidance,omitempty"`
 	// Extension for Guidance
@@ -741,9 +741,8 @@ func (r *Measure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Library = append(r.Library, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Library = append(r.Library, v)
 			case "disclaimer":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -808,9 +807,8 @@ func (r *Measure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Definition = append(r.Definition, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Definition = append(r.Definition, v)
 			case "guidance":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1679,8 +1677,12 @@ func (b *MeasureBuilder) AddRelatedArtifact(v RelatedArtifact) *MeasureBuilder {
 }
 
 // AddLibrary adds a Library element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *MeasureBuilder) AddLibrary(v string) *MeasureBuilder {
-	b.measure.Library = append(b.measure.Library, v)
+	b.measure.Library = append(b.measure.Library, &v)
 	return b
 }
 
@@ -1739,8 +1741,12 @@ func (b *MeasureBuilder) SetImprovementNotation(v CodeableConcept) *MeasureBuild
 }
 
 // AddDefinition adds a Definition element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *MeasureBuilder) AddDefinition(v string) *MeasureBuilder {
-	b.measure.Definition = append(b.measure.Definition, v)
+	b.measure.Definition = append(b.measure.Definition, &v)
 	return b
 }
 
@@ -2033,7 +2039,7 @@ func WithMeasureRelatedArtifact(v RelatedArtifact) MeasureOption {
 // WithMeasureLibrary adds a Library to the Measure.
 func WithMeasureLibrary(v string) MeasureOption {
 	return func(r *Measure) {
-		r.Library = append(r.Library, v)
+		r.Library = append(r.Library, &v)
 	}
 }
 
@@ -2103,7 +2109,7 @@ func WithMeasureImprovementNotation(v CodeableConcept) MeasureOption {
 // WithMeasureDefinition adds a Definition to the Measure.
 func WithMeasureDefinition(v string) MeasureOption {
 	return func(r *Measure) {
-		r.Definition = append(r.Definition, v)
+		r.Definition = append(r.Definition, &v)
 	}
 }
 

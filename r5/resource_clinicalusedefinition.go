@@ -60,9 +60,9 @@ type ClinicalUseDefinition struct {
 	// The population group to which this applies
 	Population []Reference `json:"population,omitempty"`
 	// Logic used by the clinical use definition
-	Library []string `json:"library,omitempty"`
+	Library []*string `json:"library,omitempty"`
 	// Extension for Library
-	LibraryExt []Element `json:"_library,omitempty"`
+	LibraryExt []*Element `json:"_library,omitempty"`
 	// A possible negative outcome from the use of this treatment
 	UndesirableEffect *ClinicalUseDefinitionUndesirableEffect `json:"undesirableEffect,omitempty"`
 	// Critical environmental, health or physical risks or hazards. For example 'Do not operate heavy machinery', 'May cause drowsiness'
@@ -403,9 +403,8 @@ func (r *ClinicalUseDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Library = append(r.Library, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Library = append(r.Library, v)
 			case "undesirableEffect":
 				var v ClinicalUseDefinitionUndesirableEffect
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1462,8 +1461,12 @@ func (b *ClinicalUseDefinitionBuilder) AddPopulation(v Reference) *ClinicalUseDe
 }
 
 // AddLibrary adds a Library element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ClinicalUseDefinitionBuilder) AddLibrary(v string) *ClinicalUseDefinitionBuilder {
-	b.clinicalUseDefinition.Library = append(b.clinicalUseDefinition.Library, v)
+	b.clinicalUseDefinition.Library = append(b.clinicalUseDefinition.Library, &v)
 	return b
 }
 
@@ -1617,7 +1620,7 @@ func WithClinicalUseDefinitionPopulation(v Reference) ClinicalUseDefinitionOptio
 // WithClinicalUseDefinitionLibrary adds a Library to the ClinicalUseDefinition.
 func WithClinicalUseDefinitionLibrary(v string) ClinicalUseDefinitionOption {
 	return func(r *ClinicalUseDefinition) {
-		r.Library = append(r.Library, v)
+		r.Library = append(r.Library, &v)
 	}
 }
 

@@ -707,7 +707,7 @@ type ValueSetCompose struct {
 	// Explicitly exclude codes from a code system or other value sets
 	Exclude []ValueSetComposeInclude `json:"exclude,omitempty"`
 	// Property to return if client doesn't override
-	Property []string `json:"property,omitempty"`
+	Property []*string `json:"property,omitempty"`
 }
 
 // MarshalXML serializes ValueSetCompose to FHIR-conformant XML.
@@ -813,9 +813,8 @@ func (r *ValueSetCompose) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Property = append(r.Property, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Property = append(r.Property, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -845,7 +844,7 @@ type ValueSetComposeInclude struct {
 	// Select codes/concepts by their properties (including relationships)
 	Filter []ValueSetComposeIncludeFilter `json:"filter,omitempty"`
 	// Select the contents included in this value set
-	ValueSet []string `json:"valueSet,omitempty"`
+	ValueSet []*string `json:"valueSet,omitempty"`
 	// A copyright statement for the specific code system included in the value set
 	Copyright *string `json:"copyright,omitempty"`
 }
@@ -956,9 +955,8 @@ func (r *ValueSetComposeInclude) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.ValueSet = append(r.ValueSet, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.ValueSet = append(r.ValueSet, v)
 			case "copyright":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

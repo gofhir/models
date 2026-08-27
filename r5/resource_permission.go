@@ -46,9 +46,9 @@ type Permission struct {
 	// The person or entity that asserts the permission
 	Asserter *Reference `json:"asserter,omitempty"`
 	// The date that permission was asserted
-	Date []string `json:"date,omitempty"`
+	Date []*string `json:"date,omitempty"`
 	// Extension for Date
-	DateExt []Element `json:"_date,omitempty"`
+	DateExt []*Element `json:"_date,omitempty"`
 	// The period in which the permission is active
 	Validity *Period `json:"validity,omitempty"`
 	// The asserted justification for using the data
@@ -326,9 +326,8 @@ func (r *Permission) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Date = append(r.Date, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Date = append(r.Date, v)
 			case "validity":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1022,8 +1021,12 @@ func (b *PermissionBuilder) SetAsserter(v Reference) *PermissionBuilder {
 }
 
 // AddDate adds a Date element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *PermissionBuilder) AddDate(v string) *PermissionBuilder {
-	b.permission.Date = append(b.permission.Date, v)
+	b.permission.Date = append(b.permission.Date, &v)
 	return b
 }
 
@@ -1140,7 +1143,7 @@ func WithPermissionAsserter(v Reference) PermissionOption {
 // WithPermissionDate adds a Date to the Permission.
 func WithPermissionDate(v string) PermissionOption {
 	return func(r *Permission) {
-		r.Date = append(r.Date, v)
+		r.Date = append(r.Date, &v)
 	}
 }
 

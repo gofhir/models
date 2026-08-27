@@ -54,15 +54,15 @@ type SubstanceSourceMaterial struct {
 	// The parent of the herbal drug Ginkgo biloba, Leaf is the substance ID of the substance (fresh) of Ginkgo biloba L. or Ginkgo biloba L. (Whole plant)
 	ParentSubstanceId []Identifier `json:"parentSubstanceId,omitempty"`
 	// The parent substance of the Herbal Drug, or Herbal preparation
-	ParentSubstanceName []string `json:"parentSubstanceName,omitempty"`
+	ParentSubstanceName []*string `json:"parentSubstanceName,omitempty"`
 	// Extension for ParentSubstanceName
-	ParentSubstanceNameExt []Element `json:"_parentSubstanceName,omitempty"`
+	ParentSubstanceNameExt []*Element `json:"_parentSubstanceName,omitempty"`
 	// The country where the plant material is harvested or the countries where the plasma is sourced from as laid down in accordance with the Plasma Master File. For “Plasma-derived substances” the attribute country of origin provides information about the countries used for the manufacturing of the Cryopoor plama or Crioprecipitate
 	CountryOfOrigin []CodeableConcept `json:"countryOfOrigin,omitempty"`
 	// The place/region where the plant is harvested or the places/regions where the animal source material has its habitat
-	GeographicalLocation []string `json:"geographicalLocation,omitempty"`
+	GeographicalLocation []*string `json:"geographicalLocation,omitempty"`
 	// Extension for GeographicalLocation
-	GeographicalLocationExt []Element `json:"_geographicalLocation,omitempty"`
+	GeographicalLocationExt []*Element `json:"_geographicalLocation,omitempty"`
 	// Stage of life for animals, plants, insects and microorganisms. This information shall be provided only when the substance is significantly different in these stages (e.g. foetal bovine serum)
 	DevelopmentStage *CodeableConcept `json:"developmentStage,omitempty"`
 	// Many complex materials are fractions of parts of plants, animals, or minerals. Fraction elements are often necessary to define both Substances and Specified Group 1 Substances. For substances derived from Plants, fraction information will be captured at the Substance information level ( . Oils, Juices and Exudates). Additional information for Extracts, such as extraction solvent composition, will be captured at the Specified Substance Group 1 information level. For plasma-derived products fraction information will be captured at the Substance and the Specified Substance Group 1 levels
@@ -392,9 +392,8 @@ func (r *SubstanceSourceMaterial) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.ParentSubstanceName = append(r.ParentSubstanceName, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.ParentSubstanceName = append(r.ParentSubstanceName, v)
 			case "countryOfOrigin":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -406,9 +405,8 @@ func (r *SubstanceSourceMaterial) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.GeographicalLocation = append(r.GeographicalLocation, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.GeographicalLocation = append(r.GeographicalLocation, v)
 			case "developmentStage":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1300,8 +1298,12 @@ func (b *SubstanceSourceMaterialBuilder) AddParentSubstanceId(v Identifier) *Sub
 }
 
 // AddParentSubstanceName adds a ParentSubstanceName element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *SubstanceSourceMaterialBuilder) AddParentSubstanceName(v string) *SubstanceSourceMaterialBuilder {
-	b.substanceSourceMaterial.ParentSubstanceName = append(b.substanceSourceMaterial.ParentSubstanceName, v)
+	b.substanceSourceMaterial.ParentSubstanceName = append(b.substanceSourceMaterial.ParentSubstanceName, &v)
 	return b
 }
 
@@ -1312,8 +1314,12 @@ func (b *SubstanceSourceMaterialBuilder) AddCountryOfOrigin(v CodeableConcept) *
 }
 
 // AddGeographicalLocation adds a GeographicalLocation element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *SubstanceSourceMaterialBuilder) AddGeographicalLocation(v string) *SubstanceSourceMaterialBuilder {
-	b.substanceSourceMaterial.GeographicalLocation = append(b.substanceSourceMaterial.GeographicalLocation, v)
+	b.substanceSourceMaterial.GeographicalLocation = append(b.substanceSourceMaterial.GeographicalLocation, &v)
 	return b
 }
 
@@ -1458,7 +1464,7 @@ func WithSubstanceSourceMaterialParentSubstanceId(v Identifier) SubstanceSourceM
 // WithSubstanceSourceMaterialParentSubstanceName adds a ParentSubstanceName to the SubstanceSourceMaterial.
 func WithSubstanceSourceMaterialParentSubstanceName(v string) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
-		r.ParentSubstanceName = append(r.ParentSubstanceName, v)
+		r.ParentSubstanceName = append(r.ParentSubstanceName, &v)
 	}
 }
 
@@ -1472,7 +1478,7 @@ func WithSubstanceSourceMaterialCountryOfOrigin(v CodeableConcept) SubstanceSour
 // WithSubstanceSourceMaterialGeographicalLocation adds a GeographicalLocation to the SubstanceSourceMaterial.
 func WithSubstanceSourceMaterialGeographicalLocation(v string) SubstanceSourceMaterialOption {
 	return func(r *SubstanceSourceMaterial) {
-		r.GeographicalLocation = append(r.GeographicalLocation, v)
+		r.GeographicalLocation = append(r.GeographicalLocation, &v)
 	}
 }
 

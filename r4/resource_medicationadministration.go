@@ -42,9 +42,9 @@ type MedicationAdministration struct {
 	// External identifier
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// Instantiates protocol or definition
-	Instantiates []string `json:"instantiates,omitempty"`
+	Instantiates []*string `json:"instantiates,omitempty"`
 	// Extension for Instantiates
-	InstantiatesExt []Element `json:"_instantiates,omitempty"`
+	InstantiatesExt []*Element `json:"_instantiates,omitempty"`
 	// Part of referenced event
 	PartOf []Reference `json:"partOf,omitempty"`
 	// in-progress | not-done | on-hold | completed | entered-in-error | stopped | unknown
@@ -415,9 +415,8 @@ func (r *MedicationAdministration) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Instantiates = append(r.Instantiates, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Instantiates = append(r.Instantiates, v)
 			case "partOf":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -887,8 +886,12 @@ func (b *MedicationAdministrationBuilder) AddIdentifier(v Identifier) *Medicatio
 }
 
 // AddInstantiates adds a Instantiates element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *MedicationAdministrationBuilder) AddInstantiates(v string) *MedicationAdministrationBuilder {
-	b.medicationAdministration.Instantiates = append(b.medicationAdministration.Instantiates, v)
+	b.medicationAdministration.Instantiates = append(b.medicationAdministration.Instantiates, &v)
 	return b
 }
 
@@ -1094,7 +1097,7 @@ func WithMedicationAdministrationIdentifier(v Identifier) MedicationAdministrati
 // WithMedicationAdministrationInstantiates adds a Instantiates to the MedicationAdministration.
 func WithMedicationAdministrationInstantiates(v string) MedicationAdministrationOption {
 	return func(r *MedicationAdministration) {
-		r.Instantiates = append(r.Instantiates, v)
+		r.Instantiates = append(r.Instantiates, &v)
 	}
 }
 

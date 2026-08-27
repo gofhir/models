@@ -34,11 +34,11 @@ func TestPatientFunctionalOptions(t *testing.T) {
 			r4b.WithPatientName(r4b.HumanName{
 				Use:    &use,
 				Family: &family,
-				Given:  []string{"John"},
+				Given:  r4b.PtrSlice("John"),
 			}),
 			r4b.WithPatientName(r4b.HumanName{
 				Family: &family,
-				Given:  []string{"Johnny"},
+				Given:  r4b.PtrSlice("Johnny"),
 			}),
 		)
 
@@ -136,8 +136,8 @@ func TestPractitionerFunctionalOptions(t *testing.T) {
 			r4b.WithPractitionerName(r4b.HumanName{
 				Use:    &use,
 				Family: &family,
-				Given:  []string{"Sarah"},
-				Prefix: []string{"Dr."},
+				Given:  r4b.PtrSlice("Sarah"),
+				Prefix: r4b.PtrSlice("Dr."),
 			}),
 		)
 

@@ -619,7 +619,9 @@ func (a *Analyzer) resolveGoTypeWithBinding(fhirType string, isPointer, isArray 
 			// Must match what the code-system template emits for this ValueSet.
 			customType := a.ValueSetTypeName(vs.URL, vs.Name)
 			if isArray {
-				return "[]" + customType
+				// Same reasoning as resolveGoType: a repeating code is a
+				// repeating primitive, and needs to represent an absent slot.
+				return "[]*" + customType
 			}
 			if isPointer {
 				return "*" + customType
@@ -755,12 +757,40 @@ func (a *Analyzer) resolveGoType(fhirType string, isPointer, isArray bool) strin
 	goType := FHIRToGoType(fhirType)
 
 	if isArray {
+		// A repeating primitive is []*T, not []T.
+		//
+		// FHIR aligns a primitive array with its _field extension array by
+		// position, and uses null to mark a slot with no value:
+		//
+		//	"event":  [null]
+		//	"_event": [{"extension": [{"url": ".../cqf-expression", ...}]}]
+		//
+		// which says the value is not a literal — it is computed by the
+		// expression in the extension. []T cannot hold that: the null becomes
+		// the zero value, so an absent date turns into an empty string and the
+		// extension is left describing nothing.
+		//
+		// Complex-typed arrays keep []T; null is not permitted there.
+		if isFHIRPrimitive(fhirType) {
+			return "[]*" + goType
+		}
 		return "[]" + goType
 	}
 	if isPointer {
 		return "*" + goType
 	}
 	return goType
+}
+
+// isFHIRPrimitive reports whether a FHIR type code names a primitive, and
+// therefore participates in _field alignment.
+//
+// Decided on the FHIR type rather than the resolved Go type, so a code bound to a
+// generated enum still counts: `code` is a primitive whichever Go type it lands
+// on, and it carries extensions the same way.
+func isFHIRPrimitive(fhirType string) bool {
+	_, ok := PrimitiveTypeMap[fhirType]
+	return ok
 }
 
 // extractFieldName extracts the field name from an element path.

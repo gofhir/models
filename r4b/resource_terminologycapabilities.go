@@ -812,11 +812,11 @@ type TerminologyCapabilitiesCodeSystemVersion struct {
 	// If compositional grammar is supported
 	Compositional *bool `json:"compositional,omitempty"`
 	// Language Displays supported
-	Language []string `json:"language,omitempty"`
+	Language []*string `json:"language,omitempty"`
 	// Filter Properties supported
 	Filter []TerminologyCapabilitiesCodeSystemVersionFilter `json:"filter,omitempty"`
 	// Properties supported for $lookup
-	Property []string `json:"property,omitempty"`
+	Property []*string `json:"property,omitempty"`
 }
 
 // MarshalXML serializes TerminologyCapabilitiesCodeSystemVersion to FHIR-conformant XML.
@@ -917,9 +917,8 @@ func (r *TerminologyCapabilitiesCodeSystemVersion) UnmarshalXML(d *xml.Decoder, 
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Language = append(r.Language, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Language = append(r.Language, v)
 			case "filter":
 				var v TerminologyCapabilitiesCodeSystemVersionFilter
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -931,9 +930,8 @@ func (r *TerminologyCapabilitiesCodeSystemVersion) UnmarshalXML(d *xml.Decoder, 
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Property = append(r.Property, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Property = append(r.Property, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -957,7 +955,7 @@ type TerminologyCapabilitiesCodeSystemVersionFilter struct {
 	// Code of the property supported
 	Code *string `json:"code,omitempty"`
 	// Operations supported for the property
-	Op []string `json:"op,omitempty"`
+	Op []*string `json:"op,omitempty"`
 }
 
 // MarshalXML serializes TerminologyCapabilitiesCodeSystemVersionFilter to FHIR-conformant XML.
@@ -1032,9 +1030,8 @@ func (r *TerminologyCapabilitiesCodeSystemVersionFilter) UnmarshalXML(d *xml.Dec
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Op = append(r.Op, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Op = append(r.Op, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err

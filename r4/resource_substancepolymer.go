@@ -46,9 +46,9 @@ type SubstancePolymer struct {
 	// Todo
 	CopolymerConnectivity []CodeableConcept `json:"copolymerConnectivity,omitempty"`
 	// Todo
-	Modification []string `json:"modification,omitempty"`
+	Modification []*string `json:"modification,omitempty"`
 	// Extension for Modification
-	ModificationExt []Element `json:"_modification,omitempty"`
+	ModificationExt []*Element `json:"_modification,omitempty"`
 	// Todo
 	MonomerSet []SubstancePolymerMonomerSet `json:"monomerSet,omitempty"`
 	// Todo
@@ -324,9 +324,8 @@ func (r *SubstancePolymer) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Modification = append(r.Modification, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Modification = append(r.Modification, v)
 			case "monomerSet":
 				var v SubstancePolymerMonomerSet
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1153,8 +1152,12 @@ func (b *SubstancePolymerBuilder) AddCopolymerConnectivity(v CodeableConcept) *S
 }
 
 // AddModification adds a Modification element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *SubstancePolymerBuilder) AddModification(v string) *SubstancePolymerBuilder {
-	b.substancePolymer.Modification = append(b.substancePolymer.Modification, v)
+	b.substancePolymer.Modification = append(b.substancePolymer.Modification, &v)
 	return b
 }
 
@@ -1266,7 +1269,7 @@ func WithSubstancePolymerCopolymerConnectivity(v CodeableConcept) SubstancePolym
 // WithSubstancePolymerModification adds a Modification to the SubstancePolymer.
 func WithSubstancePolymerModification(v string) SubstancePolymerOption {
 	return func(r *SubstancePolymer) {
-		r.Modification = append(r.Modification, v)
+		r.Modification = append(r.Modification, &v)
 	}
 }
 

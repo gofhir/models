@@ -52,9 +52,9 @@ type Organization struct {
 	// Extension for Name
 	NameExt *Element `json:"_name,omitempty"`
 	// A list of alternate names that the organization is known as, or was known as in the past
-	Alias []string `json:"alias,omitempty"`
+	Alias []*string `json:"alias,omitempty"`
 	// Extension for Alias
-	AliasExt []Element `json:"_alias,omitempty"`
+	AliasExt []*Element `json:"_alias,omitempty"`
 	// Additional details about the Organization that could be displayed as further information to identify the Organization beyond its name
 	Description *string `json:"description,omitempty"`
 	// Extension for Description
@@ -360,9 +360,8 @@ func (r *Organization) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Alias = append(r.Alias, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Alias = append(r.Alias, v)
 			case "description":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -627,8 +626,12 @@ func (b *OrganizationBuilder) SetName(v string) *OrganizationBuilder {
 }
 
 // AddAlias adds a Alias element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *OrganizationBuilder) AddAlias(v string) *OrganizationBuilder {
-	b.organization.Alias = append(b.organization.Alias, v)
+	b.organization.Alias = append(b.organization.Alias, &v)
 	return b
 }
 
@@ -765,7 +768,7 @@ func WithOrganizationName(v string) OrganizationOption {
 // WithOrganizationAlias adds a Alias to the Organization.
 func WithOrganizationAlias(v string) OrganizationOption {
 	return func(r *Organization) {
-		r.Alias = append(r.Alias, v)
+		r.Alias = append(r.Alias, &v)
 	}
 }
 

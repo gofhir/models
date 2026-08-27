@@ -84,8 +84,8 @@ func TestPatient_UnmarshalXML_RepeatingElements(t *testing.T) {
 	require.Len(t, patient.Name, 1)
 	assert.Equal(t, "Smith", *patient.Name[0].Family)
 	require.Len(t, patient.Name[0].Given, 2)
-	assert.Equal(t, "John", patient.Name[0].Given[0])
-	assert.Equal(t, "Robert", patient.Name[0].Given[1])
+	assert.Equal(t, "John", *patient.Name[0].Given[0])
+	assert.Equal(t, "Robert", *patient.Name[0].Given[1])
 }
 
 func TestPatient_UnmarshalXML_ContainedResource(t *testing.T) {
@@ -175,7 +175,7 @@ func TestPatient_XML_Roundtrip(t *testing.T) {
 		Name: []HumanName{
 			{
 				Family: ptr("Test"),
-				Given:  []string{"Jane", "Marie"},
+				Given:  PtrSlice("Jane", "Marie"),
 			},
 		},
 	}

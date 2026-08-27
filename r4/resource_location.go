@@ -52,9 +52,9 @@ type Location struct {
 	// Extension for Name
 	NameExt *Element `json:"_name,omitempty"`
 	// A list of alternate names that the location is known as, or was known as, in the past
-	Alias []string `json:"alias,omitempty"`
+	Alias []*string `json:"alias,omitempty"`
 	// Extension for Alias
-	AliasExt []Element `json:"_alias,omitempty"`
+	AliasExt []*Element `json:"_alias,omitempty"`
 	// Additional details about the location that could be displayed as further information to identify the location beyond its name
 	Description *string `json:"description,omitempty"`
 	// Extension for Description
@@ -409,9 +409,8 @@ func (r *Location) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Alias = append(r.Alias, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Alias = append(r.Alias, v)
 			case "description":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -508,7 +507,7 @@ type LocationHoursOfOperation struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// mon | tue | wed | thu | fri | sat | sun
-	DaysOfWeek []DaysOfWeek `json:"daysOfWeek,omitempty"`
+	DaysOfWeek []*DaysOfWeek `json:"daysOfWeek,omitempty"`
 	// The Location is open all day
 	AllDay *bool `json:"allDay,omitempty"`
 	// Time that the Location opens
@@ -589,9 +588,8 @@ func (r *LocationHoursOfOperation) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.DaysOfWeek = append(r.DaysOfWeek, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.DaysOfWeek = append(r.DaysOfWeek, v)
 			case "allDay":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -828,8 +826,12 @@ func (b *LocationBuilder) SetName(v string) *LocationBuilder {
 }
 
 // AddAlias adds a Alias element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *LocationBuilder) AddAlias(v string) *LocationBuilder {
-	b.location.Alias = append(b.location.Alias, v)
+	b.location.Alias = append(b.location.Alias, &v)
 	return b
 }
 
@@ -1008,7 +1010,7 @@ func WithLocationName(v string) LocationOption {
 // WithLocationAlias adds a Alias to the Location.
 func WithLocationAlias(v string) LocationOption {
 	return func(r *Location) {
-		r.Alias = append(r.Alias, v)
+		r.Alias = append(r.Alias, &v)
 	}
 }
 

@@ -94,9 +94,9 @@ type ImplementationGuide struct {
 	// Extension for License
 	LicenseExt *Element `json:"_license,omitempty"`
 	// FHIR Version(s) this Implementation Guide targets
-	FhirVersion []FHIRVersion `json:"fhirVersion,omitempty"`
+	FhirVersion []*FHIRVersion `json:"fhirVersion,omitempty"`
 	// Extension for FhirVersion
-	FhirVersionExt []Element `json:"_fhirVersion,omitempty"`
+	FhirVersionExt []*Element `json:"_fhirVersion,omitempty"`
 	// Another Implementation guide this depends on
 	DependsOn []ImplementationGuideDependsOn `json:"dependsOn,omitempty"`
 	// Profiles that apply globally
@@ -506,9 +506,8 @@ func (r *ImplementationGuide) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.FhirVersion = append(r.FhirVersion, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.FhirVersion = append(r.FhirVersion, v)
 			case "dependsOn":
 				var v ImplementationGuideDependsOn
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1034,7 +1033,7 @@ type ImplementationGuideDefinitionResource struct {
 	// Location of the resource
 	Reference Reference `json:"reference,omitempty"`
 	// Versions this applies to (if different to IG)
-	FhirVersion []FHIRVersion `json:"fhirVersion,omitempty"`
+	FhirVersion []*FHIRVersion `json:"fhirVersion,omitempty"`
 	// Human Name for the resource
 	Name *string `json:"name,omitempty"`
 	// Reason why included in guide
@@ -1136,9 +1135,8 @@ func (r *ImplementationGuideDefinitionResource) UnmarshalXML(d *xml.Decoder, sta
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.FhirVersion = append(r.FhirVersion, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.FhirVersion = append(r.FhirVersion, v)
 			case "name":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1515,9 +1513,9 @@ type ImplementationGuideManifest struct {
 	// HTML page within the parent IG
 	Page []ImplementationGuideManifestPage `json:"page,omitempty"`
 	// Image within the IG
-	Image []string `json:"image,omitempty"`
+	Image []*string `json:"image,omitempty"`
 	// Additional linkable file in IG
-	Other []string `json:"other,omitempty"`
+	Other []*string `json:"other,omitempty"`
 }
 
 // MarshalXML serializes ImplementationGuideManifest to FHIR-conformant XML.
@@ -1617,17 +1615,15 @@ func (r *ImplementationGuideManifest) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Image = append(r.Image, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Image = append(r.Image, v)
 			case "other":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Other = append(r.Other, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Other = append(r.Other, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1653,7 +1649,7 @@ type ImplementationGuideManifestPage struct {
 	// Title of the page, for references
 	Title *string `json:"title,omitempty"`
 	// Anchor available on the page
-	Anchor []string `json:"anchor,omitempty"`
+	Anchor []*string `json:"anchor,omitempty"`
 }
 
 // MarshalXML serializes ImplementationGuideManifestPage to FHIR-conformant XML.
@@ -1737,9 +1733,8 @@ func (r *ImplementationGuideManifestPage) UnmarshalXML(d *xml.Decoder, start xml
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Anchor = append(r.Anchor, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Anchor = append(r.Anchor, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2037,8 +2032,12 @@ func (b *ImplementationGuideBuilder) SetLicense(v string) *ImplementationGuideBu
 }
 
 // AddFhirVersion adds a FhirVersion element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ImplementationGuideBuilder) AddFhirVersion(v FHIRVersion) *ImplementationGuideBuilder {
-	b.implementationGuide.FhirVersion = append(b.implementationGuide.FhirVersion, v)
+	b.implementationGuide.FhirVersion = append(b.implementationGuide.FhirVersion, &v)
 	return b
 }
 
@@ -2246,7 +2245,7 @@ func WithImplementationGuideLicense(v string) ImplementationGuideOption {
 // WithImplementationGuideFhirVersion adds a FhirVersion to the ImplementationGuide.
 func WithImplementationGuideFhirVersion(v FHIRVersion) ImplementationGuideOption {
 	return func(r *ImplementationGuide) {
-		r.FhirVersion = append(r.FhirVersion, v)
+		r.FhirVersion = append(r.FhirVersion, &v)
 	}
 }
 

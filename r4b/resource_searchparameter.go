@@ -90,9 +90,9 @@ type SearchParameter struct {
 	// Extension for Code
 	CodeExt *Element `json:"_code,omitempty"`
 	// The resource type(s) this search parameter applies to
-	Base []string `json:"base,omitempty"`
+	Base []*string `json:"base,omitempty"`
 	// Extension for Base
-	BaseExt []Element `json:"_base,omitempty"`
+	BaseExt []*Element `json:"_base,omitempty"`
 	// number | date | string | token | reference | composite | quantity | uri | special
 	Type *SearchParamType `json:"type,omitempty"`
 	// Extension for Type
@@ -110,9 +110,9 @@ type SearchParameter struct {
 	// Extension for XpathUsage
 	XpathUsageExt *Element `json:"_xpathUsage,omitempty"`
 	// Types of resource (if a resource reference)
-	Target []string `json:"target,omitempty"`
+	Target []*string `json:"target,omitempty"`
 	// Extension for Target
-	TargetExt []Element `json:"_target,omitempty"`
+	TargetExt []*Element `json:"_target,omitempty"`
 	// Allow multiple values per parameter (or)
 	MultipleOr *bool `json:"multipleOr,omitempty"`
 	// Extension for MultipleOr
@@ -122,17 +122,17 @@ type SearchParameter struct {
 	// Extension for MultipleAnd
 	MultipleAndExt *Element `json:"_multipleAnd,omitempty"`
 	// eq | ne | gt | lt | ge | le | sa | eb | ap
-	Comparator []SearchComparator `json:"comparator,omitempty"`
+	Comparator []*SearchComparator `json:"comparator,omitempty"`
 	// Extension for Comparator
-	ComparatorExt []Element `json:"_comparator,omitempty"`
+	ComparatorExt []*Element `json:"_comparator,omitempty"`
 	// missing | exact | contains | not | text | in | not-in | below | above | type | identifier | ofType
-	Modifier []SearchModifierCode `json:"modifier,omitempty"`
+	Modifier []*SearchModifierCode `json:"modifier,omitempty"`
 	// Extension for Modifier
-	ModifierExt []Element `json:"_modifier,omitempty"`
+	ModifierExt []*Element `json:"_modifier,omitempty"`
 	// Chained names supported
-	Chain []string `json:"chain,omitempty"`
+	Chain []*string `json:"chain,omitempty"`
 	// Extension for Chain
-	ChainExt []Element `json:"_chain,omitempty"`
+	ChainExt []*Element `json:"_chain,omitempty"`
 	// For Composite resources to define the parts
 	Component []SearchParameterComponent `json:"component,omitempty"`
 }
@@ -541,9 +541,8 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Base = append(r.Base, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Base = append(r.Base, v)
 			case "type":
 				v, ext, err := xmlDecodePrimitiveCode[SearchParamType](d, t)
 				if err != nil {
@@ -577,9 +576,8 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Target = append(r.Target, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Target = append(r.Target, v)
 			case "multipleOr":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -599,25 +597,22 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Comparator = append(r.Comparator, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Comparator = append(r.Comparator, v)
 			case "modifier":
 				v, _, err := xmlDecodePrimitiveCode[SearchModifierCode](d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Modifier = append(r.Modifier, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Modifier = append(r.Modifier, v)
 			case "chain":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Chain = append(r.Chain, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Chain = append(r.Chain, v)
 			case "component":
 				var v SearchParameterComponent
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -891,8 +886,12 @@ func (b *SearchParameterBuilder) SetCode(v string) *SearchParameterBuilder {
 }
 
 // AddBase adds a Base element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *SearchParameterBuilder) AddBase(v string) *SearchParameterBuilder {
-	b.searchParameter.Base = append(b.searchParameter.Base, v)
+	b.searchParameter.Base = append(b.searchParameter.Base, &v)
 	return b
 }
 
@@ -921,8 +920,12 @@ func (b *SearchParameterBuilder) SetXpathUsage(v XPathUsageType) *SearchParamete
 }
 
 // AddTarget adds a Target element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *SearchParameterBuilder) AddTarget(v string) *SearchParameterBuilder {
-	b.searchParameter.Target = append(b.searchParameter.Target, v)
+	b.searchParameter.Target = append(b.searchParameter.Target, &v)
 	return b
 }
 
@@ -939,20 +942,32 @@ func (b *SearchParameterBuilder) SetMultipleAnd(v bool) *SearchParameterBuilder 
 }
 
 // AddComparator adds a Comparator element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *SearchParameterBuilder) AddComparator(v SearchComparator) *SearchParameterBuilder {
-	b.searchParameter.Comparator = append(b.searchParameter.Comparator, v)
+	b.searchParameter.Comparator = append(b.searchParameter.Comparator, &v)
 	return b
 }
 
 // AddModifier adds a Modifier element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *SearchParameterBuilder) AddModifier(v SearchModifierCode) *SearchParameterBuilder {
-	b.searchParameter.Modifier = append(b.searchParameter.Modifier, v)
+	b.searchParameter.Modifier = append(b.searchParameter.Modifier, &v)
 	return b
 }
 
 // AddChain adds a Chain element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *SearchParameterBuilder) AddChain(v string) *SearchParameterBuilder {
-	b.searchParameter.Chain = append(b.searchParameter.Chain, v)
+	b.searchParameter.Chain = append(b.searchParameter.Chain, &v)
 	return b
 }
 
@@ -1135,7 +1150,7 @@ func WithSearchParameterCode(v string) SearchParameterOption {
 // WithSearchParameterBase adds a Base to the SearchParameter.
 func WithSearchParameterBase(v string) SearchParameterOption {
 	return func(r *SearchParameter) {
-		r.Base = append(r.Base, v)
+		r.Base = append(r.Base, &v)
 	}
 }
 
@@ -1170,7 +1185,7 @@ func WithSearchParameterXpathUsage(v XPathUsageType) SearchParameterOption {
 // WithSearchParameterTarget adds a Target to the SearchParameter.
 func WithSearchParameterTarget(v string) SearchParameterOption {
 	return func(r *SearchParameter) {
-		r.Target = append(r.Target, v)
+		r.Target = append(r.Target, &v)
 	}
 }
 
@@ -1191,21 +1206,21 @@ func WithSearchParameterMultipleAnd(v bool) SearchParameterOption {
 // WithSearchParameterComparator adds a Comparator to the SearchParameter.
 func WithSearchParameterComparator(v SearchComparator) SearchParameterOption {
 	return func(r *SearchParameter) {
-		r.Comparator = append(r.Comparator, v)
+		r.Comparator = append(r.Comparator, &v)
 	}
 }
 
 // WithSearchParameterModifier adds a Modifier to the SearchParameter.
 func WithSearchParameterModifier(v SearchModifierCode) SearchParameterOption {
 	return func(r *SearchParameter) {
-		r.Modifier = append(r.Modifier, v)
+		r.Modifier = append(r.Modifier, &v)
 	}
 }
 
 // WithSearchParameterChain adds a Chain to the SearchParameter.
 func WithSearchParameterChain(v string) SearchParameterOption {
 	return func(r *SearchParameter) {
-		r.Chain = append(r.Chain, v)
+		r.Chain = append(r.Chain, &v)
 	}
 }
 

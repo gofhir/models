@@ -321,17 +321,27 @@ func xmlEncodePrimitiveCode[T ~string](e *xml.Encoder, name string, value *T, ex
 
 // xmlEncodePrimitiveStringArray encodes a repeating FHIR string primitive.
 // Each item becomes a separate XML element: <name value="item1"/><name value="item2"/>
-func xmlEncodePrimitiveStringArray(e *xml.Encoder, name string, values []string, exts []Element) error {
-	for i := range values {
+func xmlEncodePrimitiveStringArray(e *xml.Encoder, name string, values []*string, exts []*Element) error {
+	// values and exts are parallel by position, and either side may hold nil in a
+	// slot: a nil value means the value is absent (its reason lives in the
+	// extension), and a nil ext means that position simply has no extension.
+	n := len(values)
+	if len(exts) > n {
+		n = len(exts)
+	}
+	for i := 0; i < n; i++ {
+		var value *string
+		if i < len(values) {
+			value = values[i]
+		}
 		var ext *Element
 		if i < len(exts) {
-			ext = &exts[i]
-			if ext.Id == nil && len(ext.Extension) == 0 {
-				ext = nil
-			}
+			ext = exts[i]
 		}
-		val := values[i]
-		if err := xmlEncodePrimitiveString(e, name, &val, ext); err != nil {
+		if value == nil && ext == nil {
+			continue
+		}
+		if err := xmlEncodePrimitiveString(e, name, value, ext); err != nil {
 			return err
 		}
 	}
@@ -339,17 +349,27 @@ func xmlEncodePrimitiveStringArray(e *xml.Encoder, name string, values []string,
 }
 
 // xmlEncodePrimitiveBoolArray encodes a repeating FHIR boolean primitive.
-func xmlEncodePrimitiveBoolArray(e *xml.Encoder, name string, values []bool, exts []Element) error {
-	for i := range values {
+func xmlEncodePrimitiveBoolArray(e *xml.Encoder, name string, values []*bool, exts []*Element) error {
+	// values and exts are parallel by position, and either side may hold nil in a
+	// slot: a nil value means the value is absent (its reason lives in the
+	// extension), and a nil ext means that position simply has no extension.
+	n := len(values)
+	if len(exts) > n {
+		n = len(exts)
+	}
+	for i := 0; i < n; i++ {
+		var value *bool
+		if i < len(values) {
+			value = values[i]
+		}
 		var ext *Element
 		if i < len(exts) {
-			ext = &exts[i]
-			if ext.Id == nil && len(ext.Extension) == 0 {
-				ext = nil
-			}
+			ext = exts[i]
 		}
-		val := values[i]
-		if err := xmlEncodePrimitiveBool(e, name, &val, ext); err != nil {
+		if value == nil && ext == nil {
+			continue
+		}
+		if err := xmlEncodePrimitiveBool(e, name, value, ext); err != nil {
 			return err
 		}
 	}
@@ -357,17 +377,27 @@ func xmlEncodePrimitiveBoolArray(e *xml.Encoder, name string, values []bool, ext
 }
 
 // xmlEncodePrimitiveIntArray encodes a repeating FHIR integer primitive.
-func xmlEncodePrimitiveIntArray(e *xml.Encoder, name string, values []int, exts []Element) error {
-	for i := range values {
+func xmlEncodePrimitiveIntArray(e *xml.Encoder, name string, values []*int, exts []*Element) error {
+	// values and exts are parallel by position, and either side may hold nil in a
+	// slot: a nil value means the value is absent (its reason lives in the
+	// extension), and a nil ext means that position simply has no extension.
+	n := len(values)
+	if len(exts) > n {
+		n = len(exts)
+	}
+	for i := 0; i < n; i++ {
+		var value *int
+		if i < len(values) {
+			value = values[i]
+		}
 		var ext *Element
 		if i < len(exts) {
-			ext = &exts[i]
-			if ext.Id == nil && len(ext.Extension) == 0 {
-				ext = nil
-			}
+			ext = exts[i]
 		}
-		val := values[i]
-		if err := xmlEncodePrimitiveInt(e, name, &val, ext); err != nil {
+		if value == nil && ext == nil {
+			continue
+		}
+		if err := xmlEncodePrimitiveInt(e, name, value, ext); err != nil {
 			return err
 		}
 	}
@@ -375,17 +405,27 @@ func xmlEncodePrimitiveIntArray(e *xml.Encoder, name string, values []int, exts 
 }
 
 // xmlEncodePrimitiveInt64Array encodes a repeating FHIR integer64 primitive.
-func xmlEncodePrimitiveInt64Array(e *xml.Encoder, name string, values []int64, exts []Element) error {
-	for i := range values {
+func xmlEncodePrimitiveInt64Array(e *xml.Encoder, name string, values []*int64, exts []*Element) error {
+	// values and exts are parallel by position, and either side may hold nil in a
+	// slot: a nil value means the value is absent (its reason lives in the
+	// extension), and a nil ext means that position simply has no extension.
+	n := len(values)
+	if len(exts) > n {
+		n = len(exts)
+	}
+	for i := 0; i < n; i++ {
+		var value *int64
+		if i < len(values) {
+			value = values[i]
+		}
 		var ext *Element
 		if i < len(exts) {
-			ext = &exts[i]
-			if ext.Id == nil && len(ext.Extension) == 0 {
-				ext = nil
-			}
+			ext = exts[i]
 		}
-		val := values[i]
-		if err := xmlEncodePrimitiveInt64(e, name, &val, ext); err != nil {
+		if value == nil && ext == nil {
+			continue
+		}
+		if err := xmlEncodePrimitiveInt64(e, name, value, ext); err != nil {
 			return err
 		}
 	}
@@ -393,17 +433,27 @@ func xmlEncodePrimitiveInt64Array(e *xml.Encoder, name string, values []int64, e
 }
 
 // xmlEncodePrimitiveUint32Array encodes a repeating FHIR unsignedInt/positiveInt primitive.
-func xmlEncodePrimitiveUint32Array(e *xml.Encoder, name string, values []uint32, exts []Element) error {
-	for i := range values {
+func xmlEncodePrimitiveUint32Array(e *xml.Encoder, name string, values []*uint32, exts []*Element) error {
+	// values and exts are parallel by position, and either side may hold nil in a
+	// slot: a nil value means the value is absent (its reason lives in the
+	// extension), and a nil ext means that position simply has no extension.
+	n := len(values)
+	if len(exts) > n {
+		n = len(exts)
+	}
+	for i := 0; i < n; i++ {
+		var value *uint32
+		if i < len(values) {
+			value = values[i]
+		}
 		var ext *Element
 		if i < len(exts) {
-			ext = &exts[i]
-			if ext.Id == nil && len(ext.Extension) == 0 {
-				ext = nil
-			}
+			ext = exts[i]
 		}
-		val := values[i]
-		if err := xmlEncodePrimitiveUint32(e, name, &val, ext); err != nil {
+		if value == nil && ext == nil {
+			continue
+		}
+		if err := xmlEncodePrimitiveUint32(e, name, value, ext); err != nil {
 			return err
 		}
 	}
@@ -411,17 +461,27 @@ func xmlEncodePrimitiveUint32Array(e *xml.Encoder, name string, values []uint32,
 }
 
 // xmlEncodePrimitiveDecimalArray encodes a repeating FHIR decimal primitive.
-func xmlEncodePrimitiveDecimalArray(e *xml.Encoder, name string, values []Decimal, exts []Element) error {
-	for i := range values {
+func xmlEncodePrimitiveDecimalArray(e *xml.Encoder, name string, values []*Decimal, exts []*Element) error {
+	// values and exts are parallel by position, and either side may hold nil in a
+	// slot: a nil value means the value is absent (its reason lives in the
+	// extension), and a nil ext means that position simply has no extension.
+	n := len(values)
+	if len(exts) > n {
+		n = len(exts)
+	}
+	for i := 0; i < n; i++ {
+		var value *Decimal
+		if i < len(values) {
+			value = values[i]
+		}
 		var ext *Element
 		if i < len(exts) {
-			ext = &exts[i]
-			if ext.Id == nil && len(ext.Extension) == 0 {
-				ext = nil
-			}
+			ext = exts[i]
 		}
-		val := values[i]
-		if err := xmlEncodePrimitiveDecimal(e, name, &val, ext); err != nil {
+		if value == nil && ext == nil {
+			continue
+		}
+		if err := xmlEncodePrimitiveDecimal(e, name, value, ext); err != nil {
 			return err
 		}
 	}
@@ -429,17 +489,24 @@ func xmlEncodePrimitiveDecimalArray(e *xml.Encoder, name string, values []Decima
 }
 
 // xmlEncodePrimitiveCodeArray encodes a repeating FHIR code primitive with custom string-based type.
-func xmlEncodePrimitiveCodeArray[T ~string](e *xml.Encoder, name string, values []T, exts []Element) error {
-	for i := range values {
+func xmlEncodePrimitiveCodeArray[T ~string](e *xml.Encoder, name string, values []*T, exts []*Element) error {
+	n := len(values)
+	if len(exts) > n {
+		n = len(exts)
+	}
+	for i := 0; i < n; i++ {
+		var value *T
+		if i < len(values) {
+			value = values[i]
+		}
 		var ext *Element
 		if i < len(exts) {
-			ext = &exts[i]
-			if ext.Id == nil && len(ext.Extension) == 0 {
-				ext = nil
-			}
+			ext = exts[i]
 		}
-		val := values[i]
-		if err := xmlEncodePrimitiveCode(e, name, &val, ext); err != nil {
+		if value == nil && ext == nil {
+			continue
+		}
+		if err := xmlEncodePrimitiveCode(e, name, value, ext); err != nil {
 			return err
 		}
 	}
@@ -692,19 +759,24 @@ func xmlDecodePrimitiveInt(d *xml.Decoder, start xml.StartElement) (*int, *Eleme
 }
 
 // xmlEncodePrimitiveInteger64Array encodes a repeating FHIR integer64 primitive.
-func xmlEncodePrimitiveInteger64Array(e *xml.Encoder, name string, values []Integer64, exts []Element) error {
-	for i, v := range values {
+func xmlEncodePrimitiveInteger64Array(e *xml.Encoder, name string, values []*Integer64, exts []*Element) error {
+	n := len(values)
+	if len(exts) > n {
+		n = len(exts)
+	}
+	for i := 0; i < n; i++ {
+		var value *Integer64
+		if i < len(values) {
+			value = values[i]
+		}
 		var ext *Element
 		if i < len(exts) {
-			ext = &exts[i]
+			ext = exts[i]
 		}
-		value := v
-		if err := xmlEncodePrimitiveInteger64(e, name, &value, ext); err != nil {
-			return err
+		if value == nil && ext == nil {
+			continue
 		}
-	}
-	for i := len(values); i < len(exts); i++ {
-		if err := xmlEncodePrimitiveInteger64(e, name, nil, &exts[i]); err != nil {
+		if err := xmlEncodePrimitiveInteger64(e, name, value, ext); err != nil {
 			return err
 		}
 	}
