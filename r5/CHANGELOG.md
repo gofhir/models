@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/gofhir/models/compare/r5/v1.5.0...r5/v1.5.1) (2026-08-27)
+
+
+### Bug Fixes
+
+* **json:** make R5 Bundle.issues round-trip, and accept explicit null ([#25](https://github.com/gofhir/models/issues/25)) ([42c5fc8](https://github.com/gofhir/models/commit/42c5fc8ff52578b797819515bd5e84257d2ef7dd))
+
 ## [1.5.0](https://github.com/gofhir/models/compare/r5/v1.4.0...r5/v1.5.0) (2026-08-21)
 
 
