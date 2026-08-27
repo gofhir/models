@@ -17,7 +17,7 @@ package main
 import (
     "fmt"
 
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 // ptrTo is a generic helper that returns a pointer to the given value.

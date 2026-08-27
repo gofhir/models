@@ -23,22 +23,34 @@ go mod init your-module-name
 
 Each FHIR version is published as an independent Go module. Install only the version you need.
 
+{{< callout type="info" >}}
+**The `/v2` suffix is part of the import path, not a directory.** Go requires it on every module at major version 2 or above, so `github.com/gofhir/models/r4/v2` is the path you both `go get` and `import` — there is no `v2` folder in the repository, and the package name stays `r4`:
+
+```go
+import "github.com/gofhir/models/r4/v2"
+
+var p r4.Patient   // still r4, not r4v2
+```
+
+Coming from v1? Add `/v2` to your import paths and run `go mod tidy`. Because the path changed, v1 and v2 can coexist in one build — useful if a dependency still pulls in v1.
+{{< /callout >}}
+
 ### FHIR R4 (4.0.1)
 
 ```shell
-go get github.com/gofhir/models/r4
+go get github.com/gofhir/models/r4/v2
 ```
 
 ### FHIR R4B (4.3.0)
 
 ```shell
-go get github.com/gofhir/models/r4b
+go get github.com/gofhir/models/r4b/v2
 ```
 
 ### FHIR R5 (5.0.0)
 
 ```shell
-go get github.com/gofhir/models/r5
+go get github.com/gofhir/models/r5/v2
 ```
 
 ### R4 Helpers (optional)
@@ -46,7 +58,7 @@ go get github.com/gofhir/models/r5
 The helpers sub-package provides pre-built `CodeableConcept` values for common observation categories, condition categories, LOINC codes, and UCUM units:
 
 ```shell
-go get github.com/gofhir/models/r4/helpers
+go get github.com/gofhir/models/r4/v2/helpers
 ```
 
 ## Import
@@ -54,14 +66,14 @@ go get github.com/gofhir/models/r4/helpers
 After installing, import the package in your Go source files:
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 ```
 
 Or for R4B and R5:
 
 ```go
-import "github.com/gofhir/models/r4b"
-import "github.com/gofhir/models/r5"
+import "github.com/gofhir/models/r4b/v2"
+import "github.com/gofhir/models/r5/v2"
 ```
 
 All types, builders, functional options, code system constants, and serialization functions are exported from the version-specific package. There is no separate sub-package for builders or serialization -- everything is in one place.
@@ -72,8 +84,8 @@ If your application needs to work with more than one FHIR version, you can impor
 
 ```go
 import (
-    r4 "github.com/gofhir/models/r4"
-    r5 "github.com/gofhir/models/r5"
+    r4 "github.com/gofhir/models/r4/v2"
+    r5 "github.com/gofhir/models/r5/v2"
 )
 
 func main() {
@@ -106,7 +118,7 @@ package main
 import (
     "fmt"
 
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 func main() {

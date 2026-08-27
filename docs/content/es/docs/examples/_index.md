@@ -24,7 +24,7 @@ package main
 import (
     "encoding/json"
     "fmt"
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 func main() {

@@ -12,7 +12,7 @@ The `FHIRPathModelData` struct provides runtime metadata that a FHIRPath engine 
 Access the model metadata through the package-level function:
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 model := r4.FHIRPathModel()
 ```
@@ -132,7 +132,7 @@ The primary use case for `FHIRPathModelData` is to provide type information to a
 import (
     "fmt"
     "github.com/gofhir/fhirpath"
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 // Build a resource

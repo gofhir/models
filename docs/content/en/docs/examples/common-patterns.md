@@ -22,7 +22,7 @@ func ptrTo[T any](v T) *T {
 A complete patient with name, address, identifiers, telecom, and demographic fields:
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 patient := r4.NewPatientBuilder().
     SetId("patient-001").
@@ -88,7 +88,7 @@ patient := r4.NewPatientBuilder().
 A body weight observation with all the fields a FHIR server typically expects:
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 observation := r4.NewObservationBuilder().
     SetId("obs-weight-001").
@@ -133,7 +133,7 @@ observation := r4.NewObservationBuilder().
 A transaction bundle containing a Patient and related Observation:
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 bundleType := r4.BundleTypeTransaction
 
@@ -187,7 +187,7 @@ bundle := r4.NewBundleBuilder().
 `CodeableConcept` is one of the most commonly used FHIR data types. It represents a concept that may be defined by one or more coding systems:
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 // A CodeableConcept with multiple codings (e.g., same concept in SNOMED and ICD-10)
 diagnosisCode := r4.CodeableConcept{
@@ -238,8 +238,8 @@ The `helpers` package provides pre-built `CodeableConcept` values for common cli
 
 ```go
 import (
-    "github.com/gofhir/models/r4"
-    "github.com/gofhir/models/r4/helpers"
+    "github.com/gofhir/models/r4/v2"
+    "github.com/gofhir/models/r4/v2/helpers"
 )
 
 observation := r4.NewObservationBuilder().
@@ -266,7 +266,7 @@ observation := r4.NewObservationBuilder().
 ### LOINC Codes for Vital Signs
 
 ```go
-import "github.com/gofhir/models/r4/helpers"
+import "github.com/gofhir/models/r4/v2/helpers"
 
 // Pre-built CodeableConcepts for common vital signs
 helpers.BodyWeight       // LOINC 29463-7
@@ -281,7 +281,7 @@ helpers.VitalSignsPanel  // LOINC 85353-1
 The `helpers` package also provides functions for creating `Quantity` values with standard UCUM units:
 
 ```go
-import "github.com/gofhir/models/r4/helpers"
+import "github.com/gofhir/models/r4/v2/helpers"
 
 weight := helpers.QuantityKg(72.5)    // 72.5 kg
 height := helpers.QuantityCm(175.0)   // 175 cm
@@ -292,8 +292,8 @@ temp := helpers.QuantityCel(37.2)     // 37.2 Cel (Celsius)
 
 ```go
 import (
-    "github.com/gofhir/models/r4"
-    "github.com/gofhir/models/r4/helpers"
+    "github.com/gofhir/models/r4/v2"
+    "github.com/gofhir/models/r4/v2/helpers"
 )
 
 // Build a body temperature observation using helpers

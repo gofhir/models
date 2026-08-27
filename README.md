@@ -6,13 +6,13 @@ Go structs for FHIR R4, R4B, and R5 resources.
 
 ```bash
 # For FHIR R4
-go get github.com/gofhir/models/r4
+go get github.com/gofhir/models/r4/v2
 
 # For FHIR R4B
-go get github.com/gofhir/models/r4b
+go get github.com/gofhir/models/r4b/v2
 
 # For FHIR R5
-go get github.com/gofhir/models/r5
+go get github.com/gofhir/models/r5/v2
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ package main
 import (
     "fmt"
 
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 func main() {

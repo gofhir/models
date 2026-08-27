@@ -46,7 +46,7 @@ The map is keyed by resource type name (e.g., `"Patient"`, `"Observation"`) and 
 ### Basic Lookup
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 fields := r4.SummaryFields["Patient"]
 // Returns: ["active", "address", "birthDate", "communication", "gender",
@@ -57,7 +57,7 @@ fields := r4.SummaryFields["Patient"]
 ### Checking if a Field is a Summary Field
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 func isSummaryField(resourceType, fieldName string) bool {
     fields, ok := r4.SummaryFields[resourceType]
@@ -85,7 +85,7 @@ A typical FHIR server uses `SummaryFields` to filter resource fields before retu
 ```go
 import (
     "encoding/json"
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 func applySummary(resourceType string, data []byte) ([]byte, error) {

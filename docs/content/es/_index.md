@@ -57,7 +57,7 @@ layout: hextra-home
 Instala el paquete para la versión FHIR que necesites:
 
 ```shell
-go get github.com/gofhir/models/r4
+go get github.com/gofhir/models/r4/v2
 ```
 
 Crea un recurso Patient y serialízalo a JSON:
@@ -68,7 +68,7 @@ package main
 import (
     "fmt"
 
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 func main() {

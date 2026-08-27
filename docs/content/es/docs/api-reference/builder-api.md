@@ -31,7 +31,7 @@ Para cada tipo de recurso `<Resource>`, la biblioteca genera:
 ### Ejemplo con Patient
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 patient := r4.NewPatientBuilder().
     SetId("patient-123").
@@ -70,7 +70,7 @@ func ptrTo[T any](v T) *T {
 ### Ejemplo con Observation
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 status := r4.ObservationStatusFinal
 observation := r4.NewObservationBuilder().
@@ -121,7 +121,7 @@ Para cada tipo de recurso `<Resource>`, la biblioteca genera:
 ### Ejemplo con Patient
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 patient := r4.NewPatient(
     r4.WithPatientId("patient-456"),
@@ -142,7 +142,7 @@ patient := r4.NewPatient(
 ### Ejemplo con Observation
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 observation := r4.NewObservation(
     r4.WithObservationId("obs-002"),

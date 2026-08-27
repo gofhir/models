@@ -22,7 +22,7 @@ All resource structs implement `json.Marshaler` and `json.Unmarshaler` from Go's
 ```go
 import (
     "encoding/json"
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 patient := &r4.Patient{

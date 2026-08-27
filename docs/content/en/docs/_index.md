@@ -30,10 +30,10 @@ Welcome to the **gofhir/models** documentation. This library provides auto-gener
 
 | Package | Description |
 |---------|-------------|
-| `github.com/gofhir/models/r4` | FHIR R4 (4.0.1) resources, data types, code systems, builders, and serialization |
-| `github.com/gofhir/models/r4b` | FHIR R4B (4.3.0) resources, data types, code systems, builders, and serialization |
-| `github.com/gofhir/models/r5` | FHIR R5 (5.0.0) resources, data types, code systems, builders, and serialization |
-| `github.com/gofhir/models/r4/helpers` | Pre-built CodeableConcepts for common categories (observation, condition, LOINC, UCUM) |
+| `github.com/gofhir/models/r4/v2` | FHIR R4 (4.0.1) resources, data types, code systems, builders, and serialization |
+| `github.com/gofhir/models/r4b/v2` | FHIR R4B (4.3.0) resources, data types, code systems, builders, and serialization |
+| `github.com/gofhir/models/r5/v2` | FHIR R5 (5.0.0) resources, data types, code systems, builders, and serialization |
+| `github.com/gofhir/models/r4/v2/helpers` | Pre-built CodeableConcepts for common categories (observation, condition, LOINC, UCUM) |
 
 ## Project Structure
 
@@ -41,10 +41,10 @@ Each FHIR version lives in its own directory at the repository root and is publi
 
 ```
 models/
-  r4/            # github.com/gofhir/models/r4
-    helpers/     # github.com/gofhir/models/r4/helpers
-  r4b/           # github.com/gofhir/models/r4b
-  r5/            # github.com/gofhir/models/r5
+  r4/            # github.com/gofhir/models/r4/v2
+    helpers/     # github.com/gofhir/models/r4/v2/helpers
+  r4b/           # github.com/gofhir/models/r4b/v2
+  r5/            # github.com/gofhir/models/r5/v2
 ```
 
 All types are automatically generated from the official FHIR StructureDefinitions by the code generator in the `cmd/generator` directory. You should never edit the generated source files directly.

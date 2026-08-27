@@ -24,7 +24,7 @@ Un puntero a la instancia singleton de `FHIRPathModelData`. Esta instancia se in
 ### Ejemplo
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 model := r4.FHIRPathModel()
 // model esta listo para usar -- no se necesita inicializacion

@@ -28,10 +28,10 @@ models/
   cmd/generator/     # Herramienta generadora de codigo
   internal/          # Infraestructura compartida de generacion
   specs/             # Archivos JSON de StructureDefinition de FHIR
-  r4/                # Modulo R4 generado (github.com/gofhir/models/r4)
+  r4/                # Modulo R4 generado (github.com/gofhir/models/r4/v2)
     helpers/          # Constantes auxiliares escritas manualmente (no generadas)
-  r4b/               # Modulo R4B generado (github.com/gofhir/models/r4b)
-  r5/                # Modulo R5 generado (github.com/gofhir/models/r5)
+  r4b/               # Modulo R4B generado (github.com/gofhir/models/r4b/v2)
+  r5/                # Modulo R5 generado (github.com/gofhir/models/r5/v2)
   docs/              # Sitio de documentacion (Hugo)
   go.work            # Archivo de workspace de Go
 ```

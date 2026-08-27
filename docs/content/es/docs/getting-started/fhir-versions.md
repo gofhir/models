@@ -11,9 +11,9 @@ El proyecto **gofhir/models** soporta tres versiones de la especificación FHIR.
 
 | Versión | Especificación FHIR | Ruta del Módulo Go | Estado |
 |---------|-----------|----------------|--------|
-| **R4** | 4.0.1 | `github.com/gofhir/models/r4` | Estable, la más ampliamente adoptada |
-| **R4B** | 4.3.0 | `github.com/gofhir/models/r4b` | Estable, versión de transición |
-| **R5** | 5.0.0 | `github.com/gofhir/models/r5` | Estable, última versión normativa |
+| **R4** | 4.0.1 | `github.com/gofhir/models/r4/v2` | Estable, la más ampliamente adoptada |
+| **R4B** | 4.3.0 | `github.com/gofhir/models/r4b/v2` | Estable, versión de transición |
+| **R5** | 5.0.0 | `github.com/gofhir/models/r5/v2` | Estable, última versión normativa |
 
 ## Diferencias entre Versiones
 
@@ -22,7 +22,7 @@ El proyecto **gofhir/models** soporta tres versiones de la especificación FHIR.
 R4 es la versión FHIR más ampliamente desplegada en sistemas de producción. Fue publicada en 2019 y es utilizada por la Guía de Implementación US Core, el framework SMART on FHIR y la mayoría de las implementaciones comerciales de servidores FHIR.
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 patient := r4.NewPatient(
     r4.WithPatientId("r4-example"),
@@ -33,7 +33,7 @@ patient := r4.NewPatient(
 El paquete R4 también incluye un sub-paquete opcional `helpers` con valores `CodeableConcept` preconstruidos:
 
 ```go
-import "github.com/gofhir/models/r4/helpers"
+import "github.com/gofhir/models/r4/v2/helpers"
 
 // Use a pre-built vital signs category
 category := helpers.ObservationCategoryVitalSigns
@@ -44,7 +44,7 @@ category := helpers.ObservationCategoryVitalSigns
 R4B es una versión de transición publicada en 2022. Es retrocompatible con R4 para la mayoría de los recursos, pero introduce nuevos recursos y actualizaciones en los recursos relacionados con terminología (CodeSystem, ValueSet, ConceptMap) que se alinean con la dirección de R5.
 
 ```go
-import "github.com/gofhir/models/r4b"
+import "github.com/gofhir/models/r4b/v2"
 
 patient := r4b.NewPatient(
     r4b.WithPatientId("r4b-example"),
@@ -59,7 +59,7 @@ R4B se utiliza típicamente cuando necesitas soportar sistemas que están en tra
 R5 es la última versión normativa, publicada en 2023. Incluye cambios significativos en varios recursos, nuevos recursos, sistemas de códigos actualizados y cambios estructurales en los elementos backbone.
 
 ```go
-import "github.com/gofhir/models/r5"
+import "github.com/gofhir/models/r5/v2"
 
 patient := r5.NewPatient(
     r5.WithPatientId("r5-example"),
@@ -79,12 +79,12 @@ Cada versión es su propio módulo Go con un archivo `go.mod` separado. Esto sig
 
 ```
 github.com/gofhir/models/
-    r4/                # module: github.com/gofhir/models/r4
+    r4/                # module: github.com/gofhir/models/r4/v2
         go.mod
         helpers/       # sub-package within the r4 module
-    r4b/               # module: github.com/gofhir/models/r4b
+    r4b/               # module: github.com/gofhir/models/r4b/v2
         go.mod
-    r5/                # module: github.com/gofhir/models/r5
+    r5/                # module: github.com/gofhir/models/r5/v2
         go.mod
 ```
 
