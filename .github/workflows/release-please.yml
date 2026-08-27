@@ -4,11 +4,19 @@ on:
   push:
     branches:
       - main
-      # v1 is a maintenance line, cut at r4/v1.5.1 before main moved its module
+      # The v1 maintenance line, cut at r4/v1.5.1 before main moved its module
       # paths to /v2. It exists because a v1.6.0 cannot be released from main at
       # all: Go rejects the tag with "post-v1 module path", so the deprecation
       # warnings that tell users what v2 removes have nowhere else to ship from.
-      - v1
+      #
+      # Named "maintenance-v1" and not "v1" for a concrete reason: with the branch
+      # called "v1", the default group title is "chore: release v1", and on merge
+      # release-please parses that trailing "v1" as a version and dies with
+      # "unable to parse version string: 1" — after the release PR has already
+      # landed the manifest bump, so the tags never get cut. Reproduced locally
+      # against the real repo. "main" works precisely because it does not look
+      # like a version, and this name follows it.
+      - maintenance-v1
 
 permissions:
   contents: write
