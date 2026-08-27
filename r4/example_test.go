@@ -3,7 +3,7 @@ package r4_test
 import (
 	"fmt"
 
-	"github.com/gofhir/models/r4"
+	"github.com/gofhir/models/r4/v2"
 )
 
 // Example is the snippet the README shows. It lives here as a compiled test so
