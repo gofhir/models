@@ -2,7 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    # v1 as well as main: it is a released maintenance line, and its release
+    # commits land by merge, so without this they would ship unverified.
+    branches: [main, maintenance-v1]
   # Any pull request, not just those targeting main, so stacked PRs get checked
   # too. A stack whose lower half is unverified is worse than no stack.
   pull_request:
