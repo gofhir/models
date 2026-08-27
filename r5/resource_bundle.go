@@ -116,7 +116,7 @@ func (r *Bundle) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	if len(aux.Issues) > 0 {
+	if len(aux.Issues) > 0 && !isJSONNull(aux.Issues) {
 		resource, err := UnmarshalResource(aux.Issues)
 		if err != nil {
 			return fmt.Errorf("failed to unmarshal issues: %w", err)
@@ -270,6 +270,12 @@ func (r *Bundle) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.Signature = &v
+			case "issues":
+				res, err := xmlDecodeWrappedResource(d, t)
+				if err != nil {
+					return err
+				}
+				r.Issues = res
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -320,7 +326,7 @@ func (b *BundleEntry) UnmarshalJSON(data []byte) error {
 	}
 
 	// Unmarshal the resource field using the dispatcher
-	if len(aux.Resource) > 0 {
+	if len(aux.Resource) > 0 && !isJSONNull(aux.Resource) {
 		resource, err := UnmarshalResource(aux.Resource)
 		if err != nil {
 			return fmt.Errorf("failed to unmarshal resource: %w", err)
@@ -652,7 +658,7 @@ func (b *BundleEntryResponse) UnmarshalJSON(data []byte) error {
 	}
 
 	// Unmarshal the resource field using the dispatcher
-	if len(aux.Outcome) > 0 {
+	if len(aux.Outcome) > 0 && !isJSONNull(aux.Outcome) {
 		resource, err := UnmarshalResource(aux.Outcome)
 		if err != nil {
 			return fmt.Errorf("failed to unmarshal outcome: %w", err)

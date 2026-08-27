@@ -245,6 +245,18 @@ func UnmarshalResource(data []byte) (Resource, error) {
 	return resource, nil
 }
 
+// isJSONNull reports whether raw holds the JSON null literal, or nothing at all.
+//
+// A polymorphic slot that is explicitly null carries no resource, and asking the
+// dispatcher to resolve it fails with a confusing "resourceType field is missing".
+// FHIR does not allow null there, but this library itself used to emit it — every
+// R5 Bundle carried "issues": null before that field gained omitempty — so
+// documents in the wild contain it and must stay readable.
+func isJSONNull(raw json.RawMessage) bool {
+	trimmed := bytes.TrimSpace(raw)
+	return len(trimmed) == 0 || string(trimmed) == "null"
+}
+
 // resourceNestingDepth reports how deeply resources nest inside one another.
 //
 // It scans the bytes once without building a value. Depth is computed on the way
