@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/gofhir/models/compare/r5/v1.5.1...r5/v1.6.0) (2026-08-27)
+
+
+### Features
+
+* **deprecation:** mark everything v2 removes, and cut the v1 line ([55cdec1](https://github.com/gofhir/models/commit/55cdec123f7a6f85204cd1d3efe9cb94c5acc4b5))
+
 ## [1.5.1](https://github.com/gofhir/models/compare/r5/v1.5.0...r5/v1.5.1) (2026-08-27)
 
 
