@@ -420,24 +420,34 @@ Añadir dos cosas que faltaban:
 
 ## Fase 5 — Migración de la ruta de módulo
 
-**½ día · prep-v2 · faltaba por completo**
+**½ día · prep-v2 · ✅ hecha (código) · doc pendiente**
 
 > **Objetivo:** sin esta fase, la v2 se publica y **nadie puede instalarla**.
 
 Go exige que la ruta del módulo termine en `/v2`, y release-please con `release-type: go` **no edita rutas de módulo**: crearía el tag `r4/v2.0.0` sobre un `go.mod` que sigue declarando `.../r4`. Como el módulo tiene `go.mod`, no aplica `+incompatible`: el proxy rechaza la versión y el tag queda quemado.
 
-En un solo PR, **antes** de cualquier commit rompiente:
+Hecho, **antes** de cualquier commit rompiente:
 
-1. `module github.com/gofhir/models/{r4,r4b,r5}/v2` en los tres `go.mod`.
-2. Reescribir el import de `r4/helpers/ucum.go:3`.
-3. Actualizar `internal/codegen/generator/templates/header.go.tmpl` y las rutas en la documentación.
-4. Verificar que release-please emite `r4/v2.0.0` y **no** `r4/v2/v2.0.0`; el `component` sigue siendo `r4`.
+1. ✅ `module github.com/gofhir/models/{r4,r4b,r5}/v2` en los tres `go.mod`.
+2. ✅ Los cuatro archivos de `r4/helpers/` que importan el paquete padre (no solo `ucum.go`), los catorce paquetes `_test.go` externos, y los pares `require`/`replace` de `conformance`.
+3. ✅ `header.go.tmpl` no contenía la ruta —el plan estaba desactualizado en ese punto—; **ningún** template la menciona, así que regenerar los tres no produce drift. Verificado.
+4. ✅ Verificado empíricamente, no por lectura de la documentación de release-please: un clon tageado `r4/v2.0.0`, `r4b/v2.0.0` y `r5/v2.0.0` tal como los emitiría, y un módulo consumidor virgen resolviendo los tres por su ruta `/v2` más `r4/v2/helpers`, y ejecutando contra ellos.
 
 El sufijo va en el `go.mod`, **no** se repite en el tag, y el directorio `r4/` se mantiene sin subcarpeta `v2/`.
 
-**Aceptación:** smoke test post-release — `go get github.com/gofhir/models/r4/v2@v2.0.0` desde un módulo vacío contra proxy.golang.org.
+El módulo raíz conserva su ruta v1: solo contiene `internal/`, que nadie de fuera puede importar.
 
-Decidir además qué hacer con el tag suelto `v1.0.0` sin componente, que contamina el listado de versiones del módulo raíz.
+### Dos trampas encontradas al ejecutarla
+
+**El commit no puede llevar marca rompiente.** Con `build!:`, release-please cortaría **v2.0.0 con solo el cambio de ruta**, dejando los rompientes reales necesitando una v3. El tipo es `build:` sin `!`, y `build` no está en `changelog-sections`, así que el commit no dispara nada por sí mismo. El major lo cortan los `fix(json)!` que vienen detrás.
+
+**La documentación no se migra aquí.** Sus líneas `go get` apuntarían a un `/v2` que ningún tag satisface todavía, y un push a `main` que toque `docs/**` despliega el sitio de inmediato: la web anunciaría una ruta no instalable durante todo lo que tarde la v2. La migración de la doc es un PR aparte, **retenido hasta que el tag exista** — es un reemplazo mecánico, así que el coste de retenerlo es cero.
+
+**Aceptación:** smoke test post-release — `go get github.com/gofhir/models/r4/v2@v2.0.0` desde un módulo vacío contra proxy.golang.org. Pendiente hasta que el tag se publique; el equivalente contra un repo tageado localmente ya pasa.
+
+### El tag suelto `v1.0.0`
+
+Contamina el listado de versiones del módulo raíz. **Recomendación: dejarlo.** Borrar un tag ya publicado no lo quita de `proxy.golang.org`, que lo sirve desde su caché de forma indefinida, y sí rompe a cualquiera que lo tenga fijado en un `go.sum`. El coste real es cosmético y solo afecta a un módulo que nadie puede importar.
 
 ---
 
@@ -611,7 +621,7 @@ Cuatro releases en vez de tres: la fase 4 se separa porque cambia la salida XML 
 | **v1.4.1** | Fase 2 | Sin ruptura. Publicar como aviso de seguridad. **Sin** el bump de toolchain. |
 | **v1.5.0** | Fase 3 | Aditivo. Incluye las marcas `// Deprecated:` y la guía de migración, con un ciclo de antelación. |
 | **v1.6.0** | Fase 4 | Cambia la salida XML. El CHANGELOG puede decirlo con precisión: «si comparabas XML byte a byte, esto te afecta». |
-| **v2.0.0** | Fases 5, 6 y 7 | Siete cambios rompientes de una vez, con ruta `/v2`. |
+| **v2.0.0** | Fases 5, 6 y 7 | Siete cambios rompientes de una vez, con ruta `/v2`. La fase 5 aterriza en `main` **antes**, sin marca rompiente, para que no corte el major por sí sola. |
 | **v2.1+** | Fase 8 | Aditivo, incremento a incremento. |
 
 ### Los siete cambios rompientes

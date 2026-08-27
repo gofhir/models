@@ -7,9 +7,9 @@
 package conformance
 
 import (
-	"github.com/gofhir/models/r4"
-	"github.com/gofhir/models/r4b"
-	"github.com/gofhir/models/r5"
+	"github.com/gofhir/models/r4/v2"
+	"github.com/gofhir/models/r4b/v2"
+	"github.com/gofhir/models/r5/v2"
 )
 
 // codec adapts one generated package to the runner. The generated Resource types
