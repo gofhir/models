@@ -387,3 +387,52 @@ func TestDepthGuardXML(t *testing.T) {
 		})
 	}
 }
+
+// TestNullPolymorphicSlots covers explicit nulls in the positions where a
+// resource can appear.
+//
+// FHIR does not allow null there, but this library emitted it: before
+// Bundle.issues gained omitempty, every R5 Bundle carried "issues": null. Making
+// the dispatcher reject it would have made every document this library had
+// already written unreadable — the dispatcher sees the four bytes `null`, hands
+// them to UnmarshalResource, and gets "resourceType field is missing".
+func TestNullPolymorphicSlots(t *testing.T) {
+	cases := []struct {
+		name string
+		doc  string
+	}{
+		{"contained", `{"resourceType":"Patient","contained":[null]}`},
+		{"bundle entry resource", `{"resourceType":"Bundle","type":"collection","entry":[{"resource":null}]}`},
+		{"parameters resource", `{"resourceType":"Parameters","parameter":[{"name":"x","resource":null}]}`},
+	}
+
+	for _, c := range codecs() {
+		t.Run(c.name, func(t *testing.T) {
+			for _, tc := range cases {
+				t.Run(tc.name, func(t *testing.T) {
+					if _, err := c.unmarshalJSON([]byte(tc.doc)); err != nil {
+						t.Errorf("rejected an explicit null in %s: %v", tc.name, err)
+					}
+				})
+			}
+		})
+	}
+}
+
+// TestNullContainedProducesNoNilEntry checks the other half: a skipped null must
+// not leave a nil in the slice, which would marshal straight back out as null.
+func TestNullContainedProducesNoNilEntry(t *testing.T) {
+	c := codecs()[0] // r4
+
+	parsed, err := c.unmarshalJSON([]byte(`{"resourceType":"Patient","contained":[null]}`))
+	if err != nil {
+		t.Fatalf("unmarshal: %v", err)
+	}
+	out, err := c.marshalJSON(parsed)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	if strings.Contains(string(out), "null") {
+		t.Errorf("output still carries a null: %s", out)
+	}
+}

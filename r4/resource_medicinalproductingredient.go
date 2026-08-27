@@ -143,13 +143,18 @@ func (r *MedicinalProductIngredient) UnmarshalJSON(data []byte) error {
 
 	// Unmarshal each contained resource using the dispatcher
 	if len(aux.Contained) > 0 {
-		r.Contained = make([]Resource, len(aux.Contained))
+		r.Contained = make([]Resource, 0, len(aux.Contained))
 		for i, raw := range aux.Contained {
+			// An explicit null carries no resource. Skipping keeps the slice free
+			// of nil entries, which would marshal back out as null.
+			if isJSONNull(raw) {
+				continue
+			}
 			resource, err := UnmarshalResource(raw)
 			if err != nil {
 				return fmt.Errorf("failed to unmarshal contained[%d]: %w", i, err)
 			}
-			r.Contained[i] = resource
+			r.Contained = append(r.Contained, resource)
 		}
 	}
 

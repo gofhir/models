@@ -287,7 +287,7 @@ func (b *BundleEntry) UnmarshalJSON(data []byte) error {
 	}
 
 	// Unmarshal the resource field using the dispatcher
-	if len(aux.Resource) > 0 {
+	if len(aux.Resource) > 0 && !isJSONNull(aux.Resource) {
 		resource, err := UnmarshalResource(aux.Resource)
 		if err != nil {
 			return fmt.Errorf("failed to unmarshal resource: %w", err)
@@ -619,7 +619,7 @@ func (b *BundleEntryResponse) UnmarshalJSON(data []byte) error {
 	}
 
 	// Unmarshal the resource field using the dispatcher
-	if len(aux.Outcome) > 0 {
+	if len(aux.Outcome) > 0 && !isJSONNull(aux.Outcome) {
 		resource, err := UnmarshalResource(aux.Outcome)
 		if err != nil {
 			return fmt.Errorf("failed to unmarshal outcome: %w", err)

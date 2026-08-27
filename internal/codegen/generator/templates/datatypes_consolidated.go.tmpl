@@ -36,7 +36,10 @@ type {{.Name}} struct {
 {{- range .Properties}}
 	{{if .Description}}// {{.Description}}
 	{{end -}}
-	{{.Name}} {{.GoType}} `json:"{{.JSONName}}{{if or .IsArray .IsPointer}},omitempty{{end}}"`
+	{{- /* omitempty also for interface-typed fields: encoding/json treats a nil
+	       interface as empty, and without it a resource-valued element that is
+	       absent is emitted as an explicit null, which is not valid FHIR. */ -}}
+	{{.Name}} {{.GoType}} `json:"{{.JSONName}}{{if or .IsArray .IsPointer (eq .GoType "Resource")}},omitempty{{end}}"`
 	{{- if and .HasExtension (not .IsChoice)}}
 	// Extension for {{.Name}}
 	{{- if .IsArray}}
@@ -96,7 +99,7 @@ func (b *{{.Name}}) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	if len(aux.{{$resourceFieldName}}) > 0 {
+	if len(aux.{{$resourceFieldName}}) > 0 && !isJSONNull(aux.{{$resourceFieldName}}) {
 		resource, err := UnmarshalResource(aux.{{$resourceFieldName}})
 		if err != nil {
 			return fmt.Errorf("failed to unmarshal {{$resourceJSONName}}: %w", err)

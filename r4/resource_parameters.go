@@ -338,7 +338,7 @@ func (b *ParametersParameter) UnmarshalJSON(data []byte) error {
 	}
 
 	// Unmarshal the resource field using the dispatcher
-	if len(aux.Resource) > 0 {
+	if len(aux.Resource) > 0 && !isJSONNull(aux.Resource) {
 		resource, err := UnmarshalResource(aux.Resource)
 		if err != nil {
 			return fmt.Errorf("failed to unmarshal resource: %w", err)

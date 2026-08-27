@@ -8,7 +8,7 @@ weight: 2
 {{< callout type="warning" >}}
 **El soporte XML es experimental. No lo uses para datos que no puedas permitirte perder.**
 
-Haciendo round-trip de los corpus oficiales de ejemplos FHIR a través de esta librería, **3579 de 3653 archivos XML (98 %) no sobreviven**. Sobre las mismas tres versiones, 8683 de 8758 archivos JSON (99,1 %) sí lo hacen. Un solo defecto explica casi todo: `Narrative.Div` se emite dentro de un elemento espurio `<rawInner>` y luego **se descarta en silencio** al volver a leer el documento. No se devuelve ningún error.
+Haciendo round-trip de los corpus oficiales de ejemplos FHIR a través de esta librería, **3579 de 3653 archivos XML (98 %) no sobreviven**. Sobre las mismas tres versiones, 8718 de 8758 archivos JSON (99,5 %) sí lo hacen. Un solo defecto explica casi todo: `Narrative.Div` se emite dentro de un elemento espurio `<rawInner>` y luego **se descarta en silencio** al volver a leer el documento. No se devuelve ningún error.
 
 Verificado como funcional: primitivos como atributos `value=`, orden de elementos según la StructureDefinition, el namespace FHIR en el elemento raíz, recursos `contained`, choice types, `Element.id` como atributo, elementos con valor de recurso como `Bundle.entry.resource`, y la precisión de los decimales.
 
@@ -240,7 +240,7 @@ fmt.Println(string(data))
 
 | | ejemplos | sobreviven el round-trip |
 |---|---:|---:|
-| JSON, las tres versiones | 8758 | 99,1 % |
+| JSON, las tres versiones | 8758 | 99,5 % |
 | r4 XML | 1138 | **0,7 %** |
 | r4b XML | 1156 | 3,1 % |
 | r5 XML | 1359 | 2,2 % |

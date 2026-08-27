@@ -10,6 +10,8 @@ package {{.PackageName}}
 {{- $needsFmt := false -}}
 {{- range .Resource.Properties -}}
 {{- if eq .JSONName "contained" -}}{{- $needsFmt = true -}}{{- end -}}
+{{- /* A Resource-typed field on the resource itself also emits fmt.Errorf. */ -}}
+{{- if eq .GoType "Resource" -}}{{- $needsFmt = true -}}{{- end -}}
 {{- end -}}
 {{- range .Backbones -}}
 {{- range .Properties -}}
@@ -40,7 +42,10 @@ type {{.Name}} struct {
 {{- range .Properties}}
 	{{if .Description}}// {{.Description}}
 	{{end -}}
-	{{.Name}} {{.GoType}} `json:"{{.JSONName}}{{if or .IsArray .IsPointer}},omitempty{{end}}"`
+	{{- /* omitempty also for interface-typed fields: encoding/json treats a nil
+	       interface as empty, and without it a resource-valued element that is
+	       absent is emitted as an explicit null, which is not valid FHIR. */ -}}
+	{{.Name}} {{.GoType}} `json:"{{.JSONName}}{{if or .IsArray .IsPointer (eq .GoType "Resource")}},omitempty{{end}}"`
 	{{- if and .HasExtension (not .IsChoice)}}
 	// Extension for {{.Name}}
 	{{- if .IsArray}}
@@ -159,14 +164,39 @@ func (r {{.Name}}) MarshalJSON() ([]byte, error) {
 	return b, nil
 }
 
-{{- if $hasContained }}
+{{- /* A Resource-typed field on the resource itself, e.g. R5's Bundle.issues.
+       It needs the same dispatch contained does: encoding/json cannot build an
+       interface value, so without this the field is unreadable. `contained` is
+       []Resource and so does not match here. */}}
+{{- $resField := "" -}}
+{{- $resFieldJSON := "" -}}
+{{- range .Properties -}}
+{{- if eq .GoType "Resource" -}}
+{{- $resField = .Name -}}
+{{- $resFieldJSON = .JSONName -}}
+{{- end -}}
+{{- end -}}
 
+{{- if or $hasContained $resField }}
+
+{{ if and $hasContained $resField -}}
+// UnmarshalJSON handles deserialization of contained resources and of the
+// polymorphic {{$resFieldJSON}} field.
+{{- else if $resField -}}
+// UnmarshalJSON handles deserialization of the polymorphic {{$resFieldJSON}} field.
+{{- else -}}
 // UnmarshalJSON handles deserialization of polymorphic contained resources.
+{{- end }}
 func (r *{{.Name}}) UnmarshalJSON(data []byte) error {
 	// Use an alias to avoid infinite recursion
 	type Alias {{.Name}}
 	aux := &struct {
+{{- if $hasContained }}
 		Contained []json.RawMessage `json:"contained,omitempty"`
+{{- end }}
+{{- if $resField }}
+		{{$resField}} json.RawMessage `json:"{{$resFieldJSON}},omitempty"`
+{{- end }}
 		*Alias
 	}{
 		Alias: (*Alias)(r),
@@ -175,18 +205,35 @@ func (r *{{.Name}}) UnmarshalJSON(data []byte) error {
 	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
+{{- if $hasContained }}
 
 	// Unmarshal each contained resource using the dispatcher
 	if len(aux.Contained) > 0 {
-		r.Contained = make([]Resource, len(aux.Contained))
+		r.Contained = make([]Resource, 0, len(aux.Contained))
 		for i, raw := range aux.Contained {
+			// An explicit null carries no resource. Skipping keeps the slice free
+			// of nil entries, which would marshal back out as null.
+			if isJSONNull(raw) {
+				continue
+			}
 			resource, err := UnmarshalResource(raw)
 			if err != nil {
 				return fmt.Errorf("failed to unmarshal contained[%d]: %w", i, err)
 			}
-			r.Contained[i] = resource
+			r.Contained = append(r.Contained, resource)
 		}
 	}
+{{- end }}
+{{- if $resField }}
+
+	if len(aux.{{$resField}}) > 0 && !isJSONNull(aux.{{$resField}}) {
+		resource, err := UnmarshalResource(aux.{{$resField}})
+		if err != nil {
+			return fmt.Errorf("failed to unmarshal {{$resFieldJSON}}: %w", err)
+		}
+		r.{{$resField}} = resource
+	}
+{{- end }}
 
 	return nil
 }
@@ -300,6 +347,17 @@ func (r *{{.Name}}) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				if res != nil {
 					r.Contained = append(r.Contained, res)
 				}
+{{- /* A Resource-typed field on the resource itself, e.g. R5's Bundle.issues.
+       It was encoded but never decoded, so the value was written and then lost
+       on the way back — the same shape of bug the wrapper fix addressed for
+       backbone elements. */ -}}
+{{- else if eq .GoType "Resource"}}
+			case "{{.JSONName}}":
+				res, err := xmlDecodeWrappedResource(d, t)
+				if err != nil {
+					return err
+				}
+				r.{{.Name}} = res
 {{- /* Raw XHTML (Narrative.div) */ -}}
 {{- else if and (eq .FHIRType "xhtml") (not .IsArray)}}
 			case "{{.JSONName}}":
@@ -418,7 +476,7 @@ func (b *{{.Name}}) UnmarshalJSON(data []byte) error {
 	}
 
 	// Unmarshal the resource field using the dispatcher
-	if len(aux.{{$resourceFieldName}}) > 0 {
+	if len(aux.{{$resourceFieldName}}) > 0 && !isJSONNull(aux.{{$resourceFieldName}}) {
 		resource, err := UnmarshalResource(aux.{{$resourceFieldName}})
 		if err != nil {
 			return fmt.Errorf("failed to unmarshal {{$resourceJSONName}}: %w", err)
