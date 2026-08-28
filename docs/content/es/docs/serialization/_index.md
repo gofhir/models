@@ -8,7 +8,7 @@ weight: 3
 La biblioteca `gofhir/models` serializa recursos FHIR a JSON y XML. Cada struct de recurso generado implementa las interfaces estándar de marshaling de Go, y la biblioteca también proporciona funciones personalizadas para los requisitos de serialización específicos de FHIR.
 
 {{< callout type="warning" >}}
-**JSON es el formato soportado; XML es experimental.** Medido sobre los corpus oficiales de ejemplos, el 99,5 % de los archivos JSON sobrevive un round-trip frente al 2 % de los XML: `Narrative.Div` se emite de forma incorrecta y se pierde al re-parsear. Consulta [XML Marshaling](xml-marshaling/) para ver qué funciona y qué no.
+Medido sobre los corpus oficiales de ejemplos, **los 3653 ejemplos XML publicados sobreviven un round-trip**, igual que el 99,5 % de los 8758 en JSON. Consulta [XML Marshaling](xml-marshaling/) para ver qué mide y qué no mide esa cifra de XML.
 {{< /callout >}}
 
 ## Descripción General de la Serialización
@@ -36,7 +36,7 @@ Además, la biblioteca proporciona las funciones `r4.Marshal()` y `r4.MarshalInd
 
 ### Serialización XML
 
-La serialización XML se maneja a través de funciones auxiliares dedicadas en el módulo `xml_helpers.go`: `MarshalResourceXML()`, `MarshalResourceXMLIndent()` y `UnmarshalResourceXML()`. El manejo de namespaces y la convención FHIR de codificar primitivos como atributos `<name value="..."/>` funcionan. **Este camino es experimental**: la narrativa se emite de forma incorrecta y se pierde al re-parsear, así que el 98 % de los ejemplos XML publicados no sobrevive un round-trip. Consulta [XML Marshaling](xml-marshaling/).
+La serialización XML se maneja a través de funciones auxiliares dedicadas en el módulo `xml_helpers.go`: `MarshalResourceXML()`, `MarshalResourceXMLIndent()` y `UnmarshalResourceXML()`. El manejo de namespaces, la convención FHIR de codificar primitivos como atributos `<name value="..."/>` y la narrativa XHTML funcionan. Consulta [XML Marshaling](xml-marshaling/).
 
 ### Deserialización Polimórfica
 

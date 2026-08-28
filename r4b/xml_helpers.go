@@ -15,13 +15,115 @@ import (
 
 const fhirNamespace = "http://hl7.org/fhir"
 
+// xhtmlNamespace is what the specification requires on Narrative.div. It is
+// supplied when the caller's markup omits it, rather than emitting a div that no
+// conformant reader will accept.
+const xhtmlNamespace = "http://www.w3.org/1999/xhtml"
+
 // emptyElementRe matches empty XML elements: <tag attr="val"></tag>
 // and converts them to self-closing form: <tag attr="val"/>
 // This matches FHIR spec convention for primitive elements.
 var emptyElementRe = regexp.MustCompile(`<([a-zA-Z][a-zA-Z0-9]*)(\s[^>]*)></[a-zA-Z][a-zA-Z0-9]*>`)
 
-// collapseEmptyElements converts <tag attr="val"></tag> to <tag attr="val"/>.
+// collapseEmptyElements converts <tag attr="val"></tag> to <tag attr="val"/>,
+// leaving XHTML narrative content alone.
+//
+// The rewrite is a regular expression over the whole document, which used to
+// reach inside Narrative.div as well: an author's <a href="q"></a> came back as
+// <a href="q"/>. In XML those are the same element, but the specification asks for
+// the narrative to be carried through unchanged, and an HTML parser reading a
+// self-closed anchor does not treat it the same way. So the narrative is cut out
+// first and spliced back verbatim.
 func collapseEmptyElements(xmlBytes []byte) []byte {
+	var out []byte
+	rest := xmlBytes
+	for {
+		start := indexNarrativeDiv(rest)
+		if start < 0 {
+			return append(out, collapseOutsideNarrative(rest)...)
+		}
+		end := endOfDiv(rest, start)
+		if end < 0 {
+			// Unbalanced, which the encoder should have made impossible. Leave
+			// the remainder untouched rather than corrupting it further.
+			return append(out, rest...)
+		}
+		out = append(out, collapseOutsideNarrative(rest[:start])...)
+		out = append(out, rest[start:end]...)
+		rest = rest[end:]
+	}
+}
+
+// indexNarrativeDiv reports where the next XHTML <div> begins, or -1. It matches
+// only a div that declares the XHTML namespace, which is what the encoder always
+// writes for Narrative.div.
+func indexNarrativeDiv(b []byte) int {
+	from := 0
+	for {
+		i := bytes.Index(b[from:], []byte("<div"))
+		if i < 0 {
+			return -1
+		}
+		i += from
+		after := i + len("<div")
+		if after >= len(b) {
+			return -1
+		}
+		// Reject <divsomething; a real div is followed by space, > or />.
+		if c := b[after]; c != ' ' && c != '\t' && c != '\n' && c != '>' && c != '/' {
+			from = after
+			continue
+		}
+		tagEnd := bytes.IndexByte(b[i:], '>')
+		if tagEnd < 0 {
+			return -1
+		}
+		if bytes.Contains(b[i:i+tagEnd], []byte(xhtmlNamespace)) {
+			return i
+		}
+		from = i + tagEnd
+	}
+}
+
+// endOfDiv returns the offset just past the </div> that closes the div starting
+// at start, accounting for divs nested inside the narrative, or -1 if unbalanced.
+func endOfDiv(b []byte, start int) int {
+	open := []byte("<div")
+	closeTag := []byte("</div>")
+	depth := 0
+	i := start
+	for i < len(b) {
+		switch {
+		case bytes.HasPrefix(b[i:], open):
+			after := i + len(open)
+			if after < len(b) {
+				if c := b[after]; c == ' ' || c == '\t' || c == '\n' || c == '>' || c == '/' {
+					// A self-closing <div .../> opens and closes at once.
+					if endTag := bytes.IndexByte(b[i:], '>'); endTag > 0 && b[i+endTag-1] == '/' {
+						if depth == 0 {
+							return i + endTag + 1
+						}
+						i += endTag + 1
+						continue
+					}
+					depth++
+				}
+			}
+			i = after
+		case bytes.HasPrefix(b[i:], closeTag):
+			depth--
+			i += len(closeTag)
+			if depth == 0 {
+				return i
+			}
+		default:
+			i++
+		}
+	}
+	return -1
+}
+
+func collapseOutsideNarrative(xmlBytes []byte) []byte {
 	return emptyElementRe.ReplaceAllFunc(xmlBytes, func(match []byte) []byte {
 		sub := emptyElementRe.FindSubmatch(match)
 		if len(sub) < 3 {
@@ -379,16 +481,64 @@ func xmlEncodeInlineResource(e *xml.Encoder, resource Resource) error {
 	return m.MarshalXML(e, inner)
 }
 
-// xmlEncodeRawXHTML injects raw XHTML content verbatim into the XML output.
-// The rawXHTML string should contain the full <div xmlns="...">...</div> element.
-func xmlEncodeRawXHTML(e *xml.Encoder, rawXHTML *string) error {
+// xmlEncodeRawXHTML writes an XHTML-valued element such as Narrative.div, whose
+// content the FHIR specification requires to be carried through unchanged.
+//
+// The previous implementation encoded an anonymous struct, which made
+// encoding/xml name the element after the Go type: the narrative went out as
+// <rawInner><div .../></rawInner>. Nothing else accepts that, and our own decoder
+// switches on the element name, so on re-read the case never matched and the
+// narrative was dropped without an error. That single defect accounted for the
+// large majority of XML conformance failures.
+//
+// The element is rebuilt here and the inner markup is carried through verbatim
+// via ,innerxml, so the caller's XHTML is not reserialized. Unmarshal is used
+// only to split the wrapper from its content, which also means malformed XHTML is
+// now an error instead of well-formed-looking output built around broken markup.
+func xmlEncodeRawXHTML(e *xml.Encoder, name string, rawXHTML *string) error {
 	if rawXHTML == nil || *rawXHTML == "" {
 		return nil
 	}
-	type rawInner struct {
-		Content string `xml:",innerxml"`
+
+	var element struct {
+		XMLName xml.Name
+		Attr    []xml.Attr `xml:",any,attr"`
+		Inner   string     `xml:",innerxml"`
 	}
-	return e.Encode(rawInner{Content: *rawXHTML})
+	if err := xml.Unmarshal([]byte(*rawXHTML), &element); err != nil {
+		return fmt.Errorf("%s is not well-formed XML: %w", name, err)
+	}
+	if element.XMLName.Local != name {
+		return fmt.Errorf("%s must be a <%s> element, got <%s>", name, name, element.XMLName.Local)
+	}
+
+	hasDefaultNS := false
+	for i, attr := range element.Attr {
+		switch {
+		case attr.Name.Space == "xmlns":
+			// A prefix declaration arrives split as Space="xmlns",
+			// Local=prefix. Re-emitting it needs the two rejoined into Local,
+			// or the prefix goes undeclared and the verbatim inner markup that
+			// uses it produces namespace-invalid XML.
+			element.Attr[i].Name = xml.Name{Local: "xmlns:" + attr.Name.Local}
+		case attr.Name.Local == "xmlns":
+			hasDefaultNS = true
+			element.Attr[i].Name = xml.Name{Local: "xmlns"}
+		default:
+			// Clearing Space stops encoding/xml from emitting a second xmlns
+			// alongside the one already carried as an attribute.
+			element.Attr[i].Name.Space = ""
+		}
+	}
+	if !hasDefaultNS {
+		element.Attr = append(element.Attr, xml.Attr{
+			Name:  xml.Name{Local: "xmlns"},
+			Value: xhtmlNamespace,
+		})
+	}
+	element.XMLName = xml.Name{Local: name}
+
+	return e.Encode(element)
 }
 
 // ============================================================================
@@ -725,6 +875,15 @@ func xmlEscapeAttr(s string) string {
 	s = strings.ReplaceAll(s, "<", "&lt;")
 	s = strings.ReplaceAll(s, ">", "&gt;")
 	s = strings.ReplaceAll(s, `"`, "&quot;")
+	// Carriage return, newline and tab have to travel as character references.
+	// XML requires a parser to normalize a literal one inside an attribute value
+	// to a plain space, so writing them literally silently rewrites the text:
+	// several published profiles carry &#xD; in a narrative attribute and lost it
+	// on every round-trip. encoding/xml does this for the attributes it writes
+	// itself; this function is the hand-rolled path used to rebuild XHTML.
+	s = strings.ReplaceAll(s, "\r", "&#xD;")
+	s = strings.ReplaceAll(s, "\n", "&#xA;")
+	s = strings.ReplaceAll(s, "\t", "&#x9;")
 	return s
 }
 

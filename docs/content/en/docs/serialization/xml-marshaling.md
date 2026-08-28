@@ -5,24 +5,33 @@ description: "FHIR XML serialization and deserialization with namespace handling
 weight: 2
 ---
 
-{{< callout type="warning" >}}
-**XML support is experimental. Do not rely on it for data you cannot afford to lose.**
+{{< callout type="info" >}}
+**All 3653 published XML examples now round-trip.** Up from 74 of them in v1.6.0.
 
-Round-tripping the official FHIR example corpora through this library, **3579 of 3653 XML files (98%) do not survive**. Over the same three versions, 8718 of 8758 JSON files (99.5%) do. One defect accounts for nearly all of it: `Narrative.Div` is emitted inside a spurious `<rawInner>` element and is then **silently discarded** when the document is read back. No error is returned.
+One defect accounted for nearly all of the difference: `Narrative.Div` was emitted inside a `<rawInner>` element — the name of an internal Go type leaking into the document — and because the decoder switches on the element name, it never matched on the way back and the narrative was **discarded without an error**.
 
-Verified as working: primitives as `value=` attributes, element ordering per the StructureDefinition, the FHIR namespace on the root element, `contained` resources, choice types, `Element.id` as an attribute, resource-valued elements such as `Bundle.entry.resource`, and decimal precision.
+| | examples | round-trip |
+|---|---:|---:|
+| r4 XML | 1138 | **100%** |
+| r4b XML | 1156 | **100%** |
+| r5 XML | 1359 | **100%** |
+| JSON, all three | 8758 | 99.5% |
 
-Verified as broken today:
+Verified as working: primitives as `value=` attributes, element ordering per the StructureDefinition, the FHIR namespace on the root element, `contained` resources, choice types, `Element.id` as an attribute, resource-valued elements such as `Bundle.entry.resource`, decimal precision, and the XHTML narrative.
 
-| Defect | Consequence |
+Two things are still worth knowing:
+
+| Limitation | Consequence |
 |---|---|
-| `Narrative.Div` wrapped in `<rawInner>` | Non-conformant output; the narrative is lost on re-parse, with no error |
-| Namespace is not validated on input | A document in any namespace parses as FHIR |
-| `Narrative.Div` is written unvalidated | A malformed `div` produces XML that is not well-formed, and `MarshalResourceXML` returns `nil` error |
+| The namespace is not validated on input | A document in any namespace parses as FHIR |
 | Extensions on primitives inside backbone elements | Not representable, so they are dropped — this affects JSON too |
-| Post-processing by `collapseEmptyElements` | A regex rewrites the user's XHTML: an empty element **with attributes** is collapsed, so `<a href="q"></a>` becomes `<a href="q"/>` |
 
-JSON is the supported serialization. Use XML for interchange with a system that requires it, and treat the narrative as unsafe until these are fixed.
+{{< /callout >}}
+
+{{< callout type="warning" >}}
+**What "100%" measures.** The XML suite checks that our own output is stable: parse, serialize, parse, serialize, converge. It does **not** compare against the published bytes, which would need a canonical XML comparison that does not exist here yet. A document that lost the same field on every pass would converge perfectly and still pass.
+
+That gap is why the narrative is checked separately and directly against the source file: for each of the 3572 examples that carry one, the readable text is extracted from the published document and from what we write back after two full cycles, and required to match. Loss of *other* content against the source remains unmeasured on the XML path. JSON is checked both ways.
 {{< /callout >}}
 
 The `gofhir/models` library serializes FHIR XML through dedicated helper functions defined in `xml_helpers.go`. Every resource struct implements `MarshalXML` and `UnmarshalXML` from Go's `encoding/xml` package, and top-level functions handle the XML declaration, FHIR namespace, and self-closing element conventions.
@@ -200,22 +209,29 @@ The library handles this through the `xmlEncodeContainedResource` and `xmlDecode
 
 ## XHTML Narrative in XML
 
-{{< callout type="warning" >}}
-**This does not currently work.** The narrative is emitted inside a `<rawInner>` element — the name of an internal Go type leaking into the document — and is discarded when the XML is read back, without an error:
+The `Narrative.Div` field contains XHTML that the specification requires to be preserved verbatim. It is written as a real `<div>`, with its inner markup carried through unchanged:
 
 ```xml
 <text>
   <status value="generated"/>
-  <rawInner><div xmlns="http://www.w3.org/1999/xhtml"><p>John Smith</p></div></rawInner>
+  <div xmlns="http://www.w3.org/1999/xhtml"><p>John Smith</p></div>
 </text>
 ```
 
-No other FHIR implementation will accept that, and a round-trip through this library loses the narrative entirely. The FHIR specification treats `text.div` as the authoritative human-readable form of a resource when the receiver cannot process the structured data, so this is a loss of clinical meaning, not a formatting quirk.
+The XHTML namespace is supplied if your markup omits it, since a `div` without it is not conformant. Everything inside the `div` is passed through byte for byte — including empty elements such as `<a href="q"></a>`, which the self-closing rewrite applied to the rest of the document deliberately leaves alone.
 
-The cause is that `xml.Encoder` offers no way to write raw bytes, so writing the XHTML verbatim requires replacing the encoder — tracked as the XML writer task in the remediation plan. Until then, if you need the narrative to survive, use JSON.
+{{< callout type="info" >}}
+**Fixed in v1.7.0.** Before that, the narrative went out inside a `<rawInner>` element — the name of an internal Go type leaking into the document — and since the decoder switches on the element name, it never matched on re-read and the narrative was dropped with no error returned. The FHIR specification treats `text.div` as the authoritative human-readable form when a receiver cannot process the structured data, so that was a loss of clinical meaning rather than a formatting quirk.
+
+Malformed XHTML is now rejected, too. It used to be written into the document unchecked, so a broken `div` produced output that was not well-formed XML while `MarshalResourceXML` reported success:
+
+```go
+patient.Text = &r4.Narrative{Div: r4.Ptr(`<div><p>unclosed</div>`)}
+_, err := r4.MarshalResourceXML(patient)
+// err: div is not well-formed XML: XML syntax error on line 1: element <p> closed by </div>
+```
+
 {{< /callout >}}
-
-The `Narrative.Div` field contains XHTML that must be preserved verbatim in the XML output. The library attempts this through `xmlEncodeRawXHTML`:
 
 ```go
 patient := &r4.Patient{
@@ -233,25 +249,24 @@ fmt.Println(string(data))
 
 ## Round-Trip XML Fidelity
 
-{{< callout type="warning" >}}
-**XML round-trip fidelity does not hold.** Measured over the published example corpora:
+Measured over the published example corpora:
 
 | | examples | surviving a round-trip |
 |---|---:|---:|
+| r4 XML | 1138 | **100%** |
+| r4b XML | 1156 | **100%** |
+| r5 XML | 1359 | **100%** |
 | JSON, all three versions | 8758 | 99.5% |
-| r4 XML | 1138 | **0.7%** |
-| r4b XML | 1156 | 3.1% |
-| r5 XML | 1359 | 2.2% |
 
-Practically every published example carries a narrative, and the narrative does not survive (see above). A resource with no narrative and no primitive extensions inside backbone elements does round-trip correctly.
+The conformance suite in `conformance/` tracks this file by file, so these numbers are measured rather than estimated.
 
-The conformance suite in `conformance/` tracks this file by file, so these numbers are measured rather than estimated. One caveat on what they measure: for XML the suite checks only that our own output is stable (parse, serialize, parse, serialize, converge), because comparing against the published bytes needs a canonical XML comparison that does not exist yet. Loss against the source document is therefore **unmeasured** on the XML path — the real figure can only be worse than the one above. JSON is checked both ways.
+{{< callout type="warning" >}}
+**Read the XML figures for what they are.** The suite checks that our own output is stable — parse, serialize, parse, serialize, converge — because comparing against the published bytes needs a canonical XML comparison that does not exist here yet. A document that dropped the same field on every pass would converge just as cleanly, which is exactly how the narrative defect survived undetected for so long.
+
+The narrative is therefore checked separately and directly against the source: for each of the 3572 examples that carry one, the readable text is extracted from the published file and from our output after two full cycles, and required to match. Loss of *other* content relative to the source document remains unmeasured on the XML path. JSON is compared both ways.
 {{< /callout >}}
 
-A resource with no narrative and no extensions on backbone primitives round-trips with its data intact. Note that this
-example builds its own resource rather than reusing the `patient` from the
-narrative section above — that one carries a `Text.Div`, and it would come back
-nil.
+A resource carrying a narrative round-trips with its data intact, narrative included.
 
 One difference to be aware of: `UnmarshalResourceXML` leaves the `ResourceType`
 field empty, so the decoded struct is not byte-identical to the original. Use
@@ -282,5 +297,5 @@ fmt.Println(*decoded.Active) // true
 ```
 
 {{< callout type="info" >}}
-XML serialization uses the same resource registry as JSON deserialization, so the root element name corresponds to the `resourceType` field in JSON. Every registered resource type can be marshalled and unmarshalled — but see the warnings above for what does not survive the trip, and note that the decoded struct has an empty `ResourceType` field.
+XML serialization uses the same resource registry as JSON deserialization, so the root element name corresponds to the `resourceType` field in JSON. Every registered resource type can be marshalled and unmarshalled. Note that the decoded struct has an empty `ResourceType` field — use `GetResourceType()`.
 {{< /callout >}}
