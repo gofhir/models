@@ -157,7 +157,7 @@ func (d {{.Name}}) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	}
 {{- /* Raw XHTML (Narrative.div) */ -}}
 {{- else if and (eq .FHIRType "xhtml") (not .IsArray)}}
-	if err := xmlEncodeRawXHTML(e, d.{{.Name}}); err != nil {
+	if err := xmlEncodeRawXHTML(e, "{{.JSONName}}", d.{{.Name}}); err != nil {
 		return err
 	}
 {{- /* Primitive scalars */ -}}
@@ -233,7 +233,7 @@ func (b {{.Name}}) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 		}
 	}
 {{- else if and (eq .FHIRType "xhtml") (not .IsArray)}}
-	if err := xmlEncodeRawXHTML(e, b.{{.Name}}); err != nil {
+	if err := xmlEncodeRawXHTML(e, "{{.JSONName}}", b.{{.Name}}); err != nil {
 		return err
 	}
 {{- else if and .IsPrimitive (not .IsArray)}}

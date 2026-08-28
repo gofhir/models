@@ -5,24 +5,33 @@ description: "Serialización y deserialización XML de FHIR con manejo de namesp
 weight: 2
 ---
 
-{{< callout type="warning" >}}
-**El soporte XML es experimental. No lo uses para datos que no puedas permitirte perder.**
+{{< callout type="info" >}}
+**Los 3653 ejemplos XML publicados ahora sobreviven un round-trip.** Frente a 74 de ellos en la v1.6.0.
 
-Haciendo round-trip de los corpus oficiales de ejemplos FHIR a través de esta librería, **3579 de 3653 archivos XML (98 %) no sobreviven**. Sobre las mismas tres versiones, 8718 de 8758 archivos JSON (99,5 %) sí lo hacen. Un solo defecto explica casi todo: `Narrative.Div` se emite dentro de un elemento espurio `<rawInner>` y luego **se descarta en silencio** al volver a leer el documento. No se devuelve ningún error.
+Un solo defecto explicaba casi toda la diferencia: `Narrative.Div` se emitía dentro de un elemento `<rawInner>` —el nombre de un tipo interno de Go filtrándose al documento— y, como el decodificador discrimina por el nombre del elemento, nunca coincidía al volver a leer y la narrativa **se descartaba sin ningún error**.
 
-Verificado como funcional: primitivos como atributos `value=`, orden de elementos según la StructureDefinition, el namespace FHIR en el elemento raíz, recursos `contained`, choice types, `Element.id` como atributo, elementos con valor de recurso como `Bundle.entry.resource`, y la precisión de los decimales.
+| | ejemplos | round-trip |
+|---|---:|---:|
+| XML r4 | 1138 | **100 %** |
+| XML r4b | 1156 | **100 %** |
+| XML r5 | 1359 | **100 %** |
+| JSON, las tres | 8758 | 99,5 % |
 
-Verificado como roto hoy:
+Verificado como funcional: primitivos como atributos `value=`, orden de elementos según la StructureDefinition, el namespace FHIR en el elemento raíz, recursos `contained`, choice types, `Element.id` como atributo, elementos con valor de recurso como `Bundle.entry.resource`, la precisión de los decimales y la narrativa XHTML.
 
-| Defecto | Consecuencia |
+Quedan dos cosas que conviene saber:
+
+| Limitación | Consecuencia |
 |---|---|
-| `Narrative.Div` envuelto en `<rawInner>` | Salida no conforme; la narrativa se pierde al re-parsear, sin error |
 | El namespace no se valida al leer | Un documento en cualquier namespace se parsea como FHIR |
-| `Narrative.Div` se escribe sin validar | Un `div` malformado produce XML que no está bien formado, y `MarshalResourceXML` devuelve error `nil` |
 | Extensiones sobre primitivos dentro de backbone elements | No son representables, así que se descartan — esto también afecta a JSON |
-| Post-proceso de `collapseEmptyElements` | Una regex reescribe el XHTML del usuario: un elemento vacío **con atributos** se colapsa, así que `<a href="q"></a>` pasa a `<a href="q"/>` |
 
-JSON es la serialización soportada. Usa XML para intercambiar con un sistema que lo exija, y considera la narrativa insegura hasta que esto se arregle.
+{{< /callout >}}
+
+{{< callout type="warning" >}}
+**Qué mide ese «100 %».** La suite de XML comprueba que nuestra propia salida sea estable: parsear, serializar, parsear, serializar, converger. **No** compara contra los bytes publicados, lo que exigiría una comparación canónica de XML que aquí todavía no existe. Un documento que perdiera siempre el mismo campo convergería igual de bien y pasaría.
+
+Ese hueco es justo la razón de comprobar la narrativa aparte y directamente contra el archivo fuente: para cada uno de los 3572 ejemplos que la llevan, se extrae el texto legible del documento publicado y del que escribimos tras dos ciclos completos, y se exige que coincidan. La pérdida de *otro* contenido respecto al documento original sigue **sin medir** en el camino XML. El JSON sí se compara en ambos sentidos.
 {{< /callout >}}
 
 
@@ -201,23 +210,29 @@ La biblioteca maneja esto a través de las funciones auxiliares `xmlEncodeContai
 
 ## Narrativa XHTML en XML
 
-{{< callout type="warning" >}}
-**Esto no funciona actualmente.** La narrativa se emite dentro de un elemento `<rawInner>` —el nombre de un tipo interno de Go filtrándose al documento— y se descarta al volver a leer el XML, sin error:
+El campo `Narrative.Div` contiene XHTML que la especificación exige preservar tal cual. Se escribe como un `<div>` real, con su marcado interior intacto:
 
 ```xml
 <text>
   <status value="generated"/>
-  <rawInner><div xmlns="http://www.w3.org/1999/xhtml"><p>John Smith</p></div></rawInner>
+  <div xmlns="http://www.w3.org/1999/xhtml"><p>John Smith</p></div>
 </text>
 ```
 
-Ninguna otra implementación FHIR aceptará eso, y un round-trip por esta librería pierde la narrativa por completo. La especificación FHIR considera `text.div` la forma legible autoritativa de un recurso cuando el receptor no puede procesar los datos estructurados, así que es una pérdida de significado clínico, no un detalle de formato.
+El namespace XHTML se añade si tu marcado lo omite, ya que un `div` sin él no es conforme. Todo lo que está dentro del `div` se traslada byte a byte —incluidos elementos vacíos como `<a href="q"></a>`, que la reescritura a etiquetas autocerradas aplicada al resto del documento deja deliberadamente en paz.
 
-La causa es que `xml.Encoder` no ofrece forma de escribir bytes crudos, así que escribir el XHTML verbatim exige reemplazar el encoder. Hasta entonces, si necesitas que la narrativa sobreviva, usa JSON.
+{{< callout type="info" >}}
+**Arreglado en la v1.7.0.** Antes, la narrativa salía dentro de un elemento `<rawInner>` —el nombre de un tipo interno de Go filtrándose al documento— y, como el decodificador discrimina por el nombre del elemento, nunca coincidía al releer y la narrativa se descartaba sin devolver ningún error. La especificación FHIR considera `text.div` la forma legible autoritativa de un recurso cuando el receptor no puede procesar los datos estructurados, así que aquello era una pérdida de significado clínico, no un detalle de formato.
+
+El XHTML malformado también se rechaza ahora. Antes se escribía en el documento sin comprobar, así que un `div` roto producía una salida que no estaba bien formada mientras `MarshalResourceXML` informaba de éxito:
+
+```go
+patient.Text = &r4.Narrative{Div: r4.Ptr(`<div><p>sin cerrar</div>`)}
+_, err := r4.MarshalResourceXML(patient)
+// err: div is not well-formed XML: XML syntax error on line 1: element <p> closed by </div>
+```
+
 {{< /callout >}}
-
-
-El campo `Narrative.Div` contiene XHTML que debe preservarse tal cual en la salida XML. La biblioteca lo intenta mediante `xmlEncodeRawXHTML`:
 
 ```go
 patient := &r4.Patient{
@@ -235,25 +250,24 @@ fmt.Println(string(data))
 
 ## Fidelidad de Ida y Vuelta en XML
 
-{{< callout type="warning" >}}
-**La fidelidad de ida y vuelta en XML no se cumple.** Medido sobre los corpus de ejemplos publicados:
+Medido sobre los corpus de ejemplos publicados:
 
 | | ejemplos | sobreviven el round-trip |
 |---|---:|---:|
+| XML r4 | 1138 | **100 %** |
+| XML r4b | 1156 | **100 %** |
+| XML r5 | 1359 | **100 %** |
 | JSON, las tres versiones | 8758 | 99,5 % |
-| r4 XML | 1138 | **0,7 %** |
-| r4b XML | 1156 | 3,1 % |
-| r5 XML | 1359 | 2,2 % |
 
-Prácticamente todos los ejemplos publicados llevan narrativa, y la narrativa no sobrevive (ver arriba). Un recurso sin narrativa y sin extensiones sobre primitivos dentro de backbone elements sí hace round-trip correctamente.
+La suite de conformidad en `conformance/` lleva la cuenta archivo por archivo, así que estas cifras son medidas, no estimadas.
 
-La suite de conformidad en `conformance/` lleva la cuenta archivo por archivo, así que estas cifras son medidas, no estimadas. Una advertencia sobre qué miden: en XML la suite solo comprueba que nuestra propia salida sea estable (parsear, serializar, parsear, serializar, converger), porque comparar contra los bytes publicados exige una comparación canónica de XML que todavía no existe. La pérdida frente al documento de origen está, por tanto, **sin medir** en el camino XML: la cifra real solo puede ser peor que la de arriba. En JSON se comprueba en ambos sentidos.
+{{< callout type="warning" >}}
+**Lee las cifras de XML por lo que son.** La suite comprueba que nuestra propia salida sea estable —parsear, serializar, parsear, serializar, converger— porque comparar contra los bytes publicados exige una comparación canónica de XML que aquí todavía no existe. Un documento que perdiera siempre el mismo campo convergería igual de limpiamente, que es exactamente cómo el defecto de la narrativa pasó tanto tiempo sin detectarse.
+
+Por eso la narrativa se comprueba aparte y directamente contra el origen: para cada uno de los 3572 ejemplos que la llevan, se extrae el texto legible del archivo publicado y del nuestro tras dos ciclos completos, y se exige que coincidan. La pérdida de *otro* contenido respecto al documento de origen sigue sin medir en el camino XML. El JSON se compara en ambos sentidos.
 {{< /callout >}}
 
-
-Un recurso sin narrativa y sin extensiones sobre primitivos de backbone hace round-trip con sus datos intactos. Nota que este
-ejemplo construye su propio recurso en lugar de reutilizar el `patient` de la
-sección de narrativa: ese lleva un `Text.Div`, y volvería como nil.
+Un recurso con narrativa hace round-trip con sus datos intactos, narrativa incluida.
 
 Una diferencia a tener en cuenta: `UnmarshalResourceXML` deja vacío el campo
 `ResourceType`, así que el struct decodificado no es idéntico al original. Usa
