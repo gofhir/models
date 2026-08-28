@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/gofhir/models/compare/r4b/v1.6.0...r4b/v1.7.0) (2026-08-28)
+
+
+### Features
+
+* **xml:** carry the narrative through instead of dropping it ([6c1d03a](https://github.com/gofhir/models/commit/6c1d03a0d71e07210343fbbc5273db014fbb09fe))
+
 ## [1.6.0](https://github.com/gofhir/models/compare/r4b/v1.5.1...r4b/v1.6.0) (2026-08-27)
 
 
