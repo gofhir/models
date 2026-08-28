@@ -54,17 +54,17 @@ type ChargeItemDefinition struct {
 	// Extension for Title
 	TitleExt *Element `json:"_title,omitempty"`
 	// Underlying externally-defined charge item definition
-	DerivedFromUri []string `json:"derivedFromUri,omitempty"`
+	DerivedFromUri []*string `json:"derivedFromUri,omitempty"`
 	// Extension for DerivedFromUri
-	DerivedFromUriExt []Element `json:"_derivedFromUri,omitempty"`
+	DerivedFromUriExt []*Element `json:"_derivedFromUri,omitempty"`
 	// A larger definition of which this particular definition is a component or step
-	PartOf []string `json:"partOf,omitempty"`
+	PartOf []*string `json:"partOf,omitempty"`
 	// Extension for PartOf
-	PartOfExt []Element `json:"_partOf,omitempty"`
+	PartOfExt []*Element `json:"_partOf,omitempty"`
 	// Completed or terminated request(s) whose function is taken by this new request
-	Replaces []string `json:"replaces,omitempty"`
+	Replaces []*string `json:"replaces,omitempty"`
 	// Extension for Replaces
-	ReplacesExt []Element `json:"_replaces,omitempty"`
+	ReplacesExt []*Element `json:"_replaces,omitempty"`
 	// draft | active | retired | unknown
 	Status *PublicationStatus `json:"status,omitempty"`
 	// Extension for Status
@@ -452,25 +452,22 @@ func (r *ChargeItemDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.DerivedFromUri = append(r.DerivedFromUri, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.DerivedFromUri = append(r.DerivedFromUri, v)
 			case "partOf":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.PartOf = append(r.PartOf, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.PartOf = append(r.PartOf, v)
 			case "replaces":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Replaces = append(r.Replaces, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Replaces = append(r.Replaces, v)
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {
@@ -1021,20 +1018,32 @@ func (b *ChargeItemDefinitionBuilder) SetTitle(v string) *ChargeItemDefinitionBu
 }
 
 // AddDerivedFromUri adds a DerivedFromUri element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ChargeItemDefinitionBuilder) AddDerivedFromUri(v string) *ChargeItemDefinitionBuilder {
-	b.chargeItemDefinition.DerivedFromUri = append(b.chargeItemDefinition.DerivedFromUri, v)
+	b.chargeItemDefinition.DerivedFromUri = append(b.chargeItemDefinition.DerivedFromUri, &v)
 	return b
 }
 
 // AddPartOf adds a PartOf element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ChargeItemDefinitionBuilder) AddPartOf(v string) *ChargeItemDefinitionBuilder {
-	b.chargeItemDefinition.PartOf = append(b.chargeItemDefinition.PartOf, v)
+	b.chargeItemDefinition.PartOf = append(b.chargeItemDefinition.PartOf, &v)
 	return b
 }
 
 // AddReplaces adds a Replaces element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ChargeItemDefinitionBuilder) AddReplaces(v string) *ChargeItemDefinitionBuilder {
-	b.chargeItemDefinition.Replaces = append(b.chargeItemDefinition.Replaces, v)
+	b.chargeItemDefinition.Replaces = append(b.chargeItemDefinition.Replaces, &v)
 	return b
 }
 
@@ -1237,21 +1246,21 @@ func WithChargeItemDefinitionTitle(v string) ChargeItemDefinitionOption {
 // WithChargeItemDefinitionDerivedFromUri adds a DerivedFromUri to the ChargeItemDefinition.
 func WithChargeItemDefinitionDerivedFromUri(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
-		r.DerivedFromUri = append(r.DerivedFromUri, v)
+		r.DerivedFromUri = append(r.DerivedFromUri, &v)
 	}
 }
 
 // WithChargeItemDefinitionPartOf adds a PartOf to the ChargeItemDefinition.
 func WithChargeItemDefinitionPartOf(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
-		r.PartOf = append(r.PartOf, v)
+		r.PartOf = append(r.PartOf, &v)
 	}
 }
 
 // WithChargeItemDefinitionReplaces adds a Replaces to the ChargeItemDefinition.
 func WithChargeItemDefinitionReplaces(v string) ChargeItemDefinitionOption {
 	return func(r *ChargeItemDefinition) {
-		r.Replaces = append(r.Replaces, v)
+		r.Replaces = append(r.Replaces, &v)
 	}
 }
 

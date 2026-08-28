@@ -22,7 +22,7 @@ func TestAddress(t *testing.T) {
 			Use:        &use,
 			Type:       &addrType,
 			Text:       &text,
-			Line:       []string{"123 Main St"},
+			Line:       PtrSlice("123 Main St"),
 			City:       &city,
 			State:      &state,
 			PostalCode: &postalCode,
@@ -32,7 +32,7 @@ func TestAddress(t *testing.T) {
 		assert.Equal(t, AddressUseHome, *addr.Use)
 		assert.Equal(t, AddressTypePhysical, *addr.Type)
 		assert.Equal(t, "123 Main St, Springfield", *addr.Text)
-		assert.Equal(t, []string{"123 Main St"}, addr.Line)
+		assert.Equal(t, PtrSlice("123 Main St"), addr.Line)
 		assert.Equal(t, "Springfield", *addr.City)
 		assert.Equal(t, "IL", *addr.State)
 		assert.Equal(t, "62701", *addr.PostalCode)
@@ -46,7 +46,7 @@ func TestAddress(t *testing.T) {
 		addr := Address{
 			Use:  &use,
 			City: &city,
-			Line: []string{"456 Office Blvd", "Suite 100"},
+			Line: PtrSlice("456 Office Blvd", "Suite 100"),
 		}
 
 		data, err := json.Marshal(addr)
@@ -58,7 +58,7 @@ func TestAddress(t *testing.T) {
 
 		assert.Equal(t, AddressUseWork, *decoded.Use)
 		assert.Equal(t, "Chicago", *decoded.City)
-		assert.Equal(t, []string{"456 Office Blvd", "Suite 100"}, decoded.Line)
+		assert.Equal(t, PtrSlice("456 Office Blvd", "Suite 100"), decoded.Line)
 	})
 
 	t.Run("omitempty works correctly", func(t *testing.T) {
@@ -78,13 +78,13 @@ func TestHumanName(t *testing.T) {
 		name := HumanName{
 			Use:    &use,
 			Family: &family,
-			Given:  []string{"John", "Robert"},
+			Given:  PtrSlice("John", "Robert"),
 			Text:   &text,
 		}
 
 		assert.Equal(t, NameUseOfficial, *name.Use)
 		assert.Equal(t, "Smith", *name.Family)
-		assert.Equal(t, []string{"John", "Robert"}, name.Given)
+		assert.Equal(t, PtrSlice("John", "Robert"), name.Given)
 		assert.Equal(t, "John Smith", *name.Text)
 	})
 
@@ -95,9 +95,9 @@ func TestHumanName(t *testing.T) {
 		original := HumanName{
 			Use:    &use,
 			Family: &family,
-			Given:  []string{"Bob"},
-			Prefix: []string{"Mr."},
-			Suffix: []string{"Jr."},
+			Given:  PtrSlice("Bob"),
+			Prefix: PtrSlice("Mr."),
+			Suffix: PtrSlice("Jr."),
 		}
 
 		data, err := json.Marshal(original)

@@ -552,7 +552,11 @@ func xmlTemplateFuncMap() template.FuncMap {
 
 		// xmlPrimitiveArrayFunc maps a Go array type to the XML primitive array encoding function name.
 		"xmlPrimitiveArrayFunc": func(goType string) string {
-			return xmlPrimitiveArrayEncodeFunc(strings.TrimPrefix(goType, "[]"))
+			// "[]*string" -> "string": repeating primitives are slices of
+			// pointers now, so the element type needs dereferencing before the
+			// helper is chosen by base type.
+			elem := strings.TrimPrefix(strings.TrimPrefix(goType, "[]"), "*")
+			return xmlPrimitiveArrayEncodeFunc(elem)
 		},
 
 		// xmlPrimitiveDecodeFunc maps a Go type to the XML primitive decode function name.
@@ -561,9 +565,15 @@ func xmlTemplateFuncMap() template.FuncMap {
 		},
 
 		// elemType extracts the element type from a slice type: "[]Foo" -> "Foo"
+		// elemType extracts the element type from a slice type, dropping the
+		// pointer that repeating primitives now carry: "[]*string" -> "string".
+		// Callers use it to pick a helper by base type, so the pointer is noise.
 		"elemType": func(goType string) string {
-			return strings.TrimPrefix(goType, "[]")
+			return strings.TrimPrefix(strings.TrimPrefix(goType, "[]"), "*")
 		},
+
+		// hasPrefix reports whether s starts with prefix.
+		"hasPrefix": strings.HasPrefix,
 
 		// derefType extracts the base type from a pointer type: "*Foo" -> "Foo"
 		"derefType": func(goType string) string {

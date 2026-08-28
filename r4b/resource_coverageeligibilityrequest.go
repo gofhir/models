@@ -48,9 +48,9 @@ type CoverageEligibilityRequest struct {
 	// Desired processing priority
 	Priority *CodeableConcept `json:"priority,omitempty"`
 	// auth-requirements | benefits | discovery | validation
-	Purpose []EligibilityRequestPurpose `json:"purpose,omitempty"`
+	Purpose []*EligibilityRequestPurpose `json:"purpose,omitempty"`
 	// Extension for Purpose
-	PurposeExt []Element `json:"_purpose,omitempty"`
+	PurposeExt []*Element `json:"_purpose,omitempty"`
 	// Intended recipient of products and services
 	Patient Reference `json:"patient"`
 	// Estimated date or dates of service
@@ -384,9 +384,8 @@ func (r *CoverageEligibilityRequest) UnmarshalXML(d *xml.Decoder, start xml.Star
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Purpose = append(r.Purpose, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Purpose = append(r.Purpose, v)
 			case "patient":
 				if err := r.Patient.UnmarshalXML(d, t); err != nil {
 					return err
@@ -580,7 +579,7 @@ type CoverageEligibilityRequestItem struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Applicable exception or supporting information
-	SupportingInfoSequence []uint32 `json:"supportingInfoSequence,omitempty"`
+	SupportingInfoSequence []*uint32 `json:"supportingInfoSequence,omitempty"`
 	// Benefit classification
 	Category *CodeableConcept `json:"category,omitempty"`
 	// Billing, service, product, or drug code
@@ -709,9 +708,8 @@ func (r *CoverageEligibilityRequestItem) UnmarshalXML(d *xml.Decoder, start xml.
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.SupportingInfoSequence = append(r.SupportingInfoSequence, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.SupportingInfoSequence = append(r.SupportingInfoSequence, v)
 			case "category":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1079,8 +1077,12 @@ func (b *CoverageEligibilityRequestBuilder) SetPriority(v CodeableConcept) *Cove
 }
 
 // AddPurpose adds a Purpose element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *CoverageEligibilityRequestBuilder) AddPurpose(v EligibilityRequestPurpose) *CoverageEligibilityRequestBuilder {
-	b.coverageEligibilityRequest.Purpose = append(b.coverageEligibilityRequest.Purpose, v)
+	b.coverageEligibilityRequest.Purpose = append(b.coverageEligibilityRequest.Purpose, &v)
 	return b
 }
 
@@ -1252,7 +1254,7 @@ func WithCoverageEligibilityRequestPriority(v CodeableConcept) CoverageEligibili
 // WithCoverageEligibilityRequestPurpose adds a Purpose to the CoverageEligibilityRequest.
 func WithCoverageEligibilityRequestPurpose(v EligibilityRequestPurpose) CoverageEligibilityRequestOption {
 	return func(r *CoverageEligibilityRequest) {
-		r.Purpose = append(r.Purpose, v)
+		r.Purpose = append(r.Purpose, &v)
 	}
 }
 

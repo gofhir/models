@@ -60,17 +60,17 @@ type Endpoint struct {
 	// The type of content that may be used at this endpoint (e.g. XDS Discharge summaries)
 	PayloadType []CodeableConcept `json:"payloadType,omitempty"`
 	// Mimetype to send. If not specified, the content could be anything (including no payload, if the connectionType defined this)
-	PayloadMimeType []string `json:"payloadMimeType,omitempty"`
+	PayloadMimeType []*string `json:"payloadMimeType,omitempty"`
 	// Extension for PayloadMimeType
-	PayloadMimeTypeExt []Element `json:"_payloadMimeType,omitempty"`
+	PayloadMimeTypeExt []*Element `json:"_payloadMimeType,omitempty"`
 	// The technical base address for connecting to this endpoint
 	Address *string `json:"address,omitempty"`
 	// Extension for Address
 	AddressExt *Element `json:"_address,omitempty"`
 	// Usage depends on the channel type
-	Header []string `json:"header,omitempty"`
+	Header []*string `json:"header,omitempty"`
 	// Extension for Header
-	HeaderExt []Element `json:"_header,omitempty"`
+	HeaderExt []*Element `json:"_header,omitempty"`
 }
 
 // GetResourceType returns the FHIR resource type.
@@ -387,9 +387,8 @@ func (r *Endpoint) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.PayloadMimeType = append(r.PayloadMimeType, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.PayloadMimeType = append(r.PayloadMimeType, v)
 			case "address":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -402,9 +401,8 @@ func (r *Endpoint) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Header = append(r.Header, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Header = append(r.Header, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -537,8 +535,12 @@ func (b *EndpointBuilder) AddPayloadType(v CodeableConcept) *EndpointBuilder {
 }
 
 // AddPayloadMimeType adds a PayloadMimeType element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *EndpointBuilder) AddPayloadMimeType(v string) *EndpointBuilder {
-	b.endpoint.PayloadMimeType = append(b.endpoint.PayloadMimeType, v)
+	b.endpoint.PayloadMimeType = append(b.endpoint.PayloadMimeType, &v)
 	return b
 }
 
@@ -549,8 +551,12 @@ func (b *EndpointBuilder) SetAddress(v string) *EndpointBuilder {
 }
 
 // AddHeader adds a Header element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *EndpointBuilder) AddHeader(v string) *EndpointBuilder {
-	b.endpoint.Header = append(b.endpoint.Header, v)
+	b.endpoint.Header = append(b.endpoint.Header, &v)
 	return b
 }
 
@@ -685,7 +691,7 @@ func WithEndpointPayloadType(v CodeableConcept) EndpointOption {
 // WithEndpointPayloadMimeType adds a PayloadMimeType to the Endpoint.
 func WithEndpointPayloadMimeType(v string) EndpointOption {
 	return func(r *Endpoint) {
-		r.PayloadMimeType = append(r.PayloadMimeType, v)
+		r.PayloadMimeType = append(r.PayloadMimeType, &v)
 	}
 }
 
@@ -699,6 +705,6 @@ func WithEndpointAddress(v string) EndpointOption {
 // WithEndpointHeader adds a Header to the Endpoint.
 func WithEndpointHeader(v string) EndpointOption {
 	return func(r *Endpoint) {
-		r.Header = append(r.Header, v)
+		r.Header = append(r.Header, &v)
 	}
 }

@@ -64,9 +64,9 @@ type MessageDefinition struct {
 	// Extension for Title
 	TitleExt *Element `json:"_title,omitempty"`
 	// Takes the place of
-	Replaces []string `json:"replaces,omitempty"`
+	Replaces []*string `json:"replaces,omitempty"`
 	// Extension for Replaces
-	ReplacesExt []Element `json:"_replaces,omitempty"`
+	ReplacesExt []*Element `json:"_replaces,omitempty"`
 	// draft | active | retired | unknown
 	Status *PublicationStatus `json:"status,omitempty"`
 	// Extension for Status
@@ -110,9 +110,9 @@ type MessageDefinition struct {
 	// Extension for Base
 	BaseExt *Element `json:"_base,omitempty"`
 	// Protocol/workflow this is part of
-	Parent []string `json:"parent,omitempty"`
+	Parent []*string `json:"parent,omitempty"`
 	// Extension for Parent
-	ParentExt []Element `json:"_parent,omitempty"`
+	ParentExt []*Element `json:"_parent,omitempty"`
 	// Event code  or link to the EventDefinition
 	EventCoding *Coding `json:"eventCoding,omitempty"`
 	// Event code  or link to the EventDefinition
@@ -507,9 +507,8 @@ func (r *MessageDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Replaces = append(r.Replaces, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Replaces = append(r.Replaces, v)
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {
@@ -596,9 +595,8 @@ func (r *MessageDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Parent = append(r.Parent, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Parent = append(r.Parent, v)
 			case "eventCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -997,8 +995,12 @@ func (b *MessageDefinitionBuilder) SetTitle(v string) *MessageDefinitionBuilder 
 }
 
 // AddReplaces adds a Replaces element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *MessageDefinitionBuilder) AddReplaces(v string) *MessageDefinitionBuilder {
-	b.messageDefinition.Replaces = append(b.messageDefinition.Replaces, v)
+	b.messageDefinition.Replaces = append(b.messageDefinition.Replaces, &v)
 	return b
 }
 
@@ -1075,8 +1077,12 @@ func (b *MessageDefinitionBuilder) SetBase(v string) *MessageDefinitionBuilder {
 }
 
 // AddParent adds a Parent element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *MessageDefinitionBuilder) AddParent(v string) *MessageDefinitionBuilder {
-	b.messageDefinition.Parent = append(b.messageDefinition.Parent, v)
+	b.messageDefinition.Parent = append(b.messageDefinition.Parent, &v)
 	return b
 }
 
@@ -1259,7 +1265,7 @@ func WithMessageDefinitionTitle(v string) MessageDefinitionOption {
 // WithMessageDefinitionReplaces adds a Replaces to the MessageDefinition.
 func WithMessageDefinitionReplaces(v string) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
-		r.Replaces = append(r.Replaces, v)
+		r.Replaces = append(r.Replaces, &v)
 	}
 }
 
@@ -1350,7 +1356,7 @@ func WithMessageDefinitionBase(v string) MessageDefinitionOption {
 // WithMessageDefinitionParent adds a Parent to the MessageDefinition.
 func WithMessageDefinitionParent(v string) MessageDefinitionOption {
 	return func(r *MessageDefinition) {
-		r.Parent = append(r.Parent, v)
+		r.Parent = append(r.Parent, &v)
 	}
 }
 

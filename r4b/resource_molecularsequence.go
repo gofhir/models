@@ -742,19 +742,19 @@ type MolecularSequenceQualityRoc struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Genotype quality score
-	Score []int `json:"score,omitempty"`
+	Score []*int `json:"score,omitempty"`
 	// Roc score true positive numbers
-	NumTP []int `json:"numTP,omitempty"`
+	NumTP []*int `json:"numTP,omitempty"`
 	// Roc score false positive numbers
-	NumFP []int `json:"numFP,omitempty"`
+	NumFP []*int `json:"numFP,omitempty"`
 	// Roc score false negative numbers
-	NumFN []int `json:"numFN,omitempty"`
+	NumFN []*int `json:"numFN,omitempty"`
 	// Precision of the GQ score
-	Precision []Decimal `json:"precision,omitempty"`
+	Precision []*Decimal `json:"precision,omitempty"`
 	// Sensitivity of the GQ score
-	Sensitivity []Decimal `json:"sensitivity,omitempty"`
+	Sensitivity []*Decimal `json:"sensitivity,omitempty"`
 	// FScore of the GQ score
-	FMeasure []Decimal `json:"fMeasure,omitempty"`
+	FMeasure []*Decimal `json:"fMeasure,omitempty"`
 }
 
 // MarshalXML serializes MolecularSequenceQualityRoc to FHIR-conformant XML.
@@ -838,57 +838,50 @@ func (r *MolecularSequenceQualityRoc) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Score = append(r.Score, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Score = append(r.Score, v)
 			case "numTP":
 				v, _, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NumTP = append(r.NumTP, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NumTP = append(r.NumTP, v)
 			case "numFP":
 				v, _, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NumFP = append(r.NumFP, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NumFP = append(r.NumFP, v)
 			case "numFN":
 				v, _, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NumFN = append(r.NumFN, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NumFN = append(r.NumFN, v)
 			case "precision":
 				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Precision = append(r.Precision, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Precision = append(r.Precision, v)
 			case "sensitivity":
 				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Sensitivity = append(r.Sensitivity, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Sensitivity = append(r.Sensitivity, v)
 			case "fMeasure":
 				v, _, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.FMeasure = append(r.FMeasure, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.FMeasure = append(r.FMeasure, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err

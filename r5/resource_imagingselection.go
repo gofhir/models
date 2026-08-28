@@ -509,7 +509,7 @@ type ImagingSelectionInstance struct {
 	// DICOM SOP Class UID
 	SopClass *Coding `json:"sopClass,omitempty"`
 	// The selected subset of the SOP Instance
-	Subset []string `json:"subset,omitempty"`
+	Subset []*string `json:"subset,omitempty"`
 	// A specific 2D region in a DICOM image / frame
 	ImageRegion2D []ImagingSelectionInstanceImageRegion2D `json:"imageRegion2D,omitempty"`
 	// A specific 3D region in a DICOM frame of reference
@@ -618,9 +618,8 @@ func (r *ImagingSelectionInstance) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Subset = append(r.Subset, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Subset = append(r.Subset, v)
 			case "imageRegion2D":
 				var v ImagingSelectionInstanceImageRegion2D
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -656,7 +655,7 @@ type ImagingSelectionInstanceImageRegion2D struct {
 	// point | polyline | interpolated | circle | ellipse
 	RegionType *ImagingSelection2DGraphicType `json:"regionType,omitempty"`
 	// Specifies the coordinates that define the image region
-	Coordinate []Decimal `json:"coordinate,omitempty"`
+	Coordinate []*Decimal `json:"coordinate,omitempty"`
 }
 
 // MarshalXML serializes ImagingSelectionInstanceImageRegion2D to FHIR-conformant XML.
@@ -731,9 +730,8 @@ func (r *ImagingSelectionInstanceImageRegion2D) UnmarshalXML(d *xml.Decoder, sta
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Coordinate = append(r.Coordinate, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Coordinate = append(r.Coordinate, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -757,7 +755,7 @@ type ImagingSelectionInstanceImageRegion3D struct {
 	// point | multipoint | polyline | polygon | ellipse | ellipsoid
 	RegionType *ImagingSelection3DGraphicType `json:"regionType,omitempty"`
 	// Specifies the coordinates that define the image region
-	Coordinate []Decimal `json:"coordinate,omitempty"`
+	Coordinate []*Decimal `json:"coordinate,omitempty"`
 }
 
 // MarshalXML serializes ImagingSelectionInstanceImageRegion3D to FHIR-conformant XML.
@@ -832,9 +830,8 @@ func (r *ImagingSelectionInstanceImageRegion3D) UnmarshalXML(d *xml.Decoder, sta
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Coordinate = append(r.Coordinate, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Coordinate = append(r.Coordinate, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err

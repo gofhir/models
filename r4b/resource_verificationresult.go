@@ -42,9 +42,9 @@ type VerificationResult struct {
 	// A resource that was validated
 	Target []Reference `json:"target,omitempty"`
 	// The fhirpath location(s) within the resource that was validated
-	TargetLocation []string `json:"targetLocation,omitempty"`
+	TargetLocation []*string `json:"targetLocation,omitempty"`
 	// Extension for TargetLocation
-	TargetLocationExt []Element `json:"_targetLocation,omitempty"`
+	TargetLocationExt []*Element `json:"_targetLocation,omitempty"`
 	// none | initial | periodic
 	Need *CodeableConcept `json:"need,omitempty"`
 	// attested | validated | in-process | req-revalid | val-fail | reval-fail
@@ -368,9 +368,8 @@ func (r *VerificationResult) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.TargetLocation = append(r.TargetLocation, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.TargetLocation = append(r.TargetLocation, v)
 			case "need":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -988,8 +987,12 @@ func (b *VerificationResultBuilder) AddTarget(v Reference) *VerificationResultBu
 }
 
 // AddTargetLocation adds a TargetLocation element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *VerificationResultBuilder) AddTargetLocation(v string) *VerificationResultBuilder {
-	b.verificationResult.TargetLocation = append(b.verificationResult.TargetLocation, v)
+	b.verificationResult.TargetLocation = append(b.verificationResult.TargetLocation, &v)
 	return b
 }
 
@@ -1147,7 +1150,7 @@ func WithVerificationResultTarget(v Reference) VerificationResultOption {
 // WithVerificationResultTargetLocation adds a TargetLocation to the VerificationResult.
 func WithVerificationResultTargetLocation(v string) VerificationResultOption {
 	return func(r *VerificationResult) {
-		r.TargetLocation = append(r.TargetLocation, v)
+		r.TargetLocation = append(r.TargetLocation, &v)
 	}
 }
 

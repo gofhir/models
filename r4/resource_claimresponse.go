@@ -625,11 +625,11 @@ type ClaimResponseAddItem struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Item sequence number
-	ItemSequence []uint32 `json:"itemSequence,omitempty"`
+	ItemSequence []*uint32 `json:"itemSequence,omitempty"`
 	// Detail sequence number
-	DetailSequence []uint32 `json:"detailSequence,omitempty"`
+	DetailSequence []*uint32 `json:"detailSequence,omitempty"`
 	// Subdetail sequence number
-	SubdetailSequence []uint32 `json:"subdetailSequence,omitempty"`
+	SubdetailSequence []*uint32 `json:"subdetailSequence,omitempty"`
 	// Authorized providers
 	Provider []Reference `json:"provider,omitempty"`
 	// Billing, service, product, or drug code
@@ -663,7 +663,7 @@ type ClaimResponseAddItem struct {
 	// Anatomical sub-location
 	SubSite []CodeableConcept `json:"subSite,omitempty"`
 	// Applicable note numbers
-	NoteNumber []uint32 `json:"noteNumber,omitempty"`
+	NoteNumber []*uint32 `json:"noteNumber,omitempty"`
 	// Added items adjudication
 	Adjudication []ClaimResponseItemAdjudication `json:"adjudication,omitempty"`
 	// Insurer added line details
@@ -821,25 +821,22 @@ func (r *ClaimResponseAddItem) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.ItemSequence = append(r.ItemSequence, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.ItemSequence = append(r.ItemSequence, v)
 			case "detailSequence":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.DetailSequence = append(r.DetailSequence, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.DetailSequence = append(r.DetailSequence, v)
 			case "subdetailSequence":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.SubdetailSequence = append(r.SubdetailSequence, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.SubdetailSequence = append(r.SubdetailSequence, v)
 			case "provider":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -933,9 +930,8 @@ func (r *ClaimResponseAddItem) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NoteNumber = append(r.NoteNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NoteNumber = append(r.NoteNumber, v)
 			case "adjudication":
 				var v ClaimResponseItemAdjudication
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -981,7 +977,7 @@ type ClaimResponseAddItemDetail struct {
 	// Total item cost
 	Net *Money `json:"net,omitempty"`
 	// Applicable note numbers
-	NoteNumber []uint32 `json:"noteNumber,omitempty"`
+	NoteNumber []*uint32 `json:"noteNumber,omitempty"`
 	// Added items detail adjudication
 	Adjudication []ClaimResponseItemAdjudication `json:"adjudication,omitempty"`
 	// Insurer added line items
@@ -1121,9 +1117,8 @@ func (r *ClaimResponseAddItemDetail) UnmarshalXML(d *xml.Decoder, start xml.Star
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NoteNumber = append(r.NoteNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NoteNumber = append(r.NoteNumber, v)
 			case "adjudication":
 				var v ClaimResponseItemAdjudication
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1169,7 +1164,7 @@ type ClaimResponseAddItemDetailSubDetail struct {
 	// Total item cost
 	Net *Money `json:"net,omitempty"`
 	// Applicable note numbers
-	NoteNumber []uint32 `json:"noteNumber,omitempty"`
+	NoteNumber []*uint32 `json:"noteNumber,omitempty"`
 	// Added items detail adjudication
 	Adjudication []ClaimResponseItemAdjudication `json:"adjudication,omitempty"`
 }
@@ -1302,9 +1297,8 @@ func (r *ClaimResponseAddItemDetailSubDetail) UnmarshalXML(d *xml.Decoder, start
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NoteNumber = append(r.NoteNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NoteNumber = append(r.NoteNumber, v)
 			case "adjudication":
 				var v ClaimResponseItemAdjudication
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1585,7 +1579,7 @@ type ClaimResponseItem struct {
 	// Claim item instance identifier
 	ItemSequence *uint32 `json:"itemSequence,omitempty"`
 	// Applicable note numbers
-	NoteNumber []uint32 `json:"noteNumber,omitempty"`
+	NoteNumber []*uint32 `json:"noteNumber,omitempty"`
 	// Adjudication details
 	Adjudication []ClaimResponseItemAdjudication `json:"adjudication,omitempty"`
 	// Adjudication for claim details
@@ -1674,9 +1668,8 @@ func (r *ClaimResponseItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NoteNumber = append(r.NoteNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NoteNumber = append(r.NoteNumber, v)
 			case "adjudication":
 				var v ClaimResponseItemAdjudication
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1835,7 +1828,7 @@ type ClaimResponseItemDetail struct {
 	// Claim detail instance identifier
 	DetailSequence *uint32 `json:"detailSequence,omitempty"`
 	// Applicable note numbers
-	NoteNumber []uint32 `json:"noteNumber,omitempty"`
+	NoteNumber []*uint32 `json:"noteNumber,omitempty"`
 	// Detail level adjudication details
 	Adjudication []ClaimResponseItemAdjudication `json:"adjudication,omitempty"`
 	// Adjudication for claim sub-details
@@ -1924,9 +1917,8 @@ func (r *ClaimResponseItemDetail) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NoteNumber = append(r.NoteNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NoteNumber = append(r.NoteNumber, v)
 			case "adjudication":
 				var v ClaimResponseItemAdjudication
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1962,7 +1954,7 @@ type ClaimResponseItemDetailSubDetail struct {
 	// Claim sub-detail instance identifier
 	SubDetailSequence *uint32 `json:"subDetailSequence,omitempty"`
 	// Applicable note numbers
-	NoteNumber []uint32 `json:"noteNumber,omitempty"`
+	NoteNumber []*uint32 `json:"noteNumber,omitempty"`
 	// Subdetail level adjudication details
 	Adjudication []ClaimResponseItemAdjudication `json:"adjudication,omitempty"`
 }
@@ -2044,9 +2036,8 @@ func (r *ClaimResponseItemDetailSubDetail) UnmarshalXML(d *xml.Decoder, start xm
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NoteNumber = append(r.NoteNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NoteNumber = append(r.NoteNumber, v)
 			case "adjudication":
 				var v ClaimResponseItemAdjudication
 				if err := v.UnmarshalXML(d, t); err != nil {

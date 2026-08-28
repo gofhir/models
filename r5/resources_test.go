@@ -22,7 +22,7 @@ func TestPatient(t *testing.T) {
 			Gender:    &gender,
 			BirthDate: &birthDate,
 			Name: []HumanName{
-				{Family: &family, Given: []string{"John"}},
+				{Family: &family, Given: PtrSlice("John")},
 			},
 		}
 

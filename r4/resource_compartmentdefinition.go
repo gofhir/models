@@ -475,7 +475,7 @@ type CompartmentDefinitionResource struct {
 	// Name of resource type
 	Code *string `json:"code,omitempty"`
 	// Search Parameter Name, or chained parameters
-	Param []string `json:"param,omitempty"`
+	Param []*string `json:"param,omitempty"`
 	// Additional documentation about the resource and compartment
 	Documentation *string `json:"documentation,omitempty"`
 }
@@ -555,9 +555,8 @@ func (r *CompartmentDefinitionResource) UnmarshalXML(d *xml.Decoder, start xml.S
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Param = append(r.Param, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Param = append(r.Param, v)
 			case "documentation":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

@@ -1,4 +1,4 @@
-# Known round-trip failures: 6 of 2824 examples.
+# Known round-trip failures: 4 of 2824 examples.
 #
 # Regenerate with: cd conformance && go test . -update-known
 # Every line removed is a bug fixed; every line added is a regression.
@@ -11,8 +11,6 @@
 #   emptyread parsed to nothing, with no error
 
 mismatch codesystem-map-transform.json
-mismatch json-edge-cases.json
 mismatch organization-example.json
-mismatch search-parameters.json
 mismatch structuredefinition-example-composition.json
 mismatch valuesets.json

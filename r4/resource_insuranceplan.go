@@ -52,9 +52,9 @@ type InsurancePlan struct {
 	// Extension for Name
 	NameExt *Element `json:"_name,omitempty"`
 	// Alternate names
-	Alias []string `json:"alias,omitempty"`
+	Alias []*string `json:"alias,omitempty"`
 	// Extension for Alias
-	AliasExt []Element `json:"_alias,omitempty"`
+	AliasExt []*Element `json:"_alias,omitempty"`
 	// When the product is available
 	Period *Period `json:"period,omitempty"`
 	// Plan issuer
@@ -388,9 +388,8 @@ func (r *InsurancePlan) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Alias = append(r.Alias, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Alias = append(r.Alias, v)
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1610,8 +1609,12 @@ func (b *InsurancePlanBuilder) SetName(v string) *InsurancePlanBuilder {
 }
 
 // AddAlias adds a Alias element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *InsurancePlanBuilder) AddAlias(v string) *InsurancePlanBuilder {
-	b.insurancePlan.Alias = append(b.insurancePlan.Alias, v)
+	b.insurancePlan.Alias = append(b.insurancePlan.Alias, &v)
 	return b
 }
 
@@ -1772,7 +1775,7 @@ func WithInsurancePlanName(v string) InsurancePlanOption {
 // WithInsurancePlanAlias adds a Alias to the InsurancePlan.
 func WithInsurancePlanAlias(v string) InsurancePlanOption {
 	return func(r *InsurancePlan) {
-		r.Alias = append(r.Alias, v)
+		r.Alias = append(r.Alias, &v)
 	}
 }
 

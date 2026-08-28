@@ -112,9 +112,9 @@ type TestScript struct {
 	// Fixture in the test script - by reference (uri)
 	Fixture []TestScriptFixture `json:"fixture,omitempty"`
 	// Reference of the validation profile
-	Profile []string `json:"profile,omitempty"`
+	Profile []*string `json:"profile,omitempty"`
 	// Extension for Profile
-	ProfileExt []Element `json:"_profile,omitempty"`
+	ProfileExt []*Element `json:"_profile,omitempty"`
 	// Placeholder for evaluated elements
 	Variable []TestScriptVariable `json:"variable,omitempty"`
 	// A series of required setup operations before tests are executed
@@ -611,9 +611,8 @@ func (r *TestScript) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Profile = append(r.Profile, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Profile = append(r.Profile, v)
 			case "variable":
 				var v TestScriptVariable
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -988,11 +987,11 @@ type TestScriptMetadataCapability struct {
 	// The expected capabilities of the server
 	Description *string `json:"description,omitempty"`
 	// Which origin server these requirements apply to
-	Origin []int `json:"origin,omitempty"`
+	Origin []*int `json:"origin,omitempty"`
 	// Which server these requirements apply to
 	Destination *int `json:"destination,omitempty"`
 	// Links to the FHIR specification
-	Link []string `json:"link,omitempty"`
+	Link []*string `json:"link,omitempty"`
 	// Required Capability Statement
 	Capabilities *string `json:"capabilities,omitempty"`
 }
@@ -1096,9 +1095,8 @@ func (r *TestScriptMetadataCapability) UnmarshalXML(d *xml.Decoder, start xml.St
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Origin = append(r.Origin, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Origin = append(r.Origin, v)
 			case "destination":
 				v, _, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
@@ -1110,9 +1108,8 @@ func (r *TestScriptMetadataCapability) UnmarshalXML(d *xml.Decoder, start xml.St
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Link = append(r.Link, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Link = append(r.Link, v)
 			case "capabilities":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -3245,8 +3242,12 @@ func (b *TestScriptBuilder) AddFixture(v TestScriptFixture) *TestScriptBuilder {
 }
 
 // AddProfile adds a Profile element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *TestScriptBuilder) AddProfile(v string) *TestScriptBuilder {
-	b.testScript.Profile = append(b.testScript.Profile, v)
+	b.testScript.Profile = append(b.testScript.Profile, &v)
 	return b
 }
 
@@ -3517,7 +3518,7 @@ func WithTestScriptFixture(v TestScriptFixture) TestScriptOption {
 // WithTestScriptProfile adds a Profile to the TestScript.
 func WithTestScriptProfile(v string) TestScriptOption {
 	return func(r *TestScript) {
-		r.Profile = append(r.Profile, v)
+		r.Profile = append(r.Profile, &v)
 	}
 }
 

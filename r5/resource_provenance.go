@@ -52,9 +52,9 @@ type Provenance struct {
 	// Extension for Recorded
 	RecordedExt *Element `json:"_recorded,omitempty"`
 	// Policy or plan the activity was defined by
-	Policy []string `json:"policy,omitempty"`
+	Policy []*string `json:"policy,omitempty"`
 	// Extension for Policy
-	PolicyExt []Element `json:"_policy,omitempty"`
+	PolicyExt []*Element `json:"_policy,omitempty"`
 	// Where the activity occurred, if relevant
 	Location *Reference `json:"location,omitempty"`
 	// Authorization (purposeOfUse) related to the event
@@ -388,9 +388,8 @@ func (r *Provenance) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Policy = append(r.Policy, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Policy = append(r.Policy, v)
 			case "location":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -794,8 +793,12 @@ func (b *ProvenanceBuilder) SetRecorded(v string) *ProvenanceBuilder {
 }
 
 // AddPolicy adds a Policy element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ProvenanceBuilder) AddPolicy(v string) *ProvenanceBuilder {
-	b.provenance.Policy = append(b.provenance.Policy, v)
+	b.provenance.Policy = append(b.provenance.Policy, &v)
 	return b
 }
 
@@ -963,7 +966,7 @@ func WithProvenanceRecorded(v string) ProvenanceOption {
 // WithProvenancePolicy adds a Policy to the Provenance.
 func WithProvenancePolicy(v string) ProvenanceOption {
 	return func(r *Provenance) {
-		r.Policy = append(r.Policy, v)
+		r.Policy = append(r.Policy, &v)
 	}
 }
 

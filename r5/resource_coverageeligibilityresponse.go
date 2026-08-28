@@ -46,9 +46,9 @@ type CoverageEligibilityResponse struct {
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// auth-requirements | benefits | discovery | validation
-	Purpose []EligibilityResponsePurpose `json:"purpose,omitempty"`
+	Purpose []*EligibilityResponsePurpose `json:"purpose,omitempty"`
 	// Extension for Purpose
-	PurposeExt []Element `json:"_purpose,omitempty"`
+	PurposeExt []*Element `json:"_purpose,omitempty"`
 	// Intended recipient of products and services
 	Patient Reference `json:"patient"`
 	// Event information
@@ -390,9 +390,8 @@ func (r *CoverageEligibilityResponse) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Purpose = append(r.Purpose, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Purpose = append(r.Purpose, v)
 			case "patient":
 				if err := r.Patient.UnmarshalXML(d, t); err != nil {
 					return err
@@ -499,7 +498,7 @@ type CoverageEligibilityResponseError struct {
 	// Error code detailing processing issues
 	Code CodeableConcept `json:"code,omitempty"`
 	// FHIRPath of element(s) related to issue
-	Expression []string `json:"expression,omitempty"`
+	Expression []*string `json:"expression,omitempty"`
 }
 
 // MarshalXML serializes CoverageEligibilityResponseError to FHIR-conformant XML.
@@ -572,9 +571,8 @@ func (r *CoverageEligibilityResponseError) UnmarshalXML(d *xml.Decoder, start xm
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Expression = append(r.Expression, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Expression = append(r.Expression, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1319,8 +1317,12 @@ func (b *CoverageEligibilityResponseBuilder) SetStatus(v FinancialResourceStatus
 }
 
 // AddPurpose adds a Purpose element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *CoverageEligibilityResponseBuilder) AddPurpose(v EligibilityResponsePurpose) *CoverageEligibilityResponseBuilder {
-	b.coverageEligibilityResponse.Purpose = append(b.coverageEligibilityResponse.Purpose, v)
+	b.coverageEligibilityResponse.Purpose = append(b.coverageEligibilityResponse.Purpose, &v)
 	return b
 }
 
@@ -1503,7 +1505,7 @@ func WithCoverageEligibilityResponseStatus(v FinancialResourceStatusCodes) Cover
 // WithCoverageEligibilityResponsePurpose adds a Purpose to the CoverageEligibilityResponse.
 func WithCoverageEligibilityResponsePurpose(v EligibilityResponsePurpose) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
-		r.Purpose = append(r.Purpose, v)
+		r.Purpose = append(r.Purpose, &v)
 	}
 }
 

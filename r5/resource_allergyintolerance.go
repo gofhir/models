@@ -48,9 +48,9 @@ type AllergyIntolerance struct {
 	// allergy | intolerance - Underlying mechanism (if known)
 	Type *CodeableConcept `json:"type,omitempty"`
 	// food | medication | environment | biologic
-	Category []AllergyIntoleranceCategory `json:"category,omitempty"`
+	Category []*AllergyIntoleranceCategory `json:"category,omitempty"`
 	// Extension for Category
-	CategoryExt []Element `json:"_category,omitempty"`
+	CategoryExt []*Element `json:"_category,omitempty"`
 	// low | high | unable-to-assess
 	Criticality *AllergyIntoleranceCriticality `json:"criticality,omitempty"`
 	// Extension for Criticality
@@ -419,9 +419,8 @@ func (r *AllergyIntolerance) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Category = append(r.Category, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Category = append(r.Category, v)
 			case "criticality":
 				v, ext, err := xmlDecodePrimitiveCode[AllergyIntoleranceCriticality](d, t)
 				if err != nil {
@@ -878,8 +877,12 @@ func (b *AllergyIntoleranceBuilder) SetType(v CodeableConcept) *AllergyIntoleran
 }
 
 // AddCategory adds a Category element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *AllergyIntoleranceBuilder) AddCategory(v AllergyIntoleranceCategory) *AllergyIntoleranceBuilder {
-	b.allergyIntolerance.Category = append(b.allergyIntolerance.Category, v)
+	b.allergyIntolerance.Category = append(b.allergyIntolerance.Category, &v)
 	return b
 }
 
@@ -1082,7 +1085,7 @@ func WithAllergyIntoleranceType(v CodeableConcept) AllergyIntoleranceOption {
 // WithAllergyIntoleranceCategory adds a Category to the AllergyIntolerance.
 func WithAllergyIntoleranceCategory(v AllergyIntoleranceCategory) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
-		r.Category = append(r.Category, v)
+		r.Category = append(r.Category, &v)
 	}
 }
 

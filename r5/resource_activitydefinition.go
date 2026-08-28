@@ -140,9 +140,9 @@ type ActivityDefinition struct {
 	// Additional documentation, citations, etc
 	RelatedArtifact []RelatedArtifact `json:"relatedArtifact,omitempty"`
 	// Logic used by the activity definition
-	Library []string `json:"library,omitempty"`
+	Library []*string `json:"library,omitempty"`
 	// Extension for Library
-	LibraryExt []Element `json:"_library,omitempty"`
+	LibraryExt []*Element `json:"_library,omitempty"`
 	// Kind of resource
 	Kind *RequestResourceTypes `json:"kind,omitempty"`
 	// Extension for Kind
@@ -194,17 +194,17 @@ type ActivityDefinition struct {
 	// What part of body to perform on
 	BodySite []CodeableConcept `json:"bodySite,omitempty"`
 	// What specimens are required to perform this action
-	SpecimenRequirement []string `json:"specimenRequirement,omitempty"`
+	SpecimenRequirement []*string `json:"specimenRequirement,omitempty"`
 	// Extension for SpecimenRequirement
-	SpecimenRequirementExt []Element `json:"_specimenRequirement,omitempty"`
+	SpecimenRequirementExt []*Element `json:"_specimenRequirement,omitempty"`
 	// What observations are required to perform this action
-	ObservationRequirement []string `json:"observationRequirement,omitempty"`
+	ObservationRequirement []*string `json:"observationRequirement,omitempty"`
 	// Extension for ObservationRequirement
-	ObservationRequirementExt []Element `json:"_observationRequirement,omitempty"`
+	ObservationRequirementExt []*Element `json:"_observationRequirement,omitempty"`
 	// What observations must be produced by this action
-	ObservationResultRequirement []string `json:"observationResultRequirement,omitempty"`
+	ObservationResultRequirement []*string `json:"observationResultRequirement,omitempty"`
 	// Extension for ObservationResultRequirement
-	ObservationResultRequirementExt []Element `json:"_observationResultRequirement,omitempty"`
+	ObservationResultRequirementExt []*Element `json:"_observationResultRequirement,omitempty"`
 	// Transform to apply the template
 	Transform *string `json:"transform,omitempty"`
 	// Extension for Transform
@@ -873,9 +873,8 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Library = append(r.Library, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Library = append(r.Library, v)
 			case "kind":
 				v, ext, err := xmlDecodePrimitiveCode[RequestResourceTypes](d, t)
 				if err != nil {
@@ -1001,25 +1000,22 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.SpecimenRequirement = append(r.SpecimenRequirement, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.SpecimenRequirement = append(r.SpecimenRequirement, v)
 			case "observationRequirement":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.ObservationRequirement = append(r.ObservationRequirement, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.ObservationRequirement = append(r.ObservationRequirement, v)
 			case "observationResultRequirement":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.ObservationResultRequirement = append(r.ObservationResultRequirement, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.ObservationResultRequirement = append(r.ObservationResultRequirement, v)
 			case "transform":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1556,8 +1552,12 @@ func (b *ActivityDefinitionBuilder) AddRelatedArtifact(v RelatedArtifact) *Activ
 }
 
 // AddLibrary adds a Library element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ActivityDefinitionBuilder) AddLibrary(v string) *ActivityDefinitionBuilder {
-	b.activityDefinition.Library = append(b.activityDefinition.Library, v)
+	b.activityDefinition.Library = append(b.activityDefinition.Library, &v)
 	return b
 }
 
@@ -1682,20 +1682,32 @@ func (b *ActivityDefinitionBuilder) AddBodySite(v CodeableConcept) *ActivityDefi
 }
 
 // AddSpecimenRequirement adds a SpecimenRequirement element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ActivityDefinitionBuilder) AddSpecimenRequirement(v string) *ActivityDefinitionBuilder {
-	b.activityDefinition.SpecimenRequirement = append(b.activityDefinition.SpecimenRequirement, v)
+	b.activityDefinition.SpecimenRequirement = append(b.activityDefinition.SpecimenRequirement, &v)
 	return b
 }
 
 // AddObservationRequirement adds a ObservationRequirement element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ActivityDefinitionBuilder) AddObservationRequirement(v string) *ActivityDefinitionBuilder {
-	b.activityDefinition.ObservationRequirement = append(b.activityDefinition.ObservationRequirement, v)
+	b.activityDefinition.ObservationRequirement = append(b.activityDefinition.ObservationRequirement, &v)
 	return b
 }
 
 // AddObservationResultRequirement adds a ObservationResultRequirement element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ActivityDefinitionBuilder) AddObservationResultRequirement(v string) *ActivityDefinitionBuilder {
-	b.activityDefinition.ObservationResultRequirement = append(b.activityDefinition.ObservationResultRequirement, v)
+	b.activityDefinition.ObservationResultRequirement = append(b.activityDefinition.ObservationResultRequirement, &v)
 	return b
 }
 
@@ -2024,7 +2036,7 @@ func WithActivityDefinitionRelatedArtifact(v RelatedArtifact) ActivityDefinition
 // WithActivityDefinitionLibrary adds a Library to the ActivityDefinition.
 func WithActivityDefinitionLibrary(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
-		r.Library = append(r.Library, v)
+		r.Library = append(r.Library, &v)
 	}
 }
 
@@ -2171,21 +2183,21 @@ func WithActivityDefinitionBodySite(v CodeableConcept) ActivityDefinitionOption 
 // WithActivityDefinitionSpecimenRequirement adds a SpecimenRequirement to the ActivityDefinition.
 func WithActivityDefinitionSpecimenRequirement(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
-		r.SpecimenRequirement = append(r.SpecimenRequirement, v)
+		r.SpecimenRequirement = append(r.SpecimenRequirement, &v)
 	}
 }
 
 // WithActivityDefinitionObservationRequirement adds a ObservationRequirement to the ActivityDefinition.
 func WithActivityDefinitionObservationRequirement(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
-		r.ObservationRequirement = append(r.ObservationRequirement, v)
+		r.ObservationRequirement = append(r.ObservationRequirement, &v)
 	}
 }
 
 // WithActivityDefinitionObservationResultRequirement adds a ObservationResultRequirement to the ActivityDefinition.
 func WithActivityDefinitionObservationResultRequirement(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
-		r.ObservationResultRequirement = append(r.ObservationResultRequirement, v)
+		r.ObservationResultRequirement = append(r.ObservationResultRequirement, &v)
 	}
 }
 

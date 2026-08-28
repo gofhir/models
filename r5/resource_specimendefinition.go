@@ -64,13 +64,13 @@ type SpecimenDefinition struct {
 	// Extension for Title
 	TitleExt *Element `json:"_title,omitempty"`
 	// Based on FHIR definition of another SpecimenDefinition
-	DerivedFromCanonical []string `json:"derivedFromCanonical,omitempty"`
+	DerivedFromCanonical []*string `json:"derivedFromCanonical,omitempty"`
 	// Extension for DerivedFromCanonical
-	DerivedFromCanonicalExt []Element `json:"_derivedFromCanonical,omitempty"`
+	DerivedFromCanonicalExt []*Element `json:"_derivedFromCanonical,omitempty"`
 	// Based on external definition
-	DerivedFromUri []string `json:"derivedFromUri,omitempty"`
+	DerivedFromUri []*string `json:"derivedFromUri,omitempty"`
 	// Extension for DerivedFromUri
-	DerivedFromUriExt []Element `json:"_derivedFromUri,omitempty"`
+	DerivedFromUriExt []*Element `json:"_derivedFromUri,omitempty"`
 	// draft | active | retired | unknown
 	Status *PublicationStatus `json:"status,omitempty"`
 	// Extension for Status
@@ -521,17 +521,15 @@ func (r *SpecimenDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.DerivedFromCanonical = append(r.DerivedFromCanonical, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.DerivedFromCanonical = append(r.DerivedFromCanonical, v)
 			case "derivedFromUri":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.DerivedFromUri = append(r.DerivedFromUri, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.DerivedFromUri = append(r.DerivedFromUri, v)
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {
@@ -1420,14 +1418,22 @@ func (b *SpecimenDefinitionBuilder) SetTitle(v string) *SpecimenDefinitionBuilde
 }
 
 // AddDerivedFromCanonical adds a DerivedFromCanonical element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *SpecimenDefinitionBuilder) AddDerivedFromCanonical(v string) *SpecimenDefinitionBuilder {
-	b.specimenDefinition.DerivedFromCanonical = append(b.specimenDefinition.DerivedFromCanonical, v)
+	b.specimenDefinition.DerivedFromCanonical = append(b.specimenDefinition.DerivedFromCanonical, &v)
 	return b
 }
 
 // AddDerivedFromUri adds a DerivedFromUri element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *SpecimenDefinitionBuilder) AddDerivedFromUri(v string) *SpecimenDefinitionBuilder {
-	b.specimenDefinition.DerivedFromUri = append(b.specimenDefinition.DerivedFromUri, v)
+	b.specimenDefinition.DerivedFromUri = append(b.specimenDefinition.DerivedFromUri, &v)
 	return b
 }
 
@@ -1688,14 +1694,14 @@ func WithSpecimenDefinitionTitle(v string) SpecimenDefinitionOption {
 // WithSpecimenDefinitionDerivedFromCanonical adds a DerivedFromCanonical to the SpecimenDefinition.
 func WithSpecimenDefinitionDerivedFromCanonical(v string) SpecimenDefinitionOption {
 	return func(r *SpecimenDefinition) {
-		r.DerivedFromCanonical = append(r.DerivedFromCanonical, v)
+		r.DerivedFromCanonical = append(r.DerivedFromCanonical, &v)
 	}
 }
 
 // WithSpecimenDefinitionDerivedFromUri adds a DerivedFromUri to the SpecimenDefinition.
 func WithSpecimenDefinitionDerivedFromUri(v string) SpecimenDefinitionOption {
 	return func(r *SpecimenDefinition) {
-		r.DerivedFromUri = append(r.DerivedFromUri, v)
+		r.DerivedFromUri = append(r.DerivedFromUri, &v)
 	}
 }
 

@@ -921,11 +921,11 @@ type TestScriptMetadataCapability struct {
 	// The expected capabilities of the server
 	Description *string `json:"description,omitempty"`
 	// Which origin server these requirements apply to
-	Origin []int `json:"origin,omitempty"`
+	Origin []*int `json:"origin,omitempty"`
 	// Which server these requirements apply to
 	Destination *int `json:"destination,omitempty"`
 	// Links to the FHIR specification
-	Link []string `json:"link,omitempty"`
+	Link []*string `json:"link,omitempty"`
 	// Required Capability Statement
 	Capabilities *string `json:"capabilities,omitempty"`
 }
@@ -1029,9 +1029,8 @@ func (r *TestScriptMetadataCapability) UnmarshalXML(d *xml.Decoder, start xml.St
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Origin = append(r.Origin, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Origin = append(r.Origin, v)
 			case "destination":
 				v, _, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
@@ -1043,9 +1042,8 @@ func (r *TestScriptMetadataCapability) UnmarshalXML(d *xml.Decoder, start xml.St
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Link = append(r.Link, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Link = append(r.Link, v)
 			case "capabilities":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

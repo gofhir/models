@@ -120,9 +120,9 @@ type StructureDefinition struct {
 	// If an extension, where it can be used in instances
 	Context []StructureDefinitionContext `json:"context,omitempty"`
 	// FHIRPath invariants - when the extension can be used
-	ContextInvariant []string `json:"contextInvariant,omitempty"`
+	ContextInvariant []*string `json:"contextInvariant,omitempty"`
 	// Extension for ContextInvariant
-	ContextInvariantExt []Element `json:"_contextInvariant,omitempty"`
+	ContextInvariantExt []*Element `json:"_contextInvariant,omitempty"`
 	// Type defined or constrained by this structure
 	Type *string `json:"type,omitempty"`
 	// Extension for Type
@@ -634,9 +634,8 @@ func (r *StructureDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.ContextInvariant = append(r.ContextInvariant, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.ContextInvariant = append(r.ContextInvariant, v)
 			case "type":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1304,8 +1303,12 @@ func (b *StructureDefinitionBuilder) AddContext(v StructureDefinitionContext) *S
 }
 
 // AddContextInvariant adds a ContextInvariant element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *StructureDefinitionBuilder) AddContextInvariant(v string) *StructureDefinitionBuilder {
-	b.structureDefinition.ContextInvariant = append(b.structureDefinition.ContextInvariant, v)
+	b.structureDefinition.ContextInvariant = append(b.structureDefinition.ContextInvariant, &v)
 	return b
 }
 
@@ -1589,7 +1592,7 @@ func WithStructureDefinitionContext(v StructureDefinitionContext) StructureDefin
 // WithStructureDefinitionContextInvariant adds a ContextInvariant to the StructureDefinition.
 func WithStructureDefinitionContextInvariant(v string) StructureDefinitionOption {
 	return func(r *StructureDefinition) {
-		r.ContextInvariant = append(r.ContextInvariant, v)
+		r.ContextInvariant = append(r.ContextInvariant, &v)
 	}
 }
 

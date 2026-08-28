@@ -52,9 +52,9 @@ type MedicationKnowledge struct {
 	// Amount of drug in package
 	Amount *Quantity `json:"amount,omitempty"`
 	// Additional names for a medication
-	Synonym []string `json:"synonym,omitempty"`
+	Synonym []*string `json:"synonym,omitempty"`
 	// Extension for Synonym
-	SynonymExt []Element `json:"_synonym,omitempty"`
+	SynonymExt []*Element `json:"_synonym,omitempty"`
 	// Associated or related medication information
 	RelatedMedicationKnowledge []MedicationKnowledgeRelatedMedicationKnowledge `json:"relatedMedicationKnowledge,omitempty"`
 	// A medication resource that is associated with this medication
@@ -449,9 +449,8 @@ func (r *MedicationKnowledge) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Synonym = append(r.Synonym, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Synonym = append(r.Synonym, v)
 			case "relatedMedicationKnowledge":
 				var v MedicationKnowledgeRelatedMedicationKnowledge
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -802,7 +801,7 @@ type MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics struct {
 	// Specific characteristic that is relevant to the administration guideline
 	CharacteristicQuantity *Quantity `json:"characteristicQuantity,omitempty"`
 	// The specific characteristic
-	Value []string `json:"value,omitempty"`
+	Value []*string `json:"value,omitempty"`
 }
 
 // MarshalXML serializes MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics to FHIR-conformant XML.
@@ -890,9 +889,8 @@ func (r *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics) Unma
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Value = append(r.Value, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Value = append(r.Value, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2410,8 +2408,12 @@ func (b *MedicationKnowledgeBuilder) SetAmount(v Quantity) *MedicationKnowledgeB
 }
 
 // AddSynonym adds a Synonym element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *MedicationKnowledgeBuilder) AddSynonym(v string) *MedicationKnowledgeBuilder {
-	b.medicationKnowledge.Synonym = append(b.medicationKnowledge.Synonym, v)
+	b.medicationKnowledge.Synonym = append(b.medicationKnowledge.Synonym, &v)
 	return b
 }
 
@@ -2621,7 +2623,7 @@ func WithMedicationKnowledgeAmount(v Quantity) MedicationKnowledgeOption {
 // WithMedicationKnowledgeSynonym adds a Synonym to the MedicationKnowledge.
 func WithMedicationKnowledgeSynonym(v string) MedicationKnowledgeOption {
 	return func(r *MedicationKnowledge) {
-		r.Synonym = append(r.Synonym, v)
+		r.Synonym = append(r.Synonym, &v)
 	}
 }
 

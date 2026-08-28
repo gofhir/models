@@ -126,9 +126,9 @@ type ActivityDefinition struct {
 	// Additional documentation, citations, etc.
 	RelatedArtifact []RelatedArtifact `json:"relatedArtifact,omitempty"`
 	// Logic used by the activity definition
-	Library []string `json:"library,omitempty"`
+	Library []*string `json:"library,omitempty"`
 	// Extension for Library
-	LibraryExt []Element `json:"_library,omitempty"`
+	LibraryExt []*Element `json:"_library,omitempty"`
 	// Kind of resource
 	Kind *RequestResourceType `json:"kind,omitempty"`
 	// Extension for Kind
@@ -818,9 +818,8 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Library = append(r.Library, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Library = append(r.Library, v)
 			case "kind":
 				v, ext, err := xmlDecodePrimitiveCode[RequestResourceType](d, t)
 				if err != nil {
@@ -1422,8 +1421,12 @@ func (b *ActivityDefinitionBuilder) AddRelatedArtifact(v RelatedArtifact) *Activ
 }
 
 // AddLibrary adds a Library element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ActivityDefinitionBuilder) AddLibrary(v string) *ActivityDefinitionBuilder {
-	b.activityDefinition.Library = append(b.activityDefinition.Library, v)
+	b.activityDefinition.Library = append(b.activityDefinition.Library, &v)
 	return b
 }
 
@@ -1848,7 +1851,7 @@ func WithActivityDefinitionRelatedArtifact(v RelatedArtifact) ActivityDefinition
 // WithActivityDefinitionLibrary adds a Library to the ActivityDefinition.
 func WithActivityDefinitionLibrary(v string) ActivityDefinitionOption {
 	return func(r *ActivityDefinition) {
-		r.Library = append(r.Library, v)
+		r.Library = append(r.Library, &v)
 	}
 }
 

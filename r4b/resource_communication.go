@@ -42,13 +42,13 @@ type Communication struct {
 	// Unique identifier
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// Instantiates FHIR protocol or definition
-	InstantiatesCanonical []string `json:"instantiatesCanonical,omitempty"`
+	InstantiatesCanonical []*string `json:"instantiatesCanonical,omitempty"`
 	// Extension for InstantiatesCanonical
-	InstantiatesCanonicalExt []Element `json:"_instantiatesCanonical,omitempty"`
+	InstantiatesCanonicalExt []*Element `json:"_instantiatesCanonical,omitempty"`
 	// Instantiates external protocol or definition
-	InstantiatesUri []string `json:"instantiatesUri,omitempty"`
+	InstantiatesUri []*string `json:"instantiatesUri,omitempty"`
 	// Extension for InstantiatesUri
-	InstantiatesUriExt []Element `json:"_instantiatesUri,omitempty"`
+	InstantiatesUriExt []*Element `json:"_instantiatesUri,omitempty"`
 	// Request fulfilled by this communication
 	BasedOn []Reference `json:"basedOn,omitempty"`
 	// Part of this action
@@ -431,17 +431,15 @@ func (r *Communication) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.InstantiatesCanonical = append(r.InstantiatesCanonical, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
 			case "instantiatesUri":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.InstantiatesUri = append(r.InstantiatesUri, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.InstantiatesUri = append(r.InstantiatesUri, v)
 			case "basedOn":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -772,14 +770,22 @@ func (b *CommunicationBuilder) AddIdentifier(v Identifier) *CommunicationBuilder
 }
 
 // AddInstantiatesCanonical adds a InstantiatesCanonical element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *CommunicationBuilder) AddInstantiatesCanonical(v string) *CommunicationBuilder {
-	b.communication.InstantiatesCanonical = append(b.communication.InstantiatesCanonical, v)
+	b.communication.InstantiatesCanonical = append(b.communication.InstantiatesCanonical, &v)
 	return b
 }
 
 // AddInstantiatesUri adds a InstantiatesUri element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *CommunicationBuilder) AddInstantiatesUri(v string) *CommunicationBuilder {
-	b.communication.InstantiatesUri = append(b.communication.InstantiatesUri, v)
+	b.communication.InstantiatesUri = append(b.communication.InstantiatesUri, &v)
 	return b
 }
 
@@ -985,14 +991,14 @@ func WithCommunicationIdentifier(v Identifier) CommunicationOption {
 // WithCommunicationInstantiatesCanonical adds a InstantiatesCanonical to the Communication.
 func WithCommunicationInstantiatesCanonical(v string) CommunicationOption {
 	return func(r *Communication) {
-		r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
+		r.InstantiatesCanonical = append(r.InstantiatesCanonical, &v)
 	}
 }
 
 // WithCommunicationInstantiatesUri adds a InstantiatesUri to the Communication.
 func WithCommunicationInstantiatesUri(v string) CommunicationOption {
 	return func(r *Communication) {
-		r.InstantiatesUri = append(r.InstantiatesUri, v)
+		r.InstantiatesUri = append(r.InstantiatesUri, &v)
 	}
 }
 

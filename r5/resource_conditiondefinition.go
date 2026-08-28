@@ -114,9 +114,9 @@ type ConditionDefinition struct {
 	// Extension for HasStage
 	HasStageExt *Element `json:"_hasStage,omitempty"`
 	// Formal Definition for the condition
-	Definition []string `json:"definition,omitempty"`
+	Definition []*string `json:"definition,omitempty"`
 	// Extension for Definition
-	DefinitionExt []Element `json:"_definition,omitempty"`
+	DefinitionExt []*Element `json:"_definition,omitempty"`
 	// Observations particularly relevant to this condition
 	Observation []ConditionDefinitionObservation `json:"observation,omitempty"`
 	// Medications particularly relevant for this condition
@@ -622,9 +622,8 @@ func (r *ConditionDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Definition = append(r.Definition, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Definition = append(r.Definition, v)
 			case "observation":
 				var v ConditionDefinitionObservation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1414,8 +1413,12 @@ func (b *ConditionDefinitionBuilder) SetHasStage(v bool) *ConditionDefinitionBui
 }
 
 // AddDefinition adds a Definition element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ConditionDefinitionBuilder) AddDefinition(v string) *ConditionDefinitionBuilder {
-	b.conditionDefinition.Definition = append(b.conditionDefinition.Definition, v)
+	b.conditionDefinition.Definition = append(b.conditionDefinition.Definition, &v)
 	return b
 }
 
@@ -1698,7 +1701,7 @@ func WithConditionDefinitionHasStage(v bool) ConditionDefinitionOption {
 // WithConditionDefinitionDefinition adds a Definition to the ConditionDefinition.
 func WithConditionDefinitionDefinition(v string) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
-		r.Definition = append(r.Definition, v)
+		r.Definition = append(r.Definition, &v)
 	}
 }
 

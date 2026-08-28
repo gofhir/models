@@ -851,7 +851,7 @@ type AppointmentRecurrenceTemplate struct {
 	// The number of planned occurrences
 	OccurrenceCount *uint32 `json:"occurrenceCount,omitempty"`
 	// Specific dates for a recurring set of appointments (no template)
-	OccurrenceDate []string `json:"occurrenceDate,omitempty"`
+	OccurrenceDate []*string `json:"occurrenceDate,omitempty"`
 	// Information about weekly recurring appointments
 	WeeklyTemplate *AppointmentRecurrenceTemplateWeeklyTemplate `json:"weeklyTemplate,omitempty"`
 	// Information about monthly recurring appointments
@@ -859,9 +859,9 @@ type AppointmentRecurrenceTemplate struct {
 	// Information about yearly recurring appointments
 	YearlyTemplate *AppointmentRecurrenceTemplateYearlyTemplate `json:"yearlyTemplate,omitempty"`
 	// Any dates that should be excluded from the series
-	ExcludingDate []string `json:"excludingDate,omitempty"`
+	ExcludingDate []*string `json:"excludingDate,omitempty"`
 	// Any recurrence IDs that should be excluded from the recurrence
-	ExcludingRecurrenceId []uint32 `json:"excludingRecurrenceId,omitempty"`
+	ExcludingRecurrenceId []*uint32 `json:"excludingRecurrenceId,omitempty"`
 }
 
 // MarshalXML serializes AppointmentRecurrenceTemplate to FHIR-conformant XML.
@@ -984,9 +984,8 @@ func (r *AppointmentRecurrenceTemplate) UnmarshalXML(d *xml.Decoder, start xml.S
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.OccurrenceDate = append(r.OccurrenceDate, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.OccurrenceDate = append(r.OccurrenceDate, v)
 			case "weeklyTemplate":
 				var v AppointmentRecurrenceTemplateWeeklyTemplate
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1010,17 +1009,15 @@ func (r *AppointmentRecurrenceTemplate) UnmarshalXML(d *xml.Decoder, start xml.S
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.ExcludingDate = append(r.ExcludingDate, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.ExcludingDate = append(r.ExcludingDate, v)
 			case "excludingRecurrenceId":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.ExcludingRecurrenceId = append(r.ExcludingRecurrenceId, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.ExcludingRecurrenceId = append(r.ExcludingRecurrenceId, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err

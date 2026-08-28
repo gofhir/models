@@ -694,11 +694,11 @@ type ClaimResponseAddItem struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Item sequence number
-	ItemSequence []uint32 `json:"itemSequence,omitempty"`
+	ItemSequence []*uint32 `json:"itemSequence,omitempty"`
 	// Detail sequence number
-	DetailSequence []uint32 `json:"detailSequence,omitempty"`
+	DetailSequence []*uint32 `json:"detailSequence,omitempty"`
 	// Subdetail sequence number
-	SubdetailSequence []uint32 `json:"subdetailSequence,omitempty"`
+	SubdetailSequence []*uint32 `json:"subdetailSequence,omitempty"`
 	// Number for tracking
 	TraceNumber []Identifier `json:"traceNumber,omitempty"`
 	// Authorized providers
@@ -740,7 +740,7 @@ type ClaimResponseAddItem struct {
 	// Anatomical location
 	BodySite []ClaimResponseAddItemBodySite `json:"bodySite,omitempty"`
 	// Applicable note numbers
-	NoteNumber []uint32 `json:"noteNumber,omitempty"`
+	NoteNumber []*uint32 `json:"noteNumber,omitempty"`
 	// Added items adjudication results
 	ReviewOutcome *ClaimResponseItemReviewOutcome `json:"reviewOutcome,omitempty"`
 	// Added items adjudication
@@ -927,25 +927,22 @@ func (r *ClaimResponseAddItem) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.ItemSequence = append(r.ItemSequence, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.ItemSequence = append(r.ItemSequence, v)
 			case "detailSequence":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.DetailSequence = append(r.DetailSequence, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.DetailSequence = append(r.DetailSequence, v)
 			case "subdetailSequence":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.SubdetailSequence = append(r.SubdetailSequence, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.SubdetailSequence = append(r.SubdetailSequence, v)
 			case "traceNumber":
 				var v Identifier
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1065,9 +1062,8 @@ func (r *ClaimResponseAddItem) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NoteNumber = append(r.NoteNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NoteNumber = append(r.NoteNumber, v)
 			case "reviewOutcome":
 				var v ClaimResponseItemReviewOutcome
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1230,7 +1226,7 @@ type ClaimResponseAddItemDetail struct {
 	// Total item cost
 	Net *Money `json:"net,omitempty"`
 	// Applicable note numbers
-	NoteNumber []uint32 `json:"noteNumber,omitempty"`
+	NoteNumber []*uint32 `json:"noteNumber,omitempty"`
 	// Added items detail level adjudication results
 	ReviewOutcome *ClaimResponseItemReviewOutcome `json:"reviewOutcome,omitempty"`
 	// Added items detail adjudication
@@ -1425,9 +1421,8 @@ func (r *ClaimResponseAddItemDetail) UnmarshalXML(d *xml.Decoder, start xml.Star
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NoteNumber = append(r.NoteNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NoteNumber = append(r.NoteNumber, v)
 			case "reviewOutcome":
 				var v ClaimResponseItemReviewOutcome
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1487,7 +1482,7 @@ type ClaimResponseAddItemDetailSubDetail struct {
 	// Total item cost
 	Net *Money `json:"net,omitempty"`
 	// Applicable note numbers
-	NoteNumber []uint32 `json:"noteNumber,omitempty"`
+	NoteNumber []*uint32 `json:"noteNumber,omitempty"`
 	// Added items subdetail level adjudication results
 	ReviewOutcome *ClaimResponseItemReviewOutcome `json:"reviewOutcome,omitempty"`
 	// Added items subdetail adjudication
@@ -1675,9 +1670,8 @@ func (r *ClaimResponseAddItemDetailSubDetail) UnmarshalXML(d *xml.Decoder, start
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NoteNumber = append(r.NoteNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NoteNumber = append(r.NoteNumber, v)
 			case "reviewOutcome":
 				var v ClaimResponseItemReviewOutcome
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1719,7 +1713,7 @@ type ClaimResponseError struct {
 	// Error code detailing processing issues
 	Code CodeableConcept `json:"code,omitempty"`
 	// FHIRPath of element(s) related to issue
-	Expression []string `json:"expression,omitempty"`
+	Expression []*string `json:"expression,omitempty"`
 }
 
 // MarshalXML serializes ClaimResponseError to FHIR-conformant XML.
@@ -1819,9 +1813,8 @@ func (r *ClaimResponseError) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Expression = append(r.Expression, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Expression = append(r.Expression, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2091,7 +2084,7 @@ type ClaimResponseItem struct {
 	// Number for tracking
 	TraceNumber []Identifier `json:"traceNumber,omitempty"`
 	// Applicable note numbers
-	NoteNumber []uint32 `json:"noteNumber,omitempty"`
+	NoteNumber []*uint32 `json:"noteNumber,omitempty"`
 	// Adjudication results
 	ReviewOutcome *ClaimResponseItemReviewOutcome `json:"reviewOutcome,omitempty"`
 	// Adjudication details
@@ -2198,9 +2191,8 @@ func (r *ClaimResponseItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NoteNumber = append(r.NoteNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NoteNumber = append(r.NoteNumber, v)
 			case "reviewOutcome":
 				var v ClaimResponseItemReviewOutcome
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2369,7 +2361,7 @@ type ClaimResponseItemDetail struct {
 	// Number for tracking
 	TraceNumber []Identifier `json:"traceNumber,omitempty"`
 	// Applicable note numbers
-	NoteNumber []uint32 `json:"noteNumber,omitempty"`
+	NoteNumber []*uint32 `json:"noteNumber,omitempty"`
 	// Detail level adjudication results
 	ReviewOutcome *ClaimResponseItemReviewOutcome `json:"reviewOutcome,omitempty"`
 	// Detail level adjudication details
@@ -2476,9 +2468,8 @@ func (r *ClaimResponseItemDetail) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NoteNumber = append(r.NoteNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NoteNumber = append(r.NoteNumber, v)
 			case "reviewOutcome":
 				var v ClaimResponseItemReviewOutcome
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2522,7 +2513,7 @@ type ClaimResponseItemDetailSubDetail struct {
 	// Number for tracking
 	TraceNumber []Identifier `json:"traceNumber,omitempty"`
 	// Applicable note numbers
-	NoteNumber []uint32 `json:"noteNumber,omitempty"`
+	NoteNumber []*uint32 `json:"noteNumber,omitempty"`
 	// Subdetail level adjudication results
 	ReviewOutcome *ClaimResponseItemReviewOutcome `json:"reviewOutcome,omitempty"`
 	// Subdetail level adjudication details
@@ -2622,9 +2613,8 @@ func (r *ClaimResponseItemDetailSubDetail) UnmarshalXML(d *xml.Decoder, start xm
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NoteNumber = append(r.NoteNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NoteNumber = append(r.NoteNumber, v)
 			case "reviewOutcome":
 				var v ClaimResponseItemReviewOutcome
 				if err := v.UnmarshalXML(d, t); err != nil {

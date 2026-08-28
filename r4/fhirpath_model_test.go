@@ -159,8 +159,7 @@ func TestFHIRPathModel_HasType(t *testing.T) {
 
 	// Resources, data types and primitives are all type specifiers a FHIRPath
 	// expression may legitimately name.
-	for _, name := range []string{
-		"Patient", "Observation", "Bundle",
+	for _, name := range []string{"Patient", "Observation", "Bundle",
 		"HumanName", "Quantity", "CodeableConcept",
 		"string", "code", "dateTime", "boolean",
 	} {

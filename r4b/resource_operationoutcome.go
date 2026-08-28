@@ -301,9 +301,9 @@ type OperationOutcomeIssue struct {
 	// Additional diagnostic information about the issue
 	Diagnostics *string `json:"diagnostics,omitempty"`
 	// Deprecated: Path of element(s) related to issue
-	Location []string `json:"location,omitempty"`
+	Location []*string `json:"location,omitempty"`
 	// FHIRPath of element(s) related to issue
-	Expression []string `json:"expression,omitempty"`
+	Expression []*string `json:"expression,omitempty"`
 }
 
 // MarshalXML serializes OperationOutcomeIssue to FHIR-conformant XML.
@@ -410,17 +410,15 @@ func (r *OperationOutcomeIssue) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Location = append(r.Location, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Location = append(r.Location, v)
 			case "expression":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Expression = append(r.Expression, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Expression = append(r.Expression, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err

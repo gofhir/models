@@ -43,7 +43,7 @@ type {{.Name}} struct {
 	{{- if and .HasExtension (not .IsChoice)}}
 	// Extension for {{.Name}}
 	{{- if .IsArray}}
-	{{.Name}}Ext []Element `json:"_{{.JSONName}},omitempty"`
+	{{.Name}}Ext []*Element `json:"_{{.JSONName}},omitempty"`
 	{{- else}}
 	{{.Name}}Ext *Element `json:"_{{.JSONName}},omitempty"`
 	{{- end}}
@@ -342,9 +342,8 @@ func (r *{{.Name}}) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.{{.Name}} = append(r.{{.Name}}, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.{{.Name}} = append(r.{{.Name}}, v)
 {{- else if eq .GoType "Resource"}}
 {{- /* Handled via inline resource in default branch - skip here */ -}}
 {{- else if .IsArray}}
@@ -443,9 +442,8 @@ func (r *{{.Name}}) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.{{.Name}} = append(r.{{.Name}}, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.{{.Name}} = append(r.{{.Name}}, v)
 {{- else if .IsArray}}
 			case "{{.JSONName}}":
 				var v {{elemType .GoType}}

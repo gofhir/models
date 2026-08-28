@@ -26,7 +26,7 @@ func TestPatient(t *testing.T) {
 				{
 					Use:    &use,
 					Family: &family,
-					Given:  []string{"John", "Robert"},
+					Given:  PtrSlice("John", "Robert"),
 				},
 			},
 		}
@@ -57,7 +57,7 @@ func TestPatient(t *testing.T) {
 			Gender:    &gender,
 			BirthDate: &birthDate,
 			Name: []HumanName{
-				{Family: &family, Given: []string{"Jane"}},
+				{Family: &family, Given: PtrSlice("Jane")},
 			},
 			Address: []Address{
 				{Use: &use, City: &city},
@@ -310,8 +310,8 @@ func TestPractitioner(t *testing.T) {
 				{
 					Use:    &use,
 					Family: &family,
-					Given:  []string{"Sarah"},
-					Prefix: []string{"Dr."},
+					Given:  PtrSlice("Sarah"),
+					Prefix: PtrSlice("Dr."),
 				},
 			},
 		}
@@ -425,7 +425,7 @@ func TestResourceWithMeta(t *testing.T) {
 			Meta: &Meta{
 				VersionId:   &versionID,
 				LastUpdated: &lastUpdated,
-				Profile:     []string{profile},
+				Profile:     PtrSlice(profile),
 			},
 		}
 
@@ -434,7 +434,7 @@ func TestResourceWithMeta(t *testing.T) {
 		assert.Equal(t, "1", *patient.Meta.VersionId)
 		assert.Equal(t, "2024-06-15T10:30:00Z", *patient.Meta.LastUpdated)
 		require.Len(t, patient.Meta.Profile, 1)
-		assert.Equal(t, profile, patient.Meta.Profile[0])
+		assert.Equal(t, profile, *patient.Meta.Profile[0])
 	})
 }
 

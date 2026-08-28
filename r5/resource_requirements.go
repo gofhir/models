@@ -102,17 +102,17 @@ type Requirements struct {
 	// Extension for CopyrightLabel
 	CopyrightLabelExt *Element `json:"_copyrightLabel,omitempty"`
 	// Other set of Requirements this builds on
-	DerivedFrom []string `json:"derivedFrom,omitempty"`
+	DerivedFrom []*string `json:"derivedFrom,omitempty"`
 	// Extension for DerivedFrom
-	DerivedFromExt []Element `json:"_derivedFrom,omitempty"`
+	DerivedFromExt []*Element `json:"_derivedFrom,omitempty"`
 	// External artifact (rule/document etc. that) created this set of requirements
-	Reference []string `json:"reference,omitempty"`
+	Reference []*string `json:"reference,omitempty"`
 	// Extension for Reference
-	ReferenceExt []Element `json:"_reference,omitempty"`
+	ReferenceExt []*Element `json:"_reference,omitempty"`
 	// Actor for these requirements
-	Actor []string `json:"actor,omitempty"`
+	Actor []*string `json:"actor,omitempty"`
 	// Extension for Actor
-	ActorExt []Element `json:"_actor,omitempty"`
+	ActorExt []*Element `json:"_actor,omitempty"`
 	// Actual statement as markdown
 	Statement []RequirementsStatement `json:"statement,omitempty"`
 }
@@ -539,25 +539,22 @@ func (r *Requirements) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.DerivedFrom = append(r.DerivedFrom, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.DerivedFrom = append(r.DerivedFrom, v)
 			case "reference":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Reference = append(r.Reference, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Reference = append(r.Reference, v)
 			case "actor":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Actor = append(r.Actor, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Actor = append(r.Actor, v)
 			case "statement":
 				var v RequirementsStatement
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -589,7 +586,7 @@ type RequirementsStatement struct {
 	// Short Human label for this statement
 	Label *string `json:"label,omitempty"`
 	// SHALL | SHOULD | MAY | SHOULD-NOT
-	Conformance []ConformanceExpectation `json:"conformance,omitempty"`
+	Conformance []*ConformanceExpectation `json:"conformance,omitempty"`
 	// Set to true if requirements statement is conditional
 	Conditionality *bool `json:"conditionality,omitempty"`
 	// The actual requirement
@@ -599,9 +596,9 @@ type RequirementsStatement struct {
 	// A larger requirement that this requirement helps to refine and enable
 	Parent *string `json:"parent,omitempty"`
 	// Design artifact that satisfies this requirement
-	SatisfiedBy []string `json:"satisfiedBy,omitempty"`
+	SatisfiedBy []*string `json:"satisfiedBy,omitempty"`
 	// External artifact (rule/document etc. that) created this requirement
-	Reference []string `json:"reference,omitempty"`
+	Reference []*string `json:"reference,omitempty"`
 	// Who asked for this statement
 	Source []Reference `json:"source,omitempty"`
 }
@@ -710,9 +707,8 @@ func (r *RequirementsStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Conformance = append(r.Conformance, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Conformance = append(r.Conformance, v)
 			case "conditionality":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -742,17 +738,15 @@ func (r *RequirementsStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.SatisfiedBy = append(r.SatisfiedBy, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.SatisfiedBy = append(r.SatisfiedBy, v)
 			case "reference":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Reference = append(r.Reference, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Reference = append(r.Reference, v)
 			case "source":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -957,20 +951,32 @@ func (b *RequirementsBuilder) SetCopyrightLabel(v string) *RequirementsBuilder {
 }
 
 // AddDerivedFrom adds a DerivedFrom element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *RequirementsBuilder) AddDerivedFrom(v string) *RequirementsBuilder {
-	b.requirements.DerivedFrom = append(b.requirements.DerivedFrom, v)
+	b.requirements.DerivedFrom = append(b.requirements.DerivedFrom, &v)
 	return b
 }
 
 // AddReference adds a Reference element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *RequirementsBuilder) AddReference(v string) *RequirementsBuilder {
-	b.requirements.Reference = append(b.requirements.Reference, v)
+	b.requirements.Reference = append(b.requirements.Reference, &v)
 	return b
 }
 
 // AddActor adds a Actor element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *RequirementsBuilder) AddActor(v string) *RequirementsBuilder {
-	b.requirements.Actor = append(b.requirements.Actor, v)
+	b.requirements.Actor = append(b.requirements.Actor, &v)
 	return b
 }
 
@@ -1188,21 +1194,21 @@ func WithRequirementsCopyrightLabel(v string) RequirementsOption {
 // WithRequirementsDerivedFrom adds a DerivedFrom to the Requirements.
 func WithRequirementsDerivedFrom(v string) RequirementsOption {
 	return func(r *Requirements) {
-		r.DerivedFrom = append(r.DerivedFrom, v)
+		r.DerivedFrom = append(r.DerivedFrom, &v)
 	}
 }
 
 // WithRequirementsReference adds a Reference to the Requirements.
 func WithRequirementsReference(v string) RequirementsOption {
 	return func(r *Requirements) {
-		r.Reference = append(r.Reference, v)
+		r.Reference = append(r.Reference, &v)
 	}
 }
 
 // WithRequirementsActor adds a Actor to the Requirements.
 func WithRequirementsActor(v string) RequirementsOption {
 	return func(r *Requirements) {
-		r.Actor = append(r.Actor, v)
+		r.Actor = append(r.Actor, &v)
 	}
 }
 

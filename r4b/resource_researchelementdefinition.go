@@ -92,9 +92,9 @@ type ResearchElementDefinition struct {
 	// Extension for Description
 	DescriptionExt *Element `json:"_description,omitempty"`
 	// Used for footnotes or explanatory notes
-	Comment []string `json:"comment,omitempty"`
+	Comment []*string `json:"comment,omitempty"`
 	// Extension for Comment
-	CommentExt []Element `json:"_comment,omitempty"`
+	CommentExt []*Element `json:"_comment,omitempty"`
 	// The context that the content is intended to support
 	UseContext []UsageContext `json:"useContext,omitempty"`
 	// Intended jurisdiction for research element definition (if applicable)
@@ -134,9 +134,9 @@ type ResearchElementDefinition struct {
 	// Additional documentation, citations, etc.
 	RelatedArtifact []RelatedArtifact `json:"relatedArtifact,omitempty"`
 	// Logic used by the ResearchElementDefinition
-	Library []string `json:"library,omitempty"`
+	Library []*string `json:"library,omitempty"`
 	// Extension for Library
-	LibraryExt []Element `json:"_library,omitempty"`
+	LibraryExt []*Element `json:"_library,omitempty"`
 	// population | exposure | outcome
 	Type *ResearchElementType `json:"type,omitempty"`
 	// Extension for Type
@@ -603,9 +603,8 @@ func (r *ResearchElementDefinition) UnmarshalXML(d *xml.Decoder, start xml.Start
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Comment = append(r.Comment, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Comment = append(r.Comment, v)
 			case "useContext":
 				var v UsageContext
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -700,9 +699,8 @@ func (r *ResearchElementDefinition) UnmarshalXML(d *xml.Decoder, start xml.Start
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Library = append(r.Library, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Library = append(r.Library, v)
 			case "type":
 				v, ext, err := xmlDecodePrimitiveCode[ResearchElementType](d, t)
 				if err != nil {
@@ -1237,8 +1235,12 @@ func (b *ResearchElementDefinitionBuilder) SetDescription(v string) *ResearchEle
 }
 
 // AddComment adds a Comment element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ResearchElementDefinitionBuilder) AddComment(v string) *ResearchElementDefinitionBuilder {
-	b.researchElementDefinition.Comment = append(b.researchElementDefinition.Comment, v)
+	b.researchElementDefinition.Comment = append(b.researchElementDefinition.Comment, &v)
 	return b
 }
 
@@ -1327,8 +1329,12 @@ func (b *ResearchElementDefinitionBuilder) AddRelatedArtifact(v RelatedArtifact)
 }
 
 // AddLibrary adds a Library element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ResearchElementDefinitionBuilder) AddLibrary(v string) *ResearchElementDefinitionBuilder {
-	b.researchElementDefinition.Library = append(b.researchElementDefinition.Library, v)
+	b.researchElementDefinition.Library = append(b.researchElementDefinition.Library, &v)
 	return b
 }
 
@@ -1530,7 +1536,7 @@ func WithResearchElementDefinitionDescription(v string) ResearchElementDefinitio
 // WithResearchElementDefinitionComment adds a Comment to the ResearchElementDefinition.
 func WithResearchElementDefinitionComment(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
-		r.Comment = append(r.Comment, v)
+		r.Comment = append(r.Comment, &v)
 	}
 }
 
@@ -1635,7 +1641,7 @@ func WithResearchElementDefinitionRelatedArtifact(v RelatedArtifact) ResearchEle
 // WithResearchElementDefinitionLibrary adds a Library to the ResearchElementDefinition.
 func WithResearchElementDefinitionLibrary(v string) ResearchElementDefinitionOption {
 	return func(r *ResearchElementDefinition) {
-		r.Library = append(r.Library, v)
+		r.Library = append(r.Library, &v)
 	}
 }
 

@@ -65,3 +65,50 @@ func First[T any](s []T) *T {
 	}
 	return &s[0]
 }
+
+// PtrSlice builds a []*T from plain values, for repeating primitive elements.
+//
+// Repeating primitives are []*T because FHIR aligns them positionally with their
+// _field extension array and uses null for a slot whose value is absent:
+//
+//	"event":  [null]
+//	"_event": [{"extension": [...]}]
+//
+// []T cannot express that, so an absent value would come back as the zero value.
+// The cost is that plain values need wrapping, which this does in one call:
+//
+//	name := {{.PackageName}}.HumanName{
+//		Family: {{.PackageName}}.Ptr("Smith"),
+//		Given:  {{.PackageName}}.PtrSlice("John", "Robert"),
+//	}
+//
+// For a slot that is deliberately absent, build the slice by hand and leave that
+// position nil.
+func PtrSlice[T any](values ...T) []*T {
+	if len(values) == 0 {
+		return nil
+	}
+	out := make([]*T, len(values))
+	for i := range values {
+		out[i] = &values[i]
+	}
+	return out
+}
+
+// Vals dereferences a []*T, substituting the zero value for nil entries.
+//
+// Convenient for display, and lossy by design: a nil slot means the value is
+// absent and its meaning lives in the matching _field extension. Where that
+// distinction matters, walk the slice and test each pointer.
+func Vals[T any](values []*T) []T {
+	if values == nil {
+		return nil
+	}
+	out := make([]T, len(values))
+	for i, v := range values {
+		if v != nil {
+			out[i] = *v
+		}
+	}
+	return out
+}

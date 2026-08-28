@@ -98,9 +98,9 @@ type ExplanationOfBenefit struct {
 	// Extension for Disposition
 	DispositionExt *Element `json:"_disposition,omitempty"`
 	// Preauthorization reference
-	PreAuthRef []string `json:"preAuthRef,omitempty"`
+	PreAuthRef []*string `json:"preAuthRef,omitempty"`
 	// Extension for PreAuthRef
-	PreAuthRefExt []Element `json:"_preAuthRef,omitempty"`
+	PreAuthRefExt []*Element `json:"_preAuthRef,omitempty"`
 	// Preauthorization in-effect period
 	PreAuthRefPeriod []Period `json:"preAuthRefPeriod,omitempty"`
 	// Care Team members
@@ -698,9 +698,8 @@ func (r *ExplanationOfBenefit) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.PreAuthRef = append(r.PreAuthRef, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.PreAuthRef = append(r.PreAuthRef, v)
 			case "preAuthRefPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -958,11 +957,11 @@ type ExplanationOfBenefitAddItem struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Item sequence number
-	ItemSequence []uint32 `json:"itemSequence,omitempty"`
+	ItemSequence []*uint32 `json:"itemSequence,omitempty"`
 	// Detail sequence number
-	DetailSequence []uint32 `json:"detailSequence,omitempty"`
+	DetailSequence []*uint32 `json:"detailSequence,omitempty"`
 	// Subdetail sequence number
-	SubDetailSequence []uint32 `json:"subDetailSequence,omitempty"`
+	SubDetailSequence []*uint32 `json:"subDetailSequence,omitempty"`
 	// Authorized providers
 	Provider []Reference `json:"provider,omitempty"`
 	// Billing, service, product, or drug code
@@ -996,7 +995,7 @@ type ExplanationOfBenefitAddItem struct {
 	// Anatomical sub-location
 	SubSite []CodeableConcept `json:"subSite,omitempty"`
 	// Applicable note numbers
-	NoteNumber []uint32 `json:"noteNumber,omitempty"`
+	NoteNumber []*uint32 `json:"noteNumber,omitempty"`
 	// Added items adjudication
 	Adjudication []ExplanationOfBenefitItemAdjudication `json:"adjudication,omitempty"`
 	// Insurer added line items
@@ -1154,25 +1153,22 @@ func (r *ExplanationOfBenefitAddItem) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.ItemSequence = append(r.ItemSequence, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.ItemSequence = append(r.ItemSequence, v)
 			case "detailSequence":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.DetailSequence = append(r.DetailSequence, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.DetailSequence = append(r.DetailSequence, v)
 			case "subDetailSequence":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.SubDetailSequence = append(r.SubDetailSequence, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.SubDetailSequence = append(r.SubDetailSequence, v)
 			case "provider":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1266,9 +1262,8 @@ func (r *ExplanationOfBenefitAddItem) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NoteNumber = append(r.NoteNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NoteNumber = append(r.NoteNumber, v)
 			case "adjudication":
 				var v ExplanationOfBenefitItemAdjudication
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1314,7 +1309,7 @@ type ExplanationOfBenefitAddItemDetail struct {
 	// Total item cost
 	Net *Money `json:"net,omitempty"`
 	// Applicable note numbers
-	NoteNumber []uint32 `json:"noteNumber,omitempty"`
+	NoteNumber []*uint32 `json:"noteNumber,omitempty"`
 	// Added items adjudication
 	Adjudication []ExplanationOfBenefitItemAdjudication `json:"adjudication,omitempty"`
 	// Insurer added line items
@@ -1454,9 +1449,8 @@ func (r *ExplanationOfBenefitAddItemDetail) UnmarshalXML(d *xml.Decoder, start x
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NoteNumber = append(r.NoteNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NoteNumber = append(r.NoteNumber, v)
 			case "adjudication":
 				var v ExplanationOfBenefitItemAdjudication
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1502,7 +1496,7 @@ type ExplanationOfBenefitAddItemDetailSubDetail struct {
 	// Total item cost
 	Net *Money `json:"net,omitempty"`
 	// Applicable note numbers
-	NoteNumber []uint32 `json:"noteNumber,omitempty"`
+	NoteNumber []*uint32 `json:"noteNumber,omitempty"`
 	// Added items adjudication
 	Adjudication []ExplanationOfBenefitItemAdjudication `json:"adjudication,omitempty"`
 }
@@ -1635,9 +1629,8 @@ func (r *ExplanationOfBenefitAddItemDetailSubDetail) UnmarshalXML(d *xml.Decoder
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NoteNumber = append(r.NoteNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NoteNumber = append(r.NoteNumber, v)
 			case "adjudication":
 				var v ExplanationOfBenefitItemAdjudication
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2278,7 +2271,7 @@ type ExplanationOfBenefitInsurance struct {
 	// Insurance information
 	Coverage Reference `json:"coverage,omitempty"`
 	// Prior authorization reference number
-	PreAuthRef []string `json:"preAuthRef,omitempty"`
+	PreAuthRef []*string `json:"preAuthRef,omitempty"`
 }
 
 // MarshalXML serializes ExplanationOfBenefitInsurance to FHIR-conformant XML.
@@ -2360,9 +2353,8 @@ func (r *ExplanationOfBenefitInsurance) UnmarshalXML(d *xml.Decoder, start xml.S
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.PreAuthRef = append(r.PreAuthRef, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.PreAuthRef = append(r.PreAuthRef, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2386,13 +2378,13 @@ type ExplanationOfBenefitItem struct {
 	// Item instance identifier
 	Sequence *uint32 `json:"sequence,omitempty"`
 	// Applicable care team members
-	CareTeamSequence []uint32 `json:"careTeamSequence,omitempty"`
+	CareTeamSequence []*uint32 `json:"careTeamSequence,omitempty"`
 	// Applicable diagnoses
-	DiagnosisSequence []uint32 `json:"diagnosisSequence,omitempty"`
+	DiagnosisSequence []*uint32 `json:"diagnosisSequence,omitempty"`
 	// Applicable procedures
-	ProcedureSequence []uint32 `json:"procedureSequence,omitempty"`
+	ProcedureSequence []*uint32 `json:"procedureSequence,omitempty"`
 	// Applicable exception and supporting information
-	InformationSequence []uint32 `json:"informationSequence,omitempty"`
+	InformationSequence []*uint32 `json:"informationSequence,omitempty"`
 	// Revenue or cost center code
 	Revenue *CodeableConcept `json:"revenue,omitempty"`
 	// Benefit classification
@@ -2432,7 +2424,7 @@ type ExplanationOfBenefitItem struct {
 	// Encounters related to this billed item
 	Encounter []Reference `json:"encounter,omitempty"`
 	// Applicable note numbers
-	NoteNumber []uint32 `json:"noteNumber,omitempty"`
+	NoteNumber []*uint32 `json:"noteNumber,omitempty"`
 	// Adjudication details
 	Adjudication []ExplanationOfBenefitItemAdjudication `json:"adjudication,omitempty"`
 	// Additional items
@@ -2617,33 +2609,29 @@ func (r *ExplanationOfBenefitItem) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.CareTeamSequence = append(r.CareTeamSequence, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.CareTeamSequence = append(r.CareTeamSequence, v)
 			case "diagnosisSequence":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.DiagnosisSequence = append(r.DiagnosisSequence, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.DiagnosisSequence = append(r.DiagnosisSequence, v)
 			case "procedureSequence":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.ProcedureSequence = append(r.ProcedureSequence, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.ProcedureSequence = append(r.ProcedureSequence, v)
 			case "informationSequence":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.InformationSequence = append(r.InformationSequence, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.InformationSequence = append(r.InformationSequence, v)
 			case "revenue":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2755,9 +2743,8 @@ func (r *ExplanationOfBenefitItem) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NoteNumber = append(r.NoteNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NoteNumber = append(r.NoteNumber, v)
 			case "adjudication":
 				var v ExplanationOfBenefitItemAdjudication
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2936,7 +2923,7 @@ type ExplanationOfBenefitItemDetail struct {
 	// Unique device identifier
 	Udi []Reference `json:"udi,omitempty"`
 	// Applicable note numbers
-	NoteNumber []uint32 `json:"noteNumber,omitempty"`
+	NoteNumber []*uint32 `json:"noteNumber,omitempty"`
 	// Detail level adjudication details
 	Adjudication []ExplanationOfBenefitItemAdjudication `json:"adjudication,omitempty"`
 	// Additional items
@@ -3129,9 +3116,8 @@ func (r *ExplanationOfBenefitItemDetail) UnmarshalXML(d *xml.Decoder, start xml.
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NoteNumber = append(r.NoteNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NoteNumber = append(r.NoteNumber, v)
 			case "adjudication":
 				var v ExplanationOfBenefitItemAdjudication
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -3187,7 +3173,7 @@ type ExplanationOfBenefitItemDetailSubDetail struct {
 	// Unique device identifier
 	Udi []Reference `json:"udi,omitempty"`
 	// Applicable note numbers
-	NoteNumber []uint32 `json:"noteNumber,omitempty"`
+	NoteNumber []*uint32 `json:"noteNumber,omitempty"`
 	// Subdetail level adjudication details
 	Adjudication []ExplanationOfBenefitItemAdjudication `json:"adjudication,omitempty"`
 }
@@ -3373,9 +3359,8 @@ func (r *ExplanationOfBenefitItemDetailSubDetail) UnmarshalXML(d *xml.Decoder, s
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.NoteNumber = append(r.NoteNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.NoteNumber = append(r.NoteNumber, v)
 			case "adjudication":
 				var v ExplanationOfBenefitItemAdjudication
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -4565,8 +4550,12 @@ func (b *ExplanationOfBenefitBuilder) SetDisposition(v string) *ExplanationOfBen
 }
 
 // AddPreAuthRef adds a PreAuthRef element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ExplanationOfBenefitBuilder) AddPreAuthRef(v string) *ExplanationOfBenefitBuilder {
-	b.explanationOfBenefit.PreAuthRef = append(b.explanationOfBenefit.PreAuthRef, v)
+	b.explanationOfBenefit.PreAuthRef = append(b.explanationOfBenefit.PreAuthRef, &v)
 	return b
 }
 
@@ -4921,7 +4910,7 @@ func WithExplanationOfBenefitDisposition(v string) ExplanationOfBenefitOption {
 // WithExplanationOfBenefitPreAuthRef adds a PreAuthRef to the ExplanationOfBenefit.
 func WithExplanationOfBenefitPreAuthRef(v string) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
-		r.PreAuthRef = append(r.PreAuthRef, v)
+		r.PreAuthRef = append(r.PreAuthRef, &v)
 	}
 }
 

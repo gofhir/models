@@ -49,9 +49,9 @@ type Address struct {
 	// Extension for Text
 	TextExt *Element `json:"_text,omitempty"`
 	// Street name, number, direction & P.O. Box etc.
-	Line []string `json:"line,omitempty"`
+	Line []*string `json:"line,omitempty"`
 	// Extension for Line
-	LineExt []Element `json:"_line,omitempty"`
+	LineExt []*Element `json:"_line,omitempty"`
 	// Name of city, town etc.
 	City *string `json:"city,omitempty"`
 	// Extension for City
@@ -317,17 +317,17 @@ type DataRequirement struct {
 	// Extension for Type
 	TypeExt *Element `json:"_type,omitempty"`
 	// The profile of the required data
-	Profile []string `json:"profile,omitempty"`
+	Profile []*string `json:"profile,omitempty"`
 	// Extension for Profile
-	ProfileExt []Element `json:"_profile,omitempty"`
+	ProfileExt []*Element `json:"_profile,omitempty"`
 	// E.g. Patient, Practitioner, RelatedPerson, Organization, Location, Device
 	SubjectCodeableConcept *CodeableConcept `json:"subjectCodeableConcept,omitempty"`
 	// E.g. Patient, Practitioner, RelatedPerson, Organization, Location, Device
 	SubjectReference *Reference `json:"subjectReference,omitempty"`
 	// Indicates specific structure elements that are referenced by the knowledge module
-	MustSupport []string `json:"mustSupport,omitempty"`
+	MustSupport []*string `json:"mustSupport,omitempty"`
 	// Extension for MustSupport
-	MustSupportExt []Element `json:"_mustSupport,omitempty"`
+	MustSupportExt []*Element `json:"_mustSupport,omitempty"`
 	// What codes are expected
 	CodeFilter []DataRequirementCodeFilter `json:"codeFilter,omitempty"`
 	// What dates/date ranges are expected
@@ -455,9 +455,9 @@ type ElementDefinition struct {
 	// Extension for Path
 	PathExt *Element `json:"_path,omitempty"`
 	// xmlAttr | xmlText | typeAttr | cdaText | xhtml
-	Representation []PropertyRepresentation `json:"representation,omitempty"`
+	Representation []*PropertyRepresentation `json:"representation,omitempty"`
 	// Extension for Representation
-	RepresentationExt []Element `json:"_representation,omitempty"`
+	RepresentationExt []*Element `json:"_representation,omitempty"`
 	// Name for this particular element (in a set of slices)
 	SliceName *string `json:"sliceName,omitempty"`
 	// Extension for SliceName
@@ -491,9 +491,9 @@ type ElementDefinition struct {
 	// Extension for Requirements
 	RequirementsExt *Element `json:"_requirements,omitempty"`
 	// Other names
-	Alias []string `json:"alias,omitempty"`
+	Alias []*string `json:"alias,omitempty"`
 	// Extension for Alias
-	AliasExt []Element `json:"_alias,omitempty"`
+	AliasExt []*Element `json:"_alias,omitempty"`
 	// Minimum Cardinality
 	Min *uint32 `json:"min,omitempty"`
 	// Extension for Min
@@ -1013,9 +1013,9 @@ type ElementDefinition struct {
 	// Extension for MaxLength
 	MaxLengthExt *Element `json:"_maxLength,omitempty"`
 	// Reference to invariant about presence
-	Condition []string `json:"condition,omitempty"`
+	Condition []*string `json:"condition,omitempty"`
 	// Extension for Condition
-	ConditionExt []Element `json:"_condition,omitempty"`
+	ConditionExt []*Element `json:"_condition,omitempty"`
 	// Condition that must evaluate to true
 	Constraint []ElementDefinitionConstraint `json:"constraint,omitempty"`
 	// If the element must be supported
@@ -1237,17 +1237,17 @@ type HumanName struct {
 	// Extension for Family
 	FamilyExt *Element `json:"_family,omitempty"`
 	// Given names (not always 'first'). Includes middle names
-	Given []string `json:"given,omitempty"`
+	Given []*string `json:"given,omitempty"`
 	// Extension for Given
-	GivenExt []Element `json:"_given,omitempty"`
+	GivenExt []*Element `json:"_given,omitempty"`
 	// Parts that come before the name
-	Prefix []string `json:"prefix,omitempty"`
+	Prefix []*string `json:"prefix,omitempty"`
 	// Extension for Prefix
-	PrefixExt []Element `json:"_prefix,omitempty"`
+	PrefixExt []*Element `json:"_prefix,omitempty"`
 	// Parts that come after the name
-	Suffix []string `json:"suffix,omitempty"`
+	Suffix []*string `json:"suffix,omitempty"`
 	// Extension for Suffix
-	SuffixExt []Element `json:"_suffix,omitempty"`
+	SuffixExt []*Element `json:"_suffix,omitempty"`
 	// Time period when name was/is in use
 	Period *Period `json:"period,omitempty"`
 }
@@ -1319,9 +1319,9 @@ type Meta struct {
 	// Extension for Source
 	SourceExt *Element `json:"_source,omitempty"`
 	// Profiles this resource claims to conform to
-	Profile []string `json:"profile,omitempty"`
+	Profile []*string `json:"profile,omitempty"`
 	// Extension for Profile
-	ProfileExt []Element `json:"_profile,omitempty"`
+	ProfileExt []*Element `json:"_profile,omitempty"`
 	// Security Labels applied to this resource
 	Security []Coding `json:"security,omitempty"`
 	// Tags applied to this resource
@@ -1457,13 +1457,13 @@ type ProdCharacteristic struct {
 	// Extension for Shape
 	ShapeExt *Element `json:"_shape,omitempty"`
 	// Where applicable, the color can be specified An appropriate controlled vocabulary shall be used The term and the term identifier shall be used
-	Color []string `json:"color,omitempty"`
+	Color []*string `json:"color,omitempty"`
 	// Extension for Color
-	ColorExt []Element `json:"_color,omitempty"`
+	ColorExt []*Element `json:"_color,omitempty"`
 	// Where applicable, the imprint can be specified as text
-	Imprint []string `json:"imprint,omitempty"`
+	Imprint []*string `json:"imprint,omitempty"`
 	// Extension for Imprint
-	ImprintExt []Element `json:"_imprint,omitempty"`
+	ImprintExt []*Element `json:"_imprint,omitempty"`
 	// Where applicable, the image can be provided The format of the image attachment shall be specified by regional implementations
 	Image []Attachment `json:"image,omitempty"`
 	// Where applicable, the scoring can be specified An appropriate controlled vocabulary shall be used The term and the term identifier shall be used
@@ -1683,9 +1683,9 @@ type Timing struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// When the event occurs
-	Event []string `json:"event,omitempty"`
+	Event []*string `json:"event,omitempty"`
 	// Extension for Event
-	EventExt []Element `json:"_event,omitempty"`
+	EventExt []*Element `json:"_event,omitempty"`
 	// When the event is to occur
 	Repeat *TimingRepeat `json:"repeat,omitempty"`
 	// BID | TID | QID | AM | PM | QD | QOD | +
@@ -2131,11 +2131,11 @@ type ElementDefinitionType struct {
 	// Data type or Resource (reference to definition)
 	Code *string `json:"code,omitempty"`
 	// Profiles (StructureDefinition or IG) - one must apply
-	Profile []string `json:"profile,omitempty"`
+	Profile []*string `json:"profile,omitempty"`
 	// Profile (StructureDefinition or IG) on the Reference/canonical target - one must apply
-	TargetProfile []string `json:"targetProfile,omitempty"`
+	TargetProfile []*string `json:"targetProfile,omitempty"`
 	// contained | referenced | bundled - how aggregated
-	Aggregation []AggregationMode `json:"aggregation,omitempty"`
+	Aggregation []*AggregationMode `json:"aggregation,omitempty"`
 	// either | independent | specific
 	Versioning *ReferenceVersionRules `json:"versioning,omitempty"`
 }
@@ -2174,11 +2174,11 @@ type TimingRepeat struct {
 	// s | min | h | d | wk | mo | a - unit of time (UCUM)
 	PeriodUnit *UnitsOfTime `json:"periodUnit,omitempty"`
 	// mon | tue | wed | thu | fri | sat | sun
-	DayOfWeek []DaysOfWeek `json:"dayOfWeek,omitempty"`
+	DayOfWeek []*DaysOfWeek `json:"dayOfWeek,omitempty"`
 	// Time of day for action
-	TimeOfDay []string `json:"timeOfDay,omitempty"`
+	TimeOfDay []*string `json:"timeOfDay,omitempty"`
 	// Code for time period of occurrence
-	When []EventTiming `json:"when,omitempty"`
+	When []*EventTiming `json:"when,omitempty"`
 	// Minutes from event (before or after)
 	Offset *uint32 `json:"offset,omitempty"`
 }
@@ -5782,9 +5782,8 @@ func (r *Address) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Line = append(r.Line, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Line = append(r.Line, v)
 			case "city":
 				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
@@ -6492,9 +6491,8 @@ func (r *DataRequirement) UnmarshalXML(dec *xml.Decoder, start xml.StartElement)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Profile = append(r.Profile, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Profile = append(r.Profile, v)
 			case "subjectCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -6512,9 +6510,8 @@ func (r *DataRequirement) UnmarshalXML(dec *xml.Decoder, start xml.StartElement)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.MustSupport = append(r.MustSupport, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.MustSupport = append(r.MustSupport, v)
 			case "codeFilter":
 				var v DataRequirementCodeFilter
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -6858,9 +6855,8 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Representation = append(r.Representation, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Representation = append(r.Representation, v)
 			case "sliceName":
 				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
@@ -6927,9 +6923,8 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Alias = append(r.Alias, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Alias = append(r.Alias, v)
 			case "min":
 				v, ext, err := xmlDecodePrimitiveUint32(dec, t)
 				if err != nil {
@@ -8094,9 +8089,8 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Condition = append(r.Condition, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Condition = append(r.Condition, v)
 			case "constraint":
 				var v ElementDefinitionConstraint
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -8634,25 +8628,22 @@ func (r *HumanName) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Given = append(r.Given, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Given = append(r.Given, v)
 			case "prefix":
 				v, _, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Prefix = append(r.Prefix, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Prefix = append(r.Prefix, v)
 			case "suffix":
 				v, _, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Suffix = append(r.Suffix, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Suffix = append(r.Suffix, v)
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -8861,9 +8852,8 @@ func (r *Meta) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Profile = append(r.Profile, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Profile = append(r.Profile, v)
 			case "security":
 				var v Coding
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -9260,17 +9250,15 @@ func (r *ProdCharacteristic) UnmarshalXML(dec *xml.Decoder, start xml.StartEleme
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Color = append(r.Color, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Color = append(r.Color, v)
 			case "imprint":
 				v, _, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Imprint = append(r.Imprint, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Imprint = append(r.Imprint, v)
 			case "image":
 				var v Attachment
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -9902,9 +9890,8 @@ func (r *Timing) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Event = append(r.Event, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Event = append(r.Event, v)
 			case "repeat":
 				var v TimingRepeat
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -11178,25 +11165,22 @@ func (r *ElementDefinitionType) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Profile = append(r.Profile, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Profile = append(r.Profile, v)
 			case "targetProfile":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.TargetProfile = append(r.TargetProfile, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.TargetProfile = append(r.TargetProfile, v)
 			case "aggregation":
 				v, _, err := xmlDecodePrimitiveCode[AggregationMode](d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Aggregation = append(r.Aggregation, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Aggregation = append(r.Aggregation, v)
 			case "versioning":
 				v, _, err := xmlDecodePrimitiveCode[ReferenceVersionRules](d, t)
 				if err != nil {
@@ -11320,25 +11304,22 @@ func (r *TimingRepeat) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.DayOfWeek = append(r.DayOfWeek, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.DayOfWeek = append(r.DayOfWeek, v)
 			case "timeOfDay":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.TimeOfDay = append(r.TimeOfDay, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.TimeOfDay = append(r.TimeOfDay, v)
 			case "when":
 				v, _, err := xmlDecodePrimitiveCode[EventTiming](d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.When = append(r.When, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.When = append(r.When, v)
 			case "offset":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {

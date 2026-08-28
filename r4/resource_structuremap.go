@@ -94,9 +94,9 @@ type StructureMap struct {
 	// Structure Definition used by this map
 	Structure []StructureMapStructure `json:"structure,omitempty"`
 	// Other maps used by this map (canonical URLs)
-	Import []string `json:"import,omitempty"`
+	Import []*string `json:"import,omitempty"`
 	// Extension for Import
-	ImportExt []Element `json:"_import,omitempty"`
+	ImportExt []*Element `json:"_import,omitempty"`
 	// Named sections for reader convenience
 	Group []StructureMapGroup `json:"group,omitempty"`
 }
@@ -497,9 +497,8 @@ func (r *StructureMap) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Import = append(r.Import, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Import = append(r.Import, v)
 			case "group":
 				var v StructureMapGroup
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -948,7 +947,7 @@ type StructureMapGroupRuleDependent struct {
 	// Name of a rule or group to apply
 	Name *string `json:"name,omitempty"`
 	// Variable to pass to the rule or group
-	Variable []string `json:"variable,omitempty"`
+	Variable []*string `json:"variable,omitempty"`
 }
 
 // MarshalXML serializes StructureMapGroupRuleDependent to FHIR-conformant XML.
@@ -1023,9 +1022,8 @@ func (r *StructureMapGroupRuleDependent) UnmarshalXML(d *xml.Decoder, start xml.
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Variable = append(r.Variable, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Variable = append(r.Variable, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1892,7 +1890,7 @@ type StructureMapGroupRuleTarget struct {
 	// Named context for field, if desired, and a field is specified
 	Variable *string `json:"variable,omitempty"`
 	// first | share | last | collate
-	ListMode []StructureMapTargetListMode `json:"listMode,omitempty"`
+	ListMode []*StructureMapTargetListMode `json:"listMode,omitempty"`
 	// Internal rule reference for shared list items
 	ListRuleId *string `json:"listRuleId,omitempty"`
 	// create | copy +
@@ -2011,9 +2009,8 @@ func (r *StructureMapGroupRuleTarget) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.ListMode = append(r.ListMode, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.ListMode = append(r.ListMode, v)
 			case "listRuleId":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -2475,8 +2472,12 @@ func (b *StructureMapBuilder) AddStructure(v StructureMapStructure) *StructureMa
 }
 
 // AddImport adds a Import element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *StructureMapBuilder) AddImport(v string) *StructureMapBuilder {
-	b.structureMap.Import = append(b.structureMap.Import, v)
+	b.structureMap.Import = append(b.structureMap.Import, &v)
 	return b
 }
 
@@ -2673,7 +2674,7 @@ func WithStructureMapStructure(v StructureMapStructure) StructureMapOption {
 // WithStructureMapImport adds a Import to the StructureMap.
 func WithStructureMapImport(v string) StructureMapOption {
 	return func(r *StructureMap) {
-		r.Import = append(r.Import, v)
+		r.Import = append(r.Import, &v)
 	}
 }
 

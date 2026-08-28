@@ -659,7 +659,7 @@ type ValueSetComposeInclude struct {
 	// Select codes/concepts by their properties (including relationships)
 	Filter []ValueSetComposeIncludeFilter `json:"filter,omitempty"`
 	// Select the contents included in this value set
-	ValueSet []string `json:"valueSet,omitempty"`
+	ValueSet []*string `json:"valueSet,omitempty"`
 }
 
 // MarshalXML serializes ValueSetComposeInclude to FHIR-conformant XML.
@@ -765,9 +765,8 @@ func (r *ValueSetComposeInclude) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.ValueSet = append(r.ValueSet, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.ValueSet = append(r.ValueSet, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err

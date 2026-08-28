@@ -42,13 +42,13 @@ type ChargeItem struct {
 	// Business Identifier for item
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// Defining information about the code of this charge item
-	DefinitionUri []string `json:"definitionUri,omitempty"`
+	DefinitionUri []*string `json:"definitionUri,omitempty"`
 	// Extension for DefinitionUri
-	DefinitionUriExt []Element `json:"_definitionUri,omitempty"`
+	DefinitionUriExt []*Element `json:"_definitionUri,omitempty"`
 	// Resource defining the code of this ChargeItem
-	DefinitionCanonical []string `json:"definitionCanonical,omitempty"`
+	DefinitionCanonical []*string `json:"definitionCanonical,omitempty"`
 	// Extension for DefinitionCanonical
-	DefinitionCanonicalExt []Element `json:"_definitionCanonical,omitempty"`
+	DefinitionCanonicalExt []*Element `json:"_definitionCanonical,omitempty"`
 	// planned | billable | not-billable | aborted | billed | entered-in-error | unknown
 	Status *ChargeItemStatus `json:"status,omitempty"`
 	// Extension for Status
@@ -462,17 +462,15 @@ func (r *ChargeItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.DefinitionUri = append(r.DefinitionUri, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.DefinitionUri = append(r.DefinitionUri, v)
 			case "definitionCanonical":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.DefinitionCanonical = append(r.DefinitionCanonical, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.DefinitionCanonical = append(r.DefinitionCanonical, v)
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[ChargeItemStatus](d, t)
 				if err != nil {
@@ -811,14 +809,22 @@ func (b *ChargeItemBuilder) AddIdentifier(v Identifier) *ChargeItemBuilder {
 }
 
 // AddDefinitionUri adds a DefinitionUri element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ChargeItemBuilder) AddDefinitionUri(v string) *ChargeItemBuilder {
-	b.chargeItem.DefinitionUri = append(b.chargeItem.DefinitionUri, v)
+	b.chargeItem.DefinitionUri = append(b.chargeItem.DefinitionUri, &v)
 	return b
 }
 
 // AddDefinitionCanonical adds a DefinitionCanonical element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ChargeItemBuilder) AddDefinitionCanonical(v string) *ChargeItemBuilder {
-	b.chargeItem.DefinitionCanonical = append(b.chargeItem.DefinitionCanonical, v)
+	b.chargeItem.DefinitionCanonical = append(b.chargeItem.DefinitionCanonical, &v)
 	return b
 }
 
@@ -1060,14 +1066,14 @@ func WithChargeItemIdentifier(v Identifier) ChargeItemOption {
 // WithChargeItemDefinitionUri adds a DefinitionUri to the ChargeItem.
 func WithChargeItemDefinitionUri(v string) ChargeItemOption {
 	return func(r *ChargeItem) {
-		r.DefinitionUri = append(r.DefinitionUri, v)
+		r.DefinitionUri = append(r.DefinitionUri, &v)
 	}
 }
 
 // WithChargeItemDefinitionCanonical adds a DefinitionCanonical to the ChargeItem.
 func WithChargeItemDefinitionCanonical(v string) ChargeItemOption {
 	return func(r *ChargeItem) {
-		r.DefinitionCanonical = append(r.DefinitionCanonical, v)
+		r.DefinitionCanonical = append(r.DefinitionCanonical, &v)
 	}
 }
 

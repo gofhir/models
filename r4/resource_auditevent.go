@@ -437,7 +437,7 @@ type AuditEventAgent struct {
 	// Where
 	Location *Reference `json:"location,omitempty"`
 	// Policy that authorized event
-	Policy []string `json:"policy,omitempty"`
+	Policy []*string `json:"policy,omitempty"`
 	// Type of media
 	Media *Coding `json:"media,omitempty"`
 	// Logical network location for application activity
@@ -595,9 +595,8 @@ func (r *AuditEventAgent) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Policy = append(r.Policy, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Policy = append(r.Policy, v)
 			case "media":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {

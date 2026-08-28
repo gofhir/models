@@ -106,13 +106,13 @@ type CapabilityStatement struct {
 	// Extension for Kind
 	KindExt *Element `json:"_kind,omitempty"`
 	// Canonical URL of another capability statement this implements
-	Instantiates []string `json:"instantiates,omitempty"`
+	Instantiates []*string `json:"instantiates,omitempty"`
 	// Extension for Instantiates
-	InstantiatesExt []Element `json:"_instantiates,omitempty"`
+	InstantiatesExt []*Element `json:"_instantiates,omitempty"`
 	// Canonical URL of another capability statement this adds to
-	Imports []string `json:"imports,omitempty"`
+	Imports []*string `json:"imports,omitempty"`
 	// Extension for Imports
-	ImportsExt []Element `json:"_imports,omitempty"`
+	ImportsExt []*Element `json:"_imports,omitempty"`
 	// Software that is covered by this capability statement
 	Software *CapabilityStatementSoftware `json:"software,omitempty"`
 	// If this describes a specific instance
@@ -122,21 +122,21 @@ type CapabilityStatement struct {
 	// Extension for FhirVersion
 	FhirVersionExt *Element `json:"_fhirVersion,omitempty"`
 	// formats supported (xml | json | ttl | mime type)
-	Format []string `json:"format,omitempty"`
+	Format []*string `json:"format,omitempty"`
 	// Extension for Format
-	FormatExt []Element `json:"_format,omitempty"`
+	FormatExt []*Element `json:"_format,omitempty"`
 	// Patch formats supported
-	PatchFormat []string `json:"patchFormat,omitempty"`
+	PatchFormat []*string `json:"patchFormat,omitempty"`
 	// Extension for PatchFormat
-	PatchFormatExt []Element `json:"_patchFormat,omitempty"`
+	PatchFormatExt []*Element `json:"_patchFormat,omitempty"`
 	// Languages supported
-	AcceptLanguage []string `json:"acceptLanguage,omitempty"`
+	AcceptLanguage []*string `json:"acceptLanguage,omitempty"`
 	// Extension for AcceptLanguage
-	AcceptLanguageExt []Element `json:"_acceptLanguage,omitempty"`
+	AcceptLanguageExt []*Element `json:"_acceptLanguage,omitempty"`
 	// Implementation guides supported
-	ImplementationGuide []string `json:"implementationGuide,omitempty"`
+	ImplementationGuide []*string `json:"implementationGuide,omitempty"`
 	// Extension for ImplementationGuide
-	ImplementationGuideExt []Element `json:"_implementationGuide,omitempty"`
+	ImplementationGuideExt []*Element `json:"_implementationGuide,omitempty"`
 	// If the endpoint is a RESTful one
 	Rest []CapabilityStatementRest `json:"rest,omitempty"`
 	// If messaging is supported
@@ -609,17 +609,15 @@ func (r *CapabilityStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Instantiates = append(r.Instantiates, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Instantiates = append(r.Instantiates, v)
 			case "imports":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Imports = append(r.Imports, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Imports = append(r.Imports, v)
 			case "software":
 				var v CapabilityStatementSoftware
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -644,33 +642,29 @@ func (r *CapabilityStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Format = append(r.Format, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Format = append(r.Format, v)
 			case "patchFormat":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.PatchFormat = append(r.PatchFormat, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.PatchFormat = append(r.PatchFormat, v)
 			case "acceptLanguage":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.AcceptLanguage = append(r.AcceptLanguage, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.AcceptLanguage = append(r.AcceptLanguage, v)
 			case "implementationGuide":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.ImplementationGuide = append(r.ImplementationGuide, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.ImplementationGuide = append(r.ImplementationGuide, v)
 			case "rest":
 				var v CapabilityStatementRest
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1267,7 +1261,7 @@ type CapabilityStatementRest struct {
 	// Definition of a system level operation
 	Operation []CapabilityStatementRestResourceOperation `json:"operation,omitempty"`
 	// Compartments served/used by system
-	Compartment []string `json:"compartment,omitempty"`
+	Compartment []*string `json:"compartment,omitempty"`
 }
 
 // MarshalXML serializes CapabilityStatementRest to FHIR-conformant XML.
@@ -1406,9 +1400,8 @@ func (r *CapabilityStatementRest) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Compartment = append(r.Compartment, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Compartment = append(r.Compartment, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1533,7 +1526,7 @@ type CapabilityStatementRestResource struct {
 	// System-wide profile
 	Profile *string `json:"profile,omitempty"`
 	// Use-case specific profiles
-	SupportedProfile []string `json:"supportedProfile,omitempty"`
+	SupportedProfile []*string `json:"supportedProfile,omitempty"`
 	// Additional information about the use of the resource type
 	Documentation *string `json:"documentation,omitempty"`
 	// What operations are supported?
@@ -1555,11 +1548,11 @@ type CapabilityStatementRestResource struct {
 	// not-supported | single | multiple - how conditional delete is supported
 	ConditionalDelete *ConditionalDeleteStatus `json:"conditionalDelete,omitempty"`
 	// literal | logical | resolves | enforced | local
-	ReferencePolicy []ReferenceHandlingPolicy `json:"referencePolicy,omitempty"`
+	ReferencePolicy []*ReferenceHandlingPolicy `json:"referencePolicy,omitempty"`
 	// _include values supported by the server
-	SearchInclude []string `json:"searchInclude,omitempty"`
+	SearchInclude []*string `json:"searchInclude,omitempty"`
 	// _revinclude values supported by the server
-	SearchRevInclude []string `json:"searchRevInclude,omitempty"`
+	SearchRevInclude []*string `json:"searchRevInclude,omitempty"`
 	// Search parameters supported by implementation
 	SearchParam []CapabilityStatementRestResourceSearchParam `json:"searchParam,omitempty"`
 	// Definition of a resource operation
@@ -1698,9 +1691,8 @@ func (r *CapabilityStatementRestResource) UnmarshalXML(d *xml.Decoder, start xml
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.SupportedProfile = append(r.SupportedProfile, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.SupportedProfile = append(r.SupportedProfile, v)
 			case "documentation":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1766,25 +1758,22 @@ func (r *CapabilityStatementRestResource) UnmarshalXML(d *xml.Decoder, start xml
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.ReferencePolicy = append(r.ReferencePolicy, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.ReferencePolicy = append(r.ReferencePolicy, v)
 			case "searchInclude":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.SearchInclude = append(r.SearchInclude, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.SearchInclude = append(r.SearchInclude, v)
 			case "searchRevInclude":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.SearchRevInclude = append(r.SearchRevInclude, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.SearchRevInclude = append(r.SearchRevInclude, v)
 			case "searchParam":
 				var v CapabilityStatementRestResourceSearchParam
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2553,14 +2542,22 @@ func (b *CapabilityStatementBuilder) SetKind(v CapabilityStatementKind) *Capabil
 }
 
 // AddInstantiates adds a Instantiates element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *CapabilityStatementBuilder) AddInstantiates(v string) *CapabilityStatementBuilder {
-	b.capabilityStatement.Instantiates = append(b.capabilityStatement.Instantiates, v)
+	b.capabilityStatement.Instantiates = append(b.capabilityStatement.Instantiates, &v)
 	return b
 }
 
 // AddImports adds a Imports element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *CapabilityStatementBuilder) AddImports(v string) *CapabilityStatementBuilder {
-	b.capabilityStatement.Imports = append(b.capabilityStatement.Imports, v)
+	b.capabilityStatement.Imports = append(b.capabilityStatement.Imports, &v)
 	return b
 }
 
@@ -2583,26 +2580,42 @@ func (b *CapabilityStatementBuilder) SetFhirVersion(v FHIRVersion) *CapabilitySt
 }
 
 // AddFormat adds a Format element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *CapabilityStatementBuilder) AddFormat(v string) *CapabilityStatementBuilder {
-	b.capabilityStatement.Format = append(b.capabilityStatement.Format, v)
+	b.capabilityStatement.Format = append(b.capabilityStatement.Format, &v)
 	return b
 }
 
 // AddPatchFormat adds a PatchFormat element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *CapabilityStatementBuilder) AddPatchFormat(v string) *CapabilityStatementBuilder {
-	b.capabilityStatement.PatchFormat = append(b.capabilityStatement.PatchFormat, v)
+	b.capabilityStatement.PatchFormat = append(b.capabilityStatement.PatchFormat, &v)
 	return b
 }
 
 // AddAcceptLanguage adds a AcceptLanguage element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *CapabilityStatementBuilder) AddAcceptLanguage(v string) *CapabilityStatementBuilder {
-	b.capabilityStatement.AcceptLanguage = append(b.capabilityStatement.AcceptLanguage, v)
+	b.capabilityStatement.AcceptLanguage = append(b.capabilityStatement.AcceptLanguage, &v)
 	return b
 }
 
 // AddImplementationGuide adds a ImplementationGuide element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *CapabilityStatementBuilder) AddImplementationGuide(v string) *CapabilityStatementBuilder {
-	b.capabilityStatement.ImplementationGuide = append(b.capabilityStatement.ImplementationGuide, v)
+	b.capabilityStatement.ImplementationGuide = append(b.capabilityStatement.ImplementationGuide, &v)
 	return b
 }
 
@@ -2839,14 +2852,14 @@ func WithCapabilityStatementKind(v CapabilityStatementKind) CapabilityStatementO
 // WithCapabilityStatementInstantiates adds a Instantiates to the CapabilityStatement.
 func WithCapabilityStatementInstantiates(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
-		r.Instantiates = append(r.Instantiates, v)
+		r.Instantiates = append(r.Instantiates, &v)
 	}
 }
 
 // WithCapabilityStatementImports adds a Imports to the CapabilityStatement.
 func WithCapabilityStatementImports(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
-		r.Imports = append(r.Imports, v)
+		r.Imports = append(r.Imports, &v)
 	}
 }
 
@@ -2874,28 +2887,28 @@ func WithCapabilityStatementFhirVersion(v FHIRVersion) CapabilityStatementOption
 // WithCapabilityStatementFormat adds a Format to the CapabilityStatement.
 func WithCapabilityStatementFormat(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
-		r.Format = append(r.Format, v)
+		r.Format = append(r.Format, &v)
 	}
 }
 
 // WithCapabilityStatementPatchFormat adds a PatchFormat to the CapabilityStatement.
 func WithCapabilityStatementPatchFormat(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
-		r.PatchFormat = append(r.PatchFormat, v)
+		r.PatchFormat = append(r.PatchFormat, &v)
 	}
 }
 
 // WithCapabilityStatementAcceptLanguage adds a AcceptLanguage to the CapabilityStatement.
 func WithCapabilityStatementAcceptLanguage(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
-		r.AcceptLanguage = append(r.AcceptLanguage, v)
+		r.AcceptLanguage = append(r.AcceptLanguage, &v)
 	}
 }
 
 // WithCapabilityStatementImplementationGuide adds a ImplementationGuide to the CapabilityStatement.
 func WithCapabilityStatementImplementationGuide(v string) CapabilityStatementOption {
 	return func(r *CapabilityStatement) {
-		r.ImplementationGuide = append(r.ImplementationGuide, v)
+		r.ImplementationGuide = append(r.ImplementationGuide, &v)
 	}
 }
 

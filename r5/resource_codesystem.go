@@ -1254,7 +1254,7 @@ type CodeSystemFilter struct {
 	// How or why the filter is used
 	Description *string `json:"description,omitempty"`
 	// = | is-a | descendent-of | is-not-a | regex | in | not-in | generalizes | child-of | descendent-leaf | exists
-	Operator []FilterOperator `json:"operator,omitempty"`
+	Operator []*FilterOperator `json:"operator,omitempty"`
 	// What to use for the value
 	Value *string `json:"value,omitempty"`
 }
@@ -1343,9 +1343,8 @@ func (r *CodeSystemFilter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Operator = append(r.Operator, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Operator = append(r.Operator, v)
 			case "value":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

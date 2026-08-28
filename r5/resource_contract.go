@@ -92,9 +92,9 @@ type Contract struct {
 	// Extension for Subtitle
 	SubtitleExt *Element `json:"_subtitle,omitempty"`
 	// Acronym or short name
-	Alias []string `json:"alias,omitempty"`
+	Alias []*string `json:"alias,omitempty"`
 	// Extension for Alias
-	AliasExt []Element `json:"_alias,omitempty"`
+	AliasExt []*Element `json:"_alias,omitempty"`
 	// Source of Contract
 	Author *Reference `json:"author,omitempty"`
 	// Range of Legal Concerns
@@ -625,9 +625,8 @@ func (r *Contract) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Alias = append(r.Alias, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Alias = append(r.Alias, v)
 			case "author":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1557,13 +1556,13 @@ type ContractTermAction struct {
 	// Purpose for the Contract Term Action
 	Intent CodeableConcept `json:"intent,omitempty"`
 	// Pointer to specific item
-	LinkId []string `json:"linkId,omitempty"`
+	LinkId []*string `json:"linkId,omitempty"`
 	// State of the action
 	Status CodeableConcept `json:"status,omitempty"`
 	// Episode associated with action
 	Context *Reference `json:"context,omitempty"`
 	// Pointer to specific item
-	ContextLinkId []string `json:"contextLinkId,omitempty"`
+	ContextLinkId []*string `json:"contextLinkId,omitempty"`
 	// When action happens
 	OccurrenceDateTime *string `json:"occurrenceDateTime,omitempty"`
 	// Extension for OccurrenceDateTime
@@ -1575,7 +1574,7 @@ type ContractTermAction struct {
 	// Who asked for action
 	Requester []Reference `json:"requester,omitempty"`
 	// Pointer to specific item
-	RequesterLinkId []string `json:"requesterLinkId,omitempty"`
+	RequesterLinkId []*string `json:"requesterLinkId,omitempty"`
 	// Kind of service performer
 	PerformerType []CodeableConcept `json:"performerType,omitempty"`
 	// Competency of the performer
@@ -1583,15 +1582,15 @@ type ContractTermAction struct {
 	// Actor that wil execute (or not) the action
 	Performer *Reference `json:"performer,omitempty"`
 	// Pointer to specific item
-	PerformerLinkId []string `json:"performerLinkId,omitempty"`
+	PerformerLinkId []*string `json:"performerLinkId,omitempty"`
 	// Why is action (not) needed?
 	Reason []CodeableReference `json:"reason,omitempty"`
 	// Pointer to specific item
-	ReasonLinkId []string `json:"reasonLinkId,omitempty"`
+	ReasonLinkId []*string `json:"reasonLinkId,omitempty"`
 	// Comments about the action
 	Note []Annotation `json:"note,omitempty"`
 	// Action restriction numbers
-	SecurityLabelNumber []uint32 `json:"securityLabelNumber,omitempty"`
+	SecurityLabelNumber []*uint32 `json:"securityLabelNumber,omitempty"`
 }
 
 // MarshalXML serializes ContractTermAction to FHIR-conformant XML.
@@ -1757,9 +1756,8 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.LinkId = append(r.LinkId, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.LinkId = append(r.LinkId, v)
 			case "status":
 				if err := r.Status.UnmarshalXML(d, t); err != nil {
 					return err
@@ -1775,9 +1773,8 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.ContextLinkId = append(r.ContextLinkId, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.ContextLinkId = append(r.ContextLinkId, v)
 			case "occurrenceDateTime":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1807,9 +1804,8 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.RequesterLinkId = append(r.RequesterLinkId, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.RequesterLinkId = append(r.RequesterLinkId, v)
 			case "performerType":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1833,9 +1829,8 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.PerformerLinkId = append(r.PerformerLinkId, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.PerformerLinkId = append(r.PerformerLinkId, v)
 			case "reason":
 				var v CodeableReference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1847,9 +1842,8 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.ReasonLinkId = append(r.ReasonLinkId, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.ReasonLinkId = append(r.ReasonLinkId, v)
 			case "note":
 				var v Annotation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1861,9 +1855,8 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.SecurityLabelNumber = append(r.SecurityLabelNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.SecurityLabelNumber = append(r.SecurityLabelNumber, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2010,11 +2003,11 @@ type ContractTermAsset struct {
 	// Asset clause or question text
 	Text *string `json:"text,omitempty"`
 	// Pointer to asset text
-	LinkId []string `json:"linkId,omitempty"`
+	LinkId []*string `json:"linkId,omitempty"`
 	// Response to assets
 	Answer []ContractTermOfferAnswer `json:"answer,omitempty"`
 	// Asset restriction numbers
-	SecurityLabelNumber []uint32 `json:"securityLabelNumber,omitempty"`
+	SecurityLabelNumber []*uint32 `json:"securityLabelNumber,omitempty"`
 	// Contract Valued Item List
 	ValuedItem []ContractTermAssetValuedItem `json:"valuedItem,omitempty"`
 }
@@ -2212,9 +2205,8 @@ func (r *ContractTermAsset) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.LinkId = append(r.LinkId, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.LinkId = append(r.LinkId, v)
 			case "answer":
 				var v ContractTermOfferAnswer
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2226,9 +2218,8 @@ func (r *ContractTermAsset) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.SecurityLabelNumber = append(r.SecurityLabelNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.SecurityLabelNumber = append(r.SecurityLabelNumber, v)
 			case "valuedItem":
 				var v ContractTermAssetValuedItem
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2396,9 +2387,9 @@ type ContractTermAssetValuedItem struct {
 	// Who will receive payment
 	Recipient *Reference `json:"recipient,omitempty"`
 	// Pointer to specific item
-	LinkId []string `json:"linkId,omitempty"`
+	LinkId []*string `json:"linkId,omitempty"`
 	// Security Labels that define affected terms
-	SecurityLabelNumber []uint32 `json:"securityLabelNumber,omitempty"`
+	SecurityLabelNumber []*uint32 `json:"securityLabelNumber,omitempty"`
 }
 
 // MarshalXML serializes ContractTermAssetValuedItem to FHIR-conformant XML.
@@ -2600,17 +2591,15 @@ func (r *ContractTermAssetValuedItem) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.LinkId = append(r.LinkId, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.LinkId = append(r.LinkId, v)
 			case "securityLabelNumber":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.SecurityLabelNumber = append(r.SecurityLabelNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.SecurityLabelNumber = append(r.SecurityLabelNumber, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2648,9 +2637,9 @@ type ContractTermOffer struct {
 	// Human readable offer text
 	Text *string `json:"text,omitempty"`
 	// Pointer to text
-	LinkId []string `json:"linkId,omitempty"`
+	LinkId []*string `json:"linkId,omitempty"`
 	// Offer restriction numbers
-	SecurityLabelNumber []uint32 `json:"securityLabelNumber,omitempty"`
+	SecurityLabelNumber []*uint32 `json:"securityLabelNumber,omitempty"`
 }
 
 // MarshalXML serializes ContractTermOffer to FHIR-conformant XML.
@@ -2805,17 +2794,15 @@ func (r *ContractTermOffer) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.LinkId = append(r.LinkId, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.LinkId = append(r.LinkId, v)
 			case "securityLabelNumber":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.SecurityLabelNumber = append(r.SecurityLabelNumber, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.SecurityLabelNumber = append(r.SecurityLabelNumber, v)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -3169,7 +3156,7 @@ type ContractTermSecurityLabel struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Link to Security Labels
-	Number []uint32 `json:"number,omitempty"`
+	Number []*uint32 `json:"number,omitempty"`
 	// Confidentiality Protection
 	Classification Coding `json:"classification,omitempty"`
 	// Applicable Policy
@@ -3254,9 +3241,8 @@ func (r *ContractTermSecurityLabel) UnmarshalXML(d *xml.Decoder, start xml.Start
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Number = append(r.Number, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Number = append(r.Number, v)
 			case "classification":
 				if err := r.Classification.UnmarshalXML(d, t); err != nil {
 					return err
@@ -3465,8 +3451,12 @@ func (b *ContractBuilder) SetSubtitle(v string) *ContractBuilder {
 }
 
 // AddAlias adds a Alias element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ContractBuilder) AddAlias(v string) *ContractBuilder {
-	b.contract.Alias = append(b.contract.Alias, v)
+	b.contract.Alias = append(b.contract.Alias, &v)
 	return b
 }
 
@@ -3767,7 +3757,7 @@ func WithContractSubtitle(v string) ContractOption {
 // WithContractAlias adds a Alias to the Contract.
 func WithContractAlias(v string) ContractOption {
 	return func(r *Contract) {
-		r.Alias = append(r.Alias, v)
+		r.Alias = append(r.Alias, &v)
 	}
 }
 

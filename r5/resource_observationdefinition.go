@@ -112,13 +112,13 @@ type ObservationDefinition struct {
 	// The effective date range for the ObservationDefinition
 	EffectivePeriod *Period `json:"effectivePeriod,omitempty"`
 	// Based on FHIR definition of another observation
-	DerivedFromCanonical []string `json:"derivedFromCanonical,omitempty"`
+	DerivedFromCanonical []*string `json:"derivedFromCanonical,omitempty"`
 	// Extension for DerivedFromCanonical
-	DerivedFromCanonicalExt []Element `json:"_derivedFromCanonical,omitempty"`
+	DerivedFromCanonicalExt []*Element `json:"_derivedFromCanonical,omitempty"`
 	// Based on external definition
-	DerivedFromUri []string `json:"derivedFromUri,omitempty"`
+	DerivedFromUri []*string `json:"derivedFromUri,omitempty"`
 	// Extension for DerivedFromUri
-	DerivedFromUriExt []Element `json:"_derivedFromUri,omitempty"`
+	DerivedFromUriExt []*Element `json:"_derivedFromUri,omitempty"`
 	// Type of subject for the defined observation
 	Subject []CodeableConcept `json:"subject,omitempty"`
 	// Desired kind of performer for such kind of observation
@@ -128,9 +128,9 @@ type ObservationDefinition struct {
 	// Type of observation
 	Code CodeableConcept `json:"code"`
 	// Quantity | CodeableConcept | string | boolean | integer | Range | Ratio | SampledData | time | dateTime | Period
-	PermittedDataType []ObservationDataType `json:"permittedDataType,omitempty"`
+	PermittedDataType []*ObservationDataType `json:"permittedDataType,omitempty"`
 	// Extension for PermittedDataType
-	PermittedDataTypeExt []Element `json:"_permittedDataType,omitempty"`
+	PermittedDataTypeExt []*Element `json:"_permittedDataType,omitempty"`
 	// Multiple results allowed for conforming observations
 	MultipleResultsAllowed *bool `json:"multipleResultsAllowed,omitempty"`
 	// Extension for MultipleResultsAllowed
@@ -669,17 +669,15 @@ func (r *ObservationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.DerivedFromCanonical = append(r.DerivedFromCanonical, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.DerivedFromCanonical = append(r.DerivedFromCanonical, v)
 			case "derivedFromUri":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.DerivedFromUri = append(r.DerivedFromUri, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.DerivedFromUri = append(r.DerivedFromUri, v)
 			case "subject":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -707,9 +705,8 @@ func (r *ObservationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.PermittedDataType = append(r.PermittedDataType, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.PermittedDataType = append(r.PermittedDataType, v)
 			case "multipleResultsAllowed":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -795,7 +792,7 @@ type ObservationDefinitionComponent struct {
 	// Type of observation
 	Code CodeableConcept `json:"code,omitempty"`
 	// Quantity | CodeableConcept | string | boolean | integer | Range | Ratio | SampledData | time | dateTime | Period
-	PermittedDataType []ObservationDataType `json:"permittedDataType,omitempty"`
+	PermittedDataType []*ObservationDataType `json:"permittedDataType,omitempty"`
 	// Unit for quantitative results
 	PermittedUnit []Coding `json:"permittedUnit,omitempty"`
 	// Set of qualified values for observation results
@@ -882,9 +879,8 @@ func (r *ObservationDefinitionComponent) UnmarshalXML(d *xml.Decoder, start xml.
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.PermittedDataType = append(r.PermittedDataType, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.PermittedDataType = append(r.PermittedDataType, v)
 			case "permittedUnit":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1332,14 +1328,22 @@ func (b *ObservationDefinitionBuilder) SetEffectivePeriod(v Period) *Observation
 }
 
 // AddDerivedFromCanonical adds a DerivedFromCanonical element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ObservationDefinitionBuilder) AddDerivedFromCanonical(v string) *ObservationDefinitionBuilder {
-	b.observationDefinition.DerivedFromCanonical = append(b.observationDefinition.DerivedFromCanonical, v)
+	b.observationDefinition.DerivedFromCanonical = append(b.observationDefinition.DerivedFromCanonical, &v)
 	return b
 }
 
 // AddDerivedFromUri adds a DerivedFromUri element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ObservationDefinitionBuilder) AddDerivedFromUri(v string) *ObservationDefinitionBuilder {
-	b.observationDefinition.DerivedFromUri = append(b.observationDefinition.DerivedFromUri, v)
+	b.observationDefinition.DerivedFromUri = append(b.observationDefinition.DerivedFromUri, &v)
 	return b
 }
 
@@ -1368,8 +1372,12 @@ func (b *ObservationDefinitionBuilder) SetCode(v CodeableConcept) *ObservationDe
 }
 
 // AddPermittedDataType adds a PermittedDataType element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ObservationDefinitionBuilder) AddPermittedDataType(v ObservationDataType) *ObservationDefinitionBuilder {
-	b.observationDefinition.PermittedDataType = append(b.observationDefinition.PermittedDataType, v)
+	b.observationDefinition.PermittedDataType = append(b.observationDefinition.PermittedDataType, &v)
 	return b
 }
 
@@ -1662,14 +1670,14 @@ func WithObservationDefinitionEffectivePeriod(v Period) ObservationDefinitionOpt
 // WithObservationDefinitionDerivedFromCanonical adds a DerivedFromCanonical to the ObservationDefinition.
 func WithObservationDefinitionDerivedFromCanonical(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
-		r.DerivedFromCanonical = append(r.DerivedFromCanonical, v)
+		r.DerivedFromCanonical = append(r.DerivedFromCanonical, &v)
 	}
 }
 
 // WithObservationDefinitionDerivedFromUri adds a DerivedFromUri to the ObservationDefinition.
 func WithObservationDefinitionDerivedFromUri(v string) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
-		r.DerivedFromUri = append(r.DerivedFromUri, v)
+		r.DerivedFromUri = append(r.DerivedFromUri, &v)
 	}
 }
 
@@ -1704,7 +1712,7 @@ func WithObservationDefinitionCode(v CodeableConcept) ObservationDefinitionOptio
 // WithObservationDefinitionPermittedDataType adds a PermittedDataType to the ObservationDefinition.
 func WithObservationDefinitionPermittedDataType(v ObservationDataType) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
-		r.PermittedDataType = append(r.PermittedDataType, v)
+		r.PermittedDataType = append(r.PermittedDataType, &v)
 	}
 }
 

@@ -26,9 +26,9 @@ type Probe struct {
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Repeating primitive
-	Alias []string `json:"alias,omitempty"`
+	Alias []*string `json:"alias,omitempty"`
 	// Extension for Alias
-	AliasExt []Element `json:"_alias,omitempty"`
+	AliasExt []*Element `json:"_alias,omitempty"`
 	// Choice of value
 	ValueBoolean *bool `json:"valueBoolean,omitempty"`
 	// Extension for ValueBoolean
@@ -139,9 +139,8 @@ func (r *Probe) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				if err != nil {
 					return err
 				}
-				if v != nil {
-					r.Alias = append(r.Alias, *v)
-				}
+				// nil is meaningful here: it is a positional slot with no value.
+				r.Alias = append(r.Alias, v)
 			case "valueBoolean":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -261,8 +260,12 @@ func (b *ProbeBuilder) SetStatus(v ProbeStatusCodes) *ProbeBuilder {
 }
 
 // AddAlias adds a Alias element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ProbeBuilder) AddAlias(v string) *ProbeBuilder {
-	b.probe.Alias = append(b.probe.Alias, v)
+	b.probe.Alias = append(b.probe.Alias, &v)
 	return b
 }
 
@@ -329,7 +332,7 @@ func WithProbeStatus(v ProbeStatusCodes) ProbeOption {
 // WithProbeAlias adds a Alias to the Probe.
 func WithProbeAlias(v string) ProbeOption {
 	return func(r *Probe) {
-		r.Alias = append(r.Alias, v)
+		r.Alias = append(r.Alias, &v)
 	}
 }
 
