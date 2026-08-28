@@ -24,7 +24,7 @@ La siguiente tabla muestra el mapeo completo de tipos primitivos FHIR a sus repr
 | `code` | `*string` o enum generado | p. ej., `*AdministrativeGender` para conjuntos de valores vinculados |
 | `boolean` | `*bool` | true o false |
 | `integer` | `*int` | Entero con signo de 32 bits |
-| `integer64` | `*int64` | Entero con signo de 64 bits (solo R5) |
+| `integer64` | `*Integer64` | Entero con signo de 64 bits, codificado como string en JSON (solo R5) |
 | `unsignedInt` | `*uint32` | Entero sin signo de 32 bits (>= 0) |
 | `positiveInt` | `*uint32` | Entero sin signo de 32 bits (>= 1) |
 | `decimal` | `*Decimal` | Tipo personalizado, preserva precisión |
@@ -118,7 +118,24 @@ observation := &r4.Observation{
 
 ### Tipos Enteros
 
-FHIR define tres tipos enteros con diferentes mapeos en Go:
+FHIR define cuatro tipos enteros con diferentes mapeos en Go. `integer64` es el
+caso particular: los números JSON solo transportan 53 bits de precisión de forma
+fiable, así que la especificación exige que viaje como **string** en JSON. Por eso
+se mapea a un tipo con nombre y no a `int64`:
+
+```go
+// integer64 -> *Integer64, serializado como "1024"
+attachment := r5.Attachment{Size: r5.Ptr(r5.Integer64(1024))}
+data, _ := r5.Marshal(attachment)  // {"size":"1024"}
+
+size := attachment.Size.Int64()    // 1024, como int64 normal
+```
+
+`Integer64` también acepta un número JSON desnudo al leer, porque es lo que
+produce un encoder ingenuo, pero siempre escribe la forma string. En XML es un
+atributo `value=` normal.
+
+Los otros tres:
 
 ```go
 // integer -> *int

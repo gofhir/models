@@ -8,7 +8,7 @@ weight: 3
 The `gofhir/models` library serializes FHIR resources to JSON and XML. Every generated resource struct implements the standard Go marshaling interfaces, and the library also provides custom functions for FHIR-specific serialization requirements.
 
 {{< callout type="warning" >}}
-Measured over the official example corpora, **all 3653 published XML examples round-trip**, as do 99.5% of the 8758 JSON ones. See [XML Marshaling](xml-marshaling/) for what the XML figure does and does not measure.
+Measured over the official example corpora, **all 3653 published XML examples round-trip**, as do 99.8% of the 8758 JSON ones. See [XML Marshaling](xml-marshaling/) for what the XML figure does and does not measure.
 {{< /callout >}}
 
 ## Serialization Overview

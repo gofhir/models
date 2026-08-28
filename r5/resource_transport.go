@@ -739,7 +739,7 @@ type TransportInput struct {
 	// Extension for ValueInteger
 	ValueIntegerExt *Element `json:"_valueInteger,omitempty"`
 	// Content to use in performing the transport
-	ValueInteger64 *int64 `json:"valueInteger64,omitempty"`
+	ValueInteger64 *Integer64 `json:"valueInteger64,omitempty"`
 	// Extension for ValueInteger64
 	ValueInteger64Ext *Element `json:"_valueInteger64,omitempty"`
 	// Content to use in performing the transport
@@ -903,7 +903,7 @@ func (b TransportInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt64(e, "valueInteger64", b.ValueInteger64, nil); err != nil {
+	if err := xmlEncodePrimitiveInteger64(e, "valueInteger64", b.ValueInteger64, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "valueMarkdown", b.ValueMarkdown, nil); err != nil {
@@ -1201,7 +1201,7 @@ func (r *TransportInput) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.ValueInteger = v
 			case "valueInteger64":
-				v, _, err := xmlDecodePrimitiveInt64(d, t)
+				v, _, err := xmlDecodePrimitiveInteger64(d, t)
 				if err != nil {
 					return err
 				}
@@ -1527,7 +1527,7 @@ type TransportOutput struct {
 	// Extension for ValueInteger
 	ValueIntegerExt *Element `json:"_valueInteger,omitempty"`
 	// Result of output
-	ValueInteger64 *int64 `json:"valueInteger64,omitempty"`
+	ValueInteger64 *Integer64 `json:"valueInteger64,omitempty"`
 	// Extension for ValueInteger64
 	ValueInteger64Ext *Element `json:"_valueInteger64,omitempty"`
 	// Result of output
@@ -1691,7 +1691,7 @@ func (b TransportOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt64(e, "valueInteger64", b.ValueInteger64, nil); err != nil {
+	if err := xmlEncodePrimitiveInteger64(e, "valueInteger64", b.ValueInteger64, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "valueMarkdown", b.ValueMarkdown, nil); err != nil {
@@ -1989,7 +1989,7 @@ func (r *TransportOutput) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.ValueInteger = v
 			case "valueInteger64":
-				v, _, err := xmlDecodePrimitiveInt64(d, t)
+				v, _, err := xmlDecodePrimitiveInteger64(d, t)
 				if err != nil {
 					return err
 				}

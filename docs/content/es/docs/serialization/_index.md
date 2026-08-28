@@ -8,7 +8,7 @@ weight: 3
 La biblioteca `gofhir/models` serializa recursos FHIR a JSON y XML. Cada struct de recurso generado implementa las interfaces estándar de marshaling de Go, y la biblioteca también proporciona funciones personalizadas para los requisitos de serialización específicos de FHIR.
 
 {{< callout type="warning" >}}
-Medido sobre los corpus oficiales de ejemplos, **los 3653 ejemplos XML publicados sobreviven un round-trip**, igual que el 99,5 % de los 8758 en JSON. Consulta [XML Marshaling](xml-marshaling/) para ver qué mide y qué no mide esa cifra de XML.
+Medido sobre los corpus oficiales de ejemplos, **los 3653 ejemplos XML publicados sobreviven un round-trip**, igual que el 99,8 % de los 8758 en JSON. Consulta [XML Marshaling](xml-marshaling/) para ver qué mide y qué no mide esa cifra de XML.
 {{< /callout >}}
 
 ## Descripción General de la Serialización

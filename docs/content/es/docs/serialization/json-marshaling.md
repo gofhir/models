@@ -86,11 +86,10 @@ Los campos requeridos como `ResourceType` no usan `omitempty`, asegurando que si
 
 La biblioteca busca fidelidad de ida y vuelta (round-trip): serializar un recurso a JSON y luego deserializarlo de vuelta produce un struct idéntico. Esto es crítico para sistemas FHIR que necesitan almacenar y recuperar recursos sin pérdida de datos.
 
-Medido sobre los corpus oficiales de ejemplos, 8718 de 8758 archivos JSON (99,5 %) sobreviven un round-trip sin cambios. Clasificando los 40 que no, por todas las diferencias presentes y no solo por la primera:
+Medido sobre los corpus oficiales de ejemplos, 8738 de 8758 archivos JSON (99,8 %) sobreviven un round-trip sin cambios. Clasificando los 20 que no, por todas las diferencias presentes y no solo por la primera:
 
 | Defecto | Archivos | ¿Se detecta? | Efecto |
 |---|---:|---|---|
-| `integer64` de R5 tipado como `int64` | 20 | **error** | La especificación exige que `integer64` viaje como **string** en JSON, porque JSON solo garantiza 53 bits de precisión. Los documentos afectados fallan al parsear en lugar de perder datos en silencio |
 | `null` posicional en un array de primitivos | 13 | silencioso | FHIR usa `null` para alinear un array `_campo` con sus valores, y ninguno de los dos lados puede representarlo: un valor `null` vuelve como `""` (9 archivos), y un `null` dentro del propio array `_campo` vuelve como `{}` (4 archivos, p. ej. `_base` en `search-parameters.json`). Un valor ausente se convierte en uno vacío |
 | Extensiones sobre primitivos descartadas | 6 | silencioso | Allí donde no existe ningún campo compañero: primitivos dentro de backbone elements, como `_text` en `Questionnaire.item`. Los 6 casos medidos son backbone elements |
 | No es un recurso FHIR | 1 | error | `package-min-ver.json` es un manifiesto de paquete sin `resourceType`; ruido del corpus, no un defecto |

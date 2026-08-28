@@ -1,4 +1,4 @@
-# Known round-trip failures: 26 of 2824 examples.
+# Known round-trip failures: 6 of 2824 examples.
 #
 # Regenerate with: cd conformance && go test . -update-known
 # Every line removed is a bug fixed; every line added is a regression.
@@ -16,23 +16,3 @@ mismatch organization-example.json
 mismatch search-parameters.json
 mismatch structuredefinition-example-composition.json
 mismatch valuesets.json
-parse communication-example-fm-attachment.json
-parse communication-example-fm-solicited-attachment.json
-parse dataelements.json
-parse documentreference-example-comprehensive.json
-parse documentreference-example.json
-parse integer64.profile.json
-parse location-wash-dc-metro.json
-parse notification-empty.json
-parse notification-error.json
-parse notification-full-resource-with-patient.json
-parse notification-full-resource.json
-parse notification-handshake.json
-parse notification-heartbeat.json
-parse notification-id-only-with-patient.json
-parse notification-id-only.json
-parse notification-message-full-resource.json
-parse notification-query-event.json
-parse notification-query-status.json
-parse profiles-types.json
-parse subscriptionstatus-example.json

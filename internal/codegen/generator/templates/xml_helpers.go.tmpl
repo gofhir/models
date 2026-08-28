@@ -264,6 +264,23 @@ func xmlEncodePrimitiveInt64(e *xml.Encoder, name string, value *int64, ext *Ele
 	return xmlEncodePrimitiveString(e, name, strVal, ext)
 }
 
+{{ if .UsesInteger64 }}// xmlEncodePrimitiveInteger64 encodes a FHIR integer64 primitive.
+//
+// Unlike JSON, where integer64 must be a string, XML carries it as a plain value
+// attribute like any other primitive.
+func xmlEncodePrimitiveInteger64(e *xml.Encoder, name string, value *Integer64, ext *Element) error {
+	if value == nil && ext == nil {
+		return nil
+	}
+	var strVal *string
+	if value != nil {
+		s := value.String()
+		strVal = &s
+	}
+	return xmlEncodePrimitiveString(e, name, strVal, ext)
+}
+{{ end }}
+
 // xmlEncodePrimitiveUint32 encodes a FHIR unsignedInt/positiveInt primitive.
 func xmlEncodePrimitiveUint32(e *xml.Encoder, name string, value *uint32, ext *Element) error {
 	if value == nil && ext == nil {
@@ -675,6 +692,45 @@ func xmlDecodePrimitiveInt(d *xml.Decoder, start xml.StartElement) (*int, *Eleme
 	}
 	return &v, elem, nil
 }
+
+{{ if .UsesInteger64 }}// xmlEncodePrimitiveInteger64Array encodes a repeating FHIR integer64 primitive.
+func xmlEncodePrimitiveInteger64Array(e *xml.Encoder, name string, values []Integer64, exts []Element) error {
+	for i, v := range values {
+		var ext *Element
+		if i < len(exts) {
+			ext = &exts[i]
+		}
+		value := v
+		if err := xmlEncodePrimitiveInteger64(e, name, &value, ext); err != nil {
+			return err
+		}
+	}
+	for i := len(values); i < len(exts); i++ {
+		if err := xmlEncodePrimitiveInteger64(e, name, nil, &exts[i]); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+{{ end }}
+
+{{ if .UsesInteger64 }}// xmlDecodePrimitiveInteger64 decodes a FHIR integer64 primitive from XML.
+func xmlDecodePrimitiveInteger64(d *xml.Decoder, start xml.StartElement) (*Integer64, *Element, error) {
+	s, ext, err := xmlDecodePrimitiveString(d, start)
+	if err != nil {
+		return nil, nil, err
+	}
+	if s == nil {
+		return nil, ext, nil
+	}
+	v, err := strconv.ParseInt(*s, 10, 64)
+	if err != nil {
+		return nil, nil, fmt.Errorf("invalid integer64 value %q: %w", *s, err)
+	}
+	out := Integer64(v)
+	return &out, ext, nil
+}
+{{ end }}
 
 // xmlDecodePrimitiveInt64 decodes a FHIR integer64 primitive element.
 func xmlDecodePrimitiveInt64(d *xml.Decoder, start xml.StartElement) (*int64, *Element, error) {

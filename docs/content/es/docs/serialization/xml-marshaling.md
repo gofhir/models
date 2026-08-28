@@ -15,7 +15,7 @@ Un solo defecto explicaba casi toda la diferencia: `Narrative.Div` se emitía de
 | XML r4 | 1138 | **100 %** |
 | XML r4b | 1156 | **100 %** |
 | XML r5 | 1359 | **100 %** |
-| JSON, las tres | 8758 | 99,5 % |
+| JSON, las tres | 8758 | 99,8 % |
 
 Verificado como funcional: primitivos como atributos `value=`, orden de elementos según la StructureDefinition, el namespace FHIR en el elemento raíz, recursos `contained`, choice types, `Element.id` como atributo, elementos con valor de recurso como `Bundle.entry.resource`, la precisión de los decimales y la narrativa XHTML.
 
@@ -257,7 +257,7 @@ Medido sobre los corpus de ejemplos publicados:
 | XML r4 | 1138 | **100 %** |
 | XML r4b | 1156 | **100 %** |
 | XML r5 | 1359 | **100 %** |
-| JSON, las tres versiones | 8758 | 99,5 % |
+| JSON, las tres versiones | 8758 | 99,8 % |
 
 La suite de conformidad en `conformance/` lleva la cuenta archivo por archivo, así que estas cifras son medidas, no estimadas.
 

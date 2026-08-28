@@ -48,7 +48,7 @@ type SubscriptionStatus struct {
 	// Extension for Type
 	TypeExt *Element `json:"_type,omitempty"`
 	// Events since the Subscription was created
-	EventsSinceSubscriptionStart *int64 `json:"eventsSinceSubscriptionStart,omitempty"`
+	EventsSinceSubscriptionStart *Integer64 `json:"eventsSinceSubscriptionStart,omitempty"`
 	// Extension for EventsSinceSubscriptionStart
 	EventsSinceSubscriptionStartExt *Element `json:"_eventsSinceSubscriptionStart,omitempty"`
 	// Detailed information about any events relevant to this notification
@@ -221,7 +221,7 @@ func (r SubscriptionStatus) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	if err := xmlEncodePrimitiveCode(e, "type", r.Type, r.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt64(e, "eventsSinceSubscriptionStart", r.EventsSinceSubscriptionStart, r.EventsSinceSubscriptionStartExt); err != nil {
+	if err := xmlEncodePrimitiveInteger64(e, "eventsSinceSubscriptionStart", r.EventsSinceSubscriptionStart, r.EventsSinceSubscriptionStartExt); err != nil {
 		return err
 	}
 	for _, item := range r.NotificationEvent {
@@ -321,7 +321,7 @@ func (r *SubscriptionStatus) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				r.Type = v
 				r.TypeExt = ext
 			case "eventsSinceSubscriptionStart":
-				v, ext, err := xmlDecodePrimitiveInt64(d, t)
+				v, ext, err := xmlDecodePrimitiveInteger64(d, t)
 				if err != nil {
 					return err
 				}
@@ -371,7 +371,7 @@ type SubscriptionStatusNotificationEvent struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Sequencing index of this event
-	EventNumber *int64 `json:"eventNumber,omitempty"`
+	EventNumber *Integer64 `json:"eventNumber,omitempty"`
 	// The instant this event occurred
 	Timestamp *string `json:"timestamp,omitempty"`
 	// Reference to the primary resource or information of this event
@@ -402,7 +402,7 @@ func (b SubscriptionStatusNotificationEvent) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveInt64(e, "eventNumber", b.EventNumber, nil); err != nil {
+	if err := xmlEncodePrimitiveInteger64(e, "eventNumber", b.EventNumber, nil); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "timestamp", b.Timestamp, nil); err != nil {
@@ -452,7 +452,7 @@ func (r *SubscriptionStatusNotificationEvent) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "eventNumber":
-				v, _, err := xmlDecodePrimitiveInt64(d, t)
+				v, _, err := xmlDecodePrimitiveInteger64(d, t)
 				if err != nil {
 					return err
 				}
@@ -571,7 +571,7 @@ func (b *SubscriptionStatusBuilder) SetType(v SubscriptionNotificationType) *Sub
 }
 
 // SetEventsSinceSubscriptionStart sets the EventsSinceSubscriptionStart field.
-func (b *SubscriptionStatusBuilder) SetEventsSinceSubscriptionStart(v int64) *SubscriptionStatusBuilder {
+func (b *SubscriptionStatusBuilder) SetEventsSinceSubscriptionStart(v Integer64) *SubscriptionStatusBuilder {
 	b.subscriptionStatus.EventsSinceSubscriptionStart = &v
 	return b
 }
@@ -687,7 +687,7 @@ func WithSubscriptionStatusType(v SubscriptionNotificationType) SubscriptionStat
 }
 
 // WithSubscriptionStatusEventsSinceSubscriptionStart sets the EventsSinceSubscriptionStart field.
-func WithSubscriptionStatusEventsSinceSubscriptionStart(v int64) SubscriptionStatusOption {
+func WithSubscriptionStatusEventsSinceSubscriptionStart(v Integer64) SubscriptionStatusOption {
 	return func(r *SubscriptionStatus) {
 		r.EventsSinceSubscriptionStart = &v
 	}
