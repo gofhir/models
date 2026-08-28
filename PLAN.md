@@ -314,7 +314,15 @@ Meterlos en el generador, o documentar explícitamente el paso manual.
 
 ## Fase 4 — XML conforme, de una vez
 
-**6–9 días · v1.6.0 · cambia bytes de salida**
+**6–9 días estimados · ~1 día real · v1.7.0 · ✅ el defecto grande, cerrado**
+
+> **Lo que costó de menos, y por qué.** La estimación asumía que `xml.Encoder` no permite escribir bytes crudos, así que preservar el XHTML exigiría reemplazar el encoder. **Esa premisa era falsa:** `,innerxml` sí escribe verbatim al codificar. El defecto era que `encoding/xml` nombra el elemento según el tipo Go, así que un struct anónimo salía como `<rawInner>`, y el decodificador —que discrimina por nombre— nunca lo reconocía. Comprobar la premisa antes de empezar es lo que redujo nueve días a uno.
+>
+> **XML: de 74/3653 a 3653/3653.** Con dos defectos menores del mismo tema: `xmlEscapeAttr` no escapaba CR/LF/TAB (que XML normaliza a espacio dentro de un atributo, y varios profiles publicados llevan `&#xD;` ahí), y `collapseEmptyElements` reescribía el XHTML del autor.
+>
+> **El primer test que escribí no servía:** pasaba con el bug reintroducido a propósito, porque una sola pasada deja el div dentro del wrapper y la pérdida solo aparece al releer. Con dos ciclos, la mutación falla con 1.125 narrativas perdidas. La suite de XML solo mide auto-estabilidad, y un documento que pierda siempre el mismo campo converge igual de limpio — que es exactamente cómo esto sobrevivió sin detectarse. Por eso la narrativa se compara ahora contra el archivo publicado.
+>
+> Siguen vivos: el namespace no se valida al leer, y los `_ext` sobre primitivos dentro de backbones no son representables (afecta también a JSON).
 
 > **Objetivo:** el XML no está roto en varios puntos: está roto de forma **sistémica**, y parchearlo por partes multiplica el coste de regenerar y de rehacer tests.
 
@@ -614,13 +622,15 @@ Aquí se ocupa terreno que en todo el ecosistema Go está vacío. Ampliada con l
 
 ## Releases y compatibilidad
 
-Cuatro releases en vez de tres: la fase 4 se separa porque cambia la salida XML de todos los recursos y merece su propio evento de comunicación.
+Lo publicado, y lo que queda. Las tres primeras salieron de `main`; las dos de la línea v1, de `maintenance-v1`.
 
-| Release | Contenido | Compatibilidad |
+| Release | Contenido | Estado |
 |---|---|---|
-| **v1.4.1** | Fase 2 | Sin ruptura. Publicar como aviso de seguridad. **Sin** el bump de toolchain. |
-| **v1.5.0** | Fase 3 | Aditivo. Incluye las marcas `// Deprecated:` y la guía de migración, con un ciclo de antelación. |
-| **v1.6.0** | Fase 4 | Cambia la salida XML. El CHANGELOG puede decirlo con precisión: «si comparabas XML byte a byte, esto te afecta». |
+| **v1.4.1** | Fase 2 | ✅ Guarda de profundidad, aviso de seguridad. |
+| **v1.5.0** | Fase 3 | ✅ Aditivo: `Ptr`/`Val`/`First`, colisión de ValueSets, enums. |
+| **v1.5.1** | — | ✅ `Bundle.issues` legible y escribible; `null` explícito tolerado. |
+| **v1.6.0** | Gate 2 | ✅ 12.845 marcas `// Deprecated:` y la guía de migración. Tags a mano: release-please no pudo cerrarla con la rama llamada `v1`. |
+| **v1.7.0** | Fase 4 | ✅ La narrativa XML. XML pasa a 3653/3653. Publicada sola, lo que valida el renombrado de la rama. |
 | **v2.0.0** | Fases 5, 6 y 7 | Siete cambios rompientes de una vez, con ruta `/v2`. La fase 5 aterriza en `main` **antes**, sin marca rompiente, para que no corte el major por sí sola. |
 | **v2.1+** | Fase 8 | Aditivo, incremento a incremento. |
 
@@ -657,14 +667,30 @@ Dos comprobaciones que valía hacer antes de emitir 12.845 mensajes:
 - **El aviso llega al usuario y no rompe al repo.** `staticcheck` omite SA1019 dentro del mismo módulo, así que los tests propios siguen en verde, mientras un consumidor externo sí recibe el aviso con el reemplazo nombrado. Comprobado en ambas direcciones con un módulo aparte.
 - **La equivalencia que el mensaje promete es real.** Un test parsea el código generado y compara, para las 11.952, el tipo del parámetro y la operación del cuerpo (`append` / `&v` / asignación). Cero discrepancias. Sin eso, el mensaje sería una promesa sin respaldo repetida doce mil veces.
 
-### Política de la rama `v1`
+### Política de la rama `maintenance-v1`
 
-Definida ahora que la rama existe:
+- **Recibe:** solo arreglos de seguridad. **El desarrollo pasa a `main` en exclusiva.**
+- **No recibe:** funcionalidad, arreglos de conformidad ni nada que cambie una firma o un tipo.
+- **Cuánto:** hasta que la v2 lleve un ciclo publicada.
+- **Mecánica:** el mismo workflow de release-please sirve a las dos ramas con `target-branch: ${{ github.ref_name }}`. Cada rama lleva su propio manifest. El CI también corre en `maintenance-v1`; sin eso, sus commits de release se publicarían sin verificar.
 
-- **Recibe:** arreglos que no exijan un cambio rompiente, y las marcas de deprecación.
-- **No recibe:** nada que cambie una firma o un tipo. Eso es lo que define la v2.
-- **Cuánto:** hasta que la v2 lleve un ciclo publicada. La ventana real de aviso no son las dos semanas hasta la v2, sino todo el tiempo que cada usuario siga en v1 — los avisos siguen ahí mientras no migre.
-- **Mecánica:** el mismo workflow de release-please sirve a las dos ramas con `target-branch: ${{ github.ref_name }}`. Cada rama lleva su propio manifest, así que ambas avanzan desde el 1.5.1 que comparten sin interferir. El CI también corre en `v1`; sin eso, sus commits de release se publicarían sin verificar.
+Lo publicado en ella: **v1.6.0** (12.845 marcas de deprecación) y **v1.7.0** (la narrativa XML). Ese es su alcance final salvo emergencia.
+
+### El nombre de la rama no es cosmético
+
+Se llama `maintenance-v1` y no `v1` porque con el nombre `v1` **release-please no puede terminar un release**. El título por defecto de un manifest multi-paquete es `chore: release ${branch}`, así que al mergear parsea ese `v1` final como versión y muere:
+
+```
+Error: unable to parse version string: 1
+```
+
+Reproducido localmente contra el repo real, lo que además mostró que el fallo se limita al paso `github-release`: `release-pr` funciona. Por eso la v1.6.0 quedó a medias —manifest y CHANGELOG dentro, tags fuera— y hubo que etiquetarla a mano. `main` recorre esa misma ruta en cada release y funciona precisamente porque «main» no parece una versión. La v1.7.0 se publicó sola, lo que confirma el arreglo de punta a punta.
+
+### Ningún release de `main` por debajo de 2.0.0 es instalable
+
+Consecuencia directa de la fase 5, y hay que tenerla presente en cada merge hasta que la v2 salga. `main` declara `/v2`, así que Go rechaza cualquier tag v1.x sobre él, **y el intento quema ese número para siempre**.
+
+El manifest de `main` decía 1.5.1 mientras `r4/v1.6.0` y `r4/v1.7.0` ya existían en la otra rama: un `feat` habría propuesto 1.6.0, un tag ya ocupado. Sincronizado a 1.7.0 —lo realmente publicado— y con `Release-As: 2.0.0` en el commit del port para que el siguiente release sea 2.0.0 pase lo que pase antes. Verificado con release-please contra la rama, no supuesto.
 
 ---
 

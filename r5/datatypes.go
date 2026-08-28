@@ -4606,7 +4606,7 @@ func (d Narrative) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveCode(e, "status", d.Status, d.StatusExt); err != nil {
 		return err
 	}
-	if err := xmlEncodeRawXHTML(e, d.Div); err != nil {
+	if err := xmlEncodeRawXHTML(e, "div", d.Div); err != nil {
 		return err
 	}
 
