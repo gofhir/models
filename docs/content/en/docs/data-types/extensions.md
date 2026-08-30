@@ -73,7 +73,6 @@ func ptrTo[T any](v T) *T {
 }
 
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Id:           ptrTo("with-extensions"),
     Gender:       ptrTo(r4.AdministrativeGenderMale),
     Extension: []r4.Extension{
@@ -123,7 +122,6 @@ Modifier extensions change the meaning of the element they are attached to. They
 
 ```go
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Id:           ptrTo("with-modifier"),
     ModifierExtension: []r4.Extension{
         {
@@ -166,7 +164,6 @@ In the Go struct, this maps to:
 
 ```go
 patient := &r4.Patient{
-    ResourceType: "Patient",
     BirthDate:    ptrTo("1990-01-15"),
     BirthDateExt: &r4.Element{
         Id: ptrTo("birth-date-element"),
@@ -198,7 +195,6 @@ type Element struct {
 ```go
 // Patient gender is unknown, but we provide a reason
 patient := &r4.Patient{
-    ResourceType: "Patient",
     // Gender is nil (absent)
     GenderExt: &r4.Element{
         Extension: []r4.Extension{
@@ -231,7 +227,6 @@ This produces:
 
 ```go
 patient := &r4.Patient{
-    ResourceType: "Patient",
     BirthDate:    ptrTo("1990-01-15"),
     BirthDateExt: &r4.Element{
         Id: ptrTo("dob"),
@@ -245,7 +240,6 @@ Extensions can themselves contain nested extensions instead of a simple value. T
 
 ```go
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Extension: []r4.Extension{
         {
             Url: "http://hl7.org/fhir/StructureDefinition/patient-nationality",

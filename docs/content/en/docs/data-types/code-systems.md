@@ -51,7 +51,6 @@ func ptrTo[T any](v T) *T {
 }
 
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Id:           ptrTo("example"),
     Gender:       ptrTo(r4.AdministrativeGenderFemale),
 }
@@ -107,7 +106,6 @@ func ptrTo[T any](v T) *T {
 
 func main() {
     obs := &r4.Observation{
-        ResourceType: "Observation",
         Id:           ptrTo("vitals-1"),
         Status:       ptrTo(r4.ObservationStatusFinal),
         Code: &r4.CodeableConcept{
@@ -250,7 +248,6 @@ Enum types serialize to and from their string values in JSON, exactly as FHIR sp
 
 ```go
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Gender:       ptrTo(r4.AdministrativeGenderMale),
 }
 

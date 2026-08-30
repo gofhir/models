@@ -60,7 +60,6 @@ func ptrTo[T any](v T) *T {
 
 func main() {
     patient := &r4.Patient{
-        ResourceType: "Patient",
         Id:           ptrTo("xml-example"),
         Active:       ptrTo(true),
         Gender:       ptrTo(r4.AdministrativeGenderMale),
@@ -235,7 +234,6 @@ _, err := r4.MarshalResourceXML(patient)
 
 ```go
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Id:           ptrTo("with-narrative"),
     Text: &r4.Narrative{
         Status: ptrTo(r4.NarrativeStatusGenerated),
@@ -268,14 +266,12 @@ The narrative is therefore checked separately and directly against the source: f
 
 A resource carrying a narrative round-trips with its data intact, narrative included.
 
-One difference to be aware of: `UnmarshalResourceXML` leaves the `ResourceType`
-field empty, so the decoded struct is not byte-identical to the original. Use
-`GetResourceType()`, which returns the correct value regardless, and note that
-serialization is unaffected because `MarshalJSON` supplies the field:
+The decoded struct is equal to the original: `resourceType` is a zero-size marker
+carried by the Go type rather than a string the decoder has to fill in, so there
+is no field left inconsistent. Read it with `GetResourceType()`:
 
 ```go
 plain := &r4.Patient{
-    ResourceType: "Patient",
     Id:           ptrTo("round-trip"),
     Active:       ptrTo(true),
     Gender:       ptrTo(r4.AdministrativeGenderMale),

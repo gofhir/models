@@ -5,7 +5,6 @@
 package r4
 
 import (
-	"bytes"
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
@@ -15,10 +14,30 @@ import (
 // ClaimResponse Resource
 // =============================================================================
 
+// claimResponseTypeMarker occupies no memory and serializes as the constant
+// "ClaimResponse". It replaces a string field that a per-resource MarshalJSON had
+// to overwrite on every call, which cost a second bytes.Buffer and json.Encoder
+// per resource and, because a promoted MarshalJSON wins over the outer struct,
+// silently dropped the fields of any type embedding this one.
+//
+// Nothing needs to set it: the zero value is correct, and GetResourceType()
+// returns the same constant.
+type claimResponseTypeMarker struct{}
+
+// MarshalJSON writes the resource type as a JSON string.
+func (claimResponseTypeMarker) MarshalJSON() ([]byte, error) {
+	return []byte(`"ClaimResponse"`), nil
+}
+
+// UnmarshalJSON accepts and discards whatever the document carried. The type is
+// fixed by the Go type itself, so a mismatched or absent value is not an error
+// here — UnmarshalResource is what validates it during dispatch.
+func (*claimResponseTypeMarker) UnmarshalJSON([]byte) error { return nil }
+
 // ClaimResponse represents FHIR ClaimResponse.
 type ClaimResponse struct {
-	// FHIR resource type
-	ResourceType string `json:"resourceType"`
+	// FHIR resource type. Emitted automatically; see claimResponseTypeMarker.
+	ResourceType claimResponseTypeMarker `json:"resourceType"`
 	// Logical id of this artifact
 	Id *string `json:"id,omitempty"`
 	// Metadata about the resource
@@ -155,27 +174,6 @@ func (r *ClaimResponse) GetExtension() []Extension {
 // GetModifierExtension returns the resource's modifier extensions.
 func (r *ClaimResponse) GetModifierExtension() []Extension {
 	return r.ModifierExtension
-}
-
-// MarshalJSON ensures resourceType is always included in JSON output.
-// HTML escaping is disabled to preserve FHIR narrative XHTML content.
-//
-// Note: Use the package-level Marshal function instead of json.Marshal
-// to ensure HTML in narrative text.div fields is not escaped.
-func (r ClaimResponse) MarshalJSON() ([]byte, error) {
-	r.ResourceType = "ClaimResponse"
-	type Alias ClaimResponse
-	var buf bytes.Buffer
-	enc := json.NewEncoder(&buf)
-	enc.SetEscapeHTML(false)
-	if err := enc.Encode((Alias)(r)); err != nil {
-		return nil, err
-	}
-	b := buf.Bytes()
-	if len(b) > 0 && b[len(b)-1] == '\n' {
-		b = b[:len(b)-1]
-	}
-	return b, nil
 }
 
 // UnmarshalJSON handles deserialization of polymorphic contained resources.
@@ -2430,10 +2428,9 @@ type ClaimResponseBuilder struct {
 // NewClaimResponseBuilder creates a new ClaimResponseBuilder.
 func NewClaimResponseBuilder() *ClaimResponseBuilder {
 	return &ClaimResponseBuilder{
-		// ResourceType is set here rather than left to MarshalJSON, so a resource
-		// built this way reports its type in memory too. Code switching on
-		// r.ResourceType used to fall through to default in silence.
-		claimResponse: &ClaimResponse{ResourceType: "ClaimResponse"},
+		// Nothing to set: the type marker carries the resource type, so the zero
+		// value is already correct both in memory and on the wire.
+		claimResponse: &ClaimResponse{},
 	}
 }
 
@@ -2661,7 +2658,7 @@ type ClaimResponseOption func(*ClaimResponse)
 
 // NewClaimResponse creates a new ClaimResponse with the given options.
 func NewClaimResponse(opts ...ClaimResponseOption) *ClaimResponse {
-	r := &ClaimResponse{ResourceType: "ClaimResponse"}
+	r := &ClaimResponse{}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -187,7 +187,6 @@ The `Decimal` type is used wherever FHIR defines a `decimal` element. The most c
 
 ```go
 observation := &r4.Observation{
-    ResourceType: "Observation",
     Id:           ptrTo("weight-1"),
     Status:       ptrTo(r4.ObservationStatusFinal),
     Code: &r4.CodeableConcept{

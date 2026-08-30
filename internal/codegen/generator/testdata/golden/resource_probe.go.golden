@@ -5,8 +5,6 @@
 package probe
 
 import (
-	"bytes"
-	"encoding/json"
 	"encoding/xml"
 )
 
@@ -14,11 +12,31 @@ import (
 // Probe Resource
 // =============================================================================
 
+// probeTypeMarker occupies no memory and serializes as the constant
+// "Probe". It replaces a string field that a per-resource MarshalJSON had
+// to overwrite on every call, which cost a second bytes.Buffer and json.Encoder
+// per resource and, because a promoted MarshalJSON wins over the outer struct,
+// silently dropped the fields of any type embedding this one.
+//
+// Nothing needs to set it: the zero value is correct, and GetResourceType()
+// returns the same constant.
+type probeTypeMarker struct{}
+
+// MarshalJSON writes the resource type as a JSON string.
+func (probeTypeMarker) MarshalJSON() ([]byte, error) {
+	return []byte(`"Probe"`), nil
+}
+
+// UnmarshalJSON accepts and discards whatever the document carried. The type is
+// fixed by the Go type itself, so a mismatched or absent value is not an error
+// here — UnmarshalResource is what validates it during dispatch.
+func (*probeTypeMarker) UnmarshalJSON([]byte) error { return nil }
+
 // Probe represents FHIR Probe.
 type Probe struct {
-	// FHIR resource type
-	ResourceType string  `json:"resourceType"`
-	Id           *string `json:"id,omitempty"`
+	// FHIR resource type. Emitted automatically; see probeTypeMarker.
+	ResourceType probeTypeMarker `json:"resourceType"`
+	Id           *string         `json:"id,omitempty"`
 	// Extension for Id
 	IdExt *Element `json:"_id,omitempty"`
 	// Status of the probe
@@ -54,27 +72,6 @@ func (r *Probe) GetId() *string {
 // SetId sets the resource's logical ID.
 func (r *Probe) SetId(id string) {
 	r.Id = &id
-}
-
-// MarshalJSON ensures resourceType is always included in JSON output.
-// HTML escaping is disabled to preserve FHIR narrative XHTML content.
-//
-// Note: Use the package-level Marshal function instead of json.Marshal
-// to ensure HTML in narrative text.div fields is not escaped.
-func (r Probe) MarshalJSON() ([]byte, error) {
-	r.ResourceType = "Probe"
-	type Alias Probe
-	var buf bytes.Buffer
-	enc := json.NewEncoder(&buf)
-	enc.SetEscapeHTML(false)
-	if err := enc.Encode((Alias)(r)); err != nil {
-		return nil, err
-	}
-	b := buf.Bytes()
-	if len(b) > 0 && b[len(b)-1] == '\n' {
-		b = b[:len(b)-1]
-	}
-	return b, nil
 }
 
 // MarshalXML serializes Probe to FHIR-conformant XML.
@@ -235,10 +232,9 @@ type ProbeBuilder struct {
 // NewProbeBuilder creates a new ProbeBuilder.
 func NewProbeBuilder() *ProbeBuilder {
 	return &ProbeBuilder{
-		// ResourceType is set here rather than left to MarshalJSON, so a resource
-		// built this way reports its type in memory too. Code switching on
-		// r.ResourceType used to fall through to default in silence.
-		probe: &Probe{ResourceType: "Probe"},
+		// Nothing to set: the type marker carries the resource type, so the zero
+		// value is already correct both in memory and on the wire.
+		probe: &Probe{},
 	}
 }
 
@@ -308,7 +304,7 @@ type ProbeOption func(*Probe)
 
 // NewProbe creates a new Probe with the given options.
 func NewProbe(opts ...ProbeOption) *Probe {
-	r := &Probe{ResourceType: "Probe"}
+	r := &Probe{}
 	for _, opt := range opts {
 		opt(r)
 	}

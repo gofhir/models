@@ -86,8 +86,8 @@ if err != nil {
 }
 
 patient := resource.(*r4.Patient)
-patient.ResourceType = "Patient"
 patient.Id = ptrTo("new-patient")
+// resourceType no se asigna; lo fija el propio tipo Go.
 ```
 
 Esta función es la base para las otras funciones del registro. Busca el nombre del tipo en el mapa interno `resourceFactories` y llama a la función de fábrica correspondiente.

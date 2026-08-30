@@ -20,7 +20,6 @@ import (
 
 func main() {
     patient := r4.Patient{
-        ResourceType: "Patient",
         Id:           ptrTo("123"),
         Active:       ptrTo(true),
         Name: []r4.HumanName{
@@ -34,7 +33,7 @@ func main() {
 ```
 
 {{< callout type="info" >}}
-El campo `ResourceType` se inyecta automáticamente durante el marshaling JSON. Puedes establecerlo explícitamente para mayor claridad, pero no es obligatorio.
+No hay ningún `resourceType` que rellenar. El campo es un tipo marcador de tamaño cero, así que `r4.Patient{}` ya se serializa como `{"resourceType":"Patient",...}`, y asignarlo no es posible. Léelo con `GetResourceType()`.
 {{< /callout >}}
 
 ## Manejo de Punteros

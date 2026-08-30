@@ -5,7 +5,6 @@
 package r4
 
 import (
-	"bytes"
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
@@ -15,10 +14,30 @@ import (
 // Bundle Resource
 // =============================================================================
 
+// bundleTypeMarker occupies no memory and serializes as the constant
+// "Bundle". It replaces a string field that a per-resource MarshalJSON had
+// to overwrite on every call, which cost a second bytes.Buffer and json.Encoder
+// per resource and, because a promoted MarshalJSON wins over the outer struct,
+// silently dropped the fields of any type embedding this one.
+//
+// Nothing needs to set it: the zero value is correct, and GetResourceType()
+// returns the same constant.
+type bundleTypeMarker struct{}
+
+// MarshalJSON writes the resource type as a JSON string.
+func (bundleTypeMarker) MarshalJSON() ([]byte, error) {
+	return []byte(`"Bundle"`), nil
+}
+
+// UnmarshalJSON accepts and discards whatever the document carried. The type is
+// fixed by the Go type itself, so a mismatched or absent value is not an error
+// here — UnmarshalResource is what validates it during dispatch.
+func (*bundleTypeMarker) UnmarshalJSON([]byte) error { return nil }
+
 // Bundle represents FHIR Bundle.
 type Bundle struct {
-	// FHIR resource type
-	ResourceType string `json:"resourceType"`
+	// FHIR resource type. Emitted automatically; see bundleTypeMarker.
+	ResourceType bundleTypeMarker `json:"resourceType"`
 	// Logical id of this artifact
 	Id *string `json:"id,omitempty"`
 	// Metadata about the resource
@@ -76,27 +95,6 @@ func (r *Bundle) GetMeta() *Meta {
 // SetMeta sets the resource's Meta element.
 func (r *Bundle) SetMeta(m *Meta) {
 	r.Meta = m
-}
-
-// MarshalJSON ensures resourceType is always included in JSON output.
-// HTML escaping is disabled to preserve FHIR narrative XHTML content.
-//
-// Note: Use the package-level Marshal function instead of json.Marshal
-// to ensure HTML in narrative text.div fields is not escaped.
-func (r Bundle) MarshalJSON() ([]byte, error) {
-	r.ResourceType = "Bundle"
-	type Alias Bundle
-	var buf bytes.Buffer
-	enc := json.NewEncoder(&buf)
-	enc.SetEscapeHTML(false)
-	if err := enc.Encode((Alias)(r)); err != nil {
-		return nil, err
-	}
-	b := buf.Bytes()
-	if len(b) > 0 && b[len(b)-1] == '\n' {
-		b = b[:len(b)-1]
-	}
-	return b, nil
 }
 
 // MarshalXML serializes Bundle to FHIR-conformant XML.
@@ -964,10 +962,9 @@ type BundleBuilder struct {
 // NewBundleBuilder creates a new BundleBuilder.
 func NewBundleBuilder() *BundleBuilder {
 	return &BundleBuilder{
-		// ResourceType is set here rather than left to MarshalJSON, so a resource
-		// built this way reports its type in memory too. Code switching on
-		// r.ResourceType used to fall through to default in silence.
-		bundle: &Bundle{ResourceType: "Bundle"},
+		// Nothing to set: the type marker carries the resource type, so the zero
+		// value is already correct both in memory and on the wire.
+		bundle: &Bundle{},
 	}
 }
 
@@ -1051,7 +1048,7 @@ type BundleOption func(*Bundle)
 
 // NewBundle creates a new Bundle with the given options.
 func NewBundle(opts ...BundleOption) *Bundle {
-	r := &Bundle{ResourceType: "Bundle"}
+	r := &Bundle{}
 	for _, opt := range opts {
 		opt(r)
 	}

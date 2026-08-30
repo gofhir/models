@@ -5,7 +5,6 @@
 package r5
 
 import (
-	"bytes"
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
@@ -15,10 +14,30 @@ import (
 // Schedule Resource
 // =============================================================================
 
+// scheduleTypeMarker occupies no memory and serializes as the constant
+// "Schedule". It replaces a string field that a per-resource MarshalJSON had
+// to overwrite on every call, which cost a second bytes.Buffer and json.Encoder
+// per resource and, because a promoted MarshalJSON wins over the outer struct,
+// silently dropped the fields of any type embedding this one.
+//
+// Nothing needs to set it: the zero value is correct, and GetResourceType()
+// returns the same constant.
+type scheduleTypeMarker struct{}
+
+// MarshalJSON writes the resource type as a JSON string.
+func (scheduleTypeMarker) MarshalJSON() ([]byte, error) {
+	return []byte(`"Schedule"`), nil
+}
+
+// UnmarshalJSON accepts and discards whatever the document carried. The type is
+// fixed by the Go type itself, so a mismatched or absent value is not an error
+// here — UnmarshalResource is what validates it during dispatch.
+func (*scheduleTypeMarker) UnmarshalJSON([]byte) error { return nil }
+
 // Schedule represents FHIR Schedule.
 type Schedule struct {
-	// FHIR resource type
-	ResourceType string `json:"resourceType"`
+	// FHIR resource type. Emitted automatically; see scheduleTypeMarker.
+	ResourceType scheduleTypeMarker `json:"resourceType"`
 	// Logical id of this artifact
 	Id *string `json:"id,omitempty"`
 	// Metadata about the resource
@@ -113,27 +132,6 @@ func (r *Schedule) GetExtension() []Extension {
 // GetModifierExtension returns the resource's modifier extensions.
 func (r *Schedule) GetModifierExtension() []Extension {
 	return r.ModifierExtension
-}
-
-// MarshalJSON ensures resourceType is always included in JSON output.
-// HTML escaping is disabled to preserve FHIR narrative XHTML content.
-//
-// Note: Use the package-level Marshal function instead of json.Marshal
-// to ensure HTML in narrative text.div fields is not escaped.
-func (r Schedule) MarshalJSON() ([]byte, error) {
-	r.ResourceType = "Schedule"
-	type Alias Schedule
-	var buf bytes.Buffer
-	enc := json.NewEncoder(&buf)
-	enc.SetEscapeHTML(false)
-	if err := enc.Encode((Alias)(r)); err != nil {
-		return nil, err
-	}
-	b := buf.Bytes()
-	if len(b) > 0 && b[len(b)-1] == '\n' {
-		b = b[:len(b)-1]
-	}
-	return b, nil
 }
 
 // UnmarshalJSON handles deserialization of polymorphic contained resources.
@@ -402,10 +400,9 @@ type ScheduleBuilder struct {
 // NewScheduleBuilder creates a new ScheduleBuilder.
 func NewScheduleBuilder() *ScheduleBuilder {
 	return &ScheduleBuilder{
-		// ResourceType is set here rather than left to MarshalJSON, so a resource
-		// built this way reports its type in memory too. Code switching on
-		// r.ResourceType used to fall through to default in silence.
-		schedule: &Schedule{ResourceType: "Schedule"},
+		// Nothing to set: the type marker carries the resource type, so the zero
+		// value is already correct both in memory and on the wire.
+		schedule: &Schedule{},
 	}
 }
 
@@ -525,7 +522,7 @@ type ScheduleOption func(*Schedule)
 
 // NewSchedule creates a new Schedule with the given options.
 func NewSchedule(opts ...ScheduleOption) *Schedule {
-	r := &Schedule{ResourceType: "Schedule"}
+	r := &Schedule{}
 	for _, opt := range opts {
 		opt(r)
 	}

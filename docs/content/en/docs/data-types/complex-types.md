@@ -69,7 +69,6 @@ name := r4.HumanName{
 }
 
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Name:         []r4.HumanName{name},
 }
 ```
@@ -92,7 +91,6 @@ A `CodeableConcept` typically contains one or more `Coding` entries that identif
 
 ```go
 condition := &r4.Condition{
-    ResourceType: "Condition",
     Code: &r4.CodeableConcept{
         Coding: []r4.Coding{
             {
@@ -196,7 +194,6 @@ type Identifier struct {
 
 ```go
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Identifier: []r4.Identifier{
         {
             Use:    ptrTo(r4.IdentifierUseOfficial),
@@ -213,7 +210,6 @@ Represents a postal address:
 
 ```go
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Address: []r4.Address{
         {
             Use:        ptrTo(r4.AddressUseHome),
@@ -234,7 +230,6 @@ Represents a phone number, email, or other contact mechanism:
 
 ```go
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Telecom: []r4.ContactPoint{
         {
             System: ptrTo(r4.ContactPointSystemPhone),
@@ -312,7 +307,6 @@ type Narrative struct {
 
 ```go
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Text: &r4.Narrative{
         Status: ptrTo(r4.NarrativeStatusGenerated),
         Div:    ptrTo(`<div xmlns="http://www.w3.org/1999/xhtml"><p>John Smith, Male</p></div>`),
@@ -326,7 +320,6 @@ Resources also contain inline backbone elements that are unique to that resource
 
 ```go
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Contact: []r4.PatientContact{
         {
             Relationship: []r4.CodeableConcept{

@@ -24,7 +24,6 @@ All three patterns set fields on the same underlying struct (for example, `r4.Pa
 ```go
 active := true
 patient := r4.Patient{
-    ResourceType: "Patient",
     Id:           &id,
     Active:       &active,
 }

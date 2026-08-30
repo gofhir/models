@@ -34,7 +34,6 @@ func ptrTo[T any](v T) *T {
 func main() {
     // Create a Patient resource
     patient := &r4.Patient{
-        ResourceType: "Patient",
         Id:           ptrTo("example-123"),
         Active:       ptrTo(true),
         Name: []r4.HumanName{
@@ -69,7 +68,7 @@ All struct fields use appropriate `json` struct tags with `omitempty` for option
 
 ```go
 type Patient struct {
-    ResourceType string              `json:"resourceType"`
+    ResourceType patientTypeMarker   `json:"resourceType"`  // zero-size; emits "Patient"
     Id           *string             `json:"id,omitempty"`
     Meta         *Meta               `json:"meta,omitempty"`
     Active       *bool               `json:"active,omitempty"`
@@ -80,7 +79,7 @@ type Patient struct {
 }
 ```
 
-Required fields like `ResourceType` do not use `omitempty`, ensuring they are always present in the serialized output.
+`resourceType` does not use `omitempty`, so it is always present in the output. It is carried by a zero-size marker type rather than a string, which is why nothing needs to assign it — read it with `GetResourceType()`.
 
 ## Round-Trip Fidelity
 
@@ -115,7 +114,6 @@ func ptrTo[T any](v T) *T {
 func main() {
     // Create the original resource
     original := &r4.Patient{
-        ResourceType: "Patient",
         Id:           ptrTo("123"),
         Active:       ptrTo(true),
         Gender:       ptrTo(r4.AdministrativeGenderFemale),
@@ -134,7 +132,7 @@ func main() {
     }
 
     // Verify round-trip fidelity
-    fmt.Println(decoded.ResourceType)    // "Patient"
+    fmt.Println(decoded.GetResourceType()) // "Patient"
     fmt.Println(*decoded.Id)             // "123"
     fmt.Println(*decoded.Active)         // true
     fmt.Println(*decoded.Gender)         // "female"
@@ -200,7 +198,6 @@ Because the structs implement the standard marshaling interfaces, they work dire
 ```go
 func handleGetPatient(w http.ResponseWriter, r *http.Request) {
     patient := &r4.Patient{
-        ResourceType: "Patient",
         Id:           ptrTo("http-example"),
     }
 
@@ -228,11 +225,9 @@ The library handles polymorphic contained resources during JSON serialization. C
 
 ```go
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Id:           ptrTo("with-contained"),
     Contained: []r4.Resource{
         &r4.Organization{
-            ResourceType: "Organization",
             Id:           ptrTo("org-1"),
             Name:         ptrTo("Example Hospital"),
         },

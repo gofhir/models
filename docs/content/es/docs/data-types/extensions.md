@@ -73,7 +73,6 @@ func ptrTo[T any](v T) *T {
 }
 
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Id:           ptrTo("with-extensions"),
     Gender:       ptrTo(r4.AdministrativeGenderMale),
     Extension: []r4.Extension{
@@ -123,7 +122,6 @@ Las extensiones modificadoras cambian el significado del elemento al que están 
 
 ```go
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Id:           ptrTo("with-modifier"),
     ModifierExtension: []r4.Extension{
         {
@@ -166,7 +164,6 @@ En el struct de Go, esto se mapea a:
 
 ```go
 patient := &r4.Patient{
-    ResourceType: "Patient",
     BirthDate:    ptrTo("1990-01-15"),
     BirthDateExt: &r4.Element{
         Id: ptrTo("birth-date-element"),
@@ -198,7 +195,6 @@ type Element struct {
 ```go
 // Patient gender is unknown, but we provide a reason
 patient := &r4.Patient{
-    ResourceType: "Patient",
     // Gender is nil (absent)
     GenderExt: &r4.Element{
         Extension: []r4.Extension{
@@ -231,7 +227,6 @@ Esto produce:
 
 ```go
 patient := &r4.Patient{
-    ResourceType: "Patient",
     BirthDate:    ptrTo("1990-01-15"),
     BirthDateExt: &r4.Element{
         Id: ptrTo("dob"),
@@ -245,7 +240,6 @@ Las extensiones pueden contener a su vez extensiones anidadas en lugar de un val
 
 ```go
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Extension: []r4.Extension{
         {
             Url: "http://hl7.org/fhir/StructureDefinition/patient-nationality",

@@ -20,7 +20,6 @@ import (
 
 func main() {
     patient := r4.Patient{
-        ResourceType: "Patient",
         Id:           ptrTo("123"),
         Active:       ptrTo(true),
         Name: []r4.HumanName{
@@ -34,7 +33,7 @@ func main() {
 ```
 
 {{< callout type="info" >}}
-The `ResourceType` field is automatically injected during JSON marshaling. You can set it explicitly for clarity, but it is not required.
+There is no `resourceType` to fill in. The field is a zero-size marker type, so `r4.Patient{}` already serializes as `{"resourceType":"Patient",...}`, and assigning it is not possible. Read it with `GetResourceType()`.
 {{< /callout >}}
 
 ## Handling Pointers
