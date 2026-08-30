@@ -27,7 +27,6 @@ func ptrTo[T any](v T) *T {
 
 func main() {
     patient := r4.Patient{
-        ResourceType: "Patient",
         Id:           ptrTo("123"),
         Active:       ptrTo(true),
         Name: []r4.HumanName{

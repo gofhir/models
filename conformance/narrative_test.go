@@ -215,8 +215,7 @@ func TestNarrativeXHTMLIsNotRewritten(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			patient := &r4.Patient{
-				ResourceType: "Patient",
-				Id:           r4.Ptr("x"),
+				Id: r4.Ptr("x"),
 				Text: &r4.Narrative{
 					Status: r4.Ptr(r4.NarrativeStatusGenerated),
 					Div:    r4.Ptr(tt.div),
@@ -267,8 +266,7 @@ func TestMalformedNarrativeIsRejected(t *testing.T) {
 	} {
 		t.Run(tt.name, func(t *testing.T) {
 			patient := &r4.Patient{
-				ResourceType: "Patient",
-				Text:         &r4.Narrative{Div: r4.Ptr(tt.div)},
+				Text: &r4.Narrative{Div: r4.Ptr(tt.div)},
 			}
 			if _, err := r4.MarshalResourceXML(patient); err == nil {
 				t.Error("malformed narrative was accepted; it used to produce output that is not well-formed with a nil error")

@@ -6,24 +6,30 @@
 
 package {{.PackageName}}
 
-{{- /* Determine if fmt import is needed (contained or Resource fields) */ -}}
-{{- $needsFmt := false -}}
+{{- /* Both "encoding/json" and "fmt" are used only by the polymorphic dispatch
+       that contained and Resource-typed fields need, so one flag governs both.
+       Binary is the resource that proves it matters: it has neither, and since
+       the per-resource MarshalJSON went away it uses neither import. */ -}}
+{{- $needsDispatch := false -}}
 {{- range .Resource.Properties -}}
-{{- if eq .JSONName "contained" -}}{{- $needsFmt = true -}}{{- end -}}
+{{- if eq .JSONName "contained" -}}{{- $needsDispatch = true -}}{{- end -}}
 {{- /* A Resource-typed field on the resource itself also emits fmt.Errorf. */ -}}
-{{- if eq .GoType "Resource" -}}{{- $needsFmt = true -}}{{- end -}}
+{{- if eq .GoType "Resource" -}}{{- $needsDispatch = true -}}{{- end -}}
 {{- end -}}
 {{- range .Backbones -}}
 {{- range .Properties -}}
-{{- if eq .GoType "Resource" -}}{{- $needsFmt = true -}}{{- end -}}
+{{- if eq .GoType "Resource" -}}{{- $needsDispatch = true -}}{{- end -}}
 {{- end -}}
 {{- end }}
 
+{{/* "bytes" went with the per-resource MarshalJSON, which was the only thing
+     that used it. */ -}}
 import (
-	"bytes"
+{{- if $needsDispatch }}
 	"encoding/json"
+{{- end }}
 	"encoding/xml"
-{{- if $needsFmt }}
+{{- if $needsDispatch }}
 	"fmt"
 {{- end }}
 )
@@ -33,12 +39,32 @@ import (
 // =============================================================================
 
 {{with .Resource}}
+// {{$.Builder.LowerName}}TypeMarker occupies no memory and serializes as the constant
+// "{{.FHIRName}}". It replaces a string field that a per-resource MarshalJSON had
+// to overwrite on every call, which cost a second bytes.Buffer and json.Encoder
+// per resource and, because a promoted MarshalJSON wins over the outer struct,
+// silently dropped the fields of any type embedding this one.
+//
+// Nothing needs to set it: the zero value is correct, and GetResourceType()
+// returns the same constant.
+type {{$.Builder.LowerName}}TypeMarker struct{}
+
+// MarshalJSON writes the resource type as a JSON string.
+func ({{$.Builder.LowerName}}TypeMarker) MarshalJSON() ([]byte, error) {
+	return []byte(`"{{.FHIRName}}"`), nil
+}
+
+// UnmarshalJSON accepts and discards whatever the document carried. The type is
+// fixed by the Go type itself, so a mismatched or absent value is not an error
+// here — UnmarshalResource is what validates it during dispatch.
+func (*{{$.Builder.LowerName}}TypeMarker) UnmarshalJSON([]byte) error { return nil }
+
 {{if .Description}}// {{.Name}} {{.Description}}
 {{else}}// {{.Name}} represents FHIR {{.FHIRName}}.
 {{end -}}
 type {{.Name}} struct {
-	// FHIR resource type
-	ResourceType string `json:"resourceType"`
+	// FHIR resource type. Emitted automatically; see {{$.Builder.LowerName}}TypeMarker.
+	ResourceType {{$.Builder.LowerName}}TypeMarker `json:"resourceType"`
 {{- range .Properties}}
 	{{if .Description}}// {{.Description}}
 	{{end -}}
@@ -143,27 +169,16 @@ func (r *{{.Name}}) GetModifierExtension() []Extension {
 }
 {{- end }}
 
-// MarshalJSON ensures resourceType is always included in JSON output.
-// HTML escaping is disabled to preserve FHIR narrative XHTML content.
-//
-// Note: Use the package-level Marshal function instead of json.Marshal
-// to ensure HTML in narrative text.div fields is not escaped.
-func (r {{.Name}}) MarshalJSON() ([]byte, error) {
-	r.ResourceType = "{{.FHIRName}}"
-	type Alias {{.Name}}
-	var buf bytes.Buffer
-	enc := json.NewEncoder(&buf)
-	enc.SetEscapeHTML(false)
-	if err := enc.Encode((Alias)(r)); err != nil {
-		return nil, err
-	}
-	b := buf.Bytes()
-	if len(b) > 0 && b[len(b)-1] == '\n' {
-		b = b[:len(b)-1]
-	}
-	return b, nil
-}
+{{- /* No MarshalJSON on the resource. It did two things and neither needed a
+       method: it filled in ResourceType, which the type marker now emits by
+       itself, and it disabled HTML escaping — which never worked, because
+       encoding/json re-compacts whatever MarshalJSON returns using the outer
+       encoder's escaping. Marshal() is where the escaping is actually decided,
+       and that is unchanged.
 
+       Removing it also fixes a silent data loss: a promoted MarshalJSON takes
+       precedence over the struct embedding the resource, so a user's own fields
+       alongside an embedded r4.Patient were dropped from the output entirely. */ -}}
 {{- /* A Resource-typed field on the resource itself, e.g. R5's Bundle.issues.
        It needs the same dispatch contained does: encoding/json cannot build an
        interface value, so without this the field is unreadable. `contained` is
@@ -681,10 +696,9 @@ type {{$r.Name}}Builder struct {
 // New{{$r.Name}}Builder creates a new {{$r.Name}}Builder.
 func New{{$r.Name}}Builder() *{{$r.Name}}Builder {
 	return &{{$r.Name}}Builder{
-		// ResourceType is set here rather than left to MarshalJSON, so a resource
-		// built this way reports its type in memory too. Code switching on
-		// r.ResourceType used to fall through to default in silence.
-		{{$r.LowerName}}: &{{$r.Name}}{ResourceType: "{{$r.FHIRName}}"},
+		// Nothing to set: the type marker carries the resource type, so the zero
+		// value is already correct both in memory and on the wire.
+		{{$r.LowerName}}: &{{$r.Name}}{},
 	}
 }
 
@@ -741,7 +755,7 @@ type {{$r.Name}}Option func(*{{$r.Name}})
 
 // New{{$r.Name}} creates a new {{$r.Name}} with the given options.
 func New{{$r.Name}}(opts ...{{$r.Name}}Option) *{{$r.Name}} {
-	r := &{{$r.Name}}{ResourceType: "{{$r.FHIRName}}"}
+	r := &{{$r.Name}}{}
 	for _, opt := range opts {
 		opt(r)
 	}

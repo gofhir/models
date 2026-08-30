@@ -61,7 +61,6 @@ func ptrTo[T any](v T) *T {
 
 func main() {
     patient := &r4.Patient{
-        ResourceType: "Patient",
         Id:           ptrTo("xml-example"),
         Active:       ptrTo(true),
         Gender:       ptrTo(r4.AdministrativeGenderMale),
@@ -236,7 +235,6 @@ _, err := r4.MarshalResourceXML(patient)
 
 ```go
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Id:           ptrTo("with-narrative"),
     Text: &r4.Narrative{
         Status: ptrTo(r4.NarrativeStatusGenerated),
@@ -269,15 +267,13 @@ Por eso la narrativa se comprueba aparte y directamente contra el origen: para c
 
 Un recurso con narrativa hace round-trip con sus datos intactos, narrativa incluida.
 
-Una diferencia a tener en cuenta: `UnmarshalResourceXML` deja vacío el campo
-`ResourceType`, así que el struct decodificado no es idéntico al original. Usa
-`GetResourceType()`, que devuelve el valor correcto de todas formas, y ten en
-cuenta que la serialización no se ve afectada porque `MarshalJSON` rellena el
-campo:
+El struct decodificado es igual al original: `resourceType` es un marcador de
+tamaño cero que aporta el propio tipo Go, no un string que el decodificador tenga
+que rellenar, así que no queda ningún campo inconsistente. Léelo con
+`GetResourceType()`:
 
 ```go
 plain := &r4.Patient{
-    ResourceType: "Patient",
     Id:           ptrTo("round-trip"),
     Active:       ptrTo(true),
     Gender:       ptrTo(r4.AdministrativeGenderMale),
@@ -299,5 +295,5 @@ fmt.Println(*decoded.Active) // true
 ```
 
 {{< callout type="info" >}}
-La serialización XML usa el mismo registro de recursos que la deserialización JSON, así que el nombre del elemento raíz corresponde al campo `resourceType` de JSON. Todo tipo de recurso registrado se puede serializar y deserializar, pero consulta los avisos de arriba para saber qué no sobrevive el viaje, y ten en cuenta que el struct decodificado queda con el campo `ResourceType` vacío.
+La serialización XML usa el mismo registro de recursos que la deserialización JSON, así que el nombre del elemento raíz corresponde al campo `resourceType` de JSON. Todo tipo de recurso registrado se puede serializar y deserializar. Usa `GetResourceType()` para leer el tipo.
 {{< /callout >}}

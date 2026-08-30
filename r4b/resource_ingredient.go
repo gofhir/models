@@ -5,7 +5,6 @@
 package r4b
 
 import (
-	"bytes"
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
@@ -15,10 +14,30 @@ import (
 // Ingredient Resource
 // =============================================================================
 
+// ingredientTypeMarker occupies no memory and serializes as the constant
+// "Ingredient". It replaces a string field that a per-resource MarshalJSON had
+// to overwrite on every call, which cost a second bytes.Buffer and json.Encoder
+// per resource and, because a promoted MarshalJSON wins over the outer struct,
+// silently dropped the fields of any type embedding this one.
+//
+// Nothing needs to set it: the zero value is correct, and GetResourceType()
+// returns the same constant.
+type ingredientTypeMarker struct{}
+
+// MarshalJSON writes the resource type as a JSON string.
+func (ingredientTypeMarker) MarshalJSON() ([]byte, error) {
+	return []byte(`"Ingredient"`), nil
+}
+
+// UnmarshalJSON accepts and discards whatever the document carried. The type is
+// fixed by the Go type itself, so a mismatched or absent value is not an error
+// here — UnmarshalResource is what validates it during dispatch.
+func (*ingredientTypeMarker) UnmarshalJSON([]byte) error { return nil }
+
 // Ingredient represents FHIR Ingredient.
 type Ingredient struct {
-	// FHIR resource type
-	ResourceType string `json:"resourceType"`
+	// FHIR resource type. Emitted automatically; see ingredientTypeMarker.
+	ResourceType ingredientTypeMarker `json:"resourceType"`
 	// Logical id of this artifact
 	Id *string `json:"id,omitempty"`
 	// Metadata about the resource
@@ -109,27 +128,6 @@ func (r *Ingredient) GetExtension() []Extension {
 // GetModifierExtension returns the resource's modifier extensions.
 func (r *Ingredient) GetModifierExtension() []Extension {
 	return r.ModifierExtension
-}
-
-// MarshalJSON ensures resourceType is always included in JSON output.
-// HTML escaping is disabled to preserve FHIR narrative XHTML content.
-//
-// Note: Use the package-level Marshal function instead of json.Marshal
-// to ensure HTML in narrative text.div fields is not escaped.
-func (r Ingredient) MarshalJSON() ([]byte, error) {
-	r.ResourceType = "Ingredient"
-	type Alias Ingredient
-	var buf bytes.Buffer
-	enc := json.NewEncoder(&buf)
-	enc.SetEscapeHTML(false)
-	if err := enc.Encode((Alias)(r)); err != nil {
-		return nil, err
-	}
-	b := buf.Bytes()
-	if len(b) > 0 && b[len(b)-1] == '\n' {
-		b = b[:len(b)-1]
-	}
-	return b, nil
 }
 
 // UnmarshalJSON handles deserialization of polymorphic contained resources.
@@ -908,10 +906,9 @@ type IngredientBuilder struct {
 // NewIngredientBuilder creates a new IngredientBuilder.
 func NewIngredientBuilder() *IngredientBuilder {
 	return &IngredientBuilder{
-		// ResourceType is set here rather than left to MarshalJSON, so a resource
-		// built this way reports its type in memory too. Code switching on
-		// r.ResourceType used to fall through to default in silence.
-		ingredient: &Ingredient{ResourceType: "Ingredient"},
+		// Nothing to set: the type marker carries the resource type, so the zero
+		// value is already correct both in memory and on the wire.
+		ingredient: &Ingredient{},
 	}
 }
 
@@ -1025,7 +1022,7 @@ type IngredientOption func(*Ingredient)
 
 // NewIngredient creates a new Ingredient with the given options.
 func NewIngredient(opts ...IngredientOption) *Ingredient {
-	r := &Ingredient{ResourceType: "Ingredient"}
+	r := &Ingredient{}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -26,7 +26,6 @@ import (
 )
 
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Id:           ptrTo("123"),
 }
 data, err := json.Marshal(patient)

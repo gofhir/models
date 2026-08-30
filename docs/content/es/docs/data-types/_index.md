@@ -60,7 +60,6 @@ func ptrTo[T any](v T) *T {
 
 func main() {
     obs := &r4.Observation{
-        ResourceType: "Observation",
         Id:           ptrTo("bp-reading"),
         Status:       ptrTo(r4.ObservationStatusFinal),  // Code system enum
         Code: &r4.CodeableConcept{                       // Complex type

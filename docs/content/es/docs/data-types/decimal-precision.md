@@ -187,7 +187,6 @@ El tipo `Decimal` se usa donde FHIR define un elemento `decimal`. La ocurrencia 
 
 ```go
 observation := &r4.Observation{
-    ResourceType: "Observation",
     Id:           ptrTo("weight-1"),
     Status:       ptrTo(r4.ObservationStatusFinal),
     Code: &r4.CodeableConcept{

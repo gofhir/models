@@ -44,7 +44,6 @@ func ptrTo[T any](v T) *T {
 }
 
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Id:           ptrTo("123"),       // Present: "123"
     Active:       ptrTo(true),        // Present: true
     BirthDate:    ptrTo("1990-01-15"),// Present: "1990-01-15"
@@ -97,12 +96,10 @@ FHIR has four date/time primitives, all mapped to `*string` in Go. The string va
 
 ```go
 patient := &r4.Patient{
-    ResourceType: "Patient",
     BirthDate:    ptrTo("1990-01-15"),  // FHIR date: YYYY-MM-DD
 }
 
 observation := &r4.Observation{
-    ResourceType:     "Observation",
     EffectiveDateTime: ptrTo("2024-03-15T10:30:00Z"), // FHIR dateTime
 }
 ```

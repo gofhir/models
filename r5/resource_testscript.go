@@ -5,7 +5,6 @@
 package r5
 
 import (
-	"bytes"
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
@@ -15,10 +14,30 @@ import (
 // TestScript Resource
 // =============================================================================
 
+// testScriptTypeMarker occupies no memory and serializes as the constant
+// "TestScript". It replaces a string field that a per-resource MarshalJSON had
+// to overwrite on every call, which cost a second bytes.Buffer and json.Encoder
+// per resource and, because a promoted MarshalJSON wins over the outer struct,
+// silently dropped the fields of any type embedding this one.
+//
+// Nothing needs to set it: the zero value is correct, and GetResourceType()
+// returns the same constant.
+type testScriptTypeMarker struct{}
+
+// MarshalJSON writes the resource type as a JSON string.
+func (testScriptTypeMarker) MarshalJSON() ([]byte, error) {
+	return []byte(`"TestScript"`), nil
+}
+
+// UnmarshalJSON accepts and discards whatever the document carried. The type is
+// fixed by the Go type itself, so a mismatched or absent value is not an error
+// here — UnmarshalResource is what validates it during dispatch.
+func (*testScriptTypeMarker) UnmarshalJSON([]byte) error { return nil }
+
 // TestScript represents FHIR TestScript.
 type TestScript struct {
-	// FHIR resource type
-	ResourceType string `json:"resourceType"`
+	// FHIR resource type. Emitted automatically; see testScriptTypeMarker.
+	ResourceType testScriptTypeMarker `json:"resourceType"`
 	// Logical id of this artifact
 	Id *string `json:"id,omitempty"`
 	// Metadata about the resource
@@ -173,27 +192,6 @@ func (r *TestScript) GetExtension() []Extension {
 // GetModifierExtension returns the resource's modifier extensions.
 func (r *TestScript) GetModifierExtension() []Extension {
 	return r.ModifierExtension
-}
-
-// MarshalJSON ensures resourceType is always included in JSON output.
-// HTML escaping is disabled to preserve FHIR narrative XHTML content.
-//
-// Note: Use the package-level Marshal function instead of json.Marshal
-// to ensure HTML in narrative text.div fields is not escaped.
-func (r TestScript) MarshalJSON() ([]byte, error) {
-	r.ResourceType = "TestScript"
-	type Alias TestScript
-	var buf bytes.Buffer
-	enc := json.NewEncoder(&buf)
-	enc.SetEscapeHTML(false)
-	if err := enc.Encode((Alias)(r)); err != nil {
-		return nil, err
-	}
-	b := buf.Bytes()
-	if len(b) > 0 && b[len(b)-1] == '\n' {
-		b = b[:len(b)-1]
-	}
-	return b, nil
 }
 
 // UnmarshalJSON handles deserialization of polymorphic contained resources.
@@ -3037,10 +3035,9 @@ type TestScriptBuilder struct {
 // NewTestScriptBuilder creates a new TestScriptBuilder.
 func NewTestScriptBuilder() *TestScriptBuilder {
 	return &TestScriptBuilder{
-		// ResourceType is set here rather than left to MarshalJSON, so a resource
-		// built this way reports its type in memory too. Code switching on
-		// r.ResourceType used to fall through to default in silence.
-		testScript: &TestScript{ResourceType: "TestScript"},
+		// Nothing to set: the type marker carries the resource type, so the zero
+		// value is already correct both in memory and on the wire.
+		testScript: &TestScript{},
 	}
 }
 
@@ -3284,7 +3281,7 @@ type TestScriptOption func(*TestScript)
 
 // NewTestScript creates a new TestScript with the given options.
 func NewTestScript(opts ...TestScriptOption) *TestScript {
-	r := &TestScript{ResourceType: "TestScript"}
+	r := &TestScript{}
 	for _, opt := range opts {
 		opt(r)
 	}

@@ -34,7 +34,6 @@ func ptrTo[T any](v T) *T {
 func main() {
     // Create a Patient resource
     patient := &r4.Patient{
-        ResourceType: "Patient",
         Id:           ptrTo("example-123"),
         Active:       ptrTo(true),
         Name: []r4.HumanName{
@@ -69,7 +68,7 @@ Todos los campos de los structs usan etiquetas `json` apropiadas con `omitempty`
 
 ```go
 type Patient struct {
-    ResourceType string              `json:"resourceType"`
+    ResourceType patientTypeMarker   `json:"resourceType"`  // tamaño cero; emite "Patient"
     Id           *string             `json:"id,omitempty"`
     Meta         *Meta               `json:"meta,omitempty"`
     Active       *bool               `json:"active,omitempty"`
@@ -80,7 +79,7 @@ type Patient struct {
 }
 ```
 
-Los campos requeridos como `ResourceType` no usan `omitempty`, asegurando que siempre estén presentes en la salida serializada.
+`resourceType` no usa `omitempty`, así que siempre está presente en la salida. Lo aporta un tipo marcador de tamaño cero en lugar de un string, y por eso nadie necesita asignarlo — léelo con `GetResourceType()`.
 
 ## Fidelidad de Ida y Vuelta
 
@@ -115,7 +114,6 @@ func ptrTo[T any](v T) *T {
 func main() {
     // Create the original resource
     original := &r4.Patient{
-        ResourceType: "Patient",
         Id:           ptrTo("123"),
         Active:       ptrTo(true),
         Gender:       ptrTo(r4.AdministrativeGenderFemale),
@@ -134,7 +132,7 @@ func main() {
     }
 
     // Verify round-trip fidelity
-    fmt.Println(decoded.ResourceType)    // "Patient"
+    fmt.Println(decoded.GetResourceType()) // "Patient"
     fmt.Println(*decoded.Id)             // "123"
     fmt.Println(*decoded.Active)         // true
     fmt.Println(*decoded.Gender)         // "female"
@@ -200,7 +198,6 @@ Debido a que los structs implementan las interfaces estándar de marshaling, fun
 ```go
 func handleGetPatient(w http.ResponseWriter, r *http.Request) {
     patient := &r4.Patient{
-        ResourceType: "Patient",
         Id:           ptrTo("http-example"),
     }
 
@@ -228,11 +225,9 @@ La biblioteca maneja recursos contenidos polimórficos durante la serialización
 
 ```go
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Id:           ptrTo("with-contained"),
     Contained: []r4.Resource{
         &r4.Organization{
-            ResourceType: "Organization",
             Id:           ptrTo("org-1"),
             Name:         ptrTo("Example Hospital"),
         },

@@ -24,7 +24,6 @@ Los tres patrones establecen campos en el mismo struct subyacente (por ejemplo, 
 ```go
 active := true
 patient := r4.Patient{
-    ResourceType: "Patient",
     Id:           &id,
     Active:       &active,
 }

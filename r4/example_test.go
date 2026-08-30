@@ -11,9 +11,8 @@ import (
 // r4.Boolean, neither of which has ever existed in this package.
 func Example() {
 	patient := r4.Patient{
-		ResourceType: "Patient",
-		Id:           r4.Ptr("123"),
-		Active:       r4.Ptr(true),
+		Id:     r4.Ptr("123"),
+		Active: r4.Ptr(true),
 		Name: []r4.HumanName{
 			{
 				Family: r4.Ptr("Smith"),

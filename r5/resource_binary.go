@@ -5,8 +5,6 @@
 package r5
 
 import (
-	"bytes"
-	"encoding/json"
 	"encoding/xml"
 )
 
@@ -14,10 +12,30 @@ import (
 // Binary Resource
 // =============================================================================
 
+// binaryTypeMarker occupies no memory and serializes as the constant
+// "Binary". It replaces a string field that a per-resource MarshalJSON had
+// to overwrite on every call, which cost a second bytes.Buffer and json.Encoder
+// per resource and, because a promoted MarshalJSON wins over the outer struct,
+// silently dropped the fields of any type embedding this one.
+//
+// Nothing needs to set it: the zero value is correct, and GetResourceType()
+// returns the same constant.
+type binaryTypeMarker struct{}
+
+// MarshalJSON writes the resource type as a JSON string.
+func (binaryTypeMarker) MarshalJSON() ([]byte, error) {
+	return []byte(`"Binary"`), nil
+}
+
+// UnmarshalJSON accepts and discards whatever the document carried. The type is
+// fixed by the Go type itself, so a mismatched or absent value is not an error
+// here — UnmarshalResource is what validates it during dispatch.
+func (*binaryTypeMarker) UnmarshalJSON([]byte) error { return nil }
+
 // Binary represents FHIR Binary.
 type Binary struct {
-	// FHIR resource type
-	ResourceType string `json:"resourceType"`
+	// FHIR resource type. Emitted automatically; see binaryTypeMarker.
+	ResourceType binaryTypeMarker `json:"resourceType"`
 	// Logical id of this artifact
 	Id *string `json:"id,omitempty"`
 	// Metadata about the resource
@@ -65,27 +83,6 @@ func (r *Binary) GetMeta() *Meta {
 // SetMeta sets the resource's Meta element.
 func (r *Binary) SetMeta(m *Meta) {
 	r.Meta = m
-}
-
-// MarshalJSON ensures resourceType is always included in JSON output.
-// HTML escaping is disabled to preserve FHIR narrative XHTML content.
-//
-// Note: Use the package-level Marshal function instead of json.Marshal
-// to ensure HTML in narrative text.div fields is not escaped.
-func (r Binary) MarshalJSON() ([]byte, error) {
-	r.ResourceType = "Binary"
-	type Alias Binary
-	var buf bytes.Buffer
-	enc := json.NewEncoder(&buf)
-	enc.SetEscapeHTML(false)
-	if err := enc.Encode((Alias)(r)); err != nil {
-		return nil, err
-	}
-	b := buf.Bytes()
-	if len(b) > 0 && b[len(b)-1] == '\n' {
-		b = b[:len(b)-1]
-	}
-	return b, nil
 }
 
 // MarshalXML serializes Binary to FHIR-conformant XML.
@@ -206,10 +203,9 @@ type BinaryBuilder struct {
 // NewBinaryBuilder creates a new BinaryBuilder.
 func NewBinaryBuilder() *BinaryBuilder {
 	return &BinaryBuilder{
-		// ResourceType is set here rather than left to MarshalJSON, so a resource
-		// built this way reports its type in memory too. Code switching on
-		// r.ResourceType used to fall through to default in silence.
-		binary: &Binary{ResourceType: "Binary"},
+		// Nothing to set: the type marker carries the resource type, so the zero
+		// value is already correct both in memory and on the wire.
+		binary: &Binary{},
 	}
 }
 
@@ -269,7 +265,7 @@ type BinaryOption func(*Binary)
 
 // NewBinary creates a new Binary with the given options.
 func NewBinary(opts ...BinaryOption) *Binary {
-	r := &Binary{ResourceType: "Binary"}
+	r := &Binary{}
 	for _, opt := range opts {
 		opt(r)
 	}

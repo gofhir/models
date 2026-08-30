@@ -5,7 +5,6 @@
 package r5
 
 import (
-	"bytes"
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
@@ -15,10 +14,30 @@ import (
 // ClinicalUseDefinition Resource
 // =============================================================================
 
+// clinicalUseDefinitionTypeMarker occupies no memory and serializes as the constant
+// "ClinicalUseDefinition". It replaces a string field that a per-resource MarshalJSON had
+// to overwrite on every call, which cost a second bytes.Buffer and json.Encoder
+// per resource and, because a promoted MarshalJSON wins over the outer struct,
+// silently dropped the fields of any type embedding this one.
+//
+// Nothing needs to set it: the zero value is correct, and GetResourceType()
+// returns the same constant.
+type clinicalUseDefinitionTypeMarker struct{}
+
+// MarshalJSON writes the resource type as a JSON string.
+func (clinicalUseDefinitionTypeMarker) MarshalJSON() ([]byte, error) {
+	return []byte(`"ClinicalUseDefinition"`), nil
+}
+
+// UnmarshalJSON accepts and discards whatever the document carried. The type is
+// fixed by the Go type itself, so a mismatched or absent value is not an error
+// here — UnmarshalResource is what validates it during dispatch.
+func (*clinicalUseDefinitionTypeMarker) UnmarshalJSON([]byte) error { return nil }
+
 // ClinicalUseDefinition represents FHIR ClinicalUseDefinition.
 type ClinicalUseDefinition struct {
-	// FHIR resource type
-	ResourceType string `json:"resourceType"`
+	// FHIR resource type. Emitted automatically; see clinicalUseDefinitionTypeMarker.
+	ResourceType clinicalUseDefinitionTypeMarker `json:"resourceType"`
 	// Logical id of this artifact
 	Id *string `json:"id,omitempty"`
 	// Metadata about the resource
@@ -117,27 +136,6 @@ func (r *ClinicalUseDefinition) GetExtension() []Extension {
 // GetModifierExtension returns the resource's modifier extensions.
 func (r *ClinicalUseDefinition) GetModifierExtension() []Extension {
 	return r.ModifierExtension
-}
-
-// MarshalJSON ensures resourceType is always included in JSON output.
-// HTML escaping is disabled to preserve FHIR narrative XHTML content.
-//
-// Note: Use the package-level Marshal function instead of json.Marshal
-// to ensure HTML in narrative text.div fields is not escaped.
-func (r ClinicalUseDefinition) MarshalJSON() ([]byte, error) {
-	r.ResourceType = "ClinicalUseDefinition"
-	type Alias ClinicalUseDefinition
-	var buf bytes.Buffer
-	enc := json.NewEncoder(&buf)
-	enc.SetEscapeHTML(false)
-	if err := enc.Encode((Alias)(r)); err != nil {
-		return nil, err
-	}
-	b := buf.Bytes()
-	if len(b) > 0 && b[len(b)-1] == '\n' {
-		b = b[:len(b)-1]
-	}
-	return b, nil
 }
 
 // UnmarshalJSON handles deserialization of polymorphic contained resources.
@@ -1346,10 +1344,9 @@ type ClinicalUseDefinitionBuilder struct {
 // NewClinicalUseDefinitionBuilder creates a new ClinicalUseDefinitionBuilder.
 func NewClinicalUseDefinitionBuilder() *ClinicalUseDefinitionBuilder {
 	return &ClinicalUseDefinitionBuilder{
-		// ResourceType is set here rather than left to MarshalJSON, so a resource
-		// built this way reports its type in memory too. Code switching on
-		// r.ResourceType used to fall through to default in silence.
-		clinicalUseDefinition: &ClinicalUseDefinition{ResourceType: "ClinicalUseDefinition"},
+		// Nothing to set: the type marker carries the resource type, so the zero
+		// value is already correct both in memory and on the wire.
+		clinicalUseDefinition: &ClinicalUseDefinition{},
 	}
 }
 
@@ -1491,7 +1488,7 @@ type ClinicalUseDefinitionOption func(*ClinicalUseDefinition)
 
 // NewClinicalUseDefinition creates a new ClinicalUseDefinition with the given options.
 func NewClinicalUseDefinition(opts ...ClinicalUseDefinitionOption) *ClinicalUseDefinition {
-	r := &ClinicalUseDefinition{ResourceType: "ClinicalUseDefinition"}
+	r := &ClinicalUseDefinition{}
 	for _, opt := range opts {
 		opt(r)
 	}

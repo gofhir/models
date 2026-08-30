@@ -5,7 +5,6 @@
 package r5
 
 import (
-	"bytes"
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
@@ -15,10 +14,30 @@ import (
 // MedicationKnowledge Resource
 // =============================================================================
 
+// medicationKnowledgeTypeMarker occupies no memory and serializes as the constant
+// "MedicationKnowledge". It replaces a string field that a per-resource MarshalJSON had
+// to overwrite on every call, which cost a second bytes.Buffer and json.Encoder
+// per resource and, because a promoted MarshalJSON wins over the outer struct,
+// silently dropped the fields of any type embedding this one.
+//
+// Nothing needs to set it: the zero value is correct, and GetResourceType()
+// returns the same constant.
+type medicationKnowledgeTypeMarker struct{}
+
+// MarshalJSON writes the resource type as a JSON string.
+func (medicationKnowledgeTypeMarker) MarshalJSON() ([]byte, error) {
+	return []byte(`"MedicationKnowledge"`), nil
+}
+
+// UnmarshalJSON accepts and discards whatever the document carried. The type is
+// fixed by the Go type itself, so a mismatched or absent value is not an error
+// here — UnmarshalResource is what validates it during dispatch.
+func (*medicationKnowledgeTypeMarker) UnmarshalJSON([]byte) error { return nil }
+
 // MedicationKnowledge represents FHIR MedicationKnowledge.
 type MedicationKnowledge struct {
-	// FHIR resource type
-	ResourceType string `json:"resourceType"`
+	// FHIR resource type. Emitted automatically; see medicationKnowledgeTypeMarker.
+	ResourceType medicationKnowledgeTypeMarker `json:"resourceType"`
 	// Logical id of this artifact
 	Id *string `json:"id,omitempty"`
 	// Metadata about the resource
@@ -135,27 +154,6 @@ func (r *MedicationKnowledge) GetExtension() []Extension {
 // GetModifierExtension returns the resource's modifier extensions.
 func (r *MedicationKnowledge) GetModifierExtension() []Extension {
 	return r.ModifierExtension
-}
-
-// MarshalJSON ensures resourceType is always included in JSON output.
-// HTML escaping is disabled to preserve FHIR narrative XHTML content.
-//
-// Note: Use the package-level Marshal function instead of json.Marshal
-// to ensure HTML in narrative text.div fields is not escaped.
-func (r MedicationKnowledge) MarshalJSON() ([]byte, error) {
-	r.ResourceType = "MedicationKnowledge"
-	type Alias MedicationKnowledge
-	var buf bytes.Buffer
-	enc := json.NewEncoder(&buf)
-	enc.SetEscapeHTML(false)
-	if err := enc.Encode((Alias)(r)); err != nil {
-		return nil, err
-	}
-	b := buf.Bytes()
-	if len(b) > 0 && b[len(b)-1] == '\n' {
-		b = b[:len(b)-1]
-	}
-	return b, nil
 }
 
 // UnmarshalJSON handles deserialization of polymorphic contained resources.
@@ -2676,10 +2674,9 @@ type MedicationKnowledgeBuilder struct {
 // NewMedicationKnowledgeBuilder creates a new MedicationKnowledgeBuilder.
 func NewMedicationKnowledgeBuilder() *MedicationKnowledgeBuilder {
 	return &MedicationKnowledgeBuilder{
-		// ResourceType is set here rather than left to MarshalJSON, so a resource
-		// built this way reports its type in memory too. Code switching on
-		// r.ResourceType used to fall through to default in silence.
-		medicationKnowledge: &MedicationKnowledge{ResourceType: "MedicationKnowledge"},
+		// Nothing to set: the type marker carries the resource type, so the zero
+		// value is already correct both in memory and on the wire.
+		medicationKnowledge: &MedicationKnowledge{},
 	}
 }
 
@@ -2869,7 +2866,7 @@ type MedicationKnowledgeOption func(*MedicationKnowledge)
 
 // NewMedicationKnowledge creates a new MedicationKnowledge with the given options.
 func NewMedicationKnowledge(opts ...MedicationKnowledgeOption) *MedicationKnowledge {
-	r := &MedicationKnowledge{ResourceType: "MedicationKnowledge"}
+	r := &MedicationKnowledge{}
 	for _, opt := range opts {
 		opt(r)
 	}

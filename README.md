@@ -28,7 +28,6 @@ import (
 
 func main() {
     patient := r4.Patient{
-        ResourceType: "Patient",
         Id:           r4.Ptr("123"),
         Active:       r4.Ptr(true),
         Name: []r4.HumanName{

@@ -219,7 +219,6 @@ Siempre puedes construir recursos directamente usando literales de struct de Go.
 
 ```go
 patient := &r4.Patient{
-    ResourceType: "Patient",
     Id:           ptrTo("patient-789"),
     Active:       ptrTo(true),
     Gender:       ptrTo(r4.AdministrativeGenderMale),
@@ -230,4 +229,4 @@ patient := &r4.Patient{
 }
 ```
 
-Ten en cuenta que al usar literales de struct, debes establecer `ResourceType` tu mismo. El builder y las opciones funcionales establecen `ResourceType` automaticamente durante el marshaling JSON.
+`resourceType` no requiere atención en ninguno de los tres estilos: es un marcador de tamaño cero en el struct, así que un simple `r4.Patient{}` ya se serializa con el valor correcto. Léelo con `GetResourceType()`.

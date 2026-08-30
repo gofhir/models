@@ -86,8 +86,8 @@ if err != nil {
 }
 
 patient := resource.(*r4.Patient)
-patient.ResourceType = "Patient"
 patient.Id = ptrTo("new-patient")
+// resourceType needs no assignment; it is fixed by the Go type.
 ```
 
 This function is the foundation for the other registry functions. It looks up the type name in the internal `resourceFactories` map and calls the corresponding factory function.

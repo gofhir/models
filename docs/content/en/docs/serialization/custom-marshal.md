@@ -29,7 +29,6 @@ func ptrTo[T any](v T) *T {
 
 func main() {
     patient := &r4.Patient{
-        ResourceType: "Patient",
         Id:           ptrTo("narrative-example"),
         Text: &r4.Narrative{
             Status: ptrTo(r4.NarrativeStatusGenerated),
@@ -67,7 +66,6 @@ func ptrTo[T any](v T) *T {
 
 func main() {
     patient := &r4.Patient{
-        ResourceType: "Patient",
         Id:           ptrTo("narrative-example"),
         Text: &r4.Narrative{
             Status: ptrTo(r4.NarrativeStatusGenerated),
