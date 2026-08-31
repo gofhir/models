@@ -99,7 +99,9 @@ func (r *Bundle) SetMeta(m *Meta) {
 	r.Meta = m
 }
 
-// UnmarshalJSON handles deserialization of the polymorphic issues field.
+// UnmarshalJSON handles deserialization of the polymorphic issues field,
+// which encoding/json cannot build on its own. contained needs no code here: its
+// type carries its own UnmarshalJSON.
 func (r *Bundle) UnmarshalJSON(data []byte) error {
 	// Use an alias to avoid infinite recursion
 	type Alias Bundle

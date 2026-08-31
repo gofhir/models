@@ -12,8 +12,8 @@ package {{.PackageName}}
        the per-resource MarshalJSON went away it uses neither import. */ -}}
 {{- $needsDispatch := false -}}
 {{- range .Resource.Properties -}}
-{{- if eq .JSONName "contained" -}}{{- $needsDispatch = true -}}{{- end -}}
-{{- /* A Resource-typed field on the resource itself also emits fmt.Errorf. */ -}}
+{{- /* contained no longer counts: ContainedList carries its own decoder, so a
+       resource whose only polymorphic field is contained needs neither import. */ -}}
 {{- if eq .GoType "Resource" -}}{{- $needsDispatch = true -}}{{- end -}}
 {{- end -}}
 {{- range .Backbones -}}
@@ -71,7 +71,9 @@ type {{.Name}} struct {
 	{{- /* omitempty also for interface-typed fields: encoding/json treats a nil
 	       interface as empty, and without it a resource-valued element that is
 	       absent is emitted as an explicit null, which is not valid FHIR. */ -}}
-	{{.Name}} {{.GoType}} `json:"{{.JSONName}}{{if or .IsArray .IsPointer (eq .GoType "Resource")}},omitempty{{end}}"`
+	{{- /* Contained carries its own UnmarshalJSON via ContainedList, which is what
+	       removes the per-resource UnmarshalJSON that existed only to dispatch it. */ -}}
+	{{.Name}} {{if eq .JSONName "contained"}}ContainedList{{else}}{{.GoType}}{{end}} `json:"{{.JSONName}}{{if or .IsArray .IsPointer (eq .GoType "Resource")}},omitempty{{end}}"`
 	{{- if and .HasExtension (not .IsChoice)}}
 	// Extension for {{.Name}}
 	{{- if .IsArray}}
@@ -192,26 +194,21 @@ func (r *{{.Name}}) GetModifierExtension() []Extension {
 {{- end -}}
 {{- end -}}
 
-{{- if or $hasContained $resField }}
+{{- /* Only a singular Resource-typed field still needs a per-resource
+       UnmarshalJSON. contained is handled by ContainedList. */ -}}
+{{- if $resField }}
 
-{{ if and $hasContained $resField -}}
-// UnmarshalJSON handles deserialization of contained resources and of the
-// polymorphic {{$resFieldJSON}} field.
-{{- else if $resField -}}
-// UnmarshalJSON handles deserialization of the polymorphic {{$resFieldJSON}} field.
-{{- else -}}
-// UnmarshalJSON handles deserialization of polymorphic contained resources.
-{{- end }}
+
+// UnmarshalJSON handles deserialization of the polymorphic {{$resFieldJSON}} field,
+// which encoding/json cannot build on its own. contained needs no code here: its
+// type carries its own UnmarshalJSON.
 func (r *{{.Name}}) UnmarshalJSON(data []byte) error {
 	// Use an alias to avoid infinite recursion
 	type Alias {{.Name}}
+	{{/* Only the singular Resource field is shadowed here. Shadowing contained
+	     too would stop ContainedList.UnmarshalJSON from ever running. */ -}}
 	aux := &struct {
-{{- if $hasContained }}
-		Contained []json.RawMessage `json:"contained,omitempty"`
-{{- end }}
-{{- if $resField }}
 		{{$resField}} json.RawMessage `json:"{{$resFieldJSON}},omitempty"`
-{{- end }}
 		*Alias
 	}{
 		Alias: (*Alias)(r),
@@ -220,25 +217,6 @@ func (r *{{.Name}}) UnmarshalJSON(data []byte) error {
 	if err := json.Unmarshal(data, aux); err != nil {
 		return err
 	}
-{{- if $hasContained }}
-
-	// Unmarshal each contained resource using the dispatcher
-	if len(aux.Contained) > 0 {
-		r.Contained = make([]Resource, 0, len(aux.Contained))
-		for i, raw := range aux.Contained {
-			// An explicit null carries no resource. Skipping keeps the slice free
-			// of nil entries, which would marshal back out as null.
-			if isJSONNull(raw) {
-				continue
-			}
-			resource, err := UnmarshalResource(raw)
-			if err != nil {
-				return fmt.Errorf("failed to unmarshal contained[%d]: %w", i, err)
-			}
-			r.Contained = append(r.Contained, resource)
-		}
-	}
-{{- end }}
 {{- if $resField }}
 
 	if len(aux.{{$resField}}) > 0 && !isJSONNull(aux.{{$resField}}) {

@@ -237,7 +237,25 @@ Esto es una corrección, no una limpieza. Una variable entregaba el mismo valor 
 
 ### `Contained` pasa a ser un tipo de slice con nombre
 
-**Estado: previsto.** `[]Resource` pasa a `ContainedList`. La asignación desde `[]Resource`, el `range`, el `append` y pasarlo a un `func([]Resource)` siguen funcionando; lo que cambia es que `%T` imprime `r4.ContainedList`.
+**Estado: hecho, y casi con seguridad no afecta a tu código.** `[]Resource` pasa a `ContainedList`, un slice con nombre y el mismo tipo subyacente:
+
+```go
+p.Contained = []r4.Resource{org}        // sigue compilando
+p.Contained = append(p.Contained, x)    // sigue compilando
+for _, c := range p.Contained { }       // sigue compilando
+recibeSlice(p.Contained)                // func([]Resource) — sigue compilando
+p.GetContained()                        // sigue devolviendo []Resource
+```
+
+**La única diferencia observable es `%T`**, que ahora imprime `r4.ContainedList`. Si formateas el tipo del campo en logs o lo comparas, esa cadena cambia.
+
+El tipo con nombre es lo que lleva el `UnmarshalJSON` que despacha cada elemento. Antes cada recurso generaba el suyo, y por eso esto elimina **437 métodos y 16.130 líneas** de código generado. Decodificar un Patient con recursos contenidos es 1,35× más rápido, y un Bundle de 50 entradas 1,16× — real, pero menos que el 1,51× / 1,26× que proyectaba el plan.
+
+Los mensajes de error conservan su índice, incluso anidados:
+
+```
+failed to unmarshal resource: failed to unmarshal Patient: failed to unmarshal contained[0]: unknown resource type: Nope
+```
 
 ### Cambian los nombres de los tipos de sistemas de códigos
 

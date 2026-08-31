@@ -5,9 +5,7 @@
 package r5
 
 import (
-	"encoding/json"
 	"encoding/xml"
-	"fmt"
 )
 
 // =============================================================================
@@ -53,7 +51,7 @@ type Library struct {
 	// Text summary of the resource, for human interpretation
 	Text *Narrative `json:"text,omitempty"`
 	// Contained, inline Resources
-	Contained []Resource `json:"contained,omitempty"`
+	Contained ContainedList `json:"contained,omitempty"`
 	// Additional content defined by implementations
 	Extension []Extension `json:"extension,omitempty"`
 	// Extensions that cannot be ignored
@@ -212,41 +210,6 @@ func (r *Library) GetExtension() []Extension {
 // GetModifierExtension returns the resource's modifier extensions.
 func (r *Library) GetModifierExtension() []Extension {
 	return r.ModifierExtension
-}
-
-// UnmarshalJSON handles deserialization of polymorphic contained resources.
-func (r *Library) UnmarshalJSON(data []byte) error {
-	// Use an alias to avoid infinite recursion
-	type Alias Library
-	aux := &struct {
-		Contained []json.RawMessage `json:"contained,omitempty"`
-		*Alias
-	}{
-		Alias: (*Alias)(r),
-	}
-
-	if err := json.Unmarshal(data, aux); err != nil {
-		return err
-	}
-
-	// Unmarshal each contained resource using the dispatcher
-	if len(aux.Contained) > 0 {
-		r.Contained = make([]Resource, 0, len(aux.Contained))
-		for i, raw := range aux.Contained {
-			// An explicit null carries no resource. Skipping keeps the slice free
-			// of nil entries, which would marshal back out as null.
-			if isJSONNull(raw) {
-				continue
-			}
-			resource, err := UnmarshalResource(raw)
-			if err != nil {
-				return fmt.Errorf("failed to unmarshal contained[%d]: %w", i, err)
-			}
-			r.Contained = append(r.Contained, resource)
-		}
-	}
-
-	return nil
 }
 
 // MarshalXML serializes Library to FHIR-conformant XML.
