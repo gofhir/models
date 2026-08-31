@@ -13,7 +13,7 @@ import (
 func TestLOINCVitalSignsCodes(t *testing.T) {
 	tests := []struct {
 		name        string
-		code        r4.CodeableConcept
+		code        func() *r4.CodeableConcept
 		wantSystem  string
 		wantCode    string
 		wantDisplay string
@@ -113,7 +113,7 @@ func TestLOINCVitalSignsCodes(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			assertCodeableConcept(t, tt.code, tt.wantSystem, tt.wantCode, tt.wantDisplay)
+			assertCodeableConcept(t, tt.code(), tt.wantSystem, tt.wantCode, tt.wantDisplay)
 		})
 	}
 }
@@ -121,7 +121,7 @@ func TestLOINCVitalSignsCodes(t *testing.T) {
 func TestLOINCLaboratoryCodes(t *testing.T) {
 	tests := []struct {
 		name        string
-		code        r4.CodeableConcept
+		code        func() *r4.CodeableConcept
 		wantSystem  string
 		wantCode    string
 		wantDisplay string
@@ -207,7 +207,7 @@ func TestLOINCLaboratoryCodes(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			assertCodeableConcept(t, tt.code, tt.wantSystem, tt.wantCode, tt.wantDisplay)
+			assertCodeableConcept(t, tt.code(), tt.wantSystem, tt.wantCode, tt.wantDisplay)
 		})
 	}
 }
@@ -215,7 +215,7 @@ func TestLOINCLaboratoryCodes(t *testing.T) {
 func TestLOINCIPSSectionCodes(t *testing.T) {
 	tests := []struct {
 		name        string
-		code        r4.CodeableConcept
+		code        func() *r4.CodeableConcept
 		wantSystem  string
 		wantCode    string
 		wantDisplay string
@@ -322,7 +322,7 @@ func TestLOINCIPSSectionCodes(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			assertCodeableConcept(t, tt.code, tt.wantSystem, tt.wantCode, tt.wantDisplay)
+			assertCodeableConcept(t, tt.code(), tt.wantSystem, tt.wantCode, tt.wantDisplay)
 		})
 	}
 }
@@ -334,7 +334,7 @@ func TestLOINCIPSSectionCodes(t *testing.T) {
 func TestUCUMWeightQuantities(t *testing.T) {
 	tests := []struct {
 		name       string
-		fn         func(float64) r4.Quantity
+		fn         func(float64) *r4.Quantity
 		value      float64
 		wantUnit   string
 		wantCode   string
@@ -377,7 +377,7 @@ func TestUCUMWeightQuantities(t *testing.T) {
 func TestUCUMLengthQuantities(t *testing.T) {
 	tests := []struct {
 		name       string
-		fn         func(float64) r4.Quantity
+		fn         func(float64) *r4.Quantity
 		value      float64
 		wantUnit   string
 		wantCode   string
@@ -428,7 +428,7 @@ func TestUCUMLengthQuantities(t *testing.T) {
 func TestUCUMTemperatureQuantities(t *testing.T) {
 	tests := []struct {
 		name       string
-		fn         func(float64) r4.Quantity
+		fn         func(float64) *r4.Quantity
 		value      float64
 		wantUnit   string
 		wantCode   string
@@ -463,7 +463,7 @@ func TestUCUMTemperatureQuantities(t *testing.T) {
 func TestUCUMPressureAndRateQuantities(t *testing.T) {
 	tests := []struct {
 		name       string
-		fn         func(float64) r4.Quantity
+		fn         func(float64) *r4.Quantity
 		value      float64
 		wantUnit   string
 		wantCode   string
@@ -514,7 +514,7 @@ func TestUCUMPressureAndRateQuantities(t *testing.T) {
 func TestUCUMConcentrationQuantities(t *testing.T) {
 	tests := []struct {
 		name       string
-		fn         func(float64) r4.Quantity
+		fn         func(float64) *r4.Quantity
 		value      float64
 		wantUnit   string
 		wantCode   string
@@ -573,7 +573,7 @@ func TestUCUMConcentrationQuantities(t *testing.T) {
 func TestUCUMTimeQuantities(t *testing.T) {
 	tests := []struct {
 		name       string
-		fn         func(float64) r4.Quantity
+		fn         func(float64) *r4.Quantity
 		value      float64
 		wantUnit   string
 		wantCode   string
@@ -648,7 +648,7 @@ func TestUCUMTimeQuantities(t *testing.T) {
 func TestUCUMVolumeAndDosageQuantities(t *testing.T) {
 	tests := []struct {
 		name       string
-		fn         func(float64) r4.Quantity
+		fn         func(float64) *r4.Quantity
 		value      float64
 		wantUnit   string
 		wantCode   string
@@ -715,7 +715,7 @@ func TestUCUMVolumeAndDosageQuantities(t *testing.T) {
 func TestUCUMSpecialQuantities(t *testing.T) {
 	tests := []struct {
 		name       string
-		fn         func(float64) r4.Quantity
+		fn         func(float64) *r4.Quantity
 		value      float64
 		wantUnit   string
 		wantCode   string
@@ -754,7 +754,7 @@ func TestUCUMSpecialQuantities(t *testing.T) {
 func TestObservationCategories(t *testing.T) {
 	tests := []struct {
 		name        string
-		code        r4.CodeableConcept
+		code        func() *r4.CodeableConcept
 		wantSystem  string
 		wantCode    string
 		wantDisplay string
@@ -826,7 +826,7 @@ func TestObservationCategories(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			assertCodeableConcept(t, tt.code, tt.wantSystem, tt.wantCode, tt.wantDisplay)
+			assertCodeableConcept(t, tt.code(), tt.wantSystem, tt.wantCode, tt.wantDisplay)
 		})
 	}
 }
@@ -834,7 +834,7 @@ func TestObservationCategories(t *testing.T) {
 func TestConditionCategories(t *testing.T) {
 	tests := []struct {
 		name        string
-		code        r4.CodeableConcept
+		code        func() *r4.CodeableConcept
 		wantSystem  string
 		wantCode    string
 		wantDisplay string
@@ -857,7 +857,7 @@ func TestConditionCategories(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			assertCodeableConcept(t, tt.code, tt.wantSystem, tt.wantCode, tt.wantDisplay)
+			assertCodeableConcept(t, tt.code(), tt.wantSystem, tt.wantCode, tt.wantDisplay)
 		})
 	}
 }
@@ -865,7 +865,7 @@ func TestConditionCategories(t *testing.T) {
 func TestAllergyCategories(t *testing.T) {
 	tests := []struct {
 		name        string
-		code        r4.CodeableConcept
+		code        func() *r4.CodeableConcept
 		wantSystem  string
 		wantCode    string
 		wantDisplay string
@@ -902,7 +902,7 @@ func TestAllergyCategories(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			assertCodeableConcept(t, tt.code, tt.wantSystem, tt.wantCode, tt.wantDisplay)
+			assertCodeableConcept(t, tt.code(), tt.wantSystem, tt.wantCode, tt.wantDisplay)
 		})
 	}
 }
@@ -910,7 +910,7 @@ func TestAllergyCategories(t *testing.T) {
 func TestDocumentTypes(t *testing.T) {
 	tests := []struct {
 		name        string
-		code        r4.CodeableConcept
+		code        func() *r4.CodeableConcept
 		wantSystem  string
 		wantCode    string
 		wantDisplay string
@@ -961,7 +961,7 @@ func TestDocumentTypes(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			assertCodeableConcept(t, tt.code, tt.wantSystem, tt.wantCode, tt.wantDisplay)
+			assertCodeableConcept(t, tt.code(), tt.wantSystem, tt.wantCode, tt.wantDisplay)
 		})
 	}
 }
@@ -977,9 +977,9 @@ func TestCreateVitalSignsObservation(t *testing.T) {
 
 	obs := r4.Observation{
 		Status:        &status,
-		Category:      []r4.CodeableConcept{ObservationCategoryVitalSigns},
-		Code:          &BodyWeight,
-		ValueQuantity: &weight,
+		Category:      []r4.CodeableConcept{*ObservationCategoryVitalSigns()},
+		Code:          BodyWeight(),
+		ValueQuantity: weight,
 	}
 
 	// Verify the observation was created correctly
@@ -1012,16 +1012,16 @@ func TestCreateBloodPressureObservation(t *testing.T) {
 
 	obs := r4.Observation{
 		Status:   &status,
-		Category: []r4.CodeableConcept{ObservationCategoryVitalSigns},
-		Code:     &BloodPressurePanel,
+		Category: []r4.CodeableConcept{*ObservationCategoryVitalSigns()},
+		Code:     BloodPressurePanel(),
 		Component: []r4.ObservationComponent{
 			{
-				Code:          &SystolicBloodPressure,
-				ValueQuantity: &systolic,
+				Code:          SystolicBloodPressure(),
+				ValueQuantity: systolic,
 			},
 			{
-				Code:          &DiastolicBloodPressure,
-				ValueQuantity: &diastolic,
+				Code:          DiastolicBloodPressure(),
+				ValueQuantity: diastolic,
 			},
 		},
 	}
@@ -1061,9 +1061,9 @@ func TestCreateLabObservation(t *testing.T) {
 
 	obs := r4.Observation{
 		Status:        &status,
-		Category:      []r4.CodeableConcept{ObservationCategoryLaboratory},
-		Code:          &GlucoseFasting,
-		ValueQuantity: &glucose,
+		Category:      []r4.CodeableConcept{*ObservationCategoryLaboratory()},
+		Code:          GlucoseFasting(),
+		ValueQuantity: glucose,
 	}
 
 	// Verify status
@@ -1087,7 +1087,7 @@ func TestCreateLabObservation(t *testing.T) {
 func TestCreateConditionWithCategory(t *testing.T) {
 	// Test creating a condition with problem-list-item category
 	condition := r4.Condition{
-		Category: []r4.CodeableConcept{ConditionCategoryProblemListItem},
+		Category: []r4.CodeableConcept{*ConditionCategoryProblemListItem()},
 		Code: &r4.CodeableConcept{
 			Coding: []r4.Coding{{
 				System:  ptr("http://snomed.info/sct"),
@@ -1113,7 +1113,7 @@ func TestCreateConditionWithCategory(t *testing.T) {
 // Helper Functions
 // =============================================================================
 
-func assertCodeableConcept(t *testing.T, cc r4.CodeableConcept, wantSystem, wantCode, wantDisplay string) {
+func assertCodeableConcept(t *testing.T, cc *r4.CodeableConcept, wantSystem, wantCode, wantDisplay string) {
 	t.Helper()
 
 	if len(cc.Coding) == 0 {
@@ -1147,7 +1147,7 @@ func assertCodeableConcept(t *testing.T, cc r4.CodeableConcept, wantSystem, want
 	}
 }
 
-func assertQuantity(t *testing.T, q r4.Quantity, wantValue float64, wantUnit, wantCode, wantSystem string) {
+func assertQuantity(t *testing.T, q *r4.Quantity, wantValue float64, wantUnit, wantCode, wantSystem string) {
 	t.Helper()
 
 	if q.Value == nil || q.Value.Float64() != wantValue {
@@ -1181,4 +1181,64 @@ func assertQuantity(t *testing.T, q r4.Quantity, wantValue float64, wantUnit, wa
 		}
 		t.Errorf("system: expected %s, got %s", wantSystem, got)
 	}
+}
+
+// TestHelpersDoNotShareState is the regression test for what these helpers used
+// to be: package-level vars.
+//
+// A var handed out the same value to every caller, and because CodeableConcept
+// carries a Coding slice, even taking a copy of the struct shared the slice's
+// backing array. Adjusting a display text on one resource silently changed it on
+// every other resource built from the same helper, and on the helper itself.
+//
+// That was easy to miss while required complex fields were value types, since the
+// aliasing was limited to the slices. Once those fields became pointers the whole
+// struct was shared, which is what made it worth fixing rather than documenting.
+func TestHelpersDoNotShareState(t *testing.T) {
+	t.Run("codeable concepts", func(t *testing.T) {
+		first := BodyWeight()
+		second := BodyWeight()
+
+		if first == second {
+			t.Fatal("two calls returned the same pointer; callers can corrupt each other")
+		}
+
+		first.Text = ptr("mutated")
+		first.Coding[0].Display = ptr("mutated too")
+
+		if second.Text == nil || *second.Text != "Body Weight" {
+			t.Errorf("mutating one result changed another: Text = %v", second.Text)
+		}
+		if second.Coding[0].Display == nil || *second.Coding[0].Display != "Body weight" {
+			t.Errorf("the Coding slice is shared: Display = %v", second.Coding[0].Display)
+		}
+		// And a later call is unaffected too, i.e. nothing global was written.
+		if got := BodyWeight(); got.Text == nil || *got.Text != "Body Weight" {
+			t.Errorf("a subsequent call sees the mutation: Text = %v", got.Text)
+		}
+	})
+
+	t.Run("quantities", func(t *testing.T) {
+		a := QuantityKg(1)
+		b := QuantityKg(1)
+		if a == b {
+			t.Fatal("two calls returned the same pointer")
+		}
+		a.Unit = ptr("mutated")
+		if b.Unit == nil || *b.Unit != "kg" {
+			t.Errorf("mutating one quantity changed another: Unit = %v", b.Unit)
+		}
+	})
+
+	t.Run("categories", func(t *testing.T) {
+		a := ObservationCategoryVitalSigns()
+		b := ObservationCategoryVitalSigns()
+		if a == b {
+			t.Fatal("two calls returned the same pointer")
+		}
+		a.Coding[0].Code = ptr("mutated")
+		if b.Coding[0].Code == nil || *b.Coding[0].Code == "mutated" {
+			t.Errorf("the Coding slice is shared: Code = %v", b.Coding[0].Code)
+		}
+	})
 }

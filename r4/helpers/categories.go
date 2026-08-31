@@ -15,224 +15,329 @@ const AllergyIntoleranceCategorySystem = "http://hl7.org/fhir/allergy-intoleranc
 // Observation Categories
 // =============================================================================
 
-// ObservationCategoryVitalSigns is the category for vital signs observations.
-var ObservationCategoryVitalSigns = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(ObservationCategorySystem),
-		Code:    ptr("vital-signs"),
-		Display: ptr("Vital Signs"),
-	}},
-	Text: ptr("Vital Signs"),
+// ObservationCategoryVitalSigns returns the category for vital signs observations.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func ObservationCategoryVitalSigns() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(ObservationCategorySystem),
+			Code:    ptr("vital-signs"),
+			Display: ptr("Vital Signs"),
+		}},
+		Text: ptr("Vital Signs"),
+	}
 }
 
-// ObservationCategoryLaboratory is the category for laboratory observations.
-var ObservationCategoryLaboratory = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(ObservationCategorySystem),
-		Code:    ptr("laboratory"),
-		Display: ptr("Laboratory"),
-	}},
-	Text: ptr("Laboratory"),
+// ObservationCategoryLaboratory returns the category for laboratory observations.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func ObservationCategoryLaboratory() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(ObservationCategorySystem),
+			Code:    ptr("laboratory"),
+			Display: ptr("Laboratory"),
+		}},
+		Text: ptr("Laboratory"),
+	}
 }
 
-// ObservationCategorySocialHistory is the category for social history observations.
-var ObservationCategorySocialHistory = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(ObservationCategorySystem),
-		Code:    ptr("social-history"),
-		Display: ptr("Social History"),
-	}},
-	Text: ptr("Social History"),
+// ObservationCategorySocialHistory returns the category for social history observations.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func ObservationCategorySocialHistory() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(ObservationCategorySystem),
+			Code:    ptr("social-history"),
+			Display: ptr("Social History"),
+		}},
+		Text: ptr("Social History"),
+	}
 }
 
-// ObservationCategoryImaging is the category for imaging observations.
-var ObservationCategoryImaging = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(ObservationCategorySystem),
-		Code:    ptr("imaging"),
-		Display: ptr("Imaging"),
-	}},
-	Text: ptr("Imaging"),
+// ObservationCategoryImaging returns the category for imaging observations.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func ObservationCategoryImaging() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(ObservationCategorySystem),
+			Code:    ptr("imaging"),
+			Display: ptr("Imaging"),
+		}},
+		Text: ptr("Imaging"),
+	}
 }
 
-// ObservationCategoryProcedure is the category for procedure observations.
-var ObservationCategoryProcedure = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(ObservationCategorySystem),
-		Code:    ptr("procedure"),
-		Display: ptr("Procedure"),
-	}},
-	Text: ptr("Procedure"),
+// ObservationCategoryProcedure returns the category for procedure observations.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func ObservationCategoryProcedure() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(ObservationCategorySystem),
+			Code:    ptr("procedure"),
+			Display: ptr("Procedure"),
+		}},
+		Text: ptr("Procedure"),
+	}
 }
 
-// ObservationCategorySurvey is the category for survey observations.
-var ObservationCategorySurvey = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(ObservationCategorySystem),
-		Code:    ptr("survey"),
-		Display: ptr("Survey"),
-	}},
-	Text: ptr("Survey"),
+// ObservationCategorySurvey returns the category for survey observations.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func ObservationCategorySurvey() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(ObservationCategorySystem),
+			Code:    ptr("survey"),
+			Display: ptr("Survey"),
+		}},
+		Text: ptr("Survey"),
+	}
 }
 
-// ObservationCategoryExam is the category for exam observations.
-var ObservationCategoryExam = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(ObservationCategorySystem),
-		Code:    ptr("exam"),
-		Display: ptr("Exam"),
-	}},
-	Text: ptr("Exam"),
+// ObservationCategoryExam returns the category for exam observations.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func ObservationCategoryExam() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(ObservationCategorySystem),
+			Code:    ptr("exam"),
+			Display: ptr("Exam"),
+		}},
+		Text: ptr("Exam"),
+	}
 }
 
-// ObservationCategoryTherapy is the category for therapy observations.
-var ObservationCategoryTherapy = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(ObservationCategorySystem),
-		Code:    ptr("therapy"),
-		Display: ptr("Therapy"),
-	}},
-	Text: ptr("Therapy"),
+// ObservationCategoryTherapy returns the category for therapy observations.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func ObservationCategoryTherapy() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(ObservationCategorySystem),
+			Code:    ptr("therapy"),
+			Display: ptr("Therapy"),
+		}},
+		Text: ptr("Therapy"),
+	}
 }
 
-// ObservationCategoryActivity is the category for activity observations.
-var ObservationCategoryActivity = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(ObservationCategorySystem),
-		Code:    ptr("activity"),
-		Display: ptr("Activity"),
-	}},
-	Text: ptr("Activity"),
+// ObservationCategoryActivity returns the category for activity observations.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func ObservationCategoryActivity() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(ObservationCategorySystem),
+			Code:    ptr("activity"),
+			Display: ptr("Activity"),
+		}},
+		Text: ptr("Activity"),
+	}
 }
 
 // =============================================================================
 // Condition Categories
 // =============================================================================
 
-// ConditionCategoryProblemListItem is the category for problem list items.
-var ConditionCategoryProblemListItem = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(ConditionCategorySystem),
-		Code:    ptr("problem-list-item"),
-		Display: ptr("Problem List Item"),
-	}},
-	Text: ptr("Problem List Item"),
+// ConditionCategoryProblemListItem returns the category for problem list items.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func ConditionCategoryProblemListItem() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(ConditionCategorySystem),
+			Code:    ptr("problem-list-item"),
+			Display: ptr("Problem List Item"),
+		}},
+		Text: ptr("Problem List Item"),
+	}
 }
 
-// ConditionCategoryEncounterDiagnosis is the category for encounter diagnoses.
-var ConditionCategoryEncounterDiagnosis = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(ConditionCategorySystem),
-		Code:    ptr("encounter-diagnosis"),
-		Display: ptr("Encounter Diagnosis"),
-	}},
-	Text: ptr("Encounter Diagnosis"),
+// ConditionCategoryEncounterDiagnosis returns the category for encounter diagnoses.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func ConditionCategoryEncounterDiagnosis() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(ConditionCategorySystem),
+			Code:    ptr("encounter-diagnosis"),
+			Display: ptr("Encounter Diagnosis"),
+		}},
+		Text: ptr("Encounter Diagnosis"),
+	}
 }
 
 // =============================================================================
 // Allergy/Intolerance Categories
 // =============================================================================
 
-// AllergyCategoryFood is the category for food allergies.
-var AllergyCategoryFood = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(AllergyIntoleranceCategorySystem),
-		Code:    ptr("food"),
-		Display: ptr("Food"),
-	}},
-	Text: ptr("Food Allergy"),
+// AllergyCategoryFood returns the category for food allergies.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func AllergyCategoryFood() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(AllergyIntoleranceCategorySystem),
+			Code:    ptr("food"),
+			Display: ptr("Food"),
+		}},
+		Text: ptr("Food Allergy"),
+	}
 }
 
-// AllergyCategoryMedication is the category for medication allergies.
-var AllergyCategoryMedication = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(AllergyIntoleranceCategorySystem),
-		Code:    ptr("medication"),
-		Display: ptr("Medication"),
-	}},
-	Text: ptr("Medication Allergy"),
+// AllergyCategoryMedication returns the category for medication allergies.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func AllergyCategoryMedication() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(AllergyIntoleranceCategorySystem),
+			Code:    ptr("medication"),
+			Display: ptr("Medication"),
+		}},
+		Text: ptr("Medication Allergy"),
+	}
 }
 
-// AllergyCategoryEnvironment is the category for environmental allergies.
-var AllergyCategoryEnvironment = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(AllergyIntoleranceCategorySystem),
-		Code:    ptr("environment"),
-		Display: ptr("Environment"),
-	}},
-	Text: ptr("Environmental Allergy"),
+// AllergyCategoryEnvironment returns the category for environmental allergies.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func AllergyCategoryEnvironment() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(AllergyIntoleranceCategorySystem),
+			Code:    ptr("environment"),
+			Display: ptr("Environment"),
+		}},
+		Text: ptr("Environmental Allergy"),
+	}
 }
 
-// AllergyCategoryBiologic is the category for biologic allergies.
-var AllergyCategoryBiologic = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(AllergyIntoleranceCategorySystem),
-		Code:    ptr("biologic"),
-		Display: ptr("Biologic"),
-	}},
-	Text: ptr("Biologic Allergy"),
+// AllergyCategoryBiologic returns the category for biologic allergies.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func AllergyCategoryBiologic() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(AllergyIntoleranceCategorySystem),
+			Code:    ptr("biologic"),
+			Display: ptr("Biologic"),
+		}},
+		Text: ptr("Biologic Allergy"),
+	}
 }
 
 // =============================================================================
 // Document Type Codes (for Composition/DocumentReference)
 // =============================================================================
 
-// DocumentTypeIPS is the LOINC code for International Patient Summary.
-var DocumentTypeIPS = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(LOINCSystem),
-		Code:    ptr("60591-5"),
-		Display: ptr("Patient summary Document"),
-	}},
-	Text: ptr("International Patient Summary"),
+// DocumentTypeIPS returns the LOINC code for International Patient Summary.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func DocumentTypeIPS() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(LOINCSystem),
+			Code:    ptr("60591-5"),
+			Display: ptr("Patient summary Document"),
+		}},
+		Text: ptr("International Patient Summary"),
+	}
 }
 
-// DocumentTypeCCD is the LOINC code for Continuity of Care Document.
-var DocumentTypeCCD = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(LOINCSystem),
-		Code:    ptr("34133-9"),
-		Display: ptr("Summary of episode note"),
-	}},
-	Text: ptr("Continuity of Care Document"),
+// DocumentTypeCCD returns the LOINC code for Continuity of Care Document.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func DocumentTypeCCD() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(LOINCSystem),
+			Code:    ptr("34133-9"),
+			Display: ptr("Summary of episode note"),
+		}},
+		Text: ptr("Continuity of Care Document"),
+	}
 }
 
-// DocumentTypeDischarge is the LOINC code for Discharge Summary.
-var DocumentTypeDischarge = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(LOINCSystem),
-		Code:    ptr("18842-5"),
-		Display: ptr("Discharge summary"),
-	}},
-	Text: ptr("Discharge Summary"),
+// DocumentTypeDischarge returns the LOINC code for Discharge Summary.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func DocumentTypeDischarge() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(LOINCSystem),
+			Code:    ptr("18842-5"),
+			Display: ptr("Discharge summary"),
+		}},
+		Text: ptr("Discharge Summary"),
+	}
 }
 
-// DocumentTypeProgress is the LOINC code for Progress Note.
-var DocumentTypeProgress = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(LOINCSystem),
-		Code:    ptr("11506-3"),
-		Display: ptr("Progress note"),
-	}},
-	Text: ptr("Progress Note"),
+// DocumentTypeProgress returns the LOINC code for Progress Note.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func DocumentTypeProgress() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(LOINCSystem),
+			Code:    ptr("11506-3"),
+			Display: ptr("Progress note"),
+		}},
+		Text: ptr("Progress Note"),
+	}
 }
 
-// DocumentTypeHistory is the LOINC code for History and Physical.
-var DocumentTypeHistory = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(LOINCSystem),
-		Code:    ptr("34117-2"),
-		Display: ptr("History and physical note"),
-	}},
-	Text: ptr("History and Physical"),
+// DocumentTypeHistory returns the LOINC code for History and Physical.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func DocumentTypeHistory() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(LOINCSystem),
+			Code:    ptr("34117-2"),
+			Display: ptr("History and physical note"),
+		}},
+		Text: ptr("History and Physical"),
+	}
 }
 
-// DocumentTypeConsult is the LOINC code for Consultation Note.
-var DocumentTypeConsult = r4.CodeableConcept{
-	Coding: []r4.Coding{{
-		System:  ptr(LOINCSystem),
-		Code:    ptr("11488-4"),
-		Display: ptr("Consultation note"),
-	}},
-	Text: ptr("Consultation Note"),
+// DocumentTypeConsult returns the LOINC code for Consultation Note.
+//
+// Each call builds a new value, so the result can be mutated without
+// affecting any other caller.
+func DocumentTypeConsult() *r4.CodeableConcept {
+	return &r4.CodeableConcept{
+		Coding: []r4.Coding{{
+			System:  ptr(LOINCSystem),
+			Code:    ptr("11488-4"),
+			Display: ptr("Consultation note"),
+		}},
+		Text: ptr("Consultation Note"),
+	}
 }

@@ -217,6 +217,24 @@ Reading is unaffected — Go dereferences automatically, so `obs.Code.Coding` st
 r4.NewObservationBuilder().SetCode(r4.CodeableConcept{...}).Build()   // unchanged
 ```
 
+### r4 helpers become functions
+
+**Status: done.** `helpers.BodyWeight` and the other 58 LOINC and category constants were package-level vars; they are now functions returning a fresh `*r4.CodeableConcept`, and the 33 UCUM `Quantity*` helpers return `*r4.Quantity`.
+
+```go
+Code: helpers.BodyWeight,      // v1
+Code: helpers.BodyWeight(),    // v2 — and the field is a pointer now, so this fits directly
+```
+
+With a builder, `Set*` still takes a value, so dereference:
+
+```go
+SetCode(*helpers.BodyWeight()).
+AddCategory(*helpers.ObservationCategoryVitalSigns()).
+```
+
+This is a correctness fix, not tidying. A var handed the same value to every caller, and since `CodeableConcept` carries a `Coding` slice, even copying the struct shared the backing array — so adjusting a `display` on one resource changed it on every other resource built from that helper, and on the helper itself. It was already possible in v1; making required fields pointers widened it from the slices to the whole struct.
+
 ### `Contained` becomes a named slice type
 
 **Status: forecast.** `[]Resource` becomes `ContainedList`. Assignment from `[]Resource`, `range`, `append`, and passing to a `func([]Resource)` all keep working; what changes is that `%T` prints `r4.ContainedList`.
