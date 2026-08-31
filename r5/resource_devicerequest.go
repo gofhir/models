@@ -91,7 +91,7 @@ type DeviceRequest struct {
 	// Extension for DoNotPerform
 	DoNotPerformExt *Element `json:"_doNotPerform,omitempty"`
 	// Device requested
-	Code CodeableReference `json:"code"`
+	Code *CodeableReference `json:"code,omitempty"`
 	// Quantity of devices to supply
 	Quantity *int `json:"quantity,omitempty"`
 	// Extension for Quantity
@@ -99,7 +99,7 @@ type DeviceRequest struct {
 	// Device details
 	Parameter []DeviceRequestParameter `json:"parameter,omitempty"`
 	// Focus of request
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// Encounter motivating request
 	Encounter *Reference `json:"encounter,omitempty"`
 	// Desired time or schedule for use
@@ -305,8 +305,10 @@ func (r DeviceRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 	if err := xmlEncodePrimitiveBool(e, "doNotPerform", r.DoNotPerform, r.DoNotPerformExt); err != nil {
 		return err
 	}
-	if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if r.Code != nil {
+		if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveInt(e, "quantity", r.Quantity, r.QuantityExt); err != nil {
 		return err
@@ -316,8 +318,10 @@ func (r DeviceRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if r.Encounter != nil {
 		if err := r.Encounter.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "encounter"}}); err != nil {
@@ -516,9 +520,11 @@ func (r *DeviceRequest) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				r.DoNotPerform = v
 				r.DoNotPerformExt = ext
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableReference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "quantity":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
@@ -533,9 +539,11 @@ func (r *DeviceRequest) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				r.Parameter = append(r.Parameter, v)
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -917,7 +925,7 @@ func (b *DeviceRequestBuilder) SetDoNotPerform(v bool) *DeviceRequestBuilder {
 
 // SetCode sets the Code field.
 func (b *DeviceRequestBuilder) SetCode(v CodeableReference) *DeviceRequestBuilder {
-	b.deviceRequest.Code = v
+	b.deviceRequest.Code = &v
 	return b
 }
 
@@ -935,7 +943,7 @@ func (b *DeviceRequestBuilder) AddParameter(v DeviceRequestParameter) *DeviceReq
 
 // SetSubject sets the Subject field.
 func (b *DeviceRequestBuilder) SetSubject(v Reference) *DeviceRequestBuilder {
-	b.deviceRequest.Subject = v
+	b.deviceRequest.Subject = &v
 	return b
 }
 
@@ -1174,7 +1182,7 @@ func WithDeviceRequestDoNotPerform(v bool) DeviceRequestOption {
 // WithDeviceRequestCode sets the Code field.
 func WithDeviceRequestCode(v CodeableReference) DeviceRequestOption {
 	return func(r *DeviceRequest) {
-		r.Code = v
+		r.Code = &v
 	}
 }
 
@@ -1195,7 +1203,7 @@ func WithDeviceRequestParameter(v DeviceRequestParameter) DeviceRequestOption {
 // WithDeviceRequestSubject sets the Subject field.
 func WithDeviceRequestSubject(v Reference) DeviceRequestOption {
 	return func(r *DeviceRequest) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

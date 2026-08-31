@@ -1076,7 +1076,7 @@ type TestPlanTestCaseTestData struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The type of test data description, e.g. 'synthea'
-	Type Coding `json:"type,omitempty"`
+	Type *Coding `json:"type,omitempty"`
 	// The actual test resources when they exist
 	Content *Reference `json:"content,omitempty"`
 	// Pointer to a definition of test resources - narrative or structured e.g. synthetic data generation, etc
@@ -1109,8 +1109,10 @@ func (b TestPlanTestCaseTestData) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if b.Content != nil {
 		if err := b.Content.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "content"}}); err != nil {
@@ -1159,9 +1161,11 @@ func (r *TestPlanTestCaseTestData) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v Coding
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "content":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

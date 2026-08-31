@@ -560,16 +560,20 @@ func (a *Analyzer) createProperty(elem *parser.ElementDefinition, fieldName stri
 	isArray := elem.IsArray()
 	isPrimitive := IsPrimitiveType(typeName)
 
-	// Determine if pointer is needed
-	// - Interfaces NEVER need pointers (they're already references)
-	// - Arrays don't need pointer (nil slice is fine)
-	// - Required primitives could be non-pointer, but we use pointer for JSON omitempty
-	// - Complex types are always pointers when optional
+	// Determine if pointer is needed.
+	//
+	// Interfaces never need one — they are already references — and a nil slice
+	// already means absent, so arrays do not either. Everything else does,
+	// including required complex types.
+	//
+	// Requiring a complex type used to mean a value field, on the reasoning that
+	// the type should express the obligation. It does not: Go has no way to force
+	// a field to be set, so r4.Observation{} compiles and marshals as
+	// {"code":{}} — an empty element that violates ele-1 and that no validator
+	// accepts. The obligation is a matter for a FHIR validator; what the type has
+	// to be able to say is "absent", and only a pointer says that.
 	isInterface := (typeName == "Resource" || typeName == "DomainResource")
-	isPointer := false
-	if !isArray && !isInterface {
-		isPointer = (elem.Min == 0 || isPrimitive)
-	}
+	isPointer := !isArray && !isInterface
 
 	// Check for required binding with code type - use custom type
 	goType := a.resolveGoTypeWithBinding(typeName, isPointer, isArray, elem.Binding)

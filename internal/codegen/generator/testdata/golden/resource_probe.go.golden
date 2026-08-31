@@ -47,6 +47,8 @@ type Probe struct {
 	Alias []*string `json:"alias,omitempty"`
 	// Extension for Alias
 	AliasExt []*Element `json:"_alias,omitempty"`
+	// Required complex type: still a pointer, or an unset one marshals as {} and violates ele-1
+	Marker *ProbeMarker `json:"marker,omitempty"`
 	// Choice of value
 	ValueBoolean *bool `json:"valueBoolean,omitempty"`
 	// Extension for ValueBoolean
@@ -93,6 +95,11 @@ func (r Probe) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveStringArray(e, "alias", r.Alias, r.AliasExt); err != nil {
 		return err
 	}
+	if r.Marker != nil {
+		if err := r.Marker.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "marker"}}); err != nil {
+			return err
+		}
+	}
 	if err := xmlEncodePrimitiveBool(e, "valueBoolean", r.ValueBoolean, nil); err != nil {
 		return err
 	}
@@ -138,6 +145,12 @@ func (r *Probe) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Alias = append(r.Alias, v)
+			case "marker":
+				var v ProbeMarker
+				if err := v.UnmarshalXML(d, t); err != nil {
+					return err
+				}
+				r.Marker = &v
 			case "valueBoolean":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -220,6 +233,45 @@ func (r *ProbeDetail) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 	}
 }
 
+// ProbeMarker represents the Probe.marker backbone element.
+// Required complex type: still a pointer, or an unset one marshals as {} and violates ele-1
+type ProbeMarker struct {
+}
+
+// MarshalXML serializes ProbeMarker to FHIR-conformant XML.
+func (b ProbeMarker) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	if start.Name.Local == "" {
+		start.Name.Local = "Probe.marker"
+	}
+	if err := e.EncodeToken(start); err != nil {
+		return err
+	}
+
+	return e.EncodeToken(start.End())
+}
+
+// UnmarshalXML deserializes ProbeMarker from FHIR-conformant XML.
+func (r *ProbeMarker) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+
+	for {
+		tok, err := d.Token()
+		if err != nil {
+			return err
+		}
+		switch t := tok.(type) {
+		case xml.StartElement:
+			switch t.Name.Local {
+			default:
+				if err := d.Skip(); err != nil {
+					return err
+				}
+			}
+		case xml.EndElement:
+			return nil
+		}
+	}
+}
+
 // =============================================================================
 // Probe - Fluent Builder
 // =============================================================================
@@ -262,6 +314,12 @@ func (b *ProbeBuilder) SetStatus(v ProbeStatusCodes) *ProbeBuilder {
 // is deliberately absent, build the slice directly and leave that entry nil.
 func (b *ProbeBuilder) AddAlias(v string) *ProbeBuilder {
 	b.probe.Alias = append(b.probe.Alias, &v)
+	return b
+}
+
+// SetMarker sets the Marker field.
+func (b *ProbeBuilder) SetMarker(v ProbeMarker) *ProbeBuilder {
+	b.probe.Marker = &v
 	return b
 }
 
@@ -329,6 +387,13 @@ func WithProbeStatus(v ProbeStatusCodes) ProbeOption {
 func WithProbeAlias(v string) ProbeOption {
 	return func(r *Probe) {
 		r.Alias = append(r.Alias, &v)
+	}
+}
+
+// WithProbeMarker sets the Marker field.
+func WithProbeMarker(v ProbeMarker) ProbeOption {
+	return func(r *Probe) {
+		r.Marker = &v
 	}
 }
 

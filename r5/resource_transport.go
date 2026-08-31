@@ -133,9 +133,9 @@ type Transport struct {
 	// Information produced as part of transport
 	Output []TransportOutput `json:"output,omitempty"`
 	// The desired location
-	RequestedLocation Reference `json:"requestedLocation"`
+	RequestedLocation *Reference `json:"requestedLocation,omitempty"`
 	// The entity current location
-	CurrentLocation Reference `json:"currentLocation"`
+	CurrentLocation *Reference `json:"currentLocation,omitempty"`
 	// Why transport is needed
 	Reason *CodeableReference `json:"reason,omitempty"`
 	// Parent (or preceding) transport
@@ -395,11 +395,15 @@ func (r Transport) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.RequestedLocation.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "requestedLocation"}}); err != nil {
-		return err
+	if r.RequestedLocation != nil {
+		if err := r.RequestedLocation.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "requestedLocation"}}); err != nil {
+			return err
+		}
 	}
-	if err := r.CurrentLocation.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "currentLocation"}}); err != nil {
-		return err
+	if r.CurrentLocation != nil {
+		if err := r.CurrentLocation.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "currentLocation"}}); err != nil {
+			return err
+		}
 	}
 	if r.Reason != nil {
 		if err := r.Reason.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reason"}}); err != nil {
@@ -655,13 +659,17 @@ func (r *Transport) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.Output = append(r.Output, v)
 			case "requestedLocation":
-				if err := r.RequestedLocation.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.RequestedLocation = &v
 			case "currentLocation":
-				if err := r.CurrentLocation.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.CurrentLocation = &v
 			case "reason":
 				var v CodeableReference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -695,7 +703,7 @@ type TransportInput struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Label for the input
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Content to use in performing the transport
 	ValueBase64Binary *string `json:"valueBase64Binary,omitempty"`
 	// Extension for ValueBase64Binary
@@ -868,8 +876,10 @@ func (b TransportInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "valueBase64Binary", b.ValueBase64Binary, nil); err != nil {
 		return err
@@ -1135,9 +1145,11 @@ func (r *TransportInput) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "valueBase64Binary":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1483,7 +1495,7 @@ type TransportOutput struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Label for output
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Result of output
 	ValueBase64Binary *string `json:"valueBase64Binary,omitempty"`
 	// Extension for ValueBase64Binary
@@ -1656,8 +1668,10 @@ func (b TransportOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "valueBase64Binary", b.ValueBase64Binary, nil); err != nil {
 		return err
@@ -1923,9 +1937,11 @@ func (r *TransportOutput) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "valueBase64Binary":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -2616,13 +2632,13 @@ func (b *TransportBuilder) AddOutput(v TransportOutput) *TransportBuilder {
 
 // SetRequestedLocation sets the RequestedLocation field.
 func (b *TransportBuilder) SetRequestedLocation(v Reference) *TransportBuilder {
-	b.transport.RequestedLocation = v
+	b.transport.RequestedLocation = &v
 	return b
 }
 
 // SetCurrentLocation sets the CurrentLocation field.
 func (b *TransportBuilder) SetCurrentLocation(v Reference) *TransportBuilder {
-	b.transport.CurrentLocation = v
+	b.transport.CurrentLocation = &v
 	return b
 }
 
@@ -2909,14 +2925,14 @@ func WithTransportOutput(v TransportOutput) TransportOption {
 // WithTransportRequestedLocation sets the RequestedLocation field.
 func WithTransportRequestedLocation(v Reference) TransportOption {
 	return func(r *Transport) {
-		r.RequestedLocation = v
+		r.RequestedLocation = &v
 	}
 }
 
 // WithTransportCurrentLocation sets the CurrentLocation field.
 func WithTransportCurrentLocation(v Reference) TransportOption {
 	return func(r *Transport) {
-		r.CurrentLocation = v
+		r.CurrentLocation = &v
 	}
 }
 

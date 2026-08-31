@@ -89,7 +89,7 @@ func TestPatient_MarshalXML_PrimitiveExtensions(t *testing.T) {
 		BirthDateExt: &Element{
 			Extension: []Extension{
 				{
-					Url:         extURL,
+					Url:         &extURL,
 					ValueString: &extValue,
 				},
 			},
@@ -174,7 +174,7 @@ func TestPatient_MarshalXML_ContainedResource(t *testing.T) {
 
 func TestExtension_MarshalXML_UrlAttribute(t *testing.T) {
 	ext := Extension{
-		Url:         "http://example.org/my-ext",
+		Url:         ptr("http://example.org/my-ext"),
 		ValueString: ptr("hello"),
 	}
 
@@ -202,7 +202,7 @@ func TestCoding_MarshalXML_IdAttribute(t *testing.T) {
 	// Marshal as part of a CodeableConcept inside a resource
 	obs := Observation{
 		Id: ptr("obs-coding-test"),
-		Code: CodeableConcept{
+		Code: &CodeableConcept{
 			Coding: []Coding{coding},
 		},
 	}
@@ -288,7 +288,7 @@ func TestObservation_MarshalXML_ComplexStructure(t *testing.T) {
 	obs := Observation{
 		Id:     ptr("obs-1"),
 		Status: &status,
-		Code: CodeableConcept{
+		Code: &CodeableConcept{
 			Coding: []Coding{
 				{
 					System:  ptr("http://loinc.org"),

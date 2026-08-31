@@ -67,7 +67,7 @@ type CatalogEntry struct {
 	// Extension for Orderable
 	OrderableExt *Element `json:"_orderable,omitempty"`
 	// The item that is being defined
-	ReferencedItem Reference `json:"referencedItem"`
+	ReferencedItem *Reference `json:"referencedItem,omitempty"`
 	// Any additional identifier(s) for the catalog item, in the same granularity or concept
 	AdditionalIdentifier []Identifier `json:"additionalIdentifier,omitempty"`
 	// Classification (category or class) of the item entry
@@ -238,8 +238,10 @@ func (r CatalogEntry) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveBool(e, "orderable", r.Orderable, r.OrderableExt); err != nil {
 		return err
 	}
-	if err := r.ReferencedItem.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "referencedItem"}}); err != nil {
-		return err
+	if r.ReferencedItem != nil {
+		if err := r.ReferencedItem.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "referencedItem"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.AdditionalIdentifier {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "additionalIdentifier"}}); err != nil {
@@ -366,9 +368,11 @@ func (r *CatalogEntry) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				r.Orderable = v
 				r.OrderableExt = ext
 			case "referencedItem":
-				if err := r.ReferencedItem.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.ReferencedItem = &v
 			case "additionalIdentifier":
 				var v Identifier
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -449,7 +453,7 @@ type CatalogEntryRelatedEntry struct {
 	// triggers | is-replaced-by
 	Relationtype *CatalogEntryRelationType `json:"relationtype,omitempty"`
 	// The reference to the related item
-	Item Reference `json:"item,omitempty"`
+	Item *Reference `json:"item,omitempty"`
 }
 
 // MarshalXML serializes CatalogEntryRelatedEntry to FHIR-conformant XML.
@@ -477,8 +481,10 @@ func (b CatalogEntryRelatedEntry) MarshalXML(e *xml.Encoder, start xml.StartElem
 	if err := xmlEncodePrimitiveCode(e, "relationtype", b.Relationtype, nil); err != nil {
 		return err
 	}
-	if err := b.Item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "item"}}); err != nil {
-		return err
+	if b.Item != nil {
+		if err := b.Item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "item"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -520,9 +526,11 @@ func (r *CatalogEntryRelatedEntry) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.Relationtype = v
 			case "item":
-				if err := r.Item.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Item = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -625,7 +633,7 @@ func (b *CatalogEntryBuilder) SetOrderable(v bool) *CatalogEntryBuilder {
 
 // SetReferencedItem sets the ReferencedItem field.
 func (b *CatalogEntryBuilder) SetReferencedItem(v Reference) *CatalogEntryBuilder {
-	b.catalogEntry.ReferencedItem = v
+	b.catalogEntry.ReferencedItem = &v
 	return b
 }
 
@@ -779,7 +787,7 @@ func WithCatalogEntryOrderable(v bool) CatalogEntryOption {
 // WithCatalogEntryReferencedItem sets the ReferencedItem field.
 func WithCatalogEntryReferencedItem(v Reference) CatalogEntryOption {
 	return func(r *CatalogEntry) {
-		r.ReferencedItem = v
+		r.ReferencedItem = &v
 	}
 }
 

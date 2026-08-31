@@ -73,7 +73,7 @@ type SubscriptionStatus struct {
 	// Detailed information about any events relevant to this notification
 	NotificationEvent []SubscriptionStatusNotificationEvent `json:"notificationEvent,omitempty"`
 	// Reference to the Subscription responsible for this notification
-	Subscription Reference `json:"subscription"`
+	Subscription *Reference `json:"subscription,omitempty"`
 	// Reference to the SubscriptionTopic this notification relates to
 	Topic *string `json:"topic,omitempty"`
 	// Extension for Topic
@@ -227,8 +227,10 @@ func (r SubscriptionStatus) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := r.Subscription.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subscription"}}); err != nil {
-		return err
+	if r.Subscription != nil {
+		if err := r.Subscription.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subscription"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "topic", r.Topic, r.TopicExt); err != nil {
 		return err
@@ -332,9 +334,11 @@ func (r *SubscriptionStatus) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.NotificationEvent = append(r.NotificationEvent, v)
 			case "subscription":
-				if err := r.Subscription.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subscription = &v
 			case "topic":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -581,7 +585,7 @@ func (b *SubscriptionStatusBuilder) AddNotificationEvent(v SubscriptionStatusNot
 
 // SetSubscription sets the Subscription field.
 func (b *SubscriptionStatusBuilder) SetSubscription(v Reference) *SubscriptionStatusBuilder {
-	b.subscriptionStatus.Subscription = v
+	b.subscriptionStatus.Subscription = &v
 	return b
 }
 
@@ -700,7 +704,7 @@ func WithSubscriptionStatusNotificationEvent(v SubscriptionStatusNotificationEve
 // WithSubscriptionStatusSubscription sets the Subscription field.
 func WithSubscriptionStatusSubscription(v Reference) SubscriptionStatusOption {
 	return func(r *SubscriptionStatus) {
-		r.Subscription = v
+		r.Subscription = &v
 	}
 }
 

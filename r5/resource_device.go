@@ -706,7 +706,7 @@ type DeviceConformsTo struct {
 	// Describes the common type of the standard, specification, or formal guidance.  communication | performance | measurement
 	Category *CodeableConcept `json:"category,omitempty"`
 	// Identifies the standard, specification, or formal guidance that the device adheres to
-	Specification CodeableConcept `json:"specification,omitempty"`
+	Specification *CodeableConcept `json:"specification,omitempty"`
 	// Specific form or variant of the standard
 	Version *string `json:"version,omitempty"`
 }
@@ -738,8 +738,10 @@ func (b DeviceConformsTo) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := b.Specification.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "specification"}}); err != nil {
-		return err
+	if b.Specification != nil {
+		if err := b.Specification.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "specification"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "version", b.Version, nil); err != nil {
 		return err
@@ -784,9 +786,11 @@ func (r *DeviceConformsTo) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.Category = &v
 			case "specification":
-				if err := r.Specification.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Specification = &v
 			case "version":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -924,7 +928,7 @@ type DeviceProperty struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Code that specifies the property being represented
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Value of the property
 	ValueQuantity *Quantity `json:"valueQuantity,omitempty"`
 	// Value of the property
@@ -969,8 +973,10 @@ func (b DeviceProperty) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if b.ValueQuantity != nil {
 		if err := b.ValueQuantity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "valueQuantity"}}); err != nil {
@@ -1035,9 +1041,11 @@ func (r *DeviceProperty) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {

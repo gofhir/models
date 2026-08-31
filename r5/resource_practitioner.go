@@ -439,7 +439,7 @@ type PractitionerCommunication struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The language code used to communicate with the practitioner
-	Language CodeableConcept `json:"language,omitempty"`
+	Language *CodeableConcept `json:"language,omitempty"`
 	// Language preference indicator
 	Preferred *bool `json:"preferred,omitempty"`
 }
@@ -466,8 +466,10 @@ func (b PractitionerCommunication) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := b.Language.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "language"}}); err != nil {
-		return err
+	if b.Language != nil {
+		if err := b.Language.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "language"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "preferred", b.Preferred, nil); err != nil {
 		return err
@@ -506,9 +508,11 @@ func (r *PractitionerCommunication) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "language":
-				if err := r.Language.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Language = &v
 			case "preferred":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -538,7 +542,7 @@ type PractitionerQualification struct {
 	// An identifier for this qualification for the practitioner
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// Coded representation of the qualification
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Period during which the qualification is valid
 	Period *Period `json:"period,omitempty"`
 	// Organization that regulates and issues the qualification
@@ -572,8 +576,10 @@ func (b PractitionerQualification) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if b.Period != nil {
 		if err := b.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
@@ -625,9 +631,11 @@ func (r *PractitionerQualification) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

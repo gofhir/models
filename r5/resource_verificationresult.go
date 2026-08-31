@@ -806,7 +806,7 @@ type VerificationResultValidator struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Reference to the organization validating information
-	Organization Reference `json:"organization,omitempty"`
+	Organization *Reference `json:"organization,omitempty"`
 	// A digital identity certificate associated with the validator
 	IdentityCertificate *string `json:"identityCertificate,omitempty"`
 	// Validator signature (digital or image)
@@ -835,8 +835,10 @@ func (b VerificationResultValidator) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := b.Organization.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "organization"}}); err != nil {
-		return err
+	if b.Organization != nil {
+		if err := b.Organization.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "organization"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "identityCertificate", b.IdentityCertificate, nil); err != nil {
 		return err
@@ -880,9 +882,11 @@ func (r *VerificationResultValidator) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "organization":
-				if err := r.Organization.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Organization = &v
 			case "identityCertificate":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

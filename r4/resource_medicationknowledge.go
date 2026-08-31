@@ -696,7 +696,7 @@ type MedicationKnowledgeAdministrationGuidelinesDosage struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type of dosage
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Dosage for the medication for the specific guidelines
 	Dosage []Dosage `json:"dosage,omitempty"`
 }
@@ -723,8 +723,10 @@ func (b MedicationKnowledgeAdministrationGuidelinesDosage) MarshalXML(e *xml.Enc
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Dosage {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "dosage"}}); err != nil {
@@ -765,9 +767,11 @@ func (r *MedicationKnowledgeAdministrationGuidelinesDosage) UnmarshalXML(d *xml.
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "dosage":
 				var v Dosage
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -910,11 +914,11 @@ type MedicationKnowledgeCost struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The category of the cost information
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// The source or owner for the price information
 	Source *string `json:"source,omitempty"`
 	// The price of the medication
-	Cost Money `json:"cost,omitempty"`
+	Cost *Money `json:"cost,omitempty"`
 }
 
 // MarshalXML serializes MedicationKnowledgeCost to FHIR-conformant XML.
@@ -939,14 +943,18 @@ func (b MedicationKnowledgeCost) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "source", b.Source, nil); err != nil {
 		return err
 	}
-	if err := b.Cost.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "cost"}}); err != nil {
-		return err
+	if b.Cost != nil {
+		if err := b.Cost.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "cost"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -982,9 +990,11 @@ func (r *MedicationKnowledgeCost) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "source":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -992,9 +1002,11 @@ func (r *MedicationKnowledgeCost) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.Source = v
 			case "cost":
-				if err := r.Cost.UnmarshalXML(d, t); err != nil {
+				var v Money
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Cost = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1401,7 +1413,7 @@ type MedicationKnowledgeMedicineClassification struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The type of category for the medication (for example, therapeutic classification, therapeutic sub-classification)
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Specific category assigned to the medication
 	Classification []CodeableConcept `json:"classification,omitempty"`
 }
@@ -1428,8 +1440,10 @@ func (b MedicationKnowledgeMedicineClassification) MarshalXML(e *xml.Encoder, st
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Classification {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "classification"}}); err != nil {
@@ -1470,9 +1484,11 @@ func (r *MedicationKnowledgeMedicineClassification) UnmarshalXML(d *xml.Decoder,
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "classification":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1807,7 +1823,7 @@ type MedicationKnowledgeRegulatory struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Specifies the authority of the regulation
-	RegulatoryAuthority Reference `json:"regulatoryAuthority,omitempty"`
+	RegulatoryAuthority *Reference `json:"regulatoryAuthority,omitempty"`
 	// Specifies if changes are allowed when dispensing a medication from a regulatory perspective
 	Substitution []MedicationKnowledgeRegulatorySubstitution `json:"substitution,omitempty"`
 	// Specifies the schedule of a medication in jurisdiction
@@ -1838,8 +1854,10 @@ func (b MedicationKnowledgeRegulatory) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := b.RegulatoryAuthority.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "regulatoryAuthority"}}); err != nil {
-		return err
+	if b.RegulatoryAuthority != nil {
+		if err := b.RegulatoryAuthority.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "regulatoryAuthority"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Substitution {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "substitution"}}); err != nil {
@@ -1890,9 +1908,11 @@ func (r *MedicationKnowledgeRegulatory) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "regulatoryAuthority":
-				if err := r.RegulatoryAuthority.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.RegulatoryAuthority = &v
 			case "substitution":
 				var v MedicationKnowledgeRegulatorySubstitution
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1932,7 +1952,7 @@ type MedicationKnowledgeRegulatoryMaxDispense struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The maximum number of units of the medication that can be dispensed
-	Quantity Quantity `json:"quantity,omitempty"`
+	Quantity *Quantity `json:"quantity,omitempty"`
 	// The period that applies to the maximum number of units
 	Period *Duration `json:"period,omitempty"`
 }
@@ -1959,8 +1979,10 @@ func (b MedicationKnowledgeRegulatoryMaxDispense) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := b.Quantity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "quantity"}}); err != nil {
-		return err
+	if b.Quantity != nil {
+		if err := b.Quantity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "quantity"}}); err != nil {
+			return err
+		}
 	}
 	if b.Period != nil {
 		if err := b.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
@@ -2001,9 +2023,11 @@ func (r *MedicationKnowledgeRegulatoryMaxDispense) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "quantity":
-				if err := r.Quantity.UnmarshalXML(d, t); err != nil {
+				var v Quantity
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Quantity = &v
 			case "period":
 				var v Duration
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2031,7 +2055,7 @@ type MedicationKnowledgeRegulatorySchedule struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Specifies the specific drug schedule
-	Schedule CodeableConcept `json:"schedule,omitempty"`
+	Schedule *CodeableConcept `json:"schedule,omitempty"`
 }
 
 // MarshalXML serializes MedicationKnowledgeRegulatorySchedule to FHIR-conformant XML.
@@ -2056,8 +2080,10 @@ func (b MedicationKnowledgeRegulatorySchedule) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := b.Schedule.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "schedule"}}); err != nil {
-		return err
+	if b.Schedule != nil {
+		if err := b.Schedule.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "schedule"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -2093,9 +2119,11 @@ func (r *MedicationKnowledgeRegulatorySchedule) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "schedule":
-				if err := r.Schedule.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Schedule = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2117,7 +2145,7 @@ type MedicationKnowledgeRegulatorySubstitution struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Specifies the type of substitution allowed
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Specifies if regulation allows for changes in the medication when dispensing
 	Allowed *bool `json:"allowed,omitempty"`
 }
@@ -2144,8 +2172,10 @@ func (b MedicationKnowledgeRegulatorySubstitution) MarshalXML(e *xml.Encoder, st
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "allowed", b.Allowed, nil); err != nil {
 		return err
@@ -2184,9 +2214,11 @@ func (r *MedicationKnowledgeRegulatorySubstitution) UnmarshalXML(d *xml.Decoder,
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "allowed":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -2214,7 +2246,7 @@ type MedicationKnowledgeRelatedMedicationKnowledge struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Category of medicationKnowledge
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Associated documentation about the associated medication knowledge
 	Reference []Reference `json:"reference,omitempty"`
 }
@@ -2241,8 +2273,10 @@ func (b MedicationKnowledgeRelatedMedicationKnowledge) MarshalXML(e *xml.Encoder
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Reference {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reference"}}); err != nil {
@@ -2283,9 +2317,11 @@ func (r *MedicationKnowledgeRelatedMedicationKnowledge) UnmarshalXML(d *xml.Deco
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "reference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

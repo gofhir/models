@@ -71,12 +71,13 @@ func TestObservation(t *testing.T) {
 		obs := Observation{
 			Id:     &id,
 			Status: &status,
-			Code:   CodeableConcept{},
+			Code:   &CodeableConcept{},
 			ValueQuantity: &Quantity{
 				Value: value,
 				Unit:  &unit,
 			},
 		}
+		require.NotNil(t, obs.Code)
 
 		assert.Equal(t, "obs-123", *obs.Id)
 		assert.Equal(t, ObservationStatusFinal, *obs.Status)

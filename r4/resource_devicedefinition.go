@@ -582,7 +582,7 @@ type DeviceDefinitionCapability struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type of capability
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Description of capability
 	Description []CodeableConcept `json:"description,omitempty"`
 }
@@ -609,8 +609,10 @@ func (b DeviceDefinitionCapability) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Description {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "description"}}); err != nil {
@@ -651,9 +653,11 @@ func (r *DeviceDefinitionCapability) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "description":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -780,7 +784,7 @@ type DeviceDefinitionMaterial struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The substance
-	Substance CodeableConcept `json:"substance,omitempty"`
+	Substance *CodeableConcept `json:"substance,omitempty"`
 	// Indicates an alternative material of the device
 	Alternate *bool `json:"alternate,omitempty"`
 	// Whether the substance is a known or suspected allergen
@@ -809,8 +813,10 @@ func (b DeviceDefinitionMaterial) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := b.Substance.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "substance"}}); err != nil {
-		return err
+	if b.Substance != nil {
+		if err := b.Substance.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "substance"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "alternate", b.Alternate, nil); err != nil {
 		return err
@@ -852,9 +858,11 @@ func (r *DeviceDefinitionMaterial) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "substance":
-				if err := r.Substance.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Substance = &v
 			case "alternate":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -888,7 +896,7 @@ type DeviceDefinitionProperty struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Code that specifies the property DeviceDefinitionPropetyCode (Extensible)
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Property value as a quantity
 	ValueQuantity []Quantity `json:"valueQuantity,omitempty"`
 	// Property value as a code, e.g., NTP4 (synced to NTP)
@@ -917,8 +925,10 @@ func (b DeviceDefinitionProperty) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.ValueQuantity {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "valueQuantity"}}); err != nil {
@@ -964,9 +974,11 @@ func (r *DeviceDefinitionProperty) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -69,9 +69,9 @@ type ResearchSubject struct {
 	// Start and end of participation
 	Period *Period `json:"period,omitempty"`
 	// Study subject is part of
-	Study Reference `json:"study"`
+	Study *Reference `json:"study,omitempty"`
 	// Who or what is part of study
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// What path should be followed
 	AssignedComparisonGroup *string `json:"assignedComparisonGroup,omitempty"`
 	// Extension for AssignedComparisonGroup
@@ -233,11 +233,15 @@ func (r ResearchSubject) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := r.Study.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "study"}}); err != nil {
-		return err
+	if r.Study != nil {
+		if err := r.Study.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "study"}}); err != nil {
+			return err
+		}
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "assignedComparisonGroup", r.AssignedComparisonGroup, r.AssignedComparisonGroupExt); err != nil {
 		return err
@@ -342,13 +346,17 @@ func (r *ResearchSubject) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.Period = &v
 			case "study":
-				if err := r.Study.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Study = &v
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "assignedComparisonGroup":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -628,13 +636,13 @@ func (b *ResearchSubjectBuilder) SetPeriod(v Period) *ResearchSubjectBuilder {
 
 // SetStudy sets the Study field.
 func (b *ResearchSubjectBuilder) SetStudy(v Reference) *ResearchSubjectBuilder {
-	b.researchSubject.Study = v
+	b.researchSubject.Study = &v
 	return b
 }
 
 // SetSubject sets the Subject field.
 func (b *ResearchSubjectBuilder) SetSubject(v Reference) *ResearchSubjectBuilder {
-	b.researchSubject.Subject = v
+	b.researchSubject.Subject = &v
 	return b
 }
 
@@ -759,14 +767,14 @@ func WithResearchSubjectPeriod(v Period) ResearchSubjectOption {
 // WithResearchSubjectStudy sets the Study field.
 func WithResearchSubjectStudy(v Reference) ResearchSubjectOption {
 	return func(r *ResearchSubject) {
-		r.Study = v
+		r.Study = &v
 	}
 }
 
 // WithResearchSubjectSubject sets the Subject field.
 func WithResearchSubjectSubject(v Reference) ResearchSubjectOption {
 	return func(r *ResearchSubject) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

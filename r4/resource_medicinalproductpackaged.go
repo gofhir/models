@@ -396,7 +396,7 @@ type MedicinalProductPackagedBatchIdentifier struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A number appearing on the outer packaging of a specific batch
-	OuterPackaging Identifier `json:"outerPackaging,omitempty"`
+	OuterPackaging *Identifier `json:"outerPackaging,omitempty"`
 	// A number appearing on the immediate packaging (and not the outer packaging)
 	ImmediatePackaging *Identifier `json:"immediatePackaging,omitempty"`
 }
@@ -423,8 +423,10 @@ func (b MedicinalProductPackagedBatchIdentifier) MarshalXML(e *xml.Encoder, star
 			return err
 		}
 	}
-	if err := b.OuterPackaging.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "outerPackaging"}}); err != nil {
-		return err
+	if b.OuterPackaging != nil {
+		if err := b.OuterPackaging.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "outerPackaging"}}); err != nil {
+			return err
+		}
 	}
 	if b.ImmediatePackaging != nil {
 		if err := b.ImmediatePackaging.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "immediatePackaging"}}); err != nil {
@@ -465,9 +467,11 @@ func (r *MedicinalProductPackagedBatchIdentifier) UnmarshalXML(d *xml.Decoder, s
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "outerPackaging":
-				if err := r.OuterPackaging.UnmarshalXML(d, t); err != nil {
+				var v Identifier
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.OuterPackaging = &v
 			case "immediatePackaging":
 				var v Identifier
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -497,9 +501,9 @@ type MedicinalProductPackagedPackageItem struct {
 	// Including possibly Data Carrier Identifier
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// The physical type of the container of the medicine
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// The quantity of this package in the medicinal product, at the current level of packaging. The outermost is always 1
-	Quantity Quantity `json:"quantity,omitempty"`
+	Quantity *Quantity `json:"quantity,omitempty"`
 	// Material type of the package item
 	Material []CodeableConcept `json:"material,omitempty"`
 	// A possible alternate material for the packaging
@@ -547,11 +551,15 @@ func (b MedicinalProductPackagedPackageItem) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
-	if err := b.Quantity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "quantity"}}); err != nil {
-		return err
+	if b.Quantity != nil {
+		if err := b.Quantity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "quantity"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Material {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "material"}}); err != nil {
@@ -638,13 +646,17 @@ func (r *MedicinalProductPackagedPackageItem) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "quantity":
-				if err := r.Quantity.UnmarshalXML(d, t); err != nil {
+				var v Quantity
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Quantity = &v
 			case "material":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

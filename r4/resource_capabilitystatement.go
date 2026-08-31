@@ -981,7 +981,7 @@ type CapabilityStatementMessagingEndpoint struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// http | ftp | mllp +
-	Protocol Coding `json:"protocol,omitempty"`
+	Protocol *Coding `json:"protocol,omitempty"`
 	// Network address or identifier of the end-point
 	Address *string `json:"address,omitempty"`
 }
@@ -1008,8 +1008,10 @@ func (b CapabilityStatementMessagingEndpoint) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := b.Protocol.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "protocol"}}); err != nil {
-		return err
+	if b.Protocol != nil {
+		if err := b.Protocol.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "protocol"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "address", b.Address, nil); err != nil {
 		return err
@@ -1048,9 +1050,11 @@ func (r *CapabilityStatementMessagingEndpoint) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "protocol":
-				if err := r.Protocol.UnmarshalXML(d, t); err != nil {
+				var v Coding
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Protocol = &v
 			case "address":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

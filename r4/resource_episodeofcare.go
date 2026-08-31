@@ -71,7 +71,7 @@ type EpisodeOfCare struct {
 	// The list of diagnosis relevant to this episode of care
 	Diagnosis []EpisodeOfCareDiagnosis `json:"diagnosis,omitempty"`
 	// The patient who is the focus of this episode of care
-	Patient Reference `json:"patient"`
+	Patient *Reference `json:"patient,omitempty"`
 	// Organization that assumes care
 	ManagingOrganization *Reference `json:"managingOrganization,omitempty"`
 	// Interval during responsibility is assumed
@@ -240,8 +240,10 @@ func (r EpisodeOfCare) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
-		return err
+	if r.Patient != nil {
+		if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
+			return err
+		}
 	}
 	if r.ManagingOrganization != nil {
 		if err := r.ManagingOrganization.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "managingOrganization"}}); err != nil {
@@ -371,9 +373,11 @@ func (r *EpisodeOfCare) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				r.Diagnosis = append(r.Diagnosis, v)
 			case "patient":
-				if err := r.Patient.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Patient = &v
 			case "managingOrganization":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -431,7 +435,7 @@ type EpisodeOfCareDiagnosis struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Conditions/problems/diagnoses this episode of care is for
-	Condition Reference `json:"condition,omitempty"`
+	Condition *Reference `json:"condition,omitempty"`
 	// Role that this diagnosis has within the episode of care (e.g. admission, billing, discharge …)
 	Role *CodeableConcept `json:"role,omitempty"`
 	// Ranking of the diagnosis (for each role type)
@@ -460,8 +464,10 @@ func (b EpisodeOfCareDiagnosis) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := b.Condition.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "condition"}}); err != nil {
-		return err
+	if b.Condition != nil {
+		if err := b.Condition.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "condition"}}); err != nil {
+			return err
+		}
 	}
 	if b.Role != nil {
 		if err := b.Role.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "role"}}); err != nil {
@@ -505,9 +511,11 @@ func (r *EpisodeOfCareDiagnosis) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "condition":
-				if err := r.Condition.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Condition = &v
 			case "role":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -543,7 +551,7 @@ type EpisodeOfCareStatusHistory struct {
 	// planned | waitlist | active | onhold | finished | cancelled | entered-in-error
 	Status *EpisodeOfCareStatus `json:"status,omitempty"`
 	// Duration the EpisodeOfCare was in the specified status
-	Period Period `json:"period,omitempty"`
+	Period *Period `json:"period,omitempty"`
 }
 
 // MarshalXML serializes EpisodeOfCareStatusHistory to FHIR-conformant XML.
@@ -571,8 +579,10 @@ func (b EpisodeOfCareStatusHistory) MarshalXML(e *xml.Encoder, start xml.StartEl
 	if err := xmlEncodePrimitiveCode(e, "status", b.Status, nil); err != nil {
 		return err
 	}
-	if err := b.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
-		return err
+	if b.Period != nil {
+		if err := b.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -614,9 +624,11 @@ func (r *EpisodeOfCareStatusHistory) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.Status = v
 			case "period":
-				if err := r.Period.UnmarshalXML(d, t); err != nil {
+				var v Period
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Period = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -731,7 +743,7 @@ func (b *EpisodeOfCareBuilder) AddDiagnosis(v EpisodeOfCareDiagnosis) *EpisodeOf
 
 // SetPatient sets the Patient field.
 func (b *EpisodeOfCareBuilder) SetPatient(v Reference) *EpisodeOfCareBuilder {
-	b.episodeOfCare.Patient = v
+	b.episodeOfCare.Patient = &v
 	return b
 }
 
@@ -881,7 +893,7 @@ func WithEpisodeOfCareDiagnosis(v EpisodeOfCareDiagnosis) EpisodeOfCareOption {
 // WithEpisodeOfCarePatient sets the Patient field.
 func WithEpisodeOfCarePatient(v Reference) EpisodeOfCareOption {
 	return func(r *EpisodeOfCare) {
-		r.Patient = v
+		r.Patient = &v
 	}
 }
 

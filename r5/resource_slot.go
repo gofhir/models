@@ -69,7 +69,7 @@ type Slot struct {
 	// The style of appointment or patient that may be booked in the slot (not service type)
 	AppointmentType []CodeableConcept `json:"appointmentType,omitempty"`
 	// The schedule resource that this slot defines an interval of status information
-	Schedule Reference `json:"schedule"`
+	Schedule *Reference `json:"schedule,omitempty"`
 	// busy | free | busy-unavailable | busy-tentative | entered-in-error
 	Status *SlotStatus `json:"status,omitempty"`
 	// Extension for Status
@@ -248,8 +248,10 @@ func (r Slot) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.Schedule.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "schedule"}}); err != nil {
-		return err
+	if r.Schedule != nil {
+		if err := r.Schedule.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "schedule"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveCode(e, "status", r.Status, r.StatusExt); err != nil {
 		return err
@@ -363,9 +365,11 @@ func (r *Slot) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.AppointmentType = append(r.AppointmentType, v)
 			case "schedule":
-				if err := r.Schedule.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Schedule = &v
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[SlotStatus](d, t)
 				if err != nil {
@@ -515,7 +519,7 @@ func (b *SlotBuilder) AddAppointmentType(v CodeableConcept) *SlotBuilder {
 
 // SetSchedule sets the Schedule field.
 func (b *SlotBuilder) SetSchedule(v Reference) *SlotBuilder {
-	b.slot.Schedule = v
+	b.slot.Schedule = &v
 	return b
 }
 
@@ -659,7 +663,7 @@ func WithSlotAppointmentType(v CodeableConcept) SlotOption {
 // WithSlotSchedule sets the Schedule field.
 func WithSlotSchedule(v Reference) SlotOption {
 	return func(r *Slot) {
-		r.Schedule = v
+		r.Schedule = &v
 	}
 }
 

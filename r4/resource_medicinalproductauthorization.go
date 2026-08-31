@@ -634,7 +634,7 @@ type MedicinalProductAuthorizationProcedure struct {
 	// Identifier for this procedure
 	Identifier *Identifier `json:"identifier,omitempty"`
 	// Type of procedure
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Date of procedure
 	DatePeriod *Period `json:"datePeriod,omitempty"`
 	// Date of procedure
@@ -672,8 +672,10 @@ func (b MedicinalProductAuthorizationProcedure) MarshalXML(e *xml.Encoder, start
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if b.DatePeriod != nil {
 		if err := b.DatePeriod.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "datePeriod"}}); err != nil {
@@ -728,9 +730,11 @@ func (r *MedicinalProductAuthorizationProcedure) UnmarshalXML(d *xml.Decoder, st
 				}
 				r.Identifier = &v
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "datePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

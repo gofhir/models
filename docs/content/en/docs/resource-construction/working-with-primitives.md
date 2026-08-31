@@ -93,7 +93,7 @@ Decimal values appear in Quantity, Money, and other data types:
 ```go
 obs := r4.Observation{
     Status: ptrTo(r4.ObservationStatusFinal),
-    Code:   r4.CodeableConcept{ /* ... */ },
+    Code:   &r4.CodeableConcept{ /* ... */ },
     ValueQuantity: &r4.Quantity{
         Value:  r4.NewDecimalFromFloat64(120.0),
         Unit:   ptrTo("mmHg"),

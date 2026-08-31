@@ -320,7 +320,7 @@ type LinkageItem struct {
 	// source | alternate | historical
 	Type *LinkageType `json:"type,omitempty"`
 	// Resource being linked
-	Resource Reference `json:"resource,omitempty"`
+	Resource *Reference `json:"resource,omitempty"`
 }
 
 // MarshalXML serializes LinkageItem to FHIR-conformant XML.
@@ -348,8 +348,10 @@ func (b LinkageItem) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
 		return err
 	}
-	if err := b.Resource.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "resource"}}); err != nil {
-		return err
+	if b.Resource != nil {
+		if err := b.Resource.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "resource"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -391,9 +393,11 @@ func (r *LinkageItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 				}
 				r.Type = v
 			case "resource":
-				if err := r.Resource.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Resource = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err

@@ -409,7 +409,7 @@ type AdministrableProductDefinitionProperty struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A code expressing the type of characteristic
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// A value for the characteristic
 	ValueCodeableConcept *CodeableConcept `json:"valueCodeableConcept,omitempty"`
 	// A value for the characteristic
@@ -450,8 +450,10 @@ func (b AdministrableProductDefinitionProperty) MarshalXML(e *xml.Encoder, start
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if b.ValueCodeableConcept != nil {
 		if err := b.ValueCodeableConcept.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "valueCodeableConcept"}}); err != nil {
@@ -513,9 +515,11 @@ func (r *AdministrableProductDefinitionProperty) UnmarshalXML(d *xml.Decoder, st
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "valueCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -573,7 +577,7 @@ type AdministrableProductDefinitionRouteOfAdministration struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Coded expression for the route
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// The first dose (dose quantity) administered can be specified for the product
 	FirstDose *Quantity `json:"firstDose,omitempty"`
 	// The maximum single dose that can be administered
@@ -610,8 +614,10 @@ func (b AdministrableProductDefinitionRouteOfAdministration) MarshalXML(e *xml.E
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if b.FirstDose != nil {
 		if err := b.FirstDose.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "firstDose"}}); err != nil {
@@ -677,9 +683,11 @@ func (r *AdministrableProductDefinitionRouteOfAdministration) UnmarshalXML(d *xm
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "firstDose":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -737,7 +745,7 @@ type AdministrableProductDefinitionRouteOfAdministrationTargetSpecies struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Coded expression for the species
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// A species specific time during which consumption of animal product is not appropriate
 	WithdrawalPeriod []AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod `json:"withdrawalPeriod,omitempty"`
 }
@@ -764,8 +772,10 @@ func (b AdministrableProductDefinitionRouteOfAdministrationTargetSpecies) Marsha
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.WithdrawalPeriod {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "withdrawalPeriod"}}); err != nil {
@@ -806,9 +816,11 @@ func (r *AdministrableProductDefinitionRouteOfAdministrationTargetSpecies) Unmar
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "withdrawalPeriod":
 				var v AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -836,9 +848,9 @@ type AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalP
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The type of tissue for which the withdrawal period applies, e.g. meat, milk
-	Tissue CodeableConcept `json:"tissue,omitempty"`
+	Tissue *CodeableConcept `json:"tissue,omitempty"`
 	// A value for the time
-	Value Quantity `json:"value,omitempty"`
+	Value *Quantity `json:"value,omitempty"`
 	// Extra information about the withdrawal period
 	SupportingInformation *string `json:"supportingInformation,omitempty"`
 }
@@ -865,11 +877,15 @@ func (b AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdraw
 			return err
 		}
 	}
-	if err := b.Tissue.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "tissue"}}); err != nil {
-		return err
+	if b.Tissue != nil {
+		if err := b.Tissue.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "tissue"}}); err != nil {
+			return err
+		}
 	}
-	if err := b.Value.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "value"}}); err != nil {
-		return err
+	if b.Value != nil {
+		if err := b.Value.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "value"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "supportingInformation", b.SupportingInformation, nil); err != nil {
 		return err
@@ -908,13 +924,17 @@ func (r *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdra
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "tissue":
-				if err := r.Tissue.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Tissue = &v
 			case "value":
-				if err := r.Value.UnmarshalXML(d, t); err != nil {
+				var v Quantity
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Value = &v
 			case "supportingInformation":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

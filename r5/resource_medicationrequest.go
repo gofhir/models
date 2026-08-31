@@ -91,9 +91,9 @@ type MedicationRequest struct {
 	// Extension for DoNotPerform
 	DoNotPerformExt *Element `json:"_doNotPerform,omitempty"`
 	// Medication to be taken
-	Medication CodeableReference `json:"medication"`
+	Medication *CodeableReference `json:"medication,omitempty"`
 	// Individual or group for whom the medication has been requested
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// The person or organization who provided the information about this request, if the source is someone other than the requestor
 	InformationSource []Reference `json:"informationSource,omitempty"`
 	// Encounter created as part of encounter/admission/stay
@@ -318,11 +318,15 @@ func (r MedicationRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	if err := xmlEncodePrimitiveBool(e, "doNotPerform", r.DoNotPerform, r.DoNotPerformExt); err != nil {
 		return err
 	}
-	if err := r.Medication.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "medication"}}); err != nil {
-		return err
+	if r.Medication != nil {
+		if err := r.Medication.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "medication"}}); err != nil {
+			return err
+		}
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.InformationSource {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "informationSource"}}); err != nil {
@@ -556,13 +560,17 @@ func (r *MedicationRequest) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				r.DoNotPerform = v
 				r.DoNotPerformExt = ext
 			case "medication":
-				if err := r.Medication.UnmarshalXML(d, t); err != nil {
+				var v CodeableReference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Medication = &v
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "informationSource":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1247,13 +1255,13 @@ func (b *MedicationRequestBuilder) SetDoNotPerform(v bool) *MedicationRequestBui
 
 // SetMedication sets the Medication field.
 func (b *MedicationRequestBuilder) SetMedication(v CodeableReference) *MedicationRequestBuilder {
-	b.medicationRequest.Medication = v
+	b.medicationRequest.Medication = &v
 	return b
 }
 
 // SetSubject sets the Subject field.
 func (b *MedicationRequestBuilder) SetSubject(v Reference) *MedicationRequestBuilder {
-	b.medicationRequest.Subject = v
+	b.medicationRequest.Subject = &v
 	return b
 }
 
@@ -1529,14 +1537,14 @@ func WithMedicationRequestDoNotPerform(v bool) MedicationRequestOption {
 // WithMedicationRequestMedication sets the Medication field.
 func WithMedicationRequestMedication(v CodeableReference) MedicationRequestOption {
 	return func(r *MedicationRequest) {
-		r.Medication = v
+		r.Medication = &v
 	}
 }
 
 // WithMedicationRequestSubject sets the Subject field.
 func WithMedicationRequestSubject(v Reference) MedicationRequestOption {
 	return func(r *MedicationRequest) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

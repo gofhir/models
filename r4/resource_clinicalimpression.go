@@ -73,7 +73,7 @@ type ClinicalImpression struct {
 	// Extension for Description
 	DescriptionExt *Element `json:"_description,omitempty"`
 	// Patient or group assessed
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// Encounter created as part of
 	Encounter *Reference `json:"encounter,omitempty"`
 	// Time of assessment
@@ -266,8 +266,10 @@ func (r ClinicalImpression) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	if err := xmlEncodePrimitiveString(e, "description", r.Description, r.DescriptionExt); err != nil {
 		return err
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if r.Encounter != nil {
 		if err := r.Encounter.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "encounter"}}); err != nil {
@@ -435,9 +437,11 @@ func (r *ClinicalImpression) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				r.Description = v
 				r.DescriptionExt = ext
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -667,7 +671,7 @@ type ClinicalImpressionInvestigation struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A name/code for the set
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Record of a specific investigation
 	Item []Reference `json:"item,omitempty"`
 }
@@ -694,8 +698,10 @@ func (b ClinicalImpressionInvestigation) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Item {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "item"}}); err != nil {
@@ -736,9 +742,11 @@ func (r *ClinicalImpressionInvestigation) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "item":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -859,7 +867,7 @@ func (b *ClinicalImpressionBuilder) SetDescription(v string) *ClinicalImpression
 
 // SetSubject sets the Subject field.
 func (b *ClinicalImpressionBuilder) SetSubject(v Reference) *ClinicalImpressionBuilder {
-	b.clinicalImpression.Subject = v
+	b.clinicalImpression.Subject = &v
 	return b
 }
 
@@ -1073,7 +1081,7 @@ func WithClinicalImpressionDescription(v string) ClinicalImpressionOption {
 // WithClinicalImpressionSubject sets the Subject field.
 func WithClinicalImpressionSubject(v Reference) ClinicalImpressionOption {
 	return func(r *ClinicalImpression) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

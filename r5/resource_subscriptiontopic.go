@@ -779,7 +779,7 @@ type SubscriptionTopicEventTrigger struct {
 	// Text representation of the event trigger
 	Description *string `json:"description,omitempty"`
 	// Event which can trigger a notification from the SubscriptionTopic
-	Event CodeableConcept `json:"event,omitempty"`
+	Event *CodeableConcept `json:"event,omitempty"`
 	// Data Type or Resource (reference to definition) for this trigger definition
 	Resource *string `json:"resource,omitempty"`
 }
@@ -809,8 +809,10 @@ func (b SubscriptionTopicEventTrigger) MarshalXML(e *xml.Encoder, start xml.Star
 	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
 		return err
 	}
-	if err := b.Event.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "event"}}); err != nil {
-		return err
+	if b.Event != nil {
+		if err := b.Event.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "event"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "resource", b.Resource, nil); err != nil {
 		return err
@@ -855,9 +857,11 @@ func (r *SubscriptionTopicEventTrigger) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.Description = v
 			case "event":
-				if err := r.Event.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Event = &v
 			case "resource":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

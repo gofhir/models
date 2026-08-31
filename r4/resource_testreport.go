@@ -69,7 +69,7 @@ type TestReport struct {
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Reference to the  version-specific TestScript that was executed to produce this TestReport
-	TestScript Reference `json:"testScript"`
+	TestScript *Reference `json:"testScript,omitempty"`
 	// pass | fail | pending
 	Result *TestReportResult `json:"result,omitempty"`
 	// Extension for Result
@@ -238,8 +238,10 @@ func (r TestReport) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveCode(e, "status", r.Status, r.StatusExt); err != nil {
 		return err
 	}
-	if err := r.TestScript.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "testScript"}}); err != nil {
-		return err
+	if r.TestScript != nil {
+		if err := r.TestScript.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "testScript"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveCode(e, "result", r.Result, r.ResultExt); err != nil {
 		return err
@@ -360,9 +362,11 @@ func (r *TestReport) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				r.Status = v
 				r.StatusExt = ext
 			case "testScript":
-				if err := r.TestScript.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.TestScript = &v
 			case "result":
 				v, ext, err := xmlDecodePrimitiveCode[TestReportResult](d, t)
 				if err != nil {
@@ -1435,7 +1439,7 @@ func (b *TestReportBuilder) SetStatus(v TestReportStatus) *TestReportBuilder {
 
 // SetTestScript sets the TestScript field.
 func (b *TestReportBuilder) SetTestScript(v Reference) *TestReportBuilder {
-	b.testReport.TestScript = v
+	b.testReport.TestScript = &v
 	return b
 }
 
@@ -1583,7 +1587,7 @@ func WithTestReportStatus(v TestReportStatus) TestReportOption {
 // WithTestReportTestScript sets the TestScript field.
 func WithTestReportTestScript(v Reference) TestReportOption {
 	return func(r *TestReport) {
-		r.TestScript = v
+		r.TestScript = &v
 	}
 }
 

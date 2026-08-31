@@ -621,7 +621,7 @@ type MedicationDispensePerformer struct {
 	// Who performed the dispense and what they did
 	Function *CodeableConcept `json:"function,omitempty"`
 	// Individual who was performing
-	Actor Reference `json:"actor,omitempty"`
+	Actor *Reference `json:"actor,omitempty"`
 }
 
 // MarshalXML serializes MedicationDispensePerformer to FHIR-conformant XML.
@@ -651,8 +651,10 @@ func (b MedicationDispensePerformer) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
-		return err
+	if b.Actor != nil {
+		if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -694,9 +696,11 @@ func (r *MedicationDispensePerformer) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.Function = &v
 			case "actor":
-				if err := r.Actor.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Actor = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err

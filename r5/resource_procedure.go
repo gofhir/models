@@ -83,7 +83,7 @@ type Procedure struct {
 	// Identification of the procedure
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Individual or entity the procedure was performed on
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// Who is the target of the procedure when it is not the subject of record only
 	Focus *Reference `json:"focus,omitempty"`
 	// The Encounter during which this Procedure was created
@@ -312,8 +312,10 @@ func (r Procedure) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if r.Focus != nil {
 		if err := r.Focus.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "focus"}}); err != nil {
@@ -551,9 +553,11 @@ func (r *Procedure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.Code = &v
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "focus":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -725,7 +729,7 @@ type ProcedureFocalDevice struct {
 	// Kind of change to device
 	Action *CodeableConcept `json:"action,omitempty"`
 	// Device that was changed
-	Manipulated Reference `json:"manipulated,omitempty"`
+	Manipulated *Reference `json:"manipulated,omitempty"`
 }
 
 // MarshalXML serializes ProcedureFocalDevice to FHIR-conformant XML.
@@ -755,8 +759,10 @@ func (b ProcedureFocalDevice) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := b.Manipulated.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "manipulated"}}); err != nil {
-		return err
+	if b.Manipulated != nil {
+		if err := b.Manipulated.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "manipulated"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -798,9 +804,11 @@ func (r *ProcedureFocalDevice) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.Action = &v
 			case "manipulated":
-				if err := r.Manipulated.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Manipulated = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -824,7 +832,7 @@ type ProcedurePerformer struct {
 	// Type of performance
 	Function *CodeableConcept `json:"function,omitempty"`
 	// Who performed the procedure
-	Actor Reference `json:"actor,omitempty"`
+	Actor *Reference `json:"actor,omitempty"`
 	// Organization the device or practitioner was acting for
 	OnBehalfOf *Reference `json:"onBehalfOf,omitempty"`
 	// When the performer performed the procedure
@@ -858,8 +866,10 @@ func (b ProcedurePerformer) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
-		return err
+	if b.Actor != nil {
+		if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
+			return err
+		}
 	}
 	if b.OnBehalfOf != nil {
 		if err := b.OnBehalfOf.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "onBehalfOf"}}); err != nil {
@@ -911,9 +921,11 @@ func (r *ProcedurePerformer) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Function = &v
 			case "actor":
-				if err := r.Actor.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Actor = &v
 			case "onBehalfOf":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1072,7 +1084,7 @@ func (b *ProcedureBuilder) SetCode(v CodeableConcept) *ProcedureBuilder {
 
 // SetSubject sets the Subject field.
 func (b *ProcedureBuilder) SetSubject(v Reference) *ProcedureBuilder {
-	b.procedure.Subject = v
+	b.procedure.Subject = &v
 	return b
 }
 
@@ -1376,7 +1388,7 @@ func WithProcedureCode(v CodeableConcept) ProcedureOption {
 // WithProcedureSubject sets the Subject field.
 func WithProcedureSubject(v Reference) ProcedureOption {
 	return func(r *Procedure) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

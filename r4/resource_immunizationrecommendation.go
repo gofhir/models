@@ -61,7 +61,7 @@ type ImmunizationRecommendation struct {
 	// Business identifier
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// Who this profile is for
-	Patient Reference `json:"patient"`
+	Patient *Reference `json:"patient,omitempty"`
 	// Date recommendation(s) created
 	Date *string `json:"date,omitempty"`
 	// Extension for Date
@@ -208,8 +208,10 @@ func (r ImmunizationRecommendation) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
-		return err
+	if r.Patient != nil {
+		if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "date", r.Date, r.DateExt); err != nil {
 		return err
@@ -297,9 +299,11 @@ func (r *ImmunizationRecommendation) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "patient":
-				if err := r.Patient.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Patient = &v
 			case "date":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -346,7 +350,7 @@ type ImmunizationRecommendationRecommendation struct {
 	// Vaccine which is contraindicated to fulfill the recommendation
 	ContraindicatedVaccineCode []CodeableConcept `json:"contraindicatedVaccineCode,omitempty"`
 	// Vaccine recommendation status
-	ForecastStatus CodeableConcept `json:"forecastStatus,omitempty"`
+	ForecastStatus *CodeableConcept `json:"forecastStatus,omitempty"`
 	// Vaccine administration status reason
 	ForecastReason []CodeableConcept `json:"forecastReason,omitempty"`
 	// Dates governing proposed immunization
@@ -414,8 +418,10 @@ func (b ImmunizationRecommendationRecommendation) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := b.ForecastStatus.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "forecastStatus"}}); err != nil {
-		return err
+	if b.ForecastStatus != nil {
+		if err := b.ForecastStatus.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "forecastStatus"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.ForecastReason {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "forecastReason"}}); err != nil {
@@ -507,9 +513,11 @@ func (r *ImmunizationRecommendationRecommendation) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.ContraindicatedVaccineCode = append(r.ContraindicatedVaccineCode, v)
 			case "forecastStatus":
-				if err := r.ForecastStatus.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.ForecastStatus = &v
 			case "forecastReason":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -591,7 +599,7 @@ type ImmunizationRecommendationRecommendationDateCriterion struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type of date
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Recommended date
 	Value *string `json:"value,omitempty"`
 }
@@ -618,8 +626,10 @@ func (b ImmunizationRecommendationRecommendationDateCriterion) MarshalXML(e *xml
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
 		return err
@@ -658,9 +668,11 @@ func (r *ImmunizationRecommendationRecommendationDateCriterion) UnmarshalXML(d *
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "value":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -757,7 +769,7 @@ func (b *ImmunizationRecommendationBuilder) AddIdentifier(v Identifier) *Immuniz
 
 // SetPatient sets the Patient field.
 func (b *ImmunizationRecommendationBuilder) SetPatient(v Reference) *ImmunizationRecommendationBuilder {
-	b.immunizationRecommendation.Patient = v
+	b.immunizationRecommendation.Patient = &v
 	return b
 }
 
@@ -861,7 +873,7 @@ func WithImmunizationRecommendationIdentifier(v Identifier) ImmunizationRecommen
 // WithImmunizationRecommendationPatient sets the Patient field.
 func WithImmunizationRecommendationPatient(v Reference) ImmunizationRecommendationOption {
 	return func(r *ImmunizationRecommendation) {
-		r.Patient = v
+		r.Patient = &v
 	}
 }
 

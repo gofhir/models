@@ -59,7 +59,7 @@ func TestPatient_UnmarshalXML_PrimitiveExtensions(t *testing.T) {
 	assert.Equal(t, "1974-12-25", *patient.BirthDate)
 	require.NotNil(t, patient.BirthDateExt)
 	require.Len(t, patient.BirthDateExt.Extension, 1)
-	assert.Equal(t, "http://example.org/ext", patient.BirthDateExt.Extension[0].Url)
+	assert.Equal(t, "http://example.org/ext", *patient.BirthDateExt.Extension[0].Url)
 	assert.Equal(t, "some-value", *patient.BirthDateExt.Extension[0].ValueString)
 }
 
@@ -112,7 +112,7 @@ func TestExtension_UnmarshalXML_UrlAttribute(t *testing.T) {
 
 	patient := resource.(*Patient)
 	require.Len(t, patient.Extension, 1)
-	assert.Equal(t, "http://example.org/my-ext", patient.Extension[0].Url)
+	assert.Equal(t, "http://example.org/my-ext", *patient.Extension[0].Url)
 	assert.Equal(t, "hello", *patient.Extension[0].ValueString)
 }
 
@@ -210,7 +210,7 @@ func TestBundle_XML_Roundtrip(t *testing.T) {
 			{
 				Resource: &Observation{
 					Id: ptr("o1"),
-					Code: CodeableConcept{
+					Code: &CodeableConcept{
 						Coding: []Coding{
 							{System: ptr("http://loinc.org"), Code: ptr("1234")},
 						},

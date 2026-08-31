@@ -410,7 +410,7 @@ type MolecularSequenceRelative struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Ways of identifying nucleotides or amino acids within a sequence
-	CoordinateSystem CodeableConcept `json:"coordinateSystem,omitempty"`
+	CoordinateSystem *CodeableConcept `json:"coordinateSystem,omitempty"`
 	// Indicates the order in which the sequence should be considered when putting multiple 'relative' elements together
 	OrdinalPosition *int `json:"ordinalPosition,omitempty"`
 	// Indicates the nucleotide range in the composed sequence when multiple 'relative' elements are used together
@@ -443,8 +443,10 @@ func (b MolecularSequenceRelative) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := b.CoordinateSystem.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "coordinateSystem"}}); err != nil {
-		return err
+	if b.CoordinateSystem != nil {
+		if err := b.CoordinateSystem.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "coordinateSystem"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveInt(e, "ordinalPosition", b.OrdinalPosition, nil); err != nil {
 		return err
@@ -498,9 +500,11 @@ func (r *MolecularSequenceRelative) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "coordinateSystem":
-				if err := r.CoordinateSystem.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.CoordinateSystem = &v
 			case "ordinalPosition":
 				v, _, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {

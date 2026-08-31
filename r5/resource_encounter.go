@@ -903,7 +903,7 @@ type EncounterLocation struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Location the encounter takes place
-	Location Reference `json:"location,omitempty"`
+	Location *Reference `json:"location,omitempty"`
 	// planned | active | reserved | completed
 	Status *EncounterLocationStatus `json:"status,omitempty"`
 	// The physical type of the location (usually the level in the location hierarchy - bed, room, ward, virtual etc.)
@@ -934,8 +934,10 @@ func (b EncounterLocation) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := b.Location.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "location"}}); err != nil {
-		return err
+	if b.Location != nil {
+		if err := b.Location.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "location"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveCode(e, "status", b.Status, nil); err != nil {
 		return err
@@ -984,9 +986,11 @@ func (r *EncounterLocation) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "location":
-				if err := r.Location.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Location = &v
 			case "status":
 				v, _, err := xmlDecodePrimitiveCode[EncounterLocationStatus](d, t)
 				if err != nil {

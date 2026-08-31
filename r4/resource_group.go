@@ -413,7 +413,7 @@ type GroupCharacteristic struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Kind of characteristic
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Value held by characteristic
 	ValueCodeableConcept *CodeableConcept `json:"valueCodeableConcept,omitempty"`
 	// Value held by characteristic
@@ -454,8 +454,10 @@ func (b GroupCharacteristic) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if b.ValueCodeableConcept != nil {
 		if err := b.ValueCodeableConcept.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "valueCodeableConcept"}}); err != nil {
@@ -522,9 +524,11 @@ func (r *GroupCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "valueCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -588,7 +592,7 @@ type GroupMember struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Reference to the group member
-	Entity Reference `json:"entity,omitempty"`
+	Entity *Reference `json:"entity,omitempty"`
 	// Period member belonged to the group
 	Period *Period `json:"period,omitempty"`
 	// If member is no longer in group
@@ -617,8 +621,10 @@ func (b GroupMember) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := b.Entity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "entity"}}); err != nil {
-		return err
+	if b.Entity != nil {
+		if err := b.Entity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "entity"}}); err != nil {
+			return err
+		}
 	}
 	if b.Period != nil {
 		if err := b.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
@@ -662,9 +668,11 @@ func (r *GroupMember) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "entity":
-				if err := r.Entity.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Entity = &v
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

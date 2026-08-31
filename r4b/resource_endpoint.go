@@ -65,7 +65,7 @@ type Endpoint struct {
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Protocol/Profile/Standard to be used with this endpoint connection
-	ConnectionType Coding `json:"connectionType"`
+	ConnectionType *Coding `json:"connectionType,omitempty"`
 	// A name that this endpoint can be identified by
 	Name *string `json:"name,omitempty"`
 	// Extension for Name
@@ -231,8 +231,10 @@ func (r Endpoint) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveCode(e, "status", r.Status, r.StatusExt); err != nil {
 		return err
 	}
-	if err := r.ConnectionType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "connectionType"}}); err != nil {
-		return err
+	if r.ConnectionType != nil {
+		if err := r.ConnectionType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "connectionType"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "name", r.Name, r.NameExt); err != nil {
 		return err
@@ -346,9 +348,11 @@ func (r *Endpoint) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				r.Status = v
 				r.StatusExt = ext
 			case "connectionType":
-				if err := r.ConnectionType.UnmarshalXML(d, t); err != nil {
+				var v Coding
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.ConnectionType = &v
 			case "name":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -497,7 +501,7 @@ func (b *EndpointBuilder) SetStatus(v EndpointStatus) *EndpointBuilder {
 
 // SetConnectionType sets the ConnectionType field.
 func (b *EndpointBuilder) SetConnectionType(v Coding) *EndpointBuilder {
-	b.endpoint.ConnectionType = v
+	b.endpoint.ConnectionType = &v
 	return b
 }
 
@@ -646,7 +650,7 @@ func WithEndpointStatus(v EndpointStatus) EndpointOption {
 // WithEndpointConnectionType sets the ConnectionType field.
 func WithEndpointConnectionType(v Coding) EndpointOption {
 	return func(r *Endpoint) {
-		r.ConnectionType = v
+		r.ConnectionType = &v
 	}
 }
 

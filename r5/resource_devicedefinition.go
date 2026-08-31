@@ -620,9 +620,9 @@ type DeviceDefinitionChargeItem struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The code or reference for the charge item
-	ChargeItemCode CodeableReference `json:"chargeItemCode,omitempty"`
+	ChargeItemCode *CodeableReference `json:"chargeItemCode,omitempty"`
 	// Coefficient applicable to the billing code
-	Count Quantity `json:"count,omitempty"`
+	Count *Quantity `json:"count,omitempty"`
 	// A specific time period in which this charge item applies
 	EffectivePeriod *Period `json:"effectivePeriod,omitempty"`
 	// The context to which this charge item applies
@@ -651,11 +651,15 @@ func (b DeviceDefinitionChargeItem) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := b.ChargeItemCode.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "chargeItemCode"}}); err != nil {
-		return err
+	if b.ChargeItemCode != nil {
+		if err := b.ChargeItemCode.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "chargeItemCode"}}); err != nil {
+			return err
+		}
 	}
-	if err := b.Count.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "count"}}); err != nil {
-		return err
+	if b.Count != nil {
+		if err := b.Count.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "count"}}); err != nil {
+			return err
+		}
 	}
 	if b.EffectivePeriod != nil {
 		if err := b.EffectivePeriod.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "effectivePeriod"}}); err != nil {
@@ -701,13 +705,17 @@ func (r *DeviceDefinitionChargeItem) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "chargeItemCode":
-				if err := r.ChargeItemCode.UnmarshalXML(d, t); err != nil {
+				var v CodeableReference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.ChargeItemCode = &v
 			case "count":
-				if err := r.Count.UnmarshalXML(d, t); err != nil {
+				var v Quantity
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Count = &v
 			case "effectivePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -741,7 +749,7 @@ type DeviceDefinitionClassification struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A classification or risk class of the device model
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Further information qualifying this classification of the device model
 	Justification []RelatedArtifact `json:"justification,omitempty"`
 }
@@ -768,8 +776,10 @@ func (b DeviceDefinitionClassification) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Justification {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "justification"}}); err != nil {
@@ -810,9 +820,11 @@ func (r *DeviceDefinitionClassification) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "justification":
 				var v RelatedArtifact
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -842,7 +854,7 @@ type DeviceDefinitionConformsTo struct {
 	// Describes the common type of the standard, specification, or formal guidance
 	Category *CodeableConcept `json:"category,omitempty"`
 	// Identifies the standard, specification, or formal guidance that the device adheres to the Device Specification type
-	Specification CodeableConcept `json:"specification,omitempty"`
+	Specification *CodeableConcept `json:"specification,omitempty"`
 	// The specific form or variant of the standard, specification or formal guidance
 	Version []*string `json:"version,omitempty"`
 	// Standard, regulation, certification, or guidance website, document, or other publication, or similar, supporting the conformance
@@ -876,8 +888,10 @@ func (b DeviceDefinitionConformsTo) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := b.Specification.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "specification"}}); err != nil {
-		return err
+	if b.Specification != nil {
+		if err := b.Specification.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "specification"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveStringArray(e, "version", b.Version, nil); err != nil {
 		return err
@@ -927,9 +941,11 @@ func (r *DeviceDefinitionConformsTo) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.Category = &v
 			case "specification":
-				if err := r.Specification.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Specification = &v
 			case "version":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -968,7 +984,7 @@ type DeviceDefinitionCorrectiveAction struct {
 	// model | lot-numbers | serial-numbers
 	Scope *DeviceCorrectiveActionScope `json:"scope,omitempty"`
 	// Start and end dates of the  corrective action
-	Period Period `json:"period,omitempty"`
+	Period *Period `json:"period,omitempty"`
 }
 
 // MarshalXML serializes DeviceDefinitionCorrectiveAction to FHIR-conformant XML.
@@ -999,8 +1015,10 @@ func (b DeviceDefinitionCorrectiveAction) MarshalXML(e *xml.Encoder, start xml.S
 	if err := xmlEncodePrimitiveCode(e, "scope", b.Scope, nil); err != nil {
 		return err
 	}
-	if err := b.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
-		return err
+	if b.Period != nil {
+		if err := b.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -1048,9 +1066,11 @@ func (r *DeviceDefinitionCorrectiveAction) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				r.Scope = v
 			case "period":
-				if err := r.Period.UnmarshalXML(d, t); err != nil {
+				var v Period
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Period = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1335,7 +1355,7 @@ type DeviceDefinitionHasPart struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Reference to the part
-	Reference Reference `json:"reference,omitempty"`
+	Reference *Reference `json:"reference,omitempty"`
 	// Number of occurrences of the part
 	Count *int `json:"count,omitempty"`
 }
@@ -1362,8 +1382,10 @@ func (b DeviceDefinitionHasPart) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := b.Reference.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reference"}}); err != nil {
-		return err
+	if b.Reference != nil {
+		if err := b.Reference.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reference"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveInt(e, "count", b.Count, nil); err != nil {
 		return err
@@ -1402,9 +1424,11 @@ func (r *DeviceDefinitionHasPart) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "reference":
-				if err := r.Reference.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Reference = &v
 			case "count":
 				v, _, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
@@ -1432,9 +1456,9 @@ type DeviceDefinitionLink struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The type indicates the relationship of the related device to the device instance
-	Relation Coding `json:"relation,omitempty"`
+	Relation *Coding `json:"relation,omitempty"`
 	// A reference to the linked device
-	RelatedDevice CodeableReference `json:"relatedDevice,omitempty"`
+	RelatedDevice *CodeableReference `json:"relatedDevice,omitempty"`
 }
 
 // MarshalXML serializes DeviceDefinitionLink to FHIR-conformant XML.
@@ -1459,11 +1483,15 @@ func (b DeviceDefinitionLink) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := b.Relation.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "relation"}}); err != nil {
-		return err
+	if b.Relation != nil {
+		if err := b.Relation.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "relation"}}); err != nil {
+			return err
+		}
 	}
-	if err := b.RelatedDevice.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "relatedDevice"}}); err != nil {
-		return err
+	if b.RelatedDevice != nil {
+		if err := b.RelatedDevice.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "relatedDevice"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -1499,13 +1527,17 @@ func (r *DeviceDefinitionLink) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "relation":
-				if err := r.Relation.UnmarshalXML(d, t); err != nil {
+				var v Coding
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Relation = &v
 			case "relatedDevice":
-				if err := r.RelatedDevice.UnmarshalXML(d, t); err != nil {
+				var v CodeableReference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.RelatedDevice = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1527,7 +1559,7 @@ type DeviceDefinitionMaterial struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A relevant substance that the device contains, may contain, or is made of
-	Substance CodeableConcept `json:"substance,omitempty"`
+	Substance *CodeableConcept `json:"substance,omitempty"`
 	// Indicates an alternative material of the device
 	Alternate *bool `json:"alternate,omitempty"`
 	// Whether the substance is a known or suspected allergen
@@ -1556,8 +1588,10 @@ func (b DeviceDefinitionMaterial) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := b.Substance.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "substance"}}); err != nil {
-		return err
+	if b.Substance != nil {
+		if err := b.Substance.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "substance"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "alternate", b.Alternate, nil); err != nil {
 		return err
@@ -1599,9 +1633,11 @@ func (r *DeviceDefinitionMaterial) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "substance":
-				if err := r.Substance.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Substance = &v
 			case "alternate":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -1889,7 +1925,7 @@ type DeviceDefinitionProperty struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Code that specifies the property being represented
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Value of the property
 	ValueQuantity *Quantity `json:"valueQuantity,omitempty"`
 	// Value of the property
@@ -1934,8 +1970,10 @@ func (b DeviceDefinitionProperty) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if b.ValueQuantity != nil {
 		if err := b.ValueQuantity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "valueQuantity"}}); err != nil {
@@ -2000,9 +2038,11 @@ func (r *DeviceDefinitionProperty) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2310,7 +2350,7 @@ type DeviceDefinitionUdiDeviceIdentifierMarketDistribution struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Begin and end dates for the commercial distribution of the device
-	MarketPeriod Period `json:"marketPeriod,omitempty"`
+	MarketPeriod *Period `json:"marketPeriod,omitempty"`
 	// National state or territory where the device is commercialized
 	SubJurisdiction *string `json:"subJurisdiction,omitempty"`
 }
@@ -2337,8 +2377,10 @@ func (b DeviceDefinitionUdiDeviceIdentifierMarketDistribution) MarshalXML(e *xml
 			return err
 		}
 	}
-	if err := b.MarketPeriod.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "marketPeriod"}}); err != nil {
-		return err
+	if b.MarketPeriod != nil {
+		if err := b.MarketPeriod.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "marketPeriod"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "subJurisdiction", b.SubJurisdiction, nil); err != nil {
 		return err
@@ -2377,9 +2419,11 @@ func (r *DeviceDefinitionUdiDeviceIdentifierMarketDistribution) UnmarshalXML(d *
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "marketPeriod":
-				if err := r.MarketPeriod.UnmarshalXML(d, t); err != nil {
+				var v Period
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.MarketPeriod = &v
 			case "subJurisdiction":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

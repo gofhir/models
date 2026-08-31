@@ -67,7 +67,7 @@ type EncounterHistory struct {
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Classification of patient encounter
-	Class CodeableConcept `json:"class"`
+	Class *CodeableConcept `json:"class,omitempty"`
 	// Specific type of encounter
 	Type []CodeableConcept `json:"type,omitempty"`
 	// Specific type of service
@@ -236,8 +236,10 @@ func (r EncounterHistory) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 	if err := xmlEncodePrimitiveCode(e, "status", r.Status, r.StatusExt); err != nil {
 		return err
 	}
-	if err := r.Class.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "class"}}); err != nil {
-		return err
+	if r.Class != nil {
+		if err := r.Class.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "class"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.Type {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
@@ -366,9 +368,11 @@ func (r *EncounterHistory) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				r.Status = v
 				r.StatusExt = ext
 			case "class":
-				if err := r.Class.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Class = &v
 			case "type":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -446,7 +450,7 @@ type EncounterHistoryLocation struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Location the encounter takes place
-	Location Reference `json:"location,omitempty"`
+	Location *Reference `json:"location,omitempty"`
 	// The physical type of the location (usually the level in the location hierarchy - bed, room, ward, virtual etc.)
 	Form *CodeableConcept `json:"form,omitempty"`
 }
@@ -473,8 +477,10 @@ func (b EncounterHistoryLocation) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := b.Location.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "location"}}); err != nil {
-		return err
+	if b.Location != nil {
+		if err := b.Location.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "location"}}); err != nil {
+			return err
+		}
 	}
 	if b.Form != nil {
 		if err := b.Form.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "form"}}); err != nil {
@@ -515,9 +521,11 @@ func (r *EncounterHistoryLocation) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "location":
-				if err := r.Location.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Location = &v
 			case "form":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -626,7 +634,7 @@ func (b *EncounterHistoryBuilder) SetStatus(v EncounterStatus) *EncounterHistory
 
 // SetClass sets the Class field.
 func (b *EncounterHistoryBuilder) SetClass(v CodeableConcept) *EncounterHistoryBuilder {
-	b.encounterHistory.Class = v
+	b.encounterHistory.Class = &v
 	return b
 }
 
@@ -780,7 +788,7 @@ func WithEncounterHistoryStatus(v EncounterStatus) EncounterHistoryOption {
 // WithEncounterHistoryClass sets the Class field.
 func WithEncounterHistoryClass(v CodeableConcept) EncounterHistoryOption {
 	return func(r *EncounterHistory) {
-		r.Class = v
+		r.Class = &v
 	}
 }
 

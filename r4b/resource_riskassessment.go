@@ -73,7 +73,7 @@ type RiskAssessment struct {
 	// Type of assessment
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Who/what does assessment apply to?
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// Where was assessment performed?
 	Encounter *Reference `json:"encounter,omitempty"`
 	// When was assessment made?
@@ -261,8 +261,10 @@ func (r RiskAssessment) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if r.Encounter != nil {
 		if err := r.Encounter.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "encounter"}}); err != nil {
@@ -419,9 +421,11 @@ func (r *RiskAssessment) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.Code = &v
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -787,7 +791,7 @@ func (b *RiskAssessmentBuilder) SetCode(v CodeableConcept) *RiskAssessmentBuilde
 
 // SetSubject sets the Subject field.
 func (b *RiskAssessmentBuilder) SetSubject(v Reference) *RiskAssessmentBuilder {
-	b.riskAssessment.Subject = v
+	b.riskAssessment.Subject = &v
 	return b
 }
 
@@ -980,7 +984,7 @@ func WithRiskAssessmentCode(v CodeableConcept) RiskAssessmentOption {
 // WithRiskAssessmentSubject sets the Subject field.
 func WithRiskAssessmentSubject(v Reference) RiskAssessmentOption {
 	return func(r *RiskAssessment) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

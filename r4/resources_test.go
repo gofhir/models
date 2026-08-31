@@ -136,7 +136,7 @@ func TestObservation(t *testing.T) {
 		obs := Observation{
 			Id:     &id,
 			Status: &status,
-			Code: CodeableConcept{
+			Code: &CodeableConcept{
 				Coding: []Coding{
 					{System: &codeSystem, Code: &codeCode, Display: &codeDisplay},
 				},
@@ -148,6 +148,7 @@ func TestObservation(t *testing.T) {
 				Code:   &code,
 			},
 		}
+		require.NotNil(t, obs.Code)
 
 		assert.Equal(t, "obs-123", *obs.Id)
 		assert.Equal(t, ObservationStatusFinal, *obs.Status)
@@ -171,13 +172,14 @@ func TestObservation(t *testing.T) {
 		obs := Observation{
 			Id:     &id,
 			Status: &status,
-			Code:   CodeableConcept{},
+			Code:   &CodeableConcept{},
 			ValueCodeableConcept: &CodeableConcept{
 				Coding: []Coding{
 					{System: &system, Code: &code, Display: &display},
 				},
 			},
 		}
+		require.NotNil(t, obs.Code)
 
 		assert.Equal(t, id, *obs.Id)
 		assert.Equal(t, status, *obs.Status)
@@ -194,7 +196,7 @@ func TestObservation(t *testing.T) {
 		original := Observation{
 			Id:                &id,
 			Status:            &status,
-			Code:              CodeableConcept{},
+			Code:              &CodeableConcept{},
 			EffectiveDateTime: &effectiveDT,
 		}
 
@@ -277,10 +279,11 @@ func TestCondition(t *testing.T) {
 					{System: &system, Code: &clinicalStatus},
 				},
 			},
-			Subject: Reference{
+			Subject: &Reference{
 				Reference: &ref,
 			},
 		}
+		require.NotNil(t, condition.Subject)
 
 		assert.Equal(t, "condition-123", *condition.Id)
 		require.NotNil(t, condition.ClinicalStatus)
@@ -364,13 +367,14 @@ func TestMedicationRequest(t *testing.T) {
 			Id:     &id,
 			Status: &status,
 			Intent: &intent,
-			Subject: Reference{
+			Subject: &Reference{
 				Reference: &subjectRef,
 			},
 			MedicationReference: &Reference{
 				Reference: &medRef,
 			},
 		}
+		require.NotNil(t, medRequest.Subject)
 
 		assert.Equal(t, "medrx-123", *medRequest.Id)
 		assert.Equal(t, MedicationrequestStatus("active"), *medRequest.Status)
@@ -453,7 +457,7 @@ func TestResourceWithPrimitiveExtensions(t *testing.T) {
 				Id: &extID,
 				Extension: []Extension{
 					{
-						Url:          extURL,
+						Url:          &extURL,
 						ValueBoolean: &extValueBool,
 					},
 				},
@@ -465,7 +469,7 @@ func TestResourceWithPrimitiveExtensions(t *testing.T) {
 		require.NotNil(t, patient.BirthDateExt)
 		assert.Equal(t, "birthdate-ext", *patient.BirthDateExt.Id)
 		require.Len(t, patient.BirthDateExt.Extension, 1)
-		assert.Equal(t, extURL, patient.BirthDateExt.Extension[0].Url)
+		assert.Equal(t, extURL, *patient.BirthDateExt.Extension[0].Url)
 	})
 }
 

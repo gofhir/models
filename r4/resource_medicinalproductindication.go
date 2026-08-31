@@ -395,7 +395,7 @@ type MedicinalProductIndicationOtherTherapy struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The type of relationship between the medicinal product indication or contraindication and another therapy
-	TherapyRelationshipType CodeableConcept `json:"therapyRelationshipType,omitempty"`
+	TherapyRelationshipType *CodeableConcept `json:"therapyRelationshipType,omitempty"`
 	// Reference to a specific medication (active substance, medicinal product or class of products) as part of an indication or contraindication
 	MedicationCodeableConcept *CodeableConcept `json:"medicationCodeableConcept,omitempty"`
 	// Reference to a specific medication (active substance, medicinal product or class of products) as part of an indication or contraindication
@@ -424,8 +424,10 @@ func (b MedicinalProductIndicationOtherTherapy) MarshalXML(e *xml.Encoder, start
 			return err
 		}
 	}
-	if err := b.TherapyRelationshipType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "therapyRelationshipType"}}); err != nil {
-		return err
+	if b.TherapyRelationshipType != nil {
+		if err := b.TherapyRelationshipType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "therapyRelationshipType"}}); err != nil {
+			return err
+		}
 	}
 	if b.MedicationCodeableConcept != nil {
 		if err := b.MedicationCodeableConcept.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "medicationCodeableConcept"}}); err != nil {
@@ -471,9 +473,11 @@ func (r *MedicinalProductIndicationOtherTherapy) UnmarshalXML(d *xml.Decoder, st
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "therapyRelationshipType":
-				if err := r.TherapyRelationshipType.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.TherapyRelationshipType = &v
 			case "medicationCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -65,7 +65,7 @@ type ImmunizationEvaluation struct {
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Who this evaluation is for
-	Patient Reference `json:"patient"`
+	Patient *Reference `json:"patient,omitempty"`
 	// Date evaluation was performed
 	Date *string `json:"date,omitempty"`
 	// Extension for Date
@@ -73,11 +73,11 @@ type ImmunizationEvaluation struct {
 	// Who is responsible for publishing the recommendations
 	Authority *Reference `json:"authority,omitempty"`
 	// The vaccine preventable disease schedule being evaluated
-	TargetDisease CodeableConcept `json:"targetDisease"`
+	TargetDisease *CodeableConcept `json:"targetDisease,omitempty"`
 	// Immunization being evaluated
-	ImmunizationEvent Reference `json:"immunizationEvent"`
+	ImmunizationEvent *Reference `json:"immunizationEvent,omitempty"`
 	// Status of the dose relative to published recommendations
-	DoseStatus CodeableConcept `json:"doseStatus"`
+	DoseStatus *CodeableConcept `json:"doseStatus,omitempty"`
 	// Reason why the doese is considered valid, invalid or some other status
 	DoseStatusReason []CodeableConcept `json:"doseStatusReason,omitempty"`
 	// Evaluation notes
@@ -237,8 +237,10 @@ func (r ImmunizationEvaluation) MarshalXML(e *xml.Encoder, start xml.StartElemen
 	if err := xmlEncodePrimitiveCode(e, "status", r.Status, r.StatusExt); err != nil {
 		return err
 	}
-	if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
-		return err
+	if r.Patient != nil {
+		if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "date", r.Date, r.DateExt); err != nil {
 		return err
@@ -248,14 +250,20 @@ func (r ImmunizationEvaluation) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := r.TargetDisease.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "targetDisease"}}); err != nil {
-		return err
+	if r.TargetDisease != nil {
+		if err := r.TargetDisease.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "targetDisease"}}); err != nil {
+			return err
+		}
 	}
-	if err := r.ImmunizationEvent.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "immunizationEvent"}}); err != nil {
-		return err
+	if r.ImmunizationEvent != nil {
+		if err := r.ImmunizationEvent.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "immunizationEvent"}}); err != nil {
+			return err
+		}
 	}
-	if err := r.DoseStatus.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "doseStatus"}}); err != nil {
-		return err
+	if r.DoseStatus != nil {
+		if err := r.DoseStatus.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "doseStatus"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.DoseStatusReason {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "doseStatusReason"}}); err != nil {
@@ -354,9 +362,11 @@ func (r *ImmunizationEvaluation) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				r.Status = v
 				r.StatusExt = ext
 			case "patient":
-				if err := r.Patient.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Patient = &v
 			case "date":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -371,17 +381,23 @@ func (r *ImmunizationEvaluation) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.Authority = &v
 			case "targetDisease":
-				if err := r.TargetDisease.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.TargetDisease = &v
 			case "immunizationEvent":
-				if err := r.ImmunizationEvent.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.ImmunizationEvent = &v
 			case "doseStatus":
-				if err := r.DoseStatus.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.DoseStatus = &v
 			case "doseStatusReason":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -512,7 +528,7 @@ func (b *ImmunizationEvaluationBuilder) SetStatus(v ImmunizationEvaluationStatus
 
 // SetPatient sets the Patient field.
 func (b *ImmunizationEvaluationBuilder) SetPatient(v Reference) *ImmunizationEvaluationBuilder {
-	b.immunizationEvaluation.Patient = v
+	b.immunizationEvaluation.Patient = &v
 	return b
 }
 
@@ -530,19 +546,19 @@ func (b *ImmunizationEvaluationBuilder) SetAuthority(v Reference) *ImmunizationE
 
 // SetTargetDisease sets the TargetDisease field.
 func (b *ImmunizationEvaluationBuilder) SetTargetDisease(v CodeableConcept) *ImmunizationEvaluationBuilder {
-	b.immunizationEvaluation.TargetDisease = v
+	b.immunizationEvaluation.TargetDisease = &v
 	return b
 }
 
 // SetImmunizationEvent sets the ImmunizationEvent field.
 func (b *ImmunizationEvaluationBuilder) SetImmunizationEvent(v Reference) *ImmunizationEvaluationBuilder {
-	b.immunizationEvaluation.ImmunizationEvent = v
+	b.immunizationEvaluation.ImmunizationEvent = &v
 	return b
 }
 
 // SetDoseStatus sets the DoseStatus field.
 func (b *ImmunizationEvaluationBuilder) SetDoseStatus(v CodeableConcept) *ImmunizationEvaluationBuilder {
-	b.immunizationEvaluation.DoseStatus = v
+	b.immunizationEvaluation.DoseStatus = &v
 	return b
 }
 
@@ -665,7 +681,7 @@ func WithImmunizationEvaluationStatus(v ImmunizationEvaluationStatusCodes) Immun
 // WithImmunizationEvaluationPatient sets the Patient field.
 func WithImmunizationEvaluationPatient(v Reference) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
-		r.Patient = v
+		r.Patient = &v
 	}
 }
 
@@ -686,21 +702,21 @@ func WithImmunizationEvaluationAuthority(v Reference) ImmunizationEvaluationOpti
 // WithImmunizationEvaluationTargetDisease sets the TargetDisease field.
 func WithImmunizationEvaluationTargetDisease(v CodeableConcept) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
-		r.TargetDisease = v
+		r.TargetDisease = &v
 	}
 }
 
 // WithImmunizationEvaluationImmunizationEvent sets the ImmunizationEvent field.
 func WithImmunizationEvaluationImmunizationEvent(v Reference) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
-		r.ImmunizationEvent = v
+		r.ImmunizationEvent = &v
 	}
 }
 
 // WithImmunizationEvaluationDoseStatus sets the DoseStatus field.
 func WithImmunizationEvaluationDoseStatus(v CodeableConcept) ImmunizationEvaluationOption {
 	return func(r *ImmunizationEvaluation) {
-		r.DoseStatus = v
+		r.DoseStatus = &v
 	}
 }
 

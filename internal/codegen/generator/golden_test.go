@@ -129,6 +129,11 @@ const goldenResourcesBundle = `{
               "type": [{"code": "string"}]
             },
             {
+              "path": "Probe.marker", "min": 1, "max": "1",
+              "short": "Required complex type: still a pointer, or an unset one marshals as {} and violates ele-1",
+              "type": [{"code": "Element"}]
+            },
+            {
               "path": "Probe.value[x]", "min": 0, "max": "1",
               "short": "Choice of value",
               "type": [{"code": "boolean"}, {"code": "string"}]

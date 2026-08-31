@@ -73,7 +73,7 @@ type Composition struct {
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Kind of composition (LOINC if possible)
-	Type CodeableConcept `json:"type"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Categorization of Composition
 	Category []CodeableConcept `json:"category,omitempty"`
 	// Who and/or what the composition is about
@@ -255,8 +255,10 @@ func (r Composition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveCode(e, "status", r.Status, r.StatusExt); err != nil {
 		return err
 	}
-	if err := r.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if r.Type != nil {
+		if err := r.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.Category {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "category"}}); err != nil {
@@ -416,9 +418,11 @@ func (r *Composition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 				r.Status = v
 				r.StatusExt = ext
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "category":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -527,7 +531,7 @@ type CompositionAttester struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// personal | professional | legal | official
-	Mode CodeableConcept `json:"mode,omitempty"`
+	Mode *CodeableConcept `json:"mode,omitempty"`
 	// When the composition was attested
 	Time *string `json:"time,omitempty"`
 	// Who attested the composition
@@ -556,8 +560,10 @@ func (b CompositionAttester) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := b.Mode.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "mode"}}); err != nil {
-		return err
+	if b.Mode != nil {
+		if err := b.Mode.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "mode"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "time", b.Time, nil); err != nil {
 		return err
@@ -601,9 +607,11 @@ func (r *CompositionAttester) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "mode":
-				if err := r.Mode.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Mode = &v
 			case "time":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1019,7 +1027,7 @@ func (b *CompositionBuilder) SetStatus(v CompositionStatus) *CompositionBuilder 
 
 // SetType sets the Type field.
 func (b *CompositionBuilder) SetType(v CodeableConcept) *CompositionBuilder {
-	b.composition.Type = v
+	b.composition.Type = &v
 	return b
 }
 
@@ -1210,7 +1218,7 @@ func WithCompositionStatus(v CompositionStatus) CompositionOption {
 // WithCompositionType sets the Type field.
 func WithCompositionType(v CodeableConcept) CompositionOption {
 	return func(r *Composition) {
-		r.Type = v
+		r.Type = &v
 	}
 }
 

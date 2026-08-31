@@ -687,7 +687,7 @@ type ExampleScenarioInstance struct {
 	// ID or acronym of the instance
 	Key *string `json:"key,omitempty"`
 	// Data structure for example
-	StructureType Coding `json:"structureType,omitempty"`
+	StructureType *Coding `json:"structureType,omitempty"`
 	// E.g. 4.0.1
 	StructureVersion *string `json:"structureVersion,omitempty"`
 	// Rules instance adheres to
@@ -735,8 +735,10 @@ func (b ExampleScenarioInstance) MarshalXML(e *xml.Encoder, start xml.StartEleme
 	if err := xmlEncodePrimitiveString(e, "key", b.Key, nil); err != nil {
 		return err
 	}
-	if err := b.StructureType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "structureType"}}); err != nil {
-		return err
+	if b.StructureType != nil {
+		if err := b.StructureType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "structureType"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "structureVersion", b.StructureVersion, nil); err != nil {
 		return err
@@ -808,9 +810,11 @@ func (r *ExampleScenarioInstance) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.Key = v
 			case "structureType":
-				if err := r.StructureType.UnmarshalXML(d, t); err != nil {
+				var v Coding
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.StructureType = &v
 			case "structureVersion":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

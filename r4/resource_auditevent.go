@@ -59,7 +59,7 @@ type AuditEvent struct {
 	// Extensions that cannot be ignored
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type/identifier of event
-	Type Coding `json:"type"`
+	Type *Coding `json:"type,omitempty"`
 	// More specific type/id for the event
 	Subtype []Coding `json:"subtype,omitempty"`
 	// Type of action performed during the event
@@ -221,8 +221,10 @@ func (r AuditEvent) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if r.Type != nil {
+		if err := r.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.Subtype {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subtype"}}); err != nil {
@@ -333,9 +335,11 @@ func (r *AuditEvent) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v Coding
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "subtype":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1037,7 +1041,7 @@ type AuditEventSource struct {
 	// Logical source location within the enterprise
 	Site *string `json:"site,omitempty"`
 	// The identity of source detecting the event
-	Observer Reference `json:"observer,omitempty"`
+	Observer *Reference `json:"observer,omitempty"`
 	// The type of source where event originated
 	Type []Coding `json:"type,omitempty"`
 }
@@ -1067,8 +1071,10 @@ func (b AuditEventSource) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 	if err := xmlEncodePrimitiveString(e, "site", b.Site, nil); err != nil {
 		return err
 	}
-	if err := b.Observer.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "observer"}}); err != nil {
-		return err
+	if b.Observer != nil {
+		if err := b.Observer.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "observer"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Type {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
@@ -1115,9 +1121,11 @@ func (r *AuditEventSource) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.Site = v
 			case "observer":
-				if err := r.Observer.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Observer = &v
 			case "type":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1208,7 +1216,7 @@ func (b *AuditEventBuilder) AddModifierExtension(v Extension) *AuditEventBuilder
 
 // SetType sets the Type field.
 func (b *AuditEventBuilder) SetType(v Coding) *AuditEventBuilder {
-	b.auditEvent.Type = v
+	b.auditEvent.Type = &v
 	return b
 }
 
@@ -1347,7 +1355,7 @@ func WithAuditEventModifierExtension(v Extension) AuditEventOption {
 // WithAuditEventType sets the Type field.
 func WithAuditEventType(v Coding) AuditEventOption {
 	return func(r *AuditEvent) {
-		r.Type = v
+		r.Type = &v
 	}
 }
 

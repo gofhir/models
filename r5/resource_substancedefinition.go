@@ -1053,7 +1053,7 @@ type SubstanceDefinitionMolecularWeight struct {
 	// Type of molecular weight e.g. exact, average, weight average
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Used to capture quantitative values for a variety of elements
-	Amount Quantity `json:"amount,omitempty"`
+	Amount *Quantity `json:"amount,omitempty"`
 }
 
 // MarshalXML serializes SubstanceDefinitionMolecularWeight to FHIR-conformant XML.
@@ -1088,8 +1088,10 @@ func (b SubstanceDefinitionMolecularWeight) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := b.Amount.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "amount"}}); err != nil {
-		return err
+	if b.Amount != nil {
+		if err := b.Amount.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "amount"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -1137,9 +1139,11 @@ func (r *SubstanceDefinitionMolecularWeight) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.Type = &v
 			case "amount":
-				if err := r.Amount.UnmarshalXML(d, t); err != nil {
+				var v Quantity
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Amount = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1491,7 +1495,7 @@ type SubstanceDefinitionProperty struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A code expressing the type of property
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// A value for the property
 	ValueCodeableConcept *CodeableConcept `json:"valueCodeableConcept,omitempty"`
 	// A value for the property
@@ -1530,8 +1534,10 @@ func (b SubstanceDefinitionProperty) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if b.ValueCodeableConcept != nil {
 		if err := b.ValueCodeableConcept.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "valueCodeableConcept"}}); err != nil {
@@ -1588,9 +1594,11 @@ func (r *SubstanceDefinitionProperty) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "valueCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1646,7 +1654,7 @@ type SubstanceDefinitionRelationship struct {
 	// A pointer to another substance, as a resource or a representational code
 	SubstanceDefinitionCodeableConcept *CodeableConcept `json:"substanceDefinitionCodeableConcept,omitempty"`
 	// For example "salt to parent", "active moiety"
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// For example where an enzyme strongly bonds with a particular substance, this is a defining relationship for that enzyme, out of several possible relationships
 	IsDefining *bool `json:"isDefining,omitempty"`
 	// A numeric factor for the relationship, e.g. that a substance salt has some percentage of active substance in relation to some other
@@ -1697,8 +1705,10 @@ func (b SubstanceDefinitionRelationship) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "isDefining", b.IsDefining, nil); err != nil {
 		return err
@@ -1777,9 +1787,11 @@ func (r *SubstanceDefinitionRelationship) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.SubstanceDefinitionCodeableConcept = &v
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "isDefining":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {

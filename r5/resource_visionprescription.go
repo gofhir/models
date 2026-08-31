@@ -69,7 +69,7 @@ type VisionPrescription struct {
 	// Extension for Created
 	CreatedExt *Element `json:"_created,omitempty"`
 	// Who prescription is for
-	Patient Reference `json:"patient"`
+	Patient *Reference `json:"patient,omitempty"`
 	// Created during encounter / admission / stay
 	Encounter *Reference `json:"encounter,omitempty"`
 	// When prescription was authorized
@@ -77,7 +77,7 @@ type VisionPrescription struct {
 	// Extension for DateWritten
 	DateWrittenExt *Element `json:"_dateWritten,omitempty"`
 	// Who authorized the vision prescription
-	Prescriber Reference `json:"prescriber"`
+	Prescriber *Reference `json:"prescriber,omitempty"`
 	// Vision lens authorization
 	LensSpecification []VisionPrescriptionLensSpecification `json:"lensSpecification,omitempty"`
 }
@@ -224,8 +224,10 @@ func (r VisionPrescription) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	if err := xmlEncodePrimitiveString(e, "created", r.Created, r.CreatedExt); err != nil {
 		return err
 	}
-	if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
-		return err
+	if r.Patient != nil {
+		if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
+			return err
+		}
 	}
 	if r.Encounter != nil {
 		if err := r.Encounter.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "encounter"}}); err != nil {
@@ -235,8 +237,10 @@ func (r VisionPrescription) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	if err := xmlEncodePrimitiveString(e, "dateWritten", r.DateWritten, r.DateWrittenExt); err != nil {
 		return err
 	}
-	if err := r.Prescriber.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "prescriber"}}); err != nil {
-		return err
+	if r.Prescriber != nil {
+		if err := r.Prescriber.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "prescriber"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.LensSpecification {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "lensSpecification"}}); err != nil {
@@ -330,9 +334,11 @@ func (r *VisionPrescription) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				r.Created = v
 				r.CreatedExt = ext
 			case "patient":
-				if err := r.Patient.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Patient = &v
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -347,9 +353,11 @@ func (r *VisionPrescription) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				r.DateWritten = v
 				r.DateWrittenExt = ext
 			case "prescriber":
-				if err := r.Prescriber.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Prescriber = &v
 			case "lensSpecification":
 				var v VisionPrescriptionLensSpecification
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -377,7 +385,7 @@ type VisionPrescriptionLensSpecification struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Product to be supplied
-	Product CodeableConcept `json:"product,omitempty"`
+	Product *CodeableConcept `json:"product,omitempty"`
 	// right | left
 	Eye *VisionEyes `json:"eye,omitempty"`
 	// Power of the lens
@@ -428,8 +436,10 @@ func (b VisionPrescriptionLensSpecification) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := b.Product.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "product"}}); err != nil {
-		return err
+	if b.Product != nil {
+		if err := b.Product.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "product"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveCode(e, "eye", b.Eye, nil); err != nil {
 		return err
@@ -510,9 +520,11 @@ func (r *VisionPrescriptionLensSpecification) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "product":
-				if err := r.Product.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Product = &v
 			case "eye":
 				v, _, err := xmlDecodePrimitiveCode[VisionEyes](d, t)
 				if err != nil {
@@ -792,7 +804,7 @@ func (b *VisionPrescriptionBuilder) SetCreated(v string) *VisionPrescriptionBuil
 
 // SetPatient sets the Patient field.
 func (b *VisionPrescriptionBuilder) SetPatient(v Reference) *VisionPrescriptionBuilder {
-	b.visionPrescription.Patient = v
+	b.visionPrescription.Patient = &v
 	return b
 }
 
@@ -810,7 +822,7 @@ func (b *VisionPrescriptionBuilder) SetDateWritten(v string) *VisionPrescription
 
 // SetPrescriber sets the Prescriber field.
 func (b *VisionPrescriptionBuilder) SetPrescriber(v Reference) *VisionPrescriptionBuilder {
-	b.visionPrescription.Prescriber = v
+	b.visionPrescription.Prescriber = &v
 	return b
 }
 
@@ -916,7 +928,7 @@ func WithVisionPrescriptionCreated(v string) VisionPrescriptionOption {
 // WithVisionPrescriptionPatient sets the Patient field.
 func WithVisionPrescriptionPatient(v Reference) VisionPrescriptionOption {
 	return func(r *VisionPrescription) {
-		r.Patient = v
+		r.Patient = &v
 	}
 }
 
@@ -937,7 +949,7 @@ func WithVisionPrescriptionDateWritten(v string) VisionPrescriptionOption {
 // WithVisionPrescriptionPrescriber sets the Prescriber field.
 func WithVisionPrescriptionPrescriber(v Reference) VisionPrescriptionOption {
 	return func(r *VisionPrescription) {
-		r.Prescriber = v
+		r.Prescriber = &v
 	}
 }
 

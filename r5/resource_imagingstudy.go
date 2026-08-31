@@ -67,7 +67,7 @@ type ImagingStudy struct {
 	// All of the distinct values for series' modalities
 	Modality []CodeableConcept `json:"modality,omitempty"`
 	// Who or what is the subject of the study
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// Encounter with which this imaging study is associated
 	Encounter *Reference `json:"encounter,omitempty"`
 	// When the study was started
@@ -250,8 +250,10 @@ func (r ImagingStudy) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if r.Encounter != nil {
 		if err := r.Encounter.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "encounter"}}); err != nil {
@@ -401,9 +403,11 @@ func (r *ImagingStudy) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.Modality = append(r.Modality, v)
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -517,7 +521,7 @@ type ImagingStudySeries struct {
 	// Numeric identifier of this series
 	Number *uint32 `json:"number,omitempty"`
 	// The modality used for this series
-	Modality CodeableConcept `json:"modality,omitempty"`
+	Modality *CodeableConcept `json:"modality,omitempty"`
 	// A short human readable summary of the series
 	Description *string `json:"description,omitempty"`
 	// Number of Series Related Instances
@@ -566,8 +570,10 @@ func (b ImagingStudySeries) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	if err := xmlEncodePrimitiveUint32(e, "number", b.Number, nil); err != nil {
 		return err
 	}
-	if err := b.Modality.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "modality"}}); err != nil {
-		return err
+	if b.Modality != nil {
+		if err := b.Modality.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "modality"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
 		return err
@@ -654,9 +660,11 @@ func (r *ImagingStudySeries) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Number = v
 			case "modality":
-				if err := r.Modality.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Modality = &v
 			case "description":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -734,7 +742,7 @@ type ImagingStudySeriesInstance struct {
 	// DICOM SOP Instance UID
 	Uid *string `json:"uid,omitempty"`
 	// DICOM class type
-	SopClass Coding `json:"sopClass,omitempty"`
+	SopClass *Coding `json:"sopClass,omitempty"`
 	// The number of this instance in the series
 	Number *uint32 `json:"number,omitempty"`
 	// Description of instance
@@ -766,8 +774,10 @@ func (b ImagingStudySeriesInstance) MarshalXML(e *xml.Encoder, start xml.StartEl
 	if err := xmlEncodePrimitiveString(e, "uid", b.Uid, nil); err != nil {
 		return err
 	}
-	if err := b.SopClass.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "sopClass"}}); err != nil {
-		return err
+	if b.SopClass != nil {
+		if err := b.SopClass.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "sopClass"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveUint32(e, "number", b.Number, nil); err != nil {
 		return err
@@ -815,9 +825,11 @@ func (r *ImagingStudySeriesInstance) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.Uid = v
 			case "sopClass":
-				if err := r.SopClass.UnmarshalXML(d, t); err != nil {
+				var v Coding
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.SopClass = &v
 			case "number":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
@@ -853,7 +865,7 @@ type ImagingStudySeriesPerformer struct {
 	// Type of performance
 	Function *CodeableConcept `json:"function,omitempty"`
 	// Who performed the series
-	Actor Reference `json:"actor,omitempty"`
+	Actor *Reference `json:"actor,omitempty"`
 }
 
 // MarshalXML serializes ImagingStudySeriesPerformer to FHIR-conformant XML.
@@ -883,8 +895,10 @@ func (b ImagingStudySeriesPerformer) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
-		return err
+	if b.Actor != nil {
+		if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -926,9 +940,11 @@ func (r *ImagingStudySeriesPerformer) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.Function = &v
 			case "actor":
-				if err := r.Actor.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Actor = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1031,7 +1047,7 @@ func (b *ImagingStudyBuilder) AddModality(v CodeableConcept) *ImagingStudyBuilde
 
 // SetSubject sets the Subject field.
 func (b *ImagingStudyBuilder) SetSubject(v Reference) *ImagingStudyBuilder {
-	b.imagingStudy.Subject = v
+	b.imagingStudy.Subject = &v
 	return b
 }
 
@@ -1215,7 +1231,7 @@ func WithImagingStudyModality(v CodeableConcept) ImagingStudyOption {
 // WithImagingStudySubject sets the Subject field.
 func WithImagingStudySubject(v Reference) ImagingStudyOption {
 	return func(r *ImagingStudy) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

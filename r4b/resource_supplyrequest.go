@@ -75,7 +75,7 @@ type SupplyRequest struct {
 	// Medication, Substance, or Device requested to be supplied
 	ItemReference *Reference `json:"itemReference,omitempty"`
 	// The requested amount of the item indicated
-	Quantity Quantity `json:"quantity"`
+	Quantity *Quantity `json:"quantity,omitempty"`
 	// Ordered item details
 	Parameter []SupplyRequestParameter `json:"parameter,omitempty"`
 	// When the request should be fulfilled
@@ -261,8 +261,10 @@ func (r SupplyRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := r.Quantity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "quantity"}}); err != nil {
-		return err
+	if r.Quantity != nil {
+		if err := r.Quantity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "quantity"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.Parameter {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "parameter"}}); err != nil {
@@ -420,9 +422,11 @@ func (r *SupplyRequest) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				r.ItemReference = &v
 			case "quantity":
-				if err := r.Quantity.UnmarshalXML(d, t); err != nil {
+				var v Quantity
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Quantity = &v
 			case "parameter":
 				var v SupplyRequestParameter
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -753,7 +757,7 @@ func (b *SupplyRequestBuilder) SetItemReference(v Reference) *SupplyRequestBuild
 
 // SetQuantity sets the Quantity field.
 func (b *SupplyRequestBuilder) SetQuantity(v Quantity) *SupplyRequestBuilder {
-	b.supplyRequest.Quantity = v
+	b.supplyRequest.Quantity = &v
 	return b
 }
 
@@ -946,7 +950,7 @@ func WithSupplyRequestItemReference(v Reference) SupplyRequestOption {
 // WithSupplyRequestQuantity sets the Quantity field.
 func WithSupplyRequestQuantity(v Quantity) SupplyRequestOption {
 	return func(r *SupplyRequest) {
-		r.Quantity = v
+		r.Quantity = &v
 	}
 }
 

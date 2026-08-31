@@ -67,7 +67,7 @@ type Encounter struct {
 	// List of past encounter statuses
 	StatusHistory []EncounterStatusHistory `json:"statusHistory,omitempty"`
 	// Classification of patient encounter
-	Class Coding `json:"class"`
+	Class *Coding `json:"class,omitempty"`
 	// List of past encounter classes
 	ClassHistory []EncounterClassHistory `json:"classHistory,omitempty"`
 	// Specific type of encounter
@@ -252,8 +252,10 @@ func (r Encounter) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.Class.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "class"}}); err != nil {
-		return err
+	if r.Class != nil {
+		if err := r.Class.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "class"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.ClassHistory {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "classHistory"}}); err != nil {
@@ -436,9 +438,11 @@ func (r *Encounter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.StatusHistory = append(r.StatusHistory, v)
 			case "class":
-				if err := r.Class.UnmarshalXML(d, t); err != nil {
+				var v Coding
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Class = &v
 			case "classHistory":
 				var v EncounterClassHistory
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -574,9 +578,9 @@ type EncounterClassHistory struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// inpatient | outpatient | ambulatory | emergency +
-	Class Coding `json:"class,omitempty"`
+	Class *Coding `json:"class,omitempty"`
 	// The time that the episode was in the specified class
-	Period Period `json:"period,omitempty"`
+	Period *Period `json:"period,omitempty"`
 }
 
 // MarshalXML serializes EncounterClassHistory to FHIR-conformant XML.
@@ -601,11 +605,15 @@ func (b EncounterClassHistory) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := b.Class.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "class"}}); err != nil {
-		return err
+	if b.Class != nil {
+		if err := b.Class.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "class"}}); err != nil {
+			return err
+		}
 	}
-	if err := b.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
-		return err
+	if b.Period != nil {
+		if err := b.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -641,13 +649,17 @@ func (r *EncounterClassHistory) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "class":
-				if err := r.Class.UnmarshalXML(d, t); err != nil {
+				var v Coding
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Class = &v
 			case "period":
-				if err := r.Period.UnmarshalXML(d, t); err != nil {
+				var v Period
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Period = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -669,7 +681,7 @@ type EncounterDiagnosis struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The diagnosis or procedure relevant to the encounter
-	Condition Reference `json:"condition,omitempty"`
+	Condition *Reference `json:"condition,omitempty"`
 	// Role that this diagnosis has within the encounter (e.g. admission, billing, discharge …)
 	Use *CodeableConcept `json:"use,omitempty"`
 	// Ranking of the diagnosis (for each role type)
@@ -698,8 +710,10 @@ func (b EncounterDiagnosis) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := b.Condition.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "condition"}}); err != nil {
-		return err
+	if b.Condition != nil {
+		if err := b.Condition.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "condition"}}); err != nil {
+			return err
+		}
 	}
 	if b.Use != nil {
 		if err := b.Use.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "use"}}); err != nil {
@@ -743,9 +757,11 @@ func (r *EncounterDiagnosis) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "condition":
-				if err := r.Condition.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Condition = &v
 			case "use":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -973,7 +989,7 @@ type EncounterLocation struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Location the encounter takes place
-	Location Reference `json:"location,omitempty"`
+	Location *Reference `json:"location,omitempty"`
 	// planned | active | reserved | completed
 	Status *EncounterLocationStatus `json:"status,omitempty"`
 	// The physical type of the location (usually the level in the location hierachy - bed room ward etc.)
@@ -1004,8 +1020,10 @@ func (b EncounterLocation) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := b.Location.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "location"}}); err != nil {
-		return err
+	if b.Location != nil {
+		if err := b.Location.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "location"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveCode(e, "status", b.Status, nil); err != nil {
 		return err
@@ -1054,9 +1072,11 @@ func (r *EncounterLocation) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "location":
-				if err := r.Location.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Location = &v
 			case "status":
 				v, _, err := xmlDecodePrimitiveCode[EncounterLocationStatus](d, t)
 				if err != nil {
@@ -1214,7 +1234,7 @@ type EncounterStatusHistory struct {
 	// planned | arrived | triaged | in-progress | onleave | finished | cancelled +
 	Status *EncounterStatus `json:"status,omitempty"`
 	// The time that the episode was in the specified status
-	Period Period `json:"period,omitempty"`
+	Period *Period `json:"period,omitempty"`
 }
 
 // MarshalXML serializes EncounterStatusHistory to FHIR-conformant XML.
@@ -1242,8 +1262,10 @@ func (b EncounterStatusHistory) MarshalXML(e *xml.Encoder, start xml.StartElemen
 	if err := xmlEncodePrimitiveCode(e, "status", b.Status, nil); err != nil {
 		return err
 	}
-	if err := b.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
-		return err
+	if b.Period != nil {
+		if err := b.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -1285,9 +1307,11 @@ func (r *EncounterStatusHistory) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.Status = v
 			case "period":
-				if err := r.Period.UnmarshalXML(d, t); err != nil {
+				var v Period
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Period = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1390,7 +1414,7 @@ func (b *EncounterBuilder) AddStatusHistory(v EncounterStatusHistory) *Encounter
 
 // SetClass sets the Class field.
 func (b *EncounterBuilder) SetClass(v Coding) *EncounterBuilder {
-	b.encounter.Class = v
+	b.encounter.Class = &v
 	return b
 }
 
@@ -1604,7 +1628,7 @@ func WithEncounterStatusHistory(v EncounterStatusHistory) EncounterOption {
 // WithEncounterClass sets the Class field.
 func WithEncounterClass(v Coding) EncounterOption {
 	return func(r *Encounter) {
-		r.Class = v
+		r.Class = &v
 	}
 }
 

@@ -1022,7 +1022,7 @@ type ImplementationGuideDefinitionParameter struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Code that identifies parameter
-	Code Coding `json:"code,omitempty"`
+	Code *Coding `json:"code,omitempty"`
 	// Value for named type
 	Value *string `json:"value,omitempty"`
 }
@@ -1049,8 +1049,10 @@ func (b ImplementationGuideDefinitionParameter) MarshalXML(e *xml.Encoder, start
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
 		return err
@@ -1089,9 +1091,11 @@ func (r *ImplementationGuideDefinitionParameter) UnmarshalXML(d *xml.Decoder, st
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v Coding
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "value":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1119,7 +1123,7 @@ type ImplementationGuideDefinitionResource struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Location of the resource
-	Reference Reference `json:"reference,omitempty"`
+	Reference *Reference `json:"reference,omitempty"`
 	// Versions this applies to (if different to IG)
 	FhirVersion []*FHIRVersion `json:"fhirVersion,omitempty"`
 	// Human readable name for the resource
@@ -1156,8 +1160,10 @@ func (b ImplementationGuideDefinitionResource) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := b.Reference.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reference"}}); err != nil {
-		return err
+	if b.Reference != nil {
+		if err := b.Reference.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reference"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveCodeArray(e, "fhirVersion", b.FhirVersion, nil); err != nil {
 		return err
@@ -1211,9 +1217,11 @@ func (r *ImplementationGuideDefinitionResource) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "reference":
-				if err := r.Reference.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Reference = &v
 			case "fhirVersion":
 				v, _, err := xmlDecodePrimitiveCode[FHIRVersion](d, t)
 				if err != nil {
@@ -1852,7 +1860,7 @@ type ImplementationGuideManifestResource struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Location of the resource
-	Reference Reference `json:"reference,omitempty"`
+	Reference *Reference `json:"reference,omitempty"`
 	// Is this an example
 	IsExample *bool `json:"isExample,omitempty"`
 	// Profile(s) this is an example of
@@ -1883,8 +1891,10 @@ func (b ImplementationGuideManifestResource) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := b.Reference.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reference"}}); err != nil {
-		return err
+	if b.Reference != nil {
+		if err := b.Reference.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reference"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "isExample", b.IsExample, nil); err != nil {
 		return err
@@ -1929,9 +1939,11 @@ func (r *ImplementationGuideManifestResource) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "reference":
-				if err := r.Reference.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Reference = &v
 			case "isExample":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {

@@ -591,9 +591,9 @@ type ClinicalUseDefinitionContraindicationOtherTherapy struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The type of relationship between the product indication/contraindication and another therapy
-	RelationshipType CodeableConcept `json:"relationshipType,omitempty"`
+	RelationshipType *CodeableConcept `json:"relationshipType,omitempty"`
 	// Reference to a specific medication, substance etc. as part of an indication or contraindication
-	Treatment CodeableReference `json:"treatment,omitempty"`
+	Treatment *CodeableReference `json:"treatment,omitempty"`
 }
 
 // MarshalXML serializes ClinicalUseDefinitionContraindicationOtherTherapy to FHIR-conformant XML.
@@ -618,11 +618,15 @@ func (b ClinicalUseDefinitionContraindicationOtherTherapy) MarshalXML(e *xml.Enc
 			return err
 		}
 	}
-	if err := b.RelationshipType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "relationshipType"}}); err != nil {
-		return err
+	if b.RelationshipType != nil {
+		if err := b.RelationshipType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "relationshipType"}}); err != nil {
+			return err
+		}
 	}
-	if err := b.Treatment.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "treatment"}}); err != nil {
-		return err
+	if b.Treatment != nil {
+		if err := b.Treatment.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "treatment"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -658,13 +662,17 @@ func (r *ClinicalUseDefinitionContraindicationOtherTherapy) UnmarshalXML(d *xml.
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "relationshipType":
-				if err := r.RelationshipType.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.RelationshipType = &v
 			case "treatment":
-				if err := r.Treatment.UnmarshalXML(d, t); err != nil {
+				var v CodeableReference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Treatment = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err

@@ -1768,7 +1768,7 @@ type CitationCitedArtifactContributorshipEntryContributionInstance struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The specific contribution
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// The time that the contribution was made
 	Time *string `json:"time,omitempty"`
 }
@@ -1795,8 +1795,10 @@ func (b CitationCitedArtifactContributorshipEntryContributionInstance) MarshalXM
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "time", b.Time, nil); err != nil {
 		return err
@@ -1835,9 +1837,11 @@ func (r *CitationCitedArtifactContributorshipEntryContributionInstance) Unmarsha
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "time":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -2716,7 +2720,7 @@ type CitationCitedArtifactRelatesTo struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// How the cited artifact relates to the target artifact
-	RelationshipType CodeableConcept `json:"relationshipType,omitempty"`
+	RelationshipType *CodeableConcept `json:"relationshipType,omitempty"`
 	// The clasification of the related artifact
 	TargetClassifier []CodeableConcept `json:"targetClassifier,omitempty"`
 	// The article or artifact that the cited artifact is related to
@@ -2753,8 +2757,10 @@ func (b CitationCitedArtifactRelatesTo) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := b.RelationshipType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "relationshipType"}}); err != nil {
-		return err
+	if b.RelationshipType != nil {
+		if err := b.RelationshipType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "relationshipType"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.TargetClassifier {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "targetClassifier"}}); err != nil {
@@ -2813,9 +2819,11 @@ func (r *CitationCitedArtifactRelatesTo) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "relationshipType":
-				if err := r.RelationshipType.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.RelationshipType = &v
 			case "targetClassifier":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2867,11 +2875,11 @@ type CitationCitedArtifactStatusDate struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Classification of the status
-	Activity CodeableConcept `json:"activity,omitempty"`
+	Activity *CodeableConcept `json:"activity,omitempty"`
 	// Either occurred or expected
 	Actual *bool `json:"actual,omitempty"`
 	// When the status started and/or ended
-	Period Period `json:"period,omitempty"`
+	Period *Period `json:"period,omitempty"`
 }
 
 // MarshalXML serializes CitationCitedArtifactStatusDate to FHIR-conformant XML.
@@ -2896,14 +2904,18 @@ func (b CitationCitedArtifactStatusDate) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := b.Activity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "activity"}}); err != nil {
-		return err
+	if b.Activity != nil {
+		if err := b.Activity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "activity"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "actual", b.Actual, nil); err != nil {
 		return err
 	}
-	if err := b.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
-		return err
+	if b.Period != nil {
+		if err := b.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -2939,9 +2951,11 @@ func (r *CitationCitedArtifactStatusDate) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "activity":
-				if err := r.Activity.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Activity = &v
 			case "actual":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -2949,9 +2963,11 @@ func (r *CitationCitedArtifactStatusDate) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.Actual = v
 			case "period":
-				if err := r.Period.UnmarshalXML(d, t); err != nil {
+				var v Period
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Period = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -3392,7 +3408,7 @@ type CitationRelatesTo struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// How the Citation resource relates to the target artifact
-	RelationshipType CodeableConcept `json:"relationshipType,omitempty"`
+	RelationshipType *CodeableConcept `json:"relationshipType,omitempty"`
 	// The clasification of the related artifact
 	TargetClassifier []CodeableConcept `json:"targetClassifier,omitempty"`
 	// The article or artifact that the Citation Resource is related to
@@ -3429,8 +3445,10 @@ func (b CitationRelatesTo) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := b.RelationshipType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "relationshipType"}}); err != nil {
-		return err
+	if b.RelationshipType != nil {
+		if err := b.RelationshipType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "relationshipType"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.TargetClassifier {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "targetClassifier"}}); err != nil {
@@ -3489,9 +3507,11 @@ func (r *CitationRelatesTo) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "relationshipType":
-				if err := r.RelationshipType.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.RelationshipType = &v
 			case "targetClassifier":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -3543,11 +3563,11 @@ type CitationStatusDate struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Classification of the status
-	Activity CodeableConcept `json:"activity,omitempty"`
+	Activity *CodeableConcept `json:"activity,omitempty"`
 	// Either occurred or expected
 	Actual *bool `json:"actual,omitempty"`
 	// When the status started and/or ended
-	Period Period `json:"period,omitempty"`
+	Period *Period `json:"period,omitempty"`
 }
 
 // MarshalXML serializes CitationStatusDate to FHIR-conformant XML.
@@ -3572,14 +3592,18 @@ func (b CitationStatusDate) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := b.Activity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "activity"}}); err != nil {
-		return err
+	if b.Activity != nil {
+		if err := b.Activity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "activity"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "actual", b.Actual, nil); err != nil {
 		return err
 	}
-	if err := b.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
-		return err
+	if b.Period != nil {
+		if err := b.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -3615,9 +3639,11 @@ func (r *CitationStatusDate) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "activity":
-				if err := r.Activity.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Activity = &v
 			case "actual":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -3625,9 +3651,11 @@ func (r *CitationStatusDate) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Actual = v
 			case "period":
-				if err := r.Period.UnmarshalXML(d, t); err != nil {
+				var v Period
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Period = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err

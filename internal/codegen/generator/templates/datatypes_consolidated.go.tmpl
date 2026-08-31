@@ -130,10 +130,12 @@ func (d {{.Name}}) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 		start.Attr = append(start.Attr, xml.Attr{Name: xml.Name{Local: "id"}, Value: *d.Id})
 	}
 {{- end}}
-{{- /* On Extension, "url" is an XML attribute */ -}}
+{{- /* On Extension, "url" is an XML attribute. It is a pointer like every other
+       non-repeating field: required-ness is a validator's business, and a value
+       field only meant an unset Extension emitted url="" rather than nothing. */ -}}
 {{- if eq .Name "Extension"}}
-	if d.Url != "" {
-		start.Attr = append(start.Attr, xml.Attr{Name: xml.Name{Local: "url"}, Value: d.Url})
+	if d.Url != nil {
+		start.Attr = append(start.Attr, xml.Attr{Name: xml.Name{Local: "url"}, Value: *d.Url})
 	}
 {{- end}}
 	if err := e.EncodeToken(start); err != nil {
@@ -285,7 +287,8 @@ func (r *{{.Name}}) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error
 			v := attr.Value
 			r.Id = &v
 		case "url":
-			r.Url = attr.Value
+			u := attr.Value
+			r.Url = &u
 		}
 {{- else}}
 		if attr.Name.Local == "id" {

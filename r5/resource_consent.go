@@ -954,7 +954,7 @@ type ConsentProvisionData struct {
 	// instance | related | dependents | authoredby
 	Meaning *ConsentDataMeaning `json:"meaning,omitempty"`
 	// The actual data reference
-	Reference Reference `json:"reference,omitempty"`
+	Reference *Reference `json:"reference,omitempty"`
 }
 
 // MarshalXML serializes ConsentProvisionData to FHIR-conformant XML.
@@ -982,8 +982,10 @@ func (b ConsentProvisionData) MarshalXML(e *xml.Encoder, start xml.StartElement)
 	if err := xmlEncodePrimitiveCode(e, "meaning", b.Meaning, nil); err != nil {
 		return err
 	}
-	if err := b.Reference.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reference"}}); err != nil {
-		return err
+	if b.Reference != nil {
+		if err := b.Reference.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reference"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -1025,9 +1027,11 @@ func (r *ConsentProvisionData) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.Meaning = v
 			case "reference":
-				if err := r.Reference.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Reference = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err

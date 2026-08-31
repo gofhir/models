@@ -772,7 +772,7 @@ type PackagedProductDefinitionPackageContainedItem struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The actual item(s) of medication, as manufactured, or a device, or other medically related item (food, biologicals, raw materials, medical fluids, gases etc.), as contained in the package
-	Item CodeableReference `json:"item,omitempty"`
+	Item *CodeableReference `json:"item,omitempty"`
 	// The number of this type of item within this packaging
 	Amount *Quantity `json:"amount,omitempty"`
 }
@@ -799,8 +799,10 @@ func (b PackagedProductDefinitionPackageContainedItem) MarshalXML(e *xml.Encoder
 			return err
 		}
 	}
-	if err := b.Item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "item"}}); err != nil {
-		return err
+	if b.Item != nil {
+		if err := b.Item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "item"}}); err != nil {
+			return err
+		}
 	}
 	if b.Amount != nil {
 		if err := b.Amount.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "amount"}}); err != nil {
@@ -841,9 +843,11 @@ func (r *PackagedProductDefinitionPackageContainedItem) UnmarshalXML(d *xml.Deco
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "item":
-				if err := r.Item.UnmarshalXML(d, t); err != nil {
+				var v CodeableReference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Item = &v
 			case "amount":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -871,7 +875,7 @@ type PackagedProductDefinitionPackageProperty struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A code expressing the type of characteristic
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// A value for the characteristic
 	ValueCodeableConcept *CodeableConcept `json:"valueCodeableConcept,omitempty"`
 	// A value for the characteristic
@@ -910,8 +914,10 @@ func (b PackagedProductDefinitionPackageProperty) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if b.ValueCodeableConcept != nil {
 		if err := b.ValueCodeableConcept.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "valueCodeableConcept"}}); err != nil {
@@ -968,9 +974,11 @@ func (r *PackagedProductDefinitionPackageProperty) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "valueCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

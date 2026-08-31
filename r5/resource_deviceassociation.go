@@ -61,11 +61,11 @@ type DeviceAssociation struct {
 	// Instance identifier
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// Reference to the devices associated with the patient or group
-	Device Reference `json:"device"`
+	Device *Reference `json:"device,omitempty"`
 	// Describes the relationship between the device and subject
 	Category []CodeableConcept `json:"category,omitempty"`
 	// implanted | explanted | attached | entered-in-error | unknown
-	Status CodeableConcept `json:"status"`
+	Status *CodeableConcept `json:"status,omitempty"`
 	// The reasons given for the current association status
 	StatusReason []CodeableConcept `json:"statusReason,omitempty"`
 	// The individual, group of individuals or device that the device is on or associated with
@@ -214,16 +214,20 @@ func (r DeviceAssociation) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := r.Device.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "device"}}); err != nil {
-		return err
+	if r.Device != nil {
+		if err := r.Device.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "device"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.Category {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "category"}}); err != nil {
 			return err
 		}
 	}
-	if err := r.Status.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "status"}}); err != nil {
-		return err
+	if r.Status != nil {
+		if err := r.Status.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "status"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.StatusReason {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "statusReason"}}); err != nil {
@@ -323,9 +327,11 @@ func (r *DeviceAssociation) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "device":
-				if err := r.Device.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Device = &v
 			case "category":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -333,9 +339,11 @@ func (r *DeviceAssociation) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.Category = append(r.Category, v)
 			case "status":
-				if err := r.Status.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Status = &v
 			case "statusReason":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -387,7 +395,7 @@ type DeviceAssociationOperation struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Device operational condition
-	Status CodeableConcept `json:"status,omitempty"`
+	Status *CodeableConcept `json:"status,omitempty"`
 	// The individual performing the action enabled by the device
 	Operator []Reference `json:"operator,omitempty"`
 	// Begin and end dates and times for the device's operation
@@ -416,8 +424,10 @@ func (b DeviceAssociationOperation) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := b.Status.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "status"}}); err != nil {
-		return err
+	if b.Status != nil {
+		if err := b.Status.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "status"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Operator {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "operator"}}); err != nil {
@@ -463,9 +473,11 @@ func (r *DeviceAssociationOperation) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "status":
-				if err := r.Status.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Status = &v
 			case "operator":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -568,7 +580,7 @@ func (b *DeviceAssociationBuilder) AddIdentifier(v Identifier) *DeviceAssociatio
 
 // SetDevice sets the Device field.
 func (b *DeviceAssociationBuilder) SetDevice(v Reference) *DeviceAssociationBuilder {
-	b.deviceAssociation.Device = v
+	b.deviceAssociation.Device = &v
 	return b
 }
 
@@ -580,7 +592,7 @@ func (b *DeviceAssociationBuilder) AddCategory(v CodeableConcept) *DeviceAssocia
 
 // SetStatus sets the Status field.
 func (b *DeviceAssociationBuilder) SetStatus(v CodeableConcept) *DeviceAssociationBuilder {
-	b.deviceAssociation.Status = v
+	b.deviceAssociation.Status = &v
 	return b
 }
 
@@ -696,7 +708,7 @@ func WithDeviceAssociationIdentifier(v Identifier) DeviceAssociationOption {
 // WithDeviceAssociationDevice sets the Device field.
 func WithDeviceAssociationDevice(v Reference) DeviceAssociationOption {
 	return func(r *DeviceAssociation) {
-		r.Device = v
+		r.Device = &v
 	}
 }
 
@@ -710,7 +722,7 @@ func WithDeviceAssociationCategory(v CodeableConcept) DeviceAssociationOption {
 // WithDeviceAssociationStatus sets the Status field.
 func WithDeviceAssociationStatus(v CodeableConcept) DeviceAssociationOption {
 	return func(r *DeviceAssociation) {
-		r.Status = v
+		r.Status = &v
 	}
 }
 

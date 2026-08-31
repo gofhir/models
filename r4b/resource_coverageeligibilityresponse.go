@@ -69,7 +69,7 @@ type CoverageEligibilityResponse struct {
 	// Extension for Purpose
 	PurposeExt []*Element `json:"_purpose,omitempty"`
 	// Intended recipient of products and services
-	Patient Reference `json:"patient"`
+	Patient *Reference `json:"patient,omitempty"`
 	// Estimated date or dates of service
 	ServicedDate *string `json:"servicedDate,omitempty"`
 	// Extension for ServicedDate
@@ -83,7 +83,7 @@ type CoverageEligibilityResponse struct {
 	// Party responsible for the request
 	Requestor *Reference `json:"requestor,omitempty"`
 	// Eligibility request reference
-	Request Reference `json:"request"`
+	Request *Reference `json:"request,omitempty"`
 	// queued | complete | error | partial
 	Outcome *RemittanceOutcome `json:"outcome,omitempty"`
 	// Extension for Outcome
@@ -93,7 +93,7 @@ type CoverageEligibilityResponse struct {
 	// Extension for Disposition
 	DispositionExt *Element `json:"_disposition,omitempty"`
 	// Coverage issuer
-	Insurer Reference `json:"insurer"`
+	Insurer *Reference `json:"insurer,omitempty"`
 	// Patient insurance information
 	Insurance []CoverageEligibilityResponseInsurance `json:"insurance,omitempty"`
 	// Preauthorization reference
@@ -248,8 +248,10 @@ func (r CoverageEligibilityResponse) MarshalXML(e *xml.Encoder, start xml.StartE
 	if err := xmlEncodePrimitiveCodeArray(e, "purpose", r.Purpose, r.PurposeExt); err != nil {
 		return err
 	}
-	if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
-		return err
+	if r.Patient != nil {
+		if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "servicedDate", r.ServicedDate, nil); err != nil {
 		return err
@@ -267,8 +269,10 @@ func (r CoverageEligibilityResponse) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := r.Request.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "request"}}); err != nil {
-		return err
+	if r.Request != nil {
+		if err := r.Request.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "request"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveCode(e, "outcome", r.Outcome, r.OutcomeExt); err != nil {
 		return err
@@ -276,8 +280,10 @@ func (r CoverageEligibilityResponse) MarshalXML(e *xml.Encoder, start xml.StartE
 	if err := xmlEncodePrimitiveString(e, "disposition", r.Disposition, r.DispositionExt); err != nil {
 		return err
 	}
-	if err := r.Insurer.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "insurer"}}); err != nil {
-		return err
+	if r.Insurer != nil {
+		if err := r.Insurer.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "insurer"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.Insurance {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "insurance"}}); err != nil {
@@ -384,9 +390,11 @@ func (r *CoverageEligibilityResponse) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Purpose = append(r.Purpose, v)
 			case "patient":
-				if err := r.Patient.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Patient = &v
 			case "servicedDate":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -414,9 +422,11 @@ func (r *CoverageEligibilityResponse) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.Requestor = &v
 			case "request":
-				if err := r.Request.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Request = &v
 			case "outcome":
 				v, ext, err := xmlDecodePrimitiveCode[RemittanceOutcome](d, t)
 				if err != nil {
@@ -432,9 +442,11 @@ func (r *CoverageEligibilityResponse) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				r.Disposition = v
 				r.DispositionExt = ext
 			case "insurer":
-				if err := r.Insurer.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Insurer = &v
 			case "insurance":
 				var v CoverageEligibilityResponseInsurance
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -481,7 +493,7 @@ type CoverageEligibilityResponseError struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Error code detailing processing issues
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 }
 
 // MarshalXML serializes CoverageEligibilityResponseError to FHIR-conformant XML.
@@ -506,8 +518,10 @@ func (b CoverageEligibilityResponseError) MarshalXML(e *xml.Encoder, start xml.S
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -543,9 +557,11 @@ func (r *CoverageEligibilityResponseError) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -567,7 +583,7 @@ type CoverageEligibilityResponseInsurance struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Insurance information
-	Coverage Reference `json:"coverage,omitempty"`
+	Coverage *Reference `json:"coverage,omitempty"`
 	// Coverage inforce indicator
 	Inforce *bool `json:"inforce,omitempty"`
 	// When the benefits are applicable
@@ -598,8 +614,10 @@ func (b CoverageEligibilityResponseInsurance) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := b.Coverage.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "coverage"}}); err != nil {
-		return err
+	if b.Coverage != nil {
+		if err := b.Coverage.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "coverage"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "inforce", b.Inforce, nil); err != nil {
 		return err
@@ -648,9 +666,11 @@ func (r *CoverageEligibilityResponseInsurance) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "coverage":
-				if err := r.Coverage.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Coverage = &v
 			case "inforce":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -939,7 +959,7 @@ type CoverageEligibilityResponseInsuranceItemBenefit struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Benefit classification
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Benefits allowed
 	AllowedUnsignedInt *uint32 `json:"allowedUnsignedInt,omitempty"`
 	// Extension for AllowedUnsignedInt
@@ -984,8 +1004,10 @@ func (b CoverageEligibilityResponseInsuranceItemBenefit) MarshalXML(e *xml.Encod
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveUint32(e, "allowedUnsignedInt", b.AllowedUnsignedInt, nil); err != nil {
 		return err
@@ -1043,9 +1065,11 @@ func (r *CoverageEligibilityResponseInsuranceItemBenefit) UnmarshalXML(d *xml.De
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "allowedUnsignedInt":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
@@ -1188,7 +1212,7 @@ func (b *CoverageEligibilityResponseBuilder) AddPurpose(v EligibilityResponsePur
 
 // SetPatient sets the Patient field.
 func (b *CoverageEligibilityResponseBuilder) SetPatient(v Reference) *CoverageEligibilityResponseBuilder {
-	b.coverageEligibilityResponse.Patient = v
+	b.coverageEligibilityResponse.Patient = &v
 	return b
 }
 
@@ -1224,7 +1248,7 @@ func (b *CoverageEligibilityResponseBuilder) SetRequestor(v Reference) *Coverage
 
 // SetRequest sets the Request field.
 func (b *CoverageEligibilityResponseBuilder) SetRequest(v Reference) *CoverageEligibilityResponseBuilder {
-	b.coverageEligibilityResponse.Request = v
+	b.coverageEligibilityResponse.Request = &v
 	return b
 }
 
@@ -1242,7 +1266,7 @@ func (b *CoverageEligibilityResponseBuilder) SetDisposition(v string) *CoverageE
 
 // SetInsurer sets the Insurer field.
 func (b *CoverageEligibilityResponseBuilder) SetInsurer(v Reference) *CoverageEligibilityResponseBuilder {
-	b.coverageEligibilityResponse.Insurer = v
+	b.coverageEligibilityResponse.Insurer = &v
 	return b
 }
 
@@ -1366,7 +1390,7 @@ func WithCoverageEligibilityResponsePurpose(v EligibilityResponsePurpose) Covera
 // WithCoverageEligibilityResponsePatient sets the Patient field.
 func WithCoverageEligibilityResponsePatient(v Reference) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
-		r.Patient = v
+		r.Patient = &v
 	}
 }
 
@@ -1408,7 +1432,7 @@ func WithCoverageEligibilityResponseRequestor(v Reference) CoverageEligibilityRe
 // WithCoverageEligibilityResponseRequest sets the Request field.
 func WithCoverageEligibilityResponseRequest(v Reference) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
-		r.Request = v
+		r.Request = &v
 	}
 }
 
@@ -1429,7 +1453,7 @@ func WithCoverageEligibilityResponseDisposition(v string) CoverageEligibilityRes
 // WithCoverageEligibilityResponseInsurer sets the Insurer field.
 func WithCoverageEligibilityResponseInsurer(v Reference) CoverageEligibilityResponseOption {
 	return func(r *CoverageEligibilityResponse) {
-		r.Insurer = v
+		r.Insurer = &v
 	}
 }
 

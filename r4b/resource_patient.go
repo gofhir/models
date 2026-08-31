@@ -519,7 +519,7 @@ type PatientCommunication struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The language which can be used to communicate with the patient about his or her health
-	Language CodeableConcept `json:"language,omitempty"`
+	Language *CodeableConcept `json:"language,omitempty"`
 	// Language preference indicator
 	Preferred *bool `json:"preferred,omitempty"`
 }
@@ -546,8 +546,10 @@ func (b PatientCommunication) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := b.Language.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "language"}}); err != nil {
-		return err
+	if b.Language != nil {
+		if err := b.Language.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "language"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "preferred", b.Preferred, nil); err != nil {
 		return err
@@ -586,9 +588,11 @@ func (r *PatientCommunication) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "language":
-				if err := r.Language.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Language = &v
 			case "preferred":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -782,7 +786,7 @@ type PatientLink struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The other patient or related person resource that the link refers to
-	Other Reference `json:"other,omitempty"`
+	Other *Reference `json:"other,omitempty"`
 	// replaced-by | replaces | refer | seealso
 	Type *LinkType `json:"type,omitempty"`
 }
@@ -809,8 +813,10 @@ func (b PatientLink) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := b.Other.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "other"}}); err != nil {
-		return err
+	if b.Other != nil {
+		if err := b.Other.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "other"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
 		return err
@@ -849,9 +855,11 @@ func (r *PatientLink) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "other":
-				if err := r.Other.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Other = &v
 			case "type":
 				v, _, err := xmlDecodePrimitiveCode[LinkType](d, t)
 				if err != nil {

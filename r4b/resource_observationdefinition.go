@@ -61,7 +61,7 @@ type ObservationDefinition struct {
 	// Category of observation
 	Category []CodeableConcept `json:"category,omitempty"`
 	// Type of observation (code / type)
-	Code CodeableConcept `json:"code"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Business identifier for this ObservationDefinition instance
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// Quantity | CodeableConcept | string | boolean | integer | Range | Ratio | SampledData | time | dateTime | Period
@@ -228,8 +228,10 @@ func (r ObservationDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if r.Code != nil {
+		if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.Identifier {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "identifier"}}); err != nil {
@@ -353,9 +355,11 @@ func (r *ObservationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.Category = append(r.Category, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "identifier":
 				var v Identifier
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -815,7 +819,7 @@ func (b *ObservationDefinitionBuilder) AddCategory(v CodeableConcept) *Observati
 
 // SetCode sets the Code field.
 func (b *ObservationDefinitionBuilder) SetCode(v CodeableConcept) *ObservationDefinitionBuilder {
-	b.observationDefinition.Code = v
+	b.observationDefinition.Code = &v
 	return b
 }
 
@@ -971,7 +975,7 @@ func WithObservationDefinitionCategory(v CodeableConcept) ObservationDefinitionO
 // WithObservationDefinitionCode sets the Code field.
 func WithObservationDefinitionCode(v CodeableConcept) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
-		r.Code = v
+		r.Code = &v
 	}
 }
 

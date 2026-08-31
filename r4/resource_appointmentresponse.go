@@ -61,7 +61,7 @@ type AppointmentResponse struct {
 	// External Ids for this item
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// Appointment this response relates to
-	Appointment Reference `json:"appointment"`
+	Appointment *Reference `json:"appointment,omitempty"`
 	// Time from appointment, or requested new start time
 	Start *string `json:"start,omitempty"`
 	// Extension for Start
@@ -220,8 +220,10 @@ func (r AppointmentResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := r.Appointment.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "appointment"}}); err != nil {
-		return err
+	if r.Appointment != nil {
+		if err := r.Appointment.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "appointment"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "start", r.Start, r.StartExt); err != nil {
 		return err
@@ -318,9 +320,11 @@ func (r *AppointmentResponse) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "appointment":
-				if err := r.Appointment.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Appointment = &v
 			case "start":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -451,7 +455,7 @@ func (b *AppointmentResponseBuilder) AddIdentifier(v Identifier) *AppointmentRes
 
 // SetAppointment sets the Appointment field.
 func (b *AppointmentResponseBuilder) SetAppointment(v Reference) *AppointmentResponseBuilder {
-	b.appointmentResponse.Appointment = v
+	b.appointmentResponse.Appointment = &v
 	return b
 }
 
@@ -573,7 +577,7 @@ func WithAppointmentResponseIdentifier(v Identifier) AppointmentResponseOption {
 // WithAppointmentResponseAppointment sets the Appointment field.
 func WithAppointmentResponseAppointment(v Reference) AppointmentResponseOption {
 	return func(r *AppointmentResponse) {
-		r.Appointment = v
+		r.Appointment = &v
 	}
 }
 

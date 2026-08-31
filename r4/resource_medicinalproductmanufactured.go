@@ -59,11 +59,11 @@ type MedicinalProductManufactured struct {
 	// Extensions that cannot be ignored
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Dose form as manufactured and before any transformation into the pharmaceutical product
-	ManufacturedDoseForm CodeableConcept `json:"manufacturedDoseForm"`
+	ManufacturedDoseForm *CodeableConcept `json:"manufacturedDoseForm,omitempty"`
 	// The “real world” units in which the quantity of the manufactured item is described
 	UnitOfPresentation *CodeableConcept `json:"unitOfPresentation,omitempty"`
 	// The quantity or "count number" of the manufactured item
-	Quantity Quantity `json:"quantity"`
+	Quantity *Quantity `json:"quantity,omitempty"`
 	// Manufacturer of the item (Note that this should be named "manufacturer" but it currently causes technical issues)
 	Manufacturer []Reference `json:"manufacturer,omitempty"`
 	// Ingredient
@@ -205,16 +205,20 @@ func (r MedicinalProductManufactured) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := r.ManufacturedDoseForm.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "manufacturedDoseForm"}}); err != nil {
-		return err
+	if r.ManufacturedDoseForm != nil {
+		if err := r.ManufacturedDoseForm.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "manufacturedDoseForm"}}); err != nil {
+			return err
+		}
 	}
 	if r.UnitOfPresentation != nil {
 		if err := r.UnitOfPresentation.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "unitOfPresentation"}}); err != nil {
 			return err
 		}
 	}
-	if err := r.Quantity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "quantity"}}); err != nil {
-		return err
+	if r.Quantity != nil {
+		if err := r.Quantity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "quantity"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.Manufacturer {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "manufacturer"}}); err != nil {
@@ -303,9 +307,11 @@ func (r *MedicinalProductManufactured) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "manufacturedDoseForm":
-				if err := r.ManufacturedDoseForm.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.ManufacturedDoseForm = &v
 			case "unitOfPresentation":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -313,9 +319,11 @@ func (r *MedicinalProductManufactured) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.UnitOfPresentation = &v
 			case "quantity":
-				if err := r.Quantity.UnmarshalXML(d, t); err != nil {
+				var v Quantity
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Quantity = &v
 			case "manufacturer":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -424,7 +432,7 @@ func (b *MedicinalProductManufacturedBuilder) AddModifierExtension(v Extension) 
 
 // SetManufacturedDoseForm sets the ManufacturedDoseForm field.
 func (b *MedicinalProductManufacturedBuilder) SetManufacturedDoseForm(v CodeableConcept) *MedicinalProductManufacturedBuilder {
-	b.medicinalProductManufactured.ManufacturedDoseForm = v
+	b.medicinalProductManufactured.ManufacturedDoseForm = &v
 	return b
 }
 
@@ -436,7 +444,7 @@ func (b *MedicinalProductManufacturedBuilder) SetUnitOfPresentation(v CodeableCo
 
 // SetQuantity sets the Quantity field.
 func (b *MedicinalProductManufacturedBuilder) SetQuantity(v Quantity) *MedicinalProductManufacturedBuilder {
-	b.medicinalProductManufactured.Quantity = v
+	b.medicinalProductManufactured.Quantity = &v
 	return b
 }
 
@@ -539,7 +547,7 @@ func WithMedicinalProductManufacturedModifierExtension(v Extension) MedicinalPro
 // WithMedicinalProductManufacturedManufacturedDoseForm sets the ManufacturedDoseForm field.
 func WithMedicinalProductManufacturedManufacturedDoseForm(v CodeableConcept) MedicinalProductManufacturedOption {
 	return func(r *MedicinalProductManufactured) {
-		r.ManufacturedDoseForm = v
+		r.ManufacturedDoseForm = &v
 	}
 }
 
@@ -553,7 +561,7 @@ func WithMedicinalProductManufacturedUnitOfPresentation(v CodeableConcept) Medic
 // WithMedicinalProductManufacturedQuantity sets the Quantity field.
 func WithMedicinalProductManufacturedQuantity(v Quantity) MedicinalProductManufacturedOption {
 	return func(r *MedicinalProductManufactured) {
-		r.Quantity = v
+		r.Quantity = &v
 	}
 }
 

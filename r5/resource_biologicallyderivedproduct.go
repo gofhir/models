@@ -578,7 +578,7 @@ type BiologicallyDerivedProductProperty struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Code that specifies the property
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Property values
 	ValueBoolean *bool `json:"valueBoolean,omitempty"`
 	// Extension for ValueBoolean
@@ -627,8 +627,10 @@ func (b BiologicallyDerivedProductProperty) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
 		return err
@@ -703,9 +705,11 @@ func (r *BiologicallyDerivedProductProperty) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "valueBoolean":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {

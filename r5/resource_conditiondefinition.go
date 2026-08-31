@@ -113,7 +113,7 @@ type ConditionDefinition struct {
 	// Intended jurisdiction for condition definition (if applicable)
 	Jurisdiction []CodeableConcept `json:"jurisdiction,omitempty"`
 	// Identification of the condition, problem or diagnosis
-	Code CodeableConcept `json:"code"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Subjective severity of condition
 	Severity *CodeableConcept `json:"severity,omitempty"`
 	// Anatomical location, if relevant
@@ -339,8 +339,10 @@ func (r ConditionDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if r.Code != nil {
+		if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if r.Severity != nil {
 		if err := r.Severity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "severity"}}); err != nil {
@@ -573,9 +575,11 @@ func (r *ConditionDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.Jurisdiction = append(r.Jurisdiction, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "severity":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -887,7 +891,7 @@ type ConditionDefinitionPlan struct {
 	// Use for the plan
 	Role *CodeableConcept `json:"role,omitempty"`
 	// The actual plan
-	Reference Reference `json:"reference,omitempty"`
+	Reference *Reference `json:"reference,omitempty"`
 }
 
 // MarshalXML serializes ConditionDefinitionPlan to FHIR-conformant XML.
@@ -917,8 +921,10 @@ func (b ConditionDefinitionPlan) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := b.Reference.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reference"}}); err != nil {
-		return err
+	if b.Reference != nil {
+		if err := b.Reference.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reference"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -960,9 +966,11 @@ func (r *ConditionDefinitionPlan) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.Role = &v
 			case "reference":
-				if err := r.Reference.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Reference = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -986,7 +994,7 @@ type ConditionDefinitionPrecondition struct {
 	// sensitive | specific
 	Type *ConditionPreconditionType `json:"type,omitempty"`
 	// Code for relevant Observation
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Value of Observation
 	ValueCodeableConcept *CodeableConcept `json:"valueCodeableConcept,omitempty"`
 	// Value of Observation
@@ -1018,8 +1026,10 @@ func (b ConditionDefinitionPrecondition) MarshalXML(e *xml.Encoder, start xml.St
 	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
 		return err
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if b.ValueCodeableConcept != nil {
 		if err := b.ValueCodeableConcept.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "valueCodeableConcept"}}); err != nil {
@@ -1071,9 +1081,11 @@ func (r *ConditionDefinitionPrecondition) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.Type = v
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "valueCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1109,7 +1121,7 @@ type ConditionDefinitionQuestionnaire struct {
 	// preadmit | diff-diagnosis | outcome
 	Purpose *ConditionQuestionnairePurpose `json:"purpose,omitempty"`
 	// Specific Questionnaire
-	Reference Reference `json:"reference,omitempty"`
+	Reference *Reference `json:"reference,omitempty"`
 }
 
 // MarshalXML serializes ConditionDefinitionQuestionnaire to FHIR-conformant XML.
@@ -1137,8 +1149,10 @@ func (b ConditionDefinitionQuestionnaire) MarshalXML(e *xml.Encoder, start xml.S
 	if err := xmlEncodePrimitiveCode(e, "purpose", b.Purpose, nil); err != nil {
 		return err
 	}
-	if err := b.Reference.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reference"}}); err != nil {
-		return err
+	if b.Reference != nil {
+		if err := b.Reference.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reference"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -1180,9 +1194,11 @@ func (r *ConditionDefinitionQuestionnaire) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				r.Purpose = v
 			case "reference":
-				if err := r.Reference.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Reference = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1369,7 +1385,7 @@ func (b *ConditionDefinitionBuilder) AddJurisdiction(v CodeableConcept) *Conditi
 
 // SetCode sets the Code field.
 func (b *ConditionDefinitionBuilder) SetCode(v CodeableConcept) *ConditionDefinitionBuilder {
-	b.conditionDefinition.Code = v
+	b.conditionDefinition.Code = &v
 	return b
 }
 
@@ -1649,7 +1665,7 @@ func WithConditionDefinitionJurisdiction(v CodeableConcept) ConditionDefinitionO
 // WithConditionDefinitionCode sets the Code field.
 func WithConditionDefinitionCode(v CodeableConcept) ConditionDefinitionOption {
 	return func(r *ConditionDefinition) {
-		r.Code = v
+		r.Code = &v
 	}
 }
 

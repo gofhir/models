@@ -716,7 +716,7 @@ type TaskInput struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Label for the input
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Content to use in performing the task
 	ValueBase64Binary *string `json:"valueBase64Binary,omitempty"`
 	// Extension for ValueBase64Binary
@@ -889,8 +889,10 @@ func (b TaskInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "valueBase64Binary", b.ValueBase64Binary, nil); err != nil {
 		return err
@@ -1156,9 +1158,11 @@ func (r *TaskInput) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "valueBase64Binary":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1504,7 +1508,7 @@ type TaskOutput struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Label for output
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Result of output
 	ValueBase64Binary *string `json:"valueBase64Binary,omitempty"`
 	// Extension for ValueBase64Binary
@@ -1677,8 +1681,10 @@ func (b TaskOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "valueBase64Binary", b.ValueBase64Binary, nil); err != nil {
 		return err
@@ -1944,9 +1950,11 @@ func (r *TaskOutput) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "valueBase64Binary":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -2294,7 +2302,7 @@ type TaskPerformer struct {
 	// Type of performance
 	Function *CodeableConcept `json:"function,omitempty"`
 	// Who performed the task
-	Actor Reference `json:"actor,omitempty"`
+	Actor *Reference `json:"actor,omitempty"`
 }
 
 // MarshalXML serializes TaskPerformer to FHIR-conformant XML.
@@ -2324,8 +2332,10 @@ func (b TaskPerformer) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
-		return err
+	if b.Actor != nil {
+		if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -2367,9 +2377,11 @@ func (r *TaskPerformer) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				r.Function = &v
 			case "actor":
-				if err := r.Actor.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Actor = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err

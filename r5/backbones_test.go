@@ -101,7 +101,7 @@ func TestResourceBackboneElements(t *testing.T) {
 	t.Run("ObservationComponent", func(t *testing.T) {
 		component := r5.ObservationComponent{
 			Id: ptrStringB5("comp-1"),
-			Code: r5.CodeableConcept{
+			Code: &r5.CodeableConcept{
 				Coding: []r5.Coding{
 					{
 						System:  ptrStringB5("http://loinc.org"),
@@ -283,7 +283,7 @@ func TestBackboneWithExtensions(t *testing.T) {
 			Id: ptrStringB5("contact-ext"),
 			Extension: []r5.Extension{
 				{
-					Url:         "http://example.org/fhir/StructureDefinition/contact-priority",
+					Url:         ptrStringB5("http://example.org/fhir/StructureDefinition/contact-priority"),
 					ValueString: ptrStringB5("high"),
 				},
 			},
@@ -300,7 +300,7 @@ func TestBackboneWithExtensions(t *testing.T) {
 		require.NoError(t, err)
 
 		require.Len(t, decoded.Extension, 1)
-		assert.Equal(t, "http://example.org/fhir/StructureDefinition/contact-priority", decoded.Extension[0].Url)
+		assert.Equal(t, "http://example.org/fhir/StructureDefinition/contact-priority", *decoded.Extension[0].Url)
 		assert.Equal(t, "high", *decoded.Extension[0].ValueString)
 	})
 }

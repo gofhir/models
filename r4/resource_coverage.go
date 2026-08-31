@@ -75,7 +75,7 @@ type Coverage struct {
 	// Extension for SubscriberId
 	SubscriberIdExt *Element `json:"_subscriberId,omitempty"`
 	// Plan beneficiary
-	Beneficiary Reference `json:"beneficiary"`
+	Beneficiary *Reference `json:"beneficiary,omitempty"`
 	// Dependent number
 	Dependent *string `json:"dependent,omitempty"`
 	// Extension for Dependent
@@ -263,8 +263,10 @@ func (r Coverage) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveString(e, "subscriberId", r.SubscriberId, r.SubscriberIdExt); err != nil {
 		return err
 	}
-	if err := r.Beneficiary.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "beneficiary"}}); err != nil {
-		return err
+	if r.Beneficiary != nil {
+		if err := r.Beneficiary.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "beneficiary"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "dependent", r.Dependent, r.DependentExt); err != nil {
 		return err
@@ -413,9 +415,11 @@ func (r *Coverage) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				r.SubscriberId = v
 				r.SubscriberIdExt = ext
 			case "beneficiary":
-				if err := r.Beneficiary.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Beneficiary = &v
 			case "dependent":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -501,7 +505,7 @@ type CoverageClass struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type of class such as 'group' or 'plan'
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Value associated with the type
 	Value *string `json:"value,omitempty"`
 	// Human readable description of the type and value
@@ -530,8 +534,10 @@ func (b CoverageClass) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
 		return err
@@ -573,9 +579,11 @@ func (r *CoverageClass) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "value":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -738,7 +746,7 @@ type CoverageCostToBeneficiaryException struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Exception category
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// The effective period of the exception
 	Period *Period `json:"period,omitempty"`
 }
@@ -765,8 +773,10 @@ func (b CoverageCostToBeneficiaryException) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if b.Period != nil {
 		if err := b.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
@@ -807,9 +817,11 @@ func (r *CoverageCostToBeneficiaryException) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -936,7 +948,7 @@ func (b *CoverageBuilder) SetSubscriberId(v string) *CoverageBuilder {
 
 // SetBeneficiary sets the Beneficiary field.
 func (b *CoverageBuilder) SetBeneficiary(v Reference) *CoverageBuilder {
-	b.coverage.Beneficiary = v
+	b.coverage.Beneficiary = &v
 	return b
 }
 
@@ -1117,7 +1129,7 @@ func WithCoverageSubscriberId(v string) CoverageOption {
 // WithCoverageBeneficiary sets the Beneficiary field.
 func WithCoverageBeneficiary(v Reference) CoverageOption {
 	return func(r *Coverage) {
-		r.Beneficiary = v
+		r.Beneficiary = &v
 	}
 }
 

@@ -79,7 +79,7 @@ type Observation struct {
 	// Classification of  type of observation
 	Category []CodeableConcept `json:"category,omitempty"`
 	// Type of observation (code / type)
-	Code CodeableConcept `json:"code"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Who and/or what the observation is about
 	Subject *Reference `json:"subject,omitempty"`
 	// What the observation is about, when it is not about the subject of record
@@ -333,8 +333,10 @@ func (r Observation) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if r.Code != nil {
+		if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if r.Subject != nil {
 		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
@@ -607,9 +609,11 @@ func (r *Observation) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 				}
 				r.Category = append(r.Category, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "subject":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -843,7 +847,7 @@ type ObservationComponent struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type of component observation (code / type)
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Actual component result
 	ValueQuantity *Quantity `json:"valueQuantity,omitempty"`
 	// Actual component result
@@ -910,8 +914,10 @@ func (b ObservationComponent) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if b.ValueQuantity != nil {
 		if err := b.ValueQuantity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "valueQuantity"}}); err != nil {
@@ -1017,9 +1023,11 @@ func (r *ObservationComponent) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1303,7 +1311,7 @@ type ObservationTriggeredBy struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Triggering observation
-	Observation Reference `json:"observation,omitempty"`
+	Observation *Reference `json:"observation,omitempty"`
 	// reflex | repeat | re-run
 	Type *TriggeredBytype `json:"type,omitempty"`
 	// Reason that the observation was triggered
@@ -1332,8 +1340,10 @@ func (b ObservationTriggeredBy) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := b.Observation.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "observation"}}); err != nil {
-		return err
+	if b.Observation != nil {
+		if err := b.Observation.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "observation"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
 		return err
@@ -1375,9 +1385,11 @@ func (r *ObservationTriggeredBy) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "observation":
-				if err := r.Observation.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Observation = &v
 			case "type":
 				v, _, err := xmlDecodePrimitiveCode[TriggeredBytype](d, t)
 				if err != nil {
@@ -1528,7 +1540,7 @@ func (b *ObservationBuilder) AddCategory(v CodeableConcept) *ObservationBuilder 
 
 // SetCode sets the Code field.
 func (b *ObservationBuilder) SetCode(v CodeableConcept) *ObservationBuilder {
-	b.observation.Code = v
+	b.observation.Code = &v
 	return b
 }
 
@@ -1916,7 +1928,7 @@ func WithObservationCategory(v CodeableConcept) ObservationOption {
 // WithObservationCode sets the Code field.
 func WithObservationCode(v CodeableConcept) ObservationOption {
 	return func(r *Observation) {
-		r.Code = v
+		r.Code = &v
 	}
 }
 

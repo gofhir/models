@@ -103,7 +103,7 @@ func TestResourceBackboneElements(t *testing.T) {
 	t.Run("ObservationComponent", func(t *testing.T) {
 		component := r4.ObservationComponent{
 			Id: ptrStringB("comp-1"),
-			Code: r4.CodeableConcept{
+			Code: &r4.CodeableConcept{
 				Coding: []r4.Coding{
 					{
 						System:  ptrStringB("http://loinc.org"),
@@ -136,7 +136,7 @@ func TestResourceBackboneElements(t *testing.T) {
 		item := r4.ClaimItem{
 			Id:       ptrStringB("item-1"),
 			Sequence: ptrUint32B(1),
-			ProductOrService: r4.CodeableConcept{
+			ProductOrService: &r4.CodeableConcept{
 				Coding: []r4.Coding{
 					{
 						System: ptrStringB("http://example.org/fhir/CodeSystem/ex-USCLS"),
@@ -419,13 +419,13 @@ func TestBackboneWithExtensions(t *testing.T) {
 			Id: ptrStringB("contact-ext"),
 			Extension: []r4.Extension{
 				{
-					Url:         "http://example.org/fhir/StructureDefinition/contact-priority",
+					Url:         ptrStringB("http://example.org/fhir/StructureDefinition/contact-priority"),
 					ValueString: ptrStringB("high"),
 				},
 			},
 			ModifierExtension: []r4.Extension{
 				{
-					Url:          "http://example.org/fhir/StructureDefinition/contact-inactive",
+					Url:          ptrStringB("http://example.org/fhir/StructureDefinition/contact-inactive"),
 					ValueBoolean: ptrBoolB(false),
 				},
 			},
@@ -442,11 +442,11 @@ func TestBackboneWithExtensions(t *testing.T) {
 		require.NoError(t, err)
 
 		require.Len(t, decoded.Extension, 1)
-		assert.Equal(t, "http://example.org/fhir/StructureDefinition/contact-priority", decoded.Extension[0].Url)
+		assert.Equal(t, "http://example.org/fhir/StructureDefinition/contact-priority", *decoded.Extension[0].Url)
 		assert.Equal(t, "high", *decoded.Extension[0].ValueString)
 
 		require.Len(t, decoded.ModifierExtension, 1)
-		assert.Equal(t, "http://example.org/fhir/StructureDefinition/contact-inactive", decoded.ModifierExtension[0].Url)
+		assert.Equal(t, "http://example.org/fhir/StructureDefinition/contact-inactive", *decoded.ModifierExtension[0].Url)
 		assert.False(t, *decoded.ModifierExtension[0].ValueBoolean)
 	})
 }

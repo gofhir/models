@@ -65,7 +65,7 @@ type RelatedPerson struct {
 	// Extension for Active
 	ActiveExt *Element `json:"_active,omitempty"`
 	// The patient this person is related to
-	Patient Reference `json:"patient"`
+	Patient *Reference `json:"patient,omitempty"`
 	// The nature of the relationship
 	Relationship []CodeableConcept `json:"relationship,omitempty"`
 	// A name associated with the person
@@ -229,8 +229,10 @@ func (r RelatedPerson) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 	if err := xmlEncodePrimitiveBool(e, "active", r.Active, r.ActiveExt); err != nil {
 		return err
 	}
-	if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
-		return err
+	if r.Patient != nil {
+		if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.Relationship {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "relationship"}}); err != nil {
@@ -353,9 +355,11 @@ func (r *RelatedPerson) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				r.Active = v
 				r.ActiveExt = ext
 			case "patient":
-				if err := r.Patient.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Patient = &v
 			case "relationship":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -433,7 +437,7 @@ type RelatedPersonCommunication struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The language which can be used to communicate with the patient about his or her health
-	Language CodeableConcept `json:"language,omitempty"`
+	Language *CodeableConcept `json:"language,omitempty"`
 	// Language preference indicator
 	Preferred *bool `json:"preferred,omitempty"`
 }
@@ -460,8 +464,10 @@ func (b RelatedPersonCommunication) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := b.Language.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "language"}}); err != nil {
-		return err
+	if b.Language != nil {
+		if err := b.Language.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "language"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "preferred", b.Preferred, nil); err != nil {
 		return err
@@ -500,9 +506,11 @@ func (r *RelatedPersonCommunication) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "language":
-				if err := r.Language.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Language = &v
 			case "preferred":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -605,7 +613,7 @@ func (b *RelatedPersonBuilder) SetActive(v bool) *RelatedPersonBuilder {
 
 // SetPatient sets the Patient field.
 func (b *RelatedPersonBuilder) SetPatient(v Reference) *RelatedPersonBuilder {
-	b.relatedPerson.Patient = v
+	b.relatedPerson.Patient = &v
 	return b
 }
 
@@ -752,7 +760,7 @@ func WithRelatedPersonActive(v bool) RelatedPersonOption {
 // WithRelatedPersonPatient sets the Patient field.
 func WithRelatedPersonPatient(v Reference) RelatedPersonOption {
 	return func(r *RelatedPerson) {
-		r.Patient = v
+		r.Patient = &v
 	}
 }
 

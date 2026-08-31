@@ -77,7 +77,7 @@ type MedicationStatement struct {
 	// What medication was taken
 	MedicationReference *Reference `json:"medicationReference,omitempty"`
 	// Who is/was taking  the medication
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// Encounter / Episode associated with MedicationStatement
 	Context *Reference `json:"context,omitempty"`
 	// The date/time or interval when the medication is/was/will be taken
@@ -273,8 +273,10 @@ func (r MedicationStatement) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if r.Context != nil {
 		if err := r.Context.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "context"}}); err != nil {
@@ -438,9 +440,11 @@ func (r *MedicationStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.MedicationReference = &v
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "context":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -635,7 +639,7 @@ func (b *MedicationStatementBuilder) SetMedicationReference(v Reference) *Medica
 
 // SetSubject sets the Subject field.
 func (b *MedicationStatementBuilder) SetSubject(v Reference) *MedicationStatementBuilder {
-	b.medicationStatement.Subject = v
+	b.medicationStatement.Subject = &v
 	return b
 }
 
@@ -836,7 +840,7 @@ func WithMedicationStatementMedicationReference(v Reference) MedicationStatement
 // WithMedicationStatementSubject sets the Subject field.
 func WithMedicationStatementSubject(v Reference) MedicationStatementOption {
 	return func(r *MedicationStatement) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

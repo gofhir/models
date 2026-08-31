@@ -73,7 +73,7 @@ type Condition struct {
 	// Anatomical location, if relevant
 	BodySite []CodeableConcept `json:"bodySite,omitempty"`
 	// Who has the condition?
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// Encounter created as part of
 	Encounter *Reference `json:"encounter,omitempty"`
 	// Estimated or actual date,  date-time, or age
@@ -286,8 +286,10 @@ func (r Condition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if r.Encounter != nil {
 		if err := r.Encounter.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "encounter"}}); err != nil {
@@ -473,9 +475,11 @@ func (r *Condition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.BodySite = append(r.BodySite, v)
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -928,7 +932,7 @@ func (b *ConditionBuilder) AddBodySite(v CodeableConcept) *ConditionBuilder {
 
 // SetSubject sets the Subject field.
 func (b *ConditionBuilder) SetSubject(v Reference) *ConditionBuilder {
-	b.condition.Subject = v
+	b.condition.Subject = &v
 	return b
 }
 
@@ -1182,7 +1186,7 @@ func WithConditionBodySite(v CodeableConcept) ConditionOption {
 // WithConditionSubject sets the Subject field.
 func WithConditionSubject(v Reference) ConditionOption {
 	return func(r *Condition) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

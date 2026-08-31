@@ -79,7 +79,7 @@ type AllergyIntolerance struct {
 	// Code that identifies the allergy or intolerance
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Who the sensitivity is for
-	Patient Reference `json:"patient"`
+	Patient *Reference `json:"patient,omitempty"`
 	// Encounter when the allergy or intolerance was asserted
 	Encounter *Reference `json:"encounter,omitempty"`
 	// When allergy or intolerance was identified
@@ -274,8 +274,10 @@ func (r AllergyIntolerance) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
-		return err
+	if r.Patient != nil {
+		if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
+			return err
+		}
 	}
 	if r.Encounter != nil {
 		if err := r.Encounter.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "encounter"}}); err != nil {
@@ -441,9 +443,11 @@ func (r *AllergyIntolerance) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Code = &v
 			case "patient":
-				if err := r.Patient.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Patient = &v
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -812,7 +816,7 @@ func (b *AllergyIntoleranceBuilder) SetCode(v CodeableConcept) *AllergyIntoleran
 
 // SetPatient sets the Patient field.
 func (b *AllergyIntoleranceBuilder) SetPatient(v Reference) *AllergyIntoleranceBuilder {
-	b.allergyIntolerance.Patient = v
+	b.allergyIntolerance.Patient = &v
 	return b
 }
 
@@ -1024,7 +1028,7 @@ func WithAllergyIntoleranceCode(v CodeableConcept) AllergyIntoleranceOption {
 // WithAllergyIntolerancePatient sets the Patient field.
 func WithAllergyIntolerancePatient(v Reference) AllergyIntoleranceOption {
 	return func(r *AllergyIntolerance) {
-		r.Patient = v
+		r.Patient = &v
 	}
 }
 

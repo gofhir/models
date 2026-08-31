@@ -1143,7 +1143,7 @@ type EvidenceStatisticModelCharacteristic struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Model specification
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Numerical value to complete model specification
 	Value *Quantity `json:"value,omitempty"`
 	// A variable adjusted for in the adjusted analysis
@@ -1174,8 +1174,10 @@ func (b EvidenceStatisticModelCharacteristic) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if b.Value != nil {
 		if err := b.Value.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "value"}}); err != nil {
@@ -1226,9 +1228,11 @@ func (r *EvidenceStatisticModelCharacteristic) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "value":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1268,7 +1272,7 @@ type EvidenceStatisticModelCharacteristicVariable struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Description of the variable
-	VariableDefinition Reference `json:"variableDefinition,omitempty"`
+	VariableDefinition *Reference `json:"variableDefinition,omitempty"`
 	// continuous | dichotomous | ordinal | polychotomous
 	Handling *EvidenceVariableHandling `json:"handling,omitempty"`
 	// Description for grouping of ordinal or polychotomous variables
@@ -1301,8 +1305,10 @@ func (b EvidenceStatisticModelCharacteristicVariable) MarshalXML(e *xml.Encoder,
 			return err
 		}
 	}
-	if err := b.VariableDefinition.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "variableDefinition"}}); err != nil {
-		return err
+	if b.VariableDefinition != nil {
+		if err := b.VariableDefinition.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "variableDefinition"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveCode(e, "handling", b.Handling, nil); err != nil {
 		return err
@@ -1356,9 +1362,11 @@ func (r *EvidenceStatisticModelCharacteristicVariable) UnmarshalXML(d *xml.Decod
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "variableDefinition":
-				if err := r.VariableDefinition.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.VariableDefinition = &v
 			case "handling":
 				v, _, err := xmlDecodePrimitiveCode[EvidenceVariableHandling](d, t)
 				if err != nil {
@@ -1542,7 +1550,7 @@ type EvidenceVariableDefinition struct {
 	// Footnotes and/or explanatory notes
 	Note []Annotation `json:"note,omitempty"`
 	// population | subpopulation | exposure | referenceExposure | measuredVariable | confounder
-	VariableRole CodeableConcept `json:"variableRole,omitempty"`
+	VariableRole *CodeableConcept `json:"variableRole,omitempty"`
 	// Definition of the actual variable related to the statistic(s)
 	Observed *Reference `json:"observed,omitempty"`
 	// Definition of the intended variable related to the Evidence
@@ -1581,8 +1589,10 @@ func (b EvidenceVariableDefinition) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := b.VariableRole.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "variableRole"}}); err != nil {
-		return err
+	if b.VariableRole != nil {
+		if err := b.VariableRole.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "variableRole"}}); err != nil {
+			return err
+		}
 	}
 	if b.Observed != nil {
 		if err := b.Observed.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "observed"}}); err != nil {
@@ -1645,9 +1655,11 @@ func (r *EvidenceVariableDefinition) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.Note = append(r.Note, v)
 			case "variableRole":
-				if err := r.VariableRole.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.VariableRole = &v
 			case "observed":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

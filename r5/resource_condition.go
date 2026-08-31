@@ -61,7 +61,7 @@ type Condition struct {
 	// External Ids for this condition
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// active | recurrence | relapse | inactive | remission | resolved | unknown
-	ClinicalStatus CodeableConcept `json:"clinicalStatus"`
+	ClinicalStatus *CodeableConcept `json:"clinicalStatus,omitempty"`
 	// unconfirmed | provisional | differential | confirmed | refuted | entered-in-error
 	VerificationStatus *CodeableConcept `json:"verificationStatus,omitempty"`
 	// problem-list-item | encounter-diagnosis
@@ -73,7 +73,7 @@ type Condition struct {
 	// Anatomical location, if relevant
 	BodySite []CodeableConcept `json:"bodySite,omitempty"`
 	// Who has the condition?
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// The Encounter during which this Condition was created
 	Encounter *Reference `json:"encounter,omitempty"`
 	// Estimated or actual date,  date-time, or age
@@ -254,8 +254,10 @@ func (r Condition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.ClinicalStatus.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "clinicalStatus"}}); err != nil {
-		return err
+	if r.ClinicalStatus != nil {
+		if err := r.ClinicalStatus.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "clinicalStatus"}}); err != nil {
+			return err
+		}
 	}
 	if r.VerificationStatus != nil {
 		if err := r.VerificationStatus.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "verificationStatus"}}); err != nil {
@@ -282,8 +284,10 @@ func (r Condition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if r.Encounter != nil {
 		if err := r.Encounter.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "encounter"}}); err != nil {
@@ -428,9 +432,11 @@ func (r *Condition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "clinicalStatus":
-				if err := r.ClinicalStatus.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.ClinicalStatus = &v
 			case "verificationStatus":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -462,9 +468,11 @@ func (r *Condition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.BodySite = append(r.BodySite, v)
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -589,7 +597,7 @@ type ConditionParticipant struct {
 	// Type of involvement
 	Function *CodeableConcept `json:"function,omitempty"`
 	// Who or what participated in the activities related to the condition
-	Actor Reference `json:"actor,omitempty"`
+	Actor *Reference `json:"actor,omitempty"`
 }
 
 // MarshalXML serializes ConditionParticipant to FHIR-conformant XML.
@@ -619,8 +627,10 @@ func (b ConditionParticipant) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
-		return err
+	if b.Actor != nil {
+		if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -662,9 +672,11 @@ func (r *ConditionParticipant) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.Function = &v
 			case "actor":
-				if err := r.Actor.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Actor = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -871,7 +883,7 @@ func (b *ConditionBuilder) AddIdentifier(v Identifier) *ConditionBuilder {
 
 // SetClinicalStatus sets the ClinicalStatus field.
 func (b *ConditionBuilder) SetClinicalStatus(v CodeableConcept) *ConditionBuilder {
-	b.condition.ClinicalStatus = v
+	b.condition.ClinicalStatus = &v
 	return b
 }
 
@@ -907,7 +919,7 @@ func (b *ConditionBuilder) AddBodySite(v CodeableConcept) *ConditionBuilder {
 
 // SetSubject sets the Subject field.
 func (b *ConditionBuilder) SetSubject(v Reference) *ConditionBuilder {
-	b.condition.Subject = v
+	b.condition.Subject = &v
 	return b
 }
 
@@ -1113,7 +1125,7 @@ func WithConditionIdentifier(v Identifier) ConditionOption {
 // WithConditionClinicalStatus sets the ClinicalStatus field.
 func WithConditionClinicalStatus(v CodeableConcept) ConditionOption {
 	return func(r *Condition) {
-		r.ClinicalStatus = v
+		r.ClinicalStatus = &v
 	}
 }
 
@@ -1155,7 +1167,7 @@ func WithConditionBodySite(v CodeableConcept) ConditionOption {
 // WithConditionSubject sets the Subject field.
 func WithConditionSubject(v Reference) ConditionOption {
 	return func(r *Condition) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

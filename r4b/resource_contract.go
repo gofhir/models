@@ -742,7 +742,7 @@ type ContractContentDefinition struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Content structure and use
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Detailed Content Type Definition
 	SubType *CodeableConcept `json:"subType,omitempty"`
 	// Publisher Entity
@@ -777,8 +777,10 @@ func (b ContractContentDefinition) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if b.SubType != nil {
 		if err := b.SubType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subType"}}); err != nil {
@@ -833,9 +835,11 @@ func (r *ContractContentDefinition) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "subType":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1196,9 +1200,9 @@ type ContractSigner struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Contract Signatory Role
-	Type Coding `json:"type,omitempty"`
+	Type *Coding `json:"type,omitempty"`
 	// Contract Signatory Party
-	Party Reference `json:"party,omitempty"`
+	Party *Reference `json:"party,omitempty"`
 	// Contract Documentation Signature
 	Signature []Signature `json:"signature,omitempty"`
 }
@@ -1225,11 +1229,15 @@ func (b ContractSigner) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
-	if err := b.Party.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "party"}}); err != nil {
-		return err
+	if b.Party != nil {
+		if err := b.Party.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "party"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Signature {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "signature"}}); err != nil {
@@ -1270,13 +1278,17 @@ func (r *ContractSigner) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v Coding
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "party":
-				if err := r.Party.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Party = &v
 			case "signature":
 				var v Signature
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1548,15 +1560,15 @@ type ContractTermAction struct {
 	// True if the term prohibits the  action
 	DoNotPerform *bool `json:"doNotPerform,omitempty"`
 	// Type or form of the action
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Entity of the action
 	Subject []ContractTermActionSubject `json:"subject,omitempty"`
 	// Purpose for the Contract Term Action
-	Intent CodeableConcept `json:"intent,omitempty"`
+	Intent *CodeableConcept `json:"intent,omitempty"`
 	// Pointer to specific item
 	LinkId []*string `json:"linkId,omitempty"`
 	// State of the action
-	Status CodeableConcept `json:"status,omitempty"`
+	Status *CodeableConcept `json:"status,omitempty"`
 	// Episode associated with action
 	Context *Reference `json:"context,omitempty"`
 	// Pointer to specific item
@@ -1620,22 +1632,28 @@ func (b ContractTermAction) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	if err := xmlEncodePrimitiveBool(e, "doNotPerform", b.DoNotPerform, nil); err != nil {
 		return err
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Subject {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
 			return err
 		}
 	}
-	if err := b.Intent.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "intent"}}); err != nil {
-		return err
+	if b.Intent != nil {
+		if err := b.Intent.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "intent"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveStringArray(e, "linkId", b.LinkId, nil); err != nil {
 		return err
 	}
-	if err := b.Status.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "status"}}); err != nil {
-		return err
+	if b.Status != nil {
+		if err := b.Status.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "status"}}); err != nil {
+			return err
+		}
 	}
 	if b.Context != nil {
 		if err := b.Context.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "context"}}); err != nil {
@@ -1748,9 +1766,11 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.DoNotPerform = v
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "subject":
 				var v ContractTermActionSubject
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1758,9 +1778,11 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Subject = append(r.Subject, v)
 			case "intent":
-				if err := r.Intent.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Intent = &v
 			case "linkId":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1769,9 +1791,11 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				// nil is meaningful here: it is a positional slot with no value.
 				r.LinkId = append(r.LinkId, v)
 			case "status":
-				if err := r.Status.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Status = &v
 			case "context":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -3082,7 +3106,7 @@ type ContractTermOfferParty struct {
 	// Referenced entity
 	Reference []Reference `json:"reference,omitempty"`
 	// Participant engagement type
-	Role CodeableConcept `json:"role,omitempty"`
+	Role *CodeableConcept `json:"role,omitempty"`
 }
 
 // MarshalXML serializes ContractTermOfferParty to FHIR-conformant XML.
@@ -3112,8 +3136,10 @@ func (b ContractTermOfferParty) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := b.Role.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "role"}}); err != nil {
-		return err
+	if b.Role != nil {
+		if err := b.Role.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "role"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -3155,9 +3181,11 @@ func (r *ContractTermOfferParty) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.Reference = append(r.Reference, v)
 			case "role":
-				if err := r.Role.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Role = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -3181,7 +3209,7 @@ type ContractTermSecurityLabel struct {
 	// Link to Security Labels
 	Number []*uint32 `json:"number,omitempty"`
 	// Confidentiality Protection
-	Classification Coding `json:"classification,omitempty"`
+	Classification *Coding `json:"classification,omitempty"`
 	// Applicable Policy
 	Category []Coding `json:"category,omitempty"`
 	// Handling Instructions
@@ -3213,8 +3241,10 @@ func (b ContractTermSecurityLabel) MarshalXML(e *xml.Encoder, start xml.StartEle
 	if err := xmlEncodePrimitiveUint32Array(e, "number", b.Number, nil); err != nil {
 		return err
 	}
-	if err := b.Classification.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "classification"}}); err != nil {
-		return err
+	if b.Classification != nil {
+		if err := b.Classification.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "classification"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Category {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "category"}}); err != nil {
@@ -3267,9 +3297,11 @@ func (r *ContractTermSecurityLabel) UnmarshalXML(d *xml.Decoder, start xml.Start
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Number = append(r.Number, v)
 			case "classification":
-				if err := r.Classification.UnmarshalXML(d, t); err != nil {
+				var v Coding
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Classification = &v
 			case "category":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {

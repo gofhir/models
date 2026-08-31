@@ -73,9 +73,9 @@ type DeviceDispense struct {
 	// Type of device dispense
 	Category []CodeableConcept `json:"category,omitempty"`
 	// What device was supplied
-	Device CodeableReference `json:"device"`
+	Device *CodeableReference `json:"device,omitempty"`
 	// Who the dispense is for
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// Who collected the device or where the medication was delivered
 	Receiver *Reference `json:"receiver,omitempty"`
 	// Encounter associated with event
@@ -269,11 +269,15 @@ func (r DeviceDispense) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := r.Device.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "device"}}); err != nil {
-		return err
+	if r.Device != nil {
+		if err := r.Device.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "device"}}); err != nil {
+			return err
+		}
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if r.Receiver != nil {
 		if err := r.Receiver.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "receiver"}}); err != nil {
@@ -438,13 +442,17 @@ func (r *DeviceDispense) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.Category = append(r.Category, v)
 			case "device":
-				if err := r.Device.UnmarshalXML(d, t); err != nil {
+				var v CodeableReference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Device = &v
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "receiver":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -549,7 +557,7 @@ type DeviceDispensePerformer struct {
 	// Who performed the dispense and what they did
 	Function *CodeableConcept `json:"function,omitempty"`
 	// Individual who was performing
-	Actor Reference `json:"actor,omitempty"`
+	Actor *Reference `json:"actor,omitempty"`
 }
 
 // MarshalXML serializes DeviceDispensePerformer to FHIR-conformant XML.
@@ -579,8 +587,10 @@ func (b DeviceDispensePerformer) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
-		return err
+	if b.Actor != nil {
+		if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -622,9 +632,11 @@ func (r *DeviceDispensePerformer) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.Function = &v
 			case "actor":
-				if err := r.Actor.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Actor = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -745,13 +757,13 @@ func (b *DeviceDispenseBuilder) AddCategory(v CodeableConcept) *DeviceDispenseBu
 
 // SetDevice sets the Device field.
 func (b *DeviceDispenseBuilder) SetDevice(v CodeableReference) *DeviceDispenseBuilder {
-	b.deviceDispense.Device = v
+	b.deviceDispense.Device = &v
 	return b
 }
 
 // SetSubject sets the Subject field.
 func (b *DeviceDispenseBuilder) SetSubject(v Reference) *DeviceDispenseBuilder {
-	b.deviceDispense.Subject = v
+	b.deviceDispense.Subject = &v
 	return b
 }
 
@@ -950,14 +962,14 @@ func WithDeviceDispenseCategory(v CodeableConcept) DeviceDispenseOption {
 // WithDeviceDispenseDevice sets the Device field.
 func WithDeviceDispenseDevice(v CodeableReference) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
-		r.Device = v
+		r.Device = &v
 	}
 }
 
 // WithDeviceDispenseSubject sets the Subject field.
 func WithDeviceDispenseSubject(v Reference) DeviceDispenseOption {
 	return func(r *DeviceDispense) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

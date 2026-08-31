@@ -1213,7 +1213,7 @@ type EvidenceVariableCharacteristicDefinitionByTypeAndValue struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Expresses the type of characteristic
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Method for how the characteristic value was determined
 	Method []CodeableConcept `json:"method,omitempty"`
 	// Device used for determining characteristic
@@ -1260,8 +1260,10 @@ func (b EvidenceVariableCharacteristicDefinitionByTypeAndValue) MarshalXML(e *xm
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Method {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "method"}}); err != nil {
@@ -1338,9 +1340,11 @@ func (r *EvidenceVariableCharacteristicDefinitionByTypeAndValue) UnmarshalXML(d 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "method":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

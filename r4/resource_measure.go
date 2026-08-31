@@ -978,7 +978,7 @@ type MeasureGroupPopulation struct {
 	// The human readable description of this population criteria
 	Description *string `json:"description,omitempty"`
 	// The criteria that defines this population
-	Criteria Expression `json:"criteria,omitempty"`
+	Criteria *Expression `json:"criteria,omitempty"`
 }
 
 // MarshalXML serializes MeasureGroupPopulation to FHIR-conformant XML.
@@ -1011,8 +1011,10 @@ func (b MeasureGroupPopulation) MarshalXML(e *xml.Encoder, start xml.StartElemen
 	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
 		return err
 	}
-	if err := b.Criteria.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "criteria"}}); err != nil {
-		return err
+	if b.Criteria != nil {
+		if err := b.Criteria.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "criteria"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -1060,9 +1062,11 @@ func (r *MeasureGroupPopulation) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.Description = v
 			case "criteria":
-				if err := r.Criteria.UnmarshalXML(d, t); err != nil {
+				var v Expression
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Criteria = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1215,7 +1219,7 @@ type MeasureGroupStratifierComponent struct {
 	// The human readable description of this stratifier component
 	Description *string `json:"description,omitempty"`
 	// Component of how the measure should be stratified
-	Criteria Expression `json:"criteria,omitempty"`
+	Criteria *Expression `json:"criteria,omitempty"`
 }
 
 // MarshalXML serializes MeasureGroupStratifierComponent to FHIR-conformant XML.
@@ -1248,8 +1252,10 @@ func (b MeasureGroupStratifierComponent) MarshalXML(e *xml.Encoder, start xml.St
 	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
 		return err
 	}
-	if err := b.Criteria.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "criteria"}}); err != nil {
-		return err
+	if b.Criteria != nil {
+		if err := b.Criteria.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "criteria"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -1297,9 +1303,11 @@ func (r *MeasureGroupStratifierComponent) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.Description = v
 			case "criteria":
-				if err := r.Criteria.UnmarshalXML(d, t); err != nil {
+				var v Expression
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Criteria = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1327,7 +1335,7 @@ type MeasureSupplementalData struct {
 	// The human readable description of this supplemental data
 	Description *string `json:"description,omitempty"`
 	// Expression describing additional data to be reported
-	Criteria Expression `json:"criteria,omitempty"`
+	Criteria *Expression `json:"criteria,omitempty"`
 }
 
 // MarshalXML serializes MeasureSupplementalData to FHIR-conformant XML.
@@ -1365,8 +1373,10 @@ func (b MeasureSupplementalData) MarshalXML(e *xml.Encoder, start xml.StartEleme
 	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
 		return err
 	}
-	if err := b.Criteria.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "criteria"}}); err != nil {
-		return err
+	if b.Criteria != nil {
+		if err := b.Criteria.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "criteria"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -1420,9 +1430,11 @@ func (r *MeasureSupplementalData) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.Description = v
 			case "criteria":
-				if err := r.Criteria.UnmarshalXML(d, t); err != nil {
+				var v Expression
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Criteria = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err

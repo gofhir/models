@@ -975,7 +975,7 @@ type EvidenceReportSubjectCharacteristic struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Characteristic code
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Characteristic value
 	ValueReference *Reference `json:"valueReference,omitempty"`
 	// Characteristic value
@@ -1016,8 +1016,10 @@ func (b EvidenceReportSubjectCharacteristic) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if b.ValueReference != nil {
 		if err := b.ValueReference.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "valueReference"}}); err != nil {
@@ -1084,9 +1086,11 @@ func (r *EvidenceReportSubjectCharacteristic) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "valueReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -1075,7 +1075,7 @@ type Extension struct {
 	// Additional content defined by implementations
 	Extension []Extension `json:"extension,omitempty"`
 	// identifies the meaning of the extension
-	Url string `json:"url"`
+	Url *string `json:"url,omitempty"`
 	// Value of extension
 	ValueBase64Binary *string `json:"valueBase64Binary,omitempty"`
 	// Extension for ValueBase64Binary
@@ -1291,7 +1291,7 @@ type MarketingStatus struct {
 	// Where a Medicines Regulatory Agency has granted a marketing authorisation for which specific provisions within a jurisdiction apply, the jurisdiction can be specified using an appropriate controlled terminology The controlled term and the controlled term identifier shall be specified
 	Jurisdiction *CodeableConcept `json:"jurisdiction,omitempty"`
 	// This attribute provides information on the status of the marketing of the medicinal product See ISO/TS 20443 for more information and examples
-	Status CodeableConcept `json:"status"`
+	Status *CodeableConcept `json:"status,omitempty"`
 	// The date when the Medicinal Product is placed on the market by the Marketing Authorisation Holder (or where applicable, the manufacturer/distributor) in a country and/or jurisdiction shall be provided A complete date consisting of day, month and year shall be specified using the ISO 8601 date format NOTE “Placed on the market” refers to the release of the Medicinal Product into the distribution chain
 	DateRange *Period `json:"dateRange,omitempty"`
 	// The date when the Medicinal Product is placed on the market by the Marketing Authorisation Holder (or where applicable, the manufacturer/distributor) in a country and/or jurisdiction shall be provided A complete date consisting of day, month and year shall be specified using the ISO 8601 date format NOTE “Placed on the market” refers to the release of the Medicinal Product into the distribution chain
@@ -1481,9 +1481,9 @@ type ProductShelfLife struct {
 	// Unique identifier for the packaged Medicinal Product
 	Identifier *Identifier `json:"identifier,omitempty"`
 	// This describes the shelf life, taking into account various scenarios such as shelf life of the packaged Medicinal Product itself, shelf life after transformation where necessary and shelf life after the first opening of a bottle, etc. The shelf life type shall be specified using an appropriate controlled vocabulary The controlled term and the controlled term identifier shall be specified
-	Type CodeableConcept `json:"type"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// The shelf life time period can be specified using a numerical value for the period of time and its unit of time measurement The unit of measurement shall be specified in accordance with ISO 11240 and the resulting terminology The symbol and the symbol identifier shall be used
-	Period Quantity `json:"period"`
+	Period *Quantity `json:"period,omitempty"`
 	// Special precautions for storage, if any, can be specified using an appropriate controlled vocabulary The controlled term and the controlled term identifier shall be specified
 	SpecialPrecautionsForStorage []CodeableConcept `json:"specialPrecautionsForStorage,omitempty"`
 }
@@ -1617,7 +1617,7 @@ type SampledData struct {
 	// Additional content defined by implementations
 	Extension []Extension `json:"extension,omitempty"`
 	// Zero value and units
-	Origin Quantity `json:"origin"`
+	Origin *Quantity `json:"origin,omitempty"`
 	// Number of milliseconds between samples
 	Period *Decimal `json:"period,omitempty"`
 	// Extension for Period
@@ -1657,7 +1657,7 @@ type Signature struct {
 	// Extension for When
 	WhenExt *Element `json:"_when,omitempty"`
 	// Who signed
-	Who Reference `json:"who"`
+	Who *Reference `json:"who,omitempty"`
 	// The party represented
 	OnBehalfOf *Reference `json:"onBehalfOf,omitempty"`
 	// The technical format of the signed resources
@@ -1731,7 +1731,7 @@ type UsageContext struct {
 	// Additional content defined by implementations
 	Extension []Extension `json:"extension,omitempty"`
 	// Type of context being specified
-	Code Coding `json:"code"`
+	Code *Coding `json:"code,omitempty"`
 	// Value that defines the context
 	ValueCodeableConcept *CodeableConcept `json:"valueCodeableConcept,omitempty"`
 	// Value that defines the context
@@ -3734,8 +3734,8 @@ func (d Extension) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if d.Id != nil {
 		start.Attr = append(start.Attr, xml.Attr{Name: xml.Name{Local: "id"}, Value: *d.Id})
 	}
-	if d.Url != "" {
-		start.Attr = append(start.Attr, xml.Attr{Name: xml.Name{Local: "url"}, Value: d.Url})
+	if d.Url != nil {
+		start.Attr = append(start.Attr, xml.Attr{Name: xml.Name{Local: "url"}, Value: *d.Url})
 	}
 	if err := e.EncodeToken(start); err != nil {
 		return err
@@ -4088,8 +4088,10 @@ func (d MarketingStatus) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := d.Status.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "status"}}); err != nil {
-		return err
+	if d.Status != nil {
+		if err := d.Status.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "status"}}); err != nil {
+			return err
+		}
 	}
 	if d.DateRange != nil {
 		if err := d.DateRange.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "dateRange"}}); err != nil {
@@ -4422,11 +4424,15 @@ func (d ProductShelfLife) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := d.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if d.Type != nil {
+		if err := d.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
-	if err := d.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
-		return err
+	if d.Period != nil {
+		if err := d.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range d.SpecialPrecautionsForStorage {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "specialPrecautionsForStorage"}}); err != nil {
@@ -4667,8 +4673,10 @@ func (d SampledData) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := d.Origin.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "origin"}}); err != nil {
-		return err
+	if d.Origin != nil {
+		if err := d.Origin.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "origin"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveDecimal(e, "period", d.Period, d.PeriodExt); err != nil {
 		return err
@@ -4717,8 +4725,10 @@ func (d Signature) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveString(e, "when", d.When, d.WhenExt); err != nil {
 		return err
 	}
-	if err := d.Who.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "who"}}); err != nil {
-		return err
+	if d.Who != nil {
+		if err := d.Who.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "who"}}); err != nil {
+			return err
+		}
 	}
 	if d.OnBehalfOf != nil {
 		if err := d.OnBehalfOf.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "onBehalfOf"}}); err != nil {
@@ -4847,8 +4857,10 @@ func (d UsageContext) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := d.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if d.Code != nil {
+		if err := d.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if d.ValueCodeableConcept != nil {
 		if err := d.ValueCodeableConcept.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "valueCodeableConcept"}}); err != nil {
@@ -8225,7 +8237,8 @@ func (r *Extension) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error
 			v := attr.Value
 			r.Id = &v
 		case "url":
-			r.Url = attr.Value
+			u := attr.Value
+			r.Url = &u
 		}
 	}
 
@@ -8776,9 +8789,11 @@ func (r *MarketingStatus) UnmarshalXML(dec *xml.Decoder, start xml.StartElement)
 				}
 				r.Jurisdiction = &v
 			case "status":
-				if err := r.Status.UnmarshalXML(dec, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(dec, t); err != nil {
 					return err
 				}
+				r.Status = &v
 			case "dateRange":
 				var v Period
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -9318,13 +9333,17 @@ func (r *ProductShelfLife) UnmarshalXML(dec *xml.Decoder, start xml.StartElement
 				}
 				r.Identifier = &v
 			case "type":
-				if err := r.Type.UnmarshalXML(dec, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(dec, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "period":
-				if err := r.Period.UnmarshalXML(dec, t); err != nil {
+				var v Quantity
+				if err := v.UnmarshalXML(dec, t); err != nil {
 					return err
 				}
+				r.Period = &v
 			case "specialPrecautionsForStorage":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -9722,9 +9741,11 @@ func (r *SampledData) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) err
 				}
 				r.Extension = append(r.Extension, v)
 			case "origin":
-				if err := r.Origin.UnmarshalXML(dec, t); err != nil {
+				var v Quantity
+				if err := v.UnmarshalXML(dec, t); err != nil {
 					return err
 				}
+				r.Origin = &v
 			case "period":
 				v, ext, err := xmlDecodePrimitiveDecimal(dec, t)
 				if err != nil {
@@ -9815,9 +9836,11 @@ func (r *Signature) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error
 				r.When = v
 				r.WhenExt = ext
 			case "who":
-				if err := r.Who.UnmarshalXML(dec, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(dec, t); err != nil {
 					return err
 				}
+				r.Who = &v
 			case "onBehalfOf":
 				var v Reference
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -10025,9 +10048,11 @@ func (r *UsageContext) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) er
 				}
 				r.Extension = append(r.Extension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(dec, t); err != nil {
+				var v Coding
+				if err := v.UnmarshalXML(dec, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "valueCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(dec, t); err != nil {

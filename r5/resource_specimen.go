@@ -709,7 +709,7 @@ type SpecimenContainer struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Device resource for the container
-	Device Reference `json:"device,omitempty"`
+	Device *Reference `json:"device,omitempty"`
 	// Where the container is
 	Location *Reference `json:"location,omitempty"`
 	// Quantity of specimen within container
@@ -738,8 +738,10 @@ func (b SpecimenContainer) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := b.Device.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "device"}}); err != nil {
-		return err
+	if b.Device != nil {
+		if err := b.Device.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "device"}}); err != nil {
+			return err
+		}
 	}
 	if b.Location != nil {
 		if err := b.Location.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "location"}}); err != nil {
@@ -785,9 +787,11 @@ func (r *SpecimenContainer) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "device":
-				if err := r.Device.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Device = &v
 			case "location":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -821,7 +825,7 @@ type SpecimenFeature struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Highlighted feature
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Information about the feature
 	Description *string `json:"description,omitempty"`
 }
@@ -848,8 +852,10 @@ func (b SpecimenFeature) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
 		return err
@@ -888,9 +894,11 @@ func (r *SpecimenFeature) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "description":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

@@ -71,9 +71,9 @@ type BiologicallyDerivedProductDispense struct {
 	// Relationship between the donor and intended recipient
 	OriginRelationshipType *CodeableConcept `json:"originRelationshipType,omitempty"`
 	// The BiologicallyDerivedProduct that is dispensed
-	Product Reference `json:"product"`
+	Product *Reference `json:"product,omitempty"`
 	// The intended recipient of the dispensed product
-	Patient Reference `json:"patient"`
+	Patient *Reference `json:"patient,omitempty"`
 	// Indicates the type of matching associated with the dispense
 	MatchStatus *CodeableConcept `json:"matchStatus,omitempty"`
 	// Indicates who or what performed an action
@@ -254,11 +254,15 @@ func (r BiologicallyDerivedProductDispense) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := r.Product.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "product"}}); err != nil {
-		return err
+	if r.Product != nil {
+		if err := r.Product.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "product"}}); err != nil {
+			return err
+		}
 	}
-	if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
-		return err
+	if r.Patient != nil {
+		if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
+			return err
+		}
 	}
 	if r.MatchStatus != nil {
 		if err := r.MatchStatus.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "matchStatus"}}); err != nil {
@@ -397,13 +401,17 @@ func (r *BiologicallyDerivedProductDispense) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.OriginRelationshipType = &v
 			case "product":
-				if err := r.Product.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Product = &v
 			case "patient":
-				if err := r.Patient.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Patient = &v
 			case "matchStatus":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -484,7 +492,7 @@ type BiologicallyDerivedProductDispensePerformer struct {
 	// Identifies the function of the performer during the dispense
 	Function *CodeableConcept `json:"function,omitempty"`
 	// Who performed the action
-	Actor Reference `json:"actor,omitempty"`
+	Actor *Reference `json:"actor,omitempty"`
 }
 
 // MarshalXML serializes BiologicallyDerivedProductDispensePerformer to FHIR-conformant XML.
@@ -514,8 +522,10 @@ func (b BiologicallyDerivedProductDispensePerformer) MarshalXML(e *xml.Encoder, 
 			return err
 		}
 	}
-	if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
-		return err
+	if b.Actor != nil {
+		if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -557,9 +567,11 @@ func (r *BiologicallyDerivedProductDispensePerformer) UnmarshalXML(d *xml.Decode
 				}
 				r.Function = &v
 			case "actor":
-				if err := r.Actor.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Actor = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -674,13 +686,13 @@ func (b *BiologicallyDerivedProductDispenseBuilder) SetOriginRelationshipType(v 
 
 // SetProduct sets the Product field.
 func (b *BiologicallyDerivedProductDispenseBuilder) SetProduct(v Reference) *BiologicallyDerivedProductDispenseBuilder {
-	b.biologicallyDerivedProductDispense.Product = v
+	b.biologicallyDerivedProductDispense.Product = &v
 	return b
 }
 
 // SetPatient sets the Patient field.
 func (b *BiologicallyDerivedProductDispenseBuilder) SetPatient(v Reference) *BiologicallyDerivedProductDispenseBuilder {
-	b.biologicallyDerivedProductDispense.Patient = v
+	b.biologicallyDerivedProductDispense.Patient = &v
 	return b
 }
 
@@ -848,14 +860,14 @@ func WithBiologicallyDerivedProductDispenseOriginRelationshipType(v CodeableConc
 // WithBiologicallyDerivedProductDispenseProduct sets the Product field.
 func WithBiologicallyDerivedProductDispenseProduct(v Reference) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
-		r.Product = v
+		r.Product = &v
 	}
 }
 
 // WithBiologicallyDerivedProductDispensePatient sets the Patient field.
 func WithBiologicallyDerivedProductDispensePatient(v Reference) BiologicallyDerivedProductDispenseOption {
 	return func(r *BiologicallyDerivedProductDispense) {
-		r.Patient = v
+		r.Patient = &v
 	}
 }
 

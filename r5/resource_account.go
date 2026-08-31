@@ -509,7 +509,7 @@ type AccountBalance struct {
 	// Estimated balance
 	Estimate *bool `json:"estimate,omitempty"`
 	// Calculated amount
-	Amount Money `json:"amount,omitempty"`
+	Amount *Money `json:"amount,omitempty"`
 }
 
 // MarshalXML serializes AccountBalance to FHIR-conformant XML.
@@ -547,8 +547,10 @@ func (b AccountBalance) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 	if err := xmlEncodePrimitiveBool(e, "estimate", b.Estimate, nil); err != nil {
 		return err
 	}
-	if err := b.Amount.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "amount"}}); err != nil {
-		return err
+	if b.Amount != nil {
+		if err := b.Amount.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "amount"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -602,9 +604,11 @@ func (r *AccountBalance) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.Estimate = v
 			case "amount":
-				if err := r.Amount.UnmarshalXML(d, t); err != nil {
+				var v Money
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Amount = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -626,7 +630,7 @@ type AccountCoverage struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The party(s), such as insurances, that may contribute to the payment of this account
-	Coverage Reference `json:"coverage,omitempty"`
+	Coverage *Reference `json:"coverage,omitempty"`
 	// The priority of the coverage in the context of this account
 	Priority *uint32 `json:"priority,omitempty"`
 }
@@ -653,8 +657,10 @@ func (b AccountCoverage) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := b.Coverage.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "coverage"}}); err != nil {
-		return err
+	if b.Coverage != nil {
+		if err := b.Coverage.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "coverage"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveUint32(e, "priority", b.Priority, nil); err != nil {
 		return err
@@ -693,9 +699,11 @@ func (r *AccountCoverage) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "coverage":
-				if err := r.Coverage.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Coverage = &v
 			case "priority":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
@@ -725,7 +733,7 @@ type AccountDiagnosis struct {
 	// Ranking of the diagnosis (for each type)
 	Sequence *uint32 `json:"sequence,omitempty"`
 	// The diagnosis relevant to the account
-	Condition CodeableReference `json:"condition,omitempty"`
+	Condition *CodeableReference `json:"condition,omitempty"`
 	// Date of the diagnosis (when coded diagnosis)
 	DateOfDiagnosis *string `json:"dateOfDiagnosis,omitempty"`
 	// Type that this diagnosis has relevant to the account (e.g. admission, billing, discharge …)
@@ -761,8 +769,10 @@ func (b AccountDiagnosis) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, nil); err != nil {
 		return err
 	}
-	if err := b.Condition.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "condition"}}); err != nil {
-		return err
+	if b.Condition != nil {
+		if err := b.Condition.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "condition"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "dateOfDiagnosis", b.DateOfDiagnosis, nil); err != nil {
 		return err
@@ -820,9 +830,11 @@ func (r *AccountDiagnosis) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.Sequence = v
 			case "condition":
-				if err := r.Condition.UnmarshalXML(d, t); err != nil {
+				var v CodeableReference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Condition = &v
 			case "dateOfDiagnosis":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -868,7 +880,7 @@ type AccountGuarantor struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Responsible entity
-	Party Reference `json:"party,omitempty"`
+	Party *Reference `json:"party,omitempty"`
 	// Credit or other hold applied
 	OnHold *bool `json:"onHold,omitempty"`
 	// Guarantee account during
@@ -897,8 +909,10 @@ func (b AccountGuarantor) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := b.Party.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "party"}}); err != nil {
-		return err
+	if b.Party != nil {
+		if err := b.Party.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "party"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "onHold", b.OnHold, nil); err != nil {
 		return err
@@ -942,9 +956,11 @@ func (r *AccountGuarantor) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "party":
-				if err := r.Party.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Party = &v
 			case "onHold":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -980,7 +996,7 @@ type AccountProcedure struct {
 	// Ranking of the procedure (for each type)
 	Sequence *uint32 `json:"sequence,omitempty"`
 	// The procedure relevant to the account
-	Code CodeableReference `json:"code,omitempty"`
+	Code *CodeableReference `json:"code,omitempty"`
 	// Date of the procedure (when coded procedure)
 	DateOfService *string `json:"dateOfService,omitempty"`
 	// How this procedure value should be used in charging the account
@@ -1016,8 +1032,10 @@ func (b AccountProcedure) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, nil); err != nil {
 		return err
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "dateOfService", b.DateOfService, nil); err != nil {
 		return err
@@ -1077,9 +1095,11 @@ func (r *AccountProcedure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.Sequence = v
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableReference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "dateOfService":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1127,7 +1147,7 @@ type AccountRelatedAccount struct {
 	// Relationship of the associated Account
 	Relationship *CodeableConcept `json:"relationship,omitempty"`
 	// Reference to an associated Account
-	Account Reference `json:"account,omitempty"`
+	Account *Reference `json:"account,omitempty"`
 }
 
 // MarshalXML serializes AccountRelatedAccount to FHIR-conformant XML.
@@ -1157,8 +1177,10 @@ func (b AccountRelatedAccount) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := b.Account.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "account"}}); err != nil {
-		return err
+	if b.Account != nil {
+		if err := b.Account.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "account"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -1200,9 +1222,11 @@ func (r *AccountRelatedAccount) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.Relationship = &v
 			case "account":
-				if err := r.Account.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Account = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err

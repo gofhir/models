@@ -424,7 +424,7 @@ type AccountCoverage struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The party(s), such as insurances, that may contribute to the payment of this account
-	Coverage Reference `json:"coverage,omitempty"`
+	Coverage *Reference `json:"coverage,omitempty"`
 	// The priority of the coverage in the context of this account
 	Priority *uint32 `json:"priority,omitempty"`
 }
@@ -451,8 +451,10 @@ func (b AccountCoverage) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := b.Coverage.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "coverage"}}); err != nil {
-		return err
+	if b.Coverage != nil {
+		if err := b.Coverage.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "coverage"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveUint32(e, "priority", b.Priority, nil); err != nil {
 		return err
@@ -491,9 +493,11 @@ func (r *AccountCoverage) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "coverage":
-				if err := r.Coverage.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Coverage = &v
 			case "priority":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
@@ -521,7 +525,7 @@ type AccountGuarantor struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Responsible entity
-	Party Reference `json:"party,omitempty"`
+	Party *Reference `json:"party,omitempty"`
 	// Credit or other hold applied
 	OnHold *bool `json:"onHold,omitempty"`
 	// Guarantee account during
@@ -550,8 +554,10 @@ func (b AccountGuarantor) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := b.Party.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "party"}}); err != nil {
-		return err
+	if b.Party != nil {
+		if err := b.Party.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "party"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "onHold", b.OnHold, nil); err != nil {
 		return err
@@ -595,9 +601,11 @@ func (r *AccountGuarantor) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "party":
-				if err := r.Party.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Party = &v
 			case "onHold":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {

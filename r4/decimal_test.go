@@ -200,7 +200,7 @@ func TestDecimal_XML_RoundTrip(t *testing.T) {
 	status := r4.ObservationStatusFinal
 	obs := r4.Observation{
 		Status: &status,
-		Code: r4.CodeableConcept{
+		Code: &r4.CodeableConcept{
 			Text: ptr("test"),
 		},
 		ValueQuantity: &r4.Quantity{

@@ -646,7 +646,7 @@ type MedicinalProductDefinitionCharacteristic struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A code expressing the type of characteristic
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// A value for the characteristic
 	ValueCodeableConcept *CodeableConcept `json:"valueCodeableConcept,omitempty"`
 	// A value for the characteristic
@@ -685,8 +685,10 @@ func (b MedicinalProductDefinitionCharacteristic) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if b.ValueCodeableConcept != nil {
 		if err := b.ValueCodeableConcept.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "valueCodeableConcept"}}); err != nil {
@@ -743,9 +745,11 @@ func (r *MedicinalProductDefinitionCharacteristic) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "valueCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -799,7 +803,7 @@ type MedicinalProductDefinitionContact struct {
 	// Allows the contact to be classified, for example QPPV, Pharmacovigilance Enquiry Information
 	Type *CodeableConcept `json:"type,omitempty"`
 	// A product specific contact, person (in a role), or an organization
-	Contact Reference `json:"contact,omitempty"`
+	Contact *Reference `json:"contact,omitempty"`
 }
 
 // MarshalXML serializes MedicinalProductDefinitionContact to FHIR-conformant XML.
@@ -829,8 +833,10 @@ func (b MedicinalProductDefinitionContact) MarshalXML(e *xml.Encoder, start xml.
 			return err
 		}
 	}
-	if err := b.Contact.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "contact"}}); err != nil {
-		return err
+	if b.Contact != nil {
+		if err := b.Contact.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "contact"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -872,9 +878,11 @@ func (r *MedicinalProductDefinitionContact) UnmarshalXML(d *xml.Decoder, start x
 				}
 				r.Type = &v
 			case "contact":
-				if err := r.Contact.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Contact = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -896,7 +904,7 @@ type MedicinalProductDefinitionCrossReference struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Reference to another product, e.g. for linking authorised to investigational product
-	Product CodeableReference `json:"product,omitempty"`
+	Product *CodeableReference `json:"product,omitempty"`
 	// The type of relationship, for instance branded to generic or virtual to actual product
 	Type *CodeableConcept `json:"type,omitempty"`
 }
@@ -923,8 +931,10 @@ func (b MedicinalProductDefinitionCrossReference) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := b.Product.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "product"}}); err != nil {
-		return err
+	if b.Product != nil {
+		if err := b.Product.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "product"}}); err != nil {
+			return err
+		}
 	}
 	if b.Type != nil {
 		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
@@ -965,9 +975,11 @@ func (r *MedicinalProductDefinitionCrossReference) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "product":
-				if err := r.Product.UnmarshalXML(d, t); err != nil {
+				var v CodeableReference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Product = &v
 			case "type":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1122,11 +1134,11 @@ type MedicinalProductDefinitionNameCountryLanguage struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Country code for where this name applies
-	Country CodeableConcept `json:"country,omitempty"`
+	Country *CodeableConcept `json:"country,omitempty"`
 	// Jurisdiction code for where this name applies
 	Jurisdiction *CodeableConcept `json:"jurisdiction,omitempty"`
 	// Language code for this name
-	Language CodeableConcept `json:"language,omitempty"`
+	Language *CodeableConcept `json:"language,omitempty"`
 }
 
 // MarshalXML serializes MedicinalProductDefinitionNameCountryLanguage to FHIR-conformant XML.
@@ -1151,16 +1163,20 @@ func (b MedicinalProductDefinitionNameCountryLanguage) MarshalXML(e *xml.Encoder
 			return err
 		}
 	}
-	if err := b.Country.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "country"}}); err != nil {
-		return err
+	if b.Country != nil {
+		if err := b.Country.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "country"}}); err != nil {
+			return err
+		}
 	}
 	if b.Jurisdiction != nil {
 		if err := b.Jurisdiction.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "jurisdiction"}}); err != nil {
 			return err
 		}
 	}
-	if err := b.Language.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "language"}}); err != nil {
-		return err
+	if b.Language != nil {
+		if err := b.Language.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "language"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -1196,9 +1212,11 @@ func (r *MedicinalProductDefinitionNameCountryLanguage) UnmarshalXML(d *xml.Deco
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "country":
-				if err := r.Country.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Country = &v
 			case "jurisdiction":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1206,9 +1224,11 @@ func (r *MedicinalProductDefinitionNameCountryLanguage) UnmarshalXML(d *xml.Deco
 				}
 				r.Jurisdiction = &v
 			case "language":
-				if err := r.Language.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Language = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1232,7 +1252,7 @@ type MedicinalProductDefinitionNameNamePart struct {
 	// A fragment of a product name
 	Part *string `json:"part,omitempty"`
 	// Identifying type for this part of the name (e.g. strength part)
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 }
 
 // MarshalXML serializes MedicinalProductDefinitionNameNamePart to FHIR-conformant XML.
@@ -1260,8 +1280,10 @@ func (b MedicinalProductDefinitionNameNamePart) MarshalXML(e *xml.Encoder, start
 	if err := xmlEncodePrimitiveString(e, "part", b.Part, nil); err != nil {
 		return err
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -1303,9 +1325,11 @@ func (r *MedicinalProductDefinitionNameNamePart) UnmarshalXML(d *xml.Decoder, st
 				}
 				r.Part = v
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err

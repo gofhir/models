@@ -77,7 +77,7 @@ type ImagingSelection struct {
 	// Classifies the imaging selection
 	Category []CodeableConcept `json:"category,omitempty"`
 	// Imaging Selection purpose text or code
-	Code CodeableConcept `json:"code"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// DICOM Study Instance UID
 	StudyUid *string `json:"studyUid,omitempty"`
 	// Extension for StudyUid
@@ -268,8 +268,10 @@ func (r ImagingSelection) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if r.Code != nil {
+		if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "studyUid", r.StudyUid, r.StudyUidExt); err != nil {
 		return err
@@ -419,9 +421,11 @@ func (r *ImagingSelection) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.Category = append(r.Category, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "studyUid":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1059,7 +1063,7 @@ func (b *ImagingSelectionBuilder) AddCategory(v CodeableConcept) *ImagingSelecti
 
 // SetCode sets the Code field.
 func (b *ImagingSelectionBuilder) SetCode(v CodeableConcept) *ImagingSelectionBuilder {
-	b.imagingSelection.Code = v
+	b.imagingSelection.Code = &v
 	return b
 }
 
@@ -1241,7 +1245,7 @@ func WithImagingSelectionCategory(v CodeableConcept) ImagingSelectionOption {
 // WithImagingSelectionCode sets the Code field.
 func WithImagingSelectionCode(v CodeableConcept) ImagingSelectionOption {
 	return func(r *ImagingSelection) {
-		r.Code = v
+		r.Code = &v
 	}
 }
 

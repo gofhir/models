@@ -540,9 +540,9 @@ type InventoryReportInventoryListingItem struct {
 	// The inventory category or classification of the items being reported
 	Category *CodeableConcept `json:"category,omitempty"`
 	// The quantity of the item or items being reported
-	Quantity Quantity `json:"quantity,omitempty"`
+	Quantity *Quantity `json:"quantity,omitempty"`
 	// The code or reference to the item type
-	Item CodeableReference `json:"item,omitempty"`
+	Item *CodeableReference `json:"item,omitempty"`
 }
 
 // MarshalXML serializes InventoryReportInventoryListingItem to FHIR-conformant XML.
@@ -572,11 +572,15 @@ func (b InventoryReportInventoryListingItem) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := b.Quantity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "quantity"}}); err != nil {
-		return err
+	if b.Quantity != nil {
+		if err := b.Quantity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "quantity"}}); err != nil {
+			return err
+		}
 	}
-	if err := b.Item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "item"}}); err != nil {
-		return err
+	if b.Item != nil {
+		if err := b.Item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "item"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -618,13 +622,17 @@ func (r *InventoryReportInventoryListingItem) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.Category = &v
 			case "quantity":
-				if err := r.Quantity.UnmarshalXML(d, t); err != nil {
+				var v Quantity
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Quantity = &v
 			case "item":
-				if err := r.Item.UnmarshalXML(d, t); err != nil {
+				var v CodeableReference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Item = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
