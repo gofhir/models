@@ -221,7 +221,7 @@ Al servir recursos FHIR por HTTP, considera usar `r4.Marshal()` en lugar de `jso
 
 ## Recursos Contenidos
 
-La biblioteca maneja recursos contenidos polimórficos durante la serialización JSON. Los recursos contenidos se almacenan como `[]Resource` (un slice de interfaces) y se serializan correctamente con su discriminador `resourceType`:
+La biblioteca maneja recursos contenidos polimórficos durante la serialización JSON. El tipo del campo es `ContainedList`, un `[]Resource` con nombre: la asignación desde un `[]Resource`, el `range`, el `append`, la indexación y pasarlo a un `func([]Resource)` funcionan igual que con un slice normal, y `GetContained()` sigue devolviendo `[]Resource`. El tipo con nombre es lo que lleva el `UnmarshalJSON` que despacha cada elemento, ya que `encoding/json` no puede construir un valor de interfaz por sí solo.
 
 ```go
 patient := &r4.Patient{

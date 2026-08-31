@@ -221,7 +221,7 @@ When serving FHIR resources over HTTP, consider using `r4.Marshal()` instead of 
 
 ## Contained Resources
 
-The library handles polymorphic contained resources during JSON serialization. Contained resources are stored as `[]Resource` (an interface slice) and are correctly marshaled with their `resourceType` discriminator:
+The library handles polymorphic contained resources during JSON serialization. The field's type is `ContainedList`, a named `[]Resource`: assignment from a `[]Resource`, `range`, `append`, indexing and passing to a `func([]Resource)` all work as they would on a plain slice, and `GetContained()` still returns `[]Resource`. The named type is what carries the `UnmarshalJSON` that dispatches each element, since `encoding/json` cannot build an interface value on its own.
 
 ```go
 patient := &r4.Patient{

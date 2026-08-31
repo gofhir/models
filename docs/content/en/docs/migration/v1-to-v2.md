@@ -237,7 +237,25 @@ This is a correctness fix, not tidying. A var handed the same value to every cal
 
 ### `Contained` becomes a named slice type
 
-**Status: forecast.** `[]Resource` becomes `ContainedList`. Assignment from `[]Resource`, `range`, `append`, and passing to a `func([]Resource)` all keep working; what changes is that `%T` prints `r4.ContainedList`.
+**Status: done, and almost certainly a no-op for your code.** `[]Resource` becomes `ContainedList`, a named slice with the same underlying type:
+
+```go
+p.Contained = []r4.Resource{org}        // still compiles
+p.Contained = append(p.Contained, x)    // still compiles
+for _, c := range p.Contained { }       // still compiles
+takesSlice(p.Contained)                 // func([]Resource) — still compiles
+p.GetContained()                        // still returns []Resource
+```
+
+**The only observable difference is `%T`**, which now prints `r4.ContainedList`. If you format the field's type into logs or compare it, that string moves.
+
+The named type is what carries the `UnmarshalJSON` that dispatches each element. Previously every resource generated its own, which is why this removed **437 methods and 16,130 lines** of generated code. Decoding a Patient with contained resources is 1.35× faster, a 50-entry Bundle 1.16× — real but smaller than the 1.51× / 1.26× the plan projected.
+
+Error messages keep their index, including when nested:
+
+```
+failed to unmarshal resource: failed to unmarshal Patient: failed to unmarshal contained[0]: unknown resource type: Nope
+```
 
 ### Code system type names change
 

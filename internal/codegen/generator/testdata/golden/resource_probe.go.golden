@@ -49,6 +49,8 @@ type Probe struct {
 	AliasExt []*Element `json:"_alias,omitempty"`
 	// Required complex type: still a pointer, or an unset one marshals as {} and violates ele-1
 	Marker *ProbeMarker `json:"marker,omitempty"`
+	// Contained resources: dispatched by ContainedList, not by a generated method
+	Contained ContainedList `json:"contained,omitempty"`
 	// Choice of value
 	ValueBoolean *bool `json:"valueBoolean,omitempty"`
 	// Extension for ValueBoolean
@@ -76,6 +78,11 @@ func (r *Probe) SetId(id string) {
 	r.Id = &id
 }
 
+// GetContained returns the resource's contained resources.
+func (r *Probe) GetContained() []Resource {
+	return r.Contained
+}
+
 // MarshalXML serializes Probe to FHIR-conformant XML.
 func (r Probe) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -98,6 +105,13 @@ func (r Probe) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if r.Marker != nil {
 		if err := r.Marker.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "marker"}}); err != nil {
 			return err
+		}
+	}
+	for _, c := range r.Contained {
+		if c != nil {
+			if err := xmlEncodeContainedResource(e, c); err != nil {
+				return err
+			}
 		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "valueBoolean", r.ValueBoolean, nil); err != nil {
@@ -151,6 +165,14 @@ func (r *Probe) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.Marker = &v
+			case "contained":
+				res, err := xmlDecodeContainedResource(d, t)
+				if err != nil {
+					return err
+				}
+				if res != nil {
+					r.Contained = append(r.Contained, res)
+				}
 			case "valueBoolean":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -323,6 +345,12 @@ func (b *ProbeBuilder) SetMarker(v ProbeMarker) *ProbeBuilder {
 	return b
 }
 
+// AddContained adds a Contained element.
+func (b *ProbeBuilder) AddContained(v Resource) *ProbeBuilder {
+	b.probe.Contained = append(b.probe.Contained, v)
+	return b
+}
+
 // SetValueBoolean sets the ValueBoolean field.
 func (b *ProbeBuilder) SetValueBoolean(v bool) *ProbeBuilder {
 	b.probe.ValueBoolean = &v
@@ -394,6 +422,13 @@ func WithProbeAlias(v string) ProbeOption {
 func WithProbeMarker(v ProbeMarker) ProbeOption {
 	return func(r *Probe) {
 		r.Marker = &v
+	}
+}
+
+// WithProbeContained adds a Contained to the Probe.
+func WithProbeContained(v Resource) ProbeOption {
+	return func(r *Probe) {
+		r.Contained = append(r.Contained, v)
 	}
 }
 

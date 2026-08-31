@@ -269,6 +269,58 @@ func isJSONNull(raw json.RawMessage) bool {
 	return len(trimmed) == 0 || string(trimmed) == "null"
 }
 
+// ContainedList is the type of every resource's Contained field.
+//
+// encoding/json cannot build a Resource, since it is an interface, so contained
+// resources need the dispatcher. Attaching UnmarshalJSON here instead of to each
+// resource replaces 158 generated methods with one: without it, every
+// resource needs its own UnmarshalJSON that shadows the whole struct through an
+// alias, decodes contained into []json.RawMessage, and re-runs the standard
+// decoder over the rest.
+//
+// It behaves as a []Resource in the ways that matter — assignment from one, range,
+// append, and passing to a func([]Resource) all work unchanged, because a named
+// slice type keeps its underlying type. What differs is that %T prints
+// ContainedList.
+//
+// A nil entry placed here in code is written out as null, which is not valid
+// FHIR. Decoding skips nulls, so this only arises from a slice assembled by hand —
+// appending the result of a lookup that returned nil is the usual way. It is not
+// filtered on the way out: a MarshalJSON doing that measured 53% slower for every
+// contained resource (873 -> 1338 ns/op), because a MarshalJSON that calls
+// json.Marshal builds a second buffer for the whole value. That is the same cost
+// the per-resource MarshalJSON was removed to avoid, and it is not worth paying
+// on every correct use to tidy up an incorrect one.
+type ContainedList []Resource
+
+// UnmarshalJSON decodes each element through the resource dispatcher.
+func (c *ContainedList) UnmarshalJSON(data []byte) error {
+	var raws []json.RawMessage
+	if err := json.Unmarshal(data, &raws); err != nil {
+		return err
+	}
+	if len(raws) == 0 {
+		*c = nil
+		return nil
+	}
+
+	list := make(ContainedList, 0, len(raws))
+	for i, raw := range raws {
+		// An explicit null carries no resource. Skipping keeps the slice free of
+		// nil entries, which would marshal back out as null.
+		if isJSONNull(raw) {
+			continue
+		}
+		resource, err := UnmarshalResource(raw)
+		if err != nil {
+			return fmt.Errorf("failed to unmarshal contained[%d]: %w", i, err)
+		}
+		list = append(list, resource)
+	}
+	*c = list
+	return nil
+}
+
 // resourceNestingDepth reports how deeply resources nest inside one another.
 //
 // It scans the bytes once without building a value. Depth is computed on the way

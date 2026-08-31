@@ -134,6 +134,11 @@ const goldenResourcesBundle = `{
               "type": [{"code": "Element"}]
             },
             {
+              "path": "Probe.contained", "min": 0, "max": "*",
+              "short": "Contained resources: dispatched by ContainedList, not by a generated method",
+              "type": [{"code": "Resource"}]
+            },
+            {
               "path": "Probe.value[x]", "min": 0, "max": "1",
               "short": "Choice of value",
               "type": [{"code": "boolean"}, {"code": "string"}]
