@@ -244,9 +244,9 @@ import (
 
 observation := r4.NewObservationBuilder().
     SetStatus(r4.ObservationStatusFinal).
-    AddCategory(helpers.ObservationCategoryVitalSigns).
-    SetCode(helpers.BodyWeight).
-    SetValueQuantity(helpers.QuantityKg(75.0)).
+    AddCategory(*helpers.ObservationCategoryVitalSigns()).
+    SetCode(*helpers.BodyWeight()).
+    SetValueQuantity(*helpers.QuantityKg(75.0)).
     Build()
 ```
 
@@ -254,14 +254,14 @@ observation := r4.NewObservationBuilder().
 
 | Variable | System | Code |
 |----------|--------|------|
-| `helpers.ObservationCategoryVitalSigns` | observation-category | vital-signs |
-| `helpers.ObservationCategoryLaboratory` | observation-category | laboratory |
-| `helpers.ObservationCategorySocialHistory` | observation-category | social-history |
-| `helpers.ObservationCategoryImaging` | observation-category | imaging |
-| `helpers.ObservationCategorySurvey` | observation-category | survey |
-| `helpers.ObservationCategoryExam` | observation-category | exam |
-| `helpers.ObservationCategoryTherapy` | observation-category | therapy |
-| `helpers.ObservationCategoryActivity` | observation-category | activity |
+| `helpers.ObservationCategoryVitalSigns()` | observation-category | vital-signs |
+| `helpers.ObservationCategoryLaboratory()` | observation-category | laboratory |
+| `helpers.ObservationCategorySocialHistory()` | observation-category | social-history |
+| `helpers.ObservationCategoryImaging()` | observation-category | imaging |
+| `helpers.ObservationCategorySurvey()` | observation-category | survey |
+| `helpers.ObservationCategoryExam()` | observation-category | exam |
+| `helpers.ObservationCategoryTherapy()` | observation-category | therapy |
+| `helpers.ObservationCategoryActivity()` | observation-category | activity |
 
 ### LOINC Codes for Vital Signs
 
@@ -269,12 +269,18 @@ observation := r4.NewObservationBuilder().
 import "github.com/gofhir/models/r4/helpers"
 
 // Pre-built CodeableConcepts for common vital signs
-helpers.BodyWeight       // LOINC 29463-7
-helpers.BodyHeight       // LOINC 8302-2
-helpers.BodyTemperature  // LOINC 8310-5
-helpers.HeartRate         // LOINC 8867-4
-helpers.VitalSignsPanel  // LOINC 85353-1
+helpers.BodyWeight()       // LOINC 29463-7
+helpers.BodyHeight()       // LOINC 8302-2
+helpers.BodyTemperature()  // LOINC 8310-5
+helpers.HeartRate()         // LOINC 8867-4
+helpers.VitalSignsPanel()  // LOINC 85353-1
 ```
+
+{{< callout type="info" >}}
+**These are functions, not variables.** Each call returns a fresh value, so you can adjust the result — a translated `display`, an extra coding — without changing what any other caller sees.
+
+They used to be package-level vars. Because `CodeableConcept` carries a `Coding` slice, even copying the struct shared the slice's backing array, so editing a display text on one resource silently changed it everywhere the same helper had been used, and in the helper itself.
+{{< /callout >}}
 
 ### UCUM Quantity Helpers
 
@@ -300,11 +306,11 @@ import (
 tempObs := r4.NewObservationBuilder().
     SetId("temp-001").
     SetStatus(r4.ObservationStatusFinal).
-    AddCategory(helpers.ObservationCategoryVitalSigns).
-    SetCode(helpers.BodyTemperature).
+    AddCategory(*helpers.ObservationCategoryVitalSigns()).
+    SetCode(*helpers.BodyTemperature()).
     SetSubject(r4.Reference{Reference: ptrTo("Patient/patient-001")}).
     SetEffectiveDateTime("2024-06-15T14:30:00Z").
-    SetValueQuantity(helpers.QuantityCel(38.1)).
+    SetValueQuantity(*helpers.QuantityCel(38.1)).
     Build()
 ```
 

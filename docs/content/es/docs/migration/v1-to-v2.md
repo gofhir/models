@@ -217,6 +217,24 @@ La lectura no se ve afectada —Go desreferencia automáticamente, así que `obs
 r4.NewObservationBuilder().SetCode(r4.CodeableConcept{...}).Build()   // sin cambios
 ```
 
+### Los helpers de r4 pasan a ser funciones
+
+**Estado: hecho.** `helpers.BodyWeight` y las otras 58 constantes LOINC y de categoría eran variables de paquete; ahora son funciones que devuelven un `*r4.CodeableConcept` nuevo, y los 33 helpers UCUM `Quantity*` devuelven `*r4.Quantity`.
+
+```go
+Code: helpers.BodyWeight,      // v1
+Code: helpers.BodyWeight(),    // v2 — y como el campo ya es puntero, encaja directo
+```
+
+Con un builder, `Set*` sigue recibiendo un valor, así que desreferencia:
+
+```go
+SetCode(*helpers.BodyWeight()).
+AddCategory(*helpers.ObservationCategoryVitalSigns()).
+```
+
+Esto es una corrección, no una limpieza. Una variable entregaba el mismo valor a todos los usos y, como `CodeableConcept` lleva un slice `Coding`, incluso copiando el struct se compartía el array subyacente: ajustar un `display` en un recurso lo cambiaba en todos los demás construidos con ese helper, y en el helper mismo. Ya pasaba en la v1; convertir los campos requeridos en punteros lo amplió de los slices al struct entero.
+
 ### `Contained` pasa a ser un tipo de slice con nombre
 
 **Estado: previsto.** `[]Resource` pasa a `ContainedList`. La asignación desde `[]Resource`, el `range`, el `append` y pasarlo a un `func([]Resource)` siguen funcionando; lo que cambia es que `%T` imprime `r4.ContainedList`.

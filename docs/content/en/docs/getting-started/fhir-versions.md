@@ -36,7 +36,7 @@ The R4 package also includes an optional `helpers` sub-package with pre-built `C
 import "github.com/gofhir/models/r4/helpers"
 
 // Use a pre-built vital signs category
-category := helpers.ObservationCategoryVitalSigns
+category := helpers.ObservationCategoryVitalSigns()
 ```
 
 ### FHIR R4B (4.3.0)
