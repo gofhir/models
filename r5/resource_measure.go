@@ -1623,7 +1623,7 @@ type MeasureSupplementalData struct {
 	// The human readable description of this supplemental data
 	Description *string `json:"description,omitempty"`
 	// Expression describing additional data to be reported
-	Criteria Expression `json:"criteria,omitempty"`
+	Criteria *Expression `json:"criteria,omitempty"`
 }
 
 // MarshalXML serializes MeasureSupplementalData to FHIR-conformant XML.
@@ -1664,8 +1664,10 @@ func (b MeasureSupplementalData) MarshalXML(e *xml.Encoder, start xml.StartEleme
 	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
 		return err
 	}
-	if err := b.Criteria.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "criteria"}}); err != nil {
-		return err
+	if b.Criteria != nil {
+		if err := b.Criteria.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "criteria"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -1725,9 +1727,11 @@ func (r *MeasureSupplementalData) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.Description = v
 			case "criteria":
-				if err := r.Criteria.UnmarshalXML(d, t); err != nil {
+				var v Expression
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Criteria = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err

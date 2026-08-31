@@ -366,12 +366,12 @@ func TestExtension(t *testing.T) {
 
 		ext := Extension{
 			Id:          &id,
-			Url:         url,
+			Url:         &url,
 			ValueString: &valueString,
 		}
 
 		assert.Equal(t, "ext-1", *ext.Id)
-		assert.Equal(t, "http://example.org/fhir/StructureDefinition/custom", ext.Url)
+		assert.Equal(t, "http://example.org/fhir/StructureDefinition/custom", *ext.Url)
 		assert.Equal(t, "test value", *ext.ValueString)
 	})
 }
@@ -384,13 +384,13 @@ func TestElement(t *testing.T) {
 		elem := Element{
 			Id: &id,
 			Extension: []Extension{
-				{Url: url},
+				{Url: &url},
 			},
 		}
 
 		assert.Equal(t, "elem-1", *elem.Id)
 		require.Len(t, elem.Extension, 1)
-		assert.Equal(t, "http://example.org/ext", elem.Extension[0].Url)
+		assert.Equal(t, "http://example.org/ext", *elem.Extension[0].Url)
 	})
 }
 

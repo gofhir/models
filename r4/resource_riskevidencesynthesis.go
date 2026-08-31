@@ -131,11 +131,11 @@ type RiskEvidenceSynthesis struct {
 	// Type of study
 	StudyType *CodeableConcept `json:"studyType,omitempty"`
 	// What population?
-	Population Reference `json:"population"`
+	Population *Reference `json:"population,omitempty"`
 	// What exposure?
 	Exposure *Reference `json:"exposure,omitempty"`
 	// What outcome?
-	Outcome Reference `json:"outcome"`
+	Outcome *Reference `json:"outcome,omitempty"`
 	// What sample size was involved?
 	SampleSize *RiskEvidenceSynthesisSampleSize `json:"sampleSize,omitempty"`
 	// What was the estimated risk
@@ -378,16 +378,20 @@ func (r RiskEvidenceSynthesis) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := r.Population.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "population"}}); err != nil {
-		return err
+	if r.Population != nil {
+		if err := r.Population.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "population"}}); err != nil {
+			return err
+		}
 	}
 	if r.Exposure != nil {
 		if err := r.Exposure.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "exposure"}}); err != nil {
 			return err
 		}
 	}
-	if err := r.Outcome.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "outcome"}}); err != nil {
-		return err
+	if r.Outcome != nil {
+		if err := r.Outcome.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "outcome"}}); err != nil {
+			return err
+		}
 	}
 	if r.SampleSize != nil {
 		if err := r.SampleSize.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "sampleSize"}}); err != nil {
@@ -632,9 +636,11 @@ func (r *RiskEvidenceSynthesis) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.StudyType = &v
 			case "population":
-				if err := r.Population.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Population = &v
 			case "exposure":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -642,9 +648,11 @@ func (r *RiskEvidenceSynthesis) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.Exposure = &v
 			case "outcome":
-				if err := r.Outcome.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Outcome = &v
 			case "sampleSize":
 				var v RiskEvidenceSynthesisSampleSize
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1522,7 +1530,7 @@ func (b *RiskEvidenceSynthesisBuilder) SetStudyType(v CodeableConcept) *RiskEvid
 
 // SetPopulation sets the Population field.
 func (b *RiskEvidenceSynthesisBuilder) SetPopulation(v Reference) *RiskEvidenceSynthesisBuilder {
-	b.riskEvidenceSynthesis.Population = v
+	b.riskEvidenceSynthesis.Population = &v
 	return b
 }
 
@@ -1534,7 +1542,7 @@ func (b *RiskEvidenceSynthesisBuilder) SetExposure(v Reference) *RiskEvidenceSyn
 
 // SetOutcome sets the Outcome field.
 func (b *RiskEvidenceSynthesisBuilder) SetOutcome(v Reference) *RiskEvidenceSynthesisBuilder {
-	b.riskEvidenceSynthesis.Outcome = v
+	b.riskEvidenceSynthesis.Outcome = &v
 	return b
 }
 
@@ -1806,7 +1814,7 @@ func WithRiskEvidenceSynthesisStudyType(v CodeableConcept) RiskEvidenceSynthesis
 // WithRiskEvidenceSynthesisPopulation sets the Population field.
 func WithRiskEvidenceSynthesisPopulation(v Reference) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
-		r.Population = v
+		r.Population = &v
 	}
 }
 
@@ -1820,7 +1828,7 @@ func WithRiskEvidenceSynthesisExposure(v Reference) RiskEvidenceSynthesisOption 
 // WithRiskEvidenceSynthesisOutcome sets the Outcome field.
 func WithRiskEvidenceSynthesisOutcome(v Reference) RiskEvidenceSynthesisOption {
 	return func(r *RiskEvidenceSynthesis) {
-		r.Outcome = v
+		r.Outcome = &v
 	}
 }
 

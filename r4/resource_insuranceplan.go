@@ -592,7 +592,7 @@ type InsurancePlanCoverage struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type of coverage
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// What networks provide coverage
 	Network []Reference `json:"network,omitempty"`
 	// List of benefits
@@ -621,8 +621,10 @@ func (b InsurancePlanCoverage) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Network {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "network"}}); err != nil {
@@ -668,9 +670,11 @@ func (r *InsurancePlanCoverage) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "network":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -704,7 +708,7 @@ type InsurancePlanCoverageBenefit struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type of benefit
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Referral requirements
 	Requirement *string `json:"requirement,omitempty"`
 	// Benefit limits
@@ -733,8 +737,10 @@ func (b InsurancePlanCoverageBenefit) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "requirement", b.Requirement, nil); err != nil {
 		return err
@@ -778,9 +784,11 @@ func (r *InsurancePlanCoverageBenefit) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "requirement":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1197,7 +1205,7 @@ type InsurancePlanPlanSpecificCost struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// General category of benefit
-	Category CodeableConcept `json:"category,omitempty"`
+	Category *CodeableConcept `json:"category,omitempty"`
 	// Benefits list
 	Benefit []InsurancePlanPlanSpecificCostBenefit `json:"benefit,omitempty"`
 }
@@ -1224,8 +1232,10 @@ func (b InsurancePlanPlanSpecificCost) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := b.Category.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "category"}}); err != nil {
-		return err
+	if b.Category != nil {
+		if err := b.Category.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "category"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Benefit {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "benefit"}}); err != nil {
@@ -1266,9 +1276,11 @@ func (r *InsurancePlanPlanSpecificCost) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "category":
-				if err := r.Category.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Category = &v
 			case "benefit":
 				var v InsurancePlanPlanSpecificCostBenefit
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1296,7 +1308,7 @@ type InsurancePlanPlanSpecificCostBenefit struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type of specific benefit
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// List of the costs
 	Cost []InsurancePlanPlanSpecificCostBenefitCost `json:"cost,omitempty"`
 }
@@ -1323,8 +1335,10 @@ func (b InsurancePlanPlanSpecificCostBenefit) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Cost {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "cost"}}); err != nil {
@@ -1365,9 +1379,11 @@ func (r *InsurancePlanPlanSpecificCostBenefit) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "cost":
 				var v InsurancePlanPlanSpecificCostBenefitCost
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1395,7 +1411,7 @@ type InsurancePlanPlanSpecificCostBenefitCost struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type of cost
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// in-network | out-of-network | other
 	Applicability *CodeableConcept `json:"applicability,omitempty"`
 	// Additional information about the cost
@@ -1426,8 +1442,10 @@ func (b InsurancePlanPlanSpecificCostBenefitCost) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if b.Applicability != nil {
 		if err := b.Applicability.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "applicability"}}); err != nil {
@@ -1478,9 +1496,11 @@ func (r *InsurancePlanPlanSpecificCostBenefitCost) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "applicability":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -81,7 +81,7 @@ type NutritionIntake struct {
 	// Code representing an overall type of nutrition intake
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Who is/was consuming the food or fluid
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// Encounter associated with NutritionIntake
 	Encounter *Reference `json:"encounter,omitempty"`
 	// The date/time or interval when the food or fluid is/was consumed
@@ -281,8 +281,10 @@ func (r NutritionIntake) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if r.Encounter != nil {
 		if err := r.Encounter.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "encounter"}}); err != nil {
@@ -461,9 +463,11 @@ func (r *NutritionIntake) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.Code = &v
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -566,9 +570,9 @@ type NutritionIntakeConsumedItem struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The type of food or fluid product
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Code that identifies the food or fluid product that was consumed
-	NutritionProduct CodeableReference `json:"nutritionProduct,omitempty"`
+	NutritionProduct *CodeableReference `json:"nutritionProduct,omitempty"`
 	// Scheduled frequency of consumption
 	Schedule *Timing `json:"schedule,omitempty"`
 	// Quantity of the specified food
@@ -603,11 +607,15 @@ func (b NutritionIntakeConsumedItem) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
-	if err := b.NutritionProduct.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "nutritionProduct"}}); err != nil {
-		return err
+	if b.NutritionProduct != nil {
+		if err := b.NutritionProduct.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "nutritionProduct"}}); err != nil {
+			return err
+		}
 	}
 	if b.Schedule != nil {
 		if err := b.Schedule.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "schedule"}}); err != nil {
@@ -666,13 +674,17 @@ func (r *NutritionIntakeConsumedItem) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "nutritionProduct":
-				if err := r.NutritionProduct.UnmarshalXML(d, t); err != nil {
+				var v CodeableReference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.NutritionProduct = &v
 			case "schedule":
 				var v Timing
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -724,9 +736,9 @@ type NutritionIntakeIngredientLabel struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Total nutrient consumed
-	Nutrient CodeableReference `json:"nutrient,omitempty"`
+	Nutrient *CodeableReference `json:"nutrient,omitempty"`
 	// Total amount of nutrient consumed
-	Amount Quantity `json:"amount,omitempty"`
+	Amount *Quantity `json:"amount,omitempty"`
 }
 
 // MarshalXML serializes NutritionIntakeIngredientLabel to FHIR-conformant XML.
@@ -751,11 +763,15 @@ func (b NutritionIntakeIngredientLabel) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := b.Nutrient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "nutrient"}}); err != nil {
-		return err
+	if b.Nutrient != nil {
+		if err := b.Nutrient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "nutrient"}}); err != nil {
+			return err
+		}
 	}
-	if err := b.Amount.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "amount"}}); err != nil {
-		return err
+	if b.Amount != nil {
+		if err := b.Amount.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "amount"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -791,13 +807,17 @@ func (r *NutritionIntakeIngredientLabel) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "nutrient":
-				if err := r.Nutrient.UnmarshalXML(d, t); err != nil {
+				var v CodeableReference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Nutrient = &v
 			case "amount":
-				if err := r.Amount.UnmarshalXML(d, t); err != nil {
+				var v Quantity
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Amount = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -821,7 +841,7 @@ type NutritionIntakePerformer struct {
 	// Type of performer
 	Function *CodeableConcept `json:"function,omitempty"`
 	// Who performed the intake
-	Actor Reference `json:"actor,omitempty"`
+	Actor *Reference `json:"actor,omitempty"`
 }
 
 // MarshalXML serializes NutritionIntakePerformer to FHIR-conformant XML.
@@ -851,8 +871,10 @@ func (b NutritionIntakePerformer) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
-		return err
+	if b.Actor != nil {
+		if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -894,9 +916,11 @@ func (r *NutritionIntakePerformer) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.Function = &v
 			case "actor":
-				if err := r.Actor.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Actor = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1037,7 +1061,7 @@ func (b *NutritionIntakeBuilder) SetCode(v CodeableConcept) *NutritionIntakeBuil
 
 // SetSubject sets the Subject field.
 func (b *NutritionIntakeBuilder) SetSubject(v Reference) *NutritionIntakeBuilder {
-	b.nutritionIntake.Subject = v
+	b.nutritionIntake.Subject = &v
 	return b
 }
 
@@ -1262,7 +1286,7 @@ func WithNutritionIntakeCode(v CodeableConcept) NutritionIntakeOption {
 // WithNutritionIntakeSubject sets the Subject field.
 func WithNutritionIntakeSubject(v Reference) NutritionIntakeOption {
 	return func(r *NutritionIntake) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

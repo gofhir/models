@@ -414,7 +414,7 @@ type OrganizationQualification struct {
 	// An identifier for this qualification for the organization
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// Coded representation of the qualification
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Period during which the qualification is valid
 	Period *Period `json:"period,omitempty"`
 	// Organization that regulates and issues the qualification
@@ -448,8 +448,10 @@ func (b OrganizationQualification) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if b.Period != nil {
 		if err := b.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
@@ -501,9 +503,11 @@ func (r *OrganizationQualification) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -103,7 +103,7 @@ type ServiceRequest struct {
 	// Service amount
 	QuantityRange *Range `json:"quantityRange,omitempty"`
 	// Individual or Entity the service is ordered for
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// Encounter in which the request was created
 	Encounter *Reference `json:"encounter,omitempty"`
 	// When service should occur
@@ -355,8 +355,10 @@ func (r ServiceRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if r.Encounter != nil {
 		if err := r.Encounter.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "encounter"}}); err != nil {
@@ -624,9 +626,11 @@ func (r *ServiceRequest) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.QuantityRange = &v
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -945,7 +949,7 @@ func (b *ServiceRequestBuilder) SetQuantityRange(v Range) *ServiceRequestBuilder
 
 // SetSubject sets the Subject field.
 func (b *ServiceRequestBuilder) SetSubject(v Reference) *ServiceRequestBuilder {
-	b.serviceRequest.Subject = v
+	b.serviceRequest.Subject = &v
 	return b
 }
 
@@ -1274,7 +1278,7 @@ func WithServiceRequestQuantityRange(v Range) ServiceRequestOption {
 // WithServiceRequestSubject sets the Subject field.
 func WithServiceRequestSubject(v Reference) ServiceRequestOption {
 	return func(r *ServiceRequest) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

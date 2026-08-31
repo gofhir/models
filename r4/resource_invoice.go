@@ -744,7 +744,7 @@ type InvoiceParticipant struct {
 	// Type of involvement in creation of this Invoice
 	Role *CodeableConcept `json:"role,omitempty"`
 	// Individual who was involved
-	Actor Reference `json:"actor,omitempty"`
+	Actor *Reference `json:"actor,omitempty"`
 }
 
 // MarshalXML serializes InvoiceParticipant to FHIR-conformant XML.
@@ -774,8 +774,10 @@ func (b InvoiceParticipant) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
-		return err
+	if b.Actor != nil {
+		if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -817,9 +819,11 @@ func (r *InvoiceParticipant) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Role = &v
 			case "actor":
-				if err := r.Actor.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Actor = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err

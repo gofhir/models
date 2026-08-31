@@ -157,7 +157,7 @@ type ResearchDefinition struct {
 	// Extension for Library
 	LibraryExt []*Element `json:"_library,omitempty"`
 	// What population?
-	Population Reference `json:"population"`
+	Population *Reference `json:"population,omitempty"`
 	// What exposure?
 	Exposure *Reference `json:"exposure,omitempty"`
 	// What alternative exposure state?
@@ -416,8 +416,10 @@ func (r ResearchDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	if err := xmlEncodePrimitiveStringArray(e, "library", r.Library, r.LibraryExt); err != nil {
 		return err
 	}
-	if err := r.Population.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "population"}}); err != nil {
-		return err
+	if r.Population != nil {
+		if err := r.Population.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "population"}}); err != nil {
+			return err
+		}
 	}
 	if r.Exposure != nil {
 		if err := r.Exposure.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "exposure"}}); err != nil {
@@ -705,9 +707,11 @@ func (r *ResearchDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Library = append(r.Library, v)
 			case "population":
-				if err := r.Population.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Population = &v
 			case "exposure":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1004,7 +1008,7 @@ func (b *ResearchDefinitionBuilder) AddLibrary(v string) *ResearchDefinitionBuil
 
 // SetPopulation sets the Population field.
 func (b *ResearchDefinitionBuilder) SetPopulation(v Reference) *ResearchDefinitionBuilder {
-	b.researchDefinition.Population = v
+	b.researchDefinition.Population = &v
 	return b
 }
 
@@ -1318,7 +1322,7 @@ func WithResearchDefinitionLibrary(v string) ResearchDefinitionOption {
 // WithResearchDefinitionPopulation sets the Population field.
 func WithResearchDefinitionPopulation(v Reference) ResearchDefinitionOption {
 	return func(r *ResearchDefinition) {
-		r.Population = v
+		r.Population = &v
 	}
 }
 

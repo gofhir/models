@@ -411,7 +411,7 @@ type PersonLink struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The resource to which this actual person is associated
-	Target Reference `json:"target,omitempty"`
+	Target *Reference `json:"target,omitempty"`
 	// level1 | level2 | level3 | level4
 	Assurance *IdentityAssuranceLevel `json:"assurance,omitempty"`
 }
@@ -438,8 +438,10 @@ func (b PersonLink) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := b.Target.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "target"}}); err != nil {
-		return err
+	if b.Target != nil {
+		if err := b.Target.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "target"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveCode(e, "assurance", b.Assurance, nil); err != nil {
 		return err
@@ -478,9 +480,11 @@ func (r *PersonLink) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "target":
-				if err := r.Target.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Target = &v
 			case "assurance":
 				v, _, err := xmlDecodePrimitiveCode[IdentityAssuranceLevel](d, t)
 				if err != nil {

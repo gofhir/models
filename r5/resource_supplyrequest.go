@@ -75,9 +75,9 @@ type SupplyRequest struct {
 	// The patient for who the supply request is for
 	DeliverFor *Reference `json:"deliverFor,omitempty"`
 	// Medication, Substance, or Device requested to be supplied
-	Item CodeableReference `json:"item"`
+	Item *CodeableReference `json:"item,omitempty"`
 	// The requested amount of the item indicated
-	Quantity Quantity `json:"quantity"`
+	Quantity *Quantity `json:"quantity,omitempty"`
 	// Ordered item details
 	Parameter []SupplyRequestParameter `json:"parameter,omitempty"`
 	// When the request should be fulfilled
@@ -261,11 +261,15 @@ func (r SupplyRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := r.Item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "item"}}); err != nil {
-		return err
+	if r.Item != nil {
+		if err := r.Item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "item"}}); err != nil {
+			return err
+		}
 	}
-	if err := r.Quantity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "quantity"}}); err != nil {
-		return err
+	if r.Quantity != nil {
+		if err := r.Quantity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "quantity"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.Parameter {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "parameter"}}); err != nil {
@@ -418,13 +422,17 @@ func (r *SupplyRequest) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				r.DeliverFor = &v
 			case "item":
-				if err := r.Item.UnmarshalXML(d, t); err != nil {
+				var v CodeableReference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Item = &v
 			case "quantity":
-				if err := r.Quantity.UnmarshalXML(d, t); err != nil {
+				var v Quantity
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Quantity = &v
 			case "parameter":
 				var v SupplyRequestParameter
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -749,13 +757,13 @@ func (b *SupplyRequestBuilder) SetDeliverFor(v Reference) *SupplyRequestBuilder 
 
 // SetItem sets the Item field.
 func (b *SupplyRequestBuilder) SetItem(v CodeableReference) *SupplyRequestBuilder {
-	b.supplyRequest.Item = v
+	b.supplyRequest.Item = &v
 	return b
 }
 
 // SetQuantity sets the Quantity field.
 func (b *SupplyRequestBuilder) SetQuantity(v Quantity) *SupplyRequestBuilder {
-	b.supplyRequest.Quantity = v
+	b.supplyRequest.Quantity = &v
 	return b
 }
 
@@ -942,14 +950,14 @@ func WithSupplyRequestDeliverFor(v Reference) SupplyRequestOption {
 // WithSupplyRequestItem sets the Item field.
 func WithSupplyRequestItem(v CodeableReference) SupplyRequestOption {
 	return func(r *SupplyRequest) {
-		r.Item = v
+		r.Item = &v
 	}
 }
 
 // WithSupplyRequestQuantity sets the Quantity field.
 func WithSupplyRequestQuantity(v Quantity) SupplyRequestOption {
 	return func(r *SupplyRequest) {
-		r.Quantity = v
+		r.Quantity = &v
 	}
 }
 

@@ -457,7 +457,7 @@ type ListEntry struct {
 	// When item added to list
 	Date *string `json:"date,omitempty"`
 	// Actual entry
-	Item Reference `json:"item,omitempty"`
+	Item *Reference `json:"item,omitempty"`
 }
 
 // MarshalXML serializes ListEntry to FHIR-conformant XML.
@@ -493,8 +493,10 @@ func (b ListEntry) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveString(e, "date", b.Date, nil); err != nil {
 		return err
 	}
-	if err := b.Item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "item"}}); err != nil {
-		return err
+	if b.Item != nil {
+		if err := b.Item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "item"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -548,9 +550,11 @@ func (r *ListEntry) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.Date = v
 			case "item":
-				if err := r.Item.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Item = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err

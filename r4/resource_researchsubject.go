@@ -67,9 +67,9 @@ type ResearchSubject struct {
 	// Start and end of participation
 	Period *Period `json:"period,omitempty"`
 	// Study subject is part of
-	Study Reference `json:"study"`
+	Study *Reference `json:"study,omitempty"`
 	// Who is part of study
-	Individual Reference `json:"individual"`
+	Individual *Reference `json:"individual,omitempty"`
 	// What path should be followed
 	AssignedArm *string `json:"assignedArm,omitempty"`
 	// Extension for AssignedArm
@@ -226,11 +226,15 @@ func (r ResearchSubject) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := r.Study.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "study"}}); err != nil {
-		return err
+	if r.Study != nil {
+		if err := r.Study.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "study"}}); err != nil {
+			return err
+		}
 	}
-	if err := r.Individual.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "individual"}}); err != nil {
-		return err
+	if r.Individual != nil {
+		if err := r.Individual.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "individual"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "assignedArm", r.AssignedArm, r.AssignedArmExt); err != nil {
 		return err
@@ -329,13 +333,17 @@ func (r *ResearchSubject) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.Period = &v
 			case "study":
-				if err := r.Study.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Study = &v
 			case "individual":
-				if err := r.Individual.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Individual = &v
 			case "assignedArm":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -458,13 +466,13 @@ func (b *ResearchSubjectBuilder) SetPeriod(v Period) *ResearchSubjectBuilder {
 
 // SetStudy sets the Study field.
 func (b *ResearchSubjectBuilder) SetStudy(v Reference) *ResearchSubjectBuilder {
-	b.researchSubject.Study = v
+	b.researchSubject.Study = &v
 	return b
 }
 
 // SetIndividual sets the Individual field.
 func (b *ResearchSubjectBuilder) SetIndividual(v Reference) *ResearchSubjectBuilder {
-	b.researchSubject.Individual = v
+	b.researchSubject.Individual = &v
 	return b
 }
 
@@ -582,14 +590,14 @@ func WithResearchSubjectPeriod(v Period) ResearchSubjectOption {
 // WithResearchSubjectStudy sets the Study field.
 func WithResearchSubjectStudy(v Reference) ResearchSubjectOption {
 	return func(r *ResearchSubject) {
-		r.Study = v
+		r.Study = &v
 	}
 }
 
 // WithResearchSubjectIndividual sets the Individual field.
 func WithResearchSubjectIndividual(v Reference) ResearchSubjectOption {
 	return func(r *ResearchSubject) {
-		r.Individual = v
+		r.Individual = &v
 	}
 }
 

@@ -461,11 +461,11 @@ type InventoryItemAssociation struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The type of association between the device and the other item
-	AssociationType CodeableConcept `json:"associationType,omitempty"`
+	AssociationType *CodeableConcept `json:"associationType,omitempty"`
 	// The related item or product
-	RelatedItem Reference `json:"relatedItem,omitempty"`
+	RelatedItem *Reference `json:"relatedItem,omitempty"`
 	// The quantity of the product in this product
-	Quantity Ratio `json:"quantity,omitempty"`
+	Quantity *Ratio `json:"quantity,omitempty"`
 }
 
 // MarshalXML serializes InventoryItemAssociation to FHIR-conformant XML.
@@ -490,14 +490,20 @@ func (b InventoryItemAssociation) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := b.AssociationType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "associationType"}}); err != nil {
-		return err
+	if b.AssociationType != nil {
+		if err := b.AssociationType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "associationType"}}); err != nil {
+			return err
+		}
 	}
-	if err := b.RelatedItem.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "relatedItem"}}); err != nil {
-		return err
+	if b.RelatedItem != nil {
+		if err := b.RelatedItem.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "relatedItem"}}); err != nil {
+			return err
+		}
 	}
-	if err := b.Quantity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "quantity"}}); err != nil {
-		return err
+	if b.Quantity != nil {
+		if err := b.Quantity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "quantity"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -533,17 +539,23 @@ func (r *InventoryItemAssociation) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "associationType":
-				if err := r.AssociationType.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.AssociationType = &v
 			case "relatedItem":
-				if err := r.RelatedItem.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.RelatedItem = &v
 			case "quantity":
-				if err := r.Quantity.UnmarshalXML(d, t); err != nil {
+				var v Ratio
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Quantity = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -565,7 +577,7 @@ type InventoryItemCharacteristic struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The characteristic that is being defined
-	CharacteristicType CodeableConcept `json:"characteristicType,omitempty"`
+	CharacteristicType *CodeableConcept `json:"characteristicType,omitempty"`
 	// The value of the attribute
 	ValueString *string `json:"valueString,omitempty"`
 	// Extension for ValueString
@@ -628,8 +640,10 @@ func (b InventoryItemCharacteristic) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := b.CharacteristicType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "characteristicType"}}); err != nil {
-		return err
+	if b.CharacteristicType != nil {
+		if err := b.CharacteristicType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "characteristicType"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, nil); err != nil {
 		return err
@@ -718,9 +732,11 @@ func (r *InventoryItemCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "characteristicType":
-				if err := r.CharacteristicType.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.CharacteristicType = &v
 			case "valueString":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1057,7 +1073,7 @@ type InventoryItemName struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The type of name e.g. 'brand-name', 'functional-name', 'common-name'
-	NameType Coding `json:"nameType,omitempty"`
+	NameType *Coding `json:"nameType,omitempty"`
 	// The language used to express the item name
 	Language *CommonLanguages `json:"language,omitempty"`
 	// The name or designation of the item
@@ -1086,8 +1102,10 @@ func (b InventoryItemName) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := b.NameType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "nameType"}}); err != nil {
-		return err
+	if b.NameType != nil {
+		if err := b.NameType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "nameType"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveCode(e, "language", b.Language, nil); err != nil {
 		return err
@@ -1129,9 +1147,11 @@ func (r *InventoryItemName) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "nameType":
-				if err := r.NameType.UnmarshalXML(d, t); err != nil {
+				var v Coding
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.NameType = &v
 			case "language":
 				v, _, err := xmlDecodePrimitiveCode[CommonLanguages](d, t)
 				if err != nil {
@@ -1165,9 +1185,9 @@ type InventoryItemResponsibleOrganization struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The role of the organization e.g. manufacturer, distributor, or other
-	Role CodeableConcept `json:"role,omitempty"`
+	Role *CodeableConcept `json:"role,omitempty"`
 	// An organization that is associated with the item
-	Organization Reference `json:"organization,omitempty"`
+	Organization *Reference `json:"organization,omitempty"`
 }
 
 // MarshalXML serializes InventoryItemResponsibleOrganization to FHIR-conformant XML.
@@ -1192,11 +1212,15 @@ func (b InventoryItemResponsibleOrganization) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := b.Role.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "role"}}); err != nil {
-		return err
+	if b.Role != nil {
+		if err := b.Role.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "role"}}); err != nil {
+			return err
+		}
 	}
-	if err := b.Organization.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "organization"}}); err != nil {
-		return err
+	if b.Organization != nil {
+		if err := b.Organization.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "organization"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -1232,13 +1256,17 @@ func (r *InventoryItemResponsibleOrganization) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "role":
-				if err := r.Role.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Role = &v
 			case "organization":
-				if err := r.Organization.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Organization = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err

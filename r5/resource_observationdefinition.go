@@ -145,7 +145,7 @@ type ObservationDefinition struct {
 	// General type of observation
 	Category []CodeableConcept `json:"category,omitempty"`
 	// Type of observation
-	Code CodeableConcept `json:"code"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Quantity | CodeableConcept | string | boolean | integer | Range | Ratio | SampledData | time | dateTime | Period
 	PermittedDataType []*ObservationDataType `json:"permittedDataType,omitempty"`
 	// Extension for PermittedDataType
@@ -403,8 +403,10 @@ func (r ObservationDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if r.Code != nil {
+		if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveCodeArray(e, "permittedDataType", r.PermittedDataType, r.PermittedDataTypeExt); err != nil {
 		return err
@@ -695,9 +697,11 @@ func (r *ObservationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.Category = append(r.Category, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "permittedDataType":
 				v, _, err := xmlDecodePrimitiveCode[ObservationDataType](d, t)
 				if err != nil {
@@ -788,7 +792,7 @@ type ObservationDefinitionComponent struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type of observation
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Quantity | CodeableConcept | string | boolean | integer | Range | Ratio | SampledData | time | dateTime | Period
 	PermittedDataType []*ObservationDataType `json:"permittedDataType,omitempty"`
 	// Unit for quantitative results
@@ -819,8 +823,10 @@ func (b ObservationDefinitionComponent) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveCodeArray(e, "permittedDataType", b.PermittedDataType, nil); err != nil {
 		return err
@@ -869,9 +875,11 @@ func (r *ObservationDefinitionComponent) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "permittedDataType":
 				v, _, err := xmlDecodePrimitiveCode[ObservationDataType](d, t)
 				if err != nil {
@@ -1364,7 +1372,7 @@ func (b *ObservationDefinitionBuilder) AddCategory(v CodeableConcept) *Observati
 
 // SetCode sets the Code field.
 func (b *ObservationDefinitionBuilder) SetCode(v CodeableConcept) *ObservationDefinitionBuilder {
-	b.observationDefinition.Code = v
+	b.observationDefinition.Code = &v
 	return b
 }
 
@@ -1702,7 +1710,7 @@ func WithObservationDefinitionCategory(v CodeableConcept) ObservationDefinitionO
 // WithObservationDefinitionCode sets the Code field.
 func WithObservationDefinitionCode(v CodeableConcept) ObservationDefinitionOption {
 	return func(r *ObservationDefinition) {
-		r.Code = v
+		r.Code = &v
 	}
 }
 

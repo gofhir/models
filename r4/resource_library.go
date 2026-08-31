@@ -89,7 +89,7 @@ type Library struct {
 	// Extension for Experimental
 	ExperimentalExt *Element `json:"_experimental,omitempty"`
 	// logic-library | model-definition | asset-collection | module-definition
-	Type CodeableConcept `json:"type"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Type of individual the library content is focused on
 	SubjectCodeableConcept *CodeableConcept `json:"subjectCodeableConcept,omitempty"`
 	// Type of individual the library content is focused on
@@ -311,8 +311,10 @@ func (r Library) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveBool(e, "experimental", r.Experimental, r.ExperimentalExt); err != nil {
 		return err
 	}
-	if err := r.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if r.Type != nil {
+		if err := r.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if r.SubjectCodeableConcept != nil {
 		if err := r.SubjectCodeableConcept.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subjectCodeableConcept"}}); err != nil {
@@ -535,9 +537,11 @@ func (r *Library) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				r.Experimental = v
 				r.ExperimentalExt = ext
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "subjectCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -816,7 +820,7 @@ func (b *LibraryBuilder) SetExperimental(v bool) *LibraryBuilder {
 
 // SetType sets the Type field.
 func (b *LibraryBuilder) SetType(v CodeableConcept) *LibraryBuilder {
-	b.library.Type = v
+	b.library.Type = &v
 	return b
 }
 
@@ -1089,7 +1093,7 @@ func WithLibraryExperimental(v bool) LibraryOption {
 // WithLibraryType sets the Type field.
 func WithLibraryType(v CodeableConcept) LibraryOption {
 	return func(r *Library) {
-		r.Type = v
+		r.Type = &v
 	}
 }
 

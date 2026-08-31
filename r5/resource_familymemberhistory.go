@@ -75,7 +75,7 @@ type FamilyMemberHistory struct {
 	// subject-unknown | withheld | unable-to-obtain | deferred
 	DataAbsentReason *CodeableConcept `json:"dataAbsentReason,omitempty"`
 	// Patient history is about
-	Patient Reference `json:"patient"`
+	Patient *Reference `json:"patient,omitempty"`
 	// When history was recorded or last updated
 	Date *string `json:"date,omitempty"`
 	// Extension for Date
@@ -87,7 +87,7 @@ type FamilyMemberHistory struct {
 	// Extension for Name
 	NameExt *Element `json:"_name,omitempty"`
 	// Relationship to the subject
-	Relationship CodeableConcept `json:"relationship"`
+	Relationship *CodeableConcept `json:"relationship,omitempty"`
 	// male | female | other | unknown
 	Sex *CodeableConcept `json:"sex,omitempty"`
 	// (approximate) date of birth
@@ -288,8 +288,10 @@ func (r FamilyMemberHistory) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
-		return err
+	if r.Patient != nil {
+		if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "date", r.Date, r.DateExt); err != nil {
 		return err
@@ -302,8 +304,10 @@ func (r FamilyMemberHistory) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 	if err := xmlEncodePrimitiveString(e, "name", r.Name, r.NameExt); err != nil {
 		return err
 	}
-	if err := r.Relationship.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "relationship"}}); err != nil {
-		return err
+	if r.Relationship != nil {
+		if err := r.Relationship.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "relationship"}}); err != nil {
+			return err
+		}
 	}
 	if r.Sex != nil {
 		if err := r.Sex.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "sex"}}); err != nil {
@@ -476,9 +480,11 @@ func (r *FamilyMemberHistory) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.DataAbsentReason = &v
 			case "patient":
-				if err := r.Patient.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Patient = &v
 			case "date":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -500,9 +506,11 @@ func (r *FamilyMemberHistory) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				r.Name = v
 				r.NameExt = ext
 			case "relationship":
-				if err := r.Relationship.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Relationship = &v
 			case "sex":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -633,7 +641,7 @@ type FamilyMemberHistoryCondition struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Condition suffered by relation
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// deceased | permanent disability | etc
 	Outcome *CodeableConcept `json:"outcome,omitempty"`
 	// Whether the condition contributed to the cause of death
@@ -674,8 +682,10 @@ func (b FamilyMemberHistoryCondition) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if b.Outcome != nil {
 		if err := b.Outcome.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "outcome"}}); err != nil {
@@ -742,9 +752,11 @@ func (r *FamilyMemberHistoryCondition) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "outcome":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -810,7 +822,7 @@ type FamilyMemberHistoryParticipant struct {
 	// Type of involvement
 	Function *CodeableConcept `json:"function,omitempty"`
 	// Who or what participated in the activities related to the family member history
-	Actor Reference `json:"actor,omitempty"`
+	Actor *Reference `json:"actor,omitempty"`
 }
 
 // MarshalXML serializes FamilyMemberHistoryParticipant to FHIR-conformant XML.
@@ -840,8 +852,10 @@ func (b FamilyMemberHistoryParticipant) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
-		return err
+	if b.Actor != nil {
+		if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -883,9 +897,11 @@ func (r *FamilyMemberHistoryParticipant) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.Function = &v
 			case "actor":
-				if err := r.Actor.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Actor = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -907,7 +923,7 @@ type FamilyMemberHistoryProcedure struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Procedures performed on the related person
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// What happened following the procedure
 	Outcome *CodeableConcept `json:"outcome,omitempty"`
 	// Whether the procedure contributed to the cause of death
@@ -952,8 +968,10 @@ func (b FamilyMemberHistoryProcedure) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if b.Outcome != nil {
 		if err := b.Outcome.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "outcome"}}); err != nil {
@@ -1023,9 +1041,11 @@ func (r *FamilyMemberHistoryProcedure) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "outcome":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1196,7 +1216,7 @@ func (b *FamilyMemberHistoryBuilder) SetDataAbsentReason(v CodeableConcept) *Fam
 
 // SetPatient sets the Patient field.
 func (b *FamilyMemberHistoryBuilder) SetPatient(v Reference) *FamilyMemberHistoryBuilder {
-	b.familyMemberHistory.Patient = v
+	b.familyMemberHistory.Patient = &v
 	return b
 }
 
@@ -1220,7 +1240,7 @@ func (b *FamilyMemberHistoryBuilder) SetName(v string) *FamilyMemberHistoryBuild
 
 // SetRelationship sets the Relationship field.
 func (b *FamilyMemberHistoryBuilder) SetRelationship(v CodeableConcept) *FamilyMemberHistoryBuilder {
-	b.familyMemberHistory.Relationship = v
+	b.familyMemberHistory.Relationship = &v
 	return b
 }
 
@@ -1472,7 +1492,7 @@ func WithFamilyMemberHistoryDataAbsentReason(v CodeableConcept) FamilyMemberHist
 // WithFamilyMemberHistoryPatient sets the Patient field.
 func WithFamilyMemberHistoryPatient(v Reference) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
-		r.Patient = v
+		r.Patient = &v
 	}
 }
 
@@ -1500,7 +1520,7 @@ func WithFamilyMemberHistoryName(v string) FamilyMemberHistoryOption {
 // WithFamilyMemberHistoryRelationship sets the Relationship field.
 func WithFamilyMemberHistoryRelationship(v CodeableConcept) FamilyMemberHistoryOption {
 	return func(r *FamilyMemberHistory) {
-		r.Relationship = v
+		r.Relationship = &v
 	}
 }
 

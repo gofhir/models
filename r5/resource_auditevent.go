@@ -61,7 +61,7 @@ type AuditEvent struct {
 	// Type/identifier of event
 	Category []CodeableConcept `json:"category,omitempty"`
 	// Specific type of event
-	Code CodeableConcept `json:"code"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Type of action performed during the event
 	Action *AuditEventAction `json:"action,omitempty"`
 	// Extension for Action
@@ -234,8 +234,10 @@ func (r AuditEvent) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if r.Code != nil {
+		if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveCode(e, "action", r.Action, r.ActionExt); err != nil {
 		return err
@@ -367,9 +369,11 @@ func (r *AuditEvent) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				r.Category = append(r.Category, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "action":
 				v, ext, err := xmlDecodePrimitiveCode[AuditEventAction](d, t)
 				if err != nil {
@@ -477,7 +481,7 @@ type AuditEventAgent struct {
 	// Agent role in the event
 	Role []CodeableConcept `json:"role,omitempty"`
 	// Identifier of who
-	Who Reference `json:"who,omitempty"`
+	Who *Reference `json:"who,omitempty"`
 	// Whether user is initiator
 	Requestor *bool `json:"requestor,omitempty"`
 	// The agent location when the event occurred
@@ -530,8 +534,10 @@ func (b AuditEventAgent) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := b.Who.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "who"}}); err != nil {
-		return err
+	if b.Who != nil {
+		if err := b.Who.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "who"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "requestor", b.Requestor, nil); err != nil {
 		return err
@@ -606,9 +612,11 @@ func (r *AuditEventAgent) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.Role = append(r.Role, v)
 			case "who":
-				if err := r.Who.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Who = &v
 			case "requestor":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -826,7 +834,7 @@ type AuditEventEntityDetail struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Name of the property
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Property value
 	ValueQuantity *Quantity `json:"valueQuantity,omitempty"`
 	// Property value
@@ -885,8 +893,10 @@ func (b AuditEventEntityDetail) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if b.ValueQuantity != nil {
 		if err := b.ValueQuantity.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "valueQuantity"}}); err != nil {
@@ -965,9 +975,11 @@ func (r *AuditEventEntityDetail) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1055,7 +1067,7 @@ type AuditEventOutcome struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Whether the event succeeded or failed
-	Code Coding `json:"code,omitempty"`
+	Code *Coding `json:"code,omitempty"`
 	// Additional outcome detail
 	Detail []CodeableConcept `json:"detail,omitempty"`
 }
@@ -1082,8 +1094,10 @@ func (b AuditEventOutcome) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Detail {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "detail"}}); err != nil {
@@ -1124,9 +1138,11 @@ func (r *AuditEventOutcome) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v Coding
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "detail":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1156,7 +1172,7 @@ type AuditEventSource struct {
 	// Logical source location within the enterprise
 	Site *Reference `json:"site,omitempty"`
 	// The identity of source detecting the event
-	Observer Reference `json:"observer,omitempty"`
+	Observer *Reference `json:"observer,omitempty"`
 	// The type of source where event originated
 	Type []CodeableConcept `json:"type,omitempty"`
 }
@@ -1188,8 +1204,10 @@ func (b AuditEventSource) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := b.Observer.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "observer"}}); err != nil {
-		return err
+	if b.Observer != nil {
+		if err := b.Observer.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "observer"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Type {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
@@ -1236,9 +1254,11 @@ func (r *AuditEventSource) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.Site = &v
 			case "observer":
-				if err := r.Observer.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Observer = &v
 			case "type":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1335,7 +1355,7 @@ func (b *AuditEventBuilder) AddCategory(v CodeableConcept) *AuditEventBuilder {
 
 // SetCode sets the Code field.
 func (b *AuditEventBuilder) SetCode(v CodeableConcept) *AuditEventBuilder {
-	b.auditEvent.Code = v
+	b.auditEvent.Code = &v
 	return b
 }
 
@@ -1505,7 +1525,7 @@ func WithAuditEventCategory(v CodeableConcept) AuditEventOption {
 // WithAuditEventCode sets the Code field.
 func WithAuditEventCode(v CodeableConcept) AuditEventOption {
 	return func(r *AuditEvent) {
-		r.Code = v
+		r.Code = &v
 	}
 }
 

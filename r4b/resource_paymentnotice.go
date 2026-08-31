@@ -75,7 +75,7 @@ type PaymentNotice struct {
 	// Responsible practitioner
 	Provider *Reference `json:"provider,omitempty"`
 	// Payment reference
-	Payment Reference `json:"payment"`
+	Payment *Reference `json:"payment,omitempty"`
 	// Payment or clearing date
 	PaymentDate *string `json:"paymentDate,omitempty"`
 	// Extension for PaymentDate
@@ -83,9 +83,9 @@ type PaymentNotice struct {
 	// Party being paid
 	Payee *Reference `json:"payee,omitempty"`
 	// Party being notified
-	Recipient Reference `json:"recipient"`
+	Recipient *Reference `json:"recipient,omitempty"`
 	// Monetary amount of the payment
-	Amount Money `json:"amount"`
+	Amount *Money `json:"amount,omitempty"`
 	// Issued or cleared Status of the payment
 	PaymentStatus *CodeableConcept `json:"paymentStatus,omitempty"`
 }
@@ -247,8 +247,10 @@ func (r PaymentNotice) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := r.Payment.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "payment"}}); err != nil {
-		return err
+	if r.Payment != nil {
+		if err := r.Payment.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "payment"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "paymentDate", r.PaymentDate, r.PaymentDateExt); err != nil {
 		return err
@@ -258,11 +260,15 @@ func (r PaymentNotice) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := r.Recipient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "recipient"}}); err != nil {
-		return err
+	if r.Recipient != nil {
+		if err := r.Recipient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "recipient"}}); err != nil {
+			return err
+		}
 	}
-	if err := r.Amount.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "amount"}}); err != nil {
-		return err
+	if r.Amount != nil {
+		if err := r.Amount.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "amount"}}); err != nil {
+			return err
+		}
 	}
 	if r.PaymentStatus != nil {
 		if err := r.PaymentStatus.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "paymentStatus"}}); err != nil {
@@ -374,9 +380,11 @@ func (r *PaymentNotice) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				r.Provider = &v
 			case "payment":
-				if err := r.Payment.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Payment = &v
 			case "paymentDate":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -391,13 +399,17 @@ func (r *PaymentNotice) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				r.Payee = &v
 			case "recipient":
-				if err := r.Recipient.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Recipient = &v
 			case "amount":
-				if err := r.Amount.UnmarshalXML(d, t); err != nil {
+				var v Money
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Amount = &v
 			case "paymentStatus":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -524,7 +536,7 @@ func (b *PaymentNoticeBuilder) SetProvider(v Reference) *PaymentNoticeBuilder {
 
 // SetPayment sets the Payment field.
 func (b *PaymentNoticeBuilder) SetPayment(v Reference) *PaymentNoticeBuilder {
-	b.paymentNotice.Payment = v
+	b.paymentNotice.Payment = &v
 	return b
 }
 
@@ -542,13 +554,13 @@ func (b *PaymentNoticeBuilder) SetPayee(v Reference) *PaymentNoticeBuilder {
 
 // SetRecipient sets the Recipient field.
 func (b *PaymentNoticeBuilder) SetRecipient(v Reference) *PaymentNoticeBuilder {
-	b.paymentNotice.Recipient = v
+	b.paymentNotice.Recipient = &v
 	return b
 }
 
 // SetAmount sets the Amount field.
 func (b *PaymentNoticeBuilder) SetAmount(v Money) *PaymentNoticeBuilder {
-	b.paymentNotice.Amount = v
+	b.paymentNotice.Amount = &v
 	return b
 }
 
@@ -675,7 +687,7 @@ func WithPaymentNoticeProvider(v Reference) PaymentNoticeOption {
 // WithPaymentNoticePayment sets the Payment field.
 func WithPaymentNoticePayment(v Reference) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
-		r.Payment = v
+		r.Payment = &v
 	}
 }
 
@@ -696,14 +708,14 @@ func WithPaymentNoticePayee(v Reference) PaymentNoticeOption {
 // WithPaymentNoticeRecipient sets the Recipient field.
 func WithPaymentNoticeRecipient(v Reference) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
-		r.Recipient = v
+		r.Recipient = &v
 	}
 }
 
 // WithPaymentNoticeAmount sets the Amount field.
 func WithPaymentNoticeAmount(v Money) PaymentNoticeOption {
 	return func(r *PaymentNotice) {
-		r.Amount = v
+		r.Amount = &v
 	}
 }
 

@@ -61,7 +61,7 @@ type Basic struct {
 	// Business identifier
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// Kind of Resource
-	Code CodeableConcept `json:"code"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Identifies the focus of this resource
 	Subject *Reference `json:"subject,omitempty"`
 	// When created
@@ -208,8 +208,10 @@ func (r Basic) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if r.Code != nil {
+		if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if r.Subject != nil {
 		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
@@ -297,9 +299,11 @@ func (r *Basic) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "subject":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -409,7 +413,7 @@ func (b *BasicBuilder) AddIdentifier(v Identifier) *BasicBuilder {
 
 // SetCode sets the Code field.
 func (b *BasicBuilder) SetCode(v CodeableConcept) *BasicBuilder {
-	b.basic.Code = v
+	b.basic.Code = &v
 	return b
 }
 
@@ -513,7 +517,7 @@ func WithBasicIdentifier(v Identifier) BasicOption {
 // WithBasicCode sets the Code field.
 func WithBasicCode(v CodeableConcept) BasicOption {
 	return func(r *Basic) {
-		r.Code = v
+		r.Code = &v
 	}
 }
 

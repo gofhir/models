@@ -428,7 +428,7 @@ type ProvenanceAgent struct {
 	// What the agents role was
 	Role []CodeableConcept `json:"role,omitempty"`
 	// Who participated
-	Who Reference `json:"who,omitempty"`
+	Who *Reference `json:"who,omitempty"`
 	// Who the agent is representing
 	OnBehalfOf *Reference `json:"onBehalfOf,omitempty"`
 }
@@ -465,8 +465,10 @@ func (b ProvenanceAgent) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := b.Who.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "who"}}); err != nil {
-		return err
+	if b.Who != nil {
+		if err := b.Who.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "who"}}); err != nil {
+			return err
+		}
 	}
 	if b.OnBehalfOf != nil {
 		if err := b.OnBehalfOf.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "onBehalfOf"}}); err != nil {
@@ -519,9 +521,11 @@ func (r *ProvenanceAgent) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.Role = append(r.Role, v)
 			case "who":
-				if err := r.Who.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Who = &v
 			case "onBehalfOf":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -551,7 +555,7 @@ type ProvenanceEntity struct {
 	// derivation | revision | quotation | source | removal
 	Role *ProvenanceEntityRole `json:"role,omitempty"`
 	// Identity of entity
-	What Reference `json:"what,omitempty"`
+	What *Reference `json:"what,omitempty"`
 	// Entity is attributed to this agent
 	Agent []ProvenanceAgent `json:"agent,omitempty"`
 }
@@ -581,8 +585,10 @@ func (b ProvenanceEntity) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 	if err := xmlEncodePrimitiveCode(e, "role", b.Role, nil); err != nil {
 		return err
 	}
-	if err := b.What.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "what"}}); err != nil {
-		return err
+	if b.What != nil {
+		if err := b.What.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "what"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Agent {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "agent"}}); err != nil {
@@ -629,9 +635,11 @@ func (r *ProvenanceEntity) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.Role = v
 			case "what":
-				if err := r.What.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.What = &v
 			case "agent":
 				var v ProvenanceAgent
 				if err := v.UnmarshalXML(d, t); err != nil {

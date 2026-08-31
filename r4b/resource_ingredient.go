@@ -67,7 +67,7 @@ type Ingredient struct {
 	// The product which this ingredient is a constituent part of
 	For []Reference `json:"for,omitempty"`
 	// Purpose of the ingredient within the product, e.g. active, inactive
-	Role CodeableConcept `json:"role"`
+	Role *CodeableConcept `json:"role,omitempty"`
 	// Precise action within the drug product, e.g. antioxidant, alkalizing agent
 	Function []CodeableConcept `json:"function,omitempty"`
 	// If the ingredient is a known or suspected allergen
@@ -224,8 +224,10 @@ func (r Ingredient) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.Role.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "role"}}); err != nil {
-		return err
+	if r.Role != nil {
+		if err := r.Role.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "role"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.Function {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "function"}}); err != nil {
@@ -331,9 +333,11 @@ func (r *Ingredient) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				r.For = append(r.For, v)
 			case "role":
-				if err := r.Role.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Role = &v
 			case "function":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -382,7 +386,7 @@ type IngredientManufacturer struct {
 	// allowed | possible | actual
 	Role *IngredientManufacturerRole `json:"role,omitempty"`
 	// An organization that manufactures this ingredient
-	Manufacturer Reference `json:"manufacturer,omitempty"`
+	Manufacturer *Reference `json:"manufacturer,omitempty"`
 }
 
 // MarshalXML serializes IngredientManufacturer to FHIR-conformant XML.
@@ -410,8 +414,10 @@ func (b IngredientManufacturer) MarshalXML(e *xml.Encoder, start xml.StartElemen
 	if err := xmlEncodePrimitiveCode(e, "role", b.Role, nil); err != nil {
 		return err
 	}
-	if err := b.Manufacturer.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "manufacturer"}}); err != nil {
-		return err
+	if b.Manufacturer != nil {
+		if err := b.Manufacturer.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "manufacturer"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -453,9 +459,11 @@ func (r *IngredientManufacturer) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.Role = v
 			case "manufacturer":
-				if err := r.Manufacturer.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Manufacturer = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -477,7 +485,7 @@ type IngredientSubstance struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A code or full resource that represents the ingredient substance
-	Code CodeableReference `json:"code,omitempty"`
+	Code *CodeableReference `json:"code,omitempty"`
 	// The quantity of substance, per presentation, or per volume or mass, and type of quantity
 	Strength []IngredientSubstanceStrength `json:"strength,omitempty"`
 }
@@ -504,8 +512,10 @@ func (b IngredientSubstance) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Strength {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "strength"}}); err != nil {
@@ -546,9 +556,11 @@ func (r *IngredientSubstance) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableReference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "strength":
 				var v IngredientSubstanceStrength
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -985,7 +997,7 @@ func (b *IngredientBuilder) AddFor(v Reference) *IngredientBuilder {
 
 // SetRole sets the Role field.
 func (b *IngredientBuilder) SetRole(v CodeableConcept) *IngredientBuilder {
-	b.ingredient.Role = v
+	b.ingredient.Role = &v
 	return b
 }
 
@@ -1109,7 +1121,7 @@ func WithIngredientFor(v Reference) IngredientOption {
 // WithIngredientRole sets the Role field.
 func WithIngredientRole(v CodeableConcept) IngredientOption {
 	return func(r *Ingredient) {
-		r.Role = v
+		r.Role = &v
 	}
 }
 

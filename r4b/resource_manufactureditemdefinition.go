@@ -65,7 +65,7 @@ type ManufacturedItemDefinition struct {
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Dose form as manufactured (before any necessary transformation)
-	ManufacturedDoseForm CodeableConcept `json:"manufacturedDoseForm"`
+	ManufacturedDoseForm *CodeableConcept `json:"manufacturedDoseForm,omitempty"`
 	// The “real world” units in which the quantity of the item is described
 	UnitOfPresentation *CodeableConcept `json:"unitOfPresentation,omitempty"`
 	// Manufacturer of the item (Note that this should be named "manufacturer" but it currently causes technical issues)
@@ -215,8 +215,10 @@ func (r ManufacturedItemDefinition) MarshalXML(e *xml.Encoder, start xml.StartEl
 	if err := xmlEncodePrimitiveCode(e, "status", r.Status, r.StatusExt); err != nil {
 		return err
 	}
-	if err := r.ManufacturedDoseForm.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "manufacturedDoseForm"}}); err != nil {
-		return err
+	if r.ManufacturedDoseForm != nil {
+		if err := r.ManufacturedDoseForm.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "manufacturedDoseForm"}}); err != nil {
+			return err
+		}
 	}
 	if r.UnitOfPresentation != nil {
 		if err := r.UnitOfPresentation.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "unitOfPresentation"}}); err != nil {
@@ -318,9 +320,11 @@ func (r *ManufacturedItemDefinition) UnmarshalXML(d *xml.Decoder, start xml.Star
 				r.Status = v
 				r.StatusExt = ext
 			case "manufacturedDoseForm":
-				if err := r.ManufacturedDoseForm.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.ManufacturedDoseForm = &v
 			case "unitOfPresentation":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -366,7 +370,7 @@ type ManufacturedItemDefinitionProperty struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A code expressing the type of characteristic
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// A value for the characteristic
 	ValueCodeableConcept *CodeableConcept `json:"valueCodeableConcept,omitempty"`
 	// A value for the characteristic
@@ -405,8 +409,10 @@ func (b ManufacturedItemDefinitionProperty) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if b.ValueCodeableConcept != nil {
 		if err := b.ValueCodeableConcept.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "valueCodeableConcept"}}); err != nil {
@@ -463,9 +469,11 @@ func (r *ManufacturedItemDefinitionProperty) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "valueCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -592,7 +600,7 @@ func (b *ManufacturedItemDefinitionBuilder) SetStatus(v PublicationStatus) *Manu
 
 // SetManufacturedDoseForm sets the ManufacturedDoseForm field.
 func (b *ManufacturedItemDefinitionBuilder) SetManufacturedDoseForm(v CodeableConcept) *ManufacturedItemDefinitionBuilder {
-	b.manufacturedItemDefinition.ManufacturedDoseForm = v
+	b.manufacturedItemDefinition.ManufacturedDoseForm = &v
 	return b
 }
 
@@ -709,7 +717,7 @@ func WithManufacturedItemDefinitionStatus(v PublicationStatus) ManufacturedItemD
 // WithManufacturedItemDefinitionManufacturedDoseForm sets the ManufacturedDoseForm field.
 func WithManufacturedItemDefinitionManufacturedDoseForm(v CodeableConcept) ManufacturedItemDefinitionOption {
 	return func(r *ManufacturedItemDefinition) {
-		r.ManufacturedDoseForm = v
+		r.ManufacturedDoseForm = &v
 	}
 }
 

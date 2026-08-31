@@ -61,7 +61,7 @@ type MedicinalProductPharmaceutical struct {
 	// An identifier for the pharmaceutical medicinal product
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// The administrable dose form, after necessary reconstitution
-	AdministrableDoseForm CodeableConcept `json:"administrableDoseForm"`
+	AdministrableDoseForm *CodeableConcept `json:"administrableDoseForm,omitempty"`
 	// Todo
 	UnitOfPresentation *CodeableConcept `json:"unitOfPresentation,omitempty"`
 	// Ingredient
@@ -210,8 +210,10 @@ func (r MedicinalProductPharmaceutical) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := r.AdministrableDoseForm.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "administrableDoseForm"}}); err != nil {
-		return err
+	if r.AdministrableDoseForm != nil {
+		if err := r.AdministrableDoseForm.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "administrableDoseForm"}}); err != nil {
+			return err
+		}
 	}
 	if r.UnitOfPresentation != nil {
 		if err := r.UnitOfPresentation.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "unitOfPresentation"}}); err != nil {
@@ -311,9 +313,11 @@ func (r *MedicinalProductPharmaceutical) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "administrableDoseForm":
-				if err := r.AdministrableDoseForm.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.AdministrableDoseForm = &v
 			case "unitOfPresentation":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -365,7 +369,7 @@ type MedicinalProductPharmaceuticalCharacteristics struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A coded characteristic
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// The status of characteristic e.g. assigned or pending
 	Status *CodeableConcept `json:"status,omitempty"`
 }
@@ -392,8 +396,10 @@ func (b MedicinalProductPharmaceuticalCharacteristics) MarshalXML(e *xml.Encoder
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if b.Status != nil {
 		if err := b.Status.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "status"}}); err != nil {
@@ -434,9 +440,11 @@ func (r *MedicinalProductPharmaceuticalCharacteristics) UnmarshalXML(d *xml.Deco
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "status":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -464,7 +472,7 @@ type MedicinalProductPharmaceuticalRouteOfAdministration struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Coded expression for the route
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// The first dose (dose quantity) administered in humans can be specified, for a product under investigation, using a numerical value and its unit of measurement
 	FirstDose *Quantity `json:"firstDose,omitempty"`
 	// The maximum single dose that can be administered as per the protocol of a clinical trial can be specified using a numerical value and its unit of measurement
@@ -501,8 +509,10 @@ func (b MedicinalProductPharmaceuticalRouteOfAdministration) MarshalXML(e *xml.E
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if b.FirstDose != nil {
 		if err := b.FirstDose.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "firstDose"}}); err != nil {
@@ -568,9 +578,11 @@ func (r *MedicinalProductPharmaceuticalRouteOfAdministration) UnmarshalXML(d *xm
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "firstDose":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -628,7 +640,7 @@ type MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Coded expression for the species
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// A species specific time during which consumption of animal product is not appropriate
 	WithdrawalPeriod []MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod `json:"withdrawalPeriod,omitempty"`
 }
@@ -655,8 +667,10 @@ func (b MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies) Marsha
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.WithdrawalPeriod {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "withdrawalPeriod"}}); err != nil {
@@ -697,9 +711,11 @@ func (r *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies) Unmar
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "withdrawalPeriod":
 				var v MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -727,9 +743,9 @@ type MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalP
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Coded expression for the type of tissue for which the withdrawal period applues, e.g. meat, milk
-	Tissue CodeableConcept `json:"tissue,omitempty"`
+	Tissue *CodeableConcept `json:"tissue,omitempty"`
 	// A value for the time
-	Value Quantity `json:"value,omitempty"`
+	Value *Quantity `json:"value,omitempty"`
 	// Extra information about the withdrawal period
 	SupportingInformation *string `json:"supportingInformation,omitempty"`
 }
@@ -756,11 +772,15 @@ func (b MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdraw
 			return err
 		}
 	}
-	if err := b.Tissue.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "tissue"}}); err != nil {
-		return err
+	if b.Tissue != nil {
+		if err := b.Tissue.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "tissue"}}); err != nil {
+			return err
+		}
 	}
-	if err := b.Value.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "value"}}); err != nil {
-		return err
+	if b.Value != nil {
+		if err := b.Value.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "value"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "supportingInformation", b.SupportingInformation, nil); err != nil {
 		return err
@@ -799,13 +819,17 @@ func (r *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdra
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "tissue":
-				if err := r.Tissue.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Tissue = &v
 			case "value":
-				if err := r.Value.UnmarshalXML(d, t); err != nil {
+				var v Quantity
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Value = &v
 			case "supportingInformation":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -902,7 +926,7 @@ func (b *MedicinalProductPharmaceuticalBuilder) AddIdentifier(v Identifier) *Med
 
 // SetAdministrableDoseForm sets the AdministrableDoseForm field.
 func (b *MedicinalProductPharmaceuticalBuilder) SetAdministrableDoseForm(v CodeableConcept) *MedicinalProductPharmaceuticalBuilder {
-	b.medicinalProductPharmaceutical.AdministrableDoseForm = v
+	b.medicinalProductPharmaceutical.AdministrableDoseForm = &v
 	return b
 }
 
@@ -1018,7 +1042,7 @@ func WithMedicinalProductPharmaceuticalIdentifier(v Identifier) MedicinalProduct
 // WithMedicinalProductPharmaceuticalAdministrableDoseForm sets the AdministrableDoseForm field.
 func WithMedicinalProductPharmaceuticalAdministrableDoseForm(v CodeableConcept) MedicinalProductPharmaceuticalOption {
 	return func(r *MedicinalProductPharmaceutical) {
-		r.AdministrableDoseForm = v
+		r.AdministrableDoseForm = &v
 	}
 }
 

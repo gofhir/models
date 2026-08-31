@@ -89,7 +89,7 @@ type MeasureReport struct {
 	// Where the reported data is from
 	Location *Reference `json:"location,omitempty"`
 	// What period the report covers
-	Period Period `json:"period"`
+	Period *Period `json:"period,omitempty"`
 	// What parameters were provided to the report
 	InputParameters *Reference `json:"inputParameters,omitempty"`
 	// What scoring method (e.g. proportion, ratio, continuous-variable)
@@ -275,8 +275,10 @@ func (r MeasureReport) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := r.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
-		return err
+	if r.Period != nil {
+		if err := r.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
+			return err
+		}
 	}
 	if r.InputParameters != nil {
 		if err := r.InputParameters.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "inputParameters"}}); err != nil {
@@ -440,9 +442,11 @@ func (r *MeasureReport) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				r.Location = &v
 			case "period":
-				if err := r.Period.UnmarshalXML(d, t); err != nil {
+				var v Period
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Period = &v
 			case "inputParameters":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1231,7 +1235,7 @@ type MeasureReportGroupStratifierStratumComponent struct {
 	// Pointer to specific stratifier component from Measure
 	LinkId *string `json:"linkId,omitempty"`
 	// What stratifier component of the group
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// The stratum component value, e.g. male
 	ValueCodeableConcept *CodeableConcept `json:"valueCodeableConcept,omitempty"`
 	// The stratum component value, e.g. male
@@ -1271,8 +1275,10 @@ func (b MeasureReportGroupStratifierStratumComponent) MarshalXML(e *xml.Encoder,
 	if err := xmlEncodePrimitiveString(e, "linkId", b.LinkId, nil); err != nil {
 		return err
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if b.ValueCodeableConcept != nil {
 		if err := b.ValueCodeableConcept.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "valueCodeableConcept"}}); err != nil {
@@ -1337,9 +1343,11 @@ func (r *MeasureReportGroupStratifierStratumComponent) UnmarshalXML(d *xml.Decod
 				}
 				r.LinkId = v
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "valueCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1665,7 +1673,7 @@ func (b *MeasureReportBuilder) SetLocation(v Reference) *MeasureReportBuilder {
 
 // SetPeriod sets the Period field.
 func (b *MeasureReportBuilder) SetPeriod(v Period) *MeasureReportBuilder {
-	b.measureReport.Period = v
+	b.measureReport.Period = &v
 	return b
 }
 
@@ -1850,7 +1858,7 @@ func WithMeasureReportLocation(v Reference) MeasureReportOption {
 // WithMeasureReportPeriod sets the Period field.
 func WithMeasureReportPeriod(v Period) MeasureReportOption {
 	return func(r *MeasureReport) {
-		r.Period = v
+		r.Period = &v
 	}
 }
 

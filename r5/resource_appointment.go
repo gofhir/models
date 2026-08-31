@@ -843,7 +843,7 @@ type AppointmentRecurrenceTemplate struct {
 	// The timezone of the occurrences
 	Timezone *CodeableConcept `json:"timezone,omitempty"`
 	// The frequency of the recurrence
-	RecurrenceType CodeableConcept `json:"recurrenceType,omitempty"`
+	RecurrenceType *CodeableConcept `json:"recurrenceType,omitempty"`
 	// The date when the recurrence should end
 	LastOccurrenceDate *string `json:"lastOccurrenceDate,omitempty"`
 	// The number of planned occurrences
@@ -889,8 +889,10 @@ func (b AppointmentRecurrenceTemplate) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := b.RecurrenceType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "recurrenceType"}}); err != nil {
-		return err
+	if b.RecurrenceType != nil {
+		if err := b.RecurrenceType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "recurrenceType"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "lastOccurrenceDate", b.LastOccurrenceDate, nil); err != nil {
 		return err
@@ -962,9 +964,11 @@ func (r *AppointmentRecurrenceTemplate) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.Timezone = &v
 			case "recurrenceType":
-				if err := r.RecurrenceType.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.RecurrenceType = &v
 			case "lastOccurrenceDate":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

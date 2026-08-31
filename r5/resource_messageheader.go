@@ -563,7 +563,7 @@ type MessageHeaderResponse struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Bundle.identifier of original message
-	Identifier Identifier `json:"identifier,omitempty"`
+	Identifier *Identifier `json:"identifier,omitempty"`
 	// ok | transient-error | fatal-error
 	Code *ResponseType `json:"code,omitempty"`
 	// Specific list of hints/warnings/errors
@@ -592,8 +592,10 @@ func (b MessageHeaderResponse) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := b.Identifier.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "identifier"}}); err != nil {
-		return err
+	if b.Identifier != nil {
+		if err := b.Identifier.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "identifier"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveCode(e, "code", b.Code, nil); err != nil {
 		return err
@@ -637,9 +639,11 @@ func (r *MessageHeaderResponse) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "identifier":
-				if err := r.Identifier.UnmarshalXML(d, t); err != nil {
+				var v Identifier
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Identifier = &v
 			case "code":
 				v, _, err := xmlDecodePrimitiveCode[ResponseType](d, t)
 				if err != nil {

@@ -69,9 +69,9 @@ type MedicationStatement struct {
 	// Type of medication statement
 	Category []CodeableConcept `json:"category,omitempty"`
 	// What medication was taken
-	Medication CodeableReference `json:"medication"`
+	Medication *CodeableReference `json:"medication,omitempty"`
 	// Who is/was taking  the medication
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// Encounter associated with MedicationStatement
 	Encounter *Reference `json:"encounter,omitempty"`
 	// The date/time or interval when the medication is/was/will be taken
@@ -255,11 +255,15 @@ func (r MedicationStatement) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := r.Medication.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "medication"}}); err != nil {
-		return err
+	if r.Medication != nil {
+		if err := r.Medication.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "medication"}}); err != nil {
+			return err
+		}
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if r.Encounter != nil {
 		if err := r.Encounter.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "encounter"}}); err != nil {
@@ -412,13 +416,17 @@ func (r *MedicationStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.Category = append(r.Category, v)
 			case "medication":
-				if err := r.Medication.UnmarshalXML(d, t); err != nil {
+				var v CodeableReference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Medication = &v
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -521,7 +529,7 @@ type MedicationStatementAdherence struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type of adherence
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Details of the reason for the current use of the medication
 	Reason *CodeableConcept `json:"reason,omitempty"`
 }
@@ -548,8 +556,10 @@ func (b MedicationStatementAdherence) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if b.Reason != nil {
 		if err := b.Reason.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reason"}}); err != nil {
@@ -590,9 +600,11 @@ func (r *MedicationStatementAdherence) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "reason":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -707,13 +719,13 @@ func (b *MedicationStatementBuilder) AddCategory(v CodeableConcept) *MedicationS
 
 // SetMedication sets the Medication field.
 func (b *MedicationStatementBuilder) SetMedication(v CodeableReference) *MedicationStatementBuilder {
-	b.medicationStatement.Medication = v
+	b.medicationStatement.Medication = &v
 	return b
 }
 
 // SetSubject sets the Subject field.
 func (b *MedicationStatementBuilder) SetSubject(v Reference) *MedicationStatementBuilder {
-	b.medicationStatement.Subject = v
+	b.medicationStatement.Subject = &v
 	return b
 }
 
@@ -904,14 +916,14 @@ func WithMedicationStatementCategory(v CodeableConcept) MedicationStatementOptio
 // WithMedicationStatementMedication sets the Medication field.
 func WithMedicationStatementMedication(v CodeableReference) MedicationStatementOption {
 	return func(r *MedicationStatement) {
-		r.Medication = v
+		r.Medication = &v
 	}
 }
 
 // WithMedicationStatementSubject sets the Subject field.
 func WithMedicationStatementSubject(v Reference) MedicationStatementOption {
 	return func(r *MedicationStatement) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

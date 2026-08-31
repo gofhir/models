@@ -490,7 +490,7 @@ type DocumentReferenceContent struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Where to access the document
-	Attachment Attachment `json:"attachment,omitempty"`
+	Attachment *Attachment `json:"attachment,omitempty"`
 	// Format/content rules for the document
 	Format *Coding `json:"format,omitempty"`
 }
@@ -517,8 +517,10 @@ func (b DocumentReferenceContent) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := b.Attachment.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "attachment"}}); err != nil {
-		return err
+	if b.Attachment != nil {
+		if err := b.Attachment.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "attachment"}}); err != nil {
+			return err
+		}
 	}
 	if b.Format != nil {
 		if err := b.Format.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "format"}}); err != nil {
@@ -559,9 +561,11 @@ func (r *DocumentReferenceContent) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "attachment":
-				if err := r.Attachment.UnmarshalXML(d, t); err != nil {
+				var v Attachment
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Attachment = &v
 			case "format":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -759,7 +763,7 @@ type DocumentReferenceRelatesTo struct {
 	// replaces | transforms | signs | appends
 	Code *DocumentRelationshipType `json:"code,omitempty"`
 	// Target of the relationship
-	Target Reference `json:"target,omitempty"`
+	Target *Reference `json:"target,omitempty"`
 }
 
 // MarshalXML serializes DocumentReferenceRelatesTo to FHIR-conformant XML.
@@ -787,8 +791,10 @@ func (b DocumentReferenceRelatesTo) MarshalXML(e *xml.Encoder, start xml.StartEl
 	if err := xmlEncodePrimitiveCode(e, "code", b.Code, nil); err != nil {
 		return err
 	}
-	if err := b.Target.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "target"}}); err != nil {
-		return err
+	if b.Target != nil {
+		if err := b.Target.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "target"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -830,9 +836,11 @@ func (r *DocumentReferenceRelatesTo) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.Code = v
 			case "target":
-				if err := r.Target.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Target = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err

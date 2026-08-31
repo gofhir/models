@@ -67,7 +67,7 @@ type GenomicStudy struct {
 	// The type of the study (e.g., Familial variant segregation, Functional variation detection, or Gene expression profiling)
 	Type []CodeableConcept `json:"type,omitempty"`
 	// The primary subject of the genomic study
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// The healthcare event with which this genomics study is associated
 	Encounter *Reference `json:"encounter,omitempty"`
 	// When the genomic study was started
@@ -244,8 +244,10 @@ func (r GenomicStudy) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if r.Encounter != nil {
 		if err := r.Encounter.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "encounter"}}); err != nil {
@@ -380,9 +382,11 @@ func (r *GenomicStudy) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.Type = append(r.Type, v)
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1296,7 +1300,7 @@ func (b *GenomicStudyBuilder) AddType(v CodeableConcept) *GenomicStudyBuilder {
 
 // SetSubject sets the Subject field.
 func (b *GenomicStudyBuilder) SetSubject(v Reference) *GenomicStudyBuilder {
-	b.genomicStudy.Subject = v
+	b.genomicStudy.Subject = &v
 	return b
 }
 
@@ -1462,7 +1466,7 @@ func WithGenomicStudyType(v CodeableConcept) GenomicStudyOption {
 // WithGenomicStudySubject sets the Subject field.
 func WithGenomicStudySubject(v Reference) GenomicStudyOption {
 	return func(r *GenomicStudy) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

@@ -190,14 +190,32 @@ Reading still accepts the old bare-number form, so documents written by earlier 
 
 ### Required complex fields become pointers
 
-**Status: forecast.** Around 99 fields per version are non-pointer structs, so they serialize even when empty:
+**Status: done.** 245 fields in r4, 250 in r4b and 315 in r5 were value structs, so they serialized even when nothing had been set:
 
 ```go
 r4.Observation{Id: r4.Ptr("o1")}
-// {"resourceType":"Observation","id":"o1","code":{}}   ← code:{} is invalid FHIR
+// v1: {"resourceType":"Observation","id":"o1","code":{}}   ← invalid per ele-1
+// v2: {"resourceType":"Observation","id":"o1"}
 ```
 
-Making them pointers fixes the output and changes those field types.
+The reasoning for value fields was that the type should express the obligation. It could not — Go has no way to force a field to be set, so the only thing the value type achieved was emitting an empty object instead of nothing. Requiredness is a FHIR validator's job; what the type has to be able to say is "absent".
+
+`Extension.url` went the same way, so an unset extension is now `{}` rather than `{"url":""}`.
+
+**Migrating: add `&` to the struct literal.**
+
+```go
+Code: r4.CodeableConcept{Coding: ...}    // v1
+Code: &r4.CodeableConcept{Coding: ...}   // v2
+```
+
+Reading is unaffected — Go dereferences automatically, so `obs.Code.Coding` still compiles. What changes is that it can now be nil, so guard it where the value might not have been set.
+
+**Builder call sites do not change at all.** `SetCode` still takes a `CodeableConcept` by value and takes its address internally:
+
+```go
+r4.NewObservationBuilder().SetCode(r4.CodeableConcept{...}).Build()   // unchanged
+```
 
 ### `Contained` becomes a named slice type
 

@@ -81,7 +81,7 @@ type NutritionOrder struct {
 	// Extension for Intent
 	IntentExt *Element `json:"_intent,omitempty"`
 	// The person who requires the diet, formula or nutritional supplement
-	Patient Reference `json:"patient"`
+	Patient *Reference `json:"patient,omitempty"`
 	// The encounter associated with this nutrition order
 	Encounter *Reference `json:"encounter,omitempty"`
 	// Date and time the nutrition order was requested
@@ -257,8 +257,10 @@ func (r NutritionOrder) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 	if err := xmlEncodePrimitiveCode(e, "intent", r.Intent, r.IntentExt); err != nil {
 		return err
 	}
-	if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
-		return err
+	if r.Patient != nil {
+		if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
+			return err
+		}
 	}
 	if r.Encounter != nil {
 		if err := r.Encounter.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "encounter"}}); err != nil {
@@ -416,9 +418,11 @@ func (r *NutritionOrder) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				r.Intent = v
 				r.IntentExt = ext
 			case "patient":
-				if err := r.Patient.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Patient = &v
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1426,7 +1430,7 @@ func (b *NutritionOrderBuilder) SetIntent(v RequestIntent) *NutritionOrderBuilde
 
 // SetPatient sets the Patient field.
 func (b *NutritionOrderBuilder) SetPatient(v Reference) *NutritionOrderBuilder {
-	b.nutritionOrder.Patient = v
+	b.nutritionOrder.Patient = &v
 	return b
 }
 
@@ -1607,7 +1611,7 @@ func WithNutritionOrderIntent(v RequestIntent) NutritionOrderOption {
 // WithNutritionOrderPatient sets the Patient field.
 func WithNutritionOrderPatient(v Reference) NutritionOrderOption {
 	return func(r *NutritionOrder) {
-		r.Patient = v
+		r.Patient = &v
 	}
 }
 

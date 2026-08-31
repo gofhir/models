@@ -142,7 +142,7 @@ unitSystem := "http://unitsofmeasure.org"
 
 obs := r4.Observation{
     Status: ptrTo(r4.ObservationStatusFinal),
-    Code: r4.CodeableConcept{
+    Code: &r4.CodeableConcept{
         Coding: []r4.Coding{
             {
                 System:  &codeSystem,

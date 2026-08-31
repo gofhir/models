@@ -67,9 +67,9 @@ type Immunization struct {
 	// Reason not done
 	StatusReason *CodeableConcept `json:"statusReason,omitempty"`
 	// Vaccine product administered
-	VaccineCode CodeableConcept `json:"vaccineCode"`
+	VaccineCode *CodeableConcept `json:"vaccineCode,omitempty"`
 	// Who was immunized
-	Patient Reference `json:"patient"`
+	Patient *Reference `json:"patient,omitempty"`
 	// Encounter immunization was part of
 	Encounter *Reference `json:"encounter,omitempty"`
 	// Vaccine administration date
@@ -278,11 +278,15 @@ func (r Immunization) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.VaccineCode.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "vaccineCode"}}); err != nil {
-		return err
+	if r.VaccineCode != nil {
+		if err := r.VaccineCode.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "vaccineCode"}}); err != nil {
+			return err
+		}
 	}
-	if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
-		return err
+	if r.Patient != nil {
+		if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
+			return err
+		}
 	}
 	if r.Encounter != nil {
 		if err := r.Encounter.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "encounter"}}); err != nil {
@@ -476,13 +480,17 @@ func (r *Immunization) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.StatusReason = &v
 			case "vaccineCode":
-				if err := r.VaccineCode.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.VaccineCode = &v
 			case "patient":
-				if err := r.Patient.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Patient = &v
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -778,7 +786,7 @@ type ImmunizationPerformer struct {
 	// What type of performance was done
 	Function *CodeableConcept `json:"function,omitempty"`
 	// Individual or organization who was performing
-	Actor Reference `json:"actor,omitempty"`
+	Actor *Reference `json:"actor,omitempty"`
 }
 
 // MarshalXML serializes ImmunizationPerformer to FHIR-conformant XML.
@@ -808,8 +816,10 @@ func (b ImmunizationPerformer) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
-		return err
+	if b.Actor != nil {
+		if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -851,9 +861,11 @@ func (r *ImmunizationPerformer) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.Function = &v
 			case "actor":
-				if err := r.Actor.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Actor = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1234,13 +1246,13 @@ func (b *ImmunizationBuilder) SetStatusReason(v CodeableConcept) *ImmunizationBu
 
 // SetVaccineCode sets the VaccineCode field.
 func (b *ImmunizationBuilder) SetVaccineCode(v CodeableConcept) *ImmunizationBuilder {
-	b.immunization.VaccineCode = v
+	b.immunization.VaccineCode = &v
 	return b
 }
 
 // SetPatient sets the Patient field.
 func (b *ImmunizationBuilder) SetPatient(v Reference) *ImmunizationBuilder {
-	b.immunization.Patient = v
+	b.immunization.Patient = &v
 	return b
 }
 
@@ -1496,14 +1508,14 @@ func WithImmunizationStatusReason(v CodeableConcept) ImmunizationOption {
 // WithImmunizationVaccineCode sets the VaccineCode field.
 func WithImmunizationVaccineCode(v CodeableConcept) ImmunizationOption {
 	return func(r *Immunization) {
-		r.VaccineCode = v
+		r.VaccineCode = &v
 	}
 }
 
 // WithImmunizationPatient sets the Patient field.
 func WithImmunizationPatient(v Reference) ImmunizationOption {
 	return func(r *Immunization) {
-		r.Patient = v
+		r.Patient = &v
 	}
 }
 

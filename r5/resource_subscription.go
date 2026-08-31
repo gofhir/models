@@ -87,7 +87,7 @@ type Subscription struct {
 	// Criteria for narrowing the subscription topic stream
 	FilterBy []SubscriptionFilterBy `json:"filterBy,omitempty"`
 	// Channel type for notifications
-	ChannelType Coding `json:"channelType"`
+	ChannelType *Coding `json:"channelType,omitempty"`
 	// Where the channel points to
 	Endpoint *string `json:"endpoint,omitempty"`
 	// Extension for Endpoint
@@ -282,8 +282,10 @@ func (r Subscription) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.ChannelType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "channelType"}}); err != nil {
-		return err
+	if r.ChannelType != nil {
+		if err := r.ChannelType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "channelType"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "endpoint", r.Endpoint, r.EndpointExt); err != nil {
 		return err
@@ -434,9 +436,11 @@ func (r *Subscription) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.FilterBy = append(r.FilterBy, v)
 			case "channelType":
-				if err := r.ChannelType.UnmarshalXML(d, t); err != nil {
+				var v Coding
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.ChannelType = &v
 			case "endpoint":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -854,7 +858,7 @@ func (b *SubscriptionBuilder) AddFilterBy(v SubscriptionFilterBy) *SubscriptionB
 
 // SetChannelType sets the ChannelType field.
 func (b *SubscriptionBuilder) SetChannelType(v Coding) *SubscriptionBuilder {
-	b.subscription.ChannelType = v
+	b.subscription.ChannelType = &v
 	return b
 }
 
@@ -1038,7 +1042,7 @@ func WithSubscriptionFilterBy(v SubscriptionFilterBy) SubscriptionOption {
 // WithSubscriptionChannelType sets the ChannelType field.
 func WithSubscriptionChannelType(v Coding) SubscriptionOption {
 	return func(r *Subscription) {
-		r.ChannelType = v
+		r.ChannelType = &v
 	}
 }
 

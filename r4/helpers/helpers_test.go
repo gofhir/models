@@ -978,7 +978,7 @@ func TestCreateVitalSignsObservation(t *testing.T) {
 	obs := r4.Observation{
 		Status:        &status,
 		Category:      []r4.CodeableConcept{ObservationCategoryVitalSigns},
-		Code:          BodyWeight,
+		Code:          &BodyWeight,
 		ValueQuantity: &weight,
 	}
 
@@ -1013,14 +1013,14 @@ func TestCreateBloodPressureObservation(t *testing.T) {
 	obs := r4.Observation{
 		Status:   &status,
 		Category: []r4.CodeableConcept{ObservationCategoryVitalSigns},
-		Code:     BloodPressurePanel,
+		Code:     &BloodPressurePanel,
 		Component: []r4.ObservationComponent{
 			{
-				Code:          SystolicBloodPressure,
+				Code:          &SystolicBloodPressure,
 				ValueQuantity: &systolic,
 			},
 			{
-				Code:          DiastolicBloodPressure,
+				Code:          &DiastolicBloodPressure,
 				ValueQuantity: &diastolic,
 			},
 		},
@@ -1062,7 +1062,7 @@ func TestCreateLabObservation(t *testing.T) {
 	obs := r4.Observation{
 		Status:        &status,
 		Category:      []r4.CodeableConcept{ObservationCategoryLaboratory},
-		Code:          GlucoseFasting,
+		Code:          &GlucoseFasting,
 		ValueQuantity: &glucose,
 	}
 

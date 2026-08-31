@@ -131,13 +131,13 @@ type EffectEvidenceSynthesis struct {
 	// Type of study
 	StudyType *CodeableConcept `json:"studyType,omitempty"`
 	// What population?
-	Population Reference `json:"population"`
+	Population *Reference `json:"population,omitempty"`
 	// What exposure?
-	Exposure Reference `json:"exposure"`
+	Exposure *Reference `json:"exposure,omitempty"`
 	// What comparison exposure?
-	ExposureAlternative Reference `json:"exposureAlternative"`
+	ExposureAlternative *Reference `json:"exposureAlternative,omitempty"`
 	// What outcome?
-	Outcome Reference `json:"outcome"`
+	Outcome *Reference `json:"outcome,omitempty"`
 	// What sample size was involved?
 	SampleSize *EffectEvidenceSynthesisSampleSize `json:"sampleSize,omitempty"`
 	// What was the result per exposure?
@@ -382,17 +382,25 @@ func (r EffectEvidenceSynthesis) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := r.Population.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "population"}}); err != nil {
-		return err
+	if r.Population != nil {
+		if err := r.Population.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "population"}}); err != nil {
+			return err
+		}
 	}
-	if err := r.Exposure.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "exposure"}}); err != nil {
-		return err
+	if r.Exposure != nil {
+		if err := r.Exposure.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "exposure"}}); err != nil {
+			return err
+		}
 	}
-	if err := r.ExposureAlternative.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "exposureAlternative"}}); err != nil {
-		return err
+	if r.ExposureAlternative != nil {
+		if err := r.ExposureAlternative.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "exposureAlternative"}}); err != nil {
+			return err
+		}
 	}
-	if err := r.Outcome.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "outcome"}}); err != nil {
-		return err
+	if r.Outcome != nil {
+		if err := r.Outcome.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "outcome"}}); err != nil {
+			return err
+		}
 	}
 	if r.SampleSize != nil {
 		if err := r.SampleSize.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "sampleSize"}}); err != nil {
@@ -642,21 +650,29 @@ func (r *EffectEvidenceSynthesis) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.StudyType = &v
 			case "population":
-				if err := r.Population.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Population = &v
 			case "exposure":
-				if err := r.Exposure.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Exposure = &v
 			case "exposureAlternative":
-				if err := r.ExposureAlternative.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.ExposureAlternative = &v
 			case "outcome":
-				if err := r.Outcome.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Outcome = &v
 			case "sampleSize":
 				var v EffectEvidenceSynthesisSampleSize
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1214,7 +1230,7 @@ type EffectEvidenceSynthesisResultsByExposure struct {
 	// Variant exposure states
 	VariantState *CodeableConcept `json:"variantState,omitempty"`
 	// Risk evidence synthesis
-	RiskEvidenceSynthesis Reference `json:"riskEvidenceSynthesis,omitempty"`
+	RiskEvidenceSynthesis *Reference `json:"riskEvidenceSynthesis,omitempty"`
 }
 
 // MarshalXML serializes EffectEvidenceSynthesisResultsByExposure to FHIR-conformant XML.
@@ -1250,8 +1266,10 @@ func (b EffectEvidenceSynthesisResultsByExposure) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := b.RiskEvidenceSynthesis.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "riskEvidenceSynthesis"}}); err != nil {
-		return err
+	if b.RiskEvidenceSynthesis != nil {
+		if err := b.RiskEvidenceSynthesis.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "riskEvidenceSynthesis"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -1305,9 +1323,11 @@ func (r *EffectEvidenceSynthesisResultsByExposure) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.VariantState = &v
 			case "riskEvidenceSynthesis":
-				if err := r.RiskEvidenceSynthesis.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.RiskEvidenceSynthesis = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1652,25 +1672,25 @@ func (b *EffectEvidenceSynthesisBuilder) SetStudyType(v CodeableConcept) *Effect
 
 // SetPopulation sets the Population field.
 func (b *EffectEvidenceSynthesisBuilder) SetPopulation(v Reference) *EffectEvidenceSynthesisBuilder {
-	b.effectEvidenceSynthesis.Population = v
+	b.effectEvidenceSynthesis.Population = &v
 	return b
 }
 
 // SetExposure sets the Exposure field.
 func (b *EffectEvidenceSynthesisBuilder) SetExposure(v Reference) *EffectEvidenceSynthesisBuilder {
-	b.effectEvidenceSynthesis.Exposure = v
+	b.effectEvidenceSynthesis.Exposure = &v
 	return b
 }
 
 // SetExposureAlternative sets the ExposureAlternative field.
 func (b *EffectEvidenceSynthesisBuilder) SetExposureAlternative(v Reference) *EffectEvidenceSynthesisBuilder {
-	b.effectEvidenceSynthesis.ExposureAlternative = v
+	b.effectEvidenceSynthesis.ExposureAlternative = &v
 	return b
 }
 
 // SetOutcome sets the Outcome field.
 func (b *EffectEvidenceSynthesisBuilder) SetOutcome(v Reference) *EffectEvidenceSynthesisBuilder {
-	b.effectEvidenceSynthesis.Outcome = v
+	b.effectEvidenceSynthesis.Outcome = &v
 	return b
 }
 
@@ -1948,28 +1968,28 @@ func WithEffectEvidenceSynthesisStudyType(v CodeableConcept) EffectEvidenceSynth
 // WithEffectEvidenceSynthesisPopulation sets the Population field.
 func WithEffectEvidenceSynthesisPopulation(v Reference) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
-		r.Population = v
+		r.Population = &v
 	}
 }
 
 // WithEffectEvidenceSynthesisExposure sets the Exposure field.
 func WithEffectEvidenceSynthesisExposure(v Reference) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
-		r.Exposure = v
+		r.Exposure = &v
 	}
 }
 
 // WithEffectEvidenceSynthesisExposureAlternative sets the ExposureAlternative field.
 func WithEffectEvidenceSynthesisExposureAlternative(v Reference) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
-		r.ExposureAlternative = v
+		r.ExposureAlternative = &v
 	}
 }
 
 // WithEffectEvidenceSynthesisOutcome sets the Outcome field.
 func WithEffectEvidenceSynthesisOutcome(v Reference) EffectEvidenceSynthesisOption {
 	return func(r *EffectEvidenceSynthesis) {
-		r.Outcome = v
+		r.Outcome = &v
 	}
 }
 

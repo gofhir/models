@@ -61,7 +61,7 @@ type DeviceMetric struct {
 	// Instance identifier
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// Identity of metric, for example Heart Rate or PEEP Setting
-	Type CodeableConcept `json:"type"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Unit of Measure for the Metric
 	Unit *CodeableConcept `json:"unit,omitempty"`
 	// Describes the link to the source Device
@@ -222,8 +222,10 @@ func (r DeviceMetric) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if r.Type != nil {
+		if err := r.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if r.Unit != nil {
 		if err := r.Unit.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "unit"}}); err != nil {
@@ -332,9 +334,11 @@ func (r *DeviceMetric) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "unit":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -586,7 +590,7 @@ func (b *DeviceMetricBuilder) AddIdentifier(v Identifier) *DeviceMetricBuilder {
 
 // SetType sets the Type field.
 func (b *DeviceMetricBuilder) SetType(v CodeableConcept) *DeviceMetricBuilder {
-	b.deviceMetric.Type = v
+	b.deviceMetric.Type = &v
 	return b
 }
 
@@ -720,7 +724,7 @@ func WithDeviceMetricIdentifier(v Identifier) DeviceMetricOption {
 // WithDeviceMetricType sets the Type field.
 func WithDeviceMetricType(v CodeableConcept) DeviceMetricOption {
 	return func(r *DeviceMetric) {
-		r.Type = v
+		r.Type = &v
 	}
 }
 

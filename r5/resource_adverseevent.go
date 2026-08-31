@@ -73,7 +73,7 @@ type AdverseEvent struct {
 	// Event or incident that occurred or was averted
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Subject impacted by event
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// The Encounter associated with the start of the AdverseEvent
 	Encounter *Reference `json:"encounter,omitempty"`
 	// When the event occurred
@@ -276,8 +276,10 @@ func (r AdverseEvent) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if r.Encounter != nil {
 		if err := r.Encounter.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "encounter"}}); err != nil {
@@ -470,9 +472,11 @@ func (r *AdverseEvent) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.Code = &v
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -826,7 +830,7 @@ type AdverseEventParticipant struct {
 	// Type of involvement
 	Function *CodeableConcept `json:"function,omitempty"`
 	// Who was involved in the adverse event or the potential adverse event
-	Actor Reference `json:"actor,omitempty"`
+	Actor *Reference `json:"actor,omitempty"`
 }
 
 // MarshalXML serializes AdverseEventParticipant to FHIR-conformant XML.
@@ -856,8 +860,10 @@ func (b AdverseEventParticipant) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
-		return err
+	if b.Actor != nil {
+		if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -899,9 +905,11 @@ func (r *AdverseEventParticipant) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.Function = &v
 			case "actor":
-				if err := r.Actor.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Actor = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1454,7 +1462,7 @@ func (b *AdverseEventBuilder) SetCode(v CodeableConcept) *AdverseEventBuilder {
 
 // SetSubject sets the Subject field.
 func (b *AdverseEventBuilder) SetSubject(v Reference) *AdverseEventBuilder {
-	b.adverseEvent.Subject = v
+	b.adverseEvent.Subject = &v
 	return b
 }
 
@@ -1694,7 +1702,7 @@ func WithAdverseEventCode(v CodeableConcept) AdverseEventOption {
 // WithAdverseEventSubject sets the Subject field.
 func WithAdverseEventSubject(v Reference) AdverseEventOption {
 	return func(r *AdverseEvent) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

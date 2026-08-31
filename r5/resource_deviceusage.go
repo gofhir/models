@@ -69,7 +69,7 @@ type DeviceUsage struct {
 	// The category of the statement - classifying how the statement is made
 	Category []CodeableConcept `json:"category,omitempty"`
 	// Patient using device
-	Patient Reference `json:"patient"`
+	Patient *Reference `json:"patient,omitempty"`
 	// Supporting information
 	DerivedFrom []Reference `json:"derivedFrom,omitempty"`
 	// The encounter or episode of care that establishes the context for this device use statement
@@ -95,7 +95,7 @@ type DeviceUsage struct {
 	// Who made the statement
 	InformationSource *Reference `json:"informationSource,omitempty"`
 	// Code or Reference to device used
-	Device CodeableReference `json:"device"`
+	Device *CodeableReference `json:"device,omitempty"`
 	// Why device was used
 	Reason []CodeableReference `json:"reason,omitempty"`
 	// Target body site
@@ -253,8 +253,10 @@ func (r DeviceUsage) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
-		return err
+	if r.Patient != nil {
+		if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.DerivedFrom {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "derivedFrom"}}); err != nil {
@@ -302,8 +304,10 @@ func (r DeviceUsage) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.Device.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "device"}}); err != nil {
-		return err
+	if r.Device != nil {
+		if err := r.Device.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "device"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.Reason {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reason"}}); err != nil {
@@ -412,9 +416,11 @@ func (r *DeviceUsage) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 				}
 				r.Category = append(r.Category, v)
 			case "patient":
-				if err := r.Patient.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Patient = &v
 			case "derivedFrom":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -478,9 +484,11 @@ func (r *DeviceUsage) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 				}
 				r.InformationSource = &v
 			case "device":
-				if err := r.Device.UnmarshalXML(d, t); err != nil {
+				var v CodeableReference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Device = &v
 			case "reason":
 				var v CodeableReference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -520,7 +528,7 @@ type DeviceUsageAdherence struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// always | never | sometimes
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// lost | stolen | prescribed | broken | burned | forgot
 	Reason []CodeableConcept `json:"reason,omitempty"`
 }
@@ -547,8 +555,10 @@ func (b DeviceUsageAdherence) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Reason {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reason"}}); err != nil {
@@ -589,9 +599,11 @@ func (r *DeviceUsageAdherence) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "reason":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -706,7 +718,7 @@ func (b *DeviceUsageBuilder) AddCategory(v CodeableConcept) *DeviceUsageBuilder 
 
 // SetPatient sets the Patient field.
 func (b *DeviceUsageBuilder) SetPatient(v Reference) *DeviceUsageBuilder {
-	b.deviceUsage.Patient = v
+	b.deviceUsage.Patient = &v
 	return b
 }
 
@@ -778,7 +790,7 @@ func (b *DeviceUsageBuilder) SetInformationSource(v Reference) *DeviceUsageBuild
 
 // SetDevice sets the Device field.
 func (b *DeviceUsageBuilder) SetDevice(v CodeableReference) *DeviceUsageBuilder {
-	b.deviceUsage.Device = v
+	b.deviceUsage.Device = &v
 	return b
 }
 
@@ -903,7 +915,7 @@ func WithDeviceUsageCategory(v CodeableConcept) DeviceUsageOption {
 // WithDeviceUsagePatient sets the Patient field.
 func WithDeviceUsagePatient(v Reference) DeviceUsageOption {
 	return func(r *DeviceUsage) {
-		r.Patient = v
+		r.Patient = &v
 	}
 }
 
@@ -987,7 +999,7 @@ func WithDeviceUsageInformationSource(v Reference) DeviceUsageOption {
 // WithDeviceUsageDevice sets the Device field.
 func WithDeviceUsageDevice(v CodeableReference) DeviceUsageOption {
 	return func(r *DeviceUsage) {
-		r.Device = v
+		r.Device = &v
 	}
 }
 

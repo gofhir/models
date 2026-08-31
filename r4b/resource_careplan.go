@@ -93,7 +93,7 @@ type CarePlan struct {
 	// Extension for Description
 	DescriptionExt *Element `json:"_description,omitempty"`
 	// Who the care plan is for
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// Encounter created as part of
 	Encounter *Reference `json:"encounter,omitempty"`
 	// Time period plan covers
@@ -294,8 +294,10 @@ func (r CarePlan) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveString(e, "description", r.Description, r.DescriptionExt); err != nil {
 		return err
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if r.Encounter != nil {
 		if err := r.Encounter.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "encounter"}}); err != nil {
@@ -489,9 +491,11 @@ func (r *CarePlan) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				r.Description = v
 				r.DescriptionExt = ext
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1186,7 +1190,7 @@ func (b *CarePlanBuilder) SetDescription(v string) *CarePlanBuilder {
 
 // SetSubject sets the Subject field.
 func (b *CarePlanBuilder) SetSubject(v Reference) *CarePlanBuilder {
-	b.carePlan.Subject = v
+	b.carePlan.Subject = &v
 	return b
 }
 
@@ -1408,7 +1412,7 @@ func WithCarePlanDescription(v string) CarePlanOption {
 // WithCarePlanSubject sets the Subject field.
 func WithCarePlanSubject(v Reference) CarePlanOption {
 	return func(r *CarePlan) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

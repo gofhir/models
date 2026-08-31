@@ -603,7 +603,7 @@ type TestScriptDestination struct {
 	// The index of the abstract destination server starting at 1
 	Index *int `json:"index,omitempty"`
 	// FHIR-Server | FHIR-SDC-FormManager | FHIR-SDC-FormReceiver | FHIR-SDC-FormProcessor
-	Profile Coding `json:"profile,omitempty"`
+	Profile *Coding `json:"profile,omitempty"`
 }
 
 // MarshalXML serializes TestScriptDestination to FHIR-conformant XML.
@@ -631,8 +631,10 @@ func (b TestScriptDestination) MarshalXML(e *xml.Encoder, start xml.StartElement
 	if err := xmlEncodePrimitiveInt(e, "index", b.Index, nil); err != nil {
 		return err
 	}
-	if err := b.Profile.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "profile"}}); err != nil {
-		return err
+	if b.Profile != nil {
+		if err := b.Profile.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "profile"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -674,9 +676,11 @@ func (r *TestScriptDestination) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.Index = v
 			case "profile":
-				if err := r.Profile.UnmarshalXML(d, t); err != nil {
+				var v Coding
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Profile = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1170,7 +1174,7 @@ type TestScriptOrigin struct {
 	// The index of the abstract origin server starting at 1
 	Index *int `json:"index,omitempty"`
 	// FHIR-Client | FHIR-SDC-FormFiller
-	Profile Coding `json:"profile,omitempty"`
+	Profile *Coding `json:"profile,omitempty"`
 }
 
 // MarshalXML serializes TestScriptOrigin to FHIR-conformant XML.
@@ -1198,8 +1202,10 @@ func (b TestScriptOrigin) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 	if err := xmlEncodePrimitiveInt(e, "index", b.Index, nil); err != nil {
 		return err
 	}
-	if err := b.Profile.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "profile"}}); err != nil {
-		return err
+	if b.Profile != nil {
+		if err := b.Profile.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "profile"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -1241,9 +1247,11 @@ func (r *TestScriptOrigin) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.Index = v
 			case "profile":
-				if err := r.Profile.UnmarshalXML(d, t); err != nil {
+				var v Coding
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Profile = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err

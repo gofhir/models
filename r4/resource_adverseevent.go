@@ -69,7 +69,7 @@ type AdverseEvent struct {
 	// Type of the event itself in relation to the subject
 	Event *CodeableConcept `json:"event,omitempty"`
 	// Subject impacted by event
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// Encounter created as part of
 	Encounter *Reference `json:"encounter,omitempty"`
 	// When the event occurred
@@ -257,8 +257,10 @@ func (r AdverseEvent) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if r.Encounter != nil {
 		if err := r.Encounter.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "encounter"}}); err != nil {
@@ -421,9 +423,11 @@ func (r *AdverseEvent) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.Event = &v
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -538,7 +542,7 @@ type AdverseEventSuspectEntity struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Refers to the specific entity that caused the adverse event
-	Instance Reference `json:"instance,omitempty"`
+	Instance *Reference `json:"instance,omitempty"`
 	// Information on the possible cause of the event
 	Causality []AdverseEventSuspectEntityCausality `json:"causality,omitempty"`
 }
@@ -565,8 +569,10 @@ func (b AdverseEventSuspectEntity) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := b.Instance.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "instance"}}); err != nil {
-		return err
+	if b.Instance != nil {
+		if err := b.Instance.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "instance"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Causality {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "causality"}}); err != nil {
@@ -607,9 +613,11 @@ func (r *AdverseEventSuspectEntity) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "instance":
-				if err := r.Instance.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Instance = &v
 			case "causality":
 				var v AdverseEventSuspectEntityCausality
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -851,7 +859,7 @@ func (b *AdverseEventBuilder) SetEvent(v CodeableConcept) *AdverseEventBuilder {
 
 // SetSubject sets the Subject field.
 func (b *AdverseEventBuilder) SetSubject(v Reference) *AdverseEventBuilder {
-	b.adverseEvent.Subject = v
+	b.adverseEvent.Subject = &v
 	return b
 }
 
@@ -1048,7 +1056,7 @@ func WithAdverseEventEvent(v CodeableConcept) AdverseEventOption {
 // WithAdverseEventSubject sets the Subject field.
 func WithAdverseEventSubject(v Reference) AdverseEventOption {
 	return func(r *AdverseEvent) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

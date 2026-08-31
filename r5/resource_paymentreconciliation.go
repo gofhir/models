@@ -61,7 +61,7 @@ type PaymentReconciliation struct {
 	// Business Identifier for a payment reconciliation
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// Category of payment
-	Type CodeableConcept `json:"type"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// active | cancelled | draft | entered-in-error
 	Status *FinancialResourceStatusCodes `json:"status,omitempty"`
 	// Extension for Status
@@ -129,7 +129,7 @@ type PaymentReconciliation struct {
 	// Amount returned by the receiver
 	ReturnedAmount *Money `json:"returnedAmount,omitempty"`
 	// Total amount of Payment
-	Amount Money `json:"amount"`
+	Amount *Money `json:"amount,omitempty"`
 	// Business identifier for the payment
 	PaymentIdentifier *Identifier `json:"paymentIdentifier,omitempty"`
 	// Settlement particulars
@@ -276,8 +276,10 @@ func (r PaymentReconciliation) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := r.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if r.Type != nil {
+		if err := r.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveCode(e, "status", r.Status, r.StatusExt); err != nil {
 		return err
@@ -367,8 +369,10 @@ func (r PaymentReconciliation) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := r.Amount.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "amount"}}); err != nil {
-		return err
+	if r.Amount != nil {
+		if err := r.Amount.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "amount"}}); err != nil {
+			return err
+		}
 	}
 	if r.PaymentIdentifier != nil {
 		if err := r.PaymentIdentifier.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "paymentIdentifier"}}); err != nil {
@@ -463,9 +467,11 @@ func (r *PaymentReconciliation) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[FinancialResourceStatusCodes](d, t)
 				if err != nil {
@@ -610,9 +616,11 @@ func (r *PaymentReconciliation) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.ReturnedAmount = &v
 			case "amount":
-				if err := r.Amount.UnmarshalXML(d, t); err != nil {
+				var v Money
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Amount = &v
 			case "paymentIdentifier":
 				var v Identifier
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1096,7 +1104,7 @@ func (b *PaymentReconciliationBuilder) AddIdentifier(v Identifier) *PaymentRecon
 
 // SetType sets the Type field.
 func (b *PaymentReconciliationBuilder) SetType(v CodeableConcept) *PaymentReconciliationBuilder {
-	b.paymentReconciliation.Type = v
+	b.paymentReconciliation.Type = &v
 	return b
 }
 
@@ -1234,7 +1242,7 @@ func (b *PaymentReconciliationBuilder) SetReturnedAmount(v Money) *PaymentReconc
 
 // SetAmount sets the Amount field.
 func (b *PaymentReconciliationBuilder) SetAmount(v Money) *PaymentReconciliationBuilder {
-	b.paymentReconciliation.Amount = v
+	b.paymentReconciliation.Amount = &v
 	return b
 }
 
@@ -1344,7 +1352,7 @@ func WithPaymentReconciliationIdentifier(v Identifier) PaymentReconciliationOpti
 // WithPaymentReconciliationType sets the Type field.
 func WithPaymentReconciliationType(v CodeableConcept) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
-		r.Type = v
+		r.Type = &v
 	}
 }
 
@@ -1505,7 +1513,7 @@ func WithPaymentReconciliationReturnedAmount(v Money) PaymentReconciliationOptio
 // WithPaymentReconciliationAmount sets the Amount field.
 func WithPaymentReconciliationAmount(v Money) PaymentReconciliationOption {
 	return func(r *PaymentReconciliation) {
-		r.Amount = v
+		r.Amount = &v
 	}
 }
 

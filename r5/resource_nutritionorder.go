@@ -89,7 +89,7 @@ type NutritionOrder struct {
 	// Extension for Priority
 	PriorityExt *Element `json:"_priority,omitempty"`
 	// Who requires the diet, formula or nutritional supplement
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// The encounter associated with this nutrition order
 	Encounter *Reference `json:"encounter,omitempty"`
 	// Information to support fulfilling of the nutrition order
@@ -286,8 +286,10 @@ func (r NutritionOrder) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 	if err := xmlEncodePrimitiveCode(e, "priority", r.Priority, r.PriorityExt); err != nil {
 		return err
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if r.Encounter != nil {
 		if err := r.Encounter.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "encounter"}}); err != nil {
@@ -477,9 +479,11 @@ func (r *NutritionOrder) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				r.Priority = v
 				r.PriorityExt = ext
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1982,7 +1986,7 @@ func (b *NutritionOrderBuilder) SetPriority(v RequestPriority) *NutritionOrderBu
 
 // SetSubject sets the Subject field.
 func (b *NutritionOrderBuilder) SetSubject(v Reference) *NutritionOrderBuilder {
-	b.nutritionOrder.Subject = v
+	b.nutritionOrder.Subject = &v
 	return b
 }
 
@@ -2202,7 +2206,7 @@ func WithNutritionOrderPriority(v RequestPriority) NutritionOrderOption {
 // WithNutritionOrderSubject sets the Subject field.
 func WithNutritionOrderSubject(v Reference) NutritionOrderOption {
 	return func(r *NutritionOrder) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

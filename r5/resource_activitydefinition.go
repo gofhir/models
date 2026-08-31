@@ -1050,7 +1050,7 @@ type ActivityDefinitionDynamicValue struct {
 	// The path to the element to be set dynamically
 	Path *string `json:"path,omitempty"`
 	// An expression that provides the dynamic value for the customization
-	Expression Expression `json:"expression,omitempty"`
+	Expression *Expression `json:"expression,omitempty"`
 }
 
 // MarshalXML serializes ActivityDefinitionDynamicValue to FHIR-conformant XML.
@@ -1078,8 +1078,10 @@ func (b ActivityDefinitionDynamicValue) MarshalXML(e *xml.Encoder, start xml.Sta
 	if err := xmlEncodePrimitiveString(e, "path", b.Path, nil); err != nil {
 		return err
 	}
-	if err := b.Expression.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "expression"}}); err != nil {
-		return err
+	if b.Expression != nil {
+		if err := b.Expression.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "expression"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -1121,9 +1123,11 @@ func (r *ActivityDefinitionDynamicValue) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.Path = v
 			case "expression":
-				if err := r.Expression.UnmarshalXML(d, t); err != nil {
+				var v Expression
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Expression = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err

@@ -91,7 +91,7 @@ type MedicationRequest struct {
 	// Medication to be taken
 	MedicationReference *Reference `json:"medicationReference,omitempty"`
 	// Who or group medication request is for
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// Encounter created as part of encounter/admission/stay
 	Encounter *Reference `json:"encounter,omitempty"`
 	// Information to support ordering of the medication
@@ -320,8 +320,10 @@ func (r MedicationRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if r.Encounter != nil {
 		if err := r.Encounter.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "encounter"}}); err != nil {
@@ -565,9 +567,11 @@ func (r *MedicationRequest) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.MedicationReference = &v
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1244,7 +1248,7 @@ func (b *MedicationRequestBuilder) SetMedicationReference(v Reference) *Medicati
 
 // SetSubject sets the Subject field.
 func (b *MedicationRequestBuilder) SetSubject(v Reference) *MedicationRequestBuilder {
-	b.medicationRequest.Subject = v
+	b.medicationRequest.Subject = &v
 	return b
 }
 
@@ -1547,7 +1551,7 @@ func WithMedicationRequestMedicationReference(v Reference) MedicationRequestOpti
 // WithMedicationRequestSubject sets the Subject field.
 func WithMedicationRequestSubject(v Reference) MedicationRequestOption {
 	return func(r *MedicationRequest) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

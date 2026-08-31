@@ -117,7 +117,7 @@ type Media struct {
 	// Extension for Duration
 	DurationExt *Element `json:"_duration,omitempty"`
 	// Actual Media - reference or data
-	Content Attachment `json:"content"`
+	Content *Attachment `json:"content,omitempty"`
 	// Comments made about the media
 	Note []Annotation `json:"note,omitempty"`
 }
@@ -342,8 +342,10 @@ func (r Media) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveDecimal(e, "duration", r.Duration, r.DurationExt); err != nil {
 		return err
 	}
-	if err := r.Content.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "content"}}); err != nil {
-		return err
+	if r.Content != nil {
+		if err := r.Content.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "content"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.Note {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "note"}}); err != nil {
@@ -551,9 +553,11 @@ func (r *Media) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				r.Duration = v
 				r.DurationExt = ext
 			case "content":
-				if err := r.Content.UnmarshalXML(d, t); err != nil {
+				var v Attachment
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Content = &v
 			case "note":
 				var v Annotation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -776,7 +780,7 @@ func (b *MediaBuilder) SetDuration(v Decimal) *MediaBuilder {
 
 // SetContent sets the Content field.
 func (b *MediaBuilder) SetContent(v Attachment) *MediaBuilder {
-	b.media.Content = v
+	b.media.Content = &v
 	return b
 }
 
@@ -1015,7 +1019,7 @@ func WithMediaDuration(v Decimal) MediaOption {
 // WithMediaContent sets the Content field.
 func WithMediaContent(v Attachment) MediaOption {
 	return func(r *Media) {
-		r.Content = v
+		r.Content = &v
 	}
 }
 

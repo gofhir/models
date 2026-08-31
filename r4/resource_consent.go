@@ -65,7 +65,7 @@ type Consent struct {
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Which of the four areas this resource covers (extensible)
-	Scope CodeableConcept `json:"scope"`
+	Scope *CodeableConcept `json:"scope,omitempty"`
 	// Classification of the consent statement - for indexing/retrieval
 	Category []CodeableConcept `json:"category,omitempty"`
 	// Who the consent applies to
@@ -231,8 +231,10 @@ func (r Consent) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveCode(e, "status", r.Status, r.StatusExt); err != nil {
 		return err
 	}
-	if err := r.Scope.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "scope"}}); err != nil {
-		return err
+	if r.Scope != nil {
+		if err := r.Scope.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "scope"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.Category {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "category"}}); err != nil {
@@ -367,9 +369,11 @@ func (r *Consent) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				r.Status = v
 				r.StatusExt = ext
 			case "scope":
-				if err := r.Scope.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Scope = &v
 			case "category":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -775,9 +779,9 @@ type ConsentProvisionActor struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// How the actor is involved
-	Role CodeableConcept `json:"role,omitempty"`
+	Role *CodeableConcept `json:"role,omitempty"`
 	// Resource for the actor (or group, by role)
-	Reference Reference `json:"reference,omitempty"`
+	Reference *Reference `json:"reference,omitempty"`
 }
 
 // MarshalXML serializes ConsentProvisionActor to FHIR-conformant XML.
@@ -802,11 +806,15 @@ func (b ConsentProvisionActor) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := b.Role.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "role"}}); err != nil {
-		return err
+	if b.Role != nil {
+		if err := b.Role.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "role"}}); err != nil {
+			return err
+		}
 	}
-	if err := b.Reference.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reference"}}); err != nil {
-		return err
+	if b.Reference != nil {
+		if err := b.Reference.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reference"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -842,13 +850,17 @@ func (r *ConsentProvisionActor) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "role":
-				if err := r.Role.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Role = &v
 			case "reference":
-				if err := r.Reference.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Reference = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -872,7 +884,7 @@ type ConsentProvisionData struct {
 	// instance | related | dependents | authoredby
 	Meaning *ConsentDataMeaning `json:"meaning,omitempty"`
 	// The actual data reference
-	Reference Reference `json:"reference,omitempty"`
+	Reference *Reference `json:"reference,omitempty"`
 }
 
 // MarshalXML serializes ConsentProvisionData to FHIR-conformant XML.
@@ -900,8 +912,10 @@ func (b ConsentProvisionData) MarshalXML(e *xml.Encoder, start xml.StartElement)
 	if err := xmlEncodePrimitiveCode(e, "meaning", b.Meaning, nil); err != nil {
 		return err
 	}
-	if err := b.Reference.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reference"}}); err != nil {
-		return err
+	if b.Reference != nil {
+		if err := b.Reference.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reference"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -943,9 +957,11 @@ func (r *ConsentProvisionData) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.Meaning = v
 			case "reference":
-				if err := r.Reference.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Reference = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1154,7 +1170,7 @@ func (b *ConsentBuilder) SetStatus(v ConsentState) *ConsentBuilder {
 
 // SetScope sets the Scope field.
 func (b *ConsentBuilder) SetScope(v CodeableConcept) *ConsentBuilder {
-	b.consent.Scope = v
+	b.consent.Scope = &v
 	return b
 }
 
@@ -1313,7 +1329,7 @@ func WithConsentStatus(v ConsentState) ConsentOption {
 // WithConsentScope sets the Scope field.
 func WithConsentScope(v CodeableConcept) ConsentOption {
 	return func(r *Consent) {
-		r.Scope = v
+		r.Scope = &v
 	}
 }
 

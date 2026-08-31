@@ -67,9 +67,9 @@ type Flag struct {
 	// Clinical, administrative, etc
 	Category []CodeableConcept `json:"category,omitempty"`
 	// Coded or textual message to display to user
-	Code CodeableConcept `json:"code"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Who/What is flag about?
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// Time period when flag is active
 	Period *Period `json:"period,omitempty"`
 	// Alert relevant during encounter
@@ -222,11 +222,15 @@ func (r Flag) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if r.Code != nil {
+		if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if r.Period != nil {
 		if err := r.Period.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
@@ -329,13 +333,17 @@ func (r *Flag) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.Category = append(r.Category, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -456,13 +464,13 @@ func (b *FlagBuilder) AddCategory(v CodeableConcept) *FlagBuilder {
 
 // SetCode sets the Code field.
 func (b *FlagBuilder) SetCode(v CodeableConcept) *FlagBuilder {
-	b.flag.Code = v
+	b.flag.Code = &v
 	return b
 }
 
 // SetSubject sets the Subject field.
 func (b *FlagBuilder) SetSubject(v Reference) *FlagBuilder {
-	b.flag.Subject = v
+	b.flag.Subject = &v
 	return b
 }
 
@@ -580,14 +588,14 @@ func WithFlagCategory(v CodeableConcept) FlagOption {
 // WithFlagCode sets the Code field.
 func WithFlagCode(v CodeableConcept) FlagOption {
 	return func(r *Flag) {
-		r.Code = v
+		r.Code = &v
 	}
 }
 
 // WithFlagSubject sets the Subject field.
 func WithFlagSubject(v Reference) FlagOption {
 	return func(r *Flag) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

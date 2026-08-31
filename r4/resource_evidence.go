@@ -135,7 +135,7 @@ type Evidence struct {
 	// Additional documentation, citations, etc.
 	RelatedArtifact []RelatedArtifact `json:"relatedArtifact,omitempty"`
 	// What population?
-	ExposureBackground Reference `json:"exposureBackground"`
+	ExposureBackground *Reference `json:"exposureBackground,omitempty"`
 	// What exposure?
 	ExposureVariant []Reference `json:"exposureVariant,omitempty"`
 	// What outcome?
@@ -372,8 +372,10 @@ func (r Evidence) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.ExposureBackground.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "exposureBackground"}}); err != nil {
-		return err
+	if r.ExposureBackground != nil {
+		if err := r.ExposureBackground.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "exposureBackground"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.ExposureVariant {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "exposureVariant"}}); err != nil {
@@ -615,9 +617,11 @@ func (r *Evidence) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.RelatedArtifact = append(r.RelatedArtifact, v)
 			case "exposureBackground":
-				if err := r.ExposureBackground.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.ExposureBackground = &v
 			case "exposureVariant":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -864,7 +868,7 @@ func (b *EvidenceBuilder) AddRelatedArtifact(v RelatedArtifact) *EvidenceBuilder
 
 // SetExposureBackground sets the ExposureBackground field.
 func (b *EvidenceBuilder) SetExposureBackground(v Reference) *EvidenceBuilder {
-	b.evidence.ExposureBackground = v
+	b.evidence.ExposureBackground = &v
 	return b
 }
 
@@ -1130,7 +1134,7 @@ func WithEvidenceRelatedArtifact(v RelatedArtifact) EvidenceOption {
 // WithEvidenceExposureBackground sets the ExposureBackground field.
 func WithEvidenceExposureBackground(v Reference) EvidenceOption {
 	return func(r *Evidence) {
-		r.ExposureBackground = v
+		r.ExposureBackground = &v
 	}
 }
 

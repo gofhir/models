@@ -67,7 +67,7 @@ type DeviceUseStatement struct {
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Patient using device
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// Supporting information
 	DerivedFrom []Reference `json:"derivedFrom,omitempty"`
 	// How often  the device was used
@@ -85,7 +85,7 @@ type DeviceUseStatement struct {
 	// Who made the statement
 	Source *Reference `json:"source,omitempty"`
 	// Reference to device used
-	Device Reference `json:"device"`
+	Device *Reference `json:"device,omitempty"`
 	// Why device was used
 	ReasonCode []CodeableConcept `json:"reasonCode,omitempty"`
 	// Why was DeviceUseStatement performed?
@@ -240,8 +240,10 @@ func (r DeviceUseStatement) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	if err := xmlEncodePrimitiveCode(e, "status", r.Status, r.StatusExt); err != nil {
 		return err
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.DerivedFrom {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "derivedFrom"}}); err != nil {
@@ -269,8 +271,10 @@ func (r DeviceUseStatement) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := r.Device.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "device"}}); err != nil {
-		return err
+	if r.Device != nil {
+		if err := r.Device.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "device"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range r.ReasonCode {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reasonCode"}}); err != nil {
@@ -378,9 +382,11 @@ func (r *DeviceUseStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				r.Status = v
 				r.StatusExt = ext
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "derivedFrom":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -420,9 +426,11 @@ func (r *DeviceUseStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Source = &v
 			case "device":
-				if err := r.Device.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Device = &v
 			case "reasonCode":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -549,7 +557,7 @@ func (b *DeviceUseStatementBuilder) SetStatus(v DeviceUseStatementStatus) *Devic
 
 // SetSubject sets the Subject field.
 func (b *DeviceUseStatementBuilder) SetSubject(v Reference) *DeviceUseStatementBuilder {
-	b.deviceUseStatement.Subject = v
+	b.deviceUseStatement.Subject = &v
 	return b
 }
 
@@ -597,7 +605,7 @@ func (b *DeviceUseStatementBuilder) SetSource(v Reference) *DeviceUseStatementBu
 
 // SetDevice sets the Device field.
 func (b *DeviceUseStatementBuilder) SetDevice(v Reference) *DeviceUseStatementBuilder {
-	b.deviceUseStatement.Device = v
+	b.deviceUseStatement.Device = &v
 	return b
 }
 
@@ -721,7 +729,7 @@ func WithDeviceUseStatementStatus(v DeviceUseStatementStatus) DeviceUseStatement
 // WithDeviceUseStatementSubject sets the Subject field.
 func WithDeviceUseStatementSubject(v Reference) DeviceUseStatementOption {
 	return func(r *DeviceUseStatement) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 
@@ -777,7 +785,7 @@ func WithDeviceUseStatementSource(v Reference) DeviceUseStatementOption {
 // WithDeviceUseStatementDevice sets the Device field.
 func WithDeviceUseStatementDevice(v Reference) DeviceUseStatementOption {
 	return func(r *DeviceUseStatement) {
-		r.Device = v
+		r.Device = &v
 	}
 }
 

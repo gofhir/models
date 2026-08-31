@@ -409,7 +409,7 @@ type NutritionProductCharacteristic struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Code specifying the type of characteristic
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// The value of the characteristic
 	ValueCodeableConcept *CodeableConcept `json:"valueCodeableConcept,omitempty"`
 	// The value of the characteristic
@@ -452,8 +452,10 @@ func (b NutritionProductCharacteristic) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if b.ValueCodeableConcept != nil {
 		if err := b.ValueCodeableConcept.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "valueCodeableConcept"}}); err != nil {
@@ -513,9 +515,11 @@ func (r *NutritionProductCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "valueCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -573,7 +577,7 @@ type NutritionProductIngredient struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The ingredient contained in the product
-	Item CodeableReference `json:"item,omitempty"`
+	Item *CodeableReference `json:"item,omitempty"`
 	// The amount of ingredient that is in the product
 	Amount []Ratio `json:"amount,omitempty"`
 }
@@ -600,8 +604,10 @@ func (b NutritionProductIngredient) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := b.Item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "item"}}); err != nil {
-		return err
+	if b.Item != nil {
+		if err := b.Item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "item"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Amount {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "amount"}}); err != nil {
@@ -642,9 +648,11 @@ func (r *NutritionProductIngredient) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "item":
-				if err := r.Item.UnmarshalXML(d, t); err != nil {
+				var v CodeableReference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Item = &v
 			case "amount":
 				var v Ratio
 				if err := v.UnmarshalXML(d, t); err != nil {

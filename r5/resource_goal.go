@@ -75,9 +75,9 @@ type Goal struct {
 	// high-priority | medium-priority | low-priority
 	Priority *CodeableConcept `json:"priority,omitempty"`
 	// Code or text describing goal
-	Description CodeableConcept `json:"description"`
+	Description *CodeableConcept `json:"description,omitempty"`
 	// Who this goal is intended for
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// When goal pursuit begins
 	StartDate *string `json:"startDate,omitempty"`
 	// Extension for StartDate
@@ -261,11 +261,15 @@ func (r Goal) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.Description.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "description"}}); err != nil {
-		return err
+	if r.Description != nil {
+		if err := r.Description.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "description"}}); err != nil {
+			return err
+		}
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "startDate", r.StartDate, nil); err != nil {
 		return err
@@ -411,13 +415,17 @@ func (r *Goal) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.Priority = &v
 			case "description":
-				if err := r.Description.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Description = &v
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "startDate":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -802,13 +810,13 @@ func (b *GoalBuilder) SetPriority(v CodeableConcept) *GoalBuilder {
 
 // SetDescription sets the Description field.
 func (b *GoalBuilder) SetDescription(v CodeableConcept) *GoalBuilder {
-	b.goal.Description = v
+	b.goal.Description = &v
 	return b
 }
 
 // SetSubject sets the Subject field.
 func (b *GoalBuilder) SetSubject(v Reference) *GoalBuilder {
-	b.goal.Subject = v
+	b.goal.Subject = &v
 	return b
 }
 
@@ -989,14 +997,14 @@ func WithGoalPriority(v CodeableConcept) GoalOption {
 // WithGoalDescription sets the Description field.
 func WithGoalDescription(v CodeableConcept) GoalOption {
 	return func(r *Goal) {
-		r.Description = v
+		r.Description = &v
 	}
 }
 
 // WithGoalSubject sets the Subject field.
 func WithGoalSubject(v Reference) GoalOption {
 	return func(r *Goal) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

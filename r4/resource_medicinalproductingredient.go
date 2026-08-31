@@ -61,7 +61,7 @@ type MedicinalProductIngredient struct {
 	// Identifier for the ingredient
 	Identifier *Identifier `json:"identifier,omitempty"`
 	// Ingredient role e.g. Active ingredient, excipient
-	Role CodeableConcept `json:"role"`
+	Role *CodeableConcept `json:"role,omitempty"`
 	// If the ingredient is a known or suspected allergen
 	AllergenicIndicator *bool `json:"allergenicIndicator,omitempty"`
 	// Extension for AllergenicIndicator
@@ -210,8 +210,10 @@ func (r MedicinalProductIngredient) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := r.Role.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "role"}}); err != nil {
-		return err
+	if r.Role != nil {
+		if err := r.Role.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "role"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "allergenicIndicator", r.AllergenicIndicator, r.AllergenicIndicatorExt); err != nil {
 		return err
@@ -304,9 +306,11 @@ func (r *MedicinalProductIngredient) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.Identifier = &v
 			case "role":
-				if err := r.Role.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Role = &v
 			case "allergenicIndicator":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -353,9 +357,9 @@ type MedicinalProductIngredientSpecifiedSubstance struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The specified substance
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// The group of specified substance, e.g. group 1 to 4
-	Group CodeableConcept `json:"group,omitempty"`
+	Group *CodeableConcept `json:"group,omitempty"`
 	// Confidentiality level of the specified substance as the ingredient
 	Confidentiality *CodeableConcept `json:"confidentiality,omitempty"`
 	// Quantity of the substance or specified substance present in the manufactured item or pharmaceutical product
@@ -384,11 +388,15 @@ func (b MedicinalProductIngredientSpecifiedSubstance) MarshalXML(e *xml.Encoder,
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
-	if err := b.Group.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "group"}}); err != nil {
-		return err
+	if b.Group != nil {
+		if err := b.Group.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "group"}}); err != nil {
+			return err
+		}
 	}
 	if b.Confidentiality != nil {
 		if err := b.Confidentiality.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "confidentiality"}}); err != nil {
@@ -434,13 +442,17 @@ func (r *MedicinalProductIngredientSpecifiedSubstance) UnmarshalXML(d *xml.Decod
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "group":
-				if err := r.Group.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Group = &v
 			case "confidentiality":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -474,7 +486,7 @@ type MedicinalProductIngredientSpecifiedSubstanceStrength struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The quantity of substance in the unit of presentation, or in the volume (or mass) of the single pharmaceutical product or manufactured item
-	Presentation Ratio `json:"presentation,omitempty"`
+	Presentation *Ratio `json:"presentation,omitempty"`
 	// A lower limit for the quantity of substance in the unit of presentation. For use when there is a range of strengths, this is the lower limit, with the presentation attribute becoming the upper limit
 	PresentationLowLimit *Ratio `json:"presentationLowLimit,omitempty"`
 	// The strength per unitary volume (or mass)
@@ -511,8 +523,10 @@ func (b MedicinalProductIngredientSpecifiedSubstanceStrength) MarshalXML(e *xml.
 			return err
 		}
 	}
-	if err := b.Presentation.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "presentation"}}); err != nil {
-		return err
+	if b.Presentation != nil {
+		if err := b.Presentation.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "presentation"}}); err != nil {
+			return err
+		}
 	}
 	if b.PresentationLowLimit != nil {
 		if err := b.PresentationLowLimit.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "presentationLowLimit"}}); err != nil {
@@ -576,9 +590,11 @@ func (r *MedicinalProductIngredientSpecifiedSubstanceStrength) UnmarshalXML(d *x
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "presentation":
-				if err := r.Presentation.UnmarshalXML(d, t); err != nil {
+				var v Ratio
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Presentation = &v
 			case "presentationLowLimit":
 				var v Ratio
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -638,7 +654,7 @@ type MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength struc
 	// Relevant reference substance
 	Substance *CodeableConcept `json:"substance,omitempty"`
 	// Strength expressed in terms of a reference substance
-	Strength Ratio `json:"strength,omitempty"`
+	Strength *Ratio `json:"strength,omitempty"`
 	// Strength expressed in terms of a reference substance
 	StrengthLowLimit *Ratio `json:"strengthLowLimit,omitempty"`
 	// For when strength is measured at a particular point or distance
@@ -674,8 +690,10 @@ func (b MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength) M
 			return err
 		}
 	}
-	if err := b.Strength.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "strength"}}); err != nil {
-		return err
+	if b.Strength != nil {
+		if err := b.Strength.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "strength"}}); err != nil {
+			return err
+		}
 	}
 	if b.StrengthLowLimit != nil {
 		if err := b.StrengthLowLimit.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "strengthLowLimit"}}); err != nil {
@@ -730,9 +748,11 @@ func (r *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength) 
 				}
 				r.Substance = &v
 			case "strength":
-				if err := r.Strength.UnmarshalXML(d, t); err != nil {
+				var v Ratio
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Strength = &v
 			case "strengthLowLimit":
 				var v Ratio
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -772,7 +792,7 @@ type MedicinalProductIngredientSubstance struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The ingredient substance
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Quantity of the substance or specified substance present in the manufactured item or pharmaceutical product
 	Strength []MedicinalProductIngredientSpecifiedSubstanceStrength `json:"strength,omitempty"`
 }
@@ -799,8 +819,10 @@ func (b MedicinalProductIngredientSubstance) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Strength {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "strength"}}); err != nil {
@@ -841,9 +863,11 @@ func (r *MedicinalProductIngredientSubstance) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "strength":
 				var v MedicinalProductIngredientSpecifiedSubstanceStrength
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -940,7 +964,7 @@ func (b *MedicinalProductIngredientBuilder) SetIdentifier(v Identifier) *Medicin
 
 // SetRole sets the Role field.
 func (b *MedicinalProductIngredientBuilder) SetRole(v CodeableConcept) *MedicinalProductIngredientBuilder {
-	b.medicinalProductIngredient.Role = v
+	b.medicinalProductIngredient.Role = &v
 	return b
 }
 
@@ -1050,7 +1074,7 @@ func WithMedicinalProductIngredientIdentifier(v Identifier) MedicinalProductIngr
 // WithMedicinalProductIngredientRole sets the Role field.
 func WithMedicinalProductIngredientRole(v CodeableConcept) MedicinalProductIngredientOption {
 	return func(r *MedicinalProductIngredient) {
-		r.Role = v
+		r.Role = &v
 	}
 }
 

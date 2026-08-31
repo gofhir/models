@@ -77,9 +77,9 @@ type MedicationDispense struct {
 	// Type of medication dispense
 	Category []CodeableConcept `json:"category,omitempty"`
 	// What medication was supplied
-	Medication CodeableReference `json:"medication"`
+	Medication *CodeableReference `json:"medication,omitempty"`
 	// Who the dispense is for
-	Subject Reference `json:"subject"`
+	Subject *Reference `json:"subject,omitempty"`
 	// Encounter associated with event
 	Encounter *Reference `json:"encounter,omitempty"`
 	// Information that supports the dispensing of the medication
@@ -288,11 +288,15 @@ func (r MedicationDispense) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := r.Medication.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "medication"}}); err != nil {
-		return err
+	if r.Medication != nil {
+		if err := r.Medication.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "medication"}}); err != nil {
+			return err
+		}
 	}
-	if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
-		return err
+	if r.Subject != nil {
+		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
+			return err
+		}
 	}
 	if r.Encounter != nil {
 		if err := r.Encounter.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "encounter"}}); err != nil {
@@ -487,13 +491,17 @@ func (r *MedicationDispense) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Category = append(r.Category, v)
 			case "medication":
-				if err := r.Medication.UnmarshalXML(d, t); err != nil {
+				var v CodeableReference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Medication = &v
 			case "subject":
-				if err := r.Subject.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Subject = &v
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -629,7 +637,7 @@ type MedicationDispensePerformer struct {
 	// Who performed the dispense and what they did
 	Function *CodeableConcept `json:"function,omitempty"`
 	// Individual who was performing
-	Actor Reference `json:"actor,omitempty"`
+	Actor *Reference `json:"actor,omitempty"`
 }
 
 // MarshalXML serializes MedicationDispensePerformer to FHIR-conformant XML.
@@ -659,8 +667,10 @@ func (b MedicationDispensePerformer) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
-		return err
+	if b.Actor != nil {
+		if err := b.Actor.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "actor"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -702,9 +712,11 @@ func (r *MedicationDispensePerformer) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.Function = &v
 			case "actor":
-				if err := r.Actor.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Actor = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -958,13 +970,13 @@ func (b *MedicationDispenseBuilder) AddCategory(v CodeableConcept) *MedicationDi
 
 // SetMedication sets the Medication field.
 func (b *MedicationDispenseBuilder) SetMedication(v CodeableReference) *MedicationDispenseBuilder {
-	b.medicationDispense.Medication = v
+	b.medicationDispense.Medication = &v
 	return b
 }
 
 // SetSubject sets the Subject field.
 func (b *MedicationDispenseBuilder) SetSubject(v Reference) *MedicationDispenseBuilder {
-	b.medicationDispense.Subject = v
+	b.medicationDispense.Subject = &v
 	return b
 }
 
@@ -1200,14 +1212,14 @@ func WithMedicationDispenseCategory(v CodeableConcept) MedicationDispenseOption 
 // WithMedicationDispenseMedication sets the Medication field.
 func WithMedicationDispenseMedication(v CodeableReference) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
-		r.Medication = v
+		r.Medication = &v
 	}
 }
 
 // WithMedicationDispenseSubject sets the Subject field.
 func WithMedicationDispenseSubject(v Reference) MedicationDispenseOption {
 	return func(r *MedicationDispense) {
-		r.Subject = v
+		r.Subject = &v
 	}
 }
 

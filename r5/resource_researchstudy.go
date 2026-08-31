@@ -704,7 +704,7 @@ type ResearchStudyAssociatedParty struct {
 	// Name of associated party
 	Name *string `json:"name,omitempty"`
 	// sponsor | lead-sponsor | sponsor-investigator | primary-investigator | collaborator | funding-source | general-contact | recruitment-contact | sub-investigator | study-director | study-chair
-	Role CodeableConcept `json:"role,omitempty"`
+	Role *CodeableConcept `json:"role,omitempty"`
 	// When active in the role
 	Period []Period `json:"period,omitempty"`
 	// nih | fda | government | nonprofit | academic | industry
@@ -738,8 +738,10 @@ func (b ResearchStudyAssociatedParty) MarshalXML(e *xml.Encoder, start xml.Start
 	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
 		return err
 	}
-	if err := b.Role.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "role"}}); err != nil {
-		return err
+	if b.Role != nil {
+		if err := b.Role.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "role"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Period {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "period"}}); err != nil {
@@ -796,9 +798,11 @@ func (r *ResearchStudyAssociatedParty) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.Name = v
 			case "role":
-				if err := r.Role.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Role = &v
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1325,7 +1329,7 @@ type ResearchStudyProgressStatus struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Label for status or state (e.g. recruitment status)
-	State CodeableConcept `json:"state,omitempty"`
+	State *CodeableConcept `json:"state,omitempty"`
 	// Actual if true else anticipated
 	Actual *bool `json:"actual,omitempty"`
 	// Date range
@@ -1354,8 +1358,10 @@ func (b ResearchStudyProgressStatus) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := b.State.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "state"}}); err != nil {
-		return err
+	if b.State != nil {
+		if err := b.State.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "state"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "actual", b.Actual, nil); err != nil {
 		return err
@@ -1399,9 +1405,11 @@ func (r *ResearchStudyProgressStatus) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "state":
-				if err := r.State.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.State = &v
 			case "actual":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {

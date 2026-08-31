@@ -69,7 +69,7 @@ type DiagnosticReport struct {
 	// Service category
 	Category []CodeableConcept `json:"category,omitempty"`
 	// Name/Code for this diagnostic report
-	Code CodeableConcept `json:"code"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// The subject of the report - usually, but not always, the patient
 	Subject *Reference `json:"subject,omitempty"`
 	// Health care event when test ordered
@@ -261,8 +261,10 @@ func (r DiagnosticReport) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if r.Code != nil {
+		if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if r.Subject != nil {
 		if err := r.Subject.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subject"}}); err != nil {
@@ -435,9 +437,11 @@ func (r *DiagnosticReport) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.Category = append(r.Category, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "subject":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -566,7 +570,7 @@ type DiagnosticReportMedia struct {
 	// Comment about the image or data (e.g. explanation)
 	Comment *string `json:"comment,omitempty"`
 	// Reference to the image or data source
-	Link Reference `json:"link,omitempty"`
+	Link *Reference `json:"link,omitempty"`
 }
 
 // MarshalXML serializes DiagnosticReportMedia to FHIR-conformant XML.
@@ -594,8 +598,10 @@ func (b DiagnosticReportMedia) MarshalXML(e *xml.Encoder, start xml.StartElement
 	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, nil); err != nil {
 		return err
 	}
-	if err := b.Link.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "link"}}); err != nil {
-		return err
+	if b.Link != nil {
+		if err := b.Link.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "link"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -637,9 +643,11 @@ func (r *DiagnosticReportMedia) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.Comment = v
 			case "link":
-				if err := r.Link.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Link = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -661,9 +669,9 @@ type DiagnosticReportSupportingInfo struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Supporting information role code
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Supporting information reference
-	Reference Reference `json:"reference,omitempty"`
+	Reference *Reference `json:"reference,omitempty"`
 }
 
 // MarshalXML serializes DiagnosticReportSupportingInfo to FHIR-conformant XML.
@@ -688,11 +696,15 @@ func (b DiagnosticReportSupportingInfo) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
-	if err := b.Reference.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reference"}}); err != nil {
-		return err
+	if b.Reference != nil {
+		if err := b.Reference.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reference"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -728,13 +740,17 @@ func (r *DiagnosticReportSupportingInfo) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "reference":
-				if err := r.Reference.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Reference = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -843,7 +859,7 @@ func (b *DiagnosticReportBuilder) AddCategory(v CodeableConcept) *DiagnosticRepo
 
 // SetCode sets the Code field.
 func (b *DiagnosticReportBuilder) SetCode(v CodeableConcept) *DiagnosticReportBuilder {
-	b.diagnosticReport.Code = v
+	b.diagnosticReport.Code = &v
 	return b
 }
 
@@ -1058,7 +1074,7 @@ func WithDiagnosticReportCategory(v CodeableConcept) DiagnosticReportOption {
 // WithDiagnosticReportCode sets the Code field.
 func WithDiagnosticReportCode(v CodeableConcept) DiagnosticReportOption {
 	return func(r *DiagnosticReport) {
-		r.Code = v
+		r.Code = &v
 	}
 }
 

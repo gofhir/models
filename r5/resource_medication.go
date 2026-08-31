@@ -495,7 +495,7 @@ type MedicationIngredient struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The ingredient (substance or medication) that the ingredient.strength relates to
-	Item CodeableReference `json:"item,omitempty"`
+	Item *CodeableReference `json:"item,omitempty"`
 	// Active ingredient indicator
 	IsActive *bool `json:"isActive,omitempty"`
 	// Quantity of ingredient present
@@ -528,8 +528,10 @@ func (b MedicationIngredient) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := b.Item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "item"}}); err != nil {
-		return err
+	if b.Item != nil {
+		if err := b.Item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "item"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "isActive", b.IsActive, nil); err != nil {
 		return err
@@ -583,9 +585,11 @@ func (r *MedicationIngredient) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "item":
-				if err := r.Item.UnmarshalXML(d, t); err != nil {
+				var v CodeableReference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Item = &v
 			case "isActive":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {

@@ -67,7 +67,7 @@ type ExplanationOfBenefit struct {
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Category or discipline
-	Type CodeableConcept `json:"type"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// More granular claim type
 	SubType *CodeableConcept `json:"subType,omitempty"`
 	// claim | preauthorization | predetermination
@@ -75,7 +75,7 @@ type ExplanationOfBenefit struct {
 	// Extension for Use
 	UseExt *Element `json:"_use,omitempty"`
 	// The recipient of the products and services
-	Patient Reference `json:"patient"`
+	Patient *Reference `json:"patient,omitempty"`
 	// Relevant time frame for the claim
 	BillablePeriod *Period `json:"billablePeriod,omitempty"`
 	// Response creation date
@@ -316,8 +316,10 @@ func (r ExplanationOfBenefit) MarshalXML(e *xml.Encoder, start xml.StartElement)
 	if err := xmlEncodePrimitiveCode(e, "status", r.Status, r.StatusExt); err != nil {
 		return err
 	}
-	if err := r.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if r.Type != nil {
+		if err := r.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if r.SubType != nil {
 		if err := r.SubType.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "subType"}}); err != nil {
@@ -327,8 +329,10 @@ func (r ExplanationOfBenefit) MarshalXML(e *xml.Encoder, start xml.StartElement)
 	if err := xmlEncodePrimitiveCode(e, "use", r.Use, r.UseExt); err != nil {
 		return err
 	}
-	if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
-		return err
+	if r.Patient != nil {
+		if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
+			return err
+		}
 	}
 	if r.BillablePeriod != nil {
 		if err := r.BillablePeriod.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "billablePeriod"}}); err != nil {
@@ -616,9 +620,11 @@ func (r *ExplanationOfBenefit) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				r.Status = v
 				r.StatusExt = ext
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "subType":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -633,9 +639,11 @@ func (r *ExplanationOfBenefit) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				r.Use = v
 				r.UseExt = ext
 			case "patient":
-				if err := r.Patient.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Patient = &v
 			case "billablePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2091,7 +2099,7 @@ type ExplanationOfBenefitBenefitBalance struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Benefit classification
-	Category CodeableConcept `json:"category,omitempty"`
+	Category *CodeableConcept `json:"category,omitempty"`
 	// Excluded from the plan
 	Excluded *bool `json:"excluded,omitempty"`
 	// Short name for the benefit
@@ -2130,8 +2138,10 @@ func (b ExplanationOfBenefitBenefitBalance) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := b.Category.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "category"}}); err != nil {
-		return err
+	if b.Category != nil {
+		if err := b.Category.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "category"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "excluded", b.Excluded, nil); err != nil {
 		return err
@@ -2196,9 +2206,11 @@ func (r *ExplanationOfBenefitBenefitBalance) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "category":
-				if err := r.Category.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Category = &v
 			case "excluded":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -2262,7 +2274,7 @@ type ExplanationOfBenefitBenefitBalanceFinancial struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Benefit classification
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Benefits allowed
 	AllowedUnsignedInt *uint32 `json:"allowedUnsignedInt,omitempty"`
 	// Extension for AllowedUnsignedInt
@@ -2303,8 +2315,10 @@ func (b ExplanationOfBenefitBenefitBalanceFinancial) MarshalXML(e *xml.Encoder, 
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveUint32(e, "allowedUnsignedInt", b.AllowedUnsignedInt, nil); err != nil {
 		return err
@@ -2359,9 +2373,11 @@ func (r *ExplanationOfBenefitBenefitBalanceFinancial) UnmarshalXML(d *xml.Decode
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "allowedUnsignedInt":
 				v, _, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
@@ -2415,7 +2431,7 @@ type ExplanationOfBenefitCareTeam struct {
 	// Order of care team
 	Sequence *uint32 `json:"sequence,omitempty"`
 	// Practitioner or organization
-	Provider Reference `json:"provider,omitempty"`
+	Provider *Reference `json:"provider,omitempty"`
 	// Indicator of the lead practitioner
 	Responsible *bool `json:"responsible,omitempty"`
 	// Function within the team
@@ -2449,8 +2465,10 @@ func (b ExplanationOfBenefitCareTeam) MarshalXML(e *xml.Encoder, start xml.Start
 	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, nil); err != nil {
 		return err
 	}
-	if err := b.Provider.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "provider"}}); err != nil {
-		return err
+	if b.Provider != nil {
+		if err := b.Provider.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "provider"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveBool(e, "responsible", b.Responsible, nil); err != nil {
 		return err
@@ -2505,9 +2523,11 @@ func (r *ExplanationOfBenefitCareTeam) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.Sequence = v
 			case "provider":
-				if err := r.Provider.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Provider = &v
 			case "responsible":
 				v, _, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -2687,7 +2707,7 @@ type ExplanationOfBenefitEvent struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Specific event
-	Type CodeableConcept `json:"type,omitempty"`
+	Type *CodeableConcept `json:"type,omitempty"`
 	// Occurance date or period
 	WhenDateTime *string `json:"whenDateTime,omitempty"`
 	// Extension for WhenDateTime
@@ -2718,8 +2738,10 @@ func (b ExplanationOfBenefitEvent) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
-		return err
+	if b.Type != nil {
+		if err := b.Type.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "type"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "whenDateTime", b.WhenDateTime, nil); err != nil {
 		return err
@@ -2763,9 +2785,11 @@ func (r *ExplanationOfBenefitEvent) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				if err := r.Type.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Type = &v
 			case "whenDateTime":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -2801,7 +2825,7 @@ type ExplanationOfBenefitInsurance struct {
 	// Coverage to be used for adjudication
 	Focal *bool `json:"focal,omitempty"`
 	// Insurance information
-	Coverage Reference `json:"coverage,omitempty"`
+	Coverage *Reference `json:"coverage,omitempty"`
 	// Prior authorization reference number
 	PreAuthRef []*string `json:"preAuthRef,omitempty"`
 }
@@ -2831,8 +2855,10 @@ func (b ExplanationOfBenefitInsurance) MarshalXML(e *xml.Encoder, start xml.Star
 	if err := xmlEncodePrimitiveBool(e, "focal", b.Focal, nil); err != nil {
 		return err
 	}
-	if err := b.Coverage.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "coverage"}}); err != nil {
-		return err
+	if b.Coverage != nil {
+		if err := b.Coverage.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "coverage"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveStringArray(e, "preAuthRef", b.PreAuthRef, nil); err != nil {
 		return err
@@ -2877,9 +2903,11 @@ func (r *ExplanationOfBenefitInsurance) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.Focal = v
 			case "coverage":
-				if err := r.Coverage.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Coverage = &v
 			case "preAuthRef":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -3379,7 +3407,7 @@ type ExplanationOfBenefitItemAdjudication struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type of adjudication information
-	Category CodeableConcept `json:"category,omitempty"`
+	Category *CodeableConcept `json:"category,omitempty"`
 	// Explanation of adjudication outcome
 	Reason *CodeableConcept `json:"reason,omitempty"`
 	// Monetary amount
@@ -3410,8 +3438,10 @@ func (b ExplanationOfBenefitItemAdjudication) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := b.Category.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "category"}}); err != nil {
-		return err
+	if b.Category != nil {
+		if err := b.Category.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "category"}}); err != nil {
+			return err
+		}
 	}
 	if b.Reason != nil {
 		if err := b.Reason.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "reason"}}); err != nil {
@@ -3462,9 +3492,11 @@ func (r *ExplanationOfBenefitItemAdjudication) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "category":
-				if err := r.Category.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Category = &v
 			case "reason":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -5009,7 +5041,7 @@ type ExplanationOfBenefitSupportingInfo struct {
 	// Information instance identifier
 	Sequence *uint32 `json:"sequence,omitempty"`
 	// Classification of the supplied information
-	Category CodeableConcept `json:"category,omitempty"`
+	Category *CodeableConcept `json:"category,omitempty"`
 	// Type of information
 	Code *CodeableConcept `json:"code,omitempty"`
 	// When it occurred
@@ -5063,8 +5095,10 @@ func (b ExplanationOfBenefitSupportingInfo) MarshalXML(e *xml.Encoder, start xml
 	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, nil); err != nil {
 		return err
 	}
-	if err := b.Category.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "category"}}); err != nil {
-		return err
+	if b.Category != nil {
+		if err := b.Category.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "category"}}); err != nil {
+			return err
+		}
 	}
 	if b.Code != nil {
 		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
@@ -5150,9 +5184,11 @@ func (r *ExplanationOfBenefitSupportingInfo) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.Sequence = v
 			case "category":
-				if err := r.Category.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Category = &v
 			case "code":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -5234,9 +5270,9 @@ type ExplanationOfBenefitTotal struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type of adjudication information
-	Category CodeableConcept `json:"category,omitempty"`
+	Category *CodeableConcept `json:"category,omitempty"`
 	// Financial total for the category
-	Amount Money `json:"amount,omitempty"`
+	Amount *Money `json:"amount,omitempty"`
 }
 
 // MarshalXML serializes ExplanationOfBenefitTotal to FHIR-conformant XML.
@@ -5261,11 +5297,15 @@ func (b ExplanationOfBenefitTotal) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := b.Category.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "category"}}); err != nil {
-		return err
+	if b.Category != nil {
+		if err := b.Category.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "category"}}); err != nil {
+			return err
+		}
 	}
-	if err := b.Amount.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "amount"}}); err != nil {
-		return err
+	if b.Amount != nil {
+		if err := b.Amount.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "amount"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -5301,13 +5341,17 @@ func (r *ExplanationOfBenefitTotal) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "category":
-				if err := r.Category.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Category = &v
 			case "amount":
-				if err := r.Amount.UnmarshalXML(d, t); err != nil {
+				var v Money
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Amount = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -5410,7 +5454,7 @@ func (b *ExplanationOfBenefitBuilder) SetStatus(v ExplanationOfBenefitStatus) *E
 
 // SetType sets the Type field.
 func (b *ExplanationOfBenefitBuilder) SetType(v CodeableConcept) *ExplanationOfBenefitBuilder {
-	b.explanationOfBenefit.Type = v
+	b.explanationOfBenefit.Type = &v
 	return b
 }
 
@@ -5428,7 +5472,7 @@ func (b *ExplanationOfBenefitBuilder) SetUse(v Use) *ExplanationOfBenefitBuilder
 
 // SetPatient sets the Patient field.
 func (b *ExplanationOfBenefitBuilder) SetPatient(v Reference) *ExplanationOfBenefitBuilder {
-	b.explanationOfBenefit.Patient = v
+	b.explanationOfBenefit.Patient = &v
 	return b
 }
 
@@ -5784,7 +5828,7 @@ func WithExplanationOfBenefitStatus(v ExplanationOfBenefitStatus) ExplanationOfB
 // WithExplanationOfBenefitType sets the Type field.
 func WithExplanationOfBenefitType(v CodeableConcept) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
-		r.Type = v
+		r.Type = &v
 	}
 }
 
@@ -5805,7 +5849,7 @@ func WithExplanationOfBenefitUse(v Use) ExplanationOfBenefitOption {
 // WithExplanationOfBenefitPatient sets the Patient field.
 func WithExplanationOfBenefitPatient(v Reference) ExplanationOfBenefitOption {
 	return func(r *ExplanationOfBenefit) {
-		r.Patient = v
+		r.Patient = &v
 	}
 }
 

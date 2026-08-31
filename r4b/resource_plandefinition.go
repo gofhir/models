@@ -1663,7 +1663,7 @@ type PlanDefinitionGoal struct {
 	// E.g. Treatment, dietary, behavioral
 	Category *CodeableConcept `json:"category,omitempty"`
 	// Code or text describing the goal
-	Description CodeableConcept `json:"description,omitempty"`
+	Description *CodeableConcept `json:"description,omitempty"`
 	// high-priority | medium-priority | low-priority
 	Priority *CodeableConcept `json:"priority,omitempty"`
 	// When goal pursuit begins
@@ -1703,8 +1703,10 @@ func (b PlanDefinitionGoal) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := b.Description.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "description"}}); err != nil {
-		return err
+	if b.Description != nil {
+		if err := b.Description.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "description"}}); err != nil {
+			return err
+		}
 	}
 	if b.Priority != nil {
 		if err := b.Priority.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "priority"}}); err != nil {
@@ -1771,9 +1773,11 @@ func (r *PlanDefinitionGoal) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Category = &v
 			case "description":
-				if err := r.Description.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Description = &v
 			case "priority":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

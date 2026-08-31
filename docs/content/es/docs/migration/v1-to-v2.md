@@ -190,14 +190,32 @@ La lectura sigue aceptando la forma numérica antigua, así que los documentos e
 
 ### Los campos complejos requeridos pasan a ser punteros
 
-**Estado: previsto.** Unos 99 campos por versión son structs sin puntero, así que se serializan incluso vacíos:
+**Estado: hecho.** 245 campos en r4, 250 en r4b y 315 en r5 eran structs por valor, así que se serializaban aunque no se hubiera puesto nada:
 
 ```go
 r4.Observation{Id: r4.Ptr("o1")}
-// {"resourceType":"Observation","id":"o1","code":{}}   ← code:{} es FHIR inválido
+// v1: {"resourceType":"Observation","id":"o1","code":{}}   ← inválido según ele-1
+// v2: {"resourceType":"Observation","id":"o1"}
 ```
 
-Convertirlos en punteros corrige la salida y cambia el tipo de esos campos.
+El razonamiento para usar campos por valor era que el tipo expresara la obligatoriedad. No podía: Go no tiene forma de forzar que un campo se rellene, así que lo único que conseguía el tipo por valor era emitir un objeto vacío en lugar de nada. La obligatoriedad es tarea de un validador FHIR; lo que el tipo sí tiene que poder decir es «ausente».
+
+`Extension.url` siguió el mismo camino, así que una extensión sin rellenar es ahora `{}` en vez de `{"url":""}`.
+
+**Para migrar: añade `&` al literal de struct.**
+
+```go
+Code: r4.CodeableConcept{Coding: ...}    // v1
+Code: &r4.CodeableConcept{Coding: ...}   // v2
+```
+
+La lectura no se ve afectada —Go desreferencia automáticamente, así que `obs.Code.Coding` sigue compilando—. Lo que cambia es que ahora puede ser nil, así que protégelo donde el valor pudiera no estar puesto.
+
+**Las llamadas al builder no cambian en absoluto.** `SetCode` sigue recibiendo un `CodeableConcept` por valor y tomando su dirección internamente:
+
+```go
+r4.NewObservationBuilder().SetCode(r4.CodeableConcept{...}).Build()   // sin cambios
+```
 
 ### `Contained` pasa a ser un tipo de slice con nombre
 

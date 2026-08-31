@@ -582,7 +582,7 @@ type DocumentReferenceAttester struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// personal | professional | legal | official
-	Mode CodeableConcept `json:"mode,omitempty"`
+	Mode *CodeableConcept `json:"mode,omitempty"`
 	// When the document was attested
 	Time *string `json:"time,omitempty"`
 	// Who attested the document
@@ -611,8 +611,10 @@ func (b DocumentReferenceAttester) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := b.Mode.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "mode"}}); err != nil {
-		return err
+	if b.Mode != nil {
+		if err := b.Mode.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "mode"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "time", b.Time, nil); err != nil {
 		return err
@@ -656,9 +658,11 @@ func (r *DocumentReferenceAttester) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "mode":
-				if err := r.Mode.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Mode = &v
 			case "time":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -692,7 +696,7 @@ type DocumentReferenceContent struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Where to access the document
-	Attachment Attachment `json:"attachment,omitempty"`
+	Attachment *Attachment `json:"attachment,omitempty"`
 	// Content profile rules for the document
 	Profile []DocumentReferenceContentProfile `json:"profile,omitempty"`
 }
@@ -719,8 +723,10 @@ func (b DocumentReferenceContent) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := b.Attachment.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "attachment"}}); err != nil {
-		return err
+	if b.Attachment != nil {
+		if err := b.Attachment.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "attachment"}}); err != nil {
+			return err
+		}
 	}
 	for _, item := range b.Profile {
 		if err := item.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "profile"}}); err != nil {
@@ -761,9 +767,11 @@ func (r *DocumentReferenceContent) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "attachment":
-				if err := r.Attachment.UnmarshalXML(d, t); err != nil {
+				var v Attachment
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Attachment = &v
 			case "profile":
 				var v DocumentReferenceContentProfile
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -907,9 +915,9 @@ type DocumentReferenceRelatesTo struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The relationship type with another document
-	Code CodeableConcept `json:"code,omitempty"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Target of the relationship
-	Target Reference `json:"target,omitempty"`
+	Target *Reference `json:"target,omitempty"`
 }
 
 // MarshalXML serializes DocumentReferenceRelatesTo to FHIR-conformant XML.
@@ -934,11 +942,15 @@ func (b DocumentReferenceRelatesTo) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if b.Code != nil {
+		if err := b.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
-	if err := b.Target.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "target"}}); err != nil {
-		return err
+	if b.Target != nil {
+		if err := b.Target.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "target"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -974,13 +986,17 @@ func (r *DocumentReferenceRelatesTo) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "target":
-				if err := r.Target.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Target = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err

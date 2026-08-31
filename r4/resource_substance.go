@@ -67,7 +67,7 @@ type Substance struct {
 	// What class/type of substance this is
 	Category []CodeableConcept `json:"category,omitempty"`
 	// What substance this is
-	Code CodeableConcept `json:"code"`
+	Code *CodeableConcept `json:"code,omitempty"`
 	// Textual description of the substance, comments
 	Description *string `json:"description,omitempty"`
 	// Extension for Description
@@ -222,8 +222,10 @@ func (r Substance) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
-		return err
+	if r.Code != nil {
+		if err := r.Code.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "code"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "description", r.Description, r.DescriptionExt); err != nil {
 		return err
@@ -324,9 +326,11 @@ func (r *Substance) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.Category = append(r.Category, v)
 			case "code":
-				if err := r.Code.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Code = &v
 			case "description":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -678,7 +682,7 @@ func (b *SubstanceBuilder) AddCategory(v CodeableConcept) *SubstanceBuilder {
 
 // SetCode sets the Code field.
 func (b *SubstanceBuilder) SetCode(v CodeableConcept) *SubstanceBuilder {
-	b.substance.Code = v
+	b.substance.Code = &v
 	return b
 }
 
@@ -796,7 +800,7 @@ func WithSubstanceCategory(v CodeableConcept) SubstanceOption {
 // WithSubstanceCode sets the Code field.
 func WithSubstanceCode(v CodeableConcept) SubstanceOption {
 	return func(r *Substance) {
-		r.Code = v
+		r.Code = &v
 	}
 }
 

@@ -555,7 +555,7 @@ type DetectedIssueMitigation struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// What mitigation?
-	Action CodeableConcept `json:"action,omitempty"`
+	Action *CodeableConcept `json:"action,omitempty"`
 	// Date committed
 	Date *string `json:"date,omitempty"`
 	// Who is committing?
@@ -584,8 +584,10 @@ func (b DetectedIssueMitigation) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := b.Action.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "action"}}); err != nil {
-		return err
+	if b.Action != nil {
+		if err := b.Action.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "action"}}); err != nil {
+			return err
+		}
 	}
 	if err := xmlEncodePrimitiveString(e, "date", b.Date, nil); err != nil {
 		return err
@@ -629,9 +631,11 @@ func (r *DetectedIssueMitigation) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "action":
-				if err := r.Action.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Action = &v
 			case "date":
 				v, _, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

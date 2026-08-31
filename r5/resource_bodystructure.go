@@ -77,7 +77,7 @@ type BodyStructure struct {
 	// Attached images
 	Image []Attachment `json:"image,omitempty"`
 	// Who this is about
-	Patient Reference `json:"patient"`
+	Patient *Reference `json:"patient,omitempty"`
 }
 
 // GetResourceType returns the FHIR resource type.
@@ -242,8 +242,10 @@ func (r BodyStructure) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
-		return err
+	if r.Patient != nil {
+		if err := r.Patient.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "patient"}}); err != nil {
+			return err
+		}
 	}
 
 	return e.EncodeToken(start.End())
@@ -356,9 +358,11 @@ func (r *BodyStructure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				r.Image = append(r.Image, v)
 			case "patient":
-				if err := r.Patient.UnmarshalXML(d, t); err != nil {
+				var v Reference
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Patient = &v
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -380,7 +384,7 @@ type BodyStructureIncludedStructure struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Code that represents the included structure
-	Structure CodeableConcept `json:"structure,omitempty"`
+	Structure *CodeableConcept `json:"structure,omitempty"`
 	// Code that represents the included structure laterality
 	Laterality *CodeableConcept `json:"laterality,omitempty"`
 	// Landmark relative location
@@ -413,8 +417,10 @@ func (b BodyStructureIncludedStructure) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := b.Structure.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "structure"}}); err != nil {
-		return err
+	if b.Structure != nil {
+		if err := b.Structure.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "structure"}}); err != nil {
+			return err
+		}
 	}
 	if b.Laterality != nil {
 		if err := b.Laterality.MarshalXML(e, xml.StartElement{Name: xml.Name{Local: "laterality"}}); err != nil {
@@ -470,9 +476,11 @@ func (r *BodyStructureIncludedStructure) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "structure":
-				if err := r.Structure.UnmarshalXML(d, t); err != nil {
+				var v CodeableConcept
+				if err := v.UnmarshalXML(d, t); err != nil {
 					return err
 				}
+				r.Structure = &v
 			case "laterality":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -855,7 +863,7 @@ func (b *BodyStructureBuilder) AddImage(v Attachment) *BodyStructureBuilder {
 
 // SetPatient sets the Patient field.
 func (b *BodyStructureBuilder) SetPatient(v Reference) *BodyStructureBuilder {
-	b.bodyStructure.Patient = v
+	b.bodyStructure.Patient = &v
 	return b
 }
 
@@ -983,6 +991,6 @@ func WithBodyStructureImage(v Attachment) BodyStructureOption {
 // WithBodyStructurePatient sets the Patient field.
 func WithBodyStructurePatient(v Reference) BodyStructureOption {
 	return func(r *BodyStructure) {
-		r.Patient = v
+		r.Patient = &v
 	}
 }
