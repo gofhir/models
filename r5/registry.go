@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"strings"
 )
 
 // resourceFactories maps resourceType to factory function.
@@ -371,7 +372,13 @@ var resourceTypeKey = []byte(`"resourceType"`)
 // encoding/json is concerned and would otherwise slip past the guard.
 func isResourceTypeKey(token []byte, escaped bool) bool {
 	if !escaped {
-		return bytes.Equal(token, resourceTypeKey)
+		// Case-insensitive, because encoding/json matches object keys to struct
+		// fields that way when there is no exact match: {"RESOURCETYPE":"Patient"}
+		// decodes into ResourceType and is therefore a nested resource, whatever
+		// its spelling. Comparing exactly here left the depth guard counting only
+		// the canonical spelling, so nesting written any other way was accepted at
+		// any depth — reopening the denial of service the guard exists to stop.
+		return bytes.EqualFold(token, resourceTypeKey)
 	}
 	// Longest possible encoding of a 12-character name is 6 bytes per character
 	// plus the quotes; anything longer cannot be it.
@@ -382,7 +389,7 @@ func isResourceTypeKey(token []byte, escaped bool) bool {
 	if err := json.Unmarshal(token, &name); err != nil {
 		return false
 	}
-	return name == "resourceType"
+	return strings.EqualFold(name, "resourceType")
 }
 
 // scanJSONStringEnd returns the index just past the closing quote of the string
