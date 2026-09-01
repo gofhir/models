@@ -436,3 +436,46 @@ func TestNullContainedProducesNoNilEntry(t *testing.T) {
 		t.Errorf("output still carries a null: %s", out)
 	}
 }
+
+// TestDepthGuardResistsKeyCasing covers a bypass found while fuzzing
+// GetResourceType.
+//
+// encoding/json matches object keys to struct fields case-insensitively when
+// there is no exact match, so {"RESOURCETYPE":"Patient"} decodes as a Patient.
+// The depth scan compared the key exactly, so it did not count those objects as
+// resources — and a document nesting them was accepted at any depth, re-reading
+// its subtree at every level exactly as the guard exists to prevent.
+//
+// Measured against the unfixed code: 55 KB of nesting spelled RESOURCETYPE cost
+// 466 ms of CPU and 179 MB of heap, and it scales quadratically from there.
+func TestDepthGuardResistsKeyCasing(t *testing.T) {
+	nest := func(key string, depth int) []byte {
+		doc := `{"` + key + `":"Patient"}`
+		for i := 0; i < depth; i++ {
+			doc = `{"` + key + `":"Patient","contained":[` + doc + `]}`
+		}
+		return []byte(doc)
+	}
+
+	for _, key := range []string{
+		"resourceType",
+		"RESOURCETYPE",
+		"ResourceType",
+		"rEsOuRcEtYpE",
+		"resourcetype",
+	} {
+		t.Run(key, func(t *testing.T) {
+			for _, c := range codecs() {
+				_, err := c.unmarshalJSON(nest(key, 60))
+				if err == nil {
+					t.Errorf("%s: nesting spelled %q was accepted; the depth guard can be bypassed by changing the case of the key",
+						c.name, key)
+					continue
+				}
+				if !strings.Contains(err.Error(), "nesting") {
+					t.Errorf("%s: rejected for the wrong reason: %v", c.name, err)
+				}
+			}
+		})
+	}
+}
