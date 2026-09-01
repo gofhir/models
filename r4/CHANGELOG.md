@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.1](https://github.com/gofhir/models/compare/r4/v1.7.0...r4/v1.7.1) (2026-09-01)
+
+
+### Bug Fixes
+
+* **security:** count nested resources whatever the case of the key ([#41](https://github.com/gofhir/models/issues/41)) ([845f27a](https://github.com/gofhir/models/commit/845f27a59089f51ff206f666dce2b2eab7f90097))
+
 ## [1.7.0](https://github.com/gofhir/models/compare/r4/v1.6.0...r4/v1.7.0) (2026-08-28)
 
 
