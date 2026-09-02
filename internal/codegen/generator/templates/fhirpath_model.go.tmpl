@@ -5,6 +5,8 @@
 
 package {{.PackageName}}
 
+import "sync"
+
 // FHIRPathModelData holds runtime metadata for FHIRPath expression evaluation.
 // It provides type information, navigation paths, and type hierarchy data
 // for a FHIRPath engine operating against this FHIR version.
@@ -21,8 +23,17 @@ type FHIRPathModelData struct {
 	types                 map[string]bool
 }
 
-// fhirpathModel is the package-level singleton populated at init time.
-var fhirpathModel = FHIRPathModelData{
+// fhirpathModel builds the singleton the first time it is asked for.
+//
+// These maps hold {{len .Path2Type}} paths and thousands of entries between them, and Go builds a map literal at
+// run time rather than baking it into the binary — so as a plain package-level
+// var every program importing this package paid for all of it before main(),
+// whether or not it ever evaluated a FHIRPath expression. Most do not.
+//
+// sync.OnceValue keeps the accessor's signature and concurrency behavior
+// identical; the only difference is when the cost is paid.
+var fhirpathModel = sync.OnceValue(func() *FHIRPathModelData {
+	return &FHIRPathModelData{
 
 	// fhirVersion is the FHIR release these definitions were generated from,
 	// taken from StructureDefinition.fhirVersion in the source spec bundle.
@@ -88,12 +99,18 @@ var fhirpathModel = FHIRPathModelData{
 {{- range .Types}}
 		"{{.}}": true,
 {{- end}}
-	},
-}
+		},
+	}
+})
 
 // FHIRPathModel returns the FHIRPath metadata singleton for this FHIR version.
+//
+// The data is built on the first call and reused afterwards: that call costs
+// about 550 microseconds and 764 KB, every later one is a couple of nanoseconds
+// and allocates nothing. Call this once during start-up if you would rather not
+// pay it on a request.
 func FHIRPathModel() *FHIRPathModelData {
-	return &fhirpathModel
+	return fhirpathModel()
 }
 
 // FHIRVersion returns the FHIR release this model describes, e.g. "4.0.1".

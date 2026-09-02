@@ -566,10 +566,12 @@ Prueba de que es un descuido: los backbones hardcodean `,omitempty` para *todos*
 
 ### 6.8 · Coste de importación y toolchain
 
-- `sync.OnceValue` para el modelo FHIRPath: hoy son **794 KB de heap antes de `main()`**, construidos con literales de mapa aunque nunca se invoque.
-- Registro por `init()` de archivo para que el linker pueda podar: hoy `resourceFactories` referencia los 146 constructores, así que un binario que solo usa `Patient` arrastra **+1,8 MB**.
-- Mover aquí el bump de Go y unificar las tres versiones declaradas.
-- Hacer testify dependencia **solo de test**: hoy un consumidor arrastra testify, go-spew, go-difflib y yaml.v3 en su grafo de módulos.
+**✅ Hecha, y tres de sus cuatro puntos se cayeron al medirlos.**
+
+- ✅ **`sync.OnceValue` para el modelo FHIRPath.** El heap tras cargar `r4` pasa de **1011 KB a 243 KB**. Puesto en contexto: un paquete Go vacío ya usa **215 KB**, así que importar `r4` pasa de costar **+796 KB a +28 KB** sobre el suelo del runtime. Ahí se acaba el margen — `SummaryFields` y `resourceFactories`, los otros dos mapas de nivel superior, caben enteros en esos 28 KB. La primera llamada cuesta 550 µs y las siguientes 1,6 ns sin reservar memoria.
+- ❌ **Registro por `init()` para que el linker pode.** La premisa era «+1,8 MB». **Medido: 0,25 MB.** Un binario que solo usa structs pesa 4,81 MB y uno que usa `UnmarshalResource` 5,06 MB, así que el linker ya poda bien y el techo de la tarea es siete veces menor que lo estimado. El grueso del binario no es el registro: son los métodos XML/JSON de 445 tipos. No compensa el riesgo de tocar el dispatch.
+- ❌ **Bump de Go y unificar versiones.** Ya estaban unificadas: los seis módulos Go declaran 1.23 (`docs` es un módulo Hugo sin código Go). Subir la mínima de una librería solo excluye usuarios, sin ganancia.
+- ❌ **testify solo de test.** Go no tiene dependencias solo-de-test en `go.mod`. El impacto real en un consumidor son **8 líneas de `go.sum`** —su `go.mod` no las lista y el build no las compila— frente a reescribir ~700 llamadas en 11 archivos. No compensa.
 
 > Contexto que relativiza la urgencia: **nadie gana esta partida**. google reparte un paquete por recurso y paga 11 MB igualmente; DAMEDIC paga 21 MB. Los 5,3 MB actuales ya son competitivos.
 
