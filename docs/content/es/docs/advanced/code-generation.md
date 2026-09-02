@@ -34,7 +34,7 @@ Para cada version de FHIR, el generador produce los siguientes archivos:
 
 | Salida | Descripcion |
 |--------|-------------|
-| `resource_*.go` | Un archivo por tipo de recurso conteniendo la struct, marshaling JSON/XML, builder y opciones funcionales |
+| `resource_*.go` | Un archivo por tipo de recurso conteniendo la struct, marshaling JSON/XML y builder |
 | `datatypes.go` | Todos los tipos de datos FHIR (HumanName, Address, CodeableConcept, Quantity, etc.) |
 | `codesystems.go` | Todas las enumeraciones de sistemas de codigos FHIR como tipos `string` de Go con constantes |
 | `interfaces.go` | Las interfaces `Resource` y `DomainResource` |
@@ -52,7 +52,6 @@ Cada archivo de recurso (por ejemplo, `resource_patient.go`) contiene:
 4. **`MarshalXML`/`UnmarshalXML`** para la codificacion XML con manejo de namespace y atributos primitivos (experimental — ver [XML Marshaling](../../serialization/xml-marshaling/))
 5. **Structs de backbone elements** (por ejemplo, `PatientContact`, `PatientCommunication`) con sus propios metodos de marshaling
 6. **Un builder fluido** (`PatientBuilder` con `NewPatientBuilder`, `Set*`, `Add*`, `Build`)
-7. **Opciones funcionales** (tipo `PatientOption`, `NewPatient`, funciones `WithPatient*`)
 
 ## Pipeline Interno
 
@@ -84,7 +83,7 @@ El generador toma el modelo analizado y renderiza archivos fuente Go usando el p
 
 - Generacion de campos de struct con tipos Go correctos, tags JSON y tags XML
 - Generacion de metodos de interfaz basandose en si un recurso es un Resource base o DomainResource
-- Generacion de builders y opciones funcionales siguiendo patrones de nomenclatura consistentes
+- Generación de builders siguiendo patrones de nomenclatura consistentes
 - Generacion de marshal/unmarshal XML con reglas de codificacion especificas de FHIR
 - Generacion de constantes de sistemas de codigos con nombres compatibles con Go
 

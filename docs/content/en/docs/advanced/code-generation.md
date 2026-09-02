@@ -34,7 +34,7 @@ For each FHIR version, the generator produces the following files:
 
 | Output | Description |
 |--------|-------------|
-| `resource_*.go` | One file per resource type containing the struct, JSON/XML marshaling, builder, and functional options |
+| `resource_*.go` | One file per resource type containing the struct, JSON/XML marshaling, and builder |
 | `datatypes.go` | All FHIR data types (HumanName, Address, CodeableConcept, Quantity, etc.) |
 | `codesystems.go` | All FHIR code system enumerations as Go `string` types with constants |
 | `interfaces.go` | The `Resource` and `DomainResource` interfaces |
@@ -52,7 +52,6 @@ Each resource file (e.g., `resource_patient.go`) contains:
 4. **`MarshalXML`/`UnmarshalXML`** for XML encoding with namespace and primitive attribute handling (experimental — see [XML Marshaling](../../serialization/xml-marshaling/))
 5. **Backbone element structs** (e.g., `PatientContact`, `PatientCommunication`) with their own marshaling methods
 6. **A fluent builder** (`PatientBuilder` with `NewPatientBuilder`, `Set*`, `Add*`, `Build`)
-7. **Functional options** (`PatientOption` type, `NewPatient`, `WithPatient*` functions)
 
 ## Internal Pipeline
 
@@ -84,7 +83,7 @@ The generator takes the analyzed model and renders Go source files using Go's `t
 
 - Struct field generation with correct Go types, JSON tags, and XML tags
 - Interface method generation based on whether a resource is a base Resource or DomainResource
-- Builder and functional option generation following consistent naming patterns
+- Builder generation following consistent naming patterns
 - XML marshal/unmarshal generation with FHIR-specific encoding rules
 - Code system constant generation with Go-friendly names
 

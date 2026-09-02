@@ -12,7 +12,7 @@ Esta seccion proporciona una referencia detallada de API para los tipos y funcio
 {{< cards >}}
   {{< card link="resource-interfaces" title="Interfaces de Recursos" subtitle="Las interfaces Resource y DomainResource que todos los recursos FHIR implementan." icon="code" >}}
   {{< card link="registry-functions" title="Funciones del Registro" subtitle="Funciones de fabrica, deserializacion e introspeccion para el manejo dinamico de recursos." icon="server" >}}
-  {{< card link="builder-api" title="API del Builder" subtitle="Patron builder fluido con metodos Set/Add y opciones funcionales para cada tipo de recurso." icon="puzzle" >}}
+  {{< card link="builder-api" title="API del Builder" subtitle="Patrón builder fluido con métodos Set/Add para cada tipo de recurso." icon="puzzle" >}}
   {{< card link="fhirpath-model-api" title="API del Modelo FHIRPath" subtitle="Referencia completa para los metodos de acceso de FHIRPathModelData." icon="academic-cap" >}}
 {{< /cards >}}
 
@@ -25,7 +25,6 @@ La biblioteca exporta una superficie de API pequena y enfocada sobre las structs
 | Interfaces | `Resource`, `DomainResource` | Manejo generico de recursos sin type assertions |
 | Registro | `NewResource`, `UnmarshalResource`, `GetResourceType`, `IsKnownResourceType`, `AllResourceTypes` | Creacion y deserializacion dinamica de recursos |
 | Builders | `New<Resource>Builder`, `Set*`, `Add*`, `Build` | Construccion fluida de recursos |
-| Opciones Funcionales | `New<Resource>`, `With<Resource><Field>` | Creacion concisa de recursos con opciones |
 | Serializacion | `Marshal`, `MarshalIndent`, `MarshalResourceXML`, `MarshalResourceXMLIndent`, `UnmarshalResourceXML` | Codificacion JSON conforme a FHIR; la codificacion XML es experimental |
 | Metadatos | `FHIRPathModel`, `SummaryFields` | Informacion de tipos en tiempo de ejecucion y listas de campos de resumen |
 

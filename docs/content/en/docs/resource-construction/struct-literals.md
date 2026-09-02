@@ -169,4 +169,4 @@ Struct literals are a good choice when:
 - You are building a resource from a known, fixed set of values (such as test fixtures or seed data).
 - You prefer explicit Go idioms over builder abstractions.
 
-For situations where pointer boilerplate is cumbersome, consider the [Builder Pattern](../builder-pattern) or [Functional Options](../functional-options) instead.
+For situations where pointer boilerplate is cumbersome, consider the [Builder Pattern](../builder-pattern) instead.

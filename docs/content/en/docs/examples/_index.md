@@ -28,15 +28,15 @@ import (
 )
 
 func main() {
-    // Create a Patient using functional options
-    patient := r4.NewPatient(
-        r4.WithPatientId("hello-fhir"),
-        r4.WithPatientActive(true),
-        r4.WithPatientName(r4.HumanName{
+    // Create a Patient using the builder
+    patient := r4.NewPatientBuilder().
+        SetId("hello-fhir").
+        SetActive(true).
+        AddName(r4.HumanName{
             Family: ptrTo("World"),
             Given:  []string{"Hello"},
-        }),
-    )
+        }).
+        Build()
 
     // Serialize to JSON
     data, _ := r4.Marshal(patient)

@@ -47,10 +47,10 @@ func printResourceInfo(res r4.Resource) {
 }
 
 // Funciona con cualquier tipo de recurso
-patient := r4.NewPatient(r4.WithPatientId("p-123"))
+patient := r4.NewPatientBuilder().SetId("p-123").Build()
 printResourceInfo(patient) // Type: Patient, ID: p-123
 
-obs := r4.NewObservation(r4.WithObservationId("obs-456"))
+obs := r4.NewObservationBuilder().SetId("obs-456").Build()
 printResourceInfo(obs) // Type: Observation, ID: obs-456
 ```
 

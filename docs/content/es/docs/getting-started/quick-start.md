@@ -45,17 +45,17 @@ Salida:
 {"resourceType":"Patient","id":"123","active":true,"name":[{"family":"Smith","given":["John"]}]}
 ```
 
-## 2. Crear un Patient con Opciones Funcionales
+## 2. Crear un Patient con el Builder
 
-Las opciones funcionales eliminan el código repetitivo de punteros. Cada campo tiene una función `With<Resource><Field>()` correspondiente que establece el valor y maneja el envolvimiento del puntero internamente.
+El builder elimina el código repetitivo de punteros: `Set*` recibe un valor simple para los campos únicos y `Add*` añade a los repetibles, envolviendo el puntero internamente.
 
 ```go
-patient := r4.NewPatient(
-    r4.WithPatientId("patient-123"),
-    r4.WithPatientActive(true),
-    r4.WithPatientGender(r4.AdministrativeGenderMale),
-    r4.WithPatientBirthDate("1990-01-15"),
-)
+patient := r4.NewPatientBuilder().
+    SetId("patient-123").
+    SetActive(true).
+    SetGender(r4.AdministrativeGenderMale).
+    SetBirthDate("1990-01-15").
+    Build()
 ```
 
 También puedes agregar campos anidados complejos como nombres e identificadores:
@@ -64,18 +64,18 @@ También puedes agregar campos anidados complejos como nombres e identificadores
 use := r4.NameUseOfficial
 family := "Smith"
 
-patient := r4.NewPatient(
-    r4.WithPatientId("patient-456"),
-    r4.WithPatientName(r4.HumanName{
+patient := r4.NewPatientBuilder().
+    SetId("patient-456").
+    AddName(r4.HumanName{
         Use:    &use,
         Family: &family,
         Given:  []string{"John"},
-    }),
-    r4.WithPatientIdentifier(r4.Identifier{
+    }).
+    AddIdentifier(r4.Identifier{
         System: ptrTo("http://hospital.example.org/mrn"),
         Value:  ptrTo("12345"),
-    }),
-)
+    }).
+    Build()
 ```
 
 ## 3. Crear un Patient con el Builder Fluido
@@ -192,16 +192,16 @@ codeSystem := "http://loinc.org"
 codeCode := "8867-4"
 codeDisplay := "Heart rate"
 
-obs := r4.NewObservation(
-    r4.WithObservationId("obs-123"),
-    r4.WithObservationStatus(r4.ObservationStatusFinal),
-    r4.WithObservationCode(r4.CodeableConcept{
+obs := r4.NewObservationBuilder().
+    SetId("obs-123").
+    SetStatus(r4.ObservationStatusFinal).
+    SetCode(r4.CodeableConcept{
         Coding: []r4.Coding{
             {System: &codeSystem, Code: &codeCode, Display: &codeDisplay},
         },
-    }),
-    r4.WithObservationEffectiveDateTime("2024-01-15T10:30:00Z"),
-)
+    }).
+    SetEffectiveDateTime("2024-01-15T10:30:00Z").
+    Build()
 
 data, _ := r4.Marshal(obs)
 fmt.Println(string(data))

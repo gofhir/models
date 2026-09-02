@@ -72,7 +72,6 @@ The test suites cover:
 - JSON marshaling and unmarshaling (including `resourceType` injection and contained resources)
 - XML marshaling and unmarshaling (namespace handling, primitive encoding, backbone elements)
 - Fluent builder correctness
-- Functional options correctness
 - Registry functions (NewResource, UnmarshalResource, GetResourceType, etc.)
 - FHIRPath model metadata accuracy
 - Code system constant validation

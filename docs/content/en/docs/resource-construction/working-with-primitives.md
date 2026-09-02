@@ -45,14 +45,14 @@ patient := r4.Patient{Id: ptrTo("1")}
 patient := r4.Patient{Id: ptrTo("1"), Active: ptrTo(false)}
 ```
 
-Both the builder pattern and functional options handle pointer wrapping automatically, so you only deal with raw values:
+The builder handles pointer wrapping automatically, so you only deal with raw values:
 
 ```go
 // Builder -- no pointer needed
 patient := r4.NewPatientBuilder().SetActive(false).Build()
 
-// Functional options -- no pointer needed
-patient := r4.NewPatient(r4.WithPatientActive(false))
+// Builder -- no pointer needed
+patient := r4.NewPatientBuilder().SetActive(false).Build()
 ```
 
 ## The Decimal Type
@@ -240,9 +240,9 @@ const (
 Use the predefined constants for type safety:
 
 ```go
-patient := r4.NewPatient(
-    r4.WithPatientGender(r4.AdministrativeGenderMale),
-)
+patient := r4.NewPatientBuilder().
+    SetGender(r4.AdministrativeGenderMale).
+    Build()
 ```
 
 The compiler will reject invalid values, catching errors that would only surface at runtime with plain strings.

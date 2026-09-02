@@ -64,7 +64,7 @@ import "github.com/gofhir/models/r4b"
 import "github.com/gofhir/models/r5"
 ```
 
-All types, builders, functional options, code system constants, and serialization functions are exported from the version-specific package. There is no separate sub-package for builders or serialization -- everything is in one place.
+All types, builders, code system constants, and serialization functions are exported from the version-specific package. There is no separate sub-package for builders or serialization -- everything is in one place.
 
 ## Using Multiple FHIR Versions
 
@@ -78,16 +78,16 @@ import (
 
 func main() {
     // R4 Patient
-    patientR4 := r4.NewPatient(
-        r4.WithPatientId("r4-patient"),
-        r4.WithPatientActive(true),
-    )
+    patientR4 := r4.NewPatientBuilder().
+        SetId("r4-patient").
+        SetActive(true).
+        Build()
 
     // R5 Patient
-    patientR5 := r5.NewPatient(
-        r5.WithPatientId("r5-patient"),
-        r5.WithPatientActive(true),
-    )
+    patientR5 := r5.NewPatientBuilder().
+        SetId("r5-patient").
+        SetActive(true).
+        Build()
 
     _, _ = r4.Marshal(patientR4)
     _, _ = r5.Marshal(patientR5)
@@ -110,9 +110,9 @@ import (
 )
 
 func main() {
-    patient := r4.NewPatient(
-        r4.WithPatientId("test"),
-    )
+    patient := r4.NewPatientBuilder().
+        SetId("test").
+        Build()
     data, err := r4.Marshal(patient)
     if err != nil {
         panic(err)

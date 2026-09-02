@@ -11,13 +11,13 @@ Bienvenido a la documentación de **gofhir/models**. Esta biblioteca proporciona
 
 {{< cards cols="2" >}}
   {{< card link="getting-started" title="Primeros Pasos" subtitle="Instala la biblioteca, crea tu primer recurso FHIR y aprende sobre las versiones FHIR soportadas." icon="play" >}}
-  {{< card link="resource-construction" title="Construcción de Recursos" subtitle="Explora tres patrones para construir recursos: literales de struct, builders fluidos y opciones funcionales." icon="puzzle" >}}
+  {{< card link="resource-construction" title="Construcción de Recursos" subtitle="Explora dos patrones para construir recursos: literales de struct y builders fluidos." icon="puzzle" >}}
 {{< /cards >}}
 
 ## Características Principales
 
 - **Todas las versiones FHIR** -- R4 (4.0.1), R4B (4.3.0) y R5 (5.0.0) con cada recurso, elemento backbone, tipo de dato y sistema de códigos.
-- **Tres patrones de construcción** -- Elige entre literales de struct directos, cadenas de builder fluido u opciones funcionales según tu caso de uso.
+- **Dos patrones de construcción** -- Elige entre literales de struct directos y cadenas de builder fluido según tu caso de uso.
 - **Serialización JSON** -- Marshaling seguro para HTML que preserva el contenido XHTML narrativo de FHIR, con inyección automática de `resourceType`.
 - **Serialización XML** -- `MarshalXML` y `UnmarshalXML` en cada tipo. Experimental: la narrativa todavía no se preserva, así que JSON es el formato soportado. Consulta [XML Marshaling](serialization/xml-marshaling/).
 - **Deserialización polimórfica** -- `UnmarshalResource(data)` detecta automáticamente el `resourceType` y devuelve el struct Go correcto.

@@ -32,7 +32,7 @@ If you see no warnings, you are not using anything that v2 removes.
 
 ## Functional options become builders
 
-**Status: final.** This is the largest change by volume — 11,952 functions across the three modules — and the most mechanical.
+**Status: done.** This is the largest change by volume — 11,952 functions across the three modules — and the most mechanical. They are gone from v2, which is what the deprecation messages in v1.6.0 promised.
 
 Every `With<Resource><Field>` option has a builder method with the same parameter type and the same effect. The correspondence was verified pair by pair, not assumed: a test parses the generated code and compares the parameter type and the assignment for all 11,952.
 

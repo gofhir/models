@@ -175,4 +175,4 @@ El patrón builder es ideal cuando:
 - Quieres una cadena fluida y legible de asignaciones de campos.
 - Quieres evitar el código repetitivo de punteros para campos primitivos.
 
-Para una inicialización de una sola vez con control total, considera los [Literales de Struct](../struct-literals). Para configuración componible, consulta las [Opciones Funcionales](../functional-options).
+Para una inicialización de una sola vez con control total, considera los [Literales de Struct](../struct-literals).

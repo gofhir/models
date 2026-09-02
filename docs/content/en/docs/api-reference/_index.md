@@ -12,7 +12,7 @@ This section provides a detailed API reference for the core types and functions 
 {{< cards >}}
   {{< card link="resource-interfaces" title="Resource Interfaces" subtitle="The Resource and DomainResource interfaces that all FHIR resources implement." icon="code" >}}
   {{< card link="registry-functions" title="Registry Functions" subtitle="Factory, deserialization, and introspection functions for dynamic resource handling." icon="server" >}}
-  {{< card link="builder-api" title="Builder API" subtitle="Fluent builder pattern with Set/Add methods and functional options for every resource type." icon="puzzle" >}}
+  {{< card link="builder-api" title="Builder API" subtitle="Fluent builder pattern with Set/Add methods for every resource type." icon="puzzle" >}}
   {{< card link="fhirpath-model-api" title="FHIRPath Model API" subtitle="Complete reference for the FHIRPathModelData accessor methods." icon="academic-cap" >}}
 {{< /cards >}}
 
@@ -25,7 +25,6 @@ The library exports a small, focused API surface on top of the generated resourc
 | Interfaces | `Resource`, `DomainResource` | Generic resource handling without type assertions |
 | Registry | `NewResource`, `UnmarshalResource`, `GetResourceType`, `IsKnownResourceType`, `AllResourceTypes` | Dynamic resource creation and deserialization |
 | Builders | `New<Resource>Builder`, `Set*`, `Add*`, `Build` | Fluent resource construction |
-| Functional Options | `New<Resource>`, `With<Resource><Field>` | Concise resource creation with options |
 | Serialization | `Marshal`, `MarshalIndent`, `MarshalResourceXML`, `MarshalResourceXMLIndent`, `UnmarshalResourceXML` | FHIR-conformant JSON encoding; XML encoding is experimental |
 | Metadata | `FHIRPathModel`, `SummaryFields` | Runtime type information and summary field lists |
 

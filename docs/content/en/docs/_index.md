@@ -11,13 +11,13 @@ Welcome to the **gofhir/models** documentation. This library provides auto-gener
 
 {{< cards cols="2" >}}
   {{< card link="getting-started" title="Getting Started" subtitle="Install the library, create your first FHIR resource, and learn about supported FHIR versions." icon="play" >}}
-  {{< card link="resource-construction" title="Resource Construction" subtitle="Explore three patterns for building resources: struct literals, fluent builders, and functional options." icon="puzzle" >}}
+  {{< card link="resource-construction" title="Resource Construction" subtitle="Explore two patterns for building resources: struct literals and fluent builders." icon="puzzle" >}}
 {{< /cards >}}
 
 ## Key Features
 
 - **All FHIR versions** -- R4 (4.0.1), R4B (4.3.0), and R5 (5.0.0) with every resource, backbone element, data type, and code system.
-- **Three construction patterns** -- Choose between direct struct literals, fluent builder chains, or functional options depending on your use case.
+- **Two construction patterns** -- Choose between direct struct literals and fluent builder chains depending on your use case.
 - **JSON serialization** -- HTML-safe marshaling that preserves FHIR narrative XHTML content, with automatic `resourceType` injection.
 - **XML serialization** -- `MarshalXML` and `UnmarshalXML` on every type. Experimental: the narrative is not yet preserved, so JSON is the supported format. See [XML Marshaling](serialization/xml-marshaling/).
 - **Polymorphic deserialization** -- `UnmarshalResource(data)` automatically detects `resourceType` and returns the correct Go struct.
