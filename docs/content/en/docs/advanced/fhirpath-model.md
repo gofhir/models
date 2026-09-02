@@ -136,10 +136,10 @@ import (
 )
 
 // Build a resource
-patient := r4.NewPatient(
-    r4.WithPatientId("example-1"),
-    r4.WithPatientBirthDate("1990-01-15"),
-)
+patient := r4.NewPatientBuilder().
+    SetId("example-1").
+    SetBirthDate("1990-01-15").
+    Build()
 
 // Evaluate a FHIRPath expression against it
 result, err := fhirpath.Evaluate(patient, "Patient.birthDate",

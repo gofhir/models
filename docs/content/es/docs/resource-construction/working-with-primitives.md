@@ -45,14 +45,14 @@ patient := r4.Patient{Id: ptrTo("1")}
 patient := r4.Patient{Id: ptrTo("1"), Active: ptrTo(false)}
 ```
 
-Tanto el patrón builder como las opciones funcionales manejan el envolvimiento de punteros automáticamente, por lo que solo tratas con valores sin procesar:
+El builder maneja el envolvimiento de punteros automáticamente, por lo que solo tratas con valores sin procesar:
 
 ```go
 // Builder -- no pointer needed
 patient := r4.NewPatientBuilder().SetActive(false).Build()
 
-// Functional options -- no pointer needed
-patient := r4.NewPatient(r4.WithPatientActive(false))
+// Builder -- no hace falta puntero
+patient := r4.NewPatientBuilder().SetActive(false).Build()
 ```
 
 ## El Tipo Decimal
@@ -240,9 +240,9 @@ const (
 Usa las constantes predefinidas para seguridad de tipos:
 
 ```go
-patient := r4.NewPatient(
-    r4.WithPatientGender(r4.AdministrativeGenderMale),
-)
+patient := r4.NewPatientBuilder().
+    SetGender(r4.AdministrativeGenderMale).
+    Build()
 ```
 
 El compilador rechazará valores inválidos, capturando errores que solo se manifestarían en tiempo de ejecución con cadenas simples.

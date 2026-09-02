@@ -72,7 +72,6 @@ Las suites de pruebas cubren:
 - Marshaling y unmarshaling JSON (incluyendo inyeccion de `resourceType` y recursos contenidos)
 - Marshaling y unmarshaling XML (manejo de namespaces, codificacion de primitivos, backbone elements)
 - Correccion del builder fluido
-- Correccion de las opciones funcionales
 - Funciones del registro (NewResource, UnmarshalResource, GetResourceType, etc.)
 - Precision de los metadatos del modelo FHIRPath
 - Validacion de constantes de sistemas de codigos

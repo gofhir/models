@@ -1,11 +1,11 @@
 ---
 title: "API del Builder"
 linkTitle: "API del Builder"
-description: "Patron builder fluido y API de opciones funcionales para construir recursos FHIR."
+description: "Patrón builder fluido para construir recursos FHIR."
 weight: 3
 ---
 
-Cada tipo de recurso en `gofhir/models` proporciona dos APIs de construccion complementarias: un **builder fluido** y **opciones funcionales**. Ambos se generan automaticamente para todos los recursos en R4, R4B y R5.
+Cada tipo de recurso en `gofhir/models` proporciona un **builder fluido**, generado automáticamente para todos los recursos en R4, R4B y R5.
 
 ## Patron Builder Fluido
 
@@ -104,74 +104,15 @@ observation := r4.NewObservationBuilder().
     Build()
 ```
 
-## Patron de Opciones Funcionales
-
-El patron de opciones funcionales proporciona una sintaxis mas concisa para crear recursos en una sola llamada a funcion.
-
-### Estructura
-
-Para cada tipo de recurso `<Resource>`, la biblioteca genera:
-
-| Exportacion | Tipo | Descripcion |
-|-------------|------|-------------|
-| `<Resource>Option` | `func(*<Resource>)` | El tipo de funcion de opcion |
-| `New<Resource>(opts ...Option)` | `*<Resource>` | Constructor que aplica todas las opciones |
-| `With<Resource><Field>(v T)` | `<Resource>Option` | Funcion de opcion para cada campo |
-
-### Ejemplo con Patient
-
-```go
-import "github.com/gofhir/models/r4"
-
-patient := r4.NewPatient(
-    r4.WithPatientId("patient-456"),
-    r4.WithPatientActive(true),
-    r4.WithPatientGender(r4.AdministrativeGenderFemale),
-    r4.WithPatientBirthDate("1985-11-20"),
-    r4.WithPatientName(r4.HumanName{
-        Family: ptrTo("Smith"),
-        Given:  []string{"Jane"},
-    }),
-    r4.WithPatientIdentifier(r4.Identifier{
-        System: ptrTo("http://hospital.example.org/mrn"),
-        Value:  ptrTo("MRN-67890"),
-    }),
-)
-```
-
-### Ejemplo con Observation
-
-```go
-import "github.com/gofhir/models/r4"
-
-observation := r4.NewObservation(
-    r4.WithObservationId("obs-002"),
-    r4.WithObservationStatus(r4.ObservationStatusFinal),
-    r4.WithObservationCode(r4.CodeableConcept{
-        Coding: []r4.Coding{{
-            System:  ptrTo("http://loinc.org"),
-            Code:    ptrTo("8310-5"),
-            Display: ptrTo("Body temperature"),
-        }},
-    }),
-    r4.WithObservationValueQuantity(r4.Quantity{
-        Value:  r4.NewDecimalFromFloat64(37.2),
-        Unit:   ptrTo("Cel"),
-        System: ptrTo("http://unitsofmeasure.org"),
-        Code:   ptrTo("Cel"),
-    }),
-)
-```
-
 ## Elegir entre Patrones
 
-| Criterio | Builder Fluido | Opciones Funcionales |
-|----------|:--------------:|:--------------------:|
-| Encadenamiento de metodos | Si | No |
-| Expresion unica | Cadena multi-linea | Llamada a funcion unica |
-| Construccion incremental | Ajuste natural | Menos natural |
-| Campos condicionales | Agregar despues de crear el builder | Componer slices de opciones |
-| Testing/mocking | El builder se puede inyectar | Las opciones se pueden recopilar |
+| Criterio | Builder Fluido | Literal de Struct |
+|----------|:--------------:|:-----------------:|
+| Encadenamiento de métodos | Sí | No |
+| Construcción incremental | Encaja de forma natural | No es posible |
+| Campos condicionales | Añadir tras crear el builder | Requiere un if antes del literal |
+| Envoltura de punteros | La hacen `Set*`/`Add*` | Usa `Ptr` |
+| Todo conocido de antemano | Funciona | Es lo más corto |
 
 ### Cuando Usar el Builder
 
@@ -192,25 +133,24 @@ if hasAddress {
 patient := builder.Build()
 ```
 
-### Cuando Usar Opciones Funcionales
+### Cuándo Usar Literales de Struct
 
-Las opciones funcionales funcionan bien cuando se construye un recurso en una sola declaracion declarativa, o cuando las opciones se componen desde diferentes fuentes:
+Para un recurso que ya tienes completo, un literal de struct es más corto que cualquiera de los dos y no necesita builder:
 
 ```go
-opts := []r4.PatientOption{
-    r4.WithPatientId(id),
-    r4.WithPatientActive(true),
+patient := &r4.Patient{
+    Id:     r4.Ptr(id),
+    Active: r4.Ptr(true),
+    Name:   []r4.HumanName{name},
 }
-
-if hasName {
-    opts = append(opts, r4.WithPatientName(name))
-}
-
-patient := r4.NewPatient(opts...)
 ```
 
+Ambos estilos producen la misma salida —el builder solo asigna campos en el mismo struct—, así que elige el que se lea mejor donde estés.
+
 {{< callout type="info" >}}
-Tanto el builder como las opciones funcionales producen resultados identicos. Ambos establecen campos en la misma struct subyacente. Elige el estilo que mejor se adapte a los requisitos de legibilidad de tu codigo.
+**Las opciones funcionales eran el tercer estilo, y desaparecen en la v2.** Cada `With<Recurso><Campo>` tenía un método de builder con firma y comportamiento idénticos, así que la v1.6.0 marcó las 11.952 como `Deprecated` nombrando su reemplazo, y la v2 las eliminó: `Set*` para los campos simples, `Add*` para los repetibles.
+
+Si vienes de la v1, `staticcheck` sobre tu build de v1.6.0 o posterior te lista cada llamada con su reemplazo. Consulta la [guía de migración de v1 a v2](../../migration/v1-to-v2/).
 {{< /callout >}}
 
 ## Literales de Struct
@@ -224,9 +164,9 @@ patient := &r4.Patient{
     Gender:       ptrTo(r4.AdministrativeGenderMale),
     Name: []r4.HumanName{{
         Family: ptrTo("Johnson"),
-        Given:  []string{"Robert"},
+        Given:  r4.PtrSlice("Robert"),
     }},
 }
 ```
 
-`resourceType` no requiere atención en ninguno de los tres estilos: es un marcador de tamaño cero en el struct, así que un simple `r4.Patient{}` ya se serializa con el valor correcto. Léelo con `GetResourceType()`.
+`resourceType` no requiere atención en ninguno de los dos estilos: es un marcador de tamaño cero en el struct, así que un simple `r4.Patient{}` ya se serializa con el valor correcto. Léelo con `GetResourceType()`.

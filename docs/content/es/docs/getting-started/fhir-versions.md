@@ -24,10 +24,10 @@ R4 es la versión FHIR más ampliamente desplegada en sistemas de producción. F
 ```go
 import "github.com/gofhir/models/r4"
 
-patient := r4.NewPatient(
-    r4.WithPatientId("r4-example"),
-    r4.WithPatientGender(r4.AdministrativeGenderMale),
-)
+patient := r4.NewPatientBuilder().
+    SetId("r4-example").
+    SetGender(r4.AdministrativeGenderMale).
+    Build()
 ```
 
 El paquete R4 también incluye un sub-paquete opcional `helpers` con valores `CodeableConcept` preconstruidos:
@@ -46,10 +46,10 @@ R4B es una versión de transición publicada en 2022. Es retrocompatible con R4 
 ```go
 import "github.com/gofhir/models/r4b"
 
-patient := r4b.NewPatient(
-    r4b.WithPatientId("r4b-example"),
-    r4b.WithPatientGender(r4b.AdministrativeGenderFemale),
-)
+patient := r4b.NewPatientBuilder().
+    SetId("r4b-example").
+    SetGender(r4b.AdministrativeGenderFemale).
+    Build()
 ```
 
 R4B se utiliza típicamente cuando necesitas soportar sistemas que están en transición de R4 hacia R5.
@@ -61,10 +61,10 @@ R5 es la última versión normativa, publicada en 2023. Incluye cambios signific
 ```go
 import "github.com/gofhir/models/r5"
 
-patient := r5.NewPatient(
-    r5.WithPatientId("r5-example"),
-    r5.WithPatientGender(r5.AdministrativeGenderMale),
-)
+patient := r5.NewPatientBuilder().
+    SetId("r5-example").
+    SetGender(r5.AdministrativeGenderMale).
+    Build()
 ```
 
 Las diferencias clave en R5 incluyen cambios en las estructuras de componentes de Observation, nuevos recursos como `SubscriptionTopic` y recursos de terminología actualizados.
@@ -99,7 +99,7 @@ github.com/gofhir/models/
 Los tres paquetes exponen los mismos patrones de API:
 
 - Tipos de struct: `r4.Patient`, `r4b.Patient`, `r5.Patient`
-- Opciones funcionales: `r4.NewPatient(opts...)`, `r4b.NewPatient(opts...)`, `r5.NewPatient(opts...)`
+- Builders: `r4.NewPatientBuilder()`, `r4b.NewPatientBuilder()`, `r5.NewPatientBuilder()`
 - Builders: `r4.NewPatientBuilder()`, `r4b.NewPatientBuilder()`, `r5.NewPatientBuilder()`
 - Serialización: `r4.Marshal(v)`, `r4b.Marshal(v)`, `r5.Marshal(v)`
 - Deserialización: `r4.UnmarshalResource(data)`, `r4b.UnmarshalResource(data)`, `r5.UnmarshalResource(data)`

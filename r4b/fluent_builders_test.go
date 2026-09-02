@@ -227,32 +227,31 @@ func TestBundleBuilder(t *testing.T) {
 	})
 }
 
-func TestMixedBuilderPatterns(t *testing.T) {
-	t.Run("functional options and builder produce same result", func(t *testing.T) {
+func TestConstructionStylesAgree(t *testing.T) {
+	t.Run("builder and struct literal produce the same resource", func(t *testing.T) {
 		family := "Test"
 
-		// Using functional options
-		patient1 := r4b.NewPatient(
-			r4b.WithPatientId("test-001"),
-			r4b.WithPatientActive(true),
-			r4b.WithPatientGender(r4b.AdministrativeGenderMale),
-			r4b.WithPatientName(r4b.HumanName{Family: &family}),
-		)
-
-		// Using fluent builder
-		patient2 := r4b.NewPatientBuilder().
+		// The two ways left to build a resource. Functional options were the
+		// third; they were removed in v2 after v1.6.0 deprecated each one with
+		// the name of its builder replacement.
+		byBuilder := r4b.NewPatientBuilder().
 			SetId("test-001").
 			SetActive(true).
 			SetGender(r4b.AdministrativeGenderMale).
 			AddName(r4b.HumanName{Family: &family}).
 			Build()
 
-		// Both should produce equivalent results
-		assert.Equal(t, *patient1.Id, *patient2.Id)
-		assert.Equal(t, *patient1.Active, *patient2.Active)
-		assert.Equal(t, *patient1.Gender, *patient2.Gender)
-		require.Len(t, patient1.Name, 1)
-		require.Len(t, patient2.Name, 1)
-		assert.Equal(t, *patient1.Name[0].Family, *patient2.Name[0].Family)
+		byLiteral := &r4b.Patient{
+			Id:     r4b.Ptr("test-001"),
+			Active: r4b.Ptr(true),
+			Gender: r4b.Ptr(r4b.AdministrativeGenderMale),
+			Name:   []r4b.HumanName{{Family: &family}},
+		}
+
+		fromBuilder, err := r4b.Marshal(byBuilder)
+		require.NoError(t, err)
+		fromLiteral, err := r4b.Marshal(byLiteral)
+		require.NoError(t, err)
+		assert.JSONEq(t, string(fromLiteral), string(fromBuilder))
 	})
 }

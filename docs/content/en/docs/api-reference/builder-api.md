@@ -1,11 +1,11 @@
 ---
 title: "Builder API"
 linkTitle: "Builder API"
-description: "Fluent builder pattern and functional options API for constructing FHIR resources."
+description: "Fluent builder pattern for constructing FHIR resources."
 weight: 3
 ---
 
-Every resource type in `gofhir/models` provides two complementary construction APIs: a **fluent builder** and **functional options**. Both are generated automatically for all resources across R4, R4B, and R5.
+Every resource type in `gofhir/models` provides a **fluent builder**, generated automatically for all resources across R4, R4B, and R5.
 
 ## Fluent Builder Pattern
 
@@ -104,74 +104,15 @@ observation := r4.NewObservationBuilder().
     Build()
 ```
 
-## Functional Options Pattern
-
-The functional options pattern provides a more concise syntax for creating resources in a single function call.
-
-### Structure
-
-For each resource type `<Resource>`, the library generates:
-
-| Export | Type | Description |
-|--------|------|-------------|
-| `<Resource>Option` | `func(*<Resource>)` | The option function type |
-| `New<Resource>(opts ...Option)` | `*<Resource>` | Constructor that applies all options |
-| `With<Resource><Field>(v T)` | `<Resource>Option` | Option function for each field |
-
-### Patient Example
-
-```go
-import "github.com/gofhir/models/r4"
-
-patient := r4.NewPatient(
-    r4.WithPatientId("patient-456"),
-    r4.WithPatientActive(true),
-    r4.WithPatientGender(r4.AdministrativeGenderFemale),
-    r4.WithPatientBirthDate("1985-11-20"),
-    r4.WithPatientName(r4.HumanName{
-        Family: ptrTo("Smith"),
-        Given:  []string{"Jane"},
-    }),
-    r4.WithPatientIdentifier(r4.Identifier{
-        System: ptrTo("http://hospital.example.org/mrn"),
-        Value:  ptrTo("MRN-67890"),
-    }),
-)
-```
-
-### Observation Example
-
-```go
-import "github.com/gofhir/models/r4"
-
-observation := r4.NewObservation(
-    r4.WithObservationId("obs-002"),
-    r4.WithObservationStatus(r4.ObservationStatusFinal),
-    r4.WithObservationCode(r4.CodeableConcept{
-        Coding: []r4.Coding{{
-            System:  ptrTo("http://loinc.org"),
-            Code:    ptrTo("8310-5"),
-            Display: ptrTo("Body temperature"),
-        }},
-    }),
-    r4.WithObservationValueQuantity(r4.Quantity{
-        Value:  r4.NewDecimalFromFloat64(37.2),
-        Unit:   ptrTo("Cel"),
-        System: ptrTo("http://unitsofmeasure.org"),
-        Code:   ptrTo("Cel"),
-    }),
-)
-```
-
 ## Choosing Between Patterns
 
-| Criterion | Fluent Builder | Functional Options |
-|-----------|:--------------:|:------------------:|
+| Criterion | Fluent Builder | Struct Literal |
+|-----------|:--------------:|:--------------:|
 | Method chaining | Yes | No |
-| Single expression | Multi-line chain | Single function call |
-| Incremental construction | Natural fit | Less natural |
-| Conditional fields | Add after builder creation | Compose option slices |
-| Testing/mocking | Builder can be injected | Options can be collected |
+| Incremental construction | Natural fit | Not possible |
+| Conditional fields | Add after builder creation | Needs an if before the literal |
+| Pointer wrapping | Handled by Set*/Add* | Use `Ptr` |
+| Everything known up front | Works | Shortest |
 
 ### When to Use the Builder
 
@@ -192,25 +133,24 @@ if hasAddress {
 patient := builder.Build()
 ```
 
-### When to Use Functional Options
+### When to Use Struct Literals
 
-Functional options work well when constructing a resource in a single, declarative statement, or when options are composed from different sources:
+For a resource you have entirely in hand, a struct literal is shorter than either and needs no builder:
 
 ```go
-opts := []r4.PatientOption{
-    r4.WithPatientId(id),
-    r4.WithPatientActive(true),
+patient := &r4.Patient{
+    Id:     r4.Ptr(id),
+    Active: r4.Ptr(true),
+    Name:   []r4.HumanName{name},
 }
-
-if hasName {
-    opts = append(opts, r4.WithPatientName(name))
-}
-
-patient := r4.NewPatient(opts...)
 ```
 
+Both styles produce identical output — the builder just sets fields on the same struct — so pick whichever reads better where you are.
+
 {{< callout type="info" >}}
-Both the builder and functional options produce identical results. They both set fields on the same underlying struct. Choose whichever style better fits your code's readability requirements.
+**Functional options were the third style, and are gone as of v2.** Every `With<Resource><Field>` had a builder method with an identical signature and identical behaviour, so v1.6.0 marked all 11,952 of them `Deprecated` naming the replacement, and v2 removed them: `Set*` for single fields, `Add*` for repeating ones.
+
+If you are coming from v1, `staticcheck` on your v1.6.0 or later build lists every call site with its replacement. See the [v1-to-v2 migration guide](../../migration/v1-to-v2/).
 {{< /callout >}}
 
 ## Struct Literals
@@ -224,9 +164,9 @@ patient := &r4.Patient{
     Gender:       ptrTo(r4.AdministrativeGenderMale),
     Name: []r4.HumanName{{
         Family: ptrTo("Johnson"),
-        Given:  []string{"Robert"},
+        Given:  r4.PtrSlice("Robert"),
     }},
 }
 ```
 
-`resourceType` needs no attention in any of the three styles: it is a zero-size marker on the struct, so a plain `r4.Patient{}` already serializes with the right value. Read it back with `GetResourceType()`.
+`resourceType` needs no attention in either style: it is a zero-size marker on the struct, so a plain `r4.Patient{}` already serializes with the right value. Read it back with `GetResourceType()`.

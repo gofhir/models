@@ -39,7 +39,7 @@ layout: hextra-home
   {{< hextra/feature-card
     title="Tres Patrones de Construcción"
     icon="puzzle"
-    subtitle="Crea recursos FHIR a tu manera: literales de struct directos, cadenas de builder fluido u opciones funcionales. Cada patrón produce los mismos structs con tipado seguro."
+    subtitle="Crea recursos FHIR a tu manera: literales de struct directos o cadenas de builder fluido. Ambos producen los mismos structs con tipado seguro."
   >}}
   {{< hextra/feature-card
     title="Serialización JSON y XML"
@@ -72,11 +72,11 @@ import (
 )
 
 func main() {
-    patient := r4.NewPatient(
-        r4.WithPatientId("example"),
-        r4.WithPatientActive(true),
-        r4.WithPatientGender(r4.AdministrativeGenderMale),
-    )
+    patient := r4.NewPatientBuilder().
+        SetId("example").
+        SetActive(true).
+        SetGender(r4.AdministrativeGenderMale).
+        Build()
 
     data, _ := r4.Marshal(patient)
     fmt.Println(string(data))

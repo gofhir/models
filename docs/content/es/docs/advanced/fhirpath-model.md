@@ -136,10 +136,10 @@ import (
 )
 
 // Construir un recurso
-patient := r4.NewPatient(
-    r4.WithPatientId("example-1"),
-    r4.WithPatientBirthDate("1990-01-15"),
-)
+patient := r4.NewPatientBuilder().
+    SetId("example-1").
+    SetBirthDate("1990-01-15").
+    Build()
 
 // Evaluar una expresion FHIRPath contra el recurso
 result, err := fhirpath.Evaluate(patient, "Patient.birthDate",

@@ -169,4 +169,4 @@ Los literales de struct son una buena elección cuando:
 - Estás construyendo un recurso a partir de un conjunto conocido y fijo de valores (como fixtures de prueba o datos semilla).
 - Prefieres los modismos explícitos de Go sobre las abstracciones de builders.
 
-Para situaciones donde el código repetitivo de punteros es engorroso, considera el [Patrón Builder](../builder-pattern) o las [Opciones Funcionales](../functional-options) en su lugar.
+Para situaciones donde el código repetitivo de punteros es engorroso, considera el [Patrón Builder](../builder-pattern) en su lugar.

@@ -544,6 +544,10 @@ Incluir tabla de mapeo viejo→nuevo en la guía de migración.
 
 ### 6.6 · Consolidar en builders y retirar `With*`
 
+**✅ Hecha.** 11.952 `With*`, 445 `New<Res>(opts...)` y 445 tipos `<Res>Option` eliminados: **−90.784 líneas** de código generado. No era opcional: la v1.6.0 publicó 12.845 marcas `Deprecated` que dicen «removed in v2», así que sin esto la v2 dejaba esa promesa incumplida y los avisos de staticcheck señalando a algo que no había desaparecido.
+
+La doc costó más que el código: 34 bloques de ejemplo transformados a builder, la página `functional-options.md` eliminada en dos idiomas, la sección equivalente de `builder-api.md` borrada, ocho enlaces a la página muerta arreglados, y «tres patrones» pasado a dos en 20 sitios. Cada ejemplo transformado se compiló y ejecutó.
+
 **11.952 funciones**, no 3.765 —ese número era solo r4— repartidas en 26 páginas de documentación con 154 apariciones. `functional-options.md` desaparece entera.
 
 Extender los builders a datatypes y backbones **primero**; retirar después. Hoy cubren 146/146 recursos y **0** datatypes/backbones, así que la cadena fluida se rompe donde vive la mayor parte de los datos.

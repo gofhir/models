@@ -175,4 +175,4 @@ The builder pattern is ideal when:
 - You want a fluent, readable chain of field assignments.
 - You want to avoid pointer boilerplate for primitive fields.
 
-For one-shot initialization with full control, consider [Struct Literals](../struct-literals). For composable configuration, see [Functional Options](../functional-options).
+For one-shot initialization with full control, consider [Struct Literals](../struct-literals).

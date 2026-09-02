@@ -32,7 +32,7 @@ Si no ves ningún aviso, no estás usando nada que la v2 elimine.
 
 ## Las opciones funcionales pasan a ser builders
 
-**Estado: definitivo.** Es el cambio más grande por volumen —11.952 funciones entre los tres módulos— y el más mecánico.
+**Estado: hecho.** Es el cambio más grande por volumen —11.952 funciones entre los tres módulos— y el más mecánico. Ya no están en la v2, que es lo que prometían los mensajes de deprecación de la v1.6.0.
 
 Cada opción `With<Recurso><Campo>` tiene un método de builder con el mismo tipo de parámetro y el mismo efecto. La correspondencia se verificó par por par, no se dio por supuesta: un test parsea el código generado y compara el tipo del parámetro y la asignación de las 11.952.
 

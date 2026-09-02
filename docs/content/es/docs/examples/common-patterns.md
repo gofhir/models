@@ -142,12 +142,12 @@ bundle := r4.NewBundleBuilder().
     SetType(bundleType).
     AddEntry(r4.BundleEntry{
         FullUrl: ptrTo("urn:uuid:patient-temp-1"),
-        Resource: r4.NewPatient(
-            r4.WithPatientName(r4.HumanName{
+        Resource: r4.NewPatientBuilder().
+            AddName(r4.HumanName{
                 Family: ptrTo("Doe"),
-                Given:  []string{"Jane"},
-            }),
-        ),
+                Given:  r4.PtrSlice("Jane"),
+            }).
+            Build(),
         Request: &r4.BundleEntryRequest{
             Method: ptrTo(r4.HTTPVerbPOST),
             Url:    ptrTo("Patient"),
@@ -155,25 +155,25 @@ bundle := r4.NewBundleBuilder().
     }).
     AddEntry(r4.BundleEntry{
         FullUrl: ptrTo("urn:uuid:obs-temp-1"),
-        Resource: r4.NewObservation(
-            r4.WithObservationStatus(r4.ObservationStatusFinal),
-            r4.WithObservationCode(r4.CodeableConcept{
+        Resource: r4.NewObservationBuilder().
+            SetStatus(r4.ObservationStatusFinal).
+            SetCode(r4.CodeableConcept{
                 Coding: []r4.Coding{{
-                    System: ptrTo("http://loinc.org"),
-                    Code:   ptrTo("8867-4"),
+                    System:  ptrTo("http://loinc.org"),
+                    Code:    ptrTo("8867-4"),
                     Display: ptrTo("Heart rate"),
                 }},
-            }),
-            r4.WithObservationSubject(r4.Reference{
+            }).
+            SetSubject(r4.Reference{
                 Reference: ptrTo("urn:uuid:patient-temp-1"),
-            }),
-            r4.WithObservationValueQuantity(r4.Quantity{
+            }).
+            SetValueQuantity(r4.Quantity{
                 Value:  r4.NewDecimalFromFloat64(72),
                 Unit:   ptrTo("/min"),
                 System: ptrTo("http://unitsofmeasure.org"),
                 Code:   ptrTo("/min"),
-            }),
-        ),
+            }).
+            Build(),
         Request: &r4.BundleEntryRequest{
             Method: ptrTo(r4.HTTPVerbPOST),
             Url:    ptrTo("Observation"),

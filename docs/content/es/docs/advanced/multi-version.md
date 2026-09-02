@@ -43,9 +43,9 @@ La mayoria de los proyectos solo necesitan una version de FHIR. Importa el modul
 ```go
 import "github.com/gofhir/models/r4"
 
-patient := r4.NewPatient(
-    r4.WithPatientId("example"),
-)
+patient := r4.NewPatientBuilder().
+    SetId("example").
+    Build()
 ```
 
 Instalar con:
