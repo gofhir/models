@@ -2089,7 +2089,7 @@ type ElementDefinitionBindingAdditional struct {
 	// Additional content defined by implementations
 	Extension []Extension `json:"extension,omitempty"`
 	// maximum | minimum | required | extensible | candidate | current | preferred | ui | starter | component
-	Purpose *AdditionalBindingPurposeVS `json:"purpose,omitempty"`
+	Purpose *AdditionalBindingPurpose `json:"purpose,omitempty"`
 	// The value set for the additional binding
 	ValueSet *string `json:"valueSet,omitempty"`
 	// Documentation of the purpose of use of the binding
@@ -11590,7 +11590,7 @@ func (r *ElementDefinitionBindingAdditional) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.Extension = append(r.Extension, v)
 			case "purpose":
-				v, _, err := xmlDecodePrimitiveCode[AdditionalBindingPurposeVS](d, t)
+				v, _, err := xmlDecodePrimitiveCode[AdditionalBindingPurpose](d, t)
 				if err != nil {
 					return err
 				}

@@ -968,7 +968,7 @@ type SubscriptionTopicResourceTrigger struct {
 	// Data Type or Resource (reference to definition) for this trigger definition
 	Resource *string `json:"resource,omitempty"`
 	// create | update | delete
-	SupportedInteraction []*InteractionTrigger `json:"supportedInteraction,omitempty"`
+	SupportedInteraction []*MethodCode `json:"supportedInteraction,omitempty"`
 	// Query based trigger rule
 	QueryCriteria *SubscriptionTopicResourceTriggerQueryCriteria `json:"queryCriteria,omitempty"`
 	// FHIRPath based trigger rule
@@ -1060,7 +1060,7 @@ func (r *SubscriptionTopicResourceTrigger) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				r.Resource = v
 			case "supportedInteraction":
-				v, _, err := xmlDecodePrimitiveCode[InteractionTrigger](d, t)
+				v, _, err := xmlDecodePrimitiveCode[MethodCode](d, t)
 				if err != nil {
 					return err
 				}

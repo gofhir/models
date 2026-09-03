@@ -63,7 +63,7 @@ type Coverage struct {
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// insurance | self-pay | other
-	Kind *Kind `json:"kind,omitempty"`
+	Kind *CoverageKind `json:"kind,omitempty"`
 	// Extension for Kind
 	KindExt *Element `json:"_kind,omitempty"`
 	// Self-pay parties and responsibility
@@ -374,7 +374,7 @@ func (r *Coverage) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				r.Status = v
 				r.StatusExt = ext
 			case "kind":
-				v, ext, err := xmlDecodePrimitiveCode[Kind](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[CoverageKind](d, t)
 				if err != nil {
 					return err
 				}
@@ -1080,7 +1080,7 @@ func (b *CoverageBuilder) SetStatus(v FinancialResourceStatusCodes) *CoverageBui
 }
 
 // SetKind sets the Kind field.
-func (b *CoverageBuilder) SetKind(v Kind) *CoverageBuilder {
+func (b *CoverageBuilder) SetKind(v CoverageKind) *CoverageBuilder {
 	b.coverage.Kind = &v
 	return b
 }

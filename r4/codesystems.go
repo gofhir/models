@@ -855,78 +855,78 @@ const (
 	ContactPointUseMobile ContactPointUse = "mobile"
 )
 
-// ContractResourcePublicationStatusCodes represents Contract Resource Publication Status codes.
-type ContractResourcePublicationStatusCodes string
+// ContractPublicationStatus represents Contract Resource Publication Status codes.
+type ContractPublicationStatus string
 
-// ContractResourcePublicationStatusCodes values.
+// ContractPublicationStatus values.
 const (
-	// ContractResourcePublicationStatusCodesAmended - Amended
-	ContractResourcePublicationStatusCodesAmended ContractResourcePublicationStatusCodes = "amended"
-	// ContractResourcePublicationStatusCodesAppended - Appended
-	ContractResourcePublicationStatusCodesAppended ContractResourcePublicationStatusCodes = "appended"
-	// ContractResourcePublicationStatusCodesCancelled - Cancelled
-	ContractResourcePublicationStatusCodesCancelled ContractResourcePublicationStatusCodes = "cancelled"
-	// ContractResourcePublicationStatusCodesDisputed - Disputed
-	ContractResourcePublicationStatusCodesDisputed ContractResourcePublicationStatusCodes = "disputed"
-	// ContractResourcePublicationStatusCodesEnteredInError - Entered in Error
-	ContractResourcePublicationStatusCodesEnteredInError ContractResourcePublicationStatusCodes = "entered-in-error"
-	// ContractResourcePublicationStatusCodesExecutable - Executable
-	ContractResourcePublicationStatusCodesExecutable ContractResourcePublicationStatusCodes = "executable"
-	// ContractResourcePublicationStatusCodesExecuted - Executed
-	ContractResourcePublicationStatusCodesExecuted ContractResourcePublicationStatusCodes = "executed"
-	// ContractResourcePublicationStatusCodesNegotiable - Negotiable
-	ContractResourcePublicationStatusCodesNegotiable ContractResourcePublicationStatusCodes = "negotiable"
-	// ContractResourcePublicationStatusCodesOffered - Offered
-	ContractResourcePublicationStatusCodesOffered ContractResourcePublicationStatusCodes = "offered"
-	// ContractResourcePublicationStatusCodesPolicy - Policy
-	ContractResourcePublicationStatusCodesPolicy ContractResourcePublicationStatusCodes = "policy"
-	// ContractResourcePublicationStatusCodesRejected - Rejected
-	ContractResourcePublicationStatusCodesRejected ContractResourcePublicationStatusCodes = "rejected"
-	// ContractResourcePublicationStatusCodesRenewed - Renewed
-	ContractResourcePublicationStatusCodesRenewed ContractResourcePublicationStatusCodes = "renewed"
-	// ContractResourcePublicationStatusCodesRevoked - Revoked
-	ContractResourcePublicationStatusCodesRevoked ContractResourcePublicationStatusCodes = "revoked"
-	// ContractResourcePublicationStatusCodesResolved - Resolved
-	ContractResourcePublicationStatusCodesResolved ContractResourcePublicationStatusCodes = "resolved"
-	// ContractResourcePublicationStatusCodesTerminated - Terminated
-	ContractResourcePublicationStatusCodesTerminated ContractResourcePublicationStatusCodes = "terminated"
+	// ContractPublicationStatusAmended - Amended
+	ContractPublicationStatusAmended ContractPublicationStatus = "amended"
+	// ContractPublicationStatusAppended - Appended
+	ContractPublicationStatusAppended ContractPublicationStatus = "appended"
+	// ContractPublicationStatusCancelled - Cancelled
+	ContractPublicationStatusCancelled ContractPublicationStatus = "cancelled"
+	// ContractPublicationStatusDisputed - Disputed
+	ContractPublicationStatusDisputed ContractPublicationStatus = "disputed"
+	// ContractPublicationStatusEnteredInError - Entered in Error
+	ContractPublicationStatusEnteredInError ContractPublicationStatus = "entered-in-error"
+	// ContractPublicationStatusExecutable - Executable
+	ContractPublicationStatusExecutable ContractPublicationStatus = "executable"
+	// ContractPublicationStatusExecuted - Executed
+	ContractPublicationStatusExecuted ContractPublicationStatus = "executed"
+	// ContractPublicationStatusNegotiable - Negotiable
+	ContractPublicationStatusNegotiable ContractPublicationStatus = "negotiable"
+	// ContractPublicationStatusOffered - Offered
+	ContractPublicationStatusOffered ContractPublicationStatus = "offered"
+	// ContractPublicationStatusPolicy - Policy
+	ContractPublicationStatusPolicy ContractPublicationStatus = "policy"
+	// ContractPublicationStatusRejected - Rejected
+	ContractPublicationStatusRejected ContractPublicationStatus = "rejected"
+	// ContractPublicationStatusRenewed - Renewed
+	ContractPublicationStatusRenewed ContractPublicationStatus = "renewed"
+	// ContractPublicationStatusRevoked - Revoked
+	ContractPublicationStatusRevoked ContractPublicationStatus = "revoked"
+	// ContractPublicationStatusResolved - Resolved
+	ContractPublicationStatusResolved ContractPublicationStatus = "resolved"
+	// ContractPublicationStatusTerminated - Terminated
+	ContractPublicationStatusTerminated ContractPublicationStatus = "terminated"
 )
 
-// ContractResourceStatusCodes represents Contract Resource Status Codes.
-type ContractResourceStatusCodes string
+// ContractStatus represents Contract Resource Status Codes.
+type ContractStatus string
 
-// ContractResourceStatusCodes values.
+// ContractStatus values.
 const (
-	// ContractResourceStatusCodesAmended - Amended
-	ContractResourceStatusCodesAmended ContractResourceStatusCodes = "amended"
-	// ContractResourceStatusCodesAppended - Appended
-	ContractResourceStatusCodesAppended ContractResourceStatusCodes = "appended"
-	// ContractResourceStatusCodesCancelled - Cancelled
-	ContractResourceStatusCodesCancelled ContractResourceStatusCodes = "cancelled"
-	// ContractResourceStatusCodesDisputed - Disputed
-	ContractResourceStatusCodesDisputed ContractResourceStatusCodes = "disputed"
-	// ContractResourceStatusCodesEnteredInError - Entered in Error
-	ContractResourceStatusCodesEnteredInError ContractResourceStatusCodes = "entered-in-error"
-	// ContractResourceStatusCodesExecutable - Executable
-	ContractResourceStatusCodesExecutable ContractResourceStatusCodes = "executable"
-	// ContractResourceStatusCodesExecuted - Executed
-	ContractResourceStatusCodesExecuted ContractResourceStatusCodes = "executed"
-	// ContractResourceStatusCodesNegotiable - Negotiable
-	ContractResourceStatusCodesNegotiable ContractResourceStatusCodes = "negotiable"
-	// ContractResourceStatusCodesOffered - Offered
-	ContractResourceStatusCodesOffered ContractResourceStatusCodes = "offered"
-	// ContractResourceStatusCodesPolicy - Policy
-	ContractResourceStatusCodesPolicy ContractResourceStatusCodes = "policy"
-	// ContractResourceStatusCodesRejected - Rejected
-	ContractResourceStatusCodesRejected ContractResourceStatusCodes = "rejected"
-	// ContractResourceStatusCodesRenewed - Renewed
-	ContractResourceStatusCodesRenewed ContractResourceStatusCodes = "renewed"
-	// ContractResourceStatusCodesRevoked - Revoked
-	ContractResourceStatusCodesRevoked ContractResourceStatusCodes = "revoked"
-	// ContractResourceStatusCodesResolved - Resolved
-	ContractResourceStatusCodesResolved ContractResourceStatusCodes = "resolved"
-	// ContractResourceStatusCodesTerminated - Terminated
-	ContractResourceStatusCodesTerminated ContractResourceStatusCodes = "terminated"
+	// ContractStatusAmended - Amended
+	ContractStatusAmended ContractStatus = "amended"
+	// ContractStatusAppended - Appended
+	ContractStatusAppended ContractStatus = "appended"
+	// ContractStatusCancelled - Cancelled
+	ContractStatusCancelled ContractStatus = "cancelled"
+	// ContractStatusDisputed - Disputed
+	ContractStatusDisputed ContractStatus = "disputed"
+	// ContractStatusEnteredInError - Entered in Error
+	ContractStatusEnteredInError ContractStatus = "entered-in-error"
+	// ContractStatusExecutable - Executable
+	ContractStatusExecutable ContractStatus = "executable"
+	// ContractStatusExecuted - Executed
+	ContractStatusExecuted ContractStatus = "executed"
+	// ContractStatusNegotiable - Negotiable
+	ContractStatusNegotiable ContractStatus = "negotiable"
+	// ContractStatusOffered - Offered
+	ContractStatusOffered ContractStatus = "offered"
+	// ContractStatusPolicy - Policy
+	ContractStatusPolicy ContractStatus = "policy"
+	// ContractStatusRejected - Rejected
+	ContractStatusRejected ContractStatus = "rejected"
+	// ContractStatusRenewed - Renewed
+	ContractStatusRenewed ContractStatus = "renewed"
+	// ContractStatusRevoked - Revoked
+	ContractStatusRevoked ContractStatus = "revoked"
+	// ContractStatusResolved - Resolved
+	ContractStatusResolved ContractStatus = "resolved"
+	// ContractStatusTerminated - Terminated
+	ContractStatusTerminated ContractStatus = "terminated"
 )
 
 // ContributorType represents ContributorType.
@@ -1660,23 +1660,23 @@ const (
 	ImagingStudyStatusUnknown ImagingStudyStatus = "unknown"
 )
 
-// ImmunizationEvaluationStatusCodes represents Immunization Evaluation Status Codes.
-type ImmunizationEvaluationStatusCodes string
+// ImmunizationEvaluationStatus represents Immunization Evaluation Status Codes.
+type ImmunizationEvaluationStatus string
 
-// ImmunizationEvaluationStatusCodes values.
+// ImmunizationEvaluationStatus values.
 const (
-	ImmunizationEvaluationStatusCodesCompleted      ImmunizationEvaluationStatusCodes = "completed"
-	ImmunizationEvaluationStatusCodesEnteredInError ImmunizationEvaluationStatusCodes = "entered-in-error"
+	ImmunizationEvaluationStatusCompleted      ImmunizationEvaluationStatus = "completed"
+	ImmunizationEvaluationStatusEnteredInError ImmunizationEvaluationStatus = "entered-in-error"
 )
 
-// ImmunizationStatusCodes represents Immunization Status Codes.
-type ImmunizationStatusCodes string
+// ImmunizationStatus represents Immunization Status Codes.
+type ImmunizationStatus string
 
-// ImmunizationStatusCodes values.
+// ImmunizationStatus values.
 const (
-	ImmunizationStatusCodesCompleted      ImmunizationStatusCodes = "completed"
-	ImmunizationStatusCodesEnteredInError ImmunizationStatusCodes = "entered-in-error"
-	ImmunizationStatusCodesNotDone        ImmunizationStatusCodes = "not-done"
+	ImmunizationStatusCompleted      ImmunizationStatus = "completed"
+	ImmunizationStatusEnteredInError ImmunizationStatus = "entered-in-error"
+	ImmunizationStatusNotDone        ImmunizationStatus = "not-done"
 )
 
 // InvoicePriceComponentType represents InvoicePriceComponentType.
@@ -2069,48 +2069,48 @@ const (
 	MeasureReportTypeDataCollection MeasureReportType = "data-collection"
 )
 
-// MedicationAdministrationStatusCodes represents Medication administration  status  codes.
-type MedicationAdministrationStatusCodes string
+// MedicationAdministrationStatus represents Medication administration  status  codes.
+type MedicationAdministrationStatus string
 
-// MedicationAdministrationStatusCodes values.
+// MedicationAdministrationStatus values.
 const (
-	// MedicationAdministrationStatusCodesInProgress - In Progress
-	MedicationAdministrationStatusCodesInProgress MedicationAdministrationStatusCodes = "in-progress"
-	// MedicationAdministrationStatusCodesNotDone - Not Done
-	MedicationAdministrationStatusCodesNotDone MedicationAdministrationStatusCodes = "not-done"
-	// MedicationAdministrationStatusCodesOnHold - On Hold
-	MedicationAdministrationStatusCodesOnHold MedicationAdministrationStatusCodes = "on-hold"
-	// MedicationAdministrationStatusCodesCompleted - Completed
-	MedicationAdministrationStatusCodesCompleted MedicationAdministrationStatusCodes = "completed"
-	// MedicationAdministrationStatusCodesEnteredInError - Entered in Error
-	MedicationAdministrationStatusCodesEnteredInError MedicationAdministrationStatusCodes = "entered-in-error"
-	// MedicationAdministrationStatusCodesStopped - Stopped
-	MedicationAdministrationStatusCodesStopped MedicationAdministrationStatusCodes = "stopped"
-	// MedicationAdministrationStatusCodesUnknown - Unknown
-	MedicationAdministrationStatusCodesUnknown MedicationAdministrationStatusCodes = "unknown"
+	// MedicationAdministrationStatusInProgress - In Progress
+	MedicationAdministrationStatusInProgress MedicationAdministrationStatus = "in-progress"
+	// MedicationAdministrationStatusNotDone - Not Done
+	MedicationAdministrationStatusNotDone MedicationAdministrationStatus = "not-done"
+	// MedicationAdministrationStatusOnHold - On Hold
+	MedicationAdministrationStatusOnHold MedicationAdministrationStatus = "on-hold"
+	// MedicationAdministrationStatusCompleted - Completed
+	MedicationAdministrationStatusCompleted MedicationAdministrationStatus = "completed"
+	// MedicationAdministrationStatusEnteredInError - Entered in Error
+	MedicationAdministrationStatusEnteredInError MedicationAdministrationStatus = "entered-in-error"
+	// MedicationAdministrationStatusStopped - Stopped
+	MedicationAdministrationStatusStopped MedicationAdministrationStatus = "stopped"
+	// MedicationAdministrationStatusUnknown - Unknown
+	MedicationAdministrationStatusUnknown MedicationAdministrationStatus = "unknown"
 )
 
-// MedicationStatusCodes represents Medication  status  codes.
-type MedicationStatusCodes string
+// MedicationStatementStatus represents Medication  status  codes.
+type MedicationStatementStatus string
 
-// MedicationStatusCodes values.
+// MedicationStatementStatus values.
 const (
-	// MedicationStatusCodesActive - Active
-	MedicationStatusCodesActive MedicationStatusCodes = "active"
-	// MedicationStatusCodesCompleted - Completed
-	MedicationStatusCodesCompleted MedicationStatusCodes = "completed"
-	// MedicationStatusCodesEnteredInError - Entered in Error
-	MedicationStatusCodesEnteredInError MedicationStatusCodes = "entered-in-error"
-	// MedicationStatusCodesIntended - Intended
-	MedicationStatusCodesIntended MedicationStatusCodes = "intended"
-	// MedicationStatusCodesStopped - Stopped
-	MedicationStatusCodesStopped MedicationStatusCodes = "stopped"
-	// MedicationStatusCodesOnHold - On Hold
-	MedicationStatusCodesOnHold MedicationStatusCodes = "on-hold"
-	// MedicationStatusCodesUnknown - Unknown
-	MedicationStatusCodesUnknown MedicationStatusCodes = "unknown"
-	// MedicationStatusCodesNotTaken - Not Taken
-	MedicationStatusCodesNotTaken MedicationStatusCodes = "not-taken"
+	// MedicationStatementStatusActive - Active
+	MedicationStatementStatusActive MedicationStatementStatus = "active"
+	// MedicationStatementStatusCompleted - Completed
+	MedicationStatementStatusCompleted MedicationStatementStatus = "completed"
+	// MedicationStatementStatusEnteredInError - Entered in Error
+	MedicationStatementStatusEnteredInError MedicationStatementStatus = "entered-in-error"
+	// MedicationStatementStatusIntended - Intended
+	MedicationStatementStatusIntended MedicationStatementStatus = "intended"
+	// MedicationStatementStatusStopped - Stopped
+	MedicationStatementStatusStopped MedicationStatementStatus = "stopped"
+	// MedicationStatementStatusOnHold - On Hold
+	MedicationStatementStatusOnHold MedicationStatementStatus = "on-hold"
+	// MedicationStatementStatusUnknown - Unknown
+	MedicationStatementStatusUnknown MedicationStatementStatus = "unknown"
+	// MedicationStatementStatusNotTaken - Not Taken
+	MedicationStatementStatusNotTaken MedicationStatementStatus = "not-taken"
 )
 
 // MedicationStatus represents Medication  status  codes.
@@ -2126,42 +2126,42 @@ const (
 	MedicationStatusEnteredInError MedicationStatus = "entered-in-error"
 )
 
-// MedicationDispenseStatusCodes represents Medication dispense  status  codes.
-type MedicationDispenseStatusCodes string
+// MedicationDispenseStatus represents Medication dispense  status  codes.
+type MedicationDispenseStatus string
 
-// MedicationDispenseStatusCodes values.
+// MedicationDispenseStatus values.
 const (
-	// MedicationDispenseStatusCodesPreparation - Preparation
-	MedicationDispenseStatusCodesPreparation MedicationDispenseStatusCodes = "preparation"
-	// MedicationDispenseStatusCodesInProgress - In Progress
-	MedicationDispenseStatusCodesInProgress MedicationDispenseStatusCodes = "in-progress"
-	// MedicationDispenseStatusCodesCancelled - Cancelled
-	MedicationDispenseStatusCodesCancelled MedicationDispenseStatusCodes = "cancelled"
-	// MedicationDispenseStatusCodesOnHold - On Hold
-	MedicationDispenseStatusCodesOnHold MedicationDispenseStatusCodes = "on-hold"
-	// MedicationDispenseStatusCodesCompleted - Completed
-	MedicationDispenseStatusCodesCompleted MedicationDispenseStatusCodes = "completed"
-	// MedicationDispenseStatusCodesEnteredInError - Entered in Error
-	MedicationDispenseStatusCodesEnteredInError MedicationDispenseStatusCodes = "entered-in-error"
-	// MedicationDispenseStatusCodesStopped - Stopped
-	MedicationDispenseStatusCodesStopped MedicationDispenseStatusCodes = "stopped"
-	// MedicationDispenseStatusCodesDeclined - Declined
-	MedicationDispenseStatusCodesDeclined MedicationDispenseStatusCodes = "declined"
-	// MedicationDispenseStatusCodesUnknown - Unknown
-	MedicationDispenseStatusCodesUnknown MedicationDispenseStatusCodes = "unknown"
+	// MedicationDispenseStatusPreparation - Preparation
+	MedicationDispenseStatusPreparation MedicationDispenseStatus = "preparation"
+	// MedicationDispenseStatusInProgress - In Progress
+	MedicationDispenseStatusInProgress MedicationDispenseStatus = "in-progress"
+	// MedicationDispenseStatusCancelled - Cancelled
+	MedicationDispenseStatusCancelled MedicationDispenseStatus = "cancelled"
+	// MedicationDispenseStatusOnHold - On Hold
+	MedicationDispenseStatusOnHold MedicationDispenseStatus = "on-hold"
+	// MedicationDispenseStatusCompleted - Completed
+	MedicationDispenseStatusCompleted MedicationDispenseStatus = "completed"
+	// MedicationDispenseStatusEnteredInError - Entered in Error
+	MedicationDispenseStatusEnteredInError MedicationDispenseStatus = "entered-in-error"
+	// MedicationDispenseStatusStopped - Stopped
+	MedicationDispenseStatusStopped MedicationDispenseStatus = "stopped"
+	// MedicationDispenseStatusDeclined - Declined
+	MedicationDispenseStatusDeclined MedicationDispenseStatus = "declined"
+	// MedicationDispenseStatusUnknown - Unknown
+	MedicationDispenseStatusUnknown MedicationDispenseStatus = "unknown"
 )
 
-// MedicationKnowledgeStatusCodes represents Medication knowledge  status  codes.
-type MedicationKnowledgeStatusCodes string
+// MedicationKnowledgeStatus represents Medication knowledge  status  codes.
+type MedicationKnowledgeStatus string
 
-// MedicationKnowledgeStatusCodes values.
+// MedicationKnowledgeStatus values.
 const (
-	// MedicationKnowledgeStatusCodesActive - Active
-	MedicationKnowledgeStatusCodesActive MedicationKnowledgeStatusCodes = "active"
-	// MedicationKnowledgeStatusCodesInactive - Inactive
-	MedicationKnowledgeStatusCodesInactive MedicationKnowledgeStatusCodes = "inactive"
-	// MedicationKnowledgeStatusCodesEnteredInError - Entered in Error
-	MedicationKnowledgeStatusCodesEnteredInError MedicationKnowledgeStatusCodes = "entered-in-error"
+	// MedicationKnowledgeStatusActive - Active
+	MedicationKnowledgeStatusActive MedicationKnowledgeStatus = "active"
+	// MedicationKnowledgeStatusInactive - Inactive
+	MedicationKnowledgeStatusInactive MedicationKnowledgeStatus = "inactive"
+	// MedicationKnowledgeStatusEnteredInError - Entered in Error
+	MedicationKnowledgeStatusEnteredInError MedicationKnowledgeStatus = "entered-in-error"
 )
 
 // MedicationRequestIntent represents Medication request  intent.
@@ -2187,27 +2187,27 @@ const (
 	MedicationRequestIntentOption MedicationRequestIntent = "option"
 )
 
-// MedicationrequestStatus represents Medicationrequest  status.
-type MedicationrequestStatus string
+// MedicationRequestStatus represents Medicationrequest  status.
+type MedicationRequestStatus string
 
-// MedicationrequestStatus values.
+// MedicationRequestStatus values.
 const (
-	// MedicationrequestStatusActive - Active
-	MedicationrequestStatusActive MedicationrequestStatus = "active"
-	// MedicationrequestStatusOnHold - On Hold
-	MedicationrequestStatusOnHold MedicationrequestStatus = "on-hold"
-	// MedicationrequestStatusCancelled - Cancelled
-	MedicationrequestStatusCancelled MedicationrequestStatus = "cancelled"
-	// MedicationrequestStatusCompleted - Completed
-	MedicationrequestStatusCompleted MedicationrequestStatus = "completed"
-	// MedicationrequestStatusEnteredInError - Entered in Error
-	MedicationrequestStatusEnteredInError MedicationrequestStatus = "entered-in-error"
-	// MedicationrequestStatusStopped - Stopped
-	MedicationrequestStatusStopped MedicationrequestStatus = "stopped"
-	// MedicationrequestStatusDraft - Draft
-	MedicationrequestStatusDraft MedicationrequestStatus = "draft"
-	// MedicationrequestStatusUnknown - Unknown
-	MedicationrequestStatusUnknown MedicationrequestStatus = "unknown"
+	// MedicationRequestStatusActive - Active
+	MedicationRequestStatusActive MedicationRequestStatus = "active"
+	// MedicationRequestStatusOnHold - On Hold
+	MedicationRequestStatusOnHold MedicationRequestStatus = "on-hold"
+	// MedicationRequestStatusCancelled - Cancelled
+	MedicationRequestStatusCancelled MedicationRequestStatus = "cancelled"
+	// MedicationRequestStatusCompleted - Completed
+	MedicationRequestStatusCompleted MedicationRequestStatus = "completed"
+	// MedicationRequestStatusEnteredInError - Entered in Error
+	MedicationRequestStatusEnteredInError MedicationRequestStatus = "entered-in-error"
+	// MedicationRequestStatusStopped - Stopped
+	MedicationRequestStatusStopped MedicationRequestStatus = "stopped"
+	// MedicationRequestStatusDraft - Draft
+	MedicationRequestStatusDraft MedicationRequestStatus = "draft"
+	// MedicationRequestStatusUnknown - Unknown
+	MedicationRequestStatusUnknown MedicationRequestStatus = "unknown"
 )
 
 // MessageSignificanceCategory represents MessageSignificanceCategory.
@@ -2785,19 +2785,19 @@ const (
 	CatalogEntryRelationTypeIsReplacedBy CatalogEntryRelationType = "is-replaced-by"
 )
 
-// ClaimProcessingCodes represents Claim Processing Codes.
-type ClaimProcessingCodes string
+// RemittanceOutcome represents Claim Processing Codes.
+type RemittanceOutcome string
 
-// ClaimProcessingCodes values.
+// RemittanceOutcome values.
 const (
-	// ClaimProcessingCodesQueued - Queued
-	ClaimProcessingCodesQueued ClaimProcessingCodes = "queued"
-	// ClaimProcessingCodesComplete - Processing Complete
-	ClaimProcessingCodesComplete ClaimProcessingCodes = "complete"
-	// ClaimProcessingCodesError - Error
-	ClaimProcessingCodesError ClaimProcessingCodes = "error"
-	// ClaimProcessingCodesPartial - Partial Processing
-	ClaimProcessingCodesPartial ClaimProcessingCodes = "partial"
+	// RemittanceOutcomeQueued - Queued
+	RemittanceOutcomeQueued RemittanceOutcome = "queued"
+	// RemittanceOutcomeComplete - Processing Complete
+	RemittanceOutcomeComplete RemittanceOutcome = "complete"
+	// RemittanceOutcomeError - Error
+	RemittanceOutcomeError RemittanceOutcome = "error"
+	// RemittanceOutcomePartial - Partial Processing
+	RemittanceOutcomePartial RemittanceOutcome = "partial"
 )
 
 // TestReportActionResult represents TestReportActionResult.
@@ -2917,41 +2917,41 @@ const (
 	RequestPriorityStat RequestPriority = "stat"
 )
 
-// RequestResourceType represents RequestResourceType.
-type RequestResourceType string
+// ActivityDefinitionKind represents RequestResourceType.
+type ActivityDefinitionKind string
 
-// RequestResourceType values.
+// ActivityDefinitionKind values.
 const (
-	// RequestResourceTypeAppointment - Appointment
-	RequestResourceTypeAppointment RequestResourceType = "Appointment"
-	// RequestResourceTypeAppointmentresponse - AppointmentResponse
-	RequestResourceTypeAppointmentresponse RequestResourceType = "AppointmentResponse"
-	// RequestResourceTypeCareplan - CarePlan
-	RequestResourceTypeCareplan RequestResourceType = "CarePlan"
-	// RequestResourceTypeClaim - Claim
-	RequestResourceTypeClaim RequestResourceType = "Claim"
-	// RequestResourceTypeCommunicationrequest - CommunicationRequest
-	RequestResourceTypeCommunicationrequest RequestResourceType = "CommunicationRequest"
-	// RequestResourceTypeContract - Contract
-	RequestResourceTypeContract RequestResourceType = "Contract"
-	// RequestResourceTypeDevicerequest - DeviceRequest
-	RequestResourceTypeDevicerequest RequestResourceType = "DeviceRequest"
-	// RequestResourceTypeEnrollmentrequest - EnrollmentRequest
-	RequestResourceTypeEnrollmentrequest RequestResourceType = "EnrollmentRequest"
-	// RequestResourceTypeImmunizationrecommendation - ImmunizationRecommendation
-	RequestResourceTypeImmunizationrecommendation RequestResourceType = "ImmunizationRecommendation"
-	// RequestResourceTypeMedicationrequest - MedicationRequest
-	RequestResourceTypeMedicationrequest RequestResourceType = "MedicationRequest"
-	// RequestResourceTypeNutritionorder - NutritionOrder
-	RequestResourceTypeNutritionorder RequestResourceType = "NutritionOrder"
-	// RequestResourceTypeServicerequest - ServiceRequest
-	RequestResourceTypeServicerequest RequestResourceType = "ServiceRequest"
-	// RequestResourceTypeSupplyrequest - SupplyRequest
-	RequestResourceTypeSupplyrequest RequestResourceType = "SupplyRequest"
-	// RequestResourceTypeTask - Task
-	RequestResourceTypeTask RequestResourceType = "Task"
-	// RequestResourceTypeVisionprescription - VisionPrescription
-	RequestResourceTypeVisionprescription RequestResourceType = "VisionPrescription"
+	// ActivityDefinitionKindAppointment - Appointment
+	ActivityDefinitionKindAppointment ActivityDefinitionKind = "Appointment"
+	// ActivityDefinitionKindAppointmentresponse - AppointmentResponse
+	ActivityDefinitionKindAppointmentresponse ActivityDefinitionKind = "AppointmentResponse"
+	// ActivityDefinitionKindCareplan - CarePlan
+	ActivityDefinitionKindCareplan ActivityDefinitionKind = "CarePlan"
+	// ActivityDefinitionKindClaim - Claim
+	ActivityDefinitionKindClaim ActivityDefinitionKind = "Claim"
+	// ActivityDefinitionKindCommunicationrequest - CommunicationRequest
+	ActivityDefinitionKindCommunicationrequest ActivityDefinitionKind = "CommunicationRequest"
+	// ActivityDefinitionKindContract - Contract
+	ActivityDefinitionKindContract ActivityDefinitionKind = "Contract"
+	// ActivityDefinitionKindDevicerequest - DeviceRequest
+	ActivityDefinitionKindDevicerequest ActivityDefinitionKind = "DeviceRequest"
+	// ActivityDefinitionKindEnrollmentrequest - EnrollmentRequest
+	ActivityDefinitionKindEnrollmentrequest ActivityDefinitionKind = "EnrollmentRequest"
+	// ActivityDefinitionKindImmunizationrecommendation - ImmunizationRecommendation
+	ActivityDefinitionKindImmunizationrecommendation ActivityDefinitionKind = "ImmunizationRecommendation"
+	// ActivityDefinitionKindMedicationrequest - MedicationRequest
+	ActivityDefinitionKindMedicationrequest ActivityDefinitionKind = "MedicationRequest"
+	// ActivityDefinitionKindNutritionorder - NutritionOrder
+	ActivityDefinitionKindNutritionorder ActivityDefinitionKind = "NutritionOrder"
+	// ActivityDefinitionKindServicerequest - ServiceRequest
+	ActivityDefinitionKindServicerequest ActivityDefinitionKind = "ServiceRequest"
+	// ActivityDefinitionKindSupplyrequest - SupplyRequest
+	ActivityDefinitionKindSupplyrequest ActivityDefinitionKind = "SupplyRequest"
+	// ActivityDefinitionKindTask - Task
+	ActivityDefinitionKindTask ActivityDefinitionKind = "Task"
+	// ActivityDefinitionKindVisionprescription - VisionPrescription
+	ActivityDefinitionKindVisionprescription ActivityDefinitionKind = "VisionPrescription"
 )
 
 // RequestStatus represents RequestStatus.

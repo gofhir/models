@@ -71,7 +71,7 @@ type Permission struct {
 	// The asserted justification for using the data
 	Justification *PermissionJustification `json:"justification,omitempty"`
 	// deny-overrides | permit-overrides | ordered-deny-overrides | ordered-permit-overrides | deny-unless-permit | permit-unless-deny
-	Combining *PermissionRuleCombining `json:"combining,omitempty"`
+	Combining *PermissionCombining `json:"combining,omitempty"`
 	// Extension for Combining
 	CombiningExt *Element `json:"_combining,omitempty"`
 	// Constraints to the Permission
@@ -302,7 +302,7 @@ func (r *Permission) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				r.Justification = &v
 			case "combining":
-				v, ext, err := xmlDecodePrimitiveCode[PermissionRuleCombining](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[PermissionCombining](d, t)
 				if err != nil {
 					return err
 				}
@@ -1007,7 +1007,7 @@ func (b *PermissionBuilder) SetJustification(v PermissionJustification) *Permiss
 }
 
 // SetCombining sets the Combining field.
-func (b *PermissionBuilder) SetCombining(v PermissionRuleCombining) *PermissionBuilder {
+func (b *PermissionBuilder) SetCombining(v PermissionCombining) *PermissionBuilder {
 	b.permission.Combining = &v
 	return b
 }

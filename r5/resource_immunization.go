@@ -61,7 +61,7 @@ type Immunization struct {
 	// Authority that the immunization event is based on
 	BasedOn []Reference `json:"basedOn,omitempty"`
 	// completed | entered-in-error | not-done
-	Status *ImmunizationStatusCodes `json:"status,omitempty"`
+	Status *ImmunizationStatus `json:"status,omitempty"`
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Reason for current status
@@ -436,7 +436,7 @@ func (r *Immunization) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.BasedOn = append(r.BasedOn, v)
 			case "status":
-				v, ext, err := xmlDecodePrimitiveCode[ImmunizationStatusCodes](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ImmunizationStatus](d, t)
 				if err != nil {
 					return err
 				}
@@ -1153,7 +1153,7 @@ func (b *ImmunizationBuilder) AddBasedOn(v Reference) *ImmunizationBuilder {
 }
 
 // SetStatus sets the Status field.
-func (b *ImmunizationBuilder) SetStatus(v ImmunizationStatusCodes) *ImmunizationBuilder {
+func (b *ImmunizationBuilder) SetStatus(v ImmunizationStatus) *ImmunizationBuilder {
 	b.immunization.Status = &v
 	return b
 }

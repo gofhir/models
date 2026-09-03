@@ -92,6 +92,29 @@ type Binding struct {
 	Strength    string `json:"strength"` // required, extensible, preferred, example
 	Description string `json:"description,omitempty"`
 	ValueSet    string `json:"valueSet,omitempty"`
+	// Extension carries elementdefinition-bindingName, which is HL7's own name
+	// for the binding and a better source for a Go type name than the ValueSet's
+	// title. Only that one extension is read; the rest are ignored.
+	Extension []BindingExtension `json:"extension,omitempty"`
+}
+
+// BindingExtension is one entry of ElementDefinition.binding.extension.
+type BindingExtension struct {
+	URL         string `json:"url"`
+	ValueString string `json:"valueString,omitempty"`
+}
+
+// bindingNameExtension identifies the extension holding HL7's name for a binding.
+const bindingNameExtension = "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"
+
+// Name returns the binding's declared name, or "" when the extension is absent.
+func (b *Binding) Name() string {
+	for _, ext := range b.Extension {
+		if ext.URL == bindingNameExtension {
+			return ext.ValueString
+		}
+	}
+	return ""
 }
 
 // Constraint represents a FHIRPath constraint on an element.

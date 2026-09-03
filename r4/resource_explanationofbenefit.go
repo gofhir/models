@@ -107,7 +107,7 @@ type ExplanationOfBenefit struct {
 	// Claim response reference
 	ClaimResponse *Reference `json:"claimResponse,omitempty"`
 	// queued | complete | error | partial
-	Outcome *ClaimProcessingCodes `json:"outcome,omitempty"`
+	Outcome *RemittanceOutcome `json:"outcome,omitempty"`
 	// Extension for Outcome
 	OutcomeExt *Element `json:"_outcome,omitempty"`
 	// Disposition Message
@@ -657,7 +657,7 @@ func (r *ExplanationOfBenefit) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.ClaimResponse = &v
 			case "outcome":
-				v, ext, err := xmlDecodePrimitiveCode[ClaimProcessingCodes](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[RemittanceOutcome](d, t)
 				if err != nil {
 					return err
 				}
@@ -4570,7 +4570,7 @@ func (b *ExplanationOfBenefitBuilder) SetClaimResponse(v Reference) *Explanation
 }
 
 // SetOutcome sets the Outcome field.
-func (b *ExplanationOfBenefitBuilder) SetOutcome(v ClaimProcessingCodes) *ExplanationOfBenefitBuilder {
+func (b *ExplanationOfBenefitBuilder) SetOutcome(v RemittanceOutcome) *ExplanationOfBenefitBuilder {
 	b.explanationOfBenefit.Outcome = &v
 	return b
 }

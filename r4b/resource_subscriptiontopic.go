@@ -548,7 +548,7 @@ type SubscriptionTopicCanFilterBy struct {
 	// Canonical URL for a filterParameter definition
 	FilterDefinition *string `json:"filterDefinition,omitempty"`
 	// = | eq | ne | gt | lt | ge | le | sa | eb | ap | above | below | in | not-in | of-type
-	Modifier []*SubscriptionSearchModifier `json:"modifier,omitempty"`
+	Modifier []*SubscriptionTopicFilterBySearchModifier `json:"modifier,omitempty"`
 }
 
 // MarshalXML serializes SubscriptionTopicCanFilterBy to FHIR-conformant XML.
@@ -646,7 +646,7 @@ func (r *SubscriptionTopicCanFilterBy) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.FilterDefinition = v
 			case "modifier":
-				v, _, err := xmlDecodePrimitiveCode[SubscriptionSearchModifier](d, t)
+				v, _, err := xmlDecodePrimitiveCode[SubscriptionTopicFilterBySearchModifier](d, t)
 				if err != nil {
 					return err
 				}
@@ -901,7 +901,7 @@ type SubscriptionTopicResourceTrigger struct {
 	// Data Type or Resource (reference to definition) for this trigger definition
 	Resource *string `json:"resource,omitempty"`
 	// create | update | delete
-	SupportedInteraction []*InteractionTrigger `json:"supportedInteraction,omitempty"`
+	SupportedInteraction []*MethodCode `json:"supportedInteraction,omitempty"`
 	// Query based trigger rule
 	QueryCriteria *SubscriptionTopicResourceTriggerQueryCriteria `json:"queryCriteria,omitempty"`
 	// FHIRPath based trigger rule
@@ -993,7 +993,7 @@ func (r *SubscriptionTopicResourceTrigger) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				r.Resource = v
 			case "supportedInteraction":
-				v, _, err := xmlDecodePrimitiveCode[InteractionTrigger](d, t)
+				v, _, err := xmlDecodePrimitiveCode[MethodCode](d, t)
 				if err != nil {
 					return err
 				}

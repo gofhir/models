@@ -1703,7 +1703,7 @@ type PlanDefinitionActionParticipant struct {
 	// What actor
 	ActorId *string `json:"actorId,omitempty"`
 	// careteam | device | group | healthcareservice | location | organization | patient | practitioner | practitionerrole | relatedperson
-	Type *ActionParticipantType `json:"type,omitempty"`
+	Type *ActivityParticipantType `json:"type,omitempty"`
 	// Who or what can participate
 	TypeCanonical *string `json:"typeCanonical,omitempty"`
 	// Who or what can participate
@@ -1800,7 +1800,7 @@ func (r *PlanDefinitionActionParticipant) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.ActorId = v
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[ActionParticipantType](d, t)
+				v, _, err := xmlDecodePrimitiveCode[ActivityParticipantType](d, t)
 				if err != nil {
 					return err
 				}
@@ -2098,7 +2098,7 @@ type PlanDefinitionActorOption struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// careteam | device | group | healthcareservice | location | organization | patient | practitioner | practitionerrole | relatedperson
-	Type *ActionParticipantType `json:"type,omitempty"`
+	Type *ActivityParticipantType `json:"type,omitempty"`
 	// Who or what can participate
 	TypeCanonical *string `json:"typeCanonical,omitempty"`
 	// Who or what can participate
@@ -2179,7 +2179,7 @@ func (r *PlanDefinitionActorOption) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[ActionParticipantType](d, t)
+				v, _, err := xmlDecodePrimitiveCode[ActivityParticipantType](d, t)
 				if err != nil {
 					return err
 				}

@@ -75,7 +75,7 @@ type PaymentReconciliation struct {
 	// Responsible practitioner
 	Requestor *Reference `json:"requestor,omitempty"`
 	// queued | complete | error | partial
-	Outcome *ClaimProcessingCodes `json:"outcome,omitempty"`
+	Outcome *RemittanceOutcome `json:"outcome,omitempty"`
 	// Extension for Outcome
 	OutcomeExt *Element `json:"_outcome,omitempty"`
 	// Disposition message
@@ -370,7 +370,7 @@ func (r *PaymentReconciliation) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.Requestor = &v
 			case "outcome":
-				v, ext, err := xmlDecodePrimitiveCode[ClaimProcessingCodes](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[RemittanceOutcome](d, t)
 				if err != nil {
 					return err
 				}
@@ -849,7 +849,7 @@ func (b *PaymentReconciliationBuilder) SetRequestor(v Reference) *PaymentReconci
 }
 
 // SetOutcome sets the Outcome field.
-func (b *PaymentReconciliationBuilder) SetOutcome(v ClaimProcessingCodes) *PaymentReconciliationBuilder {
+func (b *PaymentReconciliationBuilder) SetOutcome(v RemittanceOutcome) *PaymentReconciliationBuilder {
 	b.paymentReconciliation.Outcome = &v
 	return b
 }

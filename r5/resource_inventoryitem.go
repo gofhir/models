@@ -59,7 +59,7 @@ type InventoryItem struct {
 	// Business identifier for the inventory item
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// active | inactive | entered-in-error | unknown
-	Status *InventoryItemStatusCodes `json:"status,omitempty"`
+	Status *InventoryItemStatus `json:"status,omitempty"`
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Category or class of the item
@@ -325,7 +325,7 @@ func (r *InventoryItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "status":
-				v, ext, err := xmlDecodePrimitiveCode[InventoryItemStatusCodes](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[InventoryItemStatus](d, t)
 				if err != nil {
 					return err
 				}
@@ -1319,7 +1319,7 @@ func (b *InventoryItemBuilder) AddIdentifier(v Identifier) *InventoryItemBuilder
 }
 
 // SetStatus sets the Status field.
-func (b *InventoryItemBuilder) SetStatus(v InventoryItemStatusCodes) *InventoryItemBuilder {
+func (b *InventoryItemBuilder) SetStatus(v InventoryItemStatus) *InventoryItemBuilder {
 	b.inventoryItem.Status = &v
 	return b
 }

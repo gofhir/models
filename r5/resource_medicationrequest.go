@@ -65,7 +65,7 @@ type MedicationRequest struct {
 	// Composite request this is part of
 	GroupIdentifier *Identifier `json:"groupIdentifier,omitempty"`
 	// active | on-hold | ended | stopped | completed | cancelled | entered-in-error | draft | unknown
-	Status *MedicationrequestStatus `json:"status,omitempty"`
+	Status *MedicationRequestStatus `json:"status,omitempty"`
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Reason for current status
@@ -476,7 +476,7 @@ func (r *MedicationRequest) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.GroupIdentifier = &v
 			case "status":
-				v, ext, err := xmlDecodePrimitiveCode[MedicationrequestStatus](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[MedicationRequestStatus](d, t)
 				if err != nil {
 					return err
 				}
@@ -1175,7 +1175,7 @@ func (b *MedicationRequestBuilder) SetGroupIdentifier(v Identifier) *MedicationR
 }
 
 // SetStatus sets the Status field.
-func (b *MedicationRequestBuilder) SetStatus(v MedicationrequestStatus) *MedicationRequestBuilder {
+func (b *MedicationRequestBuilder) SetStatus(v MedicationRequestStatus) *MedicationRequestBuilder {
 	b.medicationRequest.Status = &v
 	return b
 }

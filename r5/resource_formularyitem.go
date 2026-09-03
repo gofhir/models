@@ -61,7 +61,7 @@ type FormularyItem struct {
 	// Codes that identify this formulary item
 	Code *CodeableConcept `json:"code,omitempty"`
 	// active | entered-in-error | inactive
-	Status *FormularyItemStatusCodes `json:"status,omitempty"`
+	Status *FormularyItemStatus `json:"status,omitempty"`
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 }
@@ -254,7 +254,7 @@ func (r *FormularyItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				r.Code = &v
 			case "status":
-				v, ext, err := xmlDecodePrimitiveCode[FormularyItemStatusCodes](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[FormularyItemStatus](d, t)
 				if err != nil {
 					return err
 				}
@@ -355,7 +355,7 @@ func (b *FormularyItemBuilder) SetCode(v CodeableConcept) *FormularyItemBuilder 
 }
 
 // SetStatus sets the Status field.
-func (b *FormularyItemBuilder) SetStatus(v FormularyItemStatusCodes) *FormularyItemBuilder {
+func (b *FormularyItemBuilder) SetStatus(v FormularyItemStatus) *FormularyItemBuilder {
 	b.formularyItem.Status = &v
 	return b
 }

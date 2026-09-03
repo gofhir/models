@@ -63,7 +63,7 @@ type MedicationStatement struct {
 	// Part of referenced event
 	PartOf []Reference `json:"partOf,omitempty"`
 	// active | completed | entered-in-error | intended | stopped | on-hold | unknown | not-taken
-	Status *MedicationStatementStatusCodes `json:"status,omitempty"`
+	Status *MedicationStatementStatus `json:"status,omitempty"`
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Reason for current status
@@ -372,7 +372,7 @@ func (r *MedicationStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.PartOf = append(r.PartOf, v)
 			case "status":
-				v, ext, err := xmlDecodePrimitiveCode[MedicationStatementStatusCodes](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[MedicationStatementStatus](d, t)
 				if err != nil {
 					return err
 				}
@@ -571,7 +571,7 @@ func (b *MedicationStatementBuilder) AddPartOf(v Reference) *MedicationStatement
 }
 
 // SetStatus sets the Status field.
-func (b *MedicationStatementBuilder) SetStatus(v MedicationStatementStatusCodes) *MedicationStatementBuilder {
+func (b *MedicationStatementBuilder) SetStatus(v MedicationStatementStatus) *MedicationStatementBuilder {
 	b.medicationStatement.Status = &v
 	return b
 }

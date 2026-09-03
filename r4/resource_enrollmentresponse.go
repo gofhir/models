@@ -65,7 +65,7 @@ type EnrollmentResponse struct {
 	// Claim reference
 	Request *Reference `json:"request,omitempty"`
 	// queued | complete | error | partial
-	Outcome *ClaimProcessingCodes `json:"outcome,omitempty"`
+	Outcome *RemittanceOutcome `json:"outcome,omitempty"`
 	// Extension for Outcome
 	OutcomeExt *Element `json:"_outcome,omitempty"`
 	// Disposition Message
@@ -296,7 +296,7 @@ func (r *EnrollmentResponse) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Request = &v
 			case "outcome":
-				v, ext, err := xmlDecodePrimitiveCode[ClaimProcessingCodes](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[RemittanceOutcome](d, t)
 				if err != nil {
 					return err
 				}
@@ -429,7 +429,7 @@ func (b *EnrollmentResponseBuilder) SetRequest(v Reference) *EnrollmentResponseB
 }
 
 // SetOutcome sets the Outcome field.
-func (b *EnrollmentResponseBuilder) SetOutcome(v ClaimProcessingCodes) *EnrollmentResponseBuilder {
+func (b *EnrollmentResponseBuilder) SetOutcome(v RemittanceOutcome) *EnrollmentResponseBuilder {
 	b.enrollmentResponse.Outcome = &v
 	return b
 }

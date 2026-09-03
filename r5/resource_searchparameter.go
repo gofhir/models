@@ -127,7 +127,7 @@ type SearchParameter struct {
 	// Extension for Code
 	CodeExt *Element `json:"_code,omitempty"`
 	// The resource type(s) this search parameter applies to
-	Base []*VersionIndependentResourceTypesAll `json:"base,omitempty"`
+	Base []*FHIRTypes `json:"base,omitempty"`
 	// Extension for Base
 	BaseExt []*Element `json:"_base,omitempty"`
 	// number | date | string | token | reference | composite | quantity | uri | special
@@ -147,7 +147,7 @@ type SearchParameter struct {
 	// Extension for Constraint
 	ConstraintExt *Element `json:"_constraint,omitempty"`
 	// Types of resource (if a resource reference)
-	Target []*VersionIndependentResourceTypesAll `json:"target,omitempty"`
+	Target []*FHIRTypes `json:"target,omitempty"`
 	// Extension for Target
 	TargetExt []*Element `json:"_target,omitempty"`
 	// Allow multiple values per parameter (or)
@@ -580,7 +580,7 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				r.Code = v
 				r.CodeExt = ext
 			case "base":
-				v, _, err := xmlDecodePrimitiveCode[VersionIndependentResourceTypesAll](d, t)
+				v, _, err := xmlDecodePrimitiveCode[FHIRTypes](d, t)
 				if err != nil {
 					return err
 				}
@@ -615,7 +615,7 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				r.Constraint = v
 				r.ConstraintExt = ext
 			case "target":
-				v, _, err := xmlDecodePrimitiveCode[VersionIndependentResourceTypesAll](d, t)
+				v, _, err := xmlDecodePrimitiveCode[FHIRTypes](d, t)
 				if err != nil {
 					return err
 				}
@@ -974,7 +974,7 @@ func (b *SearchParameterBuilder) SetCode(v string) *SearchParameterBuilder {
 // Takes a plain value: the field is a slice of pointers so that an absent slot
 // can be expressed, but a builder call is always adding a value. For a slot that
 // is deliberately absent, build the slice directly and leave that entry nil.
-func (b *SearchParameterBuilder) AddBase(v VersionIndependentResourceTypesAll) *SearchParameterBuilder {
+func (b *SearchParameterBuilder) AddBase(v FHIRTypes) *SearchParameterBuilder {
 	b.searchParameter.Base = append(b.searchParameter.Base, &v)
 	return b
 }
@@ -1008,7 +1008,7 @@ func (b *SearchParameterBuilder) SetConstraint(v string) *SearchParameterBuilder
 // Takes a plain value: the field is a slice of pointers so that an absent slot
 // can be expressed, but a builder call is always adding a value. For a slot that
 // is deliberately absent, build the slice directly and leave that entry nil.
-func (b *SearchParameterBuilder) AddTarget(v VersionIndependentResourceTypesAll) *SearchParameterBuilder {
+func (b *SearchParameterBuilder) AddTarget(v FHIRTypes) *SearchParameterBuilder {
 	b.searchParameter.Target = append(b.searchParameter.Target, &v)
 	return b
 }

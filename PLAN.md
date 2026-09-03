@@ -538,9 +538,29 @@ Por eso la fase 4 añade solo los escalares, y aquí van los de array junto con 
 
 ### 6.5 · Renombrado de enums vía `bindingName`
 
-~2 días, no una nota al pie: la extensión **no se parsea hoy** (cero apariciones en el código) y el cambio renombra **657 tipos y 3.613 constantes** en los tres módulos, más la página `code-systems.md` completa en dos idiomas.
+**✅ Hecha, y una décima parte de lo estimado.** El plan decía **657 tipos y 3.613 constantes**. Lo medido: **48 renombrados (11 r4, 13 r4b, 24 r5) y 365 constantes**. La razón es que los nombres ya coincidían: **186 de los 206 enums de r4** llevaban exactamente su `bindingName`. Lo que faltaba era la minoría, y ahí está todo el valor —`MedicationStatusCodes` → `MedicationStatus`, `Currencies` → `CurrencyCode`.
 
-Incluir tabla de mapeo viejo→nuevo en la guía de migración.
+La extensión no se parseaba: se añadieron `Binding.Extension` y `Binding.Name()` al parser.
+
+**El `bindingName` es dato de la especificación, no un nombre pensado para Go.** Tomarlo a ciegas rompía o empeoraba cosas, y cada regla de rechazo salió de un fallo concreto:
+
+| Se rechaza cuando | Caso que lo obligó |
+|---|---|
+| varios bindings no coinciden | `request-priority`, enlazado desde 5 puntos en R4 con 5 nombres |
+| nombra un recurso | `subscription-status` → `SubscriptionStatus` en R4B/R5: **el paquete no compilaba** |
+| dice menos que el título | `verificationresult-status` → `Status`; artifact-assessment → `Disposition`, `InformationType`, `WorkflowStatus` |
+| colisiona con otro ValueSet | `Specimen.combined` (grouped\|pooled) anotado `bindingName="PublicationStatus"` |
+| no es identificador, o es errata | `appointment-type`, `LOINC LL379-9 answerlist`, `ConceptMapmapAttributeType` |
+
+Las dos últimas son erratas de HL7, no ambigüedades. La regla de «dice menos» es estructural —el `bindingName` es sufijo del nombre derivado del título— no una lista de nombres a mano.
+
+**El override manual de colisiones quedó redundante.** `medication-status` se resuelve ahora por su `bindingName`, y vaciar `valueSetCollisionOverrides` produce salida byte a byte idéntica en las tres versiones. Se conserva porque no cuesta nada y una colisión sin resolver hace fallar la generación: el `bindingName` que hoy la resuelve es dato upstream y puede cambiar.
+
+**Un renombrado no es igual en todas las versiones.** `MedicationStatusCodes` → `MedicationStatementStatus` en r4, pero → `MedicationStatus` en r4b/r5, porque en R4 dos ValueSets comparten el nombre «Medication Status Codes» y el tipo contenía el de MedicationStatement. Un `sed` global sobre un código multi-versión se equivoca aquí; la guía lo dice explícitamente.
+
+Tabla de mapeo viejo→nuevo en la guía de migración, en dos idiomas — y **verificada por test** (`conformance/migration_table_test.go`) contra los paquetes generados y una instantánea de los tipos de v1, para que no se pudra: cada fila debe describir un renombrado real, y ningún tipo puede desaparecer sin fila que diga dónde fue.
+
+`code-systems.md` no necesitó cambios: no nombraba ninguno de los 48.
 
 ### 6.6 · Consolidar en builders y retirar `With*`
 
