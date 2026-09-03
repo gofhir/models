@@ -580,12 +580,13 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				r.Code = v
 				r.CodeExt = ext
 			case "base":
-				v, _, err := xmlDecodePrimitiveCode[FHIRTypes](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[FHIRTypes](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Base = append(r.Base, v)
+				r.BaseExt = append(r.BaseExt, ext)
 			case "type":
 				v, ext, err := xmlDecodePrimitiveCode[SearchParamType](d, t)
 				if err != nil {
@@ -615,12 +616,13 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				r.Constraint = v
 				r.ConstraintExt = ext
 			case "target":
-				v, _, err := xmlDecodePrimitiveCode[FHIRTypes](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[FHIRTypes](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Target = append(r.Target, v)
+				r.TargetExt = append(r.TargetExt, ext)
 			case "multipleOr":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -636,26 +638,29 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				r.MultipleAnd = v
 				r.MultipleAndExt = ext
 			case "comparator":
-				v, _, err := xmlDecodePrimitiveCode[SearchComparator](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[SearchComparator](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Comparator = append(r.Comparator, v)
+				r.ComparatorExt = append(r.ComparatorExt, ext)
 			case "modifier":
-				v, _, err := xmlDecodePrimitiveCode[SearchModifierCode](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[SearchModifierCode](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Modifier = append(r.Modifier, v)
+				r.ModifierExt = append(r.ModifierExt, ext)
 			case "chain":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Chain = append(r.Chain, v)
+				r.ChainExt = append(r.ChainExt, ext)
 			case "component":
 				var v SearchParameterComponent
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -684,8 +689,12 @@ type SearchParameterComponent struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Defines how the part works
 	Definition *string `json:"definition,omitempty"`
+	// Extension for Definition
+	DefinitionExt *Element `json:"_definition,omitempty"`
 	// Subexpression relative to main expression
 	Expression *string `json:"expression,omitempty"`
+	// Extension for Expression
+	ExpressionExt *Element `json:"_expression,omitempty"`
 }
 
 // MarshalXML serializes SearchParameterComponent to FHIR-conformant XML.
@@ -710,10 +719,10 @@ func (b SearchParameterComponent) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "definition", b.Definition, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "definition", b.Definition, b.DefinitionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "expression", b.Expression, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "expression", b.Expression, b.ExpressionExt); err != nil {
 		return err
 	}
 
@@ -750,17 +759,19 @@ func (r *SearchParameterComponent) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "definition":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Definition = v
+				r.DefinitionExt = ext
 			case "expression":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Expression = v
+				r.ExpressionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

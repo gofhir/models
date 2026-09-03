@@ -688,6 +688,8 @@ type EvidenceCertainty struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Textual description of certainty
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Footnotes and/or explanatory notes
 	Note []Annotation `json:"note,omitempty"`
 	// Aspect of certainty being rated
@@ -696,6 +698,8 @@ type EvidenceCertainty struct {
 	Rating *CodeableConcept `json:"rating,omitempty"`
 	// Individual or group who did the rating
 	Rater *string `json:"rater,omitempty"`
+	// Extension for Rater
+	RaterExt *Element `json:"_rater,omitempty"`
 	// A domain or subdomain of certainty
 	Subcomponent []EvidenceCertainty `json:"subcomponent,omitempty"`
 }
@@ -722,7 +726,7 @@ func (b EvidenceCertainty) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	for _, item := range b.Note {
@@ -740,7 +744,7 @@ func (b EvidenceCertainty) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "rater", b.Rater, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "rater", b.Rater, b.RaterExt); err != nil {
 		return err
 	}
 	for _, item := range b.Subcomponent {
@@ -782,11 +786,12 @@ func (r *EvidenceCertainty) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "note":
 				var v Annotation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -806,11 +811,12 @@ func (r *EvidenceCertainty) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.Rating = &v
 			case "rater":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Rater = v
+				r.RaterExt = ext
 			case "subcomponent":
 				var v EvidenceCertainty
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -839,6 +845,8 @@ type EvidenceStatistic struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Description of content
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Footnotes and/or explanatory notes
 	Note []Annotation `json:"note,omitempty"`
 	// Type of statistic, e.g., relative risk
@@ -849,8 +857,12 @@ type EvidenceStatistic struct {
 	Quantity *Quantity `json:"quantity,omitempty"`
 	// The number of events associated with the statistic
 	NumberOfEvents *uint32 `json:"numberOfEvents,omitempty"`
+	// Extension for NumberOfEvents
+	NumberOfEventsExt *Element `json:"_numberOfEvents,omitempty"`
 	// The number of participants affected
 	NumberAffected *uint32 `json:"numberAffected,omitempty"`
+	// Extension for NumberAffected
+	NumberAffectedExt *Element `json:"_numberAffected,omitempty"`
 	// Number of samples in the statistic
 	SampleSize *EvidenceStatisticSampleSize `json:"sampleSize,omitempty"`
 	// An attribute of the Statistic
@@ -881,7 +893,7 @@ func (b EvidenceStatistic) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	for _, item := range b.Note {
@@ -904,10 +916,10 @@ func (b EvidenceStatistic) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "numberOfEvents", b.NumberOfEvents, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "numberOfEvents", b.NumberOfEvents, b.NumberOfEventsExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "numberAffected", b.NumberAffected, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "numberAffected", b.NumberAffected, b.NumberAffectedExt); err != nil {
 		return err
 	}
 	if b.SampleSize != nil {
@@ -959,11 +971,12 @@ func (r *EvidenceStatistic) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "note":
 				var v Annotation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -989,17 +1002,19 @@ func (r *EvidenceStatistic) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.Quantity = &v
 			case "numberOfEvents":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.NumberOfEvents = v
+				r.NumberOfEventsExt = ext
 			case "numberAffected":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.NumberAffected = v
+				r.NumberAffectedExt = ext
 			case "sampleSize":
 				var v EvidenceStatisticSampleSize
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1040,6 +1055,8 @@ type EvidenceStatisticAttributeEstimate struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Textual description of the attribute estimate
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Footnote or explanatory note about the estimate
 	Note []Annotation `json:"note,omitempty"`
 	// The type of attribute estimate, e.g., confidence interval or p value
@@ -1048,6 +1065,8 @@ type EvidenceStatisticAttributeEstimate struct {
 	Quantity *Quantity `json:"quantity,omitempty"`
 	// Level of confidence interval, e.g., 0.95 for 95% confidence interval
 	Level *Decimal `json:"level,omitempty"`
+	// Extension for Level
+	LevelExt *Element `json:"_level,omitempty"`
 	// Lower and upper bound values of the attribute estimate
 	Range *Range `json:"range,omitempty"`
 	// A nested attribute estimate; which is the attribute estimate of an attribute estimate
@@ -1076,7 +1095,7 @@ func (b EvidenceStatisticAttributeEstimate) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	for _, item := range b.Note {
@@ -1094,7 +1113,7 @@ func (b EvidenceStatisticAttributeEstimate) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "level", b.Level, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "level", b.Level, b.LevelExt); err != nil {
 		return err
 	}
 	if b.Range != nil {
@@ -1141,11 +1160,12 @@ func (r *EvidenceStatisticAttributeEstimate) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "note":
 				var v Annotation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1165,11 +1185,12 @@ func (r *EvidenceStatisticAttributeEstimate) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.Quantity = &v
 			case "level":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Level = v
+				r.LevelExt = ext
 			case "range":
 				var v Range
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1335,6 +1356,8 @@ type EvidenceStatisticModelCharacteristicVariable struct {
 	VariableDefinition *Reference `json:"variableDefinition,omitempty"`
 	// continuous | dichotomous | ordinal | polychotomous
 	Handling *EvidenceVariableHandling `json:"handling,omitempty"`
+	// Extension for Handling
+	HandlingExt *Element `json:"_handling,omitempty"`
 	// Description for grouping of ordinal or polychotomous variables
 	ValueCategory []CodeableConcept `json:"valueCategory,omitempty"`
 	// Discrete value for grouping of ordinal or polychotomous variables
@@ -1370,7 +1393,7 @@ func (b EvidenceStatisticModelCharacteristicVariable) MarshalXML(e *xml.Encoder,
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "handling", b.Handling, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "handling", b.Handling, b.HandlingExt); err != nil {
 		return err
 	}
 	for _, item := range b.ValueCategory {
@@ -1428,11 +1451,12 @@ func (r *EvidenceStatisticModelCharacteristicVariable) UnmarshalXML(d *xml.Decod
 				}
 				r.VariableDefinition = &v
 			case "handling":
-				v, _, err := xmlDecodePrimitiveCode[EvidenceVariableHandling](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[EvidenceVariableHandling](d, t)
 				if err != nil {
 					return err
 				}
 				r.Handling = v
+				r.HandlingExt = ext
 			case "valueCategory":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1473,14 +1497,22 @@ type EvidenceStatisticSampleSize struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Textual description of sample size for statistic
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Footnote or explanatory note about the sample size
 	Note []Annotation `json:"note,omitempty"`
 	// Number of contributing studies
 	NumberOfStudies *uint32 `json:"numberOfStudies,omitempty"`
+	// Extension for NumberOfStudies
+	NumberOfStudiesExt *Element `json:"_numberOfStudies,omitempty"`
 	// Cumulative number of participants
 	NumberOfParticipants *uint32 `json:"numberOfParticipants,omitempty"`
+	// Extension for NumberOfParticipants
+	NumberOfParticipantsExt *Element `json:"_numberOfParticipants,omitempty"`
 	// Number of participants with known results for measured variables
 	KnownDataCount *uint32 `json:"knownDataCount,omitempty"`
+	// Extension for KnownDataCount
+	KnownDataCountExt *Element `json:"_knownDataCount,omitempty"`
 }
 
 // MarshalXML serializes EvidenceStatisticSampleSize to FHIR-conformant XML.
@@ -1505,7 +1537,7 @@ func (b EvidenceStatisticSampleSize) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	for _, item := range b.Note {
@@ -1513,13 +1545,13 @@ func (b EvidenceStatisticSampleSize) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "numberOfStudies", b.NumberOfStudies, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "numberOfStudies", b.NumberOfStudies, b.NumberOfStudiesExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "numberOfParticipants", b.NumberOfParticipants, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "numberOfParticipants", b.NumberOfParticipants, b.NumberOfParticipantsExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "knownDataCount", b.KnownDataCount, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "knownDataCount", b.KnownDataCount, b.KnownDataCountExt); err != nil {
 		return err
 	}
 
@@ -1556,11 +1588,12 @@ func (r *EvidenceStatisticSampleSize) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "note":
 				var v Annotation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1568,23 +1601,26 @@ func (r *EvidenceStatisticSampleSize) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.Note = append(r.Note, v)
 			case "numberOfStudies":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.NumberOfStudies = v
+				r.NumberOfStudiesExt = ext
 			case "numberOfParticipants":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.NumberOfParticipants = v
+				r.NumberOfParticipantsExt = ext
 			case "knownDataCount":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.KnownDataCount = v
+				r.KnownDataCountExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1607,6 +1643,8 @@ type EvidenceVariableDefinition struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A text description or summary of the variable
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Footnotes and/or explanatory notes
 	Note []Annotation `json:"note,omitempty"`
 	// population | subpopulation | exposure | referenceExposure | measuredVariable | confounder
@@ -1641,7 +1679,7 @@ func (b EvidenceVariableDefinition) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	for _, item := range b.Note {
@@ -1703,11 +1741,12 @@ func (r *EvidenceVariableDefinition) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "note":
 				var v Annotation
 				if err := v.UnmarshalXML(d, t); err != nil {

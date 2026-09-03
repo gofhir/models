@@ -531,12 +531,13 @@ func (r *ImplementationGuide) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				r.License = v
 				r.LicenseExt = ext
 			case "fhirVersion":
-				v, _, err := xmlDecodePrimitiveCode[FHIRVersion](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[FHIRVersion](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.FhirVersion = append(r.FhirVersion, v)
+				r.FhirVersionExt = append(r.FhirVersionExt, ext)
 			case "dependsOn":
 				var v ImplementationGuideDependsOn
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -725,8 +726,12 @@ type ImplementationGuideDefinitionGrouping struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Descriptive name for the package
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Human readable text describing the package
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 }
 
 // MarshalXML serializes ImplementationGuideDefinitionGrouping to FHIR-conformant XML.
@@ -751,10 +756,10 @@ func (b ImplementationGuideDefinitionGrouping) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 
@@ -791,17 +796,19 @@ func (r *ImplementationGuideDefinitionGrouping) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -836,10 +843,16 @@ type ImplementationGuideDefinitionPage struct {
 	SourceMarkdownExt *Element `json:"_sourceMarkdown,omitempty"`
 	// Name of the page when published
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Short title shown for navigational assistance
 	Title *string `json:"title,omitempty"`
+	// Extension for Title
+	TitleExt *Element `json:"_title,omitempty"`
 	// html | markdown | xml | generated
 	Generation *GuidePageGeneration `json:"generation,omitempty"`
+	// Extension for Generation
+	GenerationExt *Element `json:"_generation,omitempty"`
 	// Nested Pages / Sections
 	Page []ImplementationGuideDefinitionPage `json:"page,omitempty"`
 }
@@ -875,13 +888,13 @@ func (b ImplementationGuideDefinitionPage) MarshalXML(e *xml.Encoder, start xml.
 	if err := xmlEncodePrimitiveString(e, "sourceMarkdown", b.SourceMarkdown, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "title", b.Title, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "title", b.Title, b.TitleExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "generation", b.Generation, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "generation", b.Generation, b.GenerationExt); err != nil {
 		return err
 	}
 	for _, item := range b.Page {
@@ -923,41 +936,47 @@ func (r *ImplementationGuideDefinitionPage) UnmarshalXML(d *xml.Decoder, start x
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "sourceUrl":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SourceUrl = v
+				_ = ext
 			case "sourceString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SourceString = v
+				_ = ext
 			case "sourceMarkdown":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SourceMarkdown = v
+				_ = ext
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "title":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Title = v
+				r.TitleExt = ext
 			case "generation":
-				v, _, err := xmlDecodePrimitiveCode[GuidePageGeneration](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[GuidePageGeneration](d, t)
 				if err != nil {
 					return err
 				}
 				r.Generation = v
+				r.GenerationExt = ext
 			case "page":
 				var v ImplementationGuideDefinitionPage
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -988,6 +1007,8 @@ type ImplementationGuideDefinitionParameter struct {
 	Code *Coding `json:"code,omitempty"`
 	// Value for named type
 	Value *string `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 }
 
 // MarshalXML serializes ImplementationGuideDefinitionParameter to FHIR-conformant XML.
@@ -1017,7 +1038,7 @@ func (b ImplementationGuideDefinitionParameter) MarshalXML(e *xml.Encoder, start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
 
@@ -1060,11 +1081,12 @@ func (r *ImplementationGuideDefinitionParameter) UnmarshalXML(d *xml.Decoder, st
 				}
 				r.Code = &v
 			case "value":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1089,16 +1111,28 @@ type ImplementationGuideDefinitionResource struct {
 	Reference *Reference `json:"reference,omitempty"`
 	// Versions this applies to (if different to IG)
 	FhirVersion []*FHIRVersion `json:"fhirVersion,omitempty"`
+	// Extension for FhirVersion
+	FhirVersionExt []*Element `json:"_fhirVersion,omitempty"`
 	// Human readable name for the resource
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Reason why included in guide
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Is this an example
 	IsExample *bool `json:"isExample,omitempty"`
+	// Extension for IsExample
+	IsExampleExt *Element `json:"_isExample,omitempty"`
 	// Profile(s) this is an example of
 	Profile []*string `json:"profile,omitempty"`
+	// Extension for Profile
+	ProfileExt []*Element `json:"_profile,omitempty"`
 	// Grouping this is part of
 	GroupingId *string `json:"groupingId,omitempty"`
+	// Extension for GroupingId
+	GroupingIdExt *Element `json:"_groupingId,omitempty"`
 }
 
 // MarshalXML serializes ImplementationGuideDefinitionResource to FHIR-conformant XML.
@@ -1128,22 +1162,22 @@ func (b ImplementationGuideDefinitionResource) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCodeArray(e, "fhirVersion", b.FhirVersion, nil); err != nil {
+	if err := xmlEncodePrimitiveCodeArray(e, "fhirVersion", b.FhirVersion, b.FhirVersionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "isExample", b.IsExample, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "isExample", b.IsExample, b.IsExampleExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "profile", b.Profile, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "profile", b.Profile, b.ProfileExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "groupingId", b.GroupingId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "groupingId", b.GroupingId, b.GroupingIdExt); err != nil {
 		return err
 	}
 
@@ -1186,43 +1220,49 @@ func (r *ImplementationGuideDefinitionResource) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.Reference = &v
 			case "fhirVersion":
-				v, _, err := xmlDecodePrimitiveCode[FHIRVersion](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[FHIRVersion](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.FhirVersion = append(r.FhirVersion, v)
+				r.FhirVersionExt = append(r.FhirVersionExt, ext)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "isExample":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.IsExample = v
+				r.IsExampleExt = ext
 			case "profile":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Profile = append(r.Profile, v)
+				r.ProfileExt = append(r.ProfileExt, ext)
 			case "groupingId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.GroupingId = v
+				r.GroupingIdExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1245,10 +1285,16 @@ type ImplementationGuideDefinitionTemplate struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type of template specified
 	Code *string `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// The source location for the template
 	Source *string `json:"source,omitempty"`
+	// Extension for Source
+	SourceExt *Element `json:"_source,omitempty"`
 	// The scope in which the template applies
 	Scope *string `json:"scope,omitempty"`
+	// Extension for Scope
+	ScopeExt *Element `json:"_scope,omitempty"`
 }
 
 // MarshalXML serializes ImplementationGuideDefinitionTemplate to FHIR-conformant XML.
@@ -1273,13 +1319,13 @@ func (b ImplementationGuideDefinitionTemplate) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "source", b.Source, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "source", b.Source, b.SourceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "scope", b.Scope, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "scope", b.Scope, b.ScopeExt); err != nil {
 		return err
 	}
 
@@ -1316,23 +1362,26 @@ func (r *ImplementationGuideDefinitionTemplate) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "source":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Source = v
+				r.SourceExt = ext
 			case "scope":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Scope = v
+				r.ScopeExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1355,12 +1404,20 @@ type ImplementationGuideDependsOn struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Identity of the IG that this depends on
 	Uri *string `json:"uri,omitempty"`
+	// Extension for Uri
+	UriExt *Element `json:"_uri,omitempty"`
 	// NPM Package name for IG this depends on
 	PackageId *string `json:"packageId,omitempty"`
+	// Extension for PackageId
+	PackageIdExt *Element `json:"_packageId,omitempty"`
 	// Version of the IG
 	Version *string `json:"version,omitempty"`
+	// Extension for Version
+	VersionExt *Element `json:"_version,omitempty"`
 	// Why dependency exists
 	Reason *string `json:"reason,omitempty"`
+	// Extension for Reason
+	ReasonExt *Element `json:"_reason,omitempty"`
 }
 
 // MarshalXML serializes ImplementationGuideDependsOn to FHIR-conformant XML.
@@ -1385,16 +1442,16 @@ func (b ImplementationGuideDependsOn) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "uri", b.Uri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "uri", b.Uri, b.UriExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "packageId", b.PackageId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "packageId", b.PackageId, b.PackageIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "version", b.Version, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "version", b.Version, b.VersionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "reason", b.Reason, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "reason", b.Reason, b.ReasonExt); err != nil {
 		return err
 	}
 
@@ -1431,29 +1488,33 @@ func (r *ImplementationGuideDependsOn) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "uri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Uri = v
+				r.UriExt = ext
 			case "packageId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.PackageId = v
+				r.PackageIdExt = ext
 			case "version":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Version = v
+				r.VersionExt = ext
 			case "reason":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Reason = v
+				r.ReasonExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1476,8 +1537,12 @@ type ImplementationGuideGlobal struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type this profile applies to
 	Type *string `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// Profile that all resources must conform to
 	Profile *string `json:"profile,omitempty"`
+	// Extension for Profile
+	ProfileExt *Element `json:"_profile,omitempty"`
 }
 
 // MarshalXML serializes ImplementationGuideGlobal to FHIR-conformant XML.
@@ -1502,10 +1567,10 @@ func (b ImplementationGuideGlobal) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "profile", b.Profile, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "profile", b.Profile, b.ProfileExt); err != nil {
 		return err
 	}
 
@@ -1542,17 +1607,19 @@ func (r *ImplementationGuideGlobal) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "profile":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Profile = v
+				r.ProfileExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1575,14 +1642,20 @@ type ImplementationGuideManifest struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Location of rendered implementation guide
 	Rendering *string `json:"rendering,omitempty"`
+	// Extension for Rendering
+	RenderingExt *Element `json:"_rendering,omitempty"`
 	// Resource in the implementation guide
 	Resource []ImplementationGuideManifestResource `json:"resource,omitempty"`
 	// HTML page within the parent IG
 	Page []ImplementationGuideManifestPage `json:"page,omitempty"`
 	// Image within the IG
 	Image []*string `json:"image,omitempty"`
+	// Extension for Image
+	ImageExt []*Element `json:"_image,omitempty"`
 	// Additional linkable file in IG
 	Other []*string `json:"other,omitempty"`
+	// Extension for Other
+	OtherExt []*Element `json:"_other,omitempty"`
 }
 
 // MarshalXML serializes ImplementationGuideManifest to FHIR-conformant XML.
@@ -1607,7 +1680,7 @@ func (b ImplementationGuideManifest) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "rendering", b.Rendering, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "rendering", b.Rendering, b.RenderingExt); err != nil {
 		return err
 	}
 	for _, item := range b.Resource {
@@ -1620,10 +1693,10 @@ func (b ImplementationGuideManifest) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "image", b.Image, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "image", b.Image, b.ImageExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "other", b.Other, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "other", b.Other, b.OtherExt); err != nil {
 		return err
 	}
 
@@ -1660,11 +1733,12 @@ func (r *ImplementationGuideManifest) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "rendering":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Rendering = v
+				r.RenderingExt = ext
 			case "resource":
 				var v ImplementationGuideManifestResource
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1678,19 +1752,21 @@ func (r *ImplementationGuideManifest) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.Page = append(r.Page, v)
 			case "image":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Image = append(r.Image, v)
+				r.ImageExt = append(r.ImageExt, ext)
 			case "other":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Other = append(r.Other, v)
+				r.OtherExt = append(r.OtherExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1713,10 +1789,16 @@ type ImplementationGuideManifestPage struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// HTML page name
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Title of the page, for references
 	Title *string `json:"title,omitempty"`
+	// Extension for Title
+	TitleExt *Element `json:"_title,omitempty"`
 	// Anchor available on the page
 	Anchor []*string `json:"anchor,omitempty"`
+	// Extension for Anchor
+	AnchorExt []*Element `json:"_anchor,omitempty"`
 }
 
 // MarshalXML serializes ImplementationGuideManifestPage to FHIR-conformant XML.
@@ -1741,13 +1823,13 @@ func (b ImplementationGuideManifestPage) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "title", b.Title, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "title", b.Title, b.TitleExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "anchor", b.Anchor, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "anchor", b.Anchor, b.AnchorExt); err != nil {
 		return err
 	}
 
@@ -1784,24 +1866,27 @@ func (r *ImplementationGuideManifestPage) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "title":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Title = v
+				r.TitleExt = ext
 			case "anchor":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Anchor = append(r.Anchor, v)
+				r.AnchorExt = append(r.AnchorExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1826,10 +1911,16 @@ type ImplementationGuideManifestResource struct {
 	Reference *Reference `json:"reference,omitempty"`
 	// Is this an example
 	IsExample *bool `json:"isExample,omitempty"`
+	// Extension for IsExample
+	IsExampleExt *Element `json:"_isExample,omitempty"`
 	// Profile(s) this is an example of
 	Profile []*string `json:"profile,omitempty"`
+	// Extension for Profile
+	ProfileExt []*Element `json:"_profile,omitempty"`
 	// Relative path for page in IG
 	RelativePath *string `json:"relativePath,omitempty"`
+	// Extension for RelativePath
+	RelativePathExt *Element `json:"_relativePath,omitempty"`
 }
 
 // MarshalXML serializes ImplementationGuideManifestResource to FHIR-conformant XML.
@@ -1859,13 +1950,13 @@ func (b ImplementationGuideManifestResource) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "isExample", b.IsExample, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "isExample", b.IsExample, b.IsExampleExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "profile", b.Profile, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "profile", b.Profile, b.ProfileExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "relativePath", b.RelativePath, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "relativePath", b.RelativePath, b.RelativePathExt); err != nil {
 		return err
 	}
 
@@ -1908,24 +1999,27 @@ func (r *ImplementationGuideManifestResource) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.Reference = &v
 			case "isExample":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.IsExample = v
+				r.IsExampleExt = ext
 			case "profile":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Profile = append(r.Profile, v)
+				r.ProfileExt = append(r.ProfileExt, ext)
 			case "relativePath":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.RelativePath = v
+				r.RelativePathExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

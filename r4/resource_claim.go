@@ -596,6 +596,8 @@ type ClaimAccident struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// When the incident occurred
 	Date *string `json:"date,omitempty"`
+	// Extension for Date
+	DateExt *Element `json:"_date,omitempty"`
 	// The nature of the accident
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Where the event occurred
@@ -626,7 +628,7 @@ func (b ClaimAccident) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "date", b.Date, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "date", b.Date, b.DateExt); err != nil {
 		return err
 	}
 	if b.Type != nil {
@@ -678,11 +680,12 @@ func (r *ClaimAccident) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "date":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Date = v
+				r.DateExt = ext
 			case "type":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -723,10 +726,14 @@ type ClaimCareTeam struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Order of care team
 	Sequence *uint32 `json:"sequence,omitempty"`
+	// Extension for Sequence
+	SequenceExt *Element `json:"_sequence,omitempty"`
 	// Practitioner or organization
 	Provider *Reference `json:"provider,omitempty"`
 	// Indicator of the lead practitioner
 	Responsible *bool `json:"responsible,omitempty"`
+	// Extension for Responsible
+	ResponsibleExt *Element `json:"_responsible,omitempty"`
 	// Function within the team
 	Role *CodeableConcept `json:"role,omitempty"`
 	// Practitioner credential or specialization
@@ -755,7 +762,7 @@ func (b ClaimCareTeam) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, b.SequenceExt); err != nil {
 		return err
 	}
 	if b.Provider != nil {
@@ -763,7 +770,7 @@ func (b ClaimCareTeam) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "responsible", b.Responsible, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "responsible", b.Responsible, b.ResponsibleExt); err != nil {
 		return err
 	}
 	if b.Role != nil {
@@ -810,11 +817,12 @@ func (r *ClaimCareTeam) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "sequence":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Sequence = v
+				r.SequenceExt = ext
 			case "provider":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -822,11 +830,12 @@ func (r *ClaimCareTeam) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				r.Provider = &v
 			case "responsible":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Responsible = v
+				r.ResponsibleExt = ext
 			case "role":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -861,6 +870,8 @@ type ClaimDiagnosis struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Diagnosis instance identifier
 	Sequence *uint32 `json:"sequence,omitempty"`
+	// Extension for Sequence
+	SequenceExt *Element `json:"_sequence,omitempty"`
 	// Nature of illness or problem
 	DiagnosisCodeableConcept *CodeableConcept `json:"diagnosisCodeableConcept,omitempty"`
 	// Nature of illness or problem
@@ -895,7 +906,7 @@ func (b ClaimDiagnosis) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, b.SequenceExt); err != nil {
 		return err
 	}
 	if b.DiagnosisCodeableConcept != nil {
@@ -957,11 +968,12 @@ func (r *ClaimDiagnosis) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "sequence":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Sequence = v
+				r.SequenceExt = ext
 			case "diagnosisCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1014,16 +1026,24 @@ type ClaimInsurance struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Insurance instance identifier
 	Sequence *uint32 `json:"sequence,omitempty"`
+	// Extension for Sequence
+	SequenceExt *Element `json:"_sequence,omitempty"`
 	// Coverage to be used for adjudication
 	Focal *bool `json:"focal,omitempty"`
+	// Extension for Focal
+	FocalExt *Element `json:"_focal,omitempty"`
 	// Pre-assigned Claim number
 	Identifier *Identifier `json:"identifier,omitempty"`
 	// Insurance information
 	Coverage *Reference `json:"coverage,omitempty"`
 	// Additional provider contract number
 	BusinessArrangement *string `json:"businessArrangement,omitempty"`
+	// Extension for BusinessArrangement
+	BusinessArrangementExt *Element `json:"_businessArrangement,omitempty"`
 	// Prior authorization reference number
 	PreAuthRef []*string `json:"preAuthRef,omitempty"`
+	// Extension for PreAuthRef
+	PreAuthRefExt []*Element `json:"_preAuthRef,omitempty"`
 	// Adjudication results
 	ClaimResponse *Reference `json:"claimResponse,omitempty"`
 }
@@ -1050,10 +1070,10 @@ func (b ClaimInsurance) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, b.SequenceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "focal", b.Focal, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "focal", b.Focal, b.FocalExt); err != nil {
 		return err
 	}
 	if b.Identifier != nil {
@@ -1066,10 +1086,10 @@ func (b ClaimInsurance) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "businessArrangement", b.BusinessArrangement, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "businessArrangement", b.BusinessArrangement, b.BusinessArrangementExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "preAuthRef", b.PreAuthRef, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "preAuthRef", b.PreAuthRef, b.PreAuthRefExt); err != nil {
 		return err
 	}
 	if b.ClaimResponse != nil {
@@ -1111,17 +1131,19 @@ func (r *ClaimInsurance) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "sequence":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Sequence = v
+				r.SequenceExt = ext
 			case "focal":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Focal = v
+				r.FocalExt = ext
 			case "identifier":
 				var v Identifier
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1135,18 +1157,20 @@ func (r *ClaimInsurance) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.Coverage = &v
 			case "businessArrangement":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.BusinessArrangement = v
+				r.BusinessArrangementExt = ext
 			case "preAuthRef":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.PreAuthRef = append(r.PreAuthRef, v)
+				r.PreAuthRefExt = append(r.PreAuthRefExt, ext)
 			case "claimResponse":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1175,14 +1199,24 @@ type ClaimItem struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Item instance identifier
 	Sequence *uint32 `json:"sequence,omitempty"`
+	// Extension for Sequence
+	SequenceExt *Element `json:"_sequence,omitempty"`
 	// Applicable careTeam members
 	CareTeamSequence []*uint32 `json:"careTeamSequence,omitempty"`
+	// Extension for CareTeamSequence
+	CareTeamSequenceExt []*Element `json:"_careTeamSequence,omitempty"`
 	// Applicable diagnoses
 	DiagnosisSequence []*uint32 `json:"diagnosisSequence,omitempty"`
+	// Extension for DiagnosisSequence
+	DiagnosisSequenceExt []*Element `json:"_diagnosisSequence,omitempty"`
 	// Applicable procedures
 	ProcedureSequence []*uint32 `json:"procedureSequence,omitempty"`
+	// Extension for ProcedureSequence
+	ProcedureSequenceExt []*Element `json:"_procedureSequence,omitempty"`
 	// Applicable exception and supporting information
 	InformationSequence []*uint32 `json:"informationSequence,omitempty"`
+	// Extension for InformationSequence
+	InformationSequenceExt []*Element `json:"_informationSequence,omitempty"`
 	// Revenue or cost center code
 	Revenue *CodeableConcept `json:"revenue,omitempty"`
 	// Benefit classification
@@ -1211,6 +1245,8 @@ type ClaimItem struct {
 	UnitPrice *Money `json:"unitPrice,omitempty"`
 	// Price scaling factor
 	Factor *Decimal `json:"factor,omitempty"`
+	// Extension for Factor
+	FactorExt *Element `json:"_factor,omitempty"`
 	// Total item cost
 	Net *Money `json:"net,omitempty"`
 	// Unique device identifier
@@ -1247,19 +1283,19 @@ func (b ClaimItem) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, b.SequenceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32Array(e, "careTeamSequence", b.CareTeamSequence, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32Array(e, "careTeamSequence", b.CareTeamSequence, b.CareTeamSequenceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32Array(e, "diagnosisSequence", b.DiagnosisSequence, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32Array(e, "diagnosisSequence", b.DiagnosisSequence, b.DiagnosisSequenceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32Array(e, "procedureSequence", b.ProcedureSequence, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32Array(e, "procedureSequence", b.ProcedureSequence, b.ProcedureSequenceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32Array(e, "informationSequence", b.InformationSequence, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32Array(e, "informationSequence", b.InformationSequence, b.InformationSequenceExt); err != nil {
 		return err
 	}
 	if b.Revenue != nil {
@@ -1320,7 +1356,7 @@ func (b ClaimItem) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "factor", b.Factor, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "factor", b.Factor, b.FactorExt); err != nil {
 		return err
 	}
 	if b.Net != nil {
@@ -1387,39 +1423,44 @@ func (r *ClaimItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "sequence":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Sequence = v
+				r.SequenceExt = ext
 			case "careTeamSequence":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.CareTeamSequence = append(r.CareTeamSequence, v)
+				r.CareTeamSequenceExt = append(r.CareTeamSequenceExt, ext)
 			case "diagnosisSequence":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DiagnosisSequence = append(r.DiagnosisSequence, v)
+				r.DiagnosisSequenceExt = append(r.DiagnosisSequenceExt, ext)
 			case "procedureSequence":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ProcedureSequence = append(r.ProcedureSequence, v)
+				r.ProcedureSequenceExt = append(r.ProcedureSequenceExt, ext)
 			case "informationSequence":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.InformationSequence = append(r.InformationSequence, v)
+				r.InformationSequenceExt = append(r.InformationSequenceExt, ext)
 			case "revenue":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1451,11 +1492,12 @@ func (r *ClaimItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.ProgramCode = append(r.ProgramCode, v)
 			case "servicedDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ServicedDate = v
+				_ = ext
 			case "servicedPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1493,11 +1535,12 @@ func (r *ClaimItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.UnitPrice = &v
 			case "factor":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Factor = v
+				r.FactorExt = ext
 			case "net":
 				var v Money
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1556,6 +1599,8 @@ type ClaimItemDetail struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Item instance identifier
 	Sequence *uint32 `json:"sequence,omitempty"`
+	// Extension for Sequence
+	SequenceExt *Element `json:"_sequence,omitempty"`
 	// Revenue or cost center code
 	Revenue *CodeableConcept `json:"revenue,omitempty"`
 	// Benefit classification
@@ -1572,6 +1617,8 @@ type ClaimItemDetail struct {
 	UnitPrice *Money `json:"unitPrice,omitempty"`
 	// Price scaling factor
 	Factor *Decimal `json:"factor,omitempty"`
+	// Extension for Factor
+	FactorExt *Element `json:"_factor,omitempty"`
 	// Total item cost
 	Net *Money `json:"net,omitempty"`
 	// Unique device identifier
@@ -1602,7 +1649,7 @@ func (b ClaimItemDetail) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, b.SequenceExt); err != nil {
 		return err
 	}
 	if b.Revenue != nil {
@@ -1640,7 +1687,7 @@ func (b ClaimItemDetail) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "factor", b.Factor, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "factor", b.Factor, b.FactorExt); err != nil {
 		return err
 	}
 	if b.Net != nil {
@@ -1692,11 +1739,12 @@ func (r *ClaimItemDetail) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "sequence":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Sequence = v
+				r.SequenceExt = ext
 			case "revenue":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1740,11 +1788,12 @@ func (r *ClaimItemDetail) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.UnitPrice = &v
 			case "factor":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Factor = v
+				r.FactorExt = ext
 			case "net":
 				var v Money
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1785,6 +1834,8 @@ type ClaimItemDetailSubDetail struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Item instance identifier
 	Sequence *uint32 `json:"sequence,omitempty"`
+	// Extension for Sequence
+	SequenceExt *Element `json:"_sequence,omitempty"`
 	// Revenue or cost center code
 	Revenue *CodeableConcept `json:"revenue,omitempty"`
 	// Benefit classification
@@ -1801,6 +1852,8 @@ type ClaimItemDetailSubDetail struct {
 	UnitPrice *Money `json:"unitPrice,omitempty"`
 	// Price scaling factor
 	Factor *Decimal `json:"factor,omitempty"`
+	// Extension for Factor
+	FactorExt *Element `json:"_factor,omitempty"`
 	// Total item cost
 	Net *Money `json:"net,omitempty"`
 	// Unique device identifier
@@ -1829,7 +1882,7 @@ func (b ClaimItemDetailSubDetail) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, b.SequenceExt); err != nil {
 		return err
 	}
 	if b.Revenue != nil {
@@ -1867,7 +1920,7 @@ func (b ClaimItemDetailSubDetail) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "factor", b.Factor, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "factor", b.Factor, b.FactorExt); err != nil {
 		return err
 	}
 	if b.Net != nil {
@@ -1914,11 +1967,12 @@ func (r *ClaimItemDetailSubDetail) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "sequence":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Sequence = v
+				r.SequenceExt = ext
 			case "revenue":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1962,11 +2016,12 @@ func (r *ClaimItemDetailSubDetail) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.UnitPrice = &v
 			case "factor":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Factor = v
+				r.FactorExt = ext
 			case "net":
 				var v Money
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2104,10 +2159,14 @@ type ClaimProcedure struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Procedure instance identifier
 	Sequence *uint32 `json:"sequence,omitempty"`
+	// Extension for Sequence
+	SequenceExt *Element `json:"_sequence,omitempty"`
 	// Category of Procedure
 	Type []CodeableConcept `json:"type,omitempty"`
 	// When the procedure was performed
 	Date *string `json:"date,omitempty"`
+	// Extension for Date
+	DateExt *Element `json:"_date,omitempty"`
 	// Specific clinical procedure
 	ProcedureCodeableConcept *CodeableConcept `json:"procedureCodeableConcept,omitempty"`
 	// Specific clinical procedure
@@ -2138,7 +2197,7 @@ func (b ClaimProcedure) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, b.SequenceExt); err != nil {
 		return err
 	}
 	for _, item := range b.Type {
@@ -2146,7 +2205,7 @@ func (b ClaimProcedure) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "date", b.Date, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "date", b.Date, b.DateExt); err != nil {
 		return err
 	}
 	if b.ProcedureCodeableConcept != nil {
@@ -2198,11 +2257,12 @@ func (r *ClaimProcedure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "sequence":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Sequence = v
+				r.SequenceExt = ext
 			case "type":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2210,11 +2270,12 @@ func (r *ClaimProcedure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.Type = append(r.Type, v)
 			case "date":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Date = v
+				r.DateExt = ext
 			case "procedureCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2371,6 +2432,8 @@ type ClaimSupportingInfo struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Information instance identifier
 	Sequence *uint32 `json:"sequence,omitempty"`
+	// Extension for Sequence
+	SequenceExt *Element `json:"_sequence,omitempty"`
 	// Classification of the supplied information
 	Category *CodeableConcept `json:"category,omitempty"`
 	// Type of information
@@ -2421,7 +2484,7 @@ func (b ClaimSupportingInfo) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, b.SequenceExt); err != nil {
 		return err
 	}
 	if b.Category != nil {
@@ -2502,11 +2565,12 @@ func (r *ClaimSupportingInfo) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "sequence":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Sequence = v
+				r.SequenceExt = ext
 			case "category":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2520,11 +2584,12 @@ func (r *ClaimSupportingInfo) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.Code = &v
 			case "timingDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.TimingDate = v
+				_ = ext
 			case "timingPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2532,17 +2597,19 @@ func (r *ClaimSupportingInfo) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.TimingPeriod = &v
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			case "valueString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
+				_ = ext
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {

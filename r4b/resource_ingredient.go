@@ -348,6 +348,8 @@ type IngredientManufacturer struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// allowed | possible | actual
 	Role *IngredientManufacturerRole `json:"role,omitempty"`
+	// Extension for Role
+	RoleExt *Element `json:"_role,omitempty"`
 	// An organization that manufactures this ingredient
 	Manufacturer *Reference `json:"manufacturer,omitempty"`
 }
@@ -374,7 +376,7 @@ func (b IngredientManufacturer) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "role", b.Role, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "role", b.Role, b.RoleExt); err != nil {
 		return err
 	}
 	if b.Manufacturer != nil {
@@ -416,11 +418,12 @@ func (r *IngredientManufacturer) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "role":
-				v, _, err := xmlDecodePrimitiveCode[IngredientManufacturerRole](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[IngredientManufacturerRole](d, t)
 				if err != nil {
 					return err
 				}
 				r.Role = v
+				r.RoleExt = ext
 			case "manufacturer":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -556,14 +559,20 @@ type IngredientSubstanceStrength struct {
 	PresentationRatioRange *RatioRange `json:"presentationRatioRange,omitempty"`
 	// Text of either the whole presentation strength or a part of it (rest being in Strength.presentation as a ratio)
 	TextPresentation *string `json:"textPresentation,omitempty"`
+	// Extension for TextPresentation
+	TextPresentationExt *Element `json:"_textPresentation,omitempty"`
 	// The strength per unitary volume (or mass)
 	ConcentrationRatio *Ratio `json:"concentrationRatio,omitempty"`
 	// The strength per unitary volume (or mass)
 	ConcentrationRatioRange *RatioRange `json:"concentrationRatioRange,omitempty"`
 	// Text of either the whole concentration strength or a part of it (rest being in Strength.concentration as a ratio)
 	TextConcentration *string `json:"textConcentration,omitempty"`
+	// Extension for TextConcentration
+	TextConcentrationExt *Element `json:"_textConcentration,omitempty"`
 	// When strength is measured at a particular point or distance
 	MeasurementPoint *string `json:"measurementPoint,omitempty"`
+	// Extension for MeasurementPoint
+	MeasurementPointExt *Element `json:"_measurementPoint,omitempty"`
 	// Where the strength range applies
 	Country []CodeableConcept `json:"country,omitempty"`
 	// Strength expressed in terms of a reference substance
@@ -602,7 +611,7 @@ func (b IngredientSubstanceStrength) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "textPresentation", b.TextPresentation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "textPresentation", b.TextPresentation, b.TextPresentationExt); err != nil {
 		return err
 	}
 	if b.ConcentrationRatio != nil {
@@ -615,10 +624,10 @@ func (b IngredientSubstanceStrength) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "textConcentration", b.TextConcentration, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "textConcentration", b.TextConcentration, b.TextConcentrationExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "measurementPoint", b.MeasurementPoint, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "measurementPoint", b.MeasurementPoint, b.MeasurementPointExt); err != nil {
 		return err
 	}
 	for _, item := range b.Country {
@@ -677,11 +686,12 @@ func (r *IngredientSubstanceStrength) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.PresentationRatioRange = &v
 			case "textPresentation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.TextPresentation = v
+				r.TextPresentationExt = ext
 			case "concentrationRatio":
 				var v Ratio
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -695,17 +705,19 @@ func (r *IngredientSubstanceStrength) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ConcentrationRatioRange = &v
 			case "textConcentration":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.TextConcentration = v
+				r.TextConcentrationExt = ext
 			case "measurementPoint":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.MeasurementPoint = v
+				r.MeasurementPointExt = ext
 			case "country":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -746,6 +758,8 @@ type IngredientSubstanceStrengthReferenceStrength struct {
 	StrengthRatioRange *RatioRange `json:"strengthRatioRange,omitempty"`
 	// When strength is measured at a particular point or distance
 	MeasurementPoint *string `json:"measurementPoint,omitempty"`
+	// Extension for MeasurementPoint
+	MeasurementPointExt *Element `json:"_measurementPoint,omitempty"`
 	// Where the strength range applies
 	Country []CodeableConcept `json:"country,omitempty"`
 }
@@ -787,7 +801,7 @@ func (b IngredientSubstanceStrengthReferenceStrength) MarshalXML(e *xml.Encoder,
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "measurementPoint", b.MeasurementPoint, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "measurementPoint", b.MeasurementPoint, b.MeasurementPointExt); err != nil {
 		return err
 	}
 	for _, item := range b.Country {
@@ -847,11 +861,12 @@ func (r *IngredientSubstanceStrengthReferenceStrength) UnmarshalXML(d *xml.Decod
 				}
 				r.StrengthRatioRange = &v
 			case "measurementPoint":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.MeasurementPoint = v
+				r.MeasurementPointExt = ext
 			case "country":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -911,23 +911,26 @@ func (r *ObservationComponent) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.ValueCodeableConcept = &v
 			case "valueString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
+				_ = ext
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			case "valueInteger":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
+				_ = ext
 			case "valueRange":
 				var v Range
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -947,17 +950,19 @@ func (r *ObservationComponent) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.ValueSampledData = &v
 			case "valueTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueTime = v
+				_ = ext
 			case "valueDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
+				_ = ext
 			case "valuePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1014,6 +1019,8 @@ type ObservationReferenceRange struct {
 	Age *Range `json:"age,omitempty"`
 	// Text based reference range in an observation
 	Text *string `json:"text,omitempty"`
+	// Extension for Text
+	TextExt *Element `json:"_text,omitempty"`
 }
 
 // MarshalXML serializes ObservationReferenceRange to FHIR-conformant XML.
@@ -1063,7 +1070,7 @@ func (b ObservationReferenceRange) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "text", b.Text, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "text", b.Text, b.TextExt); err != nil {
 		return err
 	}
 
@@ -1130,11 +1137,12 @@ func (r *ObservationReferenceRange) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.Age = &v
 			case "text":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Text = v
+				r.TextExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

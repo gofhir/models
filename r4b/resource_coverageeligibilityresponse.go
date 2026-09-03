@@ -346,12 +346,13 @@ func (r *CoverageEligibilityResponse) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				r.Status = v
 				r.StatusExt = ext
 			case "purpose":
-				v, _, err := xmlDecodePrimitiveCode[EligibilityResponsePurpose](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[EligibilityResponsePurpose](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Purpose = append(r.Purpose, v)
+				r.PurposeExt = append(r.PurposeExt, ext)
 			case "patient":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -549,6 +550,8 @@ type CoverageEligibilityResponseInsurance struct {
 	Coverage *Reference `json:"coverage,omitempty"`
 	// Coverage inforce indicator
 	Inforce *bool `json:"inforce,omitempty"`
+	// Extension for Inforce
+	InforceExt *Element `json:"_inforce,omitempty"`
 	// When the benefits are applicable
 	BenefitPeriod *Period `json:"benefitPeriod,omitempty"`
 	// Benefits and authorization details
@@ -582,7 +585,7 @@ func (b CoverageEligibilityResponseInsurance) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "inforce", b.Inforce, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "inforce", b.Inforce, b.InforceExt); err != nil {
 		return err
 	}
 	if b.BenefitPeriod != nil {
@@ -635,11 +638,12 @@ func (r *CoverageEligibilityResponseInsurance) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.Coverage = &v
 			case "inforce":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Inforce = v
+				r.InforceExt = ext
 			case "benefitPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -682,10 +686,16 @@ type CoverageEligibilityResponseInsuranceItem struct {
 	Provider *Reference `json:"provider,omitempty"`
 	// Excluded from the plan
 	Excluded *bool `json:"excluded,omitempty"`
+	// Extension for Excluded
+	ExcludedExt *Element `json:"_excluded,omitempty"`
 	// Short name for the benefit
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Description of the benefit or services covered
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// In or out of network
 	Network *CodeableConcept `json:"network,omitempty"`
 	// Individual or family
@@ -696,10 +706,14 @@ type CoverageEligibilityResponseInsuranceItem struct {
 	Benefit []CoverageEligibilityResponseInsuranceItemBenefit `json:"benefit,omitempty"`
 	// Authorization required flag
 	AuthorizationRequired *bool `json:"authorizationRequired,omitempty"`
+	// Extension for AuthorizationRequired
+	AuthorizationRequiredExt *Element `json:"_authorizationRequired,omitempty"`
 	// Type of required supporting materials
 	AuthorizationSupporting []CodeableConcept `json:"authorizationSupporting,omitempty"`
 	// Preauthorization requirements endpoint
 	AuthorizationUrl *string `json:"authorizationUrl,omitempty"`
+	// Extension for AuthorizationUrl
+	AuthorizationUrlExt *Element `json:"_authorizationUrl,omitempty"`
 }
 
 // MarshalXML serializes CoverageEligibilityResponseInsuranceItem to FHIR-conformant XML.
@@ -744,13 +758,13 @@ func (b CoverageEligibilityResponseInsuranceItem) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "excluded", b.Excluded, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "excluded", b.Excluded, b.ExcludedExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.Network != nil {
@@ -773,7 +787,7 @@ func (b CoverageEligibilityResponseInsuranceItem) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "authorizationRequired", b.AuthorizationRequired, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "authorizationRequired", b.AuthorizationRequired, b.AuthorizationRequiredExt); err != nil {
 		return err
 	}
 	for _, item := range b.AuthorizationSupporting {
@@ -781,7 +795,7 @@ func (b CoverageEligibilityResponseInsuranceItem) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "authorizationUrl", b.AuthorizationUrl, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "authorizationUrl", b.AuthorizationUrl, b.AuthorizationUrlExt); err != nil {
 		return err
 	}
 
@@ -842,23 +856,26 @@ func (r *CoverageEligibilityResponseInsuranceItem) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.Provider = &v
 			case "excluded":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Excluded = v
+				r.ExcludedExt = ext
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "network":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -884,11 +901,12 @@ func (r *CoverageEligibilityResponseInsuranceItem) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.Benefit = append(r.Benefit, v)
 			case "authorizationRequired":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.AuthorizationRequired = v
+				r.AuthorizationRequiredExt = ext
 			case "authorizationSupporting":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -896,11 +914,12 @@ func (r *CoverageEligibilityResponseInsuranceItem) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.AuthorizationSupporting = append(r.AuthorizationSupporting, v)
 			case "authorizationUrl":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AuthorizationUrl = v
+				r.AuthorizationUrlExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1034,17 +1053,19 @@ func (r *CoverageEligibilityResponseInsuranceItemBenefit) UnmarshalXML(d *xml.De
 				}
 				r.Type = &v
 			case "allowedUnsignedInt":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.AllowedUnsignedInt = v
+				_ = ext
 			case "allowedString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AllowedString = v
+				_ = ext
 			case "allowedMoney":
 				var v Money
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1052,17 +1073,19 @@ func (r *CoverageEligibilityResponseInsuranceItemBenefit) UnmarshalXML(d *xml.De
 				}
 				r.AllowedMoney = &v
 			case "usedUnsignedInt":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.UsedUnsignedInt = v
+				_ = ext
 			case "usedString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.UsedString = v
+				_ = ext
 			case "usedMoney":
 				var v Money
 				if err := v.UnmarshalXML(d, t); err != nil {

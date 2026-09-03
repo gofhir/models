@@ -583,12 +583,13 @@ func (r *ConditionDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				r.HasStage = v
 				r.HasStageExt = ext
 			case "definition":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Definition = append(r.Definition, v)
+				r.DefinitionExt = append(r.DefinitionExt, ext)
 			case "observation":
 				var v ConditionDefinitionObservation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -956,6 +957,8 @@ type ConditionDefinitionPrecondition struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// sensitive | specific
 	Type *ConditionPreconditionType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// Code for relevant Observation
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Value of Observation
@@ -986,7 +989,7 @@ func (b ConditionDefinitionPrecondition) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
 	if b.Code != nil {
@@ -1038,11 +1041,12 @@ func (r *ConditionDefinitionPrecondition) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[ConditionPreconditionType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ConditionPreconditionType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "code":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1083,6 +1087,8 @@ type ConditionDefinitionQuestionnaire struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// preadmit | diff-diagnosis | outcome
 	Purpose *ConditionQuestionnairePurpose `json:"purpose,omitempty"`
+	// Extension for Purpose
+	PurposeExt *Element `json:"_purpose,omitempty"`
 	// Specific Questionnaire
 	Reference *Reference `json:"reference,omitempty"`
 }
@@ -1109,7 +1115,7 @@ func (b ConditionDefinitionQuestionnaire) MarshalXML(e *xml.Encoder, start xml.S
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "purpose", b.Purpose, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "purpose", b.Purpose, b.PurposeExt); err != nil {
 		return err
 	}
 	if b.Reference != nil {
@@ -1151,11 +1157,12 @@ func (r *ConditionDefinitionQuestionnaire) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "purpose":
-				v, _, err := xmlDecodePrimitiveCode[ConditionQuestionnairePurpose](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ConditionQuestionnairePurpose](d, t)
 				if err != nil {
 					return err
 				}
 				r.Purpose = v
+				r.PurposeExt = ext
 			case "reference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

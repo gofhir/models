@@ -623,11 +623,12 @@ func (r *CommunicationRequestPayload) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "contentString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ContentString = v
+				_ = ext
 			case "contentAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {

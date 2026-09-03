@@ -450,12 +450,13 @@ func (r *SubscriptionTopic) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				r.Title = v
 				r.TitleExt = ext
 			case "derivedFrom":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFrom = append(r.DerivedFrom, v)
+				r.DerivedFromExt = append(r.DerivedFromExt, ext)
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {
@@ -596,16 +597,28 @@ type SubscriptionTopicCanFilterBy struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Description of this filter parameter
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// URL of the triggering Resource that this filter applies to
 	Resource *string `json:"resource,omitempty"`
+	// Extension for Resource
+	ResourceExt *Element `json:"_resource,omitempty"`
 	// Human-readable and computation-friendly name for a filter parameter usable by subscriptions on this topic, via Subscription.filterBy.filterParameter
 	FilterParameter *string `json:"filterParameter,omitempty"`
+	// Extension for FilterParameter
+	FilterParameterExt *Element `json:"_filterParameter,omitempty"`
 	// Canonical URL for a filterParameter definition
 	FilterDefinition *string `json:"filterDefinition,omitempty"`
+	// Extension for FilterDefinition
+	FilterDefinitionExt *Element `json:"_filterDefinition,omitempty"`
 	// eq | ne | gt | lt | ge | le | sa | eb | ap
 	Comparator []*SearchComparator `json:"comparator,omitempty"`
+	// Extension for Comparator
+	ComparatorExt []*Element `json:"_comparator,omitempty"`
 	// missing | exact | contains | not | text | in | not-in | below | above | type | identifier | of-type | code-text | text-advanced | iterate
 	Modifier []*SearchModifierCode `json:"modifier,omitempty"`
+	// Extension for Modifier
+	ModifierExt []*Element `json:"_modifier,omitempty"`
 }
 
 // MarshalXML serializes SubscriptionTopicCanFilterBy to FHIR-conformant XML.
@@ -630,22 +643,22 @@ func (b SubscriptionTopicCanFilterBy) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "resource", b.Resource, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "resource", b.Resource, b.ResourceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "filterParameter", b.FilterParameter, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "filterParameter", b.FilterParameter, b.FilterParameterExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "filterDefinition", b.FilterDefinition, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "filterDefinition", b.FilterDefinition, b.FilterDefinitionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCodeArray(e, "comparator", b.Comparator, nil); err != nil {
+	if err := xmlEncodePrimitiveCodeArray(e, "comparator", b.Comparator, b.ComparatorExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCodeArray(e, "modifier", b.Modifier, nil); err != nil {
+	if err := xmlEncodePrimitiveCodeArray(e, "modifier", b.Modifier, b.ModifierExt); err != nil {
 		return err
 	}
 
@@ -682,43 +695,49 @@ func (r *SubscriptionTopicCanFilterBy) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "resource":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Resource = v
+				r.ResourceExt = ext
 			case "filterParameter":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.FilterParameter = v
+				r.FilterParameterExt = ext
 			case "filterDefinition":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.FilterDefinition = v
+				r.FilterDefinitionExt = ext
 			case "comparator":
-				v, _, err := xmlDecodePrimitiveCode[SearchComparator](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[SearchComparator](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Comparator = append(r.Comparator, v)
+				r.ComparatorExt = append(r.ComparatorExt, ext)
 			case "modifier":
-				v, _, err := xmlDecodePrimitiveCode[SearchModifierCode](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[SearchModifierCode](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Modifier = append(r.Modifier, v)
+				r.ModifierExt = append(r.ModifierExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -741,10 +760,14 @@ type SubscriptionTopicEventTrigger struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Text representation of the event trigger
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Event which can trigger a notification from the SubscriptionTopic
 	Event *CodeableConcept `json:"event,omitempty"`
 	// Data Type or Resource (reference to definition) for this trigger definition
 	Resource *string `json:"resource,omitempty"`
+	// Extension for Resource
+	ResourceExt *Element `json:"_resource,omitempty"`
 }
 
 // MarshalXML serializes SubscriptionTopicEventTrigger to FHIR-conformant XML.
@@ -769,7 +792,7 @@ func (b SubscriptionTopicEventTrigger) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.Event != nil {
@@ -777,7 +800,7 @@ func (b SubscriptionTopicEventTrigger) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "resource", b.Resource, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "resource", b.Resource, b.ResourceExt); err != nil {
 		return err
 	}
 
@@ -814,11 +837,12 @@ func (r *SubscriptionTopicEventTrigger) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "event":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -826,11 +850,12 @@ func (r *SubscriptionTopicEventTrigger) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.Event = &v
 			case "resource":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Resource = v
+				r.ResourceExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -853,10 +878,16 @@ type SubscriptionTopicNotificationShape struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// URL of the Resource that is the focus (main) resource in a notification shape
 	Resource *string `json:"resource,omitempty"`
+	// Extension for Resource
+	ResourceExt *Element `json:"_resource,omitempty"`
 	// Include directives, rooted in the resource for this shape
 	Include []*string `json:"include,omitempty"`
+	// Extension for Include
+	IncludeExt []*Element `json:"_include,omitempty"`
 	// Reverse include directives, rooted in the resource for this shape
 	RevInclude []*string `json:"revInclude,omitempty"`
+	// Extension for RevInclude
+	RevIncludeExt []*Element `json:"_revInclude,omitempty"`
 }
 
 // MarshalXML serializes SubscriptionTopicNotificationShape to FHIR-conformant XML.
@@ -881,13 +912,13 @@ func (b SubscriptionTopicNotificationShape) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "resource", b.Resource, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "resource", b.Resource, b.ResourceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "include", b.Include, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "include", b.Include, b.IncludeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "revInclude", b.RevInclude, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "revInclude", b.RevInclude, b.RevIncludeExt); err != nil {
 		return err
 	}
 
@@ -924,25 +955,28 @@ func (r *SubscriptionTopicNotificationShape) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "resource":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Resource = v
+				r.ResourceExt = ext
 			case "include":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Include = append(r.Include, v)
+				r.IncludeExt = append(r.IncludeExt, ext)
 			case "revInclude":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.RevInclude = append(r.RevInclude, v)
+				r.RevIncludeExt = append(r.RevIncludeExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -965,14 +999,22 @@ type SubscriptionTopicResourceTrigger struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Text representation of the resource trigger
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Data Type or Resource (reference to definition) for this trigger definition
 	Resource *string `json:"resource,omitempty"`
+	// Extension for Resource
+	ResourceExt *Element `json:"_resource,omitempty"`
 	// create | update | delete
 	SupportedInteraction []*MethodCode `json:"supportedInteraction,omitempty"`
+	// Extension for SupportedInteraction
+	SupportedInteractionExt []*Element `json:"_supportedInteraction,omitempty"`
 	// Query based trigger rule
 	QueryCriteria *SubscriptionTopicResourceTriggerQueryCriteria `json:"queryCriteria,omitempty"`
 	// FHIRPath based trigger rule
 	FhirPathCriteria *string `json:"fhirPathCriteria,omitempty"`
+	// Extension for FhirPathCriteria
+	FhirPathCriteriaExt *Element `json:"_fhirPathCriteria,omitempty"`
 }
 
 // MarshalXML serializes SubscriptionTopicResourceTrigger to FHIR-conformant XML.
@@ -997,13 +1039,13 @@ func (b SubscriptionTopicResourceTrigger) MarshalXML(e *xml.Encoder, start xml.S
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "resource", b.Resource, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "resource", b.Resource, b.ResourceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCodeArray(e, "supportedInteraction", b.SupportedInteraction, nil); err != nil {
+	if err := xmlEncodePrimitiveCodeArray(e, "supportedInteraction", b.SupportedInteraction, b.SupportedInteractionExt); err != nil {
 		return err
 	}
 	if b.QueryCriteria != nil {
@@ -1011,7 +1053,7 @@ func (b SubscriptionTopicResourceTrigger) MarshalXML(e *xml.Encoder, start xml.S
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "fhirPathCriteria", b.FhirPathCriteria, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "fhirPathCriteria", b.FhirPathCriteria, b.FhirPathCriteriaExt); err != nil {
 		return err
 	}
 
@@ -1048,24 +1090,27 @@ func (r *SubscriptionTopicResourceTrigger) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "resource":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Resource = v
+				r.ResourceExt = ext
 			case "supportedInteraction":
-				v, _, err := xmlDecodePrimitiveCode[MethodCode](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[MethodCode](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SupportedInteraction = append(r.SupportedInteraction, v)
+				r.SupportedInteractionExt = append(r.SupportedInteractionExt, ext)
 			case "queryCriteria":
 				var v SubscriptionTopicResourceTriggerQueryCriteria
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1073,11 +1118,12 @@ func (r *SubscriptionTopicResourceTrigger) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				r.QueryCriteria = &v
 			case "fhirPathCriteria":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.FhirPathCriteria = v
+				r.FhirPathCriteriaExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1100,14 +1146,24 @@ type SubscriptionTopicResourceTriggerQueryCriteria struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Rule applied to previous resource state
 	Previous *string `json:"previous,omitempty"`
+	// Extension for Previous
+	PreviousExt *Element `json:"_previous,omitempty"`
 	// test-passes | test-fails
 	ResultForCreate *CriteriaNotExistsBehavior `json:"resultForCreate,omitempty"`
+	// Extension for ResultForCreate
+	ResultForCreateExt *Element `json:"_resultForCreate,omitempty"`
 	// Rule applied to current resource state
 	Current *string `json:"current,omitempty"`
+	// Extension for Current
+	CurrentExt *Element `json:"_current,omitempty"`
 	// test-passes | test-fails
 	ResultForDelete *CriteriaNotExistsBehavior `json:"resultForDelete,omitempty"`
+	// Extension for ResultForDelete
+	ResultForDeleteExt *Element `json:"_resultForDelete,omitempty"`
 	// Both must be true flag
 	RequireBoth *bool `json:"requireBoth,omitempty"`
+	// Extension for RequireBoth
+	RequireBothExt *Element `json:"_requireBoth,omitempty"`
 }
 
 // MarshalXML serializes SubscriptionTopicResourceTriggerQueryCriteria to FHIR-conformant XML.
@@ -1132,19 +1188,19 @@ func (b SubscriptionTopicResourceTriggerQueryCriteria) MarshalXML(e *xml.Encoder
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "previous", b.Previous, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "previous", b.Previous, b.PreviousExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "resultForCreate", b.ResultForCreate, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "resultForCreate", b.ResultForCreate, b.ResultForCreateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "current", b.Current, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "current", b.Current, b.CurrentExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "resultForDelete", b.ResultForDelete, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "resultForDelete", b.ResultForDelete, b.ResultForDeleteExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "requireBoth", b.RequireBoth, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "requireBoth", b.RequireBoth, b.RequireBothExt); err != nil {
 		return err
 	}
 
@@ -1181,35 +1237,40 @@ func (r *SubscriptionTopicResourceTriggerQueryCriteria) UnmarshalXML(d *xml.Deco
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "previous":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Previous = v
+				r.PreviousExt = ext
 			case "resultForCreate":
-				v, _, err := xmlDecodePrimitiveCode[CriteriaNotExistsBehavior](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[CriteriaNotExistsBehavior](d, t)
 				if err != nil {
 					return err
 				}
 				r.ResultForCreate = v
+				r.ResultForCreateExt = ext
 			case "current":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Current = v
+				r.CurrentExt = ext
 			case "resultForDelete":
-				v, _, err := xmlDecodePrimitiveCode[CriteriaNotExistsBehavior](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[CriteriaNotExistsBehavior](d, t)
 				if err != nil {
 					return err
 				}
 				r.ResultForDelete = v
+				r.ResultForDeleteExt = ext
 			case "requireBoth":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.RequireBoth = v
+				r.RequireBothExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

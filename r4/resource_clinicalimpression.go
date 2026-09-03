@@ -456,12 +456,13 @@ func (r *ClinicalImpression) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Investigation = append(r.Investigation, v)
 			case "protocol":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Protocol = append(r.Protocol, v)
+				r.ProtocolExt = append(r.ProtocolExt, ext)
 			case "summary":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -525,6 +526,8 @@ type ClinicalImpressionFinding struct {
 	ItemReference *Reference `json:"itemReference,omitempty"`
 	// Which investigations support finding
 	Basis *string `json:"basis,omitempty"`
+	// Extension for Basis
+	BasisExt *Element `json:"_basis,omitempty"`
 }
 
 // MarshalXML serializes ClinicalImpressionFinding to FHIR-conformant XML.
@@ -559,7 +562,7 @@ func (b ClinicalImpressionFinding) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "basis", b.Basis, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "basis", b.Basis, b.BasisExt); err != nil {
 		return err
 	}
 
@@ -608,11 +611,12 @@ func (r *ClinicalImpressionFinding) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ItemReference = &v
 			case "basis":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Basis = v
+				r.BasisExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

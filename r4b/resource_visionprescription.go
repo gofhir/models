@@ -351,28 +351,48 @@ type VisionPrescriptionLensSpecification struct {
 	Product *CodeableConcept `json:"product,omitempty"`
 	// right | left
 	Eye *VisionEyes `json:"eye,omitempty"`
+	// Extension for Eye
+	EyeExt *Element `json:"_eye,omitempty"`
 	// Power of the lens
 	Sphere *Decimal `json:"sphere,omitempty"`
+	// Extension for Sphere
+	SphereExt *Element `json:"_sphere,omitempty"`
 	// Lens power for astigmatism
 	Cylinder *Decimal `json:"cylinder,omitempty"`
+	// Extension for Cylinder
+	CylinderExt *Element `json:"_cylinder,omitempty"`
 	// Lens meridian which contain no power for astigmatism
 	Axis *int `json:"axis,omitempty"`
+	// Extension for Axis
+	AxisExt *Element `json:"_axis,omitempty"`
 	// Eye alignment compensation
 	Prism []VisionPrescriptionLensSpecificationPrism `json:"prism,omitempty"`
 	// Added power for multifocal levels
 	Add *Decimal `json:"add,omitempty"`
+	// Extension for Add
+	AddExt *Element `json:"_add,omitempty"`
 	// Contact lens power
 	Power *Decimal `json:"power,omitempty"`
+	// Extension for Power
+	PowerExt *Element `json:"_power,omitempty"`
 	// Contact lens back curvature
 	BackCurve *Decimal `json:"backCurve,omitempty"`
+	// Extension for BackCurve
+	BackCurveExt *Element `json:"_backCurve,omitempty"`
 	// Contact lens diameter
 	Diameter *Decimal `json:"diameter,omitempty"`
+	// Extension for Diameter
+	DiameterExt *Element `json:"_diameter,omitempty"`
 	// Lens wear duration
 	Duration *Quantity `json:"duration,omitempty"`
 	// Color required
 	Color *string `json:"color,omitempty"`
+	// Extension for Color
+	ColorExt *Element `json:"_color,omitempty"`
 	// Brand required
 	Brand *string `json:"brand,omitempty"`
+	// Extension for Brand
+	BrandExt *Element `json:"_brand,omitempty"`
 	// Notes for coatings
 	Note []Annotation `json:"note,omitempty"`
 }
@@ -404,16 +424,16 @@ func (b VisionPrescriptionLensSpecification) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "eye", b.Eye, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "eye", b.Eye, b.EyeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "sphere", b.Sphere, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "sphere", b.Sphere, b.SphereExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "cylinder", b.Cylinder, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "cylinder", b.Cylinder, b.CylinderExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "axis", b.Axis, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "axis", b.Axis, b.AxisExt); err != nil {
 		return err
 	}
 	for _, item := range b.Prism {
@@ -421,16 +441,16 @@ func (b VisionPrescriptionLensSpecification) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "add", b.Add, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "add", b.Add, b.AddExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "power", b.Power, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "power", b.Power, b.PowerExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "backCurve", b.BackCurve, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "backCurve", b.BackCurve, b.BackCurveExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "diameter", b.Diameter, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "diameter", b.Diameter, b.DiameterExt); err != nil {
 		return err
 	}
 	if b.Duration != nil {
@@ -438,10 +458,10 @@ func (b VisionPrescriptionLensSpecification) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "color", b.Color, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "color", b.Color, b.ColorExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "brand", b.Brand, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "brand", b.Brand, b.BrandExt); err != nil {
 		return err
 	}
 	for _, item := range b.Note {
@@ -489,29 +509,33 @@ func (r *VisionPrescriptionLensSpecification) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.Product = &v
 			case "eye":
-				v, _, err := xmlDecodePrimitiveCode[VisionEyes](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[VisionEyes](d, t)
 				if err != nil {
 					return err
 				}
 				r.Eye = v
+				r.EyeExt = ext
 			case "sphere":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Sphere = v
+				r.SphereExt = ext
 			case "cylinder":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Cylinder = v
+				r.CylinderExt = ext
 			case "axis":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Axis = v
+				r.AxisExt = ext
 			case "prism":
 				var v VisionPrescriptionLensSpecificationPrism
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -519,29 +543,33 @@ func (r *VisionPrescriptionLensSpecification) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.Prism = append(r.Prism, v)
 			case "add":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Add = v
+				r.AddExt = ext
 			case "power":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Power = v
+				r.PowerExt = ext
 			case "backCurve":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.BackCurve = v
+				r.BackCurveExt = ext
 			case "diameter":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Diameter = v
+				r.DiameterExt = ext
 			case "duration":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -549,17 +577,19 @@ func (r *VisionPrescriptionLensSpecification) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.Duration = &v
 			case "color":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Color = v
+				r.ColorExt = ext
 			case "brand":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Brand = v
+				r.BrandExt = ext
 			case "note":
 				var v Annotation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -588,8 +618,12 @@ type VisionPrescriptionLensSpecificationPrism struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Amount of adjustment
 	Amount *Decimal `json:"amount,omitempty"`
+	// Extension for Amount
+	AmountExt *Element `json:"_amount,omitempty"`
 	// up | down | in | out
 	Base *VisionBase `json:"base,omitempty"`
+	// Extension for Base
+	BaseExt *Element `json:"_base,omitempty"`
 }
 
 // MarshalXML serializes VisionPrescriptionLensSpecificationPrism to FHIR-conformant XML.
@@ -614,10 +648,10 @@ func (b VisionPrescriptionLensSpecificationPrism) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "amount", b.Amount, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "amount", b.Amount, b.AmountExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "base", b.Base, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "base", b.Base, b.BaseExt); err != nil {
 		return err
 	}
 
@@ -654,17 +688,19 @@ func (r *VisionPrescriptionLensSpecificationPrism) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "amount":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Amount = v
+				r.AmountExt = ext
 			case "base":
-				v, _, err := xmlDecodePrimitiveCode[VisionBase](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[VisionBase](d, t)
 				if err != nil {
 					return err
 				}
 				r.Base = v
+				r.BaseExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

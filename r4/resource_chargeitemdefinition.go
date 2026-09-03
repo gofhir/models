@@ -409,26 +409,29 @@ func (r *ChargeItemDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				r.Title = v
 				r.TitleExt = ext
 			case "derivedFromUri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFromUri = append(r.DerivedFromUri, v)
+				r.DerivedFromUriExt = append(r.DerivedFromUriExt, ext)
 			case "partOf":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.PartOf = append(r.PartOf, v)
+				r.PartOfExt = append(r.PartOfExt, ext)
 			case "replaces":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Replaces = append(r.Replaces, v)
+				r.ReplacesExt = append(r.ReplacesExt, ext)
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {
@@ -555,10 +558,16 @@ type ChargeItemDefinitionApplicability struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Natural language description of the condition
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Language of the expression
 	Language *string `json:"language,omitempty"`
+	// Extension for Language
+	LanguageExt *Element `json:"_language,omitempty"`
 	// Boolean-valued expression
 	Expression *string `json:"expression,omitempty"`
+	// Extension for Expression
+	ExpressionExt *Element `json:"_expression,omitempty"`
 }
 
 // MarshalXML serializes ChargeItemDefinitionApplicability to FHIR-conformant XML.
@@ -583,13 +592,13 @@ func (b ChargeItemDefinitionApplicability) MarshalXML(e *xml.Encoder, start xml.
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "language", b.Language, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "language", b.Language, b.LanguageExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "expression", b.Expression, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "expression", b.Expression, b.ExpressionExt); err != nil {
 		return err
 	}
 
@@ -626,23 +635,26 @@ func (r *ChargeItemDefinitionApplicability) UnmarshalXML(d *xml.Decoder, start x
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "language":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Language = v
+				r.LanguageExt = ext
 			case "expression":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Expression = v
+				r.ExpressionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -768,10 +780,14 @@ type ChargeItemDefinitionPropertyGroupPriceComponent struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// base | surcharge | deduction | discount | tax | informational
 	Type *InvoicePriceComponentType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// Code identifying the specific component
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Factor used for calculating this component
 	Factor *Decimal `json:"factor,omitempty"`
+	// Extension for Factor
+	FactorExt *Element `json:"_factor,omitempty"`
 	// Monetary amount associated with this component
 	Amount *Money `json:"amount,omitempty"`
 }
@@ -798,7 +814,7 @@ func (b ChargeItemDefinitionPropertyGroupPriceComponent) MarshalXML(e *xml.Encod
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
 	if b.Code != nil {
@@ -806,7 +822,7 @@ func (b ChargeItemDefinitionPropertyGroupPriceComponent) MarshalXML(e *xml.Encod
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "factor", b.Factor, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "factor", b.Factor, b.FactorExt); err != nil {
 		return err
 	}
 	if b.Amount != nil {
@@ -848,11 +864,12 @@ func (r *ChargeItemDefinitionPropertyGroupPriceComponent) UnmarshalXML(d *xml.De
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[InvoicePriceComponentType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[InvoicePriceComponentType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "code":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -860,11 +877,12 @@ func (r *ChargeItemDefinitionPropertyGroupPriceComponent) UnmarshalXML(d *xml.De
 				}
 				r.Code = &v
 			case "factor":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Factor = v
+				r.FactorExt = ext
 			case "amount":
 				var v Money
 				if err := v.UnmarshalXML(d, t); err != nil {

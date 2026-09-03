@@ -309,10 +309,16 @@ type SubstanceNucleicAcidSubunit struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Index of linear sequences of nucleic acids in order of decreasing length. Sequences of the same length will be ordered by molecular weight. Subunits that have identical sequences will be repeated and have sequential subscripts
 	Subunit *int `json:"subunit,omitempty"`
+	// Extension for Subunit
+	SubunitExt *Element `json:"_subunit,omitempty"`
 	// Actual nucleotide sequence notation from 5' to 3' end using standard single letter codes. In addition to the base sequence, sugar and type of phosphate or non-phosphate linkage should also be captured
 	Sequence *string `json:"sequence,omitempty"`
+	// Extension for Sequence
+	SequenceExt *Element `json:"_sequence,omitempty"`
 	// The length of the sequence shall be captured
 	Length *int `json:"length,omitempty"`
+	// Extension for Length
+	LengthExt *Element `json:"_length,omitempty"`
 	// (TBC)
 	SequenceAttachment *Attachment `json:"sequenceAttachment,omitempty"`
 	// The nucleotide present at the 5’ terminal shall be specified based on a controlled vocabulary. Since the sequence is represented from the 5' to the 3' end, the 5’ prime nucleotide is the letter at the first position in the sequence. A separate representation would be redundant
@@ -347,13 +353,13 @@ func (b SubstanceNucleicAcidSubunit) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveInt(e, "subunit", b.Subunit, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "subunit", b.Subunit, b.SubunitExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "sequence", b.Sequence, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sequence", b.Sequence, b.SequenceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "length", b.Length, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "length", b.Length, b.LengthExt); err != nil {
 		return err
 	}
 	if b.SequenceAttachment != nil {
@@ -415,23 +421,26 @@ func (r *SubstanceNucleicAcidSubunit) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "subunit":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Subunit = v
+				r.SubunitExt = ext
 			case "sequence":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Sequence = v
+				r.SequenceExt = ext
 			case "length":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Length = v
+				r.LengthExt = ext
 			case "sequenceAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -484,12 +493,18 @@ type SubstanceNucleicAcidSubunitLinkage struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The entity that links the sugar residues together should also be captured for nearly all naturally occurring nucleic acid the linkage is a phosphate group. For many synthetic oligonucleotides phosphorothioate linkages are often seen. Linkage connectivity is assumed to be 3’-5’. If the linkage is either 3’-3’ or 5’-5’ this should be specified
 	Connectivity *string `json:"connectivity,omitempty"`
+	// Extension for Connectivity
+	ConnectivityExt *Element `json:"_connectivity,omitempty"`
 	// Each linkage will be registered as a fragment and have an ID
 	Identifier *Identifier `json:"identifier,omitempty"`
 	// Each linkage will be registered as a fragment and have at least one name. A single name shall be assigned to each linkage
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Residues shall be captured as described in 5.3.6.8.3
 	ResidueSite *string `json:"residueSite,omitempty"`
+	// Extension for ResidueSite
+	ResidueSiteExt *Element `json:"_residueSite,omitempty"`
 }
 
 // MarshalXML serializes SubstanceNucleicAcidSubunitLinkage to FHIR-conformant XML.
@@ -514,7 +529,7 @@ func (b SubstanceNucleicAcidSubunitLinkage) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "connectivity", b.Connectivity, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "connectivity", b.Connectivity, b.ConnectivityExt); err != nil {
 		return err
 	}
 	if b.Identifier != nil {
@@ -522,10 +537,10 @@ func (b SubstanceNucleicAcidSubunitLinkage) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "residueSite", b.ResidueSite, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "residueSite", b.ResidueSite, b.ResidueSiteExt); err != nil {
 		return err
 	}
 
@@ -562,11 +577,12 @@ func (r *SubstanceNucleicAcidSubunitLinkage) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "connectivity":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Connectivity = v
+				r.ConnectivityExt = ext
 			case "identifier":
 				var v Identifier
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -574,17 +590,19 @@ func (r *SubstanceNucleicAcidSubunitLinkage) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.Identifier = &v
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "residueSite":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ResidueSite = v
+				r.ResidueSiteExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -609,8 +627,12 @@ type SubstanceNucleicAcidSubunitSugar struct {
 	Identifier *Identifier `json:"identifier,omitempty"`
 	// The name of the sugar or sugar-like component that make up the nucleotide
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// The residues that contain a given sugar will be captured. The order of given residues will be captured in the 5‘-3‘direction consistent with the base sequences listed above
 	ResidueSite *string `json:"residueSite,omitempty"`
+	// Extension for ResidueSite
+	ResidueSiteExt *Element `json:"_residueSite,omitempty"`
 }
 
 // MarshalXML serializes SubstanceNucleicAcidSubunitSugar to FHIR-conformant XML.
@@ -640,10 +662,10 @@ func (b SubstanceNucleicAcidSubunitSugar) MarshalXML(e *xml.Encoder, start xml.S
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "residueSite", b.ResidueSite, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "residueSite", b.ResidueSite, b.ResidueSiteExt); err != nil {
 		return err
 	}
 
@@ -686,17 +708,19 @@ func (r *SubstanceNucleicAcidSubunitSugar) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				r.Identifier = &v
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "residueSite":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ResidueSite = v
+				r.ResidueSiteExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

@@ -378,12 +378,13 @@ func (r *AllergyIntolerance) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Type = &v
 			case "category":
-				v, _, err := xmlDecodePrimitiveCode[AllergyIntoleranceCategory](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[AllergyIntoleranceCategory](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Category = append(r.Category, v)
+				r.CategoryExt = append(r.CategoryExt, ext)
 			case "criticality":
 				v, ext, err := xmlDecodePrimitiveCode[AllergyIntoleranceCriticality](d, t)
 				if err != nil {
@@ -602,10 +603,16 @@ type AllergyIntoleranceReaction struct {
 	Manifestation []CodeableReference `json:"manifestation,omitempty"`
 	// Description of the event as a whole
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Date(/time) when manifestations showed
 	Onset *string `json:"onset,omitempty"`
+	// Extension for Onset
+	OnsetExt *Element `json:"_onset,omitempty"`
 	// mild | moderate | severe (of event as a whole)
 	Severity *AllergyIntoleranceSeverity `json:"severity,omitempty"`
+	// Extension for Severity
+	SeverityExt *Element `json:"_severity,omitempty"`
 	// How the subject was exposed to the substance
 	ExposureRoute *CodeableConcept `json:"exposureRoute,omitempty"`
 	// Text about event not captured in other fields
@@ -644,13 +651,13 @@ func (b AllergyIntoleranceReaction) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "onset", b.Onset, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "onset", b.Onset, b.OnsetExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "severity", b.Severity, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "severity", b.Severity, b.SeverityExt); err != nil {
 		return err
 	}
 	if b.ExposureRoute != nil {
@@ -709,23 +716,26 @@ func (r *AllergyIntoleranceReaction) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.Manifestation = append(r.Manifestation, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "onset":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Onset = v
+				r.OnsetExt = ext
 			case "severity":
-				v, _, err := xmlDecodePrimitiveCode[AllergyIntoleranceSeverity](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[AllergyIntoleranceSeverity](d, t)
 				if err != nil {
 					return err
 				}
 				r.Severity = v
+				r.SeverityExt = ext
 			case "exposureRoute":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

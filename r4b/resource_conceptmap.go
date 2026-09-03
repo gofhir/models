@@ -517,12 +517,20 @@ type ConceptMapGroup struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Source system where concepts to be mapped are defined
 	Source *string `json:"source,omitempty"`
+	// Extension for Source
+	SourceExt *Element `json:"_source,omitempty"`
 	// Specific version of the  code system
 	SourceVersion *string `json:"sourceVersion,omitempty"`
+	// Extension for SourceVersion
+	SourceVersionExt *Element `json:"_sourceVersion,omitempty"`
 	// Target system that the concepts are to be mapped to
 	Target *string `json:"target,omitempty"`
+	// Extension for Target
+	TargetExt *Element `json:"_target,omitempty"`
 	// Specific version of the  code system
 	TargetVersion *string `json:"targetVersion,omitempty"`
+	// Extension for TargetVersion
+	TargetVersionExt *Element `json:"_targetVersion,omitempty"`
 	// Mappings for a concept from the source set
 	Element []ConceptMapGroupElement `json:"element,omitempty"`
 	// What to do when there is no mapping for the source concept
@@ -551,16 +559,16 @@ func (b ConceptMapGroup) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "source", b.Source, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "source", b.Source, b.SourceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "sourceVersion", b.SourceVersion, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sourceVersion", b.SourceVersion, b.SourceVersionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "target", b.Target, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "target", b.Target, b.TargetExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "targetVersion", b.TargetVersion, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "targetVersion", b.TargetVersion, b.TargetVersionExt); err != nil {
 		return err
 	}
 	for _, item := range b.Element {
@@ -607,29 +615,33 @@ func (r *ConceptMapGroup) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "source":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Source = v
+				r.SourceExt = ext
 			case "sourceVersion":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SourceVersion = v
+				r.SourceVersionExt = ext
 			case "target":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Target = v
+				r.TargetExt = ext
 			case "targetVersion":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.TargetVersion = v
+				r.TargetVersionExt = ext
 			case "element":
 				var v ConceptMapGroupElement
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -664,8 +676,12 @@ type ConceptMapGroupElement struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Identifies element being mapped
 	Code *string `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Display for the code
 	Display *string `json:"display,omitempty"`
+	// Extension for Display
+	DisplayExt *Element `json:"_display,omitempty"`
 	// Concept in target system for element
 	Target []ConceptMapGroupElementTarget `json:"target,omitempty"`
 }
@@ -692,10 +708,10 @@ func (b ConceptMapGroupElement) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "display", b.Display, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "display", b.Display, b.DisplayExt); err != nil {
 		return err
 	}
 	for _, item := range b.Target {
@@ -737,17 +753,19 @@ func (r *ConceptMapGroupElement) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "display":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Display = v
+				r.DisplayExt = ext
 			case "target":
 				var v ConceptMapGroupElementTarget
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -776,12 +794,20 @@ type ConceptMapGroupElementTarget struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Code that identifies the target element
 	Code *string `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Display for the code
 	Display *string `json:"display,omitempty"`
+	// Extension for Display
+	DisplayExt *Element `json:"_display,omitempty"`
 	// relatedto | equivalent | equal | wider | subsumes | narrower | specializes | inexact | unmatched | disjoint
 	Equivalence *ConceptMapEquivalence `json:"equivalence,omitempty"`
+	// Extension for Equivalence
+	EquivalenceExt *Element `json:"_equivalence,omitempty"`
 	// Description of status/issues in mapping
 	Comment *string `json:"comment,omitempty"`
+	// Extension for Comment
+	CommentExt *Element `json:"_comment,omitempty"`
 	// Other elements required for this mapping (from context)
 	DependsOn []ConceptMapGroupElementTargetDependsOn `json:"dependsOn,omitempty"`
 	// Other concepts that this mapping also produces
@@ -810,16 +836,16 @@ func (b ConceptMapGroupElementTarget) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "display", b.Display, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "display", b.Display, b.DisplayExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "equivalence", b.Equivalence, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "equivalence", b.Equivalence, b.EquivalenceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, b.CommentExt); err != nil {
 		return err
 	}
 	for _, item := range b.DependsOn {
@@ -866,29 +892,33 @@ func (r *ConceptMapGroupElementTarget) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "display":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Display = v
+				r.DisplayExt = ext
 			case "equivalence":
-				v, _, err := xmlDecodePrimitiveCode[ConceptMapEquivalence](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ConceptMapEquivalence](d, t)
 				if err != nil {
 					return err
 				}
 				r.Equivalence = v
+				r.EquivalenceExt = ext
 			case "comment":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Comment = v
+				r.CommentExt = ext
 			case "dependsOn":
 				var v ConceptMapGroupElementTargetDependsOn
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -923,12 +953,20 @@ type ConceptMapGroupElementTargetDependsOn struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Reference to property mapping depends on
 	Property *string `json:"property,omitempty"`
+	// Extension for Property
+	PropertyExt *Element `json:"_property,omitempty"`
 	// Code System (if necessary)
 	System *string `json:"system,omitempty"`
+	// Extension for System
+	SystemExt *Element `json:"_system,omitempty"`
 	// Value of the referenced element
 	Value *string `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 	// Display for the code (if value is a code)
 	Display *string `json:"display,omitempty"`
+	// Extension for Display
+	DisplayExt *Element `json:"_display,omitempty"`
 }
 
 // MarshalXML serializes ConceptMapGroupElementTargetDependsOn to FHIR-conformant XML.
@@ -953,16 +991,16 @@ func (b ConceptMapGroupElementTargetDependsOn) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "property", b.Property, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "property", b.Property, b.PropertyExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "system", b.System, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "system", b.System, b.SystemExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "display", b.Display, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "display", b.Display, b.DisplayExt); err != nil {
 		return err
 	}
 
@@ -999,29 +1037,33 @@ func (r *ConceptMapGroupElementTargetDependsOn) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "property":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Property = v
+				r.PropertyExt = ext
 			case "system":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.System = v
+				r.SystemExt = ext
 			case "value":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			case "display":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Display = v
+				r.DisplayExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1044,12 +1086,20 @@ type ConceptMapGroupUnmapped struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// provided | fixed | other-map
 	Mode *ConceptMapGroupUnmappedMode `json:"mode,omitempty"`
+	// Extension for Mode
+	ModeExt *Element `json:"_mode,omitempty"`
 	// Fixed code when mode = fixed
 	Code *string `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Display for the code
 	Display *string `json:"display,omitempty"`
+	// Extension for Display
+	DisplayExt *Element `json:"_display,omitempty"`
 	// canonical reference to an additional ConceptMap to use for mapping if the source concept is unmapped
 	Url *string `json:"url,omitempty"`
+	// Extension for Url
+	UrlExt *Element `json:"_url,omitempty"`
 }
 
 // MarshalXML serializes ConceptMapGroupUnmapped to FHIR-conformant XML.
@@ -1074,16 +1124,16 @@ func (b ConceptMapGroupUnmapped) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "mode", b.Mode, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "mode", b.Mode, b.ModeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "display", b.Display, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "display", b.Display, b.DisplayExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "url", b.Url, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "url", b.Url, b.UrlExt); err != nil {
 		return err
 	}
 
@@ -1120,29 +1170,33 @@ func (r *ConceptMapGroupUnmapped) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "mode":
-				v, _, err := xmlDecodePrimitiveCode[ConceptMapGroupUnmappedMode](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ConceptMapGroupUnmappedMode](d, t)
 				if err != nil {
 					return err
 				}
 				r.Mode = v
+				r.ModeExt = ext
 			case "code":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "display":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Display = v
+				r.DisplayExt = ext
 			case "url":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Url = v
+				r.UrlExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

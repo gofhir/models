@@ -450,16 +450,24 @@ type GenomicStudyAnalysis struct {
 	GenomeBuild *CodeableConcept `json:"genomeBuild,omitempty"`
 	// The defined protocol that describes the analysis
 	InstantiatesCanonical *string `json:"instantiatesCanonical,omitempty"`
+	// Extension for InstantiatesCanonical
+	InstantiatesCanonicalExt *Element `json:"_instantiatesCanonical,omitempty"`
 	// The URL pointing to an externally maintained protocol that describes the analysis
 	InstantiatesUri *string `json:"instantiatesUri,omitempty"`
+	// Extension for InstantiatesUri
+	InstantiatesUriExt *Element `json:"_instantiatesUri,omitempty"`
 	// Name of the analysis event (human friendly)
 	Title *string `json:"title,omitempty"`
+	// Extension for Title
+	TitleExt *Element `json:"_title,omitempty"`
 	// What the genomic analysis is about, when it is not about the subject of record
 	Focus []Reference `json:"focus,omitempty"`
 	// The specimen used in the analysis event
 	Specimen []Reference `json:"specimen,omitempty"`
 	// The date of the analysis event
 	Date *string `json:"date,omitempty"`
+	// Extension for Date
+	DateExt *Element `json:"_date,omitempty"`
 	// Any notes capture with the analysis event
 	Note []Annotation `json:"note,omitempty"`
 	// The protocol that was performed for the analysis event
@@ -520,13 +528,13 @@ func (b GenomicStudyAnalysis) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "instantiatesCanonical", b.InstantiatesCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "instantiatesCanonical", b.InstantiatesCanonical, b.InstantiatesCanonicalExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "instantiatesUri", b.InstantiatesUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "instantiatesUri", b.InstantiatesUri, b.InstantiatesUriExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "title", b.Title, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "title", b.Title, b.TitleExt); err != nil {
 		return err
 	}
 	for _, item := range b.Focus {
@@ -539,7 +547,7 @@ func (b GenomicStudyAnalysis) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "date", b.Date, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "date", b.Date, b.DateExt); err != nil {
 		return err
 	}
 	for _, item := range b.Note {
@@ -640,23 +648,26 @@ func (r *GenomicStudyAnalysis) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.GenomeBuild = &v
 			case "instantiatesCanonical":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.InstantiatesCanonical = v
+				r.InstantiatesCanonicalExt = ext
 			case "instantiatesUri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.InstantiatesUri = v
+				r.InstantiatesUriExt = ext
 			case "title":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Title = v
+				r.TitleExt = ext
 			case "focus":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -670,11 +681,12 @@ func (r *GenomicStudyAnalysis) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.Specimen = append(r.Specimen, v)
 			case "date":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Date = v
+				r.DateExt = ext
 			case "note":
 				var v Annotation
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -711,6 +711,8 @@ type MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalP
 	Value *Quantity `json:"value,omitempty"`
 	// Extra information about the withdrawal period
 	SupportingInformation *string `json:"supportingInformation,omitempty"`
+	// Extension for SupportingInformation
+	SupportingInformationExt *Element `json:"_supportingInformation,omitempty"`
 }
 
 // MarshalXML serializes MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod to FHIR-conformant XML.
@@ -745,7 +747,7 @@ func (b MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdraw
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "supportingInformation", b.SupportingInformation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "supportingInformation", b.SupportingInformation, b.SupportingInformationExt); err != nil {
 		return err
 	}
 
@@ -794,11 +796,12 @@ func (r *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdra
 				}
 				r.Value = &v
 			case "supportingInformation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SupportingInformation = v
+				r.SupportingInformationExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

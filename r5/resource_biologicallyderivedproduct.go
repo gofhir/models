@@ -509,11 +509,12 @@ func (r *BiologicallyDerivedProductCollection) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.Source = &v
 			case "collectedDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.CollectedDateTime = v
+				_ = ext
 			case "collectedPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -674,17 +675,19 @@ func (r *BiologicallyDerivedProductProperty) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.Type = &v
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			case "valueInteger":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
+				_ = ext
 			case "valueCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -716,11 +719,12 @@ func (r *BiologicallyDerivedProductProperty) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.ValueRatio = &v
 			case "valueString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
+				_ = ext
 			case "valueAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {

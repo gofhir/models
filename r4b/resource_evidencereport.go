@@ -493,6 +493,8 @@ type EvidenceReportRelatesTo struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// replaces | amends | appends | transforms | replacedWith | amendedWith | appendedWith | transformedWith
 	Code *ReportRelationshipType `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Target of the relationship
 	TargetIdentifier *Identifier `json:"targetIdentifier,omitempty"`
 	// Target of the relationship
@@ -521,7 +523,7 @@ func (b EvidenceReportRelatesTo) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
 	if b.TargetIdentifier != nil {
@@ -568,11 +570,12 @@ func (r *EvidenceReportRelatesTo) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, _, err := xmlDecodePrimitiveCode[ReportRelationshipType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ReportRelationshipType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "targetIdentifier":
 				var v Identifier
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -607,6 +610,8 @@ type EvidenceReportSection struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Label for section (e.g. for ToC)
 	Title *string `json:"title,omitempty"`
+	// Extension for Title
+	TitleExt *Element `json:"_title,omitempty"`
 	// Classification of section (recommended)
 	Focus *CodeableConcept `json:"focus,omitempty"`
 	// Classification of section by Resource
@@ -617,6 +622,8 @@ type EvidenceReportSection struct {
 	Text *Narrative `json:"text,omitempty"`
 	// working | snapshot | changes
 	Mode *ListMode `json:"mode,omitempty"`
+	// Extension for Mode
+	ModeExt *Element `json:"_mode,omitempty"`
 	// Order of section entries
 	OrderedBy *CodeableConcept `json:"orderedBy,omitempty"`
 	// Extensible classifiers as content
@@ -653,7 +660,7 @@ func (b EvidenceReportSection) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "title", b.Title, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "title", b.Title, b.TitleExt); err != nil {
 		return err
 	}
 	if b.Focus != nil {
@@ -676,7 +683,7 @@ func (b EvidenceReportSection) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "mode", b.Mode, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "mode", b.Mode, b.ModeExt); err != nil {
 		return err
 	}
 	if b.OrderedBy != nil {
@@ -743,11 +750,12 @@ func (r *EvidenceReportSection) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "title":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Title = v
+				r.TitleExt = ext
 			case "focus":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -773,11 +781,12 @@ func (r *EvidenceReportSection) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.Text = &v
 			case "mode":
-				v, _, err := xmlDecodePrimitiveCode[ListMode](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ListMode](d, t)
 				if err != nil {
 					return err
 				}
 				r.Mode = v
+				r.ModeExt = ext
 			case "orderedBy":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -953,6 +962,8 @@ type EvidenceReportSubjectCharacteristic struct {
 	ValueRange *Range `json:"valueRange,omitempty"`
 	// Is used to express not the characteristic
 	Exclude *bool `json:"exclude,omitempty"`
+	// Extension for Exclude
+	ExcludeExt *Element `json:"_exclude,omitempty"`
 	// Timeframe for the characteristic
 	Period *Period `json:"period,omitempty"`
 }
@@ -1007,7 +1018,7 @@ func (b EvidenceReportSubjectCharacteristic) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "exclude", b.Exclude, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "exclude", b.Exclude, b.ExcludeExt); err != nil {
 		return err
 	}
 	if b.Period != nil {
@@ -1067,11 +1078,12 @@ func (r *EvidenceReportSubjectCharacteristic) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.ValueCodeableConcept = &v
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1085,11 +1097,12 @@ func (r *EvidenceReportSubjectCharacteristic) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.ValueRange = &v
 			case "exclude":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Exclude = v
+				r.ExcludeExt = ext
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

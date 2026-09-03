@@ -481,14 +481,22 @@ type ImagingStudySeries struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// DICOM Series Instance UID for the series
 	Uid *string `json:"uid,omitempty"`
+	// Extension for Uid
+	UidExt *Element `json:"_uid,omitempty"`
 	// Numeric identifier of this series
 	Number *uint32 `json:"number,omitempty"`
+	// Extension for Number
+	NumberExt *Element `json:"_number,omitempty"`
 	// The modality used for this series
 	Modality *CodeableConcept `json:"modality,omitempty"`
 	// A short human readable summary of the series
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Number of Series Related Instances
 	NumberOfInstances *uint32 `json:"numberOfInstances,omitempty"`
+	// Extension for NumberOfInstances
+	NumberOfInstancesExt *Element `json:"_numberOfInstances,omitempty"`
 	// Series access endpoint
 	Endpoint []Reference `json:"endpoint,omitempty"`
 	// Body part examined
@@ -499,6 +507,8 @@ type ImagingStudySeries struct {
 	Specimen []Reference `json:"specimen,omitempty"`
 	// When the series started
 	Started *string `json:"started,omitempty"`
+	// Extension for Started
+	StartedExt *Element `json:"_started,omitempty"`
 	// Who performed the series
 	Performer []ImagingStudySeriesPerformer `json:"performer,omitempty"`
 	// A single SOP instance from the series
@@ -527,10 +537,10 @@ func (b ImagingStudySeries) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "uid", b.Uid, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "uid", b.Uid, b.UidExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "number", b.Number, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "number", b.Number, b.NumberExt); err != nil {
 		return err
 	}
 	if b.Modality != nil {
@@ -538,10 +548,10 @@ func (b ImagingStudySeries) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "numberOfInstances", b.NumberOfInstances, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "numberOfInstances", b.NumberOfInstances, b.NumberOfInstancesExt); err != nil {
 		return err
 	}
 	for _, item := range b.Endpoint {
@@ -564,7 +574,7 @@ func (b ImagingStudySeries) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "started", b.Started, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "started", b.Started, b.StartedExt); err != nil {
 		return err
 	}
 	for _, item := range b.Performer {
@@ -611,17 +621,19 @@ func (r *ImagingStudySeries) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "uid":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Uid = v
+				r.UidExt = ext
 			case "number":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Number = v
+				r.NumberExt = ext
 			case "modality":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -629,17 +641,19 @@ func (r *ImagingStudySeries) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Modality = &v
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "numberOfInstances":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.NumberOfInstances = v
+				r.NumberOfInstancesExt = ext
 			case "endpoint":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -665,11 +679,12 @@ func (r *ImagingStudySeries) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Specimen = append(r.Specimen, v)
 			case "started":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Started = v
+				r.StartedExt = ext
 			case "performer":
 				var v ImagingStudySeriesPerformer
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -704,12 +719,18 @@ type ImagingStudySeriesInstance struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// DICOM SOP Instance UID
 	Uid *string `json:"uid,omitempty"`
+	// Extension for Uid
+	UidExt *Element `json:"_uid,omitempty"`
 	// DICOM class type
 	SopClass *Coding `json:"sopClass,omitempty"`
 	// The number of this instance in the series
 	Number *uint32 `json:"number,omitempty"`
+	// Extension for Number
+	NumberExt *Element `json:"_number,omitempty"`
 	// Description of instance
 	Title *string `json:"title,omitempty"`
+	// Extension for Title
+	TitleExt *Element `json:"_title,omitempty"`
 }
 
 // MarshalXML serializes ImagingStudySeriesInstance to FHIR-conformant XML.
@@ -734,7 +755,7 @@ func (b ImagingStudySeriesInstance) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "uid", b.Uid, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "uid", b.Uid, b.UidExt); err != nil {
 		return err
 	}
 	if b.SopClass != nil {
@@ -742,10 +763,10 @@ func (b ImagingStudySeriesInstance) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "number", b.Number, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "number", b.Number, b.NumberExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "title", b.Title, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "title", b.Title, b.TitleExt); err != nil {
 		return err
 	}
 
@@ -782,11 +803,12 @@ func (r *ImagingStudySeriesInstance) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "uid":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Uid = v
+				r.UidExt = ext
 			case "sopClass":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -794,17 +816,19 @@ func (r *ImagingStudySeriesInstance) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.SopClass = &v
 			case "number":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Number = v
+				r.NumberExt = ext
 			case "title":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Title = v
+				r.TitleExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

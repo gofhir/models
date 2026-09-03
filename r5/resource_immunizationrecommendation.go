@@ -320,12 +320,20 @@ type ImmunizationRecommendationRecommendation struct {
 	DateCriterion []ImmunizationRecommendationRecommendationDateCriterion `json:"dateCriterion,omitempty"`
 	// Protocol details
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Name of vaccination series
 	Series *string `json:"series,omitempty"`
+	// Extension for Series
+	SeriesExt *Element `json:"_series,omitempty"`
 	// Recommended dose number within series
 	DoseNumber *string `json:"doseNumber,omitempty"`
+	// Extension for DoseNumber
+	DoseNumberExt *Element `json:"_doseNumber,omitempty"`
 	// Recommended number of doses for immunity
 	SeriesDoses *string `json:"seriesDoses,omitempty"`
+	// Extension for SeriesDoses
+	SeriesDosesExt *Element `json:"_seriesDoses,omitempty"`
 	// Past immunizations supporting recommendation
 	SupportingImmunization []Reference `json:"supportingImmunization,omitempty"`
 	// Patient observations supporting recommendation
@@ -384,16 +392,16 @@ func (b ImmunizationRecommendationRecommendation) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "series", b.Series, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "series", b.Series, b.SeriesExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "doseNumber", b.DoseNumber, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "doseNumber", b.DoseNumber, b.DoseNumberExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "seriesDoses", b.SeriesDoses, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "seriesDoses", b.SeriesDoses, b.SeriesDosesExt); err != nil {
 		return err
 	}
 	for _, item := range b.SupportingImmunization {
@@ -476,29 +484,33 @@ func (r *ImmunizationRecommendationRecommendation) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.DateCriterion = append(r.DateCriterion, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "series":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Series = v
+				r.SeriesExt = ext
 			case "doseNumber":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DoseNumber = v
+				r.DoseNumberExt = ext
 			case "seriesDoses":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SeriesDoses = v
+				r.SeriesDosesExt = ext
 			case "supportingImmunization":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -535,6 +547,8 @@ type ImmunizationRecommendationRecommendationDateCriterion struct {
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Recommended date
 	Value *string `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 }
 
 // MarshalXML serializes ImmunizationRecommendationRecommendationDateCriterion to FHIR-conformant XML.
@@ -564,7 +578,7 @@ func (b ImmunizationRecommendationRecommendationDateCriterion) MarshalXML(e *xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
 
@@ -607,11 +621,12 @@ func (r *ImmunizationRecommendationRecommendationDateCriterion) UnmarshalXML(d *
 				}
 				r.Code = &v
 			case "value":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

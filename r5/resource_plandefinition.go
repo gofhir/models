@@ -710,12 +710,13 @@ func (r *PlanDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.RelatedArtifact = append(r.RelatedArtifact, v)
 			case "library":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Library = append(r.Library, v)
+				r.LibraryExt = append(r.LibraryExt, ext)
 			case "goal":
 				var v PlanDefinitionGoal
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -769,16 +770,28 @@ type PlanDefinitionAction struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Unique id for the action in the PlanDefinition
 	LinkId *string `json:"linkId,omitempty"`
+	// Extension for LinkId
+	LinkIdExt *Element `json:"_linkId,omitempty"`
 	// User-visible prefix for the action (e.g. 1. or A.)
 	Prefix *string `json:"prefix,omitempty"`
+	// Extension for Prefix
+	PrefixExt *Element `json:"_prefix,omitempty"`
 	// User-visible title
 	Title *string `json:"title,omitempty"`
+	// Extension for Title
+	TitleExt *Element `json:"_title,omitempty"`
 	// Brief description of the action
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Static text equivalent of the action, used if the dynamic aspects cannot be interpreted by the receiving system
 	TextEquivalent *string `json:"textEquivalent,omitempty"`
+	// Extension for TextEquivalent
+	TextEquivalentExt *Element `json:"_textEquivalent,omitempty"`
 	// routine | urgent | asap | stat
 	Priority *RequestPriority `json:"priority,omitempty"`
+	// Extension for Priority
+	PriorityExt *Element `json:"_priority,omitempty"`
 	// Code representing the meaning of the action or sub-actions
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Why the action should be performed
@@ -787,6 +800,8 @@ type PlanDefinitionAction struct {
 	Documentation []RelatedArtifact `json:"documentation,omitempty"`
 	// What goals this action supports
 	GoalId []*string `json:"goalId,omitempty"`
+	// Extension for GoalId
+	GoalIdExt []*Element `json:"_goalId,omitempty"`
 	// Type of individual the action is focused on
 	SubjectCodeableConcept *CodeableConcept `json:"subjectCodeableConcept,omitempty"`
 	// Type of individual the action is focused on
@@ -821,14 +836,24 @@ type PlanDefinitionAction struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// visual-group | logical-group | sentence-group
 	GroupingBehavior *ActionGroupingBehavior `json:"groupingBehavior,omitempty"`
+	// Extension for GroupingBehavior
+	GroupingBehaviorExt *Element `json:"_groupingBehavior,omitempty"`
 	// any | all | all-or-none | exactly-one | at-most-one | one-or-more
 	SelectionBehavior *ActionSelectionBehavior `json:"selectionBehavior,omitempty"`
+	// Extension for SelectionBehavior
+	SelectionBehaviorExt *Element `json:"_selectionBehavior,omitempty"`
 	// must | could | must-unless-documented
 	RequiredBehavior *ActionRequiredBehavior `json:"requiredBehavior,omitempty"`
+	// Extension for RequiredBehavior
+	RequiredBehaviorExt *Element `json:"_requiredBehavior,omitempty"`
 	// yes | no
 	PrecheckBehavior *ActionPrecheckBehavior `json:"precheckBehavior,omitempty"`
+	// Extension for PrecheckBehavior
+	PrecheckBehaviorExt *Element `json:"_precheckBehavior,omitempty"`
 	// single | multiple
 	CardinalityBehavior *ActionCardinalityBehavior `json:"cardinalityBehavior,omitempty"`
+	// Extension for CardinalityBehavior
+	CardinalityBehaviorExt *Element `json:"_cardinalityBehavior,omitempty"`
 	// Description of the activity to be performed
 	DefinitionCanonical *string `json:"definitionCanonical,omitempty"`
 	// Extension for DefinitionCanonical
@@ -839,6 +864,8 @@ type PlanDefinitionAction struct {
 	DefinitionUriExt *Element `json:"_definitionUri,omitempty"`
 	// Transform to apply the template
 	Transform *string `json:"transform,omitempty"`
+	// Extension for Transform
+	TransformExt *Element `json:"_transform,omitempty"`
 	// Dynamic aspects of the definition
 	DynamicValue []PlanDefinitionActionDynamicValue `json:"dynamicValue,omitempty"`
 	// A sub-action
@@ -867,22 +894,22 @@ func (b PlanDefinitionAction) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "linkId", b.LinkId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "linkId", b.LinkId, b.LinkIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "prefix", b.Prefix, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "prefix", b.Prefix, b.PrefixExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "title", b.Title, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "title", b.Title, b.TitleExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "textEquivalent", b.TextEquivalent, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "textEquivalent", b.TextEquivalent, b.TextEquivalentExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "priority", b.Priority, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "priority", b.Priority, b.PriorityExt); err != nil {
 		return err
 	}
 	if b.Code != nil {
@@ -900,7 +927,7 @@ func (b PlanDefinitionAction) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "goalId", b.GoalId, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "goalId", b.GoalId, b.GoalIdExt); err != nil {
 		return err
 	}
 	if b.SubjectCodeableConcept != nil {
@@ -976,19 +1003,19 @@ func (b PlanDefinitionAction) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "groupingBehavior", b.GroupingBehavior, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "groupingBehavior", b.GroupingBehavior, b.GroupingBehaviorExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "selectionBehavior", b.SelectionBehavior, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "selectionBehavior", b.SelectionBehavior, b.SelectionBehaviorExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "requiredBehavior", b.RequiredBehavior, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "requiredBehavior", b.RequiredBehavior, b.RequiredBehaviorExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "precheckBehavior", b.PrecheckBehavior, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "precheckBehavior", b.PrecheckBehavior, b.PrecheckBehaviorExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "cardinalityBehavior", b.CardinalityBehavior, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "cardinalityBehavior", b.CardinalityBehavior, b.CardinalityBehaviorExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "definitionCanonical", b.DefinitionCanonical, nil); err != nil {
@@ -997,7 +1024,7 @@ func (b PlanDefinitionAction) MarshalXML(e *xml.Encoder, start xml.StartElement)
 	if err := xmlEncodePrimitiveString(e, "definitionUri", b.DefinitionUri, nil); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "transform", b.Transform, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "transform", b.Transform, b.TransformExt); err != nil {
 		return err
 	}
 	for _, item := range b.DynamicValue {
@@ -1044,41 +1071,47 @@ func (r *PlanDefinitionAction) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "linkId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.LinkId = v
+				r.LinkIdExt = ext
 			case "prefix":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Prefix = v
+				r.PrefixExt = ext
 			case "title":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Title = v
+				r.TitleExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "textEquivalent":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.TextEquivalent = v
+				r.TextEquivalentExt = ext
 			case "priority":
-				v, _, err := xmlDecodePrimitiveCode[RequestPriority](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[RequestPriority](d, t)
 				if err != nil {
 					return err
 				}
 				r.Priority = v
+				r.PriorityExt = ext
 			case "code":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1098,12 +1131,13 @@ func (r *PlanDefinitionAction) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.Documentation = append(r.Documentation, v)
 			case "goalId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.GoalId = append(r.GoalId, v)
+				r.GoalIdExt = append(r.GoalIdExt, ext)
 			case "subjectCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1117,11 +1151,12 @@ func (r *PlanDefinitionAction) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.SubjectReference = &v
 			case "subjectCanonical":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SubjectCanonical = v
+				_ = ext
 			case "trigger":
 				var v TriggerDefinition
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1195,53 +1230,61 @@ func (r *PlanDefinitionAction) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.Type = &v
 			case "groupingBehavior":
-				v, _, err := xmlDecodePrimitiveCode[ActionGroupingBehavior](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ActionGroupingBehavior](d, t)
 				if err != nil {
 					return err
 				}
 				r.GroupingBehavior = v
+				r.GroupingBehaviorExt = ext
 			case "selectionBehavior":
-				v, _, err := xmlDecodePrimitiveCode[ActionSelectionBehavior](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ActionSelectionBehavior](d, t)
 				if err != nil {
 					return err
 				}
 				r.SelectionBehavior = v
+				r.SelectionBehaviorExt = ext
 			case "requiredBehavior":
-				v, _, err := xmlDecodePrimitiveCode[ActionRequiredBehavior](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ActionRequiredBehavior](d, t)
 				if err != nil {
 					return err
 				}
 				r.RequiredBehavior = v
+				r.RequiredBehaviorExt = ext
 			case "precheckBehavior":
-				v, _, err := xmlDecodePrimitiveCode[ActionPrecheckBehavior](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ActionPrecheckBehavior](d, t)
 				if err != nil {
 					return err
 				}
 				r.PrecheckBehavior = v
+				r.PrecheckBehaviorExt = ext
 			case "cardinalityBehavior":
-				v, _, err := xmlDecodePrimitiveCode[ActionCardinalityBehavior](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ActionCardinalityBehavior](d, t)
 				if err != nil {
 					return err
 				}
 				r.CardinalityBehavior = v
+				r.CardinalityBehaviorExt = ext
 			case "definitionCanonical":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefinitionCanonical = v
+				_ = ext
 			case "definitionUri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefinitionUri = v
+				_ = ext
 			case "transform":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Transform = v
+				r.TransformExt = ext
 			case "dynamicValue":
 				var v PlanDefinitionActionDynamicValue
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1276,6 +1319,8 @@ type PlanDefinitionActionCondition struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// applicability | start | stop
 	Kind *ActionConditionKind `json:"kind,omitempty"`
+	// Extension for Kind
+	KindExt *Element `json:"_kind,omitempty"`
 	// Boolean-valued expression
 	Expression *Expression `json:"expression,omitempty"`
 }
@@ -1302,7 +1347,7 @@ func (b PlanDefinitionActionCondition) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "kind", b.Kind, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "kind", b.Kind, b.KindExt); err != nil {
 		return err
 	}
 	if b.Expression != nil {
@@ -1344,11 +1389,12 @@ func (r *PlanDefinitionActionCondition) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "kind":
-				v, _, err := xmlDecodePrimitiveCode[ActionConditionKind](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ActionConditionKind](d, t)
 				if err != nil {
 					return err
 				}
 				r.Kind = v
+				r.KindExt = ext
 			case "expression":
 				var v Expression
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1377,6 +1423,8 @@ type PlanDefinitionActionDynamicValue struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The path to the element to be set dynamically
 	Path *string `json:"path,omitempty"`
+	// Extension for Path
+	PathExt *Element `json:"_path,omitempty"`
 	// An expression that provides the dynamic value for the customization
 	Expression *Expression `json:"expression,omitempty"`
 }
@@ -1403,7 +1451,7 @@ func (b PlanDefinitionActionDynamicValue) MarshalXML(e *xml.Encoder, start xml.S
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "path", b.Path, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "path", b.Path, b.PathExt); err != nil {
 		return err
 	}
 	if b.Expression != nil {
@@ -1445,11 +1493,12 @@ func (r *PlanDefinitionActionDynamicValue) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "path":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Path = v
+				r.PathExt = ext
 			case "expression":
 				var v Expression
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1478,10 +1527,14 @@ type PlanDefinitionActionInput struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// User-visible title
 	Title *string `json:"title,omitempty"`
+	// Extension for Title
+	TitleExt *Element `json:"_title,omitempty"`
 	// What data is provided
 	Requirement *DataRequirement `json:"requirement,omitempty"`
 	// What data is provided
 	RelatedData *string `json:"relatedData,omitempty"`
+	// Extension for RelatedData
+	RelatedDataExt *Element `json:"_relatedData,omitempty"`
 }
 
 // MarshalXML serializes PlanDefinitionActionInput to FHIR-conformant XML.
@@ -1506,7 +1559,7 @@ func (b PlanDefinitionActionInput) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "title", b.Title, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "title", b.Title, b.TitleExt); err != nil {
 		return err
 	}
 	if b.Requirement != nil {
@@ -1514,7 +1567,7 @@ func (b PlanDefinitionActionInput) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "relatedData", b.RelatedData, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "relatedData", b.RelatedData, b.RelatedDataExt); err != nil {
 		return err
 	}
 
@@ -1551,11 +1604,12 @@ func (r *PlanDefinitionActionInput) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "title":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Title = v
+				r.TitleExt = ext
 			case "requirement":
 				var v DataRequirement
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1563,11 +1617,12 @@ func (r *PlanDefinitionActionInput) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.Requirement = &v
 			case "relatedData":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.RelatedData = v
+				r.RelatedDataExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1590,10 +1645,14 @@ type PlanDefinitionActionOutput struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// User-visible title
 	Title *string `json:"title,omitempty"`
+	// Extension for Title
+	TitleExt *Element `json:"_title,omitempty"`
 	// What data is provided
 	Requirement *DataRequirement `json:"requirement,omitempty"`
 	// What data is provided
 	RelatedData *string `json:"relatedData,omitempty"`
+	// Extension for RelatedData
+	RelatedDataExt *Element `json:"_relatedData,omitempty"`
 }
 
 // MarshalXML serializes PlanDefinitionActionOutput to FHIR-conformant XML.
@@ -1618,7 +1677,7 @@ func (b PlanDefinitionActionOutput) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "title", b.Title, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "title", b.Title, b.TitleExt); err != nil {
 		return err
 	}
 	if b.Requirement != nil {
@@ -1626,7 +1685,7 @@ func (b PlanDefinitionActionOutput) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "relatedData", b.RelatedData, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "relatedData", b.RelatedData, b.RelatedDataExt); err != nil {
 		return err
 	}
 
@@ -1663,11 +1722,12 @@ func (r *PlanDefinitionActionOutput) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "title":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Title = v
+				r.TitleExt = ext
 			case "requirement":
 				var v DataRequirement
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1675,11 +1735,12 @@ func (r *PlanDefinitionActionOutput) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.Requirement = &v
 			case "relatedData":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.RelatedData = v
+				r.RelatedDataExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1702,10 +1763,16 @@ type PlanDefinitionActionParticipant struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// What actor
 	ActorId *string `json:"actorId,omitempty"`
+	// Extension for ActorId
+	ActorIdExt *Element `json:"_actorId,omitempty"`
 	// careteam | device | group | healthcareservice | location | organization | patient | practitioner | practitionerrole | relatedperson
 	Type *ActivityParticipantType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// Who or what can participate
 	TypeCanonical *string `json:"typeCanonical,omitempty"`
+	// Extension for TypeCanonical
+	TypeCanonicalExt *Element `json:"_typeCanonical,omitempty"`
 	// Who or what can participate
 	TypeReference *Reference `json:"typeReference,omitempty"`
 	// E.g. Nurse, Surgeon, Parent
@@ -1736,13 +1803,13 @@ func (b PlanDefinitionActionParticipant) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "actorId", b.ActorId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "actorId", b.ActorId, b.ActorIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "typeCanonical", b.TypeCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "typeCanonical", b.TypeCanonical, b.TypeCanonicalExt); err != nil {
 		return err
 	}
 	if b.TypeReference != nil {
@@ -1794,23 +1861,26 @@ func (r *PlanDefinitionActionParticipant) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "actorId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ActorId = v
+				r.ActorIdExt = ext
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[ActivityParticipantType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ActivityParticipantType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "typeCanonical":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.TypeCanonical = v
+				r.TypeCanonicalExt = ext
 			case "typeReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1851,10 +1921,16 @@ type PlanDefinitionActionRelatedAction struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// What action is this related to
 	TargetId *string `json:"targetId,omitempty"`
+	// Extension for TargetId
+	TargetIdExt *Element `json:"_targetId,omitempty"`
 	// before | before-start | before-end | concurrent | concurrent-with-start | concurrent-with-end | after | after-start | after-end
 	Relationship *ActionRelationshipType `json:"relationship,omitempty"`
+	// Extension for Relationship
+	RelationshipExt *Element `json:"_relationship,omitempty"`
 	// before | before-start | before-end | concurrent | concurrent-with-start | concurrent-with-end | after | after-start | after-end
 	EndRelationship *ActionRelationshipType `json:"endRelationship,omitempty"`
+	// Extension for EndRelationship
+	EndRelationshipExt *Element `json:"_endRelationship,omitempty"`
 	// Time offset for the relationship
 	OffsetDuration *Duration `json:"offsetDuration,omitempty"`
 	// Time offset for the relationship
@@ -1883,13 +1959,13 @@ func (b PlanDefinitionActionRelatedAction) MarshalXML(e *xml.Encoder, start xml.
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "targetId", b.TargetId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "targetId", b.TargetId, b.TargetIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "relationship", b.Relationship, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "relationship", b.Relationship, b.RelationshipExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "endRelationship", b.EndRelationship, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "endRelationship", b.EndRelationship, b.EndRelationshipExt); err != nil {
 		return err
 	}
 	if b.OffsetDuration != nil {
@@ -1936,23 +2012,26 @@ func (r *PlanDefinitionActionRelatedAction) UnmarshalXML(d *xml.Decoder, start x
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "targetId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.TargetId = v
+				r.TargetIdExt = ext
 			case "relationship":
-				v, _, err := xmlDecodePrimitiveCode[ActionRelationshipType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ActionRelationshipType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Relationship = v
+				r.RelationshipExt = ext
 			case "endRelationship":
-				v, _, err := xmlDecodePrimitiveCode[ActionRelationshipType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ActionRelationshipType](d, t)
 				if err != nil {
 					return err
 				}
 				r.EndRelationship = v
+				r.EndRelationshipExt = ext
 			case "offsetDuration":
 				var v Duration
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1987,8 +2066,12 @@ type PlanDefinitionActor struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// User-visible title
 	Title *string `json:"title,omitempty"`
+	// Extension for Title
+	TitleExt *Element `json:"_title,omitempty"`
 	// Describes the actor
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Who or what can be this actor
 	Option []PlanDefinitionActorOption `json:"option,omitempty"`
 }
@@ -2015,10 +2098,10 @@ func (b PlanDefinitionActor) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "title", b.Title, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "title", b.Title, b.TitleExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	for _, item := range b.Option {
@@ -2060,17 +2143,19 @@ func (r *PlanDefinitionActor) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "title":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Title = v
+				r.TitleExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "option":
 				var v PlanDefinitionActorOption
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2099,8 +2184,12 @@ type PlanDefinitionActorOption struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// careteam | device | group | healthcareservice | location | organization | patient | practitioner | practitionerrole | relatedperson
 	Type *ActivityParticipantType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// Who or what can participate
 	TypeCanonical *string `json:"typeCanonical,omitempty"`
+	// Extension for TypeCanonical
+	TypeCanonicalExt *Element `json:"_typeCanonical,omitempty"`
 	// Who or what can participate
 	TypeReference *Reference `json:"typeReference,omitempty"`
 	// E.g. Nurse, Surgeon, Parent
@@ -2129,10 +2218,10 @@ func (b PlanDefinitionActorOption) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "typeCanonical", b.TypeCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "typeCanonical", b.TypeCanonical, b.TypeCanonicalExt); err != nil {
 		return err
 	}
 	if b.TypeReference != nil {
@@ -2179,17 +2268,19 @@ func (r *PlanDefinitionActorOption) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[ActivityParticipantType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ActivityParticipantType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "typeCanonical":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.TypeCanonical = v
+				r.TypeCanonicalExt = ext
 			case "typeReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2535,23 +2626,26 @@ func (r *PlanDefinitionGoalTarget) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.DetailCodeableConcept = &v
 			case "detailString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DetailString = v
+				_ = ext
 			case "detailBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.DetailBoolean = v
+				_ = ext
 			case "detailInteger":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.DetailInteger = v
+				_ = ext
 			case "detailRatio":
 				var v Ratio
 				if err := v.UnmarshalXML(d, t); err != nil {

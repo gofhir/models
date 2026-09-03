@@ -348,12 +348,13 @@ func (r *Endpoint) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.PayloadType = append(r.PayloadType, v)
 			case "payloadMimeType":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.PayloadMimeType = append(r.PayloadMimeType, v)
+				r.PayloadMimeTypeExt = append(r.PayloadMimeTypeExt, ext)
 			case "address":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -362,12 +363,13 @@ func (r *Endpoint) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				r.Address = v
 				r.AddressExt = ext
 			case "header":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Header = append(r.Header, v)
+				r.HeaderExt = append(r.HeaderExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err

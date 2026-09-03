@@ -520,6 +520,8 @@ type MeasureReportGroupPopulation struct {
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Size of the population
 	Count *int `json:"count,omitempty"`
+	// Extension for Count
+	CountExt *Element `json:"_count,omitempty"`
 	// For subject-list reports, the subject results in this population
 	SubjectResults *Reference `json:"subjectResults,omitempty"`
 }
@@ -551,7 +553,7 @@ func (b MeasureReportGroupPopulation) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveInt(e, "count", b.Count, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "count", b.Count, b.CountExt); err != nil {
 		return err
 	}
 	if b.SubjectResults != nil {
@@ -599,11 +601,12 @@ func (r *MeasureReportGroupPopulation) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.Code = &v
 			case "count":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Count = v
+				r.CountExt = ext
 			case "subjectResults":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -969,6 +972,8 @@ type MeasureReportGroupStratifierStratumPopulation struct {
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Size of the population
 	Count *int `json:"count,omitempty"`
+	// Extension for Count
+	CountExt *Element `json:"_count,omitempty"`
 	// For subject-list reports, the subject results in this population
 	SubjectResults *Reference `json:"subjectResults,omitempty"`
 }
@@ -1000,7 +1005,7 @@ func (b MeasureReportGroupStratifierStratumPopulation) MarshalXML(e *xml.Encoder
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveInt(e, "count", b.Count, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "count", b.Count, b.CountExt); err != nil {
 		return err
 	}
 	if b.SubjectResults != nil {
@@ -1048,11 +1053,12 @@ func (r *MeasureReportGroupStratifierStratumPopulation) UnmarshalXML(d *xml.Deco
 				}
 				r.Code = &v
 			case "count":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Count = v
+				r.CountExt = ext
 			case "subjectResults":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

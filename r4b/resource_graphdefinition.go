@@ -448,14 +448,24 @@ type GraphDefinitionLink struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Path in the resource that contains the link
 	Path *string `json:"path,omitempty"`
+	// Extension for Path
+	PathExt *Element `json:"_path,omitempty"`
 	// Which slice (if profiled)
 	SliceName *string `json:"sliceName,omitempty"`
+	// Extension for SliceName
+	SliceNameExt *Element `json:"_sliceName,omitempty"`
 	// Minimum occurrences for this link
 	Min *int `json:"min,omitempty"`
+	// Extension for Min
+	MinExt *Element `json:"_min,omitempty"`
 	// Maximum occurrences for this link
 	Max *string `json:"max,omitempty"`
+	// Extension for Max
+	MaxExt *Element `json:"_max,omitempty"`
 	// Why this link is specified
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Potential target for the link
 	Target []GraphDefinitionLinkTarget `json:"target,omitempty"`
 }
@@ -482,19 +492,19 @@ func (b GraphDefinitionLink) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "path", b.Path, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "path", b.Path, b.PathExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "sliceName", b.SliceName, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sliceName", b.SliceName, b.SliceNameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "min", b.Min, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "min", b.Min, b.MinExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "max", b.Max, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "max", b.Max, b.MaxExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	for _, item := range b.Target {
@@ -536,35 +546,40 @@ func (r *GraphDefinitionLink) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "path":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Path = v
+				r.PathExt = ext
 			case "sliceName":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SliceName = v
+				r.SliceNameExt = ext
 			case "min":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Min = v
+				r.MinExt = ext
 			case "max":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Max = v
+				r.MaxExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "target":
 				var v GraphDefinitionLinkTarget
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -593,10 +608,16 @@ type GraphDefinitionLinkTarget struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type of resource this link refers to
 	Type *string `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// Criteria for reverse lookup
 	Params *string `json:"params,omitempty"`
+	// Extension for Params
+	ParamsExt *Element `json:"_params,omitempty"`
 	// Profile for the target resource
 	Profile *string `json:"profile,omitempty"`
+	// Extension for Profile
+	ProfileExt *Element `json:"_profile,omitempty"`
 	// Compartment Consistency Rules
 	Compartment []GraphDefinitionLinkTargetCompartment `json:"compartment,omitempty"`
 	// Additional links from target resource
@@ -625,13 +646,13 @@ func (b GraphDefinitionLinkTarget) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "params", b.Params, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "params", b.Params, b.ParamsExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "profile", b.Profile, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "profile", b.Profile, b.ProfileExt); err != nil {
 		return err
 	}
 	for _, item := range b.Compartment {
@@ -678,23 +699,26 @@ func (r *GraphDefinitionLinkTarget) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "params":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Params = v
+				r.ParamsExt = ext
 			case "profile":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Profile = v
+				r.ProfileExt = ext
 			case "compartment":
 				var v GraphDefinitionLinkTargetCompartment
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -729,14 +753,24 @@ type GraphDefinitionLinkTargetCompartment struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// condition | requirement
 	Use *GraphCompartmentUse `json:"use,omitempty"`
+	// Extension for Use
+	UseExt *Element `json:"_use,omitempty"`
 	// Patient | Encounter | RelatedPerson | Practitioner | Device
 	Code *CompartmentType `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// identical | matching | different | custom
 	Rule *GraphCompartmentRule `json:"rule,omitempty"`
+	// Extension for Rule
+	RuleExt *Element `json:"_rule,omitempty"`
 	// Custom rule, as a FHIRPath expression
 	Expression *string `json:"expression,omitempty"`
+	// Extension for Expression
+	ExpressionExt *Element `json:"_expression,omitempty"`
 	// Documentation for FHIRPath expression
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 }
 
 // MarshalXML serializes GraphDefinitionLinkTargetCompartment to FHIR-conformant XML.
@@ -761,19 +795,19 @@ func (b GraphDefinitionLinkTargetCompartment) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "use", b.Use, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "use", b.Use, b.UseExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "rule", b.Rule, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "rule", b.Rule, b.RuleExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "expression", b.Expression, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "expression", b.Expression, b.ExpressionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 
@@ -810,35 +844,40 @@ func (r *GraphDefinitionLinkTargetCompartment) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "use":
-				v, _, err := xmlDecodePrimitiveCode[GraphCompartmentUse](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[GraphCompartmentUse](d, t)
 				if err != nil {
 					return err
 				}
 				r.Use = v
+				r.UseExt = ext
 			case "code":
-				v, _, err := xmlDecodePrimitiveCode[CompartmentType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[CompartmentType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "rule":
-				v, _, err := xmlDecodePrimitiveCode[GraphCompartmentRule](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[GraphCompartmentRule](d, t)
 				if err != nil {
 					return err
 				}
 				r.Rule = v
+				r.RuleExt = ext
 			case "expression":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Expression = v
+				r.ExpressionExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

@@ -450,17 +450,19 @@ func (r *ManufacturedItemDefinitionProperty) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.ValueQuantity = &v
 			case "valueDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDate = v
+				_ = ext
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			case "valueAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {

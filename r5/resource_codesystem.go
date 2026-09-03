@@ -759,10 +759,16 @@ type CodeSystemConcept struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Code that identifies concept
 	Code *string `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Text to display to the user
 	Display *string `json:"display,omitempty"`
+	// Extension for Display
+	DisplayExt *Element `json:"_display,omitempty"`
 	// Formal definition
 	Definition *string `json:"definition,omitempty"`
+	// Extension for Definition
+	DefinitionExt *Element `json:"_definition,omitempty"`
 	// Additional representations for the concept
 	Designation []CodeSystemConceptDesignation `json:"designation,omitempty"`
 	// Property value for the concept
@@ -793,13 +799,13 @@ func (b CodeSystemConcept) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "display", b.Display, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "display", b.Display, b.DisplayExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "definition", b.Definition, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "definition", b.Definition, b.DefinitionExt); err != nil {
 		return err
 	}
 	for _, item := range b.Designation {
@@ -851,23 +857,26 @@ func (r *CodeSystemConcept) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "display":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Display = v
+				r.DisplayExt = ext
 			case "definition":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Definition = v
+				r.DefinitionExt = ext
 			case "designation":
 				var v CodeSystemConceptDesignation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -908,12 +917,16 @@ type CodeSystemConceptDesignation struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Human language of the designation
 	Language *string `json:"language,omitempty"`
+	// Extension for Language
+	LanguageExt *Element `json:"_language,omitempty"`
 	// Details how this designation would be used
 	Use *Coding `json:"use,omitempty"`
 	// Additional ways how this designation would be used
 	AdditionalUse []Coding `json:"additionalUse,omitempty"`
 	// The text value for this designation
 	Value *string `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 }
 
 // MarshalXML serializes CodeSystemConceptDesignation to FHIR-conformant XML.
@@ -938,7 +951,7 @@ func (b CodeSystemConceptDesignation) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "language", b.Language, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "language", b.Language, b.LanguageExt); err != nil {
 		return err
 	}
 	if b.Use != nil {
@@ -951,7 +964,7 @@ func (b CodeSystemConceptDesignation) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
 
@@ -988,11 +1001,12 @@ func (r *CodeSystemConceptDesignation) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "language":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Language = v
+				r.LanguageExt = ext
 			case "use":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1006,11 +1020,12 @@ func (r *CodeSystemConceptDesignation) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.AdditionalUse = append(r.AdditionalUse, v)
 			case "value":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1033,6 +1048,8 @@ type CodeSystemConceptProperty struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Reference to CodeSystem.property.code
 	Code *string `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Value of the property for this concept
 	ValueCode *string `json:"valueCode,omitempty"`
 	// Extension for ValueCode
@@ -1083,7 +1100,7 @@ func (b CodeSystemConceptProperty) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "valueCode", b.ValueCode, nil); err != nil {
@@ -1143,17 +1160,19 @@ func (r *CodeSystemConceptProperty) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "valueCode":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueCode = v
+				_ = ext
 			case "valueCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1161,35 +1180,40 @@ func (r *CodeSystemConceptProperty) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ValueCoding = &v
 			case "valueString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
+				_ = ext
 			case "valueInteger":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
+				_ = ext
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			case "valueDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
+				_ = ext
 			case "valueDecimal":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDecimal = v
+				_ = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1212,12 +1236,20 @@ type CodeSystemFilter struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Code that identifies the filter
 	Code *string `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// How or why the filter is used
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// = | is-a | descendent-of | is-not-a | regex | in | not-in | generalizes | child-of | descendent-leaf | exists
 	Operator []*FilterOperator `json:"operator,omitempty"`
+	// Extension for Operator
+	OperatorExt []*Element `json:"_operator,omitempty"`
 	// What to use for the value
 	Value *string `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 }
 
 // MarshalXML serializes CodeSystemFilter to FHIR-conformant XML.
@@ -1242,16 +1274,16 @@ func (b CodeSystemFilter) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCodeArray(e, "operator", b.Operator, nil); err != nil {
+	if err := xmlEncodePrimitiveCodeArray(e, "operator", b.Operator, b.OperatorExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
 
@@ -1288,30 +1320,34 @@ func (r *CodeSystemFilter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "operator":
-				v, _, err := xmlDecodePrimitiveCode[FilterOperator](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[FilterOperator](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Operator = append(r.Operator, v)
+				r.OperatorExt = append(r.OperatorExt, ext)
 			case "value":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1334,12 +1370,20 @@ type CodeSystemProperty struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Identifies the property on the concepts, and when referred to in operations
 	Code *string `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Formal identifier for the property
 	Uri *string `json:"uri,omitempty"`
+	// Extension for Uri
+	UriExt *Element `json:"_uri,omitempty"`
 	// Why the property is defined, and/or what it conveys
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// code | Coding | string | integer | boolean | dateTime | decimal
 	Type *PropertyType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 }
 
 // MarshalXML serializes CodeSystemProperty to FHIR-conformant XML.
@@ -1364,16 +1408,16 @@ func (b CodeSystemProperty) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "uri", b.Uri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "uri", b.Uri, b.UriExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
 
@@ -1410,29 +1454,33 @@ func (r *CodeSystemProperty) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "uri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Uri = v
+				r.UriExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[PropertyType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[PropertyType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

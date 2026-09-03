@@ -281,12 +281,13 @@ func (r *SubstancePolymer) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.CopolymerConnectivity = append(r.CopolymerConnectivity, v)
 			case "modification":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Modification = append(r.Modification, v)
+				r.ModificationExt = append(r.ModificationExt, ext)
 			case "monomerSet":
 				var v SubstancePolymerMonomerSet
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -428,6 +429,8 @@ type SubstancePolymerMonomerSetStartingMaterial struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Todo
 	IsDefining *bool `json:"isDefining,omitempty"`
+	// Extension for IsDefining
+	IsDefiningExt *Element `json:"_isDefining,omitempty"`
 	// Todo
 	Amount *SubstanceAmount `json:"amount,omitempty"`
 }
@@ -464,7 +467,7 @@ func (b SubstancePolymerMonomerSetStartingMaterial) MarshalXML(e *xml.Encoder, s
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "isDefining", b.IsDefining, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "isDefining", b.IsDefining, b.IsDefiningExt); err != nil {
 		return err
 	}
 	if b.Amount != nil {
@@ -518,11 +521,12 @@ func (r *SubstancePolymerMonomerSetStartingMaterial) UnmarshalXML(d *xml.Decoder
 				}
 				r.Type = &v
 			case "isDefining":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.IsDefining = v
+				r.IsDefiningExt = ext
 			case "amount":
 				var v SubstanceAmount
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -551,8 +555,12 @@ type SubstancePolymerRepeat struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Todo
 	NumberOfUnits *int `json:"numberOfUnits,omitempty"`
+	// Extension for NumberOfUnits
+	NumberOfUnitsExt *Element `json:"_numberOfUnits,omitempty"`
 	// Todo
 	AverageMolecularFormula *string `json:"averageMolecularFormula,omitempty"`
+	// Extension for AverageMolecularFormula
+	AverageMolecularFormulaExt *Element `json:"_averageMolecularFormula,omitempty"`
 	// Todo
 	RepeatUnitAmountType *CodeableConcept `json:"repeatUnitAmountType,omitempty"`
 	// Todo
@@ -581,10 +589,10 @@ func (b SubstancePolymerRepeat) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveInt(e, "numberOfUnits", b.NumberOfUnits, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "numberOfUnits", b.NumberOfUnits, b.NumberOfUnitsExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "averageMolecularFormula", b.AverageMolecularFormula, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "averageMolecularFormula", b.AverageMolecularFormula, b.AverageMolecularFormulaExt); err != nil {
 		return err
 	}
 	if b.RepeatUnitAmountType != nil {
@@ -631,17 +639,19 @@ func (r *SubstancePolymerRepeat) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "numberOfUnits":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.NumberOfUnits = v
+				r.NumberOfUnitsExt = ext
 			case "averageMolecularFormula":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AverageMolecularFormula = v
+				r.AverageMolecularFormulaExt = ext
 			case "repeatUnitAmountType":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -678,6 +688,8 @@ type SubstancePolymerRepeatRepeatUnit struct {
 	OrientationOfPolymerisation *CodeableConcept `json:"orientationOfPolymerisation,omitempty"`
 	// Todo
 	RepeatUnit *string `json:"repeatUnit,omitempty"`
+	// Extension for RepeatUnit
+	RepeatUnitExt *Element `json:"_repeatUnit,omitempty"`
 	// Todo
 	Amount *SubstanceAmount `json:"amount,omitempty"`
 	// Todo
@@ -713,7 +725,7 @@ func (b SubstancePolymerRepeatRepeatUnit) MarshalXML(e *xml.Encoder, start xml.S
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "repeatUnit", b.RepeatUnit, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "repeatUnit", b.RepeatUnit, b.RepeatUnitExt); err != nil {
 		return err
 	}
 	if b.Amount != nil {
@@ -771,11 +783,12 @@ func (r *SubstancePolymerRepeatRepeatUnit) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				r.OrientationOfPolymerisation = &v
 			case "repeatUnit":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.RepeatUnit = v
+				r.RepeatUnitExt = ext
 			case "amount":
 				var v SubstanceAmount
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -921,6 +934,8 @@ type SubstancePolymerRepeatRepeatUnitStructuralRepresentation struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Todo
 	Representation *string `json:"representation,omitempty"`
+	// Extension for Representation
+	RepresentationExt *Element `json:"_representation,omitempty"`
 	// Todo
 	Attachment *Attachment `json:"attachment,omitempty"`
 }
@@ -952,7 +967,7 @@ func (b SubstancePolymerRepeatRepeatUnitStructuralRepresentation) MarshalXML(e *
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "representation", b.Representation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "representation", b.Representation, b.RepresentationExt); err != nil {
 		return err
 	}
 	if b.Attachment != nil {
@@ -1000,11 +1015,12 @@ func (r *SubstancePolymerRepeatRepeatUnitStructuralRepresentation) UnmarshalXML(
 				}
 				r.Type = &v
 			case "representation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Representation = v
+				r.RepresentationExt = ext
 			case "attachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {

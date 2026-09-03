@@ -282,6 +282,8 @@ type LinkageItem struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// source | alternate | historical
 	Type *LinkageType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// Resource being linked
 	Resource *Reference `json:"resource,omitempty"`
 }
@@ -308,7 +310,7 @@ func (b LinkageItem) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
 	if b.Resource != nil {
@@ -350,11 +352,12 @@ func (r *LinkageItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[LinkageType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[LinkageType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "resource":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

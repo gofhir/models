@@ -677,6 +677,8 @@ type CitationCitedArtifact struct {
 	RelatedIdentifier []Identifier `json:"relatedIdentifier,omitempty"`
 	// When the cited artifact was accessed
 	DateAccessed *string `json:"dateAccessed,omitempty"`
+	// Extension for DateAccessed
+	DateAccessedExt *Element `json:"_dateAccessed,omitempty"`
 	// The defined version of the cited artifact
 	Version *CitationCitedArtifactVersion `json:"version,omitempty"`
 	// The status of the cited artifact
@@ -735,7 +737,7 @@ func (b CitationCitedArtifact) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "dateAccessed", b.DateAccessed, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "dateAccessed", b.DateAccessed, b.DateAccessedExt); err != nil {
 		return err
 	}
 	if b.Version != nil {
@@ -844,11 +846,12 @@ func (r *CitationCitedArtifact) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.RelatedIdentifier = append(r.RelatedIdentifier, v)
 			case "dateAccessed":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DateAccessed = v
+				r.DateAccessedExt = ext
 			case "version":
 				var v CitationCitedArtifactVersion
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -947,8 +950,12 @@ type CitationCitedArtifactAbstract struct {
 	Language *CodeableConcept `json:"language,omitempty"`
 	// Abstract content
 	Text *string `json:"text,omitempty"`
+	// Extension for Text
+	TextExt *Element `json:"_text,omitempty"`
 	// Copyright notice for the abstract
 	Copyright *string `json:"copyright,omitempty"`
+	// Extension for Copyright
+	CopyrightExt *Element `json:"_copyright,omitempty"`
 }
 
 // MarshalXML serializes CitationCitedArtifactAbstract to FHIR-conformant XML.
@@ -983,10 +990,10 @@ func (b CitationCitedArtifactAbstract) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "text", b.Text, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "text", b.Text, b.TextExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "copyright", b.Copyright, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "copyright", b.Copyright, b.CopyrightExt); err != nil {
 		return err
 	}
 
@@ -1035,17 +1042,19 @@ func (r *CitationCitedArtifactAbstract) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.Language = &v
 			case "text":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Text = v
+				r.TextExt = ext
 			case "copyright":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Copyright = v
+				r.CopyrightExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1184,6 +1193,8 @@ type CitationCitedArtifactContributorship struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Indicates if the list includes all authors and/or contributors
 	Complete *bool `json:"complete,omitempty"`
+	// Extension for Complete
+	CompleteExt *Element `json:"_complete,omitempty"`
 	// An individual entity named as a contributor
 	Entry []CitationCitedArtifactContributorshipEntry `json:"entry,omitempty"`
 	// Used to record a display of the author/contributor list without separate data element for each list member
@@ -1212,7 +1223,7 @@ func (b CitationCitedArtifactContributorship) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "complete", b.Complete, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "complete", b.Complete, b.CompleteExt); err != nil {
 		return err
 	}
 	for _, item := range b.Entry {
@@ -1259,11 +1270,12 @@ func (r *CitationCitedArtifactContributorship) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "complete":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Complete = v
+				r.CompleteExt = ext
 			case "entry":
 				var v CitationCitedArtifactContributorshipEntry
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1300,6 +1312,8 @@ type CitationCitedArtifactContributorshipEntry struct {
 	Contributor *Reference `json:"contributor,omitempty"`
 	// For citation styles that use initials
 	ForenameInitials *string `json:"forenameInitials,omitempty"`
+	// Extension for ForenameInitials
+	ForenameInitialsExt *Element `json:"_forenameInitials,omitempty"`
 	// Organizational affiliation
 	Affiliation []Reference `json:"affiliation,omitempty"`
 	// The specific contribution
@@ -1310,8 +1324,12 @@ type CitationCitedArtifactContributorshipEntry struct {
 	ContributionInstance []CitationCitedArtifactContributorshipEntryContributionInstance `json:"contributionInstance,omitempty"`
 	// Whether the contributor is the corresponding contributor for the role
 	CorrespondingContact *bool `json:"correspondingContact,omitempty"`
+	// Extension for CorrespondingContact
+	CorrespondingContactExt *Element `json:"_correspondingContact,omitempty"`
 	// Ranked order of contribution
 	RankingOrder *uint32 `json:"rankingOrder,omitempty"`
+	// Extension for RankingOrder
+	RankingOrderExt *Element `json:"_rankingOrder,omitempty"`
 }
 
 // MarshalXML serializes CitationCitedArtifactContributorshipEntry to FHIR-conformant XML.
@@ -1341,7 +1359,7 @@ func (b CitationCitedArtifactContributorshipEntry) MarshalXML(e *xml.Encoder, st
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "forenameInitials", b.ForenameInitials, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "forenameInitials", b.ForenameInitials, b.ForenameInitialsExt); err != nil {
 		return err
 	}
 	for _, item := range b.Affiliation {
@@ -1364,10 +1382,10 @@ func (b CitationCitedArtifactContributorshipEntry) MarshalXML(e *xml.Encoder, st
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "correspondingContact", b.CorrespondingContact, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "correspondingContact", b.CorrespondingContact, b.CorrespondingContactExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "rankingOrder", b.RankingOrder, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "rankingOrder", b.RankingOrder, b.RankingOrderExt); err != nil {
 		return err
 	}
 
@@ -1410,11 +1428,12 @@ func (r *CitationCitedArtifactContributorshipEntry) UnmarshalXML(d *xml.Decoder,
 				}
 				r.Contributor = &v
 			case "forenameInitials":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ForenameInitials = v
+				r.ForenameInitialsExt = ext
 			case "affiliation":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1440,17 +1459,19 @@ func (r *CitationCitedArtifactContributorshipEntry) UnmarshalXML(d *xml.Decoder,
 				}
 				r.ContributionInstance = append(r.ContributionInstance, v)
 			case "correspondingContact":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.CorrespondingContact = v
+				r.CorrespondingContactExt = ext
 			case "rankingOrder":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.RankingOrder = v
+				r.RankingOrderExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1475,6 +1496,8 @@ type CitationCitedArtifactContributorshipEntryContributionInstance struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// The time that the contribution was made
 	Time *string `json:"time,omitempty"`
+	// Extension for Time
+	TimeExt *Element `json:"_time,omitempty"`
 }
 
 // MarshalXML serializes CitationCitedArtifactContributorshipEntryContributionInstance to FHIR-conformant XML.
@@ -1504,7 +1527,7 @@ func (b CitationCitedArtifactContributorshipEntryContributionInstance) MarshalXM
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "time", b.Time, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "time", b.Time, b.TimeExt); err != nil {
 		return err
 	}
 
@@ -1547,11 +1570,12 @@ func (r *CitationCitedArtifactContributorshipEntryContributionInstance) Unmarsha
 				}
 				r.Type = &v
 			case "time":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Time = v
+				r.TimeExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1580,6 +1604,8 @@ type CitationCitedArtifactContributorshipSummary struct {
 	Source *CodeableConcept `json:"source,omitempty"`
 	// The display string for the author list, contributor list, or contributorship statement
 	Value *string `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 }
 
 // MarshalXML serializes CitationCitedArtifactContributorshipSummary to FHIR-conformant XML.
@@ -1619,7 +1645,7 @@ func (b CitationCitedArtifactContributorshipSummary) MarshalXML(e *xml.Encoder, 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
 
@@ -1674,11 +1700,12 @@ func (r *CitationCitedArtifactContributorshipSummary) UnmarshalXML(d *xml.Decode
 				}
 				r.Source = &v
 			case "value":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1703,6 +1730,8 @@ type CitationCitedArtifactPart struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// The specification of the component
 	Value *string `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 	// The citation for the full article or artifact
 	BaseCitation *Reference `json:"baseCitation,omitempty"`
 }
@@ -1734,7 +1763,7 @@ func (b CitationCitedArtifactPart) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
 	if b.BaseCitation != nil {
@@ -1782,11 +1811,12 @@ func (r *CitationCitedArtifactPart) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.Type = &v
 			case "value":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			case "baseCitation":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1819,30 +1849,54 @@ type CitationCitedArtifactPublicationForm struct {
 	CitedMedium *CodeableConcept `json:"citedMedium,omitempty"`
 	// Volume number of journal or other collection in which the article is published
 	Volume *string `json:"volume,omitempty"`
+	// Extension for Volume
+	VolumeExt *Element `json:"_volume,omitempty"`
 	// Issue, part or supplement of journal or other collection in which the article is published
 	Issue *string `json:"issue,omitempty"`
+	// Extension for Issue
+	IssueExt *Element `json:"_issue,omitempty"`
 	// The date the article was added to the database, or the date the article was released
 	ArticleDate *string `json:"articleDate,omitempty"`
+	// Extension for ArticleDate
+	ArticleDateExt *Element `json:"_articleDate,omitempty"`
 	// Text representation of the date on which the issue of the cited artifact was published
 	PublicationDateText *string `json:"publicationDateText,omitempty"`
+	// Extension for PublicationDateText
+	PublicationDateTextExt *Element `json:"_publicationDateText,omitempty"`
 	// Season in which the cited artifact was published
 	PublicationDateSeason *string `json:"publicationDateSeason,omitempty"`
+	// Extension for PublicationDateSeason
+	PublicationDateSeasonExt *Element `json:"_publicationDateSeason,omitempty"`
 	// The date the article was last revised or updated in the database
 	LastRevisionDate *string `json:"lastRevisionDate,omitempty"`
+	// Extension for LastRevisionDate
+	LastRevisionDateExt *Element `json:"_lastRevisionDate,omitempty"`
 	// Language(s) in which this form of the article is published
 	Language []CodeableConcept `json:"language,omitempty"`
 	// Entry number or identifier for inclusion in a database
 	AccessionNumber *string `json:"accessionNumber,omitempty"`
+	// Extension for AccessionNumber
+	AccessionNumberExt *Element `json:"_accessionNumber,omitempty"`
 	// Used for full display of pagination
 	PageString *string `json:"pageString,omitempty"`
+	// Extension for PageString
+	PageStringExt *Element `json:"_pageString,omitempty"`
 	// Used for isolated representation of first page
 	FirstPage *string `json:"firstPage,omitempty"`
+	// Extension for FirstPage
+	FirstPageExt *Element `json:"_firstPage,omitempty"`
 	// Used for isolated representation of last page
 	LastPage *string `json:"lastPage,omitempty"`
+	// Extension for LastPage
+	LastPageExt *Element `json:"_lastPage,omitempty"`
 	// Number of pages or screens
 	PageCount *string `json:"pageCount,omitempty"`
+	// Extension for PageCount
+	PageCountExt *Element `json:"_pageCount,omitempty"`
 	// Copyright notice for the full article or artifact
 	Copyright *string `json:"copyright,omitempty"`
+	// Extension for Copyright
+	CopyrightExt *Element `json:"_copyright,omitempty"`
 }
 
 // MarshalXML serializes CitationCitedArtifactPublicationForm to FHIR-conformant XML.
@@ -1877,22 +1931,22 @@ func (b CitationCitedArtifactPublicationForm) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "volume", b.Volume, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "volume", b.Volume, b.VolumeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "issue", b.Issue, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "issue", b.Issue, b.IssueExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "articleDate", b.ArticleDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "articleDate", b.ArticleDate, b.ArticleDateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "publicationDateText", b.PublicationDateText, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "publicationDateText", b.PublicationDateText, b.PublicationDateTextExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "publicationDateSeason", b.PublicationDateSeason, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "publicationDateSeason", b.PublicationDateSeason, b.PublicationDateSeasonExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "lastRevisionDate", b.LastRevisionDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "lastRevisionDate", b.LastRevisionDate, b.LastRevisionDateExt); err != nil {
 		return err
 	}
 	for _, item := range b.Language {
@@ -1900,22 +1954,22 @@ func (b CitationCitedArtifactPublicationForm) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "accessionNumber", b.AccessionNumber, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "accessionNumber", b.AccessionNumber, b.AccessionNumberExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "pageString", b.PageString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "pageString", b.PageString, b.PageStringExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "firstPage", b.FirstPage, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "firstPage", b.FirstPage, b.FirstPageExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "lastPage", b.LastPage, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "lastPage", b.LastPage, b.LastPageExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "pageCount", b.PageCount, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "pageCount", b.PageCount, b.PageCountExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "copyright", b.Copyright, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "copyright", b.Copyright, b.CopyrightExt); err != nil {
 		return err
 	}
 
@@ -1964,41 +2018,47 @@ func (r *CitationCitedArtifactPublicationForm) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.CitedMedium = &v
 			case "volume":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Volume = v
+				r.VolumeExt = ext
 			case "issue":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Issue = v
+				r.IssueExt = ext
 			case "articleDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ArticleDate = v
+				r.ArticleDateExt = ext
 			case "publicationDateText":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.PublicationDateText = v
+				r.PublicationDateTextExt = ext
 			case "publicationDateSeason":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.PublicationDateSeason = v
+				r.PublicationDateSeasonExt = ext
 			case "lastRevisionDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.LastRevisionDate = v
+				r.LastRevisionDateExt = ext
 			case "language":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2006,41 +2066,47 @@ func (r *CitationCitedArtifactPublicationForm) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.Language = append(r.Language, v)
 			case "accessionNumber":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AccessionNumber = v
+				r.AccessionNumberExt = ext
 			case "pageString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.PageString = v
+				r.PageStringExt = ext
 			case "firstPage":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.FirstPage = v
+				r.FirstPageExt = ext
 			case "lastPage":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.LastPage = v
+				r.LastPageExt = ext
 			case "pageCount":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.PageCount = v
+				r.PageCountExt = ext
 			case "copyright":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Copyright = v
+				r.CopyrightExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2067,10 +2133,14 @@ type CitationCitedArtifactPublicationFormPublishedIn struct {
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// Name of the database or title of the book or journal
 	Title *string `json:"title,omitempty"`
+	// Extension for Title
+	TitleExt *Element `json:"_title,omitempty"`
 	// Name of or resource describing the publisher
 	Publisher *Reference `json:"publisher,omitempty"`
 	// Geographic location of the publisher
 	PublisherLocation *string `json:"publisherLocation,omitempty"`
+	// Extension for PublisherLocation
+	PublisherLocationExt *Element `json:"_publisherLocation,omitempty"`
 }
 
 // MarshalXML serializes CitationCitedArtifactPublicationFormPublishedIn to FHIR-conformant XML.
@@ -2105,7 +2175,7 @@ func (b CitationCitedArtifactPublicationFormPublishedIn) MarshalXML(e *xml.Encod
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "title", b.Title, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "title", b.Title, b.TitleExt); err != nil {
 		return err
 	}
 	if b.Publisher != nil {
@@ -2113,7 +2183,7 @@ func (b CitationCitedArtifactPublicationFormPublishedIn) MarshalXML(e *xml.Encod
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "publisherLocation", b.PublisherLocation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "publisherLocation", b.PublisherLocation, b.PublisherLocationExt); err != nil {
 		return err
 	}
 
@@ -2162,11 +2232,12 @@ func (r *CitationCitedArtifactPublicationFormPublishedIn) UnmarshalXML(d *xml.De
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "title":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Title = v
+				r.TitleExt = ext
 			case "publisher":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2174,11 +2245,12 @@ func (r *CitationCitedArtifactPublicationFormPublishedIn) UnmarshalXML(d *xml.De
 				}
 				r.Publisher = &v
 			case "publisherLocation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.PublisherLocation = v
+				r.PublisherLocationExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2201,18 +2273,28 @@ type CitationCitedArtifactRelatesTo struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// documentation | justification | citation | predecessor | successor | derived-from | depends-on | composed-of | part-of | amends | amended-with | appends | appended-with | cites | cited-by | comments-on | comment-in | contains | contained-in | corrects | correction-in | replaces | replaced-with | retracts | retracted-by | signs | similar-to | supports | supported-with | transforms | transformed-into | transformed-with | documents | specification-of | created-with | cite-as | reprint | reprint-of
 	Type *RelatedArtifactTypeExpanded `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// Additional classifiers
 	Classifier []CodeableConcept `json:"classifier,omitempty"`
 	// Short label
 	Label *string `json:"label,omitempty"`
+	// Extension for Label
+	LabelExt *Element `json:"_label,omitempty"`
 	// Brief description of the related artifact
 	Display *string `json:"display,omitempty"`
+	// Extension for Display
+	DisplayExt *Element `json:"_display,omitempty"`
 	// Bibliographic citation for the artifact
 	Citation *string `json:"citation,omitempty"`
+	// Extension for Citation
+	CitationExt *Element `json:"_citation,omitempty"`
 	// What document is being referenced
 	Document *Attachment `json:"document,omitempty"`
 	// What artifact is being referenced
 	Resource *string `json:"resource,omitempty"`
+	// Extension for Resource
+	ResourceExt *Element `json:"_resource,omitempty"`
 	// What artifact, if not a conformance resource
 	ResourceReference *Reference `json:"resourceReference,omitempty"`
 }
@@ -2239,7 +2321,7 @@ func (b CitationCitedArtifactRelatesTo) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
 	for _, item := range b.Classifier {
@@ -2247,13 +2329,13 @@ func (b CitationCitedArtifactRelatesTo) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "label", b.Label, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "label", b.Label, b.LabelExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "display", b.Display, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "display", b.Display, b.DisplayExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "citation", b.Citation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "citation", b.Citation, b.CitationExt); err != nil {
 		return err
 	}
 	if b.Document != nil {
@@ -2261,7 +2343,7 @@ func (b CitationCitedArtifactRelatesTo) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "resource", b.Resource, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "resource", b.Resource, b.ResourceExt); err != nil {
 		return err
 	}
 	if b.ResourceReference != nil {
@@ -2303,11 +2385,12 @@ func (r *CitationCitedArtifactRelatesTo) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[RelatedArtifactTypeExpanded](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[RelatedArtifactTypeExpanded](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "classifier":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2315,23 +2398,26 @@ func (r *CitationCitedArtifactRelatesTo) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.Classifier = append(r.Classifier, v)
 			case "label":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Label = v
+				r.LabelExt = ext
 			case "display":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Display = v
+				r.DisplayExt = ext
 			case "citation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Citation = v
+				r.CitationExt = ext
 			case "document":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2339,11 +2425,12 @@ func (r *CitationCitedArtifactRelatesTo) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.Document = &v
 			case "resource":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Resource = v
+				r.ResourceExt = ext
 			case "resourceReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2374,6 +2461,8 @@ type CitationCitedArtifactStatusDate struct {
 	Activity *CodeableConcept `json:"activity,omitempty"`
 	// Either occurred or expected
 	Actual *bool `json:"actual,omitempty"`
+	// Extension for Actual
+	ActualExt *Element `json:"_actual,omitempty"`
 	// When the status started and/or ended
 	Period *Period `json:"period,omitempty"`
 }
@@ -2405,7 +2494,7 @@ func (b CitationCitedArtifactStatusDate) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "actual", b.Actual, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "actual", b.Actual, b.ActualExt); err != nil {
 		return err
 	}
 	if b.Period != nil {
@@ -2453,11 +2542,12 @@ func (r *CitationCitedArtifactStatusDate) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.Activity = &v
 			case "actual":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Actual = v
+				r.ActualExt = ext
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2490,6 +2580,8 @@ type CitationCitedArtifactTitle struct {
 	Language *CodeableConcept `json:"language,omitempty"`
 	// The title of the article or artifact
 	Text *string `json:"text,omitempty"`
+	// Extension for Text
+	TextExt *Element `json:"_text,omitempty"`
 }
 
 // MarshalXML serializes CitationCitedArtifactTitle to FHIR-conformant XML.
@@ -2524,7 +2616,7 @@ func (b CitationCitedArtifactTitle) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "text", b.Text, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "text", b.Text, b.TextExt); err != nil {
 		return err
 	}
 
@@ -2573,11 +2665,12 @@ func (r *CitationCitedArtifactTitle) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.Language = &v
 			case "text":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Text = v
+				r.TextExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2600,6 +2693,8 @@ type CitationCitedArtifactVersion struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The version number or other version identifier
 	Value *string `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 	// Citation for the main version of the cited artifact
 	BaseCitation *Reference `json:"baseCitation,omitempty"`
 }
@@ -2626,7 +2721,7 @@ func (b CitationCitedArtifactVersion) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
 	if b.BaseCitation != nil {
@@ -2668,11 +2763,12 @@ func (r *CitationCitedArtifactVersion) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "value":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			case "baseCitation":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2703,6 +2799,8 @@ type CitationCitedArtifactWebLocation struct {
 	Classifier []CodeableConcept `json:"classifier,omitempty"`
 	// The specific URL
 	Url *string `json:"url,omitempty"`
+	// Extension for Url
+	UrlExt *Element `json:"_url,omitempty"`
 }
 
 // MarshalXML serializes CitationCitedArtifactWebLocation to FHIR-conformant XML.
@@ -2732,7 +2830,7 @@ func (b CitationCitedArtifactWebLocation) MarshalXML(e *xml.Encoder, start xml.S
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "url", b.Url, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "url", b.Url, b.UrlExt); err != nil {
 		return err
 	}
 
@@ -2775,11 +2873,12 @@ func (r *CitationCitedArtifactWebLocation) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				r.Classifier = append(r.Classifier, v)
 			case "url":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Url = v
+				r.UrlExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2907,6 +3006,8 @@ type CitationStatusDate struct {
 	Activity *CodeableConcept `json:"activity,omitempty"`
 	// Either occurred or expected
 	Actual *bool `json:"actual,omitempty"`
+	// Extension for Actual
+	ActualExt *Element `json:"_actual,omitempty"`
 	// When the status started and/or ended
 	Period *Period `json:"period,omitempty"`
 }
@@ -2938,7 +3039,7 @@ func (b CitationStatusDate) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "actual", b.Actual, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "actual", b.Actual, b.ActualExt); err != nil {
 		return err
 	}
 	if b.Period != nil {
@@ -2986,11 +3087,12 @@ func (r *CitationStatusDate) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Activity = &v
 			case "actual":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Actual = v
+				r.ActualExt = ext
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -3021,6 +3123,8 @@ type CitationSummary struct {
 	Style *CodeableConcept `json:"style,omitempty"`
 	// The human-readable display of the citation summary
 	Text *string `json:"text,omitempty"`
+	// Extension for Text
+	TextExt *Element `json:"_text,omitempty"`
 }
 
 // MarshalXML serializes CitationSummary to FHIR-conformant XML.
@@ -3050,7 +3154,7 @@ func (b CitationSummary) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "text", b.Text, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "text", b.Text, b.TextExt); err != nil {
 		return err
 	}
 
@@ -3093,11 +3197,12 @@ func (r *CitationSummary) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.Style = &v
 			case "text":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Text = v
+				r.TextExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

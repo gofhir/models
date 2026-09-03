@@ -725,6 +725,8 @@ type DocumentReferenceRelatesTo struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// replaces | transforms | signs | appends
 	Code *DocumentRelationshipType `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Target of the relationship
 	Target *Reference `json:"target,omitempty"`
 }
@@ -751,7 +753,7 @@ func (b DocumentReferenceRelatesTo) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
 	if b.Target != nil {
@@ -793,11 +795,12 @@ func (r *DocumentReferenceRelatesTo) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, _, err := xmlDecodePrimitiveCode[DocumentRelationshipType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[DocumentRelationshipType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "target":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

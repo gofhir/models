@@ -346,26 +346,29 @@ func (r *NutritionOrder) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "instantiatesCanonical":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
+				r.InstantiatesCanonicalExt = append(r.InstantiatesCanonicalExt, ext)
 			case "instantiatesUri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.InstantiatesUri = append(r.InstantiatesUri, v)
+				r.InstantiatesUriExt = append(r.InstantiatesUriExt, ext)
 			case "instantiates":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Instantiates = append(r.Instantiates, v)
+				r.InstantiatesExt = append(r.InstantiatesExt, ext)
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[RequestStatus](d, t)
 				if err != nil {
@@ -471,10 +474,14 @@ type NutritionOrderEnteralFormula struct {
 	BaseFormulaType *CodeableConcept `json:"baseFormulaType,omitempty"`
 	// Product or brand name of the enteral or infant formula
 	BaseFormulaProductName *string `json:"baseFormulaProductName,omitempty"`
+	// Extension for BaseFormulaProductName
+	BaseFormulaProductNameExt *Element `json:"_baseFormulaProductName,omitempty"`
 	// Type of modular component to add to the feeding
 	AdditiveType *CodeableConcept `json:"additiveType,omitempty"`
 	// Product or brand name of the modular additive
 	AdditiveProductName *string `json:"additiveProductName,omitempty"`
+	// Extension for AdditiveProductName
+	AdditiveProductNameExt *Element `json:"_additiveProductName,omitempty"`
 	// Amount of energy per specified volume that is required
 	CaloricDensity *Quantity `json:"caloricDensity,omitempty"`
 	// How the formula should enter the patient's gastrointestinal tract
@@ -485,6 +492,8 @@ type NutritionOrderEnteralFormula struct {
 	MaxVolumeToDeliver *Quantity `json:"maxVolumeToDeliver,omitempty"`
 	// Formula feeding instructions expressed as text
 	AdministrationInstruction *string `json:"administrationInstruction,omitempty"`
+	// Extension for AdministrationInstruction
+	AdministrationInstructionExt *Element `json:"_administrationInstruction,omitempty"`
 }
 
 // MarshalXML serializes NutritionOrderEnteralFormula to FHIR-conformant XML.
@@ -514,7 +523,7 @@ func (b NutritionOrderEnteralFormula) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "baseFormulaProductName", b.BaseFormulaProductName, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "baseFormulaProductName", b.BaseFormulaProductName, b.BaseFormulaProductNameExt); err != nil {
 		return err
 	}
 	if b.AdditiveType != nil {
@@ -522,7 +531,7 @@ func (b NutritionOrderEnteralFormula) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "additiveProductName", b.AdditiveProductName, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "additiveProductName", b.AdditiveProductName, b.AdditiveProductNameExt); err != nil {
 		return err
 	}
 	if b.CaloricDensity != nil {
@@ -545,7 +554,7 @@ func (b NutritionOrderEnteralFormula) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "administrationInstruction", b.AdministrationInstruction, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "administrationInstruction", b.AdministrationInstruction, b.AdministrationInstructionExt); err != nil {
 		return err
 	}
 
@@ -588,11 +597,12 @@ func (r *NutritionOrderEnteralFormula) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.BaseFormulaType = &v
 			case "baseFormulaProductName":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.BaseFormulaProductName = v
+				r.BaseFormulaProductNameExt = ext
 			case "additiveType":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -600,11 +610,12 @@ func (r *NutritionOrderEnteralFormula) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.AdditiveType = &v
 			case "additiveProductName":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AdditiveProductName = v
+				r.AdditiveProductNameExt = ext
 			case "caloricDensity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -630,11 +641,12 @@ func (r *NutritionOrderEnteralFormula) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.MaxVolumeToDeliver = &v
 			case "administrationInstruction":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AdministrationInstruction = v
+				r.AdministrationInstructionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -796,6 +808,8 @@ type NutritionOrderOralDiet struct {
 	FluidConsistencyType []CodeableConcept `json:"fluidConsistencyType,omitempty"`
 	// Instructions or additional information about the oral diet
 	Instruction *string `json:"instruction,omitempty"`
+	// Extension for Instruction
+	InstructionExt *Element `json:"_instruction,omitempty"`
 }
 
 // MarshalXML serializes NutritionOrderOralDiet to FHIR-conformant XML.
@@ -845,7 +859,7 @@ func (b NutritionOrderOralDiet) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "instruction", b.Instruction, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "instruction", b.Instruction, b.InstructionExt); err != nil {
 		return err
 	}
 
@@ -912,11 +926,12 @@ func (r *NutritionOrderOralDiet) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.FluidConsistencyType = append(r.FluidConsistencyType, v)
 			case "instruction":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Instruction = v
+				r.InstructionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1147,12 +1162,16 @@ type NutritionOrderSupplement struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Product or brand name of the nutritional supplement
 	ProductName *string `json:"productName,omitempty"`
+	// Extension for ProductName
+	ProductNameExt *Element `json:"_productName,omitempty"`
 	// Scheduled frequency of supplement
 	Schedule []Timing `json:"schedule,omitempty"`
 	// Amount of the nutritional supplement
 	Quantity *Quantity `json:"quantity,omitempty"`
 	// Instructions or additional information about the oral supplement
 	Instruction *string `json:"instruction,omitempty"`
+	// Extension for Instruction
+	InstructionExt *Element `json:"_instruction,omitempty"`
 }
 
 // MarshalXML serializes NutritionOrderSupplement to FHIR-conformant XML.
@@ -1182,7 +1201,7 @@ func (b NutritionOrderSupplement) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "productName", b.ProductName, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "productName", b.ProductName, b.ProductNameExt); err != nil {
 		return err
 	}
 	for _, item := range b.Schedule {
@@ -1195,7 +1214,7 @@ func (b NutritionOrderSupplement) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "instruction", b.Instruction, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "instruction", b.Instruction, b.InstructionExt); err != nil {
 		return err
 	}
 
@@ -1238,11 +1257,12 @@ func (r *NutritionOrderSupplement) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.Type = &v
 			case "productName":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ProductName = v
+				r.ProductNameExt = ext
 			case "schedule":
 				var v Timing
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1256,11 +1276,12 @@ func (r *NutritionOrderSupplement) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.Quantity = &v
 			case "instruction":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Instruction = v
+				r.InstructionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

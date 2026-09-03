@@ -377,6 +377,8 @@ type PersonLink struct {
 	Target *Reference `json:"target,omitempty"`
 	// level1 | level2 | level3 | level4
 	Assurance *IdentityAssuranceLevel `json:"assurance,omitempty"`
+	// Extension for Assurance
+	AssuranceExt *Element `json:"_assurance,omitempty"`
 }
 
 // MarshalXML serializes PersonLink to FHIR-conformant XML.
@@ -406,7 +408,7 @@ func (b PersonLink) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "assurance", b.Assurance, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "assurance", b.Assurance, b.AssuranceExt); err != nil {
 		return err
 	}
 
@@ -449,11 +451,12 @@ func (r *PersonLink) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				r.Target = &v
 			case "assurance":
-				v, _, err := xmlDecodePrimitiveCode[IdentityAssuranceLevel](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[IdentityAssuranceLevel](d, t)
 				if err != nil {
 					return err
 				}
 				r.Assurance = v
+				r.AssuranceExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

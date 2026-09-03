@@ -454,6 +454,8 @@ type InvoiceLineItem struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Sequence number of line item
 	Sequence *uint32 `json:"sequence,omitempty"`
+	// Extension for Sequence
+	SequenceExt *Element `json:"_sequence,omitempty"`
 	// Reference to ChargeItem containing details of this line item or an inline billing code
 	ChargeItemReference *Reference `json:"chargeItemReference,omitempty"`
 	// Reference to ChargeItem containing details of this line item or an inline billing code
@@ -484,7 +486,7 @@ func (b InvoiceLineItem) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, b.SequenceExt); err != nil {
 		return err
 	}
 	if b.ChargeItemReference != nil {
@@ -536,11 +538,12 @@ func (r *InvoiceLineItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "sequence":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Sequence = v
+				r.SequenceExt = ext
 			case "chargeItemReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -581,10 +584,14 @@ type InvoiceLineItemPriceComponent struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// base | surcharge | deduction | discount | tax | informational
 	Type *InvoicePriceComponentType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// Code identifying the specific component
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Factor used for calculating this component
 	Factor *Decimal `json:"factor,omitempty"`
+	// Extension for Factor
+	FactorExt *Element `json:"_factor,omitempty"`
 	// Monetary amount associated with this component
 	Amount *Money `json:"amount,omitempty"`
 }
@@ -611,7 +618,7 @@ func (b InvoiceLineItemPriceComponent) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
 	if b.Code != nil {
@@ -619,7 +626,7 @@ func (b InvoiceLineItemPriceComponent) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "factor", b.Factor, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "factor", b.Factor, b.FactorExt); err != nil {
 		return err
 	}
 	if b.Amount != nil {
@@ -661,11 +668,12 @@ func (r *InvoiceLineItemPriceComponent) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[InvoicePriceComponentType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[InvoicePriceComponentType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "code":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -673,11 +681,12 @@ func (r *InvoiceLineItemPriceComponent) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.Code = &v
 			case "factor":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Factor = v
+				r.FactorExt = ext
 			case "amount":
 				var v Money
 				if err := v.UnmarshalXML(d, t); err != nil {

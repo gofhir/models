@@ -430,19 +430,21 @@ func (r *ChargeItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "definitionUri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DefinitionUri = append(r.DefinitionUri, v)
+				r.DefinitionUriExt = append(r.DefinitionUriExt, ext)
 			case "definitionCanonical":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DefinitionCanonical = append(r.DefinitionCanonical, v)
+				r.DefinitionCanonicalExt = append(r.DefinitionCanonicalExt, ext)
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[ChargeItemStatus](d, t)
 				if err != nil {

@@ -869,6 +869,8 @@ type EncounterLocation struct {
 	Location *Reference `json:"location,omitempty"`
 	// planned | active | reserved | completed
 	Status *EncounterLocationStatus `json:"status,omitempty"`
+	// Extension for Status
+	StatusExt *Element `json:"_status,omitempty"`
 	// The physical type of the location (usually the level in the location hierarchy - bed, room, ward, virtual etc.)
 	Form *CodeableConcept `json:"form,omitempty"`
 	// Time period during which the patient was present at the location
@@ -902,7 +904,7 @@ func (b EncounterLocation) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "status", b.Status, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "status", b.Status, b.StatusExt); err != nil {
 		return err
 	}
 	if b.Form != nil {
@@ -955,11 +957,12 @@ func (r *EncounterLocation) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.Location = &v
 			case "status":
-				v, _, err := xmlDecodePrimitiveCode[EncounterLocationStatus](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[EncounterLocationStatus](d, t)
 				if err != nil {
 					return err
 				}
 				r.Status = v
+				r.StatusExt = ext
 			case "form":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

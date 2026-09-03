@@ -360,8 +360,12 @@ type MedicationBatch struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Identifier assigned to batch
 	LotNumber *string `json:"lotNumber,omitempty"`
+	// Extension for LotNumber
+	LotNumberExt *Element `json:"_lotNumber,omitempty"`
 	// When batch will expire
 	ExpirationDate *string `json:"expirationDate,omitempty"`
+	// Extension for ExpirationDate
+	ExpirationDateExt *Element `json:"_expirationDate,omitempty"`
 }
 
 // MarshalXML serializes MedicationBatch to FHIR-conformant XML.
@@ -386,10 +390,10 @@ func (b MedicationBatch) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "lotNumber", b.LotNumber, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "lotNumber", b.LotNumber, b.LotNumberExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "expirationDate", b.ExpirationDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "expirationDate", b.ExpirationDate, b.ExpirationDateExt); err != nil {
 		return err
 	}
 
@@ -426,17 +430,19 @@ func (r *MedicationBatch) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "lotNumber":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.LotNumber = v
+				r.LotNumberExt = ext
 			case "expirationDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ExpirationDate = v
+				r.ExpirationDateExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -461,6 +467,8 @@ type MedicationIngredient struct {
 	Item *CodeableReference `json:"item,omitempty"`
 	// Active ingredient indicator
 	IsActive *bool `json:"isActive,omitempty"`
+	// Extension for IsActive
+	IsActiveExt *Element `json:"_isActive,omitempty"`
 	// Quantity of ingredient present
 	StrengthRatio *Ratio `json:"strengthRatio,omitempty"`
 	// Quantity of ingredient present
@@ -496,7 +504,7 @@ func (b MedicationIngredient) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "isActive", b.IsActive, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "isActive", b.IsActive, b.IsActiveExt); err != nil {
 		return err
 	}
 	if b.StrengthRatio != nil {
@@ -554,11 +562,12 @@ func (r *MedicationIngredient) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.Item = &v
 			case "isActive":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.IsActive = v
+				r.IsActiveExt = ext
 			case "strengthRatio":
 				var v Ratio
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -474,14 +474,24 @@ type SubscriptionFilterBy struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Allowed Resource (reference to definition) for this Subscription filter
 	ResourceType *string `json:"resourceType,omitempty"`
+	// Extension for ResourceType
+	ResourceTypeExt *Element `json:"_resourceType,omitempty"`
 	// Filter label defined in SubscriptionTopic
 	FilterParameter *string `json:"filterParameter,omitempty"`
+	// Extension for FilterParameter
+	FilterParameterExt *Element `json:"_filterParameter,omitempty"`
 	// eq | ne | gt | lt | ge | le | sa | eb | ap
 	Comparator *SearchComparator `json:"comparator,omitempty"`
+	// Extension for Comparator
+	ComparatorExt *Element `json:"_comparator,omitempty"`
 	// missing | exact | contains | not | text | in | not-in | below | above | type | identifier | of-type | code-text | text-advanced | iterate
 	Modifier *SearchModifierCode `json:"modifier,omitempty"`
+	// Extension for Modifier
+	ModifierExt *Element `json:"_modifier,omitempty"`
 	// Literal value or resource path
 	Value *string `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 }
 
 // MarshalXML serializes SubscriptionFilterBy to FHIR-conformant XML.
@@ -506,19 +516,19 @@ func (b SubscriptionFilterBy) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "resourceType", b.ResourceType, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "resourceType", b.ResourceType, b.ResourceTypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "filterParameter", b.FilterParameter, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "filterParameter", b.FilterParameter, b.FilterParameterExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "comparator", b.Comparator, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "comparator", b.Comparator, b.ComparatorExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "modifier", b.Modifier, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "modifier", b.Modifier, b.ModifierExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
 
@@ -555,35 +565,40 @@ func (r *SubscriptionFilterBy) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "resourceType":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ResourceType = v
+				r.ResourceTypeExt = ext
 			case "filterParameter":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.FilterParameter = v
+				r.FilterParameterExt = ext
 			case "comparator":
-				v, _, err := xmlDecodePrimitiveCode[SearchComparator](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[SearchComparator](d, t)
 				if err != nil {
 					return err
 				}
 				r.Comparator = v
+				r.ComparatorExt = ext
 			case "modifier":
-				v, _, err := xmlDecodePrimitiveCode[SearchModifierCode](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[SearchModifierCode](d, t)
 				if err != nil {
 					return err
 				}
 				r.Modifier = v
+				r.ModifierExt = ext
 			case "value":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -606,8 +621,12 @@ type SubscriptionParameter struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Name (key) of the parameter
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Value of the parameter to use or pass through
 	Value *string `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 }
 
 // MarshalXML serializes SubscriptionParameter to FHIR-conformant XML.
@@ -632,10 +651,10 @@ func (b SubscriptionParameter) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
 
@@ -672,17 +691,19 @@ func (r *SubscriptionParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "value":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

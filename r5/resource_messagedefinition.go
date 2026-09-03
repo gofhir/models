@@ -464,12 +464,13 @@ func (r *MessageDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				r.Title = v
 				r.TitleExt = ext
 			case "replaces":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Replaces = append(r.Replaces, v)
+				r.ReplacesExt = append(r.ReplacesExt, ext)
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {
@@ -552,12 +553,13 @@ func (r *MessageDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				r.Base = v
 				r.BaseExt = ext
 			case "parent":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Parent = append(r.Parent, v)
+				r.ParentExt = append(r.ParentExt, ext)
 			case "eventCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -626,8 +628,12 @@ type MessageDefinitionAllowedResponse struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Reference to allowed message definition response
 	Message *string `json:"message,omitempty"`
+	// Extension for Message
+	MessageExt *Element `json:"_message,omitempty"`
 	// When should this response be used
 	Situation *string `json:"situation,omitempty"`
+	// Extension for Situation
+	SituationExt *Element `json:"_situation,omitempty"`
 }
 
 // MarshalXML serializes MessageDefinitionAllowedResponse to FHIR-conformant XML.
@@ -652,10 +658,10 @@ func (b MessageDefinitionAllowedResponse) MarshalXML(e *xml.Encoder, start xml.S
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "message", b.Message, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "message", b.Message, b.MessageExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "situation", b.Situation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "situation", b.Situation, b.SituationExt); err != nil {
 		return err
 	}
 
@@ -692,17 +698,19 @@ func (r *MessageDefinitionAllowedResponse) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "message":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Message = v
+				r.MessageExt = ext
 			case "situation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Situation = v
+				r.SituationExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -725,12 +733,20 @@ type MessageDefinitionFocus struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type of resource
 	Code *string `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Profile that must be adhered to by focus
 	Profile *string `json:"profile,omitempty"`
+	// Extension for Profile
+	ProfileExt *Element `json:"_profile,omitempty"`
 	// Minimum number of focuses of this type
 	Min *uint32 `json:"min,omitempty"`
+	// Extension for Min
+	MinExt *Element `json:"_min,omitempty"`
 	// Maximum number of focuses of this type
 	Max *string `json:"max,omitempty"`
+	// Extension for Max
+	MaxExt *Element `json:"_max,omitempty"`
 }
 
 // MarshalXML serializes MessageDefinitionFocus to FHIR-conformant XML.
@@ -755,16 +771,16 @@ func (b MessageDefinitionFocus) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "profile", b.Profile, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "profile", b.Profile, b.ProfileExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "min", b.Min, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "min", b.Min, b.MinExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "max", b.Max, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "max", b.Max, b.MaxExt); err != nil {
 		return err
 	}
 
@@ -801,29 +817,33 @@ func (r *MessageDefinitionFocus) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "profile":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Profile = v
+				r.ProfileExt = ext
 			case "min":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Min = v
+				r.MinExt = ext
 			case "max":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Max = v
+				r.MaxExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

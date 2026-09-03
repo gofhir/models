@@ -320,8 +320,12 @@ type ImmunizationRecommendationRecommendation struct {
 	DateCriterion []ImmunizationRecommendationRecommendationDateCriterion `json:"dateCriterion,omitempty"`
 	// Protocol details
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Name of vaccination series
 	Series *string `json:"series,omitempty"`
+	// Extension for Series
+	SeriesExt *Element `json:"_series,omitempty"`
 	// Recommended dose number within series
 	DoseNumberPositiveInt *uint32 `json:"doseNumberPositiveInt,omitempty"`
 	// Extension for DoseNumberPositiveInt
@@ -396,10 +400,10 @@ func (b ImmunizationRecommendationRecommendation) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "series", b.Series, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "series", b.Series, b.SeriesExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveUint32(e, "doseNumberPositiveInt", b.DoseNumberPositiveInt, nil); err != nil {
@@ -494,41 +498,47 @@ func (r *ImmunizationRecommendationRecommendation) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.DateCriterion = append(r.DateCriterion, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "series":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Series = v
+				r.SeriesExt = ext
 			case "doseNumberPositiveInt":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.DoseNumberPositiveInt = v
+				_ = ext
 			case "doseNumberString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DoseNumberString = v
+				_ = ext
 			case "seriesDosesPositiveInt":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.SeriesDosesPositiveInt = v
+				_ = ext
 			case "seriesDosesString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SeriesDosesString = v
+				_ = ext
 			case "supportingImmunization":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -565,6 +575,8 @@ type ImmunizationRecommendationRecommendationDateCriterion struct {
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Recommended date
 	Value *string `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 }
 
 // MarshalXML serializes ImmunizationRecommendationRecommendationDateCriterion to FHIR-conformant XML.
@@ -594,7 +606,7 @@ func (b ImmunizationRecommendationRecommendationDateCriterion) MarshalXML(e *xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
 
@@ -637,11 +649,12 @@ func (r *ImmunizationRecommendationRecommendationDateCriterion) UnmarshalXML(d *
 				}
 				r.Code = &v
 			case "value":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

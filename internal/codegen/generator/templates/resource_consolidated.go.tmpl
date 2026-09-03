@@ -372,15 +372,23 @@ func (r *{{.Name}}) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 {{- else}}
 				_ = ext
 {{- end}}
-{{- /* Primitive arrays */ -}}
+{{- /* Primitive arrays. Both slices grow together, so slot i of one lines up
+       with slot i of the other — which is the whole contract of the parallel
+       _field array. Appending only the value would shift every later extension
+       onto the wrong element. */ -}}
 {{- else if and .IsPrimitive .IsArray}}
 			case "{{.JSONName}}":
-				v, _, err := {{xmlPrimitiveDecodeFunc (elemType .GoType)}}(d, t)
+				v, ext, err := {{xmlPrimitiveDecodeFunc (elemType .GoType)}}(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.{{.Name}} = append(r.{{.Name}}, v)
+{{- if and .HasExtension (not .IsChoice)}}
+				r.{{.Name}}Ext = append(r.{{.Name}}Ext, ext)
+{{- else}}
+				_ = ext
+{{- end}}
 {{- /* Polymorphic Resource field */ -}}
 {{- else if eq .GoType "Resource"}}
 {{- /* Handled via inline resource - should not appear on resources */ -}}
@@ -447,6 +455,18 @@ type {{.Name}} struct {
 	// {{.Description}}
 	{{- end}}
 	{{.Name}} {{.GoType}} `json:"{{.JSONName}},omitempty"`
+	{{- /* A primitive inside a backbone carries extensions in a _field companion
+	       exactly as one at the root of a resource does. Backbones did not emit
+	       these, so every extension on a primitive nested in one was silently
+	       dropped on decode — four of the corpus's seven JSON failures. */ -}}
+	{{- if and .HasExtension (not .IsChoice)}}
+	// Extension for {{.Name}}
+	{{- if .IsArray}}
+	{{.Name}}Ext []*Element `json:"_{{.JSONName}},omitempty"`
+	{{- else}}
+	{{.Name}}Ext *Element `json:"_{{.JSONName}},omitempty"`
+	{{- end}}
+	{{- end}}
 {{- end}}
 }
 
@@ -511,14 +531,16 @@ func (b {{.Name}}) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodeRawXHTML(e, "{{.JSONName}}", b.{{.Name}}); err != nil {
 		return err
 	}
-{{- /* Primitive scalars (backbones don't have extension companion fields) */ -}}
+{{- /* Primitive scalars. The companion is passed through exactly as at the root
+       of a resource; backbones used to hardcode nil here because they had no
+       companion field to pass. */ -}}
 {{- else if and .IsPrimitive (not .IsArray)}}
-	if err := {{xmlPrimitiveFunc .GoType}}(e, "{{.JSONName}}", b.{{.Name}}, nil); err != nil {
+	if err := {{xmlPrimitiveFunc .GoType}}(e, "{{.JSONName}}", b.{{.Name}}, {{extFieldRef "b" .}}); err != nil {
 		return err
 	}
-{{- /* Primitive arrays (backbones don't have extension companion fields) */ -}}
+{{- /* Primitive arrays, same as above. */ -}}
 {{- else if and .IsPrimitive .IsArray}}
-	if err := {{xmlPrimitiveArrayFunc .GoType}}(e, "{{.JSONName}}", b.{{.Name}}, nil); err != nil {
+	if err := {{xmlPrimitiveArrayFunc .GoType}}(e, "{{.JSONName}}", b.{{.Name}}, {{extFieldRef "b" .}}); err != nil {
 		return err
 	}
 {{- /* Complex type arrays */ -}}
@@ -581,23 +603,33 @@ func (r *{{.Name}}) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.{{.Name}} = v
-{{- /* Primitive scalars (backbones don't have extension companion fields) */ -}}
+{{- /* Primitive scalars */ -}}
 {{- else if and .IsPrimitive (not .IsArray)}}
 			case "{{.JSONName}}":
-				v, _, err := {{xmlPrimitiveDecodeFunc .GoType}}(d, t)
+				v, ext, err := {{xmlPrimitiveDecodeFunc .GoType}}(d, t)
 				if err != nil {
 					return err
 				}
 				r.{{.Name}} = v
+{{- if and .HasExtension (not .IsChoice)}}
+				r.{{.Name}}Ext = ext
+{{- else}}
+				_ = ext
+{{- end}}
 {{- /* Primitive arrays */ -}}
 {{- else if and .IsPrimitive .IsArray}}
 			case "{{.JSONName}}":
-				v, _, err := {{xmlPrimitiveDecodeFunc (elemType .GoType)}}(d, t)
+				v, ext, err := {{xmlPrimitiveDecodeFunc (elemType .GoType)}}(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.{{.Name}} = append(r.{{.Name}}, v)
+{{- if and .HasExtension (not .IsChoice)}}
+				r.{{.Name}}Ext = append(r.{{.Name}}Ext, ext)
+{{- else}}
+				_ = ext
+{{- end}}
 {{- /* Complex type arrays */ -}}
 {{- else if .IsArray}}
 			case "{{.JSONName}}":

@@ -325,12 +325,13 @@ func (r *VerificationResult) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Target = append(r.Target, v)
 			case "targetLocation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.TargetLocation = append(r.TargetLocation, v)
+				r.TargetLocationExt = append(r.TargetLocationExt, ext)
 			case "need":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -435,10 +436,16 @@ type VerificationResultAttestation struct {
 	CommunicationMethod *CodeableConcept `json:"communicationMethod,omitempty"`
 	// The date the information was attested to
 	Date *string `json:"date,omitempty"`
+	// Extension for Date
+	DateExt *Element `json:"_date,omitempty"`
 	// A digital identity certificate associated with the attestation source
 	SourceIdentityCertificate *string `json:"sourceIdentityCertificate,omitempty"`
+	// Extension for SourceIdentityCertificate
+	SourceIdentityCertificateExt *Element `json:"_sourceIdentityCertificate,omitempty"`
 	// A digital identity certificate associated with the proxy entity submitting attested information on behalf of the attestation source
 	ProxyIdentityCertificate *string `json:"proxyIdentityCertificate,omitempty"`
+	// Extension for ProxyIdentityCertificate
+	ProxyIdentityCertificateExt *Element `json:"_proxyIdentityCertificate,omitempty"`
 	// Proxy signature
 	ProxySignature *Signature `json:"proxySignature,omitempty"`
 	// Attester signature
@@ -482,13 +489,13 @@ func (b VerificationResultAttestation) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "date", b.Date, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "date", b.Date, b.DateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "sourceIdentityCertificate", b.SourceIdentityCertificate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sourceIdentityCertificate", b.SourceIdentityCertificate, b.SourceIdentityCertificateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "proxyIdentityCertificate", b.ProxyIdentityCertificate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "proxyIdentityCertificate", b.ProxyIdentityCertificate, b.ProxyIdentityCertificateExt); err != nil {
 		return err
 	}
 	if b.ProxySignature != nil {
@@ -553,23 +560,26 @@ func (r *VerificationResultAttestation) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.CommunicationMethod = &v
 			case "date":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Date = v
+				r.DateExt = ext
 			case "sourceIdentityCertificate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SourceIdentityCertificate = v
+				r.SourceIdentityCertificateExt = ext
 			case "proxyIdentityCertificate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ProxyIdentityCertificate = v
+				r.ProxyIdentityCertificateExt = ext
 			case "proxySignature":
 				var v Signature
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -612,6 +622,8 @@ type VerificationResultPrimarySource struct {
 	ValidationStatus *CodeableConcept `json:"validationStatus,omitempty"`
 	// When the target was validated against the primary source
 	ValidationDate *string `json:"validationDate,omitempty"`
+	// Extension for ValidationDate
+	ValidationDateExt *Element `json:"_validationDate,omitempty"`
 	// yes | no | undetermined
 	CanPushUpdates *CodeableConcept `json:"canPushUpdates,omitempty"`
 	// specific | any | source
@@ -660,7 +672,7 @@ func (b VerificationResultPrimarySource) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "validationDate", b.ValidationDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "validationDate", b.ValidationDate, b.ValidationDateExt); err != nil {
 		return err
 	}
 	if b.CanPushUpdates != nil {
@@ -731,11 +743,12 @@ func (r *VerificationResultPrimarySource) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.ValidationStatus = &v
 			case "validationDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValidationDate = v
+				r.ValidationDateExt = ext
 			case "canPushUpdates":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -772,6 +785,8 @@ type VerificationResultValidator struct {
 	Organization *Reference `json:"organization,omitempty"`
 	// A digital identity certificate associated with the validator
 	IdentityCertificate *string `json:"identityCertificate,omitempty"`
+	// Extension for IdentityCertificate
+	IdentityCertificateExt *Element `json:"_identityCertificate,omitempty"`
 	// Validator signature
 	AttestationSignature *Signature `json:"attestationSignature,omitempty"`
 }
@@ -803,7 +818,7 @@ func (b VerificationResultValidator) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "identityCertificate", b.IdentityCertificate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "identityCertificate", b.IdentityCertificate, b.IdentityCertificateExt); err != nil {
 		return err
 	}
 	if b.AttestationSignature != nil {
@@ -851,11 +866,12 @@ func (r *VerificationResultValidator) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.Organization = &v
 			case "identityCertificate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.IdentityCertificate = v
+				r.IdentityCertificateExt = ext
 			case "attestationSignature":
 				var v Signature
 				if err := v.UnmarshalXML(d, t); err != nil {

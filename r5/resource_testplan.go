@@ -569,6 +569,8 @@ type TestPlanDependency struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Description of the dependency criterium
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Link to predecessor test plans
 	Predecessor *Reference `json:"predecessor,omitempty"`
 }
@@ -595,7 +597,7 @@ func (b TestPlanDependency) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.Predecessor != nil {
@@ -637,11 +639,12 @@ func (r *TestPlanDependency) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "predecessor":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -670,6 +673,8 @@ type TestPlanTestCase struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Sequence of test case in the test plan
 	Sequence *int `json:"sequence,omitempty"`
+	// Extension for Sequence
+	SequenceExt *Element `json:"_sequence,omitempty"`
 	// The scope or artifact covered by the case
 	Scope []Reference `json:"scope,omitempty"`
 	// Required criteria to execute the test case
@@ -704,7 +709,7 @@ func (b TestPlanTestCase) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveInt(e, "sequence", b.Sequence, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "sequence", b.Sequence, b.SequenceExt); err != nil {
 		return err
 	}
 	for _, item := range b.Scope {
@@ -766,11 +771,12 @@ func (r *TestPlanTestCase) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "sequence":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Sequence = v
+				r.SequenceExt = ext
 			case "scope":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -939,6 +945,8 @@ type TestPlanTestCaseDependency struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Description of the criteria
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Link to predecessor test plans
 	Predecessor *Reference `json:"predecessor,omitempty"`
 }
@@ -965,7 +973,7 @@ func (b TestPlanTestCaseDependency) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.Predecessor != nil {
@@ -1007,11 +1015,12 @@ func (r *TestPlanTestCaseDependency) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "predecessor":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1136,11 +1145,12 @@ func (r *TestPlanTestCaseTestData) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.Content = &v
 			case "sourceString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SourceString = v
+				_ = ext
 			case "sourceReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1169,6 +1179,8 @@ type TestPlanTestCaseTestRun struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The narrative description of the tests
 	Narrative *string `json:"narrative,omitempty"`
+	// Extension for Narrative
+	NarrativeExt *Element `json:"_narrative,omitempty"`
 	// The test cases in a structured language e.g. gherkin, Postman, or FHIR TestScript
 	Script *TestPlanTestCaseTestRunScript `json:"script,omitempty"`
 }
@@ -1195,7 +1207,7 @@ func (b TestPlanTestCaseTestRun) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "narrative", b.Narrative, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "narrative", b.Narrative, b.NarrativeExt); err != nil {
 		return err
 	}
 	if b.Script != nil {
@@ -1237,11 +1249,12 @@ func (r *TestPlanTestCaseTestRun) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "narrative":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Narrative = v
+				r.NarrativeExt = ext
 			case "script":
 				var v TestPlanTestCaseTestRunScript
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1353,11 +1366,12 @@ func (r *TestPlanTestCaseTestRunScript) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.Language = &v
 			case "sourceString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SourceString = v
+				_ = ext
 			case "sourceReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

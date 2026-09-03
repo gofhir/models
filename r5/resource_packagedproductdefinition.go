@@ -548,8 +548,12 @@ type PackagedProductDefinitionPackaging struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Is this a part of the packaging (e.g. a cap or bottle stopper), rather than the packaging itself (e.g. a bottle or vial)
 	ComponentPart *bool `json:"componentPart,omitempty"`
+	// Extension for ComponentPart
+	ComponentPartExt *Element `json:"_componentPart,omitempty"`
 	// The quantity of this level of packaging in the package that contains it (with the outermost level being 1)
 	Quantity *int `json:"quantity,omitempty"`
+	// Extension for Quantity
+	QuantityExt *Element `json:"_quantity,omitempty"`
 	// Material type of the package item
 	Material []CodeableConcept `json:"material,omitempty"`
 	// A possible alternate material for this part of the packaging, that is allowed to be used instead of the usual material
@@ -598,10 +602,10 @@ func (b PackagedProductDefinitionPackaging) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "componentPart", b.ComponentPart, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "componentPart", b.ComponentPart, b.ComponentPartExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "quantity", b.Quantity, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "quantity", b.Quantity, b.QuantityExt); err != nil {
 		return err
 	}
 	for _, item := range b.Material {
@@ -685,17 +689,19 @@ func (r *PackagedProductDefinitionPackaging) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.Type = &v
 			case "componentPart":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ComponentPart = v
+				r.ComponentPartExt = ext
 			case "quantity":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Quantity = v
+				r.QuantityExt = ext
 			case "material":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -979,17 +985,19 @@ func (r *PackagedProductDefinitionPackagingProperty) UnmarshalXML(d *xml.Decoder
 				}
 				r.ValueQuantity = &v
 			case "valueDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDate = v
+				_ = ext
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			case "valueAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {

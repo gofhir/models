@@ -775,12 +775,13 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.RelatedArtifact = append(r.RelatedArtifact, v)
 			case "library":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Library = append(r.Library, v)
+				r.LibraryExt = append(r.LibraryExt, ext)
 			case "kind":
 				v, ext, err := xmlDecodePrimitiveCode[ActivityDefinitionKind](d, t)
 				if err != nil {
@@ -954,6 +955,8 @@ type ActivityDefinitionDynamicValue struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The path to the element to be set dynamically
 	Path *string `json:"path,omitempty"`
+	// Extension for Path
+	PathExt *Element `json:"_path,omitempty"`
 	// An expression that provides the dynamic value for the customization
 	Expression *Expression `json:"expression,omitempty"`
 }
@@ -980,7 +983,7 @@ func (b ActivityDefinitionDynamicValue) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "path", b.Path, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "path", b.Path, b.PathExt); err != nil {
 		return err
 	}
 	if b.Expression != nil {
@@ -1022,11 +1025,12 @@ func (r *ActivityDefinitionDynamicValue) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "path":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Path = v
+				r.PathExt = ext
 			case "expression":
 				var v Expression
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1055,6 +1059,8 @@ type ActivityDefinitionParticipant struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// patient | practitioner | related-person | device
 	Type *ActionParticipantType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// E.g. Nurse, Surgeon, Parent, etc.
 	Role *CodeableConcept `json:"role,omitempty"`
 }
@@ -1081,7 +1087,7 @@ func (b ActivityDefinitionParticipant) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
 	if b.Role != nil {
@@ -1123,11 +1129,12 @@ func (r *ActivityDefinitionParticipant) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[ActionParticipantType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ActionParticipantType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "role":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

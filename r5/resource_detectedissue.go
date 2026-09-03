@@ -547,6 +547,8 @@ type DetectedIssueMitigation struct {
 	Action *CodeableConcept `json:"action,omitempty"`
 	// Date committed
 	Date *string `json:"date,omitempty"`
+	// Extension for Date
+	DateExt *Element `json:"_date,omitempty"`
 	// Who is committing?
 	Author *Reference `json:"author,omitempty"`
 	// Additional notes about the mitigation
@@ -580,7 +582,7 @@ func (b DetectedIssueMitigation) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "date", b.Date, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "date", b.Date, b.DateExt); err != nil {
 		return err
 	}
 	if b.Author != nil {
@@ -633,11 +635,12 @@ func (r *DetectedIssueMitigation) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.Action = &v
 			case "date":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Date = v
+				r.DateExt = ext
 			case "author":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

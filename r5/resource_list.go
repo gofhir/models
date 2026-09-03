@@ -417,8 +417,12 @@ type ListEntry struct {
 	Flag *CodeableConcept `json:"flag,omitempty"`
 	// If this item is actually marked as deleted
 	Deleted *bool `json:"deleted,omitempty"`
+	// Extension for Deleted
+	DeletedExt *Element `json:"_deleted,omitempty"`
 	// When item added to list
 	Date *string `json:"date,omitempty"`
+	// Extension for Date
+	DateExt *Element `json:"_date,omitempty"`
 	// Actual entry
 	Item *Reference `json:"item,omitempty"`
 }
@@ -450,10 +454,10 @@ func (b ListEntry) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "deleted", b.Deleted, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "deleted", b.Deleted, b.DeletedExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "date", b.Date, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "date", b.Date, b.DateExt); err != nil {
 		return err
 	}
 	if b.Item != nil {
@@ -501,17 +505,19 @@ func (r *ListEntry) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.Flag = &v
 			case "deleted":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Deleted = v
+				r.DeletedExt = ext
 			case "date":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Date = v
+				r.DateExt = ext
 			case "item":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

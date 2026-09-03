@@ -548,6 +548,8 @@ type DocumentReferenceAttester struct {
 	Mode *CodeableConcept `json:"mode,omitempty"`
 	// When the document was attested
 	Time *string `json:"time,omitempty"`
+	// Extension for Time
+	TimeExt *Element `json:"_time,omitempty"`
 	// Who attested the document
 	Party *Reference `json:"party,omitempty"`
 }
@@ -579,7 +581,7 @@ func (b DocumentReferenceAttester) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "time", b.Time, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "time", b.Time, b.TimeExt); err != nil {
 		return err
 	}
 	if b.Party != nil {
@@ -627,11 +629,12 @@ func (r *DocumentReferenceAttester) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.Mode = &v
 			case "time":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Time = v
+				r.TimeExt = ext
 			case "party":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -846,17 +849,19 @@ func (r *DocumentReferenceContentProfile) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.ValueCoding = &v
 			case "valueUri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueUri = v
+				_ = ext
 			case "valueCanonical":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueCanonical = v
+				_ = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

@@ -705,11 +705,12 @@ func (r *MedicinalProductAuthorizationProcedure) UnmarshalXML(d *xml.Decoder, st
 				}
 				r.DatePeriod = &v
 			case "dateDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DateDateTime = v
+				_ = ext
 			case "application":
 				var v MedicinalProductAuthorizationProcedure
 				if err := v.UnmarshalXML(d, t); err != nil {

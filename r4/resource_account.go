@@ -390,6 +390,8 @@ type AccountCoverage struct {
 	Coverage *Reference `json:"coverage,omitempty"`
 	// The priority of the coverage in the context of this account
 	Priority *uint32 `json:"priority,omitempty"`
+	// Extension for Priority
+	PriorityExt *Element `json:"_priority,omitempty"`
 }
 
 // MarshalXML serializes AccountCoverage to FHIR-conformant XML.
@@ -419,7 +421,7 @@ func (b AccountCoverage) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "priority", b.Priority, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "priority", b.Priority, b.PriorityExt); err != nil {
 		return err
 	}
 
@@ -462,11 +464,12 @@ func (r *AccountCoverage) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.Coverage = &v
 			case "priority":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Priority = v
+				r.PriorityExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -491,6 +494,8 @@ type AccountGuarantor struct {
 	Party *Reference `json:"party,omitempty"`
 	// Credit or other hold applied
 	OnHold *bool `json:"onHold,omitempty"`
+	// Extension for OnHold
+	OnHoldExt *Element `json:"_onHold,omitempty"`
 	// Guarantee account during
 	Period *Period `json:"period,omitempty"`
 }
@@ -522,7 +527,7 @@ func (b AccountGuarantor) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "onHold", b.OnHold, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "onHold", b.OnHold, b.OnHoldExt); err != nil {
 		return err
 	}
 	if b.Period != nil {
@@ -570,11 +575,12 @@ func (r *AccountGuarantor) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.Party = &v
 			case "onHold":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.OnHold = v
+				r.OnHoldExt = ext
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

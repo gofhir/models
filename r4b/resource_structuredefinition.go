@@ -550,12 +550,13 @@ func (r *StructureDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.Context = append(r.Context, v)
 			case "contextInvariant":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ContextInvariant = append(r.ContextInvariant, v)
+				r.ContextInvariantExt = append(r.ContextInvariantExt, ext)
 			case "type":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -611,8 +612,12 @@ type StructureDefinitionContext struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// fhirpath | element | extension
 	Type *ExtensionContextType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// Where the extension can be used in instances
 	Expression *string `json:"expression,omitempty"`
+	// Extension for Expression
+	ExpressionExt *Element `json:"_expression,omitempty"`
 }
 
 // MarshalXML serializes StructureDefinitionContext to FHIR-conformant XML.
@@ -637,10 +642,10 @@ func (b StructureDefinitionContext) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "expression", b.Expression, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "expression", b.Expression, b.ExpressionExt); err != nil {
 		return err
 	}
 
@@ -677,17 +682,19 @@ func (r *StructureDefinitionContext) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[ExtensionContextType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ExtensionContextType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "expression":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Expression = v
+				r.ExpressionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -800,12 +807,20 @@ type StructureDefinitionMapping struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Internal id when this mapping is used
 	Identity *string `json:"identity,omitempty"`
+	// Extension for Identity
+	IdentityExt *Element `json:"_identity,omitempty"`
 	// Identifies what this mapping refers to
 	Uri *string `json:"uri,omitempty"`
+	// Extension for Uri
+	UriExt *Element `json:"_uri,omitempty"`
 	// Names what this mapping refers to
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Versions, Issues, Scope limitations etc.
 	Comment *string `json:"comment,omitempty"`
+	// Extension for Comment
+	CommentExt *Element `json:"_comment,omitempty"`
 }
 
 // MarshalXML serializes StructureDefinitionMapping to FHIR-conformant XML.
@@ -830,16 +845,16 @@ func (b StructureDefinitionMapping) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "identity", b.Identity, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "identity", b.Identity, b.IdentityExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "uri", b.Uri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "uri", b.Uri, b.UriExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, b.CommentExt); err != nil {
 		return err
 	}
 
@@ -876,29 +891,33 @@ func (r *StructureDefinitionMapping) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "identity":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Identity = v
+				r.IdentityExt = ext
 			case "uri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Uri = v
+				r.UriExt = ext
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "comment":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Comment = v
+				r.CommentExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

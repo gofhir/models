@@ -628,19 +628,21 @@ func (r *ObservationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.EffectivePeriod = &v
 			case "derivedFromCanonical":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFromCanonical = append(r.DerivedFromCanonical, v)
+				r.DerivedFromCanonicalExt = append(r.DerivedFromCanonicalExt, ext)
 			case "derivedFromUri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFromUri = append(r.DerivedFromUri, v)
+				r.DerivedFromUriExt = append(r.DerivedFromUriExt, ext)
 			case "subject":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -666,12 +668,13 @@ func (r *ObservationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.Code = &v
 			case "permittedDataType":
-				v, _, err := xmlDecodePrimitiveCode[ObservationDataType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ObservationDataType](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.PermittedDataType = append(r.PermittedDataType, v)
+				r.PermittedDataTypeExt = append(r.PermittedDataTypeExt, ext)
 			case "multipleResultsAllowed":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -758,6 +761,8 @@ type ObservationDefinitionComponent struct {
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Quantity | CodeableConcept | string | boolean | integer | Range | Ratio | SampledData | time | dateTime | Period
 	PermittedDataType []*ObservationDataType `json:"permittedDataType,omitempty"`
+	// Extension for PermittedDataType
+	PermittedDataTypeExt []*Element `json:"_permittedDataType,omitempty"`
 	// Unit for quantitative results
 	PermittedUnit []Coding `json:"permittedUnit,omitempty"`
 	// Set of qualified values for observation results
@@ -791,7 +796,7 @@ func (b ObservationDefinitionComponent) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCodeArray(e, "permittedDataType", b.PermittedDataType, nil); err != nil {
+	if err := xmlEncodePrimitiveCodeArray(e, "permittedDataType", b.PermittedDataType, b.PermittedDataTypeExt); err != nil {
 		return err
 	}
 	for _, item := range b.PermittedUnit {
@@ -844,12 +849,13 @@ func (r *ObservationDefinitionComponent) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.Code = &v
 			case "permittedDataType":
-				v, _, err := xmlDecodePrimitiveCode[ObservationDataType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ObservationDataType](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.PermittedDataType = append(r.PermittedDataType, v)
+				r.PermittedDataTypeExt = append(r.PermittedDataTypeExt, ext)
 			case "permittedUnit":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -888,24 +894,38 @@ type ObservationDefinitionQualifiedValue struct {
 	AppliesTo []CodeableConcept `json:"appliesTo,omitempty"`
 	// male | female | other | unknown
 	Gender *AdministrativeGender `json:"gender,omitempty"`
+	// Extension for Gender
+	GenderExt *Element `json:"_gender,omitempty"`
 	// Applicable age range for the set of qualified values
 	Age *Range `json:"age,omitempty"`
 	// Applicable gestational age range for the set of qualified values
 	GestationalAge *Range `json:"gestationalAge,omitempty"`
 	// Condition associated with the set of qualified values
 	Condition *string `json:"condition,omitempty"`
+	// Extension for Condition
+	ConditionExt *Element `json:"_condition,omitempty"`
 	// reference | critical | absolute
 	RangeCategory *ObservationRangeCategory `json:"rangeCategory,omitempty"`
+	// Extension for RangeCategory
+	RangeCategoryExt *Element `json:"_rangeCategory,omitempty"`
 	// The range for continuous or ordinal observations
 	Range *Range `json:"range,omitempty"`
 	// Value set of valid coded values as part of this set of qualified values
 	ValidCodedValueSet *string `json:"validCodedValueSet,omitempty"`
+	// Extension for ValidCodedValueSet
+	ValidCodedValueSetExt *Element `json:"_validCodedValueSet,omitempty"`
 	// Value set of normal coded values as part of this set of qualified values
 	NormalCodedValueSet *string `json:"normalCodedValueSet,omitempty"`
+	// Extension for NormalCodedValueSet
+	NormalCodedValueSetExt *Element `json:"_normalCodedValueSet,omitempty"`
 	// Value set of abnormal coded values as part of this set of qualified values
 	AbnormalCodedValueSet *string `json:"abnormalCodedValueSet,omitempty"`
+	// Extension for AbnormalCodedValueSet
+	AbnormalCodedValueSetExt *Element `json:"_abnormalCodedValueSet,omitempty"`
 	// Value set of critical coded values as part of this set of qualified values
 	CriticalCodedValueSet *string `json:"criticalCodedValueSet,omitempty"`
+	// Extension for CriticalCodedValueSet
+	CriticalCodedValueSetExt *Element `json:"_criticalCodedValueSet,omitempty"`
 }
 
 // MarshalXML serializes ObservationDefinitionQualifiedValue to FHIR-conformant XML.
@@ -940,7 +960,7 @@ func (b ObservationDefinitionQualifiedValue) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "gender", b.Gender, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "gender", b.Gender, b.GenderExt); err != nil {
 		return err
 	}
 	if b.Age != nil {
@@ -953,10 +973,10 @@ func (b ObservationDefinitionQualifiedValue) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "condition", b.Condition, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "condition", b.Condition, b.ConditionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "rangeCategory", b.RangeCategory, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "rangeCategory", b.RangeCategory, b.RangeCategoryExt); err != nil {
 		return err
 	}
 	if b.Range != nil {
@@ -964,16 +984,16 @@ func (b ObservationDefinitionQualifiedValue) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "validCodedValueSet", b.ValidCodedValueSet, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "validCodedValueSet", b.ValidCodedValueSet, b.ValidCodedValueSetExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "normalCodedValueSet", b.NormalCodedValueSet, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "normalCodedValueSet", b.NormalCodedValueSet, b.NormalCodedValueSetExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "abnormalCodedValueSet", b.AbnormalCodedValueSet, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "abnormalCodedValueSet", b.AbnormalCodedValueSet, b.AbnormalCodedValueSetExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "criticalCodedValueSet", b.CriticalCodedValueSet, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "criticalCodedValueSet", b.CriticalCodedValueSet, b.CriticalCodedValueSetExt); err != nil {
 		return err
 	}
 
@@ -1022,11 +1042,12 @@ func (r *ObservationDefinitionQualifiedValue) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.AppliesTo = append(r.AppliesTo, v)
 			case "gender":
-				v, _, err := xmlDecodePrimitiveCode[AdministrativeGender](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[AdministrativeGender](d, t)
 				if err != nil {
 					return err
 				}
 				r.Gender = v
+				r.GenderExt = ext
 			case "age":
 				var v Range
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1040,17 +1061,19 @@ func (r *ObservationDefinitionQualifiedValue) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.GestationalAge = &v
 			case "condition":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Condition = v
+				r.ConditionExt = ext
 			case "rangeCategory":
-				v, _, err := xmlDecodePrimitiveCode[ObservationRangeCategory](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ObservationRangeCategory](d, t)
 				if err != nil {
 					return err
 				}
 				r.RangeCategory = v
+				r.RangeCategoryExt = ext
 			case "range":
 				var v Range
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1058,29 +1081,33 @@ func (r *ObservationDefinitionQualifiedValue) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.Range = &v
 			case "validCodedValueSet":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValidCodedValueSet = v
+				r.ValidCodedValueSetExt = ext
 			case "normalCodedValueSet":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.NormalCodedValueSet = v
+				r.NormalCodedValueSetExt = ext
 			case "abnormalCodedValueSet":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AbnormalCodedValueSet = v
+				r.AbnormalCodedValueSetExt = ext
 			case "criticalCodedValueSet":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.CriticalCodedValueSet = v
+				r.CriticalCodedValueSetExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

@@ -469,12 +469,18 @@ type ImagingSelectionInstance struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// DICOM SOP Instance UID
 	Uid *string `json:"uid,omitempty"`
+	// Extension for Uid
+	UidExt *Element `json:"_uid,omitempty"`
 	// DICOM Instance Number
 	Number *uint32 `json:"number,omitempty"`
+	// Extension for Number
+	NumberExt *Element `json:"_number,omitempty"`
 	// DICOM SOP Class UID
 	SopClass *Coding `json:"sopClass,omitempty"`
 	// The selected subset of the SOP Instance
 	Subset []*string `json:"subset,omitempty"`
+	// Extension for Subset
+	SubsetExt []*Element `json:"_subset,omitempty"`
 	// A specific 2D region in a DICOM image / frame
 	ImageRegion2D []ImagingSelectionInstanceImageRegion2D `json:"imageRegion2D,omitempty"`
 	// A specific 3D region in a DICOM frame of reference
@@ -503,10 +509,10 @@ func (b ImagingSelectionInstance) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "uid", b.Uid, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "uid", b.Uid, b.UidExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "number", b.Number, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "number", b.Number, b.NumberExt); err != nil {
 		return err
 	}
 	if b.SopClass != nil {
@@ -514,7 +520,7 @@ func (b ImagingSelectionInstance) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "subset", b.Subset, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "subset", b.Subset, b.SubsetExt); err != nil {
 		return err
 	}
 	for _, item := range b.ImageRegion2D {
@@ -561,17 +567,19 @@ func (r *ImagingSelectionInstance) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "uid":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Uid = v
+				r.UidExt = ext
 			case "number":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Number = v
+				r.NumberExt = ext
 			case "sopClass":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -579,12 +587,13 @@ func (r *ImagingSelectionInstance) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.SopClass = &v
 			case "subset":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Subset = append(r.Subset, v)
+				r.SubsetExt = append(r.SubsetExt, ext)
 			case "imageRegion2D":
 				var v ImagingSelectionInstanceImageRegion2D
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -619,8 +628,12 @@ type ImagingSelectionInstanceImageRegion2D struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// point | polyline | interpolated | circle | ellipse
 	RegionType *ImagingSelection2DGraphicType `json:"regionType,omitempty"`
+	// Extension for RegionType
+	RegionTypeExt *Element `json:"_regionType,omitempty"`
 	// Specifies the coordinates that define the image region
 	Coordinate []*Decimal `json:"coordinate,omitempty"`
+	// Extension for Coordinate
+	CoordinateExt []*Element `json:"_coordinate,omitempty"`
 }
 
 // MarshalXML serializes ImagingSelectionInstanceImageRegion2D to FHIR-conformant XML.
@@ -645,10 +658,10 @@ func (b ImagingSelectionInstanceImageRegion2D) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "regionType", b.RegionType, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "regionType", b.RegionType, b.RegionTypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimalArray(e, "coordinate", b.Coordinate, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimalArray(e, "coordinate", b.Coordinate, b.CoordinateExt); err != nil {
 		return err
 	}
 
@@ -685,18 +698,20 @@ func (r *ImagingSelectionInstanceImageRegion2D) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "regionType":
-				v, _, err := xmlDecodePrimitiveCode[ImagingSelection2DGraphicType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ImagingSelection2DGraphicType](d, t)
 				if err != nil {
 					return err
 				}
 				r.RegionType = v
+				r.RegionTypeExt = ext
 			case "coordinate":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Coordinate = append(r.Coordinate, v)
+				r.CoordinateExt = append(r.CoordinateExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -719,8 +734,12 @@ type ImagingSelectionInstanceImageRegion3D struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// point | multipoint | polyline | polygon | ellipse | ellipsoid
 	RegionType *ImagingSelection3DGraphicType `json:"regionType,omitempty"`
+	// Extension for RegionType
+	RegionTypeExt *Element `json:"_regionType,omitempty"`
 	// Specifies the coordinates that define the image region
 	Coordinate []*Decimal `json:"coordinate,omitempty"`
+	// Extension for Coordinate
+	CoordinateExt []*Element `json:"_coordinate,omitempty"`
 }
 
 // MarshalXML serializes ImagingSelectionInstanceImageRegion3D to FHIR-conformant XML.
@@ -745,10 +764,10 @@ func (b ImagingSelectionInstanceImageRegion3D) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "regionType", b.RegionType, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "regionType", b.RegionType, b.RegionTypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimalArray(e, "coordinate", b.Coordinate, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimalArray(e, "coordinate", b.Coordinate, b.CoordinateExt); err != nil {
 		return err
 	}
 
@@ -785,18 +804,20 @@ func (r *ImagingSelectionInstanceImageRegion3D) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "regionType":
-				v, _, err := xmlDecodePrimitiveCode[ImagingSelection3DGraphicType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ImagingSelection3DGraphicType](d, t)
 				if err != nil {
 					return err
 				}
 				r.RegionType = v
+				r.RegionTypeExt = ext
 			case "coordinate":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Coordinate = append(r.Coordinate, v)
+				r.CoordinateExt = append(r.CoordinateExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err

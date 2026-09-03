@@ -832,14 +832,20 @@ type ImmunizationProtocolApplied struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Name of vaccine series
 	Series *string `json:"series,omitempty"`
+	// Extension for Series
+	SeriesExt *Element `json:"_series,omitempty"`
 	// Who is responsible for publishing the recommendations
 	Authority *Reference `json:"authority,omitempty"`
 	// Vaccine preventatable disease being targeted
 	TargetDisease []CodeableConcept `json:"targetDisease,omitempty"`
 	// Dose number within series
 	DoseNumber *string `json:"doseNumber,omitempty"`
+	// Extension for DoseNumber
+	DoseNumberExt *Element `json:"_doseNumber,omitempty"`
 	// Recommended number of doses for immunity
 	SeriesDoses *string `json:"seriesDoses,omitempty"`
+	// Extension for SeriesDoses
+	SeriesDosesExt *Element `json:"_seriesDoses,omitempty"`
 }
 
 // MarshalXML serializes ImmunizationProtocolApplied to FHIR-conformant XML.
@@ -864,7 +870,7 @@ func (b ImmunizationProtocolApplied) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "series", b.Series, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "series", b.Series, b.SeriesExt); err != nil {
 		return err
 	}
 	if b.Authority != nil {
@@ -877,10 +883,10 @@ func (b ImmunizationProtocolApplied) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "doseNumber", b.DoseNumber, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "doseNumber", b.DoseNumber, b.DoseNumberExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "seriesDoses", b.SeriesDoses, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "seriesDoses", b.SeriesDoses, b.SeriesDosesExt); err != nil {
 		return err
 	}
 
@@ -917,11 +923,12 @@ func (r *ImmunizationProtocolApplied) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "series":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Series = v
+				r.SeriesExt = ext
 			case "authority":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -935,17 +942,19 @@ func (r *ImmunizationProtocolApplied) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.TargetDisease = append(r.TargetDisease, v)
 			case "doseNumber":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DoseNumber = v
+				r.DoseNumberExt = ext
 			case "seriesDoses":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SeriesDoses = v
+				r.SeriesDosesExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -968,10 +977,14 @@ type ImmunizationReaction struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// When reaction started
 	Date *string `json:"date,omitempty"`
+	// Extension for Date
+	DateExt *Element `json:"_date,omitempty"`
 	// Additional information on reaction
 	Manifestation *CodeableReference `json:"manifestation,omitempty"`
 	// Indicates self-reported reaction
 	Reported *bool `json:"reported,omitempty"`
+	// Extension for Reported
+	ReportedExt *Element `json:"_reported,omitempty"`
 }
 
 // MarshalXML serializes ImmunizationReaction to FHIR-conformant XML.
@@ -996,7 +1009,7 @@ func (b ImmunizationReaction) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "date", b.Date, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "date", b.Date, b.DateExt); err != nil {
 		return err
 	}
 	if b.Manifestation != nil {
@@ -1004,7 +1017,7 @@ func (b ImmunizationReaction) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "reported", b.Reported, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "reported", b.Reported, b.ReportedExt); err != nil {
 		return err
 	}
 
@@ -1041,11 +1054,12 @@ func (r *ImmunizationReaction) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "date":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Date = v
+				r.DateExt = ext
 			case "manifestation":
 				var v CodeableReference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1053,11 +1067,12 @@ func (r *ImmunizationReaction) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.Manifestation = &v
 			case "reported":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Reported = v
+				r.ReportedExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

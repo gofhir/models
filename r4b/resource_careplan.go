@@ -388,19 +388,21 @@ func (r *CarePlan) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "instantiatesCanonical":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
+				r.InstantiatesCanonicalExt = append(r.InstantiatesCanonicalExt, ext)
 			case "instantiatesUri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.InstantiatesUri = append(r.InstantiatesUri, v)
+				r.InstantiatesUriExt = append(r.InstantiatesUriExt, ext)
 			case "basedOn":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -690,10 +692,16 @@ type CarePlanActivityDetail struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Appointment | CommunicationRequest | DeviceRequest | MedicationRequest | NutritionOrder | Task | ServiceRequest | VisionPrescription
 	Kind *CarePlanActivityKind `json:"kind,omitempty"`
+	// Extension for Kind
+	KindExt *Element `json:"_kind,omitempty"`
 	// Instantiates FHIR protocol or definition
 	InstantiatesCanonical []*string `json:"instantiatesCanonical,omitempty"`
+	// Extension for InstantiatesCanonical
+	InstantiatesCanonicalExt []*Element `json:"_instantiatesCanonical,omitempty"`
 	// Instantiates external protocol or definition
 	InstantiatesUri []*string `json:"instantiatesUri,omitempty"`
+	// Extension for InstantiatesUri
+	InstantiatesUriExt []*Element `json:"_instantiatesUri,omitempty"`
 	// Detail type of activity
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Why activity should be done or why activity was prohibited
@@ -704,10 +712,14 @@ type CarePlanActivityDetail struct {
 	Goal []Reference `json:"goal,omitempty"`
 	// not-started | scheduled | in-progress | on-hold | completed | cancelled | stopped | unknown | entered-in-error
 	Status *CarePlanActivityStatus `json:"status,omitempty"`
+	// Extension for Status
+	StatusExt *Element `json:"_status,omitempty"`
 	// Reason for current status
 	StatusReason *CodeableConcept `json:"statusReason,omitempty"`
 	// If true, activity is prohibiting action
 	DoNotPerform *bool `json:"doNotPerform,omitempty"`
+	// Extension for DoNotPerform
+	DoNotPerformExt *Element `json:"_doNotPerform,omitempty"`
 	// When activity is to occur
 	ScheduledTiming *Timing `json:"scheduledTiming,omitempty"`
 	// When activity is to occur
@@ -730,6 +742,8 @@ type CarePlanActivityDetail struct {
 	Quantity *Quantity `json:"quantity,omitempty"`
 	// Extra info describing activity to perform
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 }
 
 // MarshalXML serializes CarePlanActivityDetail to FHIR-conformant XML.
@@ -754,13 +768,13 @@ func (b CarePlanActivityDetail) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "kind", b.Kind, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "kind", b.Kind, b.KindExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "instantiatesCanonical", b.InstantiatesCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "instantiatesCanonical", b.InstantiatesCanonical, b.InstantiatesCanonicalExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "instantiatesUri", b.InstantiatesUri, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "instantiatesUri", b.InstantiatesUri, b.InstantiatesUriExt); err != nil {
 		return err
 	}
 	if b.Code != nil {
@@ -783,7 +797,7 @@ func (b CarePlanActivityDetail) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "status", b.Status, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "status", b.Status, b.StatusExt); err != nil {
 		return err
 	}
 	if b.StatusReason != nil {
@@ -791,7 +805,7 @@ func (b CarePlanActivityDetail) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "doNotPerform", b.DoNotPerform, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "doNotPerform", b.DoNotPerform, b.DoNotPerformExt); err != nil {
 		return err
 	}
 	if b.ScheduledTiming != nil {
@@ -837,7 +851,7 @@ func (b CarePlanActivityDetail) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 
@@ -874,25 +888,28 @@ func (r *CarePlanActivityDetail) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "kind":
-				v, _, err := xmlDecodePrimitiveCode[CarePlanActivityKind](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[CarePlanActivityKind](d, t)
 				if err != nil {
 					return err
 				}
 				r.Kind = v
+				r.KindExt = ext
 			case "instantiatesCanonical":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
+				r.InstantiatesCanonicalExt = append(r.InstantiatesCanonicalExt, ext)
 			case "instantiatesUri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.InstantiatesUri = append(r.InstantiatesUri, v)
+				r.InstantiatesUriExt = append(r.InstantiatesUriExt, ext)
 			case "code":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -918,11 +935,12 @@ func (r *CarePlanActivityDetail) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.Goal = append(r.Goal, v)
 			case "status":
-				v, _, err := xmlDecodePrimitiveCode[CarePlanActivityStatus](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[CarePlanActivityStatus](d, t)
 				if err != nil {
 					return err
 				}
 				r.Status = v
+				r.StatusExt = ext
 			case "statusReason":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -930,11 +948,12 @@ func (r *CarePlanActivityDetail) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.StatusReason = &v
 			case "doNotPerform":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.DoNotPerform = v
+				r.DoNotPerformExt = ext
 			case "scheduledTiming":
 				var v Timing
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -948,11 +967,12 @@ func (r *CarePlanActivityDetail) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ScheduledPeriod = &v
 			case "scheduledString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ScheduledString = v
+				_ = ext
 			case "location":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -990,11 +1010,12 @@ func (r *CarePlanActivityDetail) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.Quantity = &v
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

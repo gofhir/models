@@ -400,10 +400,14 @@ type MessageHeaderDestination struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Name of system
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Particular delivery destination within the destination
 	Target *Reference `json:"target,omitempty"`
 	// Actual destination address or id
 	Endpoint *string `json:"endpoint,omitempty"`
+	// Extension for Endpoint
+	EndpointExt *Element `json:"_endpoint,omitempty"`
 	// Intended "real-world" recipient for the data
 	Receiver *Reference `json:"receiver,omitempty"`
 }
@@ -430,7 +434,7 @@ func (b MessageHeaderDestination) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
 	if b.Target != nil {
@@ -438,7 +442,7 @@ func (b MessageHeaderDestination) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "endpoint", b.Endpoint, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "endpoint", b.Endpoint, b.EndpointExt); err != nil {
 		return err
 	}
 	if b.Receiver != nil {
@@ -480,11 +484,12 @@ func (r *MessageHeaderDestination) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "target":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -492,11 +497,12 @@ func (r *MessageHeaderDestination) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.Target = &v
 			case "endpoint":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Endpoint = v
+				r.EndpointExt = ext
 			case "receiver":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -525,8 +531,12 @@ type MessageHeaderResponse struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Id of original message
 	Identifier *string `json:"identifier,omitempty"`
+	// Extension for Identifier
+	IdentifierExt *Element `json:"_identifier,omitempty"`
 	// ok | transient-error | fatal-error
 	Code *ResponseType `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Specific list of hints/warnings/errors
 	Details *Reference `json:"details,omitempty"`
 }
@@ -553,10 +563,10 @@ func (b MessageHeaderResponse) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "identifier", b.Identifier, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "identifier", b.Identifier, b.IdentifierExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
 	if b.Details != nil {
@@ -598,17 +608,19 @@ func (r *MessageHeaderResponse) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "identifier":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Identifier = v
+				r.IdentifierExt = ext
 			case "code":
-				v, _, err := xmlDecodePrimitiveCode[ResponseType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ResponseType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "details":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -637,14 +649,22 @@ type MessageHeaderSource struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Name of system
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Name of software running the system
 	Software *string `json:"software,omitempty"`
+	// Extension for Software
+	SoftwareExt *Element `json:"_software,omitempty"`
 	// Version of software running
 	Version *string `json:"version,omitempty"`
+	// Extension for Version
+	VersionExt *Element `json:"_version,omitempty"`
 	// Human contact for problems
 	Contact *ContactPoint `json:"contact,omitempty"`
 	// Actual message source address or id
 	Endpoint *string `json:"endpoint,omitempty"`
+	// Extension for Endpoint
+	EndpointExt *Element `json:"_endpoint,omitempty"`
 }
 
 // MarshalXML serializes MessageHeaderSource to FHIR-conformant XML.
@@ -669,13 +689,13 @@ func (b MessageHeaderSource) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "software", b.Software, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "software", b.Software, b.SoftwareExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "version", b.Version, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "version", b.Version, b.VersionExt); err != nil {
 		return err
 	}
 	if b.Contact != nil {
@@ -683,7 +703,7 @@ func (b MessageHeaderSource) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "endpoint", b.Endpoint, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "endpoint", b.Endpoint, b.EndpointExt); err != nil {
 		return err
 	}
 
@@ -720,23 +740,26 @@ func (r *MessageHeaderSource) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "software":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Software = v
+				r.SoftwareExt = ext
 			case "version":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Version = v
+				r.VersionExt = ext
 			case "contact":
 				var v ContactPoint
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -744,11 +767,12 @@ func (r *MessageHeaderSource) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.Contact = &v
 			case "endpoint":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Endpoint = v
+				r.EndpointExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

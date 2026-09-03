@@ -1004,23 +1004,26 @@ func (r *ObservationComponent) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.ValueCodeableConcept = &v
 			case "valueString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
+				_ = ext
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			case "valueInteger":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
+				_ = ext
 			case "valueRange":
 				var v Range
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1040,17 +1043,19 @@ func (r *ObservationComponent) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.ValueSampledData = &v
 			case "valueTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueTime = v
+				_ = ext
 			case "valueDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
+				_ = ext
 			case "valuePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1121,6 +1126,8 @@ type ObservationReferenceRange struct {
 	Age *Range `json:"age,omitempty"`
 	// Text based reference range in an observation
 	Text *string `json:"text,omitempty"`
+	// Extension for Text
+	TextExt *Element `json:"_text,omitempty"`
 }
 
 // MarshalXML serializes ObservationReferenceRange to FHIR-conformant XML.
@@ -1175,7 +1182,7 @@ func (b ObservationReferenceRange) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "text", b.Text, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "text", b.Text, b.TextExt); err != nil {
 		return err
 	}
 
@@ -1248,11 +1255,12 @@ func (r *ObservationReferenceRange) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.Age = &v
 			case "text":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Text = v
+				r.TextExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1277,8 +1285,12 @@ type ObservationTriggeredBy struct {
 	Observation *Reference `json:"observation,omitempty"`
 	// reflex | repeat | re-run
 	Type *TriggeredByType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// Reason that the observation was triggered
 	Reason *string `json:"reason,omitempty"`
+	// Extension for Reason
+	ReasonExt *Element `json:"_reason,omitempty"`
 }
 
 // MarshalXML serializes ObservationTriggeredBy to FHIR-conformant XML.
@@ -1308,10 +1320,10 @@ func (b ObservationTriggeredBy) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "reason", b.Reason, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "reason", b.Reason, b.ReasonExt); err != nil {
 		return err
 	}
 
@@ -1354,17 +1366,19 @@ func (r *ObservationTriggeredBy) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.Observation = &v
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[TriggeredByType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[TriggeredByType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "reason":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Reason = v
+				r.ReasonExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

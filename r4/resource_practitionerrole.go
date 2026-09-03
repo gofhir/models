@@ -426,12 +426,20 @@ type PractitionerRoleAvailableTime struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// mon | tue | wed | thu | fri | sat | sun
 	DaysOfWeek []*DaysOfWeek `json:"daysOfWeek,omitempty"`
+	// Extension for DaysOfWeek
+	DaysOfWeekExt []*Element `json:"_daysOfWeek,omitempty"`
 	// Always available? e.g. 24 hour service
 	AllDay *bool `json:"allDay,omitempty"`
+	// Extension for AllDay
+	AllDayExt *Element `json:"_allDay,omitempty"`
 	// Opening time of day (ignored if allDay = true)
 	AvailableStartTime *string `json:"availableStartTime,omitempty"`
+	// Extension for AvailableStartTime
+	AvailableStartTimeExt *Element `json:"_availableStartTime,omitempty"`
 	// Closing time of day (ignored if allDay = true)
 	AvailableEndTime *string `json:"availableEndTime,omitempty"`
+	// Extension for AvailableEndTime
+	AvailableEndTimeExt *Element `json:"_availableEndTime,omitempty"`
 }
 
 // MarshalXML serializes PractitionerRoleAvailableTime to FHIR-conformant XML.
@@ -456,16 +464,16 @@ func (b PractitionerRoleAvailableTime) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCodeArray(e, "daysOfWeek", b.DaysOfWeek, nil); err != nil {
+	if err := xmlEncodePrimitiveCodeArray(e, "daysOfWeek", b.DaysOfWeek, b.DaysOfWeekExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "allDay", b.AllDay, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "allDay", b.AllDay, b.AllDayExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "availableStartTime", b.AvailableStartTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "availableStartTime", b.AvailableStartTime, b.AvailableStartTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "availableEndTime", b.AvailableEndTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "availableEndTime", b.AvailableEndTime, b.AvailableEndTimeExt); err != nil {
 		return err
 	}
 
@@ -502,30 +510,34 @@ func (r *PractitionerRoleAvailableTime) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "daysOfWeek":
-				v, _, err := xmlDecodePrimitiveCode[DaysOfWeek](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[DaysOfWeek](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DaysOfWeek = append(r.DaysOfWeek, v)
+				r.DaysOfWeekExt = append(r.DaysOfWeekExt, ext)
 			case "allDay":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.AllDay = v
+				r.AllDayExt = ext
 			case "availableStartTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AvailableStartTime = v
+				r.AvailableStartTimeExt = ext
 			case "availableEndTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AvailableEndTime = v
+				r.AvailableEndTimeExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -548,6 +560,8 @@ type PractitionerRoleNotAvailable struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Reason presented to the user explaining why time not available
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Service not available from this date
 	During *Period `json:"during,omitempty"`
 }
@@ -574,7 +588,7 @@ func (b PractitionerRoleNotAvailable) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.During != nil {
@@ -616,11 +630,12 @@ func (r *PractitionerRoleNotAvailable) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "during":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

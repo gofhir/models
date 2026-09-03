@@ -353,19 +353,21 @@ func (r *RequestGroup) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "instantiatesCanonical":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
+				r.InstantiatesCanonicalExt = append(r.InstantiatesCanonicalExt, ext)
 			case "instantiatesUri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.InstantiatesUri = append(r.InstantiatesUri, v)
+				r.InstantiatesUriExt = append(r.InstantiatesUriExt, ext)
 			case "basedOn":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -482,14 +484,24 @@ type RequestGroupAction struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// User-visible prefix for the action (e.g. 1. or A.)
 	Prefix *string `json:"prefix,omitempty"`
+	// Extension for Prefix
+	PrefixExt *Element `json:"_prefix,omitempty"`
 	// User-visible title
 	Title *string `json:"title,omitempty"`
+	// Extension for Title
+	TitleExt *Element `json:"_title,omitempty"`
 	// Short description of the action
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Static text equivalent of the action, used if the dynamic aspects cannot be interpreted by the receiving system
 	TextEquivalent *string `json:"textEquivalent,omitempty"`
+	// Extension for TextEquivalent
+	TextEquivalentExt *Element `json:"_textEquivalent,omitempty"`
 	// routine | urgent | asap | stat
 	Priority *RequestPriority `json:"priority,omitempty"`
+	// Extension for Priority
+	PriorityExt *Element `json:"_priority,omitempty"`
 	// Code representing the meaning of the action or sub-actions
 	Code []CodeableConcept `json:"code,omitempty"`
 	// Supporting documentation for the intended performer of the action
@@ -518,14 +530,24 @@ type RequestGroupAction struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// visual-group | logical-group | sentence-group
 	GroupingBehavior *ActionGroupingBehavior `json:"groupingBehavior,omitempty"`
+	// Extension for GroupingBehavior
+	GroupingBehaviorExt *Element `json:"_groupingBehavior,omitempty"`
 	// any | all | all-or-none | exactly-one | at-most-one | one-or-more
 	SelectionBehavior *ActionSelectionBehavior `json:"selectionBehavior,omitempty"`
+	// Extension for SelectionBehavior
+	SelectionBehaviorExt *Element `json:"_selectionBehavior,omitempty"`
 	// must | could | must-unless-documented
 	RequiredBehavior *ActionRequiredBehavior `json:"requiredBehavior,omitempty"`
+	// Extension for RequiredBehavior
+	RequiredBehaviorExt *Element `json:"_requiredBehavior,omitempty"`
 	// yes | no
 	PrecheckBehavior *ActionPrecheckBehavior `json:"precheckBehavior,omitempty"`
+	// Extension for PrecheckBehavior
+	PrecheckBehaviorExt *Element `json:"_precheckBehavior,omitempty"`
 	// single | multiple
 	CardinalityBehavior *ActionCardinalityBehavior `json:"cardinalityBehavior,omitempty"`
+	// Extension for CardinalityBehavior
+	CardinalityBehaviorExt *Element `json:"_cardinalityBehavior,omitempty"`
 	// The target of the action
 	Resource *Reference `json:"resource,omitempty"`
 	// Sub action
@@ -554,19 +576,19 @@ func (b RequestGroupAction) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "prefix", b.Prefix, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "prefix", b.Prefix, b.PrefixExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "title", b.Title, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "title", b.Title, b.TitleExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "textEquivalent", b.TextEquivalent, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "textEquivalent", b.TextEquivalent, b.TextEquivalentExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "priority", b.Priority, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "priority", b.Priority, b.PriorityExt); err != nil {
 		return err
 	}
 	for _, item := range b.Code {
@@ -627,19 +649,19 @@ func (b RequestGroupAction) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "groupingBehavior", b.GroupingBehavior, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "groupingBehavior", b.GroupingBehavior, b.GroupingBehaviorExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "selectionBehavior", b.SelectionBehavior, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "selectionBehavior", b.SelectionBehavior, b.SelectionBehaviorExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "requiredBehavior", b.RequiredBehavior, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "requiredBehavior", b.RequiredBehavior, b.RequiredBehaviorExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "precheckBehavior", b.PrecheckBehavior, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "precheckBehavior", b.PrecheckBehavior, b.PrecheckBehaviorExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "cardinalityBehavior", b.CardinalityBehavior, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "cardinalityBehavior", b.CardinalityBehavior, b.CardinalityBehaviorExt); err != nil {
 		return err
 	}
 	if b.Resource != nil {
@@ -686,35 +708,40 @@ func (r *RequestGroupAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "prefix":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Prefix = v
+				r.PrefixExt = ext
 			case "title":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Title = v
+				r.TitleExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "textEquivalent":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.TextEquivalent = v
+				r.TextEquivalentExt = ext
 			case "priority":
-				v, _, err := xmlDecodePrimitiveCode[RequestPriority](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[RequestPriority](d, t)
 				if err != nil {
 					return err
 				}
 				r.Priority = v
+				r.PriorityExt = ext
 			case "code":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -740,11 +767,12 @@ func (r *RequestGroupAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.RelatedAction = append(r.RelatedAction, v)
 			case "timingDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.TimingDateTime = v
+				_ = ext
 			case "timingAge":
 				var v Age
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -788,35 +816,40 @@ func (r *RequestGroupAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Type = &v
 			case "groupingBehavior":
-				v, _, err := xmlDecodePrimitiveCode[ActionGroupingBehavior](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ActionGroupingBehavior](d, t)
 				if err != nil {
 					return err
 				}
 				r.GroupingBehavior = v
+				r.GroupingBehaviorExt = ext
 			case "selectionBehavior":
-				v, _, err := xmlDecodePrimitiveCode[ActionSelectionBehavior](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ActionSelectionBehavior](d, t)
 				if err != nil {
 					return err
 				}
 				r.SelectionBehavior = v
+				r.SelectionBehaviorExt = ext
 			case "requiredBehavior":
-				v, _, err := xmlDecodePrimitiveCode[ActionRequiredBehavior](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ActionRequiredBehavior](d, t)
 				if err != nil {
 					return err
 				}
 				r.RequiredBehavior = v
+				r.RequiredBehaviorExt = ext
 			case "precheckBehavior":
-				v, _, err := xmlDecodePrimitiveCode[ActionPrecheckBehavior](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ActionPrecheckBehavior](d, t)
 				if err != nil {
 					return err
 				}
 				r.PrecheckBehavior = v
+				r.PrecheckBehaviorExt = ext
 			case "cardinalityBehavior":
-				v, _, err := xmlDecodePrimitiveCode[ActionCardinalityBehavior](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ActionCardinalityBehavior](d, t)
 				if err != nil {
 					return err
 				}
 				r.CardinalityBehavior = v
+				r.CardinalityBehaviorExt = ext
 			case "resource":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -851,6 +884,8 @@ type RequestGroupActionCondition struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// applicability | start | stop
 	Kind *ActionConditionKind `json:"kind,omitempty"`
+	// Extension for Kind
+	KindExt *Element `json:"_kind,omitempty"`
 	// Boolean-valued expression
 	Expression *Expression `json:"expression,omitempty"`
 }
@@ -877,7 +912,7 @@ func (b RequestGroupActionCondition) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "kind", b.Kind, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "kind", b.Kind, b.KindExt); err != nil {
 		return err
 	}
 	if b.Expression != nil {
@@ -919,11 +954,12 @@ func (r *RequestGroupActionCondition) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "kind":
-				v, _, err := xmlDecodePrimitiveCode[ActionConditionKind](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ActionConditionKind](d, t)
 				if err != nil {
 					return err
 				}
 				r.Kind = v
+				r.KindExt = ext
 			case "expression":
 				var v Expression
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -952,8 +988,12 @@ type RequestGroupActionRelatedAction struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// What action this is related to
 	ActionId *string `json:"actionId,omitempty"`
+	// Extension for ActionId
+	ActionIdExt *Element `json:"_actionId,omitempty"`
 	// before-start | before | before-end | concurrent-with-start | concurrent | concurrent-with-end | after-start | after | after-end
 	Relationship *ActionRelationshipType `json:"relationship,omitempty"`
+	// Extension for Relationship
+	RelationshipExt *Element `json:"_relationship,omitempty"`
 	// Time offset for the relationship
 	OffsetDuration *Duration `json:"offsetDuration,omitempty"`
 	// Time offset for the relationship
@@ -982,10 +1022,10 @@ func (b RequestGroupActionRelatedAction) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "actionId", b.ActionId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "actionId", b.ActionId, b.ActionIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "relationship", b.Relationship, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "relationship", b.Relationship, b.RelationshipExt); err != nil {
 		return err
 	}
 	if b.OffsetDuration != nil {
@@ -1032,17 +1072,19 @@ func (r *RequestGroupActionRelatedAction) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "actionId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ActionId = v
+				r.ActionIdExt = ext
 			case "relationship":
-				v, _, err := xmlDecodePrimitiveCode[ActionRelationshipType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ActionRelationshipType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Relationship = v
+				r.RelationshipExt = ext
 			case "offsetDuration":
 				var v Duration
 				if err := v.UnmarshalXML(d, t); err != nil {

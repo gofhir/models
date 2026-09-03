@@ -476,14 +476,24 @@ type CompartmentDefinitionResource struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Name of resource type
 	Code *string `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Search Parameter Name, or chained parameters
 	Param []*string `json:"param,omitempty"`
+	// Extension for Param
+	ParamExt []*Element `json:"_param,omitempty"`
 	// Additional documentation about the resource and compartment
 	Documentation *string `json:"documentation,omitempty"`
+	// Extension for Documentation
+	DocumentationExt *Element `json:"_documentation,omitempty"`
 	// Search Param for interpreting $everything.start
 	StartParam *string `json:"startParam,omitempty"`
+	// Extension for StartParam
+	StartParamExt *Element `json:"_startParam,omitempty"`
 	// Search Param for interpreting $everything.end
 	EndParam *string `json:"endParam,omitempty"`
+	// Extension for EndParam
+	EndParamExt *Element `json:"_endParam,omitempty"`
 }
 
 // MarshalXML serializes CompartmentDefinitionResource to FHIR-conformant XML.
@@ -508,19 +518,19 @@ func (b CompartmentDefinitionResource) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "param", b.Param, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "param", b.Param, b.ParamExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, b.DocumentationExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "startParam", b.StartParam, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "startParam", b.StartParam, b.StartParamExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "endParam", b.EndParam, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "endParam", b.EndParam, b.EndParamExt); err != nil {
 		return err
 	}
 
@@ -557,36 +567,41 @@ func (r *CompartmentDefinitionResource) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "param":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Param = append(r.Param, v)
+				r.ParamExt = append(r.ParamExt, ext)
 			case "documentation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Documentation = v
+				r.DocumentationExt = ext
 			case "startParam":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.StartParam = v
+				r.StartParamExt = ext
 			case "endParam":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.EndParam = v
+				r.EndParamExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

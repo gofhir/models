@@ -403,6 +403,8 @@ type RelatedPersonCommunication struct {
 	Language *CodeableConcept `json:"language,omitempty"`
 	// Language preference indicator
 	Preferred *bool `json:"preferred,omitempty"`
+	// Extension for Preferred
+	PreferredExt *Element `json:"_preferred,omitempty"`
 }
 
 // MarshalXML serializes RelatedPersonCommunication to FHIR-conformant XML.
@@ -432,7 +434,7 @@ func (b RelatedPersonCommunication) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "preferred", b.Preferred, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "preferred", b.Preferred, b.PreferredExt); err != nil {
 		return err
 	}
 
@@ -475,11 +477,12 @@ func (r *RelatedPersonCommunication) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.Language = &v
 			case "preferred":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Preferred = v
+				r.PreferredExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

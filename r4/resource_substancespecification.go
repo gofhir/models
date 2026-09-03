@@ -495,8 +495,12 @@ type SubstanceSpecificationCode struct {
 	Status *CodeableConcept `json:"status,omitempty"`
 	// The date at which the code status is changed as part of the terminology maintenance
 	StatusDate *string `json:"statusDate,omitempty"`
+	// Extension for StatusDate
+	StatusDateExt *Element `json:"_statusDate,omitempty"`
 	// Any comment can be provided in this field, if necessary
 	Comment *string `json:"comment,omitempty"`
+	// Extension for Comment
+	CommentExt *Element `json:"_comment,omitempty"`
 	// Supporting literature
 	Source []Reference `json:"source,omitempty"`
 }
@@ -533,10 +537,10 @@ func (b SubstanceSpecificationCode) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "statusDate", b.StatusDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "statusDate", b.StatusDate, b.StatusDateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, b.CommentExt); err != nil {
 		return err
 	}
 	for _, item := range b.Source {
@@ -590,17 +594,19 @@ func (r *SubstanceSpecificationCode) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.Status = &v
 			case "statusDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.StatusDate = v
+				r.StatusDateExt = ext
 			case "comment":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Comment = v
+				r.CommentExt = ext
 			case "source":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -633,12 +639,16 @@ type SubstanceSpecificationMoiety struct {
 	Identifier *Identifier `json:"identifier,omitempty"`
 	// Textual name for this moiety substance
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Stereochemistry type
 	Stereochemistry *CodeableConcept `json:"stereochemistry,omitempty"`
 	// Optical activity type
 	OpticalActivity *CodeableConcept `json:"opticalActivity,omitempty"`
 	// Molecular formula
 	MolecularFormula *string `json:"molecularFormula,omitempty"`
+	// Extension for MolecularFormula
+	MolecularFormulaExt *Element `json:"_molecularFormula,omitempty"`
 	// Quantitative value for this moiety
 	AmountQuantity *Quantity `json:"amountQuantity,omitempty"`
 	// Quantitative value for this moiety
@@ -679,7 +689,7 @@ func (b SubstanceSpecificationMoiety) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
 	if b.Stereochemistry != nil {
@@ -692,7 +702,7 @@ func (b SubstanceSpecificationMoiety) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "molecularFormula", b.MolecularFormula, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "molecularFormula", b.MolecularFormula, b.MolecularFormulaExt); err != nil {
 		return err
 	}
 	if b.AmountQuantity != nil {
@@ -749,11 +759,12 @@ func (r *SubstanceSpecificationMoiety) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.Identifier = &v
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "stereochemistry":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -767,11 +778,12 @@ func (r *SubstanceSpecificationMoiety) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.OpticalActivity = &v
 			case "molecularFormula":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.MolecularFormula = v
+				r.MolecularFormulaExt = ext
 			case "amountQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -779,11 +791,12 @@ func (r *SubstanceSpecificationMoiety) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.AmountQuantity = &v
 			case "amountString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AmountString = v
+				_ = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -806,12 +819,16 @@ type SubstanceSpecificationName struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The actual name
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Name type
 	Type *CodeableConcept `json:"type,omitempty"`
 	// The status of the name
 	Status *CodeableConcept `json:"status,omitempty"`
 	// If this is the preferred name for this substance
 	Preferred *bool `json:"preferred,omitempty"`
+	// Extension for Preferred
+	PreferredExt *Element `json:"_preferred,omitempty"`
 	// Language of the name
 	Language []CodeableConcept `json:"language,omitempty"`
 	// The use context of this name for example if there is a different name a drug active ingredient as opposed to a food colour additive
@@ -850,7 +867,7 @@ func (b SubstanceSpecificationName) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
 	if b.Type != nil {
@@ -863,7 +880,7 @@ func (b SubstanceSpecificationName) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "preferred", b.Preferred, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "preferred", b.Preferred, b.PreferredExt); err != nil {
 		return err
 	}
 	for _, item := range b.Language {
@@ -935,11 +952,12 @@ func (r *SubstanceSpecificationName) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "type":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -953,11 +971,12 @@ func (r *SubstanceSpecificationName) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.Status = &v
 			case "preferred":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Preferred = v
+				r.PreferredExt = ext
 			case "language":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1026,6 +1045,8 @@ type SubstanceSpecificationNameOfficial struct {
 	Status *CodeableConcept `json:"status,omitempty"`
 	// Date of official name change
 	Date *string `json:"date,omitempty"`
+	// Extension for Date
+	DateExt *Element `json:"_date,omitempty"`
 }
 
 // MarshalXML serializes SubstanceSpecificationNameOfficial to FHIR-conformant XML.
@@ -1060,7 +1081,7 @@ func (b SubstanceSpecificationNameOfficial) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "date", b.Date, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "date", b.Date, b.DateExt); err != nil {
 		return err
 	}
 
@@ -1109,11 +1130,12 @@ func (r *SubstanceSpecificationNameOfficial) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.Status = &v
 			case "date":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Date = v
+				r.DateExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1140,6 +1162,8 @@ type SubstanceSpecificationProperty struct {
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Parameters that were used in the measurement of a property (e.g. for viscosity: measured at 20C with a pH of 7.1)
 	Parameters *string `json:"parameters,omitempty"`
+	// Extension for Parameters
+	ParametersExt *Element `json:"_parameters,omitempty"`
 	// A substance upon which a defining property depends (e.g. for solubility: in water, in alcohol)
 	DefiningSubstanceReference *Reference `json:"definingSubstanceReference,omitempty"`
 	// A substance upon which a defining property depends (e.g. for solubility: in water, in alcohol)
@@ -1184,7 +1208,7 @@ func (b SubstanceSpecificationProperty) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "parameters", b.Parameters, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "parameters", b.Parameters, b.ParametersExt); err != nil {
 		return err
 	}
 	if b.DefiningSubstanceReference != nil {
@@ -1251,11 +1275,12 @@ func (r *SubstanceSpecificationProperty) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.Code = &v
 			case "parameters":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Parameters = v
+				r.ParametersExt = ext
 			case "definingSubstanceReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1275,11 +1300,12 @@ func (r *SubstanceSpecificationProperty) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.AmountQuantity = &v
 			case "amountString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AmountString = v
+				_ = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1308,6 +1334,8 @@ type SubstanceSpecificationRelationship struct {
 	Relationship *CodeableConcept `json:"relationship,omitempty"`
 	// For example where an enzyme strongly bonds with a particular substance, this is a defining relationship for that enzyme, out of several possible substance relationships
 	IsDefining *bool `json:"isDefining,omitempty"`
+	// Extension for IsDefining
+	IsDefiningExt *Element `json:"_isDefining,omitempty"`
 	// A numeric factor for the relationship, for instance to express that the salt of a substance has some percentage of the active substance in relation to some other
 	AmountQuantity *Quantity `json:"amountQuantity,omitempty"`
 	// A numeric factor for the relationship, for instance to express that the salt of a substance has some percentage of the active substance in relation to some other
@@ -1363,7 +1391,7 @@ func (b SubstanceSpecificationRelationship) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "isDefining", b.IsDefining, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "isDefining", b.IsDefining, b.IsDefiningExt); err != nil {
 		return err
 	}
 	if b.AmountQuantity != nil {
@@ -1451,11 +1479,12 @@ func (r *SubstanceSpecificationRelationship) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.Relationship = &v
 			case "isDefining":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.IsDefining = v
+				r.IsDefiningExt = ext
 			case "amountQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1475,11 +1504,12 @@ func (r *SubstanceSpecificationRelationship) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.AmountRatio = &v
 			case "amountString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AmountString = v
+				_ = ext
 			case "amountRatioLowLimit":
 				var v Ratio
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1524,8 +1554,12 @@ type SubstanceSpecificationStructure struct {
 	OpticalActivity *CodeableConcept `json:"opticalActivity,omitempty"`
 	// Molecular formula
 	MolecularFormula *string `json:"molecularFormula,omitempty"`
+	// Extension for MolecularFormula
+	MolecularFormulaExt *Element `json:"_molecularFormula,omitempty"`
 	// Specified per moiety according to the Hill system, i.e. first C, then H, then alphabetical, each moiety separated by a dot
 	MolecularFormulaByMoiety *string `json:"molecularFormulaByMoiety,omitempty"`
+	// Extension for MolecularFormulaByMoiety
+	MolecularFormulaByMoietyExt *Element `json:"_molecularFormulaByMoiety,omitempty"`
 	// Applicable for single substances that contain a radionuclide or a non-natural isotopic ratio
 	Isotope []SubstanceSpecificationStructureIsotope `json:"isotope,omitempty"`
 	// The molecular weight or weight range (for proteins, polymers or nucleic acids)
@@ -1568,10 +1602,10 @@ func (b SubstanceSpecificationStructure) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "molecularFormula", b.MolecularFormula, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "molecularFormula", b.MolecularFormula, b.MolecularFormulaExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "molecularFormulaByMoiety", b.MolecularFormulaByMoiety, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "molecularFormulaByMoiety", b.MolecularFormulaByMoiety, b.MolecularFormulaByMoietyExt); err != nil {
 		return err
 	}
 	for _, item := range b.Isotope {
@@ -1640,17 +1674,19 @@ func (r *SubstanceSpecificationStructure) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.OpticalActivity = &v
 			case "molecularFormula":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.MolecularFormula = v
+				r.MolecularFormulaExt = ext
 			case "molecularFormulaByMoiety":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.MolecularFormulaByMoiety = v
+				r.MolecularFormulaByMoietyExt = ext
 			case "isotope":
 				var v SubstanceSpecificationStructureIsotope
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1957,6 +1993,8 @@ type SubstanceSpecificationStructureRepresentation struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// The structural representation as text string in a format e.g. InChI, SMILES, MOLFILE, CDX
 	Representation *string `json:"representation,omitempty"`
+	// Extension for Representation
+	RepresentationExt *Element `json:"_representation,omitempty"`
 	// An attached file with the structural representation
 	Attachment *Attachment `json:"attachment,omitempty"`
 }
@@ -1988,7 +2026,7 @@ func (b SubstanceSpecificationStructureRepresentation) MarshalXML(e *xml.Encoder
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "representation", b.Representation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "representation", b.Representation, b.RepresentationExt); err != nil {
 		return err
 	}
 	if b.Attachment != nil {
@@ -2036,11 +2074,12 @@ func (r *SubstanceSpecificationStructureRepresentation) UnmarshalXML(d *xml.Deco
 				}
 				r.Type = &v
 			case "representation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Representation = v
+				r.RepresentationExt = ext
 			case "attachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {

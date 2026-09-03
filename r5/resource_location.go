@@ -373,12 +373,13 @@ func (r *Location) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				r.Name = v
 				r.NameExt = ext
 			case "alias":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Alias = append(r.Alias, v)
+				r.AliasExt = append(r.AliasExt, ext)
 			case "description":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -481,10 +482,16 @@ type LocationPosition struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Longitude with WGS84 datum
 	Longitude *Decimal `json:"longitude,omitempty"`
+	// Extension for Longitude
+	LongitudeExt *Element `json:"_longitude,omitempty"`
 	// Latitude with WGS84 datum
 	Latitude *Decimal `json:"latitude,omitempty"`
+	// Extension for Latitude
+	LatitudeExt *Element `json:"_latitude,omitempty"`
 	// Altitude with WGS84 datum
 	Altitude *Decimal `json:"altitude,omitempty"`
+	// Extension for Altitude
+	AltitudeExt *Element `json:"_altitude,omitempty"`
 }
 
 // MarshalXML serializes LocationPosition to FHIR-conformant XML.
@@ -509,13 +516,13 @@ func (b LocationPosition) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "longitude", b.Longitude, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "longitude", b.Longitude, b.LongitudeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "latitude", b.Latitude, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "latitude", b.Latitude, b.LatitudeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "altitude", b.Altitude, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "altitude", b.Altitude, b.AltitudeExt); err != nil {
 		return err
 	}
 
@@ -552,23 +559,26 @@ func (r *LocationPosition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "longitude":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Longitude = v
+				r.LongitudeExt = ext
 			case "latitude":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Latitude = v
+				r.LatitudeExt = ext
 			case "altitude":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Altitude = v
+				r.AltitudeExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

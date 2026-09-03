@@ -566,19 +566,21 @@ func (r *CapabilityStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				r.Kind = v
 				r.KindExt = ext
 			case "instantiates":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Instantiates = append(r.Instantiates, v)
+				r.InstantiatesExt = append(r.InstantiatesExt, ext)
 			case "imports":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Imports = append(r.Imports, v)
+				r.ImportsExt = append(r.ImportsExt, ext)
 			case "software":
 				var v CapabilityStatementSoftware
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -599,33 +601,37 @@ func (r *CapabilityStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				r.FhirVersion = v
 				r.FhirVersionExt = ext
 			case "format":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Format = append(r.Format, v)
+				r.FormatExt = append(r.FormatExt, ext)
 			case "patchFormat":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.PatchFormat = append(r.PatchFormat, v)
+				r.PatchFormatExt = append(r.PatchFormatExt, ext)
 			case "acceptLanguage":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.AcceptLanguage = append(r.AcceptLanguage, v)
+				r.AcceptLanguageExt = append(r.AcceptLanguageExt, ext)
 			case "implementationGuide":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ImplementationGuide = append(r.ImplementationGuide, v)
+				r.ImplementationGuideExt = append(r.ImplementationGuideExt, ext)
 			case "rest":
 				var v CapabilityStatementRest
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -666,10 +672,16 @@ type CapabilityStatementDocument struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// producer | consumer
 	Mode *DocumentMode `json:"mode,omitempty"`
+	// Extension for Mode
+	ModeExt *Element `json:"_mode,omitempty"`
 	// Description of document support
 	Documentation *string `json:"documentation,omitempty"`
+	// Extension for Documentation
+	DocumentationExt *Element `json:"_documentation,omitempty"`
 	// Constraint on the resources used in the document
 	Profile *string `json:"profile,omitempty"`
+	// Extension for Profile
+	ProfileExt *Element `json:"_profile,omitempty"`
 }
 
 // MarshalXML serializes CapabilityStatementDocument to FHIR-conformant XML.
@@ -694,13 +706,13 @@ func (b CapabilityStatementDocument) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "mode", b.Mode, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "mode", b.Mode, b.ModeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, b.DocumentationExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "profile", b.Profile, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "profile", b.Profile, b.ProfileExt); err != nil {
 		return err
 	}
 
@@ -737,23 +749,26 @@ func (r *CapabilityStatementDocument) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "mode":
-				v, _, err := xmlDecodePrimitiveCode[DocumentMode](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[DocumentMode](d, t)
 				if err != nil {
 					return err
 				}
 				r.Mode = v
+				r.ModeExt = ext
 			case "documentation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Documentation = v
+				r.DocumentationExt = ext
 			case "profile":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Profile = v
+				r.ProfileExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -776,8 +791,12 @@ type CapabilityStatementImplementation struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Describes this specific instance
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Base URL for the installation
 	Url *string `json:"url,omitempty"`
+	// Extension for Url
+	UrlExt *Element `json:"_url,omitempty"`
 	// Organization that manages the data
 	Custodian *Reference `json:"custodian,omitempty"`
 }
@@ -804,10 +823,10 @@ func (b CapabilityStatementImplementation) MarshalXML(e *xml.Encoder, start xml.
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "url", b.Url, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "url", b.Url, b.UrlExt); err != nil {
 		return err
 	}
 	if b.Custodian != nil {
@@ -849,17 +868,19 @@ func (r *CapabilityStatementImplementation) UnmarshalXML(d *xml.Decoder, start x
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "url":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Url = v
+				r.UrlExt = ext
 			case "custodian":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -890,8 +911,12 @@ type CapabilityStatementMessaging struct {
 	Endpoint []CapabilityStatementMessagingEndpoint `json:"endpoint,omitempty"`
 	// Reliable Message Cache Length (min)
 	ReliableCache *uint32 `json:"reliableCache,omitempty"`
+	// Extension for ReliableCache
+	ReliableCacheExt *Element `json:"_reliableCache,omitempty"`
 	// Messaging interface behavior details
 	Documentation *string `json:"documentation,omitempty"`
+	// Extension for Documentation
+	DocumentationExt *Element `json:"_documentation,omitempty"`
 	// Messages supported by this system
 	SupportedMessage []CapabilityStatementMessagingSupportedMessage `json:"supportedMessage,omitempty"`
 }
@@ -923,10 +948,10 @@ func (b CapabilityStatementMessaging) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "reliableCache", b.ReliableCache, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "reliableCache", b.ReliableCache, b.ReliableCacheExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, b.DocumentationExt); err != nil {
 		return err
 	}
 	for _, item := range b.SupportedMessage {
@@ -974,17 +999,19 @@ func (r *CapabilityStatementMessaging) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.Endpoint = append(r.Endpoint, v)
 			case "reliableCache":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.ReliableCache = v
+				r.ReliableCacheExt = ext
 			case "documentation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Documentation = v
+				r.DocumentationExt = ext
 			case "supportedMessage":
 				var v CapabilityStatementMessagingSupportedMessage
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1015,6 +1042,8 @@ type CapabilityStatementMessagingEndpoint struct {
 	Protocol *Coding `json:"protocol,omitempty"`
 	// Network address or identifier of the end-point
 	Address *string `json:"address,omitempty"`
+	// Extension for Address
+	AddressExt *Element `json:"_address,omitempty"`
 }
 
 // MarshalXML serializes CapabilityStatementMessagingEndpoint to FHIR-conformant XML.
@@ -1044,7 +1073,7 @@ func (b CapabilityStatementMessagingEndpoint) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "address", b.Address, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "address", b.Address, b.AddressExt); err != nil {
 		return err
 	}
 
@@ -1087,11 +1116,12 @@ func (r *CapabilityStatementMessagingEndpoint) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.Protocol = &v
 			case "address":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Address = v
+				r.AddressExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1114,8 +1144,12 @@ type CapabilityStatementMessagingSupportedMessage struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// sender | receiver
 	Mode *EventCapabilityMode `json:"mode,omitempty"`
+	// Extension for Mode
+	ModeExt *Element `json:"_mode,omitempty"`
 	// Message supported by this system
 	Definition *string `json:"definition,omitempty"`
+	// Extension for Definition
+	DefinitionExt *Element `json:"_definition,omitempty"`
 }
 
 // MarshalXML serializes CapabilityStatementMessagingSupportedMessage to FHIR-conformant XML.
@@ -1140,10 +1174,10 @@ func (b CapabilityStatementMessagingSupportedMessage) MarshalXML(e *xml.Encoder,
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "mode", b.Mode, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "mode", b.Mode, b.ModeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "definition", b.Definition, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "definition", b.Definition, b.DefinitionExt); err != nil {
 		return err
 	}
 
@@ -1180,17 +1214,19 @@ func (r *CapabilityStatementMessagingSupportedMessage) UnmarshalXML(d *xml.Decod
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "mode":
-				v, _, err := xmlDecodePrimitiveCode[EventCapabilityMode](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[EventCapabilityMode](d, t)
 				if err != nil {
 					return err
 				}
 				r.Mode = v
+				r.ModeExt = ext
 			case "definition":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Definition = v
+				r.DefinitionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1213,8 +1249,12 @@ type CapabilityStatementRest struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// client | server
 	Mode *RestfulCapabilityMode `json:"mode,omitempty"`
+	// Extension for Mode
+	ModeExt *Element `json:"_mode,omitempty"`
 	// General description of implementation
 	Documentation *string `json:"documentation,omitempty"`
+	// Extension for Documentation
+	DocumentationExt *Element `json:"_documentation,omitempty"`
 	// Information about security of implementation
 	Security *CapabilityStatementRestSecurity `json:"security,omitempty"`
 	// Resource served on the REST interface
@@ -1227,6 +1267,8 @@ type CapabilityStatementRest struct {
 	Operation []CapabilityStatementRestResourceOperation `json:"operation,omitempty"`
 	// Compartments served/used by system
 	Compartment []*string `json:"compartment,omitempty"`
+	// Extension for Compartment
+	CompartmentExt []*Element `json:"_compartment,omitempty"`
 }
 
 // MarshalXML serializes CapabilityStatementRest to FHIR-conformant XML.
@@ -1251,10 +1293,10 @@ func (b CapabilityStatementRest) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "mode", b.Mode, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "mode", b.Mode, b.ModeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, b.DocumentationExt); err != nil {
 		return err
 	}
 	if b.Security != nil {
@@ -1282,7 +1324,7 @@ func (b CapabilityStatementRest) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "compartment", b.Compartment, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "compartment", b.Compartment, b.CompartmentExt); err != nil {
 		return err
 	}
 
@@ -1319,17 +1361,19 @@ func (r *CapabilityStatementRest) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "mode":
-				v, _, err := xmlDecodePrimitiveCode[RestfulCapabilityMode](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[RestfulCapabilityMode](d, t)
 				if err != nil {
 					return err
 				}
 				r.Mode = v
+				r.ModeExt = ext
 			case "documentation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Documentation = v
+				r.DocumentationExt = ext
 			case "security":
 				var v CapabilityStatementRestSecurity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1361,12 +1405,13 @@ func (r *CapabilityStatementRest) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.Operation = append(r.Operation, v)
 			case "compartment":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Compartment = append(r.Compartment, v)
+				r.CompartmentExt = append(r.CompartmentExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1389,8 +1434,12 @@ type CapabilityStatementRestInteraction struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// transaction | batch | search-system | history-system
 	Code *SystemRestfulInteraction `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Anything special about operation behavior
 	Documentation *string `json:"documentation,omitempty"`
+	// Extension for Documentation
+	DocumentationExt *Element `json:"_documentation,omitempty"`
 }
 
 // MarshalXML serializes CapabilityStatementRestInteraction to FHIR-conformant XML.
@@ -1415,10 +1464,10 @@ func (b CapabilityStatementRestInteraction) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, b.DocumentationExt); err != nil {
 		return err
 	}
 
@@ -1455,17 +1504,19 @@ func (r *CapabilityStatementRestInteraction) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, _, err := xmlDecodePrimitiveCode[SystemRestfulInteraction](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[SystemRestfulInteraction](d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "documentation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Documentation = v
+				r.DocumentationExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1488,36 +1539,66 @@ type CapabilityStatementRestResource struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A resource type that is supported
 	Type *string `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// System-wide profile
 	Profile *string `json:"profile,omitempty"`
+	// Extension for Profile
+	ProfileExt *Element `json:"_profile,omitempty"`
 	// Use-case specific profiles
 	SupportedProfile []*string `json:"supportedProfile,omitempty"`
+	// Extension for SupportedProfile
+	SupportedProfileExt []*Element `json:"_supportedProfile,omitempty"`
 	// Additional information about the use of the resource type
 	Documentation *string `json:"documentation,omitempty"`
+	// Extension for Documentation
+	DocumentationExt *Element `json:"_documentation,omitempty"`
 	// What operations are supported?
 	Interaction []CapabilityStatementRestResourceInteraction `json:"interaction,omitempty"`
 	// no-version | versioned | versioned-update
 	Versioning *ResourceVersionPolicy `json:"versioning,omitempty"`
+	// Extension for Versioning
+	VersioningExt *Element `json:"_versioning,omitempty"`
 	// Whether vRead can return past versions
 	ReadHistory *bool `json:"readHistory,omitempty"`
+	// Extension for ReadHistory
+	ReadHistoryExt *Element `json:"_readHistory,omitempty"`
 	// If update can commit to a new identity
 	UpdateCreate *bool `json:"updateCreate,omitempty"`
+	// Extension for UpdateCreate
+	UpdateCreateExt *Element `json:"_updateCreate,omitempty"`
 	// If allows/uses conditional create
 	ConditionalCreate *bool `json:"conditionalCreate,omitempty"`
+	// Extension for ConditionalCreate
+	ConditionalCreateExt *Element `json:"_conditionalCreate,omitempty"`
 	// not-supported | modified-since | not-match | full-support
 	ConditionalRead *ConditionalReadStatus `json:"conditionalRead,omitempty"`
+	// Extension for ConditionalRead
+	ConditionalReadExt *Element `json:"_conditionalRead,omitempty"`
 	// If allows/uses conditional update
 	ConditionalUpdate *bool `json:"conditionalUpdate,omitempty"`
+	// Extension for ConditionalUpdate
+	ConditionalUpdateExt *Element `json:"_conditionalUpdate,omitempty"`
 	// If allows/uses conditional patch
 	ConditionalPatch *bool `json:"conditionalPatch,omitempty"`
+	// Extension for ConditionalPatch
+	ConditionalPatchExt *Element `json:"_conditionalPatch,omitempty"`
 	// not-supported | single | multiple - how conditional delete is supported
 	ConditionalDelete *ConditionalDeleteStatus `json:"conditionalDelete,omitempty"`
+	// Extension for ConditionalDelete
+	ConditionalDeleteExt *Element `json:"_conditionalDelete,omitempty"`
 	// literal | logical | resolves | enforced | local
 	ReferencePolicy []*ReferenceHandlingPolicy `json:"referencePolicy,omitempty"`
+	// Extension for ReferencePolicy
+	ReferencePolicyExt []*Element `json:"_referencePolicy,omitempty"`
 	// _include values supported by the server
 	SearchInclude []*string `json:"searchInclude,omitempty"`
+	// Extension for SearchInclude
+	SearchIncludeExt []*Element `json:"_searchInclude,omitempty"`
 	// _revinclude values supported by the server
 	SearchRevInclude []*string `json:"searchRevInclude,omitempty"`
+	// Extension for SearchRevInclude
+	SearchRevIncludeExt []*Element `json:"_searchRevInclude,omitempty"`
 	// Search parameters supported by implementation
 	SearchParam []CapabilityStatementRestResourceSearchParam `json:"searchParam,omitempty"`
 	// Definition of a resource operation
@@ -1546,16 +1627,16 @@ func (b CapabilityStatementRestResource) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "profile", b.Profile, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "profile", b.Profile, b.ProfileExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "supportedProfile", b.SupportedProfile, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "supportedProfile", b.SupportedProfile, b.SupportedProfileExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, b.DocumentationExt); err != nil {
 		return err
 	}
 	for _, item := range b.Interaction {
@@ -1563,37 +1644,37 @@ func (b CapabilityStatementRestResource) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "versioning", b.Versioning, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "versioning", b.Versioning, b.VersioningExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "readHistory", b.ReadHistory, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "readHistory", b.ReadHistory, b.ReadHistoryExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "updateCreate", b.UpdateCreate, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "updateCreate", b.UpdateCreate, b.UpdateCreateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "conditionalCreate", b.ConditionalCreate, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "conditionalCreate", b.ConditionalCreate, b.ConditionalCreateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "conditionalRead", b.ConditionalRead, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "conditionalRead", b.ConditionalRead, b.ConditionalReadExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "conditionalUpdate", b.ConditionalUpdate, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "conditionalUpdate", b.ConditionalUpdate, b.ConditionalUpdateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "conditionalPatch", b.ConditionalPatch, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "conditionalPatch", b.ConditionalPatch, b.ConditionalPatchExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "conditionalDelete", b.ConditionalDelete, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "conditionalDelete", b.ConditionalDelete, b.ConditionalDeleteExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCodeArray(e, "referencePolicy", b.ReferencePolicy, nil); err != nil {
+	if err := xmlEncodePrimitiveCodeArray(e, "referencePolicy", b.ReferencePolicy, b.ReferencePolicyExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "searchInclude", b.SearchInclude, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "searchInclude", b.SearchInclude, b.SearchIncludeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "searchRevInclude", b.SearchRevInclude, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "searchRevInclude", b.SearchRevInclude, b.SearchRevIncludeExt); err != nil {
 		return err
 	}
 	for _, item := range b.SearchParam {
@@ -1640,30 +1721,34 @@ func (r *CapabilityStatementRestResource) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "profile":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Profile = v
+				r.ProfileExt = ext
 			case "supportedProfile":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SupportedProfile = append(r.SupportedProfile, v)
+				r.SupportedProfileExt = append(r.SupportedProfileExt, ext)
 			case "documentation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Documentation = v
+				r.DocumentationExt = ext
 			case "interaction":
 				var v CapabilityStatementRestResourceInteraction
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1671,74 +1756,85 @@ func (r *CapabilityStatementRestResource) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.Interaction = append(r.Interaction, v)
 			case "versioning":
-				v, _, err := xmlDecodePrimitiveCode[ResourceVersionPolicy](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ResourceVersionPolicy](d, t)
 				if err != nil {
 					return err
 				}
 				r.Versioning = v
+				r.VersioningExt = ext
 			case "readHistory":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ReadHistory = v
+				r.ReadHistoryExt = ext
 			case "updateCreate":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.UpdateCreate = v
+				r.UpdateCreateExt = ext
 			case "conditionalCreate":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ConditionalCreate = v
+				r.ConditionalCreateExt = ext
 			case "conditionalRead":
-				v, _, err := xmlDecodePrimitiveCode[ConditionalReadStatus](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ConditionalReadStatus](d, t)
 				if err != nil {
 					return err
 				}
 				r.ConditionalRead = v
+				r.ConditionalReadExt = ext
 			case "conditionalUpdate":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ConditionalUpdate = v
+				r.ConditionalUpdateExt = ext
 			case "conditionalPatch":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ConditionalPatch = v
+				r.ConditionalPatchExt = ext
 			case "conditionalDelete":
-				v, _, err := xmlDecodePrimitiveCode[ConditionalDeleteStatus](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ConditionalDeleteStatus](d, t)
 				if err != nil {
 					return err
 				}
 				r.ConditionalDelete = v
+				r.ConditionalDeleteExt = ext
 			case "referencePolicy":
-				v, _, err := xmlDecodePrimitiveCode[ReferenceHandlingPolicy](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ReferenceHandlingPolicy](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ReferencePolicy = append(r.ReferencePolicy, v)
+				r.ReferencePolicyExt = append(r.ReferencePolicyExt, ext)
 			case "searchInclude":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SearchInclude = append(r.SearchInclude, v)
+				r.SearchIncludeExt = append(r.SearchIncludeExt, ext)
 			case "searchRevInclude":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SearchRevInclude = append(r.SearchRevInclude, v)
+				r.SearchRevIncludeExt = append(r.SearchRevIncludeExt, ext)
 			case "searchParam":
 				var v CapabilityStatementRestResourceSearchParam
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1773,8 +1869,12 @@ type CapabilityStatementRestResourceInteraction struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// read | vread | update | patch | delete | history-instance | history-type | create | search-type
 	Code *TypeRestfulInteraction `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Anything special about operation behavior
 	Documentation *string `json:"documentation,omitempty"`
+	// Extension for Documentation
+	DocumentationExt *Element `json:"_documentation,omitempty"`
 }
 
 // MarshalXML serializes CapabilityStatementRestResourceInteraction to FHIR-conformant XML.
@@ -1799,10 +1899,10 @@ func (b CapabilityStatementRestResourceInteraction) MarshalXML(e *xml.Encoder, s
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, b.DocumentationExt); err != nil {
 		return err
 	}
 
@@ -1839,17 +1939,19 @@ func (r *CapabilityStatementRestResourceInteraction) UnmarshalXML(d *xml.Decoder
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, _, err := xmlDecodePrimitiveCode[TypeRestfulInteraction](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[TypeRestfulInteraction](d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "documentation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Documentation = v
+				r.DocumentationExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1872,10 +1974,16 @@ type CapabilityStatementRestResourceOperation struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Name by which the operation/query is invoked
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// The defined operation/query
 	Definition *string `json:"definition,omitempty"`
+	// Extension for Definition
+	DefinitionExt *Element `json:"_definition,omitempty"`
 	// Specific details about operation behavior
 	Documentation *string `json:"documentation,omitempty"`
+	// Extension for Documentation
+	DocumentationExt *Element `json:"_documentation,omitempty"`
 }
 
 // MarshalXML serializes CapabilityStatementRestResourceOperation to FHIR-conformant XML.
@@ -1900,13 +2008,13 @@ func (b CapabilityStatementRestResourceOperation) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "definition", b.Definition, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "definition", b.Definition, b.DefinitionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, b.DocumentationExt); err != nil {
 		return err
 	}
 
@@ -1943,23 +2051,26 @@ func (r *CapabilityStatementRestResourceOperation) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "definition":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Definition = v
+				r.DefinitionExt = ext
 			case "documentation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Documentation = v
+				r.DocumentationExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1982,12 +2093,20 @@ type CapabilityStatementRestResourceSearchParam struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Name for parameter in search url
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Source of definition for parameter
 	Definition *string `json:"definition,omitempty"`
+	// Extension for Definition
+	DefinitionExt *Element `json:"_definition,omitempty"`
 	// number | date | string | token | reference | composite | quantity | uri | special
 	Type *SearchParamType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// Server-specific usage
 	Documentation *string `json:"documentation,omitempty"`
+	// Extension for Documentation
+	DocumentationExt *Element `json:"_documentation,omitempty"`
 }
 
 // MarshalXML serializes CapabilityStatementRestResourceSearchParam to FHIR-conformant XML.
@@ -2012,16 +2131,16 @@ func (b CapabilityStatementRestResourceSearchParam) MarshalXML(e *xml.Encoder, s
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "definition", b.Definition, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "definition", b.Definition, b.DefinitionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, b.DocumentationExt); err != nil {
 		return err
 	}
 
@@ -2058,29 +2177,33 @@ func (r *CapabilityStatementRestResourceSearchParam) UnmarshalXML(d *xml.Decoder
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "definition":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Definition = v
+				r.DefinitionExt = ext
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[SearchParamType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[SearchParamType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "documentation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Documentation = v
+				r.DocumentationExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2103,10 +2226,14 @@ type CapabilityStatementRestSecurity struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Adds CORS Headers (http://enable-cors.org/)
 	Cors *bool `json:"cors,omitempty"`
+	// Extension for Cors
+	CorsExt *Element `json:"_cors,omitempty"`
 	// OAuth | SMART-on-FHIR | NTLM | Basic | Kerberos | Certificates
 	Service []CodeableConcept `json:"service,omitempty"`
 	// General description of how security works
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 }
 
 // MarshalXML serializes CapabilityStatementRestSecurity to FHIR-conformant XML.
@@ -2131,7 +2258,7 @@ func (b CapabilityStatementRestSecurity) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "cors", b.Cors, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "cors", b.Cors, b.CorsExt); err != nil {
 		return err
 	}
 	for _, item := range b.Service {
@@ -2139,7 +2266,7 @@ func (b CapabilityStatementRestSecurity) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 
@@ -2176,11 +2303,12 @@ func (r *CapabilityStatementRestSecurity) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "cors":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Cors = v
+				r.CorsExt = ext
 			case "service":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2188,11 +2316,12 @@ func (r *CapabilityStatementRestSecurity) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.Service = append(r.Service, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2215,10 +2344,16 @@ type CapabilityStatementSoftware struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A name the software is known by
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Version covered by this statement
 	Version *string `json:"version,omitempty"`
+	// Extension for Version
+	VersionExt *Element `json:"_version,omitempty"`
 	// Date this version was released
 	ReleaseDate *string `json:"releaseDate,omitempty"`
+	// Extension for ReleaseDate
+	ReleaseDateExt *Element `json:"_releaseDate,omitempty"`
 }
 
 // MarshalXML serializes CapabilityStatementSoftware to FHIR-conformant XML.
@@ -2243,13 +2378,13 @@ func (b CapabilityStatementSoftware) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "version", b.Version, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "version", b.Version, b.VersionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "releaseDate", b.ReleaseDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "releaseDate", b.ReleaseDate, b.ReleaseDateExt); err != nil {
 		return err
 	}
 
@@ -2286,23 +2421,26 @@ func (r *CapabilityStatementSoftware) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "version":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Version = v
+				r.VersionExt = ext
 			case "releaseDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ReleaseDate = v
+				r.ReleaseDateExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

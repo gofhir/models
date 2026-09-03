@@ -497,6 +497,8 @@ type CompositionAttester struct {
 	Mode *CodeableConcept `json:"mode,omitempty"`
 	// When the composition was attested
 	Time *string `json:"time,omitempty"`
+	// Extension for Time
+	TimeExt *Element `json:"_time,omitempty"`
 	// Who attested the composition
 	Party *Reference `json:"party,omitempty"`
 }
@@ -528,7 +530,7 @@ func (b CompositionAttester) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "time", b.Time, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "time", b.Time, b.TimeExt); err != nil {
 		return err
 	}
 	if b.Party != nil {
@@ -576,11 +578,12 @@ func (r *CompositionAttester) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.Mode = &v
 			case "time":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Time = v
+				r.TimeExt = ext
 			case "party":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -712,6 +715,8 @@ type CompositionSection struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Label for section (e.g. for ToC)
 	Title *string `json:"title,omitempty"`
+	// Extension for Title
+	TitleExt *Element `json:"_title,omitempty"`
 	// Classification of section (recommended)
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Who and/or what authored the section
@@ -752,7 +757,7 @@ func (b CompositionSection) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "title", b.Title, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "title", b.Title, b.TitleExt); err != nil {
 		return err
 	}
 	if b.Code != nil {
@@ -829,11 +834,12 @@ func (r *CompositionSection) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "title":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Title = v
+				r.TitleExt = ext
 			case "code":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

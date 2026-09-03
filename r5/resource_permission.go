@@ -283,12 +283,13 @@ func (r *Permission) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				r.Asserter = &v
 			case "date":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Date = append(r.Date, v)
+				r.DateExt = append(r.DateExt, ext)
 			case "validity":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -439,6 +440,8 @@ type PermissionRule struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// deny | permit
 	Type *ConsentProvisionType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// The selection criteria to identify data that is within scope of this provision
 	Data []PermissionRuleData `json:"data,omitempty"`
 	// A description or definition of which activities are allowed to be done on the data
@@ -469,7 +472,7 @@ func (b PermissionRule) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
 	for _, item := range b.Data {
@@ -521,11 +524,12 @@ func (r *PermissionRule) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[ConsentProvisionType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ConsentProvisionType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "data":
 				var v PermissionRuleData
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -811,6 +815,8 @@ type PermissionRuleDataResource struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// instance | related | dependents | authoredby
 	Meaning *ConsentDataMeaning `json:"meaning,omitempty"`
+	// Extension for Meaning
+	MeaningExt *Element `json:"_meaning,omitempty"`
 	// The actual data reference
 	Reference *Reference `json:"reference,omitempty"`
 }
@@ -837,7 +843,7 @@ func (b PermissionRuleDataResource) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "meaning", b.Meaning, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "meaning", b.Meaning, b.MeaningExt); err != nil {
 		return err
 	}
 	if b.Reference != nil {
@@ -879,11 +885,12 @@ func (r *PermissionRuleDataResource) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "meaning":
-				v, _, err := xmlDecodePrimitiveCode[ConsentDataMeaning](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ConsentDataMeaning](d, t)
 				if err != nil {
 					return err
 				}
 				r.Meaning = v
+				r.MeaningExt = ext
 			case "reference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

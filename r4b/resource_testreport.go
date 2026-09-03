@@ -404,10 +404,16 @@ type TestReportParticipant struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// test-engine | client | server
 	Type *TestReportParticipantType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// The uri of the participant. An absolute URL is preferred
 	Uri *string `json:"uri,omitempty"`
+	// Extension for Uri
+	UriExt *Element `json:"_uri,omitempty"`
 	// The display name of the participant
 	Display *string `json:"display,omitempty"`
+	// Extension for Display
+	DisplayExt *Element `json:"_display,omitempty"`
 }
 
 // MarshalXML serializes TestReportParticipant to FHIR-conformant XML.
@@ -432,13 +438,13 @@ func (b TestReportParticipant) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "uri", b.Uri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "uri", b.Uri, b.UriExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "display", b.Display, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "display", b.Display, b.DisplayExt); err != nil {
 		return err
 	}
 
@@ -475,23 +481,26 @@ func (r *TestReportParticipant) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[TestReportParticipantType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[TestReportParticipantType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "uri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Uri = v
+				r.UriExt = ext
 			case "display":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Display = v
+				r.DisplayExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -707,10 +716,16 @@ type TestReportSetupActionAssert struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// pass | skip | fail | warning | error
 	Result *TestReportActionResult `json:"result,omitempty"`
+	// Extension for Result
+	ResultExt *Element `json:"_result,omitempty"`
 	// A message associated with the result
 	Message *string `json:"message,omitempty"`
+	// Extension for Message
+	MessageExt *Element `json:"_message,omitempty"`
 	// A link to further details on the result
 	Detail *string `json:"detail,omitempty"`
+	// Extension for Detail
+	DetailExt *Element `json:"_detail,omitempty"`
 }
 
 // MarshalXML serializes TestReportSetupActionAssert to FHIR-conformant XML.
@@ -735,13 +750,13 @@ func (b TestReportSetupActionAssert) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "result", b.Result, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "result", b.Result, b.ResultExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "message", b.Message, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "message", b.Message, b.MessageExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "detail", b.Detail, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "detail", b.Detail, b.DetailExt); err != nil {
 		return err
 	}
 
@@ -778,23 +793,26 @@ func (r *TestReportSetupActionAssert) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "result":
-				v, _, err := xmlDecodePrimitiveCode[TestReportActionResult](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[TestReportActionResult](d, t)
 				if err != nil {
 					return err
 				}
 				r.Result = v
+				r.ResultExt = ext
 			case "message":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Message = v
+				r.MessageExt = ext
 			case "detail":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Detail = v
+				r.DetailExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -817,10 +835,16 @@ type TestReportSetupActionOperation struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// pass | skip | fail | warning | error
 	Result *TestReportActionResult `json:"result,omitempty"`
+	// Extension for Result
+	ResultExt *Element `json:"_result,omitempty"`
 	// A message associated with the result
 	Message *string `json:"message,omitempty"`
+	// Extension for Message
+	MessageExt *Element `json:"_message,omitempty"`
 	// A link to further details on the result
 	Detail *string `json:"detail,omitempty"`
+	// Extension for Detail
+	DetailExt *Element `json:"_detail,omitempty"`
 }
 
 // MarshalXML serializes TestReportSetupActionOperation to FHIR-conformant XML.
@@ -845,13 +869,13 @@ func (b TestReportSetupActionOperation) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "result", b.Result, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "result", b.Result, b.ResultExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "message", b.Message, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "message", b.Message, b.MessageExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "detail", b.Detail, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "detail", b.Detail, b.DetailExt); err != nil {
 		return err
 	}
 
@@ -888,23 +912,26 @@ func (r *TestReportSetupActionOperation) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "result":
-				v, _, err := xmlDecodePrimitiveCode[TestReportActionResult](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[TestReportActionResult](d, t)
 				if err != nil {
 					return err
 				}
 				r.Result = v
+				r.ResultExt = ext
 			case "message":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Message = v
+				r.MessageExt = ext
 			case "detail":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Detail = v
+				r.DetailExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1107,8 +1134,12 @@ type TestReportTest struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Tracking/logging name of this test
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Tracking/reporting short description of the test
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// A test operation or assert that was performed
 	Action []TestReportTestAction `json:"action,omitempty"`
 }
@@ -1135,10 +1166,10 @@ func (b TestReportTest) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	for _, item := range b.Action {
@@ -1180,17 +1211,19 @@ func (r *TestReportTest) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "action":
 				var v TestReportTestAction
 				if err := v.UnmarshalXML(d, t); err != nil {

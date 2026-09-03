@@ -416,19 +416,21 @@ func (r *FamilyMemberHistory) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "instantiatesCanonical":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
+				r.InstantiatesCanonicalExt = append(r.InstantiatesCanonicalExt, ext)
 			case "instantiatesUri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.InstantiatesUri = append(r.InstantiatesUri, v)
+				r.InstantiatesUriExt = append(r.InstantiatesUriExt, ext)
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[FamilyHistoryStatus](d, t)
 				if err != nil {
@@ -609,6 +611,8 @@ type FamilyMemberHistoryCondition struct {
 	Outcome *CodeableConcept `json:"outcome,omitempty"`
 	// Whether the condition contributed to the cause of death
 	ContributedToDeath *bool `json:"contributedToDeath,omitempty"`
+	// Extension for ContributedToDeath
+	ContributedToDeathExt *Element `json:"_contributedToDeath,omitempty"`
 	// When condition first manifested
 	OnsetAge *Age `json:"onsetAge,omitempty"`
 	// When condition first manifested
@@ -655,7 +659,7 @@ func (b FamilyMemberHistoryCondition) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "contributedToDeath", b.ContributedToDeath, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "contributedToDeath", b.ContributedToDeath, b.ContributedToDeathExt); err != nil {
 		return err
 	}
 	if b.OnsetAge != nil {
@@ -727,11 +731,12 @@ func (r *FamilyMemberHistoryCondition) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.Outcome = &v
 			case "contributedToDeath":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ContributedToDeath = v
+				r.ContributedToDeathExt = ext
 			case "onsetAge":
 				var v Age
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -751,11 +756,12 @@ func (r *FamilyMemberHistoryCondition) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.OnsetPeriod = &v
 			case "onsetString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.OnsetString = v
+				_ = ext
 			case "note":
 				var v Annotation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -891,6 +897,8 @@ type FamilyMemberHistoryProcedure struct {
 	Outcome *CodeableConcept `json:"outcome,omitempty"`
 	// Whether the procedure contributed to the cause of death
 	ContributedToDeath *bool `json:"contributedToDeath,omitempty"`
+	// Extension for ContributedToDeath
+	ContributedToDeathExt *Element `json:"_contributedToDeath,omitempty"`
 	// When the procedure was performed
 	PerformedAge *Age `json:"performedAge,omitempty"`
 	// When the procedure was performed
@@ -941,7 +949,7 @@ func (b FamilyMemberHistoryProcedure) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "contributedToDeath", b.ContributedToDeath, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "contributedToDeath", b.ContributedToDeath, b.ContributedToDeathExt); err != nil {
 		return err
 	}
 	if b.PerformedAge != nil {
@@ -1016,11 +1024,12 @@ func (r *FamilyMemberHistoryProcedure) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.Outcome = &v
 			case "contributedToDeath":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ContributedToDeath = v
+				r.ContributedToDeathExt = ext
 			case "performedAge":
 				var v Age
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1040,17 +1049,19 @@ func (r *FamilyMemberHistoryProcedure) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.PerformedPeriod = &v
 			case "performedString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.PerformedString = v
+				_ = ext
 			case "performedDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.PerformedDateTime = v
+				_ = ext
 			case "note":
 				var v Annotation
 				if err := v.UnmarshalXML(d, t); err != nil {

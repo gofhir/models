@@ -592,11 +592,12 @@ func (r *SpecimenCollection) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Collector = &v
 			case "collectedDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.CollectedDateTime = v
+				_ = ext
 			case "collectedPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -791,6 +792,8 @@ type SpecimenFeature struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Information about the feature
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 }
 
 // MarshalXML serializes SpecimenFeature to FHIR-conformant XML.
@@ -820,7 +823,7 @@ func (b SpecimenFeature) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 
@@ -863,11 +866,12 @@ func (r *SpecimenFeature) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.Type = &v
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -890,6 +894,8 @@ type SpecimenProcessing struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Textual description of procedure
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Indicates the treatment step  applied to the specimen
 	Method *CodeableConcept `json:"method,omitempty"`
 	// Material used in the processing step
@@ -924,7 +930,7 @@ func (b SpecimenProcessing) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.Method != nil {
@@ -979,11 +985,12 @@ func (r *SpecimenProcessing) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "method":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -997,11 +1004,12 @@ func (r *SpecimenProcessing) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Additive = append(r.Additive, v)
 			case "timeDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.TimeDateTime = v
+				_ = ext
 			case "timePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

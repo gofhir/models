@@ -484,11 +484,12 @@ func (r *BiologicallyDerivedProductCollection) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.Source = &v
 			case "collectedDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.CollectedDateTime = v
+				_ = ext
 			case "collectedPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -517,6 +518,8 @@ type BiologicallyDerivedProductManipulation struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Description of manipulation
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Time of manipulation
 	TimeDateTime *string `json:"timeDateTime,omitempty"`
 	// Extension for TimeDateTime
@@ -547,7 +550,7 @@ func (b BiologicallyDerivedProductManipulation) MarshalXML(e *xml.Encoder, start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "timeDateTime", b.TimeDateTime, nil); err != nil {
@@ -592,17 +595,19 @@ func (r *BiologicallyDerivedProductManipulation) UnmarshalXML(d *xml.Decoder, st
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "timeDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.TimeDateTime = v
+				_ = ext
 			case "timePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -631,6 +636,8 @@ type BiologicallyDerivedProductProcessing struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Description of of processing
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Procesing code
 	Procedure *CodeableConcept `json:"procedure,omitempty"`
 	// Substance added during processing
@@ -665,7 +672,7 @@ func (b BiologicallyDerivedProductProcessing) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.Procedure != nil {
@@ -720,11 +727,12 @@ func (r *BiologicallyDerivedProductProcessing) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "procedure":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -738,11 +746,12 @@ func (r *BiologicallyDerivedProductProcessing) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.Additive = &v
 			case "timeDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.TimeDateTime = v
+				_ = ext
 			case "timePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -771,10 +780,16 @@ type BiologicallyDerivedProductStorage struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Description of storage
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Storage temperature
 	Temperature *Decimal `json:"temperature,omitempty"`
+	// Extension for Temperature
+	TemperatureExt *Element `json:"_temperature,omitempty"`
 	// farenheit | celsius | kelvin
 	Scale *BiologicallyDerivedProductStorageScale `json:"scale,omitempty"`
+	// Extension for Scale
+	ScaleExt *Element `json:"_scale,omitempty"`
 	// Storage timeperiod
 	Duration *Period `json:"duration,omitempty"`
 }
@@ -801,13 +816,13 @@ func (b BiologicallyDerivedProductStorage) MarshalXML(e *xml.Encoder, start xml.
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "temperature", b.Temperature, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "temperature", b.Temperature, b.TemperatureExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "scale", b.Scale, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "scale", b.Scale, b.ScaleExt); err != nil {
 		return err
 	}
 	if b.Duration != nil {
@@ -849,23 +864,26 @@ func (r *BiologicallyDerivedProductStorage) UnmarshalXML(d *xml.Decoder, start x
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "temperature":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Temperature = v
+				r.TemperatureExt = ext
 			case "scale":
-				v, _, err := xmlDecodePrimitiveCode[BiologicallyDerivedProductStorageScale](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[BiologicallyDerivedProductStorageScale](d, t)
 				if err != nil {
 					return err
 				}
 				r.Scale = v
+				r.ScaleExt = ext
 			case "duration":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

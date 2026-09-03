@@ -259,6 +259,8 @@ type BundleEntry struct {
 	Link []BundleLink `json:"link,omitempty"`
 	// URI for resource (Absolute URL server address or URI for UUID/OID)
 	FullUrl *string `json:"fullUrl,omitempty"`
+	// Extension for FullUrl
+	FullUrlExt *Element `json:"_fullUrl,omitempty"`
 	// A resource in the bundle
 	Resource Resource `json:"resource,omitempty"`
 	// Search related information
@@ -323,7 +325,7 @@ func (b BundleEntry) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "fullUrl", b.FullUrl, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "fullUrl", b.FullUrl, b.FullUrlExt); err != nil {
 		return err
 	}
 	if b.Resource != nil {
@@ -386,11 +388,12 @@ func (r *BundleEntry) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 				}
 				r.Link = append(r.Link, v)
 			case "fullUrl":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.FullUrl = v
+				r.FullUrlExt = ext
 			case "search":
 				var v BundleEntrySearch
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -448,16 +451,28 @@ type BundleEntryRequest struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// GET | HEAD | POST | PUT | DELETE | PATCH
 	Method *HTTPVerb `json:"method,omitempty"`
+	// Extension for Method
+	MethodExt *Element `json:"_method,omitempty"`
 	// URL for HTTP equivalent of this entry
 	Url *string `json:"url,omitempty"`
+	// Extension for Url
+	UrlExt *Element `json:"_url,omitempty"`
 	// For managing cache currency
 	IfNoneMatch *string `json:"ifNoneMatch,omitempty"`
+	// Extension for IfNoneMatch
+	IfNoneMatchExt *Element `json:"_ifNoneMatch,omitempty"`
 	// For managing cache currency
 	IfModifiedSince *string `json:"ifModifiedSince,omitempty"`
+	// Extension for IfModifiedSince
+	IfModifiedSinceExt *Element `json:"_ifModifiedSince,omitempty"`
 	// For managing update contention
 	IfMatch *string `json:"ifMatch,omitempty"`
+	// Extension for IfMatch
+	IfMatchExt *Element `json:"_ifMatch,omitempty"`
 	// For conditional creates
 	IfNoneExist *string `json:"ifNoneExist,omitempty"`
+	// Extension for IfNoneExist
+	IfNoneExistExt *Element `json:"_ifNoneExist,omitempty"`
 }
 
 // MarshalXML serializes BundleEntryRequest to FHIR-conformant XML.
@@ -482,22 +497,22 @@ func (b BundleEntryRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "method", b.Method, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "method", b.Method, b.MethodExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "url", b.Url, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "url", b.Url, b.UrlExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "ifNoneMatch", b.IfNoneMatch, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "ifNoneMatch", b.IfNoneMatch, b.IfNoneMatchExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "ifModifiedSince", b.IfModifiedSince, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "ifModifiedSince", b.IfModifiedSince, b.IfModifiedSinceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "ifMatch", b.IfMatch, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "ifMatch", b.IfMatch, b.IfMatchExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "ifNoneExist", b.IfNoneExist, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "ifNoneExist", b.IfNoneExist, b.IfNoneExistExt); err != nil {
 		return err
 	}
 
@@ -534,41 +549,47 @@ func (r *BundleEntryRequest) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "method":
-				v, _, err := xmlDecodePrimitiveCode[HTTPVerb](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[HTTPVerb](d, t)
 				if err != nil {
 					return err
 				}
 				r.Method = v
+				r.MethodExt = ext
 			case "url":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Url = v
+				r.UrlExt = ext
 			case "ifNoneMatch":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.IfNoneMatch = v
+				r.IfNoneMatchExt = ext
 			case "ifModifiedSince":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.IfModifiedSince = v
+				r.IfModifiedSinceExt = ext
 			case "ifMatch":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.IfMatch = v
+				r.IfMatchExt = ext
 			case "ifNoneExist":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.IfNoneExist = v
+				r.IfNoneExistExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -591,12 +612,20 @@ type BundleEntryResponse struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Status response code (text optional)
 	Status *string `json:"status,omitempty"`
+	// Extension for Status
+	StatusExt *Element `json:"_status,omitempty"`
 	// The location (if the operation returns a location)
 	Location *string `json:"location,omitempty"`
+	// Extension for Location
+	LocationExt *Element `json:"_location,omitempty"`
 	// The Etag for the resource (if relevant)
 	Etag *string `json:"etag,omitempty"`
+	// Extension for Etag
+	EtagExt *Element `json:"_etag,omitempty"`
 	// Server's date time modified
 	LastModified *string `json:"lastModified,omitempty"`
+	// Extension for LastModified
+	LastModifiedExt *Element `json:"_lastModified,omitempty"`
 	// OperationOutcome with hints and warnings (for batch/transaction)
 	Outcome Resource `json:"outcome,omitempty"`
 }
@@ -650,16 +679,16 @@ func (b BundleEntryResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "status", b.Status, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "status", b.Status, b.StatusExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "location", b.Location, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "location", b.Location, b.LocationExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "etag", b.Etag, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "etag", b.Etag, b.EtagExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "lastModified", b.LastModified, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "lastModified", b.LastModified, b.LastModifiedExt); err != nil {
 		return err
 	}
 	if b.Outcome != nil {
@@ -701,29 +730,33 @@ func (r *BundleEntryResponse) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "status":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Status = v
+				r.StatusExt = ext
 			case "location":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Location = v
+				r.LocationExt = ext
 			case "etag":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Etag = v
+				r.EtagExt = ext
 			case "lastModified":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.LastModified = v
+				r.LastModifiedExt = ext
 			case "outcome":
 				// FHIR wraps a resource-valued element: <resource><Patient>…
 				res, err := xmlDecodeWrappedResource(d, t)
@@ -763,8 +796,12 @@ type BundleEntrySearch struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// match | include | outcome - why this is in the result set
 	Mode *SearchEntryMode `json:"mode,omitempty"`
+	// Extension for Mode
+	ModeExt *Element `json:"_mode,omitempty"`
 	// Search ranking (between 0 and 1)
 	Score *Decimal `json:"score,omitempty"`
+	// Extension for Score
+	ScoreExt *Element `json:"_score,omitempty"`
 }
 
 // MarshalXML serializes BundleEntrySearch to FHIR-conformant XML.
@@ -789,10 +826,10 @@ func (b BundleEntrySearch) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "mode", b.Mode, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "mode", b.Mode, b.ModeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "score", b.Score, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "score", b.Score, b.ScoreExt); err != nil {
 		return err
 	}
 
@@ -829,17 +866,19 @@ func (r *BundleEntrySearch) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "mode":
-				v, _, err := xmlDecodePrimitiveCode[SearchEntryMode](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[SearchEntryMode](d, t)
 				if err != nil {
 					return err
 				}
 				r.Mode = v
+				r.ModeExt = ext
 			case "score":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Score = v
+				r.ScoreExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -862,8 +901,12 @@ type BundleLink struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// See http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1
 	Relation *string `json:"relation,omitempty"`
+	// Extension for Relation
+	RelationExt *Element `json:"_relation,omitempty"`
 	// Reference details for the link
 	Url *string `json:"url,omitempty"`
+	// Extension for Url
+	UrlExt *Element `json:"_url,omitempty"`
 }
 
 // MarshalXML serializes BundleLink to FHIR-conformant XML.
@@ -888,10 +931,10 @@ func (b BundleLink) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "relation", b.Relation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "relation", b.Relation, b.RelationExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "url", b.Url, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "url", b.Url, b.UrlExt); err != nil {
 		return err
 	}
 
@@ -928,17 +971,19 @@ func (r *BundleLink) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "relation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Relation = v
+				r.RelationExt = ext
 			case "url":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Url = v
+				r.UrlExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

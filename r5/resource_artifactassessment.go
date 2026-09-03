@@ -434,8 +434,12 @@ type ArtifactAssessmentContent struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// comment | classifier | rating | container | response | change-request
 	InformationType *ArtifactAssessmentInformationType `json:"informationType,omitempty"`
+	// Extension for InformationType
+	InformationTypeExt *Element `json:"_informationType,omitempty"`
 	// Brief summary of the content
 	Summary *string `json:"summary,omitempty"`
+	// Extension for Summary
+	SummaryExt *Element `json:"_summary,omitempty"`
 	// What type of content
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Rating, classifier, or assessment
@@ -446,10 +450,14 @@ type ArtifactAssessmentContent struct {
 	Author *Reference `json:"author,omitempty"`
 	// What the comment is directed to
 	Path []*string `json:"path,omitempty"`
+	// Extension for Path
+	PathExt []*Element `json:"_path,omitempty"`
 	// Additional information
 	RelatedArtifact []RelatedArtifact `json:"relatedArtifact,omitempty"`
 	// Acceptable to publicly share the resource content
 	FreeToShare *bool `json:"freeToShare,omitempty"`
+	// Extension for FreeToShare
+	FreeToShareExt *Element `json:"_freeToShare,omitempty"`
 	// Contained content
 	Component []ArtifactAssessmentContent `json:"component,omitempty"`
 }
@@ -476,10 +484,10 @@ func (b ArtifactAssessmentContent) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "informationType", b.InformationType, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "informationType", b.InformationType, b.InformationTypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "summary", b.Summary, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "summary", b.Summary, b.SummaryExt); err != nil {
 		return err
 	}
 	if b.Type != nil {
@@ -502,7 +510,7 @@ func (b ArtifactAssessmentContent) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "path", b.Path, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "path", b.Path, b.PathExt); err != nil {
 		return err
 	}
 	for _, item := range b.RelatedArtifact {
@@ -510,7 +518,7 @@ func (b ArtifactAssessmentContent) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "freeToShare", b.FreeToShare, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "freeToShare", b.FreeToShare, b.FreeToShareExt); err != nil {
 		return err
 	}
 	for _, item := range b.Component {
@@ -552,17 +560,19 @@ func (r *ArtifactAssessmentContent) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "informationType":
-				v, _, err := xmlDecodePrimitiveCode[ArtifactAssessmentInformationType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ArtifactAssessmentInformationType](d, t)
 				if err != nil {
 					return err
 				}
 				r.InformationType = v
+				r.InformationTypeExt = ext
 			case "summary":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Summary = v
+				r.SummaryExt = ext
 			case "type":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -588,12 +598,13 @@ func (r *ArtifactAssessmentContent) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.Author = &v
 			case "path":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Path = append(r.Path, v)
+				r.PathExt = append(r.PathExt, ext)
 			case "relatedArtifact":
 				var v RelatedArtifact
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -601,11 +612,12 @@ func (r *ArtifactAssessmentContent) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.RelatedArtifact = append(r.RelatedArtifact, v)
 			case "freeToShare":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.FreeToShare = v
+				r.FreeToShareExt = ext
 			case "component":
 				var v ArtifactAssessmentContent
 				if err := v.UnmarshalXML(d, t); err != nil {

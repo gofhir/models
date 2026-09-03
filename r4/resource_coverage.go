@@ -471,8 +471,12 @@ type CoverageClass struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Value associated with the type
 	Value *string `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 	// Human readable description of the type and value
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 }
 
 // MarshalXML serializes CoverageClass to FHIR-conformant XML.
@@ -502,10 +506,10 @@ func (b CoverageClass) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
 
@@ -548,17 +552,19 @@ func (r *CoverageClass) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				r.Type = &v
 			case "value":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

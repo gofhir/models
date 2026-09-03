@@ -349,12 +349,13 @@ func (r *SubstanceSourceMaterial) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.ParentSubstanceId = append(r.ParentSubstanceId, v)
 			case "parentSubstanceName":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ParentSubstanceName = append(r.ParentSubstanceName, v)
+				r.ParentSubstanceNameExt = append(r.ParentSubstanceNameExt, ext)
 			case "countryOfOrigin":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -362,12 +363,13 @@ func (r *SubstanceSourceMaterial) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.CountryOfOrigin = append(r.CountryOfOrigin, v)
 			case "geographicalLocation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.GeographicalLocation = append(r.GeographicalLocation, v)
+				r.GeographicalLocationExt = append(r.GeographicalLocationExt, ext)
 			case "developmentStage":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -414,6 +416,8 @@ type SubstanceSourceMaterialFractionDescription struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// This element is capturing information about the fraction of a plant part, or human plasma for fractionation
 	Fraction *string `json:"fraction,omitempty"`
+	// Extension for Fraction
+	FractionExt *Element `json:"_fraction,omitempty"`
 	// The specific type of the material constituting the component. For Herbal preparations the particulars of the extracts (liquid/dry) is described in Specified Substance Group 1
 	MaterialType *CodeableConcept `json:"materialType,omitempty"`
 }
@@ -440,7 +444,7 @@ func (b SubstanceSourceMaterialFractionDescription) MarshalXML(e *xml.Encoder, s
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "fraction", b.Fraction, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "fraction", b.Fraction, b.FractionExt); err != nil {
 		return err
 	}
 	if b.MaterialType != nil {
@@ -482,11 +486,12 @@ func (r *SubstanceSourceMaterialFractionDescription) UnmarshalXML(d *xml.Decoder
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "fraction":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Fraction = v
+				r.FractionExt = ext
 			case "materialType":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -523,6 +528,8 @@ type SubstanceSourceMaterialOrganism struct {
 	IntraspecificType *CodeableConcept `json:"intraspecificType,omitempty"`
 	// The intraspecific description of an organism shall be specified based on a controlled vocabulary. For Influenza Vaccine, the intraspecific description shall contain the syntax of the antigen in line with the WHO convention
 	IntraspecificDescription *string `json:"intraspecificDescription,omitempty"`
+	// Extension for IntraspecificDescription
+	IntraspecificDescriptionExt *Element `json:"_intraspecificDescription,omitempty"`
 	// 4.9.13.6.1 Author type (Conditional)
 	Author []SubstanceSourceMaterialOrganismAuthor `json:"author,omitempty"`
 	// 4.9.13.8.1 Hybrid species maternal organism ID (Optional)
@@ -573,7 +580,7 @@ func (b SubstanceSourceMaterialOrganism) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "intraspecificDescription", b.IntraspecificDescription, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "intraspecificDescription", b.IntraspecificDescription, b.IntraspecificDescriptionExt); err != nil {
 		return err
 	}
 	for _, item := range b.Author {
@@ -649,11 +656,12 @@ func (r *SubstanceSourceMaterialOrganism) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.IntraspecificType = &v
 			case "intraspecificDescription":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.IntraspecificDescription = v
+				r.IntraspecificDescriptionExt = ext
 			case "author":
 				var v SubstanceSourceMaterialOrganismAuthor
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -696,6 +704,8 @@ type SubstanceSourceMaterialOrganismAuthor struct {
 	AuthorType *CodeableConcept `json:"authorType,omitempty"`
 	// The author of an organism species shall be specified. The author year of an organism shall also be specified when applicable; refers to the year in which the first author(s) published the infraspecific plant/animal name (of any rank)
 	AuthorDescription *string `json:"authorDescription,omitempty"`
+	// Extension for AuthorDescription
+	AuthorDescriptionExt *Element `json:"_authorDescription,omitempty"`
 }
 
 // MarshalXML serializes SubstanceSourceMaterialOrganismAuthor to FHIR-conformant XML.
@@ -725,7 +735,7 @@ func (b SubstanceSourceMaterialOrganismAuthor) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "authorDescription", b.AuthorDescription, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "authorDescription", b.AuthorDescription, b.AuthorDescriptionExt); err != nil {
 		return err
 	}
 
@@ -768,11 +778,12 @@ func (r *SubstanceSourceMaterialOrganismAuthor) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.AuthorType = &v
 			case "authorDescription":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AuthorDescription = v
+				r.AuthorDescriptionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -795,12 +806,20 @@ type SubstanceSourceMaterialOrganismHybrid struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The identifier of the maternal species constituting the hybrid organism shall be specified based on a controlled vocabulary. For plants, the parents aren’t always known, and it is unlikely that it will be known which is maternal and which is paternal
 	MaternalOrganismId *string `json:"maternalOrganismId,omitempty"`
+	// Extension for MaternalOrganismId
+	MaternalOrganismIdExt *Element `json:"_maternalOrganismId,omitempty"`
 	// The name of the maternal species constituting the hybrid organism shall be specified. For plants, the parents aren’t always known, and it is unlikely that it will be known which is maternal and which is paternal
 	MaternalOrganismName *string `json:"maternalOrganismName,omitempty"`
+	// Extension for MaternalOrganismName
+	MaternalOrganismNameExt *Element `json:"_maternalOrganismName,omitempty"`
 	// The identifier of the paternal species constituting the hybrid organism shall be specified based on a controlled vocabulary
 	PaternalOrganismId *string `json:"paternalOrganismId,omitempty"`
+	// Extension for PaternalOrganismId
+	PaternalOrganismIdExt *Element `json:"_paternalOrganismId,omitempty"`
 	// The name of the paternal species constituting the hybrid organism shall be specified
 	PaternalOrganismName *string `json:"paternalOrganismName,omitempty"`
+	// Extension for PaternalOrganismName
+	PaternalOrganismNameExt *Element `json:"_paternalOrganismName,omitempty"`
 	// The hybrid type of an organism shall be specified
 	HybridType *CodeableConcept `json:"hybridType,omitempty"`
 }
@@ -827,16 +846,16 @@ func (b SubstanceSourceMaterialOrganismHybrid) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "maternalOrganismId", b.MaternalOrganismId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "maternalOrganismId", b.MaternalOrganismId, b.MaternalOrganismIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "maternalOrganismName", b.MaternalOrganismName, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "maternalOrganismName", b.MaternalOrganismName, b.MaternalOrganismNameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "paternalOrganismId", b.PaternalOrganismId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "paternalOrganismId", b.PaternalOrganismId, b.PaternalOrganismIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "paternalOrganismName", b.PaternalOrganismName, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "paternalOrganismName", b.PaternalOrganismName, b.PaternalOrganismNameExt); err != nil {
 		return err
 	}
 	if b.HybridType != nil {
@@ -878,29 +897,33 @@ func (r *SubstanceSourceMaterialOrganismHybrid) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "maternalOrganismId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.MaternalOrganismId = v
+				r.MaternalOrganismIdExt = ext
 			case "maternalOrganismName":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.MaternalOrganismName = v
+				r.MaternalOrganismNameExt = ext
 			case "paternalOrganismId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.PaternalOrganismId = v
+				r.PaternalOrganismIdExt = ext
 			case "paternalOrganismName":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.PaternalOrganismName = v
+				r.PaternalOrganismNameExt = ext
 			case "hybridType":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

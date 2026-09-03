@@ -375,10 +375,16 @@ type DeviceMetricCalibration struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// unspecified | offset | gain | two-point
 	Type *DeviceMetricCalibrationType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// not-calibrated | calibration-required | calibrated | unspecified
 	State *DeviceMetricCalibrationState `json:"state,omitempty"`
+	// Extension for State
+	StateExt *Element `json:"_state,omitempty"`
 	// Describes the time last calibration has been performed
 	Time *string `json:"time,omitempty"`
+	// Extension for Time
+	TimeExt *Element `json:"_time,omitempty"`
 }
 
 // MarshalXML serializes DeviceMetricCalibration to FHIR-conformant XML.
@@ -403,13 +409,13 @@ func (b DeviceMetricCalibration) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "state", b.State, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "state", b.State, b.StateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "time", b.Time, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "time", b.Time, b.TimeExt); err != nil {
 		return err
 	}
 
@@ -446,23 +452,26 @@ func (r *DeviceMetricCalibration) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[DeviceMetricCalibrationType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[DeviceMetricCalibrationType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "state":
-				v, _, err := xmlDecodePrimitiveCode[DeviceMetricCalibrationState](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[DeviceMetricCalibrationState](d, t)
 				if err != nil {
 					return err
 				}
 				r.State = v
+				r.StateExt = ext
 			case "time":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Time = v
+				r.TimeExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

@@ -395,14 +395,22 @@ type AuditEventAgent struct {
 	Who *Reference `json:"who,omitempty"`
 	// Alternative User identity
 	AltId *string `json:"altId,omitempty"`
+	// Extension for AltId
+	AltIdExt *Element `json:"_altId,omitempty"`
 	// Human friendly name for the agent
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Whether user is initiator
 	Requestor *bool `json:"requestor,omitempty"`
+	// Extension for Requestor
+	RequestorExt *Element `json:"_requestor,omitempty"`
 	// Where
 	Location *Reference `json:"location,omitempty"`
 	// Policy that authorized event
 	Policy []*string `json:"policy,omitempty"`
+	// Extension for Policy
+	PolicyExt []*Element `json:"_policy,omitempty"`
 	// Type of media
 	Media *Coding `json:"media,omitempty"`
 	// Logical network location for application activity
@@ -448,13 +456,13 @@ func (b AuditEventAgent) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "altId", b.AltId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "altId", b.AltId, b.AltIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "requestor", b.Requestor, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "requestor", b.Requestor, b.RequestorExt); err != nil {
 		return err
 	}
 	if b.Location != nil {
@@ -462,7 +470,7 @@ func (b AuditEventAgent) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "policy", b.Policy, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "policy", b.Policy, b.PolicyExt); err != nil {
 		return err
 	}
 	if b.Media != nil {
@@ -532,23 +540,26 @@ func (r *AuditEventAgent) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.Who = &v
 			case "altId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AltId = v
+				r.AltIdExt = ext
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "requestor":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Requestor = v
+				r.RequestorExt = ext
 			case "location":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -556,12 +567,13 @@ func (r *AuditEventAgent) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.Location = &v
 			case "policy":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Policy = append(r.Policy, v)
+				r.PolicyExt = append(r.PolicyExt, ext)
 			case "media":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -602,8 +614,12 @@ type AuditEventAgentNetwork struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Identifier for the network access point of the user device
 	Address *string `json:"address,omitempty"`
+	// Extension for Address
+	AddressExt *Element `json:"_address,omitempty"`
 	// The type of network access point
 	Type *AuditEventAgentNetworkType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 }
 
 // MarshalXML serializes AuditEventAgentNetwork to FHIR-conformant XML.
@@ -628,10 +644,10 @@ func (b AuditEventAgentNetwork) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "address", b.Address, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "address", b.Address, b.AddressExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
 
@@ -668,17 +684,19 @@ func (r *AuditEventAgentNetwork) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "address":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Address = v
+				r.AddressExt = ext
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[AuditEventAgentNetworkType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[AuditEventAgentNetworkType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -711,10 +729,16 @@ type AuditEventEntity struct {
 	SecurityLabel []Coding `json:"securityLabel,omitempty"`
 	// Descriptor for entity
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Descriptive text
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Query parameters
 	Query *string `json:"query,omitempty"`
+	// Extension for Query
+	QueryExt *Element `json:"_query,omitempty"`
 	// Additional Information about the entity
 	Detail []AuditEventEntityDetail `json:"detail,omitempty"`
 }
@@ -766,13 +790,13 @@ func (b AuditEventEntity) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "query", b.Query, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "query", b.Query, b.QueryExt); err != nil {
 		return err
 	}
 	for _, item := range b.Detail {
@@ -844,23 +868,26 @@ func (r *AuditEventEntity) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.SecurityLabel = append(r.SecurityLabel, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "query":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Query = v
+				r.QueryExt = ext
 			case "detail":
 				var v AuditEventEntityDetail
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -889,6 +916,8 @@ type AuditEventEntityDetail struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Name of the property
 	Type *string `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// Property value
 	ValueString *string `json:"valueString,omitempty"`
 	// Extension for ValueString
@@ -921,7 +950,7 @@ func (b AuditEventEntityDetail) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, nil); err != nil {
@@ -964,23 +993,26 @@ func (r *AuditEventEntityDetail) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "valueString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
+				_ = ext
 			case "valueBase64Binary":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBase64Binary = v
+				_ = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1003,6 +1035,8 @@ type AuditEventSource struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Logical source location within the enterprise
 	Site *string `json:"site,omitempty"`
+	// Extension for Site
+	SiteExt *Element `json:"_site,omitempty"`
 	// The identity of source detecting the event
 	Observer *Reference `json:"observer,omitempty"`
 	// The type of source where event originated
@@ -1031,7 +1065,7 @@ func (b AuditEventSource) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "site", b.Site, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "site", b.Site, b.SiteExt); err != nil {
 		return err
 	}
 	if b.Observer != nil {
@@ -1078,11 +1112,12 @@ func (r *AuditEventSource) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "site":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Site = v
+				r.SiteExt = ext
 			case "observer":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

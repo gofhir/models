@@ -673,8 +673,12 @@ type AppointmentParticipant struct {
 	Actor *Reference `json:"actor,omitempty"`
 	// The participant is required to attend (optional when false)
 	Required *bool `json:"required,omitempty"`
+	// Extension for Required
+	RequiredExt *Element `json:"_required,omitempty"`
 	// accepted | declined | tentative | needs-action
 	Status *ParticipationStatus `json:"status,omitempty"`
+	// Extension for Status
+	StatusExt *Element `json:"_status,omitempty"`
 }
 
 // MarshalXML serializes AppointmentParticipant to FHIR-conformant XML.
@@ -714,10 +718,10 @@ func (b AppointmentParticipant) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "required", b.Required, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "required", b.Required, b.RequiredExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "status", b.Status, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "status", b.Status, b.StatusExt); err != nil {
 		return err
 	}
 
@@ -772,17 +776,19 @@ func (r *AppointmentParticipant) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.Actor = &v
 			case "required":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Required = v
+				r.RequiredExt = ext
 			case "status":
-				v, _, err := xmlDecodePrimitiveCode[ParticipationStatus](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ParticipationStatus](d, t)
 				if err != nil {
 					return err
 				}
 				r.Status = v
+				r.StatusExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -809,10 +815,16 @@ type AppointmentRecurrenceTemplate struct {
 	RecurrenceType *CodeableConcept `json:"recurrenceType,omitempty"`
 	// The date when the recurrence should end
 	LastOccurrenceDate *string `json:"lastOccurrenceDate,omitempty"`
+	// Extension for LastOccurrenceDate
+	LastOccurrenceDateExt *Element `json:"_lastOccurrenceDate,omitempty"`
 	// The number of planned occurrences
 	OccurrenceCount *uint32 `json:"occurrenceCount,omitempty"`
+	// Extension for OccurrenceCount
+	OccurrenceCountExt *Element `json:"_occurrenceCount,omitempty"`
 	// Specific dates for a recurring set of appointments (no template)
 	OccurrenceDate []*string `json:"occurrenceDate,omitempty"`
+	// Extension for OccurrenceDate
+	OccurrenceDateExt []*Element `json:"_occurrenceDate,omitempty"`
 	// Information about weekly recurring appointments
 	WeeklyTemplate *AppointmentRecurrenceTemplateWeeklyTemplate `json:"weeklyTemplate,omitempty"`
 	// Information about monthly recurring appointments
@@ -821,8 +833,12 @@ type AppointmentRecurrenceTemplate struct {
 	YearlyTemplate *AppointmentRecurrenceTemplateYearlyTemplate `json:"yearlyTemplate,omitempty"`
 	// Any dates that should be excluded from the series
 	ExcludingDate []*string `json:"excludingDate,omitempty"`
+	// Extension for ExcludingDate
+	ExcludingDateExt []*Element `json:"_excludingDate,omitempty"`
 	// Any recurrence IDs that should be excluded from the recurrence
 	ExcludingRecurrenceId []*uint32 `json:"excludingRecurrenceId,omitempty"`
+	// Extension for ExcludingRecurrenceId
+	ExcludingRecurrenceIdExt []*Element `json:"_excludingRecurrenceId,omitempty"`
 }
 
 // MarshalXML serializes AppointmentRecurrenceTemplate to FHIR-conformant XML.
@@ -857,13 +873,13 @@ func (b AppointmentRecurrenceTemplate) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "lastOccurrenceDate", b.LastOccurrenceDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "lastOccurrenceDate", b.LastOccurrenceDate, b.LastOccurrenceDateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "occurrenceCount", b.OccurrenceCount, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "occurrenceCount", b.OccurrenceCount, b.OccurrenceCountExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "occurrenceDate", b.OccurrenceDate, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "occurrenceDate", b.OccurrenceDate, b.OccurrenceDateExt); err != nil {
 		return err
 	}
 	if b.WeeklyTemplate != nil {
@@ -881,10 +897,10 @@ func (b AppointmentRecurrenceTemplate) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "excludingDate", b.ExcludingDate, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "excludingDate", b.ExcludingDate, b.ExcludingDateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32Array(e, "excludingRecurrenceId", b.ExcludingRecurrenceId, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32Array(e, "excludingRecurrenceId", b.ExcludingRecurrenceId, b.ExcludingRecurrenceIdExt); err != nil {
 		return err
 	}
 
@@ -933,24 +949,27 @@ func (r *AppointmentRecurrenceTemplate) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.RecurrenceType = &v
 			case "lastOccurrenceDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.LastOccurrenceDate = v
+				r.LastOccurrenceDateExt = ext
 			case "occurrenceCount":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.OccurrenceCount = v
+				r.OccurrenceCountExt = ext
 			case "occurrenceDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.OccurrenceDate = append(r.OccurrenceDate, v)
+				r.OccurrenceDateExt = append(r.OccurrenceDateExt, ext)
 			case "weeklyTemplate":
 				var v AppointmentRecurrenceTemplateWeeklyTemplate
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -970,19 +989,21 @@ func (r *AppointmentRecurrenceTemplate) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.YearlyTemplate = &v
 			case "excludingDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ExcludingDate = append(r.ExcludingDate, v)
+				r.ExcludingDateExt = append(r.ExcludingDateExt, ext)
 			case "excludingRecurrenceId":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ExcludingRecurrenceId = append(r.ExcludingRecurrenceId, v)
+				r.ExcludingRecurrenceIdExt = append(r.ExcludingRecurrenceIdExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1005,12 +1026,16 @@ type AppointmentRecurrenceTemplateMonthlyTemplate struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Recurs on a specific day of the month
 	DayOfMonth *uint32 `json:"dayOfMonth,omitempty"`
+	// Extension for DayOfMonth
+	DayOfMonthExt *Element `json:"_dayOfMonth,omitempty"`
 	// Indicates which week of the month the appointment should occur
 	NthWeekOfMonth *Coding `json:"nthWeekOfMonth,omitempty"`
 	// Indicates which day of the week the appointment should occur
 	DayOfWeek *Coding `json:"dayOfWeek,omitempty"`
 	// Recurs every nth month
 	MonthInterval *uint32 `json:"monthInterval,omitempty"`
+	// Extension for MonthInterval
+	MonthIntervalExt *Element `json:"_monthInterval,omitempty"`
 }
 
 // MarshalXML serializes AppointmentRecurrenceTemplateMonthlyTemplate to FHIR-conformant XML.
@@ -1035,7 +1060,7 @@ func (b AppointmentRecurrenceTemplateMonthlyTemplate) MarshalXML(e *xml.Encoder,
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "dayOfMonth", b.DayOfMonth, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "dayOfMonth", b.DayOfMonth, b.DayOfMonthExt); err != nil {
 		return err
 	}
 	if b.NthWeekOfMonth != nil {
@@ -1048,7 +1073,7 @@ func (b AppointmentRecurrenceTemplateMonthlyTemplate) MarshalXML(e *xml.Encoder,
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "monthInterval", b.MonthInterval, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "monthInterval", b.MonthInterval, b.MonthIntervalExt); err != nil {
 		return err
 	}
 
@@ -1085,11 +1110,12 @@ func (r *AppointmentRecurrenceTemplateMonthlyTemplate) UnmarshalXML(d *xml.Decod
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "dayOfMonth":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.DayOfMonth = v
+				r.DayOfMonthExt = ext
 			case "nthWeekOfMonth":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1103,11 +1129,12 @@ func (r *AppointmentRecurrenceTemplateMonthlyTemplate) UnmarshalXML(d *xml.Decod
 				}
 				r.DayOfWeek = &v
 			case "monthInterval":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.MonthInterval = v
+				r.MonthIntervalExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1130,20 +1157,36 @@ type AppointmentRecurrenceTemplateWeeklyTemplate struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Recurs on Mondays
 	Monday *bool `json:"monday,omitempty"`
+	// Extension for Monday
+	MondayExt *Element `json:"_monday,omitempty"`
 	// Recurs on Tuesday
 	Tuesday *bool `json:"tuesday,omitempty"`
+	// Extension for Tuesday
+	TuesdayExt *Element `json:"_tuesday,omitempty"`
 	// Recurs on Wednesday
 	Wednesday *bool `json:"wednesday,omitempty"`
+	// Extension for Wednesday
+	WednesdayExt *Element `json:"_wednesday,omitempty"`
 	// Recurs on Thursday
 	Thursday *bool `json:"thursday,omitempty"`
+	// Extension for Thursday
+	ThursdayExt *Element `json:"_thursday,omitempty"`
 	// Recurs on Friday
 	Friday *bool `json:"friday,omitempty"`
+	// Extension for Friday
+	FridayExt *Element `json:"_friday,omitempty"`
 	// Recurs on Saturday
 	Saturday *bool `json:"saturday,omitempty"`
+	// Extension for Saturday
+	SaturdayExt *Element `json:"_saturday,omitempty"`
 	// Recurs on Sunday
 	Sunday *bool `json:"sunday,omitempty"`
+	// Extension for Sunday
+	SundayExt *Element `json:"_sunday,omitempty"`
 	// Recurs every nth week
 	WeekInterval *uint32 `json:"weekInterval,omitempty"`
+	// Extension for WeekInterval
+	WeekIntervalExt *Element `json:"_weekInterval,omitempty"`
 }
 
 // MarshalXML serializes AppointmentRecurrenceTemplateWeeklyTemplate to FHIR-conformant XML.
@@ -1168,28 +1211,28 @@ func (b AppointmentRecurrenceTemplateWeeklyTemplate) MarshalXML(e *xml.Encoder, 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "monday", b.Monday, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "monday", b.Monday, b.MondayExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "tuesday", b.Tuesday, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "tuesday", b.Tuesday, b.TuesdayExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "wednesday", b.Wednesday, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "wednesday", b.Wednesday, b.WednesdayExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "thursday", b.Thursday, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "thursday", b.Thursday, b.ThursdayExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "friday", b.Friday, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "friday", b.Friday, b.FridayExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "saturday", b.Saturday, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "saturday", b.Saturday, b.SaturdayExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "sunday", b.Sunday, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "sunday", b.Sunday, b.SundayExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "weekInterval", b.WeekInterval, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "weekInterval", b.WeekInterval, b.WeekIntervalExt); err != nil {
 		return err
 	}
 
@@ -1226,53 +1269,61 @@ func (r *AppointmentRecurrenceTemplateWeeklyTemplate) UnmarshalXML(d *xml.Decode
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "monday":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Monday = v
+				r.MondayExt = ext
 			case "tuesday":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Tuesday = v
+				r.TuesdayExt = ext
 			case "wednesday":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Wednesday = v
+				r.WednesdayExt = ext
 			case "thursday":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Thursday = v
+				r.ThursdayExt = ext
 			case "friday":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Friday = v
+				r.FridayExt = ext
 			case "saturday":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Saturday = v
+				r.SaturdayExt = ext
 			case "sunday":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Sunday = v
+				r.SundayExt = ext
 			case "weekInterval":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.WeekInterval = v
+				r.WeekIntervalExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1295,6 +1346,8 @@ type AppointmentRecurrenceTemplateYearlyTemplate struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Recurs every nth year
 	YearInterval *uint32 `json:"yearInterval,omitempty"`
+	// Extension for YearInterval
+	YearIntervalExt *Element `json:"_yearInterval,omitempty"`
 }
 
 // MarshalXML serializes AppointmentRecurrenceTemplateYearlyTemplate to FHIR-conformant XML.
@@ -1319,7 +1372,7 @@ func (b AppointmentRecurrenceTemplateYearlyTemplate) MarshalXML(e *xml.Encoder, 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "yearInterval", b.YearInterval, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "yearInterval", b.YearInterval, b.YearIntervalExt); err != nil {
 		return err
 	}
 
@@ -1356,11 +1409,12 @@ func (r *AppointmentRecurrenceTemplateYearlyTemplate) UnmarshalXML(d *xml.Decode
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "yearInterval":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.YearInterval = v
+				r.YearIntervalExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

@@ -605,7 +605,26 @@ Prueba de que es un descuido: los backbones hardcodean `,omitempty` para *todos*
 
 **1–2 días · v2.0.0 · gate no negociable**
 
-Convertir en verdes los `t.Skip` de la fase 1 y activar el gate en CI.
+**✅ El corpus está cerrado: JSON 8757/8757 y XML 3653/3653, cero fallos conocidos en las seis listas.**
+
+Los siete fallos JSON residuales eran **dos** causas, no siete:
+
+**Uno de los archivos no era un recurso.** `package-min-ver.json` en R4 es un fragmento de manifiesto de paquete —`{"build": …, "meta": …}`— sin `resourceType`. El error del parser era correcto; contarlo como fallo de round-trip decía que la librería está rota cuando lo que no es un recurso es la entrada. Se excluye por **lo que el archivo es**, no por su nombre, con el recuento fijado para que un refresco del corpus no cuele otro en silencio.
+
+**Los otros seis eran un solo defecto: los backbones no tenían campos `_ext`.** Un primitivo dentro de un backbone lleva sus extensiones en un compañero `_campo` igual que uno en la raíz de un recurso, pero la plantilla de backbones no los emitía —el comentario decía literalmente «backbones don't have extension companion fields»—, así que toda extensión sobre un primitivo anidado se perdía al decodificar. Cobertura de compañeros `_ext`: **52% → 75%**, +5.804 líneas. El 25% restante son `Element.id` y `Resource.id`, que por especificación no admiten extensiones.
+
+Al arreglarlo aparecieron dos defectos más en la ruta XML, que el corpus **no podía ver** porque compara nuestra salida contra sí misma:
+
+| Defecto | Alcance |
+|---|---|
+| el encode de backbone pasaba `nil` en vez del compañero | recursos y datatypes |
+| el decode descartaba el `ext` con `v, _, err :=` | backbones **y la raíz de recursos en arrays de primitivos** |
+
+El segundo era el peor de los dos: en un array, valores y extensiones son paralelos por posición, así que añadir solo el valor corre cada extensión posterior al elemento equivocado —silenciosamente— en vez de perderla.
+
+`conformance/backbone_extension_test.go` fija las tres rutas comparando **contra la entrada**, no contra nuestra salida, y verifica que JSON y XML coinciden. Validado con tres mutaciones aisladas: neutralizar el tag JSON, la asignación del decode y el paso del encode hace fallar el test que le corresponde a cada una.
+
+Los `t.Skip` restantes son condicionales por corpus ausente, no defectos ocultos. Con las listas en cero, cualquier fallo nuevo en CI es una regresión por construcción: el gate ya es efectivo.
 
 Añadir los fuzz targets como regresión —9,4 millones de ejecuciones sin un panic recuperable merecen conservarse— y el reproductor del DoS **escrito contra profundidad de anidamiento, no contra arrays anchos**:
 

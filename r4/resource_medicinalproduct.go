@@ -397,12 +397,13 @@ func (r *MedicinalProduct) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.AdditionalMonitoringIndicator = &v
 			case "specialMeasures":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SpecialMeasures = append(r.SpecialMeasures, v)
+				r.SpecialMeasuresExt = append(r.SpecialMeasuresExt, ext)
 			case "paediatricUseIndicator":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -507,6 +508,8 @@ type MedicinalProductManufacturingBusinessOperation struct {
 	AuthorisationReferenceNumber *Identifier `json:"authorisationReferenceNumber,omitempty"`
 	// Regulatory authorization date
 	EffectiveDate *string `json:"effectiveDate,omitempty"`
+	// Extension for EffectiveDate
+	EffectiveDateExt *Element `json:"_effectiveDate,omitempty"`
 	// To indicate if this proces is commercially confidential
 	ConfidentialityIndicator *CodeableConcept `json:"confidentialityIndicator,omitempty"`
 	// The manufacturer or establishment associated with the process
@@ -547,7 +550,7 @@ func (b MedicinalProductManufacturingBusinessOperation) MarshalXML(e *xml.Encode
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "effectiveDate", b.EffectiveDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "effectiveDate", b.EffectiveDate, b.EffectiveDateExt); err != nil {
 		return err
 	}
 	if b.ConfidentialityIndicator != nil {
@@ -611,11 +614,12 @@ func (r *MedicinalProductManufacturingBusinessOperation) UnmarshalXML(d *xml.Dec
 				}
 				r.AuthorisationReferenceNumber = &v
 			case "effectiveDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.EffectiveDate = v
+				r.EffectiveDateExt = ext
 			case "confidentialityIndicator":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -656,6 +660,8 @@ type MedicinalProductName struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The full product name
 	ProductName *string `json:"productName,omitempty"`
+	// Extension for ProductName
+	ProductNameExt *Element `json:"_productName,omitempty"`
 	// Coding words or phrases of the name
 	NamePart []MedicinalProductNameNamePart `json:"namePart,omitempty"`
 	// Country where the name applies
@@ -684,7 +690,7 @@ func (b MedicinalProductName) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "productName", b.ProductName, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "productName", b.ProductName, b.ProductNameExt); err != nil {
 		return err
 	}
 	for _, item := range b.NamePart {
@@ -731,11 +737,12 @@ func (r *MedicinalProductName) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "productName":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ProductName = v
+				r.ProductNameExt = ext
 			case "namePart":
 				var v MedicinalProductNameNamePart
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -886,6 +893,8 @@ type MedicinalProductNameNamePart struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A fragment of a product name
 	Part *string `json:"part,omitempty"`
+	// Extension for Part
+	PartExt *Element `json:"_part,omitempty"`
 	// Idenifying type for this part of the name (e.g. strength part)
 	Type *Coding `json:"type,omitempty"`
 }
@@ -912,7 +921,7 @@ func (b MedicinalProductNameNamePart) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "part", b.Part, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "part", b.Part, b.PartExt); err != nil {
 		return err
 	}
 	if b.Type != nil {
@@ -954,11 +963,12 @@ func (r *MedicinalProductNameNamePart) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "part":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Part = v
+				r.PartExt = ext
 			case "type":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -999,6 +1009,8 @@ type MedicinalProductSpecialDesignation struct {
 	Status *CodeableConcept `json:"status,omitempty"`
 	// Date when the designation was granted
 	Date *string `json:"date,omitempty"`
+	// Extension for Date
+	DateExt *Element `json:"_date,omitempty"`
 	// Animal species for which this applies
 	Species *CodeableConcept `json:"species,omitempty"`
 }
@@ -1055,7 +1067,7 @@ func (b MedicinalProductSpecialDesignation) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "date", b.Date, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "date", b.Date, b.DateExt); err != nil {
 		return err
 	}
 	if b.Species != nil {
@@ -1133,11 +1145,12 @@ func (r *MedicinalProductSpecialDesignation) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.Status = &v
 			case "date":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Date = v
+				r.DateExt = ext
 			case "species":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
