@@ -400,6 +400,14 @@ func TestValueSetCollisionFailsGeneration(t *testing.T) {
 // "MedicationStatementStatusCodes" in R5. The URL-keyed version therefore deleted
 // the exported MedicationStatusCodes type from r4b and r5, two packages that never
 // had the problem.
+//
+// The generated packages no longer contain MedicationStatusCodes at all — binding
+// names call it MedicationStatus in every version, which is what the specification
+// says it is. That is a separate, deliberate rename, and it does not make the
+// condition tested here uninteresting: the override must still fire only on a real
+// collision, or the next one added will quietly rename a type everywhere. The
+// analyzer here is built without StructureDefinitions, so no binding name is in
+// play and the override mechanism is exercised on its own.
 func TestValueSetOverrideAppliesOnlyOnCollision(t *testing.T) {
 	const (
 		medicationURL = "http://hl7.org/fhir/ValueSet/medication-status"

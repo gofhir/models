@@ -63,7 +63,7 @@ type DeviceDispense struct {
 	// The bigger event that this dispense is a part of
 	PartOf []Reference `json:"partOf,omitempty"`
 	// preparation | in-progress | cancelled | on-hold | completed | entered-in-error | stopped | declined | unknown
-	Status *DeviceDispenseStatusCodes `json:"status,omitempty"`
+	Status *DeviceDispenseStatus `json:"status,omitempty"`
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Why a dispense was or was not performed
@@ -386,7 +386,7 @@ func (r *DeviceDispense) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.PartOf = append(r.PartOf, v)
 			case "status":
-				v, ext, err := xmlDecodePrimitiveCode[DeviceDispenseStatusCodes](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[DeviceDispenseStatus](d, t)
 				if err != nil {
 					return err
 				}
@@ -701,7 +701,7 @@ func (b *DeviceDispenseBuilder) AddPartOf(v Reference) *DeviceDispenseBuilder {
 }
 
 // SetStatus sets the Status field.
-func (b *DeviceDispenseBuilder) SetStatus(v DeviceDispenseStatusCodes) *DeviceDispenseBuilder {
+func (b *DeviceDispenseBuilder) SetStatus(v DeviceDispenseStatus) *DeviceDispenseBuilder {
 	b.deviceDispense.Status = &v
 	return b
 }

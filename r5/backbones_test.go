@@ -255,7 +255,7 @@ func TestDatatypeBackboneElements(t *testing.T) {
 
 	// R5-specific: ElementDefinitionBindingAdditional
 	t.Run("ElementDefinitionBindingAdditional", func(t *testing.T) {
-		purpose := r5.AdditionalBindingPurposeVS("starter")
+		purpose := r5.AdditionalBindingPurpose("starter")
 		additional := r5.ElementDefinitionBindingAdditional{
 			Id:            ptrStringB5("additional-1"),
 			Purpose:       &purpose,
@@ -271,7 +271,7 @@ func TestDatatypeBackboneElements(t *testing.T) {
 		require.NoError(t, err)
 
 		assert.Equal(t, "additional-1", *decoded.Id)
-		assert.Equal(t, r5.AdditionalBindingPurposeVS("starter"), *decoded.Purpose)
+		assert.Equal(t, r5.AdditionalBindingPurpose("starter"), *decoded.Purpose)
 		assert.Equal(t, "http://hl7.org/fhir/ValueSet/example", *decoded.ValueSet)
 	})
 }

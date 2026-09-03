@@ -842,7 +842,7 @@ type GraphDefinitionNode struct {
 	// Why this node is specified
 	Description *string `json:"description,omitempty"`
 	// Type of resource this link refers to
-	Type *VersionIndependentResourceTypesAll `json:"type,omitempty"`
+	Type *FHIRTypes `json:"type,omitempty"`
 	// Profile for the target resource
 	Profile *string `json:"profile,omitempty"`
 }
@@ -927,7 +927,7 @@ func (r *GraphDefinitionNode) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.Description = v
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[VersionIndependentResourceTypesAll](d, t)
+				v, _, err := xmlDecodePrimitiveCode[FHIRTypes](d, t)
 				if err != nil {
 					return err
 				}

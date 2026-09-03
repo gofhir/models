@@ -259,7 +259,99 @@ failed to unmarshal resource: failed to unmarshal Patient: failed to unmarshal c
 
 ### Cambian los nombres de los tipos de sistemas de códigos
 
-**Estado: previsto, y el menos seguro de todos.** Se prevé derivar los nombres de tipos y constantes de enums de la extensión FHIR `bindingName`, lo que renombra unos 657 tipos y 3.613 constantes. La publicación irá acompañada de una tabla completa de correspondencias viejo→nuevo. Es el cambio con más probabilidades de separarse o escalonarse, porque el volumen es grande y el beneficio es coherencia de nombres, no corrección.
+**Estado: hecho. Se renombran 48 tipos de enum — 11 en r4, 13 en r4b, 24 en r5 — y
+con ellos 365 constantes.** Todo lo demás conserva su nombre.
+
+La especificación nombra cada binding requerido mediante una extensión,
+`elementdefinition-bindingName`, y ese nombre suele ser mejor que el título del
+ValueSet: `MedicationStatus` en vez de `MedicationStatusCodes`, `CurrencyCode` en
+vez de `Currencies`. Donde ambos coinciden — 186 de los 206 enums de r4 ya lo
+hacían — no cambia nada.
+
+El nombre del binding se rechaza cuando empeoraría las cosas, y por eso son 48 y no
+los varios cientos que pronosticaban versiones anteriores de esta página:
+
+- **Varios bindings no coinciden.** `request-priority` se enlaza desde cinco puntos
+  en R4 con cinco nombres distintos — `CommunicationPriority`, `TaskPriority`,
+  `ServiceRequestPriority` y dos más. Un ValueSet se convierte en un solo tipo Go,
+  así que no hay forma de elegir.
+- **Nombra un recurso.** R4B y R5 enlazan `subscription-status` como
+  `SubscriptionStatus`, que además es un tipo de recurso.
+- **Dice menos.** `verificationresult-status` se llama simplemente `Status`, y los
+  bindings de artifact-assessment son `Disposition`, `InformationType` y
+  `WorkflowStatus`. Un `Status` exportado entre cientos de enums es peor que el
+  nombre al que sustituiría.
+- **No es un identificador, o es una errata.** La especificación trae
+  `appointment-type`, `LOINC LL379-9 answerlist` y `ConceptMapmapAttributeType`
+  — «Map» dos veces, la segunda en minúscula.
+
+#### Un renombrado no es igual en todas las versiones
+
+`MedicationStatusCodes` existe en las tres, y **se convierte en un tipo distinto en
+r4 que en r4b y r5**:
+
+```go
+r4:      MedicationStatusCodes -> MedicationStatementStatus
+r4b/r5:  MedicationStatusCodes -> MedicationStatus
+```
+
+En R4 dos ValueSets comparten el nombre «Medication Status Codes» —
+`medication-status` y `medication-statement-status` — y el que este tipo contenía
+realmente era el de MedicationStatement. R4B y R5 renombraron el otro lado en el
+origen, así que allí el nombre significa lo que dice.
+
+Un buscar-y-reemplazar a ciegas sobre un código que usa más de una versión de FHIR
+se equivocará aquí. Renombre paquete por paquete.
+
+#### Las constantes siguen a su tipo
+
+Una constante se llama `<Tipo><Código>`, de modo que renombrar el tipo renombra
+todas sus constantes:
+
+```go
+MedicationStatusCodesActive   ->  MedicationStatementStatusActive   // r4
+MedicationStatusCodesActive   ->  MedicationStatusActive            // r4b, r5
+```
+
+Los valores de cadena no se tocan. Solo se mueven identificadores de Go, así que los
+datos serializados, el JSON almacenado y todo lo que viaja por la red quedan
+intactos.
+
+#### Correspondencia completa
+
+| v1 | v2 | Versiones |
+|---|---|---|
+| `ActionParticipantType` | `ActivityParticipantType` | r5 |
+| `AdditionalBindingPurposeVS` | `AdditionalBindingPurpose` | r5 |
+| `AppointmentResponseStatus` | `ParticipantStatus` | r5 |
+| `BiologicallyDerivedProductDispenseCodes` | `BiologicallyDerivedProductDispenseStatus` | r5 |
+| `ClaimProcessingCodes` | `RemittanceOutcome` | r4 |
+| `ContractResourcePublicationStatusCodes` | `ContractPublicationStatus` | r4, r4b, r5 |
+| `ContractResourceStatusCodes` | `ContractStatus` | r4, r4b, r5 |
+| `DeviceDefinitionRegulatoryIdentifierType` | `DeviceRegulatoryIdentifierType` | r5 |
+| `DeviceDispenseStatusCodes` | `DeviceDispenseStatus` | r5 |
+| `FormularyItemStatusCodes` | `FormularyItemStatus` | r5 |
+| `ImmunizationEvaluationStatusCodes` | `ImmunizationEvaluationStatus` | r4, r4b, r5 |
+| `ImmunizationStatusCodes` | `ImmunizationStatus` | r4, r4b, r5 |
+| `InteractionTrigger` | `MethodCode` | r4b, r5 |
+| `InventoryItemStatusCodes` | `InventoryItemStatus` | r5 |
+| `Kind` | `CoverageKind` | r5 |
+| `MedicationAdministrationStatusCodes` | `MedicationAdministrationStatus` | r4, r4b, r5 |
+| `MedicationDispenseStatusCodes` | `MedicationDispenseStatus` | r4, r4b, r5 |
+| `MedicationKnowledgeStatusCodes` | `MedicationKnowledgeStatus` | r4, r4b, r5 |
+| `MedicationStatementStatusCodes` | `MedicationStatementStatus` | r4b, r5 |
+| `MedicationStatusCodes` | `MedicationStatementStatus` | r4 |
+| `MedicationStatusCodes` | `MedicationStatus` | r4b, r5 |
+| `MedicationrequestStatus` | `MedicationRequestStatus` | r4, r4b, r5 |
+| `PermissionRuleCombining` | `PermissionCombining` | r5 |
+| `RequestResourceType` | `ActivityDefinitionKind` | r4, r4b |
+| `RequestResourceTypes` | `ActivityDefinitionKind` | r5 |
+| `SubscriptionSearchModifier` | `SubscriptionTopicFilterBySearchModifier` | r4b |
+| `TriggeredBytype` | `TriggeredByType` | r5 |
+| `VersionIndependentResourceTypesAll` | `FHIRTypes` | r5 |
+
+`gopls rename` los resuelve sin riesgo, y el compilador encuentra cualquier punto que
+la tabla omita: son nombres de tipo, así que nada falla en silencio.
 
 ## La ruta de importación
 

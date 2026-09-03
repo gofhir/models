@@ -139,7 +139,7 @@ type OperationDefinition struct {
 	// Extension for Base
 	BaseExt *Element `json:"_base,omitempty"`
 	// Types this operation applies to
-	Resource []*VersionIndependentResourceTypesAll `json:"resource,omitempty"`
+	Resource []*FHIRTypes `json:"resource,omitempty"`
 	// Extension for Resource
 	ResourceExt []*Element `json:"_resource,omitempty"`
 	// Invoke at the system level?
@@ -594,7 +594,7 @@ func (r *OperationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				r.Base = v
 				r.BaseExt = ext
 			case "resource":
-				v, _, err := xmlDecodePrimitiveCode[VersionIndependentResourceTypesAll](d, t)
+				v, _, err := xmlDecodePrimitiveCode[FHIRTypes](d, t)
 				if err != nil {
 					return err
 				}
@@ -1405,7 +1405,7 @@ func (b *OperationDefinitionBuilder) SetBase(v string) *OperationDefinitionBuild
 // Takes a plain value: the field is a slice of pointers so that an absent slot
 // can be expressed, but a builder call is always adding a value. For a slot that
 // is deliberately absent, build the slice directly and leave that entry nil.
-func (b *OperationDefinitionBuilder) AddResource(v VersionIndependentResourceTypesAll) *OperationDefinitionBuilder {
+func (b *OperationDefinitionBuilder) AddResource(v FHIRTypes) *OperationDefinitionBuilder {
 	b.operationDefinition.Resource = append(b.operationDefinition.Resource, &v)
 	return b
 }

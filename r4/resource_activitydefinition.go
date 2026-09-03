@@ -147,7 +147,7 @@ type ActivityDefinition struct {
 	// Extension for Library
 	LibraryExt []*Element `json:"_library,omitempty"`
 	// Kind of resource
-	Kind *RequestResourceType `json:"kind,omitempty"`
+	Kind *ActivityDefinitionKind `json:"kind,omitempty"`
 	// Extension for Kind
 	KindExt *Element `json:"_kind,omitempty"`
 	// What profile the resource needs to conform to
@@ -782,7 +782,7 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Library = append(r.Library, v)
 			case "kind":
-				v, ext, err := xmlDecodePrimitiveCode[RequestResourceType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ActivityDefinitionKind](d, t)
 				if err != nil {
 					return err
 				}
@@ -1395,7 +1395,7 @@ func (b *ActivityDefinitionBuilder) AddLibrary(v string) *ActivityDefinitionBuil
 }
 
 // SetKind sets the Kind field.
-func (b *ActivityDefinitionBuilder) SetKind(v RequestResourceType) *ActivityDefinitionBuilder {
+func (b *ActivityDefinitionBuilder) SetKind(v ActivityDefinitionKind) *ActivityDefinitionBuilder {
 	b.activityDefinition.Kind = &v
 	return b
 }

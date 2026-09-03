@@ -2069,7 +2069,7 @@ type DeviceDefinitionRegulatoryIdentifier struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// basic | master | license
-	Type *DeviceDefinitionRegulatoryIdentifierType `json:"type,omitempty"`
+	Type *DeviceRegulatoryIdentifierType `json:"type,omitempty"`
 	// The identifier itself
 	DeviceIdentifier *string `json:"deviceIdentifier,omitempty"`
 	// The organization that issued this identifier
@@ -2146,7 +2146,7 @@ func (r *DeviceDefinitionRegulatoryIdentifier) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[DeviceDefinitionRegulatoryIdentifierType](d, t)
+				v, _, err := xmlDecodePrimitiveCode[DeviceRegulatoryIdentifierType](d, t)
 				if err != nil {
 					return err
 				}

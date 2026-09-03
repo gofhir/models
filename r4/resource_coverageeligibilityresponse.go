@@ -83,7 +83,7 @@ type CoverageEligibilityResponse struct {
 	// Eligibility request reference
 	Request *Reference `json:"request,omitempty"`
 	// queued | complete | error | partial
-	Outcome *ClaimProcessingCodes `json:"outcome,omitempty"`
+	Outcome *RemittanceOutcome `json:"outcome,omitempty"`
 	// Extension for Outcome
 	OutcomeExt *Element `json:"_outcome,omitempty"`
 	// Disposition Message
@@ -391,7 +391,7 @@ func (r *CoverageEligibilityResponse) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.Request = &v
 			case "outcome":
-				v, ext, err := xmlDecodePrimitiveCode[ClaimProcessingCodes](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[RemittanceOutcome](d, t)
 				if err != nil {
 					return err
 				}
@@ -1216,7 +1216,7 @@ func (b *CoverageEligibilityResponseBuilder) SetRequest(v Reference) *CoverageEl
 }
 
 // SetOutcome sets the Outcome field.
-func (b *CoverageEligibilityResponseBuilder) SetOutcome(v ClaimProcessingCodes) *CoverageEligibilityResponseBuilder {
+func (b *CoverageEligibilityResponseBuilder) SetOutcome(v RemittanceOutcome) *CoverageEligibilityResponseBuilder {
 	b.coverageEligibilityResponse.Outcome = &v
 	return b
 }

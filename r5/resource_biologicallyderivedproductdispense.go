@@ -63,7 +63,7 @@ type BiologicallyDerivedProductDispense struct {
 	// Short description
 	PartOf []Reference `json:"partOf,omitempty"`
 	// preparation | in-progress | allocated | issued | unfulfilled | returned | entered-in-error | unknown
-	Status *BiologicallyDerivedProductDispenseCodes `json:"status,omitempty"`
+	Status *BiologicallyDerivedProductDispenseStatus `json:"status,omitempty"`
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Relationship between the donor and intended recipient
@@ -351,7 +351,7 @@ func (r *BiologicallyDerivedProductDispense) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.PartOf = append(r.PartOf, v)
 			case "status":
-				v, ext, err := xmlDecodePrimitiveCode[BiologicallyDerivedProductDispenseCodes](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[BiologicallyDerivedProductDispenseStatus](d, t)
 				if err != nil {
 					return err
 				}
@@ -636,7 +636,7 @@ func (b *BiologicallyDerivedProductDispenseBuilder) AddPartOf(v Reference) *Biol
 }
 
 // SetStatus sets the Status field.
-func (b *BiologicallyDerivedProductDispenseBuilder) SetStatus(v BiologicallyDerivedProductDispenseCodes) *BiologicallyDerivedProductDispenseBuilder {
+func (b *BiologicallyDerivedProductDispenseBuilder) SetStatus(v BiologicallyDerivedProductDispenseStatus) *BiologicallyDerivedProductDispenseBuilder {
 	b.biologicallyDerivedProductDispense.Status = &v
 	return b
 }

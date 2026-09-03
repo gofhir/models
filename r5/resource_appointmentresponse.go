@@ -77,7 +77,7 @@ type AppointmentResponse struct {
 	// Person(s), Location, HealthcareService, or Device
 	Actor *Reference `json:"actor,omitempty"`
 	// accepted | declined | tentative | needs-action | entered-in-error
-	ParticipantStatus *AppointmentResponseStatus `json:"participantStatus,omitempty"`
+	ParticipantStatus *ParticipantStatus `json:"participantStatus,omitempty"`
 	// Extension for ParticipantStatus
 	ParticipantStatusExt *Element `json:"_participantStatus,omitempty"`
 	// Additional comments
@@ -350,7 +350,7 @@ func (r *AppointmentResponse) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.Actor = &v
 			case "participantStatus":
-				v, ext, err := xmlDecodePrimitiveCode[AppointmentResponseStatus](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ParticipantStatus](d, t)
 				if err != nil {
 					return err
 				}
@@ -509,7 +509,7 @@ func (b *AppointmentResponseBuilder) SetActor(v Reference) *AppointmentResponseB
 }
 
 // SetParticipantStatus sets the ParticipantStatus field.
-func (b *AppointmentResponseBuilder) SetParticipantStatus(v AppointmentResponseStatus) *AppointmentResponseBuilder {
+func (b *AppointmentResponseBuilder) SetParticipantStatus(v ParticipantStatus) *AppointmentResponseBuilder {
 	b.appointmentResponse.ParticipantStatus = &v
 	return b
 }

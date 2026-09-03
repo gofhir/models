@@ -358,7 +358,7 @@ func TestOrganization(t *testing.T) {
 func TestMedicationRequest(t *testing.T) {
 	t.Run("create medication request", func(t *testing.T) {
 		id := "medrx-123"
-		status := MedicationrequestStatus("active")
+		status := MedicationRequestStatus("active")
 		intent := MedicationRequestIntent("order")
 		subjectRef := "Patient/123"
 		medRef := "Medication/456"
@@ -377,7 +377,7 @@ func TestMedicationRequest(t *testing.T) {
 		require.NotNil(t, medRequest.Subject)
 
 		assert.Equal(t, "medrx-123", *medRequest.Id)
-		assert.Equal(t, MedicationrequestStatus("active"), *medRequest.Status)
+		assert.Equal(t, MedicationRequestStatus("active"), *medRequest.Status)
 		assert.Equal(t, MedicationRequestIntent("order"), *medRequest.Intent)
 		require.NotNil(t, medRequest.MedicationReference)
 		assert.Equal(t, medRef, *medRequest.MedicationReference.Reference)

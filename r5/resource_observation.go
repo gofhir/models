@@ -1276,7 +1276,7 @@ type ObservationTriggeredBy struct {
 	// Triggering observation
 	Observation *Reference `json:"observation,omitempty"`
 	// reflex | repeat | re-run
-	Type *TriggeredBytype `json:"type,omitempty"`
+	Type *TriggeredByType `json:"type,omitempty"`
 	// Reason that the observation was triggered
 	Reason *string `json:"reason,omitempty"`
 }
@@ -1354,7 +1354,7 @@ func (r *ObservationTriggeredBy) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.Observation = &v
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[TriggeredBytype](d, t)
+				v, _, err := xmlDecodePrimitiveCode[TriggeredByType](d, t)
 				if err != nil {
 					return err
 				}

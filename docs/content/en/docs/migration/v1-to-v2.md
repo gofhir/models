@@ -259,7 +259,98 @@ failed to unmarshal resource: failed to unmarshal Patient: failed to unmarshal c
 
 ### Code system type names change
 
-**Status: forecast, and the least certain of these.** Enum type and constant names are expected to be derived from the FHIR `bindingName` extension, which renames roughly 657 types and 3,613 constants. A full old-to-new mapping table will accompany the release. This is the change most likely to be split out or staged, since the volume is large and the benefit is naming consistency rather than correctness.
+**Status: done. 48 enum types are renamed — 11 in r4, 13 in r4b, 24 in r5 — carrying
+365 constants with them.** Everything else keeps its name.
+
+The specification names each required binding through an extension,
+`elementdefinition-bindingName`, and that name is usually better than the ValueSet's
+title: `MedicationStatus` rather than `MedicationStatusCodes`, `CurrencyCode` rather
+than `Currencies`. Where the two agree — 186 of r4's 206 enums already did — nothing
+changes.
+
+The binding name is refused when it would make things worse, which is why the count
+is 48 and not the several hundred earlier drafts of this page forecast:
+
+- **Several bindings disagree.** `request-priority` is bound from five places in R4
+  under five names — `CommunicationPriority`, `TaskPriority`,
+  `ServiceRequestPriority` and two more. A ValueSet becomes one Go type, so there is
+  no answer to pick.
+- **It names a resource.** R4B and R5 bind `subscription-status` as
+  `SubscriptionStatus`, which is also a resource type.
+- **It says less.** `verificationresult-status` is named plainly `Status`, and the
+  artifact-assessment bindings are `Disposition`, `InformationType` and
+  `WorkflowStatus`. An exported `Status` among hundreds of enums is worse than the
+  name it replaces.
+- **It is not an identifier, or is a typo.** The specification carries
+  `appointment-type`, `LOINC LL379-9 answerlist`, and
+  `ConceptMapmapAttributeType` — "Map" twice, the second time in lower case.
+
+#### One rename is not the same in every version
+
+`MedicationStatusCodes` exists in all three, and **becomes a different type in r4
+than in r4b and r5**:
+
+```go
+r4:      MedicationStatusCodes -> MedicationStatementStatus
+r4b/r5:  MedicationStatusCodes -> MedicationStatus
+```
+
+In R4 two ValueSets share the name "Medication Status Codes" — `medication-status`
+and `medication-statement-status` — and the one this type actually held was
+MedicationStatement's. R4B and R5 renamed the other side upstream, so there the name
+means what it says.
+
+A blind find-and-replace across a codebase that uses more than one FHIR version will
+get this wrong. Rename per package.
+
+#### Constants follow their type
+
+A constant is named `<Type><Code>`, so renaming the type renames every constant on
+it:
+
+```go
+MedicationStatusCodesActive   ->  MedicationStatementStatusActive   // r4
+MedicationStatusCodesActive   ->  MedicationStatusActive            // r4b, r5
+```
+
+The string values are untouched. Only Go identifiers move, so serialized data,
+stored JSON and anything on the wire is unaffected.
+
+#### Full mapping
+
+| v1 | v2 | Versions |
+|---|---|---|
+| `ActionParticipantType` | `ActivityParticipantType` | r5 |
+| `AdditionalBindingPurposeVS` | `AdditionalBindingPurpose` | r5 |
+| `AppointmentResponseStatus` | `ParticipantStatus` | r5 |
+| `BiologicallyDerivedProductDispenseCodes` | `BiologicallyDerivedProductDispenseStatus` | r5 |
+| `ClaimProcessingCodes` | `RemittanceOutcome` | r4 |
+| `ContractResourcePublicationStatusCodes` | `ContractPublicationStatus` | r4, r4b, r5 |
+| `ContractResourceStatusCodes` | `ContractStatus` | r4, r4b, r5 |
+| `DeviceDefinitionRegulatoryIdentifierType` | `DeviceRegulatoryIdentifierType` | r5 |
+| `DeviceDispenseStatusCodes` | `DeviceDispenseStatus` | r5 |
+| `FormularyItemStatusCodes` | `FormularyItemStatus` | r5 |
+| `ImmunizationEvaluationStatusCodes` | `ImmunizationEvaluationStatus` | r4, r4b, r5 |
+| `ImmunizationStatusCodes` | `ImmunizationStatus` | r4, r4b, r5 |
+| `InteractionTrigger` | `MethodCode` | r4b, r5 |
+| `InventoryItemStatusCodes` | `InventoryItemStatus` | r5 |
+| `Kind` | `CoverageKind` | r5 |
+| `MedicationAdministrationStatusCodes` | `MedicationAdministrationStatus` | r4, r4b, r5 |
+| `MedicationDispenseStatusCodes` | `MedicationDispenseStatus` | r4, r4b, r5 |
+| `MedicationKnowledgeStatusCodes` | `MedicationKnowledgeStatus` | r4, r4b, r5 |
+| `MedicationStatementStatusCodes` | `MedicationStatementStatus` | r4b, r5 |
+| `MedicationStatusCodes` | `MedicationStatementStatus` | r4 |
+| `MedicationStatusCodes` | `MedicationStatus` | r4b, r5 |
+| `MedicationrequestStatus` | `MedicationRequestStatus` | r4, r4b, r5 |
+| `PermissionRuleCombining` | `PermissionCombining` | r5 |
+| `RequestResourceType` | `ActivityDefinitionKind` | r4, r4b |
+| `RequestResourceTypes` | `ActivityDefinitionKind` | r5 |
+| `SubscriptionSearchModifier` | `SubscriptionTopicFilterBySearchModifier` | r4b |
+| `TriggeredBytype` | `TriggeredByType` | r5 |
+| `VersionIndependentResourceTypesAll` | `FHIRTypes` | r5 |
+
+`gopls rename` handles these safely, and the compiler finds every site the mapping
+misses — these are type names, so nothing fails silently.
 
 ## The import path
 

@@ -59,7 +59,7 @@ type ImmunizationEvaluation struct {
 	// Business identifier
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// completed | entered-in-error
-	Status *ImmunizationEvaluationStatusCodes `json:"status,omitempty"`
+	Status *ImmunizationEvaluationStatus `json:"status,omitempty"`
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Who this evaluation is for
@@ -318,7 +318,7 @@ func (r *ImmunizationEvaluation) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "status":
-				v, ext, err := xmlDecodePrimitiveCode[ImmunizationEvaluationStatusCodes](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ImmunizationEvaluationStatus](d, t)
 				if err != nil {
 					return err
 				}
@@ -484,7 +484,7 @@ func (b *ImmunizationEvaluationBuilder) AddIdentifier(v Identifier) *Immunizatio
 }
 
 // SetStatus sets the Status field.
-func (b *ImmunizationEvaluationBuilder) SetStatus(v ImmunizationEvaluationStatusCodes) *ImmunizationEvaluationBuilder {
+func (b *ImmunizationEvaluationBuilder) SetStatus(v ImmunizationEvaluationStatus) *ImmunizationEvaluationBuilder {
 	b.immunizationEvaluation.Status = &v
 	return b
 }

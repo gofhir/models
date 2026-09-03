@@ -61,7 +61,7 @@ type MedicationKnowledge struct {
 	// Code that identifies this medication
 	Code *CodeableConcept `json:"code,omitempty"`
 	// active | entered-in-error | inactive
-	Status *MedicationKnowledgeStatusCodes `json:"status,omitempty"`
+	Status *MedicationKnowledgeStatus `json:"status,omitempty"`
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Creator or owner of the knowledge or information about the medication
@@ -373,7 +373,7 @@ func (r *MedicationKnowledge) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.Code = &v
 			case "status":
-				v, ext, err := xmlDecodePrimitiveCode[MedicationKnowledgeStatusCodes](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[MedicationKnowledgeStatus](d, t)
 				if err != nil {
 					return err
 				}
@@ -2749,7 +2749,7 @@ func (b *MedicationKnowledgeBuilder) SetCode(v CodeableConcept) *MedicationKnowl
 }
 
 // SetStatus sets the Status field.
-func (b *MedicationKnowledgeBuilder) SetStatus(v MedicationKnowledgeStatusCodes) *MedicationKnowledgeBuilder {
+func (b *MedicationKnowledgeBuilder) SetStatus(v MedicationKnowledgeStatus) *MedicationKnowledgeBuilder {
 	b.medicationKnowledge.Status = &v
 	return b
 }

@@ -67,7 +67,7 @@ type Contract struct {
 	// Extension for Version
 	VersionExt *Element `json:"_version,omitempty"`
 	// amended | appended | cancelled | disputed | entered-in-error | executable +
-	Status *ContractResourceStatusCodes `json:"status,omitempty"`
+	Status *ContractStatus `json:"status,omitempty"`
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Negotiation status
@@ -486,7 +486,7 @@ func (r *Contract) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				r.Version = v
 				r.VersionExt = ext
 			case "status":
-				v, ext, err := xmlDecodePrimitiveCode[ContractResourceStatusCodes](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ContractStatus](d, t)
 				if err != nil {
 					return err
 				}
@@ -713,7 +713,7 @@ type ContractContentDefinition struct {
 	// When published
 	PublicationDate *string `json:"publicationDate,omitempty"`
 	// amended | appended | cancelled | disputed | entered-in-error | executable +
-	PublicationStatus *ContractResourcePublicationStatusCodes `json:"publicationStatus,omitempty"`
+	PublicationStatus *ContractPublicationStatus `json:"publicationStatus,omitempty"`
 	// Publication Ownership
 	Copyright *string `json:"copyright,omitempty"`
 }
@@ -822,7 +822,7 @@ func (r *ContractContentDefinition) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.PublicationDate = v
 			case "publicationStatus":
-				v, _, err := xmlDecodePrimitiveCode[ContractResourcePublicationStatusCodes](d, t)
+				v, _, err := xmlDecodePrimitiveCode[ContractPublicationStatus](d, t)
 				if err != nil {
 					return err
 				}
@@ -3353,7 +3353,7 @@ func (b *ContractBuilder) SetVersion(v string) *ContractBuilder {
 }
 
 // SetStatus sets the Status field.
-func (b *ContractBuilder) SetStatus(v ContractResourceStatusCodes) *ContractBuilder {
+func (b *ContractBuilder) SetStatus(v ContractStatus) *ContractBuilder {
 	b.contract.Status = &v
 	return b
 }

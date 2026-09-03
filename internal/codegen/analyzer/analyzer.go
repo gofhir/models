@@ -32,6 +32,10 @@ type Analyzer struct {
 	// the ValueSets that would claim it, so a genuine collision is
 	// distinguishable from a name that is simply in use.
 	valueSetNameClaims map[string][]string
+	// bindingNames maps a canonical ValueSet URL to the name HL7 gives that
+	// binding, when every element binding to it agrees on one usable name. See
+	// collectBindingNames for why agreement is required.
+	bindingNames map[string]string
 }
 
 // NewAnalyzer creates a new Analyzer with the given StructureDefinitions and ValueSets.
@@ -42,12 +46,211 @@ func NewAnalyzer(definitions []*parser.StructureDefinition, valueSets *parser.Va
 		defMap[sd.Name] = sd
 		defMap[sd.Type] = sd
 	}
-	return &Analyzer{
-		definitions:        defMap,
-		valueSets:          valueSets,
-		UsedBindings:       make(map[string]bool),
-		valueSetNameClaims: buildValueSetNameClaims(valueSets),
+	a := &Analyzer{
+		definitions:  defMap,
+		valueSets:    valueSets,
+		UsedBindings: make(map[string]bool),
+		bindingNames: collectBindingNames(definitions),
 	}
+	// Claims are computed from the names that will actually be emitted, so a
+	// collision is judged on the final name rather than on the ValueSet title
+	// that a binding name may have replaced.
+	a.dropLessSpecificBindingNames(valueSets)
+	a.dropBindingNamesClaimedByTypes(definitions, valueSets)
+	a.dropCollidingBindingNames(valueSets)
+	a.valueSetNameClaims = a.buildValueSetNameClaims(valueSets)
+	return a
+}
+
+// misspelledBindingNames lists binding names that are typos in the published
+// specification, and are therefore not used.
+//
+// This is deliberately a list of individual upstream defects rather than a rule:
+// each one is a specific string HL7 got wrong, verifiable against the element it
+// annotates, and there is no general test that would catch it.
+var misspelledBindingNames = map[string]string{
+	// ConceptMap.additionalAttribute.type in R5 — "Map" appears twice, the
+	// second time in lower case. The title-derived ConceptMapAttributeType is
+	// what the binding name was evidently meant to say.
+	"ConceptMapmapAttributeType": "ConceptMap.additionalAttribute.type (R5)",
+}
+
+// dropBindingNamesClaimedByTypes removes binding names that a resource or
+// datatype already answers to.
+//
+// The enums share a package with the 445 resource types, and nothing in the
+// specification stops a binding being named after a resource: in R4B and R5 the
+// subscription-status ValueSet is bound as SubscriptionStatus, which is also a
+// resource. Taking the binding name there produces two declarations of one
+// identifier and the package stops compiling.
+//
+// Only the ValueSet gives way. A resource name is fixed by the specification and
+// is what callers write, so it is not available to be renamed.
+func (a *Analyzer) dropBindingNamesClaimedByTypes(definitions []*parser.StructureDefinition, valueSets *parser.ValueSetRegistry) {
+	if valueSets == nil || len(a.bindingNames) == 0 {
+		return
+	}
+	taken := make(map[string]bool, len(definitions))
+	for _, sd := range definitions {
+		if sd == nil {
+			continue
+		}
+		taken[sanitizeTypeName(sd.Name)] = true
+		taken[sanitizeTypeName(sd.Type)] = true
+	}
+	for url, bound := range a.bindingNames {
+		if taken[bound] {
+			delete(a.bindingNames, url)
+		}
+	}
+}
+
+// dropLessSpecificBindingNames removes binding names that lose context.
+//
+// A binding name is usually the more precise of the two — MedicationStatusCodes
+// against MedicationStatus. Sometimes it is the reverse: the artifact-assessment
+// bindings are named Disposition, InformationType and WorkflowStatus, and
+// verificationresult-status is named plainly Status. Those read as a general
+// vocabulary rather than one belonging to a resource, and an exported Status in a
+// package holding hundreds of enums is worse than the name it would replace.
+//
+// The test for it is structural rather than a judgement call: the binding name is
+// a suffix of the title-derived name, so it says strictly less about what the
+// ValueSet is. Where that holds the longer name wins.
+func (a *Analyzer) dropLessSpecificBindingNames(valueSets *parser.ValueSetRegistry) {
+	if valueSets == nil || len(a.bindingNames) == 0 {
+		return
+	}
+	for _, vs := range valueSets.All() {
+		url := canonicalValueSetURL(vs.URL)
+		bound, ok := a.bindingNames[url]
+		if !ok {
+			continue
+		}
+		if title := sanitizeTypeName(vs.Name); title != bound && strings.HasSuffix(title, bound) {
+			delete(a.bindingNames, url)
+		}
+	}
+}
+
+// dropCollidingBindingNames removes binding names that would introduce a new
+// collision.
+//
+// A binding name is an improvement, not an obligation: it turns
+// MedicationStatusCodes into MedicationStatus. But it changes which names are in
+// play, and can make two ValueSets that were distinct under their titles land on
+// the same one — R5 annotates Specimen.combined, whose codes are grouped and
+// pooled, with bindingName="PublicationStatus", a name belonging to an unrelated
+// ValueSet. Where that happens the binding name is dropped and both keep their
+// title-derived names, which were already unique.
+//
+// Falling back is better than adding a manual override for each case: the
+// override list should hold genuine upstream naming clashes, not ones this
+// change introduced.
+func (a *Analyzer) dropCollidingBindingNames(valueSets *parser.ValueSetRegistry) {
+	if valueSets == nil || len(a.bindingNames) == 0 {
+		return
+	}
+
+	// Every name that will be in play, and who claims it.
+	claimants := make(map[string][]string)
+	for _, vs := range valueSets.All() {
+		if len(vs.Codes) == 0 || len(vs.Codes) > maxEnumCodes {
+			continue
+		}
+		url := canonicalValueSetURL(vs.URL)
+		name := sanitizeTypeName(vs.Name)
+		if bound, ok := a.bindingNames[url]; ok {
+			name = bound
+		}
+		claimants[name] = append(claimants[name], url)
+	}
+
+	for name, urls := range claimants {
+		if len(urls) < 2 {
+			continue
+		}
+		// Only give up the binding name where it is what caused the clash.
+		for _, url := range urls {
+			if a.bindingNames[url] == name {
+				delete(a.bindingNames, url)
+			}
+		}
+	}
+}
+
+// collectBindingNames indexes the name HL7 gives each required binding, via the
+// elementdefinition-bindingName extension.
+//
+// The ValueSet's own title is a poor source for a Go type name: it produces
+// MedicationStatusCodes where the specification calls the binding
+// MedicationStatus, and Currencies where it says CurrencyCode. bindingName is
+// what HL7 intends the binding to be called.
+//
+// It is only used when every element binding to a given ValueSet agrees on one
+// name. 16 ValueSets in R4 are bound from several places under different names —
+// request-priority is CommunicationPriority, TaskPriority, ServiceRequestPriority
+// and two more — and a ValueSet becomes exactly one Go type, so there is no
+// answer to pick. Those keep the title-derived name.
+//
+// Names that are not already Go identifiers are skipped too: the specification
+// carries a few like "appointment-type" and "LOINC LL379-9 answerlist", and
+// sanitizing them would land back on the name we already had.
+func collectBindingNames(definitions []*parser.StructureDefinition) map[string]string {
+	claimed := make(map[string]map[string]bool)
+	for _, sd := range definitions {
+		if sd == nil || sd.Snapshot == nil {
+			continue
+		}
+		for i := range sd.Snapshot.Element {
+			elem := &sd.Snapshot.Element[i]
+			if elem.Binding == nil || elem.Binding.Strength != "required" {
+				continue
+			}
+			name := elem.Binding.Name()
+			if name == "" || !isGoIdentifier(name) {
+				continue
+			}
+			if _, misspelled := misspelledBindingNames[name]; misspelled {
+				continue
+			}
+			url := canonicalValueSetURL(elem.Binding.ValueSet)
+			if url == "" {
+				continue
+			}
+			if claimed[url] == nil {
+				claimed[url] = make(map[string]bool)
+			}
+			claimed[url][name] = true
+		}
+	}
+
+	names := make(map[string]string, len(claimed))
+	for url, set := range claimed {
+		if len(set) != 1 {
+			continue // ambiguous: several bindings, several names
+		}
+		for name := range set {
+			names[url] = strings.ToUpper(name[:1]) + name[1:]
+		}
+	}
+	return names
+}
+
+// isGoIdentifier reports whether s can be used as a Go type name unchanged.
+func isGoIdentifier(s string) bool {
+	if s == "" {
+		return false
+	}
+	for i, r := range s {
+		switch {
+		case r >= 'a' && r <= 'z', r >= 'A' && r <= 'Z':
+		case r >= '0' && r <= '9' && i > 0:
+		default:
+			return false
+		}
+	}
+	return true
 }
 
 // AnalyzedType represents a fully analyzed type ready for code generation.
@@ -659,6 +862,13 @@ func (a *Analyzer) resolveGoTypeWithBinding(fhirType string, isPointer, isArray 
 //
 // A collision with no entry here fails generation rather than resolving by bundle
 // order; see generateCodeSystemsFromTemplate.
+//
+// Binding names now reach the same answer without help: medication-status is bound
+// as MedicationStatus, so the two ValueSets no longer land on one name and the
+// entry below never fires. Emptying the map produces byte-identical output in all
+// three versions. It is kept because it costs nothing and is the only thing
+// standing between a future upstream collision and a failed build — the binding
+// name that currently resolves this one is upstream data, and can change.
 var valueSetCollisionOverrides = map[string]map[string]string{
 	"MedicationStatusCodes": {
 		// Bound by Medication.status: active | inactive | entered-in-error.
@@ -672,7 +882,7 @@ var valueSetCollisionOverrides = map[string]map[string]string{
 // (emitting the type) must agree on this, or fields end up bound to types that
 // were never generated.
 func (a *Analyzer) ValueSetTypeName(url, name string) string {
-	base := sanitizeTypeName(name)
+	base := a.baseTypeName(url, name)
 
 	// Only a real collision justifies renaming.
 	if len(a.valueSetNameClaims[base]) < 2 {
@@ -692,7 +902,7 @@ func (a *Analyzer) ValueSetTypeName(url, name string) string {
 // Only ValueSets that could actually become an enum are counted — the same filter
 // getValueSetForBinding applies — because two unused ValueSets sharing a name is
 // not a problem anyone can observe.
-func buildValueSetNameClaims(valueSets *parser.ValueSetRegistry) map[string][]string {
+func (a *Analyzer) buildValueSetNameClaims(valueSets *parser.ValueSetRegistry) map[string][]string {
 	claims := make(map[string][]string)
 	if valueSets == nil {
 		return claims
@@ -701,10 +911,20 @@ func buildValueSetNameClaims(valueSets *parser.ValueSetRegistry) map[string][]st
 		if len(vs.Codes) == 0 || len(vs.Codes) > maxEnumCodes {
 			continue
 		}
-		base := sanitizeTypeName(vs.Name)
+		base := a.baseTypeName(vs.URL, vs.Name)
 		claims[base] = append(claims[base], canonicalValueSetURL(vs.URL))
 	}
 	return claims
+}
+
+// baseTypeName is the name a ValueSet takes before collision handling: HL7's
+// binding name when there is an unambiguous one, and the sanitized ValueSet
+// title otherwise.
+func (a *Analyzer) baseTypeName(url, name string) string {
+	if bound, ok := a.bindingNames[canonicalValueSetURL(url)]; ok {
+		return bound
+	}
+	return sanitizeTypeName(name)
 }
 
 // canonicalValueSetURL strips the |version suffix FHIR bindings carry, so

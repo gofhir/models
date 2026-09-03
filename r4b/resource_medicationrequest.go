@@ -59,7 +59,7 @@ type MedicationRequest struct {
 	// External ids for this request
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown
-	Status *MedicationrequestStatus `json:"status,omitempty"`
+	Status *MedicationRequestStatus `json:"status,omitempty"`
 	// Extension for Status
 	StatusExt *Element `json:"_status,omitempty"`
 	// Reason for current status
@@ -465,7 +465,7 @@ func (r *MedicationRequest) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "status":
-				v, ext, err := xmlDecodePrimitiveCode[MedicationrequestStatus](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[MedicationRequestStatus](d, t)
 				if err != nil {
 					return err
 				}
@@ -1144,7 +1144,7 @@ func (b *MedicationRequestBuilder) AddIdentifier(v Identifier) *MedicationReques
 }
 
 // SetStatus sets the Status field.
-func (b *MedicationRequestBuilder) SetStatus(v MedicationrequestStatus) *MedicationRequestBuilder {
+func (b *MedicationRequestBuilder) SetStatus(v MedicationRequestStatus) *MedicationRequestBuilder {
 	b.medicationRequest.Status = &v
 	return b
 }
