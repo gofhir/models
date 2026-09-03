@@ -496,26 +496,29 @@ func (r *Requirements) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				r.CopyrightLabel = v
 				r.CopyrightLabelExt = ext
 			case "derivedFrom":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFrom = append(r.DerivedFrom, v)
+				r.DerivedFromExt = append(r.DerivedFromExt, ext)
 			case "reference":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Reference = append(r.Reference, v)
+				r.ReferenceExt = append(r.ReferenceExt, ext)
 			case "actor":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Actor = append(r.Actor, v)
+				r.ActorExt = append(r.ActorExt, ext)
 			case "statement":
 				var v RequirementsStatement
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -544,22 +547,40 @@ type RequirementsStatement struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Key that identifies this statement
 	Key *string `json:"key,omitempty"`
+	// Extension for Key
+	KeyExt *Element `json:"_key,omitempty"`
 	// Short Human label for this statement
 	Label *string `json:"label,omitempty"`
+	// Extension for Label
+	LabelExt *Element `json:"_label,omitempty"`
 	// SHALL | SHOULD | MAY | SHOULD-NOT
 	Conformance []*ConformanceExpectation `json:"conformance,omitempty"`
+	// Extension for Conformance
+	ConformanceExt []*Element `json:"_conformance,omitempty"`
 	// Set to true if requirements statement is conditional
 	Conditionality *bool `json:"conditionality,omitempty"`
+	// Extension for Conditionality
+	ConditionalityExt *Element `json:"_conditionality,omitempty"`
 	// The actual requirement
 	Requirement *string `json:"requirement,omitempty"`
+	// Extension for Requirement
+	RequirementExt *Element `json:"_requirement,omitempty"`
 	// Another statement this clarifies/restricts ([url#]key)
 	DerivedFrom *string `json:"derivedFrom,omitempty"`
+	// Extension for DerivedFrom
+	DerivedFromExt *Element `json:"_derivedFrom,omitempty"`
 	// A larger requirement that this requirement helps to refine and enable
 	Parent *string `json:"parent,omitempty"`
+	// Extension for Parent
+	ParentExt *Element `json:"_parent,omitempty"`
 	// Design artifact that satisfies this requirement
 	SatisfiedBy []*string `json:"satisfiedBy,omitempty"`
+	// Extension for SatisfiedBy
+	SatisfiedByExt []*Element `json:"_satisfiedBy,omitempty"`
 	// External artifact (rule/document etc. that) created this requirement
 	Reference []*string `json:"reference,omitempty"`
+	// Extension for Reference
+	ReferenceExt []*Element `json:"_reference,omitempty"`
 	// Who asked for this statement
 	Source []Reference `json:"source,omitempty"`
 }
@@ -586,31 +607,31 @@ func (b RequirementsStatement) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "key", b.Key, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "key", b.Key, b.KeyExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "label", b.Label, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "label", b.Label, b.LabelExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCodeArray(e, "conformance", b.Conformance, nil); err != nil {
+	if err := xmlEncodePrimitiveCodeArray(e, "conformance", b.Conformance, b.ConformanceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "conditionality", b.Conditionality, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "conditionality", b.Conditionality, b.ConditionalityExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "requirement", b.Requirement, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "requirement", b.Requirement, b.RequirementExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "derivedFrom", b.DerivedFrom, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "derivedFrom", b.DerivedFrom, b.DerivedFromExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "parent", b.Parent, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "parent", b.Parent, b.ParentExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "satisfiedBy", b.SatisfiedBy, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "satisfiedBy", b.SatisfiedBy, b.SatisfiedByExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "reference", b.Reference, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "reference", b.Reference, b.ReferenceExt); err != nil {
 		return err
 	}
 	for _, item := range b.Source {
@@ -652,62 +673,71 @@ func (r *RequirementsStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "key":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Key = v
+				r.KeyExt = ext
 			case "label":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Label = v
+				r.LabelExt = ext
 			case "conformance":
-				v, _, err := xmlDecodePrimitiveCode[ConformanceExpectation](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ConformanceExpectation](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Conformance = append(r.Conformance, v)
+				r.ConformanceExt = append(r.ConformanceExt, ext)
 			case "conditionality":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Conditionality = v
+				r.ConditionalityExt = ext
 			case "requirement":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Requirement = v
+				r.RequirementExt = ext
 			case "derivedFrom":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DerivedFrom = v
+				r.DerivedFromExt = ext
 			case "parent":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Parent = v
+				r.ParentExt = ext
 			case "satisfiedBy":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SatisfiedBy = append(r.SatisfiedBy, v)
+				r.SatisfiedByExt = append(r.SatisfiedByExt, ext)
 			case "reference":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Reference = append(r.Reference, v)
+				r.ReferenceExt = append(r.ReferenceExt, ext)
 			case "source":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -695,11 +695,12 @@ func (r *SubstanceReferenceInformationTarget) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.AmountRange = &v
 			case "amountString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AmountString = v
+				_ = ext
 			case "amountType":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

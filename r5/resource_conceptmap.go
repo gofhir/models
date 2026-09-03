@@ -703,12 +703,20 @@ type ConceptMapAdditionalAttribute struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Identifies this additional attribute through this resource
 	Code *string `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Formal identifier for the data element referred to in this attribte
 	Uri *string `json:"uri,omitempty"`
+	// Extension for Uri
+	UriExt *Element `json:"_uri,omitempty"`
 	// Why the additional attribute is defined, and/or what the data element it refers to is
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// code | Coding | string | boolean | Quantity
 	Type *ConceptMapAttributeType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 }
 
 // MarshalXML serializes ConceptMapAdditionalAttribute to FHIR-conformant XML.
@@ -733,16 +741,16 @@ func (b ConceptMapAdditionalAttribute) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "uri", b.Uri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "uri", b.Uri, b.UriExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
 
@@ -779,29 +787,33 @@ func (r *ConceptMapAdditionalAttribute) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "uri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Uri = v
+				r.UriExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[ConceptMapAttributeType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ConceptMapAttributeType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -824,8 +836,12 @@ type ConceptMapGroup struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Source system where concepts to be mapped are defined
 	Source *string `json:"source,omitempty"`
+	// Extension for Source
+	SourceExt *Element `json:"_source,omitempty"`
 	// Target system that the concepts are to be mapped to
 	Target *string `json:"target,omitempty"`
+	// Extension for Target
+	TargetExt *Element `json:"_target,omitempty"`
 	// Mappings for a concept from the source set
 	Element []ConceptMapGroupElement `json:"element,omitempty"`
 	// What to do when there is no mapping target for the source concept and ConceptMap.group.element.noMap is not true
@@ -854,10 +870,10 @@ func (b ConceptMapGroup) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "source", b.Source, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "source", b.Source, b.SourceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "target", b.Target, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "target", b.Target, b.TargetExt); err != nil {
 		return err
 	}
 	for _, item := range b.Element {
@@ -904,17 +920,19 @@ func (r *ConceptMapGroup) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "source":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Source = v
+				r.SourceExt = ext
 			case "target":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Target = v
+				r.TargetExt = ext
 			case "element":
 				var v ConceptMapGroupElement
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -949,12 +967,20 @@ type ConceptMapGroupElement struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Identifies element being mapped
 	Code *string `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Display for the code
 	Display *string `json:"display,omitempty"`
+	// Extension for Display
+	DisplayExt *Element `json:"_display,omitempty"`
 	// Identifies the set of concepts being mapped
 	ValueSet *string `json:"valueSet,omitempty"`
+	// Extension for ValueSet
+	ValueSetExt *Element `json:"_valueSet,omitempty"`
 	// No mapping to a target concept for this source concept
 	NoMap *bool `json:"noMap,omitempty"`
+	// Extension for NoMap
+	NoMapExt *Element `json:"_noMap,omitempty"`
 	// Concept in target system for element
 	Target []ConceptMapGroupElementTarget `json:"target,omitempty"`
 }
@@ -981,16 +1007,16 @@ func (b ConceptMapGroupElement) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "display", b.Display, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "display", b.Display, b.DisplayExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueSet", b.ValueSet, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueSet", b.ValueSet, b.ValueSetExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "noMap", b.NoMap, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "noMap", b.NoMap, b.NoMapExt); err != nil {
 		return err
 	}
 	for _, item := range b.Target {
@@ -1032,29 +1058,33 @@ func (r *ConceptMapGroupElement) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "display":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Display = v
+				r.DisplayExt = ext
 			case "valueSet":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueSet = v
+				r.ValueSetExt = ext
 			case "noMap":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.NoMap = v
+				r.NoMapExt = ext
 			case "target":
 				var v ConceptMapGroupElementTarget
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1083,14 +1113,24 @@ type ConceptMapGroupElementTarget struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Code that identifies the target element
 	Code *string `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Display for the code
 	Display *string `json:"display,omitempty"`
+	// Extension for Display
+	DisplayExt *Element `json:"_display,omitempty"`
 	// Identifies the set of target concepts
 	ValueSet *string `json:"valueSet,omitempty"`
+	// Extension for ValueSet
+	ValueSetExt *Element `json:"_valueSet,omitempty"`
 	// related-to | equivalent | source-is-narrower-than-target | source-is-broader-than-target | not-related-to
 	Relationship *ConceptMapRelationship `json:"relationship,omitempty"`
+	// Extension for Relationship
+	RelationshipExt *Element `json:"_relationship,omitempty"`
 	// Description of status/issues in mapping
 	Comment *string `json:"comment,omitempty"`
+	// Extension for Comment
+	CommentExt *Element `json:"_comment,omitempty"`
 	// Property value for the source -> target mapping
 	Property []ConceptMapGroupElementTargetProperty `json:"property,omitempty"`
 	// Other properties required for this mapping
@@ -1121,19 +1161,19 @@ func (b ConceptMapGroupElementTarget) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "display", b.Display, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "display", b.Display, b.DisplayExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueSet", b.ValueSet, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueSet", b.ValueSet, b.ValueSetExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "relationship", b.Relationship, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "relationship", b.Relationship, b.RelationshipExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, b.CommentExt); err != nil {
 		return err
 	}
 	for _, item := range b.Property {
@@ -1185,35 +1225,40 @@ func (r *ConceptMapGroupElementTarget) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "display":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Display = v
+				r.DisplayExt = ext
 			case "valueSet":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueSet = v
+				r.ValueSetExt = ext
 			case "relationship":
-				v, _, err := xmlDecodePrimitiveCode[ConceptMapRelationship](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ConceptMapRelationship](d, t)
 				if err != nil {
 					return err
 				}
 				r.Relationship = v
+				r.RelationshipExt = ext
 			case "comment":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Comment = v
+				r.CommentExt = ext
 			case "property":
 				var v ConceptMapGroupElementTargetProperty
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1254,6 +1299,8 @@ type ConceptMapGroupElementTargetDependsOn struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A reference to a mapping attribute defined in ConceptMap.additionalAttribute
 	Attribute *string `json:"attribute,omitempty"`
+	// Extension for Attribute
+	AttributeExt *Element `json:"_attribute,omitempty"`
 	// Value of the referenced data element
 	ValueCode *string `json:"valueCode,omitempty"`
 	// Extension for ValueCode
@@ -1272,6 +1319,8 @@ type ConceptMapGroupElementTargetDependsOn struct {
 	ValueQuantity *Quantity `json:"valueQuantity,omitempty"`
 	// The mapping depends on a data element with a value from this value set
 	ValueSet *string `json:"valueSet,omitempty"`
+	// Extension for ValueSet
+	ValueSetExt *Element `json:"_valueSet,omitempty"`
 }
 
 // MarshalXML serializes ConceptMapGroupElementTargetDependsOn to FHIR-conformant XML.
@@ -1296,7 +1345,7 @@ func (b ConceptMapGroupElementTargetDependsOn) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "attribute", b.Attribute, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "attribute", b.Attribute, b.AttributeExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "valueCode", b.ValueCode, nil); err != nil {
@@ -1318,7 +1367,7 @@ func (b ConceptMapGroupElementTargetDependsOn) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueSet", b.ValueSet, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueSet", b.ValueSet, b.ValueSetExt); err != nil {
 		return err
 	}
 
@@ -1355,17 +1404,19 @@ func (r *ConceptMapGroupElementTargetDependsOn) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "attribute":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Attribute = v
+				r.AttributeExt = ext
 			case "valueCode":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueCode = v
+				_ = ext
 			case "valueCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1373,17 +1424,19 @@ func (r *ConceptMapGroupElementTargetDependsOn) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.ValueCoding = &v
 			case "valueString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
+				_ = ext
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1391,11 +1444,12 @@ func (r *ConceptMapGroupElementTargetDependsOn) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.ValueQuantity = &v
 			case "valueSet":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueSet = v
+				r.ValueSetExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1418,6 +1472,8 @@ type ConceptMapGroupElementTargetProperty struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Reference to ConceptMap.property.code
 	Code *string `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Value of the property for this concept
 	ValueCoding *Coding `json:"valueCoding,omitempty"`
 	// Value of the property for this concept
@@ -1468,7 +1524,7 @@ func (b ConceptMapGroupElementTargetProperty) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
 	if b.ValueCoding != nil {
@@ -1528,11 +1584,12 @@ func (r *ConceptMapGroupElementTargetProperty) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "valueCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1540,41 +1597,47 @@ func (r *ConceptMapGroupElementTargetProperty) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.ValueCoding = &v
 			case "valueString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
+				_ = ext
 			case "valueInteger":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
+				_ = ext
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			case "valueDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
+				_ = ext
 			case "valueDecimal":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDecimal = v
+				_ = ext
 			case "valueCode":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueCode = v
+				_ = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1597,16 +1660,28 @@ type ConceptMapGroupUnmapped struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// use-source-code | fixed | other-map
 	Mode *ConceptMapGroupUnmappedMode `json:"mode,omitempty"`
+	// Extension for Mode
+	ModeExt *Element `json:"_mode,omitempty"`
 	// Fixed code when mode = fixed
 	Code *string `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Display for the code
 	Display *string `json:"display,omitempty"`
+	// Extension for Display
+	DisplayExt *Element `json:"_display,omitempty"`
 	// Fixed code set when mode = fixed
 	ValueSet *string `json:"valueSet,omitempty"`
+	// Extension for ValueSet
+	ValueSetExt *Element `json:"_valueSet,omitempty"`
 	// related-to | equivalent | source-is-narrower-than-target | source-is-broader-than-target | not-related-to
 	Relationship *ConceptMapRelationship `json:"relationship,omitempty"`
+	// Extension for Relationship
+	RelationshipExt *Element `json:"_relationship,omitempty"`
 	// canonical reference to an additional ConceptMap to use for mapping if the source concept is unmapped
 	OtherMap *string `json:"otherMap,omitempty"`
+	// Extension for OtherMap
+	OtherMapExt *Element `json:"_otherMap,omitempty"`
 }
 
 // MarshalXML serializes ConceptMapGroupUnmapped to FHIR-conformant XML.
@@ -1631,22 +1706,22 @@ func (b ConceptMapGroupUnmapped) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "mode", b.Mode, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "mode", b.Mode, b.ModeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "display", b.Display, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "display", b.Display, b.DisplayExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueSet", b.ValueSet, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueSet", b.ValueSet, b.ValueSetExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "relationship", b.Relationship, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "relationship", b.Relationship, b.RelationshipExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "otherMap", b.OtherMap, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "otherMap", b.OtherMap, b.OtherMapExt); err != nil {
 		return err
 	}
 
@@ -1683,41 +1758,47 @@ func (r *ConceptMapGroupUnmapped) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "mode":
-				v, _, err := xmlDecodePrimitiveCode[ConceptMapGroupUnmappedMode](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ConceptMapGroupUnmappedMode](d, t)
 				if err != nil {
 					return err
 				}
 				r.Mode = v
+				r.ModeExt = ext
 			case "code":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "display":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Display = v
+				r.DisplayExt = ext
 			case "valueSet":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueSet = v
+				r.ValueSetExt = ext
 			case "relationship":
-				v, _, err := xmlDecodePrimitiveCode[ConceptMapRelationship](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ConceptMapRelationship](d, t)
 				if err != nil {
 					return err
 				}
 				r.Relationship = v
+				r.RelationshipExt = ext
 			case "otherMap":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.OtherMap = v
+				r.OtherMapExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1740,14 +1821,24 @@ type ConceptMapProperty struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Identifies the property on the mappings, and when referred to in the $translate operation
 	Code *string `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Formal identifier for the property
 	Uri *string `json:"uri,omitempty"`
+	// Extension for Uri
+	UriExt *Element `json:"_uri,omitempty"`
 	// Why the property is defined, and/or what it conveys
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Coding | string | integer | boolean | dateTime | decimal | code
 	Type *ConceptMapPropertyType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// The CodeSystem from which code values come
 	System *string `json:"system,omitempty"`
+	// Extension for System
+	SystemExt *Element `json:"_system,omitempty"`
 }
 
 // MarshalXML serializes ConceptMapProperty to FHIR-conformant XML.
@@ -1772,19 +1863,19 @@ func (b ConceptMapProperty) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "uri", b.Uri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "uri", b.Uri, b.UriExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "system", b.System, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "system", b.System, b.SystemExt); err != nil {
 		return err
 	}
 
@@ -1821,35 +1912,40 @@ func (r *ConceptMapProperty) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "uri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Uri = v
+				r.UriExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[ConceptMapPropertyType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ConceptMapPropertyType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "system":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.System = v
+				r.SystemExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

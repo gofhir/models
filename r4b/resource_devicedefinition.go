@@ -432,12 +432,13 @@ func (r *DeviceDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.Specialization = append(r.Specialization, v)
 			case "version":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Version = append(r.Version, v)
+				r.VersionExt = append(r.VersionExt, ext)
 			case "safety":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -649,8 +650,12 @@ type DeviceDefinitionDeviceName struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The name of the device
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// udi-label-name | user-friendly-name | patient-reported-name | manufacturer-name | model-name | other
 	Type *DeviceNameType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 }
 
 // MarshalXML serializes DeviceDefinitionDeviceName to FHIR-conformant XML.
@@ -675,10 +680,10 @@ func (b DeviceDefinitionDeviceName) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
 
@@ -715,17 +720,19 @@ func (r *DeviceDefinitionDeviceName) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[DeviceNameType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[DeviceNameType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -750,8 +757,12 @@ type DeviceDefinitionMaterial struct {
 	Substance *CodeableConcept `json:"substance,omitempty"`
 	// Indicates an alternative material of the device
 	Alternate *bool `json:"alternate,omitempty"`
+	// Extension for Alternate
+	AlternateExt *Element `json:"_alternate,omitempty"`
 	// Whether the substance is a known or suspected allergen
 	AllergenicIndicator *bool `json:"allergenicIndicator,omitempty"`
+	// Extension for AllergenicIndicator
+	AllergenicIndicatorExt *Element `json:"_allergenicIndicator,omitempty"`
 }
 
 // MarshalXML serializes DeviceDefinitionMaterial to FHIR-conformant XML.
@@ -781,10 +792,10 @@ func (b DeviceDefinitionMaterial) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "alternate", b.Alternate, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "alternate", b.Alternate, b.AlternateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "allergenicIndicator", b.AllergenicIndicator, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "allergenicIndicator", b.AllergenicIndicator, b.AllergenicIndicatorExt); err != nil {
 		return err
 	}
 
@@ -827,17 +838,19 @@ func (r *DeviceDefinitionMaterial) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.Substance = &v
 			case "alternate":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Alternate = v
+				r.AlternateExt = ext
 			case "allergenicIndicator":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.AllergenicIndicator = v
+				r.AllergenicIndicatorExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -976,8 +989,12 @@ type DeviceDefinitionSpecialization struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The standard that is used to operate and communicate
 	SystemType *string `json:"systemType,omitempty"`
+	// Extension for SystemType
+	SystemTypeExt *Element `json:"_systemType,omitempty"`
 	// The version of the standard that is used to operate and communicate
 	Version *string `json:"version,omitempty"`
+	// Extension for Version
+	VersionExt *Element `json:"_version,omitempty"`
 }
 
 // MarshalXML serializes DeviceDefinitionSpecialization to FHIR-conformant XML.
@@ -1002,10 +1019,10 @@ func (b DeviceDefinitionSpecialization) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "systemType", b.SystemType, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "systemType", b.SystemType, b.SystemTypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "version", b.Version, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "version", b.Version, b.VersionExt); err != nil {
 		return err
 	}
 
@@ -1042,17 +1059,19 @@ func (r *DeviceDefinitionSpecialization) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "systemType":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SystemType = v
+				r.SystemTypeExt = ext
 			case "version":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Version = v
+				r.VersionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1075,10 +1094,16 @@ type DeviceDefinitionUdiDeviceIdentifier struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The identifier that is to be associated with every Device that references this DeviceDefintiion for the issuer and jurisdication porvided in the DeviceDefinition.udiDeviceIdentifier
 	DeviceIdentifier *string `json:"deviceIdentifier,omitempty"`
+	// Extension for DeviceIdentifier
+	DeviceIdentifierExt *Element `json:"_deviceIdentifier,omitempty"`
 	// The organization that assigns the identifier algorithm
 	Issuer *string `json:"issuer,omitempty"`
+	// Extension for Issuer
+	IssuerExt *Element `json:"_issuer,omitempty"`
 	// The jurisdiction to which the deviceIdentifier applies
 	Jurisdiction *string `json:"jurisdiction,omitempty"`
+	// Extension for Jurisdiction
+	JurisdictionExt *Element `json:"_jurisdiction,omitempty"`
 }
 
 // MarshalXML serializes DeviceDefinitionUdiDeviceIdentifier to FHIR-conformant XML.
@@ -1103,13 +1128,13 @@ func (b DeviceDefinitionUdiDeviceIdentifier) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "deviceIdentifier", b.DeviceIdentifier, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "deviceIdentifier", b.DeviceIdentifier, b.DeviceIdentifierExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "issuer", b.Issuer, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "issuer", b.Issuer, b.IssuerExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "jurisdiction", b.Jurisdiction, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "jurisdiction", b.Jurisdiction, b.JurisdictionExt); err != nil {
 		return err
 	}
 
@@ -1146,23 +1171,26 @@ func (r *DeviceDefinitionUdiDeviceIdentifier) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "deviceIdentifier":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DeviceIdentifier = v
+				r.DeviceIdentifierExt = ext
 			case "issuer":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Issuer = v
+				r.IssuerExt = ext
 			case "jurisdiction":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Jurisdiction = v
+				r.JurisdictionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

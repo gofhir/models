@@ -495,6 +495,8 @@ type InvoiceLineItem struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Sequence number of line item
 	Sequence *uint32 `json:"sequence,omitempty"`
+	// Extension for Sequence
+	SequenceExt *Element `json:"_sequence,omitempty"`
 	// Service data or period
 	ServicedDate *string `json:"servicedDate,omitempty"`
 	// Extension for ServicedDate
@@ -531,7 +533,7 @@ func (b InvoiceLineItem) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, b.SequenceExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "servicedDate", b.ServicedDate, nil); err != nil {
@@ -591,17 +593,19 @@ func (r *InvoiceLineItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "sequence":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Sequence = v
+				r.SequenceExt = ext
 			case "servicedDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ServicedDate = v
+				_ = ext
 			case "servicedPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

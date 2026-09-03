@@ -443,12 +443,13 @@ func (r *Questionnaire) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				r.Title = v
 				r.TitleExt = ext
 			case "derivedFrom":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFrom = append(r.DerivedFrom, v)
+				r.DerivedFromExt = append(r.DerivedFromExt, ext)
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {
@@ -464,12 +465,13 @@ func (r *Questionnaire) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				r.Experimental = v
 				r.ExperimentalExt = ext
 			case "subjectType":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SubjectType = append(r.SubjectType, v)
+				r.SubjectTypeExt = append(r.SubjectTypeExt, ext)
 			case "date":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -584,34 +586,60 @@ type QuestionnaireItem struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Unique id for item in questionnaire
 	LinkId *string `json:"linkId,omitempty"`
+	// Extension for LinkId
+	LinkIdExt *Element `json:"_linkId,omitempty"`
 	// ElementDefinition - details for the item
 	Definition *string `json:"definition,omitempty"`
+	// Extension for Definition
+	DefinitionExt *Element `json:"_definition,omitempty"`
 	// Corresponding concept for this item in a terminology
 	Code []Coding `json:"code,omitempty"`
 	// E.g. "1(a)", "2.5.3"
 	Prefix *string `json:"prefix,omitempty"`
+	// Extension for Prefix
+	PrefixExt *Element `json:"_prefix,omitempty"`
 	// Primary text for the item
 	Text *string `json:"text,omitempty"`
+	// Extension for Text
+	TextExt *Element `json:"_text,omitempty"`
 	// group | display | boolean | decimal | integer | date | dateTime +
 	Type *QuestionnaireItemType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// Only allow data when
 	EnableWhen []QuestionnaireItemEnableWhen `json:"enableWhen,omitempty"`
 	// all | any
 	EnableBehavior *EnableWhenBehavior `json:"enableBehavior,omitempty"`
+	// Extension for EnableBehavior
+	EnableBehaviorExt *Element `json:"_enableBehavior,omitempty"`
 	// hidden | protected
 	DisabledDisplay *QuestionnaireItemDisabledDisplay `json:"disabledDisplay,omitempty"`
+	// Extension for DisabledDisplay
+	DisabledDisplayExt *Element `json:"_disabledDisplay,omitempty"`
 	// Whether the item must be included in data results
 	Required *bool `json:"required,omitempty"`
+	// Extension for Required
+	RequiredExt *Element `json:"_required,omitempty"`
 	// Whether the item may repeat
 	Repeats *bool `json:"repeats,omitempty"`
+	// Extension for Repeats
+	RepeatsExt *Element `json:"_repeats,omitempty"`
 	// Don't allow human editing
 	ReadOnly *bool `json:"readOnly,omitempty"`
+	// Extension for ReadOnly
+	ReadOnlyExt *Element `json:"_readOnly,omitempty"`
 	// No more than these many characters
 	MaxLength *int `json:"maxLength,omitempty"`
+	// Extension for MaxLength
+	MaxLengthExt *Element `json:"_maxLength,omitempty"`
 	// optionsOnly | optionsOrType | optionsOrString
 	AnswerConstraint *QuestionnaireAnswerConstraint `json:"answerConstraint,omitempty"`
+	// Extension for AnswerConstraint
+	AnswerConstraintExt *Element `json:"_answerConstraint,omitempty"`
 	// ValueSet containing permitted answers
 	AnswerValueSet *string `json:"answerValueSet,omitempty"`
+	// Extension for AnswerValueSet
+	AnswerValueSetExt *Element `json:"_answerValueSet,omitempty"`
 	// Permitted answer
 	AnswerOption []QuestionnaireItemAnswerOption `json:"answerOption,omitempty"`
 	// Initial value(s) when item is first rendered
@@ -642,10 +670,10 @@ func (b QuestionnaireItem) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "linkId", b.LinkId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "linkId", b.LinkId, b.LinkIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "definition", b.Definition, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "definition", b.Definition, b.DefinitionExt); err != nil {
 		return err
 	}
 	for _, item := range b.Code {
@@ -653,13 +681,13 @@ func (b QuestionnaireItem) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "prefix", b.Prefix, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "prefix", b.Prefix, b.PrefixExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "text", b.Text, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "text", b.Text, b.TextExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
 	for _, item := range b.EnableWhen {
@@ -667,28 +695,28 @@ func (b QuestionnaireItem) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "enableBehavior", b.EnableBehavior, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "enableBehavior", b.EnableBehavior, b.EnableBehaviorExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "disabledDisplay", b.DisabledDisplay, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "disabledDisplay", b.DisabledDisplay, b.DisabledDisplayExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "required", b.Required, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "required", b.Required, b.RequiredExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "repeats", b.Repeats, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "repeats", b.Repeats, b.RepeatsExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "readOnly", b.ReadOnly, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "readOnly", b.ReadOnly, b.ReadOnlyExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "maxLength", b.MaxLength, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "maxLength", b.MaxLength, b.MaxLengthExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "answerConstraint", b.AnswerConstraint, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "answerConstraint", b.AnswerConstraint, b.AnswerConstraintExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "answerValueSet", b.AnswerValueSet, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "answerValueSet", b.AnswerValueSet, b.AnswerValueSetExt); err != nil {
 		return err
 	}
 	for _, item := range b.AnswerOption {
@@ -740,17 +768,19 @@ func (r *QuestionnaireItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "linkId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.LinkId = v
+				r.LinkIdExt = ext
 			case "definition":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Definition = v
+				r.DefinitionExt = ext
 			case "code":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -758,23 +788,26 @@ func (r *QuestionnaireItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.Code = append(r.Code, v)
 			case "prefix":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Prefix = v
+				r.PrefixExt = ext
 			case "text":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Text = v
+				r.TextExt = ext
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[QuestionnaireItemType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[QuestionnaireItemType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "enableWhen":
 				var v QuestionnaireItemEnableWhen
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -782,53 +815,61 @@ func (r *QuestionnaireItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.EnableWhen = append(r.EnableWhen, v)
 			case "enableBehavior":
-				v, _, err := xmlDecodePrimitiveCode[EnableWhenBehavior](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[EnableWhenBehavior](d, t)
 				if err != nil {
 					return err
 				}
 				r.EnableBehavior = v
+				r.EnableBehaviorExt = ext
 			case "disabledDisplay":
-				v, _, err := xmlDecodePrimitiveCode[QuestionnaireItemDisabledDisplay](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[QuestionnaireItemDisabledDisplay](d, t)
 				if err != nil {
 					return err
 				}
 				r.DisabledDisplay = v
+				r.DisabledDisplayExt = ext
 			case "required":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Required = v
+				r.RequiredExt = ext
 			case "repeats":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Repeats = v
+				r.RepeatsExt = ext
 			case "readOnly":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ReadOnly = v
+				r.ReadOnlyExt = ext
 			case "maxLength":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.MaxLength = v
+				r.MaxLengthExt = ext
 			case "answerConstraint":
-				v, _, err := xmlDecodePrimitiveCode[QuestionnaireAnswerConstraint](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[QuestionnaireAnswerConstraint](d, t)
 				if err != nil {
 					return err
 				}
 				r.AnswerConstraint = v
+				r.AnswerConstraintExt = ext
 			case "answerValueSet":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AnswerValueSet = v
+				r.AnswerValueSetExt = ext
 			case "answerOption":
 				var v QuestionnaireItemAnswerOption
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -889,6 +930,8 @@ type QuestionnaireItemAnswerOption struct {
 	ValueReference *Reference `json:"valueReference,omitempty"`
 	// Whether option is selected by default
 	InitialSelected *bool `json:"initialSelected,omitempty"`
+	// Extension for InitialSelected
+	InitialSelectedExt *Element `json:"_initialSelected,omitempty"`
 }
 
 // MarshalXML serializes QuestionnaireItemAnswerOption to FHIR-conformant XML.
@@ -935,7 +978,7 @@ func (b QuestionnaireItemAnswerOption) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "initialSelected", b.InitialSelected, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "initialSelected", b.InitialSelected, b.InitialSelectedExt); err != nil {
 		return err
 	}
 
@@ -972,29 +1015,33 @@ func (r *QuestionnaireItemAnswerOption) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "valueInteger":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
+				_ = ext
 			case "valueDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDate = v
+				_ = ext
 			case "valueTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueTime = v
+				_ = ext
 			case "valueString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
+				_ = ext
 			case "valueCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1008,11 +1055,12 @@ func (r *QuestionnaireItemAnswerOption) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.ValueReference = &v
 			case "initialSelected":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.InitialSelected = v
+				r.InitialSelectedExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1035,8 +1083,12 @@ type QuestionnaireItemEnableWhen struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The linkId of question that determines whether item is enabled/disabled
 	Question *string `json:"question,omitempty"`
+	// Extension for Question
+	QuestionExt *Element `json:"_question,omitempty"`
 	// exists | = | != | > | < | >= | <=
 	Operator *QuestionnaireItemOperator `json:"operator,omitempty"`
+	// Extension for Operator
+	OperatorExt *Element `json:"_operator,omitempty"`
 	// Value for question comparison based on operator
 	AnswerBoolean *bool `json:"answerBoolean,omitempty"`
 	// Extension for AnswerBoolean
@@ -1095,10 +1147,10 @@ func (b QuestionnaireItemEnableWhen) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "question", b.Question, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "question", b.Question, b.QuestionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "operator", b.Operator, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "operator", b.Operator, b.OperatorExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveBool(e, "answerBoolean", b.AnswerBoolean, nil); err != nil {
@@ -1171,59 +1223,68 @@ func (r *QuestionnaireItemEnableWhen) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "question":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Question = v
+				r.QuestionExt = ext
 			case "operator":
-				v, _, err := xmlDecodePrimitiveCode[QuestionnaireItemOperator](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[QuestionnaireItemOperator](d, t)
 				if err != nil {
 					return err
 				}
 				r.Operator = v
+				r.OperatorExt = ext
 			case "answerBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.AnswerBoolean = v
+				_ = ext
 			case "answerDecimal":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.AnswerDecimal = v
+				_ = ext
 			case "answerInteger":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.AnswerInteger = v
+				_ = ext
 			case "answerDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AnswerDate = v
+				_ = ext
 			case "answerDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AnswerDateTime = v
+				_ = ext
 			case "answerTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AnswerTime = v
+				_ = ext
 			case "answerString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AnswerString = v
+				_ = ext
 			case "answerCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1404,53 +1465,61 @@ func (r *QuestionnaireItemInitial) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			case "valueDecimal":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDecimal = v
+				_ = ext
 			case "valueInteger":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
+				_ = ext
 			case "valueDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDate = v
+				_ = ext
 			case "valueDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
+				_ = ext
 			case "valueTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueTime = v
+				_ = ext
 			case "valueString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
+				_ = ext
 			case "valueUri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueUri = v
+				_ = ext
 			case "valueAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {

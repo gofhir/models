@@ -392,12 +392,13 @@ func (r *MedicationKnowledge) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.IntendedJurisdiction = append(r.IntendedJurisdiction, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Name = append(r.Name, v)
+				r.NameExt = append(r.NameExt, ext)
 			case "relatedMedicationKnowledge":
 				var v MedicationKnowledgeRelatedMedicationKnowledge
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -509,6 +510,8 @@ type MedicationKnowledgeCost struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// The source or owner for the price information
 	Source *string `json:"source,omitempty"`
+	// Extension for Source
+	SourceExt *Element `json:"_source,omitempty"`
 	// The price or category of the cost of the medication
 	CostMoney *Money `json:"costMoney,omitempty"`
 	// The price or category of the cost of the medication
@@ -547,7 +550,7 @@ func (b MedicationKnowledgeCost) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "source", b.Source, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "source", b.Source, b.SourceExt); err != nil {
 		return err
 	}
 	if b.CostMoney != nil {
@@ -606,11 +609,12 @@ func (r *MedicationKnowledgeCost) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.Type = &v
 			case "source":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Source = v
+				r.SourceExt = ext
 			case "costMoney":
 				var v Money
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -897,11 +901,12 @@ func (r *MedicationKnowledgeDefinitionalDrugCharacteristic) UnmarshalXML(d *xml.
 				}
 				r.ValueCodeableConcept = &v
 			case "valueString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
+				_ = ext
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -909,11 +914,12 @@ func (r *MedicationKnowledgeDefinitionalDrugCharacteristic) UnmarshalXML(d *xml.
 				}
 				r.ValueQuantity = &v
 			case "valueBase64Binary":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBase64Binary = v
+				_ = ext
 			case "valueAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1638,17 +1644,19 @@ func (r *MedicationKnowledgeMedicineClassification) UnmarshalXML(d *xml.Decoder,
 				}
 				r.Type = &v
 			case "sourceString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SourceString = v
+				_ = ext
 			case "sourceUri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SourceUri = v
+				_ = ext
 			case "classification":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1679,6 +1687,8 @@ type MedicationKnowledgeMonitoringProgram struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Name of the reviewing program
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 }
 
 // MarshalXML serializes MedicationKnowledgeMonitoringProgram to FHIR-conformant XML.
@@ -1708,7 +1718,7 @@ func (b MedicationKnowledgeMonitoringProgram) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
 
@@ -1751,11 +1761,12 @@ func (r *MedicationKnowledgeMonitoringProgram) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.Type = &v
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2218,6 +2229,8 @@ type MedicationKnowledgeRegulatorySubstitution struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Specifies if regulation allows for changes in the medication when dispensing
 	Allowed *bool `json:"allowed,omitempty"`
+	// Extension for Allowed
+	AllowedExt *Element `json:"_allowed,omitempty"`
 }
 
 // MarshalXML serializes MedicationKnowledgeRegulatorySubstitution to FHIR-conformant XML.
@@ -2247,7 +2260,7 @@ func (b MedicationKnowledgeRegulatorySubstitution) MarshalXML(e *xml.Encoder, st
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "allowed", b.Allowed, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "allowed", b.Allowed, b.AllowedExt); err != nil {
 		return err
 	}
 
@@ -2290,11 +2303,12 @@ func (r *MedicationKnowledgeRegulatorySubstitution) UnmarshalXML(d *xml.Decoder,
 				}
 				r.Type = &v
 			case "allowed":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Allowed = v
+				r.AllowedExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2420,6 +2434,8 @@ type MedicationKnowledgeStorageGuideline struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Reference to additional information
 	Reference *string `json:"reference,omitempty"`
+	// Extension for Reference
+	ReferenceExt *Element `json:"_reference,omitempty"`
 	// Additional storage notes
 	Note []Annotation `json:"note,omitempty"`
 	// Duration remains stable
@@ -2450,7 +2466,7 @@ func (b MedicationKnowledgeStorageGuideline) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "reference", b.Reference, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "reference", b.Reference, b.ReferenceExt); err != nil {
 		return err
 	}
 	for _, item := range b.Note {
@@ -2502,11 +2518,12 @@ func (r *MedicationKnowledgeStorageGuideline) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "reference":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Reference = v
+				r.ReferenceExt = ext
 			case "note":
 				var v Annotation
 				if err := v.UnmarshalXML(d, t); err != nil {

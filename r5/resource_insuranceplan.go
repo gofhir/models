@@ -345,12 +345,13 @@ func (r *InsurancePlan) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				r.Name = v
 				r.NameExt = ext
 			case "alias":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Alias = append(r.Alias, v)
+				r.AliasExt = append(r.AliasExt, ext)
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -545,6 +546,8 @@ type InsurancePlanCoverageBenefit struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Referral requirements
 	Requirement *string `json:"requirement,omitempty"`
+	// Extension for Requirement
+	RequirementExt *Element `json:"_requirement,omitempty"`
 	// Benefit limits
 	Limit []InsurancePlanCoverageBenefitLimit `json:"limit,omitempty"`
 }
@@ -576,7 +579,7 @@ func (b InsurancePlanCoverageBenefit) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "requirement", b.Requirement, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "requirement", b.Requirement, b.RequirementExt); err != nil {
 		return err
 	}
 	for _, item := range b.Limit {
@@ -624,11 +627,12 @@ func (r *InsurancePlanCoverageBenefit) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.Type = &v
 			case "requirement":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Requirement = v
+				r.RequirementExt = ext
 			case "limit":
 				var v InsurancePlanCoverageBenefitLimit
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -917,10 +921,14 @@ type InsurancePlanPlanGeneralCost struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Number of enrollees
 	GroupSize *uint32 `json:"groupSize,omitempty"`
+	// Extension for GroupSize
+	GroupSizeExt *Element `json:"_groupSize,omitempty"`
 	// Cost value
 	Cost *Money `json:"cost,omitempty"`
 	// Additional cost information
 	Comment *string `json:"comment,omitempty"`
+	// Extension for Comment
+	CommentExt *Element `json:"_comment,omitempty"`
 }
 
 // MarshalXML serializes InsurancePlanPlanGeneralCost to FHIR-conformant XML.
@@ -950,7 +958,7 @@ func (b InsurancePlanPlanGeneralCost) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "groupSize", b.GroupSize, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "groupSize", b.GroupSize, b.GroupSizeExt); err != nil {
 		return err
 	}
 	if b.Cost != nil {
@@ -958,7 +966,7 @@ func (b InsurancePlanPlanGeneralCost) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, b.CommentExt); err != nil {
 		return err
 	}
 
@@ -1001,11 +1009,12 @@ func (r *InsurancePlanPlanGeneralCost) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.Type = &v
 			case "groupSize":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.GroupSize = v
+				r.GroupSizeExt = ext
 			case "cost":
 				var v Money
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1013,11 +1022,12 @@ func (r *InsurancePlanPlanGeneralCost) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.Cost = &v
 			case "comment":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Comment = v
+				r.CommentExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

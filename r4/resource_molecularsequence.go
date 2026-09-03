@@ -454,32 +454,54 @@ type MolecularSequenceQuality struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// indel | snp | unknown
 	Type *QualityType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// Standard sequence for comparison
 	StandardSequence *CodeableConcept `json:"standardSequence,omitempty"`
 	// Start position of the sequence
 	Start *int `json:"start,omitempty"`
+	// Extension for Start
+	StartExt *Element `json:"_start,omitempty"`
 	// End position of the sequence
 	End *int `json:"end,omitempty"`
+	// Extension for End
+	EndExt *Element `json:"_end,omitempty"`
 	// Quality score for the comparison
 	Score *Quantity `json:"score,omitempty"`
 	// Method to get quality
 	Method *CodeableConcept `json:"method,omitempty"`
 	// True positives from the perspective of the truth data
 	TruthTP *Decimal `json:"truthTP,omitempty"`
+	// Extension for TruthTP
+	TruthTPExt *Element `json:"_truthTP,omitempty"`
 	// True positives from the perspective of the query data
 	QueryTP *Decimal `json:"queryTP,omitempty"`
+	// Extension for QueryTP
+	QueryTPExt *Element `json:"_queryTP,omitempty"`
 	// False negatives
 	TruthFN *Decimal `json:"truthFN,omitempty"`
+	// Extension for TruthFN
+	TruthFNExt *Element `json:"_truthFN,omitempty"`
 	// False positives
 	QueryFP *Decimal `json:"queryFP,omitempty"`
+	// Extension for QueryFP
+	QueryFPExt *Element `json:"_queryFP,omitempty"`
 	// False positives where the non-REF alleles in the Truth and Query Call Sets match
 	GtFP *Decimal `json:"gtFP,omitempty"`
+	// Extension for GtFP
+	GtFPExt *Element `json:"_gtFP,omitempty"`
 	// Precision of comparison
 	Precision *Decimal `json:"precision,omitempty"`
+	// Extension for Precision
+	PrecisionExt *Element `json:"_precision,omitempty"`
 	// Recall of comparison
 	Recall *Decimal `json:"recall,omitempty"`
+	// Extension for Recall
+	RecallExt *Element `json:"_recall,omitempty"`
 	// F-score
 	FScore *Decimal `json:"fScore,omitempty"`
+	// Extension for FScore
+	FScoreExt *Element `json:"_fScore,omitempty"`
 	// Receiver Operator Characteristic (ROC) Curve
 	Roc *MolecularSequenceQualityRoc `json:"roc,omitempty"`
 }
@@ -506,7 +528,7 @@ func (b MolecularSequenceQuality) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
 	if b.StandardSequence != nil {
@@ -514,10 +536,10 @@ func (b MolecularSequenceQuality) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveInt(e, "start", b.Start, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "start", b.Start, b.StartExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "end", b.End, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "end", b.End, b.EndExt); err != nil {
 		return err
 	}
 	if b.Score != nil {
@@ -530,28 +552,28 @@ func (b MolecularSequenceQuality) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "truthTP", b.TruthTP, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "truthTP", b.TruthTP, b.TruthTPExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "queryTP", b.QueryTP, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "queryTP", b.QueryTP, b.QueryTPExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "truthFN", b.TruthFN, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "truthFN", b.TruthFN, b.TruthFNExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "queryFP", b.QueryFP, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "queryFP", b.QueryFP, b.QueryFPExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "gtFP", b.GtFP, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "gtFP", b.GtFP, b.GtFPExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "precision", b.Precision, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "precision", b.Precision, b.PrecisionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "recall", b.Recall, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "recall", b.Recall, b.RecallExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "fScore", b.FScore, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "fScore", b.FScore, b.FScoreExt); err != nil {
 		return err
 	}
 	if b.Roc != nil {
@@ -593,11 +615,12 @@ func (r *MolecularSequenceQuality) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[QualityType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[QualityType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "standardSequence":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -605,17 +628,19 @@ func (r *MolecularSequenceQuality) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.StandardSequence = &v
 			case "start":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Start = v
+				r.StartExt = ext
 			case "end":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.End = v
+				r.EndExt = ext
 			case "score":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -629,53 +654,61 @@ func (r *MolecularSequenceQuality) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.Method = &v
 			case "truthTP":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.TruthTP = v
+				r.TruthTPExt = ext
 			case "queryTP":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.QueryTP = v
+				r.QueryTPExt = ext
 			case "truthFN":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.TruthFN = v
+				r.TruthFNExt = ext
 			case "queryFP":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.QueryFP = v
+				r.QueryFPExt = ext
 			case "gtFP":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.GtFP = v
+				r.GtFPExt = ext
 			case "precision":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Precision = v
+				r.PrecisionExt = ext
 			case "recall":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Recall = v
+				r.RecallExt = ext
 			case "fScore":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.FScore = v
+				r.FScoreExt = ext
 			case "roc":
 				var v MolecularSequenceQualityRoc
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -704,18 +737,32 @@ type MolecularSequenceQualityRoc struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Genotype quality score
 	Score []*int `json:"score,omitempty"`
+	// Extension for Score
+	ScoreExt []*Element `json:"_score,omitempty"`
 	// Roc score true positive numbers
 	NumTP []*int `json:"numTP,omitempty"`
+	// Extension for NumTP
+	NumTPExt []*Element `json:"_numTP,omitempty"`
 	// Roc score false positive numbers
 	NumFP []*int `json:"numFP,omitempty"`
+	// Extension for NumFP
+	NumFPExt []*Element `json:"_numFP,omitempty"`
 	// Roc score false negative numbers
 	NumFN []*int `json:"numFN,omitempty"`
+	// Extension for NumFN
+	NumFNExt []*Element `json:"_numFN,omitempty"`
 	// Precision of the GQ score
 	Precision []*Decimal `json:"precision,omitempty"`
+	// Extension for Precision
+	PrecisionExt []*Element `json:"_precision,omitempty"`
 	// Sensitivity of the GQ score
 	Sensitivity []*Decimal `json:"sensitivity,omitempty"`
+	// Extension for Sensitivity
+	SensitivityExt []*Element `json:"_sensitivity,omitempty"`
 	// FScore of the GQ score
 	FMeasure []*Decimal `json:"fMeasure,omitempty"`
+	// Extension for FMeasure
+	FMeasureExt []*Element `json:"_fMeasure,omitempty"`
 }
 
 // MarshalXML serializes MolecularSequenceQualityRoc to FHIR-conformant XML.
@@ -740,25 +787,25 @@ func (b MolecularSequenceQualityRoc) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveIntArray(e, "score", b.Score, nil); err != nil {
+	if err := xmlEncodePrimitiveIntArray(e, "score", b.Score, b.ScoreExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveIntArray(e, "numTP", b.NumTP, nil); err != nil {
+	if err := xmlEncodePrimitiveIntArray(e, "numTP", b.NumTP, b.NumTPExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveIntArray(e, "numFP", b.NumFP, nil); err != nil {
+	if err := xmlEncodePrimitiveIntArray(e, "numFP", b.NumFP, b.NumFPExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveIntArray(e, "numFN", b.NumFN, nil); err != nil {
+	if err := xmlEncodePrimitiveIntArray(e, "numFN", b.NumFN, b.NumFNExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimalArray(e, "precision", b.Precision, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimalArray(e, "precision", b.Precision, b.PrecisionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimalArray(e, "sensitivity", b.Sensitivity, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimalArray(e, "sensitivity", b.Sensitivity, b.SensitivityExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimalArray(e, "fMeasure", b.FMeasure, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimalArray(e, "fMeasure", b.FMeasure, b.FMeasureExt); err != nil {
 		return err
 	}
 
@@ -795,54 +842,61 @@ func (r *MolecularSequenceQualityRoc) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "score":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Score = append(r.Score, v)
+				r.ScoreExt = append(r.ScoreExt, ext)
 			case "numTP":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.NumTP = append(r.NumTP, v)
+				r.NumTPExt = append(r.NumTPExt, ext)
 			case "numFP":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.NumFP = append(r.NumFP, v)
+				r.NumFPExt = append(r.NumFPExt, ext)
 			case "numFN":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.NumFN = append(r.NumFN, v)
+				r.NumFNExt = append(r.NumFNExt, ext)
 			case "precision":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Precision = append(r.Precision, v)
+				r.PrecisionExt = append(r.PrecisionExt, ext)
 			case "sensitivity":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Sensitivity = append(r.Sensitivity, v)
+				r.SensitivityExt = append(r.SensitivityExt, ext)
 			case "fMeasure":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.FMeasure = append(r.FMeasure, v)
+				r.FMeasureExt = append(r.FMeasureExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -867,20 +921,32 @@ type MolecularSequenceReferenceSeq struct {
 	Chromosome *CodeableConcept `json:"chromosome,omitempty"`
 	// The Genome Build used for reference, following GRCh build versions e.g. 'GRCh 37'
 	GenomeBuild *string `json:"genomeBuild,omitempty"`
+	// Extension for GenomeBuild
+	GenomeBuildExt *Element `json:"_genomeBuild,omitempty"`
 	// sense | antisense
 	Orientation *OrientationType `json:"orientation,omitempty"`
+	// Extension for Orientation
+	OrientationExt *Element `json:"_orientation,omitempty"`
 	// Reference identifier
 	ReferenceSeqId *CodeableConcept `json:"referenceSeqId,omitempty"`
 	// A pointer to another MolecularSequence entity as reference sequence
 	ReferenceSeqPointer *Reference `json:"referenceSeqPointer,omitempty"`
 	// A string to represent reference sequence
 	ReferenceSeqString *string `json:"referenceSeqString,omitempty"`
+	// Extension for ReferenceSeqString
+	ReferenceSeqStringExt *Element `json:"_referenceSeqString,omitempty"`
 	// watson | crick
 	Strand *StrandType `json:"strand,omitempty"`
+	// Extension for Strand
+	StrandExt *Element `json:"_strand,omitempty"`
 	// Start position of the window on the  reference sequence
 	WindowStart *int `json:"windowStart,omitempty"`
+	// Extension for WindowStart
+	WindowStartExt *Element `json:"_windowStart,omitempty"`
 	// End position of the window on the reference sequence
 	WindowEnd *int `json:"windowEnd,omitempty"`
+	// Extension for WindowEnd
+	WindowEndExt *Element `json:"_windowEnd,omitempty"`
 }
 
 // MarshalXML serializes MolecularSequenceReferenceSeq to FHIR-conformant XML.
@@ -910,10 +976,10 @@ func (b MolecularSequenceReferenceSeq) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "genomeBuild", b.GenomeBuild, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "genomeBuild", b.GenomeBuild, b.GenomeBuildExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "orientation", b.Orientation, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "orientation", b.Orientation, b.OrientationExt); err != nil {
 		return err
 	}
 	if b.ReferenceSeqId != nil {
@@ -926,16 +992,16 @@ func (b MolecularSequenceReferenceSeq) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "referenceSeqString", b.ReferenceSeqString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "referenceSeqString", b.ReferenceSeqString, b.ReferenceSeqStringExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "strand", b.Strand, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "strand", b.Strand, b.StrandExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "windowStart", b.WindowStart, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "windowStart", b.WindowStart, b.WindowStartExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "windowEnd", b.WindowEnd, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "windowEnd", b.WindowEnd, b.WindowEndExt); err != nil {
 		return err
 	}
 
@@ -978,17 +1044,19 @@ func (r *MolecularSequenceReferenceSeq) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.Chromosome = &v
 			case "genomeBuild":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.GenomeBuild = v
+				r.GenomeBuildExt = ext
 			case "orientation":
-				v, _, err := xmlDecodePrimitiveCode[OrientationType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[OrientationType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Orientation = v
+				r.OrientationExt = ext
 			case "referenceSeqId":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1002,29 +1070,33 @@ func (r *MolecularSequenceReferenceSeq) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.ReferenceSeqPointer = &v
 			case "referenceSeqString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ReferenceSeqString = v
+				r.ReferenceSeqStringExt = ext
 			case "strand":
-				v, _, err := xmlDecodePrimitiveCode[StrandType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[StrandType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Strand = v
+				r.StrandExt = ext
 			case "windowStart":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.WindowStart = v
+				r.WindowStartExt = ext
 			case "windowEnd":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.WindowEnd = v
+				r.WindowEndExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1047,16 +1119,28 @@ type MolecularSequenceRepository struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// directlink | openapi | login | oauth | other
 	Type *RepositoryType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// URI of the repository
 	Url *string `json:"url,omitempty"`
+	// Extension for Url
+	UrlExt *Element `json:"_url,omitempty"`
 	// Repository's name
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Id of the dataset that used to call for dataset in repository
 	DatasetId *string `json:"datasetId,omitempty"`
+	// Extension for DatasetId
+	DatasetIdExt *Element `json:"_datasetId,omitempty"`
 	// Id of the variantset that used to call for variantset in repository
 	VariantsetId *string `json:"variantsetId,omitempty"`
+	// Extension for VariantsetId
+	VariantsetIdExt *Element `json:"_variantsetId,omitempty"`
 	// Id of the read
 	ReadsetId *string `json:"readsetId,omitempty"`
+	// Extension for ReadsetId
+	ReadsetIdExt *Element `json:"_readsetId,omitempty"`
 }
 
 // MarshalXML serializes MolecularSequenceRepository to FHIR-conformant XML.
@@ -1081,22 +1165,22 @@ func (b MolecularSequenceRepository) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "url", b.Url, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "url", b.Url, b.UrlExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "datasetId", b.DatasetId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "datasetId", b.DatasetId, b.DatasetIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "variantsetId", b.VariantsetId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "variantsetId", b.VariantsetId, b.VariantsetIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "readsetId", b.ReadsetId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "readsetId", b.ReadsetId, b.ReadsetIdExt); err != nil {
 		return err
 	}
 
@@ -1133,41 +1217,47 @@ func (r *MolecularSequenceRepository) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[RepositoryType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[RepositoryType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "url":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Url = v
+				r.UrlExt = ext
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "datasetId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DatasetId = v
+				r.DatasetIdExt = ext
 			case "variantsetId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.VariantsetId = v
+				r.VariantsetIdExt = ext
 			case "readsetId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ReadsetId = v
+				r.ReadsetIdExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1192,8 +1282,12 @@ type MolecularSequenceStructureVariant struct {
 	VariantType *CodeableConcept `json:"variantType,omitempty"`
 	// Does the structural variant have base pair resolution breakpoints?
 	Exact *bool `json:"exact,omitempty"`
+	// Extension for Exact
+	ExactExt *Element `json:"_exact,omitempty"`
 	// Structural variant length
 	Length *int `json:"length,omitempty"`
+	// Extension for Length
+	LengthExt *Element `json:"_length,omitempty"`
 	// Structural variant outer
 	Outer *MolecularSequenceStructureVariantOuter `json:"outer,omitempty"`
 	// Structural variant inner
@@ -1227,10 +1321,10 @@ func (b MolecularSequenceStructureVariant) MarshalXML(e *xml.Encoder, start xml.
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "exact", b.Exact, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "exact", b.Exact, b.ExactExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "length", b.Length, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "length", b.Length, b.LengthExt); err != nil {
 		return err
 	}
 	if b.Outer != nil {
@@ -1283,17 +1377,19 @@ func (r *MolecularSequenceStructureVariant) UnmarshalXML(d *xml.Decoder, start x
 				}
 				r.VariantType = &v
 			case "exact":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Exact = v
+				r.ExactExt = ext
 			case "length":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Length = v
+				r.LengthExt = ext
 			case "outer":
 				var v MolecularSequenceStructureVariantOuter
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1328,8 +1424,12 @@ type MolecularSequenceStructureVariantInner struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Structural variant inner start
 	Start *int `json:"start,omitempty"`
+	// Extension for Start
+	StartExt *Element `json:"_start,omitempty"`
 	// Structural variant inner end
 	End *int `json:"end,omitempty"`
+	// Extension for End
+	EndExt *Element `json:"_end,omitempty"`
 }
 
 // MarshalXML serializes MolecularSequenceStructureVariantInner to FHIR-conformant XML.
@@ -1354,10 +1454,10 @@ func (b MolecularSequenceStructureVariantInner) MarshalXML(e *xml.Encoder, start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveInt(e, "start", b.Start, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "start", b.Start, b.StartExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "end", b.End, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "end", b.End, b.EndExt); err != nil {
 		return err
 	}
 
@@ -1394,17 +1494,19 @@ func (r *MolecularSequenceStructureVariantInner) UnmarshalXML(d *xml.Decoder, st
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "start":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Start = v
+				r.StartExt = ext
 			case "end":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.End = v
+				r.EndExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1427,8 +1529,12 @@ type MolecularSequenceStructureVariantOuter struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Structural variant outer start
 	Start *int `json:"start,omitempty"`
+	// Extension for Start
+	StartExt *Element `json:"_start,omitempty"`
 	// Structural variant outer end
 	End *int `json:"end,omitempty"`
+	// Extension for End
+	EndExt *Element `json:"_end,omitempty"`
 }
 
 // MarshalXML serializes MolecularSequenceStructureVariantOuter to FHIR-conformant XML.
@@ -1453,10 +1559,10 @@ func (b MolecularSequenceStructureVariantOuter) MarshalXML(e *xml.Encoder, start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveInt(e, "start", b.Start, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "start", b.Start, b.StartExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "end", b.End, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "end", b.End, b.EndExt); err != nil {
 		return err
 	}
 
@@ -1493,17 +1599,19 @@ func (r *MolecularSequenceStructureVariantOuter) UnmarshalXML(d *xml.Decoder, st
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "start":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Start = v
+				r.StartExt = ext
 			case "end":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.End = v
+				r.EndExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1526,14 +1634,24 @@ type MolecularSequenceVariant struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Start position of the variant on the  reference sequence
 	Start *int `json:"start,omitempty"`
+	// Extension for Start
+	StartExt *Element `json:"_start,omitempty"`
 	// End position of the variant on the reference sequence
 	End *int `json:"end,omitempty"`
+	// Extension for End
+	EndExt *Element `json:"_end,omitempty"`
 	// Allele that was observed
 	ObservedAllele *string `json:"observedAllele,omitempty"`
+	// Extension for ObservedAllele
+	ObservedAlleleExt *Element `json:"_observedAllele,omitempty"`
 	// Allele in the reference sequence
 	ReferenceAllele *string `json:"referenceAllele,omitempty"`
+	// Extension for ReferenceAllele
+	ReferenceAlleleExt *Element `json:"_referenceAllele,omitempty"`
 	// Extended CIGAR string for aligning the sequence with reference bases
 	Cigar *string `json:"cigar,omitempty"`
+	// Extension for Cigar
+	CigarExt *Element `json:"_cigar,omitempty"`
 	// Pointer to observed variant information
 	VariantPointer *Reference `json:"variantPointer,omitempty"`
 }
@@ -1560,19 +1678,19 @@ func (b MolecularSequenceVariant) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveInt(e, "start", b.Start, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "start", b.Start, b.StartExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "end", b.End, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "end", b.End, b.EndExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "observedAllele", b.ObservedAllele, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "observedAllele", b.ObservedAllele, b.ObservedAlleleExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "referenceAllele", b.ReferenceAllele, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "referenceAllele", b.ReferenceAllele, b.ReferenceAlleleExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "cigar", b.Cigar, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "cigar", b.Cigar, b.CigarExt); err != nil {
 		return err
 	}
 	if b.VariantPointer != nil {
@@ -1614,35 +1732,40 @@ func (r *MolecularSequenceVariant) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "start":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Start = v
+				r.StartExt = ext
 			case "end":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.End = v
+				r.EndExt = ext
 			case "observedAllele":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ObservedAllele = v
+				r.ObservedAlleleExt = ext
 			case "referenceAllele":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ReferenceAllele = v
+				r.ReferenceAlleleExt = ext
 			case "cigar":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Cigar = v
+				r.CigarExt = ext
 			case "variantPointer":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

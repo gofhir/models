@@ -541,8 +541,12 @@ type AppointmentParticipant struct {
 	Actor *Reference `json:"actor,omitempty"`
 	// required | optional | information-only
 	Required *ParticipantRequired `json:"required,omitempty"`
+	// Extension for Required
+	RequiredExt *Element `json:"_required,omitempty"`
 	// accepted | declined | tentative | needs-action
 	Status *ParticipationStatus `json:"status,omitempty"`
+	// Extension for Status
+	StatusExt *Element `json:"_status,omitempty"`
 	// Participation period of the actor
 	Period *Period `json:"period,omitempty"`
 }
@@ -579,10 +583,10 @@ func (b AppointmentParticipant) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "required", b.Required, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "required", b.Required, b.RequiredExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "status", b.Status, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "status", b.Status, b.StatusExt); err != nil {
 		return err
 	}
 	if b.Period != nil {
@@ -636,17 +640,19 @@ func (r *AppointmentParticipant) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.Actor = &v
 			case "required":
-				v, _, err := xmlDecodePrimitiveCode[ParticipantRequired](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ParticipantRequired](d, t)
 				if err != nil {
 					return err
 				}
 				r.Required = v
+				r.RequiredExt = ext
 			case "status":
-				v, _, err := xmlDecodePrimitiveCode[ParticipationStatus](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ParticipationStatus](d, t)
 				if err != nil {
 					return err
 				}
 				r.Status = v
+				r.StatusExt = ext
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

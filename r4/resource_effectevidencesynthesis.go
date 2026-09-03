@@ -914,12 +914,16 @@ type EffectEvidenceSynthesisEffectEstimate struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Description of effect estimate
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Type of efffect estimate
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Variant exposure states
 	VariantState *CodeableConcept `json:"variantState,omitempty"`
 	// Point estimate
 	Value *Decimal `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 	// What unit is the outcome described in?
 	UnitOfMeasure *CodeableConcept `json:"unitOfMeasure,omitempty"`
 	// How precise the estimate is
@@ -948,7 +952,7 @@ func (b EffectEvidenceSynthesisEffectEstimate) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.Type != nil {
@@ -961,7 +965,7 @@ func (b EffectEvidenceSynthesisEffectEstimate) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
 	if b.UnitOfMeasure != nil {
@@ -1008,11 +1012,12 @@ func (r *EffectEvidenceSynthesisEffectEstimate) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "type":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1026,11 +1031,12 @@ func (r *EffectEvidenceSynthesisEffectEstimate) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.VariantState = &v
 			case "value":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			case "unitOfMeasure":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1067,10 +1073,16 @@ type EffectEvidenceSynthesisEffectEstimatePrecisionEstimate struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Level of confidence interval
 	Level *Decimal `json:"level,omitempty"`
+	// Extension for Level
+	LevelExt *Element `json:"_level,omitempty"`
 	// Lower bound
 	From *Decimal `json:"from,omitempty"`
+	// Extension for From
+	FromExt *Element `json:"_from,omitempty"`
 	// Upper bound
 	To *Decimal `json:"to,omitempty"`
+	// Extension for To
+	ToExt *Element `json:"_to,omitempty"`
 }
 
 // MarshalXML serializes EffectEvidenceSynthesisEffectEstimatePrecisionEstimate to FHIR-conformant XML.
@@ -1100,13 +1112,13 @@ func (b EffectEvidenceSynthesisEffectEstimatePrecisionEstimate) MarshalXML(e *xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "level", b.Level, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "level", b.Level, b.LevelExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "from", b.From, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "from", b.From, b.FromExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "to", b.To, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "to", b.To, b.ToExt); err != nil {
 		return err
 	}
 
@@ -1149,23 +1161,26 @@ func (r *EffectEvidenceSynthesisEffectEstimatePrecisionEstimate) UnmarshalXML(d 
 				}
 				r.Type = &v
 			case "level":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Level = v
+				r.LevelExt = ext
 			case "from":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.From = v
+				r.FromExt = ext
 			case "to":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.To = v
+				r.ToExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1188,8 +1203,12 @@ type EffectEvidenceSynthesisResultsByExposure struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Description of results by exposure
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// exposure | exposure-alternative
 	ExposureState *ExposureState `json:"exposureState,omitempty"`
+	// Extension for ExposureState
+	ExposureStateExt *Element `json:"_exposureState,omitempty"`
 	// Variant exposure states
 	VariantState *CodeableConcept `json:"variantState,omitempty"`
 	// Risk evidence synthesis
@@ -1218,10 +1237,10 @@ func (b EffectEvidenceSynthesisResultsByExposure) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "exposureState", b.ExposureState, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "exposureState", b.ExposureState, b.ExposureStateExt); err != nil {
 		return err
 	}
 	if b.VariantState != nil {
@@ -1268,17 +1287,19 @@ func (r *EffectEvidenceSynthesisResultsByExposure) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "exposureState":
-				v, _, err := xmlDecodePrimitiveCode[ExposureState](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ExposureState](d, t)
 				if err != nil {
 					return err
 				}
 				r.ExposureState = v
+				r.ExposureStateExt = ext
 			case "variantState":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1313,10 +1334,16 @@ type EffectEvidenceSynthesisSampleSize struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Description of sample size
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// How many studies?
 	NumberOfStudies *int `json:"numberOfStudies,omitempty"`
+	// Extension for NumberOfStudies
+	NumberOfStudiesExt *Element `json:"_numberOfStudies,omitempty"`
 	// How many participants?
 	NumberOfParticipants *int `json:"numberOfParticipants,omitempty"`
+	// Extension for NumberOfParticipants
+	NumberOfParticipantsExt *Element `json:"_numberOfParticipants,omitempty"`
 }
 
 // MarshalXML serializes EffectEvidenceSynthesisSampleSize to FHIR-conformant XML.
@@ -1341,13 +1368,13 @@ func (b EffectEvidenceSynthesisSampleSize) MarshalXML(e *xml.Encoder, start xml.
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "numberOfStudies", b.NumberOfStudies, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "numberOfStudies", b.NumberOfStudies, b.NumberOfStudiesExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "numberOfParticipants", b.NumberOfParticipants, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "numberOfParticipants", b.NumberOfParticipants, b.NumberOfParticipantsExt); err != nil {
 		return err
 	}
 
@@ -1384,23 +1411,26 @@ func (r *EffectEvidenceSynthesisSampleSize) UnmarshalXML(d *xml.Decoder, start x
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "numberOfStudies":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.NumberOfStudies = v
+				r.NumberOfStudiesExt = ext
 			case "numberOfParticipants":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.NumberOfParticipants = v
+				r.NumberOfParticipantsExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

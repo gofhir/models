@@ -517,12 +517,13 @@ func (r *ActorDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				r.Documentation = v
 				r.DocumentationExt = ext
 			case "reference":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Reference = append(r.Reference, v)
+				r.ReferenceExt = append(r.ReferenceExt, ext)
 			case "capabilities":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -531,12 +532,13 @@ func (r *ActorDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				r.Capabilities = v
 				r.CapabilitiesExt = ext
 			case "derivedFrom":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFrom = append(r.DerivedFrom, v)
+				r.DerivedFromExt = append(r.DerivedFromExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err

@@ -726,17 +726,19 @@ func (r *MedicinalProductDefinitionCharacteristic) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.ValueQuantity = &v
 			case "valueDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDate = v
+				_ = ext
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			case "valueAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -971,6 +973,8 @@ type MedicinalProductDefinitionName struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The full product name
 	ProductName *string `json:"productName,omitempty"`
+	// Extension for ProductName
+	ProductNameExt *Element `json:"_productName,omitempty"`
 	// Type of product name, such as rINN, BAN, Proprietary, Non-Proprietary
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Coding words or phrases of the name
@@ -1001,7 +1005,7 @@ func (b MedicinalProductDefinitionName) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "productName", b.ProductName, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "productName", b.ProductName, b.ProductNameExt); err != nil {
 		return err
 	}
 	if b.Type != nil {
@@ -1053,11 +1057,12 @@ func (r *MedicinalProductDefinitionName) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "productName":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ProductName = v
+				r.ProductNameExt = ext
 			case "type":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1214,6 +1219,8 @@ type MedicinalProductDefinitionNameNamePart struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A fragment of a product name
 	Part *string `json:"part,omitempty"`
+	// Extension for Part
+	PartExt *Element `json:"_part,omitempty"`
 	// Identifying type for this part of the name (e.g. strength part)
 	Type *CodeableConcept `json:"type,omitempty"`
 }
@@ -1240,7 +1247,7 @@ func (b MedicinalProductDefinitionNameNamePart) MarshalXML(e *xml.Encoder, start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "part", b.Part, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "part", b.Part, b.PartExt); err != nil {
 		return err
 	}
 	if b.Type != nil {
@@ -1282,11 +1289,12 @@ func (r *MedicinalProductDefinitionNameNamePart) UnmarshalXML(d *xml.Decoder, st
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "part":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Part = v
+				r.PartExt = ext
 			case "type":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

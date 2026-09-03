@@ -649,6 +649,8 @@ type EncounterDiagnosis struct {
 	Use *CodeableConcept `json:"use,omitempty"`
 	// Ranking of the diagnosis (for each role type)
 	Rank *uint32 `json:"rank,omitempty"`
+	// Extension for Rank
+	RankExt *Element `json:"_rank,omitempty"`
 }
 
 // MarshalXML serializes EncounterDiagnosis to FHIR-conformant XML.
@@ -683,7 +685,7 @@ func (b EncounterDiagnosis) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "rank", b.Rank, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "rank", b.Rank, b.RankExt); err != nil {
 		return err
 	}
 
@@ -732,11 +734,12 @@ func (r *EncounterDiagnosis) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Use = &v
 			case "rank":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Rank = v
+				r.RankExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -955,6 +958,8 @@ type EncounterLocation struct {
 	Location *Reference `json:"location,omitempty"`
 	// planned | active | reserved | completed
 	Status *EncounterLocationStatus `json:"status,omitempty"`
+	// Extension for Status
+	StatusExt *Element `json:"_status,omitempty"`
 	// The physical type of the location (usually the level in the location hierachy - bed room ward etc.)
 	PhysicalType *CodeableConcept `json:"physicalType,omitempty"`
 	// Time period during which the patient was present at the location
@@ -988,7 +993,7 @@ func (b EncounterLocation) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "status", b.Status, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "status", b.Status, b.StatusExt); err != nil {
 		return err
 	}
 	if b.PhysicalType != nil {
@@ -1041,11 +1046,12 @@ func (r *EncounterLocation) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.Location = &v
 			case "status":
-				v, _, err := xmlDecodePrimitiveCode[EncounterLocationStatus](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[EncounterLocationStatus](d, t)
 				if err != nil {
 					return err
 				}
 				r.Status = v
+				r.StatusExt = ext
 			case "physicalType":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1196,6 +1202,8 @@ type EncounterStatusHistory struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// planned | arrived | triaged | in-progress | onleave | finished | cancelled +
 	Status *EncounterStatus `json:"status,omitempty"`
+	// Extension for Status
+	StatusExt *Element `json:"_status,omitempty"`
 	// The time that the episode was in the specified status
 	Period *Period `json:"period,omitempty"`
 }
@@ -1222,7 +1230,7 @@ func (b EncounterStatusHistory) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "status", b.Status, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "status", b.Status, b.StatusExt); err != nil {
 		return err
 	}
 	if b.Period != nil {
@@ -1264,11 +1272,12 @@ func (r *EncounterStatusHistory) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "status":
-				v, _, err := xmlDecodePrimitiveCode[EncounterStatus](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[EncounterStatus](d, t)
 				if err != nil {
 					return err
 				}
 				r.Status = v
+				r.StatusExt = ext
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

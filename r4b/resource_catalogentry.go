@@ -415,6 +415,8 @@ type CatalogEntryRelatedEntry struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// triggers | is-replaced-by
 	Relationtype *CatalogEntryRelationType `json:"relationtype,omitempty"`
+	// Extension for Relationtype
+	RelationtypeExt *Element `json:"_relationtype,omitempty"`
 	// The reference to the related item
 	Item *Reference `json:"item,omitempty"`
 }
@@ -441,7 +443,7 @@ func (b CatalogEntryRelatedEntry) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "relationtype", b.Relationtype, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "relationtype", b.Relationtype, b.RelationtypeExt); err != nil {
 		return err
 	}
 	if b.Item != nil {
@@ -483,11 +485,12 @@ func (r *CatalogEntryRelatedEntry) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "relationtype":
-				v, _, err := xmlDecodePrimitiveCode[CatalogEntryRelationType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[CatalogEntryRelationType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Relationtype = v
+				r.RelationtypeExt = ext
 			case "item":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

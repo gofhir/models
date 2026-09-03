@@ -324,12 +324,13 @@ func (r *Provenance) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				r.Recorded = v
 				r.RecordedExt = ext
 			case "policy":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Policy = append(r.Policy, v)
+				r.PolicyExt = append(r.PolicyExt, ext)
 			case "location":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -517,6 +518,8 @@ type ProvenanceEntity struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// derivation | revision | quotation | source | removal
 	Role *ProvenanceEntityRole `json:"role,omitempty"`
+	// Extension for Role
+	RoleExt *Element `json:"_role,omitempty"`
 	// Identity of entity
 	What *Reference `json:"what,omitempty"`
 	// Entity is attributed to this agent
@@ -545,7 +548,7 @@ func (b ProvenanceEntity) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "role", b.Role, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "role", b.Role, b.RoleExt); err != nil {
 		return err
 	}
 	if b.What != nil {
@@ -592,11 +595,12 @@ func (r *ProvenanceEntity) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "role":
-				v, _, err := xmlDecodePrimitiveCode[ProvenanceEntityRole](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ProvenanceEntityRole](d, t)
 				if err != nil {
 					return err
 				}
 				r.Role = v
+				r.RoleExt = ext
 			case "what":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

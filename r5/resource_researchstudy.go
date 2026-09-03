@@ -666,6 +666,8 @@ type ResearchStudyAssociatedParty struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Name of associated party
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// sponsor | lead-sponsor | sponsor-investigator | primary-investigator | collaborator | funding-source | general-contact | recruitment-contact | sub-investigator | study-director | study-chair
 	Role *CodeableConcept `json:"role,omitempty"`
 	// When active in the role
@@ -698,7 +700,7 @@ func (b ResearchStudyAssociatedParty) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
 	if b.Role != nil {
@@ -755,11 +757,12 @@ func (r *ResearchStudyAssociatedParty) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "role":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -806,12 +809,18 @@ type ResearchStudyComparisonGroup struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Allows the comparisonGroup for the study and the comparisonGroup for the subject to be linked easily
 	LinkId *string `json:"linkId,omitempty"`
+	// Extension for LinkId
+	LinkIdExt *Element `json:"_linkId,omitempty"`
 	// Label for study comparisonGroup
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Categorization of study comparisonGroup
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Short explanation of study path
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Interventions or exposures in this comparisonGroup or cohort
 	IntendedExposure []Reference `json:"intendedExposure,omitempty"`
 	// Group of participants who were enrolled in study comparisonGroup
@@ -840,10 +849,10 @@ func (b ResearchStudyComparisonGroup) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "linkId", b.LinkId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "linkId", b.LinkId, b.LinkIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
 	if b.Type != nil {
@@ -851,7 +860,7 @@ func (b ResearchStudyComparisonGroup) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	for _, item := range b.IntendedExposure {
@@ -898,17 +907,19 @@ func (r *ResearchStudyComparisonGroup) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "linkId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.LinkId = v
+				r.LinkIdExt = ext
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "type":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -916,11 +927,12 @@ func (r *ResearchStudyComparisonGroup) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.Type = &v
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "intendedExposure":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -957,6 +969,8 @@ type ResearchStudyLabel struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// The name
 	Value *string `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 }
 
 // MarshalXML serializes ResearchStudyLabel to FHIR-conformant XML.
@@ -986,7 +1000,7 @@ func (b ResearchStudyLabel) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
 
@@ -1029,11 +1043,12 @@ func (r *ResearchStudyLabel) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Type = &v
 			case "value":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1056,10 +1071,14 @@ type ResearchStudyObjective struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Label for the objective
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// primary | secondary | exploratory
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Description of the objective
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 }
 
 // MarshalXML serializes ResearchStudyObjective to FHIR-conformant XML.
@@ -1084,7 +1103,7 @@ func (b ResearchStudyObjective) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
 	if b.Type != nil {
@@ -1092,7 +1111,7 @@ func (b ResearchStudyObjective) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 
@@ -1129,11 +1148,12 @@ func (r *ResearchStudyObjective) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "type":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1141,11 +1161,12 @@ func (r *ResearchStudyObjective) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.Type = &v
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1168,10 +1189,14 @@ type ResearchStudyOutcomeMeasure struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Label for the outcome
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// primary | secondary | exploratory
 	Type []CodeableConcept `json:"type,omitempty"`
 	// Description of the outcome
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Structured outcome definition
 	Reference *Reference `json:"reference,omitempty"`
 }
@@ -1198,7 +1223,7 @@ func (b ResearchStudyOutcomeMeasure) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
 	for _, item := range b.Type {
@@ -1206,7 +1231,7 @@ func (b ResearchStudyOutcomeMeasure) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.Reference != nil {
@@ -1248,11 +1273,12 @@ func (r *ResearchStudyOutcomeMeasure) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "type":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1260,11 +1286,12 @@ func (r *ResearchStudyOutcomeMeasure) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.Type = append(r.Type, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "reference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1295,6 +1322,8 @@ type ResearchStudyProgressStatus struct {
 	State *CodeableConcept `json:"state,omitempty"`
 	// Actual if true else anticipated
 	Actual *bool `json:"actual,omitempty"`
+	// Extension for Actual
+	ActualExt *Element `json:"_actual,omitempty"`
 	// Date range
 	Period *Period `json:"period,omitempty"`
 }
@@ -1326,7 +1355,7 @@ func (b ResearchStudyProgressStatus) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "actual", b.Actual, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "actual", b.Actual, b.ActualExt); err != nil {
 		return err
 	}
 	if b.Period != nil {
@@ -1374,11 +1403,12 @@ func (r *ResearchStudyProgressStatus) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.State = &v
 			case "actual":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Actual = v
+				r.ActualExt = ext
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1407,8 +1437,12 @@ type ResearchStudyRecruitment struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Estimated total number of participants to be enrolled
 	TargetNumber *uint32 `json:"targetNumber,omitempty"`
+	// Extension for TargetNumber
+	TargetNumberExt *Element `json:"_targetNumber,omitempty"`
 	// Actual total number of participants enrolled in study
 	ActualNumber *uint32 `json:"actualNumber,omitempty"`
+	// Extension for ActualNumber
+	ActualNumberExt *Element `json:"_actualNumber,omitempty"`
 	// Inclusion and exclusion criteria
 	Eligibility *Reference `json:"eligibility,omitempty"`
 	// Group of participants who were enrolled in study
@@ -1437,10 +1471,10 @@ func (b ResearchStudyRecruitment) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "targetNumber", b.TargetNumber, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "targetNumber", b.TargetNumber, b.TargetNumberExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "actualNumber", b.ActualNumber, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "actualNumber", b.ActualNumber, b.ActualNumberExt); err != nil {
 		return err
 	}
 	if b.Eligibility != nil {
@@ -1487,17 +1521,19 @@ func (r *ResearchStudyRecruitment) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "targetNumber":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.TargetNumber = v
+				r.TargetNumberExt = ext
 			case "actualNumber":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.ActualNumber = v
+				r.ActualNumberExt = ext
 			case "eligibility":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

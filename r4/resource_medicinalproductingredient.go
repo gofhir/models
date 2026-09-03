@@ -458,6 +458,8 @@ type MedicinalProductIngredientSpecifiedSubstanceStrength struct {
 	ConcentrationLowLimit *Ratio `json:"concentrationLowLimit,omitempty"`
 	// For when strength is measured at a particular point or distance
 	MeasurementPoint *string `json:"measurementPoint,omitempty"`
+	// Extension for MeasurementPoint
+	MeasurementPointExt *Element `json:"_measurementPoint,omitempty"`
 	// The country or countries for which the strength range applies
 	Country []CodeableConcept `json:"country,omitempty"`
 	// Strength expressed in terms of a reference substance
@@ -506,7 +508,7 @@ func (b MedicinalProductIngredientSpecifiedSubstanceStrength) MarshalXML(e *xml.
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "measurementPoint", b.MeasurementPoint, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "measurementPoint", b.MeasurementPoint, b.MeasurementPointExt); err != nil {
 		return err
 	}
 	for _, item := range b.Country {
@@ -577,11 +579,12 @@ func (r *MedicinalProductIngredientSpecifiedSubstanceStrength) UnmarshalXML(d *x
 				}
 				r.ConcentrationLowLimit = &v
 			case "measurementPoint":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.MeasurementPoint = v
+				r.MeasurementPointExt = ext
 			case "country":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -622,6 +625,8 @@ type MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength struc
 	StrengthLowLimit *Ratio `json:"strengthLowLimit,omitempty"`
 	// For when strength is measured at a particular point or distance
 	MeasurementPoint *string `json:"measurementPoint,omitempty"`
+	// Extension for MeasurementPoint
+	MeasurementPointExt *Element `json:"_measurementPoint,omitempty"`
 	// The country or countries for which the strength range applies
 	Country []CodeableConcept `json:"country,omitempty"`
 }
@@ -663,7 +668,7 @@ func (b MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength) M
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "measurementPoint", b.MeasurementPoint, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "measurementPoint", b.MeasurementPoint, b.MeasurementPointExt); err != nil {
 		return err
 	}
 	for _, item := range b.Country {
@@ -723,11 +728,12 @@ func (r *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength) 
 				}
 				r.StrengthLowLimit = &v
 			case "measurementPoint":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.MeasurementPoint = v
+				r.MeasurementPointExt = ext
 			case "country":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

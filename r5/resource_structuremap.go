@@ -502,12 +502,13 @@ func (r *StructureMap) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.Structure = append(r.Structure, v)
 			case "import":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Import = append(r.Import, v)
+				r.ImportExt = append(r.ImportExt, ext)
 			case "const":
 				var v StructureMapConst
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -542,8 +543,12 @@ type StructureMapConst struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Constant name
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// FHIRPath exression - value of the constant
 	Value *string `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 }
 
 // MarshalXML serializes StructureMapConst to FHIR-conformant XML.
@@ -568,10 +573,10 @@ func (b StructureMapConst) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
 
@@ -608,17 +613,19 @@ func (r *StructureMapConst) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "value":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -641,12 +648,20 @@ type StructureMapGroup struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Human-readable label
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Another group that this group adds rules to
 	Extends *string `json:"extends,omitempty"`
+	// Extension for Extends
+	ExtendsExt *Element `json:"_extends,omitempty"`
 	// types | type-and-types
 	TypeMode *StructureMapGroupTypeMode `json:"typeMode,omitempty"`
+	// Extension for TypeMode
+	TypeModeExt *Element `json:"_typeMode,omitempty"`
 	// Additional description/explanation for group
 	Documentation *string `json:"documentation,omitempty"`
+	// Extension for Documentation
+	DocumentationExt *Element `json:"_documentation,omitempty"`
 	// Named instance provided when invoking the map
 	Input []StructureMapGroupInput `json:"input,omitempty"`
 	// Transform Rule from source to target
@@ -675,16 +690,16 @@ func (b StructureMapGroup) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "extends", b.Extends, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "extends", b.Extends, b.ExtendsExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "typeMode", b.TypeMode, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "typeMode", b.TypeMode, b.TypeModeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, b.DocumentationExt); err != nil {
 		return err
 	}
 	for _, item := range b.Input {
@@ -731,29 +746,33 @@ func (r *StructureMapGroup) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "extends":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Extends = v
+				r.ExtendsExt = ext
 			case "typeMode":
-				v, _, err := xmlDecodePrimitiveCode[StructureMapGroupTypeMode](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[StructureMapGroupTypeMode](d, t)
 				if err != nil {
 					return err
 				}
 				r.TypeMode = v
+				r.TypeModeExt = ext
 			case "documentation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Documentation = v
+				r.DocumentationExt = ext
 			case "input":
 				var v StructureMapGroupInput
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -788,12 +807,20 @@ type StructureMapGroupInput struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Name for this instance of data
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Type for this instance of data
 	Type *string `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// source | target
 	Mode *StructureMapInputMode `json:"mode,omitempty"`
+	// Extension for Mode
+	ModeExt *Element `json:"_mode,omitempty"`
 	// Documentation for this instance of data
 	Documentation *string `json:"documentation,omitempty"`
+	// Extension for Documentation
+	DocumentationExt *Element `json:"_documentation,omitempty"`
 }
 
 // MarshalXML serializes StructureMapGroupInput to FHIR-conformant XML.
@@ -818,16 +845,16 @@ func (b StructureMapGroupInput) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "mode", b.Mode, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "mode", b.Mode, b.ModeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, b.DocumentationExt); err != nil {
 		return err
 	}
 
@@ -864,29 +891,33 @@ func (r *StructureMapGroupInput) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "type":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "mode":
-				v, _, err := xmlDecodePrimitiveCode[StructureMapInputMode](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[StructureMapInputMode](d, t)
 				if err != nil {
 					return err
 				}
 				r.Mode = v
+				r.ModeExt = ext
 			case "documentation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Documentation = v
+				r.DocumentationExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -909,6 +940,8 @@ type StructureMapGroupRule struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Name of the rule for internal references
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Source inputs to the mapping
 	Source []StructureMapGroupRuleSource `json:"source,omitempty"`
 	// Content to create because of this mapping rule
@@ -919,6 +952,8 @@ type StructureMapGroupRule struct {
 	Dependent []StructureMapGroupRuleDependent `json:"dependent,omitempty"`
 	// Documentation for this instance of data
 	Documentation *string `json:"documentation,omitempty"`
+	// Extension for Documentation
+	DocumentationExt *Element `json:"_documentation,omitempty"`
 }
 
 // MarshalXML serializes StructureMapGroupRule to FHIR-conformant XML.
@@ -943,7 +978,7 @@ func (b StructureMapGroupRule) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
 	for _, item := range b.Source {
@@ -966,7 +1001,7 @@ func (b StructureMapGroupRule) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, b.DocumentationExt); err != nil {
 		return err
 	}
 
@@ -1003,11 +1038,12 @@ func (r *StructureMapGroupRule) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "source":
 				var v StructureMapGroupRuleSource
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1033,11 +1069,12 @@ func (r *StructureMapGroupRule) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.Dependent = append(r.Dependent, v)
 			case "documentation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Documentation = v
+				r.DocumentationExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1060,6 +1097,8 @@ type StructureMapGroupRuleDependent struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Name of a rule or group to apply
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Parameter to pass to the rule or group
 	Parameter []StructureMapGroupRuleTargetParameter `json:"parameter,omitempty"`
 }
@@ -1086,7 +1125,7 @@ func (b StructureMapGroupRuleDependent) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
 	for _, item := range b.Parameter {
@@ -1128,11 +1167,12 @@ func (r *StructureMapGroupRuleDependent) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "parameter":
 				var v StructureMapGroupRuleTargetParameter
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1161,26 +1201,48 @@ type StructureMapGroupRuleSource struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type or variable this rule applies to
 	Context *string `json:"context,omitempty"`
+	// Extension for Context
+	ContextExt *Element `json:"_context,omitempty"`
 	// Specified minimum cardinality
 	Min *int `json:"min,omitempty"`
+	// Extension for Min
+	MinExt *Element `json:"_min,omitempty"`
 	// Specified maximum cardinality (number or *)
 	Max *string `json:"max,omitempty"`
+	// Extension for Max
+	MaxExt *Element `json:"_max,omitempty"`
 	// Rule only applies if source has this type
 	Type *string `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// Default value if no value exists
 	DefaultValue *string `json:"defaultValue,omitempty"`
+	// Extension for DefaultValue
+	DefaultValueExt *Element `json:"_defaultValue,omitempty"`
 	// Optional field for this source
 	Element *string `json:"element,omitempty"`
+	// Extension for Element
+	ElementExt *Element `json:"_element,omitempty"`
 	// first | not_first | last | not_last | only_one
 	ListMode *StructureMapSourceListMode `json:"listMode,omitempty"`
+	// Extension for ListMode
+	ListModeExt *Element `json:"_listMode,omitempty"`
 	// Named context for field, if a field is specified
 	Variable *string `json:"variable,omitempty"`
+	// Extension for Variable
+	VariableExt *Element `json:"_variable,omitempty"`
 	// FHIRPath expression  - must be true or the rule does not apply
 	Condition *string `json:"condition,omitempty"`
+	// Extension for Condition
+	ConditionExt *Element `json:"_condition,omitempty"`
 	// FHIRPath expression  - must be true or the mapping engine throws an error instead of completing
 	Check *string `json:"check,omitempty"`
+	// Extension for Check
+	CheckExt *Element `json:"_check,omitempty"`
 	// Message to put in log if source exists (FHIRPath)
 	LogMessage *string `json:"logMessage,omitempty"`
+	// Extension for LogMessage
+	LogMessageExt *Element `json:"_logMessage,omitempty"`
 }
 
 // MarshalXML serializes StructureMapGroupRuleSource to FHIR-conformant XML.
@@ -1205,37 +1267,37 @@ func (b StructureMapGroupRuleSource) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "context", b.Context, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "context", b.Context, b.ContextExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "min", b.Min, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "min", b.Min, b.MinExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "max", b.Max, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "max", b.Max, b.MaxExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "defaultValue", b.DefaultValue, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "defaultValue", b.DefaultValue, b.DefaultValueExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "element", b.Element, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "element", b.Element, b.ElementExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "listMode", b.ListMode, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "listMode", b.ListMode, b.ListModeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "variable", b.Variable, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "variable", b.Variable, b.VariableExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "condition", b.Condition, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "condition", b.Condition, b.ConditionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "check", b.Check, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "check", b.Check, b.CheckExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "logMessage", b.LogMessage, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "logMessage", b.LogMessage, b.LogMessageExt); err != nil {
 		return err
 	}
 
@@ -1272,71 +1334,82 @@ func (r *StructureMapGroupRuleSource) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "context":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Context = v
+				r.ContextExt = ext
 			case "min":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Min = v
+				r.MinExt = ext
 			case "max":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Max = v
+				r.MaxExt = ext
 			case "type":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "defaultValue":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefaultValue = v
+				r.DefaultValueExt = ext
 			case "element":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Element = v
+				r.ElementExt = ext
 			case "listMode":
-				v, _, err := xmlDecodePrimitiveCode[StructureMapSourceListMode](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[StructureMapSourceListMode](d, t)
 				if err != nil {
 					return err
 				}
 				r.ListMode = v
+				r.ListModeExt = ext
 			case "variable":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Variable = v
+				r.VariableExt = ext
 			case "condition":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Condition = v
+				r.ConditionExt = ext
 			case "check":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Check = v
+				r.CheckExt = ext
 			case "logMessage":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.LogMessage = v
+				r.LogMessageExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1359,16 +1432,28 @@ type StructureMapGroupRuleTarget struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Variable this rule applies to
 	Context *string `json:"context,omitempty"`
+	// Extension for Context
+	ContextExt *Element `json:"_context,omitempty"`
 	// Field to create in the context
 	Element *string `json:"element,omitempty"`
+	// Extension for Element
+	ElementExt *Element `json:"_element,omitempty"`
 	// Named context for field, if desired, and a field is specified
 	Variable *string `json:"variable,omitempty"`
+	// Extension for Variable
+	VariableExt *Element `json:"_variable,omitempty"`
 	// first | share | last | single
 	ListMode []*StructureMapTargetListMode `json:"listMode,omitempty"`
+	// Extension for ListMode
+	ListModeExt []*Element `json:"_listMode,omitempty"`
 	// Internal rule reference for shared list items
 	ListRuleId *string `json:"listRuleId,omitempty"`
+	// Extension for ListRuleId
+	ListRuleIdExt *Element `json:"_listRuleId,omitempty"`
 	// create | copy +
 	Transform *StructureMapTransform `json:"transform,omitempty"`
+	// Extension for Transform
+	TransformExt *Element `json:"_transform,omitempty"`
 	// Parameters to the transform
 	Parameter []StructureMapGroupRuleTargetParameter `json:"parameter,omitempty"`
 }
@@ -1395,22 +1480,22 @@ func (b StructureMapGroupRuleTarget) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "context", b.Context, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "context", b.Context, b.ContextExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "element", b.Element, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "element", b.Element, b.ElementExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "variable", b.Variable, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "variable", b.Variable, b.VariableExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCodeArray(e, "listMode", b.ListMode, nil); err != nil {
+	if err := xmlEncodePrimitiveCodeArray(e, "listMode", b.ListMode, b.ListModeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "listRuleId", b.ListRuleId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "listRuleId", b.ListRuleId, b.ListRuleIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "transform", b.Transform, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "transform", b.Transform, b.TransformExt); err != nil {
 		return err
 	}
 	for _, item := range b.Parameter {
@@ -1452,42 +1537,48 @@ func (r *StructureMapGroupRuleTarget) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "context":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Context = v
+				r.ContextExt = ext
 			case "element":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Element = v
+				r.ElementExt = ext
 			case "variable":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Variable = v
+				r.VariableExt = ext
 			case "listMode":
-				v, _, err := xmlDecodePrimitiveCode[StructureMapTargetListMode](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[StructureMapTargetListMode](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ListMode = append(r.ListMode, v)
+				r.ListModeExt = append(r.ListModeExt, ext)
 			case "listRuleId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ListRuleId = v
+				r.ListRuleIdExt = ext
 			case "transform":
-				v, _, err := xmlDecodePrimitiveCode[StructureMapTransform](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[StructureMapTransform](d, t)
 				if err != nil {
 					return err
 				}
 				r.Transform = v
+				r.TransformExt = ext
 			case "parameter":
 				var v StructureMapGroupRuleTargetParameter
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1628,53 +1719,61 @@ func (r *StructureMapGroupRuleTargetParameter) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "valueId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueId = v
+				_ = ext
 			case "valueString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
+				_ = ext
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			case "valueInteger":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
+				_ = ext
 			case "valueDecimal":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDecimal = v
+				_ = ext
 			case "valueDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDate = v
+				_ = ext
 			case "valueTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueTime = v
+				_ = ext
 			case "valueDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
+				_ = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1697,12 +1796,20 @@ type StructureMapStructure struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Canonical reference to structure definition
 	Url *string `json:"url,omitempty"`
+	// Extension for Url
+	UrlExt *Element `json:"_url,omitempty"`
 	// source | queried | target | produced
 	Mode *StructureMapModelMode `json:"mode,omitempty"`
+	// Extension for Mode
+	ModeExt *Element `json:"_mode,omitempty"`
 	// Name for type in this map
 	Alias *string `json:"alias,omitempty"`
+	// Extension for Alias
+	AliasExt *Element `json:"_alias,omitempty"`
 	// Documentation on use of structure
 	Documentation *string `json:"documentation,omitempty"`
+	// Extension for Documentation
+	DocumentationExt *Element `json:"_documentation,omitempty"`
 }
 
 // MarshalXML serializes StructureMapStructure to FHIR-conformant XML.
@@ -1727,16 +1834,16 @@ func (b StructureMapStructure) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "url", b.Url, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "url", b.Url, b.UrlExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "mode", b.Mode, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "mode", b.Mode, b.ModeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "alias", b.Alias, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "alias", b.Alias, b.AliasExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, b.DocumentationExt); err != nil {
 		return err
 	}
 
@@ -1773,29 +1880,33 @@ func (r *StructureMapStructure) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "url":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Url = v
+				r.UrlExt = ext
 			case "mode":
-				v, _, err := xmlDecodePrimitiveCode[StructureMapModelMode](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[StructureMapModelMode](d, t)
 				if err != nil {
 					return err
 				}
 				r.Mode = v
+				r.ModeExt = ext
 			case "alias":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Alias = v
+				r.AliasExt = ext
 			case "documentation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Documentation = v
+				r.DocumentationExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

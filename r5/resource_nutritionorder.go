@@ -388,26 +388,29 @@ func (r *NutritionOrder) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "instantiatesCanonical":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
+				r.InstantiatesCanonicalExt = append(r.InstantiatesCanonicalExt, ext)
 			case "instantiatesUri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.InstantiatesUri = append(r.InstantiatesUri, v)
+				r.InstantiatesUriExt = append(r.InstantiatesUriExt, ext)
 			case "instantiates":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Instantiates = append(r.Instantiates, v)
+				r.InstantiatesExt = append(r.InstantiatesExt, ext)
 			case "basedOn":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -551,6 +554,8 @@ type NutritionOrderEnteralFormula struct {
 	BaseFormulaType *CodeableReference `json:"baseFormulaType,omitempty"`
 	// Product or brand name of the enteral or infant formula
 	BaseFormulaProductName *string `json:"baseFormulaProductName,omitempty"`
+	// Extension for BaseFormulaProductName
+	BaseFormulaProductNameExt *Element `json:"_baseFormulaProductName,omitempty"`
 	// Intended type of device for the administration
 	DeliveryDevice []CodeableReference `json:"deliveryDevice,omitempty"`
 	// Components to add to the feeding
@@ -565,6 +570,8 @@ type NutritionOrderEnteralFormula struct {
 	MaxVolumeToDeliver *Quantity `json:"maxVolumeToDeliver,omitempty"`
 	// Formula feeding instructions expressed as text
 	AdministrationInstruction *string `json:"administrationInstruction,omitempty"`
+	// Extension for AdministrationInstruction
+	AdministrationInstructionExt *Element `json:"_administrationInstruction,omitempty"`
 }
 
 // MarshalXML serializes NutritionOrderEnteralFormula to FHIR-conformant XML.
@@ -594,7 +601,7 @@ func (b NutritionOrderEnteralFormula) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "baseFormulaProductName", b.BaseFormulaProductName, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "baseFormulaProductName", b.BaseFormulaProductName, b.BaseFormulaProductNameExt); err != nil {
 		return err
 	}
 	for _, item := range b.DeliveryDevice {
@@ -627,7 +634,7 @@ func (b NutritionOrderEnteralFormula) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "administrationInstruction", b.AdministrationInstruction, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "administrationInstruction", b.AdministrationInstruction, b.AdministrationInstructionExt); err != nil {
 		return err
 	}
 
@@ -670,11 +677,12 @@ func (r *NutritionOrderEnteralFormula) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.BaseFormulaType = &v
 			case "baseFormulaProductName":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.BaseFormulaProductName = v
+				r.BaseFormulaProductNameExt = ext
 			case "deliveryDevice":
 				var v CodeableReference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -712,11 +720,12 @@ func (r *NutritionOrderEnteralFormula) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.MaxVolumeToDeliver = &v
 			case "administrationInstruction":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AdministrationInstruction = v
+				r.AdministrationInstructionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -741,6 +750,8 @@ type NutritionOrderEnteralFormulaAdditive struct {
 	Type *CodeableReference `json:"type,omitempty"`
 	// Product or brand name of the modular additive
 	ProductName *string `json:"productName,omitempty"`
+	// Extension for ProductName
+	ProductNameExt *Element `json:"_productName,omitempty"`
 	// Amount of additive to be given or mixed in
 	Quantity *Quantity `json:"quantity,omitempty"`
 }
@@ -772,7 +783,7 @@ func (b NutritionOrderEnteralFormulaAdditive) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "productName", b.ProductName, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "productName", b.ProductName, b.ProductNameExt); err != nil {
 		return err
 	}
 	if b.Quantity != nil {
@@ -820,11 +831,12 @@ func (r *NutritionOrderEnteralFormulaAdditive) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.Type = &v
 			case "productName":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ProductName = v
+				r.ProductNameExt = ext
 			case "quantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -984,6 +996,8 @@ type NutritionOrderEnteralFormulaAdministrationSchedule struct {
 	Timing []Timing `json:"timing,omitempty"`
 	// Take 'as needed'
 	AsNeeded *bool `json:"asNeeded,omitempty"`
+	// Extension for AsNeeded
+	AsNeededExt *Element `json:"_asNeeded,omitempty"`
 	// Take 'as needed' for x
 	AsNeededFor *CodeableConcept `json:"asNeededFor,omitempty"`
 }
@@ -1015,7 +1029,7 @@ func (b NutritionOrderEnteralFormulaAdministrationSchedule) MarshalXML(e *xml.En
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "asNeeded", b.AsNeeded, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "asNeeded", b.AsNeeded, b.AsNeededExt); err != nil {
 		return err
 	}
 	if b.AsNeededFor != nil {
@@ -1063,11 +1077,12 @@ func (r *NutritionOrderEnteralFormulaAdministrationSchedule) UnmarshalXML(d *xml
 				}
 				r.Timing = append(r.Timing, v)
 			case "asNeeded":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.AsNeeded = v
+				r.AsNeededExt = ext
 			case "asNeededFor":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1106,6 +1121,8 @@ type NutritionOrderOralDiet struct {
 	FluidConsistencyType []CodeableConcept `json:"fluidConsistencyType,omitempty"`
 	// Instructions or additional information about the oral diet
 	Instruction *string `json:"instruction,omitempty"`
+	// Extension for Instruction
+	InstructionExt *Element `json:"_instruction,omitempty"`
 }
 
 // MarshalXML serializes NutritionOrderOralDiet to FHIR-conformant XML.
@@ -1155,7 +1172,7 @@ func (b NutritionOrderOralDiet) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "instruction", b.Instruction, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "instruction", b.Instruction, b.InstructionExt); err != nil {
 		return err
 	}
 
@@ -1222,11 +1239,12 @@ func (r *NutritionOrderOralDiet) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.FluidConsistencyType = append(r.FluidConsistencyType, v)
 			case "instruction":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Instruction = v
+				r.InstructionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1354,6 +1372,8 @@ type NutritionOrderOralDietSchedule struct {
 	Timing []Timing `json:"timing,omitempty"`
 	// Take 'as needed'
 	AsNeeded *bool `json:"asNeeded,omitempty"`
+	// Extension for AsNeeded
+	AsNeededExt *Element `json:"_asNeeded,omitempty"`
 	// Take 'as needed' for x
 	AsNeededFor *CodeableConcept `json:"asNeededFor,omitempty"`
 }
@@ -1385,7 +1405,7 @@ func (b NutritionOrderOralDietSchedule) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "asNeeded", b.AsNeeded, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "asNeeded", b.AsNeeded, b.AsNeededExt); err != nil {
 		return err
 	}
 	if b.AsNeededFor != nil {
@@ -1433,11 +1453,12 @@ func (r *NutritionOrderOralDietSchedule) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.Timing = append(r.Timing, v)
 			case "asNeeded":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.AsNeeded = v
+				r.AsNeededExt = ext
 			case "asNeededFor":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1571,12 +1592,16 @@ type NutritionOrderSupplement struct {
 	Type *CodeableReference `json:"type,omitempty"`
 	// Product or brand name of the nutritional supplement
 	ProductName *string `json:"productName,omitempty"`
+	// Extension for ProductName
+	ProductNameExt *Element `json:"_productName,omitempty"`
 	// Scheduling information for supplements
 	Schedule *NutritionOrderSupplementSchedule `json:"schedule,omitempty"`
 	// Amount of the nutritional supplement
 	Quantity *Quantity `json:"quantity,omitempty"`
 	// Instructions or additional information about the oral supplement
 	Instruction *string `json:"instruction,omitempty"`
+	// Extension for Instruction
+	InstructionExt *Element `json:"_instruction,omitempty"`
 }
 
 // MarshalXML serializes NutritionOrderSupplement to FHIR-conformant XML.
@@ -1606,7 +1631,7 @@ func (b NutritionOrderSupplement) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "productName", b.ProductName, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "productName", b.ProductName, b.ProductNameExt); err != nil {
 		return err
 	}
 	if b.Schedule != nil {
@@ -1619,7 +1644,7 @@ func (b NutritionOrderSupplement) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "instruction", b.Instruction, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "instruction", b.Instruction, b.InstructionExt); err != nil {
 		return err
 	}
 
@@ -1662,11 +1687,12 @@ func (r *NutritionOrderSupplement) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.Type = &v
 			case "productName":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ProductName = v
+				r.ProductNameExt = ext
 			case "schedule":
 				var v NutritionOrderSupplementSchedule
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1680,11 +1706,12 @@ func (r *NutritionOrderSupplement) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.Quantity = &v
 			case "instruction":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Instruction = v
+				r.InstructionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1709,6 +1736,8 @@ type NutritionOrderSupplementSchedule struct {
 	Timing []Timing `json:"timing,omitempty"`
 	// Take 'as needed'
 	AsNeeded *bool `json:"asNeeded,omitempty"`
+	// Extension for AsNeeded
+	AsNeededExt *Element `json:"_asNeeded,omitempty"`
 	// Take 'as needed' for x
 	AsNeededFor *CodeableConcept `json:"asNeededFor,omitempty"`
 }
@@ -1740,7 +1769,7 @@ func (b NutritionOrderSupplementSchedule) MarshalXML(e *xml.Encoder, start xml.S
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "asNeeded", b.AsNeeded, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "asNeeded", b.AsNeeded, b.AsNeededExt); err != nil {
 		return err
 	}
 	if b.AsNeededFor != nil {
@@ -1788,11 +1817,12 @@ func (r *NutritionOrderSupplementSchedule) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				r.Timing = append(r.Timing, v)
 			case "asNeeded":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.AsNeeded = v
+				r.AsNeededExt = ext
 			case "asNeededFor":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

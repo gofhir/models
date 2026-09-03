@@ -453,6 +453,8 @@ type SubstanceInstance struct {
 	Identifier *Identifier `json:"identifier,omitempty"`
 	// When no longer valid to use
 	Expiry *string `json:"expiry,omitempty"`
+	// Extension for Expiry
+	ExpiryExt *Element `json:"_expiry,omitempty"`
 	// Amount of substance in the package
 	Quantity *Quantity `json:"quantity,omitempty"`
 }
@@ -484,7 +486,7 @@ func (b SubstanceInstance) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "expiry", b.Expiry, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "expiry", b.Expiry, b.ExpiryExt); err != nil {
 		return err
 	}
 	if b.Quantity != nil {
@@ -532,11 +534,12 @@ func (r *SubstanceInstance) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.Identifier = &v
 			case "expiry":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Expiry = v
+				r.ExpiryExt = ext
 			case "quantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {

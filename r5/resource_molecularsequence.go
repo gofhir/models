@@ -376,6 +376,8 @@ type MolecularSequenceRelative struct {
 	CoordinateSystem *CodeableConcept `json:"coordinateSystem,omitempty"`
 	// Indicates the order in which the sequence should be considered when putting multiple 'relative' elements together
 	OrdinalPosition *int `json:"ordinalPosition,omitempty"`
+	// Extension for OrdinalPosition
+	OrdinalPositionExt *Element `json:"_ordinalPosition,omitempty"`
 	// Indicates the nucleotide range in the composed sequence when multiple 'relative' elements are used together
 	SequenceRange *Range `json:"sequenceRange,omitempty"`
 	// A sequence used as starting sequence
@@ -411,7 +413,7 @@ func (b MolecularSequenceRelative) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveInt(e, "ordinalPosition", b.OrdinalPosition, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "ordinalPosition", b.OrdinalPosition, b.OrdinalPositionExt); err != nil {
 		return err
 	}
 	if b.SequenceRange != nil {
@@ -469,11 +471,12 @@ func (r *MolecularSequenceRelative) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.CoordinateSystem = &v
 			case "ordinalPosition":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.OrdinalPosition = v
+				r.OrdinalPositionExt = ext
 			case "sequenceRange":
 				var v Range
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -514,12 +517,20 @@ type MolecularSequenceRelativeEdit struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Start position of the edit on the starting sequence
 	Start *int `json:"start,omitempty"`
+	// Extension for Start
+	StartExt *Element `json:"_start,omitempty"`
 	// End position of the edit on the starting sequence
 	End *int `json:"end,omitempty"`
+	// Extension for End
+	EndExt *Element `json:"_end,omitempty"`
 	// Allele that was observed
 	ReplacementSequence *string `json:"replacementSequence,omitempty"`
+	// Extension for ReplacementSequence
+	ReplacementSequenceExt *Element `json:"_replacementSequence,omitempty"`
 	// Allele in the starting sequence
 	ReplacedSequence *string `json:"replacedSequence,omitempty"`
+	// Extension for ReplacedSequence
+	ReplacedSequenceExt *Element `json:"_replacedSequence,omitempty"`
 }
 
 // MarshalXML serializes MolecularSequenceRelativeEdit to FHIR-conformant XML.
@@ -544,16 +555,16 @@ func (b MolecularSequenceRelativeEdit) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveInt(e, "start", b.Start, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "start", b.Start, b.StartExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "end", b.End, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "end", b.End, b.EndExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "replacementSequence", b.ReplacementSequence, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "replacementSequence", b.ReplacementSequence, b.ReplacementSequenceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "replacedSequence", b.ReplacedSequence, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "replacedSequence", b.ReplacedSequence, b.ReplacedSequenceExt); err != nil {
 		return err
 	}
 
@@ -590,29 +601,33 @@ func (r *MolecularSequenceRelativeEdit) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "start":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Start = v
+				r.StartExt = ext
 			case "end":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.End = v
+				r.EndExt = ext
 			case "replacementSequence":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ReplacementSequence = v
+				r.ReplacementSequenceExt = ext
 			case "replacedSequence":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ReplacedSequence = v
+				r.ReplacedSequenceExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -647,12 +662,20 @@ type MolecularSequenceRelativeStartingSequence struct {
 	SequenceReference *Reference `json:"sequenceReference,omitempty"`
 	// Start position of the window on the starting sequence
 	WindowStart *int `json:"windowStart,omitempty"`
+	// Extension for WindowStart
+	WindowStartExt *Element `json:"_windowStart,omitempty"`
 	// End position of the window on the starting sequence
 	WindowEnd *int `json:"windowEnd,omitempty"`
+	// Extension for WindowEnd
+	WindowEndExt *Element `json:"_windowEnd,omitempty"`
 	// sense | antisense
 	Orientation *OrientationType `json:"orientation,omitempty"`
+	// Extension for Orientation
+	OrientationExt *Element `json:"_orientation,omitempty"`
 	// watson | crick
 	Strand *StrandType `json:"strand,omitempty"`
+	// Extension for Strand
+	StrandExt *Element `json:"_strand,omitempty"`
 }
 
 // MarshalXML serializes MolecularSequenceRelativeStartingSequence to FHIR-conformant XML.
@@ -700,16 +723,16 @@ func (b MolecularSequenceRelativeStartingSequence) MarshalXML(e *xml.Encoder, st
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveInt(e, "windowStart", b.WindowStart, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "windowStart", b.WindowStart, b.WindowStartExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "windowEnd", b.WindowEnd, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "windowEnd", b.WindowEnd, b.WindowEndExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "orientation", b.Orientation, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "orientation", b.Orientation, b.OrientationExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "strand", b.Strand, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "strand", b.Strand, b.StrandExt); err != nil {
 		return err
 	}
 
@@ -764,11 +787,12 @@ func (r *MolecularSequenceRelativeStartingSequence) UnmarshalXML(d *xml.Decoder,
 				}
 				r.SequenceCodeableConcept = &v
 			case "sequenceString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SequenceString = v
+				_ = ext
 			case "sequenceReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -776,29 +800,33 @@ func (r *MolecularSequenceRelativeStartingSequence) UnmarshalXML(d *xml.Decoder,
 				}
 				r.SequenceReference = &v
 			case "windowStart":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.WindowStart = v
+				r.WindowStartExt = ext
 			case "windowEnd":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.WindowEnd = v
+				r.WindowEndExt = ext
 			case "orientation":
-				v, _, err := xmlDecodePrimitiveCode[OrientationType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[OrientationType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Orientation = v
+				r.OrientationExt = ext
 			case "strand":
-				v, _, err := xmlDecodePrimitiveCode[StrandType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[StrandType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Strand = v
+				r.StrandExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

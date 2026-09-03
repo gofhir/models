@@ -512,6 +512,8 @@ type CoverageClass struct {
 	Value *Identifier `json:"value,omitempty"`
 	// Human readable description of the type and value
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 }
 
 // MarshalXML serializes CoverageClass to FHIR-conformant XML.
@@ -546,7 +548,7 @@ func (b CoverageClass) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
 
@@ -595,11 +597,12 @@ func (r *CoverageClass) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				r.Value = &v
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -908,6 +911,8 @@ type CoveragePaymentBy struct {
 	Party *Reference `json:"party,omitempty"`
 	// Party's responsibility
 	Responsibility *string `json:"responsibility,omitempty"`
+	// Extension for Responsibility
+	ResponsibilityExt *Element `json:"_responsibility,omitempty"`
 }
 
 // MarshalXML serializes CoveragePaymentBy to FHIR-conformant XML.
@@ -937,7 +942,7 @@ func (b CoveragePaymentBy) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "responsibility", b.Responsibility, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "responsibility", b.Responsibility, b.ResponsibilityExt); err != nil {
 		return err
 	}
 
@@ -980,11 +985,12 @@ func (r *CoveragePaymentBy) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.Party = &v
 			case "responsibility":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Responsibility = v
+				r.ResponsibilityExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

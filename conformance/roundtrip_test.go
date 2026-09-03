@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"slices"
 	"sort"
 	"strings"
 	"testing"
@@ -67,6 +68,41 @@ func TestRoundTrip(t *testing.T) {
 	}
 }
 
+// expectedNonResources lists, per version, the JSON files in the published
+// examples that are not resources. Keeping it explicit means a corpus refresh that
+// introduces another one has to be looked at rather than absorbed.
+var expectedNonResources = map[string][]string{
+	"r4":  {"package-min-ver.json"},
+	"r4b": nil,
+	"r5":  nil,
+}
+
+// isResourceDocument reports whether the file is a JSON object carrying a
+// non-empty resourceType. Anything else cannot be a FHIR resource.
+func isResourceDocument(t *testing.T, path string) bool {
+	t.Helper()
+
+	data, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatalf("reading %s: %v", path, err)
+	}
+	var doc map[string]json.RawMessage
+	if err := json.Unmarshal(data, &doc); err != nil {
+		// Malformed or not an object: leave it in the corpus, where a parse
+		// failure is the honest outcome.
+		return true
+	}
+	raw, ok := doc["resourceType"]
+	if !ok {
+		return false
+	}
+	var name string
+	if err := json.Unmarshal(raw, &name); err != nil {
+		return true // present but not a string — a real defect in the example
+	}
+	return name != ""
+}
+
 func runCorpus(t *testing.T, c codec, kind string) {
 	dir := filepath.Join(examplesDir, c.name, kind)
 	files, err := filepath.Glob(filepath.Join(dir, "*."+kind))
@@ -81,6 +117,37 @@ func runCorpus(t *testing.T, c codec, kind string) {
 	unmarshal, marshal := c.unmarshalJSON, c.marshalJSON
 	if kind == "xml" {
 		unmarshal, marshal = c.unmarshalXML, c.marshalXML
+	}
+
+	// The published example directories are not made up purely of resources. R4
+	// ships package-min-ver.json, a package manifest fragment — {"build": ...,
+	// "meta": ...} — with no resourceType. There is nothing a FHIR library can do
+	// with it, and counting it as a round-trip failure says the library is broken
+	// when the input simply is not a resource.
+	//
+	// The test for it is what the file is, not what it is called, so a corpus
+	// refresh that adds or removes one of these is picked up. The count is pinned
+	// so it cannot grow quietly into a way of hiding real parse failures.
+	var notResources []string
+	if kind == "json" {
+		kept := files[:0]
+		for _, path := range files {
+			if isResourceDocument(t, path) {
+				kept = append(kept, path)
+			} else {
+				notResources = append(notResources, filepath.Base(path))
+			}
+		}
+		files = kept
+
+		want := expectedNonResources[c.name]
+		if !slices.Equal(notResources, want) {
+			t.Errorf("non-resource files in the %s corpus changed:\n  got  %v\n  want %v\n"+
+				"if the corpus was refreshed, update expectedNonResources", c.name, notResources, want)
+		}
+		if len(notResources) > 0 {
+			t.Logf("excluded %d file(s) with no resourceType: %v", len(notResources), notResources)
+		}
 	}
 
 	var failures []failure

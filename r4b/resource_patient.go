@@ -485,6 +485,8 @@ type PatientCommunication struct {
 	Language *CodeableConcept `json:"language,omitempty"`
 	// Language preference indicator
 	Preferred *bool `json:"preferred,omitempty"`
+	// Extension for Preferred
+	PreferredExt *Element `json:"_preferred,omitempty"`
 }
 
 // MarshalXML serializes PatientCommunication to FHIR-conformant XML.
@@ -514,7 +516,7 @@ func (b PatientCommunication) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "preferred", b.Preferred, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "preferred", b.Preferred, b.PreferredExt); err != nil {
 		return err
 	}
 
@@ -557,11 +559,12 @@ func (r *PatientCommunication) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.Language = &v
 			case "preferred":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Preferred = v
+				r.PreferredExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -592,6 +595,8 @@ type PatientContact struct {
 	Address *Address `json:"address,omitempty"`
 	// male | female | other | unknown
 	Gender *AdministrativeGender `json:"gender,omitempty"`
+	// Extension for Gender
+	GenderExt *Element `json:"_gender,omitempty"`
 	// Organization that is associated with the contact
 	Organization *Reference `json:"organization,omitempty"`
 	// The period during which this contact person or organization is valid to be contacted relating to this patient
@@ -640,7 +645,7 @@ func (b PatientContact) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "gender", b.Gender, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "gender", b.Gender, b.GenderExt); err != nil {
 		return err
 	}
 	if b.Organization != nil {
@@ -711,11 +716,12 @@ func (r *PatientContact) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.Address = &v
 			case "gender":
-				v, _, err := xmlDecodePrimitiveCode[AdministrativeGender](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[AdministrativeGender](d, t)
 				if err != nil {
 					return err
 				}
 				r.Gender = v
+				r.GenderExt = ext
 			case "organization":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -752,6 +758,8 @@ type PatientLink struct {
 	Other *Reference `json:"other,omitempty"`
 	// replaced-by | replaces | refer | seealso
 	Type *LinkType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 }
 
 // MarshalXML serializes PatientLink to FHIR-conformant XML.
@@ -781,7 +789,7 @@ func (b PatientLink) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
 
@@ -824,11 +832,12 @@ func (r *PatientLink) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 				}
 				r.Other = &v
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[LinkType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[LinkType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

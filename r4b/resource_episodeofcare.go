@@ -403,6 +403,8 @@ type EpisodeOfCareDiagnosis struct {
 	Role *CodeableConcept `json:"role,omitempty"`
 	// Ranking of the diagnosis (for each role type)
 	Rank *uint32 `json:"rank,omitempty"`
+	// Extension for Rank
+	RankExt *Element `json:"_rank,omitempty"`
 }
 
 // MarshalXML serializes EpisodeOfCareDiagnosis to FHIR-conformant XML.
@@ -437,7 +439,7 @@ func (b EpisodeOfCareDiagnosis) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "rank", b.Rank, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "rank", b.Rank, b.RankExt); err != nil {
 		return err
 	}
 
@@ -486,11 +488,12 @@ func (r *EpisodeOfCareDiagnosis) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.Role = &v
 			case "rank":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Rank = v
+				r.RankExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -513,6 +516,8 @@ type EpisodeOfCareStatusHistory struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// planned | waitlist | active | onhold | finished | cancelled | entered-in-error
 	Status *EpisodeOfCareStatus `json:"status,omitempty"`
+	// Extension for Status
+	StatusExt *Element `json:"_status,omitempty"`
 	// Duration the EpisodeOfCare was in the specified status
 	Period *Period `json:"period,omitempty"`
 }
@@ -539,7 +544,7 @@ func (b EpisodeOfCareStatusHistory) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "status", b.Status, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "status", b.Status, b.StatusExt); err != nil {
 		return err
 	}
 	if b.Period != nil {
@@ -581,11 +586,12 @@ func (r *EpisodeOfCareStatusHistory) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "status":
-				v, _, err := xmlDecodePrimitiveCode[EpisodeOfCareStatus](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[EpisodeOfCareStatus](d, t)
 				if err != nil {
 					return err
 				}
 				r.Status = v
+				r.StatusExt = ext
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

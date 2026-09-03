@@ -262,12 +262,13 @@ func (r *SubstanceProtein) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				r.NumberOfSubunits = v
 				r.NumberOfSubunitsExt = ext
 			case "disulfideLinkage":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DisulfideLinkage = append(r.DisulfideLinkage, v)
+				r.DisulfideLinkageExt = append(r.DisulfideLinkageExt, ext)
 			case "subunit":
 				var v SubstanceProteinSubunit
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -296,20 +297,30 @@ type SubstanceProteinSubunit struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Index of primary sequences of amino acids linked through peptide bonds in order of decreasing length. Sequences of the same length will be ordered by molecular weight. Subunits that have identical sequences will be repeated and have sequential subscripts
 	Subunit *int `json:"subunit,omitempty"`
+	// Extension for Subunit
+	SubunitExt *Element `json:"_subunit,omitempty"`
 	// The sequence information shall be provided enumerating the amino acids from N- to C-terminal end using standard single-letter amino acid codes. Uppercase shall be used for L-amino acids and lowercase for D-amino acids. Transcribed SubstanceProteins will always be described using the translated sequence; for synthetic peptide containing amino acids that are not represented with a single letter code an X should be used within the sequence. The modified amino acids will be distinguished by their position in the sequence
 	Sequence *string `json:"sequence,omitempty"`
+	// Extension for Sequence
+	SequenceExt *Element `json:"_sequence,omitempty"`
 	// Length of linear sequences of amino acids contained in the subunit
 	Length *int `json:"length,omitempty"`
+	// Extension for Length
+	LengthExt *Element `json:"_length,omitempty"`
 	// The sequence information shall be provided enumerating the amino acids from N- to C-terminal end using standard single-letter amino acid codes. Uppercase shall be used for L-amino acids and lowercase for D-amino acids. Transcribed SubstanceProteins will always be described using the translated sequence; for synthetic peptide containing amino acids that are not represented with a single letter code an X should be used within the sequence. The modified amino acids will be distinguished by their position in the sequence
 	SequenceAttachment *Attachment `json:"sequenceAttachment,omitempty"`
 	// Unique identifier for molecular fragment modification based on the ISO 11238 Substance ID
 	NTerminalModificationId *Identifier `json:"nTerminalModificationId,omitempty"`
 	// The name of the fragment modified at the N-terminal of the SubstanceProtein shall be specified
 	NTerminalModification *string `json:"nTerminalModification,omitempty"`
+	// Extension for NTerminalModification
+	NTerminalModificationExt *Element `json:"_nTerminalModification,omitempty"`
 	// Unique identifier for molecular fragment modification based on the ISO 11238 Substance ID
 	CTerminalModificationId *Identifier `json:"cTerminalModificationId,omitempty"`
 	// The modification at the C-terminal shall be specified
 	CTerminalModification *string `json:"cTerminalModification,omitempty"`
+	// Extension for CTerminalModification
+	CTerminalModificationExt *Element `json:"_cTerminalModification,omitempty"`
 }
 
 // MarshalXML serializes SubstanceProteinSubunit to FHIR-conformant XML.
@@ -334,13 +345,13 @@ func (b SubstanceProteinSubunit) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveInt(e, "subunit", b.Subunit, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "subunit", b.Subunit, b.SubunitExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "sequence", b.Sequence, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sequence", b.Sequence, b.SequenceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "length", b.Length, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "length", b.Length, b.LengthExt); err != nil {
 		return err
 	}
 	if b.SequenceAttachment != nil {
@@ -353,7 +364,7 @@ func (b SubstanceProteinSubunit) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "nTerminalModification", b.NTerminalModification, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "nTerminalModification", b.NTerminalModification, b.NTerminalModificationExt); err != nil {
 		return err
 	}
 	if b.CTerminalModificationId != nil {
@@ -361,7 +372,7 @@ func (b SubstanceProteinSubunit) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "cTerminalModification", b.CTerminalModification, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "cTerminalModification", b.CTerminalModification, b.CTerminalModificationExt); err != nil {
 		return err
 	}
 
@@ -398,23 +409,26 @@ func (r *SubstanceProteinSubunit) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "subunit":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Subunit = v
+				r.SubunitExt = ext
 			case "sequence":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Sequence = v
+				r.SequenceExt = ext
 			case "length":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Length = v
+				r.LengthExt = ext
 			case "sequenceAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -428,11 +442,12 @@ func (r *SubstanceProteinSubunit) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.NTerminalModificationId = &v
 			case "nTerminalModification":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.NTerminalModification = v
+				r.NTerminalModificationExt = ext
 			case "cTerminalModificationId":
 				var v Identifier
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -440,11 +455,12 @@ func (r *SubstanceProteinSubunit) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.CTerminalModificationId = &v
 			case "cTerminalModification":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.CTerminalModification = v
+				r.CTerminalModificationExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

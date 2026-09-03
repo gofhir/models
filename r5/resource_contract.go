@@ -582,12 +582,13 @@ func (r *Contract) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				r.Subtitle = v
 				r.SubtitleExt = ext
 			case "alias":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Alias = append(r.Alias, v)
+				r.AliasExt = append(r.AliasExt, ext)
 			case "author":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -712,10 +713,16 @@ type ContractContentDefinition struct {
 	Publisher *Reference `json:"publisher,omitempty"`
 	// When published
 	PublicationDate *string `json:"publicationDate,omitempty"`
+	// Extension for PublicationDate
+	PublicationDateExt *Element `json:"_publicationDate,omitempty"`
 	// amended | appended | cancelled | disputed | entered-in-error | executable +
 	PublicationStatus *ContractPublicationStatus `json:"publicationStatus,omitempty"`
+	// Extension for PublicationStatus
+	PublicationStatusExt *Element `json:"_publicationStatus,omitempty"`
 	// Publication Ownership
 	Copyright *string `json:"copyright,omitempty"`
+	// Extension for Copyright
+	CopyrightExt *Element `json:"_copyright,omitempty"`
 }
 
 // MarshalXML serializes ContractContentDefinition to FHIR-conformant XML.
@@ -755,13 +762,13 @@ func (b ContractContentDefinition) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "publicationDate", b.PublicationDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "publicationDate", b.PublicationDate, b.PublicationDateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "publicationStatus", b.PublicationStatus, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "publicationStatus", b.PublicationStatus, b.PublicationStatusExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "copyright", b.Copyright, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "copyright", b.Copyright, b.CopyrightExt); err != nil {
 		return err
 	}
 
@@ -816,23 +823,26 @@ func (r *ContractContentDefinition) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.Publisher = &v
 			case "publicationDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.PublicationDate = v
+				r.PublicationDateExt = ext
 			case "publicationStatus":
-				v, _, err := xmlDecodePrimitiveCode[ContractPublicationStatus](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ContractPublicationStatus](d, t)
 				if err != nil {
 					return err
 				}
 				r.PublicationStatus = v
+				r.PublicationStatusExt = ext
 			case "copyright":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Copyright = v
+				r.CopyrightExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1282,6 +1292,8 @@ type ContractTerm struct {
 	Identifier *Identifier `json:"identifier,omitempty"`
 	// Contract Term Issue Date Time
 	Issued *string `json:"issued,omitempty"`
+	// Extension for Issued
+	IssuedExt *Element `json:"_issued,omitempty"`
 	// Contract Term Effective Time
 	Applies *Period `json:"applies,omitempty"`
 	// Term Concern
@@ -1294,6 +1306,8 @@ type ContractTerm struct {
 	SubType *CodeableConcept `json:"subType,omitempty"`
 	// Term Statement
 	Text *string `json:"text,omitempty"`
+	// Extension for Text
+	TextExt *Element `json:"_text,omitempty"`
 	// Protection for the Term
 	SecurityLabel []ContractTermSecurityLabel `json:"securityLabel,omitempty"`
 	// Context of the Contract term
@@ -1333,7 +1347,7 @@ func (b ContractTerm) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "issued", b.Issued, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "issued", b.Issued, b.IssuedExt); err != nil {
 		return err
 	}
 	if b.Applies != nil {
@@ -1361,7 +1375,7 @@ func (b ContractTerm) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "text", b.Text, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "text", b.Text, b.TextExt); err != nil {
 		return err
 	}
 	for _, item := range b.SecurityLabel {
@@ -1429,11 +1443,12 @@ func (r *ContractTerm) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.Identifier = &v
 			case "issued":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Issued = v
+				r.IssuedExt = ext
 			case "applies":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1465,11 +1480,12 @@ func (r *ContractTerm) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.SubType = &v
 			case "text":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Text = v
+				r.TextExt = ext
 			case "securityLabel":
 				var v ContractTermSecurityLabel
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1522,6 +1538,8 @@ type ContractTermAction struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// True if the term prohibits the  action
 	DoNotPerform *bool `json:"doNotPerform,omitempty"`
+	// Extension for DoNotPerform
+	DoNotPerformExt *Element `json:"_doNotPerform,omitempty"`
 	// Type or form of the action
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Entity of the action
@@ -1530,12 +1548,16 @@ type ContractTermAction struct {
 	Intent *CodeableConcept `json:"intent,omitempty"`
 	// Pointer to specific item
 	LinkId []*string `json:"linkId,omitempty"`
+	// Extension for LinkId
+	LinkIdExt []*Element `json:"_linkId,omitempty"`
 	// State of the action
 	Status *CodeableConcept `json:"status,omitempty"`
 	// Episode associated with action
 	Context *Reference `json:"context,omitempty"`
 	// Pointer to specific item
 	ContextLinkId []*string `json:"contextLinkId,omitempty"`
+	// Extension for ContextLinkId
+	ContextLinkIdExt []*Element `json:"_contextLinkId,omitempty"`
 	// When action happens
 	OccurrenceDateTime *string `json:"occurrenceDateTime,omitempty"`
 	// Extension for OccurrenceDateTime
@@ -1548,6 +1570,8 @@ type ContractTermAction struct {
 	Requester []Reference `json:"requester,omitempty"`
 	// Pointer to specific item
 	RequesterLinkId []*string `json:"requesterLinkId,omitempty"`
+	// Extension for RequesterLinkId
+	RequesterLinkIdExt []*Element `json:"_requesterLinkId,omitempty"`
 	// Kind of service performer
 	PerformerType []CodeableConcept `json:"performerType,omitempty"`
 	// Competency of the performer
@@ -1556,14 +1580,20 @@ type ContractTermAction struct {
 	Performer *Reference `json:"performer,omitempty"`
 	// Pointer to specific item
 	PerformerLinkId []*string `json:"performerLinkId,omitempty"`
+	// Extension for PerformerLinkId
+	PerformerLinkIdExt []*Element `json:"_performerLinkId,omitempty"`
 	// Why is action (not) needed?
 	Reason []CodeableReference `json:"reason,omitempty"`
 	// Pointer to specific item
 	ReasonLinkId []*string `json:"reasonLinkId,omitempty"`
+	// Extension for ReasonLinkId
+	ReasonLinkIdExt []*Element `json:"_reasonLinkId,omitempty"`
 	// Comments about the action
 	Note []Annotation `json:"note,omitempty"`
 	// Action restriction numbers
 	SecurityLabelNumber []*uint32 `json:"securityLabelNumber,omitempty"`
+	// Extension for SecurityLabelNumber
+	SecurityLabelNumberExt []*Element `json:"_securityLabelNumber,omitempty"`
 }
 
 // MarshalXML serializes ContractTermAction to FHIR-conformant XML.
@@ -1588,7 +1618,7 @@ func (b ContractTermAction) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "doNotPerform", b.DoNotPerform, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "doNotPerform", b.DoNotPerform, b.DoNotPerformExt); err != nil {
 		return err
 	}
 	if b.Type != nil {
@@ -1606,7 +1636,7 @@ func (b ContractTermAction) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "linkId", b.LinkId, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "linkId", b.LinkId, b.LinkIdExt); err != nil {
 		return err
 	}
 	if b.Status != nil {
@@ -1619,7 +1649,7 @@ func (b ContractTermAction) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "contextLinkId", b.ContextLinkId, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "contextLinkId", b.ContextLinkId, b.ContextLinkIdExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "occurrenceDateTime", b.OccurrenceDateTime, nil); err != nil {
@@ -1640,7 +1670,7 @@ func (b ContractTermAction) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "requesterLinkId", b.RequesterLinkId, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "requesterLinkId", b.RequesterLinkId, b.RequesterLinkIdExt); err != nil {
 		return err
 	}
 	for _, item := range b.PerformerType {
@@ -1658,7 +1688,7 @@ func (b ContractTermAction) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "performerLinkId", b.PerformerLinkId, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "performerLinkId", b.PerformerLinkId, b.PerformerLinkIdExt); err != nil {
 		return err
 	}
 	for _, item := range b.Reason {
@@ -1666,7 +1696,7 @@ func (b ContractTermAction) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "reasonLinkId", b.ReasonLinkId, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "reasonLinkId", b.ReasonLinkId, b.ReasonLinkIdExt); err != nil {
 		return err
 	}
 	for _, item := range b.Note {
@@ -1674,7 +1704,7 @@ func (b ContractTermAction) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32Array(e, "securityLabelNumber", b.SecurityLabelNumber, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32Array(e, "securityLabelNumber", b.SecurityLabelNumber, b.SecurityLabelNumberExt); err != nil {
 		return err
 	}
 
@@ -1711,11 +1741,12 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "doNotPerform":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.DoNotPerform = v
+				r.DoNotPerformExt = ext
 			case "type":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1735,12 +1766,13 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Intent = &v
 			case "linkId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.LinkId = append(r.LinkId, v)
+				r.LinkIdExt = append(r.LinkIdExt, ext)
 			case "status":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1754,18 +1786,20 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Context = &v
 			case "contextLinkId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ContextLinkId = append(r.ContextLinkId, v)
+				r.ContextLinkIdExt = append(r.ContextLinkIdExt, ext)
 			case "occurrenceDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.OccurrenceDateTime = v
+				_ = ext
 			case "occurrencePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1785,12 +1819,13 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Requester = append(r.Requester, v)
 			case "requesterLinkId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.RequesterLinkId = append(r.RequesterLinkId, v)
+				r.RequesterLinkIdExt = append(r.RequesterLinkIdExt, ext)
 			case "performerType":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1810,12 +1845,13 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Performer = &v
 			case "performerLinkId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.PerformerLinkId = append(r.PerformerLinkId, v)
+				r.PerformerLinkIdExt = append(r.PerformerLinkIdExt, ext)
 			case "reason":
 				var v CodeableReference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1823,12 +1859,13 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Reason = append(r.Reason, v)
 			case "reasonLinkId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ReasonLinkId = append(r.ReasonLinkId, v)
+				r.ReasonLinkIdExt = append(r.ReasonLinkIdExt, ext)
 			case "note":
 				var v Annotation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1836,12 +1873,13 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.Note = append(r.Note, v)
 			case "securityLabelNumber":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SecurityLabelNumber = append(r.SecurityLabelNumber, v)
+				r.SecurityLabelNumberExt = append(r.SecurityLabelNumberExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1979,6 +2017,8 @@ type ContractTermAsset struct {
 	Context []ContractTermAssetContext `json:"context,omitempty"`
 	// Quality desctiption of asset
 	Condition *string `json:"condition,omitempty"`
+	// Extension for Condition
+	ConditionExt *Element `json:"_condition,omitempty"`
 	// Asset availability types
 	PeriodType []CodeableConcept `json:"periodType,omitempty"`
 	// Time period of the asset
@@ -1987,12 +2027,18 @@ type ContractTermAsset struct {
 	UsePeriod []Period `json:"usePeriod,omitempty"`
 	// Asset clause or question text
 	Text *string `json:"text,omitempty"`
+	// Extension for Text
+	TextExt *Element `json:"_text,omitempty"`
 	// Pointer to asset text
 	LinkId []*string `json:"linkId,omitempty"`
+	// Extension for LinkId
+	LinkIdExt []*Element `json:"_linkId,omitempty"`
 	// Response to assets
 	Answer []ContractTermOfferAnswer `json:"answer,omitempty"`
 	// Asset restriction numbers
 	SecurityLabelNumber []*uint32 `json:"securityLabelNumber,omitempty"`
+	// Extension for SecurityLabelNumber
+	SecurityLabelNumberExt []*Element `json:"_securityLabelNumber,omitempty"`
 	// Contract Valued Item List
 	ValuedItem []ContractTermAssetValuedItem `json:"valuedItem,omitempty"`
 }
@@ -2049,7 +2095,7 @@ func (b ContractTermAsset) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "condition", b.Condition, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "condition", b.Condition, b.ConditionExt); err != nil {
 		return err
 	}
 	for _, item := range b.PeriodType {
@@ -2067,10 +2113,10 @@ func (b ContractTermAsset) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "text", b.Text, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "text", b.Text, b.TextExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "linkId", b.LinkId, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "linkId", b.LinkId, b.LinkIdExt); err != nil {
 		return err
 	}
 	for _, item := range b.Answer {
@@ -2078,7 +2124,7 @@ func (b ContractTermAsset) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32Array(e, "securityLabelNumber", b.SecurityLabelNumber, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32Array(e, "securityLabelNumber", b.SecurityLabelNumber, b.SecurityLabelNumberExt); err != nil {
 		return err
 	}
 	for _, item := range b.ValuedItem {
@@ -2156,11 +2202,12 @@ func (r *ContractTermAsset) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.Context = append(r.Context, v)
 			case "condition":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Condition = v
+				r.ConditionExt = ext
 			case "periodType":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2180,18 +2227,20 @@ func (r *ContractTermAsset) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.UsePeriod = append(r.UsePeriod, v)
 			case "text":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Text = v
+				r.TextExt = ext
 			case "linkId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.LinkId = append(r.LinkId, v)
+				r.LinkIdExt = append(r.LinkIdExt, ext)
 			case "answer":
 				var v ContractTermOfferAnswer
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2199,12 +2248,13 @@ func (r *ContractTermAsset) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.Answer = append(r.Answer, v)
 			case "securityLabelNumber":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SecurityLabelNumber = append(r.SecurityLabelNumber, v)
+				r.SecurityLabelNumberExt = append(r.SecurityLabelNumberExt, ext)
 			case "valuedItem":
 				var v ContractTermAssetValuedItem
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2237,6 +2287,8 @@ type ContractTermAssetContext struct {
 	Code []CodeableConcept `json:"code,omitempty"`
 	// Context description
 	Text *string `json:"text,omitempty"`
+	// Extension for Text
+	TextExt *Element `json:"_text,omitempty"`
 }
 
 // MarshalXML serializes ContractTermAssetContext to FHIR-conformant XML.
@@ -2271,7 +2323,7 @@ func (b ContractTermAssetContext) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "text", b.Text, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "text", b.Text, b.TextExt); err != nil {
 		return err
 	}
 
@@ -2320,11 +2372,12 @@ func (r *ContractTermAssetContext) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.Code = append(r.Code, v)
 			case "text":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Text = v
+				r.TextExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2353,28 +2406,42 @@ type ContractTermAssetValuedItem struct {
 	Identifier *Identifier `json:"identifier,omitempty"`
 	// Contract Valued Item Effective Tiem
 	EffectiveTime *string `json:"effectiveTime,omitempty"`
+	// Extension for EffectiveTime
+	EffectiveTimeExt *Element `json:"_effectiveTime,omitempty"`
 	// Count of Contract Valued Items
 	Quantity *Quantity `json:"quantity,omitempty"`
 	// Contract Valued Item fee, charge, or cost
 	UnitPrice *Money `json:"unitPrice,omitempty"`
 	// Contract Valued Item Price Scaling Factor
 	Factor *Decimal `json:"factor,omitempty"`
+	// Extension for Factor
+	FactorExt *Element `json:"_factor,omitempty"`
 	// Contract Valued Item Difficulty Scaling Factor
 	Points *Decimal `json:"points,omitempty"`
+	// Extension for Points
+	PointsExt *Element `json:"_points,omitempty"`
 	// Total Contract Valued Item Value
 	Net *Money `json:"net,omitempty"`
 	// Terms of valuation
 	Payment *string `json:"payment,omitempty"`
+	// Extension for Payment
+	PaymentExt *Element `json:"_payment,omitempty"`
 	// When payment is due
 	PaymentDate *string `json:"paymentDate,omitempty"`
+	// Extension for PaymentDate
+	PaymentDateExt *Element `json:"_paymentDate,omitempty"`
 	// Who will make payment
 	Responsible *Reference `json:"responsible,omitempty"`
 	// Who will receive payment
 	Recipient *Reference `json:"recipient,omitempty"`
 	// Pointer to specific item
 	LinkId []*string `json:"linkId,omitempty"`
+	// Extension for LinkId
+	LinkIdExt []*Element `json:"_linkId,omitempty"`
 	// Security Labels that define affected terms
 	SecurityLabelNumber []*uint32 `json:"securityLabelNumber,omitempty"`
+	// Extension for SecurityLabelNumber
+	SecurityLabelNumberExt []*Element `json:"_securityLabelNumber,omitempty"`
 }
 
 // MarshalXML serializes ContractTermAssetValuedItem to FHIR-conformant XML.
@@ -2414,7 +2481,7 @@ func (b ContractTermAssetValuedItem) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "effectiveTime", b.EffectiveTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "effectiveTime", b.EffectiveTime, b.EffectiveTimeExt); err != nil {
 		return err
 	}
 	if b.Quantity != nil {
@@ -2427,10 +2494,10 @@ func (b ContractTermAssetValuedItem) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "factor", b.Factor, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "factor", b.Factor, b.FactorExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "points", b.Points, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "points", b.Points, b.PointsExt); err != nil {
 		return err
 	}
 	if b.Net != nil {
@@ -2438,10 +2505,10 @@ func (b ContractTermAssetValuedItem) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "payment", b.Payment, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "payment", b.Payment, b.PaymentExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "paymentDate", b.PaymentDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "paymentDate", b.PaymentDate, b.PaymentDateExt); err != nil {
 		return err
 	}
 	if b.Responsible != nil {
@@ -2454,10 +2521,10 @@ func (b ContractTermAssetValuedItem) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "linkId", b.LinkId, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "linkId", b.LinkId, b.LinkIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32Array(e, "securityLabelNumber", b.SecurityLabelNumber, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32Array(e, "securityLabelNumber", b.SecurityLabelNumber, b.SecurityLabelNumberExt); err != nil {
 		return err
 	}
 
@@ -2512,11 +2579,12 @@ func (r *ContractTermAssetValuedItem) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.Identifier = &v
 			case "effectiveTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.EffectiveTime = v
+				r.EffectiveTimeExt = ext
 			case "quantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2530,17 +2598,19 @@ func (r *ContractTermAssetValuedItem) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.UnitPrice = &v
 			case "factor":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Factor = v
+				r.FactorExt = ext
 			case "points":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Points = v
+				r.PointsExt = ext
 			case "net":
 				var v Money
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2548,17 +2618,19 @@ func (r *ContractTermAssetValuedItem) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.Net = &v
 			case "payment":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Payment = v
+				r.PaymentExt = ext
 			case "paymentDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.PaymentDate = v
+				r.PaymentDateExt = ext
 			case "responsible":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2572,19 +2644,21 @@ func (r *ContractTermAssetValuedItem) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.Recipient = &v
 			case "linkId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.LinkId = append(r.LinkId, v)
+				r.LinkIdExt = append(r.LinkIdExt, ext)
 			case "securityLabelNumber":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SecurityLabelNumber = append(r.SecurityLabelNumber, v)
+				r.SecurityLabelNumberExt = append(r.SecurityLabelNumberExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2621,10 +2695,16 @@ type ContractTermOffer struct {
 	Answer []ContractTermOfferAnswer `json:"answer,omitempty"`
 	// Human readable offer text
 	Text *string `json:"text,omitempty"`
+	// Extension for Text
+	TextExt *Element `json:"_text,omitempty"`
 	// Pointer to text
 	LinkId []*string `json:"linkId,omitempty"`
+	// Extension for LinkId
+	LinkIdExt []*Element `json:"_linkId,omitempty"`
 	// Offer restriction numbers
 	SecurityLabelNumber []*uint32 `json:"securityLabelNumber,omitempty"`
+	// Extension for SecurityLabelNumber
+	SecurityLabelNumberExt []*Element `json:"_securityLabelNumber,omitempty"`
 }
 
 // MarshalXML serializes ContractTermOffer to FHIR-conformant XML.
@@ -2684,13 +2764,13 @@ func (b ContractTermOffer) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "text", b.Text, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "text", b.Text, b.TextExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "linkId", b.LinkId, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "linkId", b.LinkId, b.LinkIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32Array(e, "securityLabelNumber", b.SecurityLabelNumber, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32Array(e, "securityLabelNumber", b.SecurityLabelNumber, b.SecurityLabelNumberExt); err != nil {
 		return err
 	}
 
@@ -2769,25 +2849,28 @@ func (r *ContractTermOffer) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.Answer = append(r.Answer, v)
 			case "text":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Text = v
+				r.TextExt = ext
 			case "linkId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.LinkId = append(r.LinkId, v)
+				r.LinkIdExt = append(r.LinkIdExt, ext)
 			case "securityLabelNumber":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SecurityLabelNumber = append(r.SecurityLabelNumber, v)
+				r.SecurityLabelNumberExt = append(r.SecurityLabelNumberExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2950,53 +3033,61 @@ func (r *ContractTermOfferAnswer) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			case "valueDecimal":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDecimal = v
+				_ = ext
 			case "valueInteger":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
+				_ = ext
 			case "valueDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDate = v
+				_ = ext
 			case "valueDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
+				_ = ext
 			case "valueTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueTime = v
+				_ = ext
 			case "valueString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
+				_ = ext
 			case "valueUri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueUri = v
+				_ = ext
 			case "valueAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -3146,6 +3237,8 @@ type ContractTermSecurityLabel struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Link to Security Labels
 	Number []*uint32 `json:"number,omitempty"`
+	// Extension for Number
+	NumberExt []*Element `json:"_number,omitempty"`
 	// Confidentiality Protection
 	Classification *Coding `json:"classification,omitempty"`
 	// Applicable Policy
@@ -3176,7 +3269,7 @@ func (b ContractTermSecurityLabel) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32Array(e, "number", b.Number, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32Array(e, "number", b.Number, b.NumberExt); err != nil {
 		return err
 	}
 	if b.Classification != nil {
@@ -3228,12 +3321,13 @@ func (r *ContractTermSecurityLabel) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "number":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Number = append(r.Number, v)
+				r.NumberExt = append(r.NumberExt, ext)
 			case "classification":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -391,6 +391,8 @@ type GroupCharacteristic struct {
 	ValueReference *Reference `json:"valueReference,omitempty"`
 	// Group includes or excludes
 	Exclude *bool `json:"exclude,omitempty"`
+	// Extension for Exclude
+	ExcludeExt *Element `json:"_exclude,omitempty"`
 	// Period over which characteristic is tested
 	Period *Period `json:"period,omitempty"`
 }
@@ -445,7 +447,7 @@ func (b GroupCharacteristic) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "exclude", b.Exclude, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "exclude", b.Exclude, b.ExcludeExt); err != nil {
 		return err
 	}
 	if b.Period != nil {
@@ -499,11 +501,12 @@ func (r *GroupCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.ValueCodeableConcept = &v
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -523,11 +526,12 @@ func (r *GroupCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.ValueReference = &v
 			case "exclude":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Exclude = v
+				r.ExcludeExt = ext
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -560,6 +564,8 @@ type GroupMember struct {
 	Period *Period `json:"period,omitempty"`
 	// If member is no longer in group
 	Inactive *bool `json:"inactive,omitempty"`
+	// Extension for Inactive
+	InactiveExt *Element `json:"_inactive,omitempty"`
 }
 
 // MarshalXML serializes GroupMember to FHIR-conformant XML.
@@ -594,7 +600,7 @@ func (b GroupMember) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "inactive", b.Inactive, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "inactive", b.Inactive, b.InactiveExt); err != nil {
 		return err
 	}
 
@@ -643,11 +649,12 @@ func (r *GroupMember) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 				}
 				r.Period = &v
 			case "inactive":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Inactive = v
+				r.InactiveExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

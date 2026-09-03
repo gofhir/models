@@ -153,12 +153,13 @@ func (r *Probe) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				r.Status = v
 				r.StatusExt = ext
 			case "alias":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Alias = append(r.Alias, v)
+				r.AliasExt = append(r.AliasExt, ext)
 			case "marker":
 				var v ProbeMarker
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -209,6 +210,8 @@ func (r *Probe) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 type ProbeDetail struct {
 	// Primitive inside a backbone
 	Label *string `json:"label,omitempty"`
+	// Extension for Label
+	LabelExt *Element `json:"_label,omitempty"`
 }
 
 // MarshalXML serializes ProbeDetail to FHIR-conformant XML.
@@ -220,7 +223,7 @@ func (b ProbeDetail) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 		return err
 	}
 
-	if err := xmlEncodePrimitiveString(e, "label", b.Label, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "label", b.Label, b.LabelExt); err != nil {
 		return err
 	}
 
@@ -239,11 +242,12 @@ func (r *ProbeDetail) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 		case xml.StartElement:
 			switch t.Name.Local {
 			case "label":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Label = v
+				r.LabelExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

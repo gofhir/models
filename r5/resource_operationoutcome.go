@@ -255,16 +255,26 @@ type OperationOutcomeIssue struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// fatal | error | warning | information | success
 	Severity *IssueSeverity `json:"severity,omitempty"`
+	// Extension for Severity
+	SeverityExt *Element `json:"_severity,omitempty"`
 	// Error or warning code
 	Code *IssueType `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Additional details about the error
 	Details *CodeableConcept `json:"details,omitempty"`
 	// Additional diagnostic information about the issue
 	Diagnostics *string `json:"diagnostics,omitempty"`
+	// Extension for Diagnostics
+	DiagnosticsExt *Element `json:"_diagnostics,omitempty"`
 	// Deprecated: Path of element(s) related to issue
 	Location []*string `json:"location,omitempty"`
+	// Extension for Location
+	LocationExt []*Element `json:"_location,omitempty"`
 	// FHIRPath of element(s) related to issue
 	Expression []*string `json:"expression,omitempty"`
+	// Extension for Expression
+	ExpressionExt []*Element `json:"_expression,omitempty"`
 }
 
 // MarshalXML serializes OperationOutcomeIssue to FHIR-conformant XML.
@@ -289,10 +299,10 @@ func (b OperationOutcomeIssue) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "severity", b.Severity, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "severity", b.Severity, b.SeverityExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
 	if b.Details != nil {
@@ -300,13 +310,13 @@ func (b OperationOutcomeIssue) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "diagnostics", b.Diagnostics, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "diagnostics", b.Diagnostics, b.DiagnosticsExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "location", b.Location, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "location", b.Location, b.LocationExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "expression", b.Expression, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "expression", b.Expression, b.ExpressionExt); err != nil {
 		return err
 	}
 
@@ -343,17 +353,19 @@ func (r *OperationOutcomeIssue) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "severity":
-				v, _, err := xmlDecodePrimitiveCode[IssueSeverity](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[IssueSeverity](d, t)
 				if err != nil {
 					return err
 				}
 				r.Severity = v
+				r.SeverityExt = ext
 			case "code":
-				v, _, err := xmlDecodePrimitiveCode[IssueType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[IssueType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "details":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -361,25 +373,28 @@ func (r *OperationOutcomeIssue) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.Details = &v
 			case "diagnostics":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Diagnostics = v
+				r.DiagnosticsExt = ext
 			case "location":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Location = append(r.Location, v)
+				r.LocationExt = append(r.LocationExt, ext)
 			case "expression":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Expression = append(r.Expression, v)
+				r.ExpressionExt = append(r.ExpressionExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err

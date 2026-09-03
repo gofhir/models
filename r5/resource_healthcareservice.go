@@ -548,6 +548,8 @@ type HealthcareServiceEligibility struct {
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Describes the eligibility conditions for the service
 	Comment *string `json:"comment,omitempty"`
+	// Extension for Comment
+	CommentExt *Element `json:"_comment,omitempty"`
 }
 
 // MarshalXML serializes HealthcareServiceEligibility to FHIR-conformant XML.
@@ -577,7 +579,7 @@ func (b HealthcareServiceEligibility) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, b.CommentExt); err != nil {
 		return err
 	}
 
@@ -620,11 +622,12 @@ func (r *HealthcareServiceEligibility) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.Code = &v
 			case "comment":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Comment = v
+				r.CommentExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

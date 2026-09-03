@@ -490,11 +490,12 @@ func (r *NutritionProductCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ValueCodeableConcept = &v
 			case "valueString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
+				_ = ext
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -502,11 +503,12 @@ func (r *NutritionProductCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ValueQuantity = &v
 			case "valueBase64Binary":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBase64Binary = v
+				_ = ext
 			case "valueAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -514,11 +516,12 @@ func (r *NutritionProductCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ValueAttachment = &v
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -648,12 +651,20 @@ type NutritionProductInstance struct {
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// The name for the specific product
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// The identification of the batch or lot of the product
 	LotNumber *string `json:"lotNumber,omitempty"`
+	// Extension for LotNumber
+	LotNumberExt *Element `json:"_lotNumber,omitempty"`
 	// The expiry date or date and time for the product
 	Expiry *string `json:"expiry,omitempty"`
+	// Extension for Expiry
+	ExpiryExt *Element `json:"_expiry,omitempty"`
 	// The date until which the product is expected to be good for consumption
 	UseBy *string `json:"useBy,omitempty"`
+	// Extension for UseBy
+	UseByExt *Element `json:"_useBy,omitempty"`
 	// An identifier that supports traceability to the event during which material in this product from one or more biological entities was obtained or pooled
 	BiologicalSourceEvent *Identifier `json:"biologicalSourceEvent,omitempty"`
 }
@@ -690,16 +701,16 @@ func (b NutritionProductInstance) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "lotNumber", b.LotNumber, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "lotNumber", b.LotNumber, b.LotNumberExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "expiry", b.Expiry, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "expiry", b.Expiry, b.ExpiryExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "useBy", b.UseBy, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "useBy", b.UseBy, b.UseByExt); err != nil {
 		return err
 	}
 	if b.BiologicalSourceEvent != nil {
@@ -753,29 +764,33 @@ func (r *NutritionProductInstance) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "lotNumber":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.LotNumber = v
+				r.LotNumberExt = ext
 			case "expiry":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Expiry = v
+				r.ExpiryExt = ext
 			case "useBy":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.UseBy = v
+				r.UseByExt = ext
 			case "biologicalSourceEvent":
 				var v Identifier
 				if err := v.UnmarshalXML(d, t); err != nil {

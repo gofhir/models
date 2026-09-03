@@ -702,6 +702,8 @@ type MedicationDispenseSubstitution struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Whether a substitution was or was not performed on the dispense
 	WasSubstituted *bool `json:"wasSubstituted,omitempty"`
+	// Extension for WasSubstituted
+	WasSubstitutedExt *Element `json:"_wasSubstituted,omitempty"`
 	// Code signifying whether a different drug was dispensed from what was prescribed
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Why was substitution made
@@ -732,7 +734,7 @@ func (b MedicationDispenseSubstitution) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "wasSubstituted", b.WasSubstituted, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "wasSubstituted", b.WasSubstituted, b.WasSubstitutedExt); err != nil {
 		return err
 	}
 	if b.Type != nil {
@@ -784,11 +786,12 @@ func (r *MedicationDispenseSubstitution) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "wasSubstituted":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.WasSubstituted = v
+				r.WasSubstitutedExt = ext
 			case "type":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

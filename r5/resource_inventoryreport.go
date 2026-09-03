@@ -379,6 +379,8 @@ type InventoryReportInventoryListing struct {
 	ItemStatus *CodeableConcept `json:"itemStatus,omitempty"`
 	// The date and time when the items were counted
 	CountingDateTime *string `json:"countingDateTime,omitempty"`
+	// Extension for CountingDateTime
+	CountingDateTimeExt *Element `json:"_countingDateTime,omitempty"`
 	// The item or items in this listing
 	Item []InventoryReportInventoryListingItem `json:"item,omitempty"`
 }
@@ -415,7 +417,7 @@ func (b InventoryReportInventoryListing) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "countingDateTime", b.CountingDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "countingDateTime", b.CountingDateTime, b.CountingDateTimeExt); err != nil {
 		return err
 	}
 	for _, item := range b.Item {
@@ -469,11 +471,12 @@ func (r *InventoryReportInventoryListing) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.ItemStatus = &v
 			case "countingDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.CountingDateTime = v
+				r.CountingDateTimeExt = ext
 			case "item":
 				var v InventoryReportInventoryListingItem
 				if err := v.UnmarshalXML(d, t); err != nil {

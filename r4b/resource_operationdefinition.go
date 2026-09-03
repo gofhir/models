@@ -526,12 +526,13 @@ func (r *OperationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				r.Base = v
 				r.BaseExt = ext
 			case "resource":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Resource = append(r.Resource, v)
+				r.ResourceExt = append(r.ResourceExt, ext)
 			case "system":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -601,8 +602,12 @@ type OperationDefinitionOverload struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Name of parameter to include in overload
 	ParameterName []*string `json:"parameterName,omitempty"`
+	// Extension for ParameterName
+	ParameterNameExt []*Element `json:"_parameterName,omitempty"`
 	// Comments to go on overload
 	Comment *string `json:"comment,omitempty"`
+	// Extension for Comment
+	CommentExt *Element `json:"_comment,omitempty"`
 }
 
 // MarshalXML serializes OperationDefinitionOverload to FHIR-conformant XML.
@@ -627,10 +632,10 @@ func (b OperationDefinitionOverload) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "parameterName", b.ParameterName, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "parameterName", b.ParameterName, b.ParameterNameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, b.CommentExt); err != nil {
 		return err
 	}
 
@@ -667,18 +672,20 @@ func (r *OperationDefinitionOverload) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "parameterName":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ParameterName = append(r.ParameterName, v)
+				r.ParameterNameExt = append(r.ParameterNameExt, ext)
 			case "comment":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Comment = v
+				r.CommentExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -701,20 +708,36 @@ type OperationDefinitionParameter struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Name in Parameters.parameter.name or in URL
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// in | out
 	Use *OperationParameterUse `json:"use,omitempty"`
+	// Extension for Use
+	UseExt *Element `json:"_use,omitempty"`
 	// Minimum Cardinality
 	Min *int `json:"min,omitempty"`
+	// Extension for Min
+	MinExt *Element `json:"_min,omitempty"`
 	// Maximum Cardinality (a number or *)
 	Max *string `json:"max,omitempty"`
+	// Extension for Max
+	MaxExt *Element `json:"_max,omitempty"`
 	// Description of meaning/use
 	Documentation *string `json:"documentation,omitempty"`
+	// Extension for Documentation
+	DocumentationExt *Element `json:"_documentation,omitempty"`
 	// What type this parameter has
 	Type *string `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// If type is Reference | canonical, allowed targets
 	TargetProfile []*string `json:"targetProfile,omitempty"`
+	// Extension for TargetProfile
+	TargetProfileExt []*Element `json:"_targetProfile,omitempty"`
 	// number | date | string | token | reference | composite | quantity | uri | special
 	SearchType *SearchParamType `json:"searchType,omitempty"`
+	// Extension for SearchType
+	SearchTypeExt *Element `json:"_searchType,omitempty"`
 	// ValueSet details if this is coded
 	Binding *OperationDefinitionParameterBinding `json:"binding,omitempty"`
 	// References to this parameter
@@ -745,28 +768,28 @@ func (b OperationDefinitionParameter) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "use", b.Use, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "use", b.Use, b.UseExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "min", b.Min, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "min", b.Min, b.MinExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "max", b.Max, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "max", b.Max, b.MaxExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, b.DocumentationExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "targetProfile", b.TargetProfile, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "targetProfile", b.TargetProfile, b.TargetProfileExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "searchType", b.SearchType, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "searchType", b.SearchType, b.SearchTypeExt); err != nil {
 		return err
 	}
 	if b.Binding != nil {
@@ -818,54 +841,62 @@ func (r *OperationDefinitionParameter) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "use":
-				v, _, err := xmlDecodePrimitiveCode[OperationParameterUse](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[OperationParameterUse](d, t)
 				if err != nil {
 					return err
 				}
 				r.Use = v
+				r.UseExt = ext
 			case "min":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Min = v
+				r.MinExt = ext
 			case "max":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Max = v
+				r.MaxExt = ext
 			case "documentation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Documentation = v
+				r.DocumentationExt = ext
 			case "type":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "targetProfile":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.TargetProfile = append(r.TargetProfile, v)
+				r.TargetProfileExt = append(r.TargetProfileExt, ext)
 			case "searchType":
-				v, _, err := xmlDecodePrimitiveCode[SearchParamType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[SearchParamType](d, t)
 				if err != nil {
 					return err
 				}
 				r.SearchType = v
+				r.SearchTypeExt = ext
 			case "binding":
 				var v OperationDefinitionParameterBinding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -906,8 +937,12 @@ type OperationDefinitionParameterBinding struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// required | extensible | preferred | example
 	Strength *BindingStrength `json:"strength,omitempty"`
+	// Extension for Strength
+	StrengthExt *Element `json:"_strength,omitempty"`
 	// Source of value set
 	ValueSet *string `json:"valueSet,omitempty"`
+	// Extension for ValueSet
+	ValueSetExt *Element `json:"_valueSet,omitempty"`
 }
 
 // MarshalXML serializes OperationDefinitionParameterBinding to FHIR-conformant XML.
@@ -932,10 +967,10 @@ func (b OperationDefinitionParameterBinding) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "strength", b.Strength, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "strength", b.Strength, b.StrengthExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueSet", b.ValueSet, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueSet", b.ValueSet, b.ValueSetExt); err != nil {
 		return err
 	}
 
@@ -972,17 +1007,19 @@ func (r *OperationDefinitionParameterBinding) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "strength":
-				v, _, err := xmlDecodePrimitiveCode[BindingStrength](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[BindingStrength](d, t)
 				if err != nil {
 					return err
 				}
 				r.Strength = v
+				r.StrengthExt = ext
 			case "valueSet":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueSet = v
+				r.ValueSetExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1005,8 +1042,12 @@ type OperationDefinitionParameterReferencedFrom struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Referencing parameter
 	Source *string `json:"source,omitempty"`
+	// Extension for Source
+	SourceExt *Element `json:"_source,omitempty"`
 	// Element id of reference
 	SourceId *string `json:"sourceId,omitempty"`
+	// Extension for SourceId
+	SourceIdExt *Element `json:"_sourceId,omitempty"`
 }
 
 // MarshalXML serializes OperationDefinitionParameterReferencedFrom to FHIR-conformant XML.
@@ -1031,10 +1072,10 @@ func (b OperationDefinitionParameterReferencedFrom) MarshalXML(e *xml.Encoder, s
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "source", b.Source, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "source", b.Source, b.SourceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "sourceId", b.SourceId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sourceId", b.SourceId, b.SourceIdExt); err != nil {
 		return err
 	}
 
@@ -1071,17 +1112,19 @@ func (r *OperationDefinitionParameterReferencedFrom) UnmarshalXML(d *xml.Decoder
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "source":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Source = v
+				r.SourceExt = ext
 			case "sourceId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SourceId = v
+				r.SourceIdExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

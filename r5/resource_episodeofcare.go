@@ -618,6 +618,8 @@ type EpisodeOfCareStatusHistory struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// planned | waitlist | active | onhold | finished | cancelled | entered-in-error
 	Status *EpisodeOfCareStatus `json:"status,omitempty"`
+	// Extension for Status
+	StatusExt *Element `json:"_status,omitempty"`
 	// Duration the EpisodeOfCare was in the specified status
 	Period *Period `json:"period,omitempty"`
 }
@@ -644,7 +646,7 @@ func (b EpisodeOfCareStatusHistory) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "status", b.Status, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "status", b.Status, b.StatusExt); err != nil {
 		return err
 	}
 	if b.Period != nil {
@@ -686,11 +688,12 @@ func (r *EpisodeOfCareStatusHistory) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "status":
-				v, _, err := xmlDecodePrimitiveCode[EpisodeOfCareStatus](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[EpisodeOfCareStatus](d, t)
 				if err != nil {
 					return err
 				}
 				r.Status = v
+				r.StatusExt = ext
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -773,11 +773,12 @@ func (r *ClinicalUseDefinitionIndication) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.DurationRange = &v
 			case "durationString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DurationString = v
+				_ = ext
 			case "undesirableEffect":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1173,6 +1174,8 @@ type ClinicalUseDefinitionWarning struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A textual definition of this warning, with formatting
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// A coded or unformatted textual definition of this warning
 	Code *CodeableConcept `json:"code,omitempty"`
 }
@@ -1199,7 +1202,7 @@ func (b ClinicalUseDefinitionWarning) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.Code != nil {
@@ -1241,11 +1244,12 @@ func (r *ClinicalUseDefinitionWarning) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "code":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

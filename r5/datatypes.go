@@ -1933,12 +1933,20 @@ type AvailabilityAvailableTime struct {
 	Extension []Extension `json:"extension,omitempty"`
 	// mon | tue | wed | thu | fri | sat | sun
 	DaysOfWeek []*DaysOfWeek `json:"daysOfWeek,omitempty"`
+	// Extension for DaysOfWeek
+	DaysOfWeekExt []*Element `json:"_daysOfWeek,omitempty"`
 	// Always available? i.e. 24 hour service
 	AllDay *bool `json:"allDay,omitempty"`
+	// Extension for AllDay
+	AllDayExt *Element `json:"_allDay,omitempty"`
 	// Opening time of day (ignored if allDay = true)
 	AvailableStartTime *string `json:"availableStartTime,omitempty"`
+	// Extension for AvailableStartTime
+	AvailableStartTimeExt *Element `json:"_availableStartTime,omitempty"`
 	// Closing time of day (ignored if allDay = true)
 	AvailableEndTime *string `json:"availableEndTime,omitempty"`
+	// Extension for AvailableEndTime
+	AvailableEndTimeExt *Element `json:"_availableEndTime,omitempty"`
 }
 
 // AvailabilityNotAvailableTime represents the Availability.notAvailableTime backbone element.
@@ -1950,6 +1958,8 @@ type AvailabilityNotAvailableTime struct {
 	Extension []Extension `json:"extension,omitempty"`
 	// Reason presented to the user explaining why time not available
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Service not available during this period
 	During *Period `json:"during,omitempty"`
 }
@@ -1963,10 +1973,16 @@ type DataRequirementCodeFilter struct {
 	Extension []Extension `json:"extension,omitempty"`
 	// A code-valued attribute to filter on
 	Path *string `json:"path,omitempty"`
+	// Extension for Path
+	PathExt *Element `json:"_path,omitempty"`
 	// A coded (token) parameter to search on
 	SearchParam *string `json:"searchParam,omitempty"`
+	// Extension for SearchParam
+	SearchParamExt *Element `json:"_searchParam,omitempty"`
 	// ValueSet for the filter
 	ValueSet *string `json:"valueSet,omitempty"`
+	// Extension for ValueSet
+	ValueSetExt *Element `json:"_valueSet,omitempty"`
 	// What code is expected
 	Code []Coding `json:"code,omitempty"`
 }
@@ -1980,8 +1996,12 @@ type DataRequirementDateFilter struct {
 	Extension []Extension `json:"extension,omitempty"`
 	// A date-valued attribute to filter on
 	Path *string `json:"path,omitempty"`
+	// Extension for Path
+	PathExt *Element `json:"_path,omitempty"`
 	// A date valued parameter to search on
 	SearchParam *string `json:"searchParam,omitempty"`
+	// Extension for SearchParam
+	SearchParamExt *Element `json:"_searchParam,omitempty"`
 	// The value of the filter, as a Period, DateTime, or Duration value
 	ValueDateTime *string `json:"valueDateTime,omitempty"`
 	// Extension for ValueDateTime
@@ -2001,8 +2021,12 @@ type DataRequirementSort struct {
 	Extension []Extension `json:"extension,omitempty"`
 	// The name of the attribute to perform the sort
 	Path *string `json:"path,omitempty"`
+	// Extension for Path
+	PathExt *Element `json:"_path,omitempty"`
 	// ascending | descending
 	Direction *SortDirection `json:"direction,omitempty"`
+	// Extension for Direction
+	DirectionExt *Element `json:"_direction,omitempty"`
 }
 
 // DataRequirementValueFilter represents the DataRequirement.valueFilter backbone element.
@@ -2014,10 +2038,16 @@ type DataRequirementValueFilter struct {
 	Extension []Extension `json:"extension,omitempty"`
 	// An attribute to filter on
 	Path *string `json:"path,omitempty"`
+	// Extension for Path
+	PathExt *Element `json:"_path,omitempty"`
 	// A parameter to search on
 	SearchParam *string `json:"searchParam,omitempty"`
+	// Extension for SearchParam
+	SearchParamExt *Element `json:"_searchParam,omitempty"`
 	// eq | gt | lt | ge | le | sa | eb
 	Comparator *ValueFilterComparator `json:"comparator,omitempty"`
+	// Extension for Comparator
+	ComparatorExt *Element `json:"_comparator,omitempty"`
 	// The value of the filter, as a Period, DateTime, or Duration value
 	ValueDateTime *string `json:"valueDateTime,omitempty"`
 	// Extension for ValueDateTime
@@ -2058,10 +2088,16 @@ type ElementDefinitionBase struct {
 	Extension []Extension `json:"extension,omitempty"`
 	// Path that identifies the base element
 	Path *string `json:"path,omitempty"`
+	// Extension for Path
+	PathExt *Element `json:"_path,omitempty"`
 	// Min cardinality of the base element
 	Min *uint32 `json:"min,omitempty"`
+	// Extension for Min
+	MinExt *Element `json:"_min,omitempty"`
 	// Max cardinality of the base element
 	Max *string `json:"max,omitempty"`
+	// Extension for Max
+	MaxExt *Element `json:"_max,omitempty"`
 }
 
 // ElementDefinitionBinding represents the ElementDefinition.binding backbone element.
@@ -2073,10 +2109,16 @@ type ElementDefinitionBinding struct {
 	Extension []Extension `json:"extension,omitempty"`
 	// required | extensible | preferred | example
 	Strength *BindingStrength `json:"strength,omitempty"`
+	// Extension for Strength
+	StrengthExt *Element `json:"_strength,omitempty"`
 	// Intended use of codes in the bound value set
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Source of value set
 	ValueSet *string `json:"valueSet,omitempty"`
+	// Extension for ValueSet
+	ValueSetExt *Element `json:"_valueSet,omitempty"`
 	// Additional Bindings - more rules about the binding
 	Additional []ElementDefinitionBindingAdditional `json:"additional,omitempty"`
 }
@@ -2090,16 +2132,26 @@ type ElementDefinitionBindingAdditional struct {
 	Extension []Extension `json:"extension,omitempty"`
 	// maximum | minimum | required | extensible | candidate | current | preferred | ui | starter | component
 	Purpose *AdditionalBindingPurpose `json:"purpose,omitempty"`
+	// Extension for Purpose
+	PurposeExt *Element `json:"_purpose,omitempty"`
 	// The value set for the additional binding
 	ValueSet *string `json:"valueSet,omitempty"`
+	// Extension for ValueSet
+	ValueSetExt *Element `json:"_valueSet,omitempty"`
 	// Documentation of the purpose of use of the binding
 	Documentation *string `json:"documentation,omitempty"`
+	// Extension for Documentation
+	DocumentationExt *Element `json:"_documentation,omitempty"`
 	// Concise documentation - for summary tables
 	ShortDoco *string `json:"shortDoco,omitempty"`
+	// Extension for ShortDoco
+	ShortDocoExt *Element `json:"_shortDoco,omitempty"`
 	// Qualifies the usage - jurisdiction, gender, workflow status etc.
 	Usage []UsageContext `json:"usage,omitempty"`
 	// Whether binding can applies to all repeats, or just one
 	Any *bool `json:"any,omitempty"`
+	// Extension for Any
+	AnyExt *Element `json:"_any,omitempty"`
 }
 
 // ElementDefinitionConstraint represents the ElementDefinition.constraint backbone element.
@@ -2111,18 +2163,32 @@ type ElementDefinitionConstraint struct {
 	Extension []Extension `json:"extension,omitempty"`
 	// Target of 'condition' reference above
 	Key *string `json:"key,omitempty"`
+	// Extension for Key
+	KeyExt *Element `json:"_key,omitempty"`
 	// Why this constraint is necessary or appropriate
 	Requirements *string `json:"requirements,omitempty"`
+	// Extension for Requirements
+	RequirementsExt *Element `json:"_requirements,omitempty"`
 	// error | warning
 	Severity *ConstraintSeverity `json:"severity,omitempty"`
+	// Extension for Severity
+	SeverityExt *Element `json:"_severity,omitempty"`
 	// Suppress warning or hint in profile
 	Suppress *bool `json:"suppress,omitempty"`
+	// Extension for Suppress
+	SuppressExt *Element `json:"_suppress,omitempty"`
 	// Human description of constraint
 	Human *string `json:"human,omitempty"`
+	// Extension for Human
+	HumanExt *Element `json:"_human,omitempty"`
 	// FHIRPath expression of constraint
 	Expression *string `json:"expression,omitempty"`
+	// Extension for Expression
+	ExpressionExt *Element `json:"_expression,omitempty"`
 	// Reference to original source of constraint
 	Source *string `json:"source,omitempty"`
+	// Extension for Source
+	SourceExt *Element `json:"_source,omitempty"`
 }
 
 // ElementDefinitionExample represents the ElementDefinition.example backbone element.
@@ -2134,6 +2200,8 @@ type ElementDefinitionExample struct {
 	Extension []Extension `json:"extension,omitempty"`
 	// Describes the purpose of this example
 	Label *string `json:"label,omitempty"`
+	// Extension for Label
+	LabelExt *Element `json:"_label,omitempty"`
 	// Value of Example (one of allowed types)
 	ValueBase64Binary *string `json:"valueBase64Binary,omitempty"`
 	// Extension for ValueBase64Binary
@@ -2293,12 +2361,20 @@ type ElementDefinitionMapping struct {
 	Extension []Extension `json:"extension,omitempty"`
 	// Reference to mapping declaration
 	Identity *string `json:"identity,omitempty"`
+	// Extension for Identity
+	IdentityExt *Element `json:"_identity,omitempty"`
 	// Computable language of mapping
 	Language *string `json:"language,omitempty"`
+	// Extension for Language
+	LanguageExt *Element `json:"_language,omitempty"`
 	// Details of the mapping
 	Map *string `json:"map,omitempty"`
+	// Extension for Map
+	MapExt *Element `json:"_map,omitempty"`
 	// Comments about the mapping or its use
 	Comment *string `json:"comment,omitempty"`
+	// Extension for Comment
+	CommentExt *Element `json:"_comment,omitempty"`
 }
 
 // ElementDefinitionSlicing represents the ElementDefinition.slicing backbone element.
@@ -2312,10 +2388,16 @@ type ElementDefinitionSlicing struct {
 	Discriminator []ElementDefinitionSlicingDiscriminator `json:"discriminator,omitempty"`
 	// Text description of how slicing works (or not)
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// If elements must be in same order as slices
 	Ordered *bool `json:"ordered,omitempty"`
+	// Extension for Ordered
+	OrderedExt *Element `json:"_ordered,omitempty"`
 	// closed | open | openAtEnd
 	Rules *SlicingRules `json:"rules,omitempty"`
+	// Extension for Rules
+	RulesExt *Element `json:"_rules,omitempty"`
 }
 
 // ElementDefinitionSlicingDiscriminator represents the ElementDefinition.slicing.discriminator backbone element.
@@ -2327,8 +2409,12 @@ type ElementDefinitionSlicingDiscriminator struct {
 	Extension []Extension `json:"extension,omitempty"`
 	// value | exists | type | profile | position
 	Type *DiscriminatorType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// Path to element value
 	Path *string `json:"path,omitempty"`
+	// Extension for Path
+	PathExt *Element `json:"_path,omitempty"`
 }
 
 // ElementDefinitionType represents the ElementDefinition.type backbone element.
@@ -2340,14 +2426,24 @@ type ElementDefinitionType struct {
 	Extension []Extension `json:"extension,omitempty"`
 	// Data type or Resource (reference to definition)
 	Code *string `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Profiles (StructureDefinition or IG) - one must apply
 	Profile []*string `json:"profile,omitempty"`
+	// Extension for Profile
+	ProfileExt []*Element `json:"_profile,omitempty"`
 	// Profile (StructureDefinition or IG) on the Reference/canonical target - one must apply
 	TargetProfile []*string `json:"targetProfile,omitempty"`
+	// Extension for TargetProfile
+	TargetProfileExt []*Element `json:"_targetProfile,omitempty"`
 	// contained | referenced | bundled - how aggregated
 	Aggregation []*AggregationMode `json:"aggregation,omitempty"`
+	// Extension for Aggregation
+	AggregationExt []*Element `json:"_aggregation,omitempty"`
 	// either | independent | specific
 	Versioning *ReferenceVersionRules `json:"versioning,omitempty"`
+	// Extension for Versioning
+	VersioningExt *Element `json:"_versioning,omitempty"`
 }
 
 // TimingRepeat represents the Timing.repeat backbone element.
@@ -2365,32 +2461,60 @@ type TimingRepeat struct {
 	BoundsPeriod *Period `json:"boundsPeriod,omitempty"`
 	// Number of times to repeat
 	Count *uint32 `json:"count,omitempty"`
+	// Extension for Count
+	CountExt *Element `json:"_count,omitempty"`
 	// Maximum number of times to repeat
 	CountMax *uint32 `json:"countMax,omitempty"`
+	// Extension for CountMax
+	CountMaxExt *Element `json:"_countMax,omitempty"`
 	// How long when it happens
 	Duration *Decimal `json:"duration,omitempty"`
+	// Extension for Duration
+	DurationExt *Element `json:"_duration,omitempty"`
 	// How long when it happens (Max)
 	DurationMax *Decimal `json:"durationMax,omitempty"`
+	// Extension for DurationMax
+	DurationMaxExt *Element `json:"_durationMax,omitempty"`
 	// s | min | h | d | wk | mo | a - unit of time (UCUM)
 	DurationUnit *UnitsOfTime `json:"durationUnit,omitempty"`
+	// Extension for DurationUnit
+	DurationUnitExt *Element `json:"_durationUnit,omitempty"`
 	// Indicates the number of repetitions that should occur within a period. I.e. Event occurs frequency times per period
 	Frequency *uint32 `json:"frequency,omitempty"`
+	// Extension for Frequency
+	FrequencyExt *Element `json:"_frequency,omitempty"`
 	// Event occurs up to frequencyMax times per period
 	FrequencyMax *uint32 `json:"frequencyMax,omitempty"`
+	// Extension for FrequencyMax
+	FrequencyMaxExt *Element `json:"_frequencyMax,omitempty"`
 	// The duration to which the frequency applies. I.e. Event occurs frequency times per period
 	Period *Decimal `json:"period,omitempty"`
+	// Extension for Period
+	PeriodExt *Element `json:"_period,omitempty"`
 	// Upper limit of period (3-4 hours)
 	PeriodMax *Decimal `json:"periodMax,omitempty"`
+	// Extension for PeriodMax
+	PeriodMaxExt *Element `json:"_periodMax,omitempty"`
 	// s | min | h | d | wk | mo | a - unit of time (UCUM)
 	PeriodUnit *UnitsOfTime `json:"periodUnit,omitempty"`
+	// Extension for PeriodUnit
+	PeriodUnitExt *Element `json:"_periodUnit,omitempty"`
 	// mon | tue | wed | thu | fri | sat | sun
 	DayOfWeek []*DaysOfWeek `json:"dayOfWeek,omitempty"`
+	// Extension for DayOfWeek
+	DayOfWeekExt []*Element `json:"_dayOfWeek,omitempty"`
 	// Time of day for action
 	TimeOfDay []*string `json:"timeOfDay,omitempty"`
+	// Extension for TimeOfDay
+	TimeOfDayExt []*Element `json:"_timeOfDay,omitempty"`
 	// Code for time period of occurrence
 	When []*EventTiming `json:"when,omitempty"`
+	// Extension for When
+	WhenExt []*Element `json:"_when,omitempty"`
 	// Minutes from event (before or after)
 	Offset *uint32 `json:"offset,omitempty"`
+	// Extension for Offset
+	OffsetExt *Element `json:"_offset,omitempty"`
 }
 
 // =============================================================================
@@ -5345,16 +5469,16 @@ func (b AvailabilityAvailableTime) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCodeArray(e, "daysOfWeek", b.DaysOfWeek, nil); err != nil {
+	if err := xmlEncodePrimitiveCodeArray(e, "daysOfWeek", b.DaysOfWeek, b.DaysOfWeekExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "allDay", b.AllDay, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "allDay", b.AllDay, b.AllDayExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "availableStartTime", b.AvailableStartTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "availableStartTime", b.AvailableStartTime, b.AvailableStartTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "availableEndTime", b.AvailableEndTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "availableEndTime", b.AvailableEndTime, b.AvailableEndTimeExt); err != nil {
 		return err
 	}
 
@@ -5378,7 +5502,7 @@ func (b AvailabilityNotAvailableTime) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.During != nil {
@@ -5407,13 +5531,13 @@ func (b DataRequirementCodeFilter) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "path", b.Path, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "path", b.Path, b.PathExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "searchParam", b.SearchParam, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "searchParam", b.SearchParam, b.SearchParamExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueSet", b.ValueSet, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueSet", b.ValueSet, b.ValueSetExt); err != nil {
 		return err
 	}
 	for _, item := range b.Code {
@@ -5442,10 +5566,10 @@ func (b DataRequirementDateFilter) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "path", b.Path, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "path", b.Path, b.PathExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "searchParam", b.SearchParam, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "searchParam", b.SearchParam, b.SearchParamExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, nil); err != nil {
@@ -5482,10 +5606,10 @@ func (b DataRequirementSort) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "path", b.Path, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "path", b.Path, b.PathExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "direction", b.Direction, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "direction", b.Direction, b.DirectionExt); err != nil {
 		return err
 	}
 
@@ -5509,13 +5633,13 @@ func (b DataRequirementValueFilter) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "path", b.Path, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "path", b.Path, b.PathExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "searchParam", b.SearchParam, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "searchParam", b.SearchParam, b.SearchParamExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "comparator", b.Comparator, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "comparator", b.Comparator, b.ComparatorExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, nil); err != nil {
@@ -5603,13 +5727,13 @@ func (b ElementDefinitionBase) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "path", b.Path, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "path", b.Path, b.PathExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "min", b.Min, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "min", b.Min, b.MinExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "max", b.Max, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "max", b.Max, b.MaxExt); err != nil {
 		return err
 	}
 
@@ -5633,13 +5757,13 @@ func (b ElementDefinitionBinding) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "strength", b.Strength, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "strength", b.Strength, b.StrengthExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueSet", b.ValueSet, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueSet", b.ValueSet, b.ValueSetExt); err != nil {
 		return err
 	}
 	for _, item := range b.Additional {
@@ -5668,16 +5792,16 @@ func (b ElementDefinitionBindingAdditional) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "purpose", b.Purpose, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "purpose", b.Purpose, b.PurposeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueSet", b.ValueSet, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueSet", b.ValueSet, b.ValueSetExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, b.DocumentationExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "shortDoco", b.ShortDoco, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "shortDoco", b.ShortDoco, b.ShortDocoExt); err != nil {
 		return err
 	}
 	for _, item := range b.Usage {
@@ -5685,7 +5809,7 @@ func (b ElementDefinitionBindingAdditional) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "any", b.Any, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "any", b.Any, b.AnyExt); err != nil {
 		return err
 	}
 
@@ -5709,25 +5833,25 @@ func (b ElementDefinitionConstraint) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "key", b.Key, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "key", b.Key, b.KeyExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "requirements", b.Requirements, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "requirements", b.Requirements, b.RequirementsExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "severity", b.Severity, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "severity", b.Severity, b.SeverityExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "suppress", b.Suppress, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "suppress", b.Suppress, b.SuppressExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "human", b.Human, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "human", b.Human, b.HumanExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "expression", b.Expression, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "expression", b.Expression, b.ExpressionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "source", b.Source, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "source", b.Source, b.SourceExt); err != nil {
 		return err
 	}
 
@@ -5751,7 +5875,7 @@ func (b ElementDefinitionExample) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "label", b.Label, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "label", b.Label, b.LabelExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "valueBase64Binary", b.ValueBase64Binary, nil); err != nil {
@@ -6005,16 +6129,16 @@ func (b ElementDefinitionMapping) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "identity", b.Identity, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "identity", b.Identity, b.IdentityExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "language", b.Language, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "language", b.Language, b.LanguageExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "map", b.Map, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "map", b.Map, b.MapExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, b.CommentExt); err != nil {
 		return err
 	}
 
@@ -6043,13 +6167,13 @@ func (b ElementDefinitionSlicing) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "ordered", b.Ordered, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "ordered", b.Ordered, b.OrderedExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "rules", b.Rules, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "rules", b.Rules, b.RulesExt); err != nil {
 		return err
 	}
 
@@ -6073,10 +6197,10 @@ func (b ElementDefinitionSlicingDiscriminator) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "path", b.Path, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "path", b.Path, b.PathExt); err != nil {
 		return err
 	}
 
@@ -6100,19 +6224,19 @@ func (b ElementDefinitionType) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "profile", b.Profile, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "profile", b.Profile, b.ProfileExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "targetProfile", b.TargetProfile, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "targetProfile", b.TargetProfile, b.TargetProfileExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCodeArray(e, "aggregation", b.Aggregation, nil); err != nil {
+	if err := xmlEncodePrimitiveCodeArray(e, "aggregation", b.Aggregation, b.AggregationExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "versioning", b.Versioning, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "versioning", b.Versioning, b.VersioningExt); err != nil {
 		return err
 	}
 
@@ -6151,46 +6275,46 @@ func (b TimingRepeat) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "count", b.Count, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "count", b.Count, b.CountExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "countMax", b.CountMax, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "countMax", b.CountMax, b.CountMaxExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "duration", b.Duration, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "duration", b.Duration, b.DurationExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "durationMax", b.DurationMax, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "durationMax", b.DurationMax, b.DurationMaxExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "durationUnit", b.DurationUnit, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "durationUnit", b.DurationUnit, b.DurationUnitExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "frequency", b.Frequency, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "frequency", b.Frequency, b.FrequencyExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "frequencyMax", b.FrequencyMax, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "frequencyMax", b.FrequencyMax, b.FrequencyMaxExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "period", b.Period, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "period", b.Period, b.PeriodExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "periodMax", b.PeriodMax, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "periodMax", b.PeriodMax, b.PeriodMaxExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "periodUnit", b.PeriodUnit, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "periodUnit", b.PeriodUnit, b.PeriodUnitExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCodeArray(e, "dayOfWeek", b.DayOfWeek, nil); err != nil {
+	if err := xmlEncodePrimitiveCodeArray(e, "dayOfWeek", b.DayOfWeek, b.DayOfWeekExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "timeOfDay", b.TimeOfDay, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "timeOfDay", b.TimeOfDay, b.TimeOfDayExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCodeArray(e, "when", b.When, nil); err != nil {
+	if err := xmlEncodePrimitiveCodeArray(e, "when", b.When, b.WhenExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "offset", b.Offset, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "offset", b.Offset, b.OffsetExt); err != nil {
 		return err
 	}
 
@@ -6320,12 +6444,13 @@ func (r *Address) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				r.Text = v
 				r.TextExt = ext
 			case "line":
-				v, _, err := xmlDecodePrimitiveString(dec, t)
+				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Line = append(r.Line, v)
+				r.LineExt = append(r.LineExt, ext)
 			case "city":
 				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
@@ -7110,12 +7235,13 @@ func (r *DataRequirement) UnmarshalXML(dec *xml.Decoder, start xml.StartElement)
 				r.Type = v
 				r.TypeExt = ext
 			case "profile":
-				v, _, err := xmlDecodePrimitiveString(dec, t)
+				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Profile = append(r.Profile, v)
+				r.ProfileExt = append(r.ProfileExt, ext)
 			case "subjectCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -7129,12 +7255,13 @@ func (r *DataRequirement) UnmarshalXML(dec *xml.Decoder, start xml.StartElement)
 				}
 				r.SubjectReference = &v
 			case "mustSupport":
-				v, _, err := xmlDecodePrimitiveString(dec, t)
+				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.MustSupport = append(r.MustSupport, v)
+				r.MustSupportExt = append(r.MustSupportExt, ext)
 			case "codeFilter":
 				var v DataRequirementCodeFilter
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -7480,12 +7607,13 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				r.Path = v
 				r.PathExt = ext
 			case "representation":
-				v, _, err := xmlDecodePrimitiveCode[PropertyRepresentation](dec, t)
+				v, ext, err := xmlDecodePrimitiveCode[PropertyRepresentation](dec, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Representation = append(r.Representation, v)
+				r.RepresentationExt = append(r.RepresentationExt, ext)
 			case "sliceName":
 				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
@@ -7548,12 +7676,13 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				r.Requirements = v
 				r.RequirementsExt = ext
 			case "alias":
-				v, _, err := xmlDecodePrimitiveString(dec, t)
+				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Alias = append(r.Alias, v)
+				r.AliasExt = append(r.AliasExt, ext)
 			case "min":
 				v, ext, err := xmlDecodePrimitiveUint32(dec, t)
 				if err != nil {
@@ -8785,12 +8914,13 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				r.MaxLength = v
 				r.MaxLengthExt = ext
 			case "condition":
-				v, _, err := xmlDecodePrimitiveString(dec, t)
+				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Condition = append(r.Condition, v)
+				r.ConditionExt = append(r.ConditionExt, ext)
 			case "constraint":
 				var v ElementDefinitionConstraint
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -8805,12 +8935,13 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				r.MustHaveValue = v
 				r.MustHaveValueExt = ext
 			case "valueAlternatives":
-				v, _, err := xmlDecodePrimitiveString(dec, t)
+				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ValueAlternatives = append(r.ValueAlternatives, v)
+				r.ValueAlternativesExt = append(r.ValueAlternativesExt, ext)
 			case "mustSupport":
 				v, ext, err := xmlDecodePrimitiveBool(dec, t)
 				if err != nil {
@@ -9428,26 +9559,29 @@ func (r *HumanName) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error
 				r.Family = v
 				r.FamilyExt = ext
 			case "given":
-				v, _, err := xmlDecodePrimitiveString(dec, t)
+				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Given = append(r.Given, v)
+				r.GivenExt = append(r.GivenExt, ext)
 			case "prefix":
-				v, _, err := xmlDecodePrimitiveString(dec, t)
+				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Prefix = append(r.Prefix, v)
+				r.PrefixExt = append(r.PrefixExt, ext)
 			case "suffix":
-				v, _, err := xmlDecodePrimitiveString(dec, t)
+				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Suffix = append(r.Suffix, v)
+				r.SuffixExt = append(r.SuffixExt, ext)
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -9654,12 +9788,13 @@ func (r *Meta) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				r.Source = v
 				r.SourceExt = ext
 			case "profile":
-				v, _, err := xmlDecodePrimitiveString(dec, t)
+				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Profile = append(r.Profile, v)
+				r.ProfileExt = append(r.ProfileExt, ext)
 			case "security":
 				var v Coding
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -10622,12 +10757,13 @@ func (r *Timing) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "event":
-				v, _, err := xmlDecodePrimitiveString(dec, t)
+				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Event = append(r.Event, v)
+				r.EventExt = append(r.EventExt, ext)
 			case "repeat":
 				var v TimingRepeat
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -10870,12 +11006,13 @@ func (r *VirtualServiceDetail) UnmarshalXML(dec *xml.Decoder, start xml.StartEle
 				}
 				r.AddressExtendedContactDetail = &v
 			case "additionalInfo":
-				v, _, err := xmlDecodePrimitiveString(dec, t)
+				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.AdditionalInfo = append(r.AdditionalInfo, v)
+				r.AdditionalInfoExt = append(r.AdditionalInfoExt, ext)
 			case "maxParticipants":
 				v, ext, err := xmlDecodePrimitiveUint32(dec, t)
 				if err != nil {
@@ -11067,30 +11204,34 @@ func (r *AvailabilityAvailableTime) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.Extension = append(r.Extension, v)
 			case "daysOfWeek":
-				v, _, err := xmlDecodePrimitiveCode[DaysOfWeek](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[DaysOfWeek](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DaysOfWeek = append(r.DaysOfWeek, v)
+				r.DaysOfWeekExt = append(r.DaysOfWeekExt, ext)
 			case "allDay":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.AllDay = v
+				r.AllDayExt = ext
 			case "availableStartTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AvailableStartTime = v
+				r.AvailableStartTimeExt = ext
 			case "availableEndTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AvailableEndTime = v
+				r.AvailableEndTimeExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -11126,11 +11267,12 @@ func (r *AvailabilityNotAvailableTime) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.Extension = append(r.Extension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "during":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -11172,23 +11314,26 @@ func (r *DataRequirementCodeFilter) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.Extension = append(r.Extension, v)
 			case "path":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Path = v
+				r.PathExt = ext
 			case "searchParam":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SearchParam = v
+				r.SearchParamExt = ext
 			case "valueSet":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueSet = v
+				r.ValueSetExt = ext
 			case "code":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -11230,23 +11375,26 @@ func (r *DataRequirementDateFilter) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.Extension = append(r.Extension, v)
 			case "path":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Path = v
+				r.PathExt = ext
 			case "searchParam":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SearchParam = v
+				r.SearchParamExt = ext
 			case "valueDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
+				_ = ext
 			case "valuePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -11294,17 +11442,19 @@ func (r *DataRequirementSort) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.Extension = append(r.Extension, v)
 			case "path":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Path = v
+				r.PathExt = ext
 			case "direction":
-				v, _, err := xmlDecodePrimitiveCode[SortDirection](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[SortDirection](d, t)
 				if err != nil {
 					return err
 				}
 				r.Direction = v
+				r.DirectionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -11340,29 +11490,33 @@ func (r *DataRequirementValueFilter) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.Extension = append(r.Extension, v)
 			case "path":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Path = v
+				r.PathExt = ext
 			case "searchParam":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SearchParam = v
+				r.SearchParamExt = ext
 			case "comparator":
-				v, _, err := xmlDecodePrimitiveCode[ValueFilterComparator](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ValueFilterComparator](d, t)
 				if err != nil {
 					return err
 				}
 				r.Comparator = v
+				r.ComparatorExt = ext
 			case "valueDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
+				_ = ext
 			case "valuePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -11480,23 +11634,26 @@ func (r *ElementDefinitionBase) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.Extension = append(r.Extension, v)
 			case "path":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Path = v
+				r.PathExt = ext
 			case "min":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Min = v
+				r.MinExt = ext
 			case "max":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Max = v
+				r.MaxExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -11532,23 +11689,26 @@ func (r *ElementDefinitionBinding) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.Extension = append(r.Extension, v)
 			case "strength":
-				v, _, err := xmlDecodePrimitiveCode[BindingStrength](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[BindingStrength](d, t)
 				if err != nil {
 					return err
 				}
 				r.Strength = v
+				r.StrengthExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "valueSet":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueSet = v
+				r.ValueSetExt = ext
 			case "additional":
 				var v ElementDefinitionBindingAdditional
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -11590,29 +11750,33 @@ func (r *ElementDefinitionBindingAdditional) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.Extension = append(r.Extension, v)
 			case "purpose":
-				v, _, err := xmlDecodePrimitiveCode[AdditionalBindingPurpose](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[AdditionalBindingPurpose](d, t)
 				if err != nil {
 					return err
 				}
 				r.Purpose = v
+				r.PurposeExt = ext
 			case "valueSet":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueSet = v
+				r.ValueSetExt = ext
 			case "documentation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Documentation = v
+				r.DocumentationExt = ext
 			case "shortDoco":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ShortDoco = v
+				r.ShortDocoExt = ext
 			case "usage":
 				var v UsageContext
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -11620,11 +11784,12 @@ func (r *ElementDefinitionBindingAdditional) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.Usage = append(r.Usage, v)
 			case "any":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Any = v
+				r.AnyExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -11660,47 +11825,54 @@ func (r *ElementDefinitionConstraint) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.Extension = append(r.Extension, v)
 			case "key":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Key = v
+				r.KeyExt = ext
 			case "requirements":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Requirements = v
+				r.RequirementsExt = ext
 			case "severity":
-				v, _, err := xmlDecodePrimitiveCode[ConstraintSeverity](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ConstraintSeverity](d, t)
 				if err != nil {
 					return err
 				}
 				r.Severity = v
+				r.SeverityExt = ext
 			case "suppress":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Suppress = v
+				r.SuppressExt = ext
 			case "human":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Human = v
+				r.HumanExt = ext
 			case "expression":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Expression = v
+				r.ExpressionExt = ext
 			case "source":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Source = v
+				r.SourceExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -11736,131 +11908,152 @@ func (r *ElementDefinitionExample) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.Extension = append(r.Extension, v)
 			case "label":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Label = v
+				r.LabelExt = ext
 			case "valueBase64Binary":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBase64Binary = v
+				_ = ext
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			case "valueCanonical":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueCanonical = v
+				_ = ext
 			case "valueCode":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueCode = v
+				_ = ext
 			case "valueDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDate = v
+				_ = ext
 			case "valueDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
+				_ = ext
 			case "valueDecimal":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDecimal = v
+				_ = ext
 			case "valueId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueId = v
+				_ = ext
 			case "valueInstant":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInstant = v
+				_ = ext
 			case "valueInteger":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
+				_ = ext
 			case "valueInteger64":
-				v, _, err := xmlDecodePrimitiveInteger64(d, t)
+				v, ext, err := xmlDecodePrimitiveInteger64(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger64 = v
+				_ = ext
 			case "valueMarkdown":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueMarkdown = v
+				_ = ext
 			case "valueOid":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueOid = v
+				_ = ext
 			case "valuePositiveInt":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValuePositiveInt = v
+				_ = ext
 			case "valueString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
+				_ = ext
 			case "valueTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueTime = v
+				_ = ext
 			case "valueUnsignedInt":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueUnsignedInt = v
+				_ = ext
 			case "valueUri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueUri = v
+				_ = ext
 			case "valueUrl":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueUrl = v
+				_ = ext
 			case "valueUuid":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueUuid = v
+				_ = ext
 			case "valueAddress":
 				var v Address
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -12100,29 +12293,33 @@ func (r *ElementDefinitionMapping) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.Extension = append(r.Extension, v)
 			case "identity":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Identity = v
+				r.IdentityExt = ext
 			case "language":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Language = v
+				r.LanguageExt = ext
 			case "map":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Map = v
+				r.MapExt = ext
 			case "comment":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Comment = v
+				r.CommentExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -12164,23 +12361,26 @@ func (r *ElementDefinitionSlicing) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.Discriminator = append(r.Discriminator, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "ordered":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Ordered = v
+				r.OrderedExt = ext
 			case "rules":
-				v, _, err := xmlDecodePrimitiveCode[SlicingRules](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[SlicingRules](d, t)
 				if err != nil {
 					return err
 				}
 				r.Rules = v
+				r.RulesExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -12216,17 +12416,19 @@ func (r *ElementDefinitionSlicingDiscriminator) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.Extension = append(r.Extension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[DiscriminatorType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[DiscriminatorType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "path":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Path = v
+				r.PathExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -12262,38 +12464,43 @@ func (r *ElementDefinitionType) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.Extension = append(r.Extension, v)
 			case "code":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "profile":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Profile = append(r.Profile, v)
+				r.ProfileExt = append(r.ProfileExt, ext)
 			case "targetProfile":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.TargetProfile = append(r.TargetProfile, v)
+				r.TargetProfileExt = append(r.TargetProfileExt, ext)
 			case "aggregation":
-				v, _, err := xmlDecodePrimitiveCode[AggregationMode](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[AggregationMode](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Aggregation = append(r.Aggregation, v)
+				r.AggregationExt = append(r.AggregationExt, ext)
 			case "versioning":
-				v, _, err := xmlDecodePrimitiveCode[ReferenceVersionRules](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ReferenceVersionRules](d, t)
 				if err != nil {
 					return err
 				}
 				r.Versioning = v
+				r.VersioningExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -12347,92 +12554,106 @@ func (r *TimingRepeat) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.BoundsPeriod = &v
 			case "count":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Count = v
+				r.CountExt = ext
 			case "countMax":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.CountMax = v
+				r.CountMaxExt = ext
 			case "duration":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Duration = v
+				r.DurationExt = ext
 			case "durationMax":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.DurationMax = v
+				r.DurationMaxExt = ext
 			case "durationUnit":
-				v, _, err := xmlDecodePrimitiveCode[UnitsOfTime](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[UnitsOfTime](d, t)
 				if err != nil {
 					return err
 				}
 				r.DurationUnit = v
+				r.DurationUnitExt = ext
 			case "frequency":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Frequency = v
+				r.FrequencyExt = ext
 			case "frequencyMax":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.FrequencyMax = v
+				r.FrequencyMaxExt = ext
 			case "period":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Period = v
+				r.PeriodExt = ext
 			case "periodMax":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.PeriodMax = v
+				r.PeriodMaxExt = ext
 			case "periodUnit":
-				v, _, err := xmlDecodePrimitiveCode[UnitsOfTime](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[UnitsOfTime](d, t)
 				if err != nil {
 					return err
 				}
 				r.PeriodUnit = v
+				r.PeriodUnitExt = ext
 			case "dayOfWeek":
-				v, _, err := xmlDecodePrimitiveCode[DaysOfWeek](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[DaysOfWeek](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DayOfWeek = append(r.DayOfWeek, v)
+				r.DayOfWeekExt = append(r.DayOfWeekExt, ext)
 			case "timeOfDay":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.TimeOfDay = append(r.TimeOfDay, v)
+				r.TimeOfDayExt = append(r.TimeOfDayExt, ext)
 			case "when":
-				v, _, err := xmlDecodePrimitiveCode[EventTiming](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[EventTiming](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.When = append(r.When, v)
+				r.WhenExt = append(r.WhenExt, ext)
 			case "offset":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Offset = v
+				r.OffsetExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

@@ -352,12 +352,13 @@ func (r *CoverageEligibilityRequest) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.Priority = &v
 			case "purpose":
-				v, _, err := xmlDecodePrimitiveCode[EligibilityRequestPurpose](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[EligibilityRequestPurpose](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Purpose = append(r.Purpose, v)
+				r.PurposeExt = append(r.PurposeExt, ext)
 			case "patient":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -537,11 +538,12 @@ func (r *CoverageEligibilityRequestEvent) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.Type = &v
 			case "whenDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.WhenDateTime = v
+				_ = ext
 			case "whenPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -570,10 +572,14 @@ type CoverageEligibilityRequestInsurance struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Applicable coverage
 	Focal *bool `json:"focal,omitempty"`
+	// Extension for Focal
+	FocalExt *Element `json:"_focal,omitempty"`
 	// Insurance information
 	Coverage *Reference `json:"coverage,omitempty"`
 	// Additional provider contract number
 	BusinessArrangement *string `json:"businessArrangement,omitempty"`
+	// Extension for BusinessArrangement
+	BusinessArrangementExt *Element `json:"_businessArrangement,omitempty"`
 }
 
 // MarshalXML serializes CoverageEligibilityRequestInsurance to FHIR-conformant XML.
@@ -598,7 +604,7 @@ func (b CoverageEligibilityRequestInsurance) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "focal", b.Focal, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "focal", b.Focal, b.FocalExt); err != nil {
 		return err
 	}
 	if b.Coverage != nil {
@@ -606,7 +612,7 @@ func (b CoverageEligibilityRequestInsurance) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "businessArrangement", b.BusinessArrangement, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "businessArrangement", b.BusinessArrangement, b.BusinessArrangementExt); err != nil {
 		return err
 	}
 
@@ -643,11 +649,12 @@ func (r *CoverageEligibilityRequestInsurance) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "focal":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Focal = v
+				r.FocalExt = ext
 			case "coverage":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -655,11 +662,12 @@ func (r *CoverageEligibilityRequestInsurance) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.Coverage = &v
 			case "businessArrangement":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.BusinessArrangement = v
+				r.BusinessArrangementExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -682,6 +690,8 @@ type CoverageEligibilityRequestItem struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Applicable exception or supporting information
 	SupportingInfoSequence []*uint32 `json:"supportingInfoSequence,omitempty"`
+	// Extension for SupportingInfoSequence
+	SupportingInfoSequenceExt []*Element `json:"_supportingInfoSequence,omitempty"`
 	// Benefit classification
 	Category *CodeableConcept `json:"category,omitempty"`
 	// Billing, service, product, or drug code
@@ -724,7 +734,7 @@ func (b CoverageEligibilityRequestItem) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32Array(e, "supportingInfoSequence", b.SupportingInfoSequence, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32Array(e, "supportingInfoSequence", b.SupportingInfoSequence, b.SupportingInfoSequenceExt); err != nil {
 		return err
 	}
 	if b.Category != nil {
@@ -806,12 +816,13 @@ func (r *CoverageEligibilityRequestItem) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "supportingInfoSequence":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SupportingInfoSequence = append(r.SupportingInfoSequence, v)
+				r.SupportingInfoSequenceExt = append(r.SupportingInfoSequenceExt, ext)
 			case "category":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -991,10 +1002,14 @@ type CoverageEligibilityRequestSupportingInfo struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Information instance identifier
 	Sequence *uint32 `json:"sequence,omitempty"`
+	// Extension for Sequence
+	SequenceExt *Element `json:"_sequence,omitempty"`
 	// Data to be provided
 	Information *Reference `json:"information,omitempty"`
 	// Applies to all items
 	AppliesToAll *bool `json:"appliesToAll,omitempty"`
+	// Extension for AppliesToAll
+	AppliesToAllExt *Element `json:"_appliesToAll,omitempty"`
 }
 
 // MarshalXML serializes CoverageEligibilityRequestSupportingInfo to FHIR-conformant XML.
@@ -1019,7 +1034,7 @@ func (b CoverageEligibilityRequestSupportingInfo) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, b.SequenceExt); err != nil {
 		return err
 	}
 	if b.Information != nil {
@@ -1027,7 +1042,7 @@ func (b CoverageEligibilityRequestSupportingInfo) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "appliesToAll", b.AppliesToAll, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "appliesToAll", b.AppliesToAll, b.AppliesToAllExt); err != nil {
 		return err
 	}
 
@@ -1064,11 +1079,12 @@ func (r *CoverageEligibilityRequestSupportingInfo) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "sequence":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.Sequence = v
+				r.SequenceExt = ext
 			case "information":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1076,11 +1092,12 @@ func (r *CoverageEligibilityRequestSupportingInfo) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.Information = &v
 			case "appliesToAll":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.AppliesToAll = v
+				r.AppliesToAllExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

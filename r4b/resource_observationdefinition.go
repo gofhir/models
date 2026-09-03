@@ -330,12 +330,13 @@ func (r *ObservationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "permittedDataType":
-				v, _, err := xmlDecodePrimitiveCode[ObservationDataType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ObservationDataType](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.PermittedDataType = append(r.PermittedDataType, v)
+				r.PermittedDataTypeExt = append(r.PermittedDataTypeExt, ext)
 			case "multipleResultsAllowed":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -414,6 +415,8 @@ type ObservationDefinitionQualifiedInterval struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// reference | critical | absolute
 	Category *ObservationRangeCategory `json:"category,omitempty"`
+	// Extension for Category
+	CategoryExt *Element `json:"_category,omitempty"`
 	// The interval itself, for continuous or ordinal observations
 	Range *Range `json:"range,omitempty"`
 	// Range context qualifier
@@ -422,12 +425,16 @@ type ObservationDefinitionQualifiedInterval struct {
 	AppliesTo []CodeableConcept `json:"appliesTo,omitempty"`
 	// male | female | other | unknown
 	Gender *AdministrativeGender `json:"gender,omitempty"`
+	// Extension for Gender
+	GenderExt *Element `json:"_gender,omitempty"`
 	// Applicable age range, if relevant
 	Age *Range `json:"age,omitempty"`
 	// Applicable gestational age range, if relevant
 	GestationalAge *Range `json:"gestationalAge,omitempty"`
 	// Condition associated with the reference range
 	Condition *string `json:"condition,omitempty"`
+	// Extension for Condition
+	ConditionExt *Element `json:"_condition,omitempty"`
 }
 
 // MarshalXML serializes ObservationDefinitionQualifiedInterval to FHIR-conformant XML.
@@ -452,7 +459,7 @@ func (b ObservationDefinitionQualifiedInterval) MarshalXML(e *xml.Encoder, start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "category", b.Category, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "category", b.Category, b.CategoryExt); err != nil {
 		return err
 	}
 	if b.Range != nil {
@@ -470,7 +477,7 @@ func (b ObservationDefinitionQualifiedInterval) MarshalXML(e *xml.Encoder, start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "gender", b.Gender, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "gender", b.Gender, b.GenderExt); err != nil {
 		return err
 	}
 	if b.Age != nil {
@@ -483,7 +490,7 @@ func (b ObservationDefinitionQualifiedInterval) MarshalXML(e *xml.Encoder, start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "condition", b.Condition, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "condition", b.Condition, b.ConditionExt); err != nil {
 		return err
 	}
 
@@ -520,11 +527,12 @@ func (r *ObservationDefinitionQualifiedInterval) UnmarshalXML(d *xml.Decoder, st
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "category":
-				v, _, err := xmlDecodePrimitiveCode[ObservationRangeCategory](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ObservationRangeCategory](d, t)
 				if err != nil {
 					return err
 				}
 				r.Category = v
+				r.CategoryExt = ext
 			case "range":
 				var v Range
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -544,11 +552,12 @@ func (r *ObservationDefinitionQualifiedInterval) UnmarshalXML(d *xml.Decoder, st
 				}
 				r.AppliesTo = append(r.AppliesTo, v)
 			case "gender":
-				v, _, err := xmlDecodePrimitiveCode[AdministrativeGender](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[AdministrativeGender](d, t)
 				if err != nil {
 					return err
 				}
 				r.Gender = v
+				r.GenderExt = ext
 			case "age":
 				var v Range
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -562,11 +571,12 @@ func (r *ObservationDefinitionQualifiedInterval) UnmarshalXML(d *xml.Decoder, st
 				}
 				r.GestationalAge = &v
 			case "condition":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Condition = v
+				r.ConditionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -593,8 +603,12 @@ type ObservationDefinitionQuantitativeDetails struct {
 	Unit *CodeableConcept `json:"unit,omitempty"`
 	// SI to Customary unit conversion factor
 	ConversionFactor *Decimal `json:"conversionFactor,omitempty"`
+	// Extension for ConversionFactor
+	ConversionFactorExt *Element `json:"_conversionFactor,omitempty"`
 	// Decimal precision of observation quantitative results
 	DecimalPrecision *int `json:"decimalPrecision,omitempty"`
+	// Extension for DecimalPrecision
+	DecimalPrecisionExt *Element `json:"_decimalPrecision,omitempty"`
 }
 
 // MarshalXML serializes ObservationDefinitionQuantitativeDetails to FHIR-conformant XML.
@@ -629,10 +643,10 @@ func (b ObservationDefinitionQuantitativeDetails) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "conversionFactor", b.ConversionFactor, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "conversionFactor", b.ConversionFactor, b.ConversionFactorExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "decimalPrecision", b.DecimalPrecision, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "decimalPrecision", b.DecimalPrecision, b.DecimalPrecisionExt); err != nil {
 		return err
 	}
 
@@ -681,17 +695,19 @@ func (r *ObservationDefinitionQuantitativeDetails) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.Unit = &v
 			case "conversionFactor":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.ConversionFactor = v
+				r.ConversionFactorExt = ext
 			case "decimalPrecision":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.DecimalPrecision = v
+				r.DecimalPrecisionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

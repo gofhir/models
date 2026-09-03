@@ -476,12 +476,16 @@ type RiskAssessmentPrediction struct {
 	QualitativeRisk *CodeableConcept `json:"qualitativeRisk,omitempty"`
 	// Relative likelihood
 	RelativeRisk *Decimal `json:"relativeRisk,omitempty"`
+	// Extension for RelativeRisk
+	RelativeRiskExt *Element `json:"_relativeRisk,omitempty"`
 	// Timeframe or age range
 	WhenPeriod *Period `json:"whenPeriod,omitempty"`
 	// Timeframe or age range
 	WhenRange *Range `json:"whenRange,omitempty"`
 	// Explanation of prediction
 	Rationale *string `json:"rationale,omitempty"`
+	// Extension for Rationale
+	RationaleExt *Element `json:"_rationale,omitempty"`
 }
 
 // MarshalXML serializes RiskAssessmentPrediction to FHIR-conformant XML.
@@ -524,7 +528,7 @@ func (b RiskAssessmentPrediction) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "relativeRisk", b.RelativeRisk, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "relativeRisk", b.RelativeRisk, b.RelativeRiskExt); err != nil {
 		return err
 	}
 	if b.WhenPeriod != nil {
@@ -537,7 +541,7 @@ func (b RiskAssessmentPrediction) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "rationale", b.Rationale, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "rationale", b.Rationale, b.RationaleExt); err != nil {
 		return err
 	}
 
@@ -580,11 +584,12 @@ func (r *RiskAssessmentPrediction) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.Outcome = &v
 			case "probabilityDecimal":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.ProbabilityDecimal = v
+				_ = ext
 			case "probabilityRange":
 				var v Range
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -598,11 +603,12 @@ func (r *RiskAssessmentPrediction) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.QualitativeRisk = &v
 			case "relativeRisk":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.RelativeRisk = v
+				r.RelativeRiskExt = ext
 			case "whenPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -616,11 +622,12 @@ func (r *RiskAssessmentPrediction) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.WhenRange = &v
 			case "rationale":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Rationale = v
+				r.RationaleExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

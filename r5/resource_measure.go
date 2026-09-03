@@ -760,12 +760,13 @@ func (r *Measure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.RelatedArtifact = append(r.RelatedArtifact, v)
 			case "library":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Library = append(r.Library, v)
+				r.LibraryExt = append(r.LibraryExt, ext)
 			case "disclaimer":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -878,10 +879,14 @@ type MeasureGroup struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Unique id for group in measure
 	LinkId *string `json:"linkId,omitempty"`
+	// Extension for LinkId
+	LinkIdExt *Element `json:"_linkId,omitempty"`
 	// Meaning of the group
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Summary description
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// process | outcome | structure | patient-reported-outcome | composite
 	Type []CodeableConcept `json:"type,omitempty"`
 	// E.g. Patient, Practitioner, RelatedPerson, Organization, Location, Device
@@ -890,16 +895,22 @@ type MeasureGroup struct {
 	SubjectReference *Reference `json:"subjectReference,omitempty"`
 	// Population basis
 	Basis *string `json:"basis,omitempty"`
+	// Extension for Basis
+	BasisExt *Element `json:"_basis,omitempty"`
 	// proportion | ratio | continuous-variable | cohort
 	Scoring *CodeableConcept `json:"scoring,omitempty"`
 	// What units?
 	ScoringUnit *CodeableConcept `json:"scoringUnit,omitempty"`
 	// How is rate aggregation performed for this measure
 	RateAggregation *string `json:"rateAggregation,omitempty"`
+	// Extension for RateAggregation
+	RateAggregationExt *Element `json:"_rateAggregation,omitempty"`
 	// increase | decrease
 	ImprovementNotation *CodeableConcept `json:"improvementNotation,omitempty"`
 	// Logic used by the measure group
 	Library []*string `json:"library,omitempty"`
+	// Extension for Library
+	LibraryExt []*Element `json:"_library,omitempty"`
 	// Population criteria
 	Population []MeasureGroupPopulation `json:"population,omitempty"`
 	// Stratifier criteria for the measure
@@ -928,7 +939,7 @@ func (b MeasureGroup) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "linkId", b.LinkId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "linkId", b.LinkId, b.LinkIdExt); err != nil {
 		return err
 	}
 	if b.Code != nil {
@@ -936,7 +947,7 @@ func (b MeasureGroup) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	for _, item := range b.Type {
@@ -954,7 +965,7 @@ func (b MeasureGroup) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "basis", b.Basis, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "basis", b.Basis, b.BasisExt); err != nil {
 		return err
 	}
 	if b.Scoring != nil {
@@ -967,7 +978,7 @@ func (b MeasureGroup) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "rateAggregation", b.RateAggregation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "rateAggregation", b.RateAggregation, b.RateAggregationExt); err != nil {
 		return err
 	}
 	if b.ImprovementNotation != nil {
@@ -975,7 +986,7 @@ func (b MeasureGroup) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "library", b.Library, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "library", b.Library, b.LibraryExt); err != nil {
 		return err
 	}
 	for _, item := range b.Population {
@@ -1022,11 +1033,12 @@ func (r *MeasureGroup) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "linkId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.LinkId = v
+				r.LinkIdExt = ext
 			case "code":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1034,11 +1046,12 @@ func (r *MeasureGroup) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.Code = &v
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "type":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1058,11 +1071,12 @@ func (r *MeasureGroup) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.SubjectReference = &v
 			case "basis":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Basis = v
+				r.BasisExt = ext
 			case "scoring":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1076,11 +1090,12 @@ func (r *MeasureGroup) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.ScoringUnit = &v
 			case "rateAggregation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.RateAggregation = v
+				r.RateAggregationExt = ext
 			case "improvementNotation":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1088,12 +1103,13 @@ func (r *MeasureGroup) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.ImprovementNotation = &v
 			case "library":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Library = append(r.Library, v)
+				r.LibraryExt = append(r.LibraryExt, ext)
 			case "population":
 				var v MeasureGroupPopulation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1128,16 +1144,22 @@ type MeasureGroupPopulation struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Unique id for population in measure
 	LinkId *string `json:"linkId,omitempty"`
+	// Extension for LinkId
+	LinkIdExt *Element `json:"_linkId,omitempty"`
 	// initial-population | numerator | numerator-exclusion | denominator | denominator-exclusion | denominator-exception | measure-population | measure-population-exclusion | measure-observation
 	Code *CodeableConcept `json:"code,omitempty"`
 	// The human readable description of this population criteria
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// The criteria that defines this population
 	Criteria *Expression `json:"criteria,omitempty"`
 	// A group resource that defines this population
 	GroupDefinition *Reference `json:"groupDefinition,omitempty"`
 	// Which population
 	InputPopulationId *string `json:"inputPopulationId,omitempty"`
+	// Extension for InputPopulationId
+	InputPopulationIdExt *Element `json:"_inputPopulationId,omitempty"`
 	// Aggregation method for a measure score (e.g. sum, average, median, minimum, maximum, count)
 	AggregateMethod *CodeableConcept `json:"aggregateMethod,omitempty"`
 }
@@ -1164,7 +1186,7 @@ func (b MeasureGroupPopulation) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "linkId", b.LinkId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "linkId", b.LinkId, b.LinkIdExt); err != nil {
 		return err
 	}
 	if b.Code != nil {
@@ -1172,7 +1194,7 @@ func (b MeasureGroupPopulation) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.Criteria != nil {
@@ -1185,7 +1207,7 @@ func (b MeasureGroupPopulation) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "inputPopulationId", b.InputPopulationId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "inputPopulationId", b.InputPopulationId, b.InputPopulationIdExt); err != nil {
 		return err
 	}
 	if b.AggregateMethod != nil {
@@ -1227,11 +1249,12 @@ func (r *MeasureGroupPopulation) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "linkId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.LinkId = v
+				r.LinkIdExt = ext
 			case "code":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1239,11 +1262,12 @@ func (r *MeasureGroupPopulation) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.Code = &v
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "criteria":
 				var v Expression
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1257,11 +1281,12 @@ func (r *MeasureGroupPopulation) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.GroupDefinition = &v
 			case "inputPopulationId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.InputPopulationId = v
+				r.InputPopulationIdExt = ext
 			case "aggregateMethod":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1290,10 +1315,14 @@ type MeasureGroupStratifier struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Unique id for stratifier in measure
 	LinkId *string `json:"linkId,omitempty"`
+	// Extension for LinkId
+	LinkIdExt *Element `json:"_linkId,omitempty"`
 	// Meaning of the stratifier
 	Code *CodeableConcept `json:"code,omitempty"`
 	// The human readable description of this stratifier
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// How the measure should be stratified
 	Criteria *Expression `json:"criteria,omitempty"`
 	// A group resource that defines this population
@@ -1324,7 +1353,7 @@ func (b MeasureGroupStratifier) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "linkId", b.LinkId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "linkId", b.LinkId, b.LinkIdExt); err != nil {
 		return err
 	}
 	if b.Code != nil {
@@ -1332,7 +1361,7 @@ func (b MeasureGroupStratifier) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.Criteria != nil {
@@ -1384,11 +1413,12 @@ func (r *MeasureGroupStratifier) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "linkId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.LinkId = v
+				r.LinkIdExt = ext
 			case "code":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1396,11 +1426,12 @@ func (r *MeasureGroupStratifier) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.Code = &v
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "criteria":
 				var v Expression
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1441,10 +1472,14 @@ type MeasureGroupStratifierComponent struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Unique id for stratifier component in measure
 	LinkId *string `json:"linkId,omitempty"`
+	// Extension for LinkId
+	LinkIdExt *Element `json:"_linkId,omitempty"`
 	// Meaning of the stratifier component
 	Code *CodeableConcept `json:"code,omitempty"`
 	// The human readable description of this stratifier component
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Component of how the measure should be stratified
 	Criteria *Expression `json:"criteria,omitempty"`
 	// A group resource that defines this population
@@ -1473,7 +1508,7 @@ func (b MeasureGroupStratifierComponent) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "linkId", b.LinkId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "linkId", b.LinkId, b.LinkIdExt); err != nil {
 		return err
 	}
 	if b.Code != nil {
@@ -1481,7 +1516,7 @@ func (b MeasureGroupStratifierComponent) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.Criteria != nil {
@@ -1528,11 +1563,12 @@ func (r *MeasureGroupStratifierComponent) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "linkId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.LinkId = v
+				r.LinkIdExt = ext
 			case "code":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1540,11 +1576,12 @@ func (r *MeasureGroupStratifierComponent) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.Code = &v
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "criteria":
 				var v Expression
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1579,12 +1616,16 @@ type MeasureSupplementalData struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Unique id for supplementalData in measure
 	LinkId *string `json:"linkId,omitempty"`
+	// Extension for LinkId
+	LinkIdExt *Element `json:"_linkId,omitempty"`
 	// Meaning of the supplemental data
 	Code *CodeableConcept `json:"code,omitempty"`
 	// supplemental-data | risk-adjustment-factor
 	Usage []CodeableConcept `json:"usage,omitempty"`
 	// The human readable description of this supplemental data
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Expression describing additional data to be reported
 	Criteria *Expression `json:"criteria,omitempty"`
 }
@@ -1611,7 +1652,7 @@ func (b MeasureSupplementalData) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "linkId", b.LinkId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "linkId", b.LinkId, b.LinkIdExt); err != nil {
 		return err
 	}
 	if b.Code != nil {
@@ -1624,7 +1665,7 @@ func (b MeasureSupplementalData) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.Criteria != nil {
@@ -1666,11 +1707,12 @@ func (r *MeasureSupplementalData) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "linkId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.LinkId = v
+				r.LinkIdExt = ext
 			case "code":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1684,11 +1726,12 @@ func (r *MeasureSupplementalData) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.Usage = append(r.Usage, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "criteria":
 				var v Expression
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1719,6 +1762,8 @@ type MeasureTerm struct {
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Meaning of the term
 	Definition *string `json:"definition,omitempty"`
+	// Extension for Definition
+	DefinitionExt *Element `json:"_definition,omitempty"`
 }
 
 // MarshalXML serializes MeasureTerm to FHIR-conformant XML.
@@ -1748,7 +1793,7 @@ func (b MeasureTerm) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "definition", b.Definition, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "definition", b.Definition, b.DefinitionExt); err != nil {
 		return err
 	}
 
@@ -1791,11 +1836,12 @@ func (r *MeasureTerm) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 				}
 				r.Code = &v
 			case "definition":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Definition = v
+				r.DefinitionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

@@ -338,12 +338,20 @@ type SubscriptionChannel struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// rest-hook | websocket | email | sms | message
 	Type *SubscriptionChannelType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// Where the channel points to
 	Endpoint *string `json:"endpoint,omitempty"`
+	// Extension for Endpoint
+	EndpointExt *Element `json:"_endpoint,omitempty"`
 	// MIME type to send, or omit for no payload
 	Payload *string `json:"payload,omitempty"`
+	// Extension for Payload
+	PayloadExt *Element `json:"_payload,omitempty"`
 	// Usage depends on the channel type
 	Header []*string `json:"header,omitempty"`
+	// Extension for Header
+	HeaderExt []*Element `json:"_header,omitempty"`
 }
 
 // MarshalXML serializes SubscriptionChannel to FHIR-conformant XML.
@@ -368,16 +376,16 @@ func (b SubscriptionChannel) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "endpoint", b.Endpoint, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "endpoint", b.Endpoint, b.EndpointExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "payload", b.Payload, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "payload", b.Payload, b.PayloadExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "header", b.Header, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "header", b.Header, b.HeaderExt); err != nil {
 		return err
 	}
 
@@ -414,30 +422,34 @@ func (r *SubscriptionChannel) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[SubscriptionChannelType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[SubscriptionChannelType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "endpoint":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Endpoint = v
+				r.EndpointExt = ext
 			case "payload":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Payload = v
+				r.PayloadExt = ext
 			case "header":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Header = append(r.Header, v)
+				r.HeaderExt = append(r.HeaderExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err

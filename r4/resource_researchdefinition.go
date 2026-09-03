@@ -567,12 +567,13 @@ func (r *ResearchDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				r.Description = v
 				r.DescriptionExt = ext
 			case "comment":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Comment = append(r.Comment, v)
+				r.CommentExt = append(r.CommentExt, ext)
 			case "useContext":
 				var v UsageContext
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -663,12 +664,13 @@ func (r *ResearchDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.RelatedArtifact = append(r.RelatedArtifact, v)
 			case "library":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Library = append(r.Library, v)
+				r.LibraryExt = append(r.LibraryExt, ext)
 			case "population":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

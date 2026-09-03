@@ -685,6 +685,8 @@ type MedicationRequestDispenseRequest struct {
 	ValidityPeriod *Period `json:"validityPeriod,omitempty"`
 	// Number of refills authorized
 	NumberOfRepeatsAllowed *uint32 `json:"numberOfRepeatsAllowed,omitempty"`
+	// Extension for NumberOfRepeatsAllowed
+	NumberOfRepeatsAllowedExt *Element `json:"_numberOfRepeatsAllowed,omitempty"`
 	// Amount of medication to supply per dispense
 	Quantity *Quantity `json:"quantity,omitempty"`
 	// Number of days supply per dispense
@@ -734,7 +736,7 @@ func (b MedicationRequestDispenseRequest) MarshalXML(e *xml.Encoder, start xml.S
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "numberOfRepeatsAllowed", b.NumberOfRepeatsAllowed, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "numberOfRepeatsAllowed", b.NumberOfRepeatsAllowed, b.NumberOfRepeatsAllowedExt); err != nil {
 		return err
 	}
 	if b.Quantity != nil {
@@ -814,11 +816,12 @@ func (r *MedicationRequestDispenseRequest) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				r.ValidityPeriod = &v
 			case "numberOfRepeatsAllowed":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.NumberOfRepeatsAllowed = v
+				r.NumberOfRepeatsAllowedExt = ext
 			case "quantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1051,11 +1054,12 @@ func (r *MedicationRequestSubstitution) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "allowedBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.AllowedBoolean = v
+				_ = ext
 			case "allowedCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

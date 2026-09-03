@@ -80,6 +80,17 @@ type {{.Name}} struct {
 	// {{.Description}}
 	{{- end}}
 	{{.Name}} {{.GoType}} `json:"{{.JSONName}},omitempty"`
+	{{- /* See the same block in resource_consolidated: a primitive nested in a
+	       backbone needs its _field companion too. ElementDefinition.type.profile
+	       and Availability.availableTime.availableEndTime were losing theirs. */ -}}
+	{{- if and .HasExtension (not .IsChoice)}}
+	// Extension for {{.Name}}
+	{{- if .IsArray}}
+	{{.Name}}Ext []*Element `json:"_{{.JSONName}},omitempty"`
+	{{- else}}
+	{{.Name}}Ext *Element `json:"_{{.JSONName}},omitempty"`
+	{{- end}}
+	{{- end}}
 {{- end}}
 }
 
@@ -239,11 +250,11 @@ func (b {{.Name}}) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 		return err
 	}
 {{- else if and .IsPrimitive (not .IsArray)}}
-	if err := {{xmlPrimitiveFunc .GoType}}(e, "{{.JSONName}}", b.{{.Name}}, nil); err != nil {
+	if err := {{xmlPrimitiveFunc .GoType}}(e, "{{.JSONName}}", b.{{.Name}}, {{extFieldRef "b" .}}); err != nil {
 		return err
 	}
 {{- else if and .IsPrimitive .IsArray}}
-	if err := {{xmlPrimitiveArrayFunc .GoType}}(e, "{{.JSONName}}", b.{{.Name}}, nil); err != nil {
+	if err := {{xmlPrimitiveArrayFunc .GoType}}(e, "{{.JSONName}}", b.{{.Name}}, {{extFieldRef "b" .}}); err != nil {
 		return err
 	}
 {{- else if .IsArray}}
@@ -341,12 +352,17 @@ func (r *{{.Name}}) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error
 {{- end}}
 {{- else if and .IsPrimitive .IsArray}}
 			case "{{.JSONName}}":
-				v, _, err := {{xmlPrimitiveDecodeFunc (elemType .GoType)}}(dec, t)
+				v, ext, err := {{xmlPrimitiveDecodeFunc (elemType .GoType)}}(dec, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.{{.Name}} = append(r.{{.Name}}, v)
+{{- if and .HasExtension (not .IsChoice)}}
+				r.{{.Name}}Ext = append(r.{{.Name}}Ext, ext)
+{{- else}}
+				_ = ext
+{{- end}}
 {{- else if eq .GoType "Resource"}}
 {{- /* Handled via inline resource in default branch - skip here */ -}}
 {{- else if .IsArray}}
@@ -434,19 +450,29 @@ func (r *{{.Name}}) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				r.{{.Name}} = v
 {{- else if and .IsPrimitive (not .IsArray)}}
 			case "{{.JSONName}}":
-				v, _, err := {{xmlPrimitiveDecodeFunc .GoType}}(d, t)
+				v, ext, err := {{xmlPrimitiveDecodeFunc .GoType}}(d, t)
 				if err != nil {
 					return err
 				}
 				r.{{.Name}} = v
+{{- if and .HasExtension (not .IsChoice)}}
+				r.{{.Name}}Ext = ext
+{{- else}}
+				_ = ext
+{{- end}}
 {{- else if and .IsPrimitive .IsArray}}
 			case "{{.JSONName}}":
-				v, _, err := {{xmlPrimitiveDecodeFunc (elemType .GoType)}}(d, t)
+				v, ext, err := {{xmlPrimitiveDecodeFunc (elemType .GoType)}}(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.{{.Name}} = append(r.{{.Name}}, v)
+{{- if and .HasExtension (not .IsChoice)}}
+				r.{{.Name}}Ext = append(r.{{.Name}}Ext, ext)
+{{- else}}
+				_ = ext
+{{- end}}
 {{- else if .IsArray}}
 			case "{{.JSONName}}":
 				var v {{elemType .GoType}}

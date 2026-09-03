@@ -317,12 +317,13 @@ func (r *Organization) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				r.Name = v
 				r.NameExt = ext
 			case "alias":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Alias = append(r.Alias, v)
+				r.AliasExt = append(r.AliasExt, ext)
 			case "telecom":
 				var v ContactPoint
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -656,6 +656,8 @@ type PaymentReconciliationAllocation struct {
 	Response *Reference `json:"response,omitempty"`
 	// Date of commitment to pay
 	Date *string `json:"date,omitempty"`
+	// Extension for Date
+	DateExt *Element `json:"_date,omitempty"`
 	// Contact for the response
 	Responsible *Reference `json:"responsible,omitempty"`
 	// Recipient of the payment
@@ -737,7 +739,7 @@ func (b PaymentReconciliationAllocation) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "date", b.Date, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "date", b.Date, b.DateExt); err != nil {
 		return err
 	}
 	if b.Responsible != nil {
@@ -807,11 +809,12 @@ func (r *PaymentReconciliationAllocation) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.Target = &v
 			case "targetItemString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.TargetItemString = v
+				_ = ext
 			case "targetItemIdentifier":
 				var v Identifier
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -819,11 +822,12 @@ func (r *PaymentReconciliationAllocation) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.TargetItemIdentifier = &v
 			case "targetItemPositiveInt":
-				v, _, err := xmlDecodePrimitiveUint32(d, t)
+				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.TargetItemPositiveInt = v
+				_ = ext
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -855,11 +859,12 @@ func (r *PaymentReconciliationAllocation) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.Response = &v
 			case "date":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Date = v
+				r.DateExt = ext
 			case "responsible":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -900,8 +905,12 @@ type PaymentReconciliationProcessNote struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// display | print | printoper
 	Type *NoteType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// Note explanatory text
 	Text *string `json:"text,omitempty"`
+	// Extension for Text
+	TextExt *Element `json:"_text,omitempty"`
 }
 
 // MarshalXML serializes PaymentReconciliationProcessNote to FHIR-conformant XML.
@@ -926,10 +935,10 @@ func (b PaymentReconciliationProcessNote) MarshalXML(e *xml.Encoder, start xml.S
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "text", b.Text, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "text", b.Text, b.TextExt); err != nil {
 		return err
 	}
 
@@ -966,17 +975,19 @@ func (r *PaymentReconciliationProcessNote) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[NoteType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[NoteType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "text":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Text = v
+				r.TextExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

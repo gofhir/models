@@ -337,8 +337,12 @@ type SubscriptionStatusNotificationEvent struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Event number
 	EventNumber *string `json:"eventNumber,omitempty"`
+	// Extension for EventNumber
+	EventNumberExt *Element `json:"_eventNumber,omitempty"`
 	// The instant this event occurred
 	Timestamp *string `json:"timestamp,omitempty"`
+	// Extension for Timestamp
+	TimestampExt *Element `json:"_timestamp,omitempty"`
 	// The focus of this event
 	Focus *Reference `json:"focus,omitempty"`
 	// Additional context for this event
@@ -367,10 +371,10 @@ func (b SubscriptionStatusNotificationEvent) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "eventNumber", b.EventNumber, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "eventNumber", b.EventNumber, b.EventNumberExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "timestamp", b.Timestamp, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "timestamp", b.Timestamp, b.TimestampExt); err != nil {
 		return err
 	}
 	if b.Focus != nil {
@@ -417,17 +421,19 @@ func (r *SubscriptionStatusNotificationEvent) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "eventNumber":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.EventNumber = v
+				r.EventNumberExt = ext
 			case "timestamp":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Timestamp = v
+				r.TimestampExt = ext
 			case "focus":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

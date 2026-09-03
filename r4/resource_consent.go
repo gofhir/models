@@ -426,8 +426,12 @@ type ConsentPolicy struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Enforcement source for policy
 	Authority *string `json:"authority,omitempty"`
+	// Extension for Authority
+	AuthorityExt *Element `json:"_authority,omitempty"`
 	// Specific policy covered by this consent
 	Uri *string `json:"uri,omitempty"`
+	// Extension for Uri
+	UriExt *Element `json:"_uri,omitempty"`
 }
 
 // MarshalXML serializes ConsentPolicy to FHIR-conformant XML.
@@ -452,10 +456,10 @@ func (b ConsentPolicy) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "authority", b.Authority, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "authority", b.Authority, b.AuthorityExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "uri", b.Uri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "uri", b.Uri, b.UriExt); err != nil {
 		return err
 	}
 
@@ -492,17 +496,19 @@ func (r *ConsentPolicy) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "authority":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Authority = v
+				r.AuthorityExt = ext
 			case "uri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Uri = v
+				r.UriExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -525,6 +531,8 @@ type ConsentProvision struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// deny | permit
 	Type *ConsentProvisionType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// Timeframe for this rule
 	Period *Period `json:"period,omitempty"`
 	// Who|what controlled by this rule (or group, by role)
@@ -569,7 +577,7 @@ func (b ConsentProvision) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
 	if b.Period != nil {
@@ -656,11 +664,12 @@ func (r *ConsentProvision) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[ConsentProvisionType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ConsentProvisionType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -846,6 +855,8 @@ type ConsentProvisionData struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// instance | related | dependents | authoredby
 	Meaning *ConsentDataMeaning `json:"meaning,omitempty"`
+	// Extension for Meaning
+	MeaningExt *Element `json:"_meaning,omitempty"`
 	// The actual data reference
 	Reference *Reference `json:"reference,omitempty"`
 }
@@ -872,7 +883,7 @@ func (b ConsentProvisionData) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "meaning", b.Meaning, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "meaning", b.Meaning, b.MeaningExt); err != nil {
 		return err
 	}
 	if b.Reference != nil {
@@ -914,11 +925,12 @@ func (r *ConsentProvisionData) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "meaning":
-				v, _, err := xmlDecodePrimitiveCode[ConsentDataMeaning](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ConsentDataMeaning](d, t)
 				if err != nil {
 					return err
 				}
 				r.Meaning = v
+				r.MeaningExt = ext
 			case "reference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -947,10 +959,14 @@ type ConsentVerification struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Has been verified
 	Verified *bool `json:"verified,omitempty"`
+	// Extension for Verified
+	VerifiedExt *Element `json:"_verified,omitempty"`
 	// Person who verified
 	VerifiedWith *Reference `json:"verifiedWith,omitempty"`
 	// When consent verified
 	VerificationDate *string `json:"verificationDate,omitempty"`
+	// Extension for VerificationDate
+	VerificationDateExt *Element `json:"_verificationDate,omitempty"`
 }
 
 // MarshalXML serializes ConsentVerification to FHIR-conformant XML.
@@ -975,7 +991,7 @@ func (b ConsentVerification) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "verified", b.Verified, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "verified", b.Verified, b.VerifiedExt); err != nil {
 		return err
 	}
 	if b.VerifiedWith != nil {
@@ -983,7 +999,7 @@ func (b ConsentVerification) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "verificationDate", b.VerificationDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "verificationDate", b.VerificationDate, b.VerificationDateExt); err != nil {
 		return err
 	}
 
@@ -1020,11 +1036,12 @@ func (r *ConsentVerification) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "verified":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Verified = v
+				r.VerifiedExt = ext
 			case "verifiedWith":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1032,11 +1049,12 @@ func (r *ConsentVerification) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.VerifiedWith = &v
 			case "verificationDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.VerificationDate = v
+				r.VerificationDateExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

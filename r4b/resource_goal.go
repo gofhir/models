@@ -617,23 +617,26 @@ func (r *GoalTarget) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				r.DetailCodeableConcept = &v
 			case "detailString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DetailString = v
+				_ = ext
 			case "detailBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.DetailBoolean = v
+				_ = ext
 			case "detailInteger":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.DetailInteger = v
+				_ = ext
 			case "detailRatio":
 				var v Ratio
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -641,11 +644,12 @@ func (r *GoalTarget) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				r.DetailRatio = &v
 			case "dueDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DueDate = v
+				_ = ext
 			case "dueDuration":
 				var v Duration
 				if err := v.UnmarshalXML(d, t); err != nil {

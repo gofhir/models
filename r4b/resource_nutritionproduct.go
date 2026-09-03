@@ -480,10 +480,16 @@ type NutritionProductInstance struct {
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// The identification of the batch or lot of the product
 	LotNumber *string `json:"lotNumber,omitempty"`
+	// Extension for LotNumber
+	LotNumberExt *Element `json:"_lotNumber,omitempty"`
 	// The expiry date or date and time for the product
 	Expiry *string `json:"expiry,omitempty"`
+	// Extension for Expiry
+	ExpiryExt *Element `json:"_expiry,omitempty"`
 	// The date until which the product is expected to be good for consumption
 	UseBy *string `json:"useBy,omitempty"`
+	// Extension for UseBy
+	UseByExt *Element `json:"_useBy,omitempty"`
 }
 
 // MarshalXML serializes NutritionProductInstance to FHIR-conformant XML.
@@ -518,13 +524,13 @@ func (b NutritionProductInstance) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "lotNumber", b.LotNumber, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "lotNumber", b.LotNumber, b.LotNumberExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "expiry", b.Expiry, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "expiry", b.Expiry, b.ExpiryExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "useBy", b.UseBy, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "useBy", b.UseBy, b.UseByExt); err != nil {
 		return err
 	}
 
@@ -573,23 +579,26 @@ func (r *NutritionProductInstance) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "lotNumber":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.LotNumber = v
+				r.LotNumberExt = ext
 			case "expiry":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Expiry = v
+				r.ExpiryExt = ext
 			case "useBy":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.UseBy = v
+				r.UseByExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -832,11 +841,12 @@ func (r *NutritionProductProductCharacteristic) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.ValueCodeableConcept = &v
 			case "valueString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
+				_ = ext
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -844,11 +854,12 @@ func (r *NutritionProductProductCharacteristic) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.ValueQuantity = &v
 			case "valueBase64Binary":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBase64Binary = v
+				_ = ext
 			case "valueAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -856,11 +867,12 @@ func (r *NutritionProductProductCharacteristic) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.ValueAttachment = &v
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

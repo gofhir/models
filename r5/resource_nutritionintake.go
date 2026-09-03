@@ -381,19 +381,21 @@ func (r *NutritionIntake) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "instantiatesCanonical":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
+				r.InstantiatesCanonicalExt = append(r.InstantiatesCanonicalExt, ext)
 			case "instantiatesUri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.InstantiatesUri = append(r.InstantiatesUri, v)
+				r.InstantiatesUriExt = append(r.InstantiatesUriExt, ext)
 			case "basedOn":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -544,6 +546,8 @@ type NutritionIntakeConsumedItem struct {
 	Rate *Quantity `json:"rate,omitempty"`
 	// Flag to indicate if the food or fluid item was refused or otherwise not consumed
 	NotConsumed *bool `json:"notConsumed,omitempty"`
+	// Extension for NotConsumed
+	NotConsumedExt *Element `json:"_notConsumed,omitempty"`
 	// Reason food or fluid was not consumed
 	NotConsumedReason *CodeableConcept `json:"notConsumedReason,omitempty"`
 }
@@ -595,7 +599,7 @@ func (b NutritionIntakeConsumedItem) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "notConsumed", b.NotConsumed, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "notConsumed", b.NotConsumed, b.NotConsumedExt); err != nil {
 		return err
 	}
 	if b.NotConsumedReason != nil {
@@ -667,11 +671,12 @@ func (r *NutritionIntakeConsumedItem) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.Rate = &v
 			case "notConsumed":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.NotConsumed = v
+				r.NotConsumedExt = ext
 			case "notConsumedReason":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

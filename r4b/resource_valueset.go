@@ -488,8 +488,12 @@ type ValueSetCompose struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Fixed date for references with no specified version (transitive)
 	LockedDate *string `json:"lockedDate,omitempty"`
+	// Extension for LockedDate
+	LockedDateExt *Element `json:"_lockedDate,omitempty"`
 	// Whether inactive codes are in the value set
 	Inactive *bool `json:"inactive,omitempty"`
+	// Extension for Inactive
+	InactiveExt *Element `json:"_inactive,omitempty"`
 	// Include one or more codes from a code system or other value set(s)
 	Include []ValueSetComposeInclude `json:"include,omitempty"`
 	// Explicitly exclude codes from a code system or other value sets
@@ -518,10 +522,10 @@ func (b ValueSetCompose) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "lockedDate", b.LockedDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "lockedDate", b.LockedDate, b.LockedDateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "inactive", b.Inactive, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "inactive", b.Inactive, b.InactiveExt); err != nil {
 		return err
 	}
 	for _, item := range b.Include {
@@ -568,17 +572,19 @@ func (r *ValueSetCompose) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "lockedDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.LockedDate = v
+				r.LockedDateExt = ext
 			case "inactive":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Inactive = v
+				r.InactiveExt = ext
 			case "include":
 				var v ValueSetComposeInclude
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -613,14 +619,20 @@ type ValueSetComposeInclude struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The system the codes come from
 	System *string `json:"system,omitempty"`
+	// Extension for System
+	SystemExt *Element `json:"_system,omitempty"`
 	// Specific version of the code system referred to
 	Version *string `json:"version,omitempty"`
+	// Extension for Version
+	VersionExt *Element `json:"_version,omitempty"`
 	// A concept defined in the system
 	Concept []ValueSetComposeIncludeConcept `json:"concept,omitempty"`
 	// Select codes/concepts by their properties (including relationships)
 	Filter []ValueSetComposeIncludeFilter `json:"filter,omitempty"`
 	// Select the contents included in this value set
 	ValueSet []*string `json:"valueSet,omitempty"`
+	// Extension for ValueSet
+	ValueSetExt []*Element `json:"_valueSet,omitempty"`
 }
 
 // MarshalXML serializes ValueSetComposeInclude to FHIR-conformant XML.
@@ -645,10 +657,10 @@ func (b ValueSetComposeInclude) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "system", b.System, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "system", b.System, b.SystemExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "version", b.Version, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "version", b.Version, b.VersionExt); err != nil {
 		return err
 	}
 	for _, item := range b.Concept {
@@ -661,7 +673,7 @@ func (b ValueSetComposeInclude) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "valueSet", b.ValueSet, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "valueSet", b.ValueSet, b.ValueSetExt); err != nil {
 		return err
 	}
 
@@ -698,17 +710,19 @@ func (r *ValueSetComposeInclude) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "system":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.System = v
+				r.SystemExt = ext
 			case "version":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Version = v
+				r.VersionExt = ext
 			case "concept":
 				var v ValueSetComposeIncludeConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -722,12 +736,13 @@ func (r *ValueSetComposeInclude) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.Filter = append(r.Filter, v)
 			case "valueSet":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ValueSet = append(r.ValueSet, v)
+				r.ValueSetExt = append(r.ValueSetExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -750,8 +765,12 @@ type ValueSetComposeIncludeConcept struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Code or expression from system
 	Code *string `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// Text to display for this code for this value set in this valueset
 	Display *string `json:"display,omitempty"`
+	// Extension for Display
+	DisplayExt *Element `json:"_display,omitempty"`
 	// Additional representations for this concept
 	Designation []ValueSetComposeIncludeConceptDesignation `json:"designation,omitempty"`
 }
@@ -778,10 +797,10 @@ func (b ValueSetComposeIncludeConcept) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "display", b.Display, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "display", b.Display, b.DisplayExt); err != nil {
 		return err
 	}
 	for _, item := range b.Designation {
@@ -823,17 +842,19 @@ func (r *ValueSetComposeIncludeConcept) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "display":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Display = v
+				r.DisplayExt = ext
 			case "designation":
 				var v ValueSetComposeIncludeConceptDesignation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -862,10 +883,14 @@ type ValueSetComposeIncludeConceptDesignation struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Human language of the designation
 	Language *string `json:"language,omitempty"`
+	// Extension for Language
+	LanguageExt *Element `json:"_language,omitempty"`
 	// Types of uses of designations
 	Use *Coding `json:"use,omitempty"`
 	// The text value for this designation
 	Value *string `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 }
 
 // MarshalXML serializes ValueSetComposeIncludeConceptDesignation to FHIR-conformant XML.
@@ -890,7 +915,7 @@ func (b ValueSetComposeIncludeConceptDesignation) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "language", b.Language, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "language", b.Language, b.LanguageExt); err != nil {
 		return err
 	}
 	if b.Use != nil {
@@ -898,7 +923,7 @@ func (b ValueSetComposeIncludeConceptDesignation) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
 
@@ -935,11 +960,12 @@ func (r *ValueSetComposeIncludeConceptDesignation) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "language":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Language = v
+				r.LanguageExt = ext
 			case "use":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -947,11 +973,12 @@ func (r *ValueSetComposeIncludeConceptDesignation) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.Use = &v
 			case "value":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -974,10 +1001,16 @@ type ValueSetComposeIncludeFilter struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A property/filter defined by the code system
 	Property *string `json:"property,omitempty"`
+	// Extension for Property
+	PropertyExt *Element `json:"_property,omitempty"`
 	// = | is-a | descendent-of | is-not-a | regex | in | not-in | generalizes | exists
 	Op *FilterOperator `json:"op,omitempty"`
+	// Extension for Op
+	OpExt *Element `json:"_op,omitempty"`
 	// Code from the system, or regex criteria, or boolean value for exists
 	Value *string `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 }
 
 // MarshalXML serializes ValueSetComposeIncludeFilter to FHIR-conformant XML.
@@ -1002,13 +1035,13 @@ func (b ValueSetComposeIncludeFilter) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "property", b.Property, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "property", b.Property, b.PropertyExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "op", b.Op, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "op", b.Op, b.OpExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
 
@@ -1045,23 +1078,26 @@ func (r *ValueSetComposeIncludeFilter) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "property":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Property = v
+				r.PropertyExt = ext
 			case "op":
-				v, _, err := xmlDecodePrimitiveCode[FilterOperator](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[FilterOperator](d, t)
 				if err != nil {
 					return err
 				}
 				r.Op = v
+				r.OpExt = ext
 			case "value":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1084,12 +1120,20 @@ type ValueSetExpansion struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Identifies the value set expansion (business identifier)
 	Identifier *string `json:"identifier,omitempty"`
+	// Extension for Identifier
+	IdentifierExt *Element `json:"_identifier,omitempty"`
 	// Time ValueSet expansion happened
 	Timestamp *string `json:"timestamp,omitempty"`
+	// Extension for Timestamp
+	TimestampExt *Element `json:"_timestamp,omitempty"`
 	// Total number of codes in the expansion
 	Total *int `json:"total,omitempty"`
+	// Extension for Total
+	TotalExt *Element `json:"_total,omitempty"`
 	// Offset at which this resource starts
 	Offset *int `json:"offset,omitempty"`
+	// Extension for Offset
+	OffsetExt *Element `json:"_offset,omitempty"`
 	// Parameter that controlled the expansion process
 	Parameter []ValueSetExpansionParameter `json:"parameter,omitempty"`
 	// Codes in the value set
@@ -1118,16 +1162,16 @@ func (b ValueSetExpansion) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "identifier", b.Identifier, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "identifier", b.Identifier, b.IdentifierExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "timestamp", b.Timestamp, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "timestamp", b.Timestamp, b.TimestampExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "total", b.Total, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "total", b.Total, b.TotalExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "offset", b.Offset, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "offset", b.Offset, b.OffsetExt); err != nil {
 		return err
 	}
 	for _, item := range b.Parameter {
@@ -1174,29 +1218,33 @@ func (r *ValueSetExpansion) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "identifier":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Identifier = v
+				r.IdentifierExt = ext
 			case "timestamp":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Timestamp = v
+				r.TimestampExt = ext
 			case "total":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Total = v
+				r.TotalExt = ext
 			case "offset":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Offset = v
+				r.OffsetExt = ext
 			case "parameter":
 				var v ValueSetExpansionParameter
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1231,16 +1279,28 @@ type ValueSetExpansionContains struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// System value for the code
 	System *string `json:"system,omitempty"`
+	// Extension for System
+	SystemExt *Element `json:"_system,omitempty"`
 	// If user cannot select this entry
 	Abstract *bool `json:"abstract,omitempty"`
+	// Extension for Abstract
+	AbstractExt *Element `json:"_abstract,omitempty"`
 	// If concept is inactive in the code system
 	Inactive *bool `json:"inactive,omitempty"`
+	// Extension for Inactive
+	InactiveExt *Element `json:"_inactive,omitempty"`
 	// Version in which this code/display is defined
 	Version *string `json:"version,omitempty"`
+	// Extension for Version
+	VersionExt *Element `json:"_version,omitempty"`
 	// Code - if blank, this is not a selectable code
 	Code *string `json:"code,omitempty"`
+	// Extension for Code
+	CodeExt *Element `json:"_code,omitempty"`
 	// User display for the concept
 	Display *string `json:"display,omitempty"`
+	// Extension for Display
+	DisplayExt *Element `json:"_display,omitempty"`
 	// Additional representations for this item
 	Designation []ValueSetComposeIncludeConceptDesignation `json:"designation,omitempty"`
 	// Codes contained under this entry
@@ -1269,22 +1329,22 @@ func (b ValueSetExpansionContains) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "system", b.System, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "system", b.System, b.SystemExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "abstract", b.Abstract, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "abstract", b.Abstract, b.AbstractExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "inactive", b.Inactive, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "inactive", b.Inactive, b.InactiveExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "version", b.Version, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "version", b.Version, b.VersionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "display", b.Display, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "display", b.Display, b.DisplayExt); err != nil {
 		return err
 	}
 	for _, item := range b.Designation {
@@ -1331,41 +1391,47 @@ func (r *ValueSetExpansionContains) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "system":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.System = v
+				r.SystemExt = ext
 			case "abstract":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Abstract = v
+				r.AbstractExt = ext
 			case "inactive":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Inactive = v
+				r.InactiveExt = ext
 			case "version":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Version = v
+				r.VersionExt = ext
 			case "code":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Code = v
+				r.CodeExt = ext
 			case "display":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Display = v
+				r.DisplayExt = ext
 			case "designation":
 				var v ValueSetComposeIncludeConceptDesignation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1400,6 +1466,8 @@ type ValueSetExpansionParameter struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Name as assigned by the client or server
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Value of the named parameter
 	ValueString *string `json:"valueString,omitempty"`
 	// Extension for ValueString
@@ -1452,7 +1520,7 @@ func (b ValueSetExpansionParameter) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, nil); err != nil {
@@ -1510,53 +1578,61 @@ func (r *ValueSetExpansionParameter) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "valueString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
+				_ = ext
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			case "valueInteger":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
+				_ = ext
 			case "valueDecimal":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDecimal = v
+				_ = ext
 			case "valueUri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueUri = v
+				_ = ext
 			case "valueCode":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueCode = v
+				_ = ext
 			case "valueDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
+				_ = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

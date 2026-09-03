@@ -595,11 +595,12 @@ func (r *SupplyRequestParameter) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ValueRange = &v
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

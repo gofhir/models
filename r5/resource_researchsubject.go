@@ -370,8 +370,12 @@ type ResearchSubjectProgress struct {
 	Reason *CodeableConcept `json:"reason,omitempty"`
 	// State change date
 	StartDate *string `json:"startDate,omitempty"`
+	// Extension for StartDate
+	StartDateExt *Element `json:"_startDate,omitempty"`
 	// State change date
 	EndDate *string `json:"endDate,omitempty"`
+	// Extension for EndDate
+	EndDateExt *Element `json:"_endDate,omitempty"`
 }
 
 // MarshalXML serializes ResearchSubjectProgress to FHIR-conformant XML.
@@ -416,10 +420,10 @@ func (b ResearchSubjectProgress) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "startDate", b.StartDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "startDate", b.StartDate, b.StartDateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "endDate", b.EndDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "endDate", b.EndDate, b.EndDateExt); err != nil {
 		return err
 	}
 
@@ -480,17 +484,19 @@ func (r *ResearchSubjectProgress) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.Reason = &v
 			case "startDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.StartDate = v
+				r.StartDateExt = ext
 			case "endDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.EndDate = v
+				r.EndDateExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

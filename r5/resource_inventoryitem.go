@@ -701,41 +701,47 @@ func (r *InventoryItemCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.CharacteristicType = &v
 			case "valueString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
+				_ = ext
 			case "valueInteger":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
+				_ = ext
 			case "valueDecimal":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDecimal = v
+				_ = ext
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			case "valueUrl":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueUrl = v
+				_ = ext
 			case "valueDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
+				_ = ext
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -800,8 +806,12 @@ type InventoryItemDescription struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The language that is used in the item description
 	Language *CommonLanguages `json:"language,omitempty"`
+	// Extension for Language
+	LanguageExt *Element `json:"_language,omitempty"`
 	// Textual description of the item
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 }
 
 // MarshalXML serializes InventoryItemDescription to FHIR-conformant XML.
@@ -826,10 +836,10 @@ func (b InventoryItemDescription) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "language", b.Language, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "language", b.Language, b.LanguageExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 
@@ -866,17 +876,19 @@ func (r *InventoryItemDescription) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "language":
-				v, _, err := xmlDecodePrimitiveCode[CommonLanguages](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[CommonLanguages](d, t)
 				if err != nil {
 					return err
 				}
 				r.Language = v
+				r.LanguageExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -901,8 +913,12 @@ type InventoryItemInstance struct {
 	Identifier []Identifier `json:"identifier,omitempty"`
 	// The lot or batch number of the item
 	LotNumber *string `json:"lotNumber,omitempty"`
+	// Extension for LotNumber
+	LotNumberExt *Element `json:"_lotNumber,omitempty"`
 	// The expiry date or date and time for the product
 	Expiry *string `json:"expiry,omitempty"`
+	// Extension for Expiry
+	ExpiryExt *Element `json:"_expiry,omitempty"`
 	// The subject that the item is associated with
 	Subject *Reference `json:"subject,omitempty"`
 	// The location that the item is associated with
@@ -936,10 +952,10 @@ func (b InventoryItemInstance) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "lotNumber", b.LotNumber, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "lotNumber", b.LotNumber, b.LotNumberExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "expiry", b.Expiry, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "expiry", b.Expiry, b.ExpiryExt); err != nil {
 		return err
 	}
 	if b.Subject != nil {
@@ -992,17 +1008,19 @@ func (r *InventoryItemInstance) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.Identifier = append(r.Identifier, v)
 			case "lotNumber":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.LotNumber = v
+				r.LotNumberExt = ext
 			case "expiry":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Expiry = v
+				r.ExpiryExt = ext
 			case "subject":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1039,8 +1057,12 @@ type InventoryItemName struct {
 	NameType *Coding `json:"nameType,omitempty"`
 	// The language used to express the item name
 	Language *CommonLanguages `json:"language,omitempty"`
+	// Extension for Language
+	LanguageExt *Element `json:"_language,omitempty"`
 	// The name or designation of the item
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 }
 
 // MarshalXML serializes InventoryItemName to FHIR-conformant XML.
@@ -1070,10 +1092,10 @@ func (b InventoryItemName) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "language", b.Language, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "language", b.Language, b.LanguageExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
 
@@ -1116,17 +1138,19 @@ func (r *InventoryItemName) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.NameType = &v
 			case "language":
-				v, _, err := xmlDecodePrimitiveCode[CommonLanguages](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[CommonLanguages](d, t)
 				if err != nil {
 					return err
 				}
 				r.Language = v
+				r.LanguageExt = ext
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

@@ -478,19 +478,21 @@ func (r *SpecimenDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				r.Title = v
 				r.TitleExt = ext
 			case "derivedFromCanonical":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFromCanonical = append(r.DerivedFromCanonical, v)
+				r.DerivedFromCanonicalExt = append(r.DerivedFromCanonicalExt, ext)
 			case "derivedFromUri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFromUri = append(r.DerivedFromUri, v)
+				r.DerivedFromUriExt = append(r.DerivedFromUriExt, ext)
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {
@@ -650,18 +652,26 @@ type SpecimenDefinitionTypeTested struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Primary or secondary specimen
 	IsDerived *bool `json:"isDerived,omitempty"`
+	// Extension for IsDerived
+	IsDerivedExt *Element `json:"_isDerived,omitempty"`
 	// Type of intended specimen
 	Type *CodeableConcept `json:"type,omitempty"`
 	// preferred | alternate
 	Preference *SpecimenContainedPreference `json:"preference,omitempty"`
+	// Extension for Preference
+	PreferenceExt *Element `json:"_preference,omitempty"`
 	// The specimen's container
 	Container *SpecimenDefinitionTypeTestedContainer `json:"container,omitempty"`
 	// Requirements for specimen delivery and special handling
 	Requirement *string `json:"requirement,omitempty"`
+	// Extension for Requirement
+	RequirementExt *Element `json:"_requirement,omitempty"`
 	// The usual time for retaining this kind of specimen
 	RetentionTime *Duration `json:"retentionTime,omitempty"`
 	// Specimen for single use only
 	SingleUse *bool `json:"singleUse,omitempty"`
+	// Extension for SingleUse
+	SingleUseExt *Element `json:"_singleUse,omitempty"`
 	// Criterion specified for specimen rejection
 	RejectionCriterion []CodeableConcept `json:"rejectionCriterion,omitempty"`
 	// Specimen handling before testing
@@ -692,7 +702,7 @@ func (b SpecimenDefinitionTypeTested) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "isDerived", b.IsDerived, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "isDerived", b.IsDerived, b.IsDerivedExt); err != nil {
 		return err
 	}
 	if b.Type != nil {
@@ -700,7 +710,7 @@ func (b SpecimenDefinitionTypeTested) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "preference", b.Preference, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "preference", b.Preference, b.PreferenceExt); err != nil {
 		return err
 	}
 	if b.Container != nil {
@@ -708,7 +718,7 @@ func (b SpecimenDefinitionTypeTested) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "requirement", b.Requirement, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "requirement", b.Requirement, b.RequirementExt); err != nil {
 		return err
 	}
 	if b.RetentionTime != nil {
@@ -716,7 +726,7 @@ func (b SpecimenDefinitionTypeTested) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "singleUse", b.SingleUse, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "singleUse", b.SingleUse, b.SingleUseExt); err != nil {
 		return err
 	}
 	for _, item := range b.RejectionCriterion {
@@ -768,11 +778,12 @@ func (r *SpecimenDefinitionTypeTested) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "isDerived":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.IsDerived = v
+				r.IsDerivedExt = ext
 			case "type":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -780,11 +791,12 @@ func (r *SpecimenDefinitionTypeTested) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.Type = &v
 			case "preference":
-				v, _, err := xmlDecodePrimitiveCode[SpecimenContainedPreference](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[SpecimenContainedPreference](d, t)
 				if err != nil {
 					return err
 				}
 				r.Preference = v
+				r.PreferenceExt = ext
 			case "container":
 				var v SpecimenDefinitionTypeTestedContainer
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -792,11 +804,12 @@ func (r *SpecimenDefinitionTypeTested) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.Container = &v
 			case "requirement":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Requirement = v
+				r.RequirementExt = ext
 			case "retentionTime":
 				var v Duration
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -804,11 +817,12 @@ func (r *SpecimenDefinitionTypeTested) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.RetentionTime = &v
 			case "singleUse":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.SingleUse = v
+				r.SingleUseExt = ext
 			case "rejectionCriterion":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -855,6 +869,8 @@ type SpecimenDefinitionTypeTestedContainer struct {
 	Cap *CodeableConcept `json:"cap,omitempty"`
 	// The description of the kind of container
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// The capacity of this kind of container
 	Capacity *Quantity `json:"capacity,omitempty"`
 	// Minimum volume
@@ -867,6 +883,8 @@ type SpecimenDefinitionTypeTestedContainer struct {
 	Additive []SpecimenDefinitionTypeTestedContainerAdditive `json:"additive,omitempty"`
 	// Special processing applied to the container for this specimen type
 	Preparation *string `json:"preparation,omitempty"`
+	// Extension for Preparation
+	PreparationExt *Element `json:"_preparation,omitempty"`
 }
 
 // MarshalXML serializes SpecimenDefinitionTypeTestedContainer to FHIR-conformant XML.
@@ -906,7 +924,7 @@ func (b SpecimenDefinitionTypeTestedContainer) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.Capacity != nil {
@@ -927,7 +945,7 @@ func (b SpecimenDefinitionTypeTestedContainer) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "preparation", b.Preparation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "preparation", b.Preparation, b.PreparationExt); err != nil {
 		return err
 	}
 
@@ -982,11 +1000,12 @@ func (r *SpecimenDefinitionTypeTestedContainer) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.Cap = &v
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "capacity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1000,11 +1019,12 @@ func (r *SpecimenDefinitionTypeTestedContainer) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.MinimumVolumeQuantity = &v
 			case "minimumVolumeString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.MinimumVolumeString = v
+				_ = ext
 			case "additive":
 				var v SpecimenDefinitionTypeTestedContainerAdditive
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1012,11 +1032,12 @@ func (r *SpecimenDefinitionTypeTestedContainer) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.Additive = append(r.Additive, v)
 			case "preparation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Preparation = v
+				r.PreparationExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1148,6 +1169,8 @@ type SpecimenDefinitionTypeTestedHandling struct {
 	MaxDuration *Duration `json:"maxDuration,omitempty"`
 	// Preservation instruction
 	Instruction *string `json:"instruction,omitempty"`
+	// Extension for Instruction
+	InstructionExt *Element `json:"_instruction,omitempty"`
 }
 
 // MarshalXML serializes SpecimenDefinitionTypeTestedHandling to FHIR-conformant XML.
@@ -1187,7 +1210,7 @@ func (b SpecimenDefinitionTypeTestedHandling) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "instruction", b.Instruction, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "instruction", b.Instruction, b.InstructionExt); err != nil {
 		return err
 	}
 
@@ -1242,11 +1265,12 @@ func (r *SpecimenDefinitionTypeTestedHandling) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.MaxDuration = &v
 			case "instruction":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Instruction = v
+				r.InstructionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

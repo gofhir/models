@@ -567,6 +567,8 @@ type EvidenceVariableCategory struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Description of the grouping
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Definition of the grouping
 	ValueCodeableConcept *CodeableConcept `json:"valueCodeableConcept,omitempty"`
 	// Definition of the grouping
@@ -597,7 +599,7 @@ func (b EvidenceVariableCategory) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
 	if b.ValueCodeableConcept != nil {
@@ -649,11 +651,12 @@ func (r *EvidenceVariableCategory) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "valueCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -694,6 +697,8 @@ type EvidenceVariableCharacteristic struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Natural language description of the characteristic
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// What code or expression defines members?
 	DefinitionReference *Reference `json:"definitionReference,omitempty"`
 	// What code or expression defines members?
@@ -710,10 +715,14 @@ type EvidenceVariableCharacteristic struct {
 	Device *Reference `json:"device,omitempty"`
 	// Whether the characteristic includes or excludes members
 	Exclude *bool `json:"exclude,omitempty"`
+	// Extension for Exclude
+	ExcludeExt *Element `json:"_exclude,omitempty"`
 	// Observation time from study start
 	TimeFromStart *EvidenceVariableCharacteristicTimeFromStart `json:"timeFromStart,omitempty"`
 	// mean | median | mean-of-mean | mean-of-median | median-of-mean | median-of-median
 	GroupMeasure *GroupMeasure `json:"groupMeasure,omitempty"`
+	// Extension for GroupMeasure
+	GroupMeasureExt *Element `json:"_groupMeasure,omitempty"`
 }
 
 // MarshalXML serializes EvidenceVariableCharacteristic to FHIR-conformant XML.
@@ -738,7 +747,7 @@ func (b EvidenceVariableCharacteristic) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.DefinitionReference != nil {
@@ -769,7 +778,7 @@ func (b EvidenceVariableCharacteristic) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "exclude", b.Exclude, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "exclude", b.Exclude, b.ExcludeExt); err != nil {
 		return err
 	}
 	if b.TimeFromStart != nil {
@@ -777,7 +786,7 @@ func (b EvidenceVariableCharacteristic) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "groupMeasure", b.GroupMeasure, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "groupMeasure", b.GroupMeasure, b.GroupMeasureExt); err != nil {
 		return err
 	}
 
@@ -814,11 +823,12 @@ func (r *EvidenceVariableCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "definitionReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -826,11 +836,12 @@ func (r *EvidenceVariableCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.DefinitionReference = &v
 			case "definitionCanonical":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefinitionCanonical = v
+				_ = ext
 			case "definitionCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -856,11 +867,12 @@ func (r *EvidenceVariableCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.Device = &v
 			case "exclude":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Exclude = v
+				r.ExcludeExt = ext
 			case "timeFromStart":
 				var v EvidenceVariableCharacteristicTimeFromStart
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -868,11 +880,12 @@ func (r *EvidenceVariableCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.TimeFromStart = &v
 			case "groupMeasure":
-				v, _, err := xmlDecodePrimitiveCode[GroupMeasure](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[GroupMeasure](d, t)
 				if err != nil {
 					return err
 				}
 				r.GroupMeasure = v
+				r.GroupMeasureExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -895,6 +908,8 @@ type EvidenceVariableCharacteristicTimeFromStart struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Human readable description
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Used to express the observation at a defined amount of time after the study start
 	Quantity *Quantity `json:"quantity,omitempty"`
 	// Used to express the observation within a period after the study start
@@ -925,7 +940,7 @@ func (b EvidenceVariableCharacteristicTimeFromStart) MarshalXML(e *xml.Encoder, 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.Quantity != nil {
@@ -977,11 +992,12 @@ func (r *EvidenceVariableCharacteristicTimeFromStart) UnmarshalXML(d *xml.Decode
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "quantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {

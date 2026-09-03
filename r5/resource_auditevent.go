@@ -447,10 +447,14 @@ type AuditEventAgent struct {
 	Who *Reference `json:"who,omitempty"`
 	// Whether user is initiator
 	Requestor *bool `json:"requestor,omitempty"`
+	// Extension for Requestor
+	RequestorExt *Element `json:"_requestor,omitempty"`
 	// The agent location when the event occurred
 	Location *Reference `json:"location,omitempty"`
 	// Policy that authorized the agent participation in the event
 	Policy []*string `json:"policy,omitempty"`
+	// Extension for Policy
+	PolicyExt []*Element `json:"_policy,omitempty"`
 	// This agent network location for the activity
 	NetworkReference *Reference `json:"networkReference,omitempty"`
 	// This agent network location for the activity
@@ -502,7 +506,7 @@ func (b AuditEventAgent) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "requestor", b.Requestor, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "requestor", b.Requestor, b.RequestorExt); err != nil {
 		return err
 	}
 	if b.Location != nil {
@@ -510,7 +514,7 @@ func (b AuditEventAgent) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "policy", b.Policy, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "policy", b.Policy, b.PolicyExt); err != nil {
 		return err
 	}
 	if b.NetworkReference != nil {
@@ -581,11 +585,12 @@ func (r *AuditEventAgent) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.Who = &v
 			case "requestor":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Requestor = v
+				r.RequestorExt = ext
 			case "location":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -593,12 +598,13 @@ func (r *AuditEventAgent) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.Location = &v
 			case "policy":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Policy = append(r.Policy, v)
+				r.PolicyExt = append(r.PolicyExt, ext)
 			case "networkReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -606,17 +612,19 @@ func (r *AuditEventAgent) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.NetworkReference = &v
 			case "networkUri":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.NetworkUri = v
+				_ = ext
 			case "networkString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.NetworkString = v
+				_ = ext
 			case "authorization":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -651,6 +659,8 @@ type AuditEventEntity struct {
 	SecurityLabel []CodeableConcept `json:"securityLabel,omitempty"`
 	// Query parameters
 	Query *string `json:"query,omitempty"`
+	// Extension for Query
+	QueryExt *Element `json:"_query,omitempty"`
 	// Additional Information about the entity
 	Detail []AuditEventEntityDetail `json:"detail,omitempty"`
 	// Entity is attributed to this agent
@@ -694,7 +704,7 @@ func (b AuditEventEntity) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "query", b.Query, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "query", b.Query, b.QueryExt); err != nil {
 		return err
 	}
 	for _, item := range b.Detail {
@@ -759,11 +769,12 @@ func (r *AuditEventEntity) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.SecurityLabel = append(r.SecurityLabel, v)
 			case "query":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Query = v
+				r.QueryExt = ext
 			case "detail":
 				var v AuditEventEntityDetail
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -956,23 +967,26 @@ func (r *AuditEventEntityDetail) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ValueCodeableConcept = &v
 			case "valueString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
+				_ = ext
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			case "valueInteger":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
+				_ = ext
 			case "valueRange":
 				var v Range
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -986,17 +1000,19 @@ func (r *AuditEventEntityDetail) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ValueRatio = &v
 			case "valueTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueTime = v
+				_ = ext
 			case "valueDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
+				_ = ext
 			case "valuePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1004,11 +1020,12 @@ func (r *AuditEventEntityDetail) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ValuePeriod = &v
 			case "valueBase64Binary":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBase64Binary = v
+				_ = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

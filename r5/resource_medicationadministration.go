@@ -545,6 +545,8 @@ type MedicationAdministrationDosage struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Free text dosage instructions e.g. SIG
 	Text *string `json:"text,omitempty"`
+	// Extension for Text
+	TextExt *Element `json:"_text,omitempty"`
 	// Body site administered to
 	Site *CodeableConcept `json:"site,omitempty"`
 	// Path of substance into body
@@ -581,7 +583,7 @@ func (b MedicationAdministrationDosage) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "text", b.Text, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "text", b.Text, b.TextExt); err != nil {
 		return err
 	}
 	if b.Site != nil {
@@ -648,11 +650,12 @@ func (r *MedicationAdministrationDosage) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "text":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Text = v
+				r.TextExt = ext
 			case "site":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

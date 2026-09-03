@@ -366,12 +366,13 @@ func (r *Location) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				r.Name = v
 				r.NameExt = ext
 			case "alias":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Alias = append(r.Alias, v)
+				r.AliasExt = append(r.AliasExt, ext)
 			case "description":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -469,12 +470,20 @@ type LocationHoursOfOperation struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// mon | tue | wed | thu | fri | sat | sun
 	DaysOfWeek []*DaysOfWeek `json:"daysOfWeek,omitempty"`
+	// Extension for DaysOfWeek
+	DaysOfWeekExt []*Element `json:"_daysOfWeek,omitempty"`
 	// The Location is open all day
 	AllDay *bool `json:"allDay,omitempty"`
+	// Extension for AllDay
+	AllDayExt *Element `json:"_allDay,omitempty"`
 	// Time that the Location opens
 	OpeningTime *string `json:"openingTime,omitempty"`
+	// Extension for OpeningTime
+	OpeningTimeExt *Element `json:"_openingTime,omitempty"`
 	// Time that the Location closes
 	ClosingTime *string `json:"closingTime,omitempty"`
+	// Extension for ClosingTime
+	ClosingTimeExt *Element `json:"_closingTime,omitempty"`
 }
 
 // MarshalXML serializes LocationHoursOfOperation to FHIR-conformant XML.
@@ -499,16 +508,16 @@ func (b LocationHoursOfOperation) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCodeArray(e, "daysOfWeek", b.DaysOfWeek, nil); err != nil {
+	if err := xmlEncodePrimitiveCodeArray(e, "daysOfWeek", b.DaysOfWeek, b.DaysOfWeekExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "allDay", b.AllDay, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "allDay", b.AllDay, b.AllDayExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "openingTime", b.OpeningTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "openingTime", b.OpeningTime, b.OpeningTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "closingTime", b.ClosingTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "closingTime", b.ClosingTime, b.ClosingTimeExt); err != nil {
 		return err
 	}
 
@@ -545,30 +554,34 @@ func (r *LocationHoursOfOperation) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "daysOfWeek":
-				v, _, err := xmlDecodePrimitiveCode[DaysOfWeek](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[DaysOfWeek](d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DaysOfWeek = append(r.DaysOfWeek, v)
+				r.DaysOfWeekExt = append(r.DaysOfWeekExt, ext)
 			case "allDay":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.AllDay = v
+				r.AllDayExt = ext
 			case "openingTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.OpeningTime = v
+				r.OpeningTimeExt = ext
 			case "closingTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ClosingTime = v
+				r.ClosingTimeExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -591,10 +604,16 @@ type LocationPosition struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Longitude with WGS84 datum
 	Longitude *Decimal `json:"longitude,omitempty"`
+	// Extension for Longitude
+	LongitudeExt *Element `json:"_longitude,omitempty"`
 	// Latitude with WGS84 datum
 	Latitude *Decimal `json:"latitude,omitempty"`
+	// Extension for Latitude
+	LatitudeExt *Element `json:"_latitude,omitempty"`
 	// Altitude with WGS84 datum
 	Altitude *Decimal `json:"altitude,omitempty"`
+	// Extension for Altitude
+	AltitudeExt *Element `json:"_altitude,omitempty"`
 }
 
 // MarshalXML serializes LocationPosition to FHIR-conformant XML.
@@ -619,13 +638,13 @@ func (b LocationPosition) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "longitude", b.Longitude, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "longitude", b.Longitude, b.LongitudeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "latitude", b.Latitude, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "latitude", b.Latitude, b.LatitudeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "altitude", b.Altitude, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "altitude", b.Altitude, b.AltitudeExt); err != nil {
 		return err
 	}
 
@@ -662,23 +681,26 @@ func (r *LocationPosition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "longitude":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Longitude = v
+				r.LongitudeExt = ext
 			case "latitude":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Latitude = v
+				r.LatitudeExt = ext
 			case "altitude":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Altitude = v
+				r.AltitudeExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

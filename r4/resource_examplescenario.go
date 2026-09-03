@@ -445,12 +445,13 @@ func (r *ExampleScenario) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.Process = append(r.Process, v)
 			case "workflow":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Workflow = append(r.Workflow, v)
+				r.WorkflowExt = append(r.WorkflowExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -473,12 +474,20 @@ type ExampleScenarioActor struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// ID or acronym of the actor
 	ActorId *string `json:"actorId,omitempty"`
+	// Extension for ActorId
+	ActorIdExt *Element `json:"_actorId,omitempty"`
 	// person | entity
 	Type *ExampleScenarioActorType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// The name of the actor as shown in the page
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// The description of the actor
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 }
 
 // MarshalXML serializes ExampleScenarioActor to FHIR-conformant XML.
@@ -503,16 +512,16 @@ func (b ExampleScenarioActor) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "actorId", b.ActorId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "actorId", b.ActorId, b.ActorIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 
@@ -549,29 +558,33 @@ func (r *ExampleScenarioActor) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "actorId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ActorId = v
+				r.ActorIdExt = ext
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[ExampleScenarioActorType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ExampleScenarioActorType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -594,12 +607,20 @@ type ExampleScenarioInstance struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The id of the resource for referencing
 	ResourceId *string `json:"resourceId,omitempty"`
+	// Extension for ResourceId
+	ResourceIdExt *Element `json:"_resourceId,omitempty"`
 	// The type of the resource
 	ResourceType *string `json:"resourceType,omitempty"`
+	// Extension for ResourceType
+	ResourceTypeExt *Element `json:"_resourceType,omitempty"`
 	// A short name for the resource instance
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Human-friendly description of the resource instance
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// A specific version of the resource
 	Version []ExampleScenarioInstanceVersion `json:"version,omitempty"`
 	// Resources contained in the instance
@@ -628,16 +649,16 @@ func (b ExampleScenarioInstance) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "resourceId", b.ResourceId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "resourceId", b.ResourceId, b.ResourceIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "resourceType", b.ResourceType, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "resourceType", b.ResourceType, b.ResourceTypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	for _, item := range b.Version {
@@ -684,29 +705,33 @@ func (r *ExampleScenarioInstance) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "resourceId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ResourceId = v
+				r.ResourceIdExt = ext
 			case "resourceType":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ResourceType = v
+				r.ResourceTypeExt = ext
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "version":
 				var v ExampleScenarioInstanceVersion
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -741,8 +766,12 @@ type ExampleScenarioInstanceContainedInstance struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Each resource contained in the instance
 	ResourceId *string `json:"resourceId,omitempty"`
+	// Extension for ResourceId
+	ResourceIdExt *Element `json:"_resourceId,omitempty"`
 	// A specific version of a resource contained in the instance
 	VersionId *string `json:"versionId,omitempty"`
+	// Extension for VersionId
+	VersionIdExt *Element `json:"_versionId,omitempty"`
 }
 
 // MarshalXML serializes ExampleScenarioInstanceContainedInstance to FHIR-conformant XML.
@@ -767,10 +796,10 @@ func (b ExampleScenarioInstanceContainedInstance) MarshalXML(e *xml.Encoder, sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "resourceId", b.ResourceId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "resourceId", b.ResourceId, b.ResourceIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "versionId", b.VersionId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "versionId", b.VersionId, b.VersionIdExt); err != nil {
 		return err
 	}
 
@@ -807,17 +836,19 @@ func (r *ExampleScenarioInstanceContainedInstance) UnmarshalXML(d *xml.Decoder, 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "resourceId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ResourceId = v
+				r.ResourceIdExt = ext
 			case "versionId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.VersionId = v
+				r.VersionIdExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -840,8 +871,12 @@ type ExampleScenarioInstanceVersion struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The identifier of a specific version of a resource
 	VersionId *string `json:"versionId,omitempty"`
+	// Extension for VersionId
+	VersionIdExt *Element `json:"_versionId,omitempty"`
 	// The description of the resource version
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 }
 
 // MarshalXML serializes ExampleScenarioInstanceVersion to FHIR-conformant XML.
@@ -866,10 +901,10 @@ func (b ExampleScenarioInstanceVersion) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "versionId", b.VersionId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "versionId", b.VersionId, b.VersionIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 
@@ -906,17 +941,19 @@ func (r *ExampleScenarioInstanceVersion) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "versionId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.VersionId = v
+				r.VersionIdExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -939,12 +976,20 @@ type ExampleScenarioProcess struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The diagram title of the group of operations
 	Title *string `json:"title,omitempty"`
+	// Extension for Title
+	TitleExt *Element `json:"_title,omitempty"`
 	// A longer description of the group of operations
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Description of initial status before the process starts
 	PreConditions *string `json:"preConditions,omitempty"`
+	// Extension for PreConditions
+	PreConditionsExt *Element `json:"_preConditions,omitempty"`
 	// Description of final status after the process ends
 	PostConditions *string `json:"postConditions,omitempty"`
+	// Extension for PostConditions
+	PostConditionsExt *Element `json:"_postConditions,omitempty"`
 	// Each step of the process
 	Step []ExampleScenarioProcessStep `json:"step,omitempty"`
 }
@@ -971,16 +1016,16 @@ func (b ExampleScenarioProcess) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "title", b.Title, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "title", b.Title, b.TitleExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "preConditions", b.PreConditions, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "preConditions", b.PreConditions, b.PreConditionsExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "postConditions", b.PostConditions, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "postConditions", b.PostConditions, b.PostConditionsExt); err != nil {
 		return err
 	}
 	for _, item := range b.Step {
@@ -1022,29 +1067,33 @@ func (r *ExampleScenarioProcess) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "title":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Title = v
+				r.TitleExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "preConditions":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.PreConditions = v
+				r.PreConditionsExt = ext
 			case "postConditions":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.PostConditions = v
+				r.PostConditionsExt = ext
 			case "step":
 				var v ExampleScenarioProcessStep
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1075,6 +1124,8 @@ type ExampleScenarioProcessStep struct {
 	Process []ExampleScenarioProcess `json:"process,omitempty"`
 	// If there is a pause in the flow
 	Pause *bool `json:"pause,omitempty"`
+	// Extension for Pause
+	PauseExt *Element `json:"_pause,omitempty"`
 	// Each interaction or action
 	Operation *ExampleScenarioProcessStepOperation `json:"operation,omitempty"`
 	// Alternate non-typical step action
@@ -1108,7 +1159,7 @@ func (b ExampleScenarioProcessStep) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "pause", b.Pause, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "pause", b.Pause, b.PauseExt); err != nil {
 		return err
 	}
 	if b.Operation != nil {
@@ -1161,11 +1212,12 @@ func (r *ExampleScenarioProcessStep) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.Process = append(r.Process, v)
 			case "pause":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Pause = v
+				r.PauseExt = ext
 			case "operation":
 				var v ExampleScenarioProcessStepOperation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1200,8 +1252,12 @@ type ExampleScenarioProcessStepAlternative struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Label for alternative
 	Title *string `json:"title,omitempty"`
+	// Extension for Title
+	TitleExt *Element `json:"_title,omitempty"`
 	// A human-readable description of each option
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// What happens in each alternative option
 	Step []ExampleScenarioProcessStep `json:"step,omitempty"`
 }
@@ -1228,10 +1284,10 @@ func (b ExampleScenarioProcessStepAlternative) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "title", b.Title, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "title", b.Title, b.TitleExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	for _, item := range b.Step {
@@ -1273,17 +1329,19 @@ func (r *ExampleScenarioProcessStepAlternative) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "title":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Title = v
+				r.TitleExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "step":
 				var v ExampleScenarioProcessStep
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1312,20 +1370,36 @@ type ExampleScenarioProcessStepOperation struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The sequential number of the interaction
 	Number *string `json:"number,omitempty"`
+	// Extension for Number
+	NumberExt *Element `json:"_number,omitempty"`
 	// The type of operation - CRUD
 	Type *string `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// The human-friendly name of the interaction
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Who starts the transaction
 	Initiator *string `json:"initiator,omitempty"`
+	// Extension for Initiator
+	InitiatorExt *Element `json:"_initiator,omitempty"`
 	// Who receives the transaction
 	Receiver *string `json:"receiver,omitempty"`
+	// Extension for Receiver
+	ReceiverExt *Element `json:"_receiver,omitempty"`
 	// A comment to be inserted in the diagram
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Whether the initiator is deactivated right after the transaction
 	InitiatorActive *bool `json:"initiatorActive,omitempty"`
+	// Extension for InitiatorActive
+	InitiatorActiveExt *Element `json:"_initiatorActive,omitempty"`
 	// Whether the receiver is deactivated right after the transaction
 	ReceiverActive *bool `json:"receiverActive,omitempty"`
+	// Extension for ReceiverActive
+	ReceiverActiveExt *Element `json:"_receiverActive,omitempty"`
 	// Each resource instance used by the initiator
 	Request *ExampleScenarioInstanceContainedInstance `json:"request,omitempty"`
 	// Each resource instance used by the responder
@@ -1354,28 +1428,28 @@ func (b ExampleScenarioProcessStepOperation) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "number", b.Number, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "number", b.Number, b.NumberExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "initiator", b.Initiator, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "initiator", b.Initiator, b.InitiatorExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "receiver", b.Receiver, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "receiver", b.Receiver, b.ReceiverExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "initiatorActive", b.InitiatorActive, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "initiatorActive", b.InitiatorActive, b.InitiatorActiveExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "receiverActive", b.ReceiverActive, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "receiverActive", b.ReceiverActive, b.ReceiverActiveExt); err != nil {
 		return err
 	}
 	if b.Request != nil {
@@ -1422,53 +1496,61 @@ func (r *ExampleScenarioProcessStepOperation) UnmarshalXML(d *xml.Decoder, start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "number":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Number = v
+				r.NumberExt = ext
 			case "type":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "initiator":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Initiator = v
+				r.InitiatorExt = ext
 			case "receiver":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Receiver = v
+				r.ReceiverExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "initiatorActive":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.InitiatorActive = v
+				r.InitiatorActiveExt = ext
 			case "receiverActive":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ReceiverActive = v
+				r.ReceiverActiveExt = ext
 			case "request":
 				var v ExampleScenarioInstanceContainedInstance
 				if err := v.UnmarshalXML(d, t); err != nil {

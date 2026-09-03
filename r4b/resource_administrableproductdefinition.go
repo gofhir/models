@@ -496,17 +496,19 @@ func (r *AdministrableProductDefinitionProperty) UnmarshalXML(d *xml.Decoder, st
 				}
 				r.ValueQuantity = &v
 			case "valueDate":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDate = v
+				_ = ext
 			case "valueBoolean":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
+				_ = ext
 			case "valueAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -816,6 +818,8 @@ type AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalP
 	Value *Quantity `json:"value,omitempty"`
 	// Extra information about the withdrawal period
 	SupportingInformation *string `json:"supportingInformation,omitempty"`
+	// Extension for SupportingInformation
+	SupportingInformationExt *Element `json:"_supportingInformation,omitempty"`
 }
 
 // MarshalXML serializes AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod to FHIR-conformant XML.
@@ -850,7 +854,7 @@ func (b AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdraw
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "supportingInformation", b.SupportingInformation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "supportingInformation", b.SupportingInformation, b.SupportingInformationExt); err != nil {
 		return err
 	}
 
@@ -899,11 +903,12 @@ func (r *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdra
 				}
 				r.Value = &v
 			case "supportingInformation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SupportingInformation = v
+				r.SupportingInformationExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

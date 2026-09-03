@@ -676,16 +676,26 @@ type NamingSystemUniqueId struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// oid | uuid | uri | iri-stem | v2csmnemonic | other
 	Type *NamingSystemIdentifierType `json:"type,omitempty"`
+	// Extension for Type
+	TypeExt *Element `json:"_type,omitempty"`
 	// The unique identifier
 	Value *string `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 	// Is this the id that should be used for this type
 	Preferred *bool `json:"preferred,omitempty"`
+	// Extension for Preferred
+	PreferredExt *Element `json:"_preferred,omitempty"`
 	// Notes about identifier usage
 	Comment *string `json:"comment,omitempty"`
+	// Extension for Comment
+	CommentExt *Element `json:"_comment,omitempty"`
 	// When is identifier valid?
 	Period *Period `json:"period,omitempty"`
 	// Whether the identifier is authoritative
 	Authoritative *bool `json:"authoritative,omitempty"`
+	// Extension for Authoritative
+	AuthoritativeExt *Element `json:"_authoritative,omitempty"`
 }
 
 // MarshalXML serializes NamingSystemUniqueId to FHIR-conformant XML.
@@ -710,16 +720,16 @@ func (b NamingSystemUniqueId) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "type", b.Type, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "preferred", b.Preferred, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "preferred", b.Preferred, b.PreferredExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, b.CommentExt); err != nil {
 		return err
 	}
 	if b.Period != nil {
@@ -727,7 +737,7 @@ func (b NamingSystemUniqueId) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "authoritative", b.Authoritative, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "authoritative", b.Authoritative, b.AuthoritativeExt); err != nil {
 		return err
 	}
 
@@ -764,29 +774,33 @@ func (r *NamingSystemUniqueId) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, _, err := xmlDecodePrimitiveCode[NamingSystemIdentifierType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[NamingSystemIdentifierType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
+				r.TypeExt = ext
 			case "value":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			case "preferred":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Preferred = v
+				r.PreferredExt = ext
 			case "comment":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Comment = v
+				r.CommentExt = ext
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -794,11 +808,12 @@ func (r *NamingSystemUniqueId) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				r.Period = &v
 			case "authoritative":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Authoritative = v
+				r.AuthoritativeExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

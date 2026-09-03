@@ -406,12 +406,13 @@ func (r *MedicationKnowledge) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.Amount = &v
 			case "synonym":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Synonym = append(r.Synonym, v)
+				r.SynonymExt = append(r.SynonymExt, ext)
 			case "relatedMedicationKnowledge":
 				var v MedicationKnowledgeRelatedMedicationKnowledge
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -767,6 +768,8 @@ type MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics struct {
 	CharacteristicQuantity *Quantity `json:"characteristicQuantity,omitempty"`
 	// The specific characteristic
 	Value []*string `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt []*Element `json:"_value,omitempty"`
 }
 
 // MarshalXML serializes MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics to FHIR-conformant XML.
@@ -801,7 +804,7 @@ func (b MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics) Marsh
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
 
@@ -850,12 +853,13 @@ func (r *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics) Unma
 				}
 				r.CharacteristicQuantity = &v
 			case "value":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Value = append(r.Value, v)
+				r.ValueExt = append(r.ValueExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -880,6 +884,8 @@ type MedicationKnowledgeCost struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// The source or owner for the price information
 	Source *string `json:"source,omitempty"`
+	// Extension for Source
+	SourceExt *Element `json:"_source,omitempty"`
 	// The price of the medication
 	Cost *Money `json:"cost,omitempty"`
 }
@@ -911,7 +917,7 @@ func (b MedicationKnowledgeCost) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "source", b.Source, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "source", b.Source, b.SourceExt); err != nil {
 		return err
 	}
 	if b.Cost != nil {
@@ -959,11 +965,12 @@ func (r *MedicationKnowledgeCost) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.Type = &v
 			case "source":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Source = v
+				r.SourceExt = ext
 			case "cost":
 				var v Money
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1095,11 +1102,12 @@ func (r *MedicationKnowledgeDrugCharacteristic) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.ValueCodeableConcept = &v
 			case "valueString":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
+				_ = ext
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1107,11 +1115,12 @@ func (r *MedicationKnowledgeDrugCharacteristic) UnmarshalXML(d *xml.Decoder, sta
 				}
 				r.ValueQuantity = &v
 			case "valueBase64Binary":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBase64Binary = v
+				_ = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1138,6 +1147,8 @@ type MedicationKnowledgeIngredient struct {
 	ItemReference *Reference `json:"itemReference,omitempty"`
 	// Active ingredient indicator
 	IsActive *bool `json:"isActive,omitempty"`
+	// Extension for IsActive
+	IsActiveExt *Element `json:"_isActive,omitempty"`
 	// Quantity of ingredient present
 	Strength *Ratio `json:"strength,omitempty"`
 }
@@ -1174,7 +1185,7 @@ func (b MedicationKnowledgeIngredient) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "isActive", b.IsActive, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "isActive", b.IsActive, b.IsActiveExt); err != nil {
 		return err
 	}
 	if b.Strength != nil {
@@ -1228,11 +1239,12 @@ func (r *MedicationKnowledgeIngredient) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.ItemReference = &v
 			case "isActive":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.IsActive = v
+				r.IsActiveExt = ext
 			case "strength":
 				var v Ratio
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1482,6 +1494,8 @@ type MedicationKnowledgeMonitoringProgram struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Name of the reviewing program
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 }
 
 // MarshalXML serializes MedicationKnowledgeMonitoringProgram to FHIR-conformant XML.
@@ -1511,7 +1525,7 @@ func (b MedicationKnowledgeMonitoringProgram) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
 
@@ -1554,11 +1568,12 @@ func (r *MedicationKnowledgeMonitoringProgram) UnmarshalXML(d *xml.Decoder, star
 				}
 				r.Type = &v
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2111,6 +2126,8 @@ type MedicationKnowledgeRegulatorySubstitution struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Specifies if regulation allows for changes in the medication when dispensing
 	Allowed *bool `json:"allowed,omitempty"`
+	// Extension for Allowed
+	AllowedExt *Element `json:"_allowed,omitempty"`
 }
 
 // MarshalXML serializes MedicationKnowledgeRegulatorySubstitution to FHIR-conformant XML.
@@ -2140,7 +2157,7 @@ func (b MedicationKnowledgeRegulatorySubstitution) MarshalXML(e *xml.Encoder, st
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "allowed", b.Allowed, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "allowed", b.Allowed, b.AllowedExt); err != nil {
 		return err
 	}
 
@@ -2183,11 +2200,12 @@ func (r *MedicationKnowledgeRegulatorySubstitution) UnmarshalXML(d *xml.Decoder,
 				}
 				r.Type = &v
 			case "allowed":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Allowed = v
+				r.AllowedExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

@@ -532,6 +532,8 @@ type DiagnosticReportMedia struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Comment about the image or data (e.g. explanation)
 	Comment *string `json:"comment,omitempty"`
+	// Extension for Comment
+	CommentExt *Element `json:"_comment,omitempty"`
 	// Reference to the image or data source
 	Link *Reference `json:"link,omitempty"`
 }
@@ -558,7 +560,7 @@ func (b DiagnosticReportMedia) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "comment", b.Comment, b.CommentExt); err != nil {
 		return err
 	}
 	if b.Link != nil {
@@ -600,11 +602,12 @@ func (r *DiagnosticReportMedia) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "comment":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Comment = v
+				r.CommentExt = ext
 			case "link":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

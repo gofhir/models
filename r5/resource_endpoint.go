@@ -375,12 +375,13 @@ func (r *Endpoint) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				r.Address = v
 				r.AddressExt = ext
 			case "header":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Header = append(r.Header, v)
+				r.HeaderExt = append(r.HeaderExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -405,6 +406,8 @@ type EndpointPayload struct {
 	Type []CodeableConcept `json:"type,omitempty"`
 	// Mimetype to send. If not specified, the content could be anything (including no payload, if the connectionType defined this)
 	MimeType []*string `json:"mimeType,omitempty"`
+	// Extension for MimeType
+	MimeTypeExt []*Element `json:"_mimeType,omitempty"`
 }
 
 // MarshalXML serializes EndpointPayload to FHIR-conformant XML.
@@ -434,7 +437,7 @@ func (b EndpointPayload) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "mimeType", b.MimeType, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "mimeType", b.MimeType, b.MimeTypeExt); err != nil {
 		return err
 	}
 
@@ -477,12 +480,13 @@ func (r *EndpointPayload) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				r.Type = append(r.Type, v)
 			case "mimeType":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.MimeType = append(r.MimeType, v)
+				r.MimeTypeExt = append(r.MimeTypeExt, ext)
 			default:
 				if err := d.Skip(); err != nil {
 					return err

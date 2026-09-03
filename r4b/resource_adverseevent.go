@@ -611,6 +611,8 @@ type AdverseEventSuspectEntityCausality struct {
 	Assessment *CodeableConcept `json:"assessment,omitempty"`
 	// AdverseEvent.suspectEntity.causalityProductRelatedness
 	ProductRelatedness *string `json:"productRelatedness,omitempty"`
+	// Extension for ProductRelatedness
+	ProductRelatednessExt *Element `json:"_productRelatedness,omitempty"`
 	// AdverseEvent.suspectEntity.causalityAuthor
 	Author *Reference `json:"author,omitempty"`
 	// ProbabilityScale | Bayesian | Checklist
@@ -644,7 +646,7 @@ func (b AdverseEventSuspectEntityCausality) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "productRelatedness", b.ProductRelatedness, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "productRelatedness", b.ProductRelatedness, b.ProductRelatednessExt); err != nil {
 		return err
 	}
 	if b.Author != nil {
@@ -697,11 +699,12 @@ func (r *AdverseEventSuspectEntityCausality) UnmarshalXML(d *xml.Decoder, start 
 				}
 				r.Assessment = &v
 			case "productRelatedness":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ProductRelatedness = v
+				r.ProductRelatednessExt = ext
 			case "author":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

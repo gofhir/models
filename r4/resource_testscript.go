@@ -565,6 +565,8 @@ type TestScriptDestination struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The index of the abstract destination server starting at 1
 	Index *int `json:"index,omitempty"`
+	// Extension for Index
+	IndexExt *Element `json:"_index,omitempty"`
 	// FHIR-Server | FHIR-SDC-FormManager | FHIR-SDC-FormReceiver | FHIR-SDC-FormProcessor
 	Profile *Coding `json:"profile,omitempty"`
 }
@@ -591,7 +593,7 @@ func (b TestScriptDestination) MarshalXML(e *xml.Encoder, start xml.StartElement
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveInt(e, "index", b.Index, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "index", b.Index, b.IndexExt); err != nil {
 		return err
 	}
 	if b.Profile != nil {
@@ -633,11 +635,12 @@ func (r *TestScriptDestination) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "index":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Index = v
+				r.IndexExt = ext
 			case "profile":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -666,8 +669,12 @@ type TestScriptFixture struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Whether or not to implicitly create the fixture during setup
 	Autocreate *bool `json:"autocreate,omitempty"`
+	// Extension for Autocreate
+	AutocreateExt *Element `json:"_autocreate,omitempty"`
 	// Whether or not to implicitly delete the fixture during teardown
 	Autodelete *bool `json:"autodelete,omitempty"`
+	// Extension for Autodelete
+	AutodeleteExt *Element `json:"_autodelete,omitempty"`
 	// Reference of the resource
 	Resource *Reference `json:"resource,omitempty"`
 }
@@ -694,10 +701,10 @@ func (b TestScriptFixture) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "autocreate", b.Autocreate, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "autocreate", b.Autocreate, b.AutocreateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "autodelete", b.Autodelete, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "autodelete", b.Autodelete, b.AutodeleteExt); err != nil {
 		return err
 	}
 	if b.Resource != nil {
@@ -739,17 +746,19 @@ func (r *TestScriptFixture) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "autocreate":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Autocreate = v
+				r.AutocreateExt = ext
 			case "autodelete":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Autodelete = v
+				r.AutodeleteExt = ext
 			case "resource":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -881,18 +890,32 @@ type TestScriptMetadataCapability struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Are the capabilities required?
 	Required *bool `json:"required,omitempty"`
+	// Extension for Required
+	RequiredExt *Element `json:"_required,omitempty"`
 	// Are the capabilities validated?
 	Validated *bool `json:"validated,omitempty"`
+	// Extension for Validated
+	ValidatedExt *Element `json:"_validated,omitempty"`
 	// The expected capabilities of the server
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Which origin server these requirements apply to
 	Origin []*int `json:"origin,omitempty"`
+	// Extension for Origin
+	OriginExt []*Element `json:"_origin,omitempty"`
 	// Which server these requirements apply to
 	Destination *int `json:"destination,omitempty"`
+	// Extension for Destination
+	DestinationExt *Element `json:"_destination,omitempty"`
 	// Links to the FHIR specification
 	Link []*string `json:"link,omitempty"`
+	// Extension for Link
+	LinkExt []*Element `json:"_link,omitempty"`
 	// Required Capability Statement
 	Capabilities *string `json:"capabilities,omitempty"`
+	// Extension for Capabilities
+	CapabilitiesExt *Element `json:"_capabilities,omitempty"`
 }
 
 // MarshalXML serializes TestScriptMetadataCapability to FHIR-conformant XML.
@@ -917,25 +940,25 @@ func (b TestScriptMetadataCapability) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "required", b.Required, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "required", b.Required, b.RequiredExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "validated", b.Validated, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "validated", b.Validated, b.ValidatedExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveIntArray(e, "origin", b.Origin, nil); err != nil {
+	if err := xmlEncodePrimitiveIntArray(e, "origin", b.Origin, b.OriginExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "destination", b.Destination, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "destination", b.Destination, b.DestinationExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "link", b.Link, nil); err != nil {
+	if err := xmlEncodePrimitiveStringArray(e, "link", b.Link, b.LinkExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "capabilities", b.Capabilities, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "capabilities", b.Capabilities, b.CapabilitiesExt); err != nil {
 		return err
 	}
 
@@ -972,49 +995,56 @@ func (r *TestScriptMetadataCapability) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "required":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Required = v
+				r.RequiredExt = ext
 			case "validated":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Validated = v
+				r.ValidatedExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "origin":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Origin = append(r.Origin, v)
+				r.OriginExt = append(r.OriginExt, ext)
 			case "destination":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Destination = v
+				r.DestinationExt = ext
 			case "link":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Link = append(r.Link, v)
+				r.LinkExt = append(r.LinkExt, ext)
 			case "capabilities":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Capabilities = v
+				r.CapabilitiesExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1037,8 +1067,12 @@ type TestScriptMetadataLink struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// URL to the specification
 	Url *string `json:"url,omitempty"`
+	// Extension for Url
+	UrlExt *Element `json:"_url,omitempty"`
 	// Short description
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 }
 
 // MarshalXML serializes TestScriptMetadataLink to FHIR-conformant XML.
@@ -1063,10 +1097,10 @@ func (b TestScriptMetadataLink) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "url", b.Url, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "url", b.Url, b.UrlExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 
@@ -1103,17 +1137,19 @@ func (r *TestScriptMetadataLink) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "url":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Url = v
+				r.UrlExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1136,6 +1172,8 @@ type TestScriptOrigin struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// The index of the abstract origin server starting at 1
 	Index *int `json:"index,omitempty"`
+	// Extension for Index
+	IndexExt *Element `json:"_index,omitempty"`
 	// FHIR-Client | FHIR-SDC-FormFiller
 	Profile *Coding `json:"profile,omitempty"`
 }
@@ -1162,7 +1200,7 @@ func (b TestScriptOrigin) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveInt(e, "index", b.Index, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "index", b.Index, b.IndexExt); err != nil {
 		return err
 	}
 	if b.Profile != nil {
@@ -1204,11 +1242,12 @@ func (r *TestScriptOrigin) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "index":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Index = v
+				r.IndexExt = ext
 			case "profile":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1430,48 +1469,92 @@ type TestScriptSetupActionAssert struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Tracking/logging assertion label
 	Label *string `json:"label,omitempty"`
+	// Extension for Label
+	LabelExt *Element `json:"_label,omitempty"`
 	// Tracking/reporting assertion description
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// response | request
 	Direction *AssertionDirectionType `json:"direction,omitempty"`
+	// Extension for Direction
+	DirectionExt *Element `json:"_direction,omitempty"`
 	// Id of the source fixture to be evaluated
 	CompareToSourceId *string `json:"compareToSourceId,omitempty"`
+	// Extension for CompareToSourceId
+	CompareToSourceIdExt *Element `json:"_compareToSourceId,omitempty"`
 	// The FHIRPath expression to evaluate against the source fixture
 	CompareToSourceExpression *string `json:"compareToSourceExpression,omitempty"`
+	// Extension for CompareToSourceExpression
+	CompareToSourceExpressionExt *Element `json:"_compareToSourceExpression,omitempty"`
 	// XPath or JSONPath expression to evaluate against the source fixture
 	CompareToSourcePath *string `json:"compareToSourcePath,omitempty"`
+	// Extension for CompareToSourcePath
+	CompareToSourcePathExt *Element `json:"_compareToSourcePath,omitempty"`
 	// Mime type to compare against the 'Content-Type' header
 	ContentType *string `json:"contentType,omitempty"`
+	// Extension for ContentType
+	ContentTypeExt *Element `json:"_contentType,omitempty"`
 	// The FHIRPath expression to be evaluated
 	Expression *string `json:"expression,omitempty"`
+	// Extension for Expression
+	ExpressionExt *Element `json:"_expression,omitempty"`
 	// HTTP header field name
 	HeaderField *string `json:"headerField,omitempty"`
+	// Extension for HeaderField
+	HeaderFieldExt *Element `json:"_headerField,omitempty"`
 	// Fixture Id of minimum content resource
 	MinimumId *string `json:"minimumId,omitempty"`
+	// Extension for MinimumId
+	MinimumIdExt *Element `json:"_minimumId,omitempty"`
 	// Perform validation on navigation links?
 	NavigationLinks *bool `json:"navigationLinks,omitempty"`
+	// Extension for NavigationLinks
+	NavigationLinksExt *Element `json:"_navigationLinks,omitempty"`
 	// equals | notEquals | in | notIn | greaterThan | lessThan | empty | notEmpty | contains | notContains | eval
 	Operator *AssertionOperatorType `json:"operator,omitempty"`
+	// Extension for Operator
+	OperatorExt *Element `json:"_operator,omitempty"`
 	// XPath or JSONPath expression
 	Path *string `json:"path,omitempty"`
+	// Extension for Path
+	PathExt *Element `json:"_path,omitempty"`
 	// delete | get | options | patch | post | put | head
 	RequestMethod *TestScriptRequestMethodCode `json:"requestMethod,omitempty"`
+	// Extension for RequestMethod
+	RequestMethodExt *Element `json:"_requestMethod,omitempty"`
 	// Request URL comparison value
 	RequestURL *string `json:"requestURL,omitempty"`
+	// Extension for RequestURL
+	RequestURLExt *Element `json:"_requestURL,omitempty"`
 	// Resource type
 	Resource *string `json:"resource,omitempty"`
+	// Extension for Resource
+	ResourceExt *Element `json:"_resource,omitempty"`
 	// okay | created | noContent | notModified | bad | forbidden | notFound | methodNotAllowed | conflict | gone | preconditionFailed | unprocessable
 	Response *AssertionResponseTypes `json:"response,omitempty"`
+	// Extension for Response
+	ResponseExt *Element `json:"_response,omitempty"`
 	// HTTP response code to test
 	ResponseCode *string `json:"responseCode,omitempty"`
+	// Extension for ResponseCode
+	ResponseCodeExt *Element `json:"_responseCode,omitempty"`
 	// Fixture Id of source expression or headerField
 	SourceId *string `json:"sourceId,omitempty"`
+	// Extension for SourceId
+	SourceIdExt *Element `json:"_sourceId,omitempty"`
 	// Profile Id of validation profile reference
 	ValidateProfileId *string `json:"validateProfileId,omitempty"`
+	// Extension for ValidateProfileId
+	ValidateProfileIdExt *Element `json:"_validateProfileId,omitempty"`
 	// The value to compare to
 	Value *string `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 	// Will this assert produce a warning only on error?
 	WarningOnly *bool `json:"warningOnly,omitempty"`
+	// Extension for WarningOnly
+	WarningOnlyExt *Element `json:"_warningOnly,omitempty"`
 }
 
 // MarshalXML serializes TestScriptSetupActionAssert to FHIR-conformant XML.
@@ -1496,70 +1579,70 @@ func (b TestScriptSetupActionAssert) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "label", b.Label, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "label", b.Label, b.LabelExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "direction", b.Direction, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "direction", b.Direction, b.DirectionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "compareToSourceId", b.CompareToSourceId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "compareToSourceId", b.CompareToSourceId, b.CompareToSourceIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "compareToSourceExpression", b.CompareToSourceExpression, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "compareToSourceExpression", b.CompareToSourceExpression, b.CompareToSourceExpressionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "compareToSourcePath", b.CompareToSourcePath, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "compareToSourcePath", b.CompareToSourcePath, b.CompareToSourcePathExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "contentType", b.ContentType, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "contentType", b.ContentType, b.ContentTypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "expression", b.Expression, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "expression", b.Expression, b.ExpressionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "headerField", b.HeaderField, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "headerField", b.HeaderField, b.HeaderFieldExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "minimumId", b.MinimumId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "minimumId", b.MinimumId, b.MinimumIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "navigationLinks", b.NavigationLinks, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "navigationLinks", b.NavigationLinks, b.NavigationLinksExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "operator", b.Operator, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "operator", b.Operator, b.OperatorExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "path", b.Path, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "path", b.Path, b.PathExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "requestMethod", b.RequestMethod, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "requestMethod", b.RequestMethod, b.RequestMethodExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "requestURL", b.RequestURL, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "requestURL", b.RequestURL, b.RequestURLExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "resource", b.Resource, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "resource", b.Resource, b.ResourceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "response", b.Response, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "response", b.Response, b.ResponseExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "responseCode", b.ResponseCode, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "responseCode", b.ResponseCode, b.ResponseCodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "sourceId", b.SourceId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sourceId", b.SourceId, b.SourceIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "validateProfileId", b.ValidateProfileId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "validateProfileId", b.ValidateProfileId, b.ValidateProfileIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "warningOnly", b.WarningOnly, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "warningOnly", b.WarningOnly, b.WarningOnlyExt); err != nil {
 		return err
 	}
 
@@ -1596,137 +1679,159 @@ func (r *TestScriptSetupActionAssert) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "label":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Label = v
+				r.LabelExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "direction":
-				v, _, err := xmlDecodePrimitiveCode[AssertionDirectionType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[AssertionDirectionType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Direction = v
+				r.DirectionExt = ext
 			case "compareToSourceId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.CompareToSourceId = v
+				r.CompareToSourceIdExt = ext
 			case "compareToSourceExpression":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.CompareToSourceExpression = v
+				r.CompareToSourceExpressionExt = ext
 			case "compareToSourcePath":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.CompareToSourcePath = v
+				r.CompareToSourcePathExt = ext
 			case "contentType":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ContentType = v
+				r.ContentTypeExt = ext
 			case "expression":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Expression = v
+				r.ExpressionExt = ext
 			case "headerField":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.HeaderField = v
+				r.HeaderFieldExt = ext
 			case "minimumId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.MinimumId = v
+				r.MinimumIdExt = ext
 			case "navigationLinks":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.NavigationLinks = v
+				r.NavigationLinksExt = ext
 			case "operator":
-				v, _, err := xmlDecodePrimitiveCode[AssertionOperatorType](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[AssertionOperatorType](d, t)
 				if err != nil {
 					return err
 				}
 				r.Operator = v
+				r.OperatorExt = ext
 			case "path":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Path = v
+				r.PathExt = ext
 			case "requestMethod":
-				v, _, err := xmlDecodePrimitiveCode[TestScriptRequestMethodCode](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[TestScriptRequestMethodCode](d, t)
 				if err != nil {
 					return err
 				}
 				r.RequestMethod = v
+				r.RequestMethodExt = ext
 			case "requestURL":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.RequestURL = v
+				r.RequestURLExt = ext
 			case "resource":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Resource = v
+				r.ResourceExt = ext
 			case "response":
-				v, _, err := xmlDecodePrimitiveCode[AssertionResponseTypes](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[AssertionResponseTypes](d, t)
 				if err != nil {
 					return err
 				}
 				r.Response = v
+				r.ResponseExt = ext
 			case "responseCode":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ResponseCode = v
+				r.ResponseCodeExt = ext
 			case "sourceId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SourceId = v
+				r.SourceIdExt = ext
 			case "validateProfileId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValidateProfileId = v
+				r.ValidateProfileIdExt = ext
 			case "value":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			case "warningOnly":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.WarningOnly = v
+				r.WarningOnlyExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1751,36 +1856,66 @@ type TestScriptSetupActionOperation struct {
 	Type *Coding `json:"type,omitempty"`
 	// Resource type
 	Resource *string `json:"resource,omitempty"`
+	// Extension for Resource
+	ResourceExt *Element `json:"_resource,omitempty"`
 	// Tracking/logging operation label
 	Label *string `json:"label,omitempty"`
+	// Extension for Label
+	LabelExt *Element `json:"_label,omitempty"`
 	// Tracking/reporting operation description
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Mime type to accept in the payload of the response, with charset etc.
 	Accept *string `json:"accept,omitempty"`
+	// Extension for Accept
+	AcceptExt *Element `json:"_accept,omitempty"`
 	// Mime type of the request payload contents, with charset etc.
 	ContentType *string `json:"contentType,omitempty"`
+	// Extension for ContentType
+	ContentTypeExt *Element `json:"_contentType,omitempty"`
 	// Server responding to the request
 	Destination *int `json:"destination,omitempty"`
+	// Extension for Destination
+	DestinationExt *Element `json:"_destination,omitempty"`
 	// Whether or not to send the request url in encoded format
 	EncodeRequestUrl *bool `json:"encodeRequestUrl,omitempty"`
+	// Extension for EncodeRequestUrl
+	EncodeRequestUrlExt *Element `json:"_encodeRequestUrl,omitempty"`
 	// delete | get | options | patch | post | put | head
 	Method *TestScriptRequestMethodCode `json:"method,omitempty"`
+	// Extension for Method
+	MethodExt *Element `json:"_method,omitempty"`
 	// Server initiating the request
 	Origin *int `json:"origin,omitempty"`
+	// Extension for Origin
+	OriginExt *Element `json:"_origin,omitempty"`
 	// Explicitly defined path parameters
 	Params *string `json:"params,omitempty"`
+	// Extension for Params
+	ParamsExt *Element `json:"_params,omitempty"`
 	// Each operation can have one or more header elements
 	RequestHeader []TestScriptSetupActionOperationRequestHeader `json:"requestHeader,omitempty"`
 	// Fixture Id of mapped request
 	RequestId *string `json:"requestId,omitempty"`
+	// Extension for RequestId
+	RequestIdExt *Element `json:"_requestId,omitempty"`
 	// Fixture Id of mapped response
 	ResponseId *string `json:"responseId,omitempty"`
+	// Extension for ResponseId
+	ResponseIdExt *Element `json:"_responseId,omitempty"`
 	// Fixture Id of body for PUT and POST requests
 	SourceId *string `json:"sourceId,omitempty"`
+	// Extension for SourceId
+	SourceIdExt *Element `json:"_sourceId,omitempty"`
 	// Id of fixture used for extracting the [id],  [type], and [vid] for GET requests
 	TargetId *string `json:"targetId,omitempty"`
+	// Extension for TargetId
+	TargetIdExt *Element `json:"_targetId,omitempty"`
 	// Request URL
 	Url *string `json:"url,omitempty"`
+	// Extension for Url
+	UrlExt *Element `json:"_url,omitempty"`
 }
 
 // MarshalXML serializes TestScriptSetupActionOperation to FHIR-conformant XML.
@@ -1810,34 +1945,34 @@ func (b TestScriptSetupActionOperation) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "resource", b.Resource, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "resource", b.Resource, b.ResourceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "label", b.Label, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "label", b.Label, b.LabelExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "accept", b.Accept, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "accept", b.Accept, b.AcceptExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "contentType", b.ContentType, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "contentType", b.ContentType, b.ContentTypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "destination", b.Destination, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "destination", b.Destination, b.DestinationExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "encodeRequestUrl", b.EncodeRequestUrl, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "encodeRequestUrl", b.EncodeRequestUrl, b.EncodeRequestUrlExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveCode(e, "method", b.Method, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "method", b.Method, b.MethodExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "origin", b.Origin, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "origin", b.Origin, b.OriginExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "params", b.Params, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "params", b.Params, b.ParamsExt); err != nil {
 		return err
 	}
 	for _, item := range b.RequestHeader {
@@ -1845,19 +1980,19 @@ func (b TestScriptSetupActionOperation) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "requestId", b.RequestId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "requestId", b.RequestId, b.RequestIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "responseId", b.ResponseId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "responseId", b.ResponseId, b.ResponseIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "sourceId", b.SourceId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sourceId", b.SourceId, b.SourceIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "targetId", b.TargetId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "targetId", b.TargetId, b.TargetIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "url", b.Url, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "url", b.Url, b.UrlExt); err != nil {
 		return err
 	}
 
@@ -1900,65 +2035,75 @@ func (r *TestScriptSetupActionOperation) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.Type = &v
 			case "resource":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Resource = v
+				r.ResourceExt = ext
 			case "label":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Label = v
+				r.LabelExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "accept":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Accept = v
+				r.AcceptExt = ext
 			case "contentType":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ContentType = v
+				r.ContentTypeExt = ext
 			case "destination":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Destination = v
+				r.DestinationExt = ext
 			case "encodeRequestUrl":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.EncodeRequestUrl = v
+				r.EncodeRequestUrlExt = ext
 			case "method":
-				v, _, err := xmlDecodePrimitiveCode[TestScriptRequestMethodCode](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[TestScriptRequestMethodCode](d, t)
 				if err != nil {
 					return err
 				}
 				r.Method = v
+				r.MethodExt = ext
 			case "origin":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Origin = v
+				r.OriginExt = ext
 			case "params":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Params = v
+				r.ParamsExt = ext
 			case "requestHeader":
 				var v TestScriptSetupActionOperationRequestHeader
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1966,35 +2111,40 @@ func (r *TestScriptSetupActionOperation) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.RequestHeader = append(r.RequestHeader, v)
 			case "requestId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.RequestId = v
+				r.RequestIdExt = ext
 			case "responseId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ResponseId = v
+				r.ResponseIdExt = ext
 			case "sourceId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SourceId = v
+				r.SourceIdExt = ext
 			case "targetId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.TargetId = v
+				r.TargetIdExt = ext
 			case "url":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Url = v
+				r.UrlExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2017,8 +2167,12 @@ type TestScriptSetupActionOperationRequestHeader struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// HTTP header field name
 	Field *string `json:"field,omitempty"`
+	// Extension for Field
+	FieldExt *Element `json:"_field,omitempty"`
 	// HTTP headerfield value
 	Value *string `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 }
 
 // MarshalXML serializes TestScriptSetupActionOperationRequestHeader to FHIR-conformant XML.
@@ -2043,10 +2197,10 @@ func (b TestScriptSetupActionOperationRequestHeader) MarshalXML(e *xml.Encoder, 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "field", b.Field, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "field", b.Field, b.FieldExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
 
@@ -2083,17 +2237,19 @@ func (r *TestScriptSetupActionOperationRequestHeader) UnmarshalXML(d *xml.Decode
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "field":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Field = v
+				r.FieldExt = ext
 			case "value":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2296,8 +2452,12 @@ type TestScriptTest struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Tracking/logging name of this test
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Tracking/reporting short description of the test
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// A test operation or assert to perform
 	Action []TestScriptTestAction `json:"action,omitempty"`
 }
@@ -2324,10 +2484,10 @@ func (b TestScriptTest) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	for _, item := range b.Action {
@@ -2369,17 +2529,19 @@ func (r *TestScriptTest) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "action":
 				var v TestScriptTestAction
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2511,20 +2673,36 @@ type TestScriptVariable struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Descriptive name for this variable
 	Name *string `json:"name,omitempty"`
+	// Extension for Name
+	NameExt *Element `json:"_name,omitempty"`
 	// Default, hard-coded, or user-defined value for this variable
 	DefaultValue *string `json:"defaultValue,omitempty"`
+	// Extension for DefaultValue
+	DefaultValueExt *Element `json:"_defaultValue,omitempty"`
 	// Natural language description of the variable
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// The FHIRPath expression against the fixture body
 	Expression *string `json:"expression,omitempty"`
+	// Extension for Expression
+	ExpressionExt *Element `json:"_expression,omitempty"`
 	// HTTP header field name for source
 	HeaderField *string `json:"headerField,omitempty"`
+	// Extension for HeaderField
+	HeaderFieldExt *Element `json:"_headerField,omitempty"`
 	// Hint help text for default value to enter
 	Hint *string `json:"hint,omitempty"`
+	// Extension for Hint
+	HintExt *Element `json:"_hint,omitempty"`
 	// XPath or JSONPath against the fixture body
 	Path *string `json:"path,omitempty"`
+	// Extension for Path
+	PathExt *Element `json:"_path,omitempty"`
 	// Fixture Id of source expression or headerField within this variable
 	SourceId *string `json:"sourceId,omitempty"`
+	// Extension for SourceId
+	SourceIdExt *Element `json:"_sourceId,omitempty"`
 }
 
 // MarshalXML serializes TestScriptVariable to FHIR-conformant XML.
@@ -2549,28 +2727,28 @@ func (b TestScriptVariable) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "name", b.Name, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "defaultValue", b.DefaultValue, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "defaultValue", b.DefaultValue, b.DefaultValueExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "expression", b.Expression, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "expression", b.Expression, b.ExpressionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "headerField", b.HeaderField, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "headerField", b.HeaderField, b.HeaderFieldExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "hint", b.Hint, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "hint", b.Hint, b.HintExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "path", b.Path, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "path", b.Path, b.PathExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "sourceId", b.SourceId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sourceId", b.SourceId, b.SourceIdExt); err != nil {
 		return err
 	}
 
@@ -2607,53 +2785,61 @@ func (r *TestScriptVariable) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "name":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Name = v
+				r.NameExt = ext
 			case "defaultValue":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefaultValue = v
+				r.DefaultValueExt = ext
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "expression":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Expression = v
+				r.ExpressionExt = ext
 			case "headerField":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.HeaderField = v
+				r.HeaderFieldExt = ext
 			case "hint":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Hint = v
+				r.HintExt = ext
 			case "path":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Path = v
+				r.PathExt = ext
 			case "sourceId":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SourceId = v
+				r.SourceIdExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

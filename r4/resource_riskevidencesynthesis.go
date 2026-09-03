@@ -888,16 +888,24 @@ type RiskEvidenceSynthesisRiskEstimate struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Description of risk estimate
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Type of risk estimate
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Point estimate
 	Value *Decimal `json:"value,omitempty"`
+	// Extension for Value
+	ValueExt *Element `json:"_value,omitempty"`
 	// What unit is the outcome described in?
 	UnitOfMeasure *CodeableConcept `json:"unitOfMeasure,omitempty"`
 	// Sample size for group measured
 	DenominatorCount *int `json:"denominatorCount,omitempty"`
+	// Extension for DenominatorCount
+	DenominatorCountExt *Element `json:"_denominatorCount,omitempty"`
 	// Number with the outcome
 	NumeratorCount *int `json:"numeratorCount,omitempty"`
+	// Extension for NumeratorCount
+	NumeratorCountExt *Element `json:"_numeratorCount,omitempty"`
 	// How precise the estimate is
 	PrecisionEstimate []RiskEvidenceSynthesisRiskEstimatePrecisionEstimate `json:"precisionEstimate,omitempty"`
 }
@@ -924,7 +932,7 @@ func (b RiskEvidenceSynthesisRiskEstimate) MarshalXML(e *xml.Encoder, start xml.
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.Type != nil {
@@ -932,7 +940,7 @@ func (b RiskEvidenceSynthesisRiskEstimate) MarshalXML(e *xml.Encoder, start xml.
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "value", b.Value, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "value", b.Value, b.ValueExt); err != nil {
 		return err
 	}
 	if b.UnitOfMeasure != nil {
@@ -940,10 +948,10 @@ func (b RiskEvidenceSynthesisRiskEstimate) MarshalXML(e *xml.Encoder, start xml.
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveInt(e, "denominatorCount", b.DenominatorCount, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "denominatorCount", b.DenominatorCount, b.DenominatorCountExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "numeratorCount", b.NumeratorCount, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "numeratorCount", b.NumeratorCount, b.NumeratorCountExt); err != nil {
 		return err
 	}
 	for _, item := range b.PrecisionEstimate {
@@ -985,11 +993,12 @@ func (r *RiskEvidenceSynthesisRiskEstimate) UnmarshalXML(d *xml.Decoder, start x
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "type":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -997,11 +1006,12 @@ func (r *RiskEvidenceSynthesisRiskEstimate) UnmarshalXML(d *xml.Decoder, start x
 				}
 				r.Type = &v
 			case "value":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Value = v
+				r.ValueExt = ext
 			case "unitOfMeasure":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1009,17 +1019,19 @@ func (r *RiskEvidenceSynthesisRiskEstimate) UnmarshalXML(d *xml.Decoder, start x
 				}
 				r.UnitOfMeasure = &v
 			case "denominatorCount":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.DenominatorCount = v
+				r.DenominatorCountExt = ext
 			case "numeratorCount":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.NumeratorCount = v
+				r.NumeratorCountExt = ext
 			case "precisionEstimate":
 				var v RiskEvidenceSynthesisRiskEstimatePrecisionEstimate
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1050,10 +1062,16 @@ type RiskEvidenceSynthesisRiskEstimatePrecisionEstimate struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// Level of confidence interval
 	Level *Decimal `json:"level,omitempty"`
+	// Extension for Level
+	LevelExt *Element `json:"_level,omitempty"`
 	// Lower bound
 	From *Decimal `json:"from,omitempty"`
+	// Extension for From
+	FromExt *Element `json:"_from,omitempty"`
 	// Upper bound
 	To *Decimal `json:"to,omitempty"`
+	// Extension for To
+	ToExt *Element `json:"_to,omitempty"`
 }
 
 // MarshalXML serializes RiskEvidenceSynthesisRiskEstimatePrecisionEstimate to FHIR-conformant XML.
@@ -1083,13 +1101,13 @@ func (b RiskEvidenceSynthesisRiskEstimatePrecisionEstimate) MarshalXML(e *xml.En
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "level", b.Level, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "level", b.Level, b.LevelExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "from", b.From, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "from", b.From, b.FromExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "to", b.To, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "to", b.To, b.ToExt); err != nil {
 		return err
 	}
 
@@ -1132,23 +1150,26 @@ func (r *RiskEvidenceSynthesisRiskEstimatePrecisionEstimate) UnmarshalXML(d *xml
 				}
 				r.Type = &v
 			case "level":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.Level = v
+				r.LevelExt = ext
 			case "from":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.From = v
+				r.FromExt = ext
 			case "to":
-				v, _, err := xmlDecodePrimitiveDecimal(d, t)
+				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.To = v
+				r.ToExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1171,10 +1192,16 @@ type RiskEvidenceSynthesisSampleSize struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Description of sample size
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// How many studies?
 	NumberOfStudies *int `json:"numberOfStudies,omitempty"`
+	// Extension for NumberOfStudies
+	NumberOfStudiesExt *Element `json:"_numberOfStudies,omitempty"`
 	// How many participants?
 	NumberOfParticipants *int `json:"numberOfParticipants,omitempty"`
+	// Extension for NumberOfParticipants
+	NumberOfParticipantsExt *Element `json:"_numberOfParticipants,omitempty"`
 }
 
 // MarshalXML serializes RiskEvidenceSynthesisSampleSize to FHIR-conformant XML.
@@ -1199,13 +1226,13 @@ func (b RiskEvidenceSynthesisSampleSize) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "numberOfStudies", b.NumberOfStudies, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "numberOfStudies", b.NumberOfStudies, b.NumberOfStudiesExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "numberOfParticipants", b.NumberOfParticipants, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "numberOfParticipants", b.NumberOfParticipants, b.NumberOfParticipantsExt); err != nil {
 		return err
 	}
 
@@ -1242,23 +1269,26 @@ func (r *RiskEvidenceSynthesisSampleSize) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "numberOfStudies":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.NumberOfStudies = v
+				r.NumberOfStudiesExt = ext
 			case "numberOfParticipants":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.NumberOfParticipants = v
+				r.NumberOfParticipantsExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

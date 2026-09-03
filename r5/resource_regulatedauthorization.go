@@ -561,11 +561,12 @@ func (r *RegulatedAuthorizationCase) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				r.DatePeriod = &v
 			case "dateDateTime":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DateDateTime = v
+				_ = ext
 			case "application":
 				var v RegulatedAuthorizationCase
 				if err := v.UnmarshalXML(d, t); err != nil {

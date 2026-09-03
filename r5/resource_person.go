@@ -431,6 +431,8 @@ type PersonCommunication struct {
 	Language *CodeableConcept `json:"language,omitempty"`
 	// Language preference indicator
 	Preferred *bool `json:"preferred,omitempty"`
+	// Extension for Preferred
+	PreferredExt *Element `json:"_preferred,omitempty"`
 }
 
 // MarshalXML serializes PersonCommunication to FHIR-conformant XML.
@@ -460,7 +462,7 @@ func (b PersonCommunication) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "preferred", b.Preferred, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "preferred", b.Preferred, b.PreferredExt); err != nil {
 		return err
 	}
 
@@ -503,11 +505,12 @@ func (r *PersonCommunication) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				r.Language = &v
 			case "preferred":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.Preferred = v
+				r.PreferredExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -532,6 +535,8 @@ type PersonLink struct {
 	Target *Reference `json:"target,omitempty"`
 	// level1 | level2 | level3 | level4
 	Assurance *IdentityAssuranceLevel `json:"assurance,omitempty"`
+	// Extension for Assurance
+	AssuranceExt *Element `json:"_assurance,omitempty"`
 }
 
 // MarshalXML serializes PersonLink to FHIR-conformant XML.
@@ -561,7 +566,7 @@ func (b PersonLink) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveCode(e, "assurance", b.Assurance, nil); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "assurance", b.Assurance, b.AssuranceExt); err != nil {
 		return err
 	}
 
@@ -604,11 +609,12 @@ func (r *PersonLink) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				r.Target = &v
 			case "assurance":
-				v, _, err := xmlDecodePrimitiveCode[IdentityAssuranceLevel](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[IdentityAssuranceLevel](d, t)
 				if err != nil {
 					return err
 				}
 				r.Assurance = v
+				r.AssuranceExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

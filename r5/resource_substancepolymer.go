@@ -441,6 +441,8 @@ type SubstancePolymerMonomerSetStartingMaterial struct {
 	Category *CodeableConcept `json:"category,omitempty"`
 	// Used to specify whether the attribute described is a defining element for the unique identification of the polymer
 	IsDefining *bool `json:"isDefining,omitempty"`
+	// Extension for IsDefining
+	IsDefiningExt *Element `json:"_isDefining,omitempty"`
 	// A percentage
 	Amount *Quantity `json:"amount,omitempty"`
 }
@@ -477,7 +479,7 @@ func (b SubstancePolymerMonomerSetStartingMaterial) MarshalXML(e *xml.Encoder, s
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "isDefining", b.IsDefining, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "isDefining", b.IsDefining, b.IsDefiningExt); err != nil {
 		return err
 	}
 	if b.Amount != nil {
@@ -531,11 +533,12 @@ func (r *SubstancePolymerMonomerSetStartingMaterial) UnmarshalXML(d *xml.Decoder
 				}
 				r.Category = &v
 			case "isDefining":
-				v, _, err := xmlDecodePrimitiveBool(d, t)
+				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.IsDefining = v
+				r.IsDefiningExt = ext
 			case "amount":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -564,6 +567,8 @@ type SubstancePolymerRepeat struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A representation of an (average) molecular formula from a polymer
 	AverageMolecularFormula *string `json:"averageMolecularFormula,omitempty"`
+	// Extension for AverageMolecularFormula
+	AverageMolecularFormulaExt *Element `json:"_averageMolecularFormula,omitempty"`
 	// How the quantitative amount of Structural Repeat Units is captured (e.g. Exact, Numeric, Average)
 	RepeatUnitAmountType *CodeableConcept `json:"repeatUnitAmountType,omitempty"`
 	// An SRU - Structural Repeat Unit
@@ -592,7 +597,7 @@ func (b SubstancePolymerRepeat) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "averageMolecularFormula", b.AverageMolecularFormula, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "averageMolecularFormula", b.AverageMolecularFormula, b.AverageMolecularFormulaExt); err != nil {
 		return err
 	}
 	if b.RepeatUnitAmountType != nil {
@@ -639,11 +644,12 @@ func (r *SubstancePolymerRepeat) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "averageMolecularFormula":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AverageMolecularFormula = v
+				r.AverageMolecularFormulaExt = ext
 			case "repeatUnitAmountType":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -678,10 +684,14 @@ type SubstancePolymerRepeatRepeatUnit struct {
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Structural repeat units are essential elements for defining polymers
 	Unit *string `json:"unit,omitempty"`
+	// Extension for Unit
+	UnitExt *Element `json:"_unit,omitempty"`
 	// The orientation of the polymerisation, e.g. head-tail, head-head, random
 	Orientation *CodeableConcept `json:"orientation,omitempty"`
 	// Number of repeats of this unit
 	Amount *int `json:"amount,omitempty"`
+	// Extension for Amount
+	AmountExt *Element `json:"_amount,omitempty"`
 	// Applies to homopolymer and block co-polymers where the degree of polymerisation within a block can be described
 	DegreeOfPolymerisation []SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation `json:"degreeOfPolymerisation,omitempty"`
 	// A graphical structure for this SRU
@@ -710,7 +720,7 @@ func (b SubstancePolymerRepeatRepeatUnit) MarshalXML(e *xml.Encoder, start xml.S
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "unit", b.Unit, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "unit", b.Unit, b.UnitExt); err != nil {
 		return err
 	}
 	if b.Orientation != nil {
@@ -718,7 +728,7 @@ func (b SubstancePolymerRepeatRepeatUnit) MarshalXML(e *xml.Encoder, start xml.S
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveInt(e, "amount", b.Amount, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "amount", b.Amount, b.AmountExt); err != nil {
 		return err
 	}
 	for _, item := range b.DegreeOfPolymerisation {
@@ -765,11 +775,12 @@ func (r *SubstancePolymerRepeatRepeatUnit) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "unit":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Unit = v
+				r.UnitExt = ext
 			case "orientation":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -777,11 +788,12 @@ func (r *SubstancePolymerRepeatRepeatUnit) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				r.Orientation = &v
 			case "amount":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Amount = v
+				r.AmountExt = ext
 			case "degreeOfPolymerisation":
 				var v SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -818,10 +830,16 @@ type SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// An average amount of polymerisation
 	Average *int `json:"average,omitempty"`
+	// Extension for Average
+	AverageExt *Element `json:"_average,omitempty"`
 	// A low expected limit of the amount
 	Low *int `json:"low,omitempty"`
+	// Extension for Low
+	LowExt *Element `json:"_low,omitempty"`
 	// A high expected limit of the amount
 	High *int `json:"high,omitempty"`
+	// Extension for High
+	HighExt *Element `json:"_high,omitempty"`
 }
 
 // MarshalXML serializes SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation to FHIR-conformant XML.
@@ -851,13 +869,13 @@ func (b SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation) MarshalXML(e *xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveInt(e, "average", b.Average, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "average", b.Average, b.AverageExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "low", b.Low, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "low", b.Low, b.LowExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "high", b.High, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "high", b.High, b.HighExt); err != nil {
 		return err
 	}
 
@@ -900,23 +918,26 @@ func (r *SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation) UnmarshalXML(d 
 				}
 				r.Type = &v
 			case "average":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Average = v
+				r.AverageExt = ext
 			case "low":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.Low = v
+				r.LowExt = ext
 			case "high":
-				v, _, err := xmlDecodePrimitiveInt(d, t)
+				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.High = v
+				r.HighExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -941,6 +962,8 @@ type SubstancePolymerRepeatRepeatUnitStructuralRepresentation struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// The structural representation as text string in a standard format e.g. InChI, SMILES, MOLFILE, CDX, SDF, PDB, mmCIF
 	Representation *string `json:"representation,omitempty"`
+	// Extension for Representation
+	RepresentationExt *Element `json:"_representation,omitempty"`
 	// The format of the representation e.g. InChI, SMILES, MOLFILE, CDX, SDF, PDB, mmCIF
 	Format *CodeableConcept `json:"format,omitempty"`
 	// An attached file with the structural representation
@@ -974,7 +997,7 @@ func (b SubstancePolymerRepeatRepeatUnitStructuralRepresentation) MarshalXML(e *
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "representation", b.Representation, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "representation", b.Representation, b.RepresentationExt); err != nil {
 		return err
 	}
 	if b.Format != nil {
@@ -1027,11 +1050,12 @@ func (r *SubstancePolymerRepeatRepeatUnitStructuralRepresentation) UnmarshalXML(
 				}
 				r.Type = &v
 			case "representation":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Representation = v
+				r.RepresentationExt = ext
 			case "format":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -698,12 +698,13 @@ func (r *Measure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.RelatedArtifact = append(r.RelatedArtifact, v)
 			case "library":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Library = append(r.Library, v)
+				r.LibraryExt = append(r.LibraryExt, ext)
 			case "disclaimer":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -764,12 +765,13 @@ func (r *Measure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.ImprovementNotation = &v
 			case "definition":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Definition = append(r.Definition, v)
+				r.DefinitionExt = append(r.DefinitionExt, ext)
 			case "guidance":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -813,6 +815,8 @@ type MeasureGroup struct {
 	Code *CodeableConcept `json:"code,omitempty"`
 	// Summary description
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Population criteria
 	Population []MeasureGroupPopulation `json:"population,omitempty"`
 	// Stratifier criteria for the measure
@@ -846,7 +850,7 @@ func (b MeasureGroup) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	for _, item := range b.Population {
@@ -899,11 +903,12 @@ func (r *MeasureGroup) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.Code = &v
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "population":
 				var v MeasureGroupPopulation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -940,6 +945,8 @@ type MeasureGroupPopulation struct {
 	Code *CodeableConcept `json:"code,omitempty"`
 	// The human readable description of this population criteria
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// The criteria that defines this population
 	Criteria *Expression `json:"criteria,omitempty"`
 }
@@ -971,7 +978,7 @@ func (b MeasureGroupPopulation) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.Criteria != nil {
@@ -1019,11 +1026,12 @@ func (r *MeasureGroupPopulation) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.Code = &v
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "criteria":
 				var v Expression
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1054,6 +1062,8 @@ type MeasureGroupStratifier struct {
 	Code *CodeableConcept `json:"code,omitempty"`
 	// The human readable description of this stratifier
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// How the measure should be stratified
 	Criteria *Expression `json:"criteria,omitempty"`
 	// Stratifier criteria component for the measure
@@ -1087,7 +1097,7 @@ func (b MeasureGroupStratifier) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.Criteria != nil {
@@ -1140,11 +1150,12 @@ func (r *MeasureGroupStratifier) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.Code = &v
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "criteria":
 				var v Expression
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1181,6 +1192,8 @@ type MeasureGroupStratifierComponent struct {
 	Code *CodeableConcept `json:"code,omitempty"`
 	// The human readable description of this stratifier component
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Component of how the measure should be stratified
 	Criteria *Expression `json:"criteria,omitempty"`
 }
@@ -1212,7 +1225,7 @@ func (b MeasureGroupStratifierComponent) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.Criteria != nil {
@@ -1260,11 +1273,12 @@ func (r *MeasureGroupStratifierComponent) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.Code = &v
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "criteria":
 				var v Expression
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1297,6 +1311,8 @@ type MeasureSupplementalData struct {
 	Usage []CodeableConcept `json:"usage,omitempty"`
 	// The human readable description of this supplemental data
 	Description *string `json:"description,omitempty"`
+	// Extension for Description
+	DescriptionExt *Element `json:"_description,omitempty"`
 	// Expression describing additional data to be reported
 	Criteria *Expression `json:"criteria,omitempty"`
 }
@@ -1333,7 +1349,7 @@ func (b MeasureSupplementalData) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "description", b.Description, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
 	if b.Criteria != nil {
@@ -1387,11 +1403,12 @@ func (r *MeasureSupplementalData) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				r.Usage = append(r.Usage, v)
 			case "description":
-				v, _, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.Description = v
+				r.DescriptionExt = ext
 			case "criteria":
 				var v Expression
 				if err := v.UnmarshalXML(d, t); err != nil {
