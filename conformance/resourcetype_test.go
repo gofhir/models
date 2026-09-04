@@ -46,14 +46,20 @@ func TestResourceTypeIsEmittedWithoutBeingSet(t *testing.T) {
 	}
 }
 
-func TestResourceTypeOnInputIsHarmless(t *testing.T) {
-	// The Go type fixes the resource type, so nothing the document says about it
-	// can change the outcome. A wrong value must not fail here either —
-	// UnmarshalResource is the layer that validates it during dispatch, and
-	// json.Unmarshal into a concrete type is a deliberate choice by the caller.
+func TestCompatibleResourceTypeOnInputIsHarmless(t *testing.T) {
+	// The Go type fixes the resource type, so a document that agrees with it — or
+	// says nothing about it — decodes the same either way.
+	//
+	// This test used to include {"resourceType":"Observation"} among the harmless
+	// inputs, on the grounds that decoding into a concrete type is a deliberate
+	// choice by the caller and UnmarshalResource validates during dispatch. It
+	// does, but only on that path: json.Unmarshal into a known type skips the
+	// dispatcher entirely, so a Practitioner decoded into a Patient was accepted in
+	// silence and written back out as a Patient. "Deliberate choice" described the
+	// call, not the data — and the data was wrong. That case now belongs to
+	// TestDecodingRejectsAMismatchedResourceType, which requires an error.
 	for _, in := range []string{
 		`{"resourceType":"Patient","id":"x"}`,
-		`{"resourceType":"Observation","id":"x"}`,
 		`{"resourceType":null,"id":"x"}`,
 		`{"resourceType":"","id":"x"}`,
 		`{"id":"x"}`,

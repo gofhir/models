@@ -27,10 +27,19 @@ func (episodeOfCareTypeMarker) MarshalJSON() ([]byte, error) {
 	return []byte(`"EpisodeOfCare"`), nil
 }
 
-// UnmarshalJSON accepts and discards whatever the document carried. The type is
-// fixed by the Go type itself, so a mismatched or absent value is not an error
-// here — UnmarshalResource is what validates it during dispatch.
-func (*episodeOfCareTypeMarker) UnmarshalJSON([]byte) error { return nil }
+// UnmarshalJSON rejects a document whose resourceType names a different resource.
+//
+// This used to accept and discard whatever the document carried, on the grounds
+// that UnmarshalResource validates the type during dispatch. It does — but only on
+// that path. json.Unmarshal(data, &patient) does not go through the dispatcher, and
+// it is the ordinary way to decode when the type is already known, so a
+// Practitioner document decoded into a Patient was accepted in silence and written
+// back out as a Patient.
+//
+// An absent or null resourceType is still accepted; see checkResourceType.
+func (*episodeOfCareTypeMarker) UnmarshalJSON(data []byte) error {
+	return checkResourceType(data, "EpisodeOfCare")
+}
 
 // EpisodeOfCare represents FHIR EpisodeOfCare.
 type EpisodeOfCare struct {
