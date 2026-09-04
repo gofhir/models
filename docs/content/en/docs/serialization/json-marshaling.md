@@ -24,7 +24,7 @@ import (
     "fmt"
     "log"
 
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 func ptrTo[T any](v T) *T {
@@ -40,7 +40,7 @@ func main() {
             {
                 Use:    ptrTo(r4.NameUseOfficial),
                 Family: ptrTo("Smith"),
-                Given:  []string{"John", "Michael"},
+                Given:  r4.PtrSlice("John", "Michael"),
             },
         },
         Gender:    ptrTo(r4.AdministrativeGenderMale),
@@ -104,7 +104,7 @@ import (
     "fmt"
     "log"
 
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 func ptrTo[T any](v T) *T {

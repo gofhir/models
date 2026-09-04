@@ -46,7 +46,7 @@ El mapa esta indexado por nombre de tipo de recurso (por ejemplo, `"Patient"`, `
 ### Consulta Basica
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 fields := r4.SummaryFields["Patient"]
 // Devuelve: ["active", "address", "birthDate", "communication", "gender",
@@ -57,7 +57,7 @@ fields := r4.SummaryFields["Patient"]
 ### Verificar si un Campo es un Campo de Resumen
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 func isSummaryField(resourceType, fieldName string) bool {
     fields, ok := r4.SummaryFields[resourceType]
@@ -85,7 +85,7 @@ Un servidor FHIR tipico usa `SummaryFields` para filtrar los campos de un recurs
 ```go
 import (
     "encoding/json"
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 func applySummary(resourceType string, data []byte) ([]byte, error) {

@@ -26,19 +26,19 @@ Cada versión FHIR se publica como un módulo Go independiente. Instala solo la 
 ### FHIR R4 (4.0.1)
 
 ```shell
-go get github.com/gofhir/models/r4
+go get github.com/gofhir/models/r4/v2
 ```
 
 ### FHIR R4B (4.3.0)
 
 ```shell
-go get github.com/gofhir/models/r4b
+go get github.com/gofhir/models/r4b/v2
 ```
 
 ### FHIR R5 (5.0.0)
 
 ```shell
-go get github.com/gofhir/models/r5
+go get github.com/gofhir/models/r5/v2
 ```
 
 ### R4 Helpers (opcional)
@@ -46,7 +46,7 @@ go get github.com/gofhir/models/r5
 El sub-paquete helpers proporciona valores `CodeableConcept` preconstruidos para categorías comunes de observación, categorías de condición, códigos LOINC y unidades UCUM:
 
 ```shell
-go get github.com/gofhir/models/r4/helpers
+go get github.com/gofhir/models/r4/v2/helpers
 ```
 
 ## Importar
@@ -54,14 +54,14 @@ go get github.com/gofhir/models/r4/helpers
 Después de instalar, importa el paquete en tus archivos fuente Go:
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 ```
 
 O para R4B y R5:
 
 ```go
-import "github.com/gofhir/models/r4b"
-import "github.com/gofhir/models/r5"
+import "github.com/gofhir/models/r4b/v2"
+import "github.com/gofhir/models/r5/v2"
 ```
 
 Todos los tipos, builders, constantes de sistemas de códigos y funciones de serialización se exportan desde el paquete específico de la versión. No hay un sub-paquete separado para builders o serialización -- todo está en un solo lugar.
@@ -72,8 +72,8 @@ Si tu aplicación necesita trabajar con más de una versión FHIR, puedes import
 
 ```go
 import (
-    r4 "github.com/gofhir/models/r4"
-    r5 "github.com/gofhir/models/r5"
+    r4 "github.com/gofhir/models/r4/v2"
+    r5 "github.com/gofhir/models/r5/v2"
 )
 
 func main() {
@@ -106,7 +106,7 @@ package main
 import (
     "fmt"
 
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 func main() {

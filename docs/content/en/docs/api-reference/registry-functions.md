@@ -31,7 +31,7 @@ func NewResource(resourceType string) (Resource, error)
 ### Example
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 res, err := r4.NewResource("Patient")
 if err != nil {
@@ -68,7 +68,7 @@ func UnmarshalResource(data []byte) (Resource, error)
 ### Example
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 jsonData := []byte(`{
     "resourceType": "Patient",
@@ -109,7 +109,7 @@ func GetResourceType(data []byte) (string, error)
 ### Example
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 data := []byte(`{"resourceType": "Observation", "id": "123"}`)
 
@@ -154,7 +154,7 @@ func IsKnownResourceType(resourceType string) bool
 ### Example
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 r4.IsKnownResourceType("Patient")      // true
 r4.IsKnownResourceType("Observation")  // true
@@ -184,7 +184,7 @@ func AllResourceTypes() []string
 import (
     "fmt"
     "sort"
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 types := r4.AllResourceTypes()
@@ -214,7 +214,7 @@ The registry is initialized at package load time from a compile-time map. All re
 ```go
 import (
     "net/http"
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 func handleCreate(w http.ResponseWriter, req *http.Request) {

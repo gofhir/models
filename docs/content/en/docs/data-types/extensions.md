@@ -274,7 +274,7 @@ For repeating primitive fields (like `HumanName.given`), the extension array ali
 
 ```go
 name := r4.HumanName{
-    Given: []string{"John", "Michael"},
+    Given: r4.PtrSlice("John", "Michael"),
     GivenExt: []r4.Element{
         {}, // No extension for "John" -- empty element
         {   // Extension for "Michael"
