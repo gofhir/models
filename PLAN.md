@@ -660,8 +660,26 @@ Aquí se ocupa terreno que en todo el ecosistema Go está vacío. Ampliada con l
 | **`Equal()` y `DeepCopy()`** | Solo google los tiene, de rebote por protobuf. Hoy clonar exige round-trip JSON (5,3 µs, 33 allocs) y `reflect.DeepEqual` es semánticamente incorrecto aquí: falla con `Decimal("1.5")` vs `("1.50")` y con `nil` vs slice vacío. |
 | **Errores con path FHIR** | Hoy filtran `.Alias` —detalle del truco anti-recursión— y no dicen índice ni subcampo, así que no se puede poblar `OperationOutcome.issue.expression`. El manejo de `contained` ya lleva índice: es el patrón a extender. |
 | **Metadata del spec** | 1.697 SearchParameters ya en el repo, 908 `isModifier`, 240 invariantes FHIRPath, 46 OperationDefinition, 5 compartimentos. **Aviso de estimación:** quitar el filtro de `structuredefinition.go:186` son 30 líneas, pero eso solo entrega blobs sin parser, analyzer ni plantilla. La cifra cubría el borrado, no la feature. |
-| **Higiene menor** *(nuevo)* | `SummaryFields` es un mapa exportado y mutable (data race demostrada); `_id` de recurso se descarta; `Contained{nil}` emite `[null]`; el desajuste de `resourceType` al deserializar no se valida (un Practitioner se reescribe como Patient); claves `resourceType` duplicadas dan diferencial de parser; `AllResourceTypes()` devuelve orden aleatorio; XML con valores como texto de elemento se acepta y devuelve un recurso vacío. |
+| **Higiene menor** *(nuevo)* | **Partida: los cuatro rompientes se adelantaron a la v2.0.0**, porque posponerlos exigía una v3. Ver abajo. Quedan para v2.1, todos aditivos: el `_id` de recurso se descarta; `Contained{nil}` emite `[null]`; claves `resourceType` duplicadas dan diferencial de parser. |
 | **`Validate()` generado** | Cardinalidad (730 campos `min≥1`), bindings required (369), regex de primitivos (19 de 20 vienen en el spec), rango int32, exclusividad de choice. Coordinar el reparto con `gofhir/validator` **antes** de escribir código. |
+
+
+### Estrictez adelantada a la v2.0.0 — **nuevo**
+
+Cuatro ítems de la higiene menor cambian **comportamiento**, no firmas, así que su ventana se cerraba al cortar el major: quien hoy recibe una respuesta silenciosamente incorrecta pasará a recibir un error, y eso no se puede introducir en un minor. Los cuatro compartían la misma forma —la librería aceptaba algo mal y seguía adelante—, que es peor que fallar.
+
+| Defecto | Antes | Ahora |
+|---|---|---|
+| `resourceType` no se validaba al deserializar | un Practitioner en un `Patient` se aceptaba y se reescribía como Patient | error que nombra ambos tipos |
+| XML con el valor como texto del elemento | `<id>p1</id>` se saltaba en silencio y devolvía un recurso **vacío sin error** | error que dice cuál es la forma correcta |
+| `SummaryFields` mapa exportado y mutable | cualquiera podía reescribir el dato de la especificación para todo el proceso; carrera de datos | mapa no exportado, y el accesor devuelve copia |
+| `AllResourceTypes()` en orden de mapa | dos llamadas en el mismo proceso daban dos órdenes | ordenado |
+
+El primero se creía cubierto: el marcador de tipo descartaba el valor a propósito, con el argumento de que `UnmarshalResource` valida durante el despacho. **Y lo hace, pero solo en esa ruta.** `json.Unmarshal(data, &patient)` no pasa por el dispatcher, y es la forma normal de deserializar cuando ya sabes qué esperas. El test que fijaba ese comportamiento —escrito en la 6.1— llamaba al caso «una elección deliberada del llamador»: describía la llamada, no el dato, y el dato estaba mal.
+
+Un `resourceType` ausente, `null` o vacío se sigue aceptando: el tipo Go ya fija qué es el valor, y rechazarlos rompería deserializar un fragmento, que es legítimo y no es el caso que pierde datos.
+
+Los cuatro con test propio en `conformance/strictness_test.go`, cada uno verificado por mutación. El corpus no se movió: 8757/8757 y 3653/3653.
 
 ---
 

@@ -720,6 +720,19 @@ func xmlDecodePrimitiveString(d *xml.Decoder, start xml.StartElement) (*string, 
 					return nil, nil, err
 				}
 			}
+		case xml.CharData:
+			// FHIR puts a primitive's value in the value attribute, never in the
+			// element's text: <id value="p1"/>, not <id>p1</id>. The second form
+			// was skipped in silence, so a document written that way decoded to an
+			// empty resource with no error at all — every field quietly gone.
+			//
+			// Whitespace between child elements is ordinary formatting and is not
+			// text in this sense.
+			if text := bytes.TrimSpace(t); len(text) > 0 {
+				return nil, nil, fmt.Errorf(
+					"element <%s> carries its value as text (%q); FHIR XML puts it in the value attribute",
+					start.Name.Local, text)
+			}
 		case xml.EndElement:
 			return value, elem, nil
 		}

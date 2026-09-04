@@ -5,9 +5,16 @@
 
 package {{.PackageName}}
 
-// SummaryFields maps resource types to their summary fields (isSummary=true in FHIR spec).
-// These fields are returned when _summary=true is requested.
-var SummaryFields = map[string][]string{
+// summaryFields maps resource types to their summary fields (isSummary=true in the
+// FHIR spec). These are the fields returned when _summary=true is requested.
+//
+// It was exported. A package-level map is writable by anyone who can see it, so any
+// consumer could add, delete or rewrite an entry — and concurrent access to it was
+// a data race in a library whose whole purpose is to be read from many goroutines.
+// The data is derived from the specification and there is no version of it a caller
+// should be supplying, so the map is now unreachable and the accessors below are
+// the only way in.
+var summaryFields = map[string][]string{
 {{- range .Resources}}
 	"{{.Name}}": {
 	{{- range .SummaryFields}}
@@ -17,15 +24,26 @@ var SummaryFields = map[string][]string{
 {{- end}}
 }
 
-// GetSummaryFields returns the summary fields for a resource type.
-// Returns nil if the resource type is unknown.
+// GetSummaryFields returns the summary fields for a resource type, or nil if the
+// type is unknown.
+//
+// The returned slice is a copy: handing back the stored one let a caller reorder or
+// overwrite the specification's own data for every other caller in the process,
+// which is the same hazard as the exported map and not fixed by hiding it alone.
+// Use IsSummaryField for a membership test — it allocates nothing.
 func GetSummaryFields(resourceType string) []string {
-	return SummaryFields[resourceType]
+	fields, ok := summaryFields[resourceType]
+	if !ok {
+		return nil
+	}
+	out := make([]string, len(fields))
+	copy(out, fields)
+	return out
 }
 
 // IsSummaryField returns true if the field is a summary field for the resource type.
 func IsSummaryField(resourceType, fieldName string) bool {
-	fields := SummaryFields[resourceType]
+	fields := summaryFields[resourceType]
 	for _, f := range fields {
 		if f == fieldName {
 			return true

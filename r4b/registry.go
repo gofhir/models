@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"sort"
 	"strings"
 )
 
@@ -251,6 +252,33 @@ func UnmarshalResource(data []byte) (Resource, error) {
 func isJSONNull(raw json.RawMessage) bool {
 	trimmed := bytes.TrimSpace(raw)
 	return len(trimmed) == 0 || string(trimmed) == "null"
+}
+
+// checkResourceType reports whether a document's resourceType is compatible with
+// the Go type being decoded into.
+//
+// Decoding is field by field, so nothing otherwise compares the two: a
+// Practitioner document unmarshalled into a Patient was accepted in silence and
+// then written back out as a Patient. The type says one thing, the data said
+// another, and the mismatch was resolved in favour of whichever the caller
+// happened to pass.
+//
+// An absent or null resourceType stays acceptable. The Go type already fixes what
+// the value is, and refusing those would break decoding a fragment into a known
+// type — which is a legitimate thing to do, and not the case that loses data.
+func checkResourceType(data []byte, want string) error {
+	trimmed := bytes.TrimSpace(data)
+	if len(trimmed) == 0 || string(trimmed) == "null" {
+		return nil
+	}
+	var got string
+	if err := json.Unmarshal(trimmed, &got); err != nil {
+		return fmt.Errorf("resourceType: %w", err)
+	}
+	if got != "" && got != want {
+		return fmt.Errorf("resourceType is %q, but the value is being decoded into a %s", got, want)
+	}
+	return nil
 }
 
 // ContainedList is the type of every resource's Contained field.
@@ -697,11 +725,16 @@ func IsKnownResourceType(resourceType string) bool {
 	return ok
 }
 
-// AllResourceTypes returns a slice of all known resource type names.
+// AllResourceTypes returns the names of all known resource types, sorted.
+//
+// It used to return them in map iteration order, so two calls in one process gave
+// two different orders. Anything that printed the list, diffed it, or built a
+// fixture from it was non-deterministic through no fault of its own.
 func AllResourceTypes() []string {
 	types := make([]string, 0, len(resourceFactories))
 	for t := range resourceFactories {
 		types = append(types, t)
 	}
+	sort.Strings(types)
 	return types
 }
