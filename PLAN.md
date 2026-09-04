@@ -728,8 +728,28 @@ Lo publicado, y lo que queda. Las tres primeras salieron de `main`; las dos de l
 | **v1.5.1** | — | ✅ `Bundle.issues` legible y escribible; `null` explícito tolerado. |
 | **v1.6.0** | Gate 2 | ✅ 12.845 marcas `// Deprecated:` y la guía de migración. Tags a mano: release-please no pudo cerrarla con la rama llamada `v1`. |
 | **v1.7.0** | Fase 4 | ✅ La narrativa XML. XML pasa a 3653/3653. Publicada sola, lo que valida el renombrado de la rama. |
-| **v2.0.0** | Fases 5, 6 y 7 | Siete cambios rompientes de una vez, con ruta `/v2`. La fase 5 aterriza en `main` **antes**, sin marca rompiente, para que no corte el major por sí sola. |
-| **v2.1+** | Fase 8 | Aditivo, incremento a incremento. |
+| ~~**v2.0.0**~~ | Fases 5, 6 y 7 | ⚠️ **Etiquetada pero ininstalable.** Ver abajo. |
+| **v2.1.0** | Fases 5, 6, 7 + Go 1.26 | ✅ **El primer v2 usable.** Nueve cambios rompientes, ruta `/v2`, mínimo Go 1.26. Verificada con un consumidor real desde el proxy. |
+| **v2.2+** | Fase 8 | Aditivo, incremento a incremento. |
+
+### El incidente de la v2.0.0
+
+Las etiquetas `r4/v2.0.0`, `r4b/v2.0.0` y `r5/v2.0.0` se crearon correctamente y el proxy sirve el árbol correcto, pero **`sum.golang.org` tiene registrado otro hash** para las tres. Cualquier `go get` explícito de esa versión falla con `SECURITY ERROR: checksum mismatch`.
+
+```
+git y proxy:  h1:v9fvgInLtRmp7PHJ90QaYAP3o8UJJshKnvp61OtS+G8=
+sum.golang:   h1:V0bLsaiLW5+CrqdUeM/l/RZ/9Epv9fpF0kh3DtpEPn0=
+```
+
+El `go.mod` sí coincide; solo difiere el contenido. Esa base de datos es *append-only* con pruebas criptográficas, así que **la versión no se puede corregir, solo sustituir**.
+
+**No se determinó el origen.** La explicación que encaja es una etiqueta `*/v2.0.0` previa apuntando a otro árbol, solicitada por alguien y por tanto grabada. El intento de identificar el commit con `dirhash.HashDir` fue inválido: no reproduce el hash del módulo —daba un valor distinto incluso para el commit de la etiqueta— así que quedó sin confirmar.
+
+Lecciones aplicadas:
+
+- **Comprobar el sumdb antes de publicar.** `curl https://sum.golang.org/lookup/<módulo>@<versión>` debe dar 404. Se verificó para 2.1.0 en los tres módulos.
+- **Verificar con un `go get` real después**, con verificación activada, antes de anunciar nada. Es el paso que faltó.
+- Las notas de las releases 2.0.0 llevan el aviso, porque el mensaje que Go emite sugiere manipulación y no un error de etiquetado.
 
 ### Los siete cambios rompientes
 
