@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/gofhir/models/compare/r5/v2.0.0...r5/v2.1.0) (2026-09-04)
+
+
+### Features
+
+* require Go 1.26 ([2a120cd](https://github.com/gofhir/models/commit/2a120cd46b4e08a0f78b7c069b8f96da867982b7))
+
 ## [2.0.0](https://github.com/gofhir/models/compare/r5/v1.7.0...r5/v2.0.0) (2026-09-04)
 
 
