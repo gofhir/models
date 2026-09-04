@@ -74,6 +74,29 @@ func models() []modelCase {
 	}
 }
 
+// compareSets reports which of want is absent from got, and which of got was not
+// in want. Comparing lengths and then checking one direction is not enough: with
+// want {A,B,C} and got [A,A,B] both checks pass and C is silently missing.
+func compareSets(want, got []string) (missing, unexpected []string) {
+	inWant := make(map[string]bool, len(want))
+	for _, w := range want {
+		inWant[w] = true
+	}
+	seen := make(map[string]bool, len(got))
+	for _, g := range got {
+		seen[g] = true
+		if !inWant[g] {
+			unexpected = append(unexpected, g)
+		}
+	}
+	for _, w := range want {
+		if !seen[w] {
+			missing = append(missing, w)
+		}
+	}
+	return missing, unexpected
+}
+
 func TestModelReportsItsFHIRVersion(t *testing.T) {
 	for _, tc := range models() {
 		t.Run(tc.name, func(t *testing.T) {
@@ -107,18 +130,9 @@ func TestModelResolvesChoiceTypes(t *testing.T) {
 	for _, tc := range models() {
 		t.Run(tc.name, func(t *testing.T) {
 			got := tc.model.ChoiceTypes("Observation.value")
-			if len(got) != len(tc.valueChoices) {
-				t.Fatalf("Observation.value has %d choices, want %d:\n  got  %v\n  want %v",
-					len(got), len(tc.valueChoices), got, tc.valueChoices)
-			}
-			want := make(map[string]bool, len(tc.valueChoices))
-			for _, c := range tc.valueChoices {
-				want[c] = true
-			}
-			for _, c := range got {
-				if !want[c] {
-					t.Errorf("unexpected choice type %q", c)
-				}
+			if missing, unexpected := compareSets(tc.valueChoices, got); len(missing) > 0 || len(unexpected) > 0 {
+				t.Errorf("Observation.value choice types are wrong:\n  missing:    %v\n  unexpected: %v\n  got:        %v",
+					missing, unexpected, got)
 			}
 
 			// A path that is not a choice has none.
@@ -152,15 +166,11 @@ func TestModelTypesPaths(t *testing.T) {
 func TestModelKnowsReferenceTargets(t *testing.T) {
 	for _, tc := range models() {
 		t.Run(tc.name, func(t *testing.T) {
+			want := []string{"Organization", "Practitioner", "PractitionerRole"}
 			got := tc.model.ReferenceTargets("Patient.generalPractitioner")
-			want := map[string]bool{"Organization": true, "Practitioner": true, "PractitionerRole": true}
-			if len(got) != len(want) {
-				t.Fatalf("got %v, want the three practitioner-ish targets", got)
-			}
-			for _, target := range got {
-				if !want[target] {
-					t.Errorf("unexpected target %q", target)
-				}
+			if missing, unexpected := compareSets(want, got); len(missing) > 0 || len(unexpected) > 0 {
+				t.Errorf("Patient.generalPractitioner targets are wrong:\n  missing:    %v\n  unexpected: %v\n  got:        %v",
+					missing, unexpected, got)
 			}
 
 			// A non-reference field has no targets.
@@ -232,9 +242,15 @@ func TestModelSeparatesResourcesFromDatatypes(t *testing.T) {
 				}
 			}
 			// Abstract bases are in the hierarchy but are not resources one can
-			// instantiate; the distinction is what IsResource is for.
-			if !tc.model.HasType("DomainResource") {
-				t.Error("DomainResource is missing from the type hierarchy")
+			// instantiate, and holding both halves of that at once is what
+			// IsResource is for — HasType alone would not tell them apart.
+			for _, name := range []string{"Resource", "DomainResource"} {
+				if !tc.model.HasType(name) {
+					t.Errorf("%s is missing from the type hierarchy", name)
+				}
+				if tc.model.IsResource(name) {
+					t.Errorf("IsResource(%q) = true, but it is an abstract base", name)
+				}
 			}
 		})
 	}

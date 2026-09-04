@@ -16,9 +16,11 @@ package conformance
 //	flat  n=128000 -> 182 ms    a test written this way passes against unfixed code
 //	nested d=2000  -> 999 ms    the blowup is here
 //
-// Timing in a test is a blunt instrument, so the threshold is set two orders of
-// magnitude above what the guarded path costs, and the payload is one that takes
-// minutes unguarded. Nothing between those two states is ambiguous.
+// Timing in a test is a blunt instrument, so the numbers here are the measured
+// ones rather than estimates. At 4,000 levels, with MaxResourceDepth raised so the
+// guard does not fire, the document takes 3.8 s; guarded, it is refused in about
+// 170 µs. The budget sits between those, far enough from both that neither noise
+// nor a slow machine reaches it.
 
 import (
 	"strings"
@@ -28,20 +30,6 @@ import (
 	"github.com/gofhir/models/r4/v2"
 )
 
-// deeplyNested builds a document nested `depth` levels through contained
-// resources, each level a valid Patient.
-func deeplyNested(depth int) []byte {
-	var b strings.Builder
-	for i := 0; i < depth; i++ {
-		b.WriteString(`{"resourceType":"Patient","contained":[`)
-	}
-	b.WriteString(`{"resourceType":"Patient","id":"leaf"}`)
-	for i := 0; i < depth; i++ {
-		b.WriteString(`]}`)
-	}
-	return []byte(b.String())
-}
-
 func TestHostileNestingIsRefusedCheaply(t *testing.T) {
 	if testing.Short() {
 		t.Skip("timing-based")
@@ -50,7 +38,7 @@ func TestHostileNestingIsRefusedCheaply(t *testing.T) {
 	// 4,000 levels. Unguarded this re-reads its own subtree once per level; the
 	// same shape at 2,000 was measured at 999 ms, and the cost is quadratic, so
 	// this one is minutes of CPU. Guarded it is a single scan.
-	payload := deeplyNested(4000)
+	payload := nestedContained(4000)
 	t.Logf("payload: %d KB, 4000 levels", len(payload)/1024)
 
 	start := time.Now()
@@ -64,10 +52,14 @@ func TestHostileNestingIsRefusedCheaply(t *testing.T) {
 		t.Errorf("rejected, but not by the depth guard: %v", err)
 	}
 
-	// The guarded path scans the document once. Anything near the unguarded cost
-	// means the rejection is happening after the expensive work rather than before
-	// it, which is the failure this test exists to catch.
-	const budget = 2 * time.Second
+	// Measured: ~170 µs guarded, 3.8 s if the guard does not fire. Half a second
+	// is 3000x above the first and 7x below the second, so it separates them
+	// without turning a slow machine into a failure.
+	//
+	// This only fires when the document was refused, so what it catches is a guard
+	// that rejects *after* doing the work rather than before — the one failure
+	// mode that leaves every correctness test in the suite passing.
+	const budget = 500 * time.Millisecond
 	if elapsed > budget {
 		t.Errorf("refusing the document took %v, over the %v budget — the guard is"+
 			" rejecting after doing the work, not before", elapsed, budget)
@@ -76,37 +68,68 @@ func TestHostileNestingIsRefusedCheaply(t *testing.T) {
 }
 
 func TestWideDocumentsStayLinear(t *testing.T) {
+	if testing.Short() {
+		t.Skip("timing-based")
+	}
+
 	// The counterpart, and the reason the plan insisted the reproducer be written
 	// against depth: width is linear and always was. A test built on a wide array
 	// passes against unfixed code, which is why one written that way would have
 	// been worthless as a regression test for the denial of service.
-	var b strings.Builder
-	b.WriteString(`{"resourceType":"Bundle","entry":[`)
-	const entries = 20000
-	for i := 0; i < entries; i++ {
-		if i > 0 {
-			b.WriteByte(',')
+	//
+	// So this measures rather than asserting it in a comment: cost per entry, at
+	// two widths. Flat means the Bundle is read once however many entries it has.
+	wideBundle := func(entries int) []byte {
+		var b strings.Builder
+		b.WriteString(`{"resourceType":"Bundle","entry":[`)
+		for i := 0; i < entries; i++ {
+			if i > 0 {
+				b.WriteByte(',')
+			}
+			b.WriteString(`{"resource":{"resourceType":"Patient","id":"p"}}`)
 		}
-		b.WriteString(`{"resource":{"resourceType":"Patient","id":"p"}}`)
+		b.WriteString(`]}`)
+		return []byte(b.String())
 	}
-	b.WriteString(`]}`)
 
-	payload := []byte(b.String())
-	start := time.Now()
-	res, err := r4.UnmarshalResource(payload)
-	elapsed := time.Since(start)
+	perEntry := func(entries int) float64 {
+		payload := wideBundle(entries)
+		best := time.Hour
+		for i := 0; i < 5; i++ {
+			start := time.Now()
+			res, err := r4.UnmarshalResource(payload)
+			if err != nil {
+				t.Fatalf("a wide but shallow Bundle must be accepted: %v", err)
+			}
+			bundle, ok := res.(*r4.Bundle)
+			if !ok {
+				t.Fatalf("got %T, want *r4.Bundle", res)
+			}
+			if len(bundle.Entry) != entries {
+				t.Fatalf("got %d entries, want %d", len(bundle.Entry), entries)
+			}
+			if d := time.Since(start); d < best {
+				best = d
+			}
+		}
+		return float64(best.Nanoseconds()) / float64(entries)
+	}
 
-	if err != nil {
-		t.Fatalf("a wide but shallow Bundle must be accepted: %v", err)
+	narrow := perEntry(5000)
+	wide := perEntry(20000)
+	t.Logf("5000 entries: %.0f ns/entry; 20000 entries: %.0f ns/entry", narrow, wide)
+
+	if narrow <= 0 {
+		t.Skip("too fast to time on this machine")
 	}
-	bundle, ok := res.(*r4.Bundle)
-	if !ok {
-		t.Fatalf("got %T, want *r4.Bundle", res)
+	// Four times the width. Linear means the per-entry cost holds; the ceiling is
+	// loose because allocation and GC behavior differ between the two sizes, and
+	// the claim being tested is "linear, not quadratic" rather than a precise
+	// constant.
+	if ratio := wide / narrow; ratio > 2 {
+		t.Errorf("four times the width cost %.1fx more per entry; width was supposed"+
+			" to be the linear axis", ratio)
 	}
-	if len(bundle.Entry) != entries {
-		t.Errorf("got %d entries, want %d", len(bundle.Entry), entries)
-	}
-	t.Logf("%d entries, %d KB, decoded in %v", entries, len(payload)/1024, elapsed)
 }
 
 func TestNestingCostPerByteStaysFlat(t *testing.T) {
@@ -129,7 +152,7 @@ func TestNestingCostPerByteStaysFlat(t *testing.T) {
 	// objects on entry and was bypassed by reordering the payload. Reading to the
 	// end is the price of that, and it is linear.
 	perByte := func(depth int) (float64, int) {
-		payload := deeplyNested(depth)
+		payload := nestedContained(depth)
 		best := time.Hour
 		for i := 0; i < 7; i++ { // fastest run: the least noisy
 			start := time.Now()
@@ -151,9 +174,10 @@ func TestNestingCostPerByteStaysFlat(t *testing.T) {
 	if shallow <= 0 {
 		t.Skip("too fast to time on this machine")
 	}
-	// Ten times the depth. Quadratic behavior would show up here as roughly ten
-	// times the cost per byte; the ceiling is set well above noise and well below
-	// that.
+	// Measured on the unguarded path, cost per byte climbs 943 -> 1280 -> 2191 ->
+	// 3710 ns as depth goes 100 -> 200 -> 400 -> 800: 3.9x for 8x the depth. Ten
+	// times the depth is therefore worth something above 4x, and the guarded path
+	// measures 1.05x. A ceiling of 3 sits between them with room on both sides.
 	if ratio := deep / shallow; ratio > 3 {
 		t.Errorf("ten times the nesting depth cost %.1fx more per byte; the document"+
 			" is being read more than once and the quadratic blowup is back", ratio)

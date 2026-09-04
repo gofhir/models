@@ -639,7 +639,9 @@ Medido, subiendo `MaxResourceDepth` para desactivar la guarda:
 | 400 | 16.438 | 36 ms | 2.191 |
 | 800 | 32.838 | 122 ms | 3.710 |
 
-El coste por byte **se dobla al doblar la profundidad**: ese es el término cuadrático. Con la guarda activa es 0,80 ns/byte a profundidad 400 y 0,84 a 4.000 — plano, y **2.700× más barato** a igual profundidad.
+El coste por byte **crece con la profundidad** —cerca de 1,7× cada vez que se dobla—: ese es el término cuadrático. Con la guarda activa es 0,71 ns/byte a profundidad 400 y 0,75 a 4.000 —plano, 1,05×—, y a igual profundidad resulta **más de 2.000× más barato**.
+
+En tiempo absoluto, 4.000 niveles (160 KB) tardan **3,8 s** sin guarda y se rechazan en **~0,5 ms** con ella.
 
 Un hallazgo lateral: el coste de rechazar sí crece con el tamaño del documento (9,6× al multiplicarlo por 10), porque el escaneo **no puede cortar antes**. La profundidad se calcula al cerrar cada objeto, no al entrar, ya que JSON no ordena sus miembros y un objeto puede declarar `contained` antes que `resourceType` —una versión anterior marcaba al entrar y se evadía reordenando el payload—. Leer hasta el final es el precio de esa corrección, y es lineal.
 
