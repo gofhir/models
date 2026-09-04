@@ -64,8 +64,8 @@ Ejemplo de uso:
 name := r4.HumanName{
     Use:    ptrTo(r4.NameUseOfficial),
     Family: ptrTo("Smith"),
-    Given:  []string{"John", "Michael"},
-    Prefix: []string{"Dr."},
+    Given:  r4.PtrSlice("John", "Michael"),
+    Prefix: r4.PtrSlice("Dr."),
 }
 
 patient := &r4.Patient{
@@ -214,7 +214,7 @@ patient := &r4.Patient{
         {
             Use:        ptrTo(r4.AddressUseHome),
             Type:       ptrTo(r4.AddressTypePhysical),
-            Line:       []string{"123 Main Street", "Apt 4B"},
+            Line:       r4.PtrSlice("123 Main Street", "Apt 4B"),
             City:       ptrTo("Springfield"),
             State:      ptrTo("IL"),
             PostalCode: ptrTo("62704"),
@@ -327,7 +327,7 @@ patient := &r4.Patient{
             },
             Name: &r4.HumanName{
                 Family: ptrTo("Smith"),
-                Given:  []string{"Jane"},
+                Given:  r4.PtrSlice("Jane"),
             },
         },
     },

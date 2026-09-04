@@ -31,7 +31,7 @@ Para cada tipo de recurso `<Resource>`, la biblioteca genera:
 ### Ejemplo con Patient
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 patient := r4.NewPatientBuilder().
     SetId("patient-123").
@@ -40,7 +40,7 @@ patient := r4.NewPatientBuilder().
     SetBirthDate("1990-05-15").
     AddName(r4.HumanName{
         Family: ptrTo("Doe"),
-        Given:  []string{"John", "Michael"},
+        Given:  r4.PtrSlice("John", "Michael"),
     }).
     AddIdentifier(r4.Identifier{
         System: ptrTo("http://hospital.example.org/mrn"),
@@ -53,7 +53,7 @@ patient := r4.NewPatientBuilder().
     }).
     AddAddress(r4.Address{
         Use:        ptrTo(r4.AddressUseHome),
-        Line:       []string{"123 Main St"},
+        Line:       r4.PtrSlice("123 Main St"),
         City:       ptrTo("Springfield"),
         State:      ptrTo("IL"),
         PostalCode: ptrTo("62701"),
@@ -70,7 +70,7 @@ func ptrTo[T any](v T) *T {
 ### Ejemplo con Observation
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 status := r4.ObservationStatusFinal
 observation := r4.NewObservationBuilder().

@@ -28,10 +28,10 @@ models/
   cmd/generator/     # Code generator tool
   internal/          # Shared generation infrastructure
   specs/             # FHIR StructureDefinition JSON files
-  r4/                # Generated R4 module (github.com/gofhir/models/r4)
+  r4/                # Generated R4 module (github.com/gofhir/models/r4/v2)
     helpers/          # Hand-written helper constants (not generated)
-  r4b/               # Generated R4B module (github.com/gofhir/models/r4b)
-  r5/                # Generated R5 module (github.com/gofhir/models/r5)
+  r4b/               # Generated R4B module (github.com/gofhir/models/r4b/v2)
+  r5/                # Generated R5 module (github.com/gofhir/models/r5/v2)
   docs/              # Documentation site (Hugo)
   go.work            # Go workspace file
 ```

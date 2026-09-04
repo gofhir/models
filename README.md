@@ -6,13 +6,29 @@ Go structs for FHIR R4, R4B, and R5 resources.
 
 ```bash
 # For FHIR R4
-go get github.com/gofhir/models/r4
+go get github.com/gofhir/models/r4/v2
 
 # For FHIR R4B
-go get github.com/gofhir/models/r4b
+go get github.com/gofhir/models/r4b/v2
 
 # For FHIR R5
-go get github.com/gofhir/models/r5
+go get github.com/gofhir/models/r5/v2
+```
+
+> **Do not pin `v2.0.0`.** It cannot be installed: the Go checksum database holds a
+> different hash for it than the repository produces, so `go get` refuses it with a
+> `SECURITY ERROR`. The tag was published in error, and that database is append-only,
+> so it cannot be corrected — **v2.1.0 is the first usable v2**, and its contents are
+> what v2.0.0 was meant to be. Plain `go get .../v2` resolves to the latest and is
+> unaffected.
+
+The import path carries the `/v2` suffix Go requires, but the package is still named
+after the version:
+
+```go
+import "github.com/gofhir/models/r4/v2"
+
+var p r4.Patient   // the package is r4, not v2
 ```
 
 ## Usage
@@ -23,7 +39,7 @@ package main
 import (
     "fmt"
 
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 func main() {

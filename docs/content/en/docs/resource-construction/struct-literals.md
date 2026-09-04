@@ -15,7 +15,7 @@ package main
 import (
     "fmt"
 
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 func main() {
@@ -23,7 +23,7 @@ func main() {
         Id:           ptrTo("123"),
         Active:       ptrTo(true),
         Name: []r4.HumanName{
-            {Family: ptrTo("Smith"), Given: []string{"John"}},
+            {Family: ptrTo("Smith"), Given: r4.PtrSlice("John")},
         },
     }
 
@@ -49,6 +49,25 @@ func ptrTo[T any](v T) *T {
     return &v
 }
 ```
+
+{{< callout type="info" >}}
+**The library already ships these.**
+
+You do not have to write your own. Each version package exports `Ptr`, `PtrSlice`,
+`Val` and `First`:
+
+```go
+Id:     r4.Ptr("patient-1"),
+Given:  r4.PtrSlice("John", "Michael"),   // []*string in one call
+family: r4.Val(name.Family),              // *string -> string, "" if nil
+first:  r4.First(patient.Name),           // first element or the zero value
+```
+
+`PtrSlice` matters for repeating primitives, which are `[]*string` rather than
+`[]string` so a positional `null` can be represented — a `[]string` literal will not
+compile there. The examples in this guide use `ptrTo` to keep each snippet
+self-contained.
+{{< /callout >}}
 
 This works with any type:
 
@@ -103,7 +122,7 @@ patient := r4.Patient{
         {
             Use:    &use,
             Family: &family,
-            Given:  []string{"Robert", "James"},
+            Given:  r4.PtrSlice("Robert", "James"),
         },
     },
     Gender:    ptrTo(r4.AdministrativeGenderMale),
@@ -111,7 +130,7 @@ patient := r4.Patient{
     Address: []r4.Address{
         {
             Use:        &homeUse,
-            Line:       []string{"123 Main St", "Apt 4B"},
+            Line:       r4.PtrSlice("123 Main St", "Apt 4B"),
             City:       ptrTo("Springfield"),
             State:      ptrTo("IL"),
             PostalCode: ptrTo("62704"),

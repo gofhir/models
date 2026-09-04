@@ -274,7 +274,7 @@ Para campos primitivos repetidos (como `HumanName.given`), el arreglo de extensi
 
 ```go
 name := r4.HumanName{
-    Given: []string{"John", "Michael"},
+    Given: r4.PtrSlice("John", "Michael"),
     GivenExt: []r4.Element{
         {}, // No extension for "John" -- empty element
         {   // Extension for "Michael"

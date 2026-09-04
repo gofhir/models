@@ -30,10 +30,10 @@ Bienvenido a la documentación de **gofhir/models**. Esta biblioteca proporciona
 
 | Paquete | Descripción |
 |---------|-------------|
-| `github.com/gofhir/models/r4` | Recursos, tipos de datos, sistemas de códigos, builders y serialización de FHIR R4 (4.0.1) |
-| `github.com/gofhir/models/r4b` | Recursos, tipos de datos, sistemas de códigos, builders y serialización de FHIR R4B (4.3.0) |
-| `github.com/gofhir/models/r5` | Recursos, tipos de datos, sistemas de códigos, builders y serialización de FHIR R5 (5.0.0) |
-| `github.com/gofhir/models/r4/helpers` | CodeableConcepts preconstruidos para categorías comunes (observación, condición, LOINC, UCUM) |
+| `github.com/gofhir/models/r4/v2` | Recursos, tipos de datos, sistemas de códigos, builders y serialización de FHIR R4 (4.0.1) |
+| `github.com/gofhir/models/r4b/v2` | Recursos, tipos de datos, sistemas de códigos, builders y serialización de FHIR R4B (4.3.0) |
+| `github.com/gofhir/models/r5/v2` | Recursos, tipos de datos, sistemas de códigos, builders y serialización de FHIR R5 (5.0.0) |
+| `github.com/gofhir/models/r4/v2/helpers` | CodeableConcepts preconstruidos para categorías comunes (observación, condición, LOINC, UCUM) |
 
 ## Estructura del Proyecto
 
@@ -41,10 +41,10 @@ Cada versión FHIR reside en su propio directorio en la raíz del repositorio y 
 
 ```
 models/
-  r4/            # github.com/gofhir/models/r4
-    helpers/     # github.com/gofhir/models/r4/helpers
-  r4b/           # github.com/gofhir/models/r4b
-  r5/            # github.com/gofhir/models/r5
+  r4/            # github.com/gofhir/models/r4/v2
+    helpers/     # github.com/gofhir/models/r4/v2/helpers
+  r4b/           # github.com/gofhir/models/r4b/v2
+  r5/            # github.com/gofhir/models/r5/v2
 ```
 
 Todos los tipos se generan automáticamente a partir de las StructureDefinitions oficiales de FHIR mediante el generador de código en el directorio `cmd/generator`. Nunca debes editar los archivos fuente generados directamente.

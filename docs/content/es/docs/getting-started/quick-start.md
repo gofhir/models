@@ -17,7 +17,7 @@ package main
 import (
     "fmt"
 
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 // ptrTo is a generic helper that returns a pointer to the given value.
@@ -30,7 +30,7 @@ func main() {
         Id:           ptrTo("123"),
         Active:       ptrTo(true),
         Name: []r4.HumanName{
-            {Family: ptrTo("Smith"), Given: []string{"John"}},
+            {Family: ptrTo("Smith"), Given: r4.PtrSlice("John")},
         },
     }
 
@@ -69,7 +69,7 @@ patient := r4.NewPatientBuilder().
     AddName(r4.HumanName{
         Use:    &use,
         Family: &family,
-        Given:  []string{"John"},
+        Given:  r4.PtrSlice("John"),
     }).
     AddIdentifier(r4.Identifier{
         System: ptrTo("http://hospital.example.org/mrn"),
@@ -94,7 +94,7 @@ patient := r4.NewPatientBuilder().
     AddName(r4.HumanName{
         Use:    &use,
         Family: &family,
-        Given:  []string{"Maria"},
+        Given:  r4.PtrSlice("Maria"),
     }).
     Build()
 ```

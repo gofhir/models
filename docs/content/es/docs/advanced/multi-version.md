@@ -15,12 +15,12 @@ Cada version de FHIR reside en su propio directorio en la raiz del repositorio c
 models/
   go.work             # Archivo de workspace de Go para desarrollo local
   r4/
-    go.mod            # module github.com/gofhir/models/r4
+    go.mod            # module github.com/gofhir/models/r4/v2
     helpers/          # Constantes auxiliares escritas manualmente
   r4b/
-    go.mod            # module github.com/gofhir/models/r4b
+    go.mod            # module github.com/gofhir/models/r4b/v2
   r5/
-    go.mod            # module github.com/gofhir/models/r5
+    go.mod            # module github.com/gofhir/models/r5/v2
 ```
 
 El archivo `go.work` en la raiz conecta estos modulos para el desarrollo local:
@@ -41,7 +41,7 @@ use (
 La mayoria de los proyectos solo necesitan una version de FHIR. Importa el modulo correspondiente directamente:
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 patient := r4.NewPatientBuilder().
     SetId("example").
@@ -51,7 +51,7 @@ patient := r4.NewPatientBuilder().
 Instalar con:
 
 ```bash
-go get github.com/gofhir/models/r4
+go get github.com/gofhir/models/r4/v2
 ```
 
 ## Importando Multiples Versiones
@@ -60,8 +60,8 @@ Cuando necesitas trabajar con multiples versiones de FHIR (por ejemplo, un conve
 
 ```go
 import (
-    r4 "github.com/gofhir/models/r4"
-    r5 "github.com/gofhir/models/r5"
+    r4 "github.com/gofhir/models/r4/v2"
+    r5 "github.com/gofhir/models/r5/v2"
 )
 
 func convertPatient(r4Patient *r4.Patient) *r5.Patient {
@@ -85,8 +85,8 @@ func convertPatient(r4Patient *r4.Patient) *r5.Patient {
 Instalar ambos modulos:
 
 ```bash
-go get github.com/gofhir/models/r4
-go get github.com/gofhir/models/r5
+go get github.com/gofhir/models/r4/v2
+go get github.com/gofhir/models/r5/v2
 ```
 
 {{< callout type="info" >}}
@@ -100,16 +100,16 @@ Al importar multiples versiones, el nombre del paquete por defecto coincide con 
 ```go
 import (
     // Nombres por defecto -- no se necesita alias
-    "github.com/gofhir/models/r4"
-    "github.com/gofhir/models/r4b"
-    "github.com/gofhir/models/r5"
+    "github.com/gofhir/models/r4/v2"
+    "github.com/gofhir/models/r4b/v2"
+    "github.com/gofhir/models/r5/v2"
 )
 
 // O usar alias descriptivos
 import (
-    fhirR4  "github.com/gofhir/models/r4"
-    fhirR4B "github.com/gofhir/models/r4b"
-    fhirR5  "github.com/gofhir/models/r5"
+    fhirR4  "github.com/gofhir/models/r4/v2"
+    fhirR4B "github.com/gofhir/models/r4b/v2"
+    fhirR5  "github.com/gofhir/models/r5/v2"
 )
 ```
 

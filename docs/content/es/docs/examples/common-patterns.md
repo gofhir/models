@@ -22,7 +22,7 @@ func ptrTo[T any](v T) *T {
 Un paciente completo con nombre, direccion, identificadores, telecom y campos demograficos:
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 patient := r4.NewPatientBuilder().
     SetId("patient-001").
@@ -32,12 +32,12 @@ patient := r4.NewPatientBuilder().
     AddName(r4.HumanName{
         Use:    ptrTo(r4.NameUseOfficial),
         Family: ptrTo("Garcia"),
-        Given:  []string{"Maria", "Elena"},
-        Prefix: []string{"Dr."},
+        Given:  r4.PtrSlice("Maria", "Elena"),
+        Prefix: r4.PtrSlice("Dr."),
     }).
     AddName(r4.HumanName{
         Use:    ptrTo(r4.NameUseNickname),
-        Given:  []string{"Mari"},
+        Given:  r4.PtrSlice("Mari"),
     }).
     AddIdentifier(r4.Identifier{
         Use:    ptrTo(r4.IdentifierUseOfficial),
@@ -62,7 +62,7 @@ patient := r4.NewPatientBuilder().
     AddAddress(r4.Address{
         Use:        ptrTo(r4.AddressUseHome),
         Type:       ptrTo(r4.AddressTypeBoth),
-        Line:       []string{"742 Evergreen Terrace", "Apt 4B"},
+        Line:       r4.PtrSlice("742 Evergreen Terrace", "Apt 4B"),
         City:       ptrTo("Portland"),
         State:      ptrTo("OR"),
         PostalCode: ptrTo("97201"),
@@ -88,7 +88,7 @@ patient := r4.NewPatientBuilder().
 Una observacion de peso corporal con todos los campos que un servidor FHIR tipicamente espera:
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 observation := r4.NewObservationBuilder().
     SetId("obs-weight-001").
@@ -133,7 +133,7 @@ observation := r4.NewObservationBuilder().
 Un bundle de transaccion conteniendo un Patient y una Observation relacionada:
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 bundleType := r4.BundleTypeTransaction
 
@@ -187,7 +187,7 @@ bundle := r4.NewBundleBuilder().
 `CodeableConcept` es uno de los tipos de datos FHIR mas utilizados. Representa un concepto que puede estar definido por uno o mas sistemas de codificacion:
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 // Un CodeableConcept con multiples codings (por ejemplo, mismo concepto en SNOMED e ICD-10)
 diagnosisCode := r4.CodeableConcept{
@@ -238,8 +238,8 @@ El paquete `helpers` proporciona valores `CodeableConcept` preconstruidos para n
 
 ```go
 import (
-    "github.com/gofhir/models/r4"
-    "github.com/gofhir/models/r4/helpers"
+    "github.com/gofhir/models/r4/v2"
+    "github.com/gofhir/models/r4/v2/helpers"
 )
 
 observation := r4.NewObservationBuilder().
@@ -266,7 +266,7 @@ observation := r4.NewObservationBuilder().
 ### Codigos LOINC para Signos Vitales
 
 ```go
-import "github.com/gofhir/models/r4/helpers"
+import "github.com/gofhir/models/r4/v2/helpers"
 
 // CodeableConcepts preconstruidos para signos vitales comunes
 helpers.BodyWeight()       // LOINC 29463-7
@@ -287,7 +287,7 @@ Antes eran variables de paquete. Como `CodeableConcept` lleva un slice `Coding`,
 El paquete `helpers` tambien proporciona funciones para crear valores `Quantity` con unidades UCUM estandar:
 
 ```go
-import "github.com/gofhir/models/r4/helpers"
+import "github.com/gofhir/models/r4/v2/helpers"
 
 weight := helpers.QuantityKg(72.5)    // 72.5 kg
 height := helpers.QuantityCm(175.0)   // 175 cm
@@ -298,8 +298,8 @@ temp := helpers.QuantityCel(37.2)     // 37.2 Cel (Celsius)
 
 ```go
 import (
-    "github.com/gofhir/models/r4"
-    "github.com/gofhir/models/r4/helpers"
+    "github.com/gofhir/models/r4/v2"
+    "github.com/gofhir/models/r4/v2/helpers"
 )
 
 // Construir una observacion de temperatura corporal usando helpers

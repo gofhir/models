@@ -24,7 +24,7 @@ A pointer to the singleton `FHIRPathModelData` instance. This instance is initia
 ### Example
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 model := r4.FHIRPathModel()
 // model is ready to use -- no initialization needed

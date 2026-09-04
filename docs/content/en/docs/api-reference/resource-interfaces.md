@@ -34,7 +34,7 @@ type Resource interface {
 ### Example
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 func printResourceInfo(res r4.Resource) {
     fmt.Printf("Type: %s\n", res.GetResourceType())
@@ -82,7 +82,7 @@ type DomainResource interface {
 ### Example
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 func extractNarrative(res r4.DomainResource) string {
     if text := res.GetText(); text != nil && text.Div != nil {

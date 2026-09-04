@@ -52,7 +52,7 @@ import (
     "fmt"
     "log"
 
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 func ptrTo[T any](v T) *T {

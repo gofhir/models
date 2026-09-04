@@ -27,7 +27,7 @@ import (
     "net/http"
 
     "github.com/google/uuid"
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 func handleCreateResource(w http.ResponseWriter, req *http.Request) {
@@ -100,7 +100,7 @@ import (
     "fmt"
     "net/http"
 
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 func fetchPatients(baseURL string) ([]*r4.Patient, error) {
@@ -158,7 +158,7 @@ import (
     "encoding/json"
     "fmt"
 
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 // JSON to XML conversion
@@ -229,7 +229,7 @@ import (
     "fmt"
     "net/http"
 
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 type ResourceHandler func(r4.Resource) error
@@ -296,7 +296,7 @@ You can use `AllResourceTypes` to auto-register default handlers or generate API
 ```go
 import (
     "sort"
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 // Generate OpenAPI paths for all resource types
@@ -324,7 +324,7 @@ import (
     "io"
     "net/http"
 
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 func main() {

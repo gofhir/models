@@ -12,7 +12,7 @@ La struct `FHIRPathModelData` proporciona metadatos en tiempo de ejecucion que u
 Accede a los metadatos del modelo a traves de la funcion a nivel de paquete:
 
 ```go
-import "github.com/gofhir/models/r4"
+import "github.com/gofhir/models/r4/v2"
 
 model := r4.FHIRPathModel()
 ```
@@ -132,7 +132,7 @@ El caso de uso principal de `FHIRPathModelData` es proporcionar informacion de t
 import (
     "fmt"
     "github.com/gofhir/fhirpath"
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 // Construir un recurso

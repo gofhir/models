@@ -22,9 +22,8 @@ If you are new to the library, here is the simplest possible example to get star
 package main
 
 import (
-    "encoding/json"
     "fmt"
-    "github.com/gofhir/models/r4"
+    "github.com/gofhir/models/r4/v2"
 )
 
 func main() {
@@ -34,7 +33,7 @@ func main() {
         SetActive(true).
         AddName(r4.HumanName{
             Family: ptrTo("World"),
-            Given:  []string{"Hello"},
+            Given:  r4.PtrSlice("Hello"),
         }).
         Build()
 
