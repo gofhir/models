@@ -1,6 +1,6 @@
 module github.com/gofhir/models/cmd/generator
 
-go 1.23
+go 1.26
 
 replace github.com/gofhir/models => ../../
 
