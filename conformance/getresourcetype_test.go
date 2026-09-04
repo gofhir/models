@@ -93,6 +93,12 @@ func TestGetResourceTypeMatchesEncodingJSON(t *testing.T) {
 
 		// escapes, in the key and in the value
 		`{"resource\u0054ype":"Patient"}`,
+		// The input that found the depth-guard bypass, kept as a seed so the case
+		// is re-explored on every run rather than depending on the fuzzer
+		// rediscovering the same shape.
+		`{"resouRCeTYpe":0}`,
+		`{"RESOURCETYPE":"Patient"}`,
+		`{"resourcetype":"Patient"}`,
 		`{"resourceType":"Pat\u0069ent"}`,
 		`{"resourceType":"a\"b"}`,
 		`{"resourceType":"a\\b"}`,

@@ -624,6 +624,40 @@ El segundo era el peor de los dos: en un array, valores y extensiones son parale
 
 `conformance/backbone_extension_test.go` fija las tres rutas comparando **contra la entrada**, no contra nuestra salida, y verifica que JSON y XML coinciden. Validado con tres mutaciones aisladas: neutralizar el tag JSON, la asignación del decode y el paso del encode hace fallar el test que le corresponde a cada una.
 
+### El reproductor del DoS, y por qué no bastaba con rechazar
+
+El plan pedía el reproductor **escrito contra profundidad, no contra arrays anchos**, y tenía razón por una razón adicional a la que daba: los tests existentes comprueban que un documento hostil se *rechaza*, pero no que rechazarlo sea **barato**. Una guarda que rechazara después de hacer el trabajo cuadrático pasaría toda la suite dejando la denegación de servicio intacta.
+
+La propiedad que lo distingue es el **coste por byte**: plano si el documento se lee una vez, creciente si se lee una vez por nivel. El tiempo total no sirve —un documento 10× mayor cuesta legítimamente 10× más de leer una vez—.
+
+Medido, subiendo `MaxResourceDepth` para desactivar la guarda:
+
+| profundidad | bytes | tiempo | ns/byte |
+|---|---|---|---|
+| 100 | 4.138 | 3,9 ms | 943 |
+| 200 | 8.238 | 10,5 ms | 1.280 |
+| 400 | 16.438 | 36 ms | 2.191 |
+| 800 | 32.838 | 122 ms | 3.710 |
+
+El coste por byte **crece con la profundidad** —cerca de 1,7× cada vez que se dobla—: ese es el término cuadrático. Con la guarda activa es 0,71 ns/byte a profundidad 400 y 0,75 a 4.000 —plano, 1,05×—, y a igual profundidad resulta **más de 2.000× más barato**.
+
+En tiempo absoluto, 4.000 niveles (160 KB) tardan **3,8 s** sin guarda y se rechazan en **~0,5 ms** con ella.
+
+Un hallazgo lateral: el coste de rechazar sí crece con el tamaño del documento (9,6× al multiplicarlo por 10), porque el escaneo **no puede cortar antes**. La profundidad se calcula al cerrar cada objeto, no al entrar, ya que JSON no ordena sus miembros y un objeto puede declarar `contained` antes que `resourceType` —una versión anterior marcaba al entrar y se evadía reordenando el payload—. Leer hasta el final es el precio de esa corrección, y es lineal.
+
+### La brecha de tests entre paquetes: la métrica se quedó sin fundamento
+
+El plan medía «líneas de test por 1.000 de producción» —21,0 en r4 frente a 9,2 en r5— y proponía cerrar la diferencia. Al medir qué hay realmente detrás:
+
+- **`decimal.go` es el mismo código en las tres versiones**, salvo el comentario `// Package:`. De 130 archivos generados comunes, solo 7 lo son. Clonar sus 11 tests a r4b y r5 ejecutaría la misma lógica tres veces y subiría el ratio sin subir la garantía —el mismo error que el plan diagnostica cuando observa que los nombres de test de r4b y r5 son idénticos porque *se clonaron, no se escribieron*.
+- Con el corpus cerrado, la cobertura real de r5 no es un ratio: son **4.183 ejemplos oficiales** que pasan íntegros.
+
+Donde la brecha **sí** tenía fundamento es `fhirpath_model.go`: el archivo más grande de cada versión —12.221 líneas en r5— con 13 tests en r4 y 4 en r4b/r5, y contenido que **difiere de verdad** entre versiones (Δ2.321 líneas), así que probar r4 no dice nada de r5.
+
+Cerrada en `conformance/fhirpath_model_test.go`, escrita **una vez** contra una interfaz común y parametrizada por versión, con los hechos que difieren declarados por versión: `Observation.value[x]` tiene 11 tipos en R4/R4B y 13 en R5; `Citation` no existe antes de R4B; `MedicinalProduct` no existe después de R4. Que son tests de verdad y no clones se comprobó dándole a r5 el modelo de r4: fallan tres, nombrando el tipo y la versión.
+
+Los fuzz targets se conservan con las semillas del bypass que encontró el DoS (`{"resouRCeTYpe":0}` y las cuatro grafías) añadidas a `f.Add`, para que el caso se re-explore en cada ejecución en vez de depender de que el fuzzer redescubra la misma forma. Dos millones de ejecuciones más, sin hallazgos.
+
 Los `t.Skip` restantes son condicionales por corpus ausente, no defectos ocultos. Con las listas en cero, cualquier fallo nuevo en CI es una regresión por construcción: el gate ya es efectivo.
 
 Añadir los fuzz targets como regresión —9,4 millones de ejecuciones sin un panic recuperable merecen conservarse— y el reproductor del DoS **escrito contra profundidad de anidamiento, no contra arrays anchos**:
