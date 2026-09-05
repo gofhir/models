@@ -76,6 +76,19 @@ type PropertyBuilderData struct {
 	IsChoice    bool
 	ElementType string // For arrays: the element type (e.g., "HumanName" from "[]HumanName")
 	BaseType    string // For pointers: the base type (e.g., "string" from "*string")
+
+	// ChoiceBase is the element name a choice belongs to — "Value" for every
+	// variant of value[x]. Empty for anything that is not a choice.
+	ChoiceBase string
+	// ChoiceSiblings lists the field names of the other variants in the same
+	// choice, so a setter can clear them. Only one variant of a choice may be
+	// present, and nothing else enforces that.
+	ChoiceSiblings []string
+	// ChoiceLead marks the first variant of each group, which is where the shared
+	// clear method is emitted. One per group rather than one per variant: with 54
+	// variants on ElementDefinition.defaultValue[x], clearing inline in every
+	// setter would be quadratic in generated lines.
+	ChoiceLead bool
 }
 
 // ResourceConsolidatedData holds data for the consolidated resource template
@@ -423,6 +436,7 @@ func buildResourceBuilderData(t *analyzer.AnalyzedType) ResourceBuilderData {
 		Properties: make([]PropertyBuilderData, 0, len(t.Properties)),
 	}
 
+	seenChoice := make(map[string]bool)
 	for _, prop := range t.Properties {
 		propData := PropertyBuilderData{
 			Name:      prop.Name,
@@ -430,6 +444,32 @@ func buildResourceBuilderData(t *analyzer.AnalyzedType) ResourceBuilderData {
 			IsArray:   prop.IsArray,
 			IsPointer: prop.IsPointer,
 			IsChoice:  prop.IsChoice,
+		}
+
+		if prop.IsChoice && prop.ChoiceBaseName != "" {
+			propData.ChoiceBase = strings.ToUpper(prop.ChoiceBaseName[:1]) + prop.ChoiceBaseName[1:]
+
+			// Field names present on the type, so an Ext companion is only listed
+			// when one was actually generated.
+			present := make(map[string]bool, len(t.Properties))
+			for _, other := range t.Properties {
+				present[other.Name] = true
+			}
+			for _, other := range t.Properties {
+				if !other.IsChoice || other.ChoiceBaseName != prop.ChoiceBaseName || other.Name == prop.Name {
+					continue
+				}
+				propData.ChoiceSiblings = append(propData.ChoiceSiblings, other.Name)
+				// The _field companion of a primitive variant is a separate
+				// property and is not itself marked as a choice, so it has to be
+				// picked up by name. Leaving it behind would strand a _valueString
+				// beside a valueBoolean.
+				if ext := other.Name + "Ext"; present[ext] {
+					propData.ChoiceSiblings = append(propData.ChoiceSiblings, ext)
+				}
+			}
+			propData.ChoiceLead = !seenChoice[prop.ChoiceBaseName]
+			seenChoice[prop.ChoiceBaseName] = true
 		}
 
 		if prop.IsArray {

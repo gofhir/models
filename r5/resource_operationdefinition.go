@@ -1347,8 +1347,13 @@ func (b *OperationDefinitionBuilder) SetVersion(v string) *OperationDefinitionBu
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *OperationDefinitionBuilder) SetVersionAlgorithmString(v string) *OperationDefinitionBuilder {
+	b.clearVersionAlgorithm()
 	b.operationDefinition.VersionAlgorithmString = &v
 	return b
 }
@@ -1359,8 +1364,13 @@ func (b *OperationDefinitionBuilder) SetVersionAlgorithmStringExt(v Element) *Op
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *OperationDefinitionBuilder) SetVersionAlgorithmCoding(v Coding) *OperationDefinitionBuilder {
+	b.clearVersionAlgorithm()
 	b.operationDefinition.VersionAlgorithmCoding = &v
 	return b
 }
@@ -1523,4 +1533,11 @@ func (b *OperationDefinitionBuilder) AddParameter(v OperationDefinitionParameter
 func (b *OperationDefinitionBuilder) AddOverload(v OperationDefinitionOverload) *OperationDefinitionBuilder {
 	b.operationDefinition.Overload = append(b.operationDefinition.Overload, v)
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *OperationDefinitionBuilder) clearVersionAlgorithm() {
+	b.operationDefinition.VersionAlgorithmString = nil
+	b.operationDefinition.VersionAlgorithmCoding = nil
 }

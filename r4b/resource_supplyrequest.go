@@ -731,14 +731,24 @@ func (b *SupplyRequestBuilder) SetPriority(v RequestPriority) *SupplyRequestBuil
 	return b
 }
 
-// SetItemCodeableConcept sets the ItemCodeableConcept field.
+// SetItemCodeableConcept sets Item[x] to its ItemCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *SupplyRequestBuilder) SetItemCodeableConcept(v CodeableConcept) *SupplyRequestBuilder {
+	b.clearItem()
 	b.supplyRequest.ItemCodeableConcept = &v
 	return b
 }
 
-// SetItemReference sets the ItemReference field.
+// SetItemReference sets Item[x] to its ItemReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *SupplyRequestBuilder) SetItemReference(v Reference) *SupplyRequestBuilder {
+	b.clearItem()
 	b.supplyRequest.ItemReference = &v
 	return b
 }
@@ -755,8 +765,13 @@ func (b *SupplyRequestBuilder) AddParameter(v SupplyRequestParameter) *SupplyReq
 	return b
 }
 
-// SetOccurrenceDateTime sets the OccurrenceDateTime field.
+// SetOccurrenceDateTime sets Occurrence[x] to its OccurrenceDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *SupplyRequestBuilder) SetOccurrenceDateTime(v string) *SupplyRequestBuilder {
+	b.clearOccurrence()
 	b.supplyRequest.OccurrenceDateTime = &v
 	return b
 }
@@ -767,14 +782,24 @@ func (b *SupplyRequestBuilder) SetOccurrenceDateTimeExt(v Element) *SupplyReques
 	return b
 }
 
-// SetOccurrencePeriod sets the OccurrencePeriod field.
+// SetOccurrencePeriod sets Occurrence[x] to its OccurrencePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *SupplyRequestBuilder) SetOccurrencePeriod(v Period) *SupplyRequestBuilder {
+	b.clearOccurrence()
 	b.supplyRequest.OccurrencePeriod = &v
 	return b
 }
 
-// SetOccurrenceTiming sets the OccurrenceTiming field.
+// SetOccurrenceTiming sets Occurrence[x] to its OccurrenceTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *SupplyRequestBuilder) SetOccurrenceTiming(v Timing) *SupplyRequestBuilder {
+	b.clearOccurrence()
 	b.supplyRequest.OccurrenceTiming = &v
 	return b
 }
@@ -819,4 +844,19 @@ func (b *SupplyRequestBuilder) SetDeliverFrom(v Reference) *SupplyRequestBuilder
 func (b *SupplyRequestBuilder) SetDeliverTo(v Reference) *SupplyRequestBuilder {
 	b.supplyRequest.DeliverTo = &v
 	return b
+}
+
+// clearItem unsets every variant of Item[x], including the
+// _field companions of the primitive ones.
+func (b *SupplyRequestBuilder) clearItem() {
+	b.supplyRequest.ItemCodeableConcept = nil
+	b.supplyRequest.ItemReference = nil
+}
+
+// clearOccurrence unsets every variant of Occurrence[x], including the
+// _field companions of the primitive ones.
+func (b *SupplyRequestBuilder) clearOccurrence() {
+	b.supplyRequest.OccurrenceDateTime = nil
+	b.supplyRequest.OccurrencePeriod = nil
+	b.supplyRequest.OccurrenceTiming = nil
 }

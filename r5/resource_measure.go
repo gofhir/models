@@ -1966,8 +1966,13 @@ func (b *MeasureBuilder) SetVersion(v string) *MeasureBuilder {
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MeasureBuilder) SetVersionAlgorithmString(v string) *MeasureBuilder {
+	b.clearVersionAlgorithm()
 	b.measure.VersionAlgorithmString = &v
 	return b
 }
@@ -1978,8 +1983,13 @@ func (b *MeasureBuilder) SetVersionAlgorithmStringExt(v Element) *MeasureBuilder
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MeasureBuilder) SetVersionAlgorithmCoding(v Coding) *MeasureBuilder {
+	b.clearVersionAlgorithm()
 	b.measure.VersionAlgorithmCoding = &v
 	return b
 }
@@ -2014,14 +2024,24 @@ func (b *MeasureBuilder) SetExperimental(v bool) *MeasureBuilder {
 	return b
 }
 
-// SetSubjectCodeableConcept sets the SubjectCodeableConcept field.
+// SetSubjectCodeableConcept sets Subject[x] to its SubjectCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MeasureBuilder) SetSubjectCodeableConcept(v CodeableConcept) *MeasureBuilder {
+	b.clearSubject()
 	b.measure.SubjectCodeableConcept = &v
 	return b
 }
 
-// SetSubjectReference sets the SubjectReference field.
+// SetSubjectReference sets Subject[x] to its SubjectReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MeasureBuilder) SetSubjectReference(v Reference) *MeasureBuilder {
+	b.clearSubject()
 	b.measure.SubjectReference = &v
 	return b
 }
@@ -2238,4 +2258,18 @@ func (b *MeasureBuilder) AddGroup(v MeasureGroup) *MeasureBuilder {
 func (b *MeasureBuilder) AddSupplementalData(v MeasureSupplementalData) *MeasureBuilder {
 	b.measure.SupplementalData = append(b.measure.SupplementalData, v)
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *MeasureBuilder) clearVersionAlgorithm() {
+	b.measure.VersionAlgorithmString = nil
+	b.measure.VersionAlgorithmCoding = nil
+}
+
+// clearSubject unsets every variant of Subject[x], including the
+// _field companions of the primitive ones.
+func (b *MeasureBuilder) clearSubject() {
+	b.measure.SubjectCodeableConcept = nil
+	b.measure.SubjectReference = nil
 }

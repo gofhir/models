@@ -1901,8 +1901,13 @@ func (b *EvidenceBuilder) SetVersion(v string) *EvidenceBuilder {
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *EvidenceBuilder) SetVersionAlgorithmString(v string) *EvidenceBuilder {
+	b.clearVersionAlgorithm()
 	b.evidence.VersionAlgorithmString = &v
 	return b
 }
@@ -1913,8 +1918,13 @@ func (b *EvidenceBuilder) SetVersionAlgorithmStringExt(v Element) *EvidenceBuild
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *EvidenceBuilder) SetVersionAlgorithmCoding(v Coding) *EvidenceBuilder {
+	b.clearVersionAlgorithm()
 	b.evidence.VersionAlgorithmCoding = &v
 	return b
 }
@@ -1931,14 +1941,24 @@ func (b *EvidenceBuilder) SetTitle(v string) *EvidenceBuilder {
 	return b
 }
 
-// SetCiteAsReference sets the CiteAsReference field.
+// SetCiteAsReference sets CiteAs[x] to its CiteAsReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *EvidenceBuilder) SetCiteAsReference(v Reference) *EvidenceBuilder {
+	b.clearCiteAs()
 	b.evidence.CiteAsReference = &v
 	return b
 }
 
-// SetCiteAsMarkdown sets the CiteAsMarkdown field.
+// SetCiteAsMarkdown sets CiteAs[x] to its CiteAsMarkdown variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *EvidenceBuilder) SetCiteAsMarkdown(v string) *EvidenceBuilder {
+	b.clearCiteAs()
 	b.evidence.CiteAsMarkdown = &v
 	return b
 }
@@ -2091,4 +2111,19 @@ func (b *EvidenceBuilder) AddStatistic(v EvidenceStatistic) *EvidenceBuilder {
 func (b *EvidenceBuilder) AddCertainty(v EvidenceCertainty) *EvidenceBuilder {
 	b.evidence.Certainty = append(b.evidence.Certainty, v)
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *EvidenceBuilder) clearVersionAlgorithm() {
+	b.evidence.VersionAlgorithmString = nil
+	b.evidence.VersionAlgorithmCoding = nil
+}
+
+// clearCiteAs unsets every variant of CiteAs[x], including the
+// _field companions of the primitive ones.
+func (b *EvidenceBuilder) clearCiteAs() {
+	b.evidence.CiteAsReference = nil
+	b.evidence.CiteAsMarkdown = nil
+	b.evidence.CiteAsMarkdownExt = nil
 }

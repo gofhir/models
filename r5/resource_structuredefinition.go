@@ -1173,8 +1173,13 @@ func (b *StructureDefinitionBuilder) SetVersion(v string) *StructureDefinitionBu
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *StructureDefinitionBuilder) SetVersionAlgorithmString(v string) *StructureDefinitionBuilder {
+	b.clearVersionAlgorithm()
 	b.structureDefinition.VersionAlgorithmString = &v
 	return b
 }
@@ -1185,8 +1190,13 @@ func (b *StructureDefinitionBuilder) SetVersionAlgorithmStringExt(v Element) *St
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *StructureDefinitionBuilder) SetVersionAlgorithmCoding(v Coding) *StructureDefinitionBuilder {
+	b.clearVersionAlgorithm()
 	b.structureDefinition.VersionAlgorithmCoding = &v
 	return b
 }
@@ -1343,4 +1353,11 @@ func (b *StructureDefinitionBuilder) SetSnapshot(v StructureDefinitionSnapshot) 
 func (b *StructureDefinitionBuilder) SetDifferential(v StructureDefinitionDifferential) *StructureDefinitionBuilder {
 	b.structureDefinition.Differential = &v
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *StructureDefinitionBuilder) clearVersionAlgorithm() {
+	b.structureDefinition.VersionAlgorithmString = nil
+	b.structureDefinition.VersionAlgorithmCoding = nil
 }

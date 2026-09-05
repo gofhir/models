@@ -3311,8 +3311,13 @@ func (b *TestScriptBuilder) SetVersion(v string) *TestScriptBuilder {
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *TestScriptBuilder) SetVersionAlgorithmString(v string) *TestScriptBuilder {
+	b.clearVersionAlgorithm()
 	b.testScript.VersionAlgorithmString = &v
 	return b
 }
@@ -3323,8 +3328,13 @@ func (b *TestScriptBuilder) SetVersionAlgorithmStringExt(v Element) *TestScriptB
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *TestScriptBuilder) SetVersionAlgorithmCoding(v Coding) *TestScriptBuilder {
+	b.clearVersionAlgorithm()
 	b.testScript.VersionAlgorithmCoding = &v
 	return b
 }
@@ -3469,4 +3479,11 @@ func (b *TestScriptBuilder) AddTest(v TestScriptTest) *TestScriptBuilder {
 func (b *TestScriptBuilder) SetTeardown(v TestScriptTeardown) *TestScriptBuilder {
 	b.testScript.Teardown = &v
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *TestScriptBuilder) clearVersionAlgorithm() {
+	b.testScript.VersionAlgorithmString = nil
+	b.testScript.VersionAlgorithmCoding = nil
 }

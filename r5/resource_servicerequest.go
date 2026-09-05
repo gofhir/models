@@ -1307,20 +1307,35 @@ func (b *ServiceRequestBuilder) AddOrderDetail(v ServiceRequestOrderDetail) *Ser
 	return b
 }
 
-// SetQuantityQuantity sets the QuantityQuantity field.
+// SetQuantityQuantity sets Quantity[x] to its QuantityQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ServiceRequestBuilder) SetQuantityQuantity(v Quantity) *ServiceRequestBuilder {
+	b.clearQuantity()
 	b.serviceRequest.QuantityQuantity = &v
 	return b
 }
 
-// SetQuantityRatio sets the QuantityRatio field.
+// SetQuantityRatio sets Quantity[x] to its QuantityRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ServiceRequestBuilder) SetQuantityRatio(v Ratio) *ServiceRequestBuilder {
+	b.clearQuantity()
 	b.serviceRequest.QuantityRatio = &v
 	return b
 }
 
-// SetQuantityRange sets the QuantityRange field.
+// SetQuantityRange sets Quantity[x] to its QuantityRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ServiceRequestBuilder) SetQuantityRange(v Range) *ServiceRequestBuilder {
+	b.clearQuantity()
 	b.serviceRequest.QuantityRange = &v
 	return b
 }
@@ -1343,8 +1358,13 @@ func (b *ServiceRequestBuilder) SetEncounter(v Reference) *ServiceRequestBuilder
 	return b
 }
 
-// SetOccurrenceDateTime sets the OccurrenceDateTime field.
+// SetOccurrenceDateTime sets Occurrence[x] to its OccurrenceDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ServiceRequestBuilder) SetOccurrenceDateTime(v string) *ServiceRequestBuilder {
+	b.clearOccurrence()
 	b.serviceRequest.OccurrenceDateTime = &v
 	return b
 }
@@ -1355,20 +1375,35 @@ func (b *ServiceRequestBuilder) SetOccurrenceDateTimeExt(v Element) *ServiceRequ
 	return b
 }
 
-// SetOccurrencePeriod sets the OccurrencePeriod field.
+// SetOccurrencePeriod sets Occurrence[x] to its OccurrencePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ServiceRequestBuilder) SetOccurrencePeriod(v Period) *ServiceRequestBuilder {
+	b.clearOccurrence()
 	b.serviceRequest.OccurrencePeriod = &v
 	return b
 }
 
-// SetOccurrenceTiming sets the OccurrenceTiming field.
+// SetOccurrenceTiming sets Occurrence[x] to its OccurrenceTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ServiceRequestBuilder) SetOccurrenceTiming(v Timing) *ServiceRequestBuilder {
+	b.clearOccurrence()
 	b.serviceRequest.OccurrenceTiming = &v
 	return b
 }
 
-// SetAsNeededBoolean sets the AsNeededBoolean field.
+// SetAsNeededBoolean sets AsNeeded[x] to its AsNeededBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ServiceRequestBuilder) SetAsNeededBoolean(v bool) *ServiceRequestBuilder {
+	b.clearAsNeeded()
 	b.serviceRequest.AsNeededBoolean = &v
 	return b
 }
@@ -1379,8 +1414,13 @@ func (b *ServiceRequestBuilder) SetAsNeededBooleanExt(v Element) *ServiceRequest
 	return b
 }
 
-// SetAsNeededCodeableConcept sets the AsNeededCodeableConcept field.
+// SetAsNeededCodeableConcept sets AsNeeded[x] to its AsNeededCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ServiceRequestBuilder) SetAsNeededCodeableConcept(v CodeableConcept) *ServiceRequestBuilder {
+	b.clearAsNeeded()
 	b.serviceRequest.AsNeededCodeableConcept = &v
 	return b
 }
@@ -1467,4 +1507,27 @@ func (b *ServiceRequestBuilder) AddPatientInstruction(v ServiceRequestPatientIns
 func (b *ServiceRequestBuilder) AddRelevantHistory(v Reference) *ServiceRequestBuilder {
 	b.serviceRequest.RelevantHistory = append(b.serviceRequest.RelevantHistory, v)
 	return b
+}
+
+// clearQuantity unsets every variant of Quantity[x], including the
+// _field companions of the primitive ones.
+func (b *ServiceRequestBuilder) clearQuantity() {
+	b.serviceRequest.QuantityQuantity = nil
+	b.serviceRequest.QuantityRatio = nil
+	b.serviceRequest.QuantityRange = nil
+}
+
+// clearOccurrence unsets every variant of Occurrence[x], including the
+// _field companions of the primitive ones.
+func (b *ServiceRequestBuilder) clearOccurrence() {
+	b.serviceRequest.OccurrenceDateTime = nil
+	b.serviceRequest.OccurrencePeriod = nil
+	b.serviceRequest.OccurrenceTiming = nil
+}
+
+// clearAsNeeded unsets every variant of AsNeeded[x], including the
+// _field companions of the primitive ones.
+func (b *ServiceRequestBuilder) clearAsNeeded() {
+	b.serviceRequest.AsNeededBoolean = nil
+	b.serviceRequest.AsNeededCodeableConcept = nil
 }

@@ -1209,14 +1209,24 @@ func (b *ConsentBuilder) AddOrganization(v Reference) *ConsentBuilder {
 	return b
 }
 
-// SetSourceAttachment sets the SourceAttachment field.
+// SetSourceAttachment sets Source[x] to its SourceAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConsentBuilder) SetSourceAttachment(v Attachment) *ConsentBuilder {
+	b.clearSource()
 	b.consent.SourceAttachment = &v
 	return b
 }
 
-// SetSourceReference sets the SourceReference field.
+// SetSourceReference sets Source[x] to its SourceReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConsentBuilder) SetSourceReference(v Reference) *ConsentBuilder {
+	b.clearSource()
 	b.consent.SourceReference = &v
 	return b
 }
@@ -1243,4 +1253,11 @@ func (b *ConsentBuilder) AddVerification(v ConsentVerification) *ConsentBuilder 
 func (b *ConsentBuilder) SetProvision(v ConsentProvision) *ConsentBuilder {
 	b.consent.Provision = &v
 	return b
+}
+
+// clearSource unsets every variant of Source[x], including the
+// _field companions of the primitive ones.
+func (b *ConsentBuilder) clearSource() {
+	b.consent.SourceAttachment = nil
+	b.consent.SourceReference = nil
 }

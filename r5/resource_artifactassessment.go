@@ -742,14 +742,24 @@ func (b *ArtifactAssessmentBuilder) SetTitle(v string) *ArtifactAssessmentBuilde
 	return b
 }
 
-// SetCiteAsReference sets the CiteAsReference field.
+// SetCiteAsReference sets CiteAs[x] to its CiteAsReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ArtifactAssessmentBuilder) SetCiteAsReference(v Reference) *ArtifactAssessmentBuilder {
+	b.clearCiteAs()
 	b.artifactAssessment.CiteAsReference = &v
 	return b
 }
 
-// SetCiteAsMarkdown sets the CiteAsMarkdown field.
+// SetCiteAsMarkdown sets CiteAs[x] to its CiteAsMarkdown variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ArtifactAssessmentBuilder) SetCiteAsMarkdown(v string) *ArtifactAssessmentBuilder {
+	b.clearCiteAs()
 	b.artifactAssessment.CiteAsMarkdown = &v
 	return b
 }
@@ -784,14 +794,24 @@ func (b *ArtifactAssessmentBuilder) SetLastReviewDate(v string) *ArtifactAssessm
 	return b
 }
 
-// SetArtifactReference sets the ArtifactReference field.
+// SetArtifactReference sets Artifact[x] to its ArtifactReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ArtifactAssessmentBuilder) SetArtifactReference(v Reference) *ArtifactAssessmentBuilder {
+	b.clearArtifact()
 	b.artifactAssessment.ArtifactReference = &v
 	return b
 }
 
-// SetArtifactCanonical sets the ArtifactCanonical field.
+// SetArtifactCanonical sets Artifact[x] to its ArtifactCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ArtifactAssessmentBuilder) SetArtifactCanonical(v string) *ArtifactAssessmentBuilder {
+	b.clearArtifact()
 	b.artifactAssessment.ArtifactCanonical = &v
 	return b
 }
@@ -802,8 +822,13 @@ func (b *ArtifactAssessmentBuilder) SetArtifactCanonicalExt(v Element) *Artifact
 	return b
 }
 
-// SetArtifactUri sets the ArtifactUri field.
+// SetArtifactUri sets Artifact[x] to its ArtifactUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ArtifactAssessmentBuilder) SetArtifactUri(v string) *ArtifactAssessmentBuilder {
+	b.clearArtifact()
 	b.artifactAssessment.ArtifactUri = &v
 	return b
 }
@@ -830,4 +855,22 @@ func (b *ArtifactAssessmentBuilder) SetWorkflowStatus(v ArtifactAssessmentWorkfl
 func (b *ArtifactAssessmentBuilder) SetDisposition(v ArtifactAssessmentDisposition) *ArtifactAssessmentBuilder {
 	b.artifactAssessment.Disposition = &v
 	return b
+}
+
+// clearCiteAs unsets every variant of CiteAs[x], including the
+// _field companions of the primitive ones.
+func (b *ArtifactAssessmentBuilder) clearCiteAs() {
+	b.artifactAssessment.CiteAsReference = nil
+	b.artifactAssessment.CiteAsMarkdown = nil
+	b.artifactAssessment.CiteAsMarkdownExt = nil
+}
+
+// clearArtifact unsets every variant of Artifact[x], including the
+// _field companions of the primitive ones.
+func (b *ArtifactAssessmentBuilder) clearArtifact() {
+	b.artifactAssessment.ArtifactReference = nil
+	b.artifactAssessment.ArtifactCanonical = nil
+	b.artifactAssessment.ArtifactCanonicalExt = nil
+	b.artifactAssessment.ArtifactUri = nil
+	b.artifactAssessment.ArtifactUriExt = nil
 }

@@ -943,8 +943,13 @@ func (b *DeviceRequestBuilder) SetEncounter(v Reference) *DeviceRequestBuilder {
 	return b
 }
 
-// SetOccurrenceDateTime sets the OccurrenceDateTime field.
+// SetOccurrenceDateTime sets Occurrence[x] to its OccurrenceDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *DeviceRequestBuilder) SetOccurrenceDateTime(v string) *DeviceRequestBuilder {
+	b.clearOccurrence()
 	b.deviceRequest.OccurrenceDateTime = &v
 	return b
 }
@@ -955,14 +960,24 @@ func (b *DeviceRequestBuilder) SetOccurrenceDateTimeExt(v Element) *DeviceReques
 	return b
 }
 
-// SetOccurrencePeriod sets the OccurrencePeriod field.
+// SetOccurrencePeriod sets Occurrence[x] to its OccurrencePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *DeviceRequestBuilder) SetOccurrencePeriod(v Period) *DeviceRequestBuilder {
+	b.clearOccurrence()
 	b.deviceRequest.OccurrencePeriod = &v
 	return b
 }
 
-// SetOccurrenceTiming sets the OccurrenceTiming field.
+// SetOccurrenceTiming sets Occurrence[x] to its OccurrenceTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *DeviceRequestBuilder) SetOccurrenceTiming(v Timing) *DeviceRequestBuilder {
+	b.clearOccurrence()
 	b.deviceRequest.OccurrenceTiming = &v
 	return b
 }
@@ -1025,4 +1040,12 @@ func (b *DeviceRequestBuilder) AddNote(v Annotation) *DeviceRequestBuilder {
 func (b *DeviceRequestBuilder) AddRelevantHistory(v Reference) *DeviceRequestBuilder {
 	b.deviceRequest.RelevantHistory = append(b.deviceRequest.RelevantHistory, v)
 	return b
+}
+
+// clearOccurrence unsets every variant of Occurrence[x], including the
+// _field companions of the primitive ones.
+func (b *DeviceRequestBuilder) clearOccurrence() {
+	b.deviceRequest.OccurrenceDateTime = nil
+	b.deviceRequest.OccurrencePeriod = nil
+	b.deviceRequest.OccurrenceTiming = nil
 }

@@ -816,8 +816,13 @@ func (b *LibraryBuilder) SetVersion(v string) *LibraryBuilder {
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *LibraryBuilder) SetVersionAlgorithmString(v string) *LibraryBuilder {
+	b.clearVersionAlgorithm()
 	b.library.VersionAlgorithmString = &v
 	return b
 }
@@ -828,8 +833,13 @@ func (b *LibraryBuilder) SetVersionAlgorithmStringExt(v Element) *LibraryBuilder
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *LibraryBuilder) SetVersionAlgorithmCoding(v Coding) *LibraryBuilder {
+	b.clearVersionAlgorithm()
 	b.library.VersionAlgorithmCoding = &v
 	return b
 }
@@ -870,14 +880,24 @@ func (b *LibraryBuilder) SetType(v CodeableConcept) *LibraryBuilder {
 	return b
 }
 
-// SetSubjectCodeableConcept sets the SubjectCodeableConcept field.
+// SetSubjectCodeableConcept sets Subject[x] to its SubjectCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *LibraryBuilder) SetSubjectCodeableConcept(v CodeableConcept) *LibraryBuilder {
+	b.clearSubject()
 	b.library.SubjectCodeableConcept = &v
 	return b
 }
 
-// SetSubjectReference sets the SubjectReference field.
+// SetSubjectReference sets Subject[x] to its SubjectReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *LibraryBuilder) SetSubjectReference(v Reference) *LibraryBuilder {
+	b.clearSubject()
 	b.library.SubjectReference = &v
 	return b
 }
@@ -1012,4 +1032,18 @@ func (b *LibraryBuilder) AddDataRequirement(v DataRequirement) *LibraryBuilder {
 func (b *LibraryBuilder) AddContent(v Attachment) *LibraryBuilder {
 	b.library.Content = append(b.library.Content, v)
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *LibraryBuilder) clearVersionAlgorithm() {
+	b.library.VersionAlgorithmString = nil
+	b.library.VersionAlgorithmCoding = nil
+}
+
+// clearSubject unsets every variant of Subject[x], including the
+// _field companions of the primitive ones.
+func (b *LibraryBuilder) clearSubject() {
+	b.library.SubjectCodeableConcept = nil
+	b.library.SubjectReference = nil
 }

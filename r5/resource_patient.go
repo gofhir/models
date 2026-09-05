@@ -980,8 +980,13 @@ func (b *PatientBuilder) SetBirthDate(v string) *PatientBuilder {
 	return b
 }
 
-// SetDeceasedBoolean sets the DeceasedBoolean field.
+// SetDeceasedBoolean sets Deceased[x] to its DeceasedBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *PatientBuilder) SetDeceasedBoolean(v bool) *PatientBuilder {
+	b.clearDeceased()
 	b.patient.DeceasedBoolean = &v
 	return b
 }
@@ -992,8 +997,13 @@ func (b *PatientBuilder) SetDeceasedBooleanExt(v Element) *PatientBuilder {
 	return b
 }
 
-// SetDeceasedDateTime sets the DeceasedDateTime field.
+// SetDeceasedDateTime sets Deceased[x] to its DeceasedDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *PatientBuilder) SetDeceasedDateTime(v string) *PatientBuilder {
+	b.clearDeceased()
 	b.patient.DeceasedDateTime = &v
 	return b
 }
@@ -1016,8 +1026,13 @@ func (b *PatientBuilder) SetMaritalStatus(v CodeableConcept) *PatientBuilder {
 	return b
 }
 
-// SetMultipleBirthBoolean sets the MultipleBirthBoolean field.
+// SetMultipleBirthBoolean sets MultipleBirth[x] to its MultipleBirthBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *PatientBuilder) SetMultipleBirthBoolean(v bool) *PatientBuilder {
+	b.clearMultipleBirth()
 	b.patient.MultipleBirthBoolean = &v
 	return b
 }
@@ -1028,8 +1043,13 @@ func (b *PatientBuilder) SetMultipleBirthBooleanExt(v Element) *PatientBuilder {
 	return b
 }
 
-// SetMultipleBirthInteger sets the MultipleBirthInteger field.
+// SetMultipleBirthInteger sets MultipleBirth[x] to its MultipleBirthInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *PatientBuilder) SetMultipleBirthInteger(v int) *PatientBuilder {
+	b.clearMultipleBirth()
 	b.patient.MultipleBirthInteger = &v
 	return b
 }
@@ -1074,4 +1094,20 @@ func (b *PatientBuilder) SetManagingOrganization(v Reference) *PatientBuilder {
 func (b *PatientBuilder) AddLink(v PatientLink) *PatientBuilder {
 	b.patient.Link = append(b.patient.Link, v)
 	return b
+}
+
+// clearDeceased unsets every variant of Deceased[x], including the
+// _field companions of the primitive ones.
+func (b *PatientBuilder) clearDeceased() {
+	b.patient.DeceasedBoolean = nil
+	b.patient.DeceasedDateTime = nil
+	b.patient.DeceasedDateTimeExt = nil
+}
+
+// clearMultipleBirth unsets every variant of MultipleBirth[x], including the
+// _field companions of the primitive ones.
+func (b *PatientBuilder) clearMultipleBirth() {
+	b.patient.MultipleBirthBoolean = nil
+	b.patient.MultipleBirthInteger = nil
+	b.patient.MultipleBirthIntegerExt = nil
 }

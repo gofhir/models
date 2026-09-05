@@ -554,20 +554,35 @@ func (b *DeviceUseStatementBuilder) AddDerivedFrom(v Reference) *DeviceUseStatem
 	return b
 }
 
-// SetTimingTiming sets the TimingTiming field.
+// SetTimingTiming sets Timing[x] to its TimingTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *DeviceUseStatementBuilder) SetTimingTiming(v Timing) *DeviceUseStatementBuilder {
+	b.clearTiming()
 	b.deviceUseStatement.TimingTiming = &v
 	return b
 }
 
-// SetTimingPeriod sets the TimingPeriod field.
+// SetTimingPeriod sets Timing[x] to its TimingPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *DeviceUseStatementBuilder) SetTimingPeriod(v Period) *DeviceUseStatementBuilder {
+	b.clearTiming()
 	b.deviceUseStatement.TimingPeriod = &v
 	return b
 }
 
-// SetTimingDateTime sets the TimingDateTime field.
+// SetTimingDateTime sets Timing[x] to its TimingDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *DeviceUseStatementBuilder) SetTimingDateTime(v string) *DeviceUseStatementBuilder {
+	b.clearTiming()
 	b.deviceUseStatement.TimingDateTime = &v
 	return b
 }
@@ -618,4 +633,13 @@ func (b *DeviceUseStatementBuilder) SetBodySite(v CodeableConcept) *DeviceUseSta
 func (b *DeviceUseStatementBuilder) AddNote(v Annotation) *DeviceUseStatementBuilder {
 	b.deviceUseStatement.Note = append(b.deviceUseStatement.Note, v)
 	return b
+}
+
+// clearTiming unsets every variant of Timing[x], including the
+// _field companions of the primitive ones.
+func (b *DeviceUseStatementBuilder) clearTiming() {
+	b.deviceUseStatement.TimingTiming = nil
+	b.deviceUseStatement.TimingPeriod = nil
+	b.deviceUseStatement.TimingDateTime = nil
+	b.deviceUseStatement.TimingDateTimeExt = nil
 }

@@ -1393,8 +1393,13 @@ func (b *ConceptMapBuilder) SetCopyright(v string) *ConceptMapBuilder {
 	return b
 }
 
-// SetSourceUri sets the SourceUri field.
+// SetSourceUri sets Source[x] to its SourceUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConceptMapBuilder) SetSourceUri(v string) *ConceptMapBuilder {
+	b.clearSource()
 	b.conceptMap.SourceUri = &v
 	return b
 }
@@ -1405,8 +1410,13 @@ func (b *ConceptMapBuilder) SetSourceUriExt(v Element) *ConceptMapBuilder {
 	return b
 }
 
-// SetSourceCanonical sets the SourceCanonical field.
+// SetSourceCanonical sets Source[x] to its SourceCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConceptMapBuilder) SetSourceCanonical(v string) *ConceptMapBuilder {
+	b.clearSource()
 	b.conceptMap.SourceCanonical = &v
 	return b
 }
@@ -1417,8 +1427,13 @@ func (b *ConceptMapBuilder) SetSourceCanonicalExt(v Element) *ConceptMapBuilder 
 	return b
 }
 
-// SetTargetUri sets the TargetUri field.
+// SetTargetUri sets Target[x] to its TargetUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConceptMapBuilder) SetTargetUri(v string) *ConceptMapBuilder {
+	b.clearTarget()
 	b.conceptMap.TargetUri = &v
 	return b
 }
@@ -1429,8 +1444,13 @@ func (b *ConceptMapBuilder) SetTargetUriExt(v Element) *ConceptMapBuilder {
 	return b
 }
 
-// SetTargetCanonical sets the TargetCanonical field.
+// SetTargetCanonical sets Target[x] to its TargetCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConceptMapBuilder) SetTargetCanonical(v string) *ConceptMapBuilder {
+	b.clearTarget()
 	b.conceptMap.TargetCanonical = &v
 	return b
 }
@@ -1445,4 +1465,20 @@ func (b *ConceptMapBuilder) SetTargetCanonicalExt(v Element) *ConceptMapBuilder 
 func (b *ConceptMapBuilder) AddGroup(v ConceptMapGroup) *ConceptMapBuilder {
 	b.conceptMap.Group = append(b.conceptMap.Group, v)
 	return b
+}
+
+// clearSource unsets every variant of Source[x], including the
+// _field companions of the primitive ones.
+func (b *ConceptMapBuilder) clearSource() {
+	b.conceptMap.SourceUri = nil
+	b.conceptMap.SourceCanonical = nil
+	b.conceptMap.SourceCanonicalExt = nil
+}
+
+// clearTarget unsets every variant of Target[x], including the
+// _field companions of the primitive ones.
+func (b *ConceptMapBuilder) clearTarget() {
+	b.conceptMap.TargetUri = nil
+	b.conceptMap.TargetCanonical = nil
+	b.conceptMap.TargetCanonicalExt = nil
 }

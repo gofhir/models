@@ -929,14 +929,24 @@ func (b *FamilyMemberHistoryBuilder) SetSex(v CodeableConcept) *FamilyMemberHist
 	return b
 }
 
-// SetBornPeriod sets the BornPeriod field.
+// SetBornPeriod sets Born[x] to its BornPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *FamilyMemberHistoryBuilder) SetBornPeriod(v Period) *FamilyMemberHistoryBuilder {
+	b.clearBorn()
 	b.familyMemberHistory.BornPeriod = &v
 	return b
 }
 
-// SetBornDate sets the BornDate field.
+// SetBornDate sets Born[x] to its BornDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *FamilyMemberHistoryBuilder) SetBornDate(v string) *FamilyMemberHistoryBuilder {
+	b.clearBorn()
 	b.familyMemberHistory.BornDate = &v
 	return b
 }
@@ -947,8 +957,13 @@ func (b *FamilyMemberHistoryBuilder) SetBornDateExt(v Element) *FamilyMemberHist
 	return b
 }
 
-// SetBornString sets the BornString field.
+// SetBornString sets Born[x] to its BornString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *FamilyMemberHistoryBuilder) SetBornString(v string) *FamilyMemberHistoryBuilder {
+	b.clearBorn()
 	b.familyMemberHistory.BornString = &v
 	return b
 }
@@ -959,20 +974,35 @@ func (b *FamilyMemberHistoryBuilder) SetBornStringExt(v Element) *FamilyMemberHi
 	return b
 }
 
-// SetAgeAge sets the AgeAge field.
+// SetAgeAge sets Age[x] to its AgeAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *FamilyMemberHistoryBuilder) SetAgeAge(v Age) *FamilyMemberHistoryBuilder {
+	b.clearAge()
 	b.familyMemberHistory.AgeAge = &v
 	return b
 }
 
-// SetAgeRange sets the AgeRange field.
+// SetAgeRange sets Age[x] to its AgeRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *FamilyMemberHistoryBuilder) SetAgeRange(v Range) *FamilyMemberHistoryBuilder {
+	b.clearAge()
 	b.familyMemberHistory.AgeRange = &v
 	return b
 }
 
-// SetAgeString sets the AgeString field.
+// SetAgeString sets Age[x] to its AgeString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *FamilyMemberHistoryBuilder) SetAgeString(v string) *FamilyMemberHistoryBuilder {
+	b.clearAge()
 	b.familyMemberHistory.AgeString = &v
 	return b
 }
@@ -989,8 +1019,13 @@ func (b *FamilyMemberHistoryBuilder) SetEstimatedAge(v bool) *FamilyMemberHistor
 	return b
 }
 
-// SetDeceasedBoolean sets the DeceasedBoolean field.
+// SetDeceasedBoolean sets Deceased[x] to its DeceasedBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *FamilyMemberHistoryBuilder) SetDeceasedBoolean(v bool) *FamilyMemberHistoryBuilder {
+	b.clearDeceased()
 	b.familyMemberHistory.DeceasedBoolean = &v
 	return b
 }
@@ -1001,20 +1036,35 @@ func (b *FamilyMemberHistoryBuilder) SetDeceasedBooleanExt(v Element) *FamilyMem
 	return b
 }
 
-// SetDeceasedAge sets the DeceasedAge field.
+// SetDeceasedAge sets Deceased[x] to its DeceasedAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *FamilyMemberHistoryBuilder) SetDeceasedAge(v Age) *FamilyMemberHistoryBuilder {
+	b.clearDeceased()
 	b.familyMemberHistory.DeceasedAge = &v
 	return b
 }
 
-// SetDeceasedRange sets the DeceasedRange field.
+// SetDeceasedRange sets Deceased[x] to its DeceasedRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *FamilyMemberHistoryBuilder) SetDeceasedRange(v Range) *FamilyMemberHistoryBuilder {
+	b.clearDeceased()
 	b.familyMemberHistory.DeceasedRange = &v
 	return b
 }
 
-// SetDeceasedDate sets the DeceasedDate field.
+// SetDeceasedDate sets Deceased[x] to its DeceasedDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *FamilyMemberHistoryBuilder) SetDeceasedDate(v string) *FamilyMemberHistoryBuilder {
+	b.clearDeceased()
 	b.familyMemberHistory.DeceasedDate = &v
 	return b
 }
@@ -1025,8 +1075,13 @@ func (b *FamilyMemberHistoryBuilder) SetDeceasedDateExt(v Element) *FamilyMember
 	return b
 }
 
-// SetDeceasedString sets the DeceasedString field.
+// SetDeceasedString sets Deceased[x] to its DeceasedString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *FamilyMemberHistoryBuilder) SetDeceasedString(v string) *FamilyMemberHistoryBuilder {
+	b.clearDeceased()
 	b.familyMemberHistory.DeceasedString = &v
 	return b
 }
@@ -1059,4 +1114,35 @@ func (b *FamilyMemberHistoryBuilder) AddNote(v Annotation) *FamilyMemberHistoryB
 func (b *FamilyMemberHistoryBuilder) AddCondition(v FamilyMemberHistoryCondition) *FamilyMemberHistoryBuilder {
 	b.familyMemberHistory.Condition = append(b.familyMemberHistory.Condition, v)
 	return b
+}
+
+// clearBorn unsets every variant of Born[x], including the
+// _field companions of the primitive ones.
+func (b *FamilyMemberHistoryBuilder) clearBorn() {
+	b.familyMemberHistory.BornPeriod = nil
+	b.familyMemberHistory.BornDate = nil
+	b.familyMemberHistory.BornDateExt = nil
+	b.familyMemberHistory.BornString = nil
+	b.familyMemberHistory.BornStringExt = nil
+}
+
+// clearAge unsets every variant of Age[x], including the
+// _field companions of the primitive ones.
+func (b *FamilyMemberHistoryBuilder) clearAge() {
+	b.familyMemberHistory.AgeAge = nil
+	b.familyMemberHistory.AgeRange = nil
+	b.familyMemberHistory.AgeString = nil
+	b.familyMemberHistory.AgeStringExt = nil
+}
+
+// clearDeceased unsets every variant of Deceased[x], including the
+// _field companions of the primitive ones.
+func (b *FamilyMemberHistoryBuilder) clearDeceased() {
+	b.familyMemberHistory.DeceasedBoolean = nil
+	b.familyMemberHistory.DeceasedAge = nil
+	b.familyMemberHistory.DeceasedRange = nil
+	b.familyMemberHistory.DeceasedDate = nil
+	b.familyMemberHistory.DeceasedDateExt = nil
+	b.familyMemberHistory.DeceasedString = nil
+	b.familyMemberHistory.DeceasedStringExt = nil
 }

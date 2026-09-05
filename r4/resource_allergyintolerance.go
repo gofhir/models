@@ -823,8 +823,13 @@ func (b *AllergyIntoleranceBuilder) SetEncounter(v Reference) *AllergyIntoleranc
 	return b
 }
 
-// SetOnsetDateTime sets the OnsetDateTime field.
+// SetOnsetDateTime sets Onset[x] to its OnsetDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *AllergyIntoleranceBuilder) SetOnsetDateTime(v string) *AllergyIntoleranceBuilder {
+	b.clearOnset()
 	b.allergyIntolerance.OnsetDateTime = &v
 	return b
 }
@@ -835,26 +840,46 @@ func (b *AllergyIntoleranceBuilder) SetOnsetDateTimeExt(v Element) *AllergyIntol
 	return b
 }
 
-// SetOnsetAge sets the OnsetAge field.
+// SetOnsetAge sets Onset[x] to its OnsetAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *AllergyIntoleranceBuilder) SetOnsetAge(v Age) *AllergyIntoleranceBuilder {
+	b.clearOnset()
 	b.allergyIntolerance.OnsetAge = &v
 	return b
 }
 
-// SetOnsetPeriod sets the OnsetPeriod field.
+// SetOnsetPeriod sets Onset[x] to its OnsetPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *AllergyIntoleranceBuilder) SetOnsetPeriod(v Period) *AllergyIntoleranceBuilder {
+	b.clearOnset()
 	b.allergyIntolerance.OnsetPeriod = &v
 	return b
 }
 
-// SetOnsetRange sets the OnsetRange field.
+// SetOnsetRange sets Onset[x] to its OnsetRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *AllergyIntoleranceBuilder) SetOnsetRange(v Range) *AllergyIntoleranceBuilder {
+	b.clearOnset()
 	b.allergyIntolerance.OnsetRange = &v
 	return b
 }
 
-// SetOnsetString sets the OnsetString field.
+// SetOnsetString sets Onset[x] to its OnsetString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *AllergyIntoleranceBuilder) SetOnsetString(v string) *AllergyIntoleranceBuilder {
+	b.clearOnset()
 	b.allergyIntolerance.OnsetString = &v
 	return b
 }
@@ -899,4 +924,15 @@ func (b *AllergyIntoleranceBuilder) AddNote(v Annotation) *AllergyIntoleranceBui
 func (b *AllergyIntoleranceBuilder) AddReaction(v AllergyIntoleranceReaction) *AllergyIntoleranceBuilder {
 	b.allergyIntolerance.Reaction = append(b.allergyIntolerance.Reaction, v)
 	return b
+}
+
+// clearOnset unsets every variant of Onset[x], including the
+// _field companions of the primitive ones.
+func (b *AllergyIntoleranceBuilder) clearOnset() {
+	b.allergyIntolerance.OnsetDateTime = nil
+	b.allergyIntolerance.OnsetAge = nil
+	b.allergyIntolerance.OnsetPeriod = nil
+	b.allergyIntolerance.OnsetRange = nil
+	b.allergyIntolerance.OnsetString = nil
+	b.allergyIntolerance.OnsetStringExt = nil
 }

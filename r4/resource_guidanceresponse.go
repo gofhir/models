@@ -563,8 +563,13 @@ func (b *GuidanceResponseBuilder) AddIdentifier(v Identifier) *GuidanceResponseB
 	return b
 }
 
-// SetModuleUri sets the ModuleUri field.
+// SetModuleUri sets Module[x] to its ModuleUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *GuidanceResponseBuilder) SetModuleUri(v string) *GuidanceResponseBuilder {
+	b.clearModule()
 	b.guidanceResponse.ModuleUri = &v
 	return b
 }
@@ -575,8 +580,13 @@ func (b *GuidanceResponseBuilder) SetModuleUriExt(v Element) *GuidanceResponseBu
 	return b
 }
 
-// SetModuleCanonical sets the ModuleCanonical field.
+// SetModuleCanonical sets Module[x] to its ModuleCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *GuidanceResponseBuilder) SetModuleCanonical(v string) *GuidanceResponseBuilder {
+	b.clearModule()
 	b.guidanceResponse.ModuleCanonical = &v
 	return b
 }
@@ -587,8 +597,13 @@ func (b *GuidanceResponseBuilder) SetModuleCanonicalExt(v Element) *GuidanceResp
 	return b
 }
 
-// SetModuleCodeableConcept sets the ModuleCodeableConcept field.
+// SetModuleCodeableConcept sets Module[x] to its ModuleCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *GuidanceResponseBuilder) SetModuleCodeableConcept(v CodeableConcept) *GuidanceResponseBuilder {
+	b.clearModule()
 	b.guidanceResponse.ModuleCodeableConcept = &v
 	return b
 }
@@ -663,4 +678,13 @@ func (b *GuidanceResponseBuilder) SetResult(v Reference) *GuidanceResponseBuilde
 func (b *GuidanceResponseBuilder) AddDataRequirement(v DataRequirement) *GuidanceResponseBuilder {
 	b.guidanceResponse.DataRequirement = append(b.guidanceResponse.DataRequirement, v)
 	return b
+}
+
+// clearModule unsets every variant of Module[x], including the
+// _field companions of the primitive ones.
+func (b *GuidanceResponseBuilder) clearModule() {
+	b.guidanceResponse.ModuleUri = nil
+	b.guidanceResponse.ModuleCanonical = nil
+	b.guidanceResponse.ModuleCanonicalExt = nil
+	b.guidanceResponse.ModuleCodeableConcept = nil
 }

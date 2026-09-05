@@ -2782,8 +2782,13 @@ func (b *PlanDefinitionBuilder) SetVersion(v string) *PlanDefinitionBuilder {
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *PlanDefinitionBuilder) SetVersionAlgorithmString(v string) *PlanDefinitionBuilder {
+	b.clearVersionAlgorithm()
 	b.planDefinition.VersionAlgorithmString = &v
 	return b
 }
@@ -2794,8 +2799,13 @@ func (b *PlanDefinitionBuilder) SetVersionAlgorithmStringExt(v Element) *PlanDef
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *PlanDefinitionBuilder) SetVersionAlgorithmCoding(v Coding) *PlanDefinitionBuilder {
+	b.clearVersionAlgorithm()
 	b.planDefinition.VersionAlgorithmCoding = &v
 	return b
 }
@@ -2836,20 +2846,35 @@ func (b *PlanDefinitionBuilder) SetExperimental(v bool) *PlanDefinitionBuilder {
 	return b
 }
 
-// SetSubjectCodeableConcept sets the SubjectCodeableConcept field.
+// SetSubjectCodeableConcept sets Subject[x] to its SubjectCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *PlanDefinitionBuilder) SetSubjectCodeableConcept(v CodeableConcept) *PlanDefinitionBuilder {
+	b.clearSubject()
 	b.planDefinition.SubjectCodeableConcept = &v
 	return b
 }
 
-// SetSubjectReference sets the SubjectReference field.
+// SetSubjectReference sets Subject[x] to its SubjectReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *PlanDefinitionBuilder) SetSubjectReference(v Reference) *PlanDefinitionBuilder {
+	b.clearSubject()
 	b.planDefinition.SubjectReference = &v
 	return b
 }
 
-// SetSubjectCanonical sets the SubjectCanonical field.
+// SetSubjectCanonical sets Subject[x] to its SubjectCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *PlanDefinitionBuilder) SetSubjectCanonical(v string) *PlanDefinitionBuilder {
+	b.clearSubject()
 	b.planDefinition.SubjectCanonical = &v
 	return b
 }
@@ -3002,8 +3027,13 @@ func (b *PlanDefinitionBuilder) AddAction(v PlanDefinitionAction) *PlanDefinitio
 	return b
 }
 
-// SetAsNeededBoolean sets the AsNeededBoolean field.
+// SetAsNeededBoolean sets AsNeeded[x] to its AsNeededBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *PlanDefinitionBuilder) SetAsNeededBoolean(v bool) *PlanDefinitionBuilder {
+	b.clearAsNeeded()
 	b.planDefinition.AsNeededBoolean = &v
 	return b
 }
@@ -3014,8 +3044,36 @@ func (b *PlanDefinitionBuilder) SetAsNeededBooleanExt(v Element) *PlanDefinition
 	return b
 }
 
-// SetAsNeededCodeableConcept sets the AsNeededCodeableConcept field.
+// SetAsNeededCodeableConcept sets AsNeeded[x] to its AsNeededCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *PlanDefinitionBuilder) SetAsNeededCodeableConcept(v CodeableConcept) *PlanDefinitionBuilder {
+	b.clearAsNeeded()
 	b.planDefinition.AsNeededCodeableConcept = &v
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *PlanDefinitionBuilder) clearVersionAlgorithm() {
+	b.planDefinition.VersionAlgorithmString = nil
+	b.planDefinition.VersionAlgorithmCoding = nil
+}
+
+// clearSubject unsets every variant of Subject[x], including the
+// _field companions of the primitive ones.
+func (b *PlanDefinitionBuilder) clearSubject() {
+	b.planDefinition.SubjectCodeableConcept = nil
+	b.planDefinition.SubjectReference = nil
+	b.planDefinition.SubjectCanonical = nil
+	b.planDefinition.SubjectCanonicalExt = nil
+}
+
+// clearAsNeeded unsets every variant of AsNeeded[x], including the
+// _field companions of the primitive ones.
+func (b *PlanDefinitionBuilder) clearAsNeeded() {
+	b.planDefinition.AsNeededBoolean = nil
+	b.planDefinition.AsNeededCodeableConcept = nil
 }

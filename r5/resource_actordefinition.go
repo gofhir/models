@@ -663,8 +663,13 @@ func (b *ActorDefinitionBuilder) SetVersion(v string) *ActorDefinitionBuilder {
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ActorDefinitionBuilder) SetVersionAlgorithmString(v string) *ActorDefinitionBuilder {
+	b.clearVersionAlgorithm()
 	b.actorDefinition.VersionAlgorithmString = &v
 	return b
 }
@@ -675,8 +680,13 @@ func (b *ActorDefinitionBuilder) SetVersionAlgorithmStringExt(v Element) *ActorD
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ActorDefinitionBuilder) SetVersionAlgorithmCoding(v Coding) *ActorDefinitionBuilder {
+	b.clearVersionAlgorithm()
 	b.actorDefinition.VersionAlgorithmCoding = &v
 	return b
 }
@@ -795,4 +805,11 @@ func (b *ActorDefinitionBuilder) SetCapabilities(v string) *ActorDefinitionBuild
 func (b *ActorDefinitionBuilder) AddDerivedFrom(v string) *ActorDefinitionBuilder {
 	b.actorDefinition.DerivedFrom = append(b.actorDefinition.DerivedFrom, &v)
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *ActorDefinitionBuilder) clearVersionAlgorithm() {
+	b.actorDefinition.VersionAlgorithmString = nil
+	b.actorDefinition.VersionAlgorithmCoding = nil
 }

@@ -831,8 +831,13 @@ func (b *CommunicationRequestBuilder) AddPayload(v CommunicationRequestPayload) 
 	return b
 }
 
-// SetOccurrenceDateTime sets the OccurrenceDateTime field.
+// SetOccurrenceDateTime sets Occurrence[x] to its OccurrenceDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *CommunicationRequestBuilder) SetOccurrenceDateTime(v string) *CommunicationRequestBuilder {
+	b.clearOccurrence()
 	b.communicationRequest.OccurrenceDateTime = &v
 	return b
 }
@@ -843,8 +848,13 @@ func (b *CommunicationRequestBuilder) SetOccurrenceDateTimeExt(v Element) *Commu
 	return b
 }
 
-// SetOccurrencePeriod sets the OccurrencePeriod field.
+// SetOccurrencePeriod sets Occurrence[x] to its OccurrencePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *CommunicationRequestBuilder) SetOccurrencePeriod(v Period) *CommunicationRequestBuilder {
+	b.clearOccurrence()
 	b.communicationRequest.OccurrencePeriod = &v
 	return b
 }
@@ -889,4 +899,11 @@ func (b *CommunicationRequestBuilder) AddReasonReference(v Reference) *Communica
 func (b *CommunicationRequestBuilder) AddNote(v Annotation) *CommunicationRequestBuilder {
 	b.communicationRequest.Note = append(b.communicationRequest.Note, v)
 	return b
+}
+
+// clearOccurrence unsets every variant of Occurrence[x], including the
+// _field companions of the primitive ones.
+func (b *CommunicationRequestBuilder) clearOccurrence() {
+	b.communicationRequest.OccurrenceDateTime = nil
+	b.communicationRequest.OccurrencePeriod = nil
 }

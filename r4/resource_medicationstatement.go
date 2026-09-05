@@ -612,14 +612,24 @@ func (b *MedicationStatementBuilder) SetCategory(v CodeableConcept) *MedicationS
 	return b
 }
 
-// SetMedicationCodeableConcept sets the MedicationCodeableConcept field.
+// SetMedicationCodeableConcept sets Medication[x] to its MedicationCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MedicationStatementBuilder) SetMedicationCodeableConcept(v CodeableConcept) *MedicationStatementBuilder {
+	b.clearMedication()
 	b.medicationStatement.MedicationCodeableConcept = &v
 	return b
 }
 
-// SetMedicationReference sets the MedicationReference field.
+// SetMedicationReference sets Medication[x] to its MedicationReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MedicationStatementBuilder) SetMedicationReference(v Reference) *MedicationStatementBuilder {
+	b.clearMedication()
 	b.medicationStatement.MedicationReference = &v
 	return b
 }
@@ -636,8 +646,13 @@ func (b *MedicationStatementBuilder) SetContext(v Reference) *MedicationStatemen
 	return b
 }
 
-// SetEffectiveDateTime sets the EffectiveDateTime field.
+// SetEffectiveDateTime sets Effective[x] to its EffectiveDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MedicationStatementBuilder) SetEffectiveDateTime(v string) *MedicationStatementBuilder {
+	b.clearEffective()
 	b.medicationStatement.EffectiveDateTime = &v
 	return b
 }
@@ -648,8 +663,13 @@ func (b *MedicationStatementBuilder) SetEffectiveDateTimeExt(v Element) *Medicat
 	return b
 }
 
-// SetEffectivePeriod sets the EffectivePeriod field.
+// SetEffectivePeriod sets Effective[x] to its EffectivePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MedicationStatementBuilder) SetEffectivePeriod(v Period) *MedicationStatementBuilder {
+	b.clearEffective()
 	b.medicationStatement.EffectivePeriod = &v
 	return b
 }
@@ -694,4 +714,18 @@ func (b *MedicationStatementBuilder) AddNote(v Annotation) *MedicationStatementB
 func (b *MedicationStatementBuilder) AddDosage(v Dosage) *MedicationStatementBuilder {
 	b.medicationStatement.Dosage = append(b.medicationStatement.Dosage, v)
 	return b
+}
+
+// clearMedication unsets every variant of Medication[x], including the
+// _field companions of the primitive ones.
+func (b *MedicationStatementBuilder) clearMedication() {
+	b.medicationStatement.MedicationCodeableConcept = nil
+	b.medicationStatement.MedicationReference = nil
+}
+
+// clearEffective unsets every variant of Effective[x], including the
+// _field companions of the primitive ones.
+func (b *MedicationStatementBuilder) clearEffective() {
+	b.medicationStatement.EffectiveDateTime = nil
+	b.medicationStatement.EffectivePeriod = nil
 }

@@ -764,14 +764,24 @@ func (b *ProvenanceBuilder) AddTarget(v Reference) *ProvenanceBuilder {
 	return b
 }
 
-// SetOccurredPeriod sets the OccurredPeriod field.
+// SetOccurredPeriod sets Occurred[x] to its OccurredPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ProvenanceBuilder) SetOccurredPeriod(v Period) *ProvenanceBuilder {
+	b.clearOccurred()
 	b.provenance.OccurredPeriod = &v
 	return b
 }
 
-// SetOccurredDateTime sets the OccurredDateTime field.
+// SetOccurredDateTime sets Occurred[x] to its OccurredDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ProvenanceBuilder) SetOccurredDateTime(v string) *ProvenanceBuilder {
+	b.clearOccurred()
 	b.provenance.OccurredDateTime = &v
 	return b
 }
@@ -850,4 +860,12 @@ func (b *ProvenanceBuilder) AddEntity(v ProvenanceEntity) *ProvenanceBuilder {
 func (b *ProvenanceBuilder) AddSignature(v Signature) *ProvenanceBuilder {
 	b.provenance.Signature = append(b.provenance.Signature, v)
 	return b
+}
+
+// clearOccurred unsets every variant of Occurred[x], including the
+// _field companions of the primitive ones.
+func (b *ProvenanceBuilder) clearOccurred() {
+	b.provenance.OccurredPeriod = nil
+	b.provenance.OccurredDateTime = nil
+	b.provenance.OccurredDateTimeExt = nil
 }

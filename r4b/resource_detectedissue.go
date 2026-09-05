@@ -750,8 +750,13 @@ func (b *DetectedIssueBuilder) SetPatient(v Reference) *DetectedIssueBuilder {
 	return b
 }
 
-// SetIdentifiedDateTime sets the IdentifiedDateTime field.
+// SetIdentifiedDateTime sets Identified[x] to its IdentifiedDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *DetectedIssueBuilder) SetIdentifiedDateTime(v string) *DetectedIssueBuilder {
+	b.clearIdentified()
 	b.detectedIssue.IdentifiedDateTime = &v
 	return b
 }
@@ -762,8 +767,13 @@ func (b *DetectedIssueBuilder) SetIdentifiedDateTimeExt(v Element) *DetectedIssu
 	return b
 }
 
-// SetIdentifiedPeriod sets the IdentifiedPeriod field.
+// SetIdentifiedPeriod sets Identified[x] to its IdentifiedPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *DetectedIssueBuilder) SetIdentifiedPeriod(v Period) *DetectedIssueBuilder {
+	b.clearIdentified()
 	b.detectedIssue.IdentifiedPeriod = &v
 	return b
 }
@@ -802,4 +812,11 @@ func (b *DetectedIssueBuilder) SetReference(v string) *DetectedIssueBuilder {
 func (b *DetectedIssueBuilder) AddMitigation(v DetectedIssueMitigation) *DetectedIssueBuilder {
 	b.detectedIssue.Mitigation = append(b.detectedIssue.Mitigation, v)
 	return b
+}
+
+// clearIdentified unsets every variant of Identified[x], including the
+// _field companions of the primitive ones.
+func (b *DetectedIssueBuilder) clearIdentified() {
+	b.detectedIssue.IdentifiedDateTime = nil
+	b.detectedIssue.IdentifiedPeriod = nil
 }

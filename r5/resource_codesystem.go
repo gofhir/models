@@ -1605,8 +1605,13 @@ func (b *CodeSystemBuilder) SetVersion(v string) *CodeSystemBuilder {
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *CodeSystemBuilder) SetVersionAlgorithmString(v string) *CodeSystemBuilder {
+	b.clearVersionAlgorithm()
 	b.codeSystem.VersionAlgorithmString = &v
 	return b
 }
@@ -1617,8 +1622,13 @@ func (b *CodeSystemBuilder) SetVersionAlgorithmStringExt(v Element) *CodeSystemB
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *CodeSystemBuilder) SetVersionAlgorithmCoding(v Coding) *CodeSystemBuilder {
+	b.clearVersionAlgorithm()
 	b.codeSystem.VersionAlgorithmCoding = &v
 	return b
 }
@@ -1819,4 +1829,11 @@ func (b *CodeSystemBuilder) AddProperty(v CodeSystemProperty) *CodeSystemBuilder
 func (b *CodeSystemBuilder) AddConcept(v CodeSystemConcept) *CodeSystemBuilder {
 	b.codeSystem.Concept = append(b.codeSystem.Concept, v)
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *CodeSystemBuilder) clearVersionAlgorithm() {
+	b.codeSystem.VersionAlgorithmString = nil
+	b.codeSystem.VersionAlgorithmCoding = nil
 }

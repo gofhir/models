@@ -795,8 +795,13 @@ func (b *RiskAssessmentBuilder) SetEncounter(v Reference) *RiskAssessmentBuilder
 	return b
 }
 
-// SetOccurrenceDateTime sets the OccurrenceDateTime field.
+// SetOccurrenceDateTime sets Occurrence[x] to its OccurrenceDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *RiskAssessmentBuilder) SetOccurrenceDateTime(v string) *RiskAssessmentBuilder {
+	b.clearOccurrence()
 	b.riskAssessment.OccurrenceDateTime = &v
 	return b
 }
@@ -807,8 +812,13 @@ func (b *RiskAssessmentBuilder) SetOccurrenceDateTimeExt(v Element) *RiskAssessm
 	return b
 }
 
-// SetOccurrencePeriod sets the OccurrencePeriod field.
+// SetOccurrencePeriod sets Occurrence[x] to its OccurrencePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *RiskAssessmentBuilder) SetOccurrencePeriod(v Period) *RiskAssessmentBuilder {
+	b.clearOccurrence()
 	b.riskAssessment.OccurrencePeriod = &v
 	return b
 }
@@ -859,4 +869,11 @@ func (b *RiskAssessmentBuilder) SetMitigation(v string) *RiskAssessmentBuilder {
 func (b *RiskAssessmentBuilder) AddNote(v Annotation) *RiskAssessmentBuilder {
 	b.riskAssessment.Note = append(b.riskAssessment.Note, v)
 	return b
+}
+
+// clearOccurrence unsets every variant of Occurrence[x], including the
+// _field companions of the primitive ones.
+func (b *RiskAssessmentBuilder) clearOccurrence() {
+	b.riskAssessment.OccurrenceDateTime = nil
+	b.riskAssessment.OccurrencePeriod = nil
 }

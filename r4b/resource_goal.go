@@ -804,8 +804,13 @@ func (b *GoalBuilder) SetSubject(v Reference) *GoalBuilder {
 	return b
 }
 
-// SetStartDate sets the StartDate field.
+// SetStartDate sets Start[x] to its StartDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *GoalBuilder) SetStartDate(v string) *GoalBuilder {
+	b.clearStart()
 	b.goal.StartDate = &v
 	return b
 }
@@ -816,8 +821,13 @@ func (b *GoalBuilder) SetStartDateExt(v Element) *GoalBuilder {
 	return b
 }
 
-// SetStartCodeableConcept sets the StartCodeableConcept field.
+// SetStartCodeableConcept sets Start[x] to its StartCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *GoalBuilder) SetStartCodeableConcept(v CodeableConcept) *GoalBuilder {
+	b.clearStart()
 	b.goal.StartCodeableConcept = &v
 	return b
 }
@@ -868,4 +878,11 @@ func (b *GoalBuilder) AddOutcomeCode(v CodeableConcept) *GoalBuilder {
 func (b *GoalBuilder) AddOutcomeReference(v Reference) *GoalBuilder {
 	b.goal.OutcomeReference = append(b.goal.OutcomeReference, v)
 	return b
+}
+
+// clearStart unsets every variant of Start[x], including the
+// _field companions of the primitive ones.
+func (b *GoalBuilder) clearStart() {
+	b.goal.StartDate = nil
+	b.goal.StartCodeableConcept = nil
 }

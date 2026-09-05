@@ -721,20 +721,35 @@ func (b *DeviceUsageBuilder) SetContext(v Reference) *DeviceUsageBuilder {
 	return b
 }
 
-// SetTimingTiming sets the TimingTiming field.
+// SetTimingTiming sets Timing[x] to its TimingTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *DeviceUsageBuilder) SetTimingTiming(v Timing) *DeviceUsageBuilder {
+	b.clearTiming()
 	b.deviceUsage.TimingTiming = &v
 	return b
 }
 
-// SetTimingPeriod sets the TimingPeriod field.
+// SetTimingPeriod sets Timing[x] to its TimingPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *DeviceUsageBuilder) SetTimingPeriod(v Period) *DeviceUsageBuilder {
+	b.clearTiming()
 	b.deviceUsage.TimingPeriod = &v
 	return b
 }
 
-// SetTimingDateTime sets the TimingDateTime field.
+// SetTimingDateTime sets Timing[x] to its TimingDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *DeviceUsageBuilder) SetTimingDateTime(v string) *DeviceUsageBuilder {
+	b.clearTiming()
 	b.deviceUsage.TimingDateTime = &v
 	return b
 }
@@ -797,4 +812,13 @@ func (b *DeviceUsageBuilder) SetBodySite(v CodeableReference) *DeviceUsageBuilde
 func (b *DeviceUsageBuilder) AddNote(v Annotation) *DeviceUsageBuilder {
 	b.deviceUsage.Note = append(b.deviceUsage.Note, v)
 	return b
+}
+
+// clearTiming unsets every variant of Timing[x], including the
+// _field companions of the primitive ones.
+func (b *DeviceUsageBuilder) clearTiming() {
+	b.deviceUsage.TimingTiming = nil
+	b.deviceUsage.TimingPeriod = nil
+	b.deviceUsage.TimingDateTime = nil
+	b.deviceUsage.TimingDateTimeExt = nil
 }

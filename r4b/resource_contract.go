@@ -3610,14 +3610,24 @@ func (b *ContractBuilder) SetScope(v CodeableConcept) *ContractBuilder {
 	return b
 }
 
-// SetTopicCodeableConcept sets the TopicCodeableConcept field.
+// SetTopicCodeableConcept sets Topic[x] to its TopicCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ContractBuilder) SetTopicCodeableConcept(v CodeableConcept) *ContractBuilder {
+	b.clearTopic()
 	b.contract.TopicCodeableConcept = &v
 	return b
 }
 
-// SetTopicReference sets the TopicReference field.
+// SetTopicReference sets Topic[x] to its TopicReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ContractBuilder) SetTopicReference(v Reference) *ContractBuilder {
+	b.clearTopic()
 	b.contract.TopicReference = &v
 	return b
 }
@@ -3682,14 +3692,38 @@ func (b *ContractBuilder) AddRule(v ContractRule) *ContractBuilder {
 	return b
 }
 
-// SetLegallyBindingAttachment sets the LegallyBindingAttachment field.
+// SetLegallyBindingAttachment sets LegallyBinding[x] to its LegallyBindingAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ContractBuilder) SetLegallyBindingAttachment(v Attachment) *ContractBuilder {
+	b.clearLegallyBinding()
 	b.contract.LegallyBindingAttachment = &v
 	return b
 }
 
-// SetLegallyBindingReference sets the LegallyBindingReference field.
+// SetLegallyBindingReference sets LegallyBinding[x] to its LegallyBindingReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ContractBuilder) SetLegallyBindingReference(v Reference) *ContractBuilder {
+	b.clearLegallyBinding()
 	b.contract.LegallyBindingReference = &v
 	return b
+}
+
+// clearTopic unsets every variant of Topic[x], including the
+// _field companions of the primitive ones.
+func (b *ContractBuilder) clearTopic() {
+	b.contract.TopicCodeableConcept = nil
+	b.contract.TopicReference = nil
+}
+
+// clearLegallyBinding unsets every variant of LegallyBinding[x], including the
+// _field companions of the primitive ones.
+func (b *ContractBuilder) clearLegallyBinding() {
+	b.contract.LegallyBindingAttachment = nil
+	b.contract.LegallyBindingReference = nil
 }

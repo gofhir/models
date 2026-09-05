@@ -722,8 +722,13 @@ func (b *MedicationStatementBuilder) SetEncounter(v Reference) *MedicationStatem
 	return b
 }
 
-// SetEffectiveDateTime sets the EffectiveDateTime field.
+// SetEffectiveDateTime sets Effective[x] to its EffectiveDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MedicationStatementBuilder) SetEffectiveDateTime(v string) *MedicationStatementBuilder {
+	b.clearEffective()
 	b.medicationStatement.EffectiveDateTime = &v
 	return b
 }
@@ -734,14 +739,24 @@ func (b *MedicationStatementBuilder) SetEffectiveDateTimeExt(v Element) *Medicat
 	return b
 }
 
-// SetEffectivePeriod sets the EffectivePeriod field.
+// SetEffectivePeriod sets Effective[x] to its EffectivePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MedicationStatementBuilder) SetEffectivePeriod(v Period) *MedicationStatementBuilder {
+	b.clearEffective()
 	b.medicationStatement.EffectivePeriod = &v
 	return b
 }
 
-// SetEffectiveTiming sets the EffectiveTiming field.
+// SetEffectiveTiming sets Effective[x] to its EffectiveTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MedicationStatementBuilder) SetEffectiveTiming(v Timing) *MedicationStatementBuilder {
+	b.clearEffective()
 	b.medicationStatement.EffectiveTiming = &v
 	return b
 }
@@ -798,4 +813,12 @@ func (b *MedicationStatementBuilder) AddDosage(v Dosage) *MedicationStatementBui
 func (b *MedicationStatementBuilder) SetAdherence(v MedicationStatementAdherence) *MedicationStatementBuilder {
 	b.medicationStatement.Adherence = &v
 	return b
+}
+
+// clearEffective unsets every variant of Effective[x], including the
+// _field companions of the primitive ones.
+func (b *MedicationStatementBuilder) clearEffective() {
+	b.medicationStatement.EffectiveDateTime = nil
+	b.medicationStatement.EffectivePeriod = nil
+	b.medicationStatement.EffectiveTiming = nil
 }

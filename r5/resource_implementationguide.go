@@ -2144,8 +2144,13 @@ func (b *ImplementationGuideBuilder) SetVersion(v string) *ImplementationGuideBu
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ImplementationGuideBuilder) SetVersionAlgorithmString(v string) *ImplementationGuideBuilder {
+	b.clearVersionAlgorithm()
 	b.implementationGuide.VersionAlgorithmString = &v
 	return b
 }
@@ -2156,8 +2161,13 @@ func (b *ImplementationGuideBuilder) SetVersionAlgorithmStringExt(v Element) *Im
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ImplementationGuideBuilder) SetVersionAlgorithmCoding(v Coding) *ImplementationGuideBuilder {
+	b.clearVersionAlgorithm()
 	b.implementationGuide.VersionAlgorithmCoding = &v
 	return b
 }
@@ -2284,4 +2294,11 @@ func (b *ImplementationGuideBuilder) SetDefinition(v ImplementationGuideDefiniti
 func (b *ImplementationGuideBuilder) SetManifest(v ImplementationGuideManifest) *ImplementationGuideBuilder {
 	b.implementationGuide.Manifest = &v
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *ImplementationGuideBuilder) clearVersionAlgorithm() {
+	b.implementationGuide.VersionAlgorithmString = nil
+	b.implementationGuide.VersionAlgorithmCoding = nil
 }

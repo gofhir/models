@@ -1491,8 +1491,13 @@ func (b *ObservationBuilder) AddIdentifier(v Identifier) *ObservationBuilder {
 	return b
 }
 
-// SetInstantiatesCanonical sets the InstantiatesCanonical field.
+// SetInstantiatesCanonical sets Instantiates[x] to its InstantiatesCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationBuilder) SetInstantiatesCanonical(v string) *ObservationBuilder {
+	b.clearInstantiates()
 	b.observation.InstantiatesCanonical = &v
 	return b
 }
@@ -1503,8 +1508,13 @@ func (b *ObservationBuilder) SetInstantiatesCanonicalExt(v Element) *Observation
 	return b
 }
 
-// SetInstantiatesReference sets the InstantiatesReference field.
+// SetInstantiatesReference sets Instantiates[x] to its InstantiatesReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationBuilder) SetInstantiatesReference(v Reference) *ObservationBuilder {
+	b.clearInstantiates()
 	b.observation.InstantiatesReference = &v
 	return b
 }
@@ -1563,8 +1573,13 @@ func (b *ObservationBuilder) SetEncounter(v Reference) *ObservationBuilder {
 	return b
 }
 
-// SetEffectiveDateTime sets the EffectiveDateTime field.
+// SetEffectiveDateTime sets Effective[x] to its EffectiveDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationBuilder) SetEffectiveDateTime(v string) *ObservationBuilder {
+	b.clearEffective()
 	b.observation.EffectiveDateTime = &v
 	return b
 }
@@ -1575,20 +1590,35 @@ func (b *ObservationBuilder) SetEffectiveDateTimeExt(v Element) *ObservationBuil
 	return b
 }
 
-// SetEffectivePeriod sets the EffectivePeriod field.
+// SetEffectivePeriod sets Effective[x] to its EffectivePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationBuilder) SetEffectivePeriod(v Period) *ObservationBuilder {
+	b.clearEffective()
 	b.observation.EffectivePeriod = &v
 	return b
 }
 
-// SetEffectiveTiming sets the EffectiveTiming field.
+// SetEffectiveTiming sets Effective[x] to its EffectiveTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationBuilder) SetEffectiveTiming(v Timing) *ObservationBuilder {
+	b.clearEffective()
 	b.observation.EffectiveTiming = &v
 	return b
 }
 
-// SetEffectiveInstant sets the EffectiveInstant field.
+// SetEffectiveInstant sets Effective[x] to its EffectiveInstant variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationBuilder) SetEffectiveInstant(v string) *ObservationBuilder {
+	b.clearEffective()
 	b.observation.EffectiveInstant = &v
 	return b
 }
@@ -1611,20 +1641,35 @@ func (b *ObservationBuilder) AddPerformer(v Reference) *ObservationBuilder {
 	return b
 }
 
-// SetValueQuantity sets the ValueQuantity field.
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationBuilder) SetValueQuantity(v Quantity) *ObservationBuilder {
+	b.clearValue()
 	b.observation.ValueQuantity = &v
 	return b
 }
 
-// SetValueCodeableConcept sets the ValueCodeableConcept field.
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationBuilder) SetValueCodeableConcept(v CodeableConcept) *ObservationBuilder {
+	b.clearValue()
 	b.observation.ValueCodeableConcept = &v
 	return b
 }
 
-// SetValueString sets the ValueString field.
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationBuilder) SetValueString(v string) *ObservationBuilder {
+	b.clearValue()
 	b.observation.ValueString = &v
 	return b
 }
@@ -1635,8 +1680,13 @@ func (b *ObservationBuilder) SetValueStringExt(v Element) *ObservationBuilder {
 	return b
 }
 
-// SetValueBoolean sets the ValueBoolean field.
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationBuilder) SetValueBoolean(v bool) *ObservationBuilder {
+	b.clearValue()
 	b.observation.ValueBoolean = &v
 	return b
 }
@@ -1647,8 +1697,13 @@ func (b *ObservationBuilder) SetValueBooleanExt(v Element) *ObservationBuilder {
 	return b
 }
 
-// SetValueInteger sets the ValueInteger field.
+// SetValueInteger sets Value[x] to its ValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationBuilder) SetValueInteger(v int) *ObservationBuilder {
+	b.clearValue()
 	b.observation.ValueInteger = &v
 	return b
 }
@@ -1659,26 +1714,46 @@ func (b *ObservationBuilder) SetValueIntegerExt(v Element) *ObservationBuilder {
 	return b
 }
 
-// SetValueRange sets the ValueRange field.
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationBuilder) SetValueRange(v Range) *ObservationBuilder {
+	b.clearValue()
 	b.observation.ValueRange = &v
 	return b
 }
 
-// SetValueRatio sets the ValueRatio field.
+// SetValueRatio sets Value[x] to its ValueRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationBuilder) SetValueRatio(v Ratio) *ObservationBuilder {
+	b.clearValue()
 	b.observation.ValueRatio = &v
 	return b
 }
 
-// SetValueSampledData sets the ValueSampledData field.
+// SetValueSampledData sets Value[x] to its ValueSampledData variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationBuilder) SetValueSampledData(v SampledData) *ObservationBuilder {
+	b.clearValue()
 	b.observation.ValueSampledData = &v
 	return b
 }
 
-// SetValueTime sets the ValueTime field.
+// SetValueTime sets Value[x] to its ValueTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationBuilder) SetValueTime(v string) *ObservationBuilder {
+	b.clearValue()
 	b.observation.ValueTime = &v
 	return b
 }
@@ -1689,8 +1764,13 @@ func (b *ObservationBuilder) SetValueTimeExt(v Element) *ObservationBuilder {
 	return b
 }
 
-// SetValueDateTime sets the ValueDateTime field.
+// SetValueDateTime sets Value[x] to its ValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationBuilder) SetValueDateTime(v string) *ObservationBuilder {
+	b.clearValue()
 	b.observation.ValueDateTime = &v
 	return b
 }
@@ -1701,20 +1781,35 @@ func (b *ObservationBuilder) SetValueDateTimeExt(v Element) *ObservationBuilder 
 	return b
 }
 
-// SetValuePeriod sets the ValuePeriod field.
+// SetValuePeriod sets Value[x] to its ValuePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationBuilder) SetValuePeriod(v Period) *ObservationBuilder {
+	b.clearValue()
 	b.observation.ValuePeriod = &v
 	return b
 }
 
-// SetValueAttachment sets the ValueAttachment field.
+// SetValueAttachment sets Value[x] to its ValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationBuilder) SetValueAttachment(v Attachment) *ObservationBuilder {
+	b.clearValue()
 	b.observation.ValueAttachment = &v
 	return b
 }
 
-// SetValueReference sets the ValueReference field.
+// SetValueReference sets Value[x] to its ValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationBuilder) SetValueReference(v Reference) *ObservationBuilder {
+	b.clearValue()
 	b.observation.ValueReference = &v
 	return b
 }
@@ -1789,4 +1884,44 @@ func (b *ObservationBuilder) AddDerivedFrom(v Reference) *ObservationBuilder {
 func (b *ObservationBuilder) AddComponent(v ObservationComponent) *ObservationBuilder {
 	b.observation.Component = append(b.observation.Component, v)
 	return b
+}
+
+// clearInstantiates unsets every variant of Instantiates[x], including the
+// _field companions of the primitive ones.
+func (b *ObservationBuilder) clearInstantiates() {
+	b.observation.InstantiatesCanonical = nil
+	b.observation.InstantiatesReference = nil
+}
+
+// clearEffective unsets every variant of Effective[x], including the
+// _field companions of the primitive ones.
+func (b *ObservationBuilder) clearEffective() {
+	b.observation.EffectiveDateTime = nil
+	b.observation.EffectivePeriod = nil
+	b.observation.EffectiveTiming = nil
+	b.observation.EffectiveInstant = nil
+	b.observation.EffectiveInstantExt = nil
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *ObservationBuilder) clearValue() {
+	b.observation.ValueQuantity = nil
+	b.observation.ValueCodeableConcept = nil
+	b.observation.ValueString = nil
+	b.observation.ValueStringExt = nil
+	b.observation.ValueBoolean = nil
+	b.observation.ValueBooleanExt = nil
+	b.observation.ValueInteger = nil
+	b.observation.ValueIntegerExt = nil
+	b.observation.ValueRange = nil
+	b.observation.ValueRatio = nil
+	b.observation.ValueSampledData = nil
+	b.observation.ValueTime = nil
+	b.observation.ValueTimeExt = nil
+	b.observation.ValueDateTime = nil
+	b.observation.ValueDateTimeExt = nil
+	b.observation.ValuePeriod = nil
+	b.observation.ValueAttachment = nil
+	b.observation.ValueReference = nil
 }

@@ -1668,8 +1668,13 @@ func (b *QuestionnaireBuilder) SetVersion(v string) *QuestionnaireBuilder {
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *QuestionnaireBuilder) SetVersionAlgorithmString(v string) *QuestionnaireBuilder {
+	b.clearVersionAlgorithm()
 	b.questionnaire.VersionAlgorithmString = &v
 	return b
 }
@@ -1680,8 +1685,13 @@ func (b *QuestionnaireBuilder) SetVersionAlgorithmStringExt(v Element) *Question
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *QuestionnaireBuilder) SetVersionAlgorithmCoding(v Coding) *QuestionnaireBuilder {
+	b.clearVersionAlgorithm()
 	b.questionnaire.VersionAlgorithmCoding = &v
 	return b
 }
@@ -1812,4 +1822,11 @@ func (b *QuestionnaireBuilder) AddCode(v Coding) *QuestionnaireBuilder {
 func (b *QuestionnaireBuilder) AddItem(v QuestionnaireItem) *QuestionnaireBuilder {
 	b.questionnaire.Item = append(b.questionnaire.Item, v)
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *QuestionnaireBuilder) clearVersionAlgorithm() {
+	b.questionnaire.VersionAlgorithmString = nil
+	b.questionnaire.VersionAlgorithmCoding = nil
 }

@@ -687,8 +687,13 @@ func (b *MediaBuilder) SetEncounter(v Reference) *MediaBuilder {
 	return b
 }
 
-// SetCreatedDateTime sets the CreatedDateTime field.
+// SetCreatedDateTime sets Created[x] to its CreatedDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MediaBuilder) SetCreatedDateTime(v string) *MediaBuilder {
+	b.clearCreated()
 	b.media.CreatedDateTime = &v
 	return b
 }
@@ -699,8 +704,13 @@ func (b *MediaBuilder) SetCreatedDateTimeExt(v Element) *MediaBuilder {
 	return b
 }
 
-// SetCreatedPeriod sets the CreatedPeriod field.
+// SetCreatedPeriod sets Created[x] to its CreatedPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MediaBuilder) SetCreatedPeriod(v Period) *MediaBuilder {
+	b.clearCreated()
 	b.media.CreatedPeriod = &v
 	return b
 }
@@ -775,4 +785,11 @@ func (b *MediaBuilder) SetContent(v Attachment) *MediaBuilder {
 func (b *MediaBuilder) AddNote(v Annotation) *MediaBuilder {
 	b.media.Note = append(b.media.Note, v)
 	return b
+}
+
+// clearCreated unsets every variant of Created[x], including the
+// _field companions of the primitive ones.
+func (b *MediaBuilder) clearCreated() {
+	b.media.CreatedDateTime = nil
+	b.media.CreatedPeriod = nil
 }
