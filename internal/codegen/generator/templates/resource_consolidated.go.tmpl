@@ -739,6 +739,27 @@ func (b *{{$r.Name}}Builder) Add{{.Name}}(v {{derefType .ElementType}}) *{{$r.Na
 	b.{{$r.LowerName}}.{{.Name}} = append(b.{{$r.LowerName}}.{{.Name}}, &v)
 	return b
 }
+{{- else if and (eq .Name "Contained") (eq .ElementType "Resource") -}}
+// Add{{.Name}} adds a resource to {{.Name}}.
+//
+// A nil resource is ignored rather than appended. Contained holds an interface, so
+// a nil entry marshals as JSON null — which FHIR does not allow there, and which
+// this library then drops on the way back in, so a document written with one
+// re-reads shorter than it was written.
+//
+// Filtering at serialization time would fix that everywhere, but giving
+// ContainedList a MarshalJSON costs 2.9x on every marshal that has no nil in it
+// (419 -> 1209 ns/op, 1 -> 3 allocs), because encoding/json re-compacts whatever a
+// MarshalJSON returns. That is the cost task 6.2 removed by deleting 437 of them.
+// Guarding the builder is free and covers the path the documentation recommends;
+// a struct literal can still put a nil there.
+func (b *{{$r.Name}}Builder) Add{{.Name}}(v {{.ElementType}}) *{{$r.Name}}Builder {
+	if v == nil {
+		return b
+	}
+	b.{{$r.LowerName}}.{{.Name}} = append(b.{{$r.LowerName}}.{{.Name}}, v)
+	return b
+}
 {{- else -}}
 // Add{{.Name}} adds a {{.Name}} element.
 func (b *{{$r.Name}}Builder) Add{{.Name}}(v {{.ElementType}}) *{{$r.Name}}Builder {
