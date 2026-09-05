@@ -2351,6 +2351,6598 @@ type TimingRepeat struct {
 }
 
 // =============================================================================
+// Fluent Builders
+// =============================================================================
+
+// =============================================================================
+// Element - Fluent Builder
+// =============================================================================
+
+// ElementBuilder provides a fluent API for constructing Element values.
+type ElementBuilder struct {
+	element *Element
+}
+
+// NewElementBuilder creates a new ElementBuilder.
+func NewElementBuilder() *ElementBuilder {
+	return &ElementBuilder{
+		element: &Element{},
+	}
+}
+
+// Build returns the constructed Element.
+func (b *ElementBuilder) Build() *Element {
+	return b.element
+}
+
+// SetId sets the Id field.
+func (b *ElementBuilder) SetId(v string) *ElementBuilder {
+	b.element.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ElementBuilder) AddExtension(v Extension) *ElementBuilder {
+	b.element.Extension = append(b.element.Extension, v)
+	return b
+}
+
+// =============================================================================
+// BackboneElement - Fluent Builder
+// =============================================================================
+
+// BackboneElementBuilder provides a fluent API for constructing BackboneElement values.
+type BackboneElementBuilder struct {
+	backboneElement *BackboneElement
+}
+
+// NewBackboneElementBuilder creates a new BackboneElementBuilder.
+func NewBackboneElementBuilder() *BackboneElementBuilder {
+	return &BackboneElementBuilder{
+		backboneElement: &BackboneElement{},
+	}
+}
+
+// Build returns the constructed BackboneElement.
+func (b *BackboneElementBuilder) Build() *BackboneElement {
+	return b.backboneElement
+}
+
+// SetId sets the Id field.
+func (b *BackboneElementBuilder) SetId(v string) *BackboneElementBuilder {
+	b.backboneElement.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *BackboneElementBuilder) AddExtension(v Extension) *BackboneElementBuilder {
+	b.backboneElement.Extension = append(b.backboneElement.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *BackboneElementBuilder) AddModifierExtension(v Extension) *BackboneElementBuilder {
+	b.backboneElement.ModifierExtension = append(b.backboneElement.ModifierExtension, v)
+	return b
+}
+
+// =============================================================================
+// Address - Fluent Builder
+// =============================================================================
+
+// AddressBuilder provides a fluent API for constructing Address values.
+type AddressBuilder struct {
+	address *Address
+}
+
+// NewAddressBuilder creates a new AddressBuilder.
+func NewAddressBuilder() *AddressBuilder {
+	return &AddressBuilder{
+		address: &Address{},
+	}
+}
+
+// Build returns the constructed Address.
+func (b *AddressBuilder) Build() *Address {
+	return b.address
+}
+
+// SetId sets the Id field.
+func (b *AddressBuilder) SetId(v string) *AddressBuilder {
+	b.address.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AddressBuilder) AddExtension(v Extension) *AddressBuilder {
+	b.address.Extension = append(b.address.Extension, v)
+	return b
+}
+
+// SetUse sets the Use field.
+func (b *AddressBuilder) SetUse(v AddressUse) *AddressBuilder {
+	b.address.Use = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *AddressBuilder) SetType(v AddressType) *AddressBuilder {
+	b.address.Type = &v
+	return b
+}
+
+// SetText sets the Text field.
+func (b *AddressBuilder) SetText(v string) *AddressBuilder {
+	b.address.Text = &v
+	return b
+}
+
+// AddLine adds a Line element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *AddressBuilder) AddLine(v string) *AddressBuilder {
+	b.address.Line = append(b.address.Line, &v)
+	return b
+}
+
+// SetCity sets the City field.
+func (b *AddressBuilder) SetCity(v string) *AddressBuilder {
+	b.address.City = &v
+	return b
+}
+
+// SetDistrict sets the District field.
+func (b *AddressBuilder) SetDistrict(v string) *AddressBuilder {
+	b.address.District = &v
+	return b
+}
+
+// SetState sets the State field.
+func (b *AddressBuilder) SetState(v string) *AddressBuilder {
+	b.address.State = &v
+	return b
+}
+
+// SetPostalCode sets the PostalCode field.
+func (b *AddressBuilder) SetPostalCode(v string) *AddressBuilder {
+	b.address.PostalCode = &v
+	return b
+}
+
+// SetCountry sets the Country field.
+func (b *AddressBuilder) SetCountry(v string) *AddressBuilder {
+	b.address.Country = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *AddressBuilder) SetPeriod(v Period) *AddressBuilder {
+	b.address.Period = &v
+	return b
+}
+
+// =============================================================================
+// Age - Fluent Builder
+// =============================================================================
+
+// AgeBuilder provides a fluent API for constructing Age values.
+type AgeBuilder struct {
+	age *Age
+}
+
+// NewAgeBuilder creates a new AgeBuilder.
+func NewAgeBuilder() *AgeBuilder {
+	return &AgeBuilder{
+		age: &Age{},
+	}
+}
+
+// Build returns the constructed Age.
+func (b *AgeBuilder) Build() *Age {
+	return b.age
+}
+
+// SetId sets the Id field.
+func (b *AgeBuilder) SetId(v string) *AgeBuilder {
+	b.age.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AgeBuilder) AddExtension(v Extension) *AgeBuilder {
+	b.age.Extension = append(b.age.Extension, v)
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *AgeBuilder) SetValue(v Decimal) *AgeBuilder {
+	b.age.Value = &v
+	return b
+}
+
+// SetComparator sets the Comparator field.
+func (b *AgeBuilder) SetComparator(v QuantityComparator) *AgeBuilder {
+	b.age.Comparator = &v
+	return b
+}
+
+// SetUnit sets the Unit field.
+func (b *AgeBuilder) SetUnit(v string) *AgeBuilder {
+	b.age.Unit = &v
+	return b
+}
+
+// SetSystem sets the System field.
+func (b *AgeBuilder) SetSystem(v string) *AgeBuilder {
+	b.age.System = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *AgeBuilder) SetCode(v string) *AgeBuilder {
+	b.age.Code = &v
+	return b
+}
+
+// =============================================================================
+// Annotation - Fluent Builder
+// =============================================================================
+
+// AnnotationBuilder provides a fluent API for constructing Annotation values.
+type AnnotationBuilder struct {
+	annotation *Annotation
+}
+
+// NewAnnotationBuilder creates a new AnnotationBuilder.
+func NewAnnotationBuilder() *AnnotationBuilder {
+	return &AnnotationBuilder{
+		annotation: &Annotation{},
+	}
+}
+
+// Build returns the constructed Annotation.
+func (b *AnnotationBuilder) Build() *Annotation {
+	return b.annotation
+}
+
+// SetId sets the Id field.
+func (b *AnnotationBuilder) SetId(v string) *AnnotationBuilder {
+	b.annotation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AnnotationBuilder) AddExtension(v Extension) *AnnotationBuilder {
+	b.annotation.Extension = append(b.annotation.Extension, v)
+	return b
+}
+
+// SetAuthorReference sets Author[x] to its AuthorReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AnnotationBuilder) SetAuthorReference(v Reference) *AnnotationBuilder {
+	b.clearAuthor()
+	b.annotation.AuthorReference = &v
+	return b
+}
+
+// SetAuthorString sets Author[x] to its AuthorString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AnnotationBuilder) SetAuthorString(v string) *AnnotationBuilder {
+	b.clearAuthor()
+	b.annotation.AuthorString = &v
+	return b
+}
+
+// SetAuthorStringExt sets the AuthorStringExt field.
+func (b *AnnotationBuilder) SetAuthorStringExt(v Element) *AnnotationBuilder {
+	b.annotation.AuthorStringExt = &v
+	return b
+}
+
+// SetTime sets the Time field.
+func (b *AnnotationBuilder) SetTime(v string) *AnnotationBuilder {
+	b.annotation.Time = &v
+	return b
+}
+
+// SetText sets the Text field.
+func (b *AnnotationBuilder) SetText(v string) *AnnotationBuilder {
+	b.annotation.Text = &v
+	return b
+}
+
+// clearAuthor unsets every variant of Author[x], including the
+// _field companions of the primitive ones.
+func (b *AnnotationBuilder) clearAuthor() {
+	b.annotation.AuthorReference = nil
+	b.annotation.AuthorString = nil
+	b.annotation.AuthorStringExt = nil
+}
+
+// =============================================================================
+// Attachment - Fluent Builder
+// =============================================================================
+
+// AttachmentBuilder provides a fluent API for constructing Attachment values.
+type AttachmentBuilder struct {
+	attachment *Attachment
+}
+
+// NewAttachmentBuilder creates a new AttachmentBuilder.
+func NewAttachmentBuilder() *AttachmentBuilder {
+	return &AttachmentBuilder{
+		attachment: &Attachment{},
+	}
+}
+
+// Build returns the constructed Attachment.
+func (b *AttachmentBuilder) Build() *Attachment {
+	return b.attachment
+}
+
+// SetId sets the Id field.
+func (b *AttachmentBuilder) SetId(v string) *AttachmentBuilder {
+	b.attachment.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AttachmentBuilder) AddExtension(v Extension) *AttachmentBuilder {
+	b.attachment.Extension = append(b.attachment.Extension, v)
+	return b
+}
+
+// SetContentType sets the ContentType field.
+func (b *AttachmentBuilder) SetContentType(v string) *AttachmentBuilder {
+	b.attachment.ContentType = &v
+	return b
+}
+
+// SetLanguage sets the Language field.
+func (b *AttachmentBuilder) SetLanguage(v string) *AttachmentBuilder {
+	b.attachment.Language = &v
+	return b
+}
+
+// SetData sets the Data field.
+func (b *AttachmentBuilder) SetData(v string) *AttachmentBuilder {
+	b.attachment.Data = &v
+	return b
+}
+
+// SetUrl sets the Url field.
+func (b *AttachmentBuilder) SetUrl(v string) *AttachmentBuilder {
+	b.attachment.Url = &v
+	return b
+}
+
+// SetSize sets the Size field.
+func (b *AttachmentBuilder) SetSize(v uint32) *AttachmentBuilder {
+	b.attachment.Size = &v
+	return b
+}
+
+// SetHash sets the Hash field.
+func (b *AttachmentBuilder) SetHash(v string) *AttachmentBuilder {
+	b.attachment.Hash = &v
+	return b
+}
+
+// SetTitle sets the Title field.
+func (b *AttachmentBuilder) SetTitle(v string) *AttachmentBuilder {
+	b.attachment.Title = &v
+	return b
+}
+
+// SetCreation sets the Creation field.
+func (b *AttachmentBuilder) SetCreation(v string) *AttachmentBuilder {
+	b.attachment.Creation = &v
+	return b
+}
+
+// =============================================================================
+// CodeableConcept - Fluent Builder
+// =============================================================================
+
+// CodeableConceptBuilder provides a fluent API for constructing CodeableConcept values.
+type CodeableConceptBuilder struct {
+	codeableConcept *CodeableConcept
+}
+
+// NewCodeableConceptBuilder creates a new CodeableConceptBuilder.
+func NewCodeableConceptBuilder() *CodeableConceptBuilder {
+	return &CodeableConceptBuilder{
+		codeableConcept: &CodeableConcept{},
+	}
+}
+
+// Build returns the constructed CodeableConcept.
+func (b *CodeableConceptBuilder) Build() *CodeableConcept {
+	return b.codeableConcept
+}
+
+// SetId sets the Id field.
+func (b *CodeableConceptBuilder) SetId(v string) *CodeableConceptBuilder {
+	b.codeableConcept.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CodeableConceptBuilder) AddExtension(v Extension) *CodeableConceptBuilder {
+	b.codeableConcept.Extension = append(b.codeableConcept.Extension, v)
+	return b
+}
+
+// AddCoding adds a Coding element.
+func (b *CodeableConceptBuilder) AddCoding(v Coding) *CodeableConceptBuilder {
+	b.codeableConcept.Coding = append(b.codeableConcept.Coding, v)
+	return b
+}
+
+// SetText sets the Text field.
+func (b *CodeableConceptBuilder) SetText(v string) *CodeableConceptBuilder {
+	b.codeableConcept.Text = &v
+	return b
+}
+
+// =============================================================================
+// Coding - Fluent Builder
+// =============================================================================
+
+// CodingBuilder provides a fluent API for constructing Coding values.
+type CodingBuilder struct {
+	coding *Coding
+}
+
+// NewCodingBuilder creates a new CodingBuilder.
+func NewCodingBuilder() *CodingBuilder {
+	return &CodingBuilder{
+		coding: &Coding{},
+	}
+}
+
+// Build returns the constructed Coding.
+func (b *CodingBuilder) Build() *Coding {
+	return b.coding
+}
+
+// SetId sets the Id field.
+func (b *CodingBuilder) SetId(v string) *CodingBuilder {
+	b.coding.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CodingBuilder) AddExtension(v Extension) *CodingBuilder {
+	b.coding.Extension = append(b.coding.Extension, v)
+	return b
+}
+
+// SetSystem sets the System field.
+func (b *CodingBuilder) SetSystem(v string) *CodingBuilder {
+	b.coding.System = &v
+	return b
+}
+
+// SetVersion sets the Version field.
+func (b *CodingBuilder) SetVersion(v string) *CodingBuilder {
+	b.coding.Version = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *CodingBuilder) SetCode(v string) *CodingBuilder {
+	b.coding.Code = &v
+	return b
+}
+
+// SetDisplay sets the Display field.
+func (b *CodingBuilder) SetDisplay(v string) *CodingBuilder {
+	b.coding.Display = &v
+	return b
+}
+
+// SetUserSelected sets the UserSelected field.
+func (b *CodingBuilder) SetUserSelected(v bool) *CodingBuilder {
+	b.coding.UserSelected = &v
+	return b
+}
+
+// =============================================================================
+// ContactDetail - Fluent Builder
+// =============================================================================
+
+// ContactDetailBuilder provides a fluent API for constructing ContactDetail values.
+type ContactDetailBuilder struct {
+	contactDetail *ContactDetail
+}
+
+// NewContactDetailBuilder creates a new ContactDetailBuilder.
+func NewContactDetailBuilder() *ContactDetailBuilder {
+	return &ContactDetailBuilder{
+		contactDetail: &ContactDetail{},
+	}
+}
+
+// Build returns the constructed ContactDetail.
+func (b *ContactDetailBuilder) Build() *ContactDetail {
+	return b.contactDetail
+}
+
+// SetId sets the Id field.
+func (b *ContactDetailBuilder) SetId(v string) *ContactDetailBuilder {
+	b.contactDetail.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ContactDetailBuilder) AddExtension(v Extension) *ContactDetailBuilder {
+	b.contactDetail.Extension = append(b.contactDetail.Extension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *ContactDetailBuilder) SetName(v string) *ContactDetailBuilder {
+	b.contactDetail.Name = &v
+	return b
+}
+
+// AddTelecom adds a Telecom element.
+func (b *ContactDetailBuilder) AddTelecom(v ContactPoint) *ContactDetailBuilder {
+	b.contactDetail.Telecom = append(b.contactDetail.Telecom, v)
+	return b
+}
+
+// =============================================================================
+// ContactPoint - Fluent Builder
+// =============================================================================
+
+// ContactPointBuilder provides a fluent API for constructing ContactPoint values.
+type ContactPointBuilder struct {
+	contactPoint *ContactPoint
+}
+
+// NewContactPointBuilder creates a new ContactPointBuilder.
+func NewContactPointBuilder() *ContactPointBuilder {
+	return &ContactPointBuilder{
+		contactPoint: &ContactPoint{},
+	}
+}
+
+// Build returns the constructed ContactPoint.
+func (b *ContactPointBuilder) Build() *ContactPoint {
+	return b.contactPoint
+}
+
+// SetId sets the Id field.
+func (b *ContactPointBuilder) SetId(v string) *ContactPointBuilder {
+	b.contactPoint.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ContactPointBuilder) AddExtension(v Extension) *ContactPointBuilder {
+	b.contactPoint.Extension = append(b.contactPoint.Extension, v)
+	return b
+}
+
+// SetSystem sets the System field.
+func (b *ContactPointBuilder) SetSystem(v ContactPointSystem) *ContactPointBuilder {
+	b.contactPoint.System = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *ContactPointBuilder) SetValue(v string) *ContactPointBuilder {
+	b.contactPoint.Value = &v
+	return b
+}
+
+// SetUse sets the Use field.
+func (b *ContactPointBuilder) SetUse(v ContactPointUse) *ContactPointBuilder {
+	b.contactPoint.Use = &v
+	return b
+}
+
+// SetRank sets the Rank field.
+func (b *ContactPointBuilder) SetRank(v uint32) *ContactPointBuilder {
+	b.contactPoint.Rank = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *ContactPointBuilder) SetPeriod(v Period) *ContactPointBuilder {
+	b.contactPoint.Period = &v
+	return b
+}
+
+// =============================================================================
+// Contributor - Fluent Builder
+// =============================================================================
+
+// ContributorBuilder provides a fluent API for constructing Contributor values.
+type ContributorBuilder struct {
+	contributor *Contributor
+}
+
+// NewContributorBuilder creates a new ContributorBuilder.
+func NewContributorBuilder() *ContributorBuilder {
+	return &ContributorBuilder{
+		contributor: &Contributor{},
+	}
+}
+
+// Build returns the constructed Contributor.
+func (b *ContributorBuilder) Build() *Contributor {
+	return b.contributor
+}
+
+// SetId sets the Id field.
+func (b *ContributorBuilder) SetId(v string) *ContributorBuilder {
+	b.contributor.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ContributorBuilder) AddExtension(v Extension) *ContributorBuilder {
+	b.contributor.Extension = append(b.contributor.Extension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ContributorBuilder) SetType(v ContributorType) *ContributorBuilder {
+	b.contributor.Type = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *ContributorBuilder) SetName(v string) *ContributorBuilder {
+	b.contributor.Name = &v
+	return b
+}
+
+// AddContact adds a Contact element.
+func (b *ContributorBuilder) AddContact(v ContactDetail) *ContributorBuilder {
+	b.contributor.Contact = append(b.contributor.Contact, v)
+	return b
+}
+
+// =============================================================================
+// Count - Fluent Builder
+// =============================================================================
+
+// CountBuilder provides a fluent API for constructing Count values.
+type CountBuilder struct {
+	count *Count
+}
+
+// NewCountBuilder creates a new CountBuilder.
+func NewCountBuilder() *CountBuilder {
+	return &CountBuilder{
+		count: &Count{},
+	}
+}
+
+// Build returns the constructed Count.
+func (b *CountBuilder) Build() *Count {
+	return b.count
+}
+
+// SetId sets the Id field.
+func (b *CountBuilder) SetId(v string) *CountBuilder {
+	b.count.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CountBuilder) AddExtension(v Extension) *CountBuilder {
+	b.count.Extension = append(b.count.Extension, v)
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *CountBuilder) SetValue(v Decimal) *CountBuilder {
+	b.count.Value = &v
+	return b
+}
+
+// SetComparator sets the Comparator field.
+func (b *CountBuilder) SetComparator(v QuantityComparator) *CountBuilder {
+	b.count.Comparator = &v
+	return b
+}
+
+// SetUnit sets the Unit field.
+func (b *CountBuilder) SetUnit(v string) *CountBuilder {
+	b.count.Unit = &v
+	return b
+}
+
+// SetSystem sets the System field.
+func (b *CountBuilder) SetSystem(v string) *CountBuilder {
+	b.count.System = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *CountBuilder) SetCode(v string) *CountBuilder {
+	b.count.Code = &v
+	return b
+}
+
+// =============================================================================
+// DataRequirement - Fluent Builder
+// =============================================================================
+
+// DataRequirementBuilder provides a fluent API for constructing DataRequirement values.
+type DataRequirementBuilder struct {
+	dataRequirement *DataRequirement
+}
+
+// NewDataRequirementBuilder creates a new DataRequirementBuilder.
+func NewDataRequirementBuilder() *DataRequirementBuilder {
+	return &DataRequirementBuilder{
+		dataRequirement: &DataRequirement{},
+	}
+}
+
+// Build returns the constructed DataRequirement.
+func (b *DataRequirementBuilder) Build() *DataRequirement {
+	return b.dataRequirement
+}
+
+// SetId sets the Id field.
+func (b *DataRequirementBuilder) SetId(v string) *DataRequirementBuilder {
+	b.dataRequirement.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DataRequirementBuilder) AddExtension(v Extension) *DataRequirementBuilder {
+	b.dataRequirement.Extension = append(b.dataRequirement.Extension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *DataRequirementBuilder) SetType(v string) *DataRequirementBuilder {
+	b.dataRequirement.Type = &v
+	return b
+}
+
+// AddProfile adds a Profile element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *DataRequirementBuilder) AddProfile(v string) *DataRequirementBuilder {
+	b.dataRequirement.Profile = append(b.dataRequirement.Profile, &v)
+	return b
+}
+
+// SetSubjectCodeableConcept sets Subject[x] to its SubjectCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DataRequirementBuilder) SetSubjectCodeableConcept(v CodeableConcept) *DataRequirementBuilder {
+	b.clearSubject()
+	b.dataRequirement.SubjectCodeableConcept = &v
+	return b
+}
+
+// SetSubjectReference sets Subject[x] to its SubjectReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DataRequirementBuilder) SetSubjectReference(v Reference) *DataRequirementBuilder {
+	b.clearSubject()
+	b.dataRequirement.SubjectReference = &v
+	return b
+}
+
+// AddMustSupport adds a MustSupport element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *DataRequirementBuilder) AddMustSupport(v string) *DataRequirementBuilder {
+	b.dataRequirement.MustSupport = append(b.dataRequirement.MustSupport, &v)
+	return b
+}
+
+// AddCodeFilter adds a CodeFilter element.
+func (b *DataRequirementBuilder) AddCodeFilter(v DataRequirementCodeFilter) *DataRequirementBuilder {
+	b.dataRequirement.CodeFilter = append(b.dataRequirement.CodeFilter, v)
+	return b
+}
+
+// AddDateFilter adds a DateFilter element.
+func (b *DataRequirementBuilder) AddDateFilter(v DataRequirementDateFilter) *DataRequirementBuilder {
+	b.dataRequirement.DateFilter = append(b.dataRequirement.DateFilter, v)
+	return b
+}
+
+// SetLimit sets the Limit field.
+func (b *DataRequirementBuilder) SetLimit(v uint32) *DataRequirementBuilder {
+	b.dataRequirement.Limit = &v
+	return b
+}
+
+// AddSort adds a Sort element.
+func (b *DataRequirementBuilder) AddSort(v DataRequirementSort) *DataRequirementBuilder {
+	b.dataRequirement.Sort = append(b.dataRequirement.Sort, v)
+	return b
+}
+
+// clearSubject unsets every variant of Subject[x], including the
+// _field companions of the primitive ones.
+func (b *DataRequirementBuilder) clearSubject() {
+	b.dataRequirement.SubjectCodeableConcept = nil
+	b.dataRequirement.SubjectReference = nil
+}
+
+// =============================================================================
+// Distance - Fluent Builder
+// =============================================================================
+
+// DistanceBuilder provides a fluent API for constructing Distance values.
+type DistanceBuilder struct {
+	distance *Distance
+}
+
+// NewDistanceBuilder creates a new DistanceBuilder.
+func NewDistanceBuilder() *DistanceBuilder {
+	return &DistanceBuilder{
+		distance: &Distance{},
+	}
+}
+
+// Build returns the constructed Distance.
+func (b *DistanceBuilder) Build() *Distance {
+	return b.distance
+}
+
+// SetId sets the Id field.
+func (b *DistanceBuilder) SetId(v string) *DistanceBuilder {
+	b.distance.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DistanceBuilder) AddExtension(v Extension) *DistanceBuilder {
+	b.distance.Extension = append(b.distance.Extension, v)
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *DistanceBuilder) SetValue(v Decimal) *DistanceBuilder {
+	b.distance.Value = &v
+	return b
+}
+
+// SetComparator sets the Comparator field.
+func (b *DistanceBuilder) SetComparator(v QuantityComparator) *DistanceBuilder {
+	b.distance.Comparator = &v
+	return b
+}
+
+// SetUnit sets the Unit field.
+func (b *DistanceBuilder) SetUnit(v string) *DistanceBuilder {
+	b.distance.Unit = &v
+	return b
+}
+
+// SetSystem sets the System field.
+func (b *DistanceBuilder) SetSystem(v string) *DistanceBuilder {
+	b.distance.System = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *DistanceBuilder) SetCode(v string) *DistanceBuilder {
+	b.distance.Code = &v
+	return b
+}
+
+// =============================================================================
+// Dosage - Fluent Builder
+// =============================================================================
+
+// DosageBuilder provides a fluent API for constructing Dosage values.
+type DosageBuilder struct {
+	dosage *Dosage
+}
+
+// NewDosageBuilder creates a new DosageBuilder.
+func NewDosageBuilder() *DosageBuilder {
+	return &DosageBuilder{
+		dosage: &Dosage{},
+	}
+}
+
+// Build returns the constructed Dosage.
+func (b *DosageBuilder) Build() *Dosage {
+	return b.dosage
+}
+
+// SetId sets the Id field.
+func (b *DosageBuilder) SetId(v string) *DosageBuilder {
+	b.dosage.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DosageBuilder) AddExtension(v Extension) *DosageBuilder {
+	b.dosage.Extension = append(b.dosage.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *DosageBuilder) AddModifierExtension(v Extension) *DosageBuilder {
+	b.dosage.ModifierExtension = append(b.dosage.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *DosageBuilder) SetSequence(v int) *DosageBuilder {
+	b.dosage.Sequence = &v
+	return b
+}
+
+// SetText sets the Text field.
+func (b *DosageBuilder) SetText(v string) *DosageBuilder {
+	b.dosage.Text = &v
+	return b
+}
+
+// AddAdditionalInstruction adds a AdditionalInstruction element.
+func (b *DosageBuilder) AddAdditionalInstruction(v CodeableConcept) *DosageBuilder {
+	b.dosage.AdditionalInstruction = append(b.dosage.AdditionalInstruction, v)
+	return b
+}
+
+// SetPatientInstruction sets the PatientInstruction field.
+func (b *DosageBuilder) SetPatientInstruction(v string) *DosageBuilder {
+	b.dosage.PatientInstruction = &v
+	return b
+}
+
+// SetTiming sets the Timing field.
+func (b *DosageBuilder) SetTiming(v Timing) *DosageBuilder {
+	b.dosage.Timing = &v
+	return b
+}
+
+// SetAsNeededBoolean sets AsNeeded[x] to its AsNeededBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DosageBuilder) SetAsNeededBoolean(v bool) *DosageBuilder {
+	b.clearAsNeeded()
+	b.dosage.AsNeededBoolean = &v
+	return b
+}
+
+// SetAsNeededBooleanExt sets the AsNeededBooleanExt field.
+func (b *DosageBuilder) SetAsNeededBooleanExt(v Element) *DosageBuilder {
+	b.dosage.AsNeededBooleanExt = &v
+	return b
+}
+
+// SetAsNeededCodeableConcept sets AsNeeded[x] to its AsNeededCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DosageBuilder) SetAsNeededCodeableConcept(v CodeableConcept) *DosageBuilder {
+	b.clearAsNeeded()
+	b.dosage.AsNeededCodeableConcept = &v
+	return b
+}
+
+// SetSite sets the Site field.
+func (b *DosageBuilder) SetSite(v CodeableConcept) *DosageBuilder {
+	b.dosage.Site = &v
+	return b
+}
+
+// SetRoute sets the Route field.
+func (b *DosageBuilder) SetRoute(v CodeableConcept) *DosageBuilder {
+	b.dosage.Route = &v
+	return b
+}
+
+// SetMethod sets the Method field.
+func (b *DosageBuilder) SetMethod(v CodeableConcept) *DosageBuilder {
+	b.dosage.Method = &v
+	return b
+}
+
+// AddDoseAndRate adds a DoseAndRate element.
+func (b *DosageBuilder) AddDoseAndRate(v DosageDoseAndRate) *DosageBuilder {
+	b.dosage.DoseAndRate = append(b.dosage.DoseAndRate, v)
+	return b
+}
+
+// SetMaxDosePerPeriod sets the MaxDosePerPeriod field.
+func (b *DosageBuilder) SetMaxDosePerPeriod(v Ratio) *DosageBuilder {
+	b.dosage.MaxDosePerPeriod = &v
+	return b
+}
+
+// SetMaxDosePerAdministration sets the MaxDosePerAdministration field.
+func (b *DosageBuilder) SetMaxDosePerAdministration(v Quantity) *DosageBuilder {
+	b.dosage.MaxDosePerAdministration = &v
+	return b
+}
+
+// SetMaxDosePerLifetime sets the MaxDosePerLifetime field.
+func (b *DosageBuilder) SetMaxDosePerLifetime(v Quantity) *DosageBuilder {
+	b.dosage.MaxDosePerLifetime = &v
+	return b
+}
+
+// clearAsNeeded unsets every variant of AsNeeded[x], including the
+// _field companions of the primitive ones.
+func (b *DosageBuilder) clearAsNeeded() {
+	b.dosage.AsNeededBoolean = nil
+	b.dosage.AsNeededCodeableConcept = nil
+}
+
+// =============================================================================
+// Duration - Fluent Builder
+// =============================================================================
+
+// DurationBuilder provides a fluent API for constructing Duration values.
+type DurationBuilder struct {
+	duration *Duration
+}
+
+// NewDurationBuilder creates a new DurationBuilder.
+func NewDurationBuilder() *DurationBuilder {
+	return &DurationBuilder{
+		duration: &Duration{},
+	}
+}
+
+// Build returns the constructed Duration.
+func (b *DurationBuilder) Build() *Duration {
+	return b.duration
+}
+
+// SetId sets the Id field.
+func (b *DurationBuilder) SetId(v string) *DurationBuilder {
+	b.duration.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DurationBuilder) AddExtension(v Extension) *DurationBuilder {
+	b.duration.Extension = append(b.duration.Extension, v)
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *DurationBuilder) SetValue(v Decimal) *DurationBuilder {
+	b.duration.Value = &v
+	return b
+}
+
+// SetComparator sets the Comparator field.
+func (b *DurationBuilder) SetComparator(v QuantityComparator) *DurationBuilder {
+	b.duration.Comparator = &v
+	return b
+}
+
+// SetUnit sets the Unit field.
+func (b *DurationBuilder) SetUnit(v string) *DurationBuilder {
+	b.duration.Unit = &v
+	return b
+}
+
+// SetSystem sets the System field.
+func (b *DurationBuilder) SetSystem(v string) *DurationBuilder {
+	b.duration.System = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *DurationBuilder) SetCode(v string) *DurationBuilder {
+	b.duration.Code = &v
+	return b
+}
+
+// =============================================================================
+// ElementDefinition - Fluent Builder
+// =============================================================================
+
+// ElementDefinitionBuilder provides a fluent API for constructing ElementDefinition values.
+type ElementDefinitionBuilder struct {
+	elementDefinition *ElementDefinition
+}
+
+// NewElementDefinitionBuilder creates a new ElementDefinitionBuilder.
+func NewElementDefinitionBuilder() *ElementDefinitionBuilder {
+	return &ElementDefinitionBuilder{
+		elementDefinition: &ElementDefinition{},
+	}
+}
+
+// Build returns the constructed ElementDefinition.
+func (b *ElementDefinitionBuilder) Build() *ElementDefinition {
+	return b.elementDefinition
+}
+
+// SetId sets the Id field.
+func (b *ElementDefinitionBuilder) SetId(v string) *ElementDefinitionBuilder {
+	b.elementDefinition.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ElementDefinitionBuilder) AddExtension(v Extension) *ElementDefinitionBuilder {
+	b.elementDefinition.Extension = append(b.elementDefinition.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ElementDefinitionBuilder) AddModifierExtension(v Extension) *ElementDefinitionBuilder {
+	b.elementDefinition.ModifierExtension = append(b.elementDefinition.ModifierExtension, v)
+	return b
+}
+
+// SetPath sets the Path field.
+func (b *ElementDefinitionBuilder) SetPath(v string) *ElementDefinitionBuilder {
+	b.elementDefinition.Path = &v
+	return b
+}
+
+// AddRepresentation adds a Representation element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ElementDefinitionBuilder) AddRepresentation(v PropertyRepresentation) *ElementDefinitionBuilder {
+	b.elementDefinition.Representation = append(b.elementDefinition.Representation, &v)
+	return b
+}
+
+// SetSliceName sets the SliceName field.
+func (b *ElementDefinitionBuilder) SetSliceName(v string) *ElementDefinitionBuilder {
+	b.elementDefinition.SliceName = &v
+	return b
+}
+
+// SetSliceIsConstraining sets the SliceIsConstraining field.
+func (b *ElementDefinitionBuilder) SetSliceIsConstraining(v bool) *ElementDefinitionBuilder {
+	b.elementDefinition.SliceIsConstraining = &v
+	return b
+}
+
+// SetLabel sets the Label field.
+func (b *ElementDefinitionBuilder) SetLabel(v string) *ElementDefinitionBuilder {
+	b.elementDefinition.Label = &v
+	return b
+}
+
+// AddCode adds a Code element.
+func (b *ElementDefinitionBuilder) AddCode(v Coding) *ElementDefinitionBuilder {
+	b.elementDefinition.Code = append(b.elementDefinition.Code, v)
+	return b
+}
+
+// SetSlicing sets the Slicing field.
+func (b *ElementDefinitionBuilder) SetSlicing(v ElementDefinitionSlicing) *ElementDefinitionBuilder {
+	b.elementDefinition.Slicing = &v
+	return b
+}
+
+// SetShort sets the Short field.
+func (b *ElementDefinitionBuilder) SetShort(v string) *ElementDefinitionBuilder {
+	b.elementDefinition.Short = &v
+	return b
+}
+
+// SetDefinition sets the Definition field.
+func (b *ElementDefinitionBuilder) SetDefinition(v string) *ElementDefinitionBuilder {
+	b.elementDefinition.Definition = &v
+	return b
+}
+
+// SetComment sets the Comment field.
+func (b *ElementDefinitionBuilder) SetComment(v string) *ElementDefinitionBuilder {
+	b.elementDefinition.Comment = &v
+	return b
+}
+
+// SetRequirements sets the Requirements field.
+func (b *ElementDefinitionBuilder) SetRequirements(v string) *ElementDefinitionBuilder {
+	b.elementDefinition.Requirements = &v
+	return b
+}
+
+// AddAlias adds a Alias element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ElementDefinitionBuilder) AddAlias(v string) *ElementDefinitionBuilder {
+	b.elementDefinition.Alias = append(b.elementDefinition.Alias, &v)
+	return b
+}
+
+// SetMin sets the Min field.
+func (b *ElementDefinitionBuilder) SetMin(v uint32) *ElementDefinitionBuilder {
+	b.elementDefinition.Min = &v
+	return b
+}
+
+// SetMax sets the Max field.
+func (b *ElementDefinitionBuilder) SetMax(v string) *ElementDefinitionBuilder {
+	b.elementDefinition.Max = &v
+	return b
+}
+
+// SetBase sets the Base field.
+func (b *ElementDefinitionBuilder) SetBase(v ElementDefinitionBase) *ElementDefinitionBuilder {
+	b.elementDefinition.Base = &v
+	return b
+}
+
+// SetContentReference sets the ContentReference field.
+func (b *ElementDefinitionBuilder) SetContentReference(v string) *ElementDefinitionBuilder {
+	b.elementDefinition.ContentReference = &v
+	return b
+}
+
+// AddType adds a Type element.
+func (b *ElementDefinitionBuilder) AddType(v ElementDefinitionType) *ElementDefinitionBuilder {
+	b.elementDefinition.Type = append(b.elementDefinition.Type, v)
+	return b
+}
+
+// SetDefaultValueBase64Binary sets DefaultValue[x] to its DefaultValueBase64Binary variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueBase64Binary(v string) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueBase64Binary = &v
+	return b
+}
+
+// SetDefaultValueBase64BinaryExt sets the DefaultValueBase64BinaryExt field.
+func (b *ElementDefinitionBuilder) SetDefaultValueBase64BinaryExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.DefaultValueBase64BinaryExt = &v
+	return b
+}
+
+// SetDefaultValueBoolean sets DefaultValue[x] to its DefaultValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueBoolean(v bool) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueBoolean = &v
+	return b
+}
+
+// SetDefaultValueBooleanExt sets the DefaultValueBooleanExt field.
+func (b *ElementDefinitionBuilder) SetDefaultValueBooleanExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.DefaultValueBooleanExt = &v
+	return b
+}
+
+// SetDefaultValueCanonical sets DefaultValue[x] to its DefaultValueCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueCanonical(v string) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueCanonical = &v
+	return b
+}
+
+// SetDefaultValueCanonicalExt sets the DefaultValueCanonicalExt field.
+func (b *ElementDefinitionBuilder) SetDefaultValueCanonicalExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.DefaultValueCanonicalExt = &v
+	return b
+}
+
+// SetDefaultValueCode sets DefaultValue[x] to its DefaultValueCode variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueCode(v string) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueCode = &v
+	return b
+}
+
+// SetDefaultValueCodeExt sets the DefaultValueCodeExt field.
+func (b *ElementDefinitionBuilder) SetDefaultValueCodeExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.DefaultValueCodeExt = &v
+	return b
+}
+
+// SetDefaultValueDate sets DefaultValue[x] to its DefaultValueDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueDate(v string) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueDate = &v
+	return b
+}
+
+// SetDefaultValueDateExt sets the DefaultValueDateExt field.
+func (b *ElementDefinitionBuilder) SetDefaultValueDateExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.DefaultValueDateExt = &v
+	return b
+}
+
+// SetDefaultValueDateTime sets DefaultValue[x] to its DefaultValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueDateTime(v string) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueDateTime = &v
+	return b
+}
+
+// SetDefaultValueDateTimeExt sets the DefaultValueDateTimeExt field.
+func (b *ElementDefinitionBuilder) SetDefaultValueDateTimeExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.DefaultValueDateTimeExt = &v
+	return b
+}
+
+// SetDefaultValueDecimal sets DefaultValue[x] to its DefaultValueDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueDecimal(v Decimal) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueDecimal = &v
+	return b
+}
+
+// SetDefaultValueDecimalExt sets the DefaultValueDecimalExt field.
+func (b *ElementDefinitionBuilder) SetDefaultValueDecimalExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.DefaultValueDecimalExt = &v
+	return b
+}
+
+// SetDefaultValueId sets DefaultValue[x] to its DefaultValueId variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueId(v string) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueId = &v
+	return b
+}
+
+// SetDefaultValueIdExt sets the DefaultValueIdExt field.
+func (b *ElementDefinitionBuilder) SetDefaultValueIdExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.DefaultValueIdExt = &v
+	return b
+}
+
+// SetDefaultValueInstant sets DefaultValue[x] to its DefaultValueInstant variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueInstant(v string) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueInstant = &v
+	return b
+}
+
+// SetDefaultValueInstantExt sets the DefaultValueInstantExt field.
+func (b *ElementDefinitionBuilder) SetDefaultValueInstantExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.DefaultValueInstantExt = &v
+	return b
+}
+
+// SetDefaultValueInteger sets DefaultValue[x] to its DefaultValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueInteger(v int) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueInteger = &v
+	return b
+}
+
+// SetDefaultValueIntegerExt sets the DefaultValueIntegerExt field.
+func (b *ElementDefinitionBuilder) SetDefaultValueIntegerExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.DefaultValueIntegerExt = &v
+	return b
+}
+
+// SetDefaultValueMarkdown sets DefaultValue[x] to its DefaultValueMarkdown variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueMarkdown(v string) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueMarkdown = &v
+	return b
+}
+
+// SetDefaultValueMarkdownExt sets the DefaultValueMarkdownExt field.
+func (b *ElementDefinitionBuilder) SetDefaultValueMarkdownExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.DefaultValueMarkdownExt = &v
+	return b
+}
+
+// SetDefaultValueOid sets DefaultValue[x] to its DefaultValueOid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueOid(v string) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueOid = &v
+	return b
+}
+
+// SetDefaultValueOidExt sets the DefaultValueOidExt field.
+func (b *ElementDefinitionBuilder) SetDefaultValueOidExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.DefaultValueOidExt = &v
+	return b
+}
+
+// SetDefaultValuePositiveInt sets DefaultValue[x] to its DefaultValuePositiveInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValuePositiveInt(v uint32) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValuePositiveInt = &v
+	return b
+}
+
+// SetDefaultValuePositiveIntExt sets the DefaultValuePositiveIntExt field.
+func (b *ElementDefinitionBuilder) SetDefaultValuePositiveIntExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.DefaultValuePositiveIntExt = &v
+	return b
+}
+
+// SetDefaultValueString sets DefaultValue[x] to its DefaultValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueString(v string) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueString = &v
+	return b
+}
+
+// SetDefaultValueStringExt sets the DefaultValueStringExt field.
+func (b *ElementDefinitionBuilder) SetDefaultValueStringExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.DefaultValueStringExt = &v
+	return b
+}
+
+// SetDefaultValueTime sets DefaultValue[x] to its DefaultValueTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueTime(v string) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueTime = &v
+	return b
+}
+
+// SetDefaultValueTimeExt sets the DefaultValueTimeExt field.
+func (b *ElementDefinitionBuilder) SetDefaultValueTimeExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.DefaultValueTimeExt = &v
+	return b
+}
+
+// SetDefaultValueUnsignedInt sets DefaultValue[x] to its DefaultValueUnsignedInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueUnsignedInt(v uint32) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueUnsignedInt = &v
+	return b
+}
+
+// SetDefaultValueUnsignedIntExt sets the DefaultValueUnsignedIntExt field.
+func (b *ElementDefinitionBuilder) SetDefaultValueUnsignedIntExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.DefaultValueUnsignedIntExt = &v
+	return b
+}
+
+// SetDefaultValueUri sets DefaultValue[x] to its DefaultValueUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueUri(v string) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueUri = &v
+	return b
+}
+
+// SetDefaultValueUriExt sets the DefaultValueUriExt field.
+func (b *ElementDefinitionBuilder) SetDefaultValueUriExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.DefaultValueUriExt = &v
+	return b
+}
+
+// SetDefaultValueUrl sets DefaultValue[x] to its DefaultValueUrl variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueUrl(v string) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueUrl = &v
+	return b
+}
+
+// SetDefaultValueUrlExt sets the DefaultValueUrlExt field.
+func (b *ElementDefinitionBuilder) SetDefaultValueUrlExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.DefaultValueUrlExt = &v
+	return b
+}
+
+// SetDefaultValueUuid sets DefaultValue[x] to its DefaultValueUuid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueUuid(v string) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueUuid = &v
+	return b
+}
+
+// SetDefaultValueUuidExt sets the DefaultValueUuidExt field.
+func (b *ElementDefinitionBuilder) SetDefaultValueUuidExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.DefaultValueUuidExt = &v
+	return b
+}
+
+// SetDefaultValueAddress sets DefaultValue[x] to its DefaultValueAddress variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueAddress(v Address) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueAddress = &v
+	return b
+}
+
+// SetDefaultValueAge sets DefaultValue[x] to its DefaultValueAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueAge(v Age) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueAge = &v
+	return b
+}
+
+// SetDefaultValueAnnotation sets DefaultValue[x] to its DefaultValueAnnotation variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueAnnotation(v Annotation) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueAnnotation = &v
+	return b
+}
+
+// SetDefaultValueAttachment sets DefaultValue[x] to its DefaultValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueAttachment(v Attachment) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueAttachment = &v
+	return b
+}
+
+// SetDefaultValueCodeableConcept sets DefaultValue[x] to its DefaultValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueCodeableConcept(v CodeableConcept) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueCodeableConcept = &v
+	return b
+}
+
+// SetDefaultValueCoding sets DefaultValue[x] to its DefaultValueCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueCoding(v Coding) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueCoding = &v
+	return b
+}
+
+// SetDefaultValueContactPoint sets DefaultValue[x] to its DefaultValueContactPoint variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueContactPoint(v ContactPoint) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueContactPoint = &v
+	return b
+}
+
+// SetDefaultValueCount sets DefaultValue[x] to its DefaultValueCount variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueCount(v Count) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueCount = &v
+	return b
+}
+
+// SetDefaultValueDistance sets DefaultValue[x] to its DefaultValueDistance variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueDistance(v Distance) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueDistance = &v
+	return b
+}
+
+// SetDefaultValueDuration sets DefaultValue[x] to its DefaultValueDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueDuration(v Duration) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueDuration = &v
+	return b
+}
+
+// SetDefaultValueHumanName sets DefaultValue[x] to its DefaultValueHumanName variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueHumanName(v HumanName) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueHumanName = &v
+	return b
+}
+
+// SetDefaultValueIdentifier sets DefaultValue[x] to its DefaultValueIdentifier variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueIdentifier(v Identifier) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueIdentifier = &v
+	return b
+}
+
+// SetDefaultValueMoney sets DefaultValue[x] to its DefaultValueMoney variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueMoney(v Money) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueMoney = &v
+	return b
+}
+
+// SetDefaultValuePeriod sets DefaultValue[x] to its DefaultValuePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValuePeriod(v Period) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValuePeriod = &v
+	return b
+}
+
+// SetDefaultValueQuantity sets DefaultValue[x] to its DefaultValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueQuantity(v Quantity) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueQuantity = &v
+	return b
+}
+
+// SetDefaultValueRange sets DefaultValue[x] to its DefaultValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueRange(v Range) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueRange = &v
+	return b
+}
+
+// SetDefaultValueRatio sets DefaultValue[x] to its DefaultValueRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueRatio(v Ratio) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueRatio = &v
+	return b
+}
+
+// SetDefaultValueReference sets DefaultValue[x] to its DefaultValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueReference(v Reference) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueReference = &v
+	return b
+}
+
+// SetDefaultValueSampledData sets DefaultValue[x] to its DefaultValueSampledData variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueSampledData(v SampledData) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueSampledData = &v
+	return b
+}
+
+// SetDefaultValueSignature sets DefaultValue[x] to its DefaultValueSignature variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueSignature(v Signature) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueSignature = &v
+	return b
+}
+
+// SetDefaultValueTiming sets DefaultValue[x] to its DefaultValueTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueTiming(v Timing) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueTiming = &v
+	return b
+}
+
+// SetDefaultValueContactDetail sets DefaultValue[x] to its DefaultValueContactDetail variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueContactDetail(v ContactDetail) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueContactDetail = &v
+	return b
+}
+
+// SetDefaultValueContributor sets DefaultValue[x] to its DefaultValueContributor variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueContributor(v Contributor) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueContributor = &v
+	return b
+}
+
+// SetDefaultValueDataRequirement sets DefaultValue[x] to its DefaultValueDataRequirement variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueDataRequirement(v DataRequirement) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueDataRequirement = &v
+	return b
+}
+
+// SetDefaultValueExpression sets DefaultValue[x] to its DefaultValueExpression variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueExpression(v Expression) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueExpression = &v
+	return b
+}
+
+// SetDefaultValueParameterDefinition sets DefaultValue[x] to its DefaultValueParameterDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueParameterDefinition(v ParameterDefinition) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueParameterDefinition = &v
+	return b
+}
+
+// SetDefaultValueRelatedArtifact sets DefaultValue[x] to its DefaultValueRelatedArtifact variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueRelatedArtifact(v RelatedArtifact) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueRelatedArtifact = &v
+	return b
+}
+
+// SetDefaultValueTriggerDefinition sets DefaultValue[x] to its DefaultValueTriggerDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueTriggerDefinition(v TriggerDefinition) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueTriggerDefinition = &v
+	return b
+}
+
+// SetDefaultValueUsageContext sets DefaultValue[x] to its DefaultValueUsageContext variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueUsageContext(v UsageContext) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueUsageContext = &v
+	return b
+}
+
+// SetDefaultValueDosage sets DefaultValue[x] to its DefaultValueDosage variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueDosage(v Dosage) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueDosage = &v
+	return b
+}
+
+// SetDefaultValueMeta sets DefaultValue[x] to its DefaultValueMeta variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetDefaultValueMeta(v Meta) *ElementDefinitionBuilder {
+	b.clearDefaultValue()
+	b.elementDefinition.DefaultValueMeta = &v
+	return b
+}
+
+// SetMeaningWhenMissing sets the MeaningWhenMissing field.
+func (b *ElementDefinitionBuilder) SetMeaningWhenMissing(v string) *ElementDefinitionBuilder {
+	b.elementDefinition.MeaningWhenMissing = &v
+	return b
+}
+
+// SetOrderMeaning sets the OrderMeaning field.
+func (b *ElementDefinitionBuilder) SetOrderMeaning(v string) *ElementDefinitionBuilder {
+	b.elementDefinition.OrderMeaning = &v
+	return b
+}
+
+// SetFixedBase64Binary sets Fixed[x] to its FixedBase64Binary variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedBase64Binary(v string) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedBase64Binary = &v
+	return b
+}
+
+// SetFixedBase64BinaryExt sets the FixedBase64BinaryExt field.
+func (b *ElementDefinitionBuilder) SetFixedBase64BinaryExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.FixedBase64BinaryExt = &v
+	return b
+}
+
+// SetFixedBoolean sets Fixed[x] to its FixedBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedBoolean(v bool) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedBoolean = &v
+	return b
+}
+
+// SetFixedBooleanExt sets the FixedBooleanExt field.
+func (b *ElementDefinitionBuilder) SetFixedBooleanExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.FixedBooleanExt = &v
+	return b
+}
+
+// SetFixedCanonical sets Fixed[x] to its FixedCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedCanonical(v string) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedCanonical = &v
+	return b
+}
+
+// SetFixedCanonicalExt sets the FixedCanonicalExt field.
+func (b *ElementDefinitionBuilder) SetFixedCanonicalExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.FixedCanonicalExt = &v
+	return b
+}
+
+// SetFixedCode sets Fixed[x] to its FixedCode variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedCode(v string) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedCode = &v
+	return b
+}
+
+// SetFixedCodeExt sets the FixedCodeExt field.
+func (b *ElementDefinitionBuilder) SetFixedCodeExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.FixedCodeExt = &v
+	return b
+}
+
+// SetFixedDate sets Fixed[x] to its FixedDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedDate(v string) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedDate = &v
+	return b
+}
+
+// SetFixedDateExt sets the FixedDateExt field.
+func (b *ElementDefinitionBuilder) SetFixedDateExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.FixedDateExt = &v
+	return b
+}
+
+// SetFixedDateTime sets Fixed[x] to its FixedDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedDateTime(v string) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedDateTime = &v
+	return b
+}
+
+// SetFixedDateTimeExt sets the FixedDateTimeExt field.
+func (b *ElementDefinitionBuilder) SetFixedDateTimeExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.FixedDateTimeExt = &v
+	return b
+}
+
+// SetFixedDecimal sets Fixed[x] to its FixedDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedDecimal(v Decimal) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedDecimal = &v
+	return b
+}
+
+// SetFixedDecimalExt sets the FixedDecimalExt field.
+func (b *ElementDefinitionBuilder) SetFixedDecimalExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.FixedDecimalExt = &v
+	return b
+}
+
+// SetFixedId sets Fixed[x] to its FixedId variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedId(v string) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedId = &v
+	return b
+}
+
+// SetFixedIdExt sets the FixedIdExt field.
+func (b *ElementDefinitionBuilder) SetFixedIdExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.FixedIdExt = &v
+	return b
+}
+
+// SetFixedInstant sets Fixed[x] to its FixedInstant variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedInstant(v string) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedInstant = &v
+	return b
+}
+
+// SetFixedInstantExt sets the FixedInstantExt field.
+func (b *ElementDefinitionBuilder) SetFixedInstantExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.FixedInstantExt = &v
+	return b
+}
+
+// SetFixedInteger sets Fixed[x] to its FixedInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedInteger(v int) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedInteger = &v
+	return b
+}
+
+// SetFixedIntegerExt sets the FixedIntegerExt field.
+func (b *ElementDefinitionBuilder) SetFixedIntegerExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.FixedIntegerExt = &v
+	return b
+}
+
+// SetFixedMarkdown sets Fixed[x] to its FixedMarkdown variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedMarkdown(v string) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedMarkdown = &v
+	return b
+}
+
+// SetFixedMarkdownExt sets the FixedMarkdownExt field.
+func (b *ElementDefinitionBuilder) SetFixedMarkdownExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.FixedMarkdownExt = &v
+	return b
+}
+
+// SetFixedOid sets Fixed[x] to its FixedOid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedOid(v string) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedOid = &v
+	return b
+}
+
+// SetFixedOidExt sets the FixedOidExt field.
+func (b *ElementDefinitionBuilder) SetFixedOidExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.FixedOidExt = &v
+	return b
+}
+
+// SetFixedPositiveInt sets Fixed[x] to its FixedPositiveInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedPositiveInt(v uint32) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedPositiveInt = &v
+	return b
+}
+
+// SetFixedPositiveIntExt sets the FixedPositiveIntExt field.
+func (b *ElementDefinitionBuilder) SetFixedPositiveIntExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.FixedPositiveIntExt = &v
+	return b
+}
+
+// SetFixedString sets Fixed[x] to its FixedString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedString(v string) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedString = &v
+	return b
+}
+
+// SetFixedStringExt sets the FixedStringExt field.
+func (b *ElementDefinitionBuilder) SetFixedStringExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.FixedStringExt = &v
+	return b
+}
+
+// SetFixedTime sets Fixed[x] to its FixedTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedTime(v string) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedTime = &v
+	return b
+}
+
+// SetFixedTimeExt sets the FixedTimeExt field.
+func (b *ElementDefinitionBuilder) SetFixedTimeExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.FixedTimeExt = &v
+	return b
+}
+
+// SetFixedUnsignedInt sets Fixed[x] to its FixedUnsignedInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedUnsignedInt(v uint32) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedUnsignedInt = &v
+	return b
+}
+
+// SetFixedUnsignedIntExt sets the FixedUnsignedIntExt field.
+func (b *ElementDefinitionBuilder) SetFixedUnsignedIntExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.FixedUnsignedIntExt = &v
+	return b
+}
+
+// SetFixedUri sets Fixed[x] to its FixedUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedUri(v string) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedUri = &v
+	return b
+}
+
+// SetFixedUriExt sets the FixedUriExt field.
+func (b *ElementDefinitionBuilder) SetFixedUriExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.FixedUriExt = &v
+	return b
+}
+
+// SetFixedUrl sets Fixed[x] to its FixedUrl variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedUrl(v string) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedUrl = &v
+	return b
+}
+
+// SetFixedUrlExt sets the FixedUrlExt field.
+func (b *ElementDefinitionBuilder) SetFixedUrlExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.FixedUrlExt = &v
+	return b
+}
+
+// SetFixedUuid sets Fixed[x] to its FixedUuid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedUuid(v string) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedUuid = &v
+	return b
+}
+
+// SetFixedUuidExt sets the FixedUuidExt field.
+func (b *ElementDefinitionBuilder) SetFixedUuidExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.FixedUuidExt = &v
+	return b
+}
+
+// SetFixedAddress sets Fixed[x] to its FixedAddress variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedAddress(v Address) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedAddress = &v
+	return b
+}
+
+// SetFixedAge sets Fixed[x] to its FixedAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedAge(v Age) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedAge = &v
+	return b
+}
+
+// SetFixedAnnotation sets Fixed[x] to its FixedAnnotation variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedAnnotation(v Annotation) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedAnnotation = &v
+	return b
+}
+
+// SetFixedAttachment sets Fixed[x] to its FixedAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedAttachment(v Attachment) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedAttachment = &v
+	return b
+}
+
+// SetFixedCodeableConcept sets Fixed[x] to its FixedCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedCodeableConcept(v CodeableConcept) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedCodeableConcept = &v
+	return b
+}
+
+// SetFixedCoding sets Fixed[x] to its FixedCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedCoding(v Coding) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedCoding = &v
+	return b
+}
+
+// SetFixedContactPoint sets Fixed[x] to its FixedContactPoint variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedContactPoint(v ContactPoint) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedContactPoint = &v
+	return b
+}
+
+// SetFixedCount sets Fixed[x] to its FixedCount variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedCount(v Count) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedCount = &v
+	return b
+}
+
+// SetFixedDistance sets Fixed[x] to its FixedDistance variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedDistance(v Distance) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedDistance = &v
+	return b
+}
+
+// SetFixedDuration sets Fixed[x] to its FixedDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedDuration(v Duration) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedDuration = &v
+	return b
+}
+
+// SetFixedHumanName sets Fixed[x] to its FixedHumanName variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedHumanName(v HumanName) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedHumanName = &v
+	return b
+}
+
+// SetFixedIdentifier sets Fixed[x] to its FixedIdentifier variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedIdentifier(v Identifier) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedIdentifier = &v
+	return b
+}
+
+// SetFixedMoney sets Fixed[x] to its FixedMoney variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedMoney(v Money) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedMoney = &v
+	return b
+}
+
+// SetFixedPeriod sets Fixed[x] to its FixedPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedPeriod(v Period) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedPeriod = &v
+	return b
+}
+
+// SetFixedQuantity sets Fixed[x] to its FixedQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedQuantity(v Quantity) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedQuantity = &v
+	return b
+}
+
+// SetFixedRange sets Fixed[x] to its FixedRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedRange(v Range) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedRange = &v
+	return b
+}
+
+// SetFixedRatio sets Fixed[x] to its FixedRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedRatio(v Ratio) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedRatio = &v
+	return b
+}
+
+// SetFixedReference sets Fixed[x] to its FixedReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedReference(v Reference) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedReference = &v
+	return b
+}
+
+// SetFixedSampledData sets Fixed[x] to its FixedSampledData variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedSampledData(v SampledData) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedSampledData = &v
+	return b
+}
+
+// SetFixedSignature sets Fixed[x] to its FixedSignature variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedSignature(v Signature) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedSignature = &v
+	return b
+}
+
+// SetFixedTiming sets Fixed[x] to its FixedTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedTiming(v Timing) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedTiming = &v
+	return b
+}
+
+// SetFixedContactDetail sets Fixed[x] to its FixedContactDetail variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedContactDetail(v ContactDetail) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedContactDetail = &v
+	return b
+}
+
+// SetFixedContributor sets Fixed[x] to its FixedContributor variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedContributor(v Contributor) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedContributor = &v
+	return b
+}
+
+// SetFixedDataRequirement sets Fixed[x] to its FixedDataRequirement variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedDataRequirement(v DataRequirement) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedDataRequirement = &v
+	return b
+}
+
+// SetFixedExpression sets Fixed[x] to its FixedExpression variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedExpression(v Expression) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedExpression = &v
+	return b
+}
+
+// SetFixedParameterDefinition sets Fixed[x] to its FixedParameterDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedParameterDefinition(v ParameterDefinition) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedParameterDefinition = &v
+	return b
+}
+
+// SetFixedRelatedArtifact sets Fixed[x] to its FixedRelatedArtifact variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedRelatedArtifact(v RelatedArtifact) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedRelatedArtifact = &v
+	return b
+}
+
+// SetFixedTriggerDefinition sets Fixed[x] to its FixedTriggerDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedTriggerDefinition(v TriggerDefinition) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedTriggerDefinition = &v
+	return b
+}
+
+// SetFixedUsageContext sets Fixed[x] to its FixedUsageContext variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedUsageContext(v UsageContext) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedUsageContext = &v
+	return b
+}
+
+// SetFixedDosage sets Fixed[x] to its FixedDosage variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedDosage(v Dosage) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedDosage = &v
+	return b
+}
+
+// SetFixedMeta sets Fixed[x] to its FixedMeta variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetFixedMeta(v Meta) *ElementDefinitionBuilder {
+	b.clearFixed()
+	b.elementDefinition.FixedMeta = &v
+	return b
+}
+
+// SetPatternBase64Binary sets Pattern[x] to its PatternBase64Binary variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternBase64Binary(v string) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternBase64Binary = &v
+	return b
+}
+
+// SetPatternBase64BinaryExt sets the PatternBase64BinaryExt field.
+func (b *ElementDefinitionBuilder) SetPatternBase64BinaryExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.PatternBase64BinaryExt = &v
+	return b
+}
+
+// SetPatternBoolean sets Pattern[x] to its PatternBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternBoolean(v bool) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternBoolean = &v
+	return b
+}
+
+// SetPatternBooleanExt sets the PatternBooleanExt field.
+func (b *ElementDefinitionBuilder) SetPatternBooleanExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.PatternBooleanExt = &v
+	return b
+}
+
+// SetPatternCanonical sets Pattern[x] to its PatternCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternCanonical(v string) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternCanonical = &v
+	return b
+}
+
+// SetPatternCanonicalExt sets the PatternCanonicalExt field.
+func (b *ElementDefinitionBuilder) SetPatternCanonicalExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.PatternCanonicalExt = &v
+	return b
+}
+
+// SetPatternCode sets Pattern[x] to its PatternCode variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternCode(v string) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternCode = &v
+	return b
+}
+
+// SetPatternCodeExt sets the PatternCodeExt field.
+func (b *ElementDefinitionBuilder) SetPatternCodeExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.PatternCodeExt = &v
+	return b
+}
+
+// SetPatternDate sets Pattern[x] to its PatternDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternDate(v string) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternDate = &v
+	return b
+}
+
+// SetPatternDateExt sets the PatternDateExt field.
+func (b *ElementDefinitionBuilder) SetPatternDateExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.PatternDateExt = &v
+	return b
+}
+
+// SetPatternDateTime sets Pattern[x] to its PatternDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternDateTime(v string) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternDateTime = &v
+	return b
+}
+
+// SetPatternDateTimeExt sets the PatternDateTimeExt field.
+func (b *ElementDefinitionBuilder) SetPatternDateTimeExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.PatternDateTimeExt = &v
+	return b
+}
+
+// SetPatternDecimal sets Pattern[x] to its PatternDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternDecimal(v Decimal) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternDecimal = &v
+	return b
+}
+
+// SetPatternDecimalExt sets the PatternDecimalExt field.
+func (b *ElementDefinitionBuilder) SetPatternDecimalExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.PatternDecimalExt = &v
+	return b
+}
+
+// SetPatternId sets Pattern[x] to its PatternId variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternId(v string) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternId = &v
+	return b
+}
+
+// SetPatternIdExt sets the PatternIdExt field.
+func (b *ElementDefinitionBuilder) SetPatternIdExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.PatternIdExt = &v
+	return b
+}
+
+// SetPatternInstant sets Pattern[x] to its PatternInstant variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternInstant(v string) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternInstant = &v
+	return b
+}
+
+// SetPatternInstantExt sets the PatternInstantExt field.
+func (b *ElementDefinitionBuilder) SetPatternInstantExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.PatternInstantExt = &v
+	return b
+}
+
+// SetPatternInteger sets Pattern[x] to its PatternInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternInteger(v int) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternInteger = &v
+	return b
+}
+
+// SetPatternIntegerExt sets the PatternIntegerExt field.
+func (b *ElementDefinitionBuilder) SetPatternIntegerExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.PatternIntegerExt = &v
+	return b
+}
+
+// SetPatternMarkdown sets Pattern[x] to its PatternMarkdown variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternMarkdown(v string) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternMarkdown = &v
+	return b
+}
+
+// SetPatternMarkdownExt sets the PatternMarkdownExt field.
+func (b *ElementDefinitionBuilder) SetPatternMarkdownExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.PatternMarkdownExt = &v
+	return b
+}
+
+// SetPatternOid sets Pattern[x] to its PatternOid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternOid(v string) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternOid = &v
+	return b
+}
+
+// SetPatternOidExt sets the PatternOidExt field.
+func (b *ElementDefinitionBuilder) SetPatternOidExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.PatternOidExt = &v
+	return b
+}
+
+// SetPatternPositiveInt sets Pattern[x] to its PatternPositiveInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternPositiveInt(v uint32) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternPositiveInt = &v
+	return b
+}
+
+// SetPatternPositiveIntExt sets the PatternPositiveIntExt field.
+func (b *ElementDefinitionBuilder) SetPatternPositiveIntExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.PatternPositiveIntExt = &v
+	return b
+}
+
+// SetPatternString sets Pattern[x] to its PatternString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternString(v string) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternString = &v
+	return b
+}
+
+// SetPatternStringExt sets the PatternStringExt field.
+func (b *ElementDefinitionBuilder) SetPatternStringExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.PatternStringExt = &v
+	return b
+}
+
+// SetPatternTime sets Pattern[x] to its PatternTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternTime(v string) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternTime = &v
+	return b
+}
+
+// SetPatternTimeExt sets the PatternTimeExt field.
+func (b *ElementDefinitionBuilder) SetPatternTimeExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.PatternTimeExt = &v
+	return b
+}
+
+// SetPatternUnsignedInt sets Pattern[x] to its PatternUnsignedInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternUnsignedInt(v uint32) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternUnsignedInt = &v
+	return b
+}
+
+// SetPatternUnsignedIntExt sets the PatternUnsignedIntExt field.
+func (b *ElementDefinitionBuilder) SetPatternUnsignedIntExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.PatternUnsignedIntExt = &v
+	return b
+}
+
+// SetPatternUri sets Pattern[x] to its PatternUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternUri(v string) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternUri = &v
+	return b
+}
+
+// SetPatternUriExt sets the PatternUriExt field.
+func (b *ElementDefinitionBuilder) SetPatternUriExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.PatternUriExt = &v
+	return b
+}
+
+// SetPatternUrl sets Pattern[x] to its PatternUrl variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternUrl(v string) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternUrl = &v
+	return b
+}
+
+// SetPatternUrlExt sets the PatternUrlExt field.
+func (b *ElementDefinitionBuilder) SetPatternUrlExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.PatternUrlExt = &v
+	return b
+}
+
+// SetPatternUuid sets Pattern[x] to its PatternUuid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternUuid(v string) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternUuid = &v
+	return b
+}
+
+// SetPatternUuidExt sets the PatternUuidExt field.
+func (b *ElementDefinitionBuilder) SetPatternUuidExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.PatternUuidExt = &v
+	return b
+}
+
+// SetPatternAddress sets Pattern[x] to its PatternAddress variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternAddress(v Address) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternAddress = &v
+	return b
+}
+
+// SetPatternAge sets Pattern[x] to its PatternAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternAge(v Age) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternAge = &v
+	return b
+}
+
+// SetPatternAnnotation sets Pattern[x] to its PatternAnnotation variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternAnnotation(v Annotation) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternAnnotation = &v
+	return b
+}
+
+// SetPatternAttachment sets Pattern[x] to its PatternAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternAttachment(v Attachment) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternAttachment = &v
+	return b
+}
+
+// SetPatternCodeableConcept sets Pattern[x] to its PatternCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternCodeableConcept(v CodeableConcept) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternCodeableConcept = &v
+	return b
+}
+
+// SetPatternCoding sets Pattern[x] to its PatternCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternCoding(v Coding) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternCoding = &v
+	return b
+}
+
+// SetPatternContactPoint sets Pattern[x] to its PatternContactPoint variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternContactPoint(v ContactPoint) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternContactPoint = &v
+	return b
+}
+
+// SetPatternCount sets Pattern[x] to its PatternCount variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternCount(v Count) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternCount = &v
+	return b
+}
+
+// SetPatternDistance sets Pattern[x] to its PatternDistance variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternDistance(v Distance) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternDistance = &v
+	return b
+}
+
+// SetPatternDuration sets Pattern[x] to its PatternDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternDuration(v Duration) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternDuration = &v
+	return b
+}
+
+// SetPatternHumanName sets Pattern[x] to its PatternHumanName variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternHumanName(v HumanName) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternHumanName = &v
+	return b
+}
+
+// SetPatternIdentifier sets Pattern[x] to its PatternIdentifier variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternIdentifier(v Identifier) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternIdentifier = &v
+	return b
+}
+
+// SetPatternMoney sets Pattern[x] to its PatternMoney variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternMoney(v Money) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternMoney = &v
+	return b
+}
+
+// SetPatternPeriod sets Pattern[x] to its PatternPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternPeriod(v Period) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternPeriod = &v
+	return b
+}
+
+// SetPatternQuantity sets Pattern[x] to its PatternQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternQuantity(v Quantity) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternQuantity = &v
+	return b
+}
+
+// SetPatternRange sets Pattern[x] to its PatternRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternRange(v Range) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternRange = &v
+	return b
+}
+
+// SetPatternRatio sets Pattern[x] to its PatternRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternRatio(v Ratio) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternRatio = &v
+	return b
+}
+
+// SetPatternReference sets Pattern[x] to its PatternReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternReference(v Reference) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternReference = &v
+	return b
+}
+
+// SetPatternSampledData sets Pattern[x] to its PatternSampledData variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternSampledData(v SampledData) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternSampledData = &v
+	return b
+}
+
+// SetPatternSignature sets Pattern[x] to its PatternSignature variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternSignature(v Signature) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternSignature = &v
+	return b
+}
+
+// SetPatternTiming sets Pattern[x] to its PatternTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternTiming(v Timing) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternTiming = &v
+	return b
+}
+
+// SetPatternContactDetail sets Pattern[x] to its PatternContactDetail variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternContactDetail(v ContactDetail) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternContactDetail = &v
+	return b
+}
+
+// SetPatternContributor sets Pattern[x] to its PatternContributor variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternContributor(v Contributor) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternContributor = &v
+	return b
+}
+
+// SetPatternDataRequirement sets Pattern[x] to its PatternDataRequirement variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternDataRequirement(v DataRequirement) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternDataRequirement = &v
+	return b
+}
+
+// SetPatternExpression sets Pattern[x] to its PatternExpression variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternExpression(v Expression) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternExpression = &v
+	return b
+}
+
+// SetPatternParameterDefinition sets Pattern[x] to its PatternParameterDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternParameterDefinition(v ParameterDefinition) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternParameterDefinition = &v
+	return b
+}
+
+// SetPatternRelatedArtifact sets Pattern[x] to its PatternRelatedArtifact variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternRelatedArtifact(v RelatedArtifact) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternRelatedArtifact = &v
+	return b
+}
+
+// SetPatternTriggerDefinition sets Pattern[x] to its PatternTriggerDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternTriggerDefinition(v TriggerDefinition) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternTriggerDefinition = &v
+	return b
+}
+
+// SetPatternUsageContext sets Pattern[x] to its PatternUsageContext variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternUsageContext(v UsageContext) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternUsageContext = &v
+	return b
+}
+
+// SetPatternDosage sets Pattern[x] to its PatternDosage variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternDosage(v Dosage) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternDosage = &v
+	return b
+}
+
+// SetPatternMeta sets Pattern[x] to its PatternMeta variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetPatternMeta(v Meta) *ElementDefinitionBuilder {
+	b.clearPattern()
+	b.elementDefinition.PatternMeta = &v
+	return b
+}
+
+// AddExample adds a Example element.
+func (b *ElementDefinitionBuilder) AddExample(v ElementDefinitionExample) *ElementDefinitionBuilder {
+	b.elementDefinition.Example = append(b.elementDefinition.Example, v)
+	return b
+}
+
+// SetMinValueDate sets MinValue[x] to its MinValueDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetMinValueDate(v string) *ElementDefinitionBuilder {
+	b.clearMinValue()
+	b.elementDefinition.MinValueDate = &v
+	return b
+}
+
+// SetMinValueDateExt sets the MinValueDateExt field.
+func (b *ElementDefinitionBuilder) SetMinValueDateExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MinValueDateExt = &v
+	return b
+}
+
+// SetMinValueDateTime sets MinValue[x] to its MinValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetMinValueDateTime(v string) *ElementDefinitionBuilder {
+	b.clearMinValue()
+	b.elementDefinition.MinValueDateTime = &v
+	return b
+}
+
+// SetMinValueDateTimeExt sets the MinValueDateTimeExt field.
+func (b *ElementDefinitionBuilder) SetMinValueDateTimeExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MinValueDateTimeExt = &v
+	return b
+}
+
+// SetMinValueInstant sets MinValue[x] to its MinValueInstant variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetMinValueInstant(v string) *ElementDefinitionBuilder {
+	b.clearMinValue()
+	b.elementDefinition.MinValueInstant = &v
+	return b
+}
+
+// SetMinValueInstantExt sets the MinValueInstantExt field.
+func (b *ElementDefinitionBuilder) SetMinValueInstantExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MinValueInstantExt = &v
+	return b
+}
+
+// SetMinValueTime sets MinValue[x] to its MinValueTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetMinValueTime(v string) *ElementDefinitionBuilder {
+	b.clearMinValue()
+	b.elementDefinition.MinValueTime = &v
+	return b
+}
+
+// SetMinValueTimeExt sets the MinValueTimeExt field.
+func (b *ElementDefinitionBuilder) SetMinValueTimeExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MinValueTimeExt = &v
+	return b
+}
+
+// SetMinValueDecimal sets MinValue[x] to its MinValueDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetMinValueDecimal(v Decimal) *ElementDefinitionBuilder {
+	b.clearMinValue()
+	b.elementDefinition.MinValueDecimal = &v
+	return b
+}
+
+// SetMinValueDecimalExt sets the MinValueDecimalExt field.
+func (b *ElementDefinitionBuilder) SetMinValueDecimalExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MinValueDecimalExt = &v
+	return b
+}
+
+// SetMinValueInteger sets MinValue[x] to its MinValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetMinValueInteger(v int) *ElementDefinitionBuilder {
+	b.clearMinValue()
+	b.elementDefinition.MinValueInteger = &v
+	return b
+}
+
+// SetMinValueIntegerExt sets the MinValueIntegerExt field.
+func (b *ElementDefinitionBuilder) SetMinValueIntegerExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MinValueIntegerExt = &v
+	return b
+}
+
+// SetMinValuePositiveInt sets MinValue[x] to its MinValuePositiveInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetMinValuePositiveInt(v uint32) *ElementDefinitionBuilder {
+	b.clearMinValue()
+	b.elementDefinition.MinValuePositiveInt = &v
+	return b
+}
+
+// SetMinValuePositiveIntExt sets the MinValuePositiveIntExt field.
+func (b *ElementDefinitionBuilder) SetMinValuePositiveIntExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MinValuePositiveIntExt = &v
+	return b
+}
+
+// SetMinValueUnsignedInt sets MinValue[x] to its MinValueUnsignedInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetMinValueUnsignedInt(v uint32) *ElementDefinitionBuilder {
+	b.clearMinValue()
+	b.elementDefinition.MinValueUnsignedInt = &v
+	return b
+}
+
+// SetMinValueUnsignedIntExt sets the MinValueUnsignedIntExt field.
+func (b *ElementDefinitionBuilder) SetMinValueUnsignedIntExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MinValueUnsignedIntExt = &v
+	return b
+}
+
+// SetMinValueQuantity sets MinValue[x] to its MinValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetMinValueQuantity(v Quantity) *ElementDefinitionBuilder {
+	b.clearMinValue()
+	b.elementDefinition.MinValueQuantity = &v
+	return b
+}
+
+// SetMaxValueDate sets MaxValue[x] to its MaxValueDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetMaxValueDate(v string) *ElementDefinitionBuilder {
+	b.clearMaxValue()
+	b.elementDefinition.MaxValueDate = &v
+	return b
+}
+
+// SetMaxValueDateExt sets the MaxValueDateExt field.
+func (b *ElementDefinitionBuilder) SetMaxValueDateExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MaxValueDateExt = &v
+	return b
+}
+
+// SetMaxValueDateTime sets MaxValue[x] to its MaxValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetMaxValueDateTime(v string) *ElementDefinitionBuilder {
+	b.clearMaxValue()
+	b.elementDefinition.MaxValueDateTime = &v
+	return b
+}
+
+// SetMaxValueDateTimeExt sets the MaxValueDateTimeExt field.
+func (b *ElementDefinitionBuilder) SetMaxValueDateTimeExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MaxValueDateTimeExt = &v
+	return b
+}
+
+// SetMaxValueInstant sets MaxValue[x] to its MaxValueInstant variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetMaxValueInstant(v string) *ElementDefinitionBuilder {
+	b.clearMaxValue()
+	b.elementDefinition.MaxValueInstant = &v
+	return b
+}
+
+// SetMaxValueInstantExt sets the MaxValueInstantExt field.
+func (b *ElementDefinitionBuilder) SetMaxValueInstantExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MaxValueInstantExt = &v
+	return b
+}
+
+// SetMaxValueTime sets MaxValue[x] to its MaxValueTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetMaxValueTime(v string) *ElementDefinitionBuilder {
+	b.clearMaxValue()
+	b.elementDefinition.MaxValueTime = &v
+	return b
+}
+
+// SetMaxValueTimeExt sets the MaxValueTimeExt field.
+func (b *ElementDefinitionBuilder) SetMaxValueTimeExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MaxValueTimeExt = &v
+	return b
+}
+
+// SetMaxValueDecimal sets MaxValue[x] to its MaxValueDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetMaxValueDecimal(v Decimal) *ElementDefinitionBuilder {
+	b.clearMaxValue()
+	b.elementDefinition.MaxValueDecimal = &v
+	return b
+}
+
+// SetMaxValueDecimalExt sets the MaxValueDecimalExt field.
+func (b *ElementDefinitionBuilder) SetMaxValueDecimalExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MaxValueDecimalExt = &v
+	return b
+}
+
+// SetMaxValueInteger sets MaxValue[x] to its MaxValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetMaxValueInteger(v int) *ElementDefinitionBuilder {
+	b.clearMaxValue()
+	b.elementDefinition.MaxValueInteger = &v
+	return b
+}
+
+// SetMaxValueIntegerExt sets the MaxValueIntegerExt field.
+func (b *ElementDefinitionBuilder) SetMaxValueIntegerExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MaxValueIntegerExt = &v
+	return b
+}
+
+// SetMaxValuePositiveInt sets MaxValue[x] to its MaxValuePositiveInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetMaxValuePositiveInt(v uint32) *ElementDefinitionBuilder {
+	b.clearMaxValue()
+	b.elementDefinition.MaxValuePositiveInt = &v
+	return b
+}
+
+// SetMaxValuePositiveIntExt sets the MaxValuePositiveIntExt field.
+func (b *ElementDefinitionBuilder) SetMaxValuePositiveIntExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MaxValuePositiveIntExt = &v
+	return b
+}
+
+// SetMaxValueUnsignedInt sets MaxValue[x] to its MaxValueUnsignedInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetMaxValueUnsignedInt(v uint32) *ElementDefinitionBuilder {
+	b.clearMaxValue()
+	b.elementDefinition.MaxValueUnsignedInt = &v
+	return b
+}
+
+// SetMaxValueUnsignedIntExt sets the MaxValueUnsignedIntExt field.
+func (b *ElementDefinitionBuilder) SetMaxValueUnsignedIntExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MaxValueUnsignedIntExt = &v
+	return b
+}
+
+// SetMaxValueQuantity sets MaxValue[x] to its MaxValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionBuilder) SetMaxValueQuantity(v Quantity) *ElementDefinitionBuilder {
+	b.clearMaxValue()
+	b.elementDefinition.MaxValueQuantity = &v
+	return b
+}
+
+// SetMaxLength sets the MaxLength field.
+func (b *ElementDefinitionBuilder) SetMaxLength(v int) *ElementDefinitionBuilder {
+	b.elementDefinition.MaxLength = &v
+	return b
+}
+
+// AddCondition adds a Condition element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ElementDefinitionBuilder) AddCondition(v string) *ElementDefinitionBuilder {
+	b.elementDefinition.Condition = append(b.elementDefinition.Condition, &v)
+	return b
+}
+
+// AddConstraint adds a Constraint element.
+func (b *ElementDefinitionBuilder) AddConstraint(v ElementDefinitionConstraint) *ElementDefinitionBuilder {
+	b.elementDefinition.Constraint = append(b.elementDefinition.Constraint, v)
+	return b
+}
+
+// SetMustSupport sets the MustSupport field.
+func (b *ElementDefinitionBuilder) SetMustSupport(v bool) *ElementDefinitionBuilder {
+	b.elementDefinition.MustSupport = &v
+	return b
+}
+
+// SetIsModifier sets the IsModifier field.
+func (b *ElementDefinitionBuilder) SetIsModifier(v bool) *ElementDefinitionBuilder {
+	b.elementDefinition.IsModifier = &v
+	return b
+}
+
+// SetIsModifierReason sets the IsModifierReason field.
+func (b *ElementDefinitionBuilder) SetIsModifierReason(v string) *ElementDefinitionBuilder {
+	b.elementDefinition.IsModifierReason = &v
+	return b
+}
+
+// SetIsSummary sets the IsSummary field.
+func (b *ElementDefinitionBuilder) SetIsSummary(v bool) *ElementDefinitionBuilder {
+	b.elementDefinition.IsSummary = &v
+	return b
+}
+
+// SetBinding sets the Binding field.
+func (b *ElementDefinitionBuilder) SetBinding(v ElementDefinitionBinding) *ElementDefinitionBuilder {
+	b.elementDefinition.Binding = &v
+	return b
+}
+
+// AddMapping adds a Mapping element.
+func (b *ElementDefinitionBuilder) AddMapping(v ElementDefinitionMapping) *ElementDefinitionBuilder {
+	b.elementDefinition.Mapping = append(b.elementDefinition.Mapping, v)
+	return b
+}
+
+// clearDefaultValue unsets every variant of DefaultValue[x], including the
+// _field companions of the primitive ones.
+func (b *ElementDefinitionBuilder) clearDefaultValue() {
+	b.elementDefinition.DefaultValueBase64Binary = nil
+	b.elementDefinition.DefaultValueBoolean = nil
+	b.elementDefinition.DefaultValueBooleanExt = nil
+	b.elementDefinition.DefaultValueCanonical = nil
+	b.elementDefinition.DefaultValueCanonicalExt = nil
+	b.elementDefinition.DefaultValueCode = nil
+	b.elementDefinition.DefaultValueCodeExt = nil
+	b.elementDefinition.DefaultValueDate = nil
+	b.elementDefinition.DefaultValueDateExt = nil
+	b.elementDefinition.DefaultValueDateTime = nil
+	b.elementDefinition.DefaultValueDateTimeExt = nil
+	b.elementDefinition.DefaultValueDecimal = nil
+	b.elementDefinition.DefaultValueDecimalExt = nil
+	b.elementDefinition.DefaultValueId = nil
+	b.elementDefinition.DefaultValueIdExt = nil
+	b.elementDefinition.DefaultValueInstant = nil
+	b.elementDefinition.DefaultValueInstantExt = nil
+	b.elementDefinition.DefaultValueInteger = nil
+	b.elementDefinition.DefaultValueIntegerExt = nil
+	b.elementDefinition.DefaultValueMarkdown = nil
+	b.elementDefinition.DefaultValueMarkdownExt = nil
+	b.elementDefinition.DefaultValueOid = nil
+	b.elementDefinition.DefaultValueOidExt = nil
+	b.elementDefinition.DefaultValuePositiveInt = nil
+	b.elementDefinition.DefaultValuePositiveIntExt = nil
+	b.elementDefinition.DefaultValueString = nil
+	b.elementDefinition.DefaultValueStringExt = nil
+	b.elementDefinition.DefaultValueTime = nil
+	b.elementDefinition.DefaultValueTimeExt = nil
+	b.elementDefinition.DefaultValueUnsignedInt = nil
+	b.elementDefinition.DefaultValueUnsignedIntExt = nil
+	b.elementDefinition.DefaultValueUri = nil
+	b.elementDefinition.DefaultValueUriExt = nil
+	b.elementDefinition.DefaultValueUrl = nil
+	b.elementDefinition.DefaultValueUrlExt = nil
+	b.elementDefinition.DefaultValueUuid = nil
+	b.elementDefinition.DefaultValueUuidExt = nil
+	b.elementDefinition.DefaultValueAddress = nil
+	b.elementDefinition.DefaultValueAge = nil
+	b.elementDefinition.DefaultValueAnnotation = nil
+	b.elementDefinition.DefaultValueAttachment = nil
+	b.elementDefinition.DefaultValueCodeableConcept = nil
+	b.elementDefinition.DefaultValueCoding = nil
+	b.elementDefinition.DefaultValueContactPoint = nil
+	b.elementDefinition.DefaultValueCount = nil
+	b.elementDefinition.DefaultValueDistance = nil
+	b.elementDefinition.DefaultValueDuration = nil
+	b.elementDefinition.DefaultValueHumanName = nil
+	b.elementDefinition.DefaultValueIdentifier = nil
+	b.elementDefinition.DefaultValueMoney = nil
+	b.elementDefinition.DefaultValuePeriod = nil
+	b.elementDefinition.DefaultValueQuantity = nil
+	b.elementDefinition.DefaultValueRange = nil
+	b.elementDefinition.DefaultValueRatio = nil
+	b.elementDefinition.DefaultValueReference = nil
+	b.elementDefinition.DefaultValueSampledData = nil
+	b.elementDefinition.DefaultValueSignature = nil
+	b.elementDefinition.DefaultValueTiming = nil
+	b.elementDefinition.DefaultValueContactDetail = nil
+	b.elementDefinition.DefaultValueContributor = nil
+	b.elementDefinition.DefaultValueDataRequirement = nil
+	b.elementDefinition.DefaultValueExpression = nil
+	b.elementDefinition.DefaultValueParameterDefinition = nil
+	b.elementDefinition.DefaultValueRelatedArtifact = nil
+	b.elementDefinition.DefaultValueTriggerDefinition = nil
+	b.elementDefinition.DefaultValueUsageContext = nil
+	b.elementDefinition.DefaultValueDosage = nil
+	b.elementDefinition.DefaultValueMeta = nil
+}
+
+// clearFixed unsets every variant of Fixed[x], including the
+// _field companions of the primitive ones.
+func (b *ElementDefinitionBuilder) clearFixed() {
+	b.elementDefinition.FixedBase64Binary = nil
+	b.elementDefinition.FixedBoolean = nil
+	b.elementDefinition.FixedBooleanExt = nil
+	b.elementDefinition.FixedCanonical = nil
+	b.elementDefinition.FixedCanonicalExt = nil
+	b.elementDefinition.FixedCode = nil
+	b.elementDefinition.FixedCodeExt = nil
+	b.elementDefinition.FixedDate = nil
+	b.elementDefinition.FixedDateExt = nil
+	b.elementDefinition.FixedDateTime = nil
+	b.elementDefinition.FixedDateTimeExt = nil
+	b.elementDefinition.FixedDecimal = nil
+	b.elementDefinition.FixedDecimalExt = nil
+	b.elementDefinition.FixedId = nil
+	b.elementDefinition.FixedIdExt = nil
+	b.elementDefinition.FixedInstant = nil
+	b.elementDefinition.FixedInstantExt = nil
+	b.elementDefinition.FixedInteger = nil
+	b.elementDefinition.FixedIntegerExt = nil
+	b.elementDefinition.FixedMarkdown = nil
+	b.elementDefinition.FixedMarkdownExt = nil
+	b.elementDefinition.FixedOid = nil
+	b.elementDefinition.FixedOidExt = nil
+	b.elementDefinition.FixedPositiveInt = nil
+	b.elementDefinition.FixedPositiveIntExt = nil
+	b.elementDefinition.FixedString = nil
+	b.elementDefinition.FixedStringExt = nil
+	b.elementDefinition.FixedTime = nil
+	b.elementDefinition.FixedTimeExt = nil
+	b.elementDefinition.FixedUnsignedInt = nil
+	b.elementDefinition.FixedUnsignedIntExt = nil
+	b.elementDefinition.FixedUri = nil
+	b.elementDefinition.FixedUriExt = nil
+	b.elementDefinition.FixedUrl = nil
+	b.elementDefinition.FixedUrlExt = nil
+	b.elementDefinition.FixedUuid = nil
+	b.elementDefinition.FixedUuidExt = nil
+	b.elementDefinition.FixedAddress = nil
+	b.elementDefinition.FixedAge = nil
+	b.elementDefinition.FixedAnnotation = nil
+	b.elementDefinition.FixedAttachment = nil
+	b.elementDefinition.FixedCodeableConcept = nil
+	b.elementDefinition.FixedCoding = nil
+	b.elementDefinition.FixedContactPoint = nil
+	b.elementDefinition.FixedCount = nil
+	b.elementDefinition.FixedDistance = nil
+	b.elementDefinition.FixedDuration = nil
+	b.elementDefinition.FixedHumanName = nil
+	b.elementDefinition.FixedIdentifier = nil
+	b.elementDefinition.FixedMoney = nil
+	b.elementDefinition.FixedPeriod = nil
+	b.elementDefinition.FixedQuantity = nil
+	b.elementDefinition.FixedRange = nil
+	b.elementDefinition.FixedRatio = nil
+	b.elementDefinition.FixedReference = nil
+	b.elementDefinition.FixedSampledData = nil
+	b.elementDefinition.FixedSignature = nil
+	b.elementDefinition.FixedTiming = nil
+	b.elementDefinition.FixedContactDetail = nil
+	b.elementDefinition.FixedContributor = nil
+	b.elementDefinition.FixedDataRequirement = nil
+	b.elementDefinition.FixedExpression = nil
+	b.elementDefinition.FixedParameterDefinition = nil
+	b.elementDefinition.FixedRelatedArtifact = nil
+	b.elementDefinition.FixedTriggerDefinition = nil
+	b.elementDefinition.FixedUsageContext = nil
+	b.elementDefinition.FixedDosage = nil
+	b.elementDefinition.FixedMeta = nil
+}
+
+// clearPattern unsets every variant of Pattern[x], including the
+// _field companions of the primitive ones.
+func (b *ElementDefinitionBuilder) clearPattern() {
+	b.elementDefinition.PatternBase64Binary = nil
+	b.elementDefinition.PatternBoolean = nil
+	b.elementDefinition.PatternBooleanExt = nil
+	b.elementDefinition.PatternCanonical = nil
+	b.elementDefinition.PatternCanonicalExt = nil
+	b.elementDefinition.PatternCode = nil
+	b.elementDefinition.PatternCodeExt = nil
+	b.elementDefinition.PatternDate = nil
+	b.elementDefinition.PatternDateExt = nil
+	b.elementDefinition.PatternDateTime = nil
+	b.elementDefinition.PatternDateTimeExt = nil
+	b.elementDefinition.PatternDecimal = nil
+	b.elementDefinition.PatternDecimalExt = nil
+	b.elementDefinition.PatternId = nil
+	b.elementDefinition.PatternIdExt = nil
+	b.elementDefinition.PatternInstant = nil
+	b.elementDefinition.PatternInstantExt = nil
+	b.elementDefinition.PatternInteger = nil
+	b.elementDefinition.PatternIntegerExt = nil
+	b.elementDefinition.PatternMarkdown = nil
+	b.elementDefinition.PatternMarkdownExt = nil
+	b.elementDefinition.PatternOid = nil
+	b.elementDefinition.PatternOidExt = nil
+	b.elementDefinition.PatternPositiveInt = nil
+	b.elementDefinition.PatternPositiveIntExt = nil
+	b.elementDefinition.PatternString = nil
+	b.elementDefinition.PatternStringExt = nil
+	b.elementDefinition.PatternTime = nil
+	b.elementDefinition.PatternTimeExt = nil
+	b.elementDefinition.PatternUnsignedInt = nil
+	b.elementDefinition.PatternUnsignedIntExt = nil
+	b.elementDefinition.PatternUri = nil
+	b.elementDefinition.PatternUriExt = nil
+	b.elementDefinition.PatternUrl = nil
+	b.elementDefinition.PatternUrlExt = nil
+	b.elementDefinition.PatternUuid = nil
+	b.elementDefinition.PatternUuidExt = nil
+	b.elementDefinition.PatternAddress = nil
+	b.elementDefinition.PatternAge = nil
+	b.elementDefinition.PatternAnnotation = nil
+	b.elementDefinition.PatternAttachment = nil
+	b.elementDefinition.PatternCodeableConcept = nil
+	b.elementDefinition.PatternCoding = nil
+	b.elementDefinition.PatternContactPoint = nil
+	b.elementDefinition.PatternCount = nil
+	b.elementDefinition.PatternDistance = nil
+	b.elementDefinition.PatternDuration = nil
+	b.elementDefinition.PatternHumanName = nil
+	b.elementDefinition.PatternIdentifier = nil
+	b.elementDefinition.PatternMoney = nil
+	b.elementDefinition.PatternPeriod = nil
+	b.elementDefinition.PatternQuantity = nil
+	b.elementDefinition.PatternRange = nil
+	b.elementDefinition.PatternRatio = nil
+	b.elementDefinition.PatternReference = nil
+	b.elementDefinition.PatternSampledData = nil
+	b.elementDefinition.PatternSignature = nil
+	b.elementDefinition.PatternTiming = nil
+	b.elementDefinition.PatternContactDetail = nil
+	b.elementDefinition.PatternContributor = nil
+	b.elementDefinition.PatternDataRequirement = nil
+	b.elementDefinition.PatternExpression = nil
+	b.elementDefinition.PatternParameterDefinition = nil
+	b.elementDefinition.PatternRelatedArtifact = nil
+	b.elementDefinition.PatternTriggerDefinition = nil
+	b.elementDefinition.PatternUsageContext = nil
+	b.elementDefinition.PatternDosage = nil
+	b.elementDefinition.PatternMeta = nil
+}
+
+// clearMinValue unsets every variant of MinValue[x], including the
+// _field companions of the primitive ones.
+func (b *ElementDefinitionBuilder) clearMinValue() {
+	b.elementDefinition.MinValueDate = nil
+	b.elementDefinition.MinValueDateTime = nil
+	b.elementDefinition.MinValueDateTimeExt = nil
+	b.elementDefinition.MinValueInstant = nil
+	b.elementDefinition.MinValueInstantExt = nil
+	b.elementDefinition.MinValueTime = nil
+	b.elementDefinition.MinValueTimeExt = nil
+	b.elementDefinition.MinValueDecimal = nil
+	b.elementDefinition.MinValueDecimalExt = nil
+	b.elementDefinition.MinValueInteger = nil
+	b.elementDefinition.MinValueIntegerExt = nil
+	b.elementDefinition.MinValuePositiveInt = nil
+	b.elementDefinition.MinValuePositiveIntExt = nil
+	b.elementDefinition.MinValueUnsignedInt = nil
+	b.elementDefinition.MinValueUnsignedIntExt = nil
+	b.elementDefinition.MinValueQuantity = nil
+}
+
+// clearMaxValue unsets every variant of MaxValue[x], including the
+// _field companions of the primitive ones.
+func (b *ElementDefinitionBuilder) clearMaxValue() {
+	b.elementDefinition.MaxValueDate = nil
+	b.elementDefinition.MaxValueDateTime = nil
+	b.elementDefinition.MaxValueDateTimeExt = nil
+	b.elementDefinition.MaxValueInstant = nil
+	b.elementDefinition.MaxValueInstantExt = nil
+	b.elementDefinition.MaxValueTime = nil
+	b.elementDefinition.MaxValueTimeExt = nil
+	b.elementDefinition.MaxValueDecimal = nil
+	b.elementDefinition.MaxValueDecimalExt = nil
+	b.elementDefinition.MaxValueInteger = nil
+	b.elementDefinition.MaxValueIntegerExt = nil
+	b.elementDefinition.MaxValuePositiveInt = nil
+	b.elementDefinition.MaxValuePositiveIntExt = nil
+	b.elementDefinition.MaxValueUnsignedInt = nil
+	b.elementDefinition.MaxValueUnsignedIntExt = nil
+	b.elementDefinition.MaxValueQuantity = nil
+}
+
+// =============================================================================
+// Expression - Fluent Builder
+// =============================================================================
+
+// ExpressionBuilder provides a fluent API for constructing Expression values.
+type ExpressionBuilder struct {
+	expression *Expression
+}
+
+// NewExpressionBuilder creates a new ExpressionBuilder.
+func NewExpressionBuilder() *ExpressionBuilder {
+	return &ExpressionBuilder{
+		expression: &Expression{},
+	}
+}
+
+// Build returns the constructed Expression.
+func (b *ExpressionBuilder) Build() *Expression {
+	return b.expression
+}
+
+// SetId sets the Id field.
+func (b *ExpressionBuilder) SetId(v string) *ExpressionBuilder {
+	b.expression.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExpressionBuilder) AddExtension(v Extension) *ExpressionBuilder {
+	b.expression.Extension = append(b.expression.Extension, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *ExpressionBuilder) SetDescription(v string) *ExpressionBuilder {
+	b.expression.Description = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *ExpressionBuilder) SetName(v string) *ExpressionBuilder {
+	b.expression.Name = &v
+	return b
+}
+
+// SetLanguage sets the Language field.
+func (b *ExpressionBuilder) SetLanguage(v string) *ExpressionBuilder {
+	b.expression.Language = &v
+	return b
+}
+
+// SetExpression sets the Expression field.
+func (b *ExpressionBuilder) SetExpression(v string) *ExpressionBuilder {
+	b.expression.Expression = &v
+	return b
+}
+
+// SetReference sets the Reference field.
+func (b *ExpressionBuilder) SetReference(v string) *ExpressionBuilder {
+	b.expression.Reference = &v
+	return b
+}
+
+// =============================================================================
+// Extension - Fluent Builder
+// =============================================================================
+
+// ExtensionBuilder provides a fluent API for constructing Extension values.
+type ExtensionBuilder struct {
+	extension *Extension
+}
+
+// NewExtensionBuilder creates a new ExtensionBuilder.
+func NewExtensionBuilder() *ExtensionBuilder {
+	return &ExtensionBuilder{
+		extension: &Extension{},
+	}
+}
+
+// Build returns the constructed Extension.
+func (b *ExtensionBuilder) Build() *Extension {
+	return b.extension
+}
+
+// SetId sets the Id field.
+func (b *ExtensionBuilder) SetId(v string) *ExtensionBuilder {
+	b.extension.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExtensionBuilder) AddExtension(v Extension) *ExtensionBuilder {
+	b.extension.Extension = append(b.extension.Extension, v)
+	return b
+}
+
+// SetUrl sets the Url field.
+func (b *ExtensionBuilder) SetUrl(v string) *ExtensionBuilder {
+	b.extension.Url = &v
+	return b
+}
+
+// SetValueBase64Binary sets Value[x] to its ValueBase64Binary variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueBase64Binary(v string) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueBase64Binary = &v
+	return b
+}
+
+// SetValueBase64BinaryExt sets the ValueBase64BinaryExt field.
+func (b *ExtensionBuilder) SetValueBase64BinaryExt(v Element) *ExtensionBuilder {
+	b.extension.ValueBase64BinaryExt = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueBoolean(v bool) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *ExtensionBuilder) SetValueBooleanExt(v Element) *ExtensionBuilder {
+	b.extension.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueCanonical sets Value[x] to its ValueCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueCanonical(v string) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueCanonical = &v
+	return b
+}
+
+// SetValueCanonicalExt sets the ValueCanonicalExt field.
+func (b *ExtensionBuilder) SetValueCanonicalExt(v Element) *ExtensionBuilder {
+	b.extension.ValueCanonicalExt = &v
+	return b
+}
+
+// SetValueCode sets Value[x] to its ValueCode variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueCode(v string) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueCode = &v
+	return b
+}
+
+// SetValueCodeExt sets the ValueCodeExt field.
+func (b *ExtensionBuilder) SetValueCodeExt(v Element) *ExtensionBuilder {
+	b.extension.ValueCodeExt = &v
+	return b
+}
+
+// SetValueDate sets Value[x] to its ValueDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueDate(v string) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueDate = &v
+	return b
+}
+
+// SetValueDateExt sets the ValueDateExt field.
+func (b *ExtensionBuilder) SetValueDateExt(v Element) *ExtensionBuilder {
+	b.extension.ValueDateExt = &v
+	return b
+}
+
+// SetValueDateTime sets Value[x] to its ValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueDateTime(v string) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueDateTime = &v
+	return b
+}
+
+// SetValueDateTimeExt sets the ValueDateTimeExt field.
+func (b *ExtensionBuilder) SetValueDateTimeExt(v Element) *ExtensionBuilder {
+	b.extension.ValueDateTimeExt = &v
+	return b
+}
+
+// SetValueDecimal sets Value[x] to its ValueDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueDecimal(v Decimal) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueDecimal = &v
+	return b
+}
+
+// SetValueDecimalExt sets the ValueDecimalExt field.
+func (b *ExtensionBuilder) SetValueDecimalExt(v Element) *ExtensionBuilder {
+	b.extension.ValueDecimalExt = &v
+	return b
+}
+
+// SetValueId sets Value[x] to its ValueId variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueId(v string) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueId = &v
+	return b
+}
+
+// SetValueIdExt sets the ValueIdExt field.
+func (b *ExtensionBuilder) SetValueIdExt(v Element) *ExtensionBuilder {
+	b.extension.ValueIdExt = &v
+	return b
+}
+
+// SetValueInstant sets Value[x] to its ValueInstant variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueInstant(v string) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueInstant = &v
+	return b
+}
+
+// SetValueInstantExt sets the ValueInstantExt field.
+func (b *ExtensionBuilder) SetValueInstantExt(v Element) *ExtensionBuilder {
+	b.extension.ValueInstantExt = &v
+	return b
+}
+
+// SetValueInteger sets Value[x] to its ValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueInteger(v int) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueInteger = &v
+	return b
+}
+
+// SetValueIntegerExt sets the ValueIntegerExt field.
+func (b *ExtensionBuilder) SetValueIntegerExt(v Element) *ExtensionBuilder {
+	b.extension.ValueIntegerExt = &v
+	return b
+}
+
+// SetValueMarkdown sets Value[x] to its ValueMarkdown variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueMarkdown(v string) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueMarkdown = &v
+	return b
+}
+
+// SetValueMarkdownExt sets the ValueMarkdownExt field.
+func (b *ExtensionBuilder) SetValueMarkdownExt(v Element) *ExtensionBuilder {
+	b.extension.ValueMarkdownExt = &v
+	return b
+}
+
+// SetValueOid sets Value[x] to its ValueOid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueOid(v string) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueOid = &v
+	return b
+}
+
+// SetValueOidExt sets the ValueOidExt field.
+func (b *ExtensionBuilder) SetValueOidExt(v Element) *ExtensionBuilder {
+	b.extension.ValueOidExt = &v
+	return b
+}
+
+// SetValuePositiveInt sets Value[x] to its ValuePositiveInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValuePositiveInt(v uint32) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValuePositiveInt = &v
+	return b
+}
+
+// SetValuePositiveIntExt sets the ValuePositiveIntExt field.
+func (b *ExtensionBuilder) SetValuePositiveIntExt(v Element) *ExtensionBuilder {
+	b.extension.ValuePositiveIntExt = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueString(v string) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *ExtensionBuilder) SetValueStringExt(v Element) *ExtensionBuilder {
+	b.extension.ValueStringExt = &v
+	return b
+}
+
+// SetValueTime sets Value[x] to its ValueTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueTime(v string) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueTime = &v
+	return b
+}
+
+// SetValueTimeExt sets the ValueTimeExt field.
+func (b *ExtensionBuilder) SetValueTimeExt(v Element) *ExtensionBuilder {
+	b.extension.ValueTimeExt = &v
+	return b
+}
+
+// SetValueUnsignedInt sets Value[x] to its ValueUnsignedInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueUnsignedInt(v uint32) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueUnsignedInt = &v
+	return b
+}
+
+// SetValueUnsignedIntExt sets the ValueUnsignedIntExt field.
+func (b *ExtensionBuilder) SetValueUnsignedIntExt(v Element) *ExtensionBuilder {
+	b.extension.ValueUnsignedIntExt = &v
+	return b
+}
+
+// SetValueUri sets Value[x] to its ValueUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueUri(v string) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueUri = &v
+	return b
+}
+
+// SetValueUriExt sets the ValueUriExt field.
+func (b *ExtensionBuilder) SetValueUriExt(v Element) *ExtensionBuilder {
+	b.extension.ValueUriExt = &v
+	return b
+}
+
+// SetValueUrl sets Value[x] to its ValueUrl variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueUrl(v string) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueUrl = &v
+	return b
+}
+
+// SetValueUrlExt sets the ValueUrlExt field.
+func (b *ExtensionBuilder) SetValueUrlExt(v Element) *ExtensionBuilder {
+	b.extension.ValueUrlExt = &v
+	return b
+}
+
+// SetValueUuid sets Value[x] to its ValueUuid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueUuid(v string) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueUuid = &v
+	return b
+}
+
+// SetValueUuidExt sets the ValueUuidExt field.
+func (b *ExtensionBuilder) SetValueUuidExt(v Element) *ExtensionBuilder {
+	b.extension.ValueUuidExt = &v
+	return b
+}
+
+// SetValueAddress sets Value[x] to its ValueAddress variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueAddress(v Address) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueAddress = &v
+	return b
+}
+
+// SetValueAge sets Value[x] to its ValueAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueAge(v Age) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueAge = &v
+	return b
+}
+
+// SetValueAnnotation sets Value[x] to its ValueAnnotation variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueAnnotation(v Annotation) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueAnnotation = &v
+	return b
+}
+
+// SetValueAttachment sets Value[x] to its ValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueAttachment(v Attachment) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueAttachment = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueCodeableConcept(v CodeableConcept) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueCoding sets Value[x] to its ValueCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueCoding(v Coding) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueCoding = &v
+	return b
+}
+
+// SetValueContactPoint sets Value[x] to its ValueContactPoint variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueContactPoint(v ContactPoint) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueContactPoint = &v
+	return b
+}
+
+// SetValueCount sets Value[x] to its ValueCount variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueCount(v Count) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueCount = &v
+	return b
+}
+
+// SetValueDistance sets Value[x] to its ValueDistance variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueDistance(v Distance) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueDistance = &v
+	return b
+}
+
+// SetValueDuration sets Value[x] to its ValueDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueDuration(v Duration) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueDuration = &v
+	return b
+}
+
+// SetValueHumanName sets Value[x] to its ValueHumanName variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueHumanName(v HumanName) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueHumanName = &v
+	return b
+}
+
+// SetValueIdentifier sets Value[x] to its ValueIdentifier variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueIdentifier(v Identifier) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueIdentifier = &v
+	return b
+}
+
+// SetValueMoney sets Value[x] to its ValueMoney variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueMoney(v Money) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueMoney = &v
+	return b
+}
+
+// SetValuePeriod sets Value[x] to its ValuePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValuePeriod(v Period) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValuePeriod = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueQuantity(v Quantity) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueQuantity = &v
+	return b
+}
+
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueRange(v Range) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueRange = &v
+	return b
+}
+
+// SetValueRatio sets Value[x] to its ValueRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueRatio(v Ratio) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueRatio = &v
+	return b
+}
+
+// SetValueReference sets Value[x] to its ValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueReference(v Reference) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueReference = &v
+	return b
+}
+
+// SetValueSampledData sets Value[x] to its ValueSampledData variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueSampledData(v SampledData) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueSampledData = &v
+	return b
+}
+
+// SetValueSignature sets Value[x] to its ValueSignature variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueSignature(v Signature) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueSignature = &v
+	return b
+}
+
+// SetValueTiming sets Value[x] to its ValueTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueTiming(v Timing) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueTiming = &v
+	return b
+}
+
+// SetValueContactDetail sets Value[x] to its ValueContactDetail variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueContactDetail(v ContactDetail) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueContactDetail = &v
+	return b
+}
+
+// SetValueContributor sets Value[x] to its ValueContributor variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueContributor(v Contributor) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueContributor = &v
+	return b
+}
+
+// SetValueDataRequirement sets Value[x] to its ValueDataRequirement variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueDataRequirement(v DataRequirement) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueDataRequirement = &v
+	return b
+}
+
+// SetValueExpression sets Value[x] to its ValueExpression variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueExpression(v Expression) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueExpression = &v
+	return b
+}
+
+// SetValueParameterDefinition sets Value[x] to its ValueParameterDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueParameterDefinition(v ParameterDefinition) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueParameterDefinition = &v
+	return b
+}
+
+// SetValueRelatedArtifact sets Value[x] to its ValueRelatedArtifact variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueRelatedArtifact(v RelatedArtifact) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueRelatedArtifact = &v
+	return b
+}
+
+// SetValueTriggerDefinition sets Value[x] to its ValueTriggerDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueTriggerDefinition(v TriggerDefinition) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueTriggerDefinition = &v
+	return b
+}
+
+// SetValueUsageContext sets Value[x] to its ValueUsageContext variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueUsageContext(v UsageContext) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueUsageContext = &v
+	return b
+}
+
+// SetValueDosage sets Value[x] to its ValueDosage variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueDosage(v Dosage) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueDosage = &v
+	return b
+}
+
+// SetValueMeta sets Value[x] to its ValueMeta variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExtensionBuilder) SetValueMeta(v Meta) *ExtensionBuilder {
+	b.clearValue()
+	b.extension.ValueMeta = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *ExtensionBuilder) clearValue() {
+	b.extension.ValueBase64Binary = nil
+	b.extension.ValueBoolean = nil
+	b.extension.ValueBooleanExt = nil
+	b.extension.ValueCanonical = nil
+	b.extension.ValueCanonicalExt = nil
+	b.extension.ValueCode = nil
+	b.extension.ValueCodeExt = nil
+	b.extension.ValueDate = nil
+	b.extension.ValueDateExt = nil
+	b.extension.ValueDateTime = nil
+	b.extension.ValueDateTimeExt = nil
+	b.extension.ValueDecimal = nil
+	b.extension.ValueDecimalExt = nil
+	b.extension.ValueId = nil
+	b.extension.ValueIdExt = nil
+	b.extension.ValueInstant = nil
+	b.extension.ValueInstantExt = nil
+	b.extension.ValueInteger = nil
+	b.extension.ValueIntegerExt = nil
+	b.extension.ValueMarkdown = nil
+	b.extension.ValueMarkdownExt = nil
+	b.extension.ValueOid = nil
+	b.extension.ValueOidExt = nil
+	b.extension.ValuePositiveInt = nil
+	b.extension.ValuePositiveIntExt = nil
+	b.extension.ValueString = nil
+	b.extension.ValueStringExt = nil
+	b.extension.ValueTime = nil
+	b.extension.ValueTimeExt = nil
+	b.extension.ValueUnsignedInt = nil
+	b.extension.ValueUnsignedIntExt = nil
+	b.extension.ValueUri = nil
+	b.extension.ValueUriExt = nil
+	b.extension.ValueUrl = nil
+	b.extension.ValueUrlExt = nil
+	b.extension.ValueUuid = nil
+	b.extension.ValueUuidExt = nil
+	b.extension.ValueAddress = nil
+	b.extension.ValueAge = nil
+	b.extension.ValueAnnotation = nil
+	b.extension.ValueAttachment = nil
+	b.extension.ValueCodeableConcept = nil
+	b.extension.ValueCoding = nil
+	b.extension.ValueContactPoint = nil
+	b.extension.ValueCount = nil
+	b.extension.ValueDistance = nil
+	b.extension.ValueDuration = nil
+	b.extension.ValueHumanName = nil
+	b.extension.ValueIdentifier = nil
+	b.extension.ValueMoney = nil
+	b.extension.ValuePeriod = nil
+	b.extension.ValueQuantity = nil
+	b.extension.ValueRange = nil
+	b.extension.ValueRatio = nil
+	b.extension.ValueReference = nil
+	b.extension.ValueSampledData = nil
+	b.extension.ValueSignature = nil
+	b.extension.ValueTiming = nil
+	b.extension.ValueContactDetail = nil
+	b.extension.ValueContributor = nil
+	b.extension.ValueDataRequirement = nil
+	b.extension.ValueExpression = nil
+	b.extension.ValueParameterDefinition = nil
+	b.extension.ValueRelatedArtifact = nil
+	b.extension.ValueTriggerDefinition = nil
+	b.extension.ValueUsageContext = nil
+	b.extension.ValueDosage = nil
+	b.extension.ValueMeta = nil
+}
+
+// =============================================================================
+// HumanName - Fluent Builder
+// =============================================================================
+
+// HumanNameBuilder provides a fluent API for constructing HumanName values.
+type HumanNameBuilder struct {
+	humanName *HumanName
+}
+
+// NewHumanNameBuilder creates a new HumanNameBuilder.
+func NewHumanNameBuilder() *HumanNameBuilder {
+	return &HumanNameBuilder{
+		humanName: &HumanName{},
+	}
+}
+
+// Build returns the constructed HumanName.
+func (b *HumanNameBuilder) Build() *HumanName {
+	return b.humanName
+}
+
+// SetId sets the Id field.
+func (b *HumanNameBuilder) SetId(v string) *HumanNameBuilder {
+	b.humanName.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *HumanNameBuilder) AddExtension(v Extension) *HumanNameBuilder {
+	b.humanName.Extension = append(b.humanName.Extension, v)
+	return b
+}
+
+// SetUse sets the Use field.
+func (b *HumanNameBuilder) SetUse(v NameUse) *HumanNameBuilder {
+	b.humanName.Use = &v
+	return b
+}
+
+// SetText sets the Text field.
+func (b *HumanNameBuilder) SetText(v string) *HumanNameBuilder {
+	b.humanName.Text = &v
+	return b
+}
+
+// SetFamily sets the Family field.
+func (b *HumanNameBuilder) SetFamily(v string) *HumanNameBuilder {
+	b.humanName.Family = &v
+	return b
+}
+
+// AddGiven adds a Given element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *HumanNameBuilder) AddGiven(v string) *HumanNameBuilder {
+	b.humanName.Given = append(b.humanName.Given, &v)
+	return b
+}
+
+// AddPrefix adds a Prefix element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *HumanNameBuilder) AddPrefix(v string) *HumanNameBuilder {
+	b.humanName.Prefix = append(b.humanName.Prefix, &v)
+	return b
+}
+
+// AddSuffix adds a Suffix element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *HumanNameBuilder) AddSuffix(v string) *HumanNameBuilder {
+	b.humanName.Suffix = append(b.humanName.Suffix, &v)
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *HumanNameBuilder) SetPeriod(v Period) *HumanNameBuilder {
+	b.humanName.Period = &v
+	return b
+}
+
+// =============================================================================
+// Identifier - Fluent Builder
+// =============================================================================
+
+// IdentifierBuilder provides a fluent API for constructing Identifier values.
+type IdentifierBuilder struct {
+	identifier *Identifier
+}
+
+// NewIdentifierBuilder creates a new IdentifierBuilder.
+func NewIdentifierBuilder() *IdentifierBuilder {
+	return &IdentifierBuilder{
+		identifier: &Identifier{},
+	}
+}
+
+// Build returns the constructed Identifier.
+func (b *IdentifierBuilder) Build() *Identifier {
+	return b.identifier
+}
+
+// SetId sets the Id field.
+func (b *IdentifierBuilder) SetId(v string) *IdentifierBuilder {
+	b.identifier.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *IdentifierBuilder) AddExtension(v Extension) *IdentifierBuilder {
+	b.identifier.Extension = append(b.identifier.Extension, v)
+	return b
+}
+
+// SetUse sets the Use field.
+func (b *IdentifierBuilder) SetUse(v IdentifierUse) *IdentifierBuilder {
+	b.identifier.Use = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *IdentifierBuilder) SetType(v CodeableConcept) *IdentifierBuilder {
+	b.identifier.Type = &v
+	return b
+}
+
+// SetSystem sets the System field.
+func (b *IdentifierBuilder) SetSystem(v string) *IdentifierBuilder {
+	b.identifier.System = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *IdentifierBuilder) SetValue(v string) *IdentifierBuilder {
+	b.identifier.Value = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *IdentifierBuilder) SetPeriod(v Period) *IdentifierBuilder {
+	b.identifier.Period = &v
+	return b
+}
+
+// SetAssigner sets the Assigner field.
+func (b *IdentifierBuilder) SetAssigner(v Reference) *IdentifierBuilder {
+	b.identifier.Assigner = &v
+	return b
+}
+
+// =============================================================================
+// MarketingStatus - Fluent Builder
+// =============================================================================
+
+// MarketingStatusBuilder provides a fluent API for constructing MarketingStatus values.
+type MarketingStatusBuilder struct {
+	marketingStatus *MarketingStatus
+}
+
+// NewMarketingStatusBuilder creates a new MarketingStatusBuilder.
+func NewMarketingStatusBuilder() *MarketingStatusBuilder {
+	return &MarketingStatusBuilder{
+		marketingStatus: &MarketingStatus{},
+	}
+}
+
+// Build returns the constructed MarketingStatus.
+func (b *MarketingStatusBuilder) Build() *MarketingStatus {
+	return b.marketingStatus
+}
+
+// SetId sets the Id field.
+func (b *MarketingStatusBuilder) SetId(v string) *MarketingStatusBuilder {
+	b.marketingStatus.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MarketingStatusBuilder) AddExtension(v Extension) *MarketingStatusBuilder {
+	b.marketingStatus.Extension = append(b.marketingStatus.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MarketingStatusBuilder) AddModifierExtension(v Extension) *MarketingStatusBuilder {
+	b.marketingStatus.ModifierExtension = append(b.marketingStatus.ModifierExtension, v)
+	return b
+}
+
+// SetCountry sets the Country field.
+func (b *MarketingStatusBuilder) SetCountry(v CodeableConcept) *MarketingStatusBuilder {
+	b.marketingStatus.Country = &v
+	return b
+}
+
+// SetJurisdiction sets the Jurisdiction field.
+func (b *MarketingStatusBuilder) SetJurisdiction(v CodeableConcept) *MarketingStatusBuilder {
+	b.marketingStatus.Jurisdiction = &v
+	return b
+}
+
+// SetStatus sets the Status field.
+func (b *MarketingStatusBuilder) SetStatus(v CodeableConcept) *MarketingStatusBuilder {
+	b.marketingStatus.Status = &v
+	return b
+}
+
+// SetDateRange sets the DateRange field.
+func (b *MarketingStatusBuilder) SetDateRange(v Period) *MarketingStatusBuilder {
+	b.marketingStatus.DateRange = &v
+	return b
+}
+
+// SetRestoreDate sets the RestoreDate field.
+func (b *MarketingStatusBuilder) SetRestoreDate(v string) *MarketingStatusBuilder {
+	b.marketingStatus.RestoreDate = &v
+	return b
+}
+
+// =============================================================================
+// Meta - Fluent Builder
+// =============================================================================
+
+// MetaBuilder provides a fluent API for constructing Meta values.
+type MetaBuilder struct {
+	meta *Meta
+}
+
+// NewMetaBuilder creates a new MetaBuilder.
+func NewMetaBuilder() *MetaBuilder {
+	return &MetaBuilder{
+		meta: &Meta{},
+	}
+}
+
+// Build returns the constructed Meta.
+func (b *MetaBuilder) Build() *Meta {
+	return b.meta
+}
+
+// SetId sets the Id field.
+func (b *MetaBuilder) SetId(v string) *MetaBuilder {
+	b.meta.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MetaBuilder) AddExtension(v Extension) *MetaBuilder {
+	b.meta.Extension = append(b.meta.Extension, v)
+	return b
+}
+
+// SetVersionId sets the VersionId field.
+func (b *MetaBuilder) SetVersionId(v string) *MetaBuilder {
+	b.meta.VersionId = &v
+	return b
+}
+
+// SetLastUpdated sets the LastUpdated field.
+func (b *MetaBuilder) SetLastUpdated(v string) *MetaBuilder {
+	b.meta.LastUpdated = &v
+	return b
+}
+
+// SetSource sets the Source field.
+func (b *MetaBuilder) SetSource(v string) *MetaBuilder {
+	b.meta.Source = &v
+	return b
+}
+
+// AddProfile adds a Profile element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *MetaBuilder) AddProfile(v string) *MetaBuilder {
+	b.meta.Profile = append(b.meta.Profile, &v)
+	return b
+}
+
+// AddSecurity adds a Security element.
+func (b *MetaBuilder) AddSecurity(v Coding) *MetaBuilder {
+	b.meta.Security = append(b.meta.Security, v)
+	return b
+}
+
+// AddTag adds a Tag element.
+func (b *MetaBuilder) AddTag(v Coding) *MetaBuilder {
+	b.meta.Tag = append(b.meta.Tag, v)
+	return b
+}
+
+// =============================================================================
+// Money - Fluent Builder
+// =============================================================================
+
+// MoneyBuilder provides a fluent API for constructing Money values.
+type MoneyBuilder struct {
+	money *Money
+}
+
+// NewMoneyBuilder creates a new MoneyBuilder.
+func NewMoneyBuilder() *MoneyBuilder {
+	return &MoneyBuilder{
+		money: &Money{},
+	}
+}
+
+// Build returns the constructed Money.
+func (b *MoneyBuilder) Build() *Money {
+	return b.money
+}
+
+// SetId sets the Id field.
+func (b *MoneyBuilder) SetId(v string) *MoneyBuilder {
+	b.money.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MoneyBuilder) AddExtension(v Extension) *MoneyBuilder {
+	b.money.Extension = append(b.money.Extension, v)
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *MoneyBuilder) SetValue(v Decimal) *MoneyBuilder {
+	b.money.Value = &v
+	return b
+}
+
+// SetCurrency sets the Currency field.
+func (b *MoneyBuilder) SetCurrency(v string) *MoneyBuilder {
+	b.money.Currency = &v
+	return b
+}
+
+// =============================================================================
+// Narrative - Fluent Builder
+// =============================================================================
+
+// NarrativeBuilder provides a fluent API for constructing Narrative values.
+type NarrativeBuilder struct {
+	narrative *Narrative
+}
+
+// NewNarrativeBuilder creates a new NarrativeBuilder.
+func NewNarrativeBuilder() *NarrativeBuilder {
+	return &NarrativeBuilder{
+		narrative: &Narrative{},
+	}
+}
+
+// Build returns the constructed Narrative.
+func (b *NarrativeBuilder) Build() *Narrative {
+	return b.narrative
+}
+
+// SetId sets the Id field.
+func (b *NarrativeBuilder) SetId(v string) *NarrativeBuilder {
+	b.narrative.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *NarrativeBuilder) AddExtension(v Extension) *NarrativeBuilder {
+	b.narrative.Extension = append(b.narrative.Extension, v)
+	return b
+}
+
+// SetStatus sets the Status field.
+func (b *NarrativeBuilder) SetStatus(v NarrativeStatus) *NarrativeBuilder {
+	b.narrative.Status = &v
+	return b
+}
+
+// SetDiv sets the Div field.
+func (b *NarrativeBuilder) SetDiv(v string) *NarrativeBuilder {
+	b.narrative.Div = &v
+	return b
+}
+
+// =============================================================================
+// ParameterDefinition - Fluent Builder
+// =============================================================================
+
+// ParameterDefinitionBuilder provides a fluent API for constructing ParameterDefinition values.
+type ParameterDefinitionBuilder struct {
+	parameterDefinition *ParameterDefinition
+}
+
+// NewParameterDefinitionBuilder creates a new ParameterDefinitionBuilder.
+func NewParameterDefinitionBuilder() *ParameterDefinitionBuilder {
+	return &ParameterDefinitionBuilder{
+		parameterDefinition: &ParameterDefinition{},
+	}
+}
+
+// Build returns the constructed ParameterDefinition.
+func (b *ParameterDefinitionBuilder) Build() *ParameterDefinition {
+	return b.parameterDefinition
+}
+
+// SetId sets the Id field.
+func (b *ParameterDefinitionBuilder) SetId(v string) *ParameterDefinitionBuilder {
+	b.parameterDefinition.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ParameterDefinitionBuilder) AddExtension(v Extension) *ParameterDefinitionBuilder {
+	b.parameterDefinition.Extension = append(b.parameterDefinition.Extension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *ParameterDefinitionBuilder) SetName(v string) *ParameterDefinitionBuilder {
+	b.parameterDefinition.Name = &v
+	return b
+}
+
+// SetUse sets the Use field.
+func (b *ParameterDefinitionBuilder) SetUse(v OperationParameterUse) *ParameterDefinitionBuilder {
+	b.parameterDefinition.Use = &v
+	return b
+}
+
+// SetMin sets the Min field.
+func (b *ParameterDefinitionBuilder) SetMin(v int) *ParameterDefinitionBuilder {
+	b.parameterDefinition.Min = &v
+	return b
+}
+
+// SetMax sets the Max field.
+func (b *ParameterDefinitionBuilder) SetMax(v string) *ParameterDefinitionBuilder {
+	b.parameterDefinition.Max = &v
+	return b
+}
+
+// SetDocumentation sets the Documentation field.
+func (b *ParameterDefinitionBuilder) SetDocumentation(v string) *ParameterDefinitionBuilder {
+	b.parameterDefinition.Documentation = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ParameterDefinitionBuilder) SetType(v string) *ParameterDefinitionBuilder {
+	b.parameterDefinition.Type = &v
+	return b
+}
+
+// SetProfile sets the Profile field.
+func (b *ParameterDefinitionBuilder) SetProfile(v string) *ParameterDefinitionBuilder {
+	b.parameterDefinition.Profile = &v
+	return b
+}
+
+// =============================================================================
+// Period - Fluent Builder
+// =============================================================================
+
+// PeriodBuilder provides a fluent API for constructing Period values.
+type PeriodBuilder struct {
+	period *Period
+}
+
+// NewPeriodBuilder creates a new PeriodBuilder.
+func NewPeriodBuilder() *PeriodBuilder {
+	return &PeriodBuilder{
+		period: &Period{},
+	}
+}
+
+// Build returns the constructed Period.
+func (b *PeriodBuilder) Build() *Period {
+	return b.period
+}
+
+// SetId sets the Id field.
+func (b *PeriodBuilder) SetId(v string) *PeriodBuilder {
+	b.period.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PeriodBuilder) AddExtension(v Extension) *PeriodBuilder {
+	b.period.Extension = append(b.period.Extension, v)
+	return b
+}
+
+// SetStart sets the Start field.
+func (b *PeriodBuilder) SetStart(v string) *PeriodBuilder {
+	b.period.Start = &v
+	return b
+}
+
+// SetEnd sets the End field.
+func (b *PeriodBuilder) SetEnd(v string) *PeriodBuilder {
+	b.period.End = &v
+	return b
+}
+
+// =============================================================================
+// Population - Fluent Builder
+// =============================================================================
+
+// PopulationBuilder provides a fluent API for constructing Population values.
+type PopulationBuilder struct {
+	population *Population
+}
+
+// NewPopulationBuilder creates a new PopulationBuilder.
+func NewPopulationBuilder() *PopulationBuilder {
+	return &PopulationBuilder{
+		population: &Population{},
+	}
+}
+
+// Build returns the constructed Population.
+func (b *PopulationBuilder) Build() *Population {
+	return b.population
+}
+
+// SetId sets the Id field.
+func (b *PopulationBuilder) SetId(v string) *PopulationBuilder {
+	b.population.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PopulationBuilder) AddExtension(v Extension) *PopulationBuilder {
+	b.population.Extension = append(b.population.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PopulationBuilder) AddModifierExtension(v Extension) *PopulationBuilder {
+	b.population.ModifierExtension = append(b.population.ModifierExtension, v)
+	return b
+}
+
+// SetAgeRange sets Age[x] to its AgeRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PopulationBuilder) SetAgeRange(v Range) *PopulationBuilder {
+	b.clearAge()
+	b.population.AgeRange = &v
+	return b
+}
+
+// SetAgeCodeableConcept sets Age[x] to its AgeCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PopulationBuilder) SetAgeCodeableConcept(v CodeableConcept) *PopulationBuilder {
+	b.clearAge()
+	b.population.AgeCodeableConcept = &v
+	return b
+}
+
+// SetGender sets the Gender field.
+func (b *PopulationBuilder) SetGender(v CodeableConcept) *PopulationBuilder {
+	b.population.Gender = &v
+	return b
+}
+
+// SetRace sets the Race field.
+func (b *PopulationBuilder) SetRace(v CodeableConcept) *PopulationBuilder {
+	b.population.Race = &v
+	return b
+}
+
+// SetPhysiologicalCondition sets the PhysiologicalCondition field.
+func (b *PopulationBuilder) SetPhysiologicalCondition(v CodeableConcept) *PopulationBuilder {
+	b.population.PhysiologicalCondition = &v
+	return b
+}
+
+// clearAge unsets every variant of Age[x], including the
+// _field companions of the primitive ones.
+func (b *PopulationBuilder) clearAge() {
+	b.population.AgeRange = nil
+	b.population.AgeCodeableConcept = nil
+}
+
+// =============================================================================
+// ProdCharacteristic - Fluent Builder
+// =============================================================================
+
+// ProdCharacteristicBuilder provides a fluent API for constructing ProdCharacteristic values.
+type ProdCharacteristicBuilder struct {
+	prodCharacteristic *ProdCharacteristic
+}
+
+// NewProdCharacteristicBuilder creates a new ProdCharacteristicBuilder.
+func NewProdCharacteristicBuilder() *ProdCharacteristicBuilder {
+	return &ProdCharacteristicBuilder{
+		prodCharacteristic: &ProdCharacteristic{},
+	}
+}
+
+// Build returns the constructed ProdCharacteristic.
+func (b *ProdCharacteristicBuilder) Build() *ProdCharacteristic {
+	return b.prodCharacteristic
+}
+
+// SetId sets the Id field.
+func (b *ProdCharacteristicBuilder) SetId(v string) *ProdCharacteristicBuilder {
+	b.prodCharacteristic.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ProdCharacteristicBuilder) AddExtension(v Extension) *ProdCharacteristicBuilder {
+	b.prodCharacteristic.Extension = append(b.prodCharacteristic.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ProdCharacteristicBuilder) AddModifierExtension(v Extension) *ProdCharacteristicBuilder {
+	b.prodCharacteristic.ModifierExtension = append(b.prodCharacteristic.ModifierExtension, v)
+	return b
+}
+
+// SetHeight sets the Height field.
+func (b *ProdCharacteristicBuilder) SetHeight(v Quantity) *ProdCharacteristicBuilder {
+	b.prodCharacteristic.Height = &v
+	return b
+}
+
+// SetWidth sets the Width field.
+func (b *ProdCharacteristicBuilder) SetWidth(v Quantity) *ProdCharacteristicBuilder {
+	b.prodCharacteristic.Width = &v
+	return b
+}
+
+// SetDepth sets the Depth field.
+func (b *ProdCharacteristicBuilder) SetDepth(v Quantity) *ProdCharacteristicBuilder {
+	b.prodCharacteristic.Depth = &v
+	return b
+}
+
+// SetWeight sets the Weight field.
+func (b *ProdCharacteristicBuilder) SetWeight(v Quantity) *ProdCharacteristicBuilder {
+	b.prodCharacteristic.Weight = &v
+	return b
+}
+
+// SetNominalVolume sets the NominalVolume field.
+func (b *ProdCharacteristicBuilder) SetNominalVolume(v Quantity) *ProdCharacteristicBuilder {
+	b.prodCharacteristic.NominalVolume = &v
+	return b
+}
+
+// SetExternalDiameter sets the ExternalDiameter field.
+func (b *ProdCharacteristicBuilder) SetExternalDiameter(v Quantity) *ProdCharacteristicBuilder {
+	b.prodCharacteristic.ExternalDiameter = &v
+	return b
+}
+
+// SetShape sets the Shape field.
+func (b *ProdCharacteristicBuilder) SetShape(v string) *ProdCharacteristicBuilder {
+	b.prodCharacteristic.Shape = &v
+	return b
+}
+
+// AddColor adds a Color element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ProdCharacteristicBuilder) AddColor(v string) *ProdCharacteristicBuilder {
+	b.prodCharacteristic.Color = append(b.prodCharacteristic.Color, &v)
+	return b
+}
+
+// AddImprint adds a Imprint element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ProdCharacteristicBuilder) AddImprint(v string) *ProdCharacteristicBuilder {
+	b.prodCharacteristic.Imprint = append(b.prodCharacteristic.Imprint, &v)
+	return b
+}
+
+// AddImage adds a Image element.
+func (b *ProdCharacteristicBuilder) AddImage(v Attachment) *ProdCharacteristicBuilder {
+	b.prodCharacteristic.Image = append(b.prodCharacteristic.Image, v)
+	return b
+}
+
+// SetScoring sets the Scoring field.
+func (b *ProdCharacteristicBuilder) SetScoring(v CodeableConcept) *ProdCharacteristicBuilder {
+	b.prodCharacteristic.Scoring = &v
+	return b
+}
+
+// =============================================================================
+// ProductShelfLife - Fluent Builder
+// =============================================================================
+
+// ProductShelfLifeBuilder provides a fluent API for constructing ProductShelfLife values.
+type ProductShelfLifeBuilder struct {
+	productShelfLife *ProductShelfLife
+}
+
+// NewProductShelfLifeBuilder creates a new ProductShelfLifeBuilder.
+func NewProductShelfLifeBuilder() *ProductShelfLifeBuilder {
+	return &ProductShelfLifeBuilder{
+		productShelfLife: &ProductShelfLife{},
+	}
+}
+
+// Build returns the constructed ProductShelfLife.
+func (b *ProductShelfLifeBuilder) Build() *ProductShelfLife {
+	return b.productShelfLife
+}
+
+// SetId sets the Id field.
+func (b *ProductShelfLifeBuilder) SetId(v string) *ProductShelfLifeBuilder {
+	b.productShelfLife.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ProductShelfLifeBuilder) AddExtension(v Extension) *ProductShelfLifeBuilder {
+	b.productShelfLife.Extension = append(b.productShelfLife.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ProductShelfLifeBuilder) AddModifierExtension(v Extension) *ProductShelfLifeBuilder {
+	b.productShelfLife.ModifierExtension = append(b.productShelfLife.ModifierExtension, v)
+	return b
+}
+
+// SetIdentifier sets the Identifier field.
+func (b *ProductShelfLifeBuilder) SetIdentifier(v Identifier) *ProductShelfLifeBuilder {
+	b.productShelfLife.Identifier = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ProductShelfLifeBuilder) SetType(v CodeableConcept) *ProductShelfLifeBuilder {
+	b.productShelfLife.Type = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *ProductShelfLifeBuilder) SetPeriod(v Quantity) *ProductShelfLifeBuilder {
+	b.productShelfLife.Period = &v
+	return b
+}
+
+// AddSpecialPrecautionsForStorage adds a SpecialPrecautionsForStorage element.
+func (b *ProductShelfLifeBuilder) AddSpecialPrecautionsForStorage(v CodeableConcept) *ProductShelfLifeBuilder {
+	b.productShelfLife.SpecialPrecautionsForStorage = append(b.productShelfLife.SpecialPrecautionsForStorage, v)
+	return b
+}
+
+// =============================================================================
+// Quantity - Fluent Builder
+// =============================================================================
+
+// QuantityBuilder provides a fluent API for constructing Quantity values.
+type QuantityBuilder struct {
+	quantity *Quantity
+}
+
+// NewQuantityBuilder creates a new QuantityBuilder.
+func NewQuantityBuilder() *QuantityBuilder {
+	return &QuantityBuilder{
+		quantity: &Quantity{},
+	}
+}
+
+// Build returns the constructed Quantity.
+func (b *QuantityBuilder) Build() *Quantity {
+	return b.quantity
+}
+
+// SetId sets the Id field.
+func (b *QuantityBuilder) SetId(v string) *QuantityBuilder {
+	b.quantity.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *QuantityBuilder) AddExtension(v Extension) *QuantityBuilder {
+	b.quantity.Extension = append(b.quantity.Extension, v)
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *QuantityBuilder) SetValue(v Decimal) *QuantityBuilder {
+	b.quantity.Value = &v
+	return b
+}
+
+// SetComparator sets the Comparator field.
+func (b *QuantityBuilder) SetComparator(v QuantityComparator) *QuantityBuilder {
+	b.quantity.Comparator = &v
+	return b
+}
+
+// SetUnit sets the Unit field.
+func (b *QuantityBuilder) SetUnit(v string) *QuantityBuilder {
+	b.quantity.Unit = &v
+	return b
+}
+
+// SetSystem sets the System field.
+func (b *QuantityBuilder) SetSystem(v string) *QuantityBuilder {
+	b.quantity.System = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *QuantityBuilder) SetCode(v string) *QuantityBuilder {
+	b.quantity.Code = &v
+	return b
+}
+
+// =============================================================================
+// Range - Fluent Builder
+// =============================================================================
+
+// RangeBuilder provides a fluent API for constructing Range values.
+type RangeBuilder struct {
+	rangeValue *Range
+}
+
+// NewRangeBuilder creates a new RangeBuilder.
+func NewRangeBuilder() *RangeBuilder {
+	return &RangeBuilder{
+		rangeValue: &Range{},
+	}
+}
+
+// Build returns the constructed Range.
+func (b *RangeBuilder) Build() *Range {
+	return b.rangeValue
+}
+
+// SetId sets the Id field.
+func (b *RangeBuilder) SetId(v string) *RangeBuilder {
+	b.rangeValue.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RangeBuilder) AddExtension(v Extension) *RangeBuilder {
+	b.rangeValue.Extension = append(b.rangeValue.Extension, v)
+	return b
+}
+
+// SetLow sets the Low field.
+func (b *RangeBuilder) SetLow(v Quantity) *RangeBuilder {
+	b.rangeValue.Low = &v
+	return b
+}
+
+// SetHigh sets the High field.
+func (b *RangeBuilder) SetHigh(v Quantity) *RangeBuilder {
+	b.rangeValue.High = &v
+	return b
+}
+
+// =============================================================================
+// Ratio - Fluent Builder
+// =============================================================================
+
+// RatioBuilder provides a fluent API for constructing Ratio values.
+type RatioBuilder struct {
+	ratio *Ratio
+}
+
+// NewRatioBuilder creates a new RatioBuilder.
+func NewRatioBuilder() *RatioBuilder {
+	return &RatioBuilder{
+		ratio: &Ratio{},
+	}
+}
+
+// Build returns the constructed Ratio.
+func (b *RatioBuilder) Build() *Ratio {
+	return b.ratio
+}
+
+// SetId sets the Id field.
+func (b *RatioBuilder) SetId(v string) *RatioBuilder {
+	b.ratio.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RatioBuilder) AddExtension(v Extension) *RatioBuilder {
+	b.ratio.Extension = append(b.ratio.Extension, v)
+	return b
+}
+
+// SetNumerator sets the Numerator field.
+func (b *RatioBuilder) SetNumerator(v Quantity) *RatioBuilder {
+	b.ratio.Numerator = &v
+	return b
+}
+
+// SetDenominator sets the Denominator field.
+func (b *RatioBuilder) SetDenominator(v Quantity) *RatioBuilder {
+	b.ratio.Denominator = &v
+	return b
+}
+
+// =============================================================================
+// Reference - Fluent Builder
+// =============================================================================
+
+// ReferenceBuilder provides a fluent API for constructing Reference values.
+type ReferenceBuilder struct {
+	reference *Reference
+}
+
+// NewReferenceBuilder creates a new ReferenceBuilder.
+func NewReferenceBuilder() *ReferenceBuilder {
+	return &ReferenceBuilder{
+		reference: &Reference{},
+	}
+}
+
+// Build returns the constructed Reference.
+func (b *ReferenceBuilder) Build() *Reference {
+	return b.reference
+}
+
+// SetId sets the Id field.
+func (b *ReferenceBuilder) SetId(v string) *ReferenceBuilder {
+	b.reference.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ReferenceBuilder) AddExtension(v Extension) *ReferenceBuilder {
+	b.reference.Extension = append(b.reference.Extension, v)
+	return b
+}
+
+// SetReference sets the Reference field.
+func (b *ReferenceBuilder) SetReference(v string) *ReferenceBuilder {
+	b.reference.Reference = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ReferenceBuilder) SetType(v string) *ReferenceBuilder {
+	b.reference.Type = &v
+	return b
+}
+
+// SetIdentifier sets the Identifier field.
+func (b *ReferenceBuilder) SetIdentifier(v Identifier) *ReferenceBuilder {
+	b.reference.Identifier = &v
+	return b
+}
+
+// SetDisplay sets the Display field.
+func (b *ReferenceBuilder) SetDisplay(v string) *ReferenceBuilder {
+	b.reference.Display = &v
+	return b
+}
+
+// =============================================================================
+// RelatedArtifact - Fluent Builder
+// =============================================================================
+
+// RelatedArtifactBuilder provides a fluent API for constructing RelatedArtifact values.
+type RelatedArtifactBuilder struct {
+	relatedArtifact *RelatedArtifact
+}
+
+// NewRelatedArtifactBuilder creates a new RelatedArtifactBuilder.
+func NewRelatedArtifactBuilder() *RelatedArtifactBuilder {
+	return &RelatedArtifactBuilder{
+		relatedArtifact: &RelatedArtifact{},
+	}
+}
+
+// Build returns the constructed RelatedArtifact.
+func (b *RelatedArtifactBuilder) Build() *RelatedArtifact {
+	return b.relatedArtifact
+}
+
+// SetId sets the Id field.
+func (b *RelatedArtifactBuilder) SetId(v string) *RelatedArtifactBuilder {
+	b.relatedArtifact.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RelatedArtifactBuilder) AddExtension(v Extension) *RelatedArtifactBuilder {
+	b.relatedArtifact.Extension = append(b.relatedArtifact.Extension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *RelatedArtifactBuilder) SetType(v RelatedArtifactType) *RelatedArtifactBuilder {
+	b.relatedArtifact.Type = &v
+	return b
+}
+
+// SetLabel sets the Label field.
+func (b *RelatedArtifactBuilder) SetLabel(v string) *RelatedArtifactBuilder {
+	b.relatedArtifact.Label = &v
+	return b
+}
+
+// SetDisplay sets the Display field.
+func (b *RelatedArtifactBuilder) SetDisplay(v string) *RelatedArtifactBuilder {
+	b.relatedArtifact.Display = &v
+	return b
+}
+
+// SetCitation sets the Citation field.
+func (b *RelatedArtifactBuilder) SetCitation(v string) *RelatedArtifactBuilder {
+	b.relatedArtifact.Citation = &v
+	return b
+}
+
+// SetUrl sets the Url field.
+func (b *RelatedArtifactBuilder) SetUrl(v string) *RelatedArtifactBuilder {
+	b.relatedArtifact.Url = &v
+	return b
+}
+
+// SetDocument sets the Document field.
+func (b *RelatedArtifactBuilder) SetDocument(v Attachment) *RelatedArtifactBuilder {
+	b.relatedArtifact.Document = &v
+	return b
+}
+
+// SetResource sets the Resource field.
+func (b *RelatedArtifactBuilder) SetResource(v string) *RelatedArtifactBuilder {
+	b.relatedArtifact.Resource = &v
+	return b
+}
+
+// =============================================================================
+// SampledData - Fluent Builder
+// =============================================================================
+
+// SampledDataBuilder provides a fluent API for constructing SampledData values.
+type SampledDataBuilder struct {
+	sampledData *SampledData
+}
+
+// NewSampledDataBuilder creates a new SampledDataBuilder.
+func NewSampledDataBuilder() *SampledDataBuilder {
+	return &SampledDataBuilder{
+		sampledData: &SampledData{},
+	}
+}
+
+// Build returns the constructed SampledData.
+func (b *SampledDataBuilder) Build() *SampledData {
+	return b.sampledData
+}
+
+// SetId sets the Id field.
+func (b *SampledDataBuilder) SetId(v string) *SampledDataBuilder {
+	b.sampledData.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SampledDataBuilder) AddExtension(v Extension) *SampledDataBuilder {
+	b.sampledData.Extension = append(b.sampledData.Extension, v)
+	return b
+}
+
+// SetOrigin sets the Origin field.
+func (b *SampledDataBuilder) SetOrigin(v Quantity) *SampledDataBuilder {
+	b.sampledData.Origin = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *SampledDataBuilder) SetPeriod(v Decimal) *SampledDataBuilder {
+	b.sampledData.Period = &v
+	return b
+}
+
+// SetFactor sets the Factor field.
+func (b *SampledDataBuilder) SetFactor(v Decimal) *SampledDataBuilder {
+	b.sampledData.Factor = &v
+	return b
+}
+
+// SetLowerLimit sets the LowerLimit field.
+func (b *SampledDataBuilder) SetLowerLimit(v Decimal) *SampledDataBuilder {
+	b.sampledData.LowerLimit = &v
+	return b
+}
+
+// SetUpperLimit sets the UpperLimit field.
+func (b *SampledDataBuilder) SetUpperLimit(v Decimal) *SampledDataBuilder {
+	b.sampledData.UpperLimit = &v
+	return b
+}
+
+// SetDimensions sets the Dimensions field.
+func (b *SampledDataBuilder) SetDimensions(v uint32) *SampledDataBuilder {
+	b.sampledData.Dimensions = &v
+	return b
+}
+
+// SetData sets the Data field.
+func (b *SampledDataBuilder) SetData(v string) *SampledDataBuilder {
+	b.sampledData.Data = &v
+	return b
+}
+
+// =============================================================================
+// Signature - Fluent Builder
+// =============================================================================
+
+// SignatureBuilder provides a fluent API for constructing Signature values.
+type SignatureBuilder struct {
+	signature *Signature
+}
+
+// NewSignatureBuilder creates a new SignatureBuilder.
+func NewSignatureBuilder() *SignatureBuilder {
+	return &SignatureBuilder{
+		signature: &Signature{},
+	}
+}
+
+// Build returns the constructed Signature.
+func (b *SignatureBuilder) Build() *Signature {
+	return b.signature
+}
+
+// SetId sets the Id field.
+func (b *SignatureBuilder) SetId(v string) *SignatureBuilder {
+	b.signature.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SignatureBuilder) AddExtension(v Extension) *SignatureBuilder {
+	b.signature.Extension = append(b.signature.Extension, v)
+	return b
+}
+
+// AddType adds a Type element.
+func (b *SignatureBuilder) AddType(v Coding) *SignatureBuilder {
+	b.signature.Type = append(b.signature.Type, v)
+	return b
+}
+
+// SetWhen sets the When field.
+func (b *SignatureBuilder) SetWhen(v string) *SignatureBuilder {
+	b.signature.When = &v
+	return b
+}
+
+// SetWho sets the Who field.
+func (b *SignatureBuilder) SetWho(v Reference) *SignatureBuilder {
+	b.signature.Who = &v
+	return b
+}
+
+// SetOnBehalfOf sets the OnBehalfOf field.
+func (b *SignatureBuilder) SetOnBehalfOf(v Reference) *SignatureBuilder {
+	b.signature.OnBehalfOf = &v
+	return b
+}
+
+// SetTargetFormat sets the TargetFormat field.
+func (b *SignatureBuilder) SetTargetFormat(v string) *SignatureBuilder {
+	b.signature.TargetFormat = &v
+	return b
+}
+
+// SetSigFormat sets the SigFormat field.
+func (b *SignatureBuilder) SetSigFormat(v string) *SignatureBuilder {
+	b.signature.SigFormat = &v
+	return b
+}
+
+// SetData sets the Data field.
+func (b *SignatureBuilder) SetData(v string) *SignatureBuilder {
+	b.signature.Data = &v
+	return b
+}
+
+// =============================================================================
+// SubstanceAmount - Fluent Builder
+// =============================================================================
+
+// SubstanceAmountBuilder provides a fluent API for constructing SubstanceAmount values.
+type SubstanceAmountBuilder struct {
+	substanceAmount *SubstanceAmount
+}
+
+// NewSubstanceAmountBuilder creates a new SubstanceAmountBuilder.
+func NewSubstanceAmountBuilder() *SubstanceAmountBuilder {
+	return &SubstanceAmountBuilder{
+		substanceAmount: &SubstanceAmount{},
+	}
+}
+
+// Build returns the constructed SubstanceAmount.
+func (b *SubstanceAmountBuilder) Build() *SubstanceAmount {
+	return b.substanceAmount
+}
+
+// SetId sets the Id field.
+func (b *SubstanceAmountBuilder) SetId(v string) *SubstanceAmountBuilder {
+	b.substanceAmount.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceAmountBuilder) AddExtension(v Extension) *SubstanceAmountBuilder {
+	b.substanceAmount.Extension = append(b.substanceAmount.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceAmountBuilder) AddModifierExtension(v Extension) *SubstanceAmountBuilder {
+	b.substanceAmount.ModifierExtension = append(b.substanceAmount.ModifierExtension, v)
+	return b
+}
+
+// SetAmountQuantity sets Amount[x] to its AmountQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SubstanceAmountBuilder) SetAmountQuantity(v Quantity) *SubstanceAmountBuilder {
+	b.clearAmount()
+	b.substanceAmount.AmountQuantity = &v
+	return b
+}
+
+// SetAmountRange sets Amount[x] to its AmountRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SubstanceAmountBuilder) SetAmountRange(v Range) *SubstanceAmountBuilder {
+	b.clearAmount()
+	b.substanceAmount.AmountRange = &v
+	return b
+}
+
+// SetAmountString sets Amount[x] to its AmountString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SubstanceAmountBuilder) SetAmountString(v string) *SubstanceAmountBuilder {
+	b.clearAmount()
+	b.substanceAmount.AmountString = &v
+	return b
+}
+
+// SetAmountStringExt sets the AmountStringExt field.
+func (b *SubstanceAmountBuilder) SetAmountStringExt(v Element) *SubstanceAmountBuilder {
+	b.substanceAmount.AmountStringExt = &v
+	return b
+}
+
+// SetAmountType sets the AmountType field.
+func (b *SubstanceAmountBuilder) SetAmountType(v CodeableConcept) *SubstanceAmountBuilder {
+	b.substanceAmount.AmountType = &v
+	return b
+}
+
+// SetAmountText sets the AmountText field.
+func (b *SubstanceAmountBuilder) SetAmountText(v string) *SubstanceAmountBuilder {
+	b.substanceAmount.AmountText = &v
+	return b
+}
+
+// SetReferenceRange sets the ReferenceRange field.
+func (b *SubstanceAmountBuilder) SetReferenceRange(v SubstanceAmountReferenceRange) *SubstanceAmountBuilder {
+	b.substanceAmount.ReferenceRange = &v
+	return b
+}
+
+// clearAmount unsets every variant of Amount[x], including the
+// _field companions of the primitive ones.
+func (b *SubstanceAmountBuilder) clearAmount() {
+	b.substanceAmount.AmountQuantity = nil
+	b.substanceAmount.AmountRange = nil
+	b.substanceAmount.AmountString = nil
+	b.substanceAmount.AmountStringExt = nil
+}
+
+// =============================================================================
+// Timing - Fluent Builder
+// =============================================================================
+
+// TimingBuilder provides a fluent API for constructing Timing values.
+type TimingBuilder struct {
+	timing *Timing
+}
+
+// NewTimingBuilder creates a new TimingBuilder.
+func NewTimingBuilder() *TimingBuilder {
+	return &TimingBuilder{
+		timing: &Timing{},
+	}
+}
+
+// Build returns the constructed Timing.
+func (b *TimingBuilder) Build() *Timing {
+	return b.timing
+}
+
+// SetId sets the Id field.
+func (b *TimingBuilder) SetId(v string) *TimingBuilder {
+	b.timing.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TimingBuilder) AddExtension(v Extension) *TimingBuilder {
+	b.timing.Extension = append(b.timing.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TimingBuilder) AddModifierExtension(v Extension) *TimingBuilder {
+	b.timing.ModifierExtension = append(b.timing.ModifierExtension, v)
+	return b
+}
+
+// AddEvent adds a Event element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *TimingBuilder) AddEvent(v string) *TimingBuilder {
+	b.timing.Event = append(b.timing.Event, &v)
+	return b
+}
+
+// SetRepeat sets the Repeat field.
+func (b *TimingBuilder) SetRepeat(v TimingRepeat) *TimingBuilder {
+	b.timing.Repeat = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *TimingBuilder) SetCode(v CodeableConcept) *TimingBuilder {
+	b.timing.Code = &v
+	return b
+}
+
+// =============================================================================
+// TriggerDefinition - Fluent Builder
+// =============================================================================
+
+// TriggerDefinitionBuilder provides a fluent API for constructing TriggerDefinition values.
+type TriggerDefinitionBuilder struct {
+	triggerDefinition *TriggerDefinition
+}
+
+// NewTriggerDefinitionBuilder creates a new TriggerDefinitionBuilder.
+func NewTriggerDefinitionBuilder() *TriggerDefinitionBuilder {
+	return &TriggerDefinitionBuilder{
+		triggerDefinition: &TriggerDefinition{},
+	}
+}
+
+// Build returns the constructed TriggerDefinition.
+func (b *TriggerDefinitionBuilder) Build() *TriggerDefinition {
+	return b.triggerDefinition
+}
+
+// SetId sets the Id field.
+func (b *TriggerDefinitionBuilder) SetId(v string) *TriggerDefinitionBuilder {
+	b.triggerDefinition.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TriggerDefinitionBuilder) AddExtension(v Extension) *TriggerDefinitionBuilder {
+	b.triggerDefinition.Extension = append(b.triggerDefinition.Extension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *TriggerDefinitionBuilder) SetType(v TriggerType) *TriggerDefinitionBuilder {
+	b.triggerDefinition.Type = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *TriggerDefinitionBuilder) SetName(v string) *TriggerDefinitionBuilder {
+	b.triggerDefinition.Name = &v
+	return b
+}
+
+// SetTimingTiming sets Timing[x] to its TimingTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TriggerDefinitionBuilder) SetTimingTiming(v Timing) *TriggerDefinitionBuilder {
+	b.clearTiming()
+	b.triggerDefinition.TimingTiming = &v
+	return b
+}
+
+// SetTimingReference sets Timing[x] to its TimingReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TriggerDefinitionBuilder) SetTimingReference(v Reference) *TriggerDefinitionBuilder {
+	b.clearTiming()
+	b.triggerDefinition.TimingReference = &v
+	return b
+}
+
+// SetTimingDate sets Timing[x] to its TimingDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TriggerDefinitionBuilder) SetTimingDate(v string) *TriggerDefinitionBuilder {
+	b.clearTiming()
+	b.triggerDefinition.TimingDate = &v
+	return b
+}
+
+// SetTimingDateExt sets the TimingDateExt field.
+func (b *TriggerDefinitionBuilder) SetTimingDateExt(v Element) *TriggerDefinitionBuilder {
+	b.triggerDefinition.TimingDateExt = &v
+	return b
+}
+
+// SetTimingDateTime sets Timing[x] to its TimingDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TriggerDefinitionBuilder) SetTimingDateTime(v string) *TriggerDefinitionBuilder {
+	b.clearTiming()
+	b.triggerDefinition.TimingDateTime = &v
+	return b
+}
+
+// SetTimingDateTimeExt sets the TimingDateTimeExt field.
+func (b *TriggerDefinitionBuilder) SetTimingDateTimeExt(v Element) *TriggerDefinitionBuilder {
+	b.triggerDefinition.TimingDateTimeExt = &v
+	return b
+}
+
+// AddData adds a Data element.
+func (b *TriggerDefinitionBuilder) AddData(v DataRequirement) *TriggerDefinitionBuilder {
+	b.triggerDefinition.Data = append(b.triggerDefinition.Data, v)
+	return b
+}
+
+// SetCondition sets the Condition field.
+func (b *TriggerDefinitionBuilder) SetCondition(v Expression) *TriggerDefinitionBuilder {
+	b.triggerDefinition.Condition = &v
+	return b
+}
+
+// clearTiming unsets every variant of Timing[x], including the
+// _field companions of the primitive ones.
+func (b *TriggerDefinitionBuilder) clearTiming() {
+	b.triggerDefinition.TimingTiming = nil
+	b.triggerDefinition.TimingReference = nil
+	b.triggerDefinition.TimingDate = nil
+	b.triggerDefinition.TimingDateExt = nil
+	b.triggerDefinition.TimingDateTime = nil
+	b.triggerDefinition.TimingDateTimeExt = nil
+}
+
+// =============================================================================
+// UsageContext - Fluent Builder
+// =============================================================================
+
+// UsageContextBuilder provides a fluent API for constructing UsageContext values.
+type UsageContextBuilder struct {
+	usageContext *UsageContext
+}
+
+// NewUsageContextBuilder creates a new UsageContextBuilder.
+func NewUsageContextBuilder() *UsageContextBuilder {
+	return &UsageContextBuilder{
+		usageContext: &UsageContext{},
+	}
+}
+
+// Build returns the constructed UsageContext.
+func (b *UsageContextBuilder) Build() *UsageContext {
+	return b.usageContext
+}
+
+// SetId sets the Id field.
+func (b *UsageContextBuilder) SetId(v string) *UsageContextBuilder {
+	b.usageContext.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *UsageContextBuilder) AddExtension(v Extension) *UsageContextBuilder {
+	b.usageContext.Extension = append(b.usageContext.Extension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *UsageContextBuilder) SetCode(v Coding) *UsageContextBuilder {
+	b.usageContext.Code = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *UsageContextBuilder) SetValueCodeableConcept(v CodeableConcept) *UsageContextBuilder {
+	b.clearValue()
+	b.usageContext.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *UsageContextBuilder) SetValueQuantity(v Quantity) *UsageContextBuilder {
+	b.clearValue()
+	b.usageContext.ValueQuantity = &v
+	return b
+}
+
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *UsageContextBuilder) SetValueRange(v Range) *UsageContextBuilder {
+	b.clearValue()
+	b.usageContext.ValueRange = &v
+	return b
+}
+
+// SetValueReference sets Value[x] to its ValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *UsageContextBuilder) SetValueReference(v Reference) *UsageContextBuilder {
+	b.clearValue()
+	b.usageContext.ValueReference = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *UsageContextBuilder) clearValue() {
+	b.usageContext.ValueCodeableConcept = nil
+	b.usageContext.ValueQuantity = nil
+	b.usageContext.ValueRange = nil
+	b.usageContext.ValueReference = nil
+}
+
+// =============================================================================
+// MoneyQuantity - Fluent Builder
+// =============================================================================
+
+// MoneyQuantityBuilder provides a fluent API for constructing MoneyQuantity values.
+type MoneyQuantityBuilder struct {
+	moneyQuantity *MoneyQuantity
+}
+
+// NewMoneyQuantityBuilder creates a new MoneyQuantityBuilder.
+func NewMoneyQuantityBuilder() *MoneyQuantityBuilder {
+	return &MoneyQuantityBuilder{
+		moneyQuantity: &MoneyQuantity{},
+	}
+}
+
+// Build returns the constructed MoneyQuantity.
+func (b *MoneyQuantityBuilder) Build() *MoneyQuantity {
+	return b.moneyQuantity
+}
+
+// SetId sets the Id field.
+func (b *MoneyQuantityBuilder) SetId(v string) *MoneyQuantityBuilder {
+	b.moneyQuantity.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MoneyQuantityBuilder) AddExtension(v Extension) *MoneyQuantityBuilder {
+	b.moneyQuantity.Extension = append(b.moneyQuantity.Extension, v)
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *MoneyQuantityBuilder) SetValue(v Decimal) *MoneyQuantityBuilder {
+	b.moneyQuantity.Value = &v
+	return b
+}
+
+// SetComparator sets the Comparator field.
+func (b *MoneyQuantityBuilder) SetComparator(v QuantityComparator) *MoneyQuantityBuilder {
+	b.moneyQuantity.Comparator = &v
+	return b
+}
+
+// SetUnit sets the Unit field.
+func (b *MoneyQuantityBuilder) SetUnit(v string) *MoneyQuantityBuilder {
+	b.moneyQuantity.Unit = &v
+	return b
+}
+
+// SetSystem sets the System field.
+func (b *MoneyQuantityBuilder) SetSystem(v string) *MoneyQuantityBuilder {
+	b.moneyQuantity.System = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MoneyQuantityBuilder) SetCode(v string) *MoneyQuantityBuilder {
+	b.moneyQuantity.Code = &v
+	return b
+}
+
+// =============================================================================
+// SimpleQuantity - Fluent Builder
+// =============================================================================
+
+// SimpleQuantityBuilder provides a fluent API for constructing SimpleQuantity values.
+type SimpleQuantityBuilder struct {
+	simpleQuantity *SimpleQuantity
+}
+
+// NewSimpleQuantityBuilder creates a new SimpleQuantityBuilder.
+func NewSimpleQuantityBuilder() *SimpleQuantityBuilder {
+	return &SimpleQuantityBuilder{
+		simpleQuantity: &SimpleQuantity{},
+	}
+}
+
+// Build returns the constructed SimpleQuantity.
+func (b *SimpleQuantityBuilder) Build() *SimpleQuantity {
+	return b.simpleQuantity
+}
+
+// SetId sets the Id field.
+func (b *SimpleQuantityBuilder) SetId(v string) *SimpleQuantityBuilder {
+	b.simpleQuantity.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SimpleQuantityBuilder) AddExtension(v Extension) *SimpleQuantityBuilder {
+	b.simpleQuantity.Extension = append(b.simpleQuantity.Extension, v)
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *SimpleQuantityBuilder) SetValue(v Decimal) *SimpleQuantityBuilder {
+	b.simpleQuantity.Value = &v
+	return b
+}
+
+// SetComparator sets the Comparator field.
+func (b *SimpleQuantityBuilder) SetComparator(v QuantityComparator) *SimpleQuantityBuilder {
+	b.simpleQuantity.Comparator = &v
+	return b
+}
+
+// SetUnit sets the Unit field.
+func (b *SimpleQuantityBuilder) SetUnit(v string) *SimpleQuantityBuilder {
+	b.simpleQuantity.Unit = &v
+	return b
+}
+
+// SetSystem sets the System field.
+func (b *SimpleQuantityBuilder) SetSystem(v string) *SimpleQuantityBuilder {
+	b.simpleQuantity.System = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *SimpleQuantityBuilder) SetCode(v string) *SimpleQuantityBuilder {
+	b.simpleQuantity.Code = &v
+	return b
+}
+
+// =============================================================================
+// MetadataResource - Fluent Builder
+// =============================================================================
+
+// MetadataResourceBuilder provides a fluent API for constructing MetadataResource values.
+type MetadataResourceBuilder struct {
+	metadataResource *MetadataResource
+}
+
+// NewMetadataResourceBuilder creates a new MetadataResourceBuilder.
+func NewMetadataResourceBuilder() *MetadataResourceBuilder {
+	return &MetadataResourceBuilder{
+		metadataResource: &MetadataResource{},
+	}
+}
+
+// Build returns the constructed MetadataResource.
+func (b *MetadataResourceBuilder) Build() *MetadataResource {
+	return b.metadataResource
+}
+
+// SetId sets the Id field.
+func (b *MetadataResourceBuilder) SetId(v string) *MetadataResourceBuilder {
+	b.metadataResource.Id = &v
+	return b
+}
+
+// SetMeta sets the Meta field.
+func (b *MetadataResourceBuilder) SetMeta(v Meta) *MetadataResourceBuilder {
+	b.metadataResource.Meta = &v
+	return b
+}
+
+// SetImplicitRules sets the ImplicitRules field.
+func (b *MetadataResourceBuilder) SetImplicitRules(v string) *MetadataResourceBuilder {
+	b.metadataResource.ImplicitRules = &v
+	return b
+}
+
+// SetLanguage sets the Language field.
+func (b *MetadataResourceBuilder) SetLanguage(v string) *MetadataResourceBuilder {
+	b.metadataResource.Language = &v
+	return b
+}
+
+// SetText sets the Text field.
+func (b *MetadataResourceBuilder) SetText(v Narrative) *MetadataResourceBuilder {
+	b.metadataResource.Text = &v
+	return b
+}
+
+// AddContained adds a resource to Contained.
+//
+// A nil resource is ignored rather than appended. Contained holds an interface, so
+// a nil entry marshals as JSON null — which FHIR does not allow there, and which
+// this library then drops on the way back in, so a document written with one
+// re-reads shorter than it was written.
+//
+// Filtering at serialization time would fix that everywhere, but giving
+// ContainedList a MarshalJSON costs 2.9x on every marshal that has no nil in it
+// (419 -> 1209 ns/op, 1 -> 3 allocs), because encoding/json re-compacts whatever a
+// MarshalJSON returns. That is the cost task 6.2 removed by deleting 437 of them.
+// Guarding the builder is free and covers the path the documentation recommends;
+// a struct literal can still put a nil there.
+func (b *MetadataResourceBuilder) AddContained(v Resource) *MetadataResourceBuilder {
+	if v == nil {
+		return b
+	}
+	b.metadataResource.Contained = append(b.metadataResource.Contained, v)
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MetadataResourceBuilder) AddExtension(v Extension) *MetadataResourceBuilder {
+	b.metadataResource.Extension = append(b.metadataResource.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MetadataResourceBuilder) AddModifierExtension(v Extension) *MetadataResourceBuilder {
+	b.metadataResource.ModifierExtension = append(b.metadataResource.ModifierExtension, v)
+	return b
+}
+
+// SetUrl sets the Url field.
+func (b *MetadataResourceBuilder) SetUrl(v string) *MetadataResourceBuilder {
+	b.metadataResource.Url = &v
+	return b
+}
+
+// SetVersion sets the Version field.
+func (b *MetadataResourceBuilder) SetVersion(v string) *MetadataResourceBuilder {
+	b.metadataResource.Version = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *MetadataResourceBuilder) SetName(v string) *MetadataResourceBuilder {
+	b.metadataResource.Name = &v
+	return b
+}
+
+// SetTitle sets the Title field.
+func (b *MetadataResourceBuilder) SetTitle(v string) *MetadataResourceBuilder {
+	b.metadataResource.Title = &v
+	return b
+}
+
+// SetStatus sets the Status field.
+func (b *MetadataResourceBuilder) SetStatus(v PublicationStatus) *MetadataResourceBuilder {
+	b.metadataResource.Status = &v
+	return b
+}
+
+// SetExperimental sets the Experimental field.
+func (b *MetadataResourceBuilder) SetExperimental(v bool) *MetadataResourceBuilder {
+	b.metadataResource.Experimental = &v
+	return b
+}
+
+// SetDate sets the Date field.
+func (b *MetadataResourceBuilder) SetDate(v string) *MetadataResourceBuilder {
+	b.metadataResource.Date = &v
+	return b
+}
+
+// SetPublisher sets the Publisher field.
+func (b *MetadataResourceBuilder) SetPublisher(v string) *MetadataResourceBuilder {
+	b.metadataResource.Publisher = &v
+	return b
+}
+
+// AddContact adds a Contact element.
+func (b *MetadataResourceBuilder) AddContact(v ContactDetail) *MetadataResourceBuilder {
+	b.metadataResource.Contact = append(b.metadataResource.Contact, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *MetadataResourceBuilder) SetDescription(v string) *MetadataResourceBuilder {
+	b.metadataResource.Description = &v
+	return b
+}
+
+// AddUseContext adds a UseContext element.
+func (b *MetadataResourceBuilder) AddUseContext(v UsageContext) *MetadataResourceBuilder {
+	b.metadataResource.UseContext = append(b.metadataResource.UseContext, v)
+	return b
+}
+
+// AddJurisdiction adds a Jurisdiction element.
+func (b *MetadataResourceBuilder) AddJurisdiction(v CodeableConcept) *MetadataResourceBuilder {
+	b.metadataResource.Jurisdiction = append(b.metadataResource.Jurisdiction, v)
+	return b
+}
+
+// =============================================================================
 // Datatype XML Serialization
 // =============================================================================
 
