@@ -662,6 +662,14 @@ func UnmarshalResourceXML(data []byte) (Resource, error) {
 			return nil, fmt.Errorf("failed to find root element: %w", err)
 		}
 		if start, ok := tok.(xml.StartElement); ok {
+			// Unlike the JSON path, an unrecognized type is refused here rather
+			// than preserved as an UnknownResource. Keeping one would mean
+			// capturing the element's raw XML and re-emitting it, and re-emitting
+			// parsed XML re-injects namespace declarations — the defect that took
+			// the narrative rewrite to get right. Doing that carelessly would
+			// produce documents that differ from what arrived, which is worse than
+			// refusing them. Until it is done properly, XML and JSON disagree here
+			// and this comment is the record of that.
 			resource, err := NewResource(start.Name.Local)
 			if err != nil {
 				return nil, fmt.Errorf("unknown resource type %q: %w", start.Name.Local, err)

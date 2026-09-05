@@ -99,10 +99,12 @@ func TestUnmarshalResource(t *testing.T) {
 			errContains: "missing or empty",
 		},
 		{
-			name:        "Unknown resourceType",
-			json:        `{"resourceType": "UnknownResource", "id": "example"}`,
-			wantErr:     true,
-			errContains: "unknown resource type",
+			// A type this version does not define is preserved rather than
+			// refused, so a document from a newer server stays readable. See
+			// conformance/unknown_resource_test.go.
+			name:     "Unrecognized resourceType falls back",
+			json:     `{"resourceType": "Nonesuch", "id": "example"}`,
+			wantType: "Nonesuch",
 		},
 		{
 			name:        "Invalid JSON",
@@ -116,7 +118,9 @@ func TestUnmarshalResource(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			resource, err := r4b.UnmarshalResource([]byte(tt.json))
 			if tt.wantErr {
-				assert.Error(t, err)
+				// require, not assert: on a nil error the Contains below
+				// dereferences it and the test panics instead of failing.
+				require.Error(t, err)
 				if tt.errContains != "" {
 					assert.Contains(t, err.Error(), tt.errContains)
 				}

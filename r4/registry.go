@@ -235,16 +235,130 @@ func UnmarshalResource(data []byte) (Resource, error) {
 		return nil, fmt.Errorf("failed to get resource type: %w", err)
 	}
 
-	resource, err := NewResource(resourceType)
-	if err != nil {
-		return nil, err
+	factory, known := resourceFactories[resourceType]
+	if !known {
+		// A type this version does not define is kept rather than refused; see
+		// UnknownResource for why.
+		return newUnknownResource(resourceType, data)
 	}
 
+	resource := factory()
 	if err := json.Unmarshal(data, resource); err != nil {
 		return nil, fmt.Errorf("failed to unmarshal %s: %w", resourceType, err)
 	}
 
 	return resource, nil
+}
+
+// UnknownResource holds a resource whose type this version of FHIR does not
+// define, preserving the document instead of rejecting it.
+//
+// A server one version ahead is the ordinary case, not an edge case: an R5 server
+// answering an R4 client will put resources like InventoryItem in a searchset
+// Bundle. Refusing the whole document over one entry meant a single unrecognized
+// type destroyed everything around it — and the failure was worse than it looked,
+// because Bundle.entry was left holding the entries decoded before the error while
+// UnmarshalResource returned non-nil, so a caller that logged the error and carried
+// on had a Bundle that was silently short some entries.
+//
+// The raw bytes are kept verbatim, so round-tripping a document containing unknown
+// resources now preserves them exactly rather than losing them.
+//
+// This is deliberately not opt-in. Code that needs to know can test for the type:
+//
+//	if u, ok := res.(*UnknownResource); ok {
+//	    log.Printf("cannot interpret %s", u.Type)
+//	}
+type UnknownResource struct {
+	// Type is the resourceType the document declared.
+	Type string
+	// Raw is the document as it arrived, byte for byte.
+	Raw json.RawMessage
+
+	id   *string
+	meta *Meta
+	// edited records whether Id or Meta was changed after decoding, which is the
+	// only thing that stops Raw from being reproduced verbatim.
+	edited bool
+}
+
+// newUnknownResource captures a resource of an unrecognized type.
+func newUnknownResource(resourceType string, data []byte) (Resource, error) {
+	// Only id and meta are interpreted: they are what the Resource interface
+	// exposes, and they mean the same thing in every FHIR version, so reading them
+	// does not assume anything about a type we do not know.
+	var head struct {
+		Id   *string `json:"id"`
+		Meta *Meta   `json:"meta"`
+	}
+	if err := json.Unmarshal(data, &head); err != nil {
+		return nil, fmt.Errorf("failed to unmarshal %s: %w", resourceType, err)
+	}
+
+	raw := make(json.RawMessage, len(data))
+	copy(raw, data)
+
+	return &UnknownResource{Type: resourceType, Raw: raw, id: head.Id, meta: head.Meta}, nil
+}
+
+// GetResourceType returns the type the document declared.
+func (u *UnknownResource) GetResourceType() string { return u.Type }
+
+// GetId returns the resource id, or nil if the document had none.
+func (u *UnknownResource) GetId() *string { return u.id }
+
+// SetId sets the resource id. The change is reflected when the resource is
+// marshalled; see MarshalJSON.
+func (u *UnknownResource) SetId(id string) {
+	u.id = &id
+	u.edited = true
+}
+
+// GetMeta returns the resource meta, or nil if the document had none.
+func (u *UnknownResource) GetMeta() *Meta { return u.meta }
+
+// SetMeta sets the resource meta.
+func (u *UnknownResource) SetMeta(meta *Meta) {
+	u.meta = meta
+	u.edited = true
+}
+
+// MarshalJSON writes the document back.
+//
+// Untouched, it is the original bytes verbatim — key order, spacing and every
+// member this version does not understand, all preserved. That is the point: the
+// library cannot interpret the resource, so reformatting it would be inventing a
+// representation for something it does not model.
+//
+// After SetId or SetMeta the document is rebuilt to carry the new value, which
+// costs the original formatting. Nothing else about it changes.
+func (u UnknownResource) MarshalJSON() ([]byte, error) {
+	if !u.edited {
+		if len(u.Raw) == 0 {
+			return []byte("null"), nil
+		}
+		return u.Raw, nil
+	}
+
+	var doc map[string]json.RawMessage
+	if err := json.Unmarshal(u.Raw, &doc); err != nil {
+		return nil, fmt.Errorf("rebuilding %s: %w", u.Type, err)
+	}
+	if u.id == nil {
+		delete(doc, "id")
+	} else if encoded, err := json.Marshal(u.id); err == nil {
+		doc["id"] = encoded
+	} else {
+		return nil, fmt.Errorf("rebuilding %s: %w", u.Type, err)
+	}
+	if u.meta == nil {
+		delete(doc, "meta")
+	} else if encoded, err := json.Marshal(u.meta); err == nil {
+		doc["meta"] = encoded
+	} else {
+		return nil, fmt.Errorf("rebuilding %s: %w", u.Type, err)
+	}
+	return json.Marshal(doc)
 }
 
 // isJSONNull reports whether raw holds the JSON null literal, or nothing at all.

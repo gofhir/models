@@ -95,14 +95,18 @@ func TestContainedListErrorsKeepTheirIndex(t *testing.T) {
 		input string
 		want  string
 	}{
+		// These used an unrecognized resourceType to force the failure. That is no
+		// longer an error — it decodes to an UnknownResource so a document from a
+		// newer server stays readable — so the failure now comes from a member
+		// with no resourceType at all, which is not a resource in any version.
 		{
 			name:  "second element",
-			input: `{"resourceType":"Patient","contained":[{"resourceType":"Organization"},{"resourceType":"NotAThing"}]}`,
+			input: `{"resourceType":"Patient","contained":[{"resourceType":"Organization"},{"id":"no-type"}]}`,
 			want:  "contained[1]",
 		},
 		{
 			name:  "nested inside a Bundle entry",
-			input: `{"resourceType":"Bundle","entry":[{"resource":{"resourceType":"Patient","contained":[{"resourceType":"Nope"}]}}]}`,
+			input: `{"resourceType":"Bundle","entry":[{"resource":{"resourceType":"Patient","contained":[{"id":"no-type"}]}}]}`,
 			want:  "contained[0]",
 		},
 	} {
@@ -115,7 +119,7 @@ func TestContainedListErrorsKeepTheirIndex(t *testing.T) {
 			}
 			err := json.Unmarshal([]byte(tt.input), target)
 			if err == nil {
-				t.Fatal("expected an error for the unknown resource type")
+				t.Fatal("expected an error for the member with no resourceType")
 			}
 			if !strings.Contains(err.Error(), tt.want) {
 				t.Errorf("error does not identify the element: %v", err)
