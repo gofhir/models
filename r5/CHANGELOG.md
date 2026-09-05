@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.2.0](https://github.com/gofhir/models/compare/r5/v2.1.0...r5/v2.2.0) (2026-09-05)
+
+
+### Features
+
+* **builder:** make choice setters exclusive ([ac7d8ee](https://github.com/gofhir/models/commit/ac7d8ee1d04b23d4c4d3e9e89f3fdc2faa059b0c))
+* **json:** keep resources of unknown types instead of failing the document ([9682c45](https://github.com/gofhir/models/commit/9682c453a0c6b68f803de3296ba008e786c35a54))
+* **json:** keep resources of unknown types instead of failing the document ([9682c45](https://github.com/gofhir/models/commit/9682c453a0c6b68f803de3296ba008e786c35a54))
+
+
+### Bug Fixes
+
+* **builder:** drop nil resources in AddContained, and settle two hygiene items ([4c3bf61](https://github.com/gofhir/models/commit/4c3bf61912f35f04b0792e842c2026975dd2775b))
+* **json:** close three holes the review found in UnknownResource ([9682c45](https://github.com/gofhir/models/commit/9682c453a0c6b68f803de3296ba008e786c35a54))
+
 ## [2.1.0](https://github.com/gofhir/models/compare/r5/v2.0.0...r5/v2.1.0) (2026-09-04)
 
 
