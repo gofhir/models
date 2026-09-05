@@ -215,3 +215,83 @@ func TestUnknownResourceInEveryVersion(t *testing.T) {
 		}
 	})
 }
+
+func TestUnknownResourceDecodesDirectlyToo(t *testing.T) {
+	// Decoding straight into the type, rather than through UnmarshalResource,
+	// used to match the JSON against the exported fields, find nothing named Type
+	// or Raw, and produce an empty value with a nil error — which then marshaled
+	// back as "null". Silent data loss on the type whose whole purpose is not to
+	// lose data.
+	const doc = `{"resourceType":"Nonesuch","id":"x1","keep":"this"}`
+
+	var u r4.UnknownResource
+	if err := json.Unmarshal([]byte(doc), &u); err != nil {
+		t.Fatalf("unmarshal: %v", err)
+	}
+	if u.Type != "Nonesuch" {
+		t.Errorf("Type = %q, want Nonesuch", u.Type)
+	}
+	if len(u.Raw) == 0 {
+		t.Fatal("Raw is empty; the document was not captured")
+	}
+	if u.GetId() == nil || *u.GetId() != "x1" {
+		t.Errorf("GetId() = %v, want x1", u.GetId())
+	}
+
+	out, err := json.Marshal(&u)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	if string(out) != doc {
+		t.Errorf("round trip changed the document:\n  got  %s\n  want %s", out, doc)
+	}
+}
+
+func TestAssigningTypeChangesTheDocument(t *testing.T) {
+	// Type is an ordinary exported field, so assigning it has to mean something.
+	// It used to mean nothing: GetResourceType reported the new value while the
+	// JSON kept saying the old one.
+	const doc = `{"resourceType":"Nonesuch","id":"x1","keep":"this"}`
+
+	res, err := r4.UnmarshalResource([]byte(doc))
+	if err != nil {
+		t.Fatalf("unmarshal: %v", err)
+	}
+	u := res.(*r4.UnknownResource)
+	u.Type = "SomethingElse"
+
+	out, err := json.Marshal(u)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	var got map[string]any
+	if err := json.Unmarshal(out, &got); err != nil {
+		t.Fatalf("reparse: %v", err)
+	}
+	if got["resourceType"] != "SomethingElse" {
+		t.Errorf("resourceType = %v, but GetResourceType() says %q",
+			got["resourceType"], u.GetResourceType())
+	}
+	if got["keep"] != "this" {
+		t.Error("rebuilding dropped a member it does not model")
+	}
+}
+
+func TestAnEmptyUnknownResourceWillNotMarshalToNull(t *testing.T) {
+	// A zero value used to marshal as "null", which inside contained is not valid
+	// FHIR and says nothing about what went wrong.
+	var empty r4.UnknownResource
+	if _, err := json.Marshal(&empty); err == nil {
+		t.Error("an UnknownResource with no type and no content marshaled without complaint")
+	}
+
+	// With a type and nothing else, the type is all there is to say.
+	typed := r4.UnknownResource{Type: "Nonesuch"}
+	out, err := json.Marshal(&typed)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	if string(out) != `{"resourceType":"Nonesuch"}` {
+		t.Errorf("got %s", out)
+	}
+}

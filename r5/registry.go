@@ -320,7 +320,7 @@ func (u *UnknownResource) GetResourceType() string { return u.Type }
 func (u *UnknownResource) GetId() *string { return u.id }
 
 // SetId sets the resource id. The change is reflected when the resource is
-// marshalled; see MarshalJSON.
+// marshaled; see MarshalJSON.
 func (u *UnknownResource) SetId(id string) {
 	u.id = &id
 	u.edited = true
@@ -335,6 +335,34 @@ func (u *UnknownResource) SetMeta(meta *Meta) {
 	u.edited = true
 }
 
+// UnmarshalJSON captures the document.
+//
+// Without this, decoding straight into the type — rather than through
+// UnmarshalResource — matched the JSON against the exported fields, found nothing
+// named Type or Raw, and produced an empty value with a nil error. Marshaling it
+// back then wrote "null". Silent data loss, on a type whose entire purpose is not
+// to lose data.
+func (u *UnknownResource) UnmarshalJSON(data []byte) error {
+	resourceType, err := GetResourceType(data)
+	if err != nil {
+		return err
+	}
+
+	var head struct {
+		Id   *string `json:"id"`
+		Meta *Meta   `json:"meta"`
+	}
+	if err := json.Unmarshal(data, &head); err != nil {
+		return fmt.Errorf("failed to unmarshal %s: %w", resourceType, err)
+	}
+
+	raw := make(json.RawMessage, len(data))
+	copy(raw, data)
+
+	u.Type, u.Raw, u.id, u.meta, u.edited = resourceType, raw, head.Id, head.Meta, false
+	return nil
+}
+
 // MarshalJSON writes the document back.
 //
 // Untouched, it is the original bytes verbatim — key order, spacing and every
@@ -342,18 +370,35 @@ func (u *UnknownResource) SetMeta(meta *Meta) {
 // library cannot interpret the resource, so reformatting it would be inventing a
 // representation for something it does not model.
 //
-// After SetId or SetMeta the document is rebuilt to carry the new value, which
-// costs the original formatting. Nothing else about it changes.
+// The document is rebuilt when it has to be: after SetId or SetMeta, or when Type
+// has been assigned a different value than the raw bytes carry. Type is an ordinary
+// exported field, so assigning it has to mean something — otherwise
+// GetResourceType would report one type while the JSON kept saying another.
+// Rebuilding costs the original formatting and nothing else.
 func (u UnknownResource) MarshalJSON() ([]byte, error) {
-	if !u.edited {
-		if len(u.Raw) == 0 {
-			return []byte("null"), nil
+	if len(u.Raw) == 0 {
+		// Nothing was captured. A resource with no type cannot be written at all;
+		// with one, the type is the only thing there is to say.
+		if u.Type == "" {
+			return nil, errors.New("UnknownResource has neither raw content nor a resource type")
 		}
-		return u.Raw, nil
+		return json.Marshal(map[string]string{"resourceType": u.Type})
+	}
+
+	if !u.edited {
+		if current, ok := scanResourceType(u.Raw); ok && current == u.Type {
+			return u.Raw, nil
+		}
+		// Type was reassigned; fall through and rebuild so the document agrees.
 	}
 
 	var doc map[string]json.RawMessage
 	if err := json.Unmarshal(u.Raw, &doc); err != nil {
+		return nil, fmt.Errorf("rebuilding %s: %w", u.Type, err)
+	}
+	if encoded, err := json.Marshal(u.Type); err == nil {
+		doc["resourceType"] = encoded
+	} else {
 		return nil, fmt.Errorf("rebuilding %s: %w", u.Type, err)
 	}
 	if u.id == nil {
@@ -389,7 +434,7 @@ func isJSONNull(raw json.RawMessage) bool {
 // the Go type being decoded into.
 //
 // Decoding is field by field, so nothing otherwise compares the two: a
-// Practitioner document unmarshalled into a Patient was accepted in silence and
+// Practitioner document unmarshaled into a Patient was accepted in silence and
 // then written back out as a Patient. The type says one thing, the data said
 // another, and the mismatch was resolved in favour of whichever the caller
 // happened to pass.
