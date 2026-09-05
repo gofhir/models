@@ -781,8 +781,23 @@ func (b *ObservationDefinitionBuilder) SetText(v Narrative) *ObservationDefiniti
 	return b
 }
 
-// AddContained adds a Contained element.
+// AddContained adds a resource to Contained.
+//
+// A nil resource is ignored rather than appended. Contained holds an interface, so
+// a nil entry marshals as JSON null — which FHIR does not allow there, and which
+// this library then drops on the way back in, so a document written with one
+// re-reads shorter than it was written.
+//
+// Filtering at serialization time would fix that everywhere, but giving
+// ContainedList a MarshalJSON costs 2.9x on every marshal that has no nil in it
+// (419 -> 1209 ns/op, 1 -> 3 allocs), because encoding/json re-compacts whatever a
+// MarshalJSON returns. That is the cost task 6.2 removed by deleting 437 of them.
+// Guarding the builder is free and covers the path the documentation recommends;
+// a struct literal can still put a nil there.
 func (b *ObservationDefinitionBuilder) AddContained(v Resource) *ObservationDefinitionBuilder {
+	if v == nil {
+		return b
+	}
 	b.observationDefinition.Contained = append(b.observationDefinition.Contained, v)
 	return b
 }

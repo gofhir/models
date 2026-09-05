@@ -694,7 +694,7 @@ Aquí se ocupa terreno que en todo el ecosistema Go está vacío. Ampliada con l
 | **`Equal()` y `DeepCopy()`** | Solo google los tiene, de rebote por protobuf. Hoy clonar exige round-trip JSON (5,3 µs, 33 allocs) y `reflect.DeepEqual` es semánticamente incorrecto aquí: falla con `Decimal("1.5")` vs `("1.50")` y con `nil` vs slice vacío. |
 | **Errores con path FHIR** | Hoy filtran `.Alias` —detalle del truco anti-recursión— y no dicen índice ni subcampo, así que no se puede poblar `OperationOutcome.issue.expression`. El manejo de `contained` ya lleva índice: es el patrón a extender. |
 | **Metadata del spec** | 1.697 SearchParameters ya en el repo, 908 `isModifier`, 240 invariantes FHIRPath, 46 OperationDefinition, 5 compartimentos. **Aviso de estimación:** quitar el filtro de `structuredefinition.go:186` son 30 líneas, pero eso solo entrega blobs sin parser, analyzer ni plantilla. La cifra cubría el borrado, no la feature. |
-| **Higiene menor** *(nuevo)* | **Partida: los cuatro rompientes se adelantaron a la v2.0.0**, porque posponerlos exigía una v3. Ver abajo. Quedan para v2.1, todos aditivos: el `_id` de recurso se descarta; `Contained{nil}` emite `[null]`; claves `resourceType` duplicadas dan diferencial de parser. |
+| **Higiene menor** *(nuevo)* | **✅ Cerrada.** Los cuatro rompientes se adelantaron a la v2.0.0 (ver arriba). Al medir los tres aditivos, ninguno resultó ser lo que decía la lista: uno **no era un defecto**, otro era **peor** y el tercero **ya estaba cerrado**. Detalle abajo. |
 | **`Validate()` generado** | Cardinalidad (730 campos `min≥1`), bindings required (369), regex de primitivos (19 de 20 vienen en el spec), rango int32, exclusividad de choice. Coordinar el reparto con `gofhir/validator` **antes** de escribir código. |
 
 
@@ -715,6 +715,18 @@ Un `resourceType` ausente, `null` o vacío se sigue aceptando: el tipo Go ya fij
 
 Los cuatro con test propio en `conformance/strictness_test.go`, cada uno verificado por mutación. El corpus no se movió: 8757/8757 y 3653/3653.
 
+
+### Los tres ítems aditivos de higiene, medidos
+
+**`_id` no es un defecto.** La especificación declara `Resource.id` y `Element.id` como `http://hl7.org/fhirpath/System.String` —un primitivo de System, no de FHIR—, así que no tienen estructura `Element` detrás y **no pueden llevar extensiones**. No hay `_id` que generar. Descartarlo es correcto; lo que faltaba era decir por qué.
+
+**`Contained{nil}` es peor de lo descrito, y el arreglo cuesta demasiado.** No solo emite `[null]` —inválido en FHIR—: al releer su propia salida el array pasa de 3 elementos a 2, así que la librería no puede releer fielmente lo que escribe.
+
+Filtrar al serializar lo arreglaría en todas partes, pero darle un `MarshalJSON` a `ContainedList` cuesta **2,9× en todo marshal que no contenga ningún nil** (419 → 1209 ns/op, 1 → 3 allocs), porque `encoding/json` recompacta lo que devuelve un `MarshalJSON`. Es exactamente el coste que la tarea 6.2 eliminó borrando 437 de ellos, y pagarlo en cada documento para protegerse de un valor que el llamador tuvo que poner a propósito no compensa.
+
+Se guarda el **builder**, que es gratis y cubre el camino que la documentación recomienda: `AddContained(nil)` no añade nada, en los 436 recursos con `contained`. Un literal de struct sigue pudiendo meter un nil, y hay un test que lo declara como limitación conocida en vez de dejarlo como sorpresa.
+
+**Las claves `resourceType` duplicadas ya no divergen.** El `checkResourceType` que entró con el major las cierra: el marcador ve cada aparición y falla en cuanto dos discrepan. Queda un test que fija que un documento ambiguo no se lee según una de sus dos versiones arbitrariamente, y que repetir la clave con el **mismo** valor sigue siendo válido.
 ---
 
 ## Releases y compatibilidad
