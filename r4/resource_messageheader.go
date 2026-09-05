@@ -879,14 +879,24 @@ func (b *MessageHeaderBuilder) AddModifierExtension(v Extension) *MessageHeaderB
 	return b
 }
 
-// SetEventCoding sets the EventCoding field.
+// SetEventCoding sets Event[x] to its EventCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MessageHeaderBuilder) SetEventCoding(v Coding) *MessageHeaderBuilder {
+	b.clearEvent()
 	b.messageHeader.EventCoding = &v
 	return b
 }
 
-// SetEventUri sets the EventUri field.
+// SetEventUri sets Event[x] to its EventUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MessageHeaderBuilder) SetEventUri(v string) *MessageHeaderBuilder {
+	b.clearEvent()
 	b.messageHeader.EventUri = &v
 	return b
 }
@@ -955,4 +965,12 @@ func (b *MessageHeaderBuilder) AddFocus(v Reference) *MessageHeaderBuilder {
 func (b *MessageHeaderBuilder) SetDefinition(v string) *MessageHeaderBuilder {
 	b.messageHeader.Definition = &v
 	return b
+}
+
+// clearEvent unsets every variant of Event[x], including the
+// _field companions of the primitive ones.
+func (b *MessageHeaderBuilder) clearEvent() {
+	b.messageHeader.EventCoding = nil
+	b.messageHeader.EventUri = nil
+	b.messageHeader.EventUriExt = nil
 }

@@ -1395,8 +1395,13 @@ func (b *SubscriptionTopicBuilder) SetVersion(v string) *SubscriptionTopicBuilde
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *SubscriptionTopicBuilder) SetVersionAlgorithmString(v string) *SubscriptionTopicBuilder {
+	b.clearVersionAlgorithm()
 	b.subscriptionTopic.VersionAlgorithmString = &v
 	return b
 }
@@ -1407,8 +1412,13 @@ func (b *SubscriptionTopicBuilder) SetVersionAlgorithmStringExt(v Element) *Subs
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *SubscriptionTopicBuilder) SetVersionAlgorithmCoding(v Coding) *SubscriptionTopicBuilder {
+	b.clearVersionAlgorithm()
 	b.subscriptionTopic.VersionAlgorithmCoding = &v
 	return b
 }
@@ -1541,4 +1551,11 @@ func (b *SubscriptionTopicBuilder) AddCanFilterBy(v SubscriptionTopicCanFilterBy
 func (b *SubscriptionTopicBuilder) AddNotificationShape(v SubscriptionTopicNotificationShape) *SubscriptionTopicBuilder {
 	b.subscriptionTopic.NotificationShape = append(b.subscriptionTopic.NotificationShape, v)
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *SubscriptionTopicBuilder) clearVersionAlgorithm() {
+	b.subscriptionTopic.VersionAlgorithmString = nil
+	b.subscriptionTopic.VersionAlgorithmCoding = nil
 }

@@ -2611,8 +2611,13 @@ func (b *ValueSetBuilder) SetVersion(v string) *ValueSetBuilder {
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ValueSetBuilder) SetVersionAlgorithmString(v string) *ValueSetBuilder {
+	b.clearVersionAlgorithm()
 	b.valueSet.VersionAlgorithmString = &v
 	return b
 }
@@ -2623,8 +2628,13 @@ func (b *ValueSetBuilder) SetVersionAlgorithmStringExt(v Element) *ValueSetBuild
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ValueSetBuilder) SetVersionAlgorithmCoding(v Coding) *ValueSetBuilder {
+	b.clearVersionAlgorithm()
 	b.valueSet.VersionAlgorithmCoding = &v
 	return b
 }
@@ -2783,4 +2793,11 @@ func (b *ValueSetBuilder) SetExpansion(v ValueSetExpansion) *ValueSetBuilder {
 func (b *ValueSetBuilder) SetScope(v ValueSetScope) *ValueSetBuilder {
 	b.valueSet.Scope = &v
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *ValueSetBuilder) clearVersionAlgorithm() {
+	b.valueSet.VersionAlgorithmString = nil
+	b.valueSet.VersionAlgorithmCoding = nil
 }

@@ -968,8 +968,13 @@ func (b *MessageDefinitionBuilder) SetVersion(v string) *MessageDefinitionBuilde
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MessageDefinitionBuilder) SetVersionAlgorithmString(v string) *MessageDefinitionBuilder {
+	b.clearVersionAlgorithm()
 	b.messageDefinition.VersionAlgorithmString = &v
 	return b
 }
@@ -980,8 +985,13 @@ func (b *MessageDefinitionBuilder) SetVersionAlgorithmStringExt(v Element) *Mess
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MessageDefinitionBuilder) SetVersionAlgorithmCoding(v Coding) *MessageDefinitionBuilder {
+	b.clearVersionAlgorithm()
 	b.messageDefinition.VersionAlgorithmCoding = &v
 	return b
 }
@@ -1090,14 +1100,24 @@ func (b *MessageDefinitionBuilder) AddParent(v string) *MessageDefinitionBuilder
 	return b
 }
 
-// SetEventCoding sets the EventCoding field.
+// SetEventCoding sets Event[x] to its EventCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MessageDefinitionBuilder) SetEventCoding(v Coding) *MessageDefinitionBuilder {
+	b.clearEvent()
 	b.messageDefinition.EventCoding = &v
 	return b
 }
 
-// SetEventUri sets the EventUri field.
+// SetEventUri sets Event[x] to its EventUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MessageDefinitionBuilder) SetEventUri(v string) *MessageDefinitionBuilder {
+	b.clearEvent()
 	b.messageDefinition.EventUri = &v
 	return b
 }
@@ -1136,4 +1156,19 @@ func (b *MessageDefinitionBuilder) AddAllowedResponse(v MessageDefinitionAllowed
 func (b *MessageDefinitionBuilder) SetGraph(v string) *MessageDefinitionBuilder {
 	b.messageDefinition.Graph = &v
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *MessageDefinitionBuilder) clearVersionAlgorithm() {
+	b.messageDefinition.VersionAlgorithmString = nil
+	b.messageDefinition.VersionAlgorithmCoding = nil
+}
+
+// clearEvent unsets every variant of Event[x], including the
+// _field companions of the primitive ones.
+func (b *MessageDefinitionBuilder) clearEvent() {
+	b.messageDefinition.EventCoding = nil
+	b.messageDefinition.EventUri = nil
+	b.messageDefinition.EventUriExt = nil
 }

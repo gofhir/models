@@ -929,8 +929,13 @@ func (b *ConditionBuilder) SetEncounter(v Reference) *ConditionBuilder {
 	return b
 }
 
-// SetOnsetDateTime sets the OnsetDateTime field.
+// SetOnsetDateTime sets Onset[x] to its OnsetDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConditionBuilder) SetOnsetDateTime(v string) *ConditionBuilder {
+	b.clearOnset()
 	b.condition.OnsetDateTime = &v
 	return b
 }
@@ -941,26 +946,46 @@ func (b *ConditionBuilder) SetOnsetDateTimeExt(v Element) *ConditionBuilder {
 	return b
 }
 
-// SetOnsetAge sets the OnsetAge field.
+// SetOnsetAge sets Onset[x] to its OnsetAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConditionBuilder) SetOnsetAge(v Age) *ConditionBuilder {
+	b.clearOnset()
 	b.condition.OnsetAge = &v
 	return b
 }
 
-// SetOnsetPeriod sets the OnsetPeriod field.
+// SetOnsetPeriod sets Onset[x] to its OnsetPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConditionBuilder) SetOnsetPeriod(v Period) *ConditionBuilder {
+	b.clearOnset()
 	b.condition.OnsetPeriod = &v
 	return b
 }
 
-// SetOnsetRange sets the OnsetRange field.
+// SetOnsetRange sets Onset[x] to its OnsetRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConditionBuilder) SetOnsetRange(v Range) *ConditionBuilder {
+	b.clearOnset()
 	b.condition.OnsetRange = &v
 	return b
 }
 
-// SetOnsetString sets the OnsetString field.
+// SetOnsetString sets Onset[x] to its OnsetString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConditionBuilder) SetOnsetString(v string) *ConditionBuilder {
+	b.clearOnset()
 	b.condition.OnsetString = &v
 	return b
 }
@@ -971,8 +996,13 @@ func (b *ConditionBuilder) SetOnsetStringExt(v Element) *ConditionBuilder {
 	return b
 }
 
-// SetAbatementDateTime sets the AbatementDateTime field.
+// SetAbatementDateTime sets Abatement[x] to its AbatementDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConditionBuilder) SetAbatementDateTime(v string) *ConditionBuilder {
+	b.clearAbatement()
 	b.condition.AbatementDateTime = &v
 	return b
 }
@@ -983,26 +1013,46 @@ func (b *ConditionBuilder) SetAbatementDateTimeExt(v Element) *ConditionBuilder 
 	return b
 }
 
-// SetAbatementAge sets the AbatementAge field.
+// SetAbatementAge sets Abatement[x] to its AbatementAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConditionBuilder) SetAbatementAge(v Age) *ConditionBuilder {
+	b.clearAbatement()
 	b.condition.AbatementAge = &v
 	return b
 }
 
-// SetAbatementPeriod sets the AbatementPeriod field.
+// SetAbatementPeriod sets Abatement[x] to its AbatementPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConditionBuilder) SetAbatementPeriod(v Period) *ConditionBuilder {
+	b.clearAbatement()
 	b.condition.AbatementPeriod = &v
 	return b
 }
 
-// SetAbatementRange sets the AbatementRange field.
+// SetAbatementRange sets Abatement[x] to its AbatementRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConditionBuilder) SetAbatementRange(v Range) *ConditionBuilder {
+	b.clearAbatement()
 	b.condition.AbatementRange = &v
 	return b
 }
 
-// SetAbatementString sets the AbatementString field.
+// SetAbatementString sets Abatement[x] to its AbatementString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConditionBuilder) SetAbatementString(v string) *ConditionBuilder {
+	b.clearAbatement()
 	b.condition.AbatementString = &v
 	return b
 }
@@ -1047,4 +1097,26 @@ func (b *ConditionBuilder) AddEvidence(v ConditionEvidence) *ConditionBuilder {
 func (b *ConditionBuilder) AddNote(v Annotation) *ConditionBuilder {
 	b.condition.Note = append(b.condition.Note, v)
 	return b
+}
+
+// clearOnset unsets every variant of Onset[x], including the
+// _field companions of the primitive ones.
+func (b *ConditionBuilder) clearOnset() {
+	b.condition.OnsetDateTime = nil
+	b.condition.OnsetAge = nil
+	b.condition.OnsetPeriod = nil
+	b.condition.OnsetRange = nil
+	b.condition.OnsetString = nil
+	b.condition.OnsetStringExt = nil
+}
+
+// clearAbatement unsets every variant of Abatement[x], including the
+// _field companions of the primitive ones.
+func (b *ConditionBuilder) clearAbatement() {
+	b.condition.AbatementDateTime = nil
+	b.condition.AbatementAge = nil
+	b.condition.AbatementPeriod = nil
+	b.condition.AbatementRange = nil
+	b.condition.AbatementString = nil
+	b.condition.AbatementStringExt = nil
 }

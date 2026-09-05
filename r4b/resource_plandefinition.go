@@ -2129,20 +2129,35 @@ func (b *PlanDefinitionBuilder) SetExperimental(v bool) *PlanDefinitionBuilder {
 	return b
 }
 
-// SetSubjectCodeableConcept sets the SubjectCodeableConcept field.
+// SetSubjectCodeableConcept sets Subject[x] to its SubjectCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *PlanDefinitionBuilder) SetSubjectCodeableConcept(v CodeableConcept) *PlanDefinitionBuilder {
+	b.clearSubject()
 	b.planDefinition.SubjectCodeableConcept = &v
 	return b
 }
 
-// SetSubjectReference sets the SubjectReference field.
+// SetSubjectReference sets Subject[x] to its SubjectReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *PlanDefinitionBuilder) SetSubjectReference(v Reference) *PlanDefinitionBuilder {
+	b.clearSubject()
 	b.planDefinition.SubjectReference = &v
 	return b
 }
 
-// SetSubjectCanonical sets the SubjectCanonical field.
+// SetSubjectCanonical sets Subject[x] to its SubjectCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *PlanDefinitionBuilder) SetSubjectCanonical(v string) *PlanDefinitionBuilder {
+	b.clearSubject()
 	b.planDefinition.SubjectCanonical = &v
 	return b
 }
@@ -2281,4 +2296,13 @@ func (b *PlanDefinitionBuilder) AddGoal(v PlanDefinitionGoal) *PlanDefinitionBui
 func (b *PlanDefinitionBuilder) AddAction(v PlanDefinitionAction) *PlanDefinitionBuilder {
 	b.planDefinition.Action = append(b.planDefinition.Action, v)
 	return b
+}
+
+// clearSubject unsets every variant of Subject[x], including the
+// _field companions of the primitive ones.
+func (b *PlanDefinitionBuilder) clearSubject() {
+	b.planDefinition.SubjectCodeableConcept = nil
+	b.planDefinition.SubjectReference = nil
+	b.planDefinition.SubjectCanonical = nil
+	b.planDefinition.SubjectCanonicalExt = nil
 }

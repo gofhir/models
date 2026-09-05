@@ -655,8 +655,13 @@ func (b *SupplyDeliveryBuilder) AddSuppliedItem(v SupplyDeliverySuppliedItem) *S
 	return b
 }
 
-// SetOccurrenceDateTime sets the OccurrenceDateTime field.
+// SetOccurrenceDateTime sets Occurrence[x] to its OccurrenceDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *SupplyDeliveryBuilder) SetOccurrenceDateTime(v string) *SupplyDeliveryBuilder {
+	b.clearOccurrence()
 	b.supplyDelivery.OccurrenceDateTime = &v
 	return b
 }
@@ -667,14 +672,24 @@ func (b *SupplyDeliveryBuilder) SetOccurrenceDateTimeExt(v Element) *SupplyDeliv
 	return b
 }
 
-// SetOccurrencePeriod sets the OccurrencePeriod field.
+// SetOccurrencePeriod sets Occurrence[x] to its OccurrencePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *SupplyDeliveryBuilder) SetOccurrencePeriod(v Period) *SupplyDeliveryBuilder {
+	b.clearOccurrence()
 	b.supplyDelivery.OccurrencePeriod = &v
 	return b
 }
 
-// SetOccurrenceTiming sets the OccurrenceTiming field.
+// SetOccurrenceTiming sets Occurrence[x] to its OccurrenceTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *SupplyDeliveryBuilder) SetOccurrenceTiming(v Timing) *SupplyDeliveryBuilder {
+	b.clearOccurrence()
 	b.supplyDelivery.OccurrenceTiming = &v
 	return b
 }
@@ -695,4 +710,12 @@ func (b *SupplyDeliveryBuilder) SetDestination(v Reference) *SupplyDeliveryBuild
 func (b *SupplyDeliveryBuilder) AddReceiver(v Reference) *SupplyDeliveryBuilder {
 	b.supplyDelivery.Receiver = append(b.supplyDelivery.Receiver, v)
 	return b
+}
+
+// clearOccurrence unsets every variant of Occurrence[x], including the
+// _field companions of the primitive ones.
+func (b *SupplyDeliveryBuilder) clearOccurrence() {
+	b.supplyDelivery.OccurrenceDateTime = nil
+	b.supplyDelivery.OccurrencePeriod = nil
+	b.supplyDelivery.OccurrenceTiming = nil
 }

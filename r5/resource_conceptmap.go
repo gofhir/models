@@ -2070,8 +2070,13 @@ func (b *ConceptMapBuilder) SetVersion(v string) *ConceptMapBuilder {
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConceptMapBuilder) SetVersionAlgorithmString(v string) *ConceptMapBuilder {
+	b.clearVersionAlgorithm()
 	b.conceptMap.VersionAlgorithmString = &v
 	return b
 }
@@ -2082,8 +2087,13 @@ func (b *ConceptMapBuilder) SetVersionAlgorithmStringExt(v Element) *ConceptMapB
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConceptMapBuilder) SetVersionAlgorithmCoding(v Coding) *ConceptMapBuilder {
+	b.clearVersionAlgorithm()
 	b.conceptMap.VersionAlgorithmCoding = &v
 	return b
 }
@@ -2232,8 +2242,13 @@ func (b *ConceptMapBuilder) AddAdditionalAttribute(v ConceptMapAdditionalAttribu
 	return b
 }
 
-// SetSourceScopeUri sets the SourceScopeUri field.
+// SetSourceScopeUri sets SourceScope[x] to its SourceScopeUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConceptMapBuilder) SetSourceScopeUri(v string) *ConceptMapBuilder {
+	b.clearSourceScope()
 	b.conceptMap.SourceScopeUri = &v
 	return b
 }
@@ -2244,8 +2259,13 @@ func (b *ConceptMapBuilder) SetSourceScopeUriExt(v Element) *ConceptMapBuilder {
 	return b
 }
 
-// SetSourceScopeCanonical sets the SourceScopeCanonical field.
+// SetSourceScopeCanonical sets SourceScope[x] to its SourceScopeCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConceptMapBuilder) SetSourceScopeCanonical(v string) *ConceptMapBuilder {
+	b.clearSourceScope()
 	b.conceptMap.SourceScopeCanonical = &v
 	return b
 }
@@ -2256,8 +2276,13 @@ func (b *ConceptMapBuilder) SetSourceScopeCanonicalExt(v Element) *ConceptMapBui
 	return b
 }
 
-// SetTargetScopeUri sets the TargetScopeUri field.
+// SetTargetScopeUri sets TargetScope[x] to its TargetScopeUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConceptMapBuilder) SetTargetScopeUri(v string) *ConceptMapBuilder {
+	b.clearTargetScope()
 	b.conceptMap.TargetScopeUri = &v
 	return b
 }
@@ -2268,8 +2293,13 @@ func (b *ConceptMapBuilder) SetTargetScopeUriExt(v Element) *ConceptMapBuilder {
 	return b
 }
 
-// SetTargetScopeCanonical sets the TargetScopeCanonical field.
+// SetTargetScopeCanonical sets TargetScope[x] to its TargetScopeCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConceptMapBuilder) SetTargetScopeCanonical(v string) *ConceptMapBuilder {
+	b.clearTargetScope()
 	b.conceptMap.TargetScopeCanonical = &v
 	return b
 }
@@ -2284,4 +2314,27 @@ func (b *ConceptMapBuilder) SetTargetScopeCanonicalExt(v Element) *ConceptMapBui
 func (b *ConceptMapBuilder) AddGroup(v ConceptMapGroup) *ConceptMapBuilder {
 	b.conceptMap.Group = append(b.conceptMap.Group, v)
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *ConceptMapBuilder) clearVersionAlgorithm() {
+	b.conceptMap.VersionAlgorithmString = nil
+	b.conceptMap.VersionAlgorithmCoding = nil
+}
+
+// clearSourceScope unsets every variant of SourceScope[x], including the
+// _field companions of the primitive ones.
+func (b *ConceptMapBuilder) clearSourceScope() {
+	b.conceptMap.SourceScopeUri = nil
+	b.conceptMap.SourceScopeCanonical = nil
+	b.conceptMap.SourceScopeCanonicalExt = nil
+}
+
+// clearTargetScope unsets every variant of TargetScope[x], including the
+// _field companions of the primitive ones.
+func (b *ConceptMapBuilder) clearTargetScope() {
+	b.conceptMap.TargetScopeUri = nil
+	b.conceptMap.TargetScopeCanonical = nil
+	b.conceptMap.TargetScopeCanonicalExt = nil
 }

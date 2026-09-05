@@ -961,8 +961,13 @@ func (b *MedicationAdministrationBuilder) AddSupportingInformation(v Reference) 
 	return b
 }
 
-// SetOccurenceDateTime sets the OccurenceDateTime field.
+// SetOccurenceDateTime sets Occurence[x] to its OccurenceDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MedicationAdministrationBuilder) SetOccurenceDateTime(v string) *MedicationAdministrationBuilder {
+	b.clearOccurence()
 	b.medicationAdministration.OccurenceDateTime = &v
 	return b
 }
@@ -973,14 +978,24 @@ func (b *MedicationAdministrationBuilder) SetOccurenceDateTimeExt(v Element) *Me
 	return b
 }
 
-// SetOccurencePeriod sets the OccurencePeriod field.
+// SetOccurencePeriod sets Occurence[x] to its OccurencePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MedicationAdministrationBuilder) SetOccurencePeriod(v Period) *MedicationAdministrationBuilder {
+	b.clearOccurence()
 	b.medicationAdministration.OccurencePeriod = &v
 	return b
 }
 
-// SetOccurenceTiming sets the OccurenceTiming field.
+// SetOccurenceTiming sets Occurence[x] to its OccurenceTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MedicationAdministrationBuilder) SetOccurenceTiming(v Timing) *MedicationAdministrationBuilder {
+	b.clearOccurence()
 	b.medicationAdministration.OccurenceTiming = &v
 	return b
 }
@@ -1043,4 +1058,12 @@ func (b *MedicationAdministrationBuilder) SetDosage(v MedicationAdministrationDo
 func (b *MedicationAdministrationBuilder) AddEventHistory(v Reference) *MedicationAdministrationBuilder {
 	b.medicationAdministration.EventHistory = append(b.medicationAdministration.EventHistory, v)
 	return b
+}
+
+// clearOccurence unsets every variant of Occurence[x], including the
+// _field companions of the primitive ones.
+func (b *MedicationAdministrationBuilder) clearOccurence() {
+	b.medicationAdministration.OccurenceDateTime = nil
+	b.medicationAdministration.OccurencePeriod = nil
+	b.medicationAdministration.OccurenceTiming = nil
 }

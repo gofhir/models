@@ -1089,8 +1089,13 @@ func (b *ProcedureBuilder) SetEncounter(v Reference) *ProcedureBuilder {
 	return b
 }
 
-// SetOccurrenceDateTime sets the OccurrenceDateTime field.
+// SetOccurrenceDateTime sets Occurrence[x] to its OccurrenceDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ProcedureBuilder) SetOccurrenceDateTime(v string) *ProcedureBuilder {
+	b.clearOccurrence()
 	b.procedure.OccurrenceDateTime = &v
 	return b
 }
@@ -1101,14 +1106,24 @@ func (b *ProcedureBuilder) SetOccurrenceDateTimeExt(v Element) *ProcedureBuilder
 	return b
 }
 
-// SetOccurrencePeriod sets the OccurrencePeriod field.
+// SetOccurrencePeriod sets Occurrence[x] to its OccurrencePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ProcedureBuilder) SetOccurrencePeriod(v Period) *ProcedureBuilder {
+	b.clearOccurrence()
 	b.procedure.OccurrencePeriod = &v
 	return b
 }
 
-// SetOccurrenceString sets the OccurrenceString field.
+// SetOccurrenceString sets Occurrence[x] to its OccurrenceString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ProcedureBuilder) SetOccurrenceString(v string) *ProcedureBuilder {
+	b.clearOccurrence()
 	b.procedure.OccurrenceString = &v
 	return b
 }
@@ -1119,20 +1134,35 @@ func (b *ProcedureBuilder) SetOccurrenceStringExt(v Element) *ProcedureBuilder {
 	return b
 }
 
-// SetOccurrenceAge sets the OccurrenceAge field.
+// SetOccurrenceAge sets Occurrence[x] to its OccurrenceAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ProcedureBuilder) SetOccurrenceAge(v Age) *ProcedureBuilder {
+	b.clearOccurrence()
 	b.procedure.OccurrenceAge = &v
 	return b
 }
 
-// SetOccurrenceRange sets the OccurrenceRange field.
+// SetOccurrenceRange sets Occurrence[x] to its OccurrenceRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ProcedureBuilder) SetOccurrenceRange(v Range) *ProcedureBuilder {
+	b.clearOccurrence()
 	b.procedure.OccurrenceRange = &v
 	return b
 }
 
-// SetOccurrenceTiming sets the OccurrenceTiming field.
+// SetOccurrenceTiming sets Occurrence[x] to its OccurrenceTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ProcedureBuilder) SetOccurrenceTiming(v Timing) *ProcedureBuilder {
+	b.clearOccurrence()
 	b.procedure.OccurrenceTiming = &v
 	return b
 }
@@ -1149,8 +1179,13 @@ func (b *ProcedureBuilder) SetRecorder(v Reference) *ProcedureBuilder {
 	return b
 }
 
-// SetReportedBoolean sets the ReportedBoolean field.
+// SetReportedBoolean sets Reported[x] to its ReportedBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ProcedureBuilder) SetReportedBoolean(v bool) *ProcedureBuilder {
+	b.clearReported()
 	b.procedure.ReportedBoolean = &v
 	return b
 }
@@ -1161,8 +1196,13 @@ func (b *ProcedureBuilder) SetReportedBooleanExt(v Element) *ProcedureBuilder {
 	return b
 }
 
-// SetReportedReference sets the ReportedReference field.
+// SetReportedReference sets Reported[x] to its ReportedReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ProcedureBuilder) SetReportedReference(v Reference) *ProcedureBuilder {
+	b.clearReported()
 	b.procedure.ReportedReference = &v
 	return b
 }
@@ -1237,4 +1277,23 @@ func (b *ProcedureBuilder) AddUsed(v CodeableReference) *ProcedureBuilder {
 func (b *ProcedureBuilder) AddSupportingInfo(v Reference) *ProcedureBuilder {
 	b.procedure.SupportingInfo = append(b.procedure.SupportingInfo, v)
 	return b
+}
+
+// clearOccurrence unsets every variant of Occurrence[x], including the
+// _field companions of the primitive ones.
+func (b *ProcedureBuilder) clearOccurrence() {
+	b.procedure.OccurrenceDateTime = nil
+	b.procedure.OccurrencePeriod = nil
+	b.procedure.OccurrenceString = nil
+	b.procedure.OccurrenceStringExt = nil
+	b.procedure.OccurrenceAge = nil
+	b.procedure.OccurrenceRange = nil
+	b.procedure.OccurrenceTiming = nil
+}
+
+// clearReported unsets every variant of Reported[x], including the
+// _field companions of the primitive ones.
+func (b *ProcedureBuilder) clearReported() {
+	b.procedure.ReportedBoolean = nil
+	b.procedure.ReportedReference = nil
 }

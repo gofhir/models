@@ -768,10 +768,32 @@ func (b *{{$r.Name}}Builder) Add{{.Name}}(v {{.ElementType}}) *{{$r.Name}}Builde
 }
 {{- end }}
 
+{{- else if and .IsPointer .ChoiceSiblings}}
+// Set{{.Name}} sets {{.ChoiceBase}}[x] to its {{.Name}} variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *{{$r.Name}}Builder) Set{{.Name}}(v {{.BaseType}}) *{{$r.Name}}Builder {
+	b.clear{{.ChoiceBase}}()
+	b.{{$r.LowerName}}.{{.Name}} = &v
+	return b
+}
+
 {{- else if .IsPointer}}
 // Set{{.Name}} sets the {{.Name}} field.
 func (b *{{$r.Name}}Builder) Set{{.Name}}(v {{.BaseType}}) *{{$r.Name}}Builder {
 	b.{{$r.LowerName}}.{{.Name}} = &v
+	return b
+}
+
+{{- else if .ChoiceSiblings}}
+// Set{{.Name}} sets {{.ChoiceBase}}[x] to its {{.Name}} variant.
+//
+// A choice element holds exactly one variant, so the others are cleared.
+func (b *{{$r.Name}}Builder) Set{{.Name}}(v {{.GoType}}) *{{$r.Name}}Builder {
+	b.clear{{.ChoiceBase}}()
+	b.{{$r.LowerName}}.{{.Name}} = v
 	return b
 }
 
@@ -783,6 +805,20 @@ func (b *{{$r.Name}}Builder) Set{{.Name}}(v {{.GoType}}) *{{$r.Name}}Builder {
 }
 
 {{- end}}
+{{- end}}
+{{- end}}
+{{- /* One clear per choice group, emitted from the group's first variant. */ -}}
+{{- range $r.Properties}}
+{{- if .ChoiceLead}}
+
+// clear{{.ChoiceBase}} unsets every variant of {{.ChoiceBase}}[x], including the
+// _field companions of the primitive ones.
+func (b *{{$r.Name}}Builder) clear{{.ChoiceBase}}() {
+	b.{{$r.LowerName}}.{{.Name}} = nil
+{{- range .ChoiceSiblings}}
+	b.{{$r.LowerName}}.{{.}} = nil
+{{- end}}
+}
 {{- end}}
 {{- end}}
 

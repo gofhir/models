@@ -1363,14 +1363,24 @@ func (b *EvidenceReportBuilder) AddRelatedIdentifier(v Identifier) *EvidenceRepo
 	return b
 }
 
-// SetCiteAsReference sets the CiteAsReference field.
+// SetCiteAsReference sets CiteAs[x] to its CiteAsReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *EvidenceReportBuilder) SetCiteAsReference(v Reference) *EvidenceReportBuilder {
+	b.clearCiteAs()
 	b.evidenceReport.CiteAsReference = &v
 	return b
 }
 
-// SetCiteAsMarkdown sets the CiteAsMarkdown field.
+// SetCiteAsMarkdown sets CiteAs[x] to its CiteAsMarkdown variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *EvidenceReportBuilder) SetCiteAsMarkdown(v string) *EvidenceReportBuilder {
+	b.clearCiteAs()
 	b.evidenceReport.CiteAsMarkdown = &v
 	return b
 }
@@ -1451,4 +1461,12 @@ func (b *EvidenceReportBuilder) AddRelatesTo(v EvidenceReportRelatesTo) *Evidenc
 func (b *EvidenceReportBuilder) AddSection(v EvidenceReportSection) *EvidenceReportBuilder {
 	b.evidenceReport.Section = append(b.evidenceReport.Section, v)
 	return b
+}
+
+// clearCiteAs unsets every variant of CiteAs[x], including the
+// _field companions of the primitive ones.
+func (b *EvidenceReportBuilder) clearCiteAs() {
+	b.evidenceReport.CiteAsReference = nil
+	b.evidenceReport.CiteAsMarkdown = nil
+	b.evidenceReport.CiteAsMarkdownExt = nil
 }

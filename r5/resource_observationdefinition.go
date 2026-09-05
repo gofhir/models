@@ -1232,8 +1232,13 @@ func (b *ObservationDefinitionBuilder) SetVersion(v string) *ObservationDefiniti
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationDefinitionBuilder) SetVersionAlgorithmString(v string) *ObservationDefinitionBuilder {
+	b.clearVersionAlgorithm()
 	b.observationDefinition.VersionAlgorithmString = &v
 	return b
 }
@@ -1244,8 +1249,13 @@ func (b *ObservationDefinitionBuilder) SetVersionAlgorithmStringExt(v Element) *
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ObservationDefinitionBuilder) SetVersionAlgorithmCoding(v Coding) *ObservationDefinitionBuilder {
+	b.clearVersionAlgorithm()
 	b.observationDefinition.VersionAlgorithmCoding = &v
 	return b
 }
@@ -1458,4 +1468,11 @@ func (b *ObservationDefinitionBuilder) AddHasMember(v Reference) *ObservationDef
 func (b *ObservationDefinitionBuilder) AddComponent(v ObservationDefinitionComponent) *ObservationDefinitionBuilder {
 	b.observationDefinition.Component = append(b.observationDefinition.Component, v)
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *ObservationDefinitionBuilder) clearVersionAlgorithm() {
+	b.observationDefinition.VersionAlgorithmString = nil
+	b.observationDefinition.VersionAlgorithmCoding = nil
 }

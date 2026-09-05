@@ -723,8 +723,13 @@ func (b *DiagnosticReportBuilder) SetEncounter(v Reference) *DiagnosticReportBui
 	return b
 }
 
-// SetEffectiveDateTime sets the EffectiveDateTime field.
+// SetEffectiveDateTime sets Effective[x] to its EffectiveDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *DiagnosticReportBuilder) SetEffectiveDateTime(v string) *DiagnosticReportBuilder {
+	b.clearEffective()
 	b.diagnosticReport.EffectiveDateTime = &v
 	return b
 }
@@ -735,8 +740,13 @@ func (b *DiagnosticReportBuilder) SetEffectiveDateTimeExt(v Element) *Diagnostic
 	return b
 }
 
-// SetEffectivePeriod sets the EffectivePeriod field.
+// SetEffectivePeriod sets Effective[x] to its EffectivePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *DiagnosticReportBuilder) SetEffectivePeriod(v Period) *DiagnosticReportBuilder {
+	b.clearEffective()
 	b.diagnosticReport.EffectivePeriod = &v
 	return b
 }
@@ -799,4 +809,11 @@ func (b *DiagnosticReportBuilder) AddConclusionCode(v CodeableConcept) *Diagnost
 func (b *DiagnosticReportBuilder) AddPresentedForm(v Attachment) *DiagnosticReportBuilder {
 	b.diagnosticReport.PresentedForm = append(b.diagnosticReport.PresentedForm, v)
 	return b
+}
+
+// clearEffective unsets every variant of Effective[x], including the
+// _field companions of the primitive ones.
+func (b *DiagnosticReportBuilder) clearEffective() {
+	b.diagnosticReport.EffectiveDateTime = nil
+	b.diagnosticReport.EffectivePeriod = nil
 }

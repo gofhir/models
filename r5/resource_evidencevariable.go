@@ -1696,8 +1696,13 @@ func (b *EvidenceVariableBuilder) SetVersion(v string) *EvidenceVariableBuilder 
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *EvidenceVariableBuilder) SetVersionAlgorithmString(v string) *EvidenceVariableBuilder {
+	b.clearVersionAlgorithm()
 	b.evidenceVariable.VersionAlgorithmString = &v
 	return b
 }
@@ -1708,8 +1713,13 @@ func (b *EvidenceVariableBuilder) SetVersionAlgorithmStringExt(v Element) *Evide
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *EvidenceVariableBuilder) SetVersionAlgorithmCoding(v Coding) *EvidenceVariableBuilder {
+	b.clearVersionAlgorithm()
 	b.evidenceVariable.VersionAlgorithmCoding = &v
 	return b
 }
@@ -1868,4 +1878,11 @@ func (b *EvidenceVariableBuilder) SetHandling(v EvidenceVariableHandling) *Evide
 func (b *EvidenceVariableBuilder) AddCategory(v EvidenceVariableCategory) *EvidenceVariableBuilder {
 	b.evidenceVariable.Category = append(b.evidenceVariable.Category, v)
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *EvidenceVariableBuilder) clearVersionAlgorithm() {
+	b.evidenceVariable.VersionAlgorithmString = nil
+	b.evidenceVariable.VersionAlgorithmCoding = nil
 }

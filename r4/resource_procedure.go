@@ -1042,8 +1042,13 @@ func (b *ProcedureBuilder) SetEncounter(v Reference) *ProcedureBuilder {
 	return b
 }
 
-// SetPerformedDateTime sets the PerformedDateTime field.
+// SetPerformedDateTime sets Performed[x] to its PerformedDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ProcedureBuilder) SetPerformedDateTime(v string) *ProcedureBuilder {
+	b.clearPerformed()
 	b.procedure.PerformedDateTime = &v
 	return b
 }
@@ -1054,14 +1059,24 @@ func (b *ProcedureBuilder) SetPerformedDateTimeExt(v Element) *ProcedureBuilder 
 	return b
 }
 
-// SetPerformedPeriod sets the PerformedPeriod field.
+// SetPerformedPeriod sets Performed[x] to its PerformedPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ProcedureBuilder) SetPerformedPeriod(v Period) *ProcedureBuilder {
+	b.clearPerformed()
 	b.procedure.PerformedPeriod = &v
 	return b
 }
 
-// SetPerformedString sets the PerformedString field.
+// SetPerformedString sets Performed[x] to its PerformedString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ProcedureBuilder) SetPerformedString(v string) *ProcedureBuilder {
+	b.clearPerformed()
 	b.procedure.PerformedString = &v
 	return b
 }
@@ -1072,14 +1087,24 @@ func (b *ProcedureBuilder) SetPerformedStringExt(v Element) *ProcedureBuilder {
 	return b
 }
 
-// SetPerformedAge sets the PerformedAge field.
+// SetPerformedAge sets Performed[x] to its PerformedAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ProcedureBuilder) SetPerformedAge(v Age) *ProcedureBuilder {
+	b.clearPerformed()
 	b.procedure.PerformedAge = &v
 	return b
 }
 
-// SetPerformedRange sets the PerformedRange field.
+// SetPerformedRange sets Performed[x] to its PerformedRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ProcedureBuilder) SetPerformedRange(v Range) *ProcedureBuilder {
+	b.clearPerformed()
 	b.procedure.PerformedRange = &v
 	return b
 }
@@ -1178,4 +1203,15 @@ func (b *ProcedureBuilder) AddUsedReference(v Reference) *ProcedureBuilder {
 func (b *ProcedureBuilder) AddUsedCode(v CodeableConcept) *ProcedureBuilder {
 	b.procedure.UsedCode = append(b.procedure.UsedCode, v)
 	return b
+}
+
+// clearPerformed unsets every variant of Performed[x], including the
+// _field companions of the primitive ones.
+func (b *ProcedureBuilder) clearPerformed() {
+	b.procedure.PerformedDateTime = nil
+	b.procedure.PerformedPeriod = nil
+	b.procedure.PerformedString = nil
+	b.procedure.PerformedStringExt = nil
+	b.procedure.PerformedAge = nil
+	b.procedure.PerformedRange = nil
 }

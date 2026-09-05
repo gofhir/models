@@ -887,8 +887,13 @@ func (b *InvoiceBuilder) SetCreation(v string) *InvoiceBuilder {
 	return b
 }
 
-// SetPeriodDate sets the PeriodDate field.
+// SetPeriodDate sets Period[x] to its PeriodDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *InvoiceBuilder) SetPeriodDate(v string) *InvoiceBuilder {
+	b.clearPeriod()
 	b.invoice.PeriodDate = &v
 	return b
 }
@@ -899,8 +904,13 @@ func (b *InvoiceBuilder) SetPeriodDateExt(v Element) *InvoiceBuilder {
 	return b
 }
 
-// SetPeriodPeriod sets the PeriodPeriod field.
+// SetPeriodPeriod sets Period[x] to its PeriodPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *InvoiceBuilder) SetPeriodPeriod(v Period) *InvoiceBuilder {
+	b.clearPeriod()
 	b.invoice.PeriodPeriod = &v
 	return b
 }
@@ -957,4 +967,11 @@ func (b *InvoiceBuilder) SetPaymentTerms(v string) *InvoiceBuilder {
 func (b *InvoiceBuilder) AddNote(v Annotation) *InvoiceBuilder {
 	b.invoice.Note = append(b.invoice.Note, v)
 	return b
+}
+
+// clearPeriod unsets every variant of Period[x], including the
+// _field companions of the primitive ones.
+func (b *InvoiceBuilder) clearPeriod() {
+	b.invoice.PeriodDate = nil
+	b.invoice.PeriodPeriod = nil
 }

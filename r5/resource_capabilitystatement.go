@@ -2565,8 +2565,13 @@ func (b *CapabilityStatementBuilder) SetVersion(v string) *CapabilityStatementBu
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *CapabilityStatementBuilder) SetVersionAlgorithmString(v string) *CapabilityStatementBuilder {
+	b.clearVersionAlgorithm()
 	b.capabilityStatement.VersionAlgorithmString = &v
 	return b
 }
@@ -2577,8 +2582,13 @@ func (b *CapabilityStatementBuilder) SetVersionAlgorithmStringExt(v Element) *Ca
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *CapabilityStatementBuilder) SetVersionAlgorithmCoding(v Coding) *CapabilityStatementBuilder {
+	b.clearVersionAlgorithm()
 	b.capabilityStatement.VersionAlgorithmCoding = &v
 	return b
 }
@@ -2761,4 +2771,11 @@ func (b *CapabilityStatementBuilder) AddMessaging(v CapabilityStatementMessaging
 func (b *CapabilityStatementBuilder) AddDocument(v CapabilityStatementDocument) *CapabilityStatementBuilder {
 	b.capabilityStatement.Document = append(b.capabilityStatement.Document, v)
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *CapabilityStatementBuilder) clearVersionAlgorithm() {
+	b.capabilityStatement.VersionAlgorithmString = nil
+	b.capabilityStatement.VersionAlgorithmCoding = nil
 }

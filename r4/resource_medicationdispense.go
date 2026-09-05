@@ -918,14 +918,24 @@ func (b *MedicationDispenseBuilder) SetStatus(v MedicationDispenseStatus) *Medic
 	return b
 }
 
-// SetStatusReasonCodeableConcept sets the StatusReasonCodeableConcept field.
+// SetStatusReasonCodeableConcept sets StatusReason[x] to its StatusReasonCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MedicationDispenseBuilder) SetStatusReasonCodeableConcept(v CodeableConcept) *MedicationDispenseBuilder {
+	b.clearStatusReason()
 	b.medicationDispense.StatusReasonCodeableConcept = &v
 	return b
 }
 
-// SetStatusReasonReference sets the StatusReasonReference field.
+// SetStatusReasonReference sets StatusReason[x] to its StatusReasonReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MedicationDispenseBuilder) SetStatusReasonReference(v Reference) *MedicationDispenseBuilder {
+	b.clearStatusReason()
 	b.medicationDispense.StatusReasonReference = &v
 	return b
 }
@@ -936,14 +946,24 @@ func (b *MedicationDispenseBuilder) SetCategory(v CodeableConcept) *MedicationDi
 	return b
 }
 
-// SetMedicationCodeableConcept sets the MedicationCodeableConcept field.
+// SetMedicationCodeableConcept sets Medication[x] to its MedicationCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MedicationDispenseBuilder) SetMedicationCodeableConcept(v CodeableConcept) *MedicationDispenseBuilder {
+	b.clearMedication()
 	b.medicationDispense.MedicationCodeableConcept = &v
 	return b
 }
 
-// SetMedicationReference sets the MedicationReference field.
+// SetMedicationReference sets Medication[x] to its MedicationReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MedicationDispenseBuilder) SetMedicationReference(v Reference) *MedicationDispenseBuilder {
+	b.clearMedication()
 	b.medicationDispense.MedicationReference = &v
 	return b
 }
@@ -1054,4 +1074,18 @@ func (b *MedicationDispenseBuilder) AddDetectedIssue(v Reference) *MedicationDis
 func (b *MedicationDispenseBuilder) AddEventHistory(v Reference) *MedicationDispenseBuilder {
 	b.medicationDispense.EventHistory = append(b.medicationDispense.EventHistory, v)
 	return b
+}
+
+// clearStatusReason unsets every variant of StatusReason[x], including the
+// _field companions of the primitive ones.
+func (b *MedicationDispenseBuilder) clearStatusReason() {
+	b.medicationDispense.StatusReasonCodeableConcept = nil
+	b.medicationDispense.StatusReasonReference = nil
+}
+
+// clearMedication unsets every variant of Medication[x], including the
+// _field companions of the primitive ones.
+func (b *MedicationDispenseBuilder) clearMedication() {
+	b.medicationDispense.MedicationCodeableConcept = nil
+	b.medicationDispense.MedicationReference = nil
 }

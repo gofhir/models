@@ -379,8 +379,13 @@ func (b *ProbeBuilder) AddContained(v Resource) *ProbeBuilder {
 	return b
 }
 
-// SetValueBoolean sets the ValueBoolean field.
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ProbeBuilder) SetValueBoolean(v bool) *ProbeBuilder {
+	b.clearValue()
 	b.probe.ValueBoolean = &v
 	return b
 }
@@ -391,8 +396,13 @@ func (b *ProbeBuilder) SetValueBooleanExt(v Element) *ProbeBuilder {
 	return b
 }
 
-// SetValueString sets the ValueString field.
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ProbeBuilder) SetValueString(v string) *ProbeBuilder {
+	b.clearValue()
 	b.probe.ValueString = &v
 	return b
 }
@@ -407,4 +417,12 @@ func (b *ProbeBuilder) SetValueStringExt(v Element) *ProbeBuilder {
 func (b *ProbeBuilder) AddDetail(v ProbeDetail) *ProbeBuilder {
 	b.probe.Detail = append(b.probe.Detail, v)
 	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *ProbeBuilder) clearValue() {
+	b.probe.ValueBoolean = nil
+	b.probe.ValueString = nil
+	b.probe.ValueStringExt = nil
 }

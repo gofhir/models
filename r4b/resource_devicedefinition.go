@@ -1309,8 +1309,13 @@ func (b *DeviceDefinitionBuilder) AddUdiDeviceIdentifier(v DeviceDefinitionUdiDe
 	return b
 }
 
-// SetManufacturerString sets the ManufacturerString field.
+// SetManufacturerString sets Manufacturer[x] to its ManufacturerString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *DeviceDefinitionBuilder) SetManufacturerString(v string) *DeviceDefinitionBuilder {
+	b.clearManufacturer()
 	b.deviceDefinition.ManufacturerString = &v
 	return b
 }
@@ -1321,8 +1326,13 @@ func (b *DeviceDefinitionBuilder) SetManufacturerStringExt(v Element) *DeviceDef
 	return b
 }
 
-// SetManufacturerReference sets the ManufacturerReference field.
+// SetManufacturerReference sets Manufacturer[x] to its ManufacturerReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *DeviceDefinitionBuilder) SetManufacturerReference(v Reference) *DeviceDefinitionBuilder {
+	b.clearManufacturer()
 	b.deviceDefinition.ManufacturerReference = &v
 	return b
 }
@@ -1443,4 +1453,11 @@ func (b *DeviceDefinitionBuilder) SetParentDevice(v Reference) *DeviceDefinition
 func (b *DeviceDefinitionBuilder) AddMaterial(v DeviceDefinitionMaterial) *DeviceDefinitionBuilder {
 	b.deviceDefinition.Material = append(b.deviceDefinition.Material, v)
 	return b
+}
+
+// clearManufacturer unsets every variant of Manufacturer[x], including the
+// _field companions of the primitive ones.
+func (b *DeviceDefinitionBuilder) clearManufacturer() {
+	b.deviceDefinition.ManufacturerString = nil
+	b.deviceDefinition.ManufacturerReference = nil
 }

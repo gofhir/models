@@ -1063,8 +1063,13 @@ func (b *NutritionIntakeBuilder) SetEncounter(v Reference) *NutritionIntakeBuild
 	return b
 }
 
-// SetOccurrenceDateTime sets the OccurrenceDateTime field.
+// SetOccurrenceDateTime sets Occurrence[x] to its OccurrenceDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *NutritionIntakeBuilder) SetOccurrenceDateTime(v string) *NutritionIntakeBuilder {
+	b.clearOccurrence()
 	b.nutritionIntake.OccurrenceDateTime = &v
 	return b
 }
@@ -1075,8 +1080,13 @@ func (b *NutritionIntakeBuilder) SetOccurrenceDateTimeExt(v Element) *NutritionI
 	return b
 }
 
-// SetOccurrencePeriod sets the OccurrencePeriod field.
+// SetOccurrencePeriod sets Occurrence[x] to its OccurrencePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *NutritionIntakeBuilder) SetOccurrencePeriod(v Period) *NutritionIntakeBuilder {
+	b.clearOccurrence()
 	b.nutritionIntake.OccurrencePeriod = &v
 	return b
 }
@@ -1087,8 +1097,13 @@ func (b *NutritionIntakeBuilder) SetRecorded(v string) *NutritionIntakeBuilder {
 	return b
 }
 
-// SetReportedBoolean sets the ReportedBoolean field.
+// SetReportedBoolean sets Reported[x] to its ReportedBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *NutritionIntakeBuilder) SetReportedBoolean(v bool) *NutritionIntakeBuilder {
+	b.clearReported()
 	b.nutritionIntake.ReportedBoolean = &v
 	return b
 }
@@ -1099,8 +1114,13 @@ func (b *NutritionIntakeBuilder) SetReportedBooleanExt(v Element) *NutritionInta
 	return b
 }
 
-// SetReportedReference sets the ReportedReference field.
+// SetReportedReference sets Reported[x] to its ReportedReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *NutritionIntakeBuilder) SetReportedReference(v Reference) *NutritionIntakeBuilder {
+	b.clearReported()
 	b.nutritionIntake.ReportedReference = &v
 	return b
 }
@@ -1145,4 +1165,18 @@ func (b *NutritionIntakeBuilder) AddReason(v CodeableReference) *NutritionIntake
 func (b *NutritionIntakeBuilder) AddNote(v Annotation) *NutritionIntakeBuilder {
 	b.nutritionIntake.Note = append(b.nutritionIntake.Note, v)
 	return b
+}
+
+// clearOccurrence unsets every variant of Occurrence[x], including the
+// _field companions of the primitive ones.
+func (b *NutritionIntakeBuilder) clearOccurrence() {
+	b.nutritionIntake.OccurrenceDateTime = nil
+	b.nutritionIntake.OccurrencePeriod = nil
+}
+
+// clearReported unsets every variant of Reported[x], including the
+// _field companions of the primitive ones.
+func (b *NutritionIntakeBuilder) clearReported() {
+	b.nutritionIntake.ReportedBoolean = nil
+	b.nutritionIntake.ReportedReference = nil
 }

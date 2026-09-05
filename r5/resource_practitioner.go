@@ -756,8 +756,13 @@ func (b *PractitionerBuilder) SetBirthDate(v string) *PractitionerBuilder {
 	return b
 }
 
-// SetDeceasedBoolean sets the DeceasedBoolean field.
+// SetDeceasedBoolean sets Deceased[x] to its DeceasedBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *PractitionerBuilder) SetDeceasedBoolean(v bool) *PractitionerBuilder {
+	b.clearDeceased()
 	b.practitioner.DeceasedBoolean = &v
 	return b
 }
@@ -768,8 +773,13 @@ func (b *PractitionerBuilder) SetDeceasedBooleanExt(v Element) *PractitionerBuil
 	return b
 }
 
-// SetDeceasedDateTime sets the DeceasedDateTime field.
+// SetDeceasedDateTime sets Deceased[x] to its DeceasedDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *PractitionerBuilder) SetDeceasedDateTime(v string) *PractitionerBuilder {
+	b.clearDeceased()
 	b.practitioner.DeceasedDateTime = &v
 	return b
 }
@@ -802,4 +812,12 @@ func (b *PractitionerBuilder) AddQualification(v PractitionerQualification) *Pra
 func (b *PractitionerBuilder) AddCommunication(v PractitionerCommunication) *PractitionerBuilder {
 	b.practitioner.Communication = append(b.practitioner.Communication, v)
 	return b
+}
+
+// clearDeceased unsets every variant of Deceased[x], including the
+// _field companions of the primitive ones.
+func (b *PractitionerBuilder) clearDeceased() {
+	b.practitioner.DeceasedBoolean = nil
+	b.practitioner.DeceasedDateTime = nil
+	b.practitioner.DeceasedDateTimeExt = nil
 }

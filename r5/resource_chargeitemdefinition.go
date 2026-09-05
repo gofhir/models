@@ -935,8 +935,13 @@ func (b *ChargeItemDefinitionBuilder) SetVersion(v string) *ChargeItemDefinition
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ChargeItemDefinitionBuilder) SetVersionAlgorithmString(v string) *ChargeItemDefinitionBuilder {
+	b.clearVersionAlgorithm()
 	b.chargeItemDefinition.VersionAlgorithmString = &v
 	return b
 }
@@ -947,8 +952,13 @@ func (b *ChargeItemDefinitionBuilder) SetVersionAlgorithmStringExt(v Element) *C
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ChargeItemDefinitionBuilder) SetVersionAlgorithmCoding(v Coding) *ChargeItemDefinitionBuilder {
+	b.clearVersionAlgorithm()
 	b.chargeItemDefinition.VersionAlgorithmCoding = &v
 	return b
 }
@@ -1095,4 +1105,11 @@ func (b *ChargeItemDefinitionBuilder) AddApplicability(v ChargeItemDefinitionApp
 func (b *ChargeItemDefinitionBuilder) AddPropertyGroup(v ChargeItemDefinitionPropertyGroup) *ChargeItemDefinitionBuilder {
 	b.chargeItemDefinition.PropertyGroup = append(b.chargeItemDefinition.PropertyGroup, v)
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *ChargeItemDefinitionBuilder) clearVersionAlgorithm() {
+	b.chargeItemDefinition.VersionAlgorithmString = nil
+	b.chargeItemDefinition.VersionAlgorithmCoding = nil
 }

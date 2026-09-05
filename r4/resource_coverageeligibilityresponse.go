@@ -1226,8 +1226,13 @@ func (b *CoverageEligibilityResponseBuilder) SetPatient(v Reference) *CoverageEl
 	return b
 }
 
-// SetServicedDate sets the ServicedDate field.
+// SetServicedDate sets Serviced[x] to its ServicedDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *CoverageEligibilityResponseBuilder) SetServicedDate(v string) *CoverageEligibilityResponseBuilder {
+	b.clearServiced()
 	b.coverageEligibilityResponse.ServicedDate = &v
 	return b
 }
@@ -1238,8 +1243,13 @@ func (b *CoverageEligibilityResponseBuilder) SetServicedDateExt(v Element) *Cove
 	return b
 }
 
-// SetServicedPeriod sets the ServicedPeriod field.
+// SetServicedPeriod sets Serviced[x] to its ServicedPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *CoverageEligibilityResponseBuilder) SetServicedPeriod(v Period) *CoverageEligibilityResponseBuilder {
+	b.clearServiced()
 	b.coverageEligibilityResponse.ServicedPeriod = &v
 	return b
 }
@@ -1302,4 +1312,11 @@ func (b *CoverageEligibilityResponseBuilder) SetForm(v CodeableConcept) *Coverag
 func (b *CoverageEligibilityResponseBuilder) AddError(v CoverageEligibilityResponseError) *CoverageEligibilityResponseBuilder {
 	b.coverageEligibilityResponse.Error = append(b.coverageEligibilityResponse.Error, v)
 	return b
+}
+
+// clearServiced unsets every variant of Serviced[x], including the
+// _field companions of the primitive ones.
+func (b *CoverageEligibilityResponseBuilder) clearServiced() {
+	b.coverageEligibilityResponse.ServicedDate = nil
+	b.coverageEligibilityResponse.ServicedPeriod = nil
 }

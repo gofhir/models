@@ -757,8 +757,13 @@ func (b *PersonBuilder) SetBirthDate(v string) *PersonBuilder {
 	return b
 }
 
-// SetDeceasedBoolean sets the DeceasedBoolean field.
+// SetDeceasedBoolean sets Deceased[x] to its DeceasedBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *PersonBuilder) SetDeceasedBoolean(v bool) *PersonBuilder {
+	b.clearDeceased()
 	b.person.DeceasedBoolean = &v
 	return b
 }
@@ -769,8 +774,13 @@ func (b *PersonBuilder) SetDeceasedBooleanExt(v Element) *PersonBuilder {
 	return b
 }
 
-// SetDeceasedDateTime sets the DeceasedDateTime field.
+// SetDeceasedDateTime sets Deceased[x] to its DeceasedDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *PersonBuilder) SetDeceasedDateTime(v string) *PersonBuilder {
+	b.clearDeceased()
 	b.person.DeceasedDateTime = &v
 	return b
 }
@@ -815,4 +825,12 @@ func (b *PersonBuilder) SetManagingOrganization(v Reference) *PersonBuilder {
 func (b *PersonBuilder) AddLink(v PersonLink) *PersonBuilder {
 	b.person.Link = append(b.person.Link, v)
 	return b
+}
+
+// clearDeceased unsets every variant of Deceased[x], including the
+// _field companions of the primitive ones.
+func (b *PersonBuilder) clearDeceased() {
+	b.person.DeceasedBoolean = nil
+	b.person.DeceasedDateTime = nil
+	b.person.DeceasedDateTimeExt = nil
 }

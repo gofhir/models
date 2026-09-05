@@ -1569,14 +1569,24 @@ func (b *MeasureBuilder) SetExperimental(v bool) *MeasureBuilder {
 	return b
 }
 
-// SetSubjectCodeableConcept sets the SubjectCodeableConcept field.
+// SetSubjectCodeableConcept sets Subject[x] to its SubjectCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MeasureBuilder) SetSubjectCodeableConcept(v CodeableConcept) *MeasureBuilder {
+	b.clearSubject()
 	b.measure.SubjectCodeableConcept = &v
 	return b
 }
 
-// SetSubjectReference sets the SubjectReference field.
+// SetSubjectReference sets Subject[x] to its SubjectReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *MeasureBuilder) SetSubjectReference(v Reference) *MeasureBuilder {
+	b.clearSubject()
 	b.measure.SubjectReference = &v
 	return b
 }
@@ -1779,4 +1789,11 @@ func (b *MeasureBuilder) AddGroup(v MeasureGroup) *MeasureBuilder {
 func (b *MeasureBuilder) AddSupplementalData(v MeasureSupplementalData) *MeasureBuilder {
 	b.measure.SupplementalData = append(b.measure.SupplementalData, v)
 	return b
+}
+
+// clearSubject unsets every variant of Subject[x], including the
+// _field companions of the primitive ones.
+func (b *MeasureBuilder) clearSubject() {
+	b.measure.SubjectCodeableConcept = nil
+	b.measure.SubjectReference = nil
 }

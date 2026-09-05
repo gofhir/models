@@ -1293,8 +1293,13 @@ func (b *ConditionDefinitionBuilder) SetVersion(v string) *ConditionDefinitionBu
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConditionDefinitionBuilder) SetVersionAlgorithmString(v string) *ConditionDefinitionBuilder {
+	b.clearVersionAlgorithm()
 	b.conditionDefinition.VersionAlgorithmString = &v
 	return b
 }
@@ -1305,8 +1310,13 @@ func (b *ConditionDefinitionBuilder) SetVersionAlgorithmStringExt(v Element) *Co
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ConditionDefinitionBuilder) SetVersionAlgorithmCoding(v Coding) *ConditionDefinitionBuilder {
+	b.clearVersionAlgorithm()
 	b.conditionDefinition.VersionAlgorithmCoding = &v
 	return b
 }
@@ -1463,4 +1473,11 @@ func (b *ConditionDefinitionBuilder) AddQuestionnaire(v ConditionDefinitionQuest
 func (b *ConditionDefinitionBuilder) AddPlan(v ConditionDefinitionPlan) *ConditionDefinitionBuilder {
 	b.conditionDefinition.Plan = append(b.conditionDefinition.Plan, v)
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *ConditionDefinitionBuilder) clearVersionAlgorithm() {
+	b.conditionDefinition.VersionAlgorithmString = nil
+	b.conditionDefinition.VersionAlgorithmCoding = nil
 }

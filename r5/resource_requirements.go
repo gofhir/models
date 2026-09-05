@@ -868,8 +868,13 @@ func (b *RequirementsBuilder) SetVersion(v string) *RequirementsBuilder {
 	return b
 }
 
-// SetVersionAlgorithmString sets the VersionAlgorithmString field.
+// SetVersionAlgorithmString sets VersionAlgorithm[x] to its VersionAlgorithmString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *RequirementsBuilder) SetVersionAlgorithmString(v string) *RequirementsBuilder {
+	b.clearVersionAlgorithm()
 	b.requirements.VersionAlgorithmString = &v
 	return b
 }
@@ -880,8 +885,13 @@ func (b *RequirementsBuilder) SetVersionAlgorithmStringExt(v Element) *Requireme
 	return b
 }
 
-// SetVersionAlgorithmCoding sets the VersionAlgorithmCoding field.
+// SetVersionAlgorithmCoding sets VersionAlgorithm[x] to its VersionAlgorithmCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *RequirementsBuilder) SetVersionAlgorithmCoding(v Coding) *RequirementsBuilder {
+	b.clearVersionAlgorithm()
 	b.requirements.VersionAlgorithmCoding = &v
 	return b
 }
@@ -998,4 +1008,11 @@ func (b *RequirementsBuilder) AddActor(v string) *RequirementsBuilder {
 func (b *RequirementsBuilder) AddStatement(v RequirementsStatement) *RequirementsBuilder {
 	b.requirements.Statement = append(b.requirements.Statement, v)
 	return b
+}
+
+// clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
+// _field companions of the primitive ones.
+func (b *RequirementsBuilder) clearVersionAlgorithm() {
+	b.requirements.VersionAlgorithmString = nil
+	b.requirements.VersionAlgorithmCoding = nil
 }

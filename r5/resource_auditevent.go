@@ -1375,14 +1375,24 @@ func (b *AuditEventBuilder) SetSeverity(v AuditEventSeverity) *AuditEventBuilder
 	return b
 }
 
-// SetOccurredPeriod sets the OccurredPeriod field.
+// SetOccurredPeriod sets Occurred[x] to its OccurredPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *AuditEventBuilder) SetOccurredPeriod(v Period) *AuditEventBuilder {
+	b.clearOccurred()
 	b.auditEvent.OccurredPeriod = &v
 	return b
 }
 
-// SetOccurredDateTime sets the OccurredDateTime field.
+// SetOccurredDateTime sets Occurred[x] to its OccurredDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *AuditEventBuilder) SetOccurredDateTime(v string) *AuditEventBuilder {
+	b.clearOccurred()
 	b.auditEvent.OccurredDateTime = &v
 	return b
 }
@@ -1445,4 +1455,12 @@ func (b *AuditEventBuilder) SetSource(v AuditEventSource) *AuditEventBuilder {
 func (b *AuditEventBuilder) AddEntity(v AuditEventEntity) *AuditEventBuilder {
 	b.auditEvent.Entity = append(b.auditEvent.Entity, v)
 	return b
+}
+
+// clearOccurred unsets every variant of Occurred[x], including the
+// _field companions of the primitive ones.
+func (b *AuditEventBuilder) clearOccurred() {
+	b.auditEvent.OccurredPeriod = nil
+	b.auditEvent.OccurredDateTime = nil
+	b.auditEvent.OccurredDateTimeExt = nil
 }

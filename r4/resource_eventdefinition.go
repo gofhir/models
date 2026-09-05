@@ -766,14 +766,24 @@ func (b *EventDefinitionBuilder) SetExperimental(v bool) *EventDefinitionBuilder
 	return b
 }
 
-// SetSubjectCodeableConcept sets the SubjectCodeableConcept field.
+// SetSubjectCodeableConcept sets Subject[x] to its SubjectCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *EventDefinitionBuilder) SetSubjectCodeableConcept(v CodeableConcept) *EventDefinitionBuilder {
+	b.clearSubject()
 	b.eventDefinition.SubjectCodeableConcept = &v
 	return b
 }
 
-// SetSubjectReference sets the SubjectReference field.
+// SetSubjectReference sets Subject[x] to its SubjectReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *EventDefinitionBuilder) SetSubjectReference(v Reference) *EventDefinitionBuilder {
+	b.clearSubject()
 	b.eventDefinition.SubjectReference = &v
 	return b
 }
@@ -890,4 +900,11 @@ func (b *EventDefinitionBuilder) AddRelatedArtifact(v RelatedArtifact) *EventDef
 func (b *EventDefinitionBuilder) AddTrigger(v TriggerDefinition) *EventDefinitionBuilder {
 	b.eventDefinition.Trigger = append(b.eventDefinition.Trigger, v)
 	return b
+}
+
+// clearSubject unsets every variant of Subject[x], including the
+// _field companions of the primitive ones.
+func (b *EventDefinitionBuilder) clearSubject() {
+	b.eventDefinition.SubjectCodeableConcept = nil
+	b.eventDefinition.SubjectReference = nil
 }

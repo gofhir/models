@@ -855,14 +855,24 @@ func (b *ResearchDefinitionBuilder) SetExperimental(v bool) *ResearchDefinitionB
 	return b
 }
 
-// SetSubjectCodeableConcept sets the SubjectCodeableConcept field.
+// SetSubjectCodeableConcept sets Subject[x] to its SubjectCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ResearchDefinitionBuilder) SetSubjectCodeableConcept(v CodeableConcept) *ResearchDefinitionBuilder {
+	b.clearSubject()
 	b.researchDefinition.SubjectCodeableConcept = &v
 	return b
 }
 
-// SetSubjectReference sets the SubjectReference field.
+// SetSubjectReference sets Subject[x] to its SubjectReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ResearchDefinitionBuilder) SetSubjectReference(v Reference) *ResearchDefinitionBuilder {
+	b.clearSubject()
 	b.researchDefinition.SubjectReference = &v
 	return b
 }
@@ -1017,4 +1027,11 @@ func (b *ResearchDefinitionBuilder) SetExposureAlternative(v Reference) *Researc
 func (b *ResearchDefinitionBuilder) SetOutcome(v Reference) *ResearchDefinitionBuilder {
 	b.researchDefinition.Outcome = &v
 	return b
+}
+
+// clearSubject unsets every variant of Subject[x], including the
+// _field companions of the primitive ones.
+func (b *ResearchDefinitionBuilder) clearSubject() {
+	b.researchDefinition.SubjectCodeableConcept = nil
+	b.researchDefinition.SubjectReference = nil
 }

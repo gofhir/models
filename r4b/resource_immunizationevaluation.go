@@ -595,8 +595,13 @@ func (b *ImmunizationEvaluationBuilder) SetSeries(v string) *ImmunizationEvaluat
 	return b
 }
 
-// SetDoseNumberPositiveInt sets the DoseNumberPositiveInt field.
+// SetDoseNumberPositiveInt sets DoseNumber[x] to its DoseNumberPositiveInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ImmunizationEvaluationBuilder) SetDoseNumberPositiveInt(v uint32) *ImmunizationEvaluationBuilder {
+	b.clearDoseNumber()
 	b.immunizationEvaluation.DoseNumberPositiveInt = &v
 	return b
 }
@@ -607,8 +612,13 @@ func (b *ImmunizationEvaluationBuilder) SetDoseNumberPositiveIntExt(v Element) *
 	return b
 }
 
-// SetDoseNumberString sets the DoseNumberString field.
+// SetDoseNumberString sets DoseNumber[x] to its DoseNumberString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ImmunizationEvaluationBuilder) SetDoseNumberString(v string) *ImmunizationEvaluationBuilder {
+	b.clearDoseNumber()
 	b.immunizationEvaluation.DoseNumberString = &v
 	return b
 }
@@ -619,8 +629,13 @@ func (b *ImmunizationEvaluationBuilder) SetDoseNumberStringExt(v Element) *Immun
 	return b
 }
 
-// SetSeriesDosesPositiveInt sets the SeriesDosesPositiveInt field.
+// SetSeriesDosesPositiveInt sets SeriesDoses[x] to its SeriesDosesPositiveInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ImmunizationEvaluationBuilder) SetSeriesDosesPositiveInt(v uint32) *ImmunizationEvaluationBuilder {
+	b.clearSeriesDoses()
 	b.immunizationEvaluation.SeriesDosesPositiveInt = &v
 	return b
 }
@@ -631,8 +646,13 @@ func (b *ImmunizationEvaluationBuilder) SetSeriesDosesPositiveIntExt(v Element) 
 	return b
 }
 
-// SetSeriesDosesString sets the SeriesDosesString field.
+// SetSeriesDosesString sets SeriesDoses[x] to its SeriesDosesString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ImmunizationEvaluationBuilder) SetSeriesDosesString(v string) *ImmunizationEvaluationBuilder {
+	b.clearSeriesDoses()
 	b.immunizationEvaluation.SeriesDosesString = &v
 	return b
 }
@@ -641,4 +661,20 @@ func (b *ImmunizationEvaluationBuilder) SetSeriesDosesString(v string) *Immuniza
 func (b *ImmunizationEvaluationBuilder) SetSeriesDosesStringExt(v Element) *ImmunizationEvaluationBuilder {
 	b.immunizationEvaluation.SeriesDosesStringExt = &v
 	return b
+}
+
+// clearDoseNumber unsets every variant of DoseNumber[x], including the
+// _field companions of the primitive ones.
+func (b *ImmunizationEvaluationBuilder) clearDoseNumber() {
+	b.immunizationEvaluation.DoseNumberPositiveInt = nil
+	b.immunizationEvaluation.DoseNumberString = nil
+	b.immunizationEvaluation.DoseNumberStringExt = nil
+}
+
+// clearSeriesDoses unsets every variant of SeriesDoses[x], including the
+// _field companions of the primitive ones.
+func (b *ImmunizationEvaluationBuilder) clearSeriesDoses() {
+	b.immunizationEvaluation.SeriesDosesPositiveInt = nil
+	b.immunizationEvaluation.SeriesDosesString = nil
+	b.immunizationEvaluation.SeriesDosesStringExt = nil
 }

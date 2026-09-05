@@ -1295,14 +1295,24 @@ func (b *ActivityDefinitionBuilder) SetExperimental(v bool) *ActivityDefinitionB
 	return b
 }
 
-// SetSubjectCodeableConcept sets the SubjectCodeableConcept field.
+// SetSubjectCodeableConcept sets Subject[x] to its SubjectCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ActivityDefinitionBuilder) SetSubjectCodeableConcept(v CodeableConcept) *ActivityDefinitionBuilder {
+	b.clearSubject()
 	b.activityDefinition.SubjectCodeableConcept = &v
 	return b
 }
 
-// SetSubjectReference sets the SubjectReference field.
+// SetSubjectReference sets Subject[x] to its SubjectReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ActivityDefinitionBuilder) SetSubjectReference(v Reference) *ActivityDefinitionBuilder {
+	b.clearSubject()
 	b.activityDefinition.SubjectReference = &v
 	return b
 }
@@ -1461,14 +1471,24 @@ func (b *ActivityDefinitionBuilder) SetDoNotPerform(v bool) *ActivityDefinitionB
 	return b
 }
 
-// SetTimingTiming sets the TimingTiming field.
+// SetTimingTiming sets Timing[x] to its TimingTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ActivityDefinitionBuilder) SetTimingTiming(v Timing) *ActivityDefinitionBuilder {
+	b.clearTiming()
 	b.activityDefinition.TimingTiming = &v
 	return b
 }
 
-// SetTimingDateTime sets the TimingDateTime field.
+// SetTimingDateTime sets Timing[x] to its TimingDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ActivityDefinitionBuilder) SetTimingDateTime(v string) *ActivityDefinitionBuilder {
+	b.clearTiming()
 	b.activityDefinition.TimingDateTime = &v
 	return b
 }
@@ -1479,26 +1499,46 @@ func (b *ActivityDefinitionBuilder) SetTimingDateTimeExt(v Element) *ActivityDef
 	return b
 }
 
-// SetTimingAge sets the TimingAge field.
+// SetTimingAge sets Timing[x] to its TimingAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ActivityDefinitionBuilder) SetTimingAge(v Age) *ActivityDefinitionBuilder {
+	b.clearTiming()
 	b.activityDefinition.TimingAge = &v
 	return b
 }
 
-// SetTimingPeriod sets the TimingPeriod field.
+// SetTimingPeriod sets Timing[x] to its TimingPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ActivityDefinitionBuilder) SetTimingPeriod(v Period) *ActivityDefinitionBuilder {
+	b.clearTiming()
 	b.activityDefinition.TimingPeriod = &v
 	return b
 }
 
-// SetTimingRange sets the TimingRange field.
+// SetTimingRange sets Timing[x] to its TimingRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ActivityDefinitionBuilder) SetTimingRange(v Range) *ActivityDefinitionBuilder {
+	b.clearTiming()
 	b.activityDefinition.TimingRange = &v
 	return b
 }
 
-// SetTimingDuration sets the TimingDuration field.
+// SetTimingDuration sets Timing[x] to its TimingDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ActivityDefinitionBuilder) SetTimingDuration(v Duration) *ActivityDefinitionBuilder {
+	b.clearTiming()
 	b.activityDefinition.TimingDuration = &v
 	return b
 }
@@ -1515,14 +1555,24 @@ func (b *ActivityDefinitionBuilder) AddParticipant(v ActivityDefinitionParticipa
 	return b
 }
 
-// SetProductReference sets the ProductReference field.
+// SetProductReference sets Product[x] to its ProductReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ActivityDefinitionBuilder) SetProductReference(v Reference) *ActivityDefinitionBuilder {
+	b.clearProduct()
 	b.activityDefinition.ProductReference = &v
 	return b
 }
 
-// SetProductCodeableConcept sets the ProductCodeableConcept field.
+// SetProductCodeableConcept sets Product[x] to its ProductCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ActivityDefinitionBuilder) SetProductCodeableConcept(v CodeableConcept) *ActivityDefinitionBuilder {
+	b.clearProduct()
 	b.activityDefinition.ProductCodeableConcept = &v
 	return b
 }
@@ -1573,4 +1623,30 @@ func (b *ActivityDefinitionBuilder) SetTransform(v string) *ActivityDefinitionBu
 func (b *ActivityDefinitionBuilder) AddDynamicValue(v ActivityDefinitionDynamicValue) *ActivityDefinitionBuilder {
 	b.activityDefinition.DynamicValue = append(b.activityDefinition.DynamicValue, v)
 	return b
+}
+
+// clearSubject unsets every variant of Subject[x], including the
+// _field companions of the primitive ones.
+func (b *ActivityDefinitionBuilder) clearSubject() {
+	b.activityDefinition.SubjectCodeableConcept = nil
+	b.activityDefinition.SubjectReference = nil
+}
+
+// clearTiming unsets every variant of Timing[x], including the
+// _field companions of the primitive ones.
+func (b *ActivityDefinitionBuilder) clearTiming() {
+	b.activityDefinition.TimingTiming = nil
+	b.activityDefinition.TimingDateTime = nil
+	b.activityDefinition.TimingDateTimeExt = nil
+	b.activityDefinition.TimingAge = nil
+	b.activityDefinition.TimingPeriod = nil
+	b.activityDefinition.TimingRange = nil
+	b.activityDefinition.TimingDuration = nil
+}
+
+// clearProduct unsets every variant of Product[x], including the
+// _field companions of the primitive ones.
+func (b *ActivityDefinitionBuilder) clearProduct() {
+	b.activityDefinition.ProductReference = nil
+	b.activityDefinition.ProductCodeableConcept = nil
 }

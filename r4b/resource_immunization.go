@@ -1274,8 +1274,13 @@ func (b *ImmunizationBuilder) SetEncounter(v Reference) *ImmunizationBuilder {
 	return b
 }
 
-// SetOccurrenceDateTime sets the OccurrenceDateTime field.
+// SetOccurrenceDateTime sets Occurrence[x] to its OccurrenceDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ImmunizationBuilder) SetOccurrenceDateTime(v string) *ImmunizationBuilder {
+	b.clearOccurrence()
 	b.immunization.OccurrenceDateTime = &v
 	return b
 }
@@ -1286,8 +1291,13 @@ func (b *ImmunizationBuilder) SetOccurrenceDateTimeExt(v Element) *ImmunizationB
 	return b
 }
 
-// SetOccurrenceString sets the OccurrenceString field.
+// SetOccurrenceString sets Occurrence[x] to its OccurrenceString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ImmunizationBuilder) SetOccurrenceString(v string) *ImmunizationBuilder {
+	b.clearOccurrence()
 	b.immunization.OccurrenceString = &v
 	return b
 }
@@ -1422,4 +1432,12 @@ func (b *ImmunizationBuilder) AddReaction(v ImmunizationReaction) *ImmunizationB
 func (b *ImmunizationBuilder) AddProtocolApplied(v ImmunizationProtocolApplied) *ImmunizationBuilder {
 	b.immunization.ProtocolApplied = append(b.immunization.ProtocolApplied, v)
 	return b
+}
+
+// clearOccurrence unsets every variant of Occurrence[x], including the
+// _field companions of the primitive ones.
+func (b *ImmunizationBuilder) clearOccurrence() {
+	b.immunization.OccurrenceDateTime = nil
+	b.immunization.OccurrenceString = nil
+	b.immunization.OccurrenceStringExt = nil
 }

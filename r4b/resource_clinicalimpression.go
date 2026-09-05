@@ -868,8 +868,13 @@ func (b *ClinicalImpressionBuilder) SetEncounter(v Reference) *ClinicalImpressio
 	return b
 }
 
-// SetEffectiveDateTime sets the EffectiveDateTime field.
+// SetEffectiveDateTime sets Effective[x] to its EffectiveDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ClinicalImpressionBuilder) SetEffectiveDateTime(v string) *ClinicalImpressionBuilder {
+	b.clearEffective()
 	b.clinicalImpression.EffectiveDateTime = &v
 	return b
 }
@@ -880,8 +885,13 @@ func (b *ClinicalImpressionBuilder) SetEffectiveDateTimeExt(v Element) *Clinical
 	return b
 }
 
-// SetEffectivePeriod sets the EffectivePeriod field.
+// SetEffectivePeriod sets Effective[x] to its EffectivePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
 func (b *ClinicalImpressionBuilder) SetEffectivePeriod(v Period) *ClinicalImpressionBuilder {
+	b.clearEffective()
 	b.clinicalImpression.EffectivePeriod = &v
 	return b
 }
@@ -960,4 +970,11 @@ func (b *ClinicalImpressionBuilder) AddSupportingInfo(v Reference) *ClinicalImpr
 func (b *ClinicalImpressionBuilder) AddNote(v Annotation) *ClinicalImpressionBuilder {
 	b.clinicalImpression.Note = append(b.clinicalImpression.Note, v)
 	return b
+}
+
+// clearEffective unsets every variant of Effective[x], including the
+// _field companions of the primitive ones.
+func (b *ClinicalImpressionBuilder) clearEffective() {
+	b.clinicalImpression.EffectiveDateTime = nil
+	b.clinicalImpression.EffectivePeriod = nil
 }
