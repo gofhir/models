@@ -572,9 +572,9 @@ La doc costó más que el código: 34 bloques de ejemplo transformados a builder
 
 Extender los builders a datatypes y backbones **primero**; retirar después. Hoy cubren 146/146 recursos y **0** datatypes/backbones, así que la cadena fluida se rompe donde vive la mayor parte de los datos.
 
-> **Se hizo al revés, y luego se saldó a medias.** La 6.6 retiró las opciones sin extender antes. No hubo regresión —verificado contra `r4/v1.7.0`: las opciones tampoco cubrían datatypes—, y los **datatypes ya tienen builder**: 44 en r4 y r4b, 46 en r5, **+19.952 líneas** en los tres (la estimación previa era ~21.000).
+> **Se hizo al revés, y luego se saldó a medias.** La 6.6 retiró las opciones sin extender antes. No hubo regresión —verificado contra `r4/v1.7.0`: las opciones tampoco cubrían datatypes—, y los **datatypes ya tienen builder**: **44 de 44** en r4 y r4b, **46 de 46** en r5 —cobertura completa—, **+19.952 líneas** en los tres (la estimación previa era ~21.000). El «58» que se citaba antes contaba juntos los 44 datatypes y los 14 backbones de datatype; estos últimos quedan fuera con el resto de backbones.
 >
-> **Los backbones se quedan fuera a propósito.** Medido: 578 tipos en r4 y 733 en r5, unas **120.000 líneas** frente a las 20.000 de los datatypes, y son tipos que se construyen dentro de su recurso, no a mano. La decisión se apoya en el uso real del corpus: sobre 1.200 ejemplos de R4, `CodeableConcept` aparece **165.085** veces, `Reference` 62.690, `Extension` 23.378 — y **26 de los 58 datatypes no aparecen ni una vez**. El valor está concentrado donde ahora hay builder.
+> **Los backbones se quedan fuera a propósito**, incluidos los 14 que viven en `datatypes.go`. Medido: 578 tipos en r4 y 733 en r5, unas **120.000 líneas** frente a las 20.000 de los datatypes, y son tipos que se construyen dentro de su recurso, no a mano. La decisión se apoya en el uso real del corpus: sobre 1.200 ejemplos de R4, `CodeableConcept` aparece **165.085** veces, `Reference` 62.690, `Extension` 23.378 — y **26 de los 58 datatypes no aparecen ni una vez**. El valor está concentrado donde ahora hay builder.
 >
 > Efecto secundario: la exclusividad de choice pasa de 218 grupos a **255**, e incluye `Extension.value[x]`, que con sus 71 variantes era el grupo más grande sin protección.
 

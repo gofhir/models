@@ -7,6 +7,7 @@ import (
 	"go/format"
 	"os"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strings"
 	"text/template"
@@ -122,11 +123,17 @@ type DatatypesConsolidatedData struct {
 // between the two templates.
 var sharedTemplates = []string{"builder.go.tmpl"}
 
+// invokesTemplate matches a {{template "name"}} action, allowing the whitespace
+// and trim markers text/template accepts. Matching a fixed string missed
+// {{- template and {{ template, which would parse fine and then fail at execution
+// with "no such template".
+var invokesTemplate = regexp.MustCompile(`\{\{-?\s*template\s`)
+
 func parseSharedTemplates(tmpl *template.Template, content string) (*template.Template, error) {
 	// Only for templates that invoke one. The shared blocks use functions that
 	// only some FuncMaps carry, so parsing them everywhere fails the templates
 	// that neither need nor declare those functions.
-	if !strings.Contains(content, `{{template "`) {
+	if !invokesTemplate.MatchString(content) {
 		return tmpl, nil
 	}
 	for _, name := range sharedTemplates {
@@ -467,8 +474,7 @@ func (c *CodeGen) generateSummaryFromTemplate() error {
 //
 // Lower-casing the type name is fine for every resource, but Range is a datatype
 // and "range" is reserved — the generated struct did not compile. Only Range
-// collides today, in all three versions, but the guard is on the language rather
-// than on that one name.
+// collides today, in all three versions.
 var goKeywords = map[string]bool{
 	"break": true, "case": true, "chan": true, "const": true, "continue": true,
 	"default": true, "defer": true, "else": true, "fallthrough": true, "for": true,
@@ -482,18 +488,22 @@ var goKeywords = map[string]bool{
 func buildDatatypeBuilderData(t *analyzer.AnalyzedType) ResourceBuilderData {
 	data := buildResourceBuilderData(t)
 	data.IsResource = false
-	if goKeywords[data.LowerName] {
-		data.LowerName += "Value"
-	}
 	return data
 }
 
 // buildResourceBuilderData converts an AnalyzedType to ResourceBuilderData.
 func buildResourceBuilderData(t *analyzer.AnalyzedType) ResourceBuilderData {
+	lower := toLowerFirstChar(t.Name)
+	if goKeywords[lower] {
+		// Range lower-cases to "range". No resource name collides today, but the
+		// guard belongs on the language rather than on the one type that happens
+		// to hit it, and both builders come through here.
+		lower += "Value"
+	}
 	resource := ResourceBuilderData{
 		IsResource: true,
 		Name:       t.Name,
-		LowerName:  toLowerFirstChar(t.Name),
+		LowerName:  lower,
 		FHIRName:   t.FHIRName,
 		Properties: make([]PropertyBuilderData, 0, len(t.Properties)),
 	}
