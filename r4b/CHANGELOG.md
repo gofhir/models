@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.0](https://github.com/gofhir/models/compare/r4b/v2.3.0...r4b/v2.4.0) (2026-09-06)
+
+
+### Features
+
+* find extensions by URL ([18d00eb](https://github.com/gofhir/models/commit/18d00eb0927be1e804dc9ee376c6143278e98d7a))
+
 ## [2.3.0](https://github.com/gofhir/models/compare/r4b/v2.2.0...r4b/v2.3.0) (2026-09-06)
 
 
