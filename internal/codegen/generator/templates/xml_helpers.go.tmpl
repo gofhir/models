@@ -973,12 +973,17 @@ func xmlDecodeInlineResource(d *xml.Decoder, start xml.StartElement) (Resource, 
 	return resource, nil
 }
 
-// MarshalXML writes an unknown resource back exactly as it arrived.
+// MarshalXML writes an unknown resource back as it was captured.
 //
-// Verbatim, like the JSON side: the library cannot interpret the resource, so
-// reformatting it would be inventing a representation for something it does not
-// model. The element is re-emitted through ",innerxml", which passes its content
-// through untouched rather than re-parsing and re-serializing it.
+// The content is re-emitted through ",innerxml", which passes it along rather than
+// re-parsing and re-serializing it — so no member is lost or reordered, whether or
+// not this version has a field for it.
+//
+// It is not byte-for-byte, unlike the JSON side. The capture rebuilds the element
+// from the decoder's token stream, and a token stream has no notion of how an
+// empty element was spelled: <self/> comes back as <self></self>. The two are the
+// same element in XML, and preserving the spelling would mean holding on to the
+// original bytes, which the decoder does not hand out on every path this runs on.
 func (u UnknownResource) MarshalXML(e *xml.Encoder, _ xml.StartElement) error {
 	if u.RawXML == "" {
 		if len(u.Raw) > 0 {
@@ -1014,10 +1019,12 @@ func (u UnknownResource) MarshalXML(e *xml.Encoder, _ xml.StartElement) error {
 }
 
 // xmlDecodeUnknownResource captures a resource whose type this version does not
-// define, keeping the element verbatim so it survives the round trip.
+// define, so the element survives the round trip instead of failing the document.
 //
-// The bytes are the element as it arrived, rebuilt token by token — the same
-// approach xmlDecodeRawXHTML uses for narrative. What that cannot carry is a
+// The element is rebuilt token by token — the same approach xmlDecodeRawXHTML uses
+// for narrative, which is why the helper is shared despite its name. Rebuilding
+// preserves every member and its content but not the spelling of an empty element:
+// <self/> is captured as <self></self>, which is the same element. What that cannot carry is a
 // namespace prefix declared on an ancestor: the captured text keeps the prefix but
 // not the declaration, so re-emitting it outside the original document would
 // produce something unresolvable. Inside a FHIR document that does not arise,

@@ -157,3 +157,48 @@ func TestXMLUnknownResourceInEveryVersion(t *testing.T) {
 		}
 	})
 }
+
+// TestXMLCaptureIsSemanticNotByteForByte records the one way the XML capture
+// differs from the JSON one, so "preserved" is not read as more than it is.
+//
+// The capture rebuilds the element from the decoder's token stream, and a token
+// stream has no notion of how an empty element was spelled. The two forms are the
+// same element in XML; keeping the spelling would mean holding the original bytes,
+// which the decoder does not offer on every path this runs on.
+func TestXMLCaptureIsSemanticNotByteForByte(t *testing.T) {
+	const doc = `<?xml version="1.0"?><Nonesuch xmlns="http://hl7.org/fhir">` +
+		`<empty></empty><self/><text>kept</text></Nonesuch>`
+
+	res, err := r4.UnmarshalResourceXML([]byte(doc))
+	if err != nil {
+		t.Fatalf("unmarshal: %v", err)
+	}
+	u, ok := res.(*r4.UnknownResource)
+	if !ok {
+		t.Fatalf("got %T", res)
+	}
+
+	// Every member and its content survives.
+	for _, want := range []string{"<empty>", "<self>", "kept"} {
+		if !strings.Contains(u.RawXML, want) {
+			t.Errorf("%s did not survive the capture: %s", want, u.RawXML)
+		}
+	}
+	// But the self-closing spelling does not.
+	if strings.Contains(u.RawXML, "<self/>") {
+		t.Error("the capture now preserves self-closing form — if that was fixed, delete this test")
+	}
+
+	// And what it emits can be read back as the same thing.
+	out, err := r4.MarshalResourceXML(res)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	again, err := r4.UnmarshalResourceXML(out)
+	if err != nil {
+		t.Fatalf("the re-emitted document is not readable: %v", err)
+	}
+	if u2, ok := again.(*r4.UnknownResource); !ok || u2.RawXML != u.RawXML {
+		t.Error("a second round trip changed the capture, so it is not stable")
+	}
+}
