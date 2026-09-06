@@ -34,7 +34,14 @@ const (
 
      One table per type rather than one per field: a ValueSet may draw codes from
      more than one CodeSystem, so the system belongs to the code and not to the
-     type. */}}
+     type.
+
+     There is deliberately no IsValid here. Whether a document is conformant is
+     gofhir/validator's question, and a membership test on this table is close
+     enough to a terminology check to be mistaken for one — a caller could read a
+     false as "this resource is invalid", which it does not mean and which this
+     package has no standing to say. The table stays exported, so anyone who wants
+     that check can write it and own what it means. */}}
 {{range .ValueSets}}
 {{- $vs := . -}}
 {{- if .Codes}}
@@ -94,13 +101,5 @@ func (c {{.TypeName}}) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c {{.TypeName}}) IsValid() bool {
-	_, ok := {{.TypeName}}Table[c]
-	return ok
-}
 {{- end}}
 {{end}}

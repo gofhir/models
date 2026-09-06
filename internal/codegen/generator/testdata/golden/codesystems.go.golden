@@ -79,15 +79,6 @@ func (c ProbeStatusCodes) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ProbeStatusCodes) IsValid() bool {
-	_, ok := ProbeStatusCodesTable[c]
-	return ok
-}
-
 // SampleStatusCodesInfo is the specification's own data for one code.
 type SampleStatusCodesInfo struct {
 	System  string
@@ -139,13 +130,4 @@ func (c SampleStatusCodes) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c SampleStatusCodes) IsValid() bool {
-	_, ok := SampleStatusCodesTable[c]
-	return ok
 }
