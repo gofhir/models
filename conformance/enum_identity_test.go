@@ -70,21 +70,29 @@ func TestEnumValuesAreCompleteAndOrdered(t *testing.T) {
 	}
 }
 
-func TestEnumValidatesWhatCameOffTheWire(t *testing.T) {
-	// The type is a string, so anything can be assigned to it — including a value
-	// that was never checked. Decoding does not reject it either.
+func TestUnknownCodesDecodeWithoutJudgement(t *testing.T) {
+	// The type is a string, so anything can be assigned to it, and decoding does
+	// not reject a code the specification does not define.
+	//
+	// This package deliberately does not answer whether that makes the document
+	// invalid: conformance is gofhir/validator's question, and a membership test
+	// here would be close enough to a terminology check to be mistaken for one.
+	// The table is exported for anyone who wants to make that call themselves.
 	var p r4.Patient
 	if err := json.Unmarshal([]byte(`{"resourceType":"Patient","gender":"not-a-gender"}`), &p); err != nil {
 		t.Fatalf("unmarshal: %v", err)
 	}
-	if p.Gender == nil {
-		t.Fatal("gender did not decode")
+	if p.Gender == nil || string(*p.Gender) != "not-a-gender" {
+		t.Fatalf("the code did not survive decoding: %v", p.Gender)
 	}
-	if p.Gender.IsValid() {
-		t.Error("IsValid accepted a code the specification does not define")
+
+	// What the type does know is its own codes, which is enough to write the
+	// check without the library taking a position on it.
+	if _, defined := r4.AdministrativeGenderTable[*p.Gender]; defined {
+		t.Error("a code the specification does not define is in the table")
 	}
-	if !r4.AdministrativeGenderMale.IsValid() {
-		t.Error("IsValid rejected a real code")
+	if _, defined := r4.AdministrativeGenderTable[r4.AdministrativeGenderMale]; !defined {
+		t.Error("a real code is missing from the table")
 	}
 }
 
@@ -141,7 +149,7 @@ func TestEveryEnumHasIdentity(t *testing.T) {
 			if len(missing) > 0 {
 				t.Errorf("%d enums have no Coding(): %v", len(missing), missing)
 			}
-			t.Logf("%d enums, all carrying display, system, Coding, Values and IsValid", len(types))
+			t.Logf("%d enums, all carrying display, system, Coding and Values", len(types))
 		})
 	}
 }

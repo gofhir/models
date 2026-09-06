@@ -4763,15 +4763,6 @@ func (c FHIRVersion) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c FHIRVersion) IsValid() bool {
-	_, ok := FHIRVersionTable[c]
-	return ok
-}
-
 // AccountStatusInfo is the specification's own data for one code.
 type AccountStatusInfo struct {
 	System  string
@@ -4831,15 +4822,6 @@ func (c AccountStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c AccountStatus) IsValid() bool {
-	_, ok := AccountStatusTable[c]
-	return ok
-}
-
 // ActionCardinalityBehaviorInfo is the specification's own data for one code.
 type ActionCardinalityBehaviorInfo struct {
 	System  string
@@ -4891,15 +4873,6 @@ func (c ActionCardinalityBehavior) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ActionCardinalityBehavior) IsValid() bool {
-	_, ok := ActionCardinalityBehaviorTable[c]
-	return ok
 }
 
 // ActionConditionKindInfo is the specification's own data for one code.
@@ -4957,15 +4930,6 @@ func (c ActionConditionKind) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ActionConditionKind) IsValid() bool {
-	_, ok := ActionConditionKindTable[c]
-	return ok
-}
-
 // ActionGroupingBehaviorInfo is the specification's own data for one code.
 type ActionGroupingBehaviorInfo struct {
 	System  string
@@ -5019,15 +4983,6 @@ func (c ActionGroupingBehavior) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ActionGroupingBehavior) IsValid() bool {
-	_, ok := ActionGroupingBehaviorTable[c]
-	return ok
 }
 
 // ActivityParticipantTypeInfo is the specification's own data for one code.
@@ -5099,15 +5054,6 @@ func (c ActivityParticipantType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ActivityParticipantType) IsValid() bool {
-	_, ok := ActivityParticipantTypeTable[c]
-	return ok
-}
-
 // ActionPrecheckBehaviorInfo is the specification's own data for one code.
 type ActionPrecheckBehaviorInfo struct {
 	System  string
@@ -5159,15 +5105,6 @@ func (c ActionPrecheckBehavior) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ActionPrecheckBehavior) IsValid() bool {
-	_, ok := ActionPrecheckBehaviorTable[c]
-	return ok
 }
 
 // ActionRelationshipTypeInfo is the specification's own data for one code.
@@ -5237,15 +5174,6 @@ func (c ActionRelationshipType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ActionRelationshipType) IsValid() bool {
-	_, ok := ActionRelationshipTypeTable[c]
-	return ok
-}
-
 // ActionRequiredBehaviorInfo is the specification's own data for one code.
 type ActionRequiredBehaviorInfo struct {
 	System  string
@@ -5299,15 +5227,6 @@ func (c ActionRequiredBehavior) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ActionRequiredBehavior) IsValid() bool {
-	_, ok := ActionRequiredBehaviorTable[c]
-	return ok
 }
 
 // ActionSelectionBehaviorInfo is the specification's own data for one code.
@@ -5369,15 +5288,6 @@ func (c ActionSelectionBehavior) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ActionSelectionBehavior) IsValid() bool {
-	_, ok := ActionSelectionBehaviorTable[c]
-	return ok
 }
 
 // AdditionalBindingPurposeInfo is the specification's own data for one code.
@@ -5449,15 +5359,6 @@ func (c AdditionalBindingPurpose) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c AdditionalBindingPurpose) IsValid() bool {
-	_, ok := AdditionalBindingPurposeTable[c]
-	return ok
-}
-
 // AddressTypeInfo is the specification's own data for one code.
 type AddressTypeInfo struct {
 	System  string
@@ -5511,15 +5412,6 @@ func (c AddressType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c AddressType) IsValid() bool {
-	_, ok := AddressTypeTable[c]
-	return ok
 }
 
 // AddressUseInfo is the specification's own data for one code.
@@ -5581,15 +5473,6 @@ func (c AddressUse) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c AddressUse) IsValid() bool {
-	_, ok := AddressUseTable[c]
-	return ok
-}
-
 // AdministrativeGenderInfo is the specification's own data for one code.
 type AdministrativeGenderInfo struct {
 	System  string
@@ -5647,15 +5530,6 @@ func (c AdministrativeGender) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c AdministrativeGender) IsValid() bool {
-	_, ok := AdministrativeGenderTable[c]
-	return ok
-}
-
 // AdverseEventActualityInfo is the specification's own data for one code.
 type AdverseEventActualityInfo struct {
 	System  string
@@ -5707,15 +5581,6 @@ func (c AdverseEventActuality) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c AdverseEventActuality) IsValid() bool {
-	_, ok := AdverseEventActualityTable[c]
-	return ok
 }
 
 // AdverseEventStatusInfo is the specification's own data for one code.
@@ -5775,15 +5640,6 @@ func (c AdverseEventStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c AdverseEventStatus) IsValid() bool {
-	_, ok := AdverseEventStatusTable[c]
-	return ok
-}
-
 // AllergyIntoleranceCategoryInfo is the specification's own data for one code.
 type AllergyIntoleranceCategoryInfo struct {
 	System  string
@@ -5841,15 +5697,6 @@ func (c AllergyIntoleranceCategory) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c AllergyIntoleranceCategory) IsValid() bool {
-	_, ok := AllergyIntoleranceCategoryTable[c]
-	return ok
-}
-
 // AllergyIntoleranceCriticalityInfo is the specification's own data for one code.
 type AllergyIntoleranceCriticalityInfo struct {
 	System  string
@@ -5903,15 +5750,6 @@ func (c AllergyIntoleranceCriticality) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c AllergyIntoleranceCriticality) IsValid() bool {
-	_, ok := AllergyIntoleranceCriticalityTable[c]
-	return ok
 }
 
 // ParticipantStatusInfo is the specification's own data for one code.
@@ -5971,15 +5809,6 @@ func (c ParticipantStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ParticipantStatus) IsValid() bool {
-	_, ok := ParticipantStatusTable[c]
-	return ok
 }
 
 // AppointmentStatusInfo is the specification's own data for one code.
@@ -6051,15 +5880,6 @@ func (c AppointmentStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c AppointmentStatus) IsValid() bool {
-	_, ok := AppointmentStatusTable[c]
-	return ok
-}
-
 // ArtifactAssessmentDispositionInfo is the specification's own data for one code.
 type ArtifactAssessmentDispositionInfo struct {
 	System  string
@@ -6117,15 +5937,6 @@ func (c ArtifactAssessmentDisposition) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ArtifactAssessmentDisposition) IsValid() bool {
-	_, ok := ArtifactAssessmentDispositionTable[c]
-	return ok
 }
 
 // ArtifactAssessmentInformationTypeInfo is the specification's own data for one code.
@@ -6187,15 +5998,6 @@ func (c ArtifactAssessmentInformationType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ArtifactAssessmentInformationType) IsValid() bool {
-	_, ok := ArtifactAssessmentInformationTypeTable[c]
-	return ok
 }
 
 // ArtifactAssessmentWorkflowStatusInfo is the specification's own data for one code.
@@ -6267,15 +6069,6 @@ func (c ArtifactAssessmentWorkflowStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ArtifactAssessmentWorkflowStatus) IsValid() bool {
-	_, ok := ArtifactAssessmentWorkflowStatusTable[c]
-	return ok
-}
-
 // AssertionDirectionTypeInfo is the specification's own data for one code.
 type AssertionDirectionTypeInfo struct {
 	System  string
@@ -6327,15 +6120,6 @@ func (c AssertionDirectionType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c AssertionDirectionType) IsValid() bool {
-	_, ok := AssertionDirectionTypeTable[c]
-	return ok
 }
 
 // AssertionManualCompletionTypeInfo is the specification's own data for one code.
@@ -6393,15 +6177,6 @@ func (c AssertionManualCompletionType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c AssertionManualCompletionType) IsValid() bool {
-	_, ok := AssertionManualCompletionTypeTable[c]
-	return ok
 }
 
 // AssertionOperatorTypeInfo is the specification's own data for one code.
@@ -6475,15 +6250,6 @@ func (c AssertionOperatorType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c AssertionOperatorType) IsValid() bool {
-	_, ok := AssertionOperatorTypeTable[c]
-	return ok
 }
 
 // AssertionResponseTypesInfo is the specification's own data for one code.
@@ -6623,15 +6389,6 @@ func (c AssertionResponseTypes) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c AssertionResponseTypes) IsValid() bool {
-	_, ok := AssertionResponseTypesTable[c]
-	return ok
-}
-
 // AuditEventActionInfo is the specification's own data for one code.
 type AuditEventActionInfo struct {
 	System  string
@@ -6689,15 +6446,6 @@ func (c AuditEventAction) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c AuditEventAction) IsValid() bool {
-	_, ok := AuditEventActionTable[c]
-	return ok
 }
 
 // AuditEventSeverityInfo is the specification's own data for one code.
@@ -6765,15 +6513,6 @@ func (c AuditEventSeverity) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c AuditEventSeverity) IsValid() bool {
-	_, ok := AuditEventSeverityTable[c]
-	return ok
-}
-
 // BindingStrengthInfo is the specification's own data for one code.
 type BindingStrengthInfo struct {
 	System  string
@@ -6829,15 +6568,6 @@ func (c BindingStrength) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c BindingStrength) IsValid() bool {
-	_, ok := BindingStrengthTable[c]
-	return ok
 }
 
 // BiologicallyDerivedProductDispenseStatusInfo is the specification's own data for one code.
@@ -6903,15 +6633,6 @@ func (c BiologicallyDerivedProductDispenseStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c BiologicallyDerivedProductDispenseStatus) IsValid() bool {
-	_, ok := BiologicallyDerivedProductDispenseStatusTable[c]
-	return ok
 }
 
 // BundleTypeInfo is the specification's own data for one code.
@@ -6983,15 +6704,6 @@ func (c BundleType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c BundleType) IsValid() bool {
-	_, ok := BundleTypeTable[c]
-	return ok
-}
-
 // CapabilityStatementKindInfo is the specification's own data for one code.
 type CapabilityStatementKindInfo struct {
 	System  string
@@ -7045,15 +6757,6 @@ func (c CapabilityStatementKind) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c CapabilityStatementKind) IsValid() bool {
-	_, ok := CapabilityStatementKindTable[c]
-	return ok
 }
 
 // CarePlanIntentInfo is the specification's own data for one code.
@@ -7115,15 +6818,6 @@ func (c CarePlanIntent) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c CarePlanIntent) IsValid() bool {
-	_, ok := CarePlanIntentTable[c]
-	return ok
-}
-
 // CareTeamStatusInfo is the specification's own data for one code.
 type CareTeamStatusInfo struct {
 	System  string
@@ -7181,15 +6875,6 @@ func (c CareTeamStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c CareTeamStatus) IsValid() bool {
-	_, ok := CareTeamStatusTable[c]
-	return ok
 }
 
 // CharacteristicCombinationInfo is the specification's own data for one code.
@@ -7255,15 +6940,6 @@ func (c CharacteristicCombination) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c CharacteristicCombination) IsValid() bool {
-	_, ok := CharacteristicCombinationTable[c]
-	return ok
-}
-
 // ChargeItemStatusInfo is the specification's own data for one code.
 type ChargeItemStatusInfo struct {
 	System  string
@@ -7327,15 +7003,6 @@ func (c ChargeItemStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ChargeItemStatus) IsValid() bool {
-	_, ok := ChargeItemStatusTable[c]
-	return ok
-}
-
 // ClaimProcessingCodesInfo is the specification's own data for one code.
 type ClaimProcessingCodesInfo struct {
 	System  string
@@ -7393,15 +7060,6 @@ func (c ClaimProcessingCodes) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ClaimProcessingCodes) IsValid() bool {
-	_, ok := ClaimProcessingCodesTable[c]
-	return ok
-}
-
 // UseInfo is the specification's own data for one code.
 type UseInfo struct {
 	System  string
@@ -7455,15 +7113,6 @@ func (c Use) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c Use) IsValid() bool {
-	_, ok := UseTable[c]
-	return ok
 }
 
 // ClinicalUseDefinitionTypeInfo is the specification's own data for one code.
@@ -7525,15 +7174,6 @@ func (c ClinicalUseDefinitionType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ClinicalUseDefinitionType) IsValid() bool {
-	_, ok := ClinicalUseDefinitionTypeTable[c]
-	return ok
-}
-
 // CodeSearchSupportInfo is the specification's own data for one code.
 type CodeSearchSupportInfo struct {
 	System  string
@@ -7587,15 +7227,6 @@ func (c CodeSearchSupport) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c CodeSearchSupport) IsValid() bool {
-	_, ok := CodeSearchSupportTable[c]
-	return ok
 }
 
 // CodeSystemContentModeInfo is the specification's own data for one code.
@@ -7657,15 +7288,6 @@ func (c CodeSystemContentMode) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c CodeSystemContentMode) IsValid() bool {
-	_, ok := CodeSystemContentModeTable[c]
-	return ok
-}
-
 // CodeSystemHierarchyMeaningInfo is the specification's own data for one code.
 type CodeSystemHierarchyMeaningInfo struct {
 	System  string
@@ -7721,15 +7343,6 @@ func (c CodeSystemHierarchyMeaning) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c CodeSystemHierarchyMeaning) IsValid() bool {
-	_, ok := CodeSystemHierarchyMeaningTable[c]
-	return ok
 }
 
 // CompartmentTypeInfo is the specification's own data for one code.
@@ -7791,15 +7404,6 @@ func (c CompartmentType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c CompartmentType) IsValid() bool {
-	_, ok := CompartmentTypeTable[c]
-	return ok
 }
 
 // CompositionStatusInfo is the specification's own data for one code.
@@ -7873,15 +7477,6 @@ func (c CompositionStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c CompositionStatus) IsValid() bool {
-	_, ok := CompositionStatusTable[c]
-	return ok
-}
-
 // ConceptMapRelationshipInfo is the specification's own data for one code.
 type ConceptMapRelationshipInfo struct {
 	System  string
@@ -7939,15 +7534,6 @@ func (c ConceptMapRelationship) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ConceptMapRelationship) IsValid() bool {
-	_, ok := ConceptMapRelationshipTable[c]
-	return ok
 }
 
 // PropertyTypeInfo is the specification's own data for one code.
@@ -8013,15 +7599,6 @@ func (c PropertyType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c PropertyType) IsValid() bool {
-	_, ok := PropertyTypeTable[c]
-	return ok
-}
-
 // ConceptMapAttributeTypeInfo is the specification's own data for one code.
 type ConceptMapAttributeTypeInfo struct {
 	System  string
@@ -8079,15 +7656,6 @@ func (c ConceptMapAttributeType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ConceptMapAttributeType) IsValid() bool {
-	_, ok := ConceptMapAttributeTypeTable[c]
-	return ok
 }
 
 // ConceptMapPropertyTypeInfo is the specification's own data for one code.
@@ -8153,15 +7721,6 @@ func (c ConceptMapPropertyType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ConceptMapPropertyType) IsValid() bool {
-	_, ok := ConceptMapPropertyTypeTable[c]
-	return ok
-}
-
 // ConceptMapGroupUnmappedModeInfo is the specification's own data for one code.
 type ConceptMapGroupUnmappedModeInfo struct {
 	System  string
@@ -8217,15 +7776,6 @@ func (c ConceptMapGroupUnmappedMode) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ConceptMapGroupUnmappedMode) IsValid() bool {
-	_, ok := ConceptMapGroupUnmappedModeTable[c]
-	return ok
-}
-
 // ConditionPreconditionTypeInfo is the specification's own data for one code.
 type ConditionPreconditionTypeInfo struct {
 	System  string
@@ -8277,15 +7827,6 @@ func (c ConditionPreconditionType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ConditionPreconditionType) IsValid() bool {
-	_, ok := ConditionPreconditionTypeTable[c]
-	return ok
 }
 
 // ConditionQuestionnairePurposeInfo is the specification's own data for one code.
@@ -8343,15 +7884,6 @@ func (c ConditionQuestionnairePurpose) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ConditionQuestionnairePurpose) IsValid() bool {
-	_, ok := ConditionQuestionnairePurposeTable[c]
-	return ok
-}
-
 // ConditionalDeleteStatusInfo is the specification's own data for one code.
 type ConditionalDeleteStatusInfo struct {
 	System  string
@@ -8405,15 +7937,6 @@ func (c ConditionalDeleteStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ConditionalDeleteStatus) IsValid() bool {
-	_, ok := ConditionalDeleteStatusTable[c]
-	return ok
 }
 
 // ConditionalReadStatusInfo is the specification's own data for one code.
@@ -8473,15 +7996,6 @@ func (c ConditionalReadStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ConditionalReadStatus) IsValid() bool {
-	_, ok := ConditionalReadStatusTable[c]
-	return ok
-}
-
 // ConformanceExpectationInfo is the specification's own data for one code.
 type ConformanceExpectationInfo struct {
 	System  string
@@ -8537,15 +8051,6 @@ func (c ConformanceExpectation) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ConformanceExpectation) IsValid() bool {
-	_, ok := ConformanceExpectationTable[c]
-	return ok
 }
 
 // ConsentDataMeaningInfo is the specification's own data for one code.
@@ -8605,15 +8110,6 @@ func (c ConsentDataMeaning) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ConsentDataMeaning) IsValid() bool {
-	_, ok := ConsentDataMeaningTable[c]
-	return ok
-}
-
 // ConsentProvisionTypeInfo is the specification's own data for one code.
 type ConsentProvisionTypeInfo struct {
 	System  string
@@ -8665,15 +8161,6 @@ func (c ConsentProvisionType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ConsentProvisionType) IsValid() bool {
-	_, ok := ConsentProvisionTypeTable[c]
-	return ok
 }
 
 // ConsentStateInfo is the specification's own data for one code.
@@ -8737,15 +8224,6 @@ func (c ConsentState) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ConsentState) IsValid() bool {
-	_, ok := ConsentStateTable[c]
-	return ok
-}
-
 // ConstraintSeverityInfo is the specification's own data for one code.
 type ConstraintSeverityInfo struct {
 	System  string
@@ -8797,15 +8275,6 @@ func (c ConstraintSeverity) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ConstraintSeverity) IsValid() bool {
-	_, ok := ConstraintSeverityTable[c]
-	return ok
 }
 
 // ContactPointSystemInfo is the specification's own data for one code.
@@ -8871,15 +8340,6 @@ func (c ContactPointSystem) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ContactPointSystem) IsValid() bool {
-	_, ok := ContactPointSystemTable[c]
-	return ok
-}
-
 // ContactPointUseInfo is the specification's own data for one code.
 type ContactPointUseInfo struct {
 	System  string
@@ -8937,15 +8397,6 @@ func (c ContactPointUse) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ContactPointUse) IsValid() bool {
-	_, ok := ContactPointUseTable[c]
-	return ok
 }
 
 // ContractPublicationStatusInfo is the specification's own data for one code.
@@ -9027,15 +8478,6 @@ func (c ContractPublicationStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ContractPublicationStatus) IsValid() bool {
-	_, ok := ContractPublicationStatusTable[c]
-	return ok
-}
-
 // ContractStatusInfo is the specification's own data for one code.
 type ContractStatusInfo struct {
 	System  string
@@ -9115,15 +8557,6 @@ func (c ContractStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ContractStatus) IsValid() bool {
-	_, ok := ContractStatusTable[c]
-	return ok
-}
-
 // ContributorTypeInfo is the specification's own data for one code.
 type ContributorTypeInfo struct {
 	System  string
@@ -9181,15 +8614,6 @@ func (c ContributorType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ContributorType) IsValid() bool {
-	_, ok := ContributorTypeTable[c]
-	return ok
-}
-
 // CoverageKindInfo is the specification's own data for one code.
 type CoverageKindInfo struct {
 	System  string
@@ -9243,15 +8667,6 @@ func (c CoverageKind) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c CoverageKind) IsValid() bool {
-	_, ok := CoverageKindTable[c]
-	return ok
 }
 
 // DaysOfWeekInfo is the specification's own data for one code.
@@ -9317,15 +8732,6 @@ func (c DaysOfWeek) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c DaysOfWeek) IsValid() bool {
-	_, ok := DaysOfWeekTable[c]
-	return ok
-}
-
 // DetectedIssueSeverityInfo is the specification's own data for one code.
 type DetectedIssueSeverityInfo struct {
 	System  string
@@ -9379,15 +8785,6 @@ func (c DetectedIssueSeverity) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c DetectedIssueSeverity) IsValid() bool {
-	_, ok := DetectedIssueSeverityTable[c]
-	return ok
 }
 
 // DetectedIssueStatusInfo is the specification's own data for one code.
@@ -9447,15 +8844,6 @@ func (c DetectedIssueStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c DetectedIssueStatus) IsValid() bool {
-	_, ok := DetectedIssueStatusTable[c]
-	return ok
-}
-
 // DeviceCorrectiveActionScopeInfo is the specification's own data for one code.
 type DeviceCorrectiveActionScopeInfo struct {
 	System  string
@@ -9511,15 +8899,6 @@ func (c DeviceCorrectiveActionScope) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c DeviceCorrectiveActionScope) IsValid() bool {
-	_, ok := DeviceCorrectiveActionScopeTable[c]
-	return ok
-}
-
 // DeviceNameTypeInfo is the specification's own data for one code.
 type DeviceNameTypeInfo struct {
 	System  string
@@ -9573,15 +8952,6 @@ func (c DeviceNameType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c DeviceNameType) IsValid() bool {
-	_, ok := DeviceNameTypeTable[c]
-	return ok
 }
 
 // DeviceProductionIdentifierInUDIInfo is the specification's own data for one code.
@@ -9645,15 +9015,6 @@ func (c DeviceProductionIdentifierInUDI) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c DeviceProductionIdentifierInUDI) IsValid() bool {
-	_, ok := DeviceProductionIdentifierInUDITable[c]
-	return ok
-}
-
 // FHIRDeviceStatusInfo is the specification's own data for one code.
 type FHIRDeviceStatusInfo struct {
 	System  string
@@ -9709,15 +9070,6 @@ func (c FHIRDeviceStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c FHIRDeviceStatus) IsValid() bool {
-	_, ok := FHIRDeviceStatusTable[c]
-	return ok
-}
-
 // DeviceRegulatoryIdentifierTypeInfo is the specification's own data for one code.
 type DeviceRegulatoryIdentifierTypeInfo struct {
 	System  string
@@ -9771,15 +9123,6 @@ func (c DeviceRegulatoryIdentifierType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c DeviceRegulatoryIdentifierType) IsValid() bool {
-	_, ok := DeviceRegulatoryIdentifierTypeTable[c]
-	return ok
 }
 
 // DeviceDispenseStatusInfo is the specification's own data for one code.
@@ -9849,15 +9192,6 @@ func (c DeviceDispenseStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c DeviceDispenseStatus) IsValid() bool {
-	_, ok := DeviceDispenseStatusTable[c]
-	return ok
-}
-
 // DeviceUsageStatusInfo is the specification's own data for one code.
 type DeviceUsageStatusInfo struct {
 	System  string
@@ -9919,15 +9253,6 @@ func (c DeviceUsageStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c DeviceUsageStatus) IsValid() bool {
-	_, ok := DeviceUsageStatusTable[c]
-	return ok
 }
 
 // DiagnosticReportStatusInfo is the specification's own data for one code.
@@ -10001,15 +9326,6 @@ func (c DiagnosticReportStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c DiagnosticReportStatus) IsValid() bool {
-	_, ok := DiagnosticReportStatusTable[c]
-	return ok
-}
-
 // DiscriminatorTypeInfo is the specification's own data for one code.
 type DiscriminatorTypeInfo struct {
 	System  string
@@ -10071,15 +9387,6 @@ func (c DiscriminatorType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c DiscriminatorType) IsValid() bool {
-	_, ok := DiscriminatorTypeTable[c]
-	return ok
-}
-
 // DocumentModeInfo is the specification's own data for one code.
 type DocumentModeInfo struct {
 	System  string
@@ -10131,15 +9438,6 @@ func (c DocumentMode) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c DocumentMode) IsValid() bool {
-	_, ok := DocumentModeTable[c]
-	return ok
 }
 
 // DocumentReferenceStatusInfo is the specification's own data for one code.
@@ -10195,15 +9493,6 @@ func (c DocumentReferenceStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c DocumentReferenceStatus) IsValid() bool {
-	_, ok := DocumentReferenceStatusTable[c]
-	return ok
 }
 
 // EligibilityOutcomeInfo is the specification's own data for one code.
@@ -10263,15 +9552,6 @@ func (c EligibilityOutcome) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c EligibilityOutcome) IsValid() bool {
-	_, ok := EligibilityOutcomeTable[c]
-	return ok
-}
-
 // EligibilityRequestPurposeInfo is the specification's own data for one code.
 type EligibilityRequestPurposeInfo struct {
 	System  string
@@ -10327,15 +9607,6 @@ func (c EligibilityRequestPurpose) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c EligibilityRequestPurpose) IsValid() bool {
-	_, ok := EligibilityRequestPurposeTable[c]
-	return ok
 }
 
 // EligibilityResponsePurposeInfo is the specification's own data for one code.
@@ -10395,15 +9666,6 @@ func (c EligibilityResponsePurpose) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c EligibilityResponsePurpose) IsValid() bool {
-	_, ok := EligibilityResponsePurposeTable[c]
-	return ok
-}
-
 // EncounterLocationStatusInfo is the specification's own data for one code.
 type EncounterLocationStatusInfo struct {
 	System  string
@@ -10459,15 +9721,6 @@ func (c EncounterLocationStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c EncounterLocationStatus) IsValid() bool {
-	_, ok := EncounterLocationStatusTable[c]
-	return ok
 }
 
 // EncounterStatusInfo is the specification's own data for one code.
@@ -10537,15 +9790,6 @@ func (c EncounterStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c EncounterStatus) IsValid() bool {
-	_, ok := EncounterStatusTable[c]
-	return ok
-}
-
 // EndpointStatusInfo is the specification's own data for one code.
 type EndpointStatusInfo struct {
 	System  string
@@ -10605,15 +9849,6 @@ func (c EndpointStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c EndpointStatus) IsValid() bool {
-	_, ok := EndpointStatusTable[c]
-	return ok
-}
-
 // EnrollmentOutcomeInfo is the specification's own data for one code.
 type EnrollmentOutcomeInfo struct {
 	System  string
@@ -10669,15 +9904,6 @@ func (c EnrollmentOutcome) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c EnrollmentOutcome) IsValid() bool {
-	_, ok := EnrollmentOutcomeTable[c]
-	return ok
 }
 
 // EpisodeOfCareStatusInfo is the specification's own data for one code.
@@ -10743,15 +9969,6 @@ func (c EpisodeOfCareStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c EpisodeOfCareStatus) IsValid() bool {
-	_, ok := EpisodeOfCareStatusTable[c]
-	return ok
-}
-
 // EventCapabilityModeInfo is the specification's own data for one code.
 type EventCapabilityModeInfo struct {
 	System  string
@@ -10803,15 +10020,6 @@ func (c EventCapabilityMode) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c EventCapabilityMode) IsValid() bool {
-	_, ok := EventCapabilityModeTable[c]
-	return ok
 }
 
 // EventStatusInfo is the specification's own data for one code.
@@ -10877,15 +10085,6 @@ func (c EventStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c EventStatus) IsValid() bool {
-	_, ok := EventStatusTable[c]
-	return ok
 }
 
 // EventTimingInfo is the specification's own data for one code.
@@ -10991,15 +10190,6 @@ func (c EventTiming) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c EventTiming) IsValid() bool {
-	_, ok := EventTimingTable[c]
-	return ok
-}
-
 // ExampleScenarioActorTypeInfo is the specification's own data for one code.
 type ExampleScenarioActorTypeInfo struct {
 	System  string
@@ -11051,15 +10241,6 @@ func (c ExampleScenarioActorType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ExampleScenarioActorType) IsValid() bool {
-	_, ok := ExampleScenarioActorTypeTable[c]
-	return ok
 }
 
 // ExplanationOfBenefitStatusInfo is the specification's own data for one code.
@@ -11119,15 +10300,6 @@ func (c ExplanationOfBenefitStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ExplanationOfBenefitStatus) IsValid() bool {
-	_, ok := ExplanationOfBenefitStatusTable[c]
-	return ok
-}
-
 // ExtensionContextTypeInfo is the specification's own data for one code.
 type ExtensionContextTypeInfo struct {
 	System  string
@@ -11181,15 +10353,6 @@ func (c ExtensionContextType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ExtensionContextType) IsValid() bool {
-	_, ok := ExtensionContextTypeTable[c]
-	return ok
 }
 
 // FilterOperatorInfo is the specification's own data for one code.
@@ -11263,15 +10426,6 @@ func (c FilterOperator) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c FilterOperator) IsValid() bool {
-	_, ok := FilterOperatorTable[c]
-	return ok
-}
-
 // FlagStatusInfo is the specification's own data for one code.
 type FlagStatusInfo struct {
 	System  string
@@ -11325,15 +10479,6 @@ func (c FlagStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c FlagStatus) IsValid() bool {
-	_, ok := FlagStatusTable[c]
-	return ok
 }
 
 // FinancialResourceStatusCodesInfo is the specification's own data for one code.
@@ -11393,15 +10538,6 @@ func (c FinancialResourceStatusCodes) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c FinancialResourceStatusCodes) IsValid() bool {
-	_, ok := FinancialResourceStatusCodesTable[c]
-	return ok
-}
-
 // FormularyItemStatusInfo is the specification's own data for one code.
 type FormularyItemStatusInfo struct {
 	System  string
@@ -11455,15 +10591,6 @@ func (c FormularyItemStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c FormularyItemStatus) IsValid() bool {
-	_, ok := FormularyItemStatusTable[c]
-	return ok
 }
 
 // GenomicStudyStatusInfo is the specification's own data for one code.
@@ -11523,15 +10650,6 @@ func (c GenomicStudyStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c GenomicStudyStatus) IsValid() bool {
-	_, ok := GenomicStudyStatusTable[c]
-	return ok
 }
 
 // GoalLifecycleStatusInfo is the specification's own data for one code.
@@ -11601,15 +10719,6 @@ func (c GoalLifecycleStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c GoalLifecycleStatus) IsValid() bool {
-	_, ok := GoalLifecycleStatusTable[c]
-	return ok
-}
-
 // GraphCompartmentRuleInfo is the specification's own data for one code.
 type GraphCompartmentRuleInfo struct {
 	System  string
@@ -11667,15 +10776,6 @@ func (c GraphCompartmentRule) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c GraphCompartmentRule) IsValid() bool {
-	_, ok := GraphCompartmentRuleTable[c]
-	return ok
-}
-
 // GraphCompartmentUseInfo is the specification's own data for one code.
 type GraphCompartmentUseInfo struct {
 	System  string
@@ -11729,15 +10829,6 @@ func (c GraphCompartmentUse) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c GraphCompartmentUse) IsValid() bool {
-	_, ok := GraphCompartmentUseTable[c]
-	return ok
-}
-
 // GroupMembershipBasisInfo is the specification's own data for one code.
 type GroupMembershipBasisInfo struct {
 	System  string
@@ -11789,15 +10880,6 @@ func (c GroupMembershipBasis) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c GroupMembershipBasis) IsValid() bool {
-	_, ok := GroupMembershipBasisTable[c]
-	return ok
 }
 
 // GroupTypeInfo is the specification's own data for one code.
@@ -11869,15 +10951,6 @@ func (c GroupType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c GroupType) IsValid() bool {
-	_, ok := GroupTypeTable[c]
-	return ok
-}
-
 // GuidanceResponseStatusInfo is the specification's own data for one code.
 type GuidanceResponseStatusInfo struct {
 	System  string
@@ -11939,15 +11012,6 @@ func (c GuidanceResponseStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c GuidanceResponseStatus) IsValid() bool {
-	_, ok := GuidanceResponseStatusTable[c]
-	return ok
-}
-
 // GuidePageGenerationInfo is the specification's own data for one code.
 type GuidePageGenerationInfo struct {
 	System  string
@@ -12005,15 +11069,6 @@ func (c GuidePageGeneration) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c GuidePageGeneration) IsValid() bool {
-	_, ok := GuidePageGenerationTable[c]
-	return ok
-}
-
 // FamilyHistoryStatusInfo is the specification's own data for one code.
 type FamilyHistoryStatusInfo struct {
 	System  string
@@ -12069,15 +11124,6 @@ func (c FamilyHistoryStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c FamilyHistoryStatus) IsValid() bool {
-	_, ok := FamilyHistoryStatusTable[c]
-	return ok
 }
 
 // TestScriptRequestMethodCodeInfo is the specification's own data for one code.
@@ -12143,15 +11189,6 @@ func (c TestScriptRequestMethodCode) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c TestScriptRequestMethodCode) IsValid() bool {
-	_, ok := TestScriptRequestMethodCodeTable[c]
-	return ok
-}
-
 // HTTPVerbInfo is the specification's own data for one code.
 type HTTPVerbInfo struct {
 	System  string
@@ -12213,15 +11250,6 @@ func (c HTTPVerb) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c HTTPVerb) IsValid() bool {
-	_, ok := HTTPVerbTable[c]
-	return ok
-}
-
 // IdentifierUseInfo is the specification's own data for one code.
 type IdentifierUseInfo struct {
 	System  string
@@ -12281,15 +11309,6 @@ func (c IdentifierUse) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c IdentifierUse) IsValid() bool {
-	_, ok := IdentifierUseTable[c]
-	return ok
-}
-
 // IdentityAssuranceLevelInfo is the specification's own data for one code.
 type IdentityAssuranceLevelInfo struct {
 	System  string
@@ -12345,15 +11364,6 @@ func (c IdentityAssuranceLevel) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c IdentityAssuranceLevel) IsValid() bool {
-	_, ok := IdentityAssuranceLevelTable[c]
-	return ok
 }
 
 // ImagingSelection2DGraphicTypeInfo is the specification's own data for one code.
@@ -12413,15 +11423,6 @@ func (c ImagingSelection2DGraphicType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ImagingSelection2DGraphicType) IsValid() bool {
-	_, ok := ImagingSelection2DGraphicTypeTable[c]
-	return ok
 }
 
 // ImagingSelection3DGraphicTypeInfo is the specification's own data for one code.
@@ -12485,15 +11486,6 @@ func (c ImagingSelection3DGraphicType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ImagingSelection3DGraphicType) IsValid() bool {
-	_, ok := ImagingSelection3DGraphicTypeTable[c]
-	return ok
-}
-
 // ImagingSelectionStatusInfo is the specification's own data for one code.
 type ImagingSelectionStatusInfo struct {
 	System  string
@@ -12547,15 +11539,6 @@ func (c ImagingSelectionStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ImagingSelectionStatus) IsValid() bool {
-	_, ok := ImagingSelectionStatusTable[c]
-	return ok
 }
 
 // ImagingStudyStatusInfo is the specification's own data for one code.
@@ -12617,15 +11600,6 @@ func (c ImagingStudyStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ImagingStudyStatus) IsValid() bool {
-	_, ok := ImagingStudyStatusTable[c]
-	return ok
-}
-
 // ImmunizationEvaluationStatusInfo is the specification's own data for one code.
 type ImmunizationEvaluationStatusInfo struct {
 	System  string
@@ -12677,15 +11651,6 @@ func (c ImmunizationEvaluationStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ImmunizationEvaluationStatus) IsValid() bool {
-	_, ok := ImmunizationEvaluationStatusTable[c]
-	return ok
 }
 
 // ImmunizationStatusInfo is the specification's own data for one code.
@@ -12743,15 +11708,6 @@ func (c ImmunizationStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ImmunizationStatus) IsValid() bool {
-	_, ok := ImmunizationStatusTable[c]
-	return ok
-}
-
 // IngredientManufacturerRoleInfo is the specification's own data for one code.
 type IngredientManufacturerRoleInfo struct {
 	System  string
@@ -12807,15 +11763,6 @@ func (c IngredientManufacturerRole) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c IngredientManufacturerRole) IsValid() bool {
-	_, ok := IngredientManufacturerRoleTable[c]
-	return ok
-}
-
 // MethodCodeInfo is the specification's own data for one code.
 type MethodCodeInfo struct {
 	System  string
@@ -12869,15 +11816,6 @@ func (c MethodCode) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c MethodCode) IsValid() bool {
-	_, ok := MethodCodeTable[c]
-	return ok
 }
 
 // InventoryItemStatusInfo is the specification's own data for one code.
@@ -12937,15 +11875,6 @@ func (c InventoryItemStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c InventoryItemStatus) IsValid() bool {
-	_, ok := InventoryItemStatusTable[c]
-	return ok
-}
-
 // InventoryCountTypeInfo is the specification's own data for one code.
 type InventoryCountTypeInfo struct {
 	System  string
@@ -12997,15 +11926,6 @@ func (c InventoryCountType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c InventoryCountType) IsValid() bool {
-	_, ok := InventoryCountTypeTable[c]
-	return ok
 }
 
 // InventoryReportStatusInfo is the specification's own data for one code.
@@ -13063,15 +11983,6 @@ func (c InventoryReportStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c InventoryReportStatus) IsValid() bool {
-	_, ok := InventoryReportStatusTable[c]
-	return ok
 }
 
 // InvoiceStatusInfo is the specification's own data for one code.
@@ -13133,15 +12044,6 @@ func (c InvoiceStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c InvoiceStatus) IsValid() bool {
-	_, ok := InvoiceStatusTable[c]
-	return ok
-}
-
 // IssueSeverityInfo is the specification's own data for one code.
 type IssueSeverityInfo struct {
 	System  string
@@ -13199,15 +12101,6 @@ func (c IssueSeverity) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c IssueSeverity) IsValid() bool {
-	_, ok := IssueSeverityTable[c]
-	return ok
 }
 
 // IssueTypeInfo is the specification's own data for one code.
@@ -13325,15 +12218,6 @@ func (c IssueType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c IssueType) IsValid() bool {
-	_, ok := IssueTypeTable[c]
-	return ok
-}
-
 // QuestionnaireItemTypeInfo is the specification's own data for one code.
 type QuestionnaireItemTypeInfo struct {
 	System  string
@@ -13413,15 +12297,6 @@ func (c QuestionnaireItemType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c QuestionnaireItemType) IsValid() bool {
-	_, ok := QuestionnaireItemTypeTable[c]
-	return ok
 }
 
 // CommonLanguagesInfo is the specification's own data for one code.
@@ -13637,15 +12512,6 @@ func (c CommonLanguages) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c CommonLanguages) IsValid() bool {
-	_, ok := CommonLanguagesTable[c]
-	return ok
-}
-
 // LinkTypeInfo is the specification's own data for one code.
 type LinkTypeInfo struct {
 	System  string
@@ -13703,15 +12569,6 @@ func (c LinkType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c LinkType) IsValid() bool {
-	_, ok := LinkTypeTable[c]
-	return ok
-}
-
 // LinkageTypeInfo is the specification's own data for one code.
 type LinkageTypeInfo struct {
 	System  string
@@ -13765,15 +12622,6 @@ func (c LinkageType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c LinkageType) IsValid() bool {
-	_, ok := LinkageTypeTable[c]
-	return ok
 }
 
 // ListModeInfo is the specification's own data for one code.
@@ -13831,15 +12679,6 @@ func (c ListMode) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ListMode) IsValid() bool {
-	_, ok := ListModeTable[c]
-	return ok
-}
-
 // ListStatusInfo is the specification's own data for one code.
 type ListStatusInfo struct {
 	System  string
@@ -13895,15 +12734,6 @@ func (c ListStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ListStatus) IsValid() bool {
-	_, ok := ListStatusTable[c]
-	return ok
-}
-
 // LocationModeInfo is the specification's own data for one code.
 type LocationModeInfo struct {
 	System  string
@@ -13955,15 +12785,6 @@ func (c LocationMode) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c LocationMode) IsValid() bool {
-	_, ok := LocationModeTable[c]
-	return ok
 }
 
 // LocationStatusInfo is the specification's own data for one code.
@@ -14021,15 +12842,6 @@ func (c LocationStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c LocationStatus) IsValid() bool {
-	_, ok := LocationStatusTable[c]
-	return ok
-}
-
 // StructureMapGroupTypeModeInfo is the specification's own data for one code.
 type StructureMapGroupTypeModeInfo struct {
 	System  string
@@ -14083,15 +12895,6 @@ func (c StructureMapGroupTypeMode) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c StructureMapGroupTypeMode) IsValid() bool {
-	_, ok := StructureMapGroupTypeModeTable[c]
-	return ok
-}
-
 // StructureMapInputModeInfo is the specification's own data for one code.
 type StructureMapInputModeInfo struct {
 	System  string
@@ -14143,15 +12946,6 @@ func (c StructureMapInputMode) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c StructureMapInputMode) IsValid() bool {
-	_, ok := StructureMapInputModeTable[c]
-	return ok
 }
 
 // StructureMapModelModeInfo is the specification's own data for one code.
@@ -14209,15 +13003,6 @@ func (c StructureMapModelMode) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c StructureMapModelMode) IsValid() bool {
-	_, ok := StructureMapModelModeTable[c]
-	return ok
 }
 
 // StructureMapSourceListModeInfo is the specification's own data for one code.
@@ -14279,15 +13064,6 @@ func (c StructureMapSourceListMode) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c StructureMapSourceListMode) IsValid() bool {
-	_, ok := StructureMapSourceListModeTable[c]
-	return ok
-}
-
 // StructureMapTargetListModeInfo is the specification's own data for one code.
 type StructureMapTargetListModeInfo struct {
 	System  string
@@ -14343,15 +13119,6 @@ func (c StructureMapTargetListMode) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c StructureMapTargetListMode) IsValid() bool {
-	_, ok := StructureMapTargetListModeTable[c]
-	return ok
 }
 
 // StructureMapTransformInfo is the specification's own data for one code.
@@ -14437,15 +13204,6 @@ func (c StructureMapTransform) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c StructureMapTransform) IsValid() bool {
-	_, ok := StructureMapTransformTable[c]
-	return ok
-}
-
 // MeasureReportStatusInfo is the specification's own data for one code.
 type MeasureReportStatusInfo struct {
 	System  string
@@ -14499,15 +13257,6 @@ func (c MeasureReportStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c MeasureReportStatus) IsValid() bool {
-	_, ok := MeasureReportStatusTable[c]
-	return ok
 }
 
 // MeasureReportTypeInfo is the specification's own data for one code.
@@ -14565,15 +13314,6 @@ func (c MeasureReportType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c MeasureReportType) IsValid() bool {
-	_, ok := MeasureReportTypeTable[c]
-	return ok
 }
 
 // MedicationAdministrationStatusInfo is the specification's own data for one code.
@@ -14639,15 +13379,6 @@ func (c MedicationAdministrationStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c MedicationAdministrationStatus) IsValid() bool {
-	_, ok := MedicationAdministrationStatusTable[c]
-	return ok
-}
-
 // MedicationStatementStatusInfo is the specification's own data for one code.
 type MedicationStatementStatusInfo struct {
 	System  string
@@ -14703,15 +13434,6 @@ func (c MedicationStatementStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c MedicationStatementStatus) IsValid() bool {
-	_, ok := MedicationStatementStatusTable[c]
-	return ok
-}
-
 // MedicationStatusInfo is the specification's own data for one code.
 type MedicationStatusInfo struct {
 	System  string
@@ -14765,15 +13487,6 @@ func (c MedicationStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c MedicationStatus) IsValid() bool {
-	_, ok := MedicationStatusTable[c]
-	return ok
 }
 
 // MedicationDispenseStatusInfo is the specification's own data for one code.
@@ -14843,15 +13556,6 @@ func (c MedicationDispenseStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c MedicationDispenseStatus) IsValid() bool {
-	_, ok := MedicationDispenseStatusTable[c]
-	return ok
-}
-
 // MedicationKnowledgeStatusInfo is the specification's own data for one code.
 type MedicationKnowledgeStatusInfo struct {
 	System  string
@@ -14905,15 +13609,6 @@ func (c MedicationKnowledgeStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c MedicationKnowledgeStatus) IsValid() bool {
-	_, ok := MedicationKnowledgeStatusTable[c]
-	return ok
 }
 
 // MedicationRequestIntentInfo is the specification's own data for one code.
@@ -14979,15 +13674,6 @@ func (c MedicationRequestIntent) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c MedicationRequestIntent) IsValid() bool {
-	_, ok := MedicationRequestIntentTable[c]
-	return ok
 }
 
 // MedicationRequestStatusInfo is the specification's own data for one code.
@@ -15057,15 +13743,6 @@ func (c MedicationRequestStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c MedicationRequestStatus) IsValid() bool {
-	_, ok := MedicationRequestStatusTable[c]
-	return ok
-}
-
 // MessageSignificanceCategoryInfo is the specification's own data for one code.
 type MessageSignificanceCategoryInfo struct {
 	System  string
@@ -15119,15 +13796,6 @@ func (c MessageSignificanceCategory) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c MessageSignificanceCategory) IsValid() bool {
-	_, ok := MessageSignificanceCategoryTable[c]
-	return ok
 }
 
 // MessageheaderResponseRequestInfo is the specification's own data for one code.
@@ -15187,15 +13855,6 @@ func (c MessageheaderResponseRequest) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c MessageheaderResponseRequest) IsValid() bool {
-	_, ok := MessageheaderResponseRequestTable[c]
-	return ok
-}
-
 // DeviceMetricCalibrationStateInfo is the specification's own data for one code.
 type DeviceMetricCalibrationStateInfo struct {
 	System  string
@@ -15251,15 +13910,6 @@ func (c DeviceMetricCalibrationState) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c DeviceMetricCalibrationState) IsValid() bool {
-	_, ok := DeviceMetricCalibrationStateTable[c]
-	return ok
 }
 
 // DeviceMetricCalibrationTypeInfo is the specification's own data for one code.
@@ -15319,15 +13969,6 @@ func (c DeviceMetricCalibrationType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c DeviceMetricCalibrationType) IsValid() bool {
-	_, ok := DeviceMetricCalibrationTypeTable[c]
-	return ok
-}
-
 // DeviceMetricCategoryInfo is the specification's own data for one code.
 type DeviceMetricCategoryInfo struct {
 	System  string
@@ -15385,15 +14026,6 @@ func (c DeviceMetricCategory) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c DeviceMetricCategory) IsValid() bool {
-	_, ok := DeviceMetricCategoryTable[c]
-	return ok
-}
-
 // DeviceMetricOperationalStatusInfo is the specification's own data for one code.
 type DeviceMetricOperationalStatusInfo struct {
 	System  string
@@ -15449,15 +14081,6 @@ func (c DeviceMetricOperationalStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c DeviceMetricOperationalStatus) IsValid() bool {
-	_, ok := DeviceMetricOperationalStatusTable[c]
-	return ok
 }
 
 // NameUseInfo is the specification's own data for one code.
@@ -15523,15 +14146,6 @@ func (c NameUse) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c NameUse) IsValid() bool {
-	_, ok := NameUseTable[c]
-	return ok
-}
-
 // NamingSystemIdentifierTypeInfo is the specification's own data for one code.
 type NamingSystemIdentifierTypeInfo struct {
 	System  string
@@ -15593,15 +14207,6 @@ func (c NamingSystemIdentifierType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c NamingSystemIdentifierType) IsValid() bool {
-	_, ok := NamingSystemIdentifierTypeTable[c]
-	return ok
-}
-
 // NamingSystemTypeInfo is the specification's own data for one code.
 type NamingSystemTypeInfo struct {
 	System  string
@@ -15655,15 +14260,6 @@ func (c NamingSystemType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c NamingSystemType) IsValid() bool {
-	_, ok := NamingSystemTypeTable[c]
-	return ok
 }
 
 // NarrativeStatusInfo is the specification's own data for one code.
@@ -15723,15 +14319,6 @@ func (c NarrativeStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c NarrativeStatus) IsValid() bool {
-	_, ok := NarrativeStatusTable[c]
-	return ok
-}
-
 // NoteTypeInfo is the specification's own data for one code.
 type NoteTypeInfo struct {
 	System  string
@@ -15785,15 +14372,6 @@ func (c NoteType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c NoteType) IsValid() bool {
-	_, ok := NoteTypeTable[c]
-	return ok
 }
 
 // NutritionProductStatusInfo is the specification's own data for one code.
@@ -15851,15 +14429,6 @@ func (c NutritionProductStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c NutritionProductStatus) IsValid() bool {
-	_, ok := NutritionProductStatusTable[c]
-	return ok
-}
-
 // ObservationRangeCategoryInfo is the specification's own data for one code.
 type ObservationRangeCategoryInfo struct {
 	System  string
@@ -15913,15 +14482,6 @@ func (c ObservationRangeCategory) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ObservationRangeCategory) IsValid() bool {
-	_, ok := ObservationRangeCategoryTable[c]
-	return ok
 }
 
 // ObservationStatusInfo is the specification's own data for one code.
@@ -15989,15 +14549,6 @@ func (c ObservationStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ObservationStatus) IsValid() bool {
-	_, ok := ObservationStatusTable[c]
-	return ok
-}
-
 // TriggeredByTypeInfo is the specification's own data for one code.
 type TriggeredByTypeInfo struct {
 	System  string
@@ -16053,15 +14604,6 @@ func (c TriggeredByType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c TriggeredByType) IsValid() bool {
-	_, ok := TriggeredByTypeTable[c]
-	return ok
-}
-
 // OperationKindInfo is the specification's own data for one code.
 type OperationKindInfo struct {
 	System  string
@@ -16113,15 +14655,6 @@ func (c OperationKind) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c OperationKind) IsValid() bool {
-	_, ok := OperationKindTable[c]
-	return ok
 }
 
 // OperationParameterScopeInfo is the specification's own data for one code.
@@ -16179,15 +14712,6 @@ func (c OperationParameterScope) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c OperationParameterScope) IsValid() bool {
-	_, ok := OperationParameterScopeTable[c]
-	return ok
-}
-
 // OperationParameterUseInfo is the specification's own data for one code.
 type OperationParameterUseInfo struct {
 	System  string
@@ -16241,15 +14765,6 @@ func (c OperationParameterUse) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c OperationParameterUse) IsValid() bool {
-	_, ok := OperationParameterUseTable[c]
-	return ok
-}
-
 // OrientationTypeInfo is the specification's own data for one code.
 type OrientationTypeInfo struct {
 	System  string
@@ -16301,15 +14816,6 @@ func (c OrientationType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c OrientationType) IsValid() bool {
-	_, ok := OrientationTypeTable[c]
-	return ok
 }
 
 // ParticipationStatusInfo is the specification's own data for one code.
@@ -16369,15 +14875,6 @@ func (c ParticipationStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ParticipationStatus) IsValid() bool {
-	_, ok := ParticipationStatusTable[c]
-	return ok
-}
-
 // PaymentOutcomeInfo is the specification's own data for one code.
 type PaymentOutcomeInfo struct {
 	System  string
@@ -16433,15 +14930,6 @@ func (c PaymentOutcome) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c PaymentOutcome) IsValid() bool {
-	_, ok := PaymentOutcomeTable[c]
-	return ok
 }
 
 // PermissionCombiningInfo is the specification's own data for one code.
@@ -16505,15 +14993,6 @@ func (c PermissionCombining) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c PermissionCombining) IsValid() bool {
-	_, ok := PermissionCombiningTable[c]
-	return ok
-}
-
 // PermissionStatusInfo is the specification's own data for one code.
 type PermissionStatusInfo struct {
 	System  string
@@ -16569,15 +15048,6 @@ func (c PermissionStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c PermissionStatus) IsValid() bool {
-	_, ok := PermissionStatusTable[c]
-	return ok
 }
 
 // ObservationDataTypeInfo is the specification's own data for one code.
@@ -16651,15 +15121,6 @@ func (c ObservationDataType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ObservationDataType) IsValid() bool {
-	_, ok := ObservationDataTypeTable[c]
-	return ok
-}
-
 // PriceComponentTypeInfo is the specification's own data for one code.
 type PriceComponentTypeInfo struct {
 	System  string
@@ -16721,15 +15182,6 @@ func (c PriceComponentType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c PriceComponentType) IsValid() bool {
-	_, ok := PriceComponentTypeTable[c]
-	return ok
-}
-
 // PropertyRepresentationInfo is the specification's own data for one code.
 type PropertyRepresentationInfo struct {
 	System  string
@@ -16787,15 +15239,6 @@ func (c PropertyRepresentation) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c PropertyRepresentation) IsValid() bool {
-	_, ok := PropertyRepresentationTable[c]
-	return ok
 }
 
 // ProvenanceEntityRoleInfo is the specification's own data for one code.
@@ -16857,15 +15300,6 @@ func (c ProvenanceEntityRole) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ProvenanceEntityRole) IsValid() bool {
-	_, ok := ProvenanceEntityRoleTable[c]
-	return ok
-}
-
 // PublicationStatusInfo is the specification's own data for one code.
 type PublicationStatusInfo struct {
 	System  string
@@ -16921,15 +15355,6 @@ func (c PublicationStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c PublicationStatus) IsValid() bool {
-	_, ok := PublicationStatusTable[c]
-	return ok
 }
 
 // QuantityComparatorInfo is the specification's own data for one code.
@@ -16991,15 +15416,6 @@ func (c QuantityComparator) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c QuantityComparator) IsValid() bool {
-	_, ok := QuantityComparatorTable[c]
-	return ok
-}
-
 // QuestionnaireAnswerConstraintInfo is the specification's own data for one code.
 type QuestionnaireAnswerConstraintInfo struct {
 	System  string
@@ -17053,15 +15469,6 @@ func (c QuestionnaireAnswerConstraint) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c QuestionnaireAnswerConstraint) IsValid() bool {
-	_, ok := QuestionnaireAnswerConstraintTable[c]
-	return ok
 }
 
 // QuestionnaireResponseStatusInfo is the specification's own data for one code.
@@ -17123,15 +15530,6 @@ func (c QuestionnaireResponseStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c QuestionnaireResponseStatus) IsValid() bool {
-	_, ok := QuestionnaireResponseStatusTable[c]
-	return ok
-}
-
 // QuestionnaireItemDisabledDisplayInfo is the specification's own data for one code.
 type QuestionnaireItemDisabledDisplayInfo struct {
 	System  string
@@ -17185,15 +15583,6 @@ func (c QuestionnaireItemDisabledDisplay) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c QuestionnaireItemDisabledDisplay) IsValid() bool {
-	_, ok := QuestionnaireItemDisabledDisplayTable[c]
-	return ok
-}
-
 // EnableWhenBehaviorInfo is the specification's own data for one code.
 type EnableWhenBehaviorInfo struct {
 	System  string
@@ -17245,15 +15634,6 @@ func (c EnableWhenBehavior) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c EnableWhenBehavior) IsValid() bool {
-	_, ok := EnableWhenBehaviorTable[c]
-	return ok
 }
 
 // QuestionnaireItemOperatorInfo is the specification's own data for one code.
@@ -17319,15 +15699,6 @@ func (c QuestionnaireItemOperator) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c QuestionnaireItemOperator) IsValid() bool {
-	_, ok := QuestionnaireItemOperatorTable[c]
-	return ok
-}
-
 // AllergyIntoleranceSeverityInfo is the specification's own data for one code.
 type AllergyIntoleranceSeverityInfo struct {
 	System  string
@@ -17381,15 +15752,6 @@ func (c AllergyIntoleranceSeverity) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c AllergyIntoleranceSeverity) IsValid() bool {
-	_, ok := AllergyIntoleranceSeverityTable[c]
-	return ok
 }
 
 // ReferenceHandlingPolicyInfo is the specification's own data for one code.
@@ -17451,15 +15813,6 @@ func (c ReferenceHandlingPolicy) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ReferenceHandlingPolicy) IsValid() bool {
-	_, ok := ReferenceHandlingPolicyTable[c]
-	return ok
-}
-
 // ReferenceVersionRulesInfo is the specification's own data for one code.
 type ReferenceVersionRulesInfo struct {
 	System  string
@@ -17513,15 +15866,6 @@ func (c ReferenceVersionRules) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ReferenceVersionRules) IsValid() bool {
-	_, ok := ReferenceVersionRulesTable[c]
-	return ok
 }
 
 // RelatedArtifactTypeExpandedInfo is the specification's own data for one code.
@@ -17649,15 +15993,6 @@ func (c RelatedArtifactTypeExpanded) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c RelatedArtifactTypeExpanded) IsValid() bool {
-	_, ok := RelatedArtifactTypeExpandedTable[c]
-	return ok
-}
-
 // RelatedArtifactTypeInfo is the specification's own data for one code.
 type RelatedArtifactTypeInfo struct {
 	System  string
@@ -17779,15 +16114,6 @@ func (c RelatedArtifactType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c RelatedArtifactType) IsValid() bool {
-	_, ok := RelatedArtifactTypeTable[c]
-	return ok
-}
-
 // TestReportActionResultInfo is the specification's own data for one code.
 type TestReportActionResultInfo struct {
 	System  string
@@ -17847,15 +16173,6 @@ func (c TestReportActionResult) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c TestReportActionResult) IsValid() bool {
-	_, ok := TestReportActionResultTable[c]
-	return ok
-}
-
 // TestReportParticipantTypeInfo is the specification's own data for one code.
 type TestReportParticipantTypeInfo struct {
 	System  string
@@ -17909,15 +16226,6 @@ func (c TestReportParticipantType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c TestReportParticipantType) IsValid() bool {
-	_, ok := TestReportParticipantTypeTable[c]
-	return ok
 }
 
 // ReportRelationshipTypeInfo is the specification's own data for one code.
@@ -17985,15 +16293,6 @@ func (c ReportRelationshipType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ReportRelationshipType) IsValid() bool {
-	_, ok := ReportRelationshipTypeTable[c]
-	return ok
-}
-
 // TestReportResultInfo is the specification's own data for one code.
 type TestReportResultInfo struct {
 	System  string
@@ -18047,15 +16346,6 @@ func (c TestReportResult) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c TestReportResult) IsValid() bool {
-	_, ok := TestReportResultTable[c]
-	return ok
 }
 
 // TestReportStatusInfo is the specification's own data for one code.
@@ -18115,15 +16405,6 @@ func (c TestReportStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c TestReportStatus) IsValid() bool {
-	_, ok := TestReportStatusTable[c]
-	return ok
 }
 
 // RequestIntentInfo is the specification's own data for one code.
@@ -18193,15 +16474,6 @@ func (c RequestIntent) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c RequestIntent) IsValid() bool {
-	_, ok := RequestIntentTable[c]
-	return ok
-}
-
 // RequestPriorityInfo is the specification's own data for one code.
 type RequestPriorityInfo struct {
 	System  string
@@ -18257,15 +16529,6 @@ func (c RequestPriority) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c RequestPriority) IsValid() bool {
-	_, ok := RequestPriorityTable[c]
-	return ok
 }
 
 // ActivityDefinitionKindInfo is the specification's own data for one code.
@@ -18351,15 +16614,6 @@ func (c ActivityDefinitionKind) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ActivityDefinitionKind) IsValid() bool {
-	_, ok := ActivityDefinitionKindTable[c]
-	return ok
-}
-
 // RequestStatusInfo is the specification's own data for one code.
 type RequestStatusInfo struct {
 	System  string
@@ -18423,15 +16677,6 @@ func (c RequestStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c RequestStatus) IsValid() bool {
-	_, ok := RequestStatusTable[c]
-	return ok
-}
-
 // AggregationModeInfo is the specification's own data for one code.
 type AggregationModeInfo struct {
 	System  string
@@ -18485,15 +16730,6 @@ func (c AggregationMode) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c AggregationMode) IsValid() bool {
-	_, ok := AggregationModeTable[c]
-	return ok
 }
 
 // SlicingRulesInfo is the specification's own data for one code.
@@ -18551,15 +16787,6 @@ func (c SlicingRules) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c SlicingRules) IsValid() bool {
-	_, ok := SlicingRulesTable[c]
-	return ok
-}
-
 // ResponseTypeInfo is the specification's own data for one code.
 type ResponseTypeInfo struct {
 	System  string
@@ -18615,15 +16842,6 @@ func (c ResponseType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ResponseType) IsValid() bool {
-	_, ok := ResponseTypeTable[c]
-	return ok
-}
-
 // RestfulCapabilityModeInfo is the specification's own data for one code.
 type RestfulCapabilityModeInfo struct {
 	System  string
@@ -18675,15 +16893,6 @@ func (c RestfulCapabilityMode) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c RestfulCapabilityMode) IsValid() bool {
-	_, ok := RestfulCapabilityModeTable[c]
-	return ok
 }
 
 // SearchComparatorInfo is the specification's own data for one code.
@@ -18753,15 +16962,6 @@ func (c SearchComparator) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c SearchComparator) IsValid() bool {
-	_, ok := SearchComparatorTable[c]
-	return ok
-}
-
 // SearchEntryModeInfo is the specification's own data for one code.
 type SearchEntryModeInfo struct {
 	System  string
@@ -18815,15 +17015,6 @@ func (c SearchEntryMode) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c SearchEntryMode) IsValid() bool {
-	_, ok := SearchEntryModeTable[c]
-	return ok
 }
 
 // SearchModifierCodeInfo is the specification's own data for one code.
@@ -18905,15 +17096,6 @@ func (c SearchModifierCode) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c SearchModifierCode) IsValid() bool {
-	_, ok := SearchModifierCodeTable[c]
-	return ok
-}
-
 // SearchParamTypeInfo is the specification's own data for one code.
 type SearchParamTypeInfo struct {
 	System  string
@@ -18981,15 +17163,6 @@ func (c SearchParamType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c SearchParamType) IsValid() bool {
-	_, ok := SearchParamTypeTable[c]
-	return ok
-}
-
 // SearchProcessingModeTypeInfo is the specification's own data for one code.
 type SearchProcessingModeTypeInfo struct {
 	System  string
@@ -19045,15 +17218,6 @@ func (c SearchProcessingModeType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c SearchProcessingModeType) IsValid() bool {
-	_, ok := SearchProcessingModeTypeTable[c]
-	return ok
-}
-
 // SequenceTypeInfo is the specification's own data for one code.
 type SequenceTypeInfo struct {
 	System  string
@@ -19107,15 +17271,6 @@ func (c SequenceType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c SequenceType) IsValid() bool {
-	_, ok := SequenceTypeTable[c]
-	return ok
 }
 
 // SlotStatusInfo is the specification's own data for one code.
@@ -19177,15 +17332,6 @@ func (c SlotStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c SlotStatus) IsValid() bool {
-	_, ok := SlotStatusTable[c]
-	return ok
-}
-
 // SortDirectionInfo is the specification's own data for one code.
 type SortDirectionInfo struct {
 	System  string
@@ -19237,15 +17383,6 @@ func (c SortDirection) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c SortDirection) IsValid() bool {
-	_, ok := SortDirectionTable[c]
-	return ok
 }
 
 // SpecimenCombinedInfo is the specification's own data for one code.
@@ -19301,15 +17438,6 @@ func (c SpecimenCombined) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c SpecimenCombined) IsValid() bool {
-	_, ok := SpecimenCombinedTable[c]
-	return ok
-}
-
 // SpecimenContainedPreferenceInfo is the specification's own data for one code.
 type SpecimenContainedPreferenceInfo struct {
 	System  string
@@ -19361,15 +17489,6 @@ func (c SpecimenContainedPreference) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c SpecimenContainedPreference) IsValid() bool {
-	_, ok := SpecimenContainedPreferenceTable[c]
-	return ok
 }
 
 // SpecimenStatusInfo is the specification's own data for one code.
@@ -19429,15 +17548,6 @@ func (c SpecimenStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c SpecimenStatus) IsValid() bool {
-	_, ok := SpecimenStatusTable[c]
-	return ok
-}
-
 // StrandTypeInfo is the specification's own data for one code.
 type StrandTypeInfo struct {
 	System  string
@@ -19489,15 +17599,6 @@ func (c StrandType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c StrandType) IsValid() bool {
-	_, ok := StrandTypeTable[c]
-	return ok
 }
 
 // StructureDefinitionKindInfo is the specification's own data for one code.
@@ -19557,15 +17658,6 @@ func (c StructureDefinitionKind) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c StructureDefinitionKind) IsValid() bool {
-	_, ok := StructureDefinitionKindTable[c]
-	return ok
-}
-
 // SubmitDataUpdateTypeInfo is the specification's own data for one code.
 type SubmitDataUpdateTypeInfo struct {
 	System  string
@@ -19617,15 +17709,6 @@ func (c SubmitDataUpdateType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c SubmitDataUpdateType) IsValid() bool {
-	_, ok := SubmitDataUpdateTypeTable[c]
-	return ok
 }
 
 // SubscriptionNotificationTypeInfo is the specification's own data for one code.
@@ -19687,15 +17770,6 @@ func (c SubscriptionNotificationType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c SubscriptionNotificationType) IsValid() bool {
-	_, ok := SubscriptionNotificationTypeTable[c]
-	return ok
-}
-
 // SubscriptionPayloadContentInfo is the specification's own data for one code.
 type SubscriptionPayloadContentInfo struct {
 	System  string
@@ -19749,15 +17823,6 @@ func (c SubscriptionPayloadContent) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c SubscriptionPayloadContent) IsValid() bool {
-	_, ok := SubscriptionPayloadContentTable[c]
-	return ok
 }
 
 // SubscriptionStatusCodesInfo is the specification's own data for one code.
@@ -19819,15 +17884,6 @@ func (c SubscriptionStatusCodes) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c SubscriptionStatusCodes) IsValid() bool {
-	_, ok := SubscriptionStatusCodesTable[c]
-	return ok
-}
-
 // CriteriaNotExistsBehaviorInfo is the specification's own data for one code.
 type CriteriaNotExistsBehaviorInfo struct {
 	System  string
@@ -19879,15 +17935,6 @@ func (c CriteriaNotExistsBehavior) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c CriteriaNotExistsBehavior) IsValid() bool {
-	_, ok := CriteriaNotExistsBehaviorTable[c]
-	return ok
 }
 
 // FHIRSubstanceStatusInfo is the specification's own data for one code.
@@ -19945,15 +17992,6 @@ func (c FHIRSubstanceStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c FHIRSubstanceStatus) IsValid() bool {
-	_, ok := FHIRSubstanceStatusTable[c]
-	return ok
-}
-
 // SupplyDeliveryStatusInfo is the specification's own data for one code.
 type SupplyDeliveryStatusInfo struct {
 	System  string
@@ -20009,15 +18047,6 @@ func (c SupplyDeliveryStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c SupplyDeliveryStatus) IsValid() bool {
-	_, ok := SupplyDeliveryStatusTable[c]
-	return ok
 }
 
 // SupplyRequestStatusInfo is the specification's own data for one code.
@@ -20083,15 +18112,6 @@ func (c SupplyRequestStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c SupplyRequestStatus) IsValid() bool {
-	_, ok := SupplyRequestStatusTable[c]
-	return ok
-}
-
 // SystemRestfulInteractionInfo is the specification's own data for one code.
 type SystemRestfulInteractionInfo struct {
 	System  string
@@ -20147,15 +18167,6 @@ func (c SystemRestfulInteraction) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c SystemRestfulInteraction) IsValid() bool {
-	_, ok := SystemRestfulInteractionTable[c]
-	return ok
 }
 
 // TaskIntentInfo is the specification's own data for one code.
@@ -20223,15 +18234,6 @@ func (c TaskIntent) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c TaskIntent) IsValid() bool {
-	_, ok := TaskIntentTable[c]
-	return ok
 }
 
 // TaskStatusInfo is the specification's own data for one code.
@@ -20307,15 +18309,6 @@ func (c TaskStatus) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c TaskStatus) IsValid() bool {
-	_, ok := TaskStatusTable[c]
-	return ok
-}
-
 // TransportIntentInfo is the specification's own data for one code.
 type TransportIntentInfo struct {
 	System  string
@@ -20383,15 +18376,6 @@ func (c TransportIntent) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c TransportIntent) IsValid() bool {
-	_, ok := TransportIntentTable[c]
-	return ok
-}
-
 // TransportStatusInfo is the specification's own data for one code.
 type TransportStatusInfo struct {
 	System  string
@@ -20451,15 +18435,6 @@ func (c TransportStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c TransportStatus) IsValid() bool {
-	_, ok := TransportStatusTable[c]
-	return ok
 }
 
 // TriggerTypeInfo is the specification's own data for one code.
@@ -20527,15 +18502,6 @@ func (c TriggerType) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c TriggerType) IsValid() bool {
-	_, ok := TriggerTypeTable[c]
-	return ok
-}
-
 // TypeDerivationRuleInfo is the specification's own data for one code.
 type TypeDerivationRuleInfo struct {
 	System  string
@@ -20587,15 +18553,6 @@ func (c TypeDerivationRule) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c TypeDerivationRule) IsValid() bool {
-	_, ok := TypeDerivationRuleTable[c]
-	return ok
 }
 
 // TypeRestfulInteractionInfo is the specification's own data for one code.
@@ -20665,15 +18622,6 @@ func (c TypeRestfulInteraction) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c TypeRestfulInteraction) IsValid() bool {
-	_, ok := TypeRestfulInteractionTable[c]
-	return ok
-}
-
 // UDIEntryTypeInfo is the specification's own data for one code.
 type UDIEntryTypeInfo struct {
 	System  string
@@ -20735,15 +18683,6 @@ func (c UDIEntryType) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c UDIEntryType) IsValid() bool {
-	_, ok := UDIEntryTypeTable[c]
-	return ok
 }
 
 // UnitsOfTimeInfo is the specification's own data for one code.
@@ -20809,15 +18748,6 @@ func (c UnitsOfTime) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c UnitsOfTime) IsValid() bool {
-	_, ok := UnitsOfTimeTable[c]
-	return ok
-}
-
 // ValueFilterComparatorInfo is the specification's own data for one code.
 type ValueFilterComparatorInfo struct {
 	System  string
@@ -20881,15 +18811,6 @@ func (c ValueFilterComparator) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ValueFilterComparator) IsValid() bool {
-	_, ok := ValueFilterComparatorTable[c]
-	return ok
-}
-
 // EvidenceVariableHandlingInfo is the specification's own data for one code.
 type EvidenceVariableHandlingInfo struct {
 	System  string
@@ -20945,15 +18866,6 @@ func (c EvidenceVariableHandling) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c EvidenceVariableHandling) IsValid() bool {
-	_, ok := EvidenceVariableHandlingTable[c]
-	return ok
 }
 
 // VerificationResultStatusInfo is the specification's own data for one code.
@@ -21017,15 +18929,6 @@ func (c VerificationResultStatus) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c VerificationResultStatus) IsValid() bool {
-	_, ok := VerificationResultStatusTable[c]
-	return ok
 }
 
 // FHIRTypesInfo is the specification's own data for one code.
@@ -21159,15 +19062,6 @@ func (c FHIRTypes) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c FHIRTypes) IsValid() bool {
-	_, ok := FHIRTypesTable[c]
-	return ok
-}
-
 // ResourceVersionPolicyInfo is the specification's own data for one code.
 type ResourceVersionPolicyInfo struct {
 	System  string
@@ -21221,15 +19115,6 @@ func (c ResourceVersionPolicy) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c ResourceVersionPolicy) IsValid() bool {
-	_, ok := ResourceVersionPolicyTable[c]
-	return ok
 }
 
 // VisionBaseInfo is the specification's own data for one code.
@@ -21289,15 +19174,6 @@ func (c VisionBase) Coding() Coding {
 	return coding
 }
 
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c VisionBase) IsValid() bool {
-	_, ok := VisionBaseTable[c]
-	return ok
-}
-
 // VisionEyesInfo is the specification's own data for one code.
 type VisionEyesInfo struct {
 	System  string
@@ -21349,13 +19225,4 @@ func (c VisionEyes) Coding() Coding {
 		coding.System = &system
 	}
 	return coding
-}
-
-// IsValid reports whether c is one of the codes the specification defines.
-//
-// The type is a string, so anything can be assigned to it — including a value that
-// came off the wire and was never checked.
-func (c VisionEyes) IsValid() bool {
-	_, ok := VisionEyesTable[c]
-	return ok
 }
