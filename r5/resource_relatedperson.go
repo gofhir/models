@@ -660,3 +660,120 @@ func (b *RelatedPersonBuilder) AddCommunication(v RelatedPersonCommunication) *R
 	b.relatedPerson.Communication = append(b.relatedPerson.Communication, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RelatedPersonBuilder) SetImplicitRulesExt(v Element) *RelatedPersonBuilder {
+	b.relatedPerson.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RelatedPersonBuilder) SetLanguageExt(v Element) *RelatedPersonBuilder {
+	b.relatedPerson.LanguageExt = &v
+	return b
+}
+
+// SetActiveExt sets the extensions carried by Active, serialized as
+// "_active".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RelatedPersonBuilder) SetActiveExt(v Element) *RelatedPersonBuilder {
+	b.relatedPerson.ActiveExt = &v
+	return b
+}
+
+// SetGenderExt sets the extensions carried by Gender, serialized as
+// "_gender".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RelatedPersonBuilder) SetGenderExt(v Element) *RelatedPersonBuilder {
+	b.relatedPerson.GenderExt = &v
+	return b
+}
+
+// SetBirthDateExt sets the extensions carried by BirthDate, serialized as
+// "_birthDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RelatedPersonBuilder) SetBirthDateExt(v Element) *RelatedPersonBuilder {
+	b.relatedPerson.BirthDateExt = &v
+	return b
+}
+
+// =============================================================================
+// RelatedPersonCommunication - Fluent Builder
+// =============================================================================
+
+// RelatedPersonCommunicationBuilder provides a fluent API for constructing RelatedPersonCommunication values.
+type RelatedPersonCommunicationBuilder struct {
+	relatedPersonCommunication *RelatedPersonCommunication
+}
+
+// NewRelatedPersonCommunicationBuilder creates a new RelatedPersonCommunicationBuilder.
+func NewRelatedPersonCommunicationBuilder() *RelatedPersonCommunicationBuilder {
+	return &RelatedPersonCommunicationBuilder{
+		relatedPersonCommunication: &RelatedPersonCommunication{},
+	}
+}
+
+// Build returns the constructed RelatedPersonCommunication.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RelatedPersonCommunicationBuilder) Build() RelatedPersonCommunication {
+	return *b.relatedPersonCommunication
+}
+
+// SetId sets the Id field.
+func (b *RelatedPersonCommunicationBuilder) SetId(v string) *RelatedPersonCommunicationBuilder {
+	b.relatedPersonCommunication.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RelatedPersonCommunicationBuilder) AddExtension(v Extension) *RelatedPersonCommunicationBuilder {
+	b.relatedPersonCommunication.Extension = append(b.relatedPersonCommunication.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *RelatedPersonCommunicationBuilder) AddModifierExtension(v Extension) *RelatedPersonCommunicationBuilder {
+	b.relatedPersonCommunication.ModifierExtension = append(b.relatedPersonCommunication.ModifierExtension, v)
+	return b
+}
+
+// SetLanguage sets the Language field.
+func (b *RelatedPersonCommunicationBuilder) SetLanguage(v CodeableConcept) *RelatedPersonCommunicationBuilder {
+	b.relatedPersonCommunication.Language = &v
+	return b
+}
+
+// SetPreferred sets the Preferred field.
+func (b *RelatedPersonCommunicationBuilder) SetPreferred(v bool) *RelatedPersonCommunicationBuilder {
+	b.relatedPersonCommunication.Preferred = &v
+	return b
+}
+
+// SetPreferredExt sets the extensions carried by Preferred, serialized as
+// "_preferred".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RelatedPersonCommunicationBuilder) SetPreferredExt(v Element) *RelatedPersonCommunicationBuilder {
+	b.relatedPersonCommunication.PreferredExt = &v
+	return b
+}

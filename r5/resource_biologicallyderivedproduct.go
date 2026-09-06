@@ -914,3 +914,319 @@ func (b *BiologicallyDerivedProductBuilder) AddProperty(v BiologicallyDerivedPro
 	b.biologicallyDerivedProduct.Property = append(b.biologicallyDerivedProduct.Property, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BiologicallyDerivedProductBuilder) SetImplicitRulesExt(v Element) *BiologicallyDerivedProductBuilder {
+	b.biologicallyDerivedProduct.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BiologicallyDerivedProductBuilder) SetLanguageExt(v Element) *BiologicallyDerivedProductBuilder {
+	b.biologicallyDerivedProduct.LanguageExt = &v
+	return b
+}
+
+// SetDivisionExt sets the extensions carried by Division, serialized as
+// "_division".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BiologicallyDerivedProductBuilder) SetDivisionExt(v Element) *BiologicallyDerivedProductBuilder {
+	b.biologicallyDerivedProduct.DivisionExt = &v
+	return b
+}
+
+// SetExpirationDateExt sets the extensions carried by ExpirationDate, serialized as
+// "_expirationDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BiologicallyDerivedProductBuilder) SetExpirationDateExt(v Element) *BiologicallyDerivedProductBuilder {
+	b.biologicallyDerivedProduct.ExpirationDateExt = &v
+	return b
+}
+
+// =============================================================================
+// BiologicallyDerivedProductCollection - Fluent Builder
+// =============================================================================
+
+// BiologicallyDerivedProductCollectionBuilder provides a fluent API for constructing BiologicallyDerivedProductCollection values.
+type BiologicallyDerivedProductCollectionBuilder struct {
+	biologicallyDerivedProductCollection *BiologicallyDerivedProductCollection
+}
+
+// NewBiologicallyDerivedProductCollectionBuilder creates a new BiologicallyDerivedProductCollectionBuilder.
+func NewBiologicallyDerivedProductCollectionBuilder() *BiologicallyDerivedProductCollectionBuilder {
+	return &BiologicallyDerivedProductCollectionBuilder{
+		biologicallyDerivedProductCollection: &BiologicallyDerivedProductCollection{},
+	}
+}
+
+// Build returns the constructed BiologicallyDerivedProductCollection.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *BiologicallyDerivedProductCollectionBuilder) Build() BiologicallyDerivedProductCollection {
+	return *b.biologicallyDerivedProductCollection
+}
+
+// SetId sets the Id field.
+func (b *BiologicallyDerivedProductCollectionBuilder) SetId(v string) *BiologicallyDerivedProductCollectionBuilder {
+	b.biologicallyDerivedProductCollection.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *BiologicallyDerivedProductCollectionBuilder) AddExtension(v Extension) *BiologicallyDerivedProductCollectionBuilder {
+	b.biologicallyDerivedProductCollection.Extension = append(b.biologicallyDerivedProductCollection.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *BiologicallyDerivedProductCollectionBuilder) AddModifierExtension(v Extension) *BiologicallyDerivedProductCollectionBuilder {
+	b.biologicallyDerivedProductCollection.ModifierExtension = append(b.biologicallyDerivedProductCollection.ModifierExtension, v)
+	return b
+}
+
+// SetCollector sets the Collector field.
+func (b *BiologicallyDerivedProductCollectionBuilder) SetCollector(v Reference) *BiologicallyDerivedProductCollectionBuilder {
+	b.biologicallyDerivedProductCollection.Collector = &v
+	return b
+}
+
+// SetSource sets the Source field.
+func (b *BiologicallyDerivedProductCollectionBuilder) SetSource(v Reference) *BiologicallyDerivedProductCollectionBuilder {
+	b.biologicallyDerivedProductCollection.Source = &v
+	return b
+}
+
+// SetCollectedDateTime sets Collected[x] to its CollectedDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *BiologicallyDerivedProductCollectionBuilder) SetCollectedDateTime(v string) *BiologicallyDerivedProductCollectionBuilder {
+	b.clearCollected()
+	b.biologicallyDerivedProductCollection.CollectedDateTime = &v
+	return b
+}
+
+// SetCollectedDateTimeExt sets the CollectedDateTimeExt field.
+func (b *BiologicallyDerivedProductCollectionBuilder) SetCollectedDateTimeExt(v Element) *BiologicallyDerivedProductCollectionBuilder {
+	b.biologicallyDerivedProductCollection.CollectedDateTimeExt = &v
+	return b
+}
+
+// SetCollectedPeriod sets Collected[x] to its CollectedPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *BiologicallyDerivedProductCollectionBuilder) SetCollectedPeriod(v Period) *BiologicallyDerivedProductCollectionBuilder {
+	b.clearCollected()
+	b.biologicallyDerivedProductCollection.CollectedPeriod = &v
+	return b
+}
+
+// clearCollected unsets every variant of Collected[x], including the
+// _field companions of the primitive ones.
+func (b *BiologicallyDerivedProductCollectionBuilder) clearCollected() {
+	b.biologicallyDerivedProductCollection.CollectedDateTime = nil
+	b.biologicallyDerivedProductCollection.CollectedPeriod = nil
+}
+
+// =============================================================================
+// BiologicallyDerivedProductProperty - Fluent Builder
+// =============================================================================
+
+// BiologicallyDerivedProductPropertyBuilder provides a fluent API for constructing BiologicallyDerivedProductProperty values.
+type BiologicallyDerivedProductPropertyBuilder struct {
+	biologicallyDerivedProductProperty *BiologicallyDerivedProductProperty
+}
+
+// NewBiologicallyDerivedProductPropertyBuilder creates a new BiologicallyDerivedProductPropertyBuilder.
+func NewBiologicallyDerivedProductPropertyBuilder() *BiologicallyDerivedProductPropertyBuilder {
+	return &BiologicallyDerivedProductPropertyBuilder{
+		biologicallyDerivedProductProperty: &BiologicallyDerivedProductProperty{},
+	}
+}
+
+// Build returns the constructed BiologicallyDerivedProductProperty.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *BiologicallyDerivedProductPropertyBuilder) Build() BiologicallyDerivedProductProperty {
+	return *b.biologicallyDerivedProductProperty
+}
+
+// SetId sets the Id field.
+func (b *BiologicallyDerivedProductPropertyBuilder) SetId(v string) *BiologicallyDerivedProductPropertyBuilder {
+	b.biologicallyDerivedProductProperty.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *BiologicallyDerivedProductPropertyBuilder) AddExtension(v Extension) *BiologicallyDerivedProductPropertyBuilder {
+	b.biologicallyDerivedProductProperty.Extension = append(b.biologicallyDerivedProductProperty.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *BiologicallyDerivedProductPropertyBuilder) AddModifierExtension(v Extension) *BiologicallyDerivedProductPropertyBuilder {
+	b.biologicallyDerivedProductProperty.ModifierExtension = append(b.biologicallyDerivedProductProperty.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *BiologicallyDerivedProductPropertyBuilder) SetType(v CodeableConcept) *BiologicallyDerivedProductPropertyBuilder {
+	b.biologicallyDerivedProductProperty.Type = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *BiologicallyDerivedProductPropertyBuilder) SetValueBoolean(v bool) *BiologicallyDerivedProductPropertyBuilder {
+	b.clearValue()
+	b.biologicallyDerivedProductProperty.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *BiologicallyDerivedProductPropertyBuilder) SetValueBooleanExt(v Element) *BiologicallyDerivedProductPropertyBuilder {
+	b.biologicallyDerivedProductProperty.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueInteger sets Value[x] to its ValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *BiologicallyDerivedProductPropertyBuilder) SetValueInteger(v int) *BiologicallyDerivedProductPropertyBuilder {
+	b.clearValue()
+	b.biologicallyDerivedProductProperty.ValueInteger = &v
+	return b
+}
+
+// SetValueIntegerExt sets the ValueIntegerExt field.
+func (b *BiologicallyDerivedProductPropertyBuilder) SetValueIntegerExt(v Element) *BiologicallyDerivedProductPropertyBuilder {
+	b.biologicallyDerivedProductProperty.ValueIntegerExt = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *BiologicallyDerivedProductPropertyBuilder) SetValueCodeableConcept(v CodeableConcept) *BiologicallyDerivedProductPropertyBuilder {
+	b.clearValue()
+	b.biologicallyDerivedProductProperty.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValuePeriod sets Value[x] to its ValuePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *BiologicallyDerivedProductPropertyBuilder) SetValuePeriod(v Period) *BiologicallyDerivedProductPropertyBuilder {
+	b.clearValue()
+	b.biologicallyDerivedProductProperty.ValuePeriod = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *BiologicallyDerivedProductPropertyBuilder) SetValueQuantity(v Quantity) *BiologicallyDerivedProductPropertyBuilder {
+	b.clearValue()
+	b.biologicallyDerivedProductProperty.ValueQuantity = &v
+	return b
+}
+
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *BiologicallyDerivedProductPropertyBuilder) SetValueRange(v Range) *BiologicallyDerivedProductPropertyBuilder {
+	b.clearValue()
+	b.biologicallyDerivedProductProperty.ValueRange = &v
+	return b
+}
+
+// SetValueRatio sets Value[x] to its ValueRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *BiologicallyDerivedProductPropertyBuilder) SetValueRatio(v Ratio) *BiologicallyDerivedProductPropertyBuilder {
+	b.clearValue()
+	b.biologicallyDerivedProductProperty.ValueRatio = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *BiologicallyDerivedProductPropertyBuilder) SetValueString(v string) *BiologicallyDerivedProductPropertyBuilder {
+	b.clearValue()
+	b.biologicallyDerivedProductProperty.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *BiologicallyDerivedProductPropertyBuilder) SetValueStringExt(v Element) *BiologicallyDerivedProductPropertyBuilder {
+	b.biologicallyDerivedProductProperty.ValueStringExt = &v
+	return b
+}
+
+// SetValueAttachment sets Value[x] to its ValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *BiologicallyDerivedProductPropertyBuilder) SetValueAttachment(v Attachment) *BiologicallyDerivedProductPropertyBuilder {
+	b.clearValue()
+	b.biologicallyDerivedProductProperty.ValueAttachment = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *BiologicallyDerivedProductPropertyBuilder) clearValue() {
+	b.biologicallyDerivedProductProperty.ValueBoolean = nil
+	b.biologicallyDerivedProductProperty.ValueInteger = nil
+	b.biologicallyDerivedProductProperty.ValueIntegerExt = nil
+	b.biologicallyDerivedProductProperty.ValueCodeableConcept = nil
+	b.biologicallyDerivedProductProperty.ValuePeriod = nil
+	b.biologicallyDerivedProductProperty.ValueQuantity = nil
+	b.biologicallyDerivedProductProperty.ValueRange = nil
+	b.biologicallyDerivedProductProperty.ValueRatio = nil
+	b.biologicallyDerivedProductProperty.ValueString = nil
+	b.biologicallyDerivedProductProperty.ValueStringExt = nil
+	b.biologicallyDerivedProductProperty.ValueAttachment = nil
+}

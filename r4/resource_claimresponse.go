@@ -2766,3 +2766,1481 @@ func (b *ClaimResponseBuilder) AddError(v ClaimResponseError) *ClaimResponseBuil
 	b.claimResponse.Error = append(b.claimResponse.Error, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseBuilder) SetImplicitRulesExt(v Element) *ClaimResponseBuilder {
+	b.claimResponse.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseBuilder) SetLanguageExt(v Element) *ClaimResponseBuilder {
+	b.claimResponse.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseBuilder) SetStatusExt(v Element) *ClaimResponseBuilder {
+	b.claimResponse.StatusExt = &v
+	return b
+}
+
+// SetUseExt sets the extensions carried by Use, serialized as
+// "_use".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseBuilder) SetUseExt(v Element) *ClaimResponseBuilder {
+	b.claimResponse.UseExt = &v
+	return b
+}
+
+// SetCreatedExt sets the extensions carried by Created, serialized as
+// "_created".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseBuilder) SetCreatedExt(v Element) *ClaimResponseBuilder {
+	b.claimResponse.CreatedExt = &v
+	return b
+}
+
+// SetOutcomeExt sets the extensions carried by Outcome, serialized as
+// "_outcome".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseBuilder) SetOutcomeExt(v Element) *ClaimResponseBuilder {
+	b.claimResponse.OutcomeExt = &v
+	return b
+}
+
+// SetDispositionExt sets the extensions carried by Disposition, serialized as
+// "_disposition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseBuilder) SetDispositionExt(v Element) *ClaimResponseBuilder {
+	b.claimResponse.DispositionExt = &v
+	return b
+}
+
+// SetPreAuthRefExt sets the extensions carried by PreAuthRef, serialized as
+// "_preAuthRef".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseBuilder) SetPreAuthRefExt(v Element) *ClaimResponseBuilder {
+	b.claimResponse.PreAuthRefExt = &v
+	return b
+}
+
+// =============================================================================
+// ClaimResponseAddItem - Fluent Builder
+// =============================================================================
+
+// ClaimResponseAddItemBuilder provides a fluent API for constructing ClaimResponseAddItem values.
+type ClaimResponseAddItemBuilder struct {
+	claimResponseAddItem *ClaimResponseAddItem
+}
+
+// NewClaimResponseAddItemBuilder creates a new ClaimResponseAddItemBuilder.
+func NewClaimResponseAddItemBuilder() *ClaimResponseAddItemBuilder {
+	return &ClaimResponseAddItemBuilder{
+		claimResponseAddItem: &ClaimResponseAddItem{},
+	}
+}
+
+// Build returns the constructed ClaimResponseAddItem.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimResponseAddItemBuilder) Build() ClaimResponseAddItem {
+	return *b.claimResponseAddItem
+}
+
+// SetId sets the Id field.
+func (b *ClaimResponseAddItemBuilder) SetId(v string) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimResponseAddItemBuilder) AddExtension(v Extension) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.Extension = append(b.claimResponseAddItem.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimResponseAddItemBuilder) AddModifierExtension(v Extension) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.ModifierExtension = append(b.claimResponseAddItem.ModifierExtension, v)
+	return b
+}
+
+// AddItemSequence adds a ItemSequence element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ClaimResponseAddItemBuilder) AddItemSequence(v uint32) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.ItemSequence = append(b.claimResponseAddItem.ItemSequence, &v)
+	return b
+}
+
+// AddDetailSequence adds a DetailSequence element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ClaimResponseAddItemBuilder) AddDetailSequence(v uint32) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.DetailSequence = append(b.claimResponseAddItem.DetailSequence, &v)
+	return b
+}
+
+// AddSubdetailSequence adds a SubdetailSequence element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ClaimResponseAddItemBuilder) AddSubdetailSequence(v uint32) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.SubdetailSequence = append(b.claimResponseAddItem.SubdetailSequence, &v)
+	return b
+}
+
+// AddProvider adds a Provider element.
+func (b *ClaimResponseAddItemBuilder) AddProvider(v Reference) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.Provider = append(b.claimResponseAddItem.Provider, v)
+	return b
+}
+
+// SetProductOrService sets the ProductOrService field.
+func (b *ClaimResponseAddItemBuilder) SetProductOrService(v CodeableConcept) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.ProductOrService = &v
+	return b
+}
+
+// AddModifier adds a Modifier element.
+func (b *ClaimResponseAddItemBuilder) AddModifier(v CodeableConcept) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.Modifier = append(b.claimResponseAddItem.Modifier, v)
+	return b
+}
+
+// AddProgramCode adds a ProgramCode element.
+func (b *ClaimResponseAddItemBuilder) AddProgramCode(v CodeableConcept) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.ProgramCode = append(b.claimResponseAddItem.ProgramCode, v)
+	return b
+}
+
+// SetServicedDate sets Serviced[x] to its ServicedDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimResponseAddItemBuilder) SetServicedDate(v string) *ClaimResponseAddItemBuilder {
+	b.clearServiced()
+	b.claimResponseAddItem.ServicedDate = &v
+	return b
+}
+
+// SetServicedDateExt sets the ServicedDateExt field.
+func (b *ClaimResponseAddItemBuilder) SetServicedDateExt(v Element) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.ServicedDateExt = &v
+	return b
+}
+
+// SetServicedPeriod sets Serviced[x] to its ServicedPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimResponseAddItemBuilder) SetServicedPeriod(v Period) *ClaimResponseAddItemBuilder {
+	b.clearServiced()
+	b.claimResponseAddItem.ServicedPeriod = &v
+	return b
+}
+
+// SetLocationCodeableConcept sets Location[x] to its LocationCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimResponseAddItemBuilder) SetLocationCodeableConcept(v CodeableConcept) *ClaimResponseAddItemBuilder {
+	b.clearLocation()
+	b.claimResponseAddItem.LocationCodeableConcept = &v
+	return b
+}
+
+// SetLocationAddress sets Location[x] to its LocationAddress variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimResponseAddItemBuilder) SetLocationAddress(v Address) *ClaimResponseAddItemBuilder {
+	b.clearLocation()
+	b.claimResponseAddItem.LocationAddress = &v
+	return b
+}
+
+// SetLocationReference sets Location[x] to its LocationReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimResponseAddItemBuilder) SetLocationReference(v Reference) *ClaimResponseAddItemBuilder {
+	b.clearLocation()
+	b.claimResponseAddItem.LocationReference = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *ClaimResponseAddItemBuilder) SetQuantity(v Quantity) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.Quantity = &v
+	return b
+}
+
+// SetUnitPrice sets the UnitPrice field.
+func (b *ClaimResponseAddItemBuilder) SetUnitPrice(v Money) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.UnitPrice = &v
+	return b
+}
+
+// SetFactor sets the Factor field.
+func (b *ClaimResponseAddItemBuilder) SetFactor(v Decimal) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.Factor = &v
+	return b
+}
+
+// SetNet sets the Net field.
+func (b *ClaimResponseAddItemBuilder) SetNet(v Money) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.Net = &v
+	return b
+}
+
+// SetBodySite sets the BodySite field.
+func (b *ClaimResponseAddItemBuilder) SetBodySite(v CodeableConcept) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.BodySite = &v
+	return b
+}
+
+// AddSubSite adds a SubSite element.
+func (b *ClaimResponseAddItemBuilder) AddSubSite(v CodeableConcept) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.SubSite = append(b.claimResponseAddItem.SubSite, v)
+	return b
+}
+
+// AddNoteNumber adds a NoteNumber element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ClaimResponseAddItemBuilder) AddNoteNumber(v uint32) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.NoteNumber = append(b.claimResponseAddItem.NoteNumber, &v)
+	return b
+}
+
+// AddAdjudication adds a Adjudication element.
+func (b *ClaimResponseAddItemBuilder) AddAdjudication(v ClaimResponseItemAdjudication) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.Adjudication = append(b.claimResponseAddItem.Adjudication, v)
+	return b
+}
+
+// AddDetail adds a Detail element.
+func (b *ClaimResponseAddItemBuilder) AddDetail(v ClaimResponseAddItemDetail) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.Detail = append(b.claimResponseAddItem.Detail, v)
+	return b
+}
+
+// AddItemSequenceExt attaches extensions to the ItemSequence element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddItemSequence twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ClaimResponseAddItemBuilder) AddItemSequenceExt(v *Element) *ClaimResponseAddItemBuilder {
+	for len(b.claimResponseAddItem.ItemSequenceExt) < len(b.claimResponseAddItem.ItemSequence)-1 {
+		b.claimResponseAddItem.ItemSequenceExt = append(b.claimResponseAddItem.ItemSequenceExt, nil)
+	}
+	b.claimResponseAddItem.ItemSequenceExt = append(b.claimResponseAddItem.ItemSequenceExt, v)
+	return b
+}
+
+// AddDetailSequenceExt attaches extensions to the DetailSequence element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDetailSequence twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ClaimResponseAddItemBuilder) AddDetailSequenceExt(v *Element) *ClaimResponseAddItemBuilder {
+	for len(b.claimResponseAddItem.DetailSequenceExt) < len(b.claimResponseAddItem.DetailSequence)-1 {
+		b.claimResponseAddItem.DetailSequenceExt = append(b.claimResponseAddItem.DetailSequenceExt, nil)
+	}
+	b.claimResponseAddItem.DetailSequenceExt = append(b.claimResponseAddItem.DetailSequenceExt, v)
+	return b
+}
+
+// AddSubdetailSequenceExt attaches extensions to the SubdetailSequence element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddSubdetailSequence twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ClaimResponseAddItemBuilder) AddSubdetailSequenceExt(v *Element) *ClaimResponseAddItemBuilder {
+	for len(b.claimResponseAddItem.SubdetailSequenceExt) < len(b.claimResponseAddItem.SubdetailSequence)-1 {
+		b.claimResponseAddItem.SubdetailSequenceExt = append(b.claimResponseAddItem.SubdetailSequenceExt, nil)
+	}
+	b.claimResponseAddItem.SubdetailSequenceExt = append(b.claimResponseAddItem.SubdetailSequenceExt, v)
+	return b
+}
+
+// SetFactorExt sets the extensions carried by Factor, serialized as
+// "_factor".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseAddItemBuilder) SetFactorExt(v Element) *ClaimResponseAddItemBuilder {
+	b.claimResponseAddItem.FactorExt = &v
+	return b
+}
+
+// AddNoteNumberExt attaches extensions to the NoteNumber element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddNoteNumber twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ClaimResponseAddItemBuilder) AddNoteNumberExt(v *Element) *ClaimResponseAddItemBuilder {
+	for len(b.claimResponseAddItem.NoteNumberExt) < len(b.claimResponseAddItem.NoteNumber)-1 {
+		b.claimResponseAddItem.NoteNumberExt = append(b.claimResponseAddItem.NoteNumberExt, nil)
+	}
+	b.claimResponseAddItem.NoteNumberExt = append(b.claimResponseAddItem.NoteNumberExt, v)
+	return b
+}
+
+// clearServiced unsets every variant of Serviced[x], including the
+// _field companions of the primitive ones.
+func (b *ClaimResponseAddItemBuilder) clearServiced() {
+	b.claimResponseAddItem.ServicedDate = nil
+	b.claimResponseAddItem.ServicedPeriod = nil
+}
+
+// clearLocation unsets every variant of Location[x], including the
+// _field companions of the primitive ones.
+func (b *ClaimResponseAddItemBuilder) clearLocation() {
+	b.claimResponseAddItem.LocationCodeableConcept = nil
+	b.claimResponseAddItem.LocationAddress = nil
+	b.claimResponseAddItem.LocationReference = nil
+}
+
+// =============================================================================
+// ClaimResponseAddItemDetail - Fluent Builder
+// =============================================================================
+
+// ClaimResponseAddItemDetailBuilder provides a fluent API for constructing ClaimResponseAddItemDetail values.
+type ClaimResponseAddItemDetailBuilder struct {
+	claimResponseAddItemDetail *ClaimResponseAddItemDetail
+}
+
+// NewClaimResponseAddItemDetailBuilder creates a new ClaimResponseAddItemDetailBuilder.
+func NewClaimResponseAddItemDetailBuilder() *ClaimResponseAddItemDetailBuilder {
+	return &ClaimResponseAddItemDetailBuilder{
+		claimResponseAddItemDetail: &ClaimResponseAddItemDetail{},
+	}
+}
+
+// Build returns the constructed ClaimResponseAddItemDetail.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimResponseAddItemDetailBuilder) Build() ClaimResponseAddItemDetail {
+	return *b.claimResponseAddItemDetail
+}
+
+// SetId sets the Id field.
+func (b *ClaimResponseAddItemDetailBuilder) SetId(v string) *ClaimResponseAddItemDetailBuilder {
+	b.claimResponseAddItemDetail.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimResponseAddItemDetailBuilder) AddExtension(v Extension) *ClaimResponseAddItemDetailBuilder {
+	b.claimResponseAddItemDetail.Extension = append(b.claimResponseAddItemDetail.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimResponseAddItemDetailBuilder) AddModifierExtension(v Extension) *ClaimResponseAddItemDetailBuilder {
+	b.claimResponseAddItemDetail.ModifierExtension = append(b.claimResponseAddItemDetail.ModifierExtension, v)
+	return b
+}
+
+// SetProductOrService sets the ProductOrService field.
+func (b *ClaimResponseAddItemDetailBuilder) SetProductOrService(v CodeableConcept) *ClaimResponseAddItemDetailBuilder {
+	b.claimResponseAddItemDetail.ProductOrService = &v
+	return b
+}
+
+// AddModifier adds a Modifier element.
+func (b *ClaimResponseAddItemDetailBuilder) AddModifier(v CodeableConcept) *ClaimResponseAddItemDetailBuilder {
+	b.claimResponseAddItemDetail.Modifier = append(b.claimResponseAddItemDetail.Modifier, v)
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *ClaimResponseAddItemDetailBuilder) SetQuantity(v Quantity) *ClaimResponseAddItemDetailBuilder {
+	b.claimResponseAddItemDetail.Quantity = &v
+	return b
+}
+
+// SetUnitPrice sets the UnitPrice field.
+func (b *ClaimResponseAddItemDetailBuilder) SetUnitPrice(v Money) *ClaimResponseAddItemDetailBuilder {
+	b.claimResponseAddItemDetail.UnitPrice = &v
+	return b
+}
+
+// SetFactor sets the Factor field.
+func (b *ClaimResponseAddItemDetailBuilder) SetFactor(v Decimal) *ClaimResponseAddItemDetailBuilder {
+	b.claimResponseAddItemDetail.Factor = &v
+	return b
+}
+
+// SetNet sets the Net field.
+func (b *ClaimResponseAddItemDetailBuilder) SetNet(v Money) *ClaimResponseAddItemDetailBuilder {
+	b.claimResponseAddItemDetail.Net = &v
+	return b
+}
+
+// AddNoteNumber adds a NoteNumber element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ClaimResponseAddItemDetailBuilder) AddNoteNumber(v uint32) *ClaimResponseAddItemDetailBuilder {
+	b.claimResponseAddItemDetail.NoteNumber = append(b.claimResponseAddItemDetail.NoteNumber, &v)
+	return b
+}
+
+// AddAdjudication adds a Adjudication element.
+func (b *ClaimResponseAddItemDetailBuilder) AddAdjudication(v ClaimResponseItemAdjudication) *ClaimResponseAddItemDetailBuilder {
+	b.claimResponseAddItemDetail.Adjudication = append(b.claimResponseAddItemDetail.Adjudication, v)
+	return b
+}
+
+// AddSubDetail adds a SubDetail element.
+func (b *ClaimResponseAddItemDetailBuilder) AddSubDetail(v ClaimResponseAddItemDetailSubDetail) *ClaimResponseAddItemDetailBuilder {
+	b.claimResponseAddItemDetail.SubDetail = append(b.claimResponseAddItemDetail.SubDetail, v)
+	return b
+}
+
+// SetFactorExt sets the extensions carried by Factor, serialized as
+// "_factor".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseAddItemDetailBuilder) SetFactorExt(v Element) *ClaimResponseAddItemDetailBuilder {
+	b.claimResponseAddItemDetail.FactorExt = &v
+	return b
+}
+
+// AddNoteNumberExt attaches extensions to the NoteNumber element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddNoteNumber twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ClaimResponseAddItemDetailBuilder) AddNoteNumberExt(v *Element) *ClaimResponseAddItemDetailBuilder {
+	for len(b.claimResponseAddItemDetail.NoteNumberExt) < len(b.claimResponseAddItemDetail.NoteNumber)-1 {
+		b.claimResponseAddItemDetail.NoteNumberExt = append(b.claimResponseAddItemDetail.NoteNumberExt, nil)
+	}
+	b.claimResponseAddItemDetail.NoteNumberExt = append(b.claimResponseAddItemDetail.NoteNumberExt, v)
+	return b
+}
+
+// =============================================================================
+// ClaimResponseAddItemDetailSubDetail - Fluent Builder
+// =============================================================================
+
+// ClaimResponseAddItemDetailSubDetailBuilder provides a fluent API for constructing ClaimResponseAddItemDetailSubDetail values.
+type ClaimResponseAddItemDetailSubDetailBuilder struct {
+	claimResponseAddItemDetailSubDetail *ClaimResponseAddItemDetailSubDetail
+}
+
+// NewClaimResponseAddItemDetailSubDetailBuilder creates a new ClaimResponseAddItemDetailSubDetailBuilder.
+func NewClaimResponseAddItemDetailSubDetailBuilder() *ClaimResponseAddItemDetailSubDetailBuilder {
+	return &ClaimResponseAddItemDetailSubDetailBuilder{
+		claimResponseAddItemDetailSubDetail: &ClaimResponseAddItemDetailSubDetail{},
+	}
+}
+
+// Build returns the constructed ClaimResponseAddItemDetailSubDetail.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimResponseAddItemDetailSubDetailBuilder) Build() ClaimResponseAddItemDetailSubDetail {
+	return *b.claimResponseAddItemDetailSubDetail
+}
+
+// SetId sets the Id field.
+func (b *ClaimResponseAddItemDetailSubDetailBuilder) SetId(v string) *ClaimResponseAddItemDetailSubDetailBuilder {
+	b.claimResponseAddItemDetailSubDetail.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimResponseAddItemDetailSubDetailBuilder) AddExtension(v Extension) *ClaimResponseAddItemDetailSubDetailBuilder {
+	b.claimResponseAddItemDetailSubDetail.Extension = append(b.claimResponseAddItemDetailSubDetail.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimResponseAddItemDetailSubDetailBuilder) AddModifierExtension(v Extension) *ClaimResponseAddItemDetailSubDetailBuilder {
+	b.claimResponseAddItemDetailSubDetail.ModifierExtension = append(b.claimResponseAddItemDetailSubDetail.ModifierExtension, v)
+	return b
+}
+
+// SetProductOrService sets the ProductOrService field.
+func (b *ClaimResponseAddItemDetailSubDetailBuilder) SetProductOrService(v CodeableConcept) *ClaimResponseAddItemDetailSubDetailBuilder {
+	b.claimResponseAddItemDetailSubDetail.ProductOrService = &v
+	return b
+}
+
+// AddModifier adds a Modifier element.
+func (b *ClaimResponseAddItemDetailSubDetailBuilder) AddModifier(v CodeableConcept) *ClaimResponseAddItemDetailSubDetailBuilder {
+	b.claimResponseAddItemDetailSubDetail.Modifier = append(b.claimResponseAddItemDetailSubDetail.Modifier, v)
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *ClaimResponseAddItemDetailSubDetailBuilder) SetQuantity(v Quantity) *ClaimResponseAddItemDetailSubDetailBuilder {
+	b.claimResponseAddItemDetailSubDetail.Quantity = &v
+	return b
+}
+
+// SetUnitPrice sets the UnitPrice field.
+func (b *ClaimResponseAddItemDetailSubDetailBuilder) SetUnitPrice(v Money) *ClaimResponseAddItemDetailSubDetailBuilder {
+	b.claimResponseAddItemDetailSubDetail.UnitPrice = &v
+	return b
+}
+
+// SetFactor sets the Factor field.
+func (b *ClaimResponseAddItemDetailSubDetailBuilder) SetFactor(v Decimal) *ClaimResponseAddItemDetailSubDetailBuilder {
+	b.claimResponseAddItemDetailSubDetail.Factor = &v
+	return b
+}
+
+// SetNet sets the Net field.
+func (b *ClaimResponseAddItemDetailSubDetailBuilder) SetNet(v Money) *ClaimResponseAddItemDetailSubDetailBuilder {
+	b.claimResponseAddItemDetailSubDetail.Net = &v
+	return b
+}
+
+// AddNoteNumber adds a NoteNumber element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ClaimResponseAddItemDetailSubDetailBuilder) AddNoteNumber(v uint32) *ClaimResponseAddItemDetailSubDetailBuilder {
+	b.claimResponseAddItemDetailSubDetail.NoteNumber = append(b.claimResponseAddItemDetailSubDetail.NoteNumber, &v)
+	return b
+}
+
+// AddAdjudication adds a Adjudication element.
+func (b *ClaimResponseAddItemDetailSubDetailBuilder) AddAdjudication(v ClaimResponseItemAdjudication) *ClaimResponseAddItemDetailSubDetailBuilder {
+	b.claimResponseAddItemDetailSubDetail.Adjudication = append(b.claimResponseAddItemDetailSubDetail.Adjudication, v)
+	return b
+}
+
+// SetFactorExt sets the extensions carried by Factor, serialized as
+// "_factor".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseAddItemDetailSubDetailBuilder) SetFactorExt(v Element) *ClaimResponseAddItemDetailSubDetailBuilder {
+	b.claimResponseAddItemDetailSubDetail.FactorExt = &v
+	return b
+}
+
+// AddNoteNumberExt attaches extensions to the NoteNumber element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddNoteNumber twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ClaimResponseAddItemDetailSubDetailBuilder) AddNoteNumberExt(v *Element) *ClaimResponseAddItemDetailSubDetailBuilder {
+	for len(b.claimResponseAddItemDetailSubDetail.NoteNumberExt) < len(b.claimResponseAddItemDetailSubDetail.NoteNumber)-1 {
+		b.claimResponseAddItemDetailSubDetail.NoteNumberExt = append(b.claimResponseAddItemDetailSubDetail.NoteNumberExt, nil)
+	}
+	b.claimResponseAddItemDetailSubDetail.NoteNumberExt = append(b.claimResponseAddItemDetailSubDetail.NoteNumberExt, v)
+	return b
+}
+
+// =============================================================================
+// ClaimResponseError - Fluent Builder
+// =============================================================================
+
+// ClaimResponseErrorBuilder provides a fluent API for constructing ClaimResponseError values.
+type ClaimResponseErrorBuilder struct {
+	claimResponseError *ClaimResponseError
+}
+
+// NewClaimResponseErrorBuilder creates a new ClaimResponseErrorBuilder.
+func NewClaimResponseErrorBuilder() *ClaimResponseErrorBuilder {
+	return &ClaimResponseErrorBuilder{
+		claimResponseError: &ClaimResponseError{},
+	}
+}
+
+// Build returns the constructed ClaimResponseError.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimResponseErrorBuilder) Build() ClaimResponseError {
+	return *b.claimResponseError
+}
+
+// SetId sets the Id field.
+func (b *ClaimResponseErrorBuilder) SetId(v string) *ClaimResponseErrorBuilder {
+	b.claimResponseError.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimResponseErrorBuilder) AddExtension(v Extension) *ClaimResponseErrorBuilder {
+	b.claimResponseError.Extension = append(b.claimResponseError.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimResponseErrorBuilder) AddModifierExtension(v Extension) *ClaimResponseErrorBuilder {
+	b.claimResponseError.ModifierExtension = append(b.claimResponseError.ModifierExtension, v)
+	return b
+}
+
+// SetItemSequence sets the ItemSequence field.
+func (b *ClaimResponseErrorBuilder) SetItemSequence(v uint32) *ClaimResponseErrorBuilder {
+	b.claimResponseError.ItemSequence = &v
+	return b
+}
+
+// SetDetailSequence sets the DetailSequence field.
+func (b *ClaimResponseErrorBuilder) SetDetailSequence(v uint32) *ClaimResponseErrorBuilder {
+	b.claimResponseError.DetailSequence = &v
+	return b
+}
+
+// SetSubDetailSequence sets the SubDetailSequence field.
+func (b *ClaimResponseErrorBuilder) SetSubDetailSequence(v uint32) *ClaimResponseErrorBuilder {
+	b.claimResponseError.SubDetailSequence = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ClaimResponseErrorBuilder) SetCode(v CodeableConcept) *ClaimResponseErrorBuilder {
+	b.claimResponseError.Code = &v
+	return b
+}
+
+// SetItemSequenceExt sets the extensions carried by ItemSequence, serialized as
+// "_itemSequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseErrorBuilder) SetItemSequenceExt(v Element) *ClaimResponseErrorBuilder {
+	b.claimResponseError.ItemSequenceExt = &v
+	return b
+}
+
+// SetDetailSequenceExt sets the extensions carried by DetailSequence, serialized as
+// "_detailSequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseErrorBuilder) SetDetailSequenceExt(v Element) *ClaimResponseErrorBuilder {
+	b.claimResponseError.DetailSequenceExt = &v
+	return b
+}
+
+// SetSubDetailSequenceExt sets the extensions carried by SubDetailSequence, serialized as
+// "_subDetailSequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseErrorBuilder) SetSubDetailSequenceExt(v Element) *ClaimResponseErrorBuilder {
+	b.claimResponseError.SubDetailSequenceExt = &v
+	return b
+}
+
+// =============================================================================
+// ClaimResponseInsurance - Fluent Builder
+// =============================================================================
+
+// ClaimResponseInsuranceBuilder provides a fluent API for constructing ClaimResponseInsurance values.
+type ClaimResponseInsuranceBuilder struct {
+	claimResponseInsurance *ClaimResponseInsurance
+}
+
+// NewClaimResponseInsuranceBuilder creates a new ClaimResponseInsuranceBuilder.
+func NewClaimResponseInsuranceBuilder() *ClaimResponseInsuranceBuilder {
+	return &ClaimResponseInsuranceBuilder{
+		claimResponseInsurance: &ClaimResponseInsurance{},
+	}
+}
+
+// Build returns the constructed ClaimResponseInsurance.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimResponseInsuranceBuilder) Build() ClaimResponseInsurance {
+	return *b.claimResponseInsurance
+}
+
+// SetId sets the Id field.
+func (b *ClaimResponseInsuranceBuilder) SetId(v string) *ClaimResponseInsuranceBuilder {
+	b.claimResponseInsurance.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimResponseInsuranceBuilder) AddExtension(v Extension) *ClaimResponseInsuranceBuilder {
+	b.claimResponseInsurance.Extension = append(b.claimResponseInsurance.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimResponseInsuranceBuilder) AddModifierExtension(v Extension) *ClaimResponseInsuranceBuilder {
+	b.claimResponseInsurance.ModifierExtension = append(b.claimResponseInsurance.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *ClaimResponseInsuranceBuilder) SetSequence(v uint32) *ClaimResponseInsuranceBuilder {
+	b.claimResponseInsurance.Sequence = &v
+	return b
+}
+
+// SetFocal sets the Focal field.
+func (b *ClaimResponseInsuranceBuilder) SetFocal(v bool) *ClaimResponseInsuranceBuilder {
+	b.claimResponseInsurance.Focal = &v
+	return b
+}
+
+// SetCoverage sets the Coverage field.
+func (b *ClaimResponseInsuranceBuilder) SetCoverage(v Reference) *ClaimResponseInsuranceBuilder {
+	b.claimResponseInsurance.Coverage = &v
+	return b
+}
+
+// SetBusinessArrangement sets the BusinessArrangement field.
+func (b *ClaimResponseInsuranceBuilder) SetBusinessArrangement(v string) *ClaimResponseInsuranceBuilder {
+	b.claimResponseInsurance.BusinessArrangement = &v
+	return b
+}
+
+// SetClaimResponse sets the ClaimResponse field.
+func (b *ClaimResponseInsuranceBuilder) SetClaimResponse(v Reference) *ClaimResponseInsuranceBuilder {
+	b.claimResponseInsurance.ClaimResponse = &v
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseInsuranceBuilder) SetSequenceExt(v Element) *ClaimResponseInsuranceBuilder {
+	b.claimResponseInsurance.SequenceExt = &v
+	return b
+}
+
+// SetFocalExt sets the extensions carried by Focal, serialized as
+// "_focal".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseInsuranceBuilder) SetFocalExt(v Element) *ClaimResponseInsuranceBuilder {
+	b.claimResponseInsurance.FocalExt = &v
+	return b
+}
+
+// SetBusinessArrangementExt sets the extensions carried by BusinessArrangement, serialized as
+// "_businessArrangement".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseInsuranceBuilder) SetBusinessArrangementExt(v Element) *ClaimResponseInsuranceBuilder {
+	b.claimResponseInsurance.BusinessArrangementExt = &v
+	return b
+}
+
+// =============================================================================
+// ClaimResponseItem - Fluent Builder
+// =============================================================================
+
+// ClaimResponseItemBuilder provides a fluent API for constructing ClaimResponseItem values.
+type ClaimResponseItemBuilder struct {
+	claimResponseItem *ClaimResponseItem
+}
+
+// NewClaimResponseItemBuilder creates a new ClaimResponseItemBuilder.
+func NewClaimResponseItemBuilder() *ClaimResponseItemBuilder {
+	return &ClaimResponseItemBuilder{
+		claimResponseItem: &ClaimResponseItem{},
+	}
+}
+
+// Build returns the constructed ClaimResponseItem.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimResponseItemBuilder) Build() ClaimResponseItem {
+	return *b.claimResponseItem
+}
+
+// SetId sets the Id field.
+func (b *ClaimResponseItemBuilder) SetId(v string) *ClaimResponseItemBuilder {
+	b.claimResponseItem.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimResponseItemBuilder) AddExtension(v Extension) *ClaimResponseItemBuilder {
+	b.claimResponseItem.Extension = append(b.claimResponseItem.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimResponseItemBuilder) AddModifierExtension(v Extension) *ClaimResponseItemBuilder {
+	b.claimResponseItem.ModifierExtension = append(b.claimResponseItem.ModifierExtension, v)
+	return b
+}
+
+// SetItemSequence sets the ItemSequence field.
+func (b *ClaimResponseItemBuilder) SetItemSequence(v uint32) *ClaimResponseItemBuilder {
+	b.claimResponseItem.ItemSequence = &v
+	return b
+}
+
+// AddNoteNumber adds a NoteNumber element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ClaimResponseItemBuilder) AddNoteNumber(v uint32) *ClaimResponseItemBuilder {
+	b.claimResponseItem.NoteNumber = append(b.claimResponseItem.NoteNumber, &v)
+	return b
+}
+
+// AddAdjudication adds a Adjudication element.
+func (b *ClaimResponseItemBuilder) AddAdjudication(v ClaimResponseItemAdjudication) *ClaimResponseItemBuilder {
+	b.claimResponseItem.Adjudication = append(b.claimResponseItem.Adjudication, v)
+	return b
+}
+
+// AddDetail adds a Detail element.
+func (b *ClaimResponseItemBuilder) AddDetail(v ClaimResponseItemDetail) *ClaimResponseItemBuilder {
+	b.claimResponseItem.Detail = append(b.claimResponseItem.Detail, v)
+	return b
+}
+
+// SetItemSequenceExt sets the extensions carried by ItemSequence, serialized as
+// "_itemSequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseItemBuilder) SetItemSequenceExt(v Element) *ClaimResponseItemBuilder {
+	b.claimResponseItem.ItemSequenceExt = &v
+	return b
+}
+
+// AddNoteNumberExt attaches extensions to the NoteNumber element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddNoteNumber twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ClaimResponseItemBuilder) AddNoteNumberExt(v *Element) *ClaimResponseItemBuilder {
+	for len(b.claimResponseItem.NoteNumberExt) < len(b.claimResponseItem.NoteNumber)-1 {
+		b.claimResponseItem.NoteNumberExt = append(b.claimResponseItem.NoteNumberExt, nil)
+	}
+	b.claimResponseItem.NoteNumberExt = append(b.claimResponseItem.NoteNumberExt, v)
+	return b
+}
+
+// =============================================================================
+// ClaimResponseItemAdjudication - Fluent Builder
+// =============================================================================
+
+// ClaimResponseItemAdjudicationBuilder provides a fluent API for constructing ClaimResponseItemAdjudication values.
+type ClaimResponseItemAdjudicationBuilder struct {
+	claimResponseItemAdjudication *ClaimResponseItemAdjudication
+}
+
+// NewClaimResponseItemAdjudicationBuilder creates a new ClaimResponseItemAdjudicationBuilder.
+func NewClaimResponseItemAdjudicationBuilder() *ClaimResponseItemAdjudicationBuilder {
+	return &ClaimResponseItemAdjudicationBuilder{
+		claimResponseItemAdjudication: &ClaimResponseItemAdjudication{},
+	}
+}
+
+// Build returns the constructed ClaimResponseItemAdjudication.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimResponseItemAdjudicationBuilder) Build() ClaimResponseItemAdjudication {
+	return *b.claimResponseItemAdjudication
+}
+
+// SetId sets the Id field.
+func (b *ClaimResponseItemAdjudicationBuilder) SetId(v string) *ClaimResponseItemAdjudicationBuilder {
+	b.claimResponseItemAdjudication.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimResponseItemAdjudicationBuilder) AddExtension(v Extension) *ClaimResponseItemAdjudicationBuilder {
+	b.claimResponseItemAdjudication.Extension = append(b.claimResponseItemAdjudication.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimResponseItemAdjudicationBuilder) AddModifierExtension(v Extension) *ClaimResponseItemAdjudicationBuilder {
+	b.claimResponseItemAdjudication.ModifierExtension = append(b.claimResponseItemAdjudication.ModifierExtension, v)
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *ClaimResponseItemAdjudicationBuilder) SetCategory(v CodeableConcept) *ClaimResponseItemAdjudicationBuilder {
+	b.claimResponseItemAdjudication.Category = &v
+	return b
+}
+
+// SetReason sets the Reason field.
+func (b *ClaimResponseItemAdjudicationBuilder) SetReason(v CodeableConcept) *ClaimResponseItemAdjudicationBuilder {
+	b.claimResponseItemAdjudication.Reason = &v
+	return b
+}
+
+// SetAmount sets the Amount field.
+func (b *ClaimResponseItemAdjudicationBuilder) SetAmount(v Money) *ClaimResponseItemAdjudicationBuilder {
+	b.claimResponseItemAdjudication.Amount = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *ClaimResponseItemAdjudicationBuilder) SetValue(v Decimal) *ClaimResponseItemAdjudicationBuilder {
+	b.claimResponseItemAdjudication.Value = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseItemAdjudicationBuilder) SetValueExt(v Element) *ClaimResponseItemAdjudicationBuilder {
+	b.claimResponseItemAdjudication.ValueExt = &v
+	return b
+}
+
+// =============================================================================
+// ClaimResponseItemDetail - Fluent Builder
+// =============================================================================
+
+// ClaimResponseItemDetailBuilder provides a fluent API for constructing ClaimResponseItemDetail values.
+type ClaimResponseItemDetailBuilder struct {
+	claimResponseItemDetail *ClaimResponseItemDetail
+}
+
+// NewClaimResponseItemDetailBuilder creates a new ClaimResponseItemDetailBuilder.
+func NewClaimResponseItemDetailBuilder() *ClaimResponseItemDetailBuilder {
+	return &ClaimResponseItemDetailBuilder{
+		claimResponseItemDetail: &ClaimResponseItemDetail{},
+	}
+}
+
+// Build returns the constructed ClaimResponseItemDetail.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimResponseItemDetailBuilder) Build() ClaimResponseItemDetail {
+	return *b.claimResponseItemDetail
+}
+
+// SetId sets the Id field.
+func (b *ClaimResponseItemDetailBuilder) SetId(v string) *ClaimResponseItemDetailBuilder {
+	b.claimResponseItemDetail.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimResponseItemDetailBuilder) AddExtension(v Extension) *ClaimResponseItemDetailBuilder {
+	b.claimResponseItemDetail.Extension = append(b.claimResponseItemDetail.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimResponseItemDetailBuilder) AddModifierExtension(v Extension) *ClaimResponseItemDetailBuilder {
+	b.claimResponseItemDetail.ModifierExtension = append(b.claimResponseItemDetail.ModifierExtension, v)
+	return b
+}
+
+// SetDetailSequence sets the DetailSequence field.
+func (b *ClaimResponseItemDetailBuilder) SetDetailSequence(v uint32) *ClaimResponseItemDetailBuilder {
+	b.claimResponseItemDetail.DetailSequence = &v
+	return b
+}
+
+// AddNoteNumber adds a NoteNumber element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ClaimResponseItemDetailBuilder) AddNoteNumber(v uint32) *ClaimResponseItemDetailBuilder {
+	b.claimResponseItemDetail.NoteNumber = append(b.claimResponseItemDetail.NoteNumber, &v)
+	return b
+}
+
+// AddAdjudication adds a Adjudication element.
+func (b *ClaimResponseItemDetailBuilder) AddAdjudication(v ClaimResponseItemAdjudication) *ClaimResponseItemDetailBuilder {
+	b.claimResponseItemDetail.Adjudication = append(b.claimResponseItemDetail.Adjudication, v)
+	return b
+}
+
+// AddSubDetail adds a SubDetail element.
+func (b *ClaimResponseItemDetailBuilder) AddSubDetail(v ClaimResponseItemDetailSubDetail) *ClaimResponseItemDetailBuilder {
+	b.claimResponseItemDetail.SubDetail = append(b.claimResponseItemDetail.SubDetail, v)
+	return b
+}
+
+// SetDetailSequenceExt sets the extensions carried by DetailSequence, serialized as
+// "_detailSequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseItemDetailBuilder) SetDetailSequenceExt(v Element) *ClaimResponseItemDetailBuilder {
+	b.claimResponseItemDetail.DetailSequenceExt = &v
+	return b
+}
+
+// AddNoteNumberExt attaches extensions to the NoteNumber element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddNoteNumber twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ClaimResponseItemDetailBuilder) AddNoteNumberExt(v *Element) *ClaimResponseItemDetailBuilder {
+	for len(b.claimResponseItemDetail.NoteNumberExt) < len(b.claimResponseItemDetail.NoteNumber)-1 {
+		b.claimResponseItemDetail.NoteNumberExt = append(b.claimResponseItemDetail.NoteNumberExt, nil)
+	}
+	b.claimResponseItemDetail.NoteNumberExt = append(b.claimResponseItemDetail.NoteNumberExt, v)
+	return b
+}
+
+// =============================================================================
+// ClaimResponseItemDetailSubDetail - Fluent Builder
+// =============================================================================
+
+// ClaimResponseItemDetailSubDetailBuilder provides a fluent API for constructing ClaimResponseItemDetailSubDetail values.
+type ClaimResponseItemDetailSubDetailBuilder struct {
+	claimResponseItemDetailSubDetail *ClaimResponseItemDetailSubDetail
+}
+
+// NewClaimResponseItemDetailSubDetailBuilder creates a new ClaimResponseItemDetailSubDetailBuilder.
+func NewClaimResponseItemDetailSubDetailBuilder() *ClaimResponseItemDetailSubDetailBuilder {
+	return &ClaimResponseItemDetailSubDetailBuilder{
+		claimResponseItemDetailSubDetail: &ClaimResponseItemDetailSubDetail{},
+	}
+}
+
+// Build returns the constructed ClaimResponseItemDetailSubDetail.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimResponseItemDetailSubDetailBuilder) Build() ClaimResponseItemDetailSubDetail {
+	return *b.claimResponseItemDetailSubDetail
+}
+
+// SetId sets the Id field.
+func (b *ClaimResponseItemDetailSubDetailBuilder) SetId(v string) *ClaimResponseItemDetailSubDetailBuilder {
+	b.claimResponseItemDetailSubDetail.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimResponseItemDetailSubDetailBuilder) AddExtension(v Extension) *ClaimResponseItemDetailSubDetailBuilder {
+	b.claimResponseItemDetailSubDetail.Extension = append(b.claimResponseItemDetailSubDetail.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimResponseItemDetailSubDetailBuilder) AddModifierExtension(v Extension) *ClaimResponseItemDetailSubDetailBuilder {
+	b.claimResponseItemDetailSubDetail.ModifierExtension = append(b.claimResponseItemDetailSubDetail.ModifierExtension, v)
+	return b
+}
+
+// SetSubDetailSequence sets the SubDetailSequence field.
+func (b *ClaimResponseItemDetailSubDetailBuilder) SetSubDetailSequence(v uint32) *ClaimResponseItemDetailSubDetailBuilder {
+	b.claimResponseItemDetailSubDetail.SubDetailSequence = &v
+	return b
+}
+
+// AddNoteNumber adds a NoteNumber element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ClaimResponseItemDetailSubDetailBuilder) AddNoteNumber(v uint32) *ClaimResponseItemDetailSubDetailBuilder {
+	b.claimResponseItemDetailSubDetail.NoteNumber = append(b.claimResponseItemDetailSubDetail.NoteNumber, &v)
+	return b
+}
+
+// AddAdjudication adds a Adjudication element.
+func (b *ClaimResponseItemDetailSubDetailBuilder) AddAdjudication(v ClaimResponseItemAdjudication) *ClaimResponseItemDetailSubDetailBuilder {
+	b.claimResponseItemDetailSubDetail.Adjudication = append(b.claimResponseItemDetailSubDetail.Adjudication, v)
+	return b
+}
+
+// SetSubDetailSequenceExt sets the extensions carried by SubDetailSequence, serialized as
+// "_subDetailSequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseItemDetailSubDetailBuilder) SetSubDetailSequenceExt(v Element) *ClaimResponseItemDetailSubDetailBuilder {
+	b.claimResponseItemDetailSubDetail.SubDetailSequenceExt = &v
+	return b
+}
+
+// AddNoteNumberExt attaches extensions to the NoteNumber element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddNoteNumber twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ClaimResponseItemDetailSubDetailBuilder) AddNoteNumberExt(v *Element) *ClaimResponseItemDetailSubDetailBuilder {
+	for len(b.claimResponseItemDetailSubDetail.NoteNumberExt) < len(b.claimResponseItemDetailSubDetail.NoteNumber)-1 {
+		b.claimResponseItemDetailSubDetail.NoteNumberExt = append(b.claimResponseItemDetailSubDetail.NoteNumberExt, nil)
+	}
+	b.claimResponseItemDetailSubDetail.NoteNumberExt = append(b.claimResponseItemDetailSubDetail.NoteNumberExt, v)
+	return b
+}
+
+// =============================================================================
+// ClaimResponsePayment - Fluent Builder
+// =============================================================================
+
+// ClaimResponsePaymentBuilder provides a fluent API for constructing ClaimResponsePayment values.
+type ClaimResponsePaymentBuilder struct {
+	claimResponsePayment *ClaimResponsePayment
+}
+
+// NewClaimResponsePaymentBuilder creates a new ClaimResponsePaymentBuilder.
+func NewClaimResponsePaymentBuilder() *ClaimResponsePaymentBuilder {
+	return &ClaimResponsePaymentBuilder{
+		claimResponsePayment: &ClaimResponsePayment{},
+	}
+}
+
+// Build returns the constructed ClaimResponsePayment.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimResponsePaymentBuilder) Build() ClaimResponsePayment {
+	return *b.claimResponsePayment
+}
+
+// SetId sets the Id field.
+func (b *ClaimResponsePaymentBuilder) SetId(v string) *ClaimResponsePaymentBuilder {
+	b.claimResponsePayment.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimResponsePaymentBuilder) AddExtension(v Extension) *ClaimResponsePaymentBuilder {
+	b.claimResponsePayment.Extension = append(b.claimResponsePayment.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimResponsePaymentBuilder) AddModifierExtension(v Extension) *ClaimResponsePaymentBuilder {
+	b.claimResponsePayment.ModifierExtension = append(b.claimResponsePayment.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ClaimResponsePaymentBuilder) SetType(v CodeableConcept) *ClaimResponsePaymentBuilder {
+	b.claimResponsePayment.Type = &v
+	return b
+}
+
+// SetAdjustment sets the Adjustment field.
+func (b *ClaimResponsePaymentBuilder) SetAdjustment(v Money) *ClaimResponsePaymentBuilder {
+	b.claimResponsePayment.Adjustment = &v
+	return b
+}
+
+// SetAdjustmentReason sets the AdjustmentReason field.
+func (b *ClaimResponsePaymentBuilder) SetAdjustmentReason(v CodeableConcept) *ClaimResponsePaymentBuilder {
+	b.claimResponsePayment.AdjustmentReason = &v
+	return b
+}
+
+// SetDate sets the Date field.
+func (b *ClaimResponsePaymentBuilder) SetDate(v string) *ClaimResponsePaymentBuilder {
+	b.claimResponsePayment.Date = &v
+	return b
+}
+
+// SetAmount sets the Amount field.
+func (b *ClaimResponsePaymentBuilder) SetAmount(v Money) *ClaimResponsePaymentBuilder {
+	b.claimResponsePayment.Amount = &v
+	return b
+}
+
+// SetIdentifier sets the Identifier field.
+func (b *ClaimResponsePaymentBuilder) SetIdentifier(v Identifier) *ClaimResponsePaymentBuilder {
+	b.claimResponsePayment.Identifier = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponsePaymentBuilder) SetDateExt(v Element) *ClaimResponsePaymentBuilder {
+	b.claimResponsePayment.DateExt = &v
+	return b
+}
+
+// =============================================================================
+// ClaimResponseProcessNote - Fluent Builder
+// =============================================================================
+
+// ClaimResponseProcessNoteBuilder provides a fluent API for constructing ClaimResponseProcessNote values.
+type ClaimResponseProcessNoteBuilder struct {
+	claimResponseProcessNote *ClaimResponseProcessNote
+}
+
+// NewClaimResponseProcessNoteBuilder creates a new ClaimResponseProcessNoteBuilder.
+func NewClaimResponseProcessNoteBuilder() *ClaimResponseProcessNoteBuilder {
+	return &ClaimResponseProcessNoteBuilder{
+		claimResponseProcessNote: &ClaimResponseProcessNote{},
+	}
+}
+
+// Build returns the constructed ClaimResponseProcessNote.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimResponseProcessNoteBuilder) Build() ClaimResponseProcessNote {
+	return *b.claimResponseProcessNote
+}
+
+// SetId sets the Id field.
+func (b *ClaimResponseProcessNoteBuilder) SetId(v string) *ClaimResponseProcessNoteBuilder {
+	b.claimResponseProcessNote.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimResponseProcessNoteBuilder) AddExtension(v Extension) *ClaimResponseProcessNoteBuilder {
+	b.claimResponseProcessNote.Extension = append(b.claimResponseProcessNote.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimResponseProcessNoteBuilder) AddModifierExtension(v Extension) *ClaimResponseProcessNoteBuilder {
+	b.claimResponseProcessNote.ModifierExtension = append(b.claimResponseProcessNote.ModifierExtension, v)
+	return b
+}
+
+// SetNumber sets the Number field.
+func (b *ClaimResponseProcessNoteBuilder) SetNumber(v uint32) *ClaimResponseProcessNoteBuilder {
+	b.claimResponseProcessNote.Number = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ClaimResponseProcessNoteBuilder) SetType(v NoteType) *ClaimResponseProcessNoteBuilder {
+	b.claimResponseProcessNote.Type = &v
+	return b
+}
+
+// SetText sets the Text field.
+func (b *ClaimResponseProcessNoteBuilder) SetText(v string) *ClaimResponseProcessNoteBuilder {
+	b.claimResponseProcessNote.Text = &v
+	return b
+}
+
+// SetLanguage sets the Language field.
+func (b *ClaimResponseProcessNoteBuilder) SetLanguage(v CodeableConcept) *ClaimResponseProcessNoteBuilder {
+	b.claimResponseProcessNote.Language = &v
+	return b
+}
+
+// SetNumberExt sets the extensions carried by Number, serialized as
+// "_number".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseProcessNoteBuilder) SetNumberExt(v Element) *ClaimResponseProcessNoteBuilder {
+	b.claimResponseProcessNote.NumberExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseProcessNoteBuilder) SetTypeExt(v Element) *ClaimResponseProcessNoteBuilder {
+	b.claimResponseProcessNote.TypeExt = &v
+	return b
+}
+
+// SetTextExt sets the extensions carried by Text, serialized as
+// "_text".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimResponseProcessNoteBuilder) SetTextExt(v Element) *ClaimResponseProcessNoteBuilder {
+	b.claimResponseProcessNote.TextExt = &v
+	return b
+}
+
+// =============================================================================
+// ClaimResponseTotal - Fluent Builder
+// =============================================================================
+
+// ClaimResponseTotalBuilder provides a fluent API for constructing ClaimResponseTotal values.
+type ClaimResponseTotalBuilder struct {
+	claimResponseTotal *ClaimResponseTotal
+}
+
+// NewClaimResponseTotalBuilder creates a new ClaimResponseTotalBuilder.
+func NewClaimResponseTotalBuilder() *ClaimResponseTotalBuilder {
+	return &ClaimResponseTotalBuilder{
+		claimResponseTotal: &ClaimResponseTotal{},
+	}
+}
+
+// Build returns the constructed ClaimResponseTotal.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimResponseTotalBuilder) Build() ClaimResponseTotal {
+	return *b.claimResponseTotal
+}
+
+// SetId sets the Id field.
+func (b *ClaimResponseTotalBuilder) SetId(v string) *ClaimResponseTotalBuilder {
+	b.claimResponseTotal.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimResponseTotalBuilder) AddExtension(v Extension) *ClaimResponseTotalBuilder {
+	b.claimResponseTotal.Extension = append(b.claimResponseTotal.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimResponseTotalBuilder) AddModifierExtension(v Extension) *ClaimResponseTotalBuilder {
+	b.claimResponseTotal.ModifierExtension = append(b.claimResponseTotal.ModifierExtension, v)
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *ClaimResponseTotalBuilder) SetCategory(v CodeableConcept) *ClaimResponseTotalBuilder {
+	b.claimResponseTotal.Category = &v
+	return b
+}
+
+// SetAmount sets the Amount field.
+func (b *ClaimResponseTotalBuilder) SetAmount(v Money) *ClaimResponseTotalBuilder {
+	b.claimResponseTotal.Amount = &v
+	return b
+}

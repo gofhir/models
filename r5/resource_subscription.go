@@ -911,3 +911,335 @@ func (b *SubscriptionBuilder) SetMaxCount(v uint32) *SubscriptionBuilder {
 	b.subscription.MaxCount = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionBuilder) SetImplicitRulesExt(v Element) *SubscriptionBuilder {
+	b.subscription.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionBuilder) SetLanguageExt(v Element) *SubscriptionBuilder {
+	b.subscription.LanguageExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionBuilder) SetNameExt(v Element) *SubscriptionBuilder {
+	b.subscription.NameExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionBuilder) SetStatusExt(v Element) *SubscriptionBuilder {
+	b.subscription.StatusExt = &v
+	return b
+}
+
+// SetTopicExt sets the extensions carried by Topic, serialized as
+// "_topic".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionBuilder) SetTopicExt(v Element) *SubscriptionBuilder {
+	b.subscription.TopicExt = &v
+	return b
+}
+
+// SetEndExt sets the extensions carried by End, serialized as
+// "_end".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionBuilder) SetEndExt(v Element) *SubscriptionBuilder {
+	b.subscription.EndExt = &v
+	return b
+}
+
+// SetReasonExt sets the extensions carried by Reason, serialized as
+// "_reason".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionBuilder) SetReasonExt(v Element) *SubscriptionBuilder {
+	b.subscription.ReasonExt = &v
+	return b
+}
+
+// SetEndpointExt sets the extensions carried by Endpoint, serialized as
+// "_endpoint".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionBuilder) SetEndpointExt(v Element) *SubscriptionBuilder {
+	b.subscription.EndpointExt = &v
+	return b
+}
+
+// SetHeartbeatPeriodExt sets the extensions carried by HeartbeatPeriod, serialized as
+// "_heartbeatPeriod".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionBuilder) SetHeartbeatPeriodExt(v Element) *SubscriptionBuilder {
+	b.subscription.HeartbeatPeriodExt = &v
+	return b
+}
+
+// SetTimeoutExt sets the extensions carried by Timeout, serialized as
+// "_timeout".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionBuilder) SetTimeoutExt(v Element) *SubscriptionBuilder {
+	b.subscription.TimeoutExt = &v
+	return b
+}
+
+// SetContentTypeExt sets the extensions carried by ContentType, serialized as
+// "_contentType".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionBuilder) SetContentTypeExt(v Element) *SubscriptionBuilder {
+	b.subscription.ContentTypeExt = &v
+	return b
+}
+
+// SetContentExt sets the extensions carried by Content, serialized as
+// "_content".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionBuilder) SetContentExt(v Element) *SubscriptionBuilder {
+	b.subscription.ContentExt = &v
+	return b
+}
+
+// SetMaxCountExt sets the extensions carried by MaxCount, serialized as
+// "_maxCount".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionBuilder) SetMaxCountExt(v Element) *SubscriptionBuilder {
+	b.subscription.MaxCountExt = &v
+	return b
+}
+
+// =============================================================================
+// SubscriptionFilterBy - Fluent Builder
+// =============================================================================
+
+// SubscriptionFilterByBuilder provides a fluent API for constructing SubscriptionFilterBy values.
+type SubscriptionFilterByBuilder struct {
+	subscriptionFilterBy *SubscriptionFilterBy
+}
+
+// NewSubscriptionFilterByBuilder creates a new SubscriptionFilterByBuilder.
+func NewSubscriptionFilterByBuilder() *SubscriptionFilterByBuilder {
+	return &SubscriptionFilterByBuilder{
+		subscriptionFilterBy: &SubscriptionFilterBy{},
+	}
+}
+
+// Build returns the constructed SubscriptionFilterBy.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubscriptionFilterByBuilder) Build() SubscriptionFilterBy {
+	return *b.subscriptionFilterBy
+}
+
+// SetId sets the Id field.
+func (b *SubscriptionFilterByBuilder) SetId(v string) *SubscriptionFilterByBuilder {
+	b.subscriptionFilterBy.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubscriptionFilterByBuilder) AddExtension(v Extension) *SubscriptionFilterByBuilder {
+	b.subscriptionFilterBy.Extension = append(b.subscriptionFilterBy.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubscriptionFilterByBuilder) AddModifierExtension(v Extension) *SubscriptionFilterByBuilder {
+	b.subscriptionFilterBy.ModifierExtension = append(b.subscriptionFilterBy.ModifierExtension, v)
+	return b
+}
+
+// SetResourceType sets the ResourceType field.
+func (b *SubscriptionFilterByBuilder) SetResourceType(v string) *SubscriptionFilterByBuilder {
+	b.subscriptionFilterBy.ResourceType = &v
+	return b
+}
+
+// SetFilterParameter sets the FilterParameter field.
+func (b *SubscriptionFilterByBuilder) SetFilterParameter(v string) *SubscriptionFilterByBuilder {
+	b.subscriptionFilterBy.FilterParameter = &v
+	return b
+}
+
+// SetComparator sets the Comparator field.
+func (b *SubscriptionFilterByBuilder) SetComparator(v SearchComparator) *SubscriptionFilterByBuilder {
+	b.subscriptionFilterBy.Comparator = &v
+	return b
+}
+
+// SetModifier sets the Modifier field.
+func (b *SubscriptionFilterByBuilder) SetModifier(v SearchModifierCode) *SubscriptionFilterByBuilder {
+	b.subscriptionFilterBy.Modifier = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *SubscriptionFilterByBuilder) SetValue(v string) *SubscriptionFilterByBuilder {
+	b.subscriptionFilterBy.Value = &v
+	return b
+}
+
+// SetResourceTypeExt sets the extensions carried by ResourceType, serialized as
+// "_resourceType".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionFilterByBuilder) SetResourceTypeExt(v Element) *SubscriptionFilterByBuilder {
+	b.subscriptionFilterBy.ResourceTypeExt = &v
+	return b
+}
+
+// SetFilterParameterExt sets the extensions carried by FilterParameter, serialized as
+// "_filterParameter".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionFilterByBuilder) SetFilterParameterExt(v Element) *SubscriptionFilterByBuilder {
+	b.subscriptionFilterBy.FilterParameterExt = &v
+	return b
+}
+
+// SetComparatorExt sets the extensions carried by Comparator, serialized as
+// "_comparator".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionFilterByBuilder) SetComparatorExt(v Element) *SubscriptionFilterByBuilder {
+	b.subscriptionFilterBy.ComparatorExt = &v
+	return b
+}
+
+// SetModifierExt sets the extensions carried by Modifier, serialized as
+// "_modifier".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionFilterByBuilder) SetModifierExt(v Element) *SubscriptionFilterByBuilder {
+	b.subscriptionFilterBy.ModifierExt = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionFilterByBuilder) SetValueExt(v Element) *SubscriptionFilterByBuilder {
+	b.subscriptionFilterBy.ValueExt = &v
+	return b
+}
+
+// =============================================================================
+// SubscriptionParameter - Fluent Builder
+// =============================================================================
+
+// SubscriptionParameterBuilder provides a fluent API for constructing SubscriptionParameter values.
+type SubscriptionParameterBuilder struct {
+	subscriptionParameter *SubscriptionParameter
+}
+
+// NewSubscriptionParameterBuilder creates a new SubscriptionParameterBuilder.
+func NewSubscriptionParameterBuilder() *SubscriptionParameterBuilder {
+	return &SubscriptionParameterBuilder{
+		subscriptionParameter: &SubscriptionParameter{},
+	}
+}
+
+// Build returns the constructed SubscriptionParameter.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubscriptionParameterBuilder) Build() SubscriptionParameter {
+	return *b.subscriptionParameter
+}
+
+// SetId sets the Id field.
+func (b *SubscriptionParameterBuilder) SetId(v string) *SubscriptionParameterBuilder {
+	b.subscriptionParameter.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubscriptionParameterBuilder) AddExtension(v Extension) *SubscriptionParameterBuilder {
+	b.subscriptionParameter.Extension = append(b.subscriptionParameter.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubscriptionParameterBuilder) AddModifierExtension(v Extension) *SubscriptionParameterBuilder {
+	b.subscriptionParameter.ModifierExtension = append(b.subscriptionParameter.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *SubscriptionParameterBuilder) SetName(v string) *SubscriptionParameterBuilder {
+	b.subscriptionParameter.Name = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *SubscriptionParameterBuilder) SetValue(v string) *SubscriptionParameterBuilder {
+	b.subscriptionParameter.Value = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionParameterBuilder) SetNameExt(v Element) *SubscriptionParameterBuilder {
+	b.subscriptionParameter.NameExt = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionParameterBuilder) SetValueExt(v Element) *SubscriptionParameterBuilder {
+	b.subscriptionParameter.ValueExt = &v
+	return b
+}

@@ -487,3 +487,100 @@ func (b *LinkageBuilder) AddItem(v LinkageItem) *LinkageBuilder {
 	b.linkage.Item = append(b.linkage.Item, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *LinkageBuilder) SetImplicitRulesExt(v Element) *LinkageBuilder {
+	b.linkage.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *LinkageBuilder) SetLanguageExt(v Element) *LinkageBuilder {
+	b.linkage.LanguageExt = &v
+	return b
+}
+
+// SetActiveExt sets the extensions carried by Active, serialized as
+// "_active".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *LinkageBuilder) SetActiveExt(v Element) *LinkageBuilder {
+	b.linkage.ActiveExt = &v
+	return b
+}
+
+// =============================================================================
+// LinkageItem - Fluent Builder
+// =============================================================================
+
+// LinkageItemBuilder provides a fluent API for constructing LinkageItem values.
+type LinkageItemBuilder struct {
+	linkageItem *LinkageItem
+}
+
+// NewLinkageItemBuilder creates a new LinkageItemBuilder.
+func NewLinkageItemBuilder() *LinkageItemBuilder {
+	return &LinkageItemBuilder{
+		linkageItem: &LinkageItem{},
+	}
+}
+
+// Build returns the constructed LinkageItem.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *LinkageItemBuilder) Build() LinkageItem {
+	return *b.linkageItem
+}
+
+// SetId sets the Id field.
+func (b *LinkageItemBuilder) SetId(v string) *LinkageItemBuilder {
+	b.linkageItem.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *LinkageItemBuilder) AddExtension(v Extension) *LinkageItemBuilder {
+	b.linkageItem.Extension = append(b.linkageItem.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *LinkageItemBuilder) AddModifierExtension(v Extension) *LinkageItemBuilder {
+	b.linkageItem.ModifierExtension = append(b.linkageItem.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *LinkageItemBuilder) SetType(v LinkageType) *LinkageItemBuilder {
+	b.linkageItem.Type = &v
+	return b
+}
+
+// SetResource sets the Resource field.
+func (b *LinkageItemBuilder) SetResource(v Reference) *LinkageItemBuilder {
+	b.linkageItem.Resource = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *LinkageItemBuilder) SetTypeExt(v Element) *LinkageItemBuilder {
+	b.linkageItem.TypeExt = &v
+	return b
+}

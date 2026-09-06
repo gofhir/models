@@ -1591,6 +1591,212 @@ func (b *SpecimenDefinitionBuilder) AddTypeTested(v SpecimenDefinitionTypeTested
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionBuilder) SetImplicitRulesExt(v Element) *SpecimenDefinitionBuilder {
+	b.specimenDefinition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionBuilder) SetLanguageExt(v Element) *SpecimenDefinitionBuilder {
+	b.specimenDefinition.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionBuilder) SetUrlExt(v Element) *SpecimenDefinitionBuilder {
+	b.specimenDefinition.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionBuilder) SetVersionExt(v Element) *SpecimenDefinitionBuilder {
+	b.specimenDefinition.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionBuilder) SetNameExt(v Element) *SpecimenDefinitionBuilder {
+	b.specimenDefinition.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionBuilder) SetTitleExt(v Element) *SpecimenDefinitionBuilder {
+	b.specimenDefinition.TitleExt = &v
+	return b
+}
+
+// AddDerivedFromCanonicalExt attaches extensions to the DerivedFromCanonical element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDerivedFromCanonical twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *SpecimenDefinitionBuilder) AddDerivedFromCanonicalExt(v *Element) *SpecimenDefinitionBuilder {
+	for len(b.specimenDefinition.DerivedFromCanonicalExt) < len(b.specimenDefinition.DerivedFromCanonical)-1 {
+		b.specimenDefinition.DerivedFromCanonicalExt = append(b.specimenDefinition.DerivedFromCanonicalExt, nil)
+	}
+	b.specimenDefinition.DerivedFromCanonicalExt = append(b.specimenDefinition.DerivedFromCanonicalExt, v)
+	return b
+}
+
+// AddDerivedFromUriExt attaches extensions to the DerivedFromUri element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDerivedFromUri twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *SpecimenDefinitionBuilder) AddDerivedFromUriExt(v *Element) *SpecimenDefinitionBuilder {
+	for len(b.specimenDefinition.DerivedFromUriExt) < len(b.specimenDefinition.DerivedFromUri)-1 {
+		b.specimenDefinition.DerivedFromUriExt = append(b.specimenDefinition.DerivedFromUriExt, nil)
+	}
+	b.specimenDefinition.DerivedFromUriExt = append(b.specimenDefinition.DerivedFromUriExt, v)
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionBuilder) SetStatusExt(v Element) *SpecimenDefinitionBuilder {
+	b.specimenDefinition.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionBuilder) SetExperimentalExt(v Element) *SpecimenDefinitionBuilder {
+	b.specimenDefinition.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionBuilder) SetDateExt(v Element) *SpecimenDefinitionBuilder {
+	b.specimenDefinition.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionBuilder) SetPublisherExt(v Element) *SpecimenDefinitionBuilder {
+	b.specimenDefinition.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionBuilder) SetDescriptionExt(v Element) *SpecimenDefinitionBuilder {
+	b.specimenDefinition.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionBuilder) SetPurposeExt(v Element) *SpecimenDefinitionBuilder {
+	b.specimenDefinition.PurposeExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionBuilder) SetCopyrightExt(v Element) *SpecimenDefinitionBuilder {
+	b.specimenDefinition.CopyrightExt = &v
+	return b
+}
+
+// SetCopyrightLabelExt sets the extensions carried by CopyrightLabel, serialized as
+// "_copyrightLabel".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionBuilder) SetCopyrightLabelExt(v Element) *SpecimenDefinitionBuilder {
+	b.specimenDefinition.CopyrightLabelExt = &v
+	return b
+}
+
+// SetApprovalDateExt sets the extensions carried by ApprovalDate, serialized as
+// "_approvalDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionBuilder) SetApprovalDateExt(v Element) *SpecimenDefinitionBuilder {
+	b.specimenDefinition.ApprovalDateExt = &v
+	return b
+}
+
+// SetLastReviewDateExt sets the extensions carried by LastReviewDate, serialized as
+// "_lastReviewDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionBuilder) SetLastReviewDateExt(v Element) *SpecimenDefinitionBuilder {
+	b.specimenDefinition.LastReviewDateExt = &v
+	return b
+}
+
+// SetTimeAspectExt sets the extensions carried by TimeAspect, serialized as
+// "_timeAspect".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionBuilder) SetTimeAspectExt(v Element) *SpecimenDefinitionBuilder {
+	b.specimenDefinition.TimeAspectExt = &v
+	return b
+}
+
 // clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
 // _field companions of the primitive ones.
 func (b *SpecimenDefinitionBuilder) clearVersionAlgorithm() {
@@ -1603,4 +1809,445 @@ func (b *SpecimenDefinitionBuilder) clearVersionAlgorithm() {
 func (b *SpecimenDefinitionBuilder) clearSubject() {
 	b.specimenDefinition.SubjectCodeableConcept = nil
 	b.specimenDefinition.SubjectReference = nil
+}
+
+// =============================================================================
+// SpecimenDefinitionTypeTested - Fluent Builder
+// =============================================================================
+
+// SpecimenDefinitionTypeTestedBuilder provides a fluent API for constructing SpecimenDefinitionTypeTested values.
+type SpecimenDefinitionTypeTestedBuilder struct {
+	specimenDefinitionTypeTested *SpecimenDefinitionTypeTested
+}
+
+// NewSpecimenDefinitionTypeTestedBuilder creates a new SpecimenDefinitionTypeTestedBuilder.
+func NewSpecimenDefinitionTypeTestedBuilder() *SpecimenDefinitionTypeTestedBuilder {
+	return &SpecimenDefinitionTypeTestedBuilder{
+		specimenDefinitionTypeTested: &SpecimenDefinitionTypeTested{},
+	}
+}
+
+// Build returns the constructed SpecimenDefinitionTypeTested.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SpecimenDefinitionTypeTestedBuilder) Build() SpecimenDefinitionTypeTested {
+	return *b.specimenDefinitionTypeTested
+}
+
+// SetId sets the Id field.
+func (b *SpecimenDefinitionTypeTestedBuilder) SetId(v string) *SpecimenDefinitionTypeTestedBuilder {
+	b.specimenDefinitionTypeTested.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SpecimenDefinitionTypeTestedBuilder) AddExtension(v Extension) *SpecimenDefinitionTypeTestedBuilder {
+	b.specimenDefinitionTypeTested.Extension = append(b.specimenDefinitionTypeTested.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SpecimenDefinitionTypeTestedBuilder) AddModifierExtension(v Extension) *SpecimenDefinitionTypeTestedBuilder {
+	b.specimenDefinitionTypeTested.ModifierExtension = append(b.specimenDefinitionTypeTested.ModifierExtension, v)
+	return b
+}
+
+// SetIsDerived sets the IsDerived field.
+func (b *SpecimenDefinitionTypeTestedBuilder) SetIsDerived(v bool) *SpecimenDefinitionTypeTestedBuilder {
+	b.specimenDefinitionTypeTested.IsDerived = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *SpecimenDefinitionTypeTestedBuilder) SetType(v CodeableConcept) *SpecimenDefinitionTypeTestedBuilder {
+	b.specimenDefinitionTypeTested.Type = &v
+	return b
+}
+
+// SetPreference sets the Preference field.
+func (b *SpecimenDefinitionTypeTestedBuilder) SetPreference(v SpecimenContainedPreference) *SpecimenDefinitionTypeTestedBuilder {
+	b.specimenDefinitionTypeTested.Preference = &v
+	return b
+}
+
+// SetContainer sets the Container field.
+func (b *SpecimenDefinitionTypeTestedBuilder) SetContainer(v SpecimenDefinitionTypeTestedContainer) *SpecimenDefinitionTypeTestedBuilder {
+	b.specimenDefinitionTypeTested.Container = &v
+	return b
+}
+
+// SetRequirement sets the Requirement field.
+func (b *SpecimenDefinitionTypeTestedBuilder) SetRequirement(v string) *SpecimenDefinitionTypeTestedBuilder {
+	b.specimenDefinitionTypeTested.Requirement = &v
+	return b
+}
+
+// SetRetentionTime sets the RetentionTime field.
+func (b *SpecimenDefinitionTypeTestedBuilder) SetRetentionTime(v Duration) *SpecimenDefinitionTypeTestedBuilder {
+	b.specimenDefinitionTypeTested.RetentionTime = &v
+	return b
+}
+
+// SetSingleUse sets the SingleUse field.
+func (b *SpecimenDefinitionTypeTestedBuilder) SetSingleUse(v bool) *SpecimenDefinitionTypeTestedBuilder {
+	b.specimenDefinitionTypeTested.SingleUse = &v
+	return b
+}
+
+// AddRejectionCriterion adds a RejectionCriterion element.
+func (b *SpecimenDefinitionTypeTestedBuilder) AddRejectionCriterion(v CodeableConcept) *SpecimenDefinitionTypeTestedBuilder {
+	b.specimenDefinitionTypeTested.RejectionCriterion = append(b.specimenDefinitionTypeTested.RejectionCriterion, v)
+	return b
+}
+
+// AddHandling adds a Handling element.
+func (b *SpecimenDefinitionTypeTestedBuilder) AddHandling(v SpecimenDefinitionTypeTestedHandling) *SpecimenDefinitionTypeTestedBuilder {
+	b.specimenDefinitionTypeTested.Handling = append(b.specimenDefinitionTypeTested.Handling, v)
+	return b
+}
+
+// AddTestingDestination adds a TestingDestination element.
+func (b *SpecimenDefinitionTypeTestedBuilder) AddTestingDestination(v CodeableConcept) *SpecimenDefinitionTypeTestedBuilder {
+	b.specimenDefinitionTypeTested.TestingDestination = append(b.specimenDefinitionTypeTested.TestingDestination, v)
+	return b
+}
+
+// SetIsDerivedExt sets the extensions carried by IsDerived, serialized as
+// "_isDerived".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionTypeTestedBuilder) SetIsDerivedExt(v Element) *SpecimenDefinitionTypeTestedBuilder {
+	b.specimenDefinitionTypeTested.IsDerivedExt = &v
+	return b
+}
+
+// SetPreferenceExt sets the extensions carried by Preference, serialized as
+// "_preference".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionTypeTestedBuilder) SetPreferenceExt(v Element) *SpecimenDefinitionTypeTestedBuilder {
+	b.specimenDefinitionTypeTested.PreferenceExt = &v
+	return b
+}
+
+// SetRequirementExt sets the extensions carried by Requirement, serialized as
+// "_requirement".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionTypeTestedBuilder) SetRequirementExt(v Element) *SpecimenDefinitionTypeTestedBuilder {
+	b.specimenDefinitionTypeTested.RequirementExt = &v
+	return b
+}
+
+// SetSingleUseExt sets the extensions carried by SingleUse, serialized as
+// "_singleUse".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionTypeTestedBuilder) SetSingleUseExt(v Element) *SpecimenDefinitionTypeTestedBuilder {
+	b.specimenDefinitionTypeTested.SingleUseExt = &v
+	return b
+}
+
+// =============================================================================
+// SpecimenDefinitionTypeTestedContainer - Fluent Builder
+// =============================================================================
+
+// SpecimenDefinitionTypeTestedContainerBuilder provides a fluent API for constructing SpecimenDefinitionTypeTestedContainer values.
+type SpecimenDefinitionTypeTestedContainerBuilder struct {
+	specimenDefinitionTypeTestedContainer *SpecimenDefinitionTypeTestedContainer
+}
+
+// NewSpecimenDefinitionTypeTestedContainerBuilder creates a new SpecimenDefinitionTypeTestedContainerBuilder.
+func NewSpecimenDefinitionTypeTestedContainerBuilder() *SpecimenDefinitionTypeTestedContainerBuilder {
+	return &SpecimenDefinitionTypeTestedContainerBuilder{
+		specimenDefinitionTypeTestedContainer: &SpecimenDefinitionTypeTestedContainer{},
+	}
+}
+
+// Build returns the constructed SpecimenDefinitionTypeTestedContainer.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SpecimenDefinitionTypeTestedContainerBuilder) Build() SpecimenDefinitionTypeTestedContainer {
+	return *b.specimenDefinitionTypeTestedContainer
+}
+
+// SetId sets the Id field.
+func (b *SpecimenDefinitionTypeTestedContainerBuilder) SetId(v string) *SpecimenDefinitionTypeTestedContainerBuilder {
+	b.specimenDefinitionTypeTestedContainer.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SpecimenDefinitionTypeTestedContainerBuilder) AddExtension(v Extension) *SpecimenDefinitionTypeTestedContainerBuilder {
+	b.specimenDefinitionTypeTestedContainer.Extension = append(b.specimenDefinitionTypeTestedContainer.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SpecimenDefinitionTypeTestedContainerBuilder) AddModifierExtension(v Extension) *SpecimenDefinitionTypeTestedContainerBuilder {
+	b.specimenDefinitionTypeTestedContainer.ModifierExtension = append(b.specimenDefinitionTypeTestedContainer.ModifierExtension, v)
+	return b
+}
+
+// SetMaterial sets the Material field.
+func (b *SpecimenDefinitionTypeTestedContainerBuilder) SetMaterial(v CodeableConcept) *SpecimenDefinitionTypeTestedContainerBuilder {
+	b.specimenDefinitionTypeTestedContainer.Material = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *SpecimenDefinitionTypeTestedContainerBuilder) SetType(v CodeableConcept) *SpecimenDefinitionTypeTestedContainerBuilder {
+	b.specimenDefinitionTypeTestedContainer.Type = &v
+	return b
+}
+
+// SetCap sets the Cap field.
+func (b *SpecimenDefinitionTypeTestedContainerBuilder) SetCap(v CodeableConcept) *SpecimenDefinitionTypeTestedContainerBuilder {
+	b.specimenDefinitionTypeTestedContainer.Cap = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *SpecimenDefinitionTypeTestedContainerBuilder) SetDescription(v string) *SpecimenDefinitionTypeTestedContainerBuilder {
+	b.specimenDefinitionTypeTestedContainer.Description = &v
+	return b
+}
+
+// SetCapacity sets the Capacity field.
+func (b *SpecimenDefinitionTypeTestedContainerBuilder) SetCapacity(v Quantity) *SpecimenDefinitionTypeTestedContainerBuilder {
+	b.specimenDefinitionTypeTestedContainer.Capacity = &v
+	return b
+}
+
+// SetMinimumVolumeQuantity sets MinimumVolume[x] to its MinimumVolumeQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SpecimenDefinitionTypeTestedContainerBuilder) SetMinimumVolumeQuantity(v Quantity) *SpecimenDefinitionTypeTestedContainerBuilder {
+	b.clearMinimumVolume()
+	b.specimenDefinitionTypeTestedContainer.MinimumVolumeQuantity = &v
+	return b
+}
+
+// SetMinimumVolumeString sets MinimumVolume[x] to its MinimumVolumeString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SpecimenDefinitionTypeTestedContainerBuilder) SetMinimumVolumeString(v string) *SpecimenDefinitionTypeTestedContainerBuilder {
+	b.clearMinimumVolume()
+	b.specimenDefinitionTypeTestedContainer.MinimumVolumeString = &v
+	return b
+}
+
+// SetMinimumVolumeStringExt sets the MinimumVolumeStringExt field.
+func (b *SpecimenDefinitionTypeTestedContainerBuilder) SetMinimumVolumeStringExt(v Element) *SpecimenDefinitionTypeTestedContainerBuilder {
+	b.specimenDefinitionTypeTestedContainer.MinimumVolumeStringExt = &v
+	return b
+}
+
+// AddAdditive adds a Additive element.
+func (b *SpecimenDefinitionTypeTestedContainerBuilder) AddAdditive(v SpecimenDefinitionTypeTestedContainerAdditive) *SpecimenDefinitionTypeTestedContainerBuilder {
+	b.specimenDefinitionTypeTestedContainer.Additive = append(b.specimenDefinitionTypeTestedContainer.Additive, v)
+	return b
+}
+
+// SetPreparation sets the Preparation field.
+func (b *SpecimenDefinitionTypeTestedContainerBuilder) SetPreparation(v string) *SpecimenDefinitionTypeTestedContainerBuilder {
+	b.specimenDefinitionTypeTestedContainer.Preparation = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionTypeTestedContainerBuilder) SetDescriptionExt(v Element) *SpecimenDefinitionTypeTestedContainerBuilder {
+	b.specimenDefinitionTypeTestedContainer.DescriptionExt = &v
+	return b
+}
+
+// SetPreparationExt sets the extensions carried by Preparation, serialized as
+// "_preparation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionTypeTestedContainerBuilder) SetPreparationExt(v Element) *SpecimenDefinitionTypeTestedContainerBuilder {
+	b.specimenDefinitionTypeTestedContainer.PreparationExt = &v
+	return b
+}
+
+// clearMinimumVolume unsets every variant of MinimumVolume[x], including the
+// _field companions of the primitive ones.
+func (b *SpecimenDefinitionTypeTestedContainerBuilder) clearMinimumVolume() {
+	b.specimenDefinitionTypeTestedContainer.MinimumVolumeQuantity = nil
+	b.specimenDefinitionTypeTestedContainer.MinimumVolumeString = nil
+	b.specimenDefinitionTypeTestedContainer.MinimumVolumeStringExt = nil
+}
+
+// =============================================================================
+// SpecimenDefinitionTypeTestedContainerAdditive - Fluent Builder
+// =============================================================================
+
+// SpecimenDefinitionTypeTestedContainerAdditiveBuilder provides a fluent API for constructing SpecimenDefinitionTypeTestedContainerAdditive values.
+type SpecimenDefinitionTypeTestedContainerAdditiveBuilder struct {
+	specimenDefinitionTypeTestedContainerAdditive *SpecimenDefinitionTypeTestedContainerAdditive
+}
+
+// NewSpecimenDefinitionTypeTestedContainerAdditiveBuilder creates a new SpecimenDefinitionTypeTestedContainerAdditiveBuilder.
+func NewSpecimenDefinitionTypeTestedContainerAdditiveBuilder() *SpecimenDefinitionTypeTestedContainerAdditiveBuilder {
+	return &SpecimenDefinitionTypeTestedContainerAdditiveBuilder{
+		specimenDefinitionTypeTestedContainerAdditive: &SpecimenDefinitionTypeTestedContainerAdditive{},
+	}
+}
+
+// Build returns the constructed SpecimenDefinitionTypeTestedContainerAdditive.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SpecimenDefinitionTypeTestedContainerAdditiveBuilder) Build() SpecimenDefinitionTypeTestedContainerAdditive {
+	return *b.specimenDefinitionTypeTestedContainerAdditive
+}
+
+// SetId sets the Id field.
+func (b *SpecimenDefinitionTypeTestedContainerAdditiveBuilder) SetId(v string) *SpecimenDefinitionTypeTestedContainerAdditiveBuilder {
+	b.specimenDefinitionTypeTestedContainerAdditive.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SpecimenDefinitionTypeTestedContainerAdditiveBuilder) AddExtension(v Extension) *SpecimenDefinitionTypeTestedContainerAdditiveBuilder {
+	b.specimenDefinitionTypeTestedContainerAdditive.Extension = append(b.specimenDefinitionTypeTestedContainerAdditive.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SpecimenDefinitionTypeTestedContainerAdditiveBuilder) AddModifierExtension(v Extension) *SpecimenDefinitionTypeTestedContainerAdditiveBuilder {
+	b.specimenDefinitionTypeTestedContainerAdditive.ModifierExtension = append(b.specimenDefinitionTypeTestedContainerAdditive.ModifierExtension, v)
+	return b
+}
+
+// SetAdditiveCodeableConcept sets Additive[x] to its AdditiveCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SpecimenDefinitionTypeTestedContainerAdditiveBuilder) SetAdditiveCodeableConcept(v CodeableConcept) *SpecimenDefinitionTypeTestedContainerAdditiveBuilder {
+	b.clearAdditive()
+	b.specimenDefinitionTypeTestedContainerAdditive.AdditiveCodeableConcept = &v
+	return b
+}
+
+// SetAdditiveReference sets Additive[x] to its AdditiveReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SpecimenDefinitionTypeTestedContainerAdditiveBuilder) SetAdditiveReference(v Reference) *SpecimenDefinitionTypeTestedContainerAdditiveBuilder {
+	b.clearAdditive()
+	b.specimenDefinitionTypeTestedContainerAdditive.AdditiveReference = &v
+	return b
+}
+
+// clearAdditive unsets every variant of Additive[x], including the
+// _field companions of the primitive ones.
+func (b *SpecimenDefinitionTypeTestedContainerAdditiveBuilder) clearAdditive() {
+	b.specimenDefinitionTypeTestedContainerAdditive.AdditiveCodeableConcept = nil
+	b.specimenDefinitionTypeTestedContainerAdditive.AdditiveReference = nil
+}
+
+// =============================================================================
+// SpecimenDefinitionTypeTestedHandling - Fluent Builder
+// =============================================================================
+
+// SpecimenDefinitionTypeTestedHandlingBuilder provides a fluent API for constructing SpecimenDefinitionTypeTestedHandling values.
+type SpecimenDefinitionTypeTestedHandlingBuilder struct {
+	specimenDefinitionTypeTestedHandling *SpecimenDefinitionTypeTestedHandling
+}
+
+// NewSpecimenDefinitionTypeTestedHandlingBuilder creates a new SpecimenDefinitionTypeTestedHandlingBuilder.
+func NewSpecimenDefinitionTypeTestedHandlingBuilder() *SpecimenDefinitionTypeTestedHandlingBuilder {
+	return &SpecimenDefinitionTypeTestedHandlingBuilder{
+		specimenDefinitionTypeTestedHandling: &SpecimenDefinitionTypeTestedHandling{},
+	}
+}
+
+// Build returns the constructed SpecimenDefinitionTypeTestedHandling.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SpecimenDefinitionTypeTestedHandlingBuilder) Build() SpecimenDefinitionTypeTestedHandling {
+	return *b.specimenDefinitionTypeTestedHandling
+}
+
+// SetId sets the Id field.
+func (b *SpecimenDefinitionTypeTestedHandlingBuilder) SetId(v string) *SpecimenDefinitionTypeTestedHandlingBuilder {
+	b.specimenDefinitionTypeTestedHandling.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SpecimenDefinitionTypeTestedHandlingBuilder) AddExtension(v Extension) *SpecimenDefinitionTypeTestedHandlingBuilder {
+	b.specimenDefinitionTypeTestedHandling.Extension = append(b.specimenDefinitionTypeTestedHandling.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SpecimenDefinitionTypeTestedHandlingBuilder) AddModifierExtension(v Extension) *SpecimenDefinitionTypeTestedHandlingBuilder {
+	b.specimenDefinitionTypeTestedHandling.ModifierExtension = append(b.specimenDefinitionTypeTestedHandling.ModifierExtension, v)
+	return b
+}
+
+// SetTemperatureQualifier sets the TemperatureQualifier field.
+func (b *SpecimenDefinitionTypeTestedHandlingBuilder) SetTemperatureQualifier(v CodeableConcept) *SpecimenDefinitionTypeTestedHandlingBuilder {
+	b.specimenDefinitionTypeTestedHandling.TemperatureQualifier = &v
+	return b
+}
+
+// SetTemperatureRange sets the TemperatureRange field.
+func (b *SpecimenDefinitionTypeTestedHandlingBuilder) SetTemperatureRange(v Range) *SpecimenDefinitionTypeTestedHandlingBuilder {
+	b.specimenDefinitionTypeTestedHandling.TemperatureRange = &v
+	return b
+}
+
+// SetMaxDuration sets the MaxDuration field.
+func (b *SpecimenDefinitionTypeTestedHandlingBuilder) SetMaxDuration(v Duration) *SpecimenDefinitionTypeTestedHandlingBuilder {
+	b.specimenDefinitionTypeTestedHandling.MaxDuration = &v
+	return b
+}
+
+// SetInstruction sets the Instruction field.
+func (b *SpecimenDefinitionTypeTestedHandlingBuilder) SetInstruction(v string) *SpecimenDefinitionTypeTestedHandlingBuilder {
+	b.specimenDefinitionTypeTestedHandling.Instruction = &v
+	return b
+}
+
+// SetInstructionExt sets the extensions carried by Instruction, serialized as
+// "_instruction".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenDefinitionTypeTestedHandlingBuilder) SetInstructionExt(v Element) *SpecimenDefinitionTypeTestedHandlingBuilder {
+	b.specimenDefinitionTypeTestedHandling.InstructionExt = &v
+	return b
 }

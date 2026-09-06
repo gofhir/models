@@ -680,3 +680,130 @@ func (b *CatalogEntryBuilder) AddRelatedEntry(v CatalogEntryRelatedEntry) *Catal
 	b.catalogEntry.RelatedEntry = append(b.catalogEntry.RelatedEntry, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CatalogEntryBuilder) SetImplicitRulesExt(v Element) *CatalogEntryBuilder {
+	b.catalogEntry.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CatalogEntryBuilder) SetLanguageExt(v Element) *CatalogEntryBuilder {
+	b.catalogEntry.LanguageExt = &v
+	return b
+}
+
+// SetOrderableExt sets the extensions carried by Orderable, serialized as
+// "_orderable".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CatalogEntryBuilder) SetOrderableExt(v Element) *CatalogEntryBuilder {
+	b.catalogEntry.OrderableExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CatalogEntryBuilder) SetStatusExt(v Element) *CatalogEntryBuilder {
+	b.catalogEntry.StatusExt = &v
+	return b
+}
+
+// SetValidToExt sets the extensions carried by ValidTo, serialized as
+// "_validTo".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CatalogEntryBuilder) SetValidToExt(v Element) *CatalogEntryBuilder {
+	b.catalogEntry.ValidToExt = &v
+	return b
+}
+
+// SetLastUpdatedExt sets the extensions carried by LastUpdated, serialized as
+// "_lastUpdated".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CatalogEntryBuilder) SetLastUpdatedExt(v Element) *CatalogEntryBuilder {
+	b.catalogEntry.LastUpdatedExt = &v
+	return b
+}
+
+// =============================================================================
+// CatalogEntryRelatedEntry - Fluent Builder
+// =============================================================================
+
+// CatalogEntryRelatedEntryBuilder provides a fluent API for constructing CatalogEntryRelatedEntry values.
+type CatalogEntryRelatedEntryBuilder struct {
+	catalogEntryRelatedEntry *CatalogEntryRelatedEntry
+}
+
+// NewCatalogEntryRelatedEntryBuilder creates a new CatalogEntryRelatedEntryBuilder.
+func NewCatalogEntryRelatedEntryBuilder() *CatalogEntryRelatedEntryBuilder {
+	return &CatalogEntryRelatedEntryBuilder{
+		catalogEntryRelatedEntry: &CatalogEntryRelatedEntry{},
+	}
+}
+
+// Build returns the constructed CatalogEntryRelatedEntry.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CatalogEntryRelatedEntryBuilder) Build() CatalogEntryRelatedEntry {
+	return *b.catalogEntryRelatedEntry
+}
+
+// SetId sets the Id field.
+func (b *CatalogEntryRelatedEntryBuilder) SetId(v string) *CatalogEntryRelatedEntryBuilder {
+	b.catalogEntryRelatedEntry.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CatalogEntryRelatedEntryBuilder) AddExtension(v Extension) *CatalogEntryRelatedEntryBuilder {
+	b.catalogEntryRelatedEntry.Extension = append(b.catalogEntryRelatedEntry.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CatalogEntryRelatedEntryBuilder) AddModifierExtension(v Extension) *CatalogEntryRelatedEntryBuilder {
+	b.catalogEntryRelatedEntry.ModifierExtension = append(b.catalogEntryRelatedEntry.ModifierExtension, v)
+	return b
+}
+
+// SetRelationtype sets the Relationtype field.
+func (b *CatalogEntryRelatedEntryBuilder) SetRelationtype(v CatalogEntryRelationType) *CatalogEntryRelatedEntryBuilder {
+	b.catalogEntryRelatedEntry.Relationtype = &v
+	return b
+}
+
+// SetItem sets the Item field.
+func (b *CatalogEntryRelatedEntryBuilder) SetItem(v Reference) *CatalogEntryRelatedEntryBuilder {
+	b.catalogEntryRelatedEntry.Item = &v
+	return b
+}
+
+// SetRelationtypeExt sets the extensions carried by Relationtype, serialized as
+// "_relationtype".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CatalogEntryRelatedEntryBuilder) SetRelationtypeExt(v Element) *CatalogEntryRelatedEntryBuilder {
+	b.catalogEntryRelatedEntry.RelationtypeExt = &v
+	return b
+}

@@ -857,6 +857,96 @@ func (b *ArtifactAssessmentBuilder) SetDisposition(v ArtifactAssessmentDispositi
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ArtifactAssessmentBuilder) SetImplicitRulesExt(v Element) *ArtifactAssessmentBuilder {
+	b.artifactAssessment.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ArtifactAssessmentBuilder) SetLanguageExt(v Element) *ArtifactAssessmentBuilder {
+	b.artifactAssessment.LanguageExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ArtifactAssessmentBuilder) SetTitleExt(v Element) *ArtifactAssessmentBuilder {
+	b.artifactAssessment.TitleExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ArtifactAssessmentBuilder) SetDateExt(v Element) *ArtifactAssessmentBuilder {
+	b.artifactAssessment.DateExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ArtifactAssessmentBuilder) SetCopyrightExt(v Element) *ArtifactAssessmentBuilder {
+	b.artifactAssessment.CopyrightExt = &v
+	return b
+}
+
+// SetApprovalDateExt sets the extensions carried by ApprovalDate, serialized as
+// "_approvalDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ArtifactAssessmentBuilder) SetApprovalDateExt(v Element) *ArtifactAssessmentBuilder {
+	b.artifactAssessment.ApprovalDateExt = &v
+	return b
+}
+
+// SetLastReviewDateExt sets the extensions carried by LastReviewDate, serialized as
+// "_lastReviewDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ArtifactAssessmentBuilder) SetLastReviewDateExt(v Element) *ArtifactAssessmentBuilder {
+	b.artifactAssessment.LastReviewDateExt = &v
+	return b
+}
+
+// SetWorkflowStatusExt sets the extensions carried by WorkflowStatus, serialized as
+// "_workflowStatus".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ArtifactAssessmentBuilder) SetWorkflowStatusExt(v Element) *ArtifactAssessmentBuilder {
+	b.artifactAssessment.WorkflowStatusExt = &v
+	return b
+}
+
+// SetDispositionExt sets the extensions carried by Disposition, serialized as
+// "_disposition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ArtifactAssessmentBuilder) SetDispositionExt(v Element) *ArtifactAssessmentBuilder {
+	b.artifactAssessment.DispositionExt = &v
+	return b
+}
+
 // clearCiteAs unsets every variant of CiteAs[x], including the
 // _field companions of the primitive ones.
 func (b *ArtifactAssessmentBuilder) clearCiteAs() {
@@ -873,4 +963,161 @@ func (b *ArtifactAssessmentBuilder) clearArtifact() {
 	b.artifactAssessment.ArtifactCanonicalExt = nil
 	b.artifactAssessment.ArtifactUri = nil
 	b.artifactAssessment.ArtifactUriExt = nil
+}
+
+// =============================================================================
+// ArtifactAssessmentContent - Fluent Builder
+// =============================================================================
+
+// ArtifactAssessmentContentBuilder provides a fluent API for constructing ArtifactAssessmentContent values.
+type ArtifactAssessmentContentBuilder struct {
+	artifactAssessmentContent *ArtifactAssessmentContent
+}
+
+// NewArtifactAssessmentContentBuilder creates a new ArtifactAssessmentContentBuilder.
+func NewArtifactAssessmentContentBuilder() *ArtifactAssessmentContentBuilder {
+	return &ArtifactAssessmentContentBuilder{
+		artifactAssessmentContent: &ArtifactAssessmentContent{},
+	}
+}
+
+// Build returns the constructed ArtifactAssessmentContent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ArtifactAssessmentContentBuilder) Build() ArtifactAssessmentContent {
+	return *b.artifactAssessmentContent
+}
+
+// SetId sets the Id field.
+func (b *ArtifactAssessmentContentBuilder) SetId(v string) *ArtifactAssessmentContentBuilder {
+	b.artifactAssessmentContent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ArtifactAssessmentContentBuilder) AddExtension(v Extension) *ArtifactAssessmentContentBuilder {
+	b.artifactAssessmentContent.Extension = append(b.artifactAssessmentContent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ArtifactAssessmentContentBuilder) AddModifierExtension(v Extension) *ArtifactAssessmentContentBuilder {
+	b.artifactAssessmentContent.ModifierExtension = append(b.artifactAssessmentContent.ModifierExtension, v)
+	return b
+}
+
+// SetInformationType sets the InformationType field.
+func (b *ArtifactAssessmentContentBuilder) SetInformationType(v ArtifactAssessmentInformationType) *ArtifactAssessmentContentBuilder {
+	b.artifactAssessmentContent.InformationType = &v
+	return b
+}
+
+// SetSummary sets the Summary field.
+func (b *ArtifactAssessmentContentBuilder) SetSummary(v string) *ArtifactAssessmentContentBuilder {
+	b.artifactAssessmentContent.Summary = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ArtifactAssessmentContentBuilder) SetType(v CodeableConcept) *ArtifactAssessmentContentBuilder {
+	b.artifactAssessmentContent.Type = &v
+	return b
+}
+
+// AddClassifier adds a Classifier element.
+func (b *ArtifactAssessmentContentBuilder) AddClassifier(v CodeableConcept) *ArtifactAssessmentContentBuilder {
+	b.artifactAssessmentContent.Classifier = append(b.artifactAssessmentContent.Classifier, v)
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *ArtifactAssessmentContentBuilder) SetQuantity(v Quantity) *ArtifactAssessmentContentBuilder {
+	b.artifactAssessmentContent.Quantity = &v
+	return b
+}
+
+// SetAuthor sets the Author field.
+func (b *ArtifactAssessmentContentBuilder) SetAuthor(v Reference) *ArtifactAssessmentContentBuilder {
+	b.artifactAssessmentContent.Author = &v
+	return b
+}
+
+// AddPath adds a Path element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ArtifactAssessmentContentBuilder) AddPath(v string) *ArtifactAssessmentContentBuilder {
+	b.artifactAssessmentContent.Path = append(b.artifactAssessmentContent.Path, &v)
+	return b
+}
+
+// AddRelatedArtifact adds a RelatedArtifact element.
+func (b *ArtifactAssessmentContentBuilder) AddRelatedArtifact(v RelatedArtifact) *ArtifactAssessmentContentBuilder {
+	b.artifactAssessmentContent.RelatedArtifact = append(b.artifactAssessmentContent.RelatedArtifact, v)
+	return b
+}
+
+// SetFreeToShare sets the FreeToShare field.
+func (b *ArtifactAssessmentContentBuilder) SetFreeToShare(v bool) *ArtifactAssessmentContentBuilder {
+	b.artifactAssessmentContent.FreeToShare = &v
+	return b
+}
+
+// AddComponent adds a Component element.
+func (b *ArtifactAssessmentContentBuilder) AddComponent(v ArtifactAssessmentContent) *ArtifactAssessmentContentBuilder {
+	b.artifactAssessmentContent.Component = append(b.artifactAssessmentContent.Component, v)
+	return b
+}
+
+// SetInformationTypeExt sets the extensions carried by InformationType, serialized as
+// "_informationType".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ArtifactAssessmentContentBuilder) SetInformationTypeExt(v Element) *ArtifactAssessmentContentBuilder {
+	b.artifactAssessmentContent.InformationTypeExt = &v
+	return b
+}
+
+// SetSummaryExt sets the extensions carried by Summary, serialized as
+// "_summary".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ArtifactAssessmentContentBuilder) SetSummaryExt(v Element) *ArtifactAssessmentContentBuilder {
+	b.artifactAssessmentContent.SummaryExt = &v
+	return b
+}
+
+// AddPathExt attaches extensions to the Path element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddPath twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ArtifactAssessmentContentBuilder) AddPathExt(v *Element) *ArtifactAssessmentContentBuilder {
+	for len(b.artifactAssessmentContent.PathExt) < len(b.artifactAssessmentContent.Path)-1 {
+		b.artifactAssessmentContent.PathExt = append(b.artifactAssessmentContent.PathExt, nil)
+	}
+	b.artifactAssessmentContent.PathExt = append(b.artifactAssessmentContent.PathExt, v)
+	return b
+}
+
+// SetFreeToShareExt sets the extensions carried by FreeToShare, serialized as
+// "_freeToShare".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ArtifactAssessmentContentBuilder) SetFreeToShareExt(v Element) *ArtifactAssessmentContentBuilder {
+	b.artifactAssessmentContent.FreeToShareExt = &v
+	return b
 }

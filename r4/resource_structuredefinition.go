@@ -1279,3 +1279,499 @@ func (b *StructureDefinitionBuilder) SetDifferential(v StructureDefinitionDiffer
 	b.structureDefinition.Differential = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionBuilder) SetImplicitRulesExt(v Element) *StructureDefinitionBuilder {
+	b.structureDefinition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionBuilder) SetLanguageExt(v Element) *StructureDefinitionBuilder {
+	b.structureDefinition.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionBuilder) SetUrlExt(v Element) *StructureDefinitionBuilder {
+	b.structureDefinition.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionBuilder) SetVersionExt(v Element) *StructureDefinitionBuilder {
+	b.structureDefinition.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionBuilder) SetNameExt(v Element) *StructureDefinitionBuilder {
+	b.structureDefinition.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionBuilder) SetTitleExt(v Element) *StructureDefinitionBuilder {
+	b.structureDefinition.TitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionBuilder) SetStatusExt(v Element) *StructureDefinitionBuilder {
+	b.structureDefinition.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionBuilder) SetExperimentalExt(v Element) *StructureDefinitionBuilder {
+	b.structureDefinition.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionBuilder) SetDateExt(v Element) *StructureDefinitionBuilder {
+	b.structureDefinition.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionBuilder) SetPublisherExt(v Element) *StructureDefinitionBuilder {
+	b.structureDefinition.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionBuilder) SetDescriptionExt(v Element) *StructureDefinitionBuilder {
+	b.structureDefinition.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionBuilder) SetPurposeExt(v Element) *StructureDefinitionBuilder {
+	b.structureDefinition.PurposeExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionBuilder) SetCopyrightExt(v Element) *StructureDefinitionBuilder {
+	b.structureDefinition.CopyrightExt = &v
+	return b
+}
+
+// SetFhirVersionExt sets the extensions carried by FhirVersion, serialized as
+// "_fhirVersion".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionBuilder) SetFhirVersionExt(v Element) *StructureDefinitionBuilder {
+	b.structureDefinition.FhirVersionExt = &v
+	return b
+}
+
+// SetKindExt sets the extensions carried by Kind, serialized as
+// "_kind".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionBuilder) SetKindExt(v Element) *StructureDefinitionBuilder {
+	b.structureDefinition.KindExt = &v
+	return b
+}
+
+// SetAbstractExt sets the extensions carried by Abstract, serialized as
+// "_abstract".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionBuilder) SetAbstractExt(v Element) *StructureDefinitionBuilder {
+	b.structureDefinition.AbstractExt = &v
+	return b
+}
+
+// AddContextInvariantExt attaches extensions to the ContextInvariant element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddContextInvariant twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *StructureDefinitionBuilder) AddContextInvariantExt(v *Element) *StructureDefinitionBuilder {
+	for len(b.structureDefinition.ContextInvariantExt) < len(b.structureDefinition.ContextInvariant)-1 {
+		b.structureDefinition.ContextInvariantExt = append(b.structureDefinition.ContextInvariantExt, nil)
+	}
+	b.structureDefinition.ContextInvariantExt = append(b.structureDefinition.ContextInvariantExt, v)
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionBuilder) SetTypeExt(v Element) *StructureDefinitionBuilder {
+	b.structureDefinition.TypeExt = &v
+	return b
+}
+
+// SetBaseDefinitionExt sets the extensions carried by BaseDefinition, serialized as
+// "_baseDefinition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionBuilder) SetBaseDefinitionExt(v Element) *StructureDefinitionBuilder {
+	b.structureDefinition.BaseDefinitionExt = &v
+	return b
+}
+
+// SetDerivationExt sets the extensions carried by Derivation, serialized as
+// "_derivation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionBuilder) SetDerivationExt(v Element) *StructureDefinitionBuilder {
+	b.structureDefinition.DerivationExt = &v
+	return b
+}
+
+// =============================================================================
+// StructureDefinitionContext - Fluent Builder
+// =============================================================================
+
+// StructureDefinitionContextBuilder provides a fluent API for constructing StructureDefinitionContext values.
+type StructureDefinitionContextBuilder struct {
+	structureDefinitionContext *StructureDefinitionContext
+}
+
+// NewStructureDefinitionContextBuilder creates a new StructureDefinitionContextBuilder.
+func NewStructureDefinitionContextBuilder() *StructureDefinitionContextBuilder {
+	return &StructureDefinitionContextBuilder{
+		structureDefinitionContext: &StructureDefinitionContext{},
+	}
+}
+
+// Build returns the constructed StructureDefinitionContext.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureDefinitionContextBuilder) Build() StructureDefinitionContext {
+	return *b.structureDefinitionContext
+}
+
+// SetId sets the Id field.
+func (b *StructureDefinitionContextBuilder) SetId(v string) *StructureDefinitionContextBuilder {
+	b.structureDefinitionContext.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureDefinitionContextBuilder) AddExtension(v Extension) *StructureDefinitionContextBuilder {
+	b.structureDefinitionContext.Extension = append(b.structureDefinitionContext.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureDefinitionContextBuilder) AddModifierExtension(v Extension) *StructureDefinitionContextBuilder {
+	b.structureDefinitionContext.ModifierExtension = append(b.structureDefinitionContext.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *StructureDefinitionContextBuilder) SetType(v ExtensionContextType) *StructureDefinitionContextBuilder {
+	b.structureDefinitionContext.Type = &v
+	return b
+}
+
+// SetExpression sets the Expression field.
+func (b *StructureDefinitionContextBuilder) SetExpression(v string) *StructureDefinitionContextBuilder {
+	b.structureDefinitionContext.Expression = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionContextBuilder) SetTypeExt(v Element) *StructureDefinitionContextBuilder {
+	b.structureDefinitionContext.TypeExt = &v
+	return b
+}
+
+// SetExpressionExt sets the extensions carried by Expression, serialized as
+// "_expression".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionContextBuilder) SetExpressionExt(v Element) *StructureDefinitionContextBuilder {
+	b.structureDefinitionContext.ExpressionExt = &v
+	return b
+}
+
+// =============================================================================
+// StructureDefinitionDifferential - Fluent Builder
+// =============================================================================
+
+// StructureDefinitionDifferentialBuilder provides a fluent API for constructing StructureDefinitionDifferential values.
+type StructureDefinitionDifferentialBuilder struct {
+	structureDefinitionDifferential *StructureDefinitionDifferential
+}
+
+// NewStructureDefinitionDifferentialBuilder creates a new StructureDefinitionDifferentialBuilder.
+func NewStructureDefinitionDifferentialBuilder() *StructureDefinitionDifferentialBuilder {
+	return &StructureDefinitionDifferentialBuilder{
+		structureDefinitionDifferential: &StructureDefinitionDifferential{},
+	}
+}
+
+// Build returns the constructed StructureDefinitionDifferential.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureDefinitionDifferentialBuilder) Build() StructureDefinitionDifferential {
+	return *b.structureDefinitionDifferential
+}
+
+// SetId sets the Id field.
+func (b *StructureDefinitionDifferentialBuilder) SetId(v string) *StructureDefinitionDifferentialBuilder {
+	b.structureDefinitionDifferential.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureDefinitionDifferentialBuilder) AddExtension(v Extension) *StructureDefinitionDifferentialBuilder {
+	b.structureDefinitionDifferential.Extension = append(b.structureDefinitionDifferential.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureDefinitionDifferentialBuilder) AddModifierExtension(v Extension) *StructureDefinitionDifferentialBuilder {
+	b.structureDefinitionDifferential.ModifierExtension = append(b.structureDefinitionDifferential.ModifierExtension, v)
+	return b
+}
+
+// AddElement adds a Element element.
+func (b *StructureDefinitionDifferentialBuilder) AddElement(v ElementDefinition) *StructureDefinitionDifferentialBuilder {
+	b.structureDefinitionDifferential.Element = append(b.structureDefinitionDifferential.Element, v)
+	return b
+}
+
+// =============================================================================
+// StructureDefinitionMapping - Fluent Builder
+// =============================================================================
+
+// StructureDefinitionMappingBuilder provides a fluent API for constructing StructureDefinitionMapping values.
+type StructureDefinitionMappingBuilder struct {
+	structureDefinitionMapping *StructureDefinitionMapping
+}
+
+// NewStructureDefinitionMappingBuilder creates a new StructureDefinitionMappingBuilder.
+func NewStructureDefinitionMappingBuilder() *StructureDefinitionMappingBuilder {
+	return &StructureDefinitionMappingBuilder{
+		structureDefinitionMapping: &StructureDefinitionMapping{},
+	}
+}
+
+// Build returns the constructed StructureDefinitionMapping.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureDefinitionMappingBuilder) Build() StructureDefinitionMapping {
+	return *b.structureDefinitionMapping
+}
+
+// SetId sets the Id field.
+func (b *StructureDefinitionMappingBuilder) SetId(v string) *StructureDefinitionMappingBuilder {
+	b.structureDefinitionMapping.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureDefinitionMappingBuilder) AddExtension(v Extension) *StructureDefinitionMappingBuilder {
+	b.structureDefinitionMapping.Extension = append(b.structureDefinitionMapping.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureDefinitionMappingBuilder) AddModifierExtension(v Extension) *StructureDefinitionMappingBuilder {
+	b.structureDefinitionMapping.ModifierExtension = append(b.structureDefinitionMapping.ModifierExtension, v)
+	return b
+}
+
+// SetIdentity sets the Identity field.
+func (b *StructureDefinitionMappingBuilder) SetIdentity(v string) *StructureDefinitionMappingBuilder {
+	b.structureDefinitionMapping.Identity = &v
+	return b
+}
+
+// SetUri sets the Uri field.
+func (b *StructureDefinitionMappingBuilder) SetUri(v string) *StructureDefinitionMappingBuilder {
+	b.structureDefinitionMapping.Uri = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *StructureDefinitionMappingBuilder) SetName(v string) *StructureDefinitionMappingBuilder {
+	b.structureDefinitionMapping.Name = &v
+	return b
+}
+
+// SetComment sets the Comment field.
+func (b *StructureDefinitionMappingBuilder) SetComment(v string) *StructureDefinitionMappingBuilder {
+	b.structureDefinitionMapping.Comment = &v
+	return b
+}
+
+// SetIdentityExt sets the extensions carried by Identity, serialized as
+// "_identity".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionMappingBuilder) SetIdentityExt(v Element) *StructureDefinitionMappingBuilder {
+	b.structureDefinitionMapping.IdentityExt = &v
+	return b
+}
+
+// SetUriExt sets the extensions carried by Uri, serialized as
+// "_uri".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionMappingBuilder) SetUriExt(v Element) *StructureDefinitionMappingBuilder {
+	b.structureDefinitionMapping.UriExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionMappingBuilder) SetNameExt(v Element) *StructureDefinitionMappingBuilder {
+	b.structureDefinitionMapping.NameExt = &v
+	return b
+}
+
+// SetCommentExt sets the extensions carried by Comment, serialized as
+// "_comment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureDefinitionMappingBuilder) SetCommentExt(v Element) *StructureDefinitionMappingBuilder {
+	b.structureDefinitionMapping.CommentExt = &v
+	return b
+}
+
+// =============================================================================
+// StructureDefinitionSnapshot - Fluent Builder
+// =============================================================================
+
+// StructureDefinitionSnapshotBuilder provides a fluent API for constructing StructureDefinitionSnapshot values.
+type StructureDefinitionSnapshotBuilder struct {
+	structureDefinitionSnapshot *StructureDefinitionSnapshot
+}
+
+// NewStructureDefinitionSnapshotBuilder creates a new StructureDefinitionSnapshotBuilder.
+func NewStructureDefinitionSnapshotBuilder() *StructureDefinitionSnapshotBuilder {
+	return &StructureDefinitionSnapshotBuilder{
+		structureDefinitionSnapshot: &StructureDefinitionSnapshot{},
+	}
+}
+
+// Build returns the constructed StructureDefinitionSnapshot.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureDefinitionSnapshotBuilder) Build() StructureDefinitionSnapshot {
+	return *b.structureDefinitionSnapshot
+}
+
+// SetId sets the Id field.
+func (b *StructureDefinitionSnapshotBuilder) SetId(v string) *StructureDefinitionSnapshotBuilder {
+	b.structureDefinitionSnapshot.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureDefinitionSnapshotBuilder) AddExtension(v Extension) *StructureDefinitionSnapshotBuilder {
+	b.structureDefinitionSnapshot.Extension = append(b.structureDefinitionSnapshot.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureDefinitionSnapshotBuilder) AddModifierExtension(v Extension) *StructureDefinitionSnapshotBuilder {
+	b.structureDefinitionSnapshot.ModifierExtension = append(b.structureDefinitionSnapshot.ModifierExtension, v)
+	return b
+}
+
+// AddElement adds a Element element.
+func (b *StructureDefinitionSnapshotBuilder) AddElement(v ElementDefinition) *StructureDefinitionSnapshotBuilder {
+	b.structureDefinitionSnapshot.Element = append(b.structureDefinitionSnapshot.Element, v)
+	return b
+}

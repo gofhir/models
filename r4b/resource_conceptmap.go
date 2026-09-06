@@ -1467,6 +1467,136 @@ func (b *ConceptMapBuilder) AddGroup(v ConceptMapGroup) *ConceptMapBuilder {
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapBuilder) SetImplicitRulesExt(v Element) *ConceptMapBuilder {
+	b.conceptMap.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapBuilder) SetLanguageExt(v Element) *ConceptMapBuilder {
+	b.conceptMap.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapBuilder) SetUrlExt(v Element) *ConceptMapBuilder {
+	b.conceptMap.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapBuilder) SetVersionExt(v Element) *ConceptMapBuilder {
+	b.conceptMap.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapBuilder) SetNameExt(v Element) *ConceptMapBuilder {
+	b.conceptMap.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapBuilder) SetTitleExt(v Element) *ConceptMapBuilder {
+	b.conceptMap.TitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapBuilder) SetStatusExt(v Element) *ConceptMapBuilder {
+	b.conceptMap.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapBuilder) SetExperimentalExt(v Element) *ConceptMapBuilder {
+	b.conceptMap.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapBuilder) SetDateExt(v Element) *ConceptMapBuilder {
+	b.conceptMap.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapBuilder) SetPublisherExt(v Element) *ConceptMapBuilder {
+	b.conceptMap.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapBuilder) SetDescriptionExt(v Element) *ConceptMapBuilder {
+	b.conceptMap.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapBuilder) SetPurposeExt(v Element) *ConceptMapBuilder {
+	b.conceptMap.PurposeExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapBuilder) SetCopyrightExt(v Element) *ConceptMapBuilder {
+	b.conceptMap.CopyrightExt = &v
+	return b
+}
+
 // clearSource unsets every variant of Source[x], including the
 // _field companions of the primitive ones.
 func (b *ConceptMapBuilder) clearSource() {
@@ -1481,4 +1611,547 @@ func (b *ConceptMapBuilder) clearTarget() {
 	b.conceptMap.TargetUri = nil
 	b.conceptMap.TargetCanonical = nil
 	b.conceptMap.TargetCanonicalExt = nil
+}
+
+// =============================================================================
+// ConceptMapGroup - Fluent Builder
+// =============================================================================
+
+// ConceptMapGroupBuilder provides a fluent API for constructing ConceptMapGroup values.
+type ConceptMapGroupBuilder struct {
+	conceptMapGroup *ConceptMapGroup
+}
+
+// NewConceptMapGroupBuilder creates a new ConceptMapGroupBuilder.
+func NewConceptMapGroupBuilder() *ConceptMapGroupBuilder {
+	return &ConceptMapGroupBuilder{
+		conceptMapGroup: &ConceptMapGroup{},
+	}
+}
+
+// Build returns the constructed ConceptMapGroup.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ConceptMapGroupBuilder) Build() ConceptMapGroup {
+	return *b.conceptMapGroup
+}
+
+// SetId sets the Id field.
+func (b *ConceptMapGroupBuilder) SetId(v string) *ConceptMapGroupBuilder {
+	b.conceptMapGroup.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ConceptMapGroupBuilder) AddExtension(v Extension) *ConceptMapGroupBuilder {
+	b.conceptMapGroup.Extension = append(b.conceptMapGroup.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ConceptMapGroupBuilder) AddModifierExtension(v Extension) *ConceptMapGroupBuilder {
+	b.conceptMapGroup.ModifierExtension = append(b.conceptMapGroup.ModifierExtension, v)
+	return b
+}
+
+// SetSource sets the Source field.
+func (b *ConceptMapGroupBuilder) SetSource(v string) *ConceptMapGroupBuilder {
+	b.conceptMapGroup.Source = &v
+	return b
+}
+
+// SetSourceVersion sets the SourceVersion field.
+func (b *ConceptMapGroupBuilder) SetSourceVersion(v string) *ConceptMapGroupBuilder {
+	b.conceptMapGroup.SourceVersion = &v
+	return b
+}
+
+// SetTarget sets the Target field.
+func (b *ConceptMapGroupBuilder) SetTarget(v string) *ConceptMapGroupBuilder {
+	b.conceptMapGroup.Target = &v
+	return b
+}
+
+// SetTargetVersion sets the TargetVersion field.
+func (b *ConceptMapGroupBuilder) SetTargetVersion(v string) *ConceptMapGroupBuilder {
+	b.conceptMapGroup.TargetVersion = &v
+	return b
+}
+
+// AddElement adds a Element element.
+func (b *ConceptMapGroupBuilder) AddElement(v ConceptMapGroupElement) *ConceptMapGroupBuilder {
+	b.conceptMapGroup.Element = append(b.conceptMapGroup.Element, v)
+	return b
+}
+
+// SetUnmapped sets the Unmapped field.
+func (b *ConceptMapGroupBuilder) SetUnmapped(v ConceptMapGroupUnmapped) *ConceptMapGroupBuilder {
+	b.conceptMapGroup.Unmapped = &v
+	return b
+}
+
+// SetSourceExt sets the extensions carried by Source, serialized as
+// "_source".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapGroupBuilder) SetSourceExt(v Element) *ConceptMapGroupBuilder {
+	b.conceptMapGroup.SourceExt = &v
+	return b
+}
+
+// SetSourceVersionExt sets the extensions carried by SourceVersion, serialized as
+// "_sourceVersion".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapGroupBuilder) SetSourceVersionExt(v Element) *ConceptMapGroupBuilder {
+	b.conceptMapGroup.SourceVersionExt = &v
+	return b
+}
+
+// SetTargetExt sets the extensions carried by Target, serialized as
+// "_target".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapGroupBuilder) SetTargetExt(v Element) *ConceptMapGroupBuilder {
+	b.conceptMapGroup.TargetExt = &v
+	return b
+}
+
+// SetTargetVersionExt sets the extensions carried by TargetVersion, serialized as
+// "_targetVersion".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapGroupBuilder) SetTargetVersionExt(v Element) *ConceptMapGroupBuilder {
+	b.conceptMapGroup.TargetVersionExt = &v
+	return b
+}
+
+// =============================================================================
+// ConceptMapGroupElement - Fluent Builder
+// =============================================================================
+
+// ConceptMapGroupElementBuilder provides a fluent API for constructing ConceptMapGroupElement values.
+type ConceptMapGroupElementBuilder struct {
+	conceptMapGroupElement *ConceptMapGroupElement
+}
+
+// NewConceptMapGroupElementBuilder creates a new ConceptMapGroupElementBuilder.
+func NewConceptMapGroupElementBuilder() *ConceptMapGroupElementBuilder {
+	return &ConceptMapGroupElementBuilder{
+		conceptMapGroupElement: &ConceptMapGroupElement{},
+	}
+}
+
+// Build returns the constructed ConceptMapGroupElement.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ConceptMapGroupElementBuilder) Build() ConceptMapGroupElement {
+	return *b.conceptMapGroupElement
+}
+
+// SetId sets the Id field.
+func (b *ConceptMapGroupElementBuilder) SetId(v string) *ConceptMapGroupElementBuilder {
+	b.conceptMapGroupElement.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ConceptMapGroupElementBuilder) AddExtension(v Extension) *ConceptMapGroupElementBuilder {
+	b.conceptMapGroupElement.Extension = append(b.conceptMapGroupElement.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ConceptMapGroupElementBuilder) AddModifierExtension(v Extension) *ConceptMapGroupElementBuilder {
+	b.conceptMapGroupElement.ModifierExtension = append(b.conceptMapGroupElement.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ConceptMapGroupElementBuilder) SetCode(v string) *ConceptMapGroupElementBuilder {
+	b.conceptMapGroupElement.Code = &v
+	return b
+}
+
+// SetDisplay sets the Display field.
+func (b *ConceptMapGroupElementBuilder) SetDisplay(v string) *ConceptMapGroupElementBuilder {
+	b.conceptMapGroupElement.Display = &v
+	return b
+}
+
+// AddTarget adds a Target element.
+func (b *ConceptMapGroupElementBuilder) AddTarget(v ConceptMapGroupElementTarget) *ConceptMapGroupElementBuilder {
+	b.conceptMapGroupElement.Target = append(b.conceptMapGroupElement.Target, v)
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapGroupElementBuilder) SetCodeExt(v Element) *ConceptMapGroupElementBuilder {
+	b.conceptMapGroupElement.CodeExt = &v
+	return b
+}
+
+// SetDisplayExt sets the extensions carried by Display, serialized as
+// "_display".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapGroupElementBuilder) SetDisplayExt(v Element) *ConceptMapGroupElementBuilder {
+	b.conceptMapGroupElement.DisplayExt = &v
+	return b
+}
+
+// =============================================================================
+// ConceptMapGroupElementTarget - Fluent Builder
+// =============================================================================
+
+// ConceptMapGroupElementTargetBuilder provides a fluent API for constructing ConceptMapGroupElementTarget values.
+type ConceptMapGroupElementTargetBuilder struct {
+	conceptMapGroupElementTarget *ConceptMapGroupElementTarget
+}
+
+// NewConceptMapGroupElementTargetBuilder creates a new ConceptMapGroupElementTargetBuilder.
+func NewConceptMapGroupElementTargetBuilder() *ConceptMapGroupElementTargetBuilder {
+	return &ConceptMapGroupElementTargetBuilder{
+		conceptMapGroupElementTarget: &ConceptMapGroupElementTarget{},
+	}
+}
+
+// Build returns the constructed ConceptMapGroupElementTarget.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ConceptMapGroupElementTargetBuilder) Build() ConceptMapGroupElementTarget {
+	return *b.conceptMapGroupElementTarget
+}
+
+// SetId sets the Id field.
+func (b *ConceptMapGroupElementTargetBuilder) SetId(v string) *ConceptMapGroupElementTargetBuilder {
+	b.conceptMapGroupElementTarget.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ConceptMapGroupElementTargetBuilder) AddExtension(v Extension) *ConceptMapGroupElementTargetBuilder {
+	b.conceptMapGroupElementTarget.Extension = append(b.conceptMapGroupElementTarget.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ConceptMapGroupElementTargetBuilder) AddModifierExtension(v Extension) *ConceptMapGroupElementTargetBuilder {
+	b.conceptMapGroupElementTarget.ModifierExtension = append(b.conceptMapGroupElementTarget.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ConceptMapGroupElementTargetBuilder) SetCode(v string) *ConceptMapGroupElementTargetBuilder {
+	b.conceptMapGroupElementTarget.Code = &v
+	return b
+}
+
+// SetDisplay sets the Display field.
+func (b *ConceptMapGroupElementTargetBuilder) SetDisplay(v string) *ConceptMapGroupElementTargetBuilder {
+	b.conceptMapGroupElementTarget.Display = &v
+	return b
+}
+
+// SetEquivalence sets the Equivalence field.
+func (b *ConceptMapGroupElementTargetBuilder) SetEquivalence(v ConceptMapEquivalence) *ConceptMapGroupElementTargetBuilder {
+	b.conceptMapGroupElementTarget.Equivalence = &v
+	return b
+}
+
+// SetComment sets the Comment field.
+func (b *ConceptMapGroupElementTargetBuilder) SetComment(v string) *ConceptMapGroupElementTargetBuilder {
+	b.conceptMapGroupElementTarget.Comment = &v
+	return b
+}
+
+// AddDependsOn adds a DependsOn element.
+func (b *ConceptMapGroupElementTargetBuilder) AddDependsOn(v ConceptMapGroupElementTargetDependsOn) *ConceptMapGroupElementTargetBuilder {
+	b.conceptMapGroupElementTarget.DependsOn = append(b.conceptMapGroupElementTarget.DependsOn, v)
+	return b
+}
+
+// AddProduct adds a Product element.
+func (b *ConceptMapGroupElementTargetBuilder) AddProduct(v ConceptMapGroupElementTargetDependsOn) *ConceptMapGroupElementTargetBuilder {
+	b.conceptMapGroupElementTarget.Product = append(b.conceptMapGroupElementTarget.Product, v)
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapGroupElementTargetBuilder) SetCodeExt(v Element) *ConceptMapGroupElementTargetBuilder {
+	b.conceptMapGroupElementTarget.CodeExt = &v
+	return b
+}
+
+// SetDisplayExt sets the extensions carried by Display, serialized as
+// "_display".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapGroupElementTargetBuilder) SetDisplayExt(v Element) *ConceptMapGroupElementTargetBuilder {
+	b.conceptMapGroupElementTarget.DisplayExt = &v
+	return b
+}
+
+// SetEquivalenceExt sets the extensions carried by Equivalence, serialized as
+// "_equivalence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapGroupElementTargetBuilder) SetEquivalenceExt(v Element) *ConceptMapGroupElementTargetBuilder {
+	b.conceptMapGroupElementTarget.EquivalenceExt = &v
+	return b
+}
+
+// SetCommentExt sets the extensions carried by Comment, serialized as
+// "_comment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapGroupElementTargetBuilder) SetCommentExt(v Element) *ConceptMapGroupElementTargetBuilder {
+	b.conceptMapGroupElementTarget.CommentExt = &v
+	return b
+}
+
+// =============================================================================
+// ConceptMapGroupElementTargetDependsOn - Fluent Builder
+// =============================================================================
+
+// ConceptMapGroupElementTargetDependsOnBuilder provides a fluent API for constructing ConceptMapGroupElementTargetDependsOn values.
+type ConceptMapGroupElementTargetDependsOnBuilder struct {
+	conceptMapGroupElementTargetDependsOn *ConceptMapGroupElementTargetDependsOn
+}
+
+// NewConceptMapGroupElementTargetDependsOnBuilder creates a new ConceptMapGroupElementTargetDependsOnBuilder.
+func NewConceptMapGroupElementTargetDependsOnBuilder() *ConceptMapGroupElementTargetDependsOnBuilder {
+	return &ConceptMapGroupElementTargetDependsOnBuilder{
+		conceptMapGroupElementTargetDependsOn: &ConceptMapGroupElementTargetDependsOn{},
+	}
+}
+
+// Build returns the constructed ConceptMapGroupElementTargetDependsOn.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ConceptMapGroupElementTargetDependsOnBuilder) Build() ConceptMapGroupElementTargetDependsOn {
+	return *b.conceptMapGroupElementTargetDependsOn
+}
+
+// SetId sets the Id field.
+func (b *ConceptMapGroupElementTargetDependsOnBuilder) SetId(v string) *ConceptMapGroupElementTargetDependsOnBuilder {
+	b.conceptMapGroupElementTargetDependsOn.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ConceptMapGroupElementTargetDependsOnBuilder) AddExtension(v Extension) *ConceptMapGroupElementTargetDependsOnBuilder {
+	b.conceptMapGroupElementTargetDependsOn.Extension = append(b.conceptMapGroupElementTargetDependsOn.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ConceptMapGroupElementTargetDependsOnBuilder) AddModifierExtension(v Extension) *ConceptMapGroupElementTargetDependsOnBuilder {
+	b.conceptMapGroupElementTargetDependsOn.ModifierExtension = append(b.conceptMapGroupElementTargetDependsOn.ModifierExtension, v)
+	return b
+}
+
+// SetProperty sets the Property field.
+func (b *ConceptMapGroupElementTargetDependsOnBuilder) SetProperty(v string) *ConceptMapGroupElementTargetDependsOnBuilder {
+	b.conceptMapGroupElementTargetDependsOn.Property = &v
+	return b
+}
+
+// SetSystem sets the System field.
+func (b *ConceptMapGroupElementTargetDependsOnBuilder) SetSystem(v string) *ConceptMapGroupElementTargetDependsOnBuilder {
+	b.conceptMapGroupElementTargetDependsOn.System = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *ConceptMapGroupElementTargetDependsOnBuilder) SetValue(v string) *ConceptMapGroupElementTargetDependsOnBuilder {
+	b.conceptMapGroupElementTargetDependsOn.Value = &v
+	return b
+}
+
+// SetDisplay sets the Display field.
+func (b *ConceptMapGroupElementTargetDependsOnBuilder) SetDisplay(v string) *ConceptMapGroupElementTargetDependsOnBuilder {
+	b.conceptMapGroupElementTargetDependsOn.Display = &v
+	return b
+}
+
+// SetPropertyExt sets the extensions carried by Property, serialized as
+// "_property".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapGroupElementTargetDependsOnBuilder) SetPropertyExt(v Element) *ConceptMapGroupElementTargetDependsOnBuilder {
+	b.conceptMapGroupElementTargetDependsOn.PropertyExt = &v
+	return b
+}
+
+// SetSystemExt sets the extensions carried by System, serialized as
+// "_system".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapGroupElementTargetDependsOnBuilder) SetSystemExt(v Element) *ConceptMapGroupElementTargetDependsOnBuilder {
+	b.conceptMapGroupElementTargetDependsOn.SystemExt = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapGroupElementTargetDependsOnBuilder) SetValueExt(v Element) *ConceptMapGroupElementTargetDependsOnBuilder {
+	b.conceptMapGroupElementTargetDependsOn.ValueExt = &v
+	return b
+}
+
+// SetDisplayExt sets the extensions carried by Display, serialized as
+// "_display".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapGroupElementTargetDependsOnBuilder) SetDisplayExt(v Element) *ConceptMapGroupElementTargetDependsOnBuilder {
+	b.conceptMapGroupElementTargetDependsOn.DisplayExt = &v
+	return b
+}
+
+// =============================================================================
+// ConceptMapGroupUnmapped - Fluent Builder
+// =============================================================================
+
+// ConceptMapGroupUnmappedBuilder provides a fluent API for constructing ConceptMapGroupUnmapped values.
+type ConceptMapGroupUnmappedBuilder struct {
+	conceptMapGroupUnmapped *ConceptMapGroupUnmapped
+}
+
+// NewConceptMapGroupUnmappedBuilder creates a new ConceptMapGroupUnmappedBuilder.
+func NewConceptMapGroupUnmappedBuilder() *ConceptMapGroupUnmappedBuilder {
+	return &ConceptMapGroupUnmappedBuilder{
+		conceptMapGroupUnmapped: &ConceptMapGroupUnmapped{},
+	}
+}
+
+// Build returns the constructed ConceptMapGroupUnmapped.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ConceptMapGroupUnmappedBuilder) Build() ConceptMapGroupUnmapped {
+	return *b.conceptMapGroupUnmapped
+}
+
+// SetId sets the Id field.
+func (b *ConceptMapGroupUnmappedBuilder) SetId(v string) *ConceptMapGroupUnmappedBuilder {
+	b.conceptMapGroupUnmapped.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ConceptMapGroupUnmappedBuilder) AddExtension(v Extension) *ConceptMapGroupUnmappedBuilder {
+	b.conceptMapGroupUnmapped.Extension = append(b.conceptMapGroupUnmapped.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ConceptMapGroupUnmappedBuilder) AddModifierExtension(v Extension) *ConceptMapGroupUnmappedBuilder {
+	b.conceptMapGroupUnmapped.ModifierExtension = append(b.conceptMapGroupUnmapped.ModifierExtension, v)
+	return b
+}
+
+// SetMode sets the Mode field.
+func (b *ConceptMapGroupUnmappedBuilder) SetMode(v ConceptMapGroupUnmappedMode) *ConceptMapGroupUnmappedBuilder {
+	b.conceptMapGroupUnmapped.Mode = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ConceptMapGroupUnmappedBuilder) SetCode(v string) *ConceptMapGroupUnmappedBuilder {
+	b.conceptMapGroupUnmapped.Code = &v
+	return b
+}
+
+// SetDisplay sets the Display field.
+func (b *ConceptMapGroupUnmappedBuilder) SetDisplay(v string) *ConceptMapGroupUnmappedBuilder {
+	b.conceptMapGroupUnmapped.Display = &v
+	return b
+}
+
+// SetUrl sets the Url field.
+func (b *ConceptMapGroupUnmappedBuilder) SetUrl(v string) *ConceptMapGroupUnmappedBuilder {
+	b.conceptMapGroupUnmapped.Url = &v
+	return b
+}
+
+// SetModeExt sets the extensions carried by Mode, serialized as
+// "_mode".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapGroupUnmappedBuilder) SetModeExt(v Element) *ConceptMapGroupUnmappedBuilder {
+	b.conceptMapGroupUnmapped.ModeExt = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapGroupUnmappedBuilder) SetCodeExt(v Element) *ConceptMapGroupUnmappedBuilder {
+	b.conceptMapGroupUnmapped.CodeExt = &v
+	return b
+}
+
+// SetDisplayExt sets the extensions carried by Display, serialized as
+// "_display".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapGroupUnmappedBuilder) SetDisplayExt(v Element) *ConceptMapGroupUnmappedBuilder {
+	b.conceptMapGroupUnmapped.DisplayExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConceptMapGroupUnmappedBuilder) SetUrlExt(v Element) *ConceptMapGroupUnmappedBuilder {
+	b.conceptMapGroupUnmapped.UrlExt = &v
+	return b
 }

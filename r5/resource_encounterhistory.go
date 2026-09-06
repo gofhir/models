@@ -678,3 +678,110 @@ func (b *EncounterHistoryBuilder) AddLocation(v EncounterHistoryLocation) *Encou
 	b.encounterHistory.Location = append(b.encounterHistory.Location, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EncounterHistoryBuilder) SetImplicitRulesExt(v Element) *EncounterHistoryBuilder {
+	b.encounterHistory.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EncounterHistoryBuilder) SetLanguageExt(v Element) *EncounterHistoryBuilder {
+	b.encounterHistory.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EncounterHistoryBuilder) SetStatusExt(v Element) *EncounterHistoryBuilder {
+	b.encounterHistory.StatusExt = &v
+	return b
+}
+
+// SetPlannedStartDateExt sets the extensions carried by PlannedStartDate, serialized as
+// "_plannedStartDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EncounterHistoryBuilder) SetPlannedStartDateExt(v Element) *EncounterHistoryBuilder {
+	b.encounterHistory.PlannedStartDateExt = &v
+	return b
+}
+
+// SetPlannedEndDateExt sets the extensions carried by PlannedEndDate, serialized as
+// "_plannedEndDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EncounterHistoryBuilder) SetPlannedEndDateExt(v Element) *EncounterHistoryBuilder {
+	b.encounterHistory.PlannedEndDateExt = &v
+	return b
+}
+
+// =============================================================================
+// EncounterHistoryLocation - Fluent Builder
+// =============================================================================
+
+// EncounterHistoryLocationBuilder provides a fluent API for constructing EncounterHistoryLocation values.
+type EncounterHistoryLocationBuilder struct {
+	encounterHistoryLocation *EncounterHistoryLocation
+}
+
+// NewEncounterHistoryLocationBuilder creates a new EncounterHistoryLocationBuilder.
+func NewEncounterHistoryLocationBuilder() *EncounterHistoryLocationBuilder {
+	return &EncounterHistoryLocationBuilder{
+		encounterHistoryLocation: &EncounterHistoryLocation{},
+	}
+}
+
+// Build returns the constructed EncounterHistoryLocation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *EncounterHistoryLocationBuilder) Build() EncounterHistoryLocation {
+	return *b.encounterHistoryLocation
+}
+
+// SetId sets the Id field.
+func (b *EncounterHistoryLocationBuilder) SetId(v string) *EncounterHistoryLocationBuilder {
+	b.encounterHistoryLocation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *EncounterHistoryLocationBuilder) AddExtension(v Extension) *EncounterHistoryLocationBuilder {
+	b.encounterHistoryLocation.Extension = append(b.encounterHistoryLocation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *EncounterHistoryLocationBuilder) AddModifierExtension(v Extension) *EncounterHistoryLocationBuilder {
+	b.encounterHistoryLocation.ModifierExtension = append(b.encounterHistoryLocation.ModifierExtension, v)
+	return b
+}
+
+// SetLocation sets the Location field.
+func (b *EncounterHistoryLocationBuilder) SetLocation(v Reference) *EncounterHistoryLocationBuilder {
+	b.encounterHistoryLocation.Location = &v
+	return b
+}
+
+// SetForm sets the Form field.
+func (b *EncounterHistoryLocationBuilder) SetForm(v CodeableConcept) *EncounterHistoryLocationBuilder {
+	b.encounterHistoryLocation.Form = &v
+	return b
+}

@@ -1368,3 +1368,523 @@ func (b *GenomicStudyBuilder) AddAnalysis(v GenomicStudyAnalysis) *GenomicStudyB
 	b.genomicStudy.Analysis = append(b.genomicStudy.Analysis, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GenomicStudyBuilder) SetImplicitRulesExt(v Element) *GenomicStudyBuilder {
+	b.genomicStudy.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GenomicStudyBuilder) SetLanguageExt(v Element) *GenomicStudyBuilder {
+	b.genomicStudy.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GenomicStudyBuilder) SetStatusExt(v Element) *GenomicStudyBuilder {
+	b.genomicStudy.StatusExt = &v
+	return b
+}
+
+// SetStartDateExt sets the extensions carried by StartDate, serialized as
+// "_startDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GenomicStudyBuilder) SetStartDateExt(v Element) *GenomicStudyBuilder {
+	b.genomicStudy.StartDateExt = &v
+	return b
+}
+
+// SetInstantiatesCanonicalExt sets the extensions carried by InstantiatesCanonical, serialized as
+// "_instantiatesCanonical".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GenomicStudyBuilder) SetInstantiatesCanonicalExt(v Element) *GenomicStudyBuilder {
+	b.genomicStudy.InstantiatesCanonicalExt = &v
+	return b
+}
+
+// SetInstantiatesUriExt sets the extensions carried by InstantiatesUri, serialized as
+// "_instantiatesUri".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GenomicStudyBuilder) SetInstantiatesUriExt(v Element) *GenomicStudyBuilder {
+	b.genomicStudy.InstantiatesUriExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GenomicStudyBuilder) SetDescriptionExt(v Element) *GenomicStudyBuilder {
+	b.genomicStudy.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// GenomicStudyAnalysis - Fluent Builder
+// =============================================================================
+
+// GenomicStudyAnalysisBuilder provides a fluent API for constructing GenomicStudyAnalysis values.
+type GenomicStudyAnalysisBuilder struct {
+	genomicStudyAnalysis *GenomicStudyAnalysis
+}
+
+// NewGenomicStudyAnalysisBuilder creates a new GenomicStudyAnalysisBuilder.
+func NewGenomicStudyAnalysisBuilder() *GenomicStudyAnalysisBuilder {
+	return &GenomicStudyAnalysisBuilder{
+		genomicStudyAnalysis: &GenomicStudyAnalysis{},
+	}
+}
+
+// Build returns the constructed GenomicStudyAnalysis.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *GenomicStudyAnalysisBuilder) Build() GenomicStudyAnalysis {
+	return *b.genomicStudyAnalysis
+}
+
+// SetId sets the Id field.
+func (b *GenomicStudyAnalysisBuilder) SetId(v string) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *GenomicStudyAnalysisBuilder) AddExtension(v Extension) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.Extension = append(b.genomicStudyAnalysis.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *GenomicStudyAnalysisBuilder) AddModifierExtension(v Extension) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.ModifierExtension = append(b.genomicStudyAnalysis.ModifierExtension, v)
+	return b
+}
+
+// AddIdentifier adds a Identifier element.
+func (b *GenomicStudyAnalysisBuilder) AddIdentifier(v Identifier) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.Identifier = append(b.genomicStudyAnalysis.Identifier, v)
+	return b
+}
+
+// AddMethodType adds a MethodType element.
+func (b *GenomicStudyAnalysisBuilder) AddMethodType(v CodeableConcept) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.MethodType = append(b.genomicStudyAnalysis.MethodType, v)
+	return b
+}
+
+// AddChangeType adds a ChangeType element.
+func (b *GenomicStudyAnalysisBuilder) AddChangeType(v CodeableConcept) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.ChangeType = append(b.genomicStudyAnalysis.ChangeType, v)
+	return b
+}
+
+// SetGenomeBuild sets the GenomeBuild field.
+func (b *GenomicStudyAnalysisBuilder) SetGenomeBuild(v CodeableConcept) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.GenomeBuild = &v
+	return b
+}
+
+// SetInstantiatesCanonical sets the InstantiatesCanonical field.
+func (b *GenomicStudyAnalysisBuilder) SetInstantiatesCanonical(v string) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.InstantiatesCanonical = &v
+	return b
+}
+
+// SetInstantiatesUri sets the InstantiatesUri field.
+func (b *GenomicStudyAnalysisBuilder) SetInstantiatesUri(v string) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.InstantiatesUri = &v
+	return b
+}
+
+// SetTitle sets the Title field.
+func (b *GenomicStudyAnalysisBuilder) SetTitle(v string) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.Title = &v
+	return b
+}
+
+// AddFocus adds a Focus element.
+func (b *GenomicStudyAnalysisBuilder) AddFocus(v Reference) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.Focus = append(b.genomicStudyAnalysis.Focus, v)
+	return b
+}
+
+// AddSpecimen adds a Specimen element.
+func (b *GenomicStudyAnalysisBuilder) AddSpecimen(v Reference) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.Specimen = append(b.genomicStudyAnalysis.Specimen, v)
+	return b
+}
+
+// SetDate sets the Date field.
+func (b *GenomicStudyAnalysisBuilder) SetDate(v string) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.Date = &v
+	return b
+}
+
+// AddNote adds a Note element.
+func (b *GenomicStudyAnalysisBuilder) AddNote(v Annotation) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.Note = append(b.genomicStudyAnalysis.Note, v)
+	return b
+}
+
+// SetProtocolPerformed sets the ProtocolPerformed field.
+func (b *GenomicStudyAnalysisBuilder) SetProtocolPerformed(v Reference) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.ProtocolPerformed = &v
+	return b
+}
+
+// AddRegionsStudied adds a RegionsStudied element.
+func (b *GenomicStudyAnalysisBuilder) AddRegionsStudied(v Reference) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.RegionsStudied = append(b.genomicStudyAnalysis.RegionsStudied, v)
+	return b
+}
+
+// AddRegionsCalled adds a RegionsCalled element.
+func (b *GenomicStudyAnalysisBuilder) AddRegionsCalled(v Reference) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.RegionsCalled = append(b.genomicStudyAnalysis.RegionsCalled, v)
+	return b
+}
+
+// AddInput adds a Input element.
+func (b *GenomicStudyAnalysisBuilder) AddInput(v GenomicStudyAnalysisInput) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.Input = append(b.genomicStudyAnalysis.Input, v)
+	return b
+}
+
+// AddOutput adds a Output element.
+func (b *GenomicStudyAnalysisBuilder) AddOutput(v GenomicStudyAnalysisOutput) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.Output = append(b.genomicStudyAnalysis.Output, v)
+	return b
+}
+
+// AddPerformer adds a Performer element.
+func (b *GenomicStudyAnalysisBuilder) AddPerformer(v GenomicStudyAnalysisPerformer) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.Performer = append(b.genomicStudyAnalysis.Performer, v)
+	return b
+}
+
+// AddDevice adds a Device element.
+func (b *GenomicStudyAnalysisBuilder) AddDevice(v GenomicStudyAnalysisDevice) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.Device = append(b.genomicStudyAnalysis.Device, v)
+	return b
+}
+
+// SetInstantiatesCanonicalExt sets the extensions carried by InstantiatesCanonical, serialized as
+// "_instantiatesCanonical".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GenomicStudyAnalysisBuilder) SetInstantiatesCanonicalExt(v Element) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.InstantiatesCanonicalExt = &v
+	return b
+}
+
+// SetInstantiatesUriExt sets the extensions carried by InstantiatesUri, serialized as
+// "_instantiatesUri".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GenomicStudyAnalysisBuilder) SetInstantiatesUriExt(v Element) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.InstantiatesUriExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GenomicStudyAnalysisBuilder) SetTitleExt(v Element) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.TitleExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GenomicStudyAnalysisBuilder) SetDateExt(v Element) *GenomicStudyAnalysisBuilder {
+	b.genomicStudyAnalysis.DateExt = &v
+	return b
+}
+
+// =============================================================================
+// GenomicStudyAnalysisDevice - Fluent Builder
+// =============================================================================
+
+// GenomicStudyAnalysisDeviceBuilder provides a fluent API for constructing GenomicStudyAnalysisDevice values.
+type GenomicStudyAnalysisDeviceBuilder struct {
+	genomicStudyAnalysisDevice *GenomicStudyAnalysisDevice
+}
+
+// NewGenomicStudyAnalysisDeviceBuilder creates a new GenomicStudyAnalysisDeviceBuilder.
+func NewGenomicStudyAnalysisDeviceBuilder() *GenomicStudyAnalysisDeviceBuilder {
+	return &GenomicStudyAnalysisDeviceBuilder{
+		genomicStudyAnalysisDevice: &GenomicStudyAnalysisDevice{},
+	}
+}
+
+// Build returns the constructed GenomicStudyAnalysisDevice.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *GenomicStudyAnalysisDeviceBuilder) Build() GenomicStudyAnalysisDevice {
+	return *b.genomicStudyAnalysisDevice
+}
+
+// SetId sets the Id field.
+func (b *GenomicStudyAnalysisDeviceBuilder) SetId(v string) *GenomicStudyAnalysisDeviceBuilder {
+	b.genomicStudyAnalysisDevice.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *GenomicStudyAnalysisDeviceBuilder) AddExtension(v Extension) *GenomicStudyAnalysisDeviceBuilder {
+	b.genomicStudyAnalysisDevice.Extension = append(b.genomicStudyAnalysisDevice.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *GenomicStudyAnalysisDeviceBuilder) AddModifierExtension(v Extension) *GenomicStudyAnalysisDeviceBuilder {
+	b.genomicStudyAnalysisDevice.ModifierExtension = append(b.genomicStudyAnalysisDevice.ModifierExtension, v)
+	return b
+}
+
+// SetDevice sets the Device field.
+func (b *GenomicStudyAnalysisDeviceBuilder) SetDevice(v Reference) *GenomicStudyAnalysisDeviceBuilder {
+	b.genomicStudyAnalysisDevice.Device = &v
+	return b
+}
+
+// SetFunction sets the Function field.
+func (b *GenomicStudyAnalysisDeviceBuilder) SetFunction(v CodeableConcept) *GenomicStudyAnalysisDeviceBuilder {
+	b.genomicStudyAnalysisDevice.Function = &v
+	return b
+}
+
+// =============================================================================
+// GenomicStudyAnalysisInput - Fluent Builder
+// =============================================================================
+
+// GenomicStudyAnalysisInputBuilder provides a fluent API for constructing GenomicStudyAnalysisInput values.
+type GenomicStudyAnalysisInputBuilder struct {
+	genomicStudyAnalysisInput *GenomicStudyAnalysisInput
+}
+
+// NewGenomicStudyAnalysisInputBuilder creates a new GenomicStudyAnalysisInputBuilder.
+func NewGenomicStudyAnalysisInputBuilder() *GenomicStudyAnalysisInputBuilder {
+	return &GenomicStudyAnalysisInputBuilder{
+		genomicStudyAnalysisInput: &GenomicStudyAnalysisInput{},
+	}
+}
+
+// Build returns the constructed GenomicStudyAnalysisInput.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *GenomicStudyAnalysisInputBuilder) Build() GenomicStudyAnalysisInput {
+	return *b.genomicStudyAnalysisInput
+}
+
+// SetId sets the Id field.
+func (b *GenomicStudyAnalysisInputBuilder) SetId(v string) *GenomicStudyAnalysisInputBuilder {
+	b.genomicStudyAnalysisInput.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *GenomicStudyAnalysisInputBuilder) AddExtension(v Extension) *GenomicStudyAnalysisInputBuilder {
+	b.genomicStudyAnalysisInput.Extension = append(b.genomicStudyAnalysisInput.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *GenomicStudyAnalysisInputBuilder) AddModifierExtension(v Extension) *GenomicStudyAnalysisInputBuilder {
+	b.genomicStudyAnalysisInput.ModifierExtension = append(b.genomicStudyAnalysisInput.ModifierExtension, v)
+	return b
+}
+
+// SetFile sets the File field.
+func (b *GenomicStudyAnalysisInputBuilder) SetFile(v Reference) *GenomicStudyAnalysisInputBuilder {
+	b.genomicStudyAnalysisInput.File = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *GenomicStudyAnalysisInputBuilder) SetType(v CodeableConcept) *GenomicStudyAnalysisInputBuilder {
+	b.genomicStudyAnalysisInput.Type = &v
+	return b
+}
+
+// SetGeneratedByIdentifier sets GeneratedBy[x] to its GeneratedByIdentifier variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *GenomicStudyAnalysisInputBuilder) SetGeneratedByIdentifier(v Identifier) *GenomicStudyAnalysisInputBuilder {
+	b.clearGeneratedBy()
+	b.genomicStudyAnalysisInput.GeneratedByIdentifier = &v
+	return b
+}
+
+// SetGeneratedByReference sets GeneratedBy[x] to its GeneratedByReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *GenomicStudyAnalysisInputBuilder) SetGeneratedByReference(v Reference) *GenomicStudyAnalysisInputBuilder {
+	b.clearGeneratedBy()
+	b.genomicStudyAnalysisInput.GeneratedByReference = &v
+	return b
+}
+
+// clearGeneratedBy unsets every variant of GeneratedBy[x], including the
+// _field companions of the primitive ones.
+func (b *GenomicStudyAnalysisInputBuilder) clearGeneratedBy() {
+	b.genomicStudyAnalysisInput.GeneratedByIdentifier = nil
+	b.genomicStudyAnalysisInput.GeneratedByReference = nil
+}
+
+// =============================================================================
+// GenomicStudyAnalysisOutput - Fluent Builder
+// =============================================================================
+
+// GenomicStudyAnalysisOutputBuilder provides a fluent API for constructing GenomicStudyAnalysisOutput values.
+type GenomicStudyAnalysisOutputBuilder struct {
+	genomicStudyAnalysisOutput *GenomicStudyAnalysisOutput
+}
+
+// NewGenomicStudyAnalysisOutputBuilder creates a new GenomicStudyAnalysisOutputBuilder.
+func NewGenomicStudyAnalysisOutputBuilder() *GenomicStudyAnalysisOutputBuilder {
+	return &GenomicStudyAnalysisOutputBuilder{
+		genomicStudyAnalysisOutput: &GenomicStudyAnalysisOutput{},
+	}
+}
+
+// Build returns the constructed GenomicStudyAnalysisOutput.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *GenomicStudyAnalysisOutputBuilder) Build() GenomicStudyAnalysisOutput {
+	return *b.genomicStudyAnalysisOutput
+}
+
+// SetId sets the Id field.
+func (b *GenomicStudyAnalysisOutputBuilder) SetId(v string) *GenomicStudyAnalysisOutputBuilder {
+	b.genomicStudyAnalysisOutput.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *GenomicStudyAnalysisOutputBuilder) AddExtension(v Extension) *GenomicStudyAnalysisOutputBuilder {
+	b.genomicStudyAnalysisOutput.Extension = append(b.genomicStudyAnalysisOutput.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *GenomicStudyAnalysisOutputBuilder) AddModifierExtension(v Extension) *GenomicStudyAnalysisOutputBuilder {
+	b.genomicStudyAnalysisOutput.ModifierExtension = append(b.genomicStudyAnalysisOutput.ModifierExtension, v)
+	return b
+}
+
+// SetFile sets the File field.
+func (b *GenomicStudyAnalysisOutputBuilder) SetFile(v Reference) *GenomicStudyAnalysisOutputBuilder {
+	b.genomicStudyAnalysisOutput.File = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *GenomicStudyAnalysisOutputBuilder) SetType(v CodeableConcept) *GenomicStudyAnalysisOutputBuilder {
+	b.genomicStudyAnalysisOutput.Type = &v
+	return b
+}
+
+// =============================================================================
+// GenomicStudyAnalysisPerformer - Fluent Builder
+// =============================================================================
+
+// GenomicStudyAnalysisPerformerBuilder provides a fluent API for constructing GenomicStudyAnalysisPerformer values.
+type GenomicStudyAnalysisPerformerBuilder struct {
+	genomicStudyAnalysisPerformer *GenomicStudyAnalysisPerformer
+}
+
+// NewGenomicStudyAnalysisPerformerBuilder creates a new GenomicStudyAnalysisPerformerBuilder.
+func NewGenomicStudyAnalysisPerformerBuilder() *GenomicStudyAnalysisPerformerBuilder {
+	return &GenomicStudyAnalysisPerformerBuilder{
+		genomicStudyAnalysisPerformer: &GenomicStudyAnalysisPerformer{},
+	}
+}
+
+// Build returns the constructed GenomicStudyAnalysisPerformer.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *GenomicStudyAnalysisPerformerBuilder) Build() GenomicStudyAnalysisPerformer {
+	return *b.genomicStudyAnalysisPerformer
+}
+
+// SetId sets the Id field.
+func (b *GenomicStudyAnalysisPerformerBuilder) SetId(v string) *GenomicStudyAnalysisPerformerBuilder {
+	b.genomicStudyAnalysisPerformer.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *GenomicStudyAnalysisPerformerBuilder) AddExtension(v Extension) *GenomicStudyAnalysisPerformerBuilder {
+	b.genomicStudyAnalysisPerformer.Extension = append(b.genomicStudyAnalysisPerformer.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *GenomicStudyAnalysisPerformerBuilder) AddModifierExtension(v Extension) *GenomicStudyAnalysisPerformerBuilder {
+	b.genomicStudyAnalysisPerformer.ModifierExtension = append(b.genomicStudyAnalysisPerformer.ModifierExtension, v)
+	return b
+}
+
+// SetActor sets the Actor field.
+func (b *GenomicStudyAnalysisPerformerBuilder) SetActor(v Reference) *GenomicStudyAnalysisPerformerBuilder {
+	b.genomicStudyAnalysisPerformer.Actor = &v
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *GenomicStudyAnalysisPerformerBuilder) SetRole(v CodeableConcept) *GenomicStudyAnalysisPerformerBuilder {
+	b.genomicStudyAnalysisPerformer.Role = &v
+	return b
+}

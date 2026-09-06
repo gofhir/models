@@ -775,3 +775,173 @@ func (b *EpisodeOfCareBuilder) AddAccount(v Reference) *EpisodeOfCareBuilder {
 	b.episodeOfCare.Account = append(b.episodeOfCare.Account, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EpisodeOfCareBuilder) SetImplicitRulesExt(v Element) *EpisodeOfCareBuilder {
+	b.episodeOfCare.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EpisodeOfCareBuilder) SetLanguageExt(v Element) *EpisodeOfCareBuilder {
+	b.episodeOfCare.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EpisodeOfCareBuilder) SetStatusExt(v Element) *EpisodeOfCareBuilder {
+	b.episodeOfCare.StatusExt = &v
+	return b
+}
+
+// =============================================================================
+// EpisodeOfCareDiagnosis - Fluent Builder
+// =============================================================================
+
+// EpisodeOfCareDiagnosisBuilder provides a fluent API for constructing EpisodeOfCareDiagnosis values.
+type EpisodeOfCareDiagnosisBuilder struct {
+	episodeOfCareDiagnosis *EpisodeOfCareDiagnosis
+}
+
+// NewEpisodeOfCareDiagnosisBuilder creates a new EpisodeOfCareDiagnosisBuilder.
+func NewEpisodeOfCareDiagnosisBuilder() *EpisodeOfCareDiagnosisBuilder {
+	return &EpisodeOfCareDiagnosisBuilder{
+		episodeOfCareDiagnosis: &EpisodeOfCareDiagnosis{},
+	}
+}
+
+// Build returns the constructed EpisodeOfCareDiagnosis.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *EpisodeOfCareDiagnosisBuilder) Build() EpisodeOfCareDiagnosis {
+	return *b.episodeOfCareDiagnosis
+}
+
+// SetId sets the Id field.
+func (b *EpisodeOfCareDiagnosisBuilder) SetId(v string) *EpisodeOfCareDiagnosisBuilder {
+	b.episodeOfCareDiagnosis.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *EpisodeOfCareDiagnosisBuilder) AddExtension(v Extension) *EpisodeOfCareDiagnosisBuilder {
+	b.episodeOfCareDiagnosis.Extension = append(b.episodeOfCareDiagnosis.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *EpisodeOfCareDiagnosisBuilder) AddModifierExtension(v Extension) *EpisodeOfCareDiagnosisBuilder {
+	b.episodeOfCareDiagnosis.ModifierExtension = append(b.episodeOfCareDiagnosis.ModifierExtension, v)
+	return b
+}
+
+// SetCondition sets the Condition field.
+func (b *EpisodeOfCareDiagnosisBuilder) SetCondition(v Reference) *EpisodeOfCareDiagnosisBuilder {
+	b.episodeOfCareDiagnosis.Condition = &v
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *EpisodeOfCareDiagnosisBuilder) SetRole(v CodeableConcept) *EpisodeOfCareDiagnosisBuilder {
+	b.episodeOfCareDiagnosis.Role = &v
+	return b
+}
+
+// SetRank sets the Rank field.
+func (b *EpisodeOfCareDiagnosisBuilder) SetRank(v uint32) *EpisodeOfCareDiagnosisBuilder {
+	b.episodeOfCareDiagnosis.Rank = &v
+	return b
+}
+
+// SetRankExt sets the extensions carried by Rank, serialized as
+// "_rank".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EpisodeOfCareDiagnosisBuilder) SetRankExt(v Element) *EpisodeOfCareDiagnosisBuilder {
+	b.episodeOfCareDiagnosis.RankExt = &v
+	return b
+}
+
+// =============================================================================
+// EpisodeOfCareStatusHistory - Fluent Builder
+// =============================================================================
+
+// EpisodeOfCareStatusHistoryBuilder provides a fluent API for constructing EpisodeOfCareStatusHistory values.
+type EpisodeOfCareStatusHistoryBuilder struct {
+	episodeOfCareStatusHistory *EpisodeOfCareStatusHistory
+}
+
+// NewEpisodeOfCareStatusHistoryBuilder creates a new EpisodeOfCareStatusHistoryBuilder.
+func NewEpisodeOfCareStatusHistoryBuilder() *EpisodeOfCareStatusHistoryBuilder {
+	return &EpisodeOfCareStatusHistoryBuilder{
+		episodeOfCareStatusHistory: &EpisodeOfCareStatusHistory{},
+	}
+}
+
+// Build returns the constructed EpisodeOfCareStatusHistory.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *EpisodeOfCareStatusHistoryBuilder) Build() EpisodeOfCareStatusHistory {
+	return *b.episodeOfCareStatusHistory
+}
+
+// SetId sets the Id field.
+func (b *EpisodeOfCareStatusHistoryBuilder) SetId(v string) *EpisodeOfCareStatusHistoryBuilder {
+	b.episodeOfCareStatusHistory.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *EpisodeOfCareStatusHistoryBuilder) AddExtension(v Extension) *EpisodeOfCareStatusHistoryBuilder {
+	b.episodeOfCareStatusHistory.Extension = append(b.episodeOfCareStatusHistory.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *EpisodeOfCareStatusHistoryBuilder) AddModifierExtension(v Extension) *EpisodeOfCareStatusHistoryBuilder {
+	b.episodeOfCareStatusHistory.ModifierExtension = append(b.episodeOfCareStatusHistory.ModifierExtension, v)
+	return b
+}
+
+// SetStatus sets the Status field.
+func (b *EpisodeOfCareStatusHistoryBuilder) SetStatus(v EpisodeOfCareStatus) *EpisodeOfCareStatusHistoryBuilder {
+	b.episodeOfCareStatusHistory.Status = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *EpisodeOfCareStatusHistoryBuilder) SetPeriod(v Period) *EpisodeOfCareStatusHistoryBuilder {
+	b.episodeOfCareStatusHistory.Period = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EpisodeOfCareStatusHistoryBuilder) SetStatusExt(v Element) *EpisodeOfCareStatusHistoryBuilder {
+	b.episodeOfCareStatusHistory.StatusExt = &v
+	return b
+}

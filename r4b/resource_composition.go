@@ -1174,3 +1174,424 @@ func (b *CompositionBuilder) AddSection(v CompositionSection) *CompositionBuilde
 	b.composition.Section = append(b.composition.Section, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompositionBuilder) SetImplicitRulesExt(v Element) *CompositionBuilder {
+	b.composition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompositionBuilder) SetLanguageExt(v Element) *CompositionBuilder {
+	b.composition.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompositionBuilder) SetStatusExt(v Element) *CompositionBuilder {
+	b.composition.StatusExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompositionBuilder) SetDateExt(v Element) *CompositionBuilder {
+	b.composition.DateExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompositionBuilder) SetTitleExt(v Element) *CompositionBuilder {
+	b.composition.TitleExt = &v
+	return b
+}
+
+// SetConfidentialityExt sets the extensions carried by Confidentiality, serialized as
+// "_confidentiality".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompositionBuilder) SetConfidentialityExt(v Element) *CompositionBuilder {
+	b.composition.ConfidentialityExt = &v
+	return b
+}
+
+// =============================================================================
+// CompositionAttester - Fluent Builder
+// =============================================================================
+
+// CompositionAttesterBuilder provides a fluent API for constructing CompositionAttester values.
+type CompositionAttesterBuilder struct {
+	compositionAttester *CompositionAttester
+}
+
+// NewCompositionAttesterBuilder creates a new CompositionAttesterBuilder.
+func NewCompositionAttesterBuilder() *CompositionAttesterBuilder {
+	return &CompositionAttesterBuilder{
+		compositionAttester: &CompositionAttester{},
+	}
+}
+
+// Build returns the constructed CompositionAttester.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CompositionAttesterBuilder) Build() CompositionAttester {
+	return *b.compositionAttester
+}
+
+// SetId sets the Id field.
+func (b *CompositionAttesterBuilder) SetId(v string) *CompositionAttesterBuilder {
+	b.compositionAttester.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CompositionAttesterBuilder) AddExtension(v Extension) *CompositionAttesterBuilder {
+	b.compositionAttester.Extension = append(b.compositionAttester.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CompositionAttesterBuilder) AddModifierExtension(v Extension) *CompositionAttesterBuilder {
+	b.compositionAttester.ModifierExtension = append(b.compositionAttester.ModifierExtension, v)
+	return b
+}
+
+// SetMode sets the Mode field.
+func (b *CompositionAttesterBuilder) SetMode(v CompositionAttestationMode) *CompositionAttesterBuilder {
+	b.compositionAttester.Mode = &v
+	return b
+}
+
+// SetTime sets the Time field.
+func (b *CompositionAttesterBuilder) SetTime(v string) *CompositionAttesterBuilder {
+	b.compositionAttester.Time = &v
+	return b
+}
+
+// SetParty sets the Party field.
+func (b *CompositionAttesterBuilder) SetParty(v Reference) *CompositionAttesterBuilder {
+	b.compositionAttester.Party = &v
+	return b
+}
+
+// SetModeExt sets the extensions carried by Mode, serialized as
+// "_mode".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompositionAttesterBuilder) SetModeExt(v Element) *CompositionAttesterBuilder {
+	b.compositionAttester.ModeExt = &v
+	return b
+}
+
+// SetTimeExt sets the extensions carried by Time, serialized as
+// "_time".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompositionAttesterBuilder) SetTimeExt(v Element) *CompositionAttesterBuilder {
+	b.compositionAttester.TimeExt = &v
+	return b
+}
+
+// =============================================================================
+// CompositionEvent - Fluent Builder
+// =============================================================================
+
+// CompositionEventBuilder provides a fluent API for constructing CompositionEvent values.
+type CompositionEventBuilder struct {
+	compositionEvent *CompositionEvent
+}
+
+// NewCompositionEventBuilder creates a new CompositionEventBuilder.
+func NewCompositionEventBuilder() *CompositionEventBuilder {
+	return &CompositionEventBuilder{
+		compositionEvent: &CompositionEvent{},
+	}
+}
+
+// Build returns the constructed CompositionEvent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CompositionEventBuilder) Build() CompositionEvent {
+	return *b.compositionEvent
+}
+
+// SetId sets the Id field.
+func (b *CompositionEventBuilder) SetId(v string) *CompositionEventBuilder {
+	b.compositionEvent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CompositionEventBuilder) AddExtension(v Extension) *CompositionEventBuilder {
+	b.compositionEvent.Extension = append(b.compositionEvent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CompositionEventBuilder) AddModifierExtension(v Extension) *CompositionEventBuilder {
+	b.compositionEvent.ModifierExtension = append(b.compositionEvent.ModifierExtension, v)
+	return b
+}
+
+// AddCode adds a Code element.
+func (b *CompositionEventBuilder) AddCode(v CodeableConcept) *CompositionEventBuilder {
+	b.compositionEvent.Code = append(b.compositionEvent.Code, v)
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *CompositionEventBuilder) SetPeriod(v Period) *CompositionEventBuilder {
+	b.compositionEvent.Period = &v
+	return b
+}
+
+// AddDetail adds a Detail element.
+func (b *CompositionEventBuilder) AddDetail(v Reference) *CompositionEventBuilder {
+	b.compositionEvent.Detail = append(b.compositionEvent.Detail, v)
+	return b
+}
+
+// =============================================================================
+// CompositionRelatesTo - Fluent Builder
+// =============================================================================
+
+// CompositionRelatesToBuilder provides a fluent API for constructing CompositionRelatesTo values.
+type CompositionRelatesToBuilder struct {
+	compositionRelatesTo *CompositionRelatesTo
+}
+
+// NewCompositionRelatesToBuilder creates a new CompositionRelatesToBuilder.
+func NewCompositionRelatesToBuilder() *CompositionRelatesToBuilder {
+	return &CompositionRelatesToBuilder{
+		compositionRelatesTo: &CompositionRelatesTo{},
+	}
+}
+
+// Build returns the constructed CompositionRelatesTo.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CompositionRelatesToBuilder) Build() CompositionRelatesTo {
+	return *b.compositionRelatesTo
+}
+
+// SetId sets the Id field.
+func (b *CompositionRelatesToBuilder) SetId(v string) *CompositionRelatesToBuilder {
+	b.compositionRelatesTo.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CompositionRelatesToBuilder) AddExtension(v Extension) *CompositionRelatesToBuilder {
+	b.compositionRelatesTo.Extension = append(b.compositionRelatesTo.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CompositionRelatesToBuilder) AddModifierExtension(v Extension) *CompositionRelatesToBuilder {
+	b.compositionRelatesTo.ModifierExtension = append(b.compositionRelatesTo.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *CompositionRelatesToBuilder) SetCode(v DocumentRelationshipType) *CompositionRelatesToBuilder {
+	b.compositionRelatesTo.Code = &v
+	return b
+}
+
+// SetTargetIdentifier sets Target[x] to its TargetIdentifier variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CompositionRelatesToBuilder) SetTargetIdentifier(v Identifier) *CompositionRelatesToBuilder {
+	b.clearTarget()
+	b.compositionRelatesTo.TargetIdentifier = &v
+	return b
+}
+
+// SetTargetReference sets Target[x] to its TargetReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CompositionRelatesToBuilder) SetTargetReference(v Reference) *CompositionRelatesToBuilder {
+	b.clearTarget()
+	b.compositionRelatesTo.TargetReference = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompositionRelatesToBuilder) SetCodeExt(v Element) *CompositionRelatesToBuilder {
+	b.compositionRelatesTo.CodeExt = &v
+	return b
+}
+
+// clearTarget unsets every variant of Target[x], including the
+// _field companions of the primitive ones.
+func (b *CompositionRelatesToBuilder) clearTarget() {
+	b.compositionRelatesTo.TargetIdentifier = nil
+	b.compositionRelatesTo.TargetReference = nil
+}
+
+// =============================================================================
+// CompositionSection - Fluent Builder
+// =============================================================================
+
+// CompositionSectionBuilder provides a fluent API for constructing CompositionSection values.
+type CompositionSectionBuilder struct {
+	compositionSection *CompositionSection
+}
+
+// NewCompositionSectionBuilder creates a new CompositionSectionBuilder.
+func NewCompositionSectionBuilder() *CompositionSectionBuilder {
+	return &CompositionSectionBuilder{
+		compositionSection: &CompositionSection{},
+	}
+}
+
+// Build returns the constructed CompositionSection.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CompositionSectionBuilder) Build() CompositionSection {
+	return *b.compositionSection
+}
+
+// SetId sets the Id field.
+func (b *CompositionSectionBuilder) SetId(v string) *CompositionSectionBuilder {
+	b.compositionSection.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CompositionSectionBuilder) AddExtension(v Extension) *CompositionSectionBuilder {
+	b.compositionSection.Extension = append(b.compositionSection.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CompositionSectionBuilder) AddModifierExtension(v Extension) *CompositionSectionBuilder {
+	b.compositionSection.ModifierExtension = append(b.compositionSection.ModifierExtension, v)
+	return b
+}
+
+// SetTitle sets the Title field.
+func (b *CompositionSectionBuilder) SetTitle(v string) *CompositionSectionBuilder {
+	b.compositionSection.Title = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *CompositionSectionBuilder) SetCode(v CodeableConcept) *CompositionSectionBuilder {
+	b.compositionSection.Code = &v
+	return b
+}
+
+// AddAuthor adds a Author element.
+func (b *CompositionSectionBuilder) AddAuthor(v Reference) *CompositionSectionBuilder {
+	b.compositionSection.Author = append(b.compositionSection.Author, v)
+	return b
+}
+
+// SetFocus sets the Focus field.
+func (b *CompositionSectionBuilder) SetFocus(v Reference) *CompositionSectionBuilder {
+	b.compositionSection.Focus = &v
+	return b
+}
+
+// SetText sets the Text field.
+func (b *CompositionSectionBuilder) SetText(v Narrative) *CompositionSectionBuilder {
+	b.compositionSection.Text = &v
+	return b
+}
+
+// SetMode sets the Mode field.
+func (b *CompositionSectionBuilder) SetMode(v ListMode) *CompositionSectionBuilder {
+	b.compositionSection.Mode = &v
+	return b
+}
+
+// SetOrderedBy sets the OrderedBy field.
+func (b *CompositionSectionBuilder) SetOrderedBy(v CodeableConcept) *CompositionSectionBuilder {
+	b.compositionSection.OrderedBy = &v
+	return b
+}
+
+// AddEntry adds a Entry element.
+func (b *CompositionSectionBuilder) AddEntry(v Reference) *CompositionSectionBuilder {
+	b.compositionSection.Entry = append(b.compositionSection.Entry, v)
+	return b
+}
+
+// SetEmptyReason sets the EmptyReason field.
+func (b *CompositionSectionBuilder) SetEmptyReason(v CodeableConcept) *CompositionSectionBuilder {
+	b.compositionSection.EmptyReason = &v
+	return b
+}
+
+// AddSection adds a Section element.
+func (b *CompositionSectionBuilder) AddSection(v CompositionSection) *CompositionSectionBuilder {
+	b.compositionSection.Section = append(b.compositionSection.Section, v)
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompositionSectionBuilder) SetTitleExt(v Element) *CompositionSectionBuilder {
+	b.compositionSection.TitleExt = &v
+	return b
+}
+
+// SetModeExt sets the extensions carried by Mode, serialized as
+// "_mode".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompositionSectionBuilder) SetModeExt(v Element) *CompositionSectionBuilder {
+	b.compositionSection.ModeExt = &v
+	return b
+}

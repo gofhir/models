@@ -1029,6 +1029,222 @@ func (b *ResearchDefinitionBuilder) SetOutcome(v Reference) *ResearchDefinitionB
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchDefinitionBuilder) SetImplicitRulesExt(v Element) *ResearchDefinitionBuilder {
+	b.researchDefinition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchDefinitionBuilder) SetLanguageExt(v Element) *ResearchDefinitionBuilder {
+	b.researchDefinition.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchDefinitionBuilder) SetUrlExt(v Element) *ResearchDefinitionBuilder {
+	b.researchDefinition.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchDefinitionBuilder) SetVersionExt(v Element) *ResearchDefinitionBuilder {
+	b.researchDefinition.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchDefinitionBuilder) SetNameExt(v Element) *ResearchDefinitionBuilder {
+	b.researchDefinition.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchDefinitionBuilder) SetTitleExt(v Element) *ResearchDefinitionBuilder {
+	b.researchDefinition.TitleExt = &v
+	return b
+}
+
+// SetShortTitleExt sets the extensions carried by ShortTitle, serialized as
+// "_shortTitle".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchDefinitionBuilder) SetShortTitleExt(v Element) *ResearchDefinitionBuilder {
+	b.researchDefinition.ShortTitleExt = &v
+	return b
+}
+
+// SetSubtitleExt sets the extensions carried by Subtitle, serialized as
+// "_subtitle".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchDefinitionBuilder) SetSubtitleExt(v Element) *ResearchDefinitionBuilder {
+	b.researchDefinition.SubtitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchDefinitionBuilder) SetStatusExt(v Element) *ResearchDefinitionBuilder {
+	b.researchDefinition.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchDefinitionBuilder) SetExperimentalExt(v Element) *ResearchDefinitionBuilder {
+	b.researchDefinition.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchDefinitionBuilder) SetDateExt(v Element) *ResearchDefinitionBuilder {
+	b.researchDefinition.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchDefinitionBuilder) SetPublisherExt(v Element) *ResearchDefinitionBuilder {
+	b.researchDefinition.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchDefinitionBuilder) SetDescriptionExt(v Element) *ResearchDefinitionBuilder {
+	b.researchDefinition.DescriptionExt = &v
+	return b
+}
+
+// AddCommentExt attaches extensions to the Comment element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddComment twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ResearchDefinitionBuilder) AddCommentExt(v *Element) *ResearchDefinitionBuilder {
+	for len(b.researchDefinition.CommentExt) < len(b.researchDefinition.Comment)-1 {
+		b.researchDefinition.CommentExt = append(b.researchDefinition.CommentExt, nil)
+	}
+	b.researchDefinition.CommentExt = append(b.researchDefinition.CommentExt, v)
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchDefinitionBuilder) SetPurposeExt(v Element) *ResearchDefinitionBuilder {
+	b.researchDefinition.PurposeExt = &v
+	return b
+}
+
+// SetUsageExt sets the extensions carried by Usage, serialized as
+// "_usage".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchDefinitionBuilder) SetUsageExt(v Element) *ResearchDefinitionBuilder {
+	b.researchDefinition.UsageExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchDefinitionBuilder) SetCopyrightExt(v Element) *ResearchDefinitionBuilder {
+	b.researchDefinition.CopyrightExt = &v
+	return b
+}
+
+// SetApprovalDateExt sets the extensions carried by ApprovalDate, serialized as
+// "_approvalDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchDefinitionBuilder) SetApprovalDateExt(v Element) *ResearchDefinitionBuilder {
+	b.researchDefinition.ApprovalDateExt = &v
+	return b
+}
+
+// SetLastReviewDateExt sets the extensions carried by LastReviewDate, serialized as
+// "_lastReviewDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchDefinitionBuilder) SetLastReviewDateExt(v Element) *ResearchDefinitionBuilder {
+	b.researchDefinition.LastReviewDateExt = &v
+	return b
+}
+
+// AddLibraryExt attaches extensions to the Library element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddLibrary twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ResearchDefinitionBuilder) AddLibraryExt(v *Element) *ResearchDefinitionBuilder {
+	for len(b.researchDefinition.LibraryExt) < len(b.researchDefinition.Library)-1 {
+		b.researchDefinition.LibraryExt = append(b.researchDefinition.LibraryExt, nil)
+	}
+	b.researchDefinition.LibraryExt = append(b.researchDefinition.LibraryExt, v)
+	return b
+}
+
 // clearSubject unsets every variant of Subject[x], including the
 // _field companions of the primitive ones.
 func (b *ResearchDefinitionBuilder) clearSubject() {

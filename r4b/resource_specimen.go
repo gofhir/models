@@ -1082,3 +1082,404 @@ func (b *SpecimenBuilder) AddNote(v Annotation) *SpecimenBuilder {
 	b.specimen.Note = append(b.specimen.Note, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenBuilder) SetImplicitRulesExt(v Element) *SpecimenBuilder {
+	b.specimen.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenBuilder) SetLanguageExt(v Element) *SpecimenBuilder {
+	b.specimen.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenBuilder) SetStatusExt(v Element) *SpecimenBuilder {
+	b.specimen.StatusExt = &v
+	return b
+}
+
+// SetReceivedTimeExt sets the extensions carried by ReceivedTime, serialized as
+// "_receivedTime".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenBuilder) SetReceivedTimeExt(v Element) *SpecimenBuilder {
+	b.specimen.ReceivedTimeExt = &v
+	return b
+}
+
+// =============================================================================
+// SpecimenCollection - Fluent Builder
+// =============================================================================
+
+// SpecimenCollectionBuilder provides a fluent API for constructing SpecimenCollection values.
+type SpecimenCollectionBuilder struct {
+	specimenCollection *SpecimenCollection
+}
+
+// NewSpecimenCollectionBuilder creates a new SpecimenCollectionBuilder.
+func NewSpecimenCollectionBuilder() *SpecimenCollectionBuilder {
+	return &SpecimenCollectionBuilder{
+		specimenCollection: &SpecimenCollection{},
+	}
+}
+
+// Build returns the constructed SpecimenCollection.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SpecimenCollectionBuilder) Build() SpecimenCollection {
+	return *b.specimenCollection
+}
+
+// SetId sets the Id field.
+func (b *SpecimenCollectionBuilder) SetId(v string) *SpecimenCollectionBuilder {
+	b.specimenCollection.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SpecimenCollectionBuilder) AddExtension(v Extension) *SpecimenCollectionBuilder {
+	b.specimenCollection.Extension = append(b.specimenCollection.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SpecimenCollectionBuilder) AddModifierExtension(v Extension) *SpecimenCollectionBuilder {
+	b.specimenCollection.ModifierExtension = append(b.specimenCollection.ModifierExtension, v)
+	return b
+}
+
+// SetCollector sets the Collector field.
+func (b *SpecimenCollectionBuilder) SetCollector(v Reference) *SpecimenCollectionBuilder {
+	b.specimenCollection.Collector = &v
+	return b
+}
+
+// SetCollectedDateTime sets Collected[x] to its CollectedDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SpecimenCollectionBuilder) SetCollectedDateTime(v string) *SpecimenCollectionBuilder {
+	b.clearCollected()
+	b.specimenCollection.CollectedDateTime = &v
+	return b
+}
+
+// SetCollectedDateTimeExt sets the CollectedDateTimeExt field.
+func (b *SpecimenCollectionBuilder) SetCollectedDateTimeExt(v Element) *SpecimenCollectionBuilder {
+	b.specimenCollection.CollectedDateTimeExt = &v
+	return b
+}
+
+// SetCollectedPeriod sets Collected[x] to its CollectedPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SpecimenCollectionBuilder) SetCollectedPeriod(v Period) *SpecimenCollectionBuilder {
+	b.clearCollected()
+	b.specimenCollection.CollectedPeriod = &v
+	return b
+}
+
+// SetDuration sets the Duration field.
+func (b *SpecimenCollectionBuilder) SetDuration(v Duration) *SpecimenCollectionBuilder {
+	b.specimenCollection.Duration = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *SpecimenCollectionBuilder) SetQuantity(v Quantity) *SpecimenCollectionBuilder {
+	b.specimenCollection.Quantity = &v
+	return b
+}
+
+// SetMethod sets the Method field.
+func (b *SpecimenCollectionBuilder) SetMethod(v CodeableConcept) *SpecimenCollectionBuilder {
+	b.specimenCollection.Method = &v
+	return b
+}
+
+// SetBodySite sets the BodySite field.
+func (b *SpecimenCollectionBuilder) SetBodySite(v CodeableConcept) *SpecimenCollectionBuilder {
+	b.specimenCollection.BodySite = &v
+	return b
+}
+
+// SetFastingStatusCodeableConcept sets FastingStatus[x] to its FastingStatusCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SpecimenCollectionBuilder) SetFastingStatusCodeableConcept(v CodeableConcept) *SpecimenCollectionBuilder {
+	b.clearFastingStatus()
+	b.specimenCollection.FastingStatusCodeableConcept = &v
+	return b
+}
+
+// SetFastingStatusDuration sets FastingStatus[x] to its FastingStatusDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SpecimenCollectionBuilder) SetFastingStatusDuration(v Duration) *SpecimenCollectionBuilder {
+	b.clearFastingStatus()
+	b.specimenCollection.FastingStatusDuration = &v
+	return b
+}
+
+// clearCollected unsets every variant of Collected[x], including the
+// _field companions of the primitive ones.
+func (b *SpecimenCollectionBuilder) clearCollected() {
+	b.specimenCollection.CollectedDateTime = nil
+	b.specimenCollection.CollectedPeriod = nil
+}
+
+// clearFastingStatus unsets every variant of FastingStatus[x], including the
+// _field companions of the primitive ones.
+func (b *SpecimenCollectionBuilder) clearFastingStatus() {
+	b.specimenCollection.FastingStatusCodeableConcept = nil
+	b.specimenCollection.FastingStatusDuration = nil
+}
+
+// =============================================================================
+// SpecimenContainer - Fluent Builder
+// =============================================================================
+
+// SpecimenContainerBuilder provides a fluent API for constructing SpecimenContainer values.
+type SpecimenContainerBuilder struct {
+	specimenContainer *SpecimenContainer
+}
+
+// NewSpecimenContainerBuilder creates a new SpecimenContainerBuilder.
+func NewSpecimenContainerBuilder() *SpecimenContainerBuilder {
+	return &SpecimenContainerBuilder{
+		specimenContainer: &SpecimenContainer{},
+	}
+}
+
+// Build returns the constructed SpecimenContainer.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SpecimenContainerBuilder) Build() SpecimenContainer {
+	return *b.specimenContainer
+}
+
+// SetId sets the Id field.
+func (b *SpecimenContainerBuilder) SetId(v string) *SpecimenContainerBuilder {
+	b.specimenContainer.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SpecimenContainerBuilder) AddExtension(v Extension) *SpecimenContainerBuilder {
+	b.specimenContainer.Extension = append(b.specimenContainer.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SpecimenContainerBuilder) AddModifierExtension(v Extension) *SpecimenContainerBuilder {
+	b.specimenContainer.ModifierExtension = append(b.specimenContainer.ModifierExtension, v)
+	return b
+}
+
+// AddIdentifier adds a Identifier element.
+func (b *SpecimenContainerBuilder) AddIdentifier(v Identifier) *SpecimenContainerBuilder {
+	b.specimenContainer.Identifier = append(b.specimenContainer.Identifier, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *SpecimenContainerBuilder) SetDescription(v string) *SpecimenContainerBuilder {
+	b.specimenContainer.Description = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *SpecimenContainerBuilder) SetType(v CodeableConcept) *SpecimenContainerBuilder {
+	b.specimenContainer.Type = &v
+	return b
+}
+
+// SetCapacity sets the Capacity field.
+func (b *SpecimenContainerBuilder) SetCapacity(v Quantity) *SpecimenContainerBuilder {
+	b.specimenContainer.Capacity = &v
+	return b
+}
+
+// SetSpecimenQuantity sets the SpecimenQuantity field.
+func (b *SpecimenContainerBuilder) SetSpecimenQuantity(v Quantity) *SpecimenContainerBuilder {
+	b.specimenContainer.SpecimenQuantity = &v
+	return b
+}
+
+// SetAdditiveCodeableConcept sets Additive[x] to its AdditiveCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SpecimenContainerBuilder) SetAdditiveCodeableConcept(v CodeableConcept) *SpecimenContainerBuilder {
+	b.clearAdditive()
+	b.specimenContainer.AdditiveCodeableConcept = &v
+	return b
+}
+
+// SetAdditiveReference sets Additive[x] to its AdditiveReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SpecimenContainerBuilder) SetAdditiveReference(v Reference) *SpecimenContainerBuilder {
+	b.clearAdditive()
+	b.specimenContainer.AdditiveReference = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenContainerBuilder) SetDescriptionExt(v Element) *SpecimenContainerBuilder {
+	b.specimenContainer.DescriptionExt = &v
+	return b
+}
+
+// clearAdditive unsets every variant of Additive[x], including the
+// _field companions of the primitive ones.
+func (b *SpecimenContainerBuilder) clearAdditive() {
+	b.specimenContainer.AdditiveCodeableConcept = nil
+	b.specimenContainer.AdditiveReference = nil
+}
+
+// =============================================================================
+// SpecimenProcessing - Fluent Builder
+// =============================================================================
+
+// SpecimenProcessingBuilder provides a fluent API for constructing SpecimenProcessing values.
+type SpecimenProcessingBuilder struct {
+	specimenProcessing *SpecimenProcessing
+}
+
+// NewSpecimenProcessingBuilder creates a new SpecimenProcessingBuilder.
+func NewSpecimenProcessingBuilder() *SpecimenProcessingBuilder {
+	return &SpecimenProcessingBuilder{
+		specimenProcessing: &SpecimenProcessing{},
+	}
+}
+
+// Build returns the constructed SpecimenProcessing.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SpecimenProcessingBuilder) Build() SpecimenProcessing {
+	return *b.specimenProcessing
+}
+
+// SetId sets the Id field.
+func (b *SpecimenProcessingBuilder) SetId(v string) *SpecimenProcessingBuilder {
+	b.specimenProcessing.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SpecimenProcessingBuilder) AddExtension(v Extension) *SpecimenProcessingBuilder {
+	b.specimenProcessing.Extension = append(b.specimenProcessing.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SpecimenProcessingBuilder) AddModifierExtension(v Extension) *SpecimenProcessingBuilder {
+	b.specimenProcessing.ModifierExtension = append(b.specimenProcessing.ModifierExtension, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *SpecimenProcessingBuilder) SetDescription(v string) *SpecimenProcessingBuilder {
+	b.specimenProcessing.Description = &v
+	return b
+}
+
+// SetProcedure sets the Procedure field.
+func (b *SpecimenProcessingBuilder) SetProcedure(v CodeableConcept) *SpecimenProcessingBuilder {
+	b.specimenProcessing.Procedure = &v
+	return b
+}
+
+// AddAdditive adds a Additive element.
+func (b *SpecimenProcessingBuilder) AddAdditive(v Reference) *SpecimenProcessingBuilder {
+	b.specimenProcessing.Additive = append(b.specimenProcessing.Additive, v)
+	return b
+}
+
+// SetTimeDateTime sets Time[x] to its TimeDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SpecimenProcessingBuilder) SetTimeDateTime(v string) *SpecimenProcessingBuilder {
+	b.clearTime()
+	b.specimenProcessing.TimeDateTime = &v
+	return b
+}
+
+// SetTimeDateTimeExt sets the TimeDateTimeExt field.
+func (b *SpecimenProcessingBuilder) SetTimeDateTimeExt(v Element) *SpecimenProcessingBuilder {
+	b.specimenProcessing.TimeDateTimeExt = &v
+	return b
+}
+
+// SetTimePeriod sets Time[x] to its TimePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SpecimenProcessingBuilder) SetTimePeriod(v Period) *SpecimenProcessingBuilder {
+	b.clearTime()
+	b.specimenProcessing.TimePeriod = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SpecimenProcessingBuilder) SetDescriptionExt(v Element) *SpecimenProcessingBuilder {
+	b.specimenProcessing.DescriptionExt = &v
+	return b
+}
+
+// clearTime unsets every variant of Time[x], including the
+// _field companions of the primitive ones.
+func (b *SpecimenProcessingBuilder) clearTime() {
+	b.specimenProcessing.TimeDateTime = nil
+	b.specimenProcessing.TimePeriod = nil
+}

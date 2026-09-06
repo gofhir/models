@@ -1158,6 +1158,222 @@ func (b *MessageDefinitionBuilder) SetGraph(v string) *MessageDefinitionBuilder 
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionBuilder) SetImplicitRulesExt(v Element) *MessageDefinitionBuilder {
+	b.messageDefinition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionBuilder) SetLanguageExt(v Element) *MessageDefinitionBuilder {
+	b.messageDefinition.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionBuilder) SetUrlExt(v Element) *MessageDefinitionBuilder {
+	b.messageDefinition.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionBuilder) SetVersionExt(v Element) *MessageDefinitionBuilder {
+	b.messageDefinition.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionBuilder) SetNameExt(v Element) *MessageDefinitionBuilder {
+	b.messageDefinition.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionBuilder) SetTitleExt(v Element) *MessageDefinitionBuilder {
+	b.messageDefinition.TitleExt = &v
+	return b
+}
+
+// AddReplacesExt attaches extensions to the Replaces element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddReplaces twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *MessageDefinitionBuilder) AddReplacesExt(v *Element) *MessageDefinitionBuilder {
+	for len(b.messageDefinition.ReplacesExt) < len(b.messageDefinition.Replaces)-1 {
+		b.messageDefinition.ReplacesExt = append(b.messageDefinition.ReplacesExt, nil)
+	}
+	b.messageDefinition.ReplacesExt = append(b.messageDefinition.ReplacesExt, v)
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionBuilder) SetStatusExt(v Element) *MessageDefinitionBuilder {
+	b.messageDefinition.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionBuilder) SetExperimentalExt(v Element) *MessageDefinitionBuilder {
+	b.messageDefinition.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionBuilder) SetDateExt(v Element) *MessageDefinitionBuilder {
+	b.messageDefinition.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionBuilder) SetPublisherExt(v Element) *MessageDefinitionBuilder {
+	b.messageDefinition.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionBuilder) SetDescriptionExt(v Element) *MessageDefinitionBuilder {
+	b.messageDefinition.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionBuilder) SetPurposeExt(v Element) *MessageDefinitionBuilder {
+	b.messageDefinition.PurposeExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionBuilder) SetCopyrightExt(v Element) *MessageDefinitionBuilder {
+	b.messageDefinition.CopyrightExt = &v
+	return b
+}
+
+// SetCopyrightLabelExt sets the extensions carried by CopyrightLabel, serialized as
+// "_copyrightLabel".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionBuilder) SetCopyrightLabelExt(v Element) *MessageDefinitionBuilder {
+	b.messageDefinition.CopyrightLabelExt = &v
+	return b
+}
+
+// SetBaseExt sets the extensions carried by Base, serialized as
+// "_base".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionBuilder) SetBaseExt(v Element) *MessageDefinitionBuilder {
+	b.messageDefinition.BaseExt = &v
+	return b
+}
+
+// AddParentExt attaches extensions to the Parent element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddParent twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *MessageDefinitionBuilder) AddParentExt(v *Element) *MessageDefinitionBuilder {
+	for len(b.messageDefinition.ParentExt) < len(b.messageDefinition.Parent)-1 {
+		b.messageDefinition.ParentExt = append(b.messageDefinition.ParentExt, nil)
+	}
+	b.messageDefinition.ParentExt = append(b.messageDefinition.ParentExt, v)
+	return b
+}
+
+// SetCategoryExt sets the extensions carried by Category, serialized as
+// "_category".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionBuilder) SetCategoryExt(v Element) *MessageDefinitionBuilder {
+	b.messageDefinition.CategoryExt = &v
+	return b
+}
+
+// SetResponseRequiredExt sets the extensions carried by ResponseRequired, serialized as
+// "_responseRequired".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionBuilder) SetResponseRequiredExt(v Element) *MessageDefinitionBuilder {
+	b.messageDefinition.ResponseRequiredExt = &v
+	return b
+}
+
+// SetGraphExt sets the extensions carried by Graph, serialized as
+// "_graph".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionBuilder) SetGraphExt(v Element) *MessageDefinitionBuilder {
+	b.messageDefinition.GraphExt = &v
+	return b
+}
+
 // clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
 // _field companions of the primitive ones.
 func (b *MessageDefinitionBuilder) clearVersionAlgorithm() {
@@ -1171,4 +1387,190 @@ func (b *MessageDefinitionBuilder) clearEvent() {
 	b.messageDefinition.EventCoding = nil
 	b.messageDefinition.EventUri = nil
 	b.messageDefinition.EventUriExt = nil
+}
+
+// =============================================================================
+// MessageDefinitionAllowedResponse - Fluent Builder
+// =============================================================================
+
+// MessageDefinitionAllowedResponseBuilder provides a fluent API for constructing MessageDefinitionAllowedResponse values.
+type MessageDefinitionAllowedResponseBuilder struct {
+	messageDefinitionAllowedResponse *MessageDefinitionAllowedResponse
+}
+
+// NewMessageDefinitionAllowedResponseBuilder creates a new MessageDefinitionAllowedResponseBuilder.
+func NewMessageDefinitionAllowedResponseBuilder() *MessageDefinitionAllowedResponseBuilder {
+	return &MessageDefinitionAllowedResponseBuilder{
+		messageDefinitionAllowedResponse: &MessageDefinitionAllowedResponse{},
+	}
+}
+
+// Build returns the constructed MessageDefinitionAllowedResponse.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MessageDefinitionAllowedResponseBuilder) Build() MessageDefinitionAllowedResponse {
+	return *b.messageDefinitionAllowedResponse
+}
+
+// SetId sets the Id field.
+func (b *MessageDefinitionAllowedResponseBuilder) SetId(v string) *MessageDefinitionAllowedResponseBuilder {
+	b.messageDefinitionAllowedResponse.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MessageDefinitionAllowedResponseBuilder) AddExtension(v Extension) *MessageDefinitionAllowedResponseBuilder {
+	b.messageDefinitionAllowedResponse.Extension = append(b.messageDefinitionAllowedResponse.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MessageDefinitionAllowedResponseBuilder) AddModifierExtension(v Extension) *MessageDefinitionAllowedResponseBuilder {
+	b.messageDefinitionAllowedResponse.ModifierExtension = append(b.messageDefinitionAllowedResponse.ModifierExtension, v)
+	return b
+}
+
+// SetMessage sets the Message field.
+func (b *MessageDefinitionAllowedResponseBuilder) SetMessage(v string) *MessageDefinitionAllowedResponseBuilder {
+	b.messageDefinitionAllowedResponse.Message = &v
+	return b
+}
+
+// SetSituation sets the Situation field.
+func (b *MessageDefinitionAllowedResponseBuilder) SetSituation(v string) *MessageDefinitionAllowedResponseBuilder {
+	b.messageDefinitionAllowedResponse.Situation = &v
+	return b
+}
+
+// SetMessageExt sets the extensions carried by Message, serialized as
+// "_message".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionAllowedResponseBuilder) SetMessageExt(v Element) *MessageDefinitionAllowedResponseBuilder {
+	b.messageDefinitionAllowedResponse.MessageExt = &v
+	return b
+}
+
+// SetSituationExt sets the extensions carried by Situation, serialized as
+// "_situation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionAllowedResponseBuilder) SetSituationExt(v Element) *MessageDefinitionAllowedResponseBuilder {
+	b.messageDefinitionAllowedResponse.SituationExt = &v
+	return b
+}
+
+// =============================================================================
+// MessageDefinitionFocus - Fluent Builder
+// =============================================================================
+
+// MessageDefinitionFocusBuilder provides a fluent API for constructing MessageDefinitionFocus values.
+type MessageDefinitionFocusBuilder struct {
+	messageDefinitionFocus *MessageDefinitionFocus
+}
+
+// NewMessageDefinitionFocusBuilder creates a new MessageDefinitionFocusBuilder.
+func NewMessageDefinitionFocusBuilder() *MessageDefinitionFocusBuilder {
+	return &MessageDefinitionFocusBuilder{
+		messageDefinitionFocus: &MessageDefinitionFocus{},
+	}
+}
+
+// Build returns the constructed MessageDefinitionFocus.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MessageDefinitionFocusBuilder) Build() MessageDefinitionFocus {
+	return *b.messageDefinitionFocus
+}
+
+// SetId sets the Id field.
+func (b *MessageDefinitionFocusBuilder) SetId(v string) *MessageDefinitionFocusBuilder {
+	b.messageDefinitionFocus.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MessageDefinitionFocusBuilder) AddExtension(v Extension) *MessageDefinitionFocusBuilder {
+	b.messageDefinitionFocus.Extension = append(b.messageDefinitionFocus.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MessageDefinitionFocusBuilder) AddModifierExtension(v Extension) *MessageDefinitionFocusBuilder {
+	b.messageDefinitionFocus.ModifierExtension = append(b.messageDefinitionFocus.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MessageDefinitionFocusBuilder) SetCode(v string) *MessageDefinitionFocusBuilder {
+	b.messageDefinitionFocus.Code = &v
+	return b
+}
+
+// SetProfile sets the Profile field.
+func (b *MessageDefinitionFocusBuilder) SetProfile(v string) *MessageDefinitionFocusBuilder {
+	b.messageDefinitionFocus.Profile = &v
+	return b
+}
+
+// SetMin sets the Min field.
+func (b *MessageDefinitionFocusBuilder) SetMin(v uint32) *MessageDefinitionFocusBuilder {
+	b.messageDefinitionFocus.Min = &v
+	return b
+}
+
+// SetMax sets the Max field.
+func (b *MessageDefinitionFocusBuilder) SetMax(v string) *MessageDefinitionFocusBuilder {
+	b.messageDefinitionFocus.Max = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionFocusBuilder) SetCodeExt(v Element) *MessageDefinitionFocusBuilder {
+	b.messageDefinitionFocus.CodeExt = &v
+	return b
+}
+
+// SetProfileExt sets the extensions carried by Profile, serialized as
+// "_profile".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionFocusBuilder) SetProfileExt(v Element) *MessageDefinitionFocusBuilder {
+	b.messageDefinitionFocus.ProfileExt = &v
+	return b
+}
+
+// SetMinExt sets the extensions carried by Min, serialized as
+// "_min".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionFocusBuilder) SetMinExt(v Element) *MessageDefinitionFocusBuilder {
+	b.messageDefinitionFocus.MinExt = &v
+	return b
+}
+
+// SetMaxExt sets the extensions carried by Max, serialized as
+// "_max".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageDefinitionFocusBuilder) SetMaxExt(v Element) *MessageDefinitionFocusBuilder {
+	b.messageDefinitionFocus.MaxExt = &v
+	return b
 }

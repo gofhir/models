@@ -716,6 +716,46 @@ func (b *MedicationStatementBuilder) AddDosage(v Dosage) *MedicationStatementBui
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationStatementBuilder) SetImplicitRulesExt(v Element) *MedicationStatementBuilder {
+	b.medicationStatement.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationStatementBuilder) SetLanguageExt(v Element) *MedicationStatementBuilder {
+	b.medicationStatement.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationStatementBuilder) SetStatusExt(v Element) *MedicationStatementBuilder {
+	b.medicationStatement.StatusExt = &v
+	return b
+}
+
+// SetDateAssertedExt sets the extensions carried by DateAsserted, serialized as
+// "_dateAsserted".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationStatementBuilder) SetDateAssertedExt(v Element) *MedicationStatementBuilder {
+	b.medicationStatement.DateAssertedExt = &v
+	return b
+}
+
 // clearMedication unsets every variant of Medication[x], including the
 // _field companions of the primitive ones.
 func (b *MedicationStatementBuilder) clearMedication() {

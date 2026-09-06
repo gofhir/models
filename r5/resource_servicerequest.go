@@ -1509,6 +1509,112 @@ func (b *ServiceRequestBuilder) AddRelevantHistory(v Reference) *ServiceRequestB
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ServiceRequestBuilder) SetImplicitRulesExt(v Element) *ServiceRequestBuilder {
+	b.serviceRequest.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ServiceRequestBuilder) SetLanguageExt(v Element) *ServiceRequestBuilder {
+	b.serviceRequest.LanguageExt = &v
+	return b
+}
+
+// AddInstantiatesCanonicalExt attaches extensions to the InstantiatesCanonical element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesCanonical twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ServiceRequestBuilder) AddInstantiatesCanonicalExt(v *Element) *ServiceRequestBuilder {
+	for len(b.serviceRequest.InstantiatesCanonicalExt) < len(b.serviceRequest.InstantiatesCanonical)-1 {
+		b.serviceRequest.InstantiatesCanonicalExt = append(b.serviceRequest.InstantiatesCanonicalExt, nil)
+	}
+	b.serviceRequest.InstantiatesCanonicalExt = append(b.serviceRequest.InstantiatesCanonicalExt, v)
+	return b
+}
+
+// AddInstantiatesUriExt attaches extensions to the InstantiatesUri element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesUri twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ServiceRequestBuilder) AddInstantiatesUriExt(v *Element) *ServiceRequestBuilder {
+	for len(b.serviceRequest.InstantiatesUriExt) < len(b.serviceRequest.InstantiatesUri)-1 {
+		b.serviceRequest.InstantiatesUriExt = append(b.serviceRequest.InstantiatesUriExt, nil)
+	}
+	b.serviceRequest.InstantiatesUriExt = append(b.serviceRequest.InstantiatesUriExt, v)
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ServiceRequestBuilder) SetStatusExt(v Element) *ServiceRequestBuilder {
+	b.serviceRequest.StatusExt = &v
+	return b
+}
+
+// SetIntentExt sets the extensions carried by Intent, serialized as
+// "_intent".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ServiceRequestBuilder) SetIntentExt(v Element) *ServiceRequestBuilder {
+	b.serviceRequest.IntentExt = &v
+	return b
+}
+
+// SetPriorityExt sets the extensions carried by Priority, serialized as
+// "_priority".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ServiceRequestBuilder) SetPriorityExt(v Element) *ServiceRequestBuilder {
+	b.serviceRequest.PriorityExt = &v
+	return b
+}
+
+// SetDoNotPerformExt sets the extensions carried by DoNotPerform, serialized as
+// "_doNotPerform".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ServiceRequestBuilder) SetDoNotPerformExt(v Element) *ServiceRequestBuilder {
+	b.serviceRequest.DoNotPerformExt = &v
+	return b
+}
+
+// SetAuthoredOnExt sets the extensions carried by AuthoredOn, serialized as
+// "_authoredOn".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ServiceRequestBuilder) SetAuthoredOnExt(v Element) *ServiceRequestBuilder {
+	b.serviceRequest.AuthoredOnExt = &v
+	return b
+}
+
 // clearQuantity unsets every variant of Quantity[x], including the
 // _field companions of the primitive ones.
 func (b *ServiceRequestBuilder) clearQuantity() {
@@ -1530,4 +1636,295 @@ func (b *ServiceRequestBuilder) clearOccurrence() {
 func (b *ServiceRequestBuilder) clearAsNeeded() {
 	b.serviceRequest.AsNeededBoolean = nil
 	b.serviceRequest.AsNeededCodeableConcept = nil
+}
+
+// =============================================================================
+// ServiceRequestOrderDetail - Fluent Builder
+// =============================================================================
+
+// ServiceRequestOrderDetailBuilder provides a fluent API for constructing ServiceRequestOrderDetail values.
+type ServiceRequestOrderDetailBuilder struct {
+	serviceRequestOrderDetail *ServiceRequestOrderDetail
+}
+
+// NewServiceRequestOrderDetailBuilder creates a new ServiceRequestOrderDetailBuilder.
+func NewServiceRequestOrderDetailBuilder() *ServiceRequestOrderDetailBuilder {
+	return &ServiceRequestOrderDetailBuilder{
+		serviceRequestOrderDetail: &ServiceRequestOrderDetail{},
+	}
+}
+
+// Build returns the constructed ServiceRequestOrderDetail.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ServiceRequestOrderDetailBuilder) Build() ServiceRequestOrderDetail {
+	return *b.serviceRequestOrderDetail
+}
+
+// SetId sets the Id field.
+func (b *ServiceRequestOrderDetailBuilder) SetId(v string) *ServiceRequestOrderDetailBuilder {
+	b.serviceRequestOrderDetail.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ServiceRequestOrderDetailBuilder) AddExtension(v Extension) *ServiceRequestOrderDetailBuilder {
+	b.serviceRequestOrderDetail.Extension = append(b.serviceRequestOrderDetail.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ServiceRequestOrderDetailBuilder) AddModifierExtension(v Extension) *ServiceRequestOrderDetailBuilder {
+	b.serviceRequestOrderDetail.ModifierExtension = append(b.serviceRequestOrderDetail.ModifierExtension, v)
+	return b
+}
+
+// SetParameterFocus sets the ParameterFocus field.
+func (b *ServiceRequestOrderDetailBuilder) SetParameterFocus(v CodeableReference) *ServiceRequestOrderDetailBuilder {
+	b.serviceRequestOrderDetail.ParameterFocus = &v
+	return b
+}
+
+// AddParameter adds a Parameter element.
+func (b *ServiceRequestOrderDetailBuilder) AddParameter(v ServiceRequestOrderDetailParameter) *ServiceRequestOrderDetailBuilder {
+	b.serviceRequestOrderDetail.Parameter = append(b.serviceRequestOrderDetail.Parameter, v)
+	return b
+}
+
+// =============================================================================
+// ServiceRequestOrderDetailParameter - Fluent Builder
+// =============================================================================
+
+// ServiceRequestOrderDetailParameterBuilder provides a fluent API for constructing ServiceRequestOrderDetailParameter values.
+type ServiceRequestOrderDetailParameterBuilder struct {
+	serviceRequestOrderDetailParameter *ServiceRequestOrderDetailParameter
+}
+
+// NewServiceRequestOrderDetailParameterBuilder creates a new ServiceRequestOrderDetailParameterBuilder.
+func NewServiceRequestOrderDetailParameterBuilder() *ServiceRequestOrderDetailParameterBuilder {
+	return &ServiceRequestOrderDetailParameterBuilder{
+		serviceRequestOrderDetailParameter: &ServiceRequestOrderDetailParameter{},
+	}
+}
+
+// Build returns the constructed ServiceRequestOrderDetailParameter.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ServiceRequestOrderDetailParameterBuilder) Build() ServiceRequestOrderDetailParameter {
+	return *b.serviceRequestOrderDetailParameter
+}
+
+// SetId sets the Id field.
+func (b *ServiceRequestOrderDetailParameterBuilder) SetId(v string) *ServiceRequestOrderDetailParameterBuilder {
+	b.serviceRequestOrderDetailParameter.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ServiceRequestOrderDetailParameterBuilder) AddExtension(v Extension) *ServiceRequestOrderDetailParameterBuilder {
+	b.serviceRequestOrderDetailParameter.Extension = append(b.serviceRequestOrderDetailParameter.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ServiceRequestOrderDetailParameterBuilder) AddModifierExtension(v Extension) *ServiceRequestOrderDetailParameterBuilder {
+	b.serviceRequestOrderDetailParameter.ModifierExtension = append(b.serviceRequestOrderDetailParameter.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ServiceRequestOrderDetailParameterBuilder) SetCode(v CodeableConcept) *ServiceRequestOrderDetailParameterBuilder {
+	b.serviceRequestOrderDetailParameter.Code = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ServiceRequestOrderDetailParameterBuilder) SetValueQuantity(v Quantity) *ServiceRequestOrderDetailParameterBuilder {
+	b.clearValue()
+	b.serviceRequestOrderDetailParameter.ValueQuantity = &v
+	return b
+}
+
+// SetValueRatio sets Value[x] to its ValueRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ServiceRequestOrderDetailParameterBuilder) SetValueRatio(v Ratio) *ServiceRequestOrderDetailParameterBuilder {
+	b.clearValue()
+	b.serviceRequestOrderDetailParameter.ValueRatio = &v
+	return b
+}
+
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ServiceRequestOrderDetailParameterBuilder) SetValueRange(v Range) *ServiceRequestOrderDetailParameterBuilder {
+	b.clearValue()
+	b.serviceRequestOrderDetailParameter.ValueRange = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ServiceRequestOrderDetailParameterBuilder) SetValueBoolean(v bool) *ServiceRequestOrderDetailParameterBuilder {
+	b.clearValue()
+	b.serviceRequestOrderDetailParameter.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *ServiceRequestOrderDetailParameterBuilder) SetValueBooleanExt(v Element) *ServiceRequestOrderDetailParameterBuilder {
+	b.serviceRequestOrderDetailParameter.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ServiceRequestOrderDetailParameterBuilder) SetValueCodeableConcept(v CodeableConcept) *ServiceRequestOrderDetailParameterBuilder {
+	b.clearValue()
+	b.serviceRequestOrderDetailParameter.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ServiceRequestOrderDetailParameterBuilder) SetValueString(v string) *ServiceRequestOrderDetailParameterBuilder {
+	b.clearValue()
+	b.serviceRequestOrderDetailParameter.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *ServiceRequestOrderDetailParameterBuilder) SetValueStringExt(v Element) *ServiceRequestOrderDetailParameterBuilder {
+	b.serviceRequestOrderDetailParameter.ValueStringExt = &v
+	return b
+}
+
+// SetValuePeriod sets Value[x] to its ValuePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ServiceRequestOrderDetailParameterBuilder) SetValuePeriod(v Period) *ServiceRequestOrderDetailParameterBuilder {
+	b.clearValue()
+	b.serviceRequestOrderDetailParameter.ValuePeriod = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *ServiceRequestOrderDetailParameterBuilder) clearValue() {
+	b.serviceRequestOrderDetailParameter.ValueQuantity = nil
+	b.serviceRequestOrderDetailParameter.ValueRatio = nil
+	b.serviceRequestOrderDetailParameter.ValueRange = nil
+	b.serviceRequestOrderDetailParameter.ValueBoolean = nil
+	b.serviceRequestOrderDetailParameter.ValueBooleanExt = nil
+	b.serviceRequestOrderDetailParameter.ValueCodeableConcept = nil
+	b.serviceRequestOrderDetailParameter.ValueString = nil
+	b.serviceRequestOrderDetailParameter.ValueStringExt = nil
+	b.serviceRequestOrderDetailParameter.ValuePeriod = nil
+}
+
+// =============================================================================
+// ServiceRequestPatientInstruction - Fluent Builder
+// =============================================================================
+
+// ServiceRequestPatientInstructionBuilder provides a fluent API for constructing ServiceRequestPatientInstruction values.
+type ServiceRequestPatientInstructionBuilder struct {
+	serviceRequestPatientInstruction *ServiceRequestPatientInstruction
+}
+
+// NewServiceRequestPatientInstructionBuilder creates a new ServiceRequestPatientInstructionBuilder.
+func NewServiceRequestPatientInstructionBuilder() *ServiceRequestPatientInstructionBuilder {
+	return &ServiceRequestPatientInstructionBuilder{
+		serviceRequestPatientInstruction: &ServiceRequestPatientInstruction{},
+	}
+}
+
+// Build returns the constructed ServiceRequestPatientInstruction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ServiceRequestPatientInstructionBuilder) Build() ServiceRequestPatientInstruction {
+	return *b.serviceRequestPatientInstruction
+}
+
+// SetId sets the Id field.
+func (b *ServiceRequestPatientInstructionBuilder) SetId(v string) *ServiceRequestPatientInstructionBuilder {
+	b.serviceRequestPatientInstruction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ServiceRequestPatientInstructionBuilder) AddExtension(v Extension) *ServiceRequestPatientInstructionBuilder {
+	b.serviceRequestPatientInstruction.Extension = append(b.serviceRequestPatientInstruction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ServiceRequestPatientInstructionBuilder) AddModifierExtension(v Extension) *ServiceRequestPatientInstructionBuilder {
+	b.serviceRequestPatientInstruction.ModifierExtension = append(b.serviceRequestPatientInstruction.ModifierExtension, v)
+	return b
+}
+
+// SetInstructionMarkdown sets Instruction[x] to its InstructionMarkdown variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ServiceRequestPatientInstructionBuilder) SetInstructionMarkdown(v string) *ServiceRequestPatientInstructionBuilder {
+	b.clearInstruction()
+	b.serviceRequestPatientInstruction.InstructionMarkdown = &v
+	return b
+}
+
+// SetInstructionMarkdownExt sets the InstructionMarkdownExt field.
+func (b *ServiceRequestPatientInstructionBuilder) SetInstructionMarkdownExt(v Element) *ServiceRequestPatientInstructionBuilder {
+	b.serviceRequestPatientInstruction.InstructionMarkdownExt = &v
+	return b
+}
+
+// SetInstructionReference sets Instruction[x] to its InstructionReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ServiceRequestPatientInstructionBuilder) SetInstructionReference(v Reference) *ServiceRequestPatientInstructionBuilder {
+	b.clearInstruction()
+	b.serviceRequestPatientInstruction.InstructionReference = &v
+	return b
+}
+
+// clearInstruction unsets every variant of Instruction[x], including the
+// _field companions of the primitive ones.
+func (b *ServiceRequestPatientInstructionBuilder) clearInstruction() {
+	b.serviceRequestPatientInstruction.InstructionMarkdown = nil
+	b.serviceRequestPatientInstruction.InstructionReference = nil
 }

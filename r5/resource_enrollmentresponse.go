@@ -481,3 +481,63 @@ func (b *EnrollmentResponseBuilder) SetRequestProvider(v Reference) *EnrollmentR
 	b.enrollmentResponse.RequestProvider = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EnrollmentResponseBuilder) SetImplicitRulesExt(v Element) *EnrollmentResponseBuilder {
+	b.enrollmentResponse.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EnrollmentResponseBuilder) SetLanguageExt(v Element) *EnrollmentResponseBuilder {
+	b.enrollmentResponse.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EnrollmentResponseBuilder) SetStatusExt(v Element) *EnrollmentResponseBuilder {
+	b.enrollmentResponse.StatusExt = &v
+	return b
+}
+
+// SetOutcomeExt sets the extensions carried by Outcome, serialized as
+// "_outcome".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EnrollmentResponseBuilder) SetOutcomeExt(v Element) *EnrollmentResponseBuilder {
+	b.enrollmentResponse.OutcomeExt = &v
+	return b
+}
+
+// SetDispositionExt sets the extensions carried by Disposition, serialized as
+// "_disposition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EnrollmentResponseBuilder) SetDispositionExt(v Element) *EnrollmentResponseBuilder {
+	b.enrollmentResponse.DispositionExt = &v
+	return b
+}
+
+// SetCreatedExt sets the extensions carried by Created, serialized as
+// "_created".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EnrollmentResponseBuilder) SetCreatedExt(v Element) *EnrollmentResponseBuilder {
+	b.enrollmentResponse.CreatedExt = &v
+	return b
+}

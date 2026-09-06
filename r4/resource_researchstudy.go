@@ -1006,3 +1006,203 @@ func (b *ResearchStudyBuilder) AddObjective(v ResearchStudyObjective) *ResearchS
 	b.researchStudy.Objective = append(b.researchStudy.Objective, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyBuilder) SetImplicitRulesExt(v Element) *ResearchStudyBuilder {
+	b.researchStudy.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyBuilder) SetLanguageExt(v Element) *ResearchStudyBuilder {
+	b.researchStudy.LanguageExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyBuilder) SetTitleExt(v Element) *ResearchStudyBuilder {
+	b.researchStudy.TitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyBuilder) SetStatusExt(v Element) *ResearchStudyBuilder {
+	b.researchStudy.StatusExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyBuilder) SetDescriptionExt(v Element) *ResearchStudyBuilder {
+	b.researchStudy.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// ResearchStudyArm - Fluent Builder
+// =============================================================================
+
+// ResearchStudyArmBuilder provides a fluent API for constructing ResearchStudyArm values.
+type ResearchStudyArmBuilder struct {
+	researchStudyArm *ResearchStudyArm
+}
+
+// NewResearchStudyArmBuilder creates a new ResearchStudyArmBuilder.
+func NewResearchStudyArmBuilder() *ResearchStudyArmBuilder {
+	return &ResearchStudyArmBuilder{
+		researchStudyArm: &ResearchStudyArm{},
+	}
+}
+
+// Build returns the constructed ResearchStudyArm.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ResearchStudyArmBuilder) Build() ResearchStudyArm {
+	return *b.researchStudyArm
+}
+
+// SetId sets the Id field.
+func (b *ResearchStudyArmBuilder) SetId(v string) *ResearchStudyArmBuilder {
+	b.researchStudyArm.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ResearchStudyArmBuilder) AddExtension(v Extension) *ResearchStudyArmBuilder {
+	b.researchStudyArm.Extension = append(b.researchStudyArm.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ResearchStudyArmBuilder) AddModifierExtension(v Extension) *ResearchStudyArmBuilder {
+	b.researchStudyArm.ModifierExtension = append(b.researchStudyArm.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *ResearchStudyArmBuilder) SetName(v string) *ResearchStudyArmBuilder {
+	b.researchStudyArm.Name = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ResearchStudyArmBuilder) SetType(v CodeableConcept) *ResearchStudyArmBuilder {
+	b.researchStudyArm.Type = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *ResearchStudyArmBuilder) SetDescription(v string) *ResearchStudyArmBuilder {
+	b.researchStudyArm.Description = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyArmBuilder) SetNameExt(v Element) *ResearchStudyArmBuilder {
+	b.researchStudyArm.NameExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyArmBuilder) SetDescriptionExt(v Element) *ResearchStudyArmBuilder {
+	b.researchStudyArm.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// ResearchStudyObjective - Fluent Builder
+// =============================================================================
+
+// ResearchStudyObjectiveBuilder provides a fluent API for constructing ResearchStudyObjective values.
+type ResearchStudyObjectiveBuilder struct {
+	researchStudyObjective *ResearchStudyObjective
+}
+
+// NewResearchStudyObjectiveBuilder creates a new ResearchStudyObjectiveBuilder.
+func NewResearchStudyObjectiveBuilder() *ResearchStudyObjectiveBuilder {
+	return &ResearchStudyObjectiveBuilder{
+		researchStudyObjective: &ResearchStudyObjective{},
+	}
+}
+
+// Build returns the constructed ResearchStudyObjective.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ResearchStudyObjectiveBuilder) Build() ResearchStudyObjective {
+	return *b.researchStudyObjective
+}
+
+// SetId sets the Id field.
+func (b *ResearchStudyObjectiveBuilder) SetId(v string) *ResearchStudyObjectiveBuilder {
+	b.researchStudyObjective.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ResearchStudyObjectiveBuilder) AddExtension(v Extension) *ResearchStudyObjectiveBuilder {
+	b.researchStudyObjective.Extension = append(b.researchStudyObjective.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ResearchStudyObjectiveBuilder) AddModifierExtension(v Extension) *ResearchStudyObjectiveBuilder {
+	b.researchStudyObjective.ModifierExtension = append(b.researchStudyObjective.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *ResearchStudyObjectiveBuilder) SetName(v string) *ResearchStudyObjectiveBuilder {
+	b.researchStudyObjective.Name = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ResearchStudyObjectiveBuilder) SetType(v CodeableConcept) *ResearchStudyObjectiveBuilder {
+	b.researchStudyObjective.Type = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyObjectiveBuilder) SetNameExt(v Element) *ResearchStudyObjectiveBuilder {
+	b.researchStudyObjective.NameExt = &v
+	return b
+}

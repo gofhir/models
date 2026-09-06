@@ -745,3 +745,218 @@ func (b *MedicationBuilder) SetDefinition(v Reference) *MedicationBuilder {
 	b.medication.Definition = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationBuilder) SetImplicitRulesExt(v Element) *MedicationBuilder {
+	b.medication.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationBuilder) SetLanguageExt(v Element) *MedicationBuilder {
+	b.medication.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationBuilder) SetStatusExt(v Element) *MedicationBuilder {
+	b.medication.StatusExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicationBatch - Fluent Builder
+// =============================================================================
+
+// MedicationBatchBuilder provides a fluent API for constructing MedicationBatch values.
+type MedicationBatchBuilder struct {
+	medicationBatch *MedicationBatch
+}
+
+// NewMedicationBatchBuilder creates a new MedicationBatchBuilder.
+func NewMedicationBatchBuilder() *MedicationBatchBuilder {
+	return &MedicationBatchBuilder{
+		medicationBatch: &MedicationBatch{},
+	}
+}
+
+// Build returns the constructed MedicationBatch.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationBatchBuilder) Build() MedicationBatch {
+	return *b.medicationBatch
+}
+
+// SetId sets the Id field.
+func (b *MedicationBatchBuilder) SetId(v string) *MedicationBatchBuilder {
+	b.medicationBatch.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationBatchBuilder) AddExtension(v Extension) *MedicationBatchBuilder {
+	b.medicationBatch.Extension = append(b.medicationBatch.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationBatchBuilder) AddModifierExtension(v Extension) *MedicationBatchBuilder {
+	b.medicationBatch.ModifierExtension = append(b.medicationBatch.ModifierExtension, v)
+	return b
+}
+
+// SetLotNumber sets the LotNumber field.
+func (b *MedicationBatchBuilder) SetLotNumber(v string) *MedicationBatchBuilder {
+	b.medicationBatch.LotNumber = &v
+	return b
+}
+
+// SetExpirationDate sets the ExpirationDate field.
+func (b *MedicationBatchBuilder) SetExpirationDate(v string) *MedicationBatchBuilder {
+	b.medicationBatch.ExpirationDate = &v
+	return b
+}
+
+// SetLotNumberExt sets the extensions carried by LotNumber, serialized as
+// "_lotNumber".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationBatchBuilder) SetLotNumberExt(v Element) *MedicationBatchBuilder {
+	b.medicationBatch.LotNumberExt = &v
+	return b
+}
+
+// SetExpirationDateExt sets the extensions carried by ExpirationDate, serialized as
+// "_expirationDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationBatchBuilder) SetExpirationDateExt(v Element) *MedicationBatchBuilder {
+	b.medicationBatch.ExpirationDateExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicationIngredient - Fluent Builder
+// =============================================================================
+
+// MedicationIngredientBuilder provides a fluent API for constructing MedicationIngredient values.
+type MedicationIngredientBuilder struct {
+	medicationIngredient *MedicationIngredient
+}
+
+// NewMedicationIngredientBuilder creates a new MedicationIngredientBuilder.
+func NewMedicationIngredientBuilder() *MedicationIngredientBuilder {
+	return &MedicationIngredientBuilder{
+		medicationIngredient: &MedicationIngredient{},
+	}
+}
+
+// Build returns the constructed MedicationIngredient.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationIngredientBuilder) Build() MedicationIngredient {
+	return *b.medicationIngredient
+}
+
+// SetId sets the Id field.
+func (b *MedicationIngredientBuilder) SetId(v string) *MedicationIngredientBuilder {
+	b.medicationIngredient.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationIngredientBuilder) AddExtension(v Extension) *MedicationIngredientBuilder {
+	b.medicationIngredient.Extension = append(b.medicationIngredient.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationIngredientBuilder) AddModifierExtension(v Extension) *MedicationIngredientBuilder {
+	b.medicationIngredient.ModifierExtension = append(b.medicationIngredient.ModifierExtension, v)
+	return b
+}
+
+// SetItem sets the Item field.
+func (b *MedicationIngredientBuilder) SetItem(v CodeableReference) *MedicationIngredientBuilder {
+	b.medicationIngredient.Item = &v
+	return b
+}
+
+// SetIsActive sets the IsActive field.
+func (b *MedicationIngredientBuilder) SetIsActive(v bool) *MedicationIngredientBuilder {
+	b.medicationIngredient.IsActive = &v
+	return b
+}
+
+// SetStrengthRatio sets Strength[x] to its StrengthRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicationIngredientBuilder) SetStrengthRatio(v Ratio) *MedicationIngredientBuilder {
+	b.clearStrength()
+	b.medicationIngredient.StrengthRatio = &v
+	return b
+}
+
+// SetStrengthCodeableConcept sets Strength[x] to its StrengthCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicationIngredientBuilder) SetStrengthCodeableConcept(v CodeableConcept) *MedicationIngredientBuilder {
+	b.clearStrength()
+	b.medicationIngredient.StrengthCodeableConcept = &v
+	return b
+}
+
+// SetStrengthQuantity sets Strength[x] to its StrengthQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicationIngredientBuilder) SetStrengthQuantity(v Quantity) *MedicationIngredientBuilder {
+	b.clearStrength()
+	b.medicationIngredient.StrengthQuantity = &v
+	return b
+}
+
+// SetIsActiveExt sets the extensions carried by IsActive, serialized as
+// "_isActive".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationIngredientBuilder) SetIsActiveExt(v Element) *MedicationIngredientBuilder {
+	b.medicationIngredient.IsActiveExt = &v
+	return b
+}
+
+// clearStrength unsets every variant of Strength[x], including the
+// _field companions of the primitive ones.
+func (b *MedicationIngredientBuilder) clearStrength() {
+	b.medicationIngredient.StrengthRatio = nil
+	b.medicationIngredient.StrengthCodeableConcept = nil
+	b.medicationIngredient.StrengthQuantity = nil
+}

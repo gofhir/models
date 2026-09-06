@@ -660,3 +660,120 @@ func (b *DocumentManifestBuilder) AddRelated(v DocumentManifestRelated) *Documen
 	b.documentManifest.Related = append(b.documentManifest.Related, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DocumentManifestBuilder) SetImplicitRulesExt(v Element) *DocumentManifestBuilder {
+	b.documentManifest.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DocumentManifestBuilder) SetLanguageExt(v Element) *DocumentManifestBuilder {
+	b.documentManifest.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DocumentManifestBuilder) SetStatusExt(v Element) *DocumentManifestBuilder {
+	b.documentManifest.StatusExt = &v
+	return b
+}
+
+// SetCreatedExt sets the extensions carried by Created, serialized as
+// "_created".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DocumentManifestBuilder) SetCreatedExt(v Element) *DocumentManifestBuilder {
+	b.documentManifest.CreatedExt = &v
+	return b
+}
+
+// SetSourceExt sets the extensions carried by Source, serialized as
+// "_source".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DocumentManifestBuilder) SetSourceExt(v Element) *DocumentManifestBuilder {
+	b.documentManifest.SourceExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DocumentManifestBuilder) SetDescriptionExt(v Element) *DocumentManifestBuilder {
+	b.documentManifest.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// DocumentManifestRelated - Fluent Builder
+// =============================================================================
+
+// DocumentManifestRelatedBuilder provides a fluent API for constructing DocumentManifestRelated values.
+type DocumentManifestRelatedBuilder struct {
+	documentManifestRelated *DocumentManifestRelated
+}
+
+// NewDocumentManifestRelatedBuilder creates a new DocumentManifestRelatedBuilder.
+func NewDocumentManifestRelatedBuilder() *DocumentManifestRelatedBuilder {
+	return &DocumentManifestRelatedBuilder{
+		documentManifestRelated: &DocumentManifestRelated{},
+	}
+}
+
+// Build returns the constructed DocumentManifestRelated.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DocumentManifestRelatedBuilder) Build() DocumentManifestRelated {
+	return *b.documentManifestRelated
+}
+
+// SetId sets the Id field.
+func (b *DocumentManifestRelatedBuilder) SetId(v string) *DocumentManifestRelatedBuilder {
+	b.documentManifestRelated.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DocumentManifestRelatedBuilder) AddExtension(v Extension) *DocumentManifestRelatedBuilder {
+	b.documentManifestRelated.Extension = append(b.documentManifestRelated.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *DocumentManifestRelatedBuilder) AddModifierExtension(v Extension) *DocumentManifestRelatedBuilder {
+	b.documentManifestRelated.ModifierExtension = append(b.documentManifestRelated.ModifierExtension, v)
+	return b
+}
+
+// SetIdentifier sets the Identifier field.
+func (b *DocumentManifestRelatedBuilder) SetIdentifier(v Identifier) *DocumentManifestRelatedBuilder {
+	b.documentManifestRelated.Identifier = &v
+	return b
+}
+
+// SetRef sets the Ref field.
+func (b *DocumentManifestRelatedBuilder) SetRef(v Reference) *DocumentManifestRelatedBuilder {
+	b.documentManifestRelated.Ref = &v
+	return b
+}

@@ -1443,3 +1443,661 @@ func (b *InventoryItemBuilder) SetProductReference(v Reference) *InventoryItemBu
 	b.inventoryItem.ProductReference = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InventoryItemBuilder) SetImplicitRulesExt(v Element) *InventoryItemBuilder {
+	b.inventoryItem.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InventoryItemBuilder) SetLanguageExt(v Element) *InventoryItemBuilder {
+	b.inventoryItem.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InventoryItemBuilder) SetStatusExt(v Element) *InventoryItemBuilder {
+	b.inventoryItem.StatusExt = &v
+	return b
+}
+
+// =============================================================================
+// InventoryItemAssociation - Fluent Builder
+// =============================================================================
+
+// InventoryItemAssociationBuilder provides a fluent API for constructing InventoryItemAssociation values.
+type InventoryItemAssociationBuilder struct {
+	inventoryItemAssociation *InventoryItemAssociation
+}
+
+// NewInventoryItemAssociationBuilder creates a new InventoryItemAssociationBuilder.
+func NewInventoryItemAssociationBuilder() *InventoryItemAssociationBuilder {
+	return &InventoryItemAssociationBuilder{
+		inventoryItemAssociation: &InventoryItemAssociation{},
+	}
+}
+
+// Build returns the constructed InventoryItemAssociation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *InventoryItemAssociationBuilder) Build() InventoryItemAssociation {
+	return *b.inventoryItemAssociation
+}
+
+// SetId sets the Id field.
+func (b *InventoryItemAssociationBuilder) SetId(v string) *InventoryItemAssociationBuilder {
+	b.inventoryItemAssociation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *InventoryItemAssociationBuilder) AddExtension(v Extension) *InventoryItemAssociationBuilder {
+	b.inventoryItemAssociation.Extension = append(b.inventoryItemAssociation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *InventoryItemAssociationBuilder) AddModifierExtension(v Extension) *InventoryItemAssociationBuilder {
+	b.inventoryItemAssociation.ModifierExtension = append(b.inventoryItemAssociation.ModifierExtension, v)
+	return b
+}
+
+// SetAssociationType sets the AssociationType field.
+func (b *InventoryItemAssociationBuilder) SetAssociationType(v CodeableConcept) *InventoryItemAssociationBuilder {
+	b.inventoryItemAssociation.AssociationType = &v
+	return b
+}
+
+// SetRelatedItem sets the RelatedItem field.
+func (b *InventoryItemAssociationBuilder) SetRelatedItem(v Reference) *InventoryItemAssociationBuilder {
+	b.inventoryItemAssociation.RelatedItem = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *InventoryItemAssociationBuilder) SetQuantity(v Ratio) *InventoryItemAssociationBuilder {
+	b.inventoryItemAssociation.Quantity = &v
+	return b
+}
+
+// =============================================================================
+// InventoryItemCharacteristic - Fluent Builder
+// =============================================================================
+
+// InventoryItemCharacteristicBuilder provides a fluent API for constructing InventoryItemCharacteristic values.
+type InventoryItemCharacteristicBuilder struct {
+	inventoryItemCharacteristic *InventoryItemCharacteristic
+}
+
+// NewInventoryItemCharacteristicBuilder creates a new InventoryItemCharacteristicBuilder.
+func NewInventoryItemCharacteristicBuilder() *InventoryItemCharacteristicBuilder {
+	return &InventoryItemCharacteristicBuilder{
+		inventoryItemCharacteristic: &InventoryItemCharacteristic{},
+	}
+}
+
+// Build returns the constructed InventoryItemCharacteristic.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *InventoryItemCharacteristicBuilder) Build() InventoryItemCharacteristic {
+	return *b.inventoryItemCharacteristic
+}
+
+// SetId sets the Id field.
+func (b *InventoryItemCharacteristicBuilder) SetId(v string) *InventoryItemCharacteristicBuilder {
+	b.inventoryItemCharacteristic.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *InventoryItemCharacteristicBuilder) AddExtension(v Extension) *InventoryItemCharacteristicBuilder {
+	b.inventoryItemCharacteristic.Extension = append(b.inventoryItemCharacteristic.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *InventoryItemCharacteristicBuilder) AddModifierExtension(v Extension) *InventoryItemCharacteristicBuilder {
+	b.inventoryItemCharacteristic.ModifierExtension = append(b.inventoryItemCharacteristic.ModifierExtension, v)
+	return b
+}
+
+// SetCharacteristicType sets the CharacteristicType field.
+func (b *InventoryItemCharacteristicBuilder) SetCharacteristicType(v CodeableConcept) *InventoryItemCharacteristicBuilder {
+	b.inventoryItemCharacteristic.CharacteristicType = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *InventoryItemCharacteristicBuilder) SetValueString(v string) *InventoryItemCharacteristicBuilder {
+	b.clearValue()
+	b.inventoryItemCharacteristic.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *InventoryItemCharacteristicBuilder) SetValueStringExt(v Element) *InventoryItemCharacteristicBuilder {
+	b.inventoryItemCharacteristic.ValueStringExt = &v
+	return b
+}
+
+// SetValueInteger sets Value[x] to its ValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *InventoryItemCharacteristicBuilder) SetValueInteger(v int) *InventoryItemCharacteristicBuilder {
+	b.clearValue()
+	b.inventoryItemCharacteristic.ValueInteger = &v
+	return b
+}
+
+// SetValueIntegerExt sets the ValueIntegerExt field.
+func (b *InventoryItemCharacteristicBuilder) SetValueIntegerExt(v Element) *InventoryItemCharacteristicBuilder {
+	b.inventoryItemCharacteristic.ValueIntegerExt = &v
+	return b
+}
+
+// SetValueDecimal sets Value[x] to its ValueDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *InventoryItemCharacteristicBuilder) SetValueDecimal(v Decimal) *InventoryItemCharacteristicBuilder {
+	b.clearValue()
+	b.inventoryItemCharacteristic.ValueDecimal = &v
+	return b
+}
+
+// SetValueDecimalExt sets the ValueDecimalExt field.
+func (b *InventoryItemCharacteristicBuilder) SetValueDecimalExt(v Element) *InventoryItemCharacteristicBuilder {
+	b.inventoryItemCharacteristic.ValueDecimalExt = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *InventoryItemCharacteristicBuilder) SetValueBoolean(v bool) *InventoryItemCharacteristicBuilder {
+	b.clearValue()
+	b.inventoryItemCharacteristic.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *InventoryItemCharacteristicBuilder) SetValueBooleanExt(v Element) *InventoryItemCharacteristicBuilder {
+	b.inventoryItemCharacteristic.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueUrl sets Value[x] to its ValueUrl variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *InventoryItemCharacteristicBuilder) SetValueUrl(v string) *InventoryItemCharacteristicBuilder {
+	b.clearValue()
+	b.inventoryItemCharacteristic.ValueUrl = &v
+	return b
+}
+
+// SetValueUrlExt sets the ValueUrlExt field.
+func (b *InventoryItemCharacteristicBuilder) SetValueUrlExt(v Element) *InventoryItemCharacteristicBuilder {
+	b.inventoryItemCharacteristic.ValueUrlExt = &v
+	return b
+}
+
+// SetValueDateTime sets Value[x] to its ValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *InventoryItemCharacteristicBuilder) SetValueDateTime(v string) *InventoryItemCharacteristicBuilder {
+	b.clearValue()
+	b.inventoryItemCharacteristic.ValueDateTime = &v
+	return b
+}
+
+// SetValueDateTimeExt sets the ValueDateTimeExt field.
+func (b *InventoryItemCharacteristicBuilder) SetValueDateTimeExt(v Element) *InventoryItemCharacteristicBuilder {
+	b.inventoryItemCharacteristic.ValueDateTimeExt = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *InventoryItemCharacteristicBuilder) SetValueQuantity(v Quantity) *InventoryItemCharacteristicBuilder {
+	b.clearValue()
+	b.inventoryItemCharacteristic.ValueQuantity = &v
+	return b
+}
+
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *InventoryItemCharacteristicBuilder) SetValueRange(v Range) *InventoryItemCharacteristicBuilder {
+	b.clearValue()
+	b.inventoryItemCharacteristic.ValueRange = &v
+	return b
+}
+
+// SetValueRatio sets Value[x] to its ValueRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *InventoryItemCharacteristicBuilder) SetValueRatio(v Ratio) *InventoryItemCharacteristicBuilder {
+	b.clearValue()
+	b.inventoryItemCharacteristic.ValueRatio = &v
+	return b
+}
+
+// SetValueAnnotation sets Value[x] to its ValueAnnotation variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *InventoryItemCharacteristicBuilder) SetValueAnnotation(v Annotation) *InventoryItemCharacteristicBuilder {
+	b.clearValue()
+	b.inventoryItemCharacteristic.ValueAnnotation = &v
+	return b
+}
+
+// SetValueAddress sets Value[x] to its ValueAddress variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *InventoryItemCharacteristicBuilder) SetValueAddress(v Address) *InventoryItemCharacteristicBuilder {
+	b.clearValue()
+	b.inventoryItemCharacteristic.ValueAddress = &v
+	return b
+}
+
+// SetValueDuration sets Value[x] to its ValueDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *InventoryItemCharacteristicBuilder) SetValueDuration(v Duration) *InventoryItemCharacteristicBuilder {
+	b.clearValue()
+	b.inventoryItemCharacteristic.ValueDuration = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *InventoryItemCharacteristicBuilder) SetValueCodeableConcept(v CodeableConcept) *InventoryItemCharacteristicBuilder {
+	b.clearValue()
+	b.inventoryItemCharacteristic.ValueCodeableConcept = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *InventoryItemCharacteristicBuilder) clearValue() {
+	b.inventoryItemCharacteristic.ValueString = nil
+	b.inventoryItemCharacteristic.ValueInteger = nil
+	b.inventoryItemCharacteristic.ValueIntegerExt = nil
+	b.inventoryItemCharacteristic.ValueDecimal = nil
+	b.inventoryItemCharacteristic.ValueDecimalExt = nil
+	b.inventoryItemCharacteristic.ValueBoolean = nil
+	b.inventoryItemCharacteristic.ValueBooleanExt = nil
+	b.inventoryItemCharacteristic.ValueUrl = nil
+	b.inventoryItemCharacteristic.ValueUrlExt = nil
+	b.inventoryItemCharacteristic.ValueDateTime = nil
+	b.inventoryItemCharacteristic.ValueDateTimeExt = nil
+	b.inventoryItemCharacteristic.ValueQuantity = nil
+	b.inventoryItemCharacteristic.ValueRange = nil
+	b.inventoryItemCharacteristic.ValueRatio = nil
+	b.inventoryItemCharacteristic.ValueAnnotation = nil
+	b.inventoryItemCharacteristic.ValueAddress = nil
+	b.inventoryItemCharacteristic.ValueDuration = nil
+	b.inventoryItemCharacteristic.ValueCodeableConcept = nil
+}
+
+// =============================================================================
+// InventoryItemDescription - Fluent Builder
+// =============================================================================
+
+// InventoryItemDescriptionBuilder provides a fluent API for constructing InventoryItemDescription values.
+type InventoryItemDescriptionBuilder struct {
+	inventoryItemDescription *InventoryItemDescription
+}
+
+// NewInventoryItemDescriptionBuilder creates a new InventoryItemDescriptionBuilder.
+func NewInventoryItemDescriptionBuilder() *InventoryItemDescriptionBuilder {
+	return &InventoryItemDescriptionBuilder{
+		inventoryItemDescription: &InventoryItemDescription{},
+	}
+}
+
+// Build returns the constructed InventoryItemDescription.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *InventoryItemDescriptionBuilder) Build() InventoryItemDescription {
+	return *b.inventoryItemDescription
+}
+
+// SetId sets the Id field.
+func (b *InventoryItemDescriptionBuilder) SetId(v string) *InventoryItemDescriptionBuilder {
+	b.inventoryItemDescription.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *InventoryItemDescriptionBuilder) AddExtension(v Extension) *InventoryItemDescriptionBuilder {
+	b.inventoryItemDescription.Extension = append(b.inventoryItemDescription.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *InventoryItemDescriptionBuilder) AddModifierExtension(v Extension) *InventoryItemDescriptionBuilder {
+	b.inventoryItemDescription.ModifierExtension = append(b.inventoryItemDescription.ModifierExtension, v)
+	return b
+}
+
+// SetLanguage sets the Language field.
+func (b *InventoryItemDescriptionBuilder) SetLanguage(v CommonLanguages) *InventoryItemDescriptionBuilder {
+	b.inventoryItemDescription.Language = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *InventoryItemDescriptionBuilder) SetDescription(v string) *InventoryItemDescriptionBuilder {
+	b.inventoryItemDescription.Description = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InventoryItemDescriptionBuilder) SetLanguageExt(v Element) *InventoryItemDescriptionBuilder {
+	b.inventoryItemDescription.LanguageExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InventoryItemDescriptionBuilder) SetDescriptionExt(v Element) *InventoryItemDescriptionBuilder {
+	b.inventoryItemDescription.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// InventoryItemInstance - Fluent Builder
+// =============================================================================
+
+// InventoryItemInstanceBuilder provides a fluent API for constructing InventoryItemInstance values.
+type InventoryItemInstanceBuilder struct {
+	inventoryItemInstance *InventoryItemInstance
+}
+
+// NewInventoryItemInstanceBuilder creates a new InventoryItemInstanceBuilder.
+func NewInventoryItemInstanceBuilder() *InventoryItemInstanceBuilder {
+	return &InventoryItemInstanceBuilder{
+		inventoryItemInstance: &InventoryItemInstance{},
+	}
+}
+
+// Build returns the constructed InventoryItemInstance.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *InventoryItemInstanceBuilder) Build() InventoryItemInstance {
+	return *b.inventoryItemInstance
+}
+
+// SetId sets the Id field.
+func (b *InventoryItemInstanceBuilder) SetId(v string) *InventoryItemInstanceBuilder {
+	b.inventoryItemInstance.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *InventoryItemInstanceBuilder) AddExtension(v Extension) *InventoryItemInstanceBuilder {
+	b.inventoryItemInstance.Extension = append(b.inventoryItemInstance.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *InventoryItemInstanceBuilder) AddModifierExtension(v Extension) *InventoryItemInstanceBuilder {
+	b.inventoryItemInstance.ModifierExtension = append(b.inventoryItemInstance.ModifierExtension, v)
+	return b
+}
+
+// AddIdentifier adds a Identifier element.
+func (b *InventoryItemInstanceBuilder) AddIdentifier(v Identifier) *InventoryItemInstanceBuilder {
+	b.inventoryItemInstance.Identifier = append(b.inventoryItemInstance.Identifier, v)
+	return b
+}
+
+// SetLotNumber sets the LotNumber field.
+func (b *InventoryItemInstanceBuilder) SetLotNumber(v string) *InventoryItemInstanceBuilder {
+	b.inventoryItemInstance.LotNumber = &v
+	return b
+}
+
+// SetExpiry sets the Expiry field.
+func (b *InventoryItemInstanceBuilder) SetExpiry(v string) *InventoryItemInstanceBuilder {
+	b.inventoryItemInstance.Expiry = &v
+	return b
+}
+
+// SetSubject sets the Subject field.
+func (b *InventoryItemInstanceBuilder) SetSubject(v Reference) *InventoryItemInstanceBuilder {
+	b.inventoryItemInstance.Subject = &v
+	return b
+}
+
+// SetLocation sets the Location field.
+func (b *InventoryItemInstanceBuilder) SetLocation(v Reference) *InventoryItemInstanceBuilder {
+	b.inventoryItemInstance.Location = &v
+	return b
+}
+
+// SetLotNumberExt sets the extensions carried by LotNumber, serialized as
+// "_lotNumber".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InventoryItemInstanceBuilder) SetLotNumberExt(v Element) *InventoryItemInstanceBuilder {
+	b.inventoryItemInstance.LotNumberExt = &v
+	return b
+}
+
+// SetExpiryExt sets the extensions carried by Expiry, serialized as
+// "_expiry".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InventoryItemInstanceBuilder) SetExpiryExt(v Element) *InventoryItemInstanceBuilder {
+	b.inventoryItemInstance.ExpiryExt = &v
+	return b
+}
+
+// =============================================================================
+// InventoryItemName - Fluent Builder
+// =============================================================================
+
+// InventoryItemNameBuilder provides a fluent API for constructing InventoryItemName values.
+type InventoryItemNameBuilder struct {
+	inventoryItemName *InventoryItemName
+}
+
+// NewInventoryItemNameBuilder creates a new InventoryItemNameBuilder.
+func NewInventoryItemNameBuilder() *InventoryItemNameBuilder {
+	return &InventoryItemNameBuilder{
+		inventoryItemName: &InventoryItemName{},
+	}
+}
+
+// Build returns the constructed InventoryItemName.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *InventoryItemNameBuilder) Build() InventoryItemName {
+	return *b.inventoryItemName
+}
+
+// SetId sets the Id field.
+func (b *InventoryItemNameBuilder) SetId(v string) *InventoryItemNameBuilder {
+	b.inventoryItemName.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *InventoryItemNameBuilder) AddExtension(v Extension) *InventoryItemNameBuilder {
+	b.inventoryItemName.Extension = append(b.inventoryItemName.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *InventoryItemNameBuilder) AddModifierExtension(v Extension) *InventoryItemNameBuilder {
+	b.inventoryItemName.ModifierExtension = append(b.inventoryItemName.ModifierExtension, v)
+	return b
+}
+
+// SetNameType sets the NameType field.
+func (b *InventoryItemNameBuilder) SetNameType(v Coding) *InventoryItemNameBuilder {
+	b.inventoryItemName.NameType = &v
+	return b
+}
+
+// SetLanguage sets the Language field.
+func (b *InventoryItemNameBuilder) SetLanguage(v CommonLanguages) *InventoryItemNameBuilder {
+	b.inventoryItemName.Language = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *InventoryItemNameBuilder) SetName(v string) *InventoryItemNameBuilder {
+	b.inventoryItemName.Name = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InventoryItemNameBuilder) SetLanguageExt(v Element) *InventoryItemNameBuilder {
+	b.inventoryItemName.LanguageExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InventoryItemNameBuilder) SetNameExt(v Element) *InventoryItemNameBuilder {
+	b.inventoryItemName.NameExt = &v
+	return b
+}
+
+// =============================================================================
+// InventoryItemResponsibleOrganization - Fluent Builder
+// =============================================================================
+
+// InventoryItemResponsibleOrganizationBuilder provides a fluent API for constructing InventoryItemResponsibleOrganization values.
+type InventoryItemResponsibleOrganizationBuilder struct {
+	inventoryItemResponsibleOrganization *InventoryItemResponsibleOrganization
+}
+
+// NewInventoryItemResponsibleOrganizationBuilder creates a new InventoryItemResponsibleOrganizationBuilder.
+func NewInventoryItemResponsibleOrganizationBuilder() *InventoryItemResponsibleOrganizationBuilder {
+	return &InventoryItemResponsibleOrganizationBuilder{
+		inventoryItemResponsibleOrganization: &InventoryItemResponsibleOrganization{},
+	}
+}
+
+// Build returns the constructed InventoryItemResponsibleOrganization.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *InventoryItemResponsibleOrganizationBuilder) Build() InventoryItemResponsibleOrganization {
+	return *b.inventoryItemResponsibleOrganization
+}
+
+// SetId sets the Id field.
+func (b *InventoryItemResponsibleOrganizationBuilder) SetId(v string) *InventoryItemResponsibleOrganizationBuilder {
+	b.inventoryItemResponsibleOrganization.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *InventoryItemResponsibleOrganizationBuilder) AddExtension(v Extension) *InventoryItemResponsibleOrganizationBuilder {
+	b.inventoryItemResponsibleOrganization.Extension = append(b.inventoryItemResponsibleOrganization.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *InventoryItemResponsibleOrganizationBuilder) AddModifierExtension(v Extension) *InventoryItemResponsibleOrganizationBuilder {
+	b.inventoryItemResponsibleOrganization.ModifierExtension = append(b.inventoryItemResponsibleOrganization.ModifierExtension, v)
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *InventoryItemResponsibleOrganizationBuilder) SetRole(v CodeableConcept) *InventoryItemResponsibleOrganizationBuilder {
+	b.inventoryItemResponsibleOrganization.Role = &v
+	return b
+}
+
+// SetOrganization sets the Organization field.
+func (b *InventoryItemResponsibleOrganizationBuilder) SetOrganization(v Reference) *InventoryItemResponsibleOrganizationBuilder {
+	b.inventoryItemResponsibleOrganization.Organization = &v
+	return b
+}

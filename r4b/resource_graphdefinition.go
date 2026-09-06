@@ -1073,3 +1073,494 @@ func (b *GraphDefinitionBuilder) AddLink(v GraphDefinitionLink) *GraphDefinition
 	b.graphDefinition.Link = append(b.graphDefinition.Link, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionBuilder) SetImplicitRulesExt(v Element) *GraphDefinitionBuilder {
+	b.graphDefinition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionBuilder) SetLanguageExt(v Element) *GraphDefinitionBuilder {
+	b.graphDefinition.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionBuilder) SetUrlExt(v Element) *GraphDefinitionBuilder {
+	b.graphDefinition.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionBuilder) SetVersionExt(v Element) *GraphDefinitionBuilder {
+	b.graphDefinition.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionBuilder) SetNameExt(v Element) *GraphDefinitionBuilder {
+	b.graphDefinition.NameExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionBuilder) SetStatusExt(v Element) *GraphDefinitionBuilder {
+	b.graphDefinition.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionBuilder) SetExperimentalExt(v Element) *GraphDefinitionBuilder {
+	b.graphDefinition.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionBuilder) SetDateExt(v Element) *GraphDefinitionBuilder {
+	b.graphDefinition.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionBuilder) SetPublisherExt(v Element) *GraphDefinitionBuilder {
+	b.graphDefinition.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionBuilder) SetDescriptionExt(v Element) *GraphDefinitionBuilder {
+	b.graphDefinition.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionBuilder) SetPurposeExt(v Element) *GraphDefinitionBuilder {
+	b.graphDefinition.PurposeExt = &v
+	return b
+}
+
+// SetStartExt sets the extensions carried by Start, serialized as
+// "_start".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionBuilder) SetStartExt(v Element) *GraphDefinitionBuilder {
+	b.graphDefinition.StartExt = &v
+	return b
+}
+
+// SetProfileExt sets the extensions carried by Profile, serialized as
+// "_profile".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionBuilder) SetProfileExt(v Element) *GraphDefinitionBuilder {
+	b.graphDefinition.ProfileExt = &v
+	return b
+}
+
+// =============================================================================
+// GraphDefinitionLink - Fluent Builder
+// =============================================================================
+
+// GraphDefinitionLinkBuilder provides a fluent API for constructing GraphDefinitionLink values.
+type GraphDefinitionLinkBuilder struct {
+	graphDefinitionLink *GraphDefinitionLink
+}
+
+// NewGraphDefinitionLinkBuilder creates a new GraphDefinitionLinkBuilder.
+func NewGraphDefinitionLinkBuilder() *GraphDefinitionLinkBuilder {
+	return &GraphDefinitionLinkBuilder{
+		graphDefinitionLink: &GraphDefinitionLink{},
+	}
+}
+
+// Build returns the constructed GraphDefinitionLink.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *GraphDefinitionLinkBuilder) Build() GraphDefinitionLink {
+	return *b.graphDefinitionLink
+}
+
+// SetId sets the Id field.
+func (b *GraphDefinitionLinkBuilder) SetId(v string) *GraphDefinitionLinkBuilder {
+	b.graphDefinitionLink.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *GraphDefinitionLinkBuilder) AddExtension(v Extension) *GraphDefinitionLinkBuilder {
+	b.graphDefinitionLink.Extension = append(b.graphDefinitionLink.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *GraphDefinitionLinkBuilder) AddModifierExtension(v Extension) *GraphDefinitionLinkBuilder {
+	b.graphDefinitionLink.ModifierExtension = append(b.graphDefinitionLink.ModifierExtension, v)
+	return b
+}
+
+// SetPath sets the Path field.
+func (b *GraphDefinitionLinkBuilder) SetPath(v string) *GraphDefinitionLinkBuilder {
+	b.graphDefinitionLink.Path = &v
+	return b
+}
+
+// SetSliceName sets the SliceName field.
+func (b *GraphDefinitionLinkBuilder) SetSliceName(v string) *GraphDefinitionLinkBuilder {
+	b.graphDefinitionLink.SliceName = &v
+	return b
+}
+
+// SetMin sets the Min field.
+func (b *GraphDefinitionLinkBuilder) SetMin(v int) *GraphDefinitionLinkBuilder {
+	b.graphDefinitionLink.Min = &v
+	return b
+}
+
+// SetMax sets the Max field.
+func (b *GraphDefinitionLinkBuilder) SetMax(v string) *GraphDefinitionLinkBuilder {
+	b.graphDefinitionLink.Max = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *GraphDefinitionLinkBuilder) SetDescription(v string) *GraphDefinitionLinkBuilder {
+	b.graphDefinitionLink.Description = &v
+	return b
+}
+
+// AddTarget adds a Target element.
+func (b *GraphDefinitionLinkBuilder) AddTarget(v GraphDefinitionLinkTarget) *GraphDefinitionLinkBuilder {
+	b.graphDefinitionLink.Target = append(b.graphDefinitionLink.Target, v)
+	return b
+}
+
+// SetPathExt sets the extensions carried by Path, serialized as
+// "_path".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionLinkBuilder) SetPathExt(v Element) *GraphDefinitionLinkBuilder {
+	b.graphDefinitionLink.PathExt = &v
+	return b
+}
+
+// SetSliceNameExt sets the extensions carried by SliceName, serialized as
+// "_sliceName".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionLinkBuilder) SetSliceNameExt(v Element) *GraphDefinitionLinkBuilder {
+	b.graphDefinitionLink.SliceNameExt = &v
+	return b
+}
+
+// SetMinExt sets the extensions carried by Min, serialized as
+// "_min".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionLinkBuilder) SetMinExt(v Element) *GraphDefinitionLinkBuilder {
+	b.graphDefinitionLink.MinExt = &v
+	return b
+}
+
+// SetMaxExt sets the extensions carried by Max, serialized as
+// "_max".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionLinkBuilder) SetMaxExt(v Element) *GraphDefinitionLinkBuilder {
+	b.graphDefinitionLink.MaxExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionLinkBuilder) SetDescriptionExt(v Element) *GraphDefinitionLinkBuilder {
+	b.graphDefinitionLink.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// GraphDefinitionLinkTarget - Fluent Builder
+// =============================================================================
+
+// GraphDefinitionLinkTargetBuilder provides a fluent API for constructing GraphDefinitionLinkTarget values.
+type GraphDefinitionLinkTargetBuilder struct {
+	graphDefinitionLinkTarget *GraphDefinitionLinkTarget
+}
+
+// NewGraphDefinitionLinkTargetBuilder creates a new GraphDefinitionLinkTargetBuilder.
+func NewGraphDefinitionLinkTargetBuilder() *GraphDefinitionLinkTargetBuilder {
+	return &GraphDefinitionLinkTargetBuilder{
+		graphDefinitionLinkTarget: &GraphDefinitionLinkTarget{},
+	}
+}
+
+// Build returns the constructed GraphDefinitionLinkTarget.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *GraphDefinitionLinkTargetBuilder) Build() GraphDefinitionLinkTarget {
+	return *b.graphDefinitionLinkTarget
+}
+
+// SetId sets the Id field.
+func (b *GraphDefinitionLinkTargetBuilder) SetId(v string) *GraphDefinitionLinkTargetBuilder {
+	b.graphDefinitionLinkTarget.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *GraphDefinitionLinkTargetBuilder) AddExtension(v Extension) *GraphDefinitionLinkTargetBuilder {
+	b.graphDefinitionLinkTarget.Extension = append(b.graphDefinitionLinkTarget.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *GraphDefinitionLinkTargetBuilder) AddModifierExtension(v Extension) *GraphDefinitionLinkTargetBuilder {
+	b.graphDefinitionLinkTarget.ModifierExtension = append(b.graphDefinitionLinkTarget.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *GraphDefinitionLinkTargetBuilder) SetType(v string) *GraphDefinitionLinkTargetBuilder {
+	b.graphDefinitionLinkTarget.Type = &v
+	return b
+}
+
+// SetParams sets the Params field.
+func (b *GraphDefinitionLinkTargetBuilder) SetParams(v string) *GraphDefinitionLinkTargetBuilder {
+	b.graphDefinitionLinkTarget.Params = &v
+	return b
+}
+
+// SetProfile sets the Profile field.
+func (b *GraphDefinitionLinkTargetBuilder) SetProfile(v string) *GraphDefinitionLinkTargetBuilder {
+	b.graphDefinitionLinkTarget.Profile = &v
+	return b
+}
+
+// AddCompartment adds a Compartment element.
+func (b *GraphDefinitionLinkTargetBuilder) AddCompartment(v GraphDefinitionLinkTargetCompartment) *GraphDefinitionLinkTargetBuilder {
+	b.graphDefinitionLinkTarget.Compartment = append(b.graphDefinitionLinkTarget.Compartment, v)
+	return b
+}
+
+// AddLink adds a Link element.
+func (b *GraphDefinitionLinkTargetBuilder) AddLink(v GraphDefinitionLink) *GraphDefinitionLinkTargetBuilder {
+	b.graphDefinitionLinkTarget.Link = append(b.graphDefinitionLinkTarget.Link, v)
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionLinkTargetBuilder) SetTypeExt(v Element) *GraphDefinitionLinkTargetBuilder {
+	b.graphDefinitionLinkTarget.TypeExt = &v
+	return b
+}
+
+// SetParamsExt sets the extensions carried by Params, serialized as
+// "_params".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionLinkTargetBuilder) SetParamsExt(v Element) *GraphDefinitionLinkTargetBuilder {
+	b.graphDefinitionLinkTarget.ParamsExt = &v
+	return b
+}
+
+// SetProfileExt sets the extensions carried by Profile, serialized as
+// "_profile".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionLinkTargetBuilder) SetProfileExt(v Element) *GraphDefinitionLinkTargetBuilder {
+	b.graphDefinitionLinkTarget.ProfileExt = &v
+	return b
+}
+
+// =============================================================================
+// GraphDefinitionLinkTargetCompartment - Fluent Builder
+// =============================================================================
+
+// GraphDefinitionLinkTargetCompartmentBuilder provides a fluent API for constructing GraphDefinitionLinkTargetCompartment values.
+type GraphDefinitionLinkTargetCompartmentBuilder struct {
+	graphDefinitionLinkTargetCompartment *GraphDefinitionLinkTargetCompartment
+}
+
+// NewGraphDefinitionLinkTargetCompartmentBuilder creates a new GraphDefinitionLinkTargetCompartmentBuilder.
+func NewGraphDefinitionLinkTargetCompartmentBuilder() *GraphDefinitionLinkTargetCompartmentBuilder {
+	return &GraphDefinitionLinkTargetCompartmentBuilder{
+		graphDefinitionLinkTargetCompartment: &GraphDefinitionLinkTargetCompartment{},
+	}
+}
+
+// Build returns the constructed GraphDefinitionLinkTargetCompartment.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *GraphDefinitionLinkTargetCompartmentBuilder) Build() GraphDefinitionLinkTargetCompartment {
+	return *b.graphDefinitionLinkTargetCompartment
+}
+
+// SetId sets the Id field.
+func (b *GraphDefinitionLinkTargetCompartmentBuilder) SetId(v string) *GraphDefinitionLinkTargetCompartmentBuilder {
+	b.graphDefinitionLinkTargetCompartment.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *GraphDefinitionLinkTargetCompartmentBuilder) AddExtension(v Extension) *GraphDefinitionLinkTargetCompartmentBuilder {
+	b.graphDefinitionLinkTargetCompartment.Extension = append(b.graphDefinitionLinkTargetCompartment.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *GraphDefinitionLinkTargetCompartmentBuilder) AddModifierExtension(v Extension) *GraphDefinitionLinkTargetCompartmentBuilder {
+	b.graphDefinitionLinkTargetCompartment.ModifierExtension = append(b.graphDefinitionLinkTargetCompartment.ModifierExtension, v)
+	return b
+}
+
+// SetUse sets the Use field.
+func (b *GraphDefinitionLinkTargetCompartmentBuilder) SetUse(v GraphCompartmentUse) *GraphDefinitionLinkTargetCompartmentBuilder {
+	b.graphDefinitionLinkTargetCompartment.Use = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *GraphDefinitionLinkTargetCompartmentBuilder) SetCode(v CompartmentType) *GraphDefinitionLinkTargetCompartmentBuilder {
+	b.graphDefinitionLinkTargetCompartment.Code = &v
+	return b
+}
+
+// SetRule sets the Rule field.
+func (b *GraphDefinitionLinkTargetCompartmentBuilder) SetRule(v GraphCompartmentRule) *GraphDefinitionLinkTargetCompartmentBuilder {
+	b.graphDefinitionLinkTargetCompartment.Rule = &v
+	return b
+}
+
+// SetExpression sets the Expression field.
+func (b *GraphDefinitionLinkTargetCompartmentBuilder) SetExpression(v string) *GraphDefinitionLinkTargetCompartmentBuilder {
+	b.graphDefinitionLinkTargetCompartment.Expression = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *GraphDefinitionLinkTargetCompartmentBuilder) SetDescription(v string) *GraphDefinitionLinkTargetCompartmentBuilder {
+	b.graphDefinitionLinkTargetCompartment.Description = &v
+	return b
+}
+
+// SetUseExt sets the extensions carried by Use, serialized as
+// "_use".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionLinkTargetCompartmentBuilder) SetUseExt(v Element) *GraphDefinitionLinkTargetCompartmentBuilder {
+	b.graphDefinitionLinkTargetCompartment.UseExt = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionLinkTargetCompartmentBuilder) SetCodeExt(v Element) *GraphDefinitionLinkTargetCompartmentBuilder {
+	b.graphDefinitionLinkTargetCompartment.CodeExt = &v
+	return b
+}
+
+// SetRuleExt sets the extensions carried by Rule, serialized as
+// "_rule".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionLinkTargetCompartmentBuilder) SetRuleExt(v Element) *GraphDefinitionLinkTargetCompartmentBuilder {
+	b.graphDefinitionLinkTargetCompartment.RuleExt = &v
+	return b
+}
+
+// SetExpressionExt sets the extensions carried by Expression, serialized as
+// "_expression".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionLinkTargetCompartmentBuilder) SetExpressionExt(v Element) *GraphDefinitionLinkTargetCompartmentBuilder {
+	b.graphDefinitionLinkTargetCompartment.ExpressionExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GraphDefinitionLinkTargetCompartmentBuilder) SetDescriptionExt(v Element) *GraphDefinitionLinkTargetCompartmentBuilder {
+	b.graphDefinitionLinkTargetCompartment.DescriptionExt = &v
+	return b
+}

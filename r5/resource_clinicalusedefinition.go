@@ -1478,3 +1478,591 @@ func (b *ClinicalUseDefinitionBuilder) SetWarning(v ClinicalUseDefinitionWarning
 	b.clinicalUseDefinition.Warning = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClinicalUseDefinitionBuilder) SetImplicitRulesExt(v Element) *ClinicalUseDefinitionBuilder {
+	b.clinicalUseDefinition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClinicalUseDefinitionBuilder) SetLanguageExt(v Element) *ClinicalUseDefinitionBuilder {
+	b.clinicalUseDefinition.LanguageExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClinicalUseDefinitionBuilder) SetTypeExt(v Element) *ClinicalUseDefinitionBuilder {
+	b.clinicalUseDefinition.TypeExt = &v
+	return b
+}
+
+// AddLibraryExt attaches extensions to the Library element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddLibrary twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ClinicalUseDefinitionBuilder) AddLibraryExt(v *Element) *ClinicalUseDefinitionBuilder {
+	for len(b.clinicalUseDefinition.LibraryExt) < len(b.clinicalUseDefinition.Library)-1 {
+		b.clinicalUseDefinition.LibraryExt = append(b.clinicalUseDefinition.LibraryExt, nil)
+	}
+	b.clinicalUseDefinition.LibraryExt = append(b.clinicalUseDefinition.LibraryExt, v)
+	return b
+}
+
+// =============================================================================
+// ClinicalUseDefinitionContraindication - Fluent Builder
+// =============================================================================
+
+// ClinicalUseDefinitionContraindicationBuilder provides a fluent API for constructing ClinicalUseDefinitionContraindication values.
+type ClinicalUseDefinitionContraindicationBuilder struct {
+	clinicalUseDefinitionContraindication *ClinicalUseDefinitionContraindication
+}
+
+// NewClinicalUseDefinitionContraindicationBuilder creates a new ClinicalUseDefinitionContraindicationBuilder.
+func NewClinicalUseDefinitionContraindicationBuilder() *ClinicalUseDefinitionContraindicationBuilder {
+	return &ClinicalUseDefinitionContraindicationBuilder{
+		clinicalUseDefinitionContraindication: &ClinicalUseDefinitionContraindication{},
+	}
+}
+
+// Build returns the constructed ClinicalUseDefinitionContraindication.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClinicalUseDefinitionContraindicationBuilder) Build() ClinicalUseDefinitionContraindication {
+	return *b.clinicalUseDefinitionContraindication
+}
+
+// SetId sets the Id field.
+func (b *ClinicalUseDefinitionContraindicationBuilder) SetId(v string) *ClinicalUseDefinitionContraindicationBuilder {
+	b.clinicalUseDefinitionContraindication.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClinicalUseDefinitionContraindicationBuilder) AddExtension(v Extension) *ClinicalUseDefinitionContraindicationBuilder {
+	b.clinicalUseDefinitionContraindication.Extension = append(b.clinicalUseDefinitionContraindication.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClinicalUseDefinitionContraindicationBuilder) AddModifierExtension(v Extension) *ClinicalUseDefinitionContraindicationBuilder {
+	b.clinicalUseDefinitionContraindication.ModifierExtension = append(b.clinicalUseDefinitionContraindication.ModifierExtension, v)
+	return b
+}
+
+// SetDiseaseSymptomProcedure sets the DiseaseSymptomProcedure field.
+func (b *ClinicalUseDefinitionContraindicationBuilder) SetDiseaseSymptomProcedure(v CodeableReference) *ClinicalUseDefinitionContraindicationBuilder {
+	b.clinicalUseDefinitionContraindication.DiseaseSymptomProcedure = &v
+	return b
+}
+
+// SetDiseaseStatus sets the DiseaseStatus field.
+func (b *ClinicalUseDefinitionContraindicationBuilder) SetDiseaseStatus(v CodeableReference) *ClinicalUseDefinitionContraindicationBuilder {
+	b.clinicalUseDefinitionContraindication.DiseaseStatus = &v
+	return b
+}
+
+// AddComorbidity adds a Comorbidity element.
+func (b *ClinicalUseDefinitionContraindicationBuilder) AddComorbidity(v CodeableReference) *ClinicalUseDefinitionContraindicationBuilder {
+	b.clinicalUseDefinitionContraindication.Comorbidity = append(b.clinicalUseDefinitionContraindication.Comorbidity, v)
+	return b
+}
+
+// AddIndication adds a Indication element.
+func (b *ClinicalUseDefinitionContraindicationBuilder) AddIndication(v Reference) *ClinicalUseDefinitionContraindicationBuilder {
+	b.clinicalUseDefinitionContraindication.Indication = append(b.clinicalUseDefinitionContraindication.Indication, v)
+	return b
+}
+
+// SetApplicability sets the Applicability field.
+func (b *ClinicalUseDefinitionContraindicationBuilder) SetApplicability(v Expression) *ClinicalUseDefinitionContraindicationBuilder {
+	b.clinicalUseDefinitionContraindication.Applicability = &v
+	return b
+}
+
+// AddOtherTherapy adds a OtherTherapy element.
+func (b *ClinicalUseDefinitionContraindicationBuilder) AddOtherTherapy(v ClinicalUseDefinitionContraindicationOtherTherapy) *ClinicalUseDefinitionContraindicationBuilder {
+	b.clinicalUseDefinitionContraindication.OtherTherapy = append(b.clinicalUseDefinitionContraindication.OtherTherapy, v)
+	return b
+}
+
+// =============================================================================
+// ClinicalUseDefinitionContraindicationOtherTherapy - Fluent Builder
+// =============================================================================
+
+// ClinicalUseDefinitionContraindicationOtherTherapyBuilder provides a fluent API for constructing ClinicalUseDefinitionContraindicationOtherTherapy values.
+type ClinicalUseDefinitionContraindicationOtherTherapyBuilder struct {
+	clinicalUseDefinitionContraindicationOtherTherapy *ClinicalUseDefinitionContraindicationOtherTherapy
+}
+
+// NewClinicalUseDefinitionContraindicationOtherTherapyBuilder creates a new ClinicalUseDefinitionContraindicationOtherTherapyBuilder.
+func NewClinicalUseDefinitionContraindicationOtherTherapyBuilder() *ClinicalUseDefinitionContraindicationOtherTherapyBuilder {
+	return &ClinicalUseDefinitionContraindicationOtherTherapyBuilder{
+		clinicalUseDefinitionContraindicationOtherTherapy: &ClinicalUseDefinitionContraindicationOtherTherapy{},
+	}
+}
+
+// Build returns the constructed ClinicalUseDefinitionContraindicationOtherTherapy.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClinicalUseDefinitionContraindicationOtherTherapyBuilder) Build() ClinicalUseDefinitionContraindicationOtherTherapy {
+	return *b.clinicalUseDefinitionContraindicationOtherTherapy
+}
+
+// SetId sets the Id field.
+func (b *ClinicalUseDefinitionContraindicationOtherTherapyBuilder) SetId(v string) *ClinicalUseDefinitionContraindicationOtherTherapyBuilder {
+	b.clinicalUseDefinitionContraindicationOtherTherapy.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClinicalUseDefinitionContraindicationOtherTherapyBuilder) AddExtension(v Extension) *ClinicalUseDefinitionContraindicationOtherTherapyBuilder {
+	b.clinicalUseDefinitionContraindicationOtherTherapy.Extension = append(b.clinicalUseDefinitionContraindicationOtherTherapy.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClinicalUseDefinitionContraindicationOtherTherapyBuilder) AddModifierExtension(v Extension) *ClinicalUseDefinitionContraindicationOtherTherapyBuilder {
+	b.clinicalUseDefinitionContraindicationOtherTherapy.ModifierExtension = append(b.clinicalUseDefinitionContraindicationOtherTherapy.ModifierExtension, v)
+	return b
+}
+
+// SetRelationshipType sets the RelationshipType field.
+func (b *ClinicalUseDefinitionContraindicationOtherTherapyBuilder) SetRelationshipType(v CodeableConcept) *ClinicalUseDefinitionContraindicationOtherTherapyBuilder {
+	b.clinicalUseDefinitionContraindicationOtherTherapy.RelationshipType = &v
+	return b
+}
+
+// SetTreatment sets the Treatment field.
+func (b *ClinicalUseDefinitionContraindicationOtherTherapyBuilder) SetTreatment(v CodeableReference) *ClinicalUseDefinitionContraindicationOtherTherapyBuilder {
+	b.clinicalUseDefinitionContraindicationOtherTherapy.Treatment = &v
+	return b
+}
+
+// =============================================================================
+// ClinicalUseDefinitionIndication - Fluent Builder
+// =============================================================================
+
+// ClinicalUseDefinitionIndicationBuilder provides a fluent API for constructing ClinicalUseDefinitionIndication values.
+type ClinicalUseDefinitionIndicationBuilder struct {
+	clinicalUseDefinitionIndication *ClinicalUseDefinitionIndication
+}
+
+// NewClinicalUseDefinitionIndicationBuilder creates a new ClinicalUseDefinitionIndicationBuilder.
+func NewClinicalUseDefinitionIndicationBuilder() *ClinicalUseDefinitionIndicationBuilder {
+	return &ClinicalUseDefinitionIndicationBuilder{
+		clinicalUseDefinitionIndication: &ClinicalUseDefinitionIndication{},
+	}
+}
+
+// Build returns the constructed ClinicalUseDefinitionIndication.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClinicalUseDefinitionIndicationBuilder) Build() ClinicalUseDefinitionIndication {
+	return *b.clinicalUseDefinitionIndication
+}
+
+// SetId sets the Id field.
+func (b *ClinicalUseDefinitionIndicationBuilder) SetId(v string) *ClinicalUseDefinitionIndicationBuilder {
+	b.clinicalUseDefinitionIndication.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClinicalUseDefinitionIndicationBuilder) AddExtension(v Extension) *ClinicalUseDefinitionIndicationBuilder {
+	b.clinicalUseDefinitionIndication.Extension = append(b.clinicalUseDefinitionIndication.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClinicalUseDefinitionIndicationBuilder) AddModifierExtension(v Extension) *ClinicalUseDefinitionIndicationBuilder {
+	b.clinicalUseDefinitionIndication.ModifierExtension = append(b.clinicalUseDefinitionIndication.ModifierExtension, v)
+	return b
+}
+
+// SetDiseaseSymptomProcedure sets the DiseaseSymptomProcedure field.
+func (b *ClinicalUseDefinitionIndicationBuilder) SetDiseaseSymptomProcedure(v CodeableReference) *ClinicalUseDefinitionIndicationBuilder {
+	b.clinicalUseDefinitionIndication.DiseaseSymptomProcedure = &v
+	return b
+}
+
+// SetDiseaseStatus sets the DiseaseStatus field.
+func (b *ClinicalUseDefinitionIndicationBuilder) SetDiseaseStatus(v CodeableReference) *ClinicalUseDefinitionIndicationBuilder {
+	b.clinicalUseDefinitionIndication.DiseaseStatus = &v
+	return b
+}
+
+// AddComorbidity adds a Comorbidity element.
+func (b *ClinicalUseDefinitionIndicationBuilder) AddComorbidity(v CodeableReference) *ClinicalUseDefinitionIndicationBuilder {
+	b.clinicalUseDefinitionIndication.Comorbidity = append(b.clinicalUseDefinitionIndication.Comorbidity, v)
+	return b
+}
+
+// SetIntendedEffect sets the IntendedEffect field.
+func (b *ClinicalUseDefinitionIndicationBuilder) SetIntendedEffect(v CodeableReference) *ClinicalUseDefinitionIndicationBuilder {
+	b.clinicalUseDefinitionIndication.IntendedEffect = &v
+	return b
+}
+
+// SetDurationRange sets Duration[x] to its DurationRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClinicalUseDefinitionIndicationBuilder) SetDurationRange(v Range) *ClinicalUseDefinitionIndicationBuilder {
+	b.clearDuration()
+	b.clinicalUseDefinitionIndication.DurationRange = &v
+	return b
+}
+
+// SetDurationString sets Duration[x] to its DurationString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClinicalUseDefinitionIndicationBuilder) SetDurationString(v string) *ClinicalUseDefinitionIndicationBuilder {
+	b.clearDuration()
+	b.clinicalUseDefinitionIndication.DurationString = &v
+	return b
+}
+
+// SetDurationStringExt sets the DurationStringExt field.
+func (b *ClinicalUseDefinitionIndicationBuilder) SetDurationStringExt(v Element) *ClinicalUseDefinitionIndicationBuilder {
+	b.clinicalUseDefinitionIndication.DurationStringExt = &v
+	return b
+}
+
+// AddUndesirableEffect adds a UndesirableEffect element.
+func (b *ClinicalUseDefinitionIndicationBuilder) AddUndesirableEffect(v Reference) *ClinicalUseDefinitionIndicationBuilder {
+	b.clinicalUseDefinitionIndication.UndesirableEffect = append(b.clinicalUseDefinitionIndication.UndesirableEffect, v)
+	return b
+}
+
+// SetApplicability sets the Applicability field.
+func (b *ClinicalUseDefinitionIndicationBuilder) SetApplicability(v Expression) *ClinicalUseDefinitionIndicationBuilder {
+	b.clinicalUseDefinitionIndication.Applicability = &v
+	return b
+}
+
+// AddOtherTherapy adds a OtherTherapy element.
+func (b *ClinicalUseDefinitionIndicationBuilder) AddOtherTherapy(v ClinicalUseDefinitionContraindicationOtherTherapy) *ClinicalUseDefinitionIndicationBuilder {
+	b.clinicalUseDefinitionIndication.OtherTherapy = append(b.clinicalUseDefinitionIndication.OtherTherapy, v)
+	return b
+}
+
+// clearDuration unsets every variant of Duration[x], including the
+// _field companions of the primitive ones.
+func (b *ClinicalUseDefinitionIndicationBuilder) clearDuration() {
+	b.clinicalUseDefinitionIndication.DurationRange = nil
+	b.clinicalUseDefinitionIndication.DurationString = nil
+	b.clinicalUseDefinitionIndication.DurationStringExt = nil
+}
+
+// =============================================================================
+// ClinicalUseDefinitionInteraction - Fluent Builder
+// =============================================================================
+
+// ClinicalUseDefinitionInteractionBuilder provides a fluent API for constructing ClinicalUseDefinitionInteraction values.
+type ClinicalUseDefinitionInteractionBuilder struct {
+	clinicalUseDefinitionInteraction *ClinicalUseDefinitionInteraction
+}
+
+// NewClinicalUseDefinitionInteractionBuilder creates a new ClinicalUseDefinitionInteractionBuilder.
+func NewClinicalUseDefinitionInteractionBuilder() *ClinicalUseDefinitionInteractionBuilder {
+	return &ClinicalUseDefinitionInteractionBuilder{
+		clinicalUseDefinitionInteraction: &ClinicalUseDefinitionInteraction{},
+	}
+}
+
+// Build returns the constructed ClinicalUseDefinitionInteraction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClinicalUseDefinitionInteractionBuilder) Build() ClinicalUseDefinitionInteraction {
+	return *b.clinicalUseDefinitionInteraction
+}
+
+// SetId sets the Id field.
+func (b *ClinicalUseDefinitionInteractionBuilder) SetId(v string) *ClinicalUseDefinitionInteractionBuilder {
+	b.clinicalUseDefinitionInteraction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClinicalUseDefinitionInteractionBuilder) AddExtension(v Extension) *ClinicalUseDefinitionInteractionBuilder {
+	b.clinicalUseDefinitionInteraction.Extension = append(b.clinicalUseDefinitionInteraction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClinicalUseDefinitionInteractionBuilder) AddModifierExtension(v Extension) *ClinicalUseDefinitionInteractionBuilder {
+	b.clinicalUseDefinitionInteraction.ModifierExtension = append(b.clinicalUseDefinitionInteraction.ModifierExtension, v)
+	return b
+}
+
+// AddInteractant adds a Interactant element.
+func (b *ClinicalUseDefinitionInteractionBuilder) AddInteractant(v ClinicalUseDefinitionInteractionInteractant) *ClinicalUseDefinitionInteractionBuilder {
+	b.clinicalUseDefinitionInteraction.Interactant = append(b.clinicalUseDefinitionInteraction.Interactant, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ClinicalUseDefinitionInteractionBuilder) SetType(v CodeableConcept) *ClinicalUseDefinitionInteractionBuilder {
+	b.clinicalUseDefinitionInteraction.Type = &v
+	return b
+}
+
+// SetEffect sets the Effect field.
+func (b *ClinicalUseDefinitionInteractionBuilder) SetEffect(v CodeableReference) *ClinicalUseDefinitionInteractionBuilder {
+	b.clinicalUseDefinitionInteraction.Effect = &v
+	return b
+}
+
+// SetIncidence sets the Incidence field.
+func (b *ClinicalUseDefinitionInteractionBuilder) SetIncidence(v CodeableConcept) *ClinicalUseDefinitionInteractionBuilder {
+	b.clinicalUseDefinitionInteraction.Incidence = &v
+	return b
+}
+
+// AddManagement adds a Management element.
+func (b *ClinicalUseDefinitionInteractionBuilder) AddManagement(v CodeableConcept) *ClinicalUseDefinitionInteractionBuilder {
+	b.clinicalUseDefinitionInteraction.Management = append(b.clinicalUseDefinitionInteraction.Management, v)
+	return b
+}
+
+// =============================================================================
+// ClinicalUseDefinitionInteractionInteractant - Fluent Builder
+// =============================================================================
+
+// ClinicalUseDefinitionInteractionInteractantBuilder provides a fluent API for constructing ClinicalUseDefinitionInteractionInteractant values.
+type ClinicalUseDefinitionInteractionInteractantBuilder struct {
+	clinicalUseDefinitionInteractionInteractant *ClinicalUseDefinitionInteractionInteractant
+}
+
+// NewClinicalUseDefinitionInteractionInteractantBuilder creates a new ClinicalUseDefinitionInteractionInteractantBuilder.
+func NewClinicalUseDefinitionInteractionInteractantBuilder() *ClinicalUseDefinitionInteractionInteractantBuilder {
+	return &ClinicalUseDefinitionInteractionInteractantBuilder{
+		clinicalUseDefinitionInteractionInteractant: &ClinicalUseDefinitionInteractionInteractant{},
+	}
+}
+
+// Build returns the constructed ClinicalUseDefinitionInteractionInteractant.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClinicalUseDefinitionInteractionInteractantBuilder) Build() ClinicalUseDefinitionInteractionInteractant {
+	return *b.clinicalUseDefinitionInteractionInteractant
+}
+
+// SetId sets the Id field.
+func (b *ClinicalUseDefinitionInteractionInteractantBuilder) SetId(v string) *ClinicalUseDefinitionInteractionInteractantBuilder {
+	b.clinicalUseDefinitionInteractionInteractant.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClinicalUseDefinitionInteractionInteractantBuilder) AddExtension(v Extension) *ClinicalUseDefinitionInteractionInteractantBuilder {
+	b.clinicalUseDefinitionInteractionInteractant.Extension = append(b.clinicalUseDefinitionInteractionInteractant.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClinicalUseDefinitionInteractionInteractantBuilder) AddModifierExtension(v Extension) *ClinicalUseDefinitionInteractionInteractantBuilder {
+	b.clinicalUseDefinitionInteractionInteractant.ModifierExtension = append(b.clinicalUseDefinitionInteractionInteractant.ModifierExtension, v)
+	return b
+}
+
+// SetItemReference sets Item[x] to its ItemReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClinicalUseDefinitionInteractionInteractantBuilder) SetItemReference(v Reference) *ClinicalUseDefinitionInteractionInteractantBuilder {
+	b.clearItem()
+	b.clinicalUseDefinitionInteractionInteractant.ItemReference = &v
+	return b
+}
+
+// SetItemCodeableConcept sets Item[x] to its ItemCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClinicalUseDefinitionInteractionInteractantBuilder) SetItemCodeableConcept(v CodeableConcept) *ClinicalUseDefinitionInteractionInteractantBuilder {
+	b.clearItem()
+	b.clinicalUseDefinitionInteractionInteractant.ItemCodeableConcept = &v
+	return b
+}
+
+// clearItem unsets every variant of Item[x], including the
+// _field companions of the primitive ones.
+func (b *ClinicalUseDefinitionInteractionInteractantBuilder) clearItem() {
+	b.clinicalUseDefinitionInteractionInteractant.ItemReference = nil
+	b.clinicalUseDefinitionInteractionInteractant.ItemCodeableConcept = nil
+}
+
+// =============================================================================
+// ClinicalUseDefinitionUndesirableEffect - Fluent Builder
+// =============================================================================
+
+// ClinicalUseDefinitionUndesirableEffectBuilder provides a fluent API for constructing ClinicalUseDefinitionUndesirableEffect values.
+type ClinicalUseDefinitionUndesirableEffectBuilder struct {
+	clinicalUseDefinitionUndesirableEffect *ClinicalUseDefinitionUndesirableEffect
+}
+
+// NewClinicalUseDefinitionUndesirableEffectBuilder creates a new ClinicalUseDefinitionUndesirableEffectBuilder.
+func NewClinicalUseDefinitionUndesirableEffectBuilder() *ClinicalUseDefinitionUndesirableEffectBuilder {
+	return &ClinicalUseDefinitionUndesirableEffectBuilder{
+		clinicalUseDefinitionUndesirableEffect: &ClinicalUseDefinitionUndesirableEffect{},
+	}
+}
+
+// Build returns the constructed ClinicalUseDefinitionUndesirableEffect.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClinicalUseDefinitionUndesirableEffectBuilder) Build() ClinicalUseDefinitionUndesirableEffect {
+	return *b.clinicalUseDefinitionUndesirableEffect
+}
+
+// SetId sets the Id field.
+func (b *ClinicalUseDefinitionUndesirableEffectBuilder) SetId(v string) *ClinicalUseDefinitionUndesirableEffectBuilder {
+	b.clinicalUseDefinitionUndesirableEffect.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClinicalUseDefinitionUndesirableEffectBuilder) AddExtension(v Extension) *ClinicalUseDefinitionUndesirableEffectBuilder {
+	b.clinicalUseDefinitionUndesirableEffect.Extension = append(b.clinicalUseDefinitionUndesirableEffect.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClinicalUseDefinitionUndesirableEffectBuilder) AddModifierExtension(v Extension) *ClinicalUseDefinitionUndesirableEffectBuilder {
+	b.clinicalUseDefinitionUndesirableEffect.ModifierExtension = append(b.clinicalUseDefinitionUndesirableEffect.ModifierExtension, v)
+	return b
+}
+
+// SetSymptomConditionEffect sets the SymptomConditionEffect field.
+func (b *ClinicalUseDefinitionUndesirableEffectBuilder) SetSymptomConditionEffect(v CodeableReference) *ClinicalUseDefinitionUndesirableEffectBuilder {
+	b.clinicalUseDefinitionUndesirableEffect.SymptomConditionEffect = &v
+	return b
+}
+
+// SetClassification sets the Classification field.
+func (b *ClinicalUseDefinitionUndesirableEffectBuilder) SetClassification(v CodeableConcept) *ClinicalUseDefinitionUndesirableEffectBuilder {
+	b.clinicalUseDefinitionUndesirableEffect.Classification = &v
+	return b
+}
+
+// SetFrequencyOfOccurrence sets the FrequencyOfOccurrence field.
+func (b *ClinicalUseDefinitionUndesirableEffectBuilder) SetFrequencyOfOccurrence(v CodeableConcept) *ClinicalUseDefinitionUndesirableEffectBuilder {
+	b.clinicalUseDefinitionUndesirableEffect.FrequencyOfOccurrence = &v
+	return b
+}
+
+// =============================================================================
+// ClinicalUseDefinitionWarning - Fluent Builder
+// =============================================================================
+
+// ClinicalUseDefinitionWarningBuilder provides a fluent API for constructing ClinicalUseDefinitionWarning values.
+type ClinicalUseDefinitionWarningBuilder struct {
+	clinicalUseDefinitionWarning *ClinicalUseDefinitionWarning
+}
+
+// NewClinicalUseDefinitionWarningBuilder creates a new ClinicalUseDefinitionWarningBuilder.
+func NewClinicalUseDefinitionWarningBuilder() *ClinicalUseDefinitionWarningBuilder {
+	return &ClinicalUseDefinitionWarningBuilder{
+		clinicalUseDefinitionWarning: &ClinicalUseDefinitionWarning{},
+	}
+}
+
+// Build returns the constructed ClinicalUseDefinitionWarning.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClinicalUseDefinitionWarningBuilder) Build() ClinicalUseDefinitionWarning {
+	return *b.clinicalUseDefinitionWarning
+}
+
+// SetId sets the Id field.
+func (b *ClinicalUseDefinitionWarningBuilder) SetId(v string) *ClinicalUseDefinitionWarningBuilder {
+	b.clinicalUseDefinitionWarning.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClinicalUseDefinitionWarningBuilder) AddExtension(v Extension) *ClinicalUseDefinitionWarningBuilder {
+	b.clinicalUseDefinitionWarning.Extension = append(b.clinicalUseDefinitionWarning.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClinicalUseDefinitionWarningBuilder) AddModifierExtension(v Extension) *ClinicalUseDefinitionWarningBuilder {
+	b.clinicalUseDefinitionWarning.ModifierExtension = append(b.clinicalUseDefinitionWarning.ModifierExtension, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *ClinicalUseDefinitionWarningBuilder) SetDescription(v string) *ClinicalUseDefinitionWarningBuilder {
+	b.clinicalUseDefinitionWarning.Description = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ClinicalUseDefinitionWarningBuilder) SetCode(v CodeableConcept) *ClinicalUseDefinitionWarningBuilder {
+	b.clinicalUseDefinitionWarning.Code = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClinicalUseDefinitionWarningBuilder) SetDescriptionExt(v Element) *ClinicalUseDefinitionWarningBuilder {
+	b.clinicalUseDefinitionWarning.DescriptionExt = &v
+	return b
+}

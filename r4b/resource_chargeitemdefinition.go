@@ -1144,3 +1144,426 @@ func (b *ChargeItemDefinitionBuilder) AddPropertyGroup(v ChargeItemDefinitionPro
 	b.chargeItemDefinition.PropertyGroup = append(b.chargeItemDefinition.PropertyGroup, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemDefinitionBuilder) SetImplicitRulesExt(v Element) *ChargeItemDefinitionBuilder {
+	b.chargeItemDefinition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemDefinitionBuilder) SetLanguageExt(v Element) *ChargeItemDefinitionBuilder {
+	b.chargeItemDefinition.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemDefinitionBuilder) SetUrlExt(v Element) *ChargeItemDefinitionBuilder {
+	b.chargeItemDefinition.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemDefinitionBuilder) SetVersionExt(v Element) *ChargeItemDefinitionBuilder {
+	b.chargeItemDefinition.VersionExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemDefinitionBuilder) SetTitleExt(v Element) *ChargeItemDefinitionBuilder {
+	b.chargeItemDefinition.TitleExt = &v
+	return b
+}
+
+// AddDerivedFromUriExt attaches extensions to the DerivedFromUri element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDerivedFromUri twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ChargeItemDefinitionBuilder) AddDerivedFromUriExt(v *Element) *ChargeItemDefinitionBuilder {
+	for len(b.chargeItemDefinition.DerivedFromUriExt) < len(b.chargeItemDefinition.DerivedFromUri)-1 {
+		b.chargeItemDefinition.DerivedFromUriExt = append(b.chargeItemDefinition.DerivedFromUriExt, nil)
+	}
+	b.chargeItemDefinition.DerivedFromUriExt = append(b.chargeItemDefinition.DerivedFromUriExt, v)
+	return b
+}
+
+// AddPartOfExt attaches extensions to the PartOf element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddPartOf twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ChargeItemDefinitionBuilder) AddPartOfExt(v *Element) *ChargeItemDefinitionBuilder {
+	for len(b.chargeItemDefinition.PartOfExt) < len(b.chargeItemDefinition.PartOf)-1 {
+		b.chargeItemDefinition.PartOfExt = append(b.chargeItemDefinition.PartOfExt, nil)
+	}
+	b.chargeItemDefinition.PartOfExt = append(b.chargeItemDefinition.PartOfExt, v)
+	return b
+}
+
+// AddReplacesExt attaches extensions to the Replaces element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddReplaces twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ChargeItemDefinitionBuilder) AddReplacesExt(v *Element) *ChargeItemDefinitionBuilder {
+	for len(b.chargeItemDefinition.ReplacesExt) < len(b.chargeItemDefinition.Replaces)-1 {
+		b.chargeItemDefinition.ReplacesExt = append(b.chargeItemDefinition.ReplacesExt, nil)
+	}
+	b.chargeItemDefinition.ReplacesExt = append(b.chargeItemDefinition.ReplacesExt, v)
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemDefinitionBuilder) SetStatusExt(v Element) *ChargeItemDefinitionBuilder {
+	b.chargeItemDefinition.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemDefinitionBuilder) SetExperimentalExt(v Element) *ChargeItemDefinitionBuilder {
+	b.chargeItemDefinition.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemDefinitionBuilder) SetDateExt(v Element) *ChargeItemDefinitionBuilder {
+	b.chargeItemDefinition.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemDefinitionBuilder) SetPublisherExt(v Element) *ChargeItemDefinitionBuilder {
+	b.chargeItemDefinition.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemDefinitionBuilder) SetDescriptionExt(v Element) *ChargeItemDefinitionBuilder {
+	b.chargeItemDefinition.DescriptionExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemDefinitionBuilder) SetCopyrightExt(v Element) *ChargeItemDefinitionBuilder {
+	b.chargeItemDefinition.CopyrightExt = &v
+	return b
+}
+
+// SetApprovalDateExt sets the extensions carried by ApprovalDate, serialized as
+// "_approvalDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemDefinitionBuilder) SetApprovalDateExt(v Element) *ChargeItemDefinitionBuilder {
+	b.chargeItemDefinition.ApprovalDateExt = &v
+	return b
+}
+
+// SetLastReviewDateExt sets the extensions carried by LastReviewDate, serialized as
+// "_lastReviewDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemDefinitionBuilder) SetLastReviewDateExt(v Element) *ChargeItemDefinitionBuilder {
+	b.chargeItemDefinition.LastReviewDateExt = &v
+	return b
+}
+
+// =============================================================================
+// ChargeItemDefinitionApplicability - Fluent Builder
+// =============================================================================
+
+// ChargeItemDefinitionApplicabilityBuilder provides a fluent API for constructing ChargeItemDefinitionApplicability values.
+type ChargeItemDefinitionApplicabilityBuilder struct {
+	chargeItemDefinitionApplicability *ChargeItemDefinitionApplicability
+}
+
+// NewChargeItemDefinitionApplicabilityBuilder creates a new ChargeItemDefinitionApplicabilityBuilder.
+func NewChargeItemDefinitionApplicabilityBuilder() *ChargeItemDefinitionApplicabilityBuilder {
+	return &ChargeItemDefinitionApplicabilityBuilder{
+		chargeItemDefinitionApplicability: &ChargeItemDefinitionApplicability{},
+	}
+}
+
+// Build returns the constructed ChargeItemDefinitionApplicability.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ChargeItemDefinitionApplicabilityBuilder) Build() ChargeItemDefinitionApplicability {
+	return *b.chargeItemDefinitionApplicability
+}
+
+// SetId sets the Id field.
+func (b *ChargeItemDefinitionApplicabilityBuilder) SetId(v string) *ChargeItemDefinitionApplicabilityBuilder {
+	b.chargeItemDefinitionApplicability.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ChargeItemDefinitionApplicabilityBuilder) AddExtension(v Extension) *ChargeItemDefinitionApplicabilityBuilder {
+	b.chargeItemDefinitionApplicability.Extension = append(b.chargeItemDefinitionApplicability.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ChargeItemDefinitionApplicabilityBuilder) AddModifierExtension(v Extension) *ChargeItemDefinitionApplicabilityBuilder {
+	b.chargeItemDefinitionApplicability.ModifierExtension = append(b.chargeItemDefinitionApplicability.ModifierExtension, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *ChargeItemDefinitionApplicabilityBuilder) SetDescription(v string) *ChargeItemDefinitionApplicabilityBuilder {
+	b.chargeItemDefinitionApplicability.Description = &v
+	return b
+}
+
+// SetLanguage sets the Language field.
+func (b *ChargeItemDefinitionApplicabilityBuilder) SetLanguage(v string) *ChargeItemDefinitionApplicabilityBuilder {
+	b.chargeItemDefinitionApplicability.Language = &v
+	return b
+}
+
+// SetExpression sets the Expression field.
+func (b *ChargeItemDefinitionApplicabilityBuilder) SetExpression(v string) *ChargeItemDefinitionApplicabilityBuilder {
+	b.chargeItemDefinitionApplicability.Expression = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemDefinitionApplicabilityBuilder) SetDescriptionExt(v Element) *ChargeItemDefinitionApplicabilityBuilder {
+	b.chargeItemDefinitionApplicability.DescriptionExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemDefinitionApplicabilityBuilder) SetLanguageExt(v Element) *ChargeItemDefinitionApplicabilityBuilder {
+	b.chargeItemDefinitionApplicability.LanguageExt = &v
+	return b
+}
+
+// SetExpressionExt sets the extensions carried by Expression, serialized as
+// "_expression".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemDefinitionApplicabilityBuilder) SetExpressionExt(v Element) *ChargeItemDefinitionApplicabilityBuilder {
+	b.chargeItemDefinitionApplicability.ExpressionExt = &v
+	return b
+}
+
+// =============================================================================
+// ChargeItemDefinitionPropertyGroup - Fluent Builder
+// =============================================================================
+
+// ChargeItemDefinitionPropertyGroupBuilder provides a fluent API for constructing ChargeItemDefinitionPropertyGroup values.
+type ChargeItemDefinitionPropertyGroupBuilder struct {
+	chargeItemDefinitionPropertyGroup *ChargeItemDefinitionPropertyGroup
+}
+
+// NewChargeItemDefinitionPropertyGroupBuilder creates a new ChargeItemDefinitionPropertyGroupBuilder.
+func NewChargeItemDefinitionPropertyGroupBuilder() *ChargeItemDefinitionPropertyGroupBuilder {
+	return &ChargeItemDefinitionPropertyGroupBuilder{
+		chargeItemDefinitionPropertyGroup: &ChargeItemDefinitionPropertyGroup{},
+	}
+}
+
+// Build returns the constructed ChargeItemDefinitionPropertyGroup.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ChargeItemDefinitionPropertyGroupBuilder) Build() ChargeItemDefinitionPropertyGroup {
+	return *b.chargeItemDefinitionPropertyGroup
+}
+
+// SetId sets the Id field.
+func (b *ChargeItemDefinitionPropertyGroupBuilder) SetId(v string) *ChargeItemDefinitionPropertyGroupBuilder {
+	b.chargeItemDefinitionPropertyGroup.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ChargeItemDefinitionPropertyGroupBuilder) AddExtension(v Extension) *ChargeItemDefinitionPropertyGroupBuilder {
+	b.chargeItemDefinitionPropertyGroup.Extension = append(b.chargeItemDefinitionPropertyGroup.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ChargeItemDefinitionPropertyGroupBuilder) AddModifierExtension(v Extension) *ChargeItemDefinitionPropertyGroupBuilder {
+	b.chargeItemDefinitionPropertyGroup.ModifierExtension = append(b.chargeItemDefinitionPropertyGroup.ModifierExtension, v)
+	return b
+}
+
+// AddApplicability adds a Applicability element.
+func (b *ChargeItemDefinitionPropertyGroupBuilder) AddApplicability(v ChargeItemDefinitionApplicability) *ChargeItemDefinitionPropertyGroupBuilder {
+	b.chargeItemDefinitionPropertyGroup.Applicability = append(b.chargeItemDefinitionPropertyGroup.Applicability, v)
+	return b
+}
+
+// AddPriceComponent adds a PriceComponent element.
+func (b *ChargeItemDefinitionPropertyGroupBuilder) AddPriceComponent(v ChargeItemDefinitionPropertyGroupPriceComponent) *ChargeItemDefinitionPropertyGroupBuilder {
+	b.chargeItemDefinitionPropertyGroup.PriceComponent = append(b.chargeItemDefinitionPropertyGroup.PriceComponent, v)
+	return b
+}
+
+// =============================================================================
+// ChargeItemDefinitionPropertyGroupPriceComponent - Fluent Builder
+// =============================================================================
+
+// ChargeItemDefinitionPropertyGroupPriceComponentBuilder provides a fluent API for constructing ChargeItemDefinitionPropertyGroupPriceComponent values.
+type ChargeItemDefinitionPropertyGroupPriceComponentBuilder struct {
+	chargeItemDefinitionPropertyGroupPriceComponent *ChargeItemDefinitionPropertyGroupPriceComponent
+}
+
+// NewChargeItemDefinitionPropertyGroupPriceComponentBuilder creates a new ChargeItemDefinitionPropertyGroupPriceComponentBuilder.
+func NewChargeItemDefinitionPropertyGroupPriceComponentBuilder() *ChargeItemDefinitionPropertyGroupPriceComponentBuilder {
+	return &ChargeItemDefinitionPropertyGroupPriceComponentBuilder{
+		chargeItemDefinitionPropertyGroupPriceComponent: &ChargeItemDefinitionPropertyGroupPriceComponent{},
+	}
+}
+
+// Build returns the constructed ChargeItemDefinitionPropertyGroupPriceComponent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ChargeItemDefinitionPropertyGroupPriceComponentBuilder) Build() ChargeItemDefinitionPropertyGroupPriceComponent {
+	return *b.chargeItemDefinitionPropertyGroupPriceComponent
+}
+
+// SetId sets the Id field.
+func (b *ChargeItemDefinitionPropertyGroupPriceComponentBuilder) SetId(v string) *ChargeItemDefinitionPropertyGroupPriceComponentBuilder {
+	b.chargeItemDefinitionPropertyGroupPriceComponent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ChargeItemDefinitionPropertyGroupPriceComponentBuilder) AddExtension(v Extension) *ChargeItemDefinitionPropertyGroupPriceComponentBuilder {
+	b.chargeItemDefinitionPropertyGroupPriceComponent.Extension = append(b.chargeItemDefinitionPropertyGroupPriceComponent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ChargeItemDefinitionPropertyGroupPriceComponentBuilder) AddModifierExtension(v Extension) *ChargeItemDefinitionPropertyGroupPriceComponentBuilder {
+	b.chargeItemDefinitionPropertyGroupPriceComponent.ModifierExtension = append(b.chargeItemDefinitionPropertyGroupPriceComponent.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ChargeItemDefinitionPropertyGroupPriceComponentBuilder) SetType(v InvoicePriceComponentType) *ChargeItemDefinitionPropertyGroupPriceComponentBuilder {
+	b.chargeItemDefinitionPropertyGroupPriceComponent.Type = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ChargeItemDefinitionPropertyGroupPriceComponentBuilder) SetCode(v CodeableConcept) *ChargeItemDefinitionPropertyGroupPriceComponentBuilder {
+	b.chargeItemDefinitionPropertyGroupPriceComponent.Code = &v
+	return b
+}
+
+// SetFactor sets the Factor field.
+func (b *ChargeItemDefinitionPropertyGroupPriceComponentBuilder) SetFactor(v Decimal) *ChargeItemDefinitionPropertyGroupPriceComponentBuilder {
+	b.chargeItemDefinitionPropertyGroupPriceComponent.Factor = &v
+	return b
+}
+
+// SetAmount sets the Amount field.
+func (b *ChargeItemDefinitionPropertyGroupPriceComponentBuilder) SetAmount(v Money) *ChargeItemDefinitionPropertyGroupPriceComponentBuilder {
+	b.chargeItemDefinitionPropertyGroupPriceComponent.Amount = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemDefinitionPropertyGroupPriceComponentBuilder) SetTypeExt(v Element) *ChargeItemDefinitionPropertyGroupPriceComponentBuilder {
+	b.chargeItemDefinitionPropertyGroupPriceComponent.TypeExt = &v
+	return b
+}
+
+// SetFactorExt sets the extensions carried by Factor, serialized as
+// "_factor".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemDefinitionPropertyGroupPriceComponentBuilder) SetFactorExt(v Element) *ChargeItemDefinitionPropertyGroupPriceComponentBuilder {
+	b.chargeItemDefinitionPropertyGroupPriceComponent.FactorExt = &v
+	return b
+}

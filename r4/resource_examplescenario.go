@@ -1774,3 +1774,977 @@ func (b *ExampleScenarioBuilder) AddWorkflow(v string) *ExampleScenarioBuilder {
 	b.exampleScenario.Workflow = append(b.exampleScenario.Workflow, &v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioBuilder) SetImplicitRulesExt(v Element) *ExampleScenarioBuilder {
+	b.exampleScenario.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioBuilder) SetLanguageExt(v Element) *ExampleScenarioBuilder {
+	b.exampleScenario.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioBuilder) SetUrlExt(v Element) *ExampleScenarioBuilder {
+	b.exampleScenario.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioBuilder) SetVersionExt(v Element) *ExampleScenarioBuilder {
+	b.exampleScenario.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioBuilder) SetNameExt(v Element) *ExampleScenarioBuilder {
+	b.exampleScenario.NameExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioBuilder) SetStatusExt(v Element) *ExampleScenarioBuilder {
+	b.exampleScenario.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioBuilder) SetExperimentalExt(v Element) *ExampleScenarioBuilder {
+	b.exampleScenario.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioBuilder) SetDateExt(v Element) *ExampleScenarioBuilder {
+	b.exampleScenario.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioBuilder) SetPublisherExt(v Element) *ExampleScenarioBuilder {
+	b.exampleScenario.PublisherExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioBuilder) SetCopyrightExt(v Element) *ExampleScenarioBuilder {
+	b.exampleScenario.CopyrightExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioBuilder) SetPurposeExt(v Element) *ExampleScenarioBuilder {
+	b.exampleScenario.PurposeExt = &v
+	return b
+}
+
+// AddWorkflowExt attaches extensions to the Workflow element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddWorkflow twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ExampleScenarioBuilder) AddWorkflowExt(v *Element) *ExampleScenarioBuilder {
+	for len(b.exampleScenario.WorkflowExt) < len(b.exampleScenario.Workflow)-1 {
+		b.exampleScenario.WorkflowExt = append(b.exampleScenario.WorkflowExt, nil)
+	}
+	b.exampleScenario.WorkflowExt = append(b.exampleScenario.WorkflowExt, v)
+	return b
+}
+
+// =============================================================================
+// ExampleScenarioActor - Fluent Builder
+// =============================================================================
+
+// ExampleScenarioActorBuilder provides a fluent API for constructing ExampleScenarioActor values.
+type ExampleScenarioActorBuilder struct {
+	exampleScenarioActor *ExampleScenarioActor
+}
+
+// NewExampleScenarioActorBuilder creates a new ExampleScenarioActorBuilder.
+func NewExampleScenarioActorBuilder() *ExampleScenarioActorBuilder {
+	return &ExampleScenarioActorBuilder{
+		exampleScenarioActor: &ExampleScenarioActor{},
+	}
+}
+
+// Build returns the constructed ExampleScenarioActor.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExampleScenarioActorBuilder) Build() ExampleScenarioActor {
+	return *b.exampleScenarioActor
+}
+
+// SetId sets the Id field.
+func (b *ExampleScenarioActorBuilder) SetId(v string) *ExampleScenarioActorBuilder {
+	b.exampleScenarioActor.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExampleScenarioActorBuilder) AddExtension(v Extension) *ExampleScenarioActorBuilder {
+	b.exampleScenarioActor.Extension = append(b.exampleScenarioActor.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExampleScenarioActorBuilder) AddModifierExtension(v Extension) *ExampleScenarioActorBuilder {
+	b.exampleScenarioActor.ModifierExtension = append(b.exampleScenarioActor.ModifierExtension, v)
+	return b
+}
+
+// SetActorId sets the ActorId field.
+func (b *ExampleScenarioActorBuilder) SetActorId(v string) *ExampleScenarioActorBuilder {
+	b.exampleScenarioActor.ActorId = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ExampleScenarioActorBuilder) SetType(v ExampleScenarioActorType) *ExampleScenarioActorBuilder {
+	b.exampleScenarioActor.Type = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *ExampleScenarioActorBuilder) SetName(v string) *ExampleScenarioActorBuilder {
+	b.exampleScenarioActor.Name = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *ExampleScenarioActorBuilder) SetDescription(v string) *ExampleScenarioActorBuilder {
+	b.exampleScenarioActor.Description = &v
+	return b
+}
+
+// SetActorIdExt sets the extensions carried by ActorId, serialized as
+// "_actorId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioActorBuilder) SetActorIdExt(v Element) *ExampleScenarioActorBuilder {
+	b.exampleScenarioActor.ActorIdExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioActorBuilder) SetTypeExt(v Element) *ExampleScenarioActorBuilder {
+	b.exampleScenarioActor.TypeExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioActorBuilder) SetNameExt(v Element) *ExampleScenarioActorBuilder {
+	b.exampleScenarioActor.NameExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioActorBuilder) SetDescriptionExt(v Element) *ExampleScenarioActorBuilder {
+	b.exampleScenarioActor.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// ExampleScenarioInstance - Fluent Builder
+// =============================================================================
+
+// ExampleScenarioInstanceBuilder provides a fluent API for constructing ExampleScenarioInstance values.
+type ExampleScenarioInstanceBuilder struct {
+	exampleScenarioInstance *ExampleScenarioInstance
+}
+
+// NewExampleScenarioInstanceBuilder creates a new ExampleScenarioInstanceBuilder.
+func NewExampleScenarioInstanceBuilder() *ExampleScenarioInstanceBuilder {
+	return &ExampleScenarioInstanceBuilder{
+		exampleScenarioInstance: &ExampleScenarioInstance{},
+	}
+}
+
+// Build returns the constructed ExampleScenarioInstance.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExampleScenarioInstanceBuilder) Build() ExampleScenarioInstance {
+	return *b.exampleScenarioInstance
+}
+
+// SetId sets the Id field.
+func (b *ExampleScenarioInstanceBuilder) SetId(v string) *ExampleScenarioInstanceBuilder {
+	b.exampleScenarioInstance.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExampleScenarioInstanceBuilder) AddExtension(v Extension) *ExampleScenarioInstanceBuilder {
+	b.exampleScenarioInstance.Extension = append(b.exampleScenarioInstance.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExampleScenarioInstanceBuilder) AddModifierExtension(v Extension) *ExampleScenarioInstanceBuilder {
+	b.exampleScenarioInstance.ModifierExtension = append(b.exampleScenarioInstance.ModifierExtension, v)
+	return b
+}
+
+// SetResourceId sets the ResourceId field.
+func (b *ExampleScenarioInstanceBuilder) SetResourceId(v string) *ExampleScenarioInstanceBuilder {
+	b.exampleScenarioInstance.ResourceId = &v
+	return b
+}
+
+// SetResourceType sets the ResourceType field.
+func (b *ExampleScenarioInstanceBuilder) SetResourceType(v string) *ExampleScenarioInstanceBuilder {
+	b.exampleScenarioInstance.ResourceType = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *ExampleScenarioInstanceBuilder) SetName(v string) *ExampleScenarioInstanceBuilder {
+	b.exampleScenarioInstance.Name = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *ExampleScenarioInstanceBuilder) SetDescription(v string) *ExampleScenarioInstanceBuilder {
+	b.exampleScenarioInstance.Description = &v
+	return b
+}
+
+// AddVersion adds a Version element.
+func (b *ExampleScenarioInstanceBuilder) AddVersion(v ExampleScenarioInstanceVersion) *ExampleScenarioInstanceBuilder {
+	b.exampleScenarioInstance.Version = append(b.exampleScenarioInstance.Version, v)
+	return b
+}
+
+// AddContainedInstance adds a ContainedInstance element.
+func (b *ExampleScenarioInstanceBuilder) AddContainedInstance(v ExampleScenarioInstanceContainedInstance) *ExampleScenarioInstanceBuilder {
+	b.exampleScenarioInstance.ContainedInstance = append(b.exampleScenarioInstance.ContainedInstance, v)
+	return b
+}
+
+// SetResourceIdExt sets the extensions carried by ResourceId, serialized as
+// "_resourceId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioInstanceBuilder) SetResourceIdExt(v Element) *ExampleScenarioInstanceBuilder {
+	b.exampleScenarioInstance.ResourceIdExt = &v
+	return b
+}
+
+// SetResourceTypeExt sets the extensions carried by ResourceType, serialized as
+// "_resourceType".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioInstanceBuilder) SetResourceTypeExt(v Element) *ExampleScenarioInstanceBuilder {
+	b.exampleScenarioInstance.ResourceTypeExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioInstanceBuilder) SetNameExt(v Element) *ExampleScenarioInstanceBuilder {
+	b.exampleScenarioInstance.NameExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioInstanceBuilder) SetDescriptionExt(v Element) *ExampleScenarioInstanceBuilder {
+	b.exampleScenarioInstance.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// ExampleScenarioInstanceContainedInstance - Fluent Builder
+// =============================================================================
+
+// ExampleScenarioInstanceContainedInstanceBuilder provides a fluent API for constructing ExampleScenarioInstanceContainedInstance values.
+type ExampleScenarioInstanceContainedInstanceBuilder struct {
+	exampleScenarioInstanceContainedInstance *ExampleScenarioInstanceContainedInstance
+}
+
+// NewExampleScenarioInstanceContainedInstanceBuilder creates a new ExampleScenarioInstanceContainedInstanceBuilder.
+func NewExampleScenarioInstanceContainedInstanceBuilder() *ExampleScenarioInstanceContainedInstanceBuilder {
+	return &ExampleScenarioInstanceContainedInstanceBuilder{
+		exampleScenarioInstanceContainedInstance: &ExampleScenarioInstanceContainedInstance{},
+	}
+}
+
+// Build returns the constructed ExampleScenarioInstanceContainedInstance.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExampleScenarioInstanceContainedInstanceBuilder) Build() ExampleScenarioInstanceContainedInstance {
+	return *b.exampleScenarioInstanceContainedInstance
+}
+
+// SetId sets the Id field.
+func (b *ExampleScenarioInstanceContainedInstanceBuilder) SetId(v string) *ExampleScenarioInstanceContainedInstanceBuilder {
+	b.exampleScenarioInstanceContainedInstance.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExampleScenarioInstanceContainedInstanceBuilder) AddExtension(v Extension) *ExampleScenarioInstanceContainedInstanceBuilder {
+	b.exampleScenarioInstanceContainedInstance.Extension = append(b.exampleScenarioInstanceContainedInstance.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExampleScenarioInstanceContainedInstanceBuilder) AddModifierExtension(v Extension) *ExampleScenarioInstanceContainedInstanceBuilder {
+	b.exampleScenarioInstanceContainedInstance.ModifierExtension = append(b.exampleScenarioInstanceContainedInstance.ModifierExtension, v)
+	return b
+}
+
+// SetResourceId sets the ResourceId field.
+func (b *ExampleScenarioInstanceContainedInstanceBuilder) SetResourceId(v string) *ExampleScenarioInstanceContainedInstanceBuilder {
+	b.exampleScenarioInstanceContainedInstance.ResourceId = &v
+	return b
+}
+
+// SetVersionId sets the VersionId field.
+func (b *ExampleScenarioInstanceContainedInstanceBuilder) SetVersionId(v string) *ExampleScenarioInstanceContainedInstanceBuilder {
+	b.exampleScenarioInstanceContainedInstance.VersionId = &v
+	return b
+}
+
+// SetResourceIdExt sets the extensions carried by ResourceId, serialized as
+// "_resourceId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioInstanceContainedInstanceBuilder) SetResourceIdExt(v Element) *ExampleScenarioInstanceContainedInstanceBuilder {
+	b.exampleScenarioInstanceContainedInstance.ResourceIdExt = &v
+	return b
+}
+
+// SetVersionIdExt sets the extensions carried by VersionId, serialized as
+// "_versionId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioInstanceContainedInstanceBuilder) SetVersionIdExt(v Element) *ExampleScenarioInstanceContainedInstanceBuilder {
+	b.exampleScenarioInstanceContainedInstance.VersionIdExt = &v
+	return b
+}
+
+// =============================================================================
+// ExampleScenarioInstanceVersion - Fluent Builder
+// =============================================================================
+
+// ExampleScenarioInstanceVersionBuilder provides a fluent API for constructing ExampleScenarioInstanceVersion values.
+type ExampleScenarioInstanceVersionBuilder struct {
+	exampleScenarioInstanceVersion *ExampleScenarioInstanceVersion
+}
+
+// NewExampleScenarioInstanceVersionBuilder creates a new ExampleScenarioInstanceVersionBuilder.
+func NewExampleScenarioInstanceVersionBuilder() *ExampleScenarioInstanceVersionBuilder {
+	return &ExampleScenarioInstanceVersionBuilder{
+		exampleScenarioInstanceVersion: &ExampleScenarioInstanceVersion{},
+	}
+}
+
+// Build returns the constructed ExampleScenarioInstanceVersion.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExampleScenarioInstanceVersionBuilder) Build() ExampleScenarioInstanceVersion {
+	return *b.exampleScenarioInstanceVersion
+}
+
+// SetId sets the Id field.
+func (b *ExampleScenarioInstanceVersionBuilder) SetId(v string) *ExampleScenarioInstanceVersionBuilder {
+	b.exampleScenarioInstanceVersion.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExampleScenarioInstanceVersionBuilder) AddExtension(v Extension) *ExampleScenarioInstanceVersionBuilder {
+	b.exampleScenarioInstanceVersion.Extension = append(b.exampleScenarioInstanceVersion.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExampleScenarioInstanceVersionBuilder) AddModifierExtension(v Extension) *ExampleScenarioInstanceVersionBuilder {
+	b.exampleScenarioInstanceVersion.ModifierExtension = append(b.exampleScenarioInstanceVersion.ModifierExtension, v)
+	return b
+}
+
+// SetVersionId sets the VersionId field.
+func (b *ExampleScenarioInstanceVersionBuilder) SetVersionId(v string) *ExampleScenarioInstanceVersionBuilder {
+	b.exampleScenarioInstanceVersion.VersionId = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *ExampleScenarioInstanceVersionBuilder) SetDescription(v string) *ExampleScenarioInstanceVersionBuilder {
+	b.exampleScenarioInstanceVersion.Description = &v
+	return b
+}
+
+// SetVersionIdExt sets the extensions carried by VersionId, serialized as
+// "_versionId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioInstanceVersionBuilder) SetVersionIdExt(v Element) *ExampleScenarioInstanceVersionBuilder {
+	b.exampleScenarioInstanceVersion.VersionIdExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioInstanceVersionBuilder) SetDescriptionExt(v Element) *ExampleScenarioInstanceVersionBuilder {
+	b.exampleScenarioInstanceVersion.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// ExampleScenarioProcess - Fluent Builder
+// =============================================================================
+
+// ExampleScenarioProcessBuilder provides a fluent API for constructing ExampleScenarioProcess values.
+type ExampleScenarioProcessBuilder struct {
+	exampleScenarioProcess *ExampleScenarioProcess
+}
+
+// NewExampleScenarioProcessBuilder creates a new ExampleScenarioProcessBuilder.
+func NewExampleScenarioProcessBuilder() *ExampleScenarioProcessBuilder {
+	return &ExampleScenarioProcessBuilder{
+		exampleScenarioProcess: &ExampleScenarioProcess{},
+	}
+}
+
+// Build returns the constructed ExampleScenarioProcess.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExampleScenarioProcessBuilder) Build() ExampleScenarioProcess {
+	return *b.exampleScenarioProcess
+}
+
+// SetId sets the Id field.
+func (b *ExampleScenarioProcessBuilder) SetId(v string) *ExampleScenarioProcessBuilder {
+	b.exampleScenarioProcess.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExampleScenarioProcessBuilder) AddExtension(v Extension) *ExampleScenarioProcessBuilder {
+	b.exampleScenarioProcess.Extension = append(b.exampleScenarioProcess.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExampleScenarioProcessBuilder) AddModifierExtension(v Extension) *ExampleScenarioProcessBuilder {
+	b.exampleScenarioProcess.ModifierExtension = append(b.exampleScenarioProcess.ModifierExtension, v)
+	return b
+}
+
+// SetTitle sets the Title field.
+func (b *ExampleScenarioProcessBuilder) SetTitle(v string) *ExampleScenarioProcessBuilder {
+	b.exampleScenarioProcess.Title = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *ExampleScenarioProcessBuilder) SetDescription(v string) *ExampleScenarioProcessBuilder {
+	b.exampleScenarioProcess.Description = &v
+	return b
+}
+
+// SetPreConditions sets the PreConditions field.
+func (b *ExampleScenarioProcessBuilder) SetPreConditions(v string) *ExampleScenarioProcessBuilder {
+	b.exampleScenarioProcess.PreConditions = &v
+	return b
+}
+
+// SetPostConditions sets the PostConditions field.
+func (b *ExampleScenarioProcessBuilder) SetPostConditions(v string) *ExampleScenarioProcessBuilder {
+	b.exampleScenarioProcess.PostConditions = &v
+	return b
+}
+
+// AddStep adds a Step element.
+func (b *ExampleScenarioProcessBuilder) AddStep(v ExampleScenarioProcessStep) *ExampleScenarioProcessBuilder {
+	b.exampleScenarioProcess.Step = append(b.exampleScenarioProcess.Step, v)
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioProcessBuilder) SetTitleExt(v Element) *ExampleScenarioProcessBuilder {
+	b.exampleScenarioProcess.TitleExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioProcessBuilder) SetDescriptionExt(v Element) *ExampleScenarioProcessBuilder {
+	b.exampleScenarioProcess.DescriptionExt = &v
+	return b
+}
+
+// SetPreConditionsExt sets the extensions carried by PreConditions, serialized as
+// "_preConditions".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioProcessBuilder) SetPreConditionsExt(v Element) *ExampleScenarioProcessBuilder {
+	b.exampleScenarioProcess.PreConditionsExt = &v
+	return b
+}
+
+// SetPostConditionsExt sets the extensions carried by PostConditions, serialized as
+// "_postConditions".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioProcessBuilder) SetPostConditionsExt(v Element) *ExampleScenarioProcessBuilder {
+	b.exampleScenarioProcess.PostConditionsExt = &v
+	return b
+}
+
+// =============================================================================
+// ExampleScenarioProcessStep - Fluent Builder
+// =============================================================================
+
+// ExampleScenarioProcessStepBuilder provides a fluent API for constructing ExampleScenarioProcessStep values.
+type ExampleScenarioProcessStepBuilder struct {
+	exampleScenarioProcessStep *ExampleScenarioProcessStep
+}
+
+// NewExampleScenarioProcessStepBuilder creates a new ExampleScenarioProcessStepBuilder.
+func NewExampleScenarioProcessStepBuilder() *ExampleScenarioProcessStepBuilder {
+	return &ExampleScenarioProcessStepBuilder{
+		exampleScenarioProcessStep: &ExampleScenarioProcessStep{},
+	}
+}
+
+// Build returns the constructed ExampleScenarioProcessStep.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExampleScenarioProcessStepBuilder) Build() ExampleScenarioProcessStep {
+	return *b.exampleScenarioProcessStep
+}
+
+// SetId sets the Id field.
+func (b *ExampleScenarioProcessStepBuilder) SetId(v string) *ExampleScenarioProcessStepBuilder {
+	b.exampleScenarioProcessStep.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExampleScenarioProcessStepBuilder) AddExtension(v Extension) *ExampleScenarioProcessStepBuilder {
+	b.exampleScenarioProcessStep.Extension = append(b.exampleScenarioProcessStep.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExampleScenarioProcessStepBuilder) AddModifierExtension(v Extension) *ExampleScenarioProcessStepBuilder {
+	b.exampleScenarioProcessStep.ModifierExtension = append(b.exampleScenarioProcessStep.ModifierExtension, v)
+	return b
+}
+
+// AddProcess adds a Process element.
+func (b *ExampleScenarioProcessStepBuilder) AddProcess(v ExampleScenarioProcess) *ExampleScenarioProcessStepBuilder {
+	b.exampleScenarioProcessStep.Process = append(b.exampleScenarioProcessStep.Process, v)
+	return b
+}
+
+// SetPause sets the Pause field.
+func (b *ExampleScenarioProcessStepBuilder) SetPause(v bool) *ExampleScenarioProcessStepBuilder {
+	b.exampleScenarioProcessStep.Pause = &v
+	return b
+}
+
+// SetOperation sets the Operation field.
+func (b *ExampleScenarioProcessStepBuilder) SetOperation(v ExampleScenarioProcessStepOperation) *ExampleScenarioProcessStepBuilder {
+	b.exampleScenarioProcessStep.Operation = &v
+	return b
+}
+
+// AddAlternative adds a Alternative element.
+func (b *ExampleScenarioProcessStepBuilder) AddAlternative(v ExampleScenarioProcessStepAlternative) *ExampleScenarioProcessStepBuilder {
+	b.exampleScenarioProcessStep.Alternative = append(b.exampleScenarioProcessStep.Alternative, v)
+	return b
+}
+
+// SetPauseExt sets the extensions carried by Pause, serialized as
+// "_pause".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioProcessStepBuilder) SetPauseExt(v Element) *ExampleScenarioProcessStepBuilder {
+	b.exampleScenarioProcessStep.PauseExt = &v
+	return b
+}
+
+// =============================================================================
+// ExampleScenarioProcessStepAlternative - Fluent Builder
+// =============================================================================
+
+// ExampleScenarioProcessStepAlternativeBuilder provides a fluent API for constructing ExampleScenarioProcessStepAlternative values.
+type ExampleScenarioProcessStepAlternativeBuilder struct {
+	exampleScenarioProcessStepAlternative *ExampleScenarioProcessStepAlternative
+}
+
+// NewExampleScenarioProcessStepAlternativeBuilder creates a new ExampleScenarioProcessStepAlternativeBuilder.
+func NewExampleScenarioProcessStepAlternativeBuilder() *ExampleScenarioProcessStepAlternativeBuilder {
+	return &ExampleScenarioProcessStepAlternativeBuilder{
+		exampleScenarioProcessStepAlternative: &ExampleScenarioProcessStepAlternative{},
+	}
+}
+
+// Build returns the constructed ExampleScenarioProcessStepAlternative.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExampleScenarioProcessStepAlternativeBuilder) Build() ExampleScenarioProcessStepAlternative {
+	return *b.exampleScenarioProcessStepAlternative
+}
+
+// SetId sets the Id field.
+func (b *ExampleScenarioProcessStepAlternativeBuilder) SetId(v string) *ExampleScenarioProcessStepAlternativeBuilder {
+	b.exampleScenarioProcessStepAlternative.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExampleScenarioProcessStepAlternativeBuilder) AddExtension(v Extension) *ExampleScenarioProcessStepAlternativeBuilder {
+	b.exampleScenarioProcessStepAlternative.Extension = append(b.exampleScenarioProcessStepAlternative.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExampleScenarioProcessStepAlternativeBuilder) AddModifierExtension(v Extension) *ExampleScenarioProcessStepAlternativeBuilder {
+	b.exampleScenarioProcessStepAlternative.ModifierExtension = append(b.exampleScenarioProcessStepAlternative.ModifierExtension, v)
+	return b
+}
+
+// SetTitle sets the Title field.
+func (b *ExampleScenarioProcessStepAlternativeBuilder) SetTitle(v string) *ExampleScenarioProcessStepAlternativeBuilder {
+	b.exampleScenarioProcessStepAlternative.Title = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *ExampleScenarioProcessStepAlternativeBuilder) SetDescription(v string) *ExampleScenarioProcessStepAlternativeBuilder {
+	b.exampleScenarioProcessStepAlternative.Description = &v
+	return b
+}
+
+// AddStep adds a Step element.
+func (b *ExampleScenarioProcessStepAlternativeBuilder) AddStep(v ExampleScenarioProcessStep) *ExampleScenarioProcessStepAlternativeBuilder {
+	b.exampleScenarioProcessStepAlternative.Step = append(b.exampleScenarioProcessStepAlternative.Step, v)
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioProcessStepAlternativeBuilder) SetTitleExt(v Element) *ExampleScenarioProcessStepAlternativeBuilder {
+	b.exampleScenarioProcessStepAlternative.TitleExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioProcessStepAlternativeBuilder) SetDescriptionExt(v Element) *ExampleScenarioProcessStepAlternativeBuilder {
+	b.exampleScenarioProcessStepAlternative.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// ExampleScenarioProcessStepOperation - Fluent Builder
+// =============================================================================
+
+// ExampleScenarioProcessStepOperationBuilder provides a fluent API for constructing ExampleScenarioProcessStepOperation values.
+type ExampleScenarioProcessStepOperationBuilder struct {
+	exampleScenarioProcessStepOperation *ExampleScenarioProcessStepOperation
+}
+
+// NewExampleScenarioProcessStepOperationBuilder creates a new ExampleScenarioProcessStepOperationBuilder.
+func NewExampleScenarioProcessStepOperationBuilder() *ExampleScenarioProcessStepOperationBuilder {
+	return &ExampleScenarioProcessStepOperationBuilder{
+		exampleScenarioProcessStepOperation: &ExampleScenarioProcessStepOperation{},
+	}
+}
+
+// Build returns the constructed ExampleScenarioProcessStepOperation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExampleScenarioProcessStepOperationBuilder) Build() ExampleScenarioProcessStepOperation {
+	return *b.exampleScenarioProcessStepOperation
+}
+
+// SetId sets the Id field.
+func (b *ExampleScenarioProcessStepOperationBuilder) SetId(v string) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExampleScenarioProcessStepOperationBuilder) AddExtension(v Extension) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.Extension = append(b.exampleScenarioProcessStepOperation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExampleScenarioProcessStepOperationBuilder) AddModifierExtension(v Extension) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.ModifierExtension = append(b.exampleScenarioProcessStepOperation.ModifierExtension, v)
+	return b
+}
+
+// SetNumber sets the Number field.
+func (b *ExampleScenarioProcessStepOperationBuilder) SetNumber(v string) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.Number = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ExampleScenarioProcessStepOperationBuilder) SetType(v string) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.Type = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *ExampleScenarioProcessStepOperationBuilder) SetName(v string) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.Name = &v
+	return b
+}
+
+// SetInitiator sets the Initiator field.
+func (b *ExampleScenarioProcessStepOperationBuilder) SetInitiator(v string) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.Initiator = &v
+	return b
+}
+
+// SetReceiver sets the Receiver field.
+func (b *ExampleScenarioProcessStepOperationBuilder) SetReceiver(v string) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.Receiver = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *ExampleScenarioProcessStepOperationBuilder) SetDescription(v string) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.Description = &v
+	return b
+}
+
+// SetInitiatorActive sets the InitiatorActive field.
+func (b *ExampleScenarioProcessStepOperationBuilder) SetInitiatorActive(v bool) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.InitiatorActive = &v
+	return b
+}
+
+// SetReceiverActive sets the ReceiverActive field.
+func (b *ExampleScenarioProcessStepOperationBuilder) SetReceiverActive(v bool) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.ReceiverActive = &v
+	return b
+}
+
+// SetRequest sets the Request field.
+func (b *ExampleScenarioProcessStepOperationBuilder) SetRequest(v ExampleScenarioInstanceContainedInstance) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.Request = &v
+	return b
+}
+
+// SetResponse sets the Response field.
+func (b *ExampleScenarioProcessStepOperationBuilder) SetResponse(v ExampleScenarioInstanceContainedInstance) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.Response = &v
+	return b
+}
+
+// SetNumberExt sets the extensions carried by Number, serialized as
+// "_number".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioProcessStepOperationBuilder) SetNumberExt(v Element) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.NumberExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioProcessStepOperationBuilder) SetTypeExt(v Element) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.TypeExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioProcessStepOperationBuilder) SetNameExt(v Element) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.NameExt = &v
+	return b
+}
+
+// SetInitiatorExt sets the extensions carried by Initiator, serialized as
+// "_initiator".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioProcessStepOperationBuilder) SetInitiatorExt(v Element) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.InitiatorExt = &v
+	return b
+}
+
+// SetReceiverExt sets the extensions carried by Receiver, serialized as
+// "_receiver".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioProcessStepOperationBuilder) SetReceiverExt(v Element) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.ReceiverExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioProcessStepOperationBuilder) SetDescriptionExt(v Element) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.DescriptionExt = &v
+	return b
+}
+
+// SetInitiatorActiveExt sets the extensions carried by InitiatorActive, serialized as
+// "_initiatorActive".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioProcessStepOperationBuilder) SetInitiatorActiveExt(v Element) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.InitiatorActiveExt = &v
+	return b
+}
+
+// SetReceiverActiveExt sets the extensions carried by ReceiverActive, serialized as
+// "_receiverActive".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExampleScenarioProcessStepOperationBuilder) SetReceiverActiveExt(v Element) *ExampleScenarioProcessStepOperationBuilder {
+	b.exampleScenarioProcessStepOperation.ReceiverActiveExt = &v
+	return b
+}

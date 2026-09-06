@@ -539,3 +539,73 @@ func (b *SlotBuilder) SetComment(v string) *SlotBuilder {
 	b.slot.Comment = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SlotBuilder) SetImplicitRulesExt(v Element) *SlotBuilder {
+	b.slot.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SlotBuilder) SetLanguageExt(v Element) *SlotBuilder {
+	b.slot.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SlotBuilder) SetStatusExt(v Element) *SlotBuilder {
+	b.slot.StatusExt = &v
+	return b
+}
+
+// SetStartExt sets the extensions carried by Start, serialized as
+// "_start".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SlotBuilder) SetStartExt(v Element) *SlotBuilder {
+	b.slot.StartExt = &v
+	return b
+}
+
+// SetEndExt sets the extensions carried by End, serialized as
+// "_end".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SlotBuilder) SetEndExt(v Element) *SlotBuilder {
+	b.slot.EndExt = &v
+	return b
+}
+
+// SetOverbookedExt sets the extensions carried by Overbooked, serialized as
+// "_overbooked".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SlotBuilder) SetOverbookedExt(v Element) *SlotBuilder {
+	b.slot.OverbookedExt = &v
+	return b
+}
+
+// SetCommentExt sets the extensions carried by Comment, serialized as
+// "_comment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SlotBuilder) SetCommentExt(v Element) *SlotBuilder {
+	b.slot.CommentExt = &v
+	return b
+}

@@ -2550,3 +2550,1195 @@ func (b *MedicationKnowledgeBuilder) AddKinetics(v MedicationKnowledgeKinetics) 
 	b.medicationKnowledge.Kinetics = append(b.medicationKnowledge.Kinetics, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationKnowledgeBuilder) SetImplicitRulesExt(v Element) *MedicationKnowledgeBuilder {
+	b.medicationKnowledge.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationKnowledgeBuilder) SetLanguageExt(v Element) *MedicationKnowledgeBuilder {
+	b.medicationKnowledge.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationKnowledgeBuilder) SetStatusExt(v Element) *MedicationKnowledgeBuilder {
+	b.medicationKnowledge.StatusExt = &v
+	return b
+}
+
+// AddSynonymExt attaches extensions to the Synonym element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddSynonym twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *MedicationKnowledgeBuilder) AddSynonymExt(v *Element) *MedicationKnowledgeBuilder {
+	for len(b.medicationKnowledge.SynonymExt) < len(b.medicationKnowledge.Synonym)-1 {
+		b.medicationKnowledge.SynonymExt = append(b.medicationKnowledge.SynonymExt, nil)
+	}
+	b.medicationKnowledge.SynonymExt = append(b.medicationKnowledge.SynonymExt, v)
+	return b
+}
+
+// SetPreparationInstructionExt sets the extensions carried by PreparationInstruction, serialized as
+// "_preparationInstruction".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationKnowledgeBuilder) SetPreparationInstructionExt(v Element) *MedicationKnowledgeBuilder {
+	b.medicationKnowledge.PreparationInstructionExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicationKnowledgeAdministrationGuidelines - Fluent Builder
+// =============================================================================
+
+// MedicationKnowledgeAdministrationGuidelinesBuilder provides a fluent API for constructing MedicationKnowledgeAdministrationGuidelines values.
+type MedicationKnowledgeAdministrationGuidelinesBuilder struct {
+	medicationKnowledgeAdministrationGuidelines *MedicationKnowledgeAdministrationGuidelines
+}
+
+// NewMedicationKnowledgeAdministrationGuidelinesBuilder creates a new MedicationKnowledgeAdministrationGuidelinesBuilder.
+func NewMedicationKnowledgeAdministrationGuidelinesBuilder() *MedicationKnowledgeAdministrationGuidelinesBuilder {
+	return &MedicationKnowledgeAdministrationGuidelinesBuilder{
+		medicationKnowledgeAdministrationGuidelines: &MedicationKnowledgeAdministrationGuidelines{},
+	}
+}
+
+// Build returns the constructed MedicationKnowledgeAdministrationGuidelines.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationKnowledgeAdministrationGuidelinesBuilder) Build() MedicationKnowledgeAdministrationGuidelines {
+	return *b.medicationKnowledgeAdministrationGuidelines
+}
+
+// SetId sets the Id field.
+func (b *MedicationKnowledgeAdministrationGuidelinesBuilder) SetId(v string) *MedicationKnowledgeAdministrationGuidelinesBuilder {
+	b.medicationKnowledgeAdministrationGuidelines.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationKnowledgeAdministrationGuidelinesBuilder) AddExtension(v Extension) *MedicationKnowledgeAdministrationGuidelinesBuilder {
+	b.medicationKnowledgeAdministrationGuidelines.Extension = append(b.medicationKnowledgeAdministrationGuidelines.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationKnowledgeAdministrationGuidelinesBuilder) AddModifierExtension(v Extension) *MedicationKnowledgeAdministrationGuidelinesBuilder {
+	b.medicationKnowledgeAdministrationGuidelines.ModifierExtension = append(b.medicationKnowledgeAdministrationGuidelines.ModifierExtension, v)
+	return b
+}
+
+// AddDosage adds a Dosage element.
+func (b *MedicationKnowledgeAdministrationGuidelinesBuilder) AddDosage(v MedicationKnowledgeAdministrationGuidelinesDosage) *MedicationKnowledgeAdministrationGuidelinesBuilder {
+	b.medicationKnowledgeAdministrationGuidelines.Dosage = append(b.medicationKnowledgeAdministrationGuidelines.Dosage, v)
+	return b
+}
+
+// SetIndicationCodeableConcept sets Indication[x] to its IndicationCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicationKnowledgeAdministrationGuidelinesBuilder) SetIndicationCodeableConcept(v CodeableConcept) *MedicationKnowledgeAdministrationGuidelinesBuilder {
+	b.clearIndication()
+	b.medicationKnowledgeAdministrationGuidelines.IndicationCodeableConcept = &v
+	return b
+}
+
+// SetIndicationReference sets Indication[x] to its IndicationReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicationKnowledgeAdministrationGuidelinesBuilder) SetIndicationReference(v Reference) *MedicationKnowledgeAdministrationGuidelinesBuilder {
+	b.clearIndication()
+	b.medicationKnowledgeAdministrationGuidelines.IndicationReference = &v
+	return b
+}
+
+// AddPatientCharacteristics adds a PatientCharacteristics element.
+func (b *MedicationKnowledgeAdministrationGuidelinesBuilder) AddPatientCharacteristics(v MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics) *MedicationKnowledgeAdministrationGuidelinesBuilder {
+	b.medicationKnowledgeAdministrationGuidelines.PatientCharacteristics = append(b.medicationKnowledgeAdministrationGuidelines.PatientCharacteristics, v)
+	return b
+}
+
+// clearIndication unsets every variant of Indication[x], including the
+// _field companions of the primitive ones.
+func (b *MedicationKnowledgeAdministrationGuidelinesBuilder) clearIndication() {
+	b.medicationKnowledgeAdministrationGuidelines.IndicationCodeableConcept = nil
+	b.medicationKnowledgeAdministrationGuidelines.IndicationReference = nil
+}
+
+// =============================================================================
+// MedicationKnowledgeAdministrationGuidelinesDosage - Fluent Builder
+// =============================================================================
+
+// MedicationKnowledgeAdministrationGuidelinesDosageBuilder provides a fluent API for constructing MedicationKnowledgeAdministrationGuidelinesDosage values.
+type MedicationKnowledgeAdministrationGuidelinesDosageBuilder struct {
+	medicationKnowledgeAdministrationGuidelinesDosage *MedicationKnowledgeAdministrationGuidelinesDosage
+}
+
+// NewMedicationKnowledgeAdministrationGuidelinesDosageBuilder creates a new MedicationKnowledgeAdministrationGuidelinesDosageBuilder.
+func NewMedicationKnowledgeAdministrationGuidelinesDosageBuilder() *MedicationKnowledgeAdministrationGuidelinesDosageBuilder {
+	return &MedicationKnowledgeAdministrationGuidelinesDosageBuilder{
+		medicationKnowledgeAdministrationGuidelinesDosage: &MedicationKnowledgeAdministrationGuidelinesDosage{},
+	}
+}
+
+// Build returns the constructed MedicationKnowledgeAdministrationGuidelinesDosage.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationKnowledgeAdministrationGuidelinesDosageBuilder) Build() MedicationKnowledgeAdministrationGuidelinesDosage {
+	return *b.medicationKnowledgeAdministrationGuidelinesDosage
+}
+
+// SetId sets the Id field.
+func (b *MedicationKnowledgeAdministrationGuidelinesDosageBuilder) SetId(v string) *MedicationKnowledgeAdministrationGuidelinesDosageBuilder {
+	b.medicationKnowledgeAdministrationGuidelinesDosage.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationKnowledgeAdministrationGuidelinesDosageBuilder) AddExtension(v Extension) *MedicationKnowledgeAdministrationGuidelinesDosageBuilder {
+	b.medicationKnowledgeAdministrationGuidelinesDosage.Extension = append(b.medicationKnowledgeAdministrationGuidelinesDosage.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationKnowledgeAdministrationGuidelinesDosageBuilder) AddModifierExtension(v Extension) *MedicationKnowledgeAdministrationGuidelinesDosageBuilder {
+	b.medicationKnowledgeAdministrationGuidelinesDosage.ModifierExtension = append(b.medicationKnowledgeAdministrationGuidelinesDosage.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *MedicationKnowledgeAdministrationGuidelinesDosageBuilder) SetType(v CodeableConcept) *MedicationKnowledgeAdministrationGuidelinesDosageBuilder {
+	b.medicationKnowledgeAdministrationGuidelinesDosage.Type = &v
+	return b
+}
+
+// AddDosage adds a Dosage element.
+func (b *MedicationKnowledgeAdministrationGuidelinesDosageBuilder) AddDosage(v Dosage) *MedicationKnowledgeAdministrationGuidelinesDosageBuilder {
+	b.medicationKnowledgeAdministrationGuidelinesDosage.Dosage = append(b.medicationKnowledgeAdministrationGuidelinesDosage.Dosage, v)
+	return b
+}
+
+// =============================================================================
+// MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics - Fluent Builder
+// =============================================================================
+
+// MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder provides a fluent API for constructing MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics values.
+type MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder struct {
+	medicationKnowledgeAdministrationGuidelinesPatientCharacteristics *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics
+}
+
+// NewMedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder creates a new MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder.
+func NewMedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder() *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder {
+	return &MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder{
+		medicationKnowledgeAdministrationGuidelinesPatientCharacteristics: &MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics{},
+	}
+}
+
+// Build returns the constructed MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder) Build() MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics {
+	return *b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics
+}
+
+// SetId sets the Id field.
+func (b *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder) SetId(v string) *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder {
+	b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder) AddExtension(v Extension) *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder {
+	b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.Extension = append(b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder) AddModifierExtension(v Extension) *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder {
+	b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ModifierExtension = append(b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ModifierExtension, v)
+	return b
+}
+
+// SetCharacteristicCodeableConcept sets Characteristic[x] to its CharacteristicCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder) SetCharacteristicCodeableConcept(v CodeableConcept) *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder {
+	b.clearCharacteristic()
+	b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.CharacteristicCodeableConcept = &v
+	return b
+}
+
+// SetCharacteristicQuantity sets Characteristic[x] to its CharacteristicQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder) SetCharacteristicQuantity(v Quantity) *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder {
+	b.clearCharacteristic()
+	b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.CharacteristicQuantity = &v
+	return b
+}
+
+// AddValue adds a Value element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder) AddValue(v string) *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder {
+	b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.Value = append(b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.Value, &v)
+	return b
+}
+
+// AddValueExt attaches extensions to the Value element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddValue twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder) AddValueExt(v *Element) *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder {
+	for len(b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ValueExt) < len(b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.Value)-1 {
+		b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ValueExt = append(b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ValueExt, nil)
+	}
+	b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ValueExt = append(b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ValueExt, v)
+	return b
+}
+
+// clearCharacteristic unsets every variant of Characteristic[x], including the
+// _field companions of the primitive ones.
+func (b *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder) clearCharacteristic() {
+	b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.CharacteristicCodeableConcept = nil
+	b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.CharacteristicQuantity = nil
+}
+
+// =============================================================================
+// MedicationKnowledgeCost - Fluent Builder
+// =============================================================================
+
+// MedicationKnowledgeCostBuilder provides a fluent API for constructing MedicationKnowledgeCost values.
+type MedicationKnowledgeCostBuilder struct {
+	medicationKnowledgeCost *MedicationKnowledgeCost
+}
+
+// NewMedicationKnowledgeCostBuilder creates a new MedicationKnowledgeCostBuilder.
+func NewMedicationKnowledgeCostBuilder() *MedicationKnowledgeCostBuilder {
+	return &MedicationKnowledgeCostBuilder{
+		medicationKnowledgeCost: &MedicationKnowledgeCost{},
+	}
+}
+
+// Build returns the constructed MedicationKnowledgeCost.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationKnowledgeCostBuilder) Build() MedicationKnowledgeCost {
+	return *b.medicationKnowledgeCost
+}
+
+// SetId sets the Id field.
+func (b *MedicationKnowledgeCostBuilder) SetId(v string) *MedicationKnowledgeCostBuilder {
+	b.medicationKnowledgeCost.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationKnowledgeCostBuilder) AddExtension(v Extension) *MedicationKnowledgeCostBuilder {
+	b.medicationKnowledgeCost.Extension = append(b.medicationKnowledgeCost.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationKnowledgeCostBuilder) AddModifierExtension(v Extension) *MedicationKnowledgeCostBuilder {
+	b.medicationKnowledgeCost.ModifierExtension = append(b.medicationKnowledgeCost.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *MedicationKnowledgeCostBuilder) SetType(v CodeableConcept) *MedicationKnowledgeCostBuilder {
+	b.medicationKnowledgeCost.Type = &v
+	return b
+}
+
+// SetSource sets the Source field.
+func (b *MedicationKnowledgeCostBuilder) SetSource(v string) *MedicationKnowledgeCostBuilder {
+	b.medicationKnowledgeCost.Source = &v
+	return b
+}
+
+// SetCost sets the Cost field.
+func (b *MedicationKnowledgeCostBuilder) SetCost(v Money) *MedicationKnowledgeCostBuilder {
+	b.medicationKnowledgeCost.Cost = &v
+	return b
+}
+
+// SetSourceExt sets the extensions carried by Source, serialized as
+// "_source".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationKnowledgeCostBuilder) SetSourceExt(v Element) *MedicationKnowledgeCostBuilder {
+	b.medicationKnowledgeCost.SourceExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicationKnowledgeDrugCharacteristic - Fluent Builder
+// =============================================================================
+
+// MedicationKnowledgeDrugCharacteristicBuilder provides a fluent API for constructing MedicationKnowledgeDrugCharacteristic values.
+type MedicationKnowledgeDrugCharacteristicBuilder struct {
+	medicationKnowledgeDrugCharacteristic *MedicationKnowledgeDrugCharacteristic
+}
+
+// NewMedicationKnowledgeDrugCharacteristicBuilder creates a new MedicationKnowledgeDrugCharacteristicBuilder.
+func NewMedicationKnowledgeDrugCharacteristicBuilder() *MedicationKnowledgeDrugCharacteristicBuilder {
+	return &MedicationKnowledgeDrugCharacteristicBuilder{
+		medicationKnowledgeDrugCharacteristic: &MedicationKnowledgeDrugCharacteristic{},
+	}
+}
+
+// Build returns the constructed MedicationKnowledgeDrugCharacteristic.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationKnowledgeDrugCharacteristicBuilder) Build() MedicationKnowledgeDrugCharacteristic {
+	return *b.medicationKnowledgeDrugCharacteristic
+}
+
+// SetId sets the Id field.
+func (b *MedicationKnowledgeDrugCharacteristicBuilder) SetId(v string) *MedicationKnowledgeDrugCharacteristicBuilder {
+	b.medicationKnowledgeDrugCharacteristic.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationKnowledgeDrugCharacteristicBuilder) AddExtension(v Extension) *MedicationKnowledgeDrugCharacteristicBuilder {
+	b.medicationKnowledgeDrugCharacteristic.Extension = append(b.medicationKnowledgeDrugCharacteristic.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationKnowledgeDrugCharacteristicBuilder) AddModifierExtension(v Extension) *MedicationKnowledgeDrugCharacteristicBuilder {
+	b.medicationKnowledgeDrugCharacteristic.ModifierExtension = append(b.medicationKnowledgeDrugCharacteristic.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *MedicationKnowledgeDrugCharacteristicBuilder) SetType(v CodeableConcept) *MedicationKnowledgeDrugCharacteristicBuilder {
+	b.medicationKnowledgeDrugCharacteristic.Type = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicationKnowledgeDrugCharacteristicBuilder) SetValueCodeableConcept(v CodeableConcept) *MedicationKnowledgeDrugCharacteristicBuilder {
+	b.clearValue()
+	b.medicationKnowledgeDrugCharacteristic.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicationKnowledgeDrugCharacteristicBuilder) SetValueString(v string) *MedicationKnowledgeDrugCharacteristicBuilder {
+	b.clearValue()
+	b.medicationKnowledgeDrugCharacteristic.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *MedicationKnowledgeDrugCharacteristicBuilder) SetValueStringExt(v Element) *MedicationKnowledgeDrugCharacteristicBuilder {
+	b.medicationKnowledgeDrugCharacteristic.ValueStringExt = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicationKnowledgeDrugCharacteristicBuilder) SetValueQuantity(v Quantity) *MedicationKnowledgeDrugCharacteristicBuilder {
+	b.clearValue()
+	b.medicationKnowledgeDrugCharacteristic.ValueQuantity = &v
+	return b
+}
+
+// SetValueBase64Binary sets Value[x] to its ValueBase64Binary variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicationKnowledgeDrugCharacteristicBuilder) SetValueBase64Binary(v string) *MedicationKnowledgeDrugCharacteristicBuilder {
+	b.clearValue()
+	b.medicationKnowledgeDrugCharacteristic.ValueBase64Binary = &v
+	return b
+}
+
+// SetValueBase64BinaryExt sets the ValueBase64BinaryExt field.
+func (b *MedicationKnowledgeDrugCharacteristicBuilder) SetValueBase64BinaryExt(v Element) *MedicationKnowledgeDrugCharacteristicBuilder {
+	b.medicationKnowledgeDrugCharacteristic.ValueBase64BinaryExt = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *MedicationKnowledgeDrugCharacteristicBuilder) clearValue() {
+	b.medicationKnowledgeDrugCharacteristic.ValueCodeableConcept = nil
+	b.medicationKnowledgeDrugCharacteristic.ValueString = nil
+	b.medicationKnowledgeDrugCharacteristic.ValueStringExt = nil
+	b.medicationKnowledgeDrugCharacteristic.ValueQuantity = nil
+	b.medicationKnowledgeDrugCharacteristic.ValueBase64Binary = nil
+	b.medicationKnowledgeDrugCharacteristic.ValueBase64BinaryExt = nil
+}
+
+// =============================================================================
+// MedicationKnowledgeIngredient - Fluent Builder
+// =============================================================================
+
+// MedicationKnowledgeIngredientBuilder provides a fluent API for constructing MedicationKnowledgeIngredient values.
+type MedicationKnowledgeIngredientBuilder struct {
+	medicationKnowledgeIngredient *MedicationKnowledgeIngredient
+}
+
+// NewMedicationKnowledgeIngredientBuilder creates a new MedicationKnowledgeIngredientBuilder.
+func NewMedicationKnowledgeIngredientBuilder() *MedicationKnowledgeIngredientBuilder {
+	return &MedicationKnowledgeIngredientBuilder{
+		medicationKnowledgeIngredient: &MedicationKnowledgeIngredient{},
+	}
+}
+
+// Build returns the constructed MedicationKnowledgeIngredient.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationKnowledgeIngredientBuilder) Build() MedicationKnowledgeIngredient {
+	return *b.medicationKnowledgeIngredient
+}
+
+// SetId sets the Id field.
+func (b *MedicationKnowledgeIngredientBuilder) SetId(v string) *MedicationKnowledgeIngredientBuilder {
+	b.medicationKnowledgeIngredient.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationKnowledgeIngredientBuilder) AddExtension(v Extension) *MedicationKnowledgeIngredientBuilder {
+	b.medicationKnowledgeIngredient.Extension = append(b.medicationKnowledgeIngredient.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationKnowledgeIngredientBuilder) AddModifierExtension(v Extension) *MedicationKnowledgeIngredientBuilder {
+	b.medicationKnowledgeIngredient.ModifierExtension = append(b.medicationKnowledgeIngredient.ModifierExtension, v)
+	return b
+}
+
+// SetItemCodeableConcept sets Item[x] to its ItemCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicationKnowledgeIngredientBuilder) SetItemCodeableConcept(v CodeableConcept) *MedicationKnowledgeIngredientBuilder {
+	b.clearItem()
+	b.medicationKnowledgeIngredient.ItemCodeableConcept = &v
+	return b
+}
+
+// SetItemReference sets Item[x] to its ItemReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicationKnowledgeIngredientBuilder) SetItemReference(v Reference) *MedicationKnowledgeIngredientBuilder {
+	b.clearItem()
+	b.medicationKnowledgeIngredient.ItemReference = &v
+	return b
+}
+
+// SetIsActive sets the IsActive field.
+func (b *MedicationKnowledgeIngredientBuilder) SetIsActive(v bool) *MedicationKnowledgeIngredientBuilder {
+	b.medicationKnowledgeIngredient.IsActive = &v
+	return b
+}
+
+// SetStrength sets the Strength field.
+func (b *MedicationKnowledgeIngredientBuilder) SetStrength(v Ratio) *MedicationKnowledgeIngredientBuilder {
+	b.medicationKnowledgeIngredient.Strength = &v
+	return b
+}
+
+// SetIsActiveExt sets the extensions carried by IsActive, serialized as
+// "_isActive".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationKnowledgeIngredientBuilder) SetIsActiveExt(v Element) *MedicationKnowledgeIngredientBuilder {
+	b.medicationKnowledgeIngredient.IsActiveExt = &v
+	return b
+}
+
+// clearItem unsets every variant of Item[x], including the
+// _field companions of the primitive ones.
+func (b *MedicationKnowledgeIngredientBuilder) clearItem() {
+	b.medicationKnowledgeIngredient.ItemCodeableConcept = nil
+	b.medicationKnowledgeIngredient.ItemReference = nil
+}
+
+// =============================================================================
+// MedicationKnowledgeKinetics - Fluent Builder
+// =============================================================================
+
+// MedicationKnowledgeKineticsBuilder provides a fluent API for constructing MedicationKnowledgeKinetics values.
+type MedicationKnowledgeKineticsBuilder struct {
+	medicationKnowledgeKinetics *MedicationKnowledgeKinetics
+}
+
+// NewMedicationKnowledgeKineticsBuilder creates a new MedicationKnowledgeKineticsBuilder.
+func NewMedicationKnowledgeKineticsBuilder() *MedicationKnowledgeKineticsBuilder {
+	return &MedicationKnowledgeKineticsBuilder{
+		medicationKnowledgeKinetics: &MedicationKnowledgeKinetics{},
+	}
+}
+
+// Build returns the constructed MedicationKnowledgeKinetics.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationKnowledgeKineticsBuilder) Build() MedicationKnowledgeKinetics {
+	return *b.medicationKnowledgeKinetics
+}
+
+// SetId sets the Id field.
+func (b *MedicationKnowledgeKineticsBuilder) SetId(v string) *MedicationKnowledgeKineticsBuilder {
+	b.medicationKnowledgeKinetics.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationKnowledgeKineticsBuilder) AddExtension(v Extension) *MedicationKnowledgeKineticsBuilder {
+	b.medicationKnowledgeKinetics.Extension = append(b.medicationKnowledgeKinetics.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationKnowledgeKineticsBuilder) AddModifierExtension(v Extension) *MedicationKnowledgeKineticsBuilder {
+	b.medicationKnowledgeKinetics.ModifierExtension = append(b.medicationKnowledgeKinetics.ModifierExtension, v)
+	return b
+}
+
+// AddAreaUnderCurve adds a AreaUnderCurve element.
+func (b *MedicationKnowledgeKineticsBuilder) AddAreaUnderCurve(v Quantity) *MedicationKnowledgeKineticsBuilder {
+	b.medicationKnowledgeKinetics.AreaUnderCurve = append(b.medicationKnowledgeKinetics.AreaUnderCurve, v)
+	return b
+}
+
+// AddLethalDose50 adds a LethalDose50 element.
+func (b *MedicationKnowledgeKineticsBuilder) AddLethalDose50(v Quantity) *MedicationKnowledgeKineticsBuilder {
+	b.medicationKnowledgeKinetics.LethalDose50 = append(b.medicationKnowledgeKinetics.LethalDose50, v)
+	return b
+}
+
+// SetHalfLifePeriod sets the HalfLifePeriod field.
+func (b *MedicationKnowledgeKineticsBuilder) SetHalfLifePeriod(v Duration) *MedicationKnowledgeKineticsBuilder {
+	b.medicationKnowledgeKinetics.HalfLifePeriod = &v
+	return b
+}
+
+// =============================================================================
+// MedicationKnowledgeMedicineClassification - Fluent Builder
+// =============================================================================
+
+// MedicationKnowledgeMedicineClassificationBuilder provides a fluent API for constructing MedicationKnowledgeMedicineClassification values.
+type MedicationKnowledgeMedicineClassificationBuilder struct {
+	medicationKnowledgeMedicineClassification *MedicationKnowledgeMedicineClassification
+}
+
+// NewMedicationKnowledgeMedicineClassificationBuilder creates a new MedicationKnowledgeMedicineClassificationBuilder.
+func NewMedicationKnowledgeMedicineClassificationBuilder() *MedicationKnowledgeMedicineClassificationBuilder {
+	return &MedicationKnowledgeMedicineClassificationBuilder{
+		medicationKnowledgeMedicineClassification: &MedicationKnowledgeMedicineClassification{},
+	}
+}
+
+// Build returns the constructed MedicationKnowledgeMedicineClassification.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationKnowledgeMedicineClassificationBuilder) Build() MedicationKnowledgeMedicineClassification {
+	return *b.medicationKnowledgeMedicineClassification
+}
+
+// SetId sets the Id field.
+func (b *MedicationKnowledgeMedicineClassificationBuilder) SetId(v string) *MedicationKnowledgeMedicineClassificationBuilder {
+	b.medicationKnowledgeMedicineClassification.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationKnowledgeMedicineClassificationBuilder) AddExtension(v Extension) *MedicationKnowledgeMedicineClassificationBuilder {
+	b.medicationKnowledgeMedicineClassification.Extension = append(b.medicationKnowledgeMedicineClassification.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationKnowledgeMedicineClassificationBuilder) AddModifierExtension(v Extension) *MedicationKnowledgeMedicineClassificationBuilder {
+	b.medicationKnowledgeMedicineClassification.ModifierExtension = append(b.medicationKnowledgeMedicineClassification.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *MedicationKnowledgeMedicineClassificationBuilder) SetType(v CodeableConcept) *MedicationKnowledgeMedicineClassificationBuilder {
+	b.medicationKnowledgeMedicineClassification.Type = &v
+	return b
+}
+
+// AddClassification adds a Classification element.
+func (b *MedicationKnowledgeMedicineClassificationBuilder) AddClassification(v CodeableConcept) *MedicationKnowledgeMedicineClassificationBuilder {
+	b.medicationKnowledgeMedicineClassification.Classification = append(b.medicationKnowledgeMedicineClassification.Classification, v)
+	return b
+}
+
+// =============================================================================
+// MedicationKnowledgeMonitoringProgram - Fluent Builder
+// =============================================================================
+
+// MedicationKnowledgeMonitoringProgramBuilder provides a fluent API for constructing MedicationKnowledgeMonitoringProgram values.
+type MedicationKnowledgeMonitoringProgramBuilder struct {
+	medicationKnowledgeMonitoringProgram *MedicationKnowledgeMonitoringProgram
+}
+
+// NewMedicationKnowledgeMonitoringProgramBuilder creates a new MedicationKnowledgeMonitoringProgramBuilder.
+func NewMedicationKnowledgeMonitoringProgramBuilder() *MedicationKnowledgeMonitoringProgramBuilder {
+	return &MedicationKnowledgeMonitoringProgramBuilder{
+		medicationKnowledgeMonitoringProgram: &MedicationKnowledgeMonitoringProgram{},
+	}
+}
+
+// Build returns the constructed MedicationKnowledgeMonitoringProgram.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationKnowledgeMonitoringProgramBuilder) Build() MedicationKnowledgeMonitoringProgram {
+	return *b.medicationKnowledgeMonitoringProgram
+}
+
+// SetId sets the Id field.
+func (b *MedicationKnowledgeMonitoringProgramBuilder) SetId(v string) *MedicationKnowledgeMonitoringProgramBuilder {
+	b.medicationKnowledgeMonitoringProgram.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationKnowledgeMonitoringProgramBuilder) AddExtension(v Extension) *MedicationKnowledgeMonitoringProgramBuilder {
+	b.medicationKnowledgeMonitoringProgram.Extension = append(b.medicationKnowledgeMonitoringProgram.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationKnowledgeMonitoringProgramBuilder) AddModifierExtension(v Extension) *MedicationKnowledgeMonitoringProgramBuilder {
+	b.medicationKnowledgeMonitoringProgram.ModifierExtension = append(b.medicationKnowledgeMonitoringProgram.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *MedicationKnowledgeMonitoringProgramBuilder) SetType(v CodeableConcept) *MedicationKnowledgeMonitoringProgramBuilder {
+	b.medicationKnowledgeMonitoringProgram.Type = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *MedicationKnowledgeMonitoringProgramBuilder) SetName(v string) *MedicationKnowledgeMonitoringProgramBuilder {
+	b.medicationKnowledgeMonitoringProgram.Name = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationKnowledgeMonitoringProgramBuilder) SetNameExt(v Element) *MedicationKnowledgeMonitoringProgramBuilder {
+	b.medicationKnowledgeMonitoringProgram.NameExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicationKnowledgeMonograph - Fluent Builder
+// =============================================================================
+
+// MedicationKnowledgeMonographBuilder provides a fluent API for constructing MedicationKnowledgeMonograph values.
+type MedicationKnowledgeMonographBuilder struct {
+	medicationKnowledgeMonograph *MedicationKnowledgeMonograph
+}
+
+// NewMedicationKnowledgeMonographBuilder creates a new MedicationKnowledgeMonographBuilder.
+func NewMedicationKnowledgeMonographBuilder() *MedicationKnowledgeMonographBuilder {
+	return &MedicationKnowledgeMonographBuilder{
+		medicationKnowledgeMonograph: &MedicationKnowledgeMonograph{},
+	}
+}
+
+// Build returns the constructed MedicationKnowledgeMonograph.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationKnowledgeMonographBuilder) Build() MedicationKnowledgeMonograph {
+	return *b.medicationKnowledgeMonograph
+}
+
+// SetId sets the Id field.
+func (b *MedicationKnowledgeMonographBuilder) SetId(v string) *MedicationKnowledgeMonographBuilder {
+	b.medicationKnowledgeMonograph.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationKnowledgeMonographBuilder) AddExtension(v Extension) *MedicationKnowledgeMonographBuilder {
+	b.medicationKnowledgeMonograph.Extension = append(b.medicationKnowledgeMonograph.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationKnowledgeMonographBuilder) AddModifierExtension(v Extension) *MedicationKnowledgeMonographBuilder {
+	b.medicationKnowledgeMonograph.ModifierExtension = append(b.medicationKnowledgeMonograph.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *MedicationKnowledgeMonographBuilder) SetType(v CodeableConcept) *MedicationKnowledgeMonographBuilder {
+	b.medicationKnowledgeMonograph.Type = &v
+	return b
+}
+
+// SetSource sets the Source field.
+func (b *MedicationKnowledgeMonographBuilder) SetSource(v Reference) *MedicationKnowledgeMonographBuilder {
+	b.medicationKnowledgeMonograph.Source = &v
+	return b
+}
+
+// =============================================================================
+// MedicationKnowledgePackaging - Fluent Builder
+// =============================================================================
+
+// MedicationKnowledgePackagingBuilder provides a fluent API for constructing MedicationKnowledgePackaging values.
+type MedicationKnowledgePackagingBuilder struct {
+	medicationKnowledgePackaging *MedicationKnowledgePackaging
+}
+
+// NewMedicationKnowledgePackagingBuilder creates a new MedicationKnowledgePackagingBuilder.
+func NewMedicationKnowledgePackagingBuilder() *MedicationKnowledgePackagingBuilder {
+	return &MedicationKnowledgePackagingBuilder{
+		medicationKnowledgePackaging: &MedicationKnowledgePackaging{},
+	}
+}
+
+// Build returns the constructed MedicationKnowledgePackaging.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationKnowledgePackagingBuilder) Build() MedicationKnowledgePackaging {
+	return *b.medicationKnowledgePackaging
+}
+
+// SetId sets the Id field.
+func (b *MedicationKnowledgePackagingBuilder) SetId(v string) *MedicationKnowledgePackagingBuilder {
+	b.medicationKnowledgePackaging.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationKnowledgePackagingBuilder) AddExtension(v Extension) *MedicationKnowledgePackagingBuilder {
+	b.medicationKnowledgePackaging.Extension = append(b.medicationKnowledgePackaging.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationKnowledgePackagingBuilder) AddModifierExtension(v Extension) *MedicationKnowledgePackagingBuilder {
+	b.medicationKnowledgePackaging.ModifierExtension = append(b.medicationKnowledgePackaging.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *MedicationKnowledgePackagingBuilder) SetType(v CodeableConcept) *MedicationKnowledgePackagingBuilder {
+	b.medicationKnowledgePackaging.Type = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *MedicationKnowledgePackagingBuilder) SetQuantity(v Quantity) *MedicationKnowledgePackagingBuilder {
+	b.medicationKnowledgePackaging.Quantity = &v
+	return b
+}
+
+// =============================================================================
+// MedicationKnowledgeRegulatory - Fluent Builder
+// =============================================================================
+
+// MedicationKnowledgeRegulatoryBuilder provides a fluent API for constructing MedicationKnowledgeRegulatory values.
+type MedicationKnowledgeRegulatoryBuilder struct {
+	medicationKnowledgeRegulatory *MedicationKnowledgeRegulatory
+}
+
+// NewMedicationKnowledgeRegulatoryBuilder creates a new MedicationKnowledgeRegulatoryBuilder.
+func NewMedicationKnowledgeRegulatoryBuilder() *MedicationKnowledgeRegulatoryBuilder {
+	return &MedicationKnowledgeRegulatoryBuilder{
+		medicationKnowledgeRegulatory: &MedicationKnowledgeRegulatory{},
+	}
+}
+
+// Build returns the constructed MedicationKnowledgeRegulatory.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationKnowledgeRegulatoryBuilder) Build() MedicationKnowledgeRegulatory {
+	return *b.medicationKnowledgeRegulatory
+}
+
+// SetId sets the Id field.
+func (b *MedicationKnowledgeRegulatoryBuilder) SetId(v string) *MedicationKnowledgeRegulatoryBuilder {
+	b.medicationKnowledgeRegulatory.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationKnowledgeRegulatoryBuilder) AddExtension(v Extension) *MedicationKnowledgeRegulatoryBuilder {
+	b.medicationKnowledgeRegulatory.Extension = append(b.medicationKnowledgeRegulatory.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationKnowledgeRegulatoryBuilder) AddModifierExtension(v Extension) *MedicationKnowledgeRegulatoryBuilder {
+	b.medicationKnowledgeRegulatory.ModifierExtension = append(b.medicationKnowledgeRegulatory.ModifierExtension, v)
+	return b
+}
+
+// SetRegulatoryAuthority sets the RegulatoryAuthority field.
+func (b *MedicationKnowledgeRegulatoryBuilder) SetRegulatoryAuthority(v Reference) *MedicationKnowledgeRegulatoryBuilder {
+	b.medicationKnowledgeRegulatory.RegulatoryAuthority = &v
+	return b
+}
+
+// AddSubstitution adds a Substitution element.
+func (b *MedicationKnowledgeRegulatoryBuilder) AddSubstitution(v MedicationKnowledgeRegulatorySubstitution) *MedicationKnowledgeRegulatoryBuilder {
+	b.medicationKnowledgeRegulatory.Substitution = append(b.medicationKnowledgeRegulatory.Substitution, v)
+	return b
+}
+
+// AddSchedule adds a Schedule element.
+func (b *MedicationKnowledgeRegulatoryBuilder) AddSchedule(v MedicationKnowledgeRegulatorySchedule) *MedicationKnowledgeRegulatoryBuilder {
+	b.medicationKnowledgeRegulatory.Schedule = append(b.medicationKnowledgeRegulatory.Schedule, v)
+	return b
+}
+
+// SetMaxDispense sets the MaxDispense field.
+func (b *MedicationKnowledgeRegulatoryBuilder) SetMaxDispense(v MedicationKnowledgeRegulatoryMaxDispense) *MedicationKnowledgeRegulatoryBuilder {
+	b.medicationKnowledgeRegulatory.MaxDispense = &v
+	return b
+}
+
+// =============================================================================
+// MedicationKnowledgeRegulatoryMaxDispense - Fluent Builder
+// =============================================================================
+
+// MedicationKnowledgeRegulatoryMaxDispenseBuilder provides a fluent API for constructing MedicationKnowledgeRegulatoryMaxDispense values.
+type MedicationKnowledgeRegulatoryMaxDispenseBuilder struct {
+	medicationKnowledgeRegulatoryMaxDispense *MedicationKnowledgeRegulatoryMaxDispense
+}
+
+// NewMedicationKnowledgeRegulatoryMaxDispenseBuilder creates a new MedicationKnowledgeRegulatoryMaxDispenseBuilder.
+func NewMedicationKnowledgeRegulatoryMaxDispenseBuilder() *MedicationKnowledgeRegulatoryMaxDispenseBuilder {
+	return &MedicationKnowledgeRegulatoryMaxDispenseBuilder{
+		medicationKnowledgeRegulatoryMaxDispense: &MedicationKnowledgeRegulatoryMaxDispense{},
+	}
+}
+
+// Build returns the constructed MedicationKnowledgeRegulatoryMaxDispense.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationKnowledgeRegulatoryMaxDispenseBuilder) Build() MedicationKnowledgeRegulatoryMaxDispense {
+	return *b.medicationKnowledgeRegulatoryMaxDispense
+}
+
+// SetId sets the Id field.
+func (b *MedicationKnowledgeRegulatoryMaxDispenseBuilder) SetId(v string) *MedicationKnowledgeRegulatoryMaxDispenseBuilder {
+	b.medicationKnowledgeRegulatoryMaxDispense.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationKnowledgeRegulatoryMaxDispenseBuilder) AddExtension(v Extension) *MedicationKnowledgeRegulatoryMaxDispenseBuilder {
+	b.medicationKnowledgeRegulatoryMaxDispense.Extension = append(b.medicationKnowledgeRegulatoryMaxDispense.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationKnowledgeRegulatoryMaxDispenseBuilder) AddModifierExtension(v Extension) *MedicationKnowledgeRegulatoryMaxDispenseBuilder {
+	b.medicationKnowledgeRegulatoryMaxDispense.ModifierExtension = append(b.medicationKnowledgeRegulatoryMaxDispense.ModifierExtension, v)
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *MedicationKnowledgeRegulatoryMaxDispenseBuilder) SetQuantity(v Quantity) *MedicationKnowledgeRegulatoryMaxDispenseBuilder {
+	b.medicationKnowledgeRegulatoryMaxDispense.Quantity = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *MedicationKnowledgeRegulatoryMaxDispenseBuilder) SetPeriod(v Duration) *MedicationKnowledgeRegulatoryMaxDispenseBuilder {
+	b.medicationKnowledgeRegulatoryMaxDispense.Period = &v
+	return b
+}
+
+// =============================================================================
+// MedicationKnowledgeRegulatorySchedule - Fluent Builder
+// =============================================================================
+
+// MedicationKnowledgeRegulatoryScheduleBuilder provides a fluent API for constructing MedicationKnowledgeRegulatorySchedule values.
+type MedicationKnowledgeRegulatoryScheduleBuilder struct {
+	medicationKnowledgeRegulatorySchedule *MedicationKnowledgeRegulatorySchedule
+}
+
+// NewMedicationKnowledgeRegulatoryScheduleBuilder creates a new MedicationKnowledgeRegulatoryScheduleBuilder.
+func NewMedicationKnowledgeRegulatoryScheduleBuilder() *MedicationKnowledgeRegulatoryScheduleBuilder {
+	return &MedicationKnowledgeRegulatoryScheduleBuilder{
+		medicationKnowledgeRegulatorySchedule: &MedicationKnowledgeRegulatorySchedule{},
+	}
+}
+
+// Build returns the constructed MedicationKnowledgeRegulatorySchedule.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationKnowledgeRegulatoryScheduleBuilder) Build() MedicationKnowledgeRegulatorySchedule {
+	return *b.medicationKnowledgeRegulatorySchedule
+}
+
+// SetId sets the Id field.
+func (b *MedicationKnowledgeRegulatoryScheduleBuilder) SetId(v string) *MedicationKnowledgeRegulatoryScheduleBuilder {
+	b.medicationKnowledgeRegulatorySchedule.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationKnowledgeRegulatoryScheduleBuilder) AddExtension(v Extension) *MedicationKnowledgeRegulatoryScheduleBuilder {
+	b.medicationKnowledgeRegulatorySchedule.Extension = append(b.medicationKnowledgeRegulatorySchedule.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationKnowledgeRegulatoryScheduleBuilder) AddModifierExtension(v Extension) *MedicationKnowledgeRegulatoryScheduleBuilder {
+	b.medicationKnowledgeRegulatorySchedule.ModifierExtension = append(b.medicationKnowledgeRegulatorySchedule.ModifierExtension, v)
+	return b
+}
+
+// SetSchedule sets the Schedule field.
+func (b *MedicationKnowledgeRegulatoryScheduleBuilder) SetSchedule(v CodeableConcept) *MedicationKnowledgeRegulatoryScheduleBuilder {
+	b.medicationKnowledgeRegulatorySchedule.Schedule = &v
+	return b
+}
+
+// =============================================================================
+// MedicationKnowledgeRegulatorySubstitution - Fluent Builder
+// =============================================================================
+
+// MedicationKnowledgeRegulatorySubstitutionBuilder provides a fluent API for constructing MedicationKnowledgeRegulatorySubstitution values.
+type MedicationKnowledgeRegulatorySubstitutionBuilder struct {
+	medicationKnowledgeRegulatorySubstitution *MedicationKnowledgeRegulatorySubstitution
+}
+
+// NewMedicationKnowledgeRegulatorySubstitutionBuilder creates a new MedicationKnowledgeRegulatorySubstitutionBuilder.
+func NewMedicationKnowledgeRegulatorySubstitutionBuilder() *MedicationKnowledgeRegulatorySubstitutionBuilder {
+	return &MedicationKnowledgeRegulatorySubstitutionBuilder{
+		medicationKnowledgeRegulatorySubstitution: &MedicationKnowledgeRegulatorySubstitution{},
+	}
+}
+
+// Build returns the constructed MedicationKnowledgeRegulatorySubstitution.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationKnowledgeRegulatorySubstitutionBuilder) Build() MedicationKnowledgeRegulatorySubstitution {
+	return *b.medicationKnowledgeRegulatorySubstitution
+}
+
+// SetId sets the Id field.
+func (b *MedicationKnowledgeRegulatorySubstitutionBuilder) SetId(v string) *MedicationKnowledgeRegulatorySubstitutionBuilder {
+	b.medicationKnowledgeRegulatorySubstitution.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationKnowledgeRegulatorySubstitutionBuilder) AddExtension(v Extension) *MedicationKnowledgeRegulatorySubstitutionBuilder {
+	b.medicationKnowledgeRegulatorySubstitution.Extension = append(b.medicationKnowledgeRegulatorySubstitution.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationKnowledgeRegulatorySubstitutionBuilder) AddModifierExtension(v Extension) *MedicationKnowledgeRegulatorySubstitutionBuilder {
+	b.medicationKnowledgeRegulatorySubstitution.ModifierExtension = append(b.medicationKnowledgeRegulatorySubstitution.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *MedicationKnowledgeRegulatorySubstitutionBuilder) SetType(v CodeableConcept) *MedicationKnowledgeRegulatorySubstitutionBuilder {
+	b.medicationKnowledgeRegulatorySubstitution.Type = &v
+	return b
+}
+
+// SetAllowed sets the Allowed field.
+func (b *MedicationKnowledgeRegulatorySubstitutionBuilder) SetAllowed(v bool) *MedicationKnowledgeRegulatorySubstitutionBuilder {
+	b.medicationKnowledgeRegulatorySubstitution.Allowed = &v
+	return b
+}
+
+// SetAllowedExt sets the extensions carried by Allowed, serialized as
+// "_allowed".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationKnowledgeRegulatorySubstitutionBuilder) SetAllowedExt(v Element) *MedicationKnowledgeRegulatorySubstitutionBuilder {
+	b.medicationKnowledgeRegulatorySubstitution.AllowedExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicationKnowledgeRelatedMedicationKnowledge - Fluent Builder
+// =============================================================================
+
+// MedicationKnowledgeRelatedMedicationKnowledgeBuilder provides a fluent API for constructing MedicationKnowledgeRelatedMedicationKnowledge values.
+type MedicationKnowledgeRelatedMedicationKnowledgeBuilder struct {
+	medicationKnowledgeRelatedMedicationKnowledge *MedicationKnowledgeRelatedMedicationKnowledge
+}
+
+// NewMedicationKnowledgeRelatedMedicationKnowledgeBuilder creates a new MedicationKnowledgeRelatedMedicationKnowledgeBuilder.
+func NewMedicationKnowledgeRelatedMedicationKnowledgeBuilder() *MedicationKnowledgeRelatedMedicationKnowledgeBuilder {
+	return &MedicationKnowledgeRelatedMedicationKnowledgeBuilder{
+		medicationKnowledgeRelatedMedicationKnowledge: &MedicationKnowledgeRelatedMedicationKnowledge{},
+	}
+}
+
+// Build returns the constructed MedicationKnowledgeRelatedMedicationKnowledge.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationKnowledgeRelatedMedicationKnowledgeBuilder) Build() MedicationKnowledgeRelatedMedicationKnowledge {
+	return *b.medicationKnowledgeRelatedMedicationKnowledge
+}
+
+// SetId sets the Id field.
+func (b *MedicationKnowledgeRelatedMedicationKnowledgeBuilder) SetId(v string) *MedicationKnowledgeRelatedMedicationKnowledgeBuilder {
+	b.medicationKnowledgeRelatedMedicationKnowledge.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationKnowledgeRelatedMedicationKnowledgeBuilder) AddExtension(v Extension) *MedicationKnowledgeRelatedMedicationKnowledgeBuilder {
+	b.medicationKnowledgeRelatedMedicationKnowledge.Extension = append(b.medicationKnowledgeRelatedMedicationKnowledge.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationKnowledgeRelatedMedicationKnowledgeBuilder) AddModifierExtension(v Extension) *MedicationKnowledgeRelatedMedicationKnowledgeBuilder {
+	b.medicationKnowledgeRelatedMedicationKnowledge.ModifierExtension = append(b.medicationKnowledgeRelatedMedicationKnowledge.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *MedicationKnowledgeRelatedMedicationKnowledgeBuilder) SetType(v CodeableConcept) *MedicationKnowledgeRelatedMedicationKnowledgeBuilder {
+	b.medicationKnowledgeRelatedMedicationKnowledge.Type = &v
+	return b
+}
+
+// AddReference adds a Reference element.
+func (b *MedicationKnowledgeRelatedMedicationKnowledgeBuilder) AddReference(v Reference) *MedicationKnowledgeRelatedMedicationKnowledgeBuilder {
+	b.medicationKnowledgeRelatedMedicationKnowledge.Reference = append(b.medicationKnowledgeRelatedMedicationKnowledge.Reference, v)
+	return b
+}

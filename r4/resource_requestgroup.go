@@ -1318,3 +1318,608 @@ func (b *RequestGroupBuilder) AddAction(v RequestGroupAction) *RequestGroupBuild
 	b.requestGroup.Action = append(b.requestGroup.Action, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestGroupBuilder) SetImplicitRulesExt(v Element) *RequestGroupBuilder {
+	b.requestGroup.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestGroupBuilder) SetLanguageExt(v Element) *RequestGroupBuilder {
+	b.requestGroup.LanguageExt = &v
+	return b
+}
+
+// AddInstantiatesCanonicalExt attaches extensions to the InstantiatesCanonical element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesCanonical twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *RequestGroupBuilder) AddInstantiatesCanonicalExt(v *Element) *RequestGroupBuilder {
+	for len(b.requestGroup.InstantiatesCanonicalExt) < len(b.requestGroup.InstantiatesCanonical)-1 {
+		b.requestGroup.InstantiatesCanonicalExt = append(b.requestGroup.InstantiatesCanonicalExt, nil)
+	}
+	b.requestGroup.InstantiatesCanonicalExt = append(b.requestGroup.InstantiatesCanonicalExt, v)
+	return b
+}
+
+// AddInstantiatesUriExt attaches extensions to the InstantiatesUri element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesUri twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *RequestGroupBuilder) AddInstantiatesUriExt(v *Element) *RequestGroupBuilder {
+	for len(b.requestGroup.InstantiatesUriExt) < len(b.requestGroup.InstantiatesUri)-1 {
+		b.requestGroup.InstantiatesUriExt = append(b.requestGroup.InstantiatesUriExt, nil)
+	}
+	b.requestGroup.InstantiatesUriExt = append(b.requestGroup.InstantiatesUriExt, v)
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestGroupBuilder) SetStatusExt(v Element) *RequestGroupBuilder {
+	b.requestGroup.StatusExt = &v
+	return b
+}
+
+// SetIntentExt sets the extensions carried by Intent, serialized as
+// "_intent".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestGroupBuilder) SetIntentExt(v Element) *RequestGroupBuilder {
+	b.requestGroup.IntentExt = &v
+	return b
+}
+
+// SetPriorityExt sets the extensions carried by Priority, serialized as
+// "_priority".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestGroupBuilder) SetPriorityExt(v Element) *RequestGroupBuilder {
+	b.requestGroup.PriorityExt = &v
+	return b
+}
+
+// SetAuthoredOnExt sets the extensions carried by AuthoredOn, serialized as
+// "_authoredOn".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestGroupBuilder) SetAuthoredOnExt(v Element) *RequestGroupBuilder {
+	b.requestGroup.AuthoredOnExt = &v
+	return b
+}
+
+// =============================================================================
+// RequestGroupAction - Fluent Builder
+// =============================================================================
+
+// RequestGroupActionBuilder provides a fluent API for constructing RequestGroupAction values.
+type RequestGroupActionBuilder struct {
+	requestGroupAction *RequestGroupAction
+}
+
+// NewRequestGroupActionBuilder creates a new RequestGroupActionBuilder.
+func NewRequestGroupActionBuilder() *RequestGroupActionBuilder {
+	return &RequestGroupActionBuilder{
+		requestGroupAction: &RequestGroupAction{},
+	}
+}
+
+// Build returns the constructed RequestGroupAction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RequestGroupActionBuilder) Build() RequestGroupAction {
+	return *b.requestGroupAction
+}
+
+// SetId sets the Id field.
+func (b *RequestGroupActionBuilder) SetId(v string) *RequestGroupActionBuilder {
+	b.requestGroupAction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RequestGroupActionBuilder) AddExtension(v Extension) *RequestGroupActionBuilder {
+	b.requestGroupAction.Extension = append(b.requestGroupAction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *RequestGroupActionBuilder) AddModifierExtension(v Extension) *RequestGroupActionBuilder {
+	b.requestGroupAction.ModifierExtension = append(b.requestGroupAction.ModifierExtension, v)
+	return b
+}
+
+// SetPrefix sets the Prefix field.
+func (b *RequestGroupActionBuilder) SetPrefix(v string) *RequestGroupActionBuilder {
+	b.requestGroupAction.Prefix = &v
+	return b
+}
+
+// SetTitle sets the Title field.
+func (b *RequestGroupActionBuilder) SetTitle(v string) *RequestGroupActionBuilder {
+	b.requestGroupAction.Title = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *RequestGroupActionBuilder) SetDescription(v string) *RequestGroupActionBuilder {
+	b.requestGroupAction.Description = &v
+	return b
+}
+
+// SetTextEquivalent sets the TextEquivalent field.
+func (b *RequestGroupActionBuilder) SetTextEquivalent(v string) *RequestGroupActionBuilder {
+	b.requestGroupAction.TextEquivalent = &v
+	return b
+}
+
+// SetPriority sets the Priority field.
+func (b *RequestGroupActionBuilder) SetPriority(v RequestPriority) *RequestGroupActionBuilder {
+	b.requestGroupAction.Priority = &v
+	return b
+}
+
+// AddCode adds a Code element.
+func (b *RequestGroupActionBuilder) AddCode(v CodeableConcept) *RequestGroupActionBuilder {
+	b.requestGroupAction.Code = append(b.requestGroupAction.Code, v)
+	return b
+}
+
+// AddDocumentation adds a Documentation element.
+func (b *RequestGroupActionBuilder) AddDocumentation(v RelatedArtifact) *RequestGroupActionBuilder {
+	b.requestGroupAction.Documentation = append(b.requestGroupAction.Documentation, v)
+	return b
+}
+
+// AddCondition adds a Condition element.
+func (b *RequestGroupActionBuilder) AddCondition(v RequestGroupActionCondition) *RequestGroupActionBuilder {
+	b.requestGroupAction.Condition = append(b.requestGroupAction.Condition, v)
+	return b
+}
+
+// AddRelatedAction adds a RelatedAction element.
+func (b *RequestGroupActionBuilder) AddRelatedAction(v RequestGroupActionRelatedAction) *RequestGroupActionBuilder {
+	b.requestGroupAction.RelatedAction = append(b.requestGroupAction.RelatedAction, v)
+	return b
+}
+
+// SetTimingDateTime sets Timing[x] to its TimingDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RequestGroupActionBuilder) SetTimingDateTime(v string) *RequestGroupActionBuilder {
+	b.clearTiming()
+	b.requestGroupAction.TimingDateTime = &v
+	return b
+}
+
+// SetTimingDateTimeExt sets the TimingDateTimeExt field.
+func (b *RequestGroupActionBuilder) SetTimingDateTimeExt(v Element) *RequestGroupActionBuilder {
+	b.requestGroupAction.TimingDateTimeExt = &v
+	return b
+}
+
+// SetTimingAge sets Timing[x] to its TimingAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RequestGroupActionBuilder) SetTimingAge(v Age) *RequestGroupActionBuilder {
+	b.clearTiming()
+	b.requestGroupAction.TimingAge = &v
+	return b
+}
+
+// SetTimingPeriod sets Timing[x] to its TimingPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RequestGroupActionBuilder) SetTimingPeriod(v Period) *RequestGroupActionBuilder {
+	b.clearTiming()
+	b.requestGroupAction.TimingPeriod = &v
+	return b
+}
+
+// SetTimingDuration sets Timing[x] to its TimingDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RequestGroupActionBuilder) SetTimingDuration(v Duration) *RequestGroupActionBuilder {
+	b.clearTiming()
+	b.requestGroupAction.TimingDuration = &v
+	return b
+}
+
+// SetTimingRange sets Timing[x] to its TimingRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RequestGroupActionBuilder) SetTimingRange(v Range) *RequestGroupActionBuilder {
+	b.clearTiming()
+	b.requestGroupAction.TimingRange = &v
+	return b
+}
+
+// SetTimingTiming sets Timing[x] to its TimingTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RequestGroupActionBuilder) SetTimingTiming(v Timing) *RequestGroupActionBuilder {
+	b.clearTiming()
+	b.requestGroupAction.TimingTiming = &v
+	return b
+}
+
+// AddParticipant adds a Participant element.
+func (b *RequestGroupActionBuilder) AddParticipant(v Reference) *RequestGroupActionBuilder {
+	b.requestGroupAction.Participant = append(b.requestGroupAction.Participant, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *RequestGroupActionBuilder) SetType(v CodeableConcept) *RequestGroupActionBuilder {
+	b.requestGroupAction.Type = &v
+	return b
+}
+
+// SetGroupingBehavior sets the GroupingBehavior field.
+func (b *RequestGroupActionBuilder) SetGroupingBehavior(v ActionGroupingBehavior) *RequestGroupActionBuilder {
+	b.requestGroupAction.GroupingBehavior = &v
+	return b
+}
+
+// SetSelectionBehavior sets the SelectionBehavior field.
+func (b *RequestGroupActionBuilder) SetSelectionBehavior(v ActionSelectionBehavior) *RequestGroupActionBuilder {
+	b.requestGroupAction.SelectionBehavior = &v
+	return b
+}
+
+// SetRequiredBehavior sets the RequiredBehavior field.
+func (b *RequestGroupActionBuilder) SetRequiredBehavior(v ActionRequiredBehavior) *RequestGroupActionBuilder {
+	b.requestGroupAction.RequiredBehavior = &v
+	return b
+}
+
+// SetPrecheckBehavior sets the PrecheckBehavior field.
+func (b *RequestGroupActionBuilder) SetPrecheckBehavior(v ActionPrecheckBehavior) *RequestGroupActionBuilder {
+	b.requestGroupAction.PrecheckBehavior = &v
+	return b
+}
+
+// SetCardinalityBehavior sets the CardinalityBehavior field.
+func (b *RequestGroupActionBuilder) SetCardinalityBehavior(v ActionCardinalityBehavior) *RequestGroupActionBuilder {
+	b.requestGroupAction.CardinalityBehavior = &v
+	return b
+}
+
+// SetResource sets the Resource field.
+func (b *RequestGroupActionBuilder) SetResource(v Reference) *RequestGroupActionBuilder {
+	b.requestGroupAction.Resource = &v
+	return b
+}
+
+// AddAction adds a Action element.
+func (b *RequestGroupActionBuilder) AddAction(v RequestGroupAction) *RequestGroupActionBuilder {
+	b.requestGroupAction.Action = append(b.requestGroupAction.Action, v)
+	return b
+}
+
+// SetPrefixExt sets the extensions carried by Prefix, serialized as
+// "_prefix".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestGroupActionBuilder) SetPrefixExt(v Element) *RequestGroupActionBuilder {
+	b.requestGroupAction.PrefixExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestGroupActionBuilder) SetTitleExt(v Element) *RequestGroupActionBuilder {
+	b.requestGroupAction.TitleExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestGroupActionBuilder) SetDescriptionExt(v Element) *RequestGroupActionBuilder {
+	b.requestGroupAction.DescriptionExt = &v
+	return b
+}
+
+// SetTextEquivalentExt sets the extensions carried by TextEquivalent, serialized as
+// "_textEquivalent".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestGroupActionBuilder) SetTextEquivalentExt(v Element) *RequestGroupActionBuilder {
+	b.requestGroupAction.TextEquivalentExt = &v
+	return b
+}
+
+// SetPriorityExt sets the extensions carried by Priority, serialized as
+// "_priority".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestGroupActionBuilder) SetPriorityExt(v Element) *RequestGroupActionBuilder {
+	b.requestGroupAction.PriorityExt = &v
+	return b
+}
+
+// SetGroupingBehaviorExt sets the extensions carried by GroupingBehavior, serialized as
+// "_groupingBehavior".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestGroupActionBuilder) SetGroupingBehaviorExt(v Element) *RequestGroupActionBuilder {
+	b.requestGroupAction.GroupingBehaviorExt = &v
+	return b
+}
+
+// SetSelectionBehaviorExt sets the extensions carried by SelectionBehavior, serialized as
+// "_selectionBehavior".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestGroupActionBuilder) SetSelectionBehaviorExt(v Element) *RequestGroupActionBuilder {
+	b.requestGroupAction.SelectionBehaviorExt = &v
+	return b
+}
+
+// SetRequiredBehaviorExt sets the extensions carried by RequiredBehavior, serialized as
+// "_requiredBehavior".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestGroupActionBuilder) SetRequiredBehaviorExt(v Element) *RequestGroupActionBuilder {
+	b.requestGroupAction.RequiredBehaviorExt = &v
+	return b
+}
+
+// SetPrecheckBehaviorExt sets the extensions carried by PrecheckBehavior, serialized as
+// "_precheckBehavior".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestGroupActionBuilder) SetPrecheckBehaviorExt(v Element) *RequestGroupActionBuilder {
+	b.requestGroupAction.PrecheckBehaviorExt = &v
+	return b
+}
+
+// SetCardinalityBehaviorExt sets the extensions carried by CardinalityBehavior, serialized as
+// "_cardinalityBehavior".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestGroupActionBuilder) SetCardinalityBehaviorExt(v Element) *RequestGroupActionBuilder {
+	b.requestGroupAction.CardinalityBehaviorExt = &v
+	return b
+}
+
+// clearTiming unsets every variant of Timing[x], including the
+// _field companions of the primitive ones.
+func (b *RequestGroupActionBuilder) clearTiming() {
+	b.requestGroupAction.TimingDateTime = nil
+	b.requestGroupAction.TimingAge = nil
+	b.requestGroupAction.TimingPeriod = nil
+	b.requestGroupAction.TimingDuration = nil
+	b.requestGroupAction.TimingRange = nil
+	b.requestGroupAction.TimingTiming = nil
+}
+
+// =============================================================================
+// RequestGroupActionCondition - Fluent Builder
+// =============================================================================
+
+// RequestGroupActionConditionBuilder provides a fluent API for constructing RequestGroupActionCondition values.
+type RequestGroupActionConditionBuilder struct {
+	requestGroupActionCondition *RequestGroupActionCondition
+}
+
+// NewRequestGroupActionConditionBuilder creates a new RequestGroupActionConditionBuilder.
+func NewRequestGroupActionConditionBuilder() *RequestGroupActionConditionBuilder {
+	return &RequestGroupActionConditionBuilder{
+		requestGroupActionCondition: &RequestGroupActionCondition{},
+	}
+}
+
+// Build returns the constructed RequestGroupActionCondition.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RequestGroupActionConditionBuilder) Build() RequestGroupActionCondition {
+	return *b.requestGroupActionCondition
+}
+
+// SetId sets the Id field.
+func (b *RequestGroupActionConditionBuilder) SetId(v string) *RequestGroupActionConditionBuilder {
+	b.requestGroupActionCondition.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RequestGroupActionConditionBuilder) AddExtension(v Extension) *RequestGroupActionConditionBuilder {
+	b.requestGroupActionCondition.Extension = append(b.requestGroupActionCondition.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *RequestGroupActionConditionBuilder) AddModifierExtension(v Extension) *RequestGroupActionConditionBuilder {
+	b.requestGroupActionCondition.ModifierExtension = append(b.requestGroupActionCondition.ModifierExtension, v)
+	return b
+}
+
+// SetKind sets the Kind field.
+func (b *RequestGroupActionConditionBuilder) SetKind(v ActionConditionKind) *RequestGroupActionConditionBuilder {
+	b.requestGroupActionCondition.Kind = &v
+	return b
+}
+
+// SetExpression sets the Expression field.
+func (b *RequestGroupActionConditionBuilder) SetExpression(v Expression) *RequestGroupActionConditionBuilder {
+	b.requestGroupActionCondition.Expression = &v
+	return b
+}
+
+// SetKindExt sets the extensions carried by Kind, serialized as
+// "_kind".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestGroupActionConditionBuilder) SetKindExt(v Element) *RequestGroupActionConditionBuilder {
+	b.requestGroupActionCondition.KindExt = &v
+	return b
+}
+
+// =============================================================================
+// RequestGroupActionRelatedAction - Fluent Builder
+// =============================================================================
+
+// RequestGroupActionRelatedActionBuilder provides a fluent API for constructing RequestGroupActionRelatedAction values.
+type RequestGroupActionRelatedActionBuilder struct {
+	requestGroupActionRelatedAction *RequestGroupActionRelatedAction
+}
+
+// NewRequestGroupActionRelatedActionBuilder creates a new RequestGroupActionRelatedActionBuilder.
+func NewRequestGroupActionRelatedActionBuilder() *RequestGroupActionRelatedActionBuilder {
+	return &RequestGroupActionRelatedActionBuilder{
+		requestGroupActionRelatedAction: &RequestGroupActionRelatedAction{},
+	}
+}
+
+// Build returns the constructed RequestGroupActionRelatedAction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RequestGroupActionRelatedActionBuilder) Build() RequestGroupActionRelatedAction {
+	return *b.requestGroupActionRelatedAction
+}
+
+// SetId sets the Id field.
+func (b *RequestGroupActionRelatedActionBuilder) SetId(v string) *RequestGroupActionRelatedActionBuilder {
+	b.requestGroupActionRelatedAction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RequestGroupActionRelatedActionBuilder) AddExtension(v Extension) *RequestGroupActionRelatedActionBuilder {
+	b.requestGroupActionRelatedAction.Extension = append(b.requestGroupActionRelatedAction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *RequestGroupActionRelatedActionBuilder) AddModifierExtension(v Extension) *RequestGroupActionRelatedActionBuilder {
+	b.requestGroupActionRelatedAction.ModifierExtension = append(b.requestGroupActionRelatedAction.ModifierExtension, v)
+	return b
+}
+
+// SetActionId sets the ActionId field.
+func (b *RequestGroupActionRelatedActionBuilder) SetActionId(v string) *RequestGroupActionRelatedActionBuilder {
+	b.requestGroupActionRelatedAction.ActionId = &v
+	return b
+}
+
+// SetRelationship sets the Relationship field.
+func (b *RequestGroupActionRelatedActionBuilder) SetRelationship(v ActionRelationshipType) *RequestGroupActionRelatedActionBuilder {
+	b.requestGroupActionRelatedAction.Relationship = &v
+	return b
+}
+
+// SetOffsetDuration sets Offset[x] to its OffsetDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RequestGroupActionRelatedActionBuilder) SetOffsetDuration(v Duration) *RequestGroupActionRelatedActionBuilder {
+	b.clearOffset()
+	b.requestGroupActionRelatedAction.OffsetDuration = &v
+	return b
+}
+
+// SetOffsetRange sets Offset[x] to its OffsetRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RequestGroupActionRelatedActionBuilder) SetOffsetRange(v Range) *RequestGroupActionRelatedActionBuilder {
+	b.clearOffset()
+	b.requestGroupActionRelatedAction.OffsetRange = &v
+	return b
+}
+
+// SetActionIdExt sets the extensions carried by ActionId, serialized as
+// "_actionId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestGroupActionRelatedActionBuilder) SetActionIdExt(v Element) *RequestGroupActionRelatedActionBuilder {
+	b.requestGroupActionRelatedAction.ActionIdExt = &v
+	return b
+}
+
+// SetRelationshipExt sets the extensions carried by Relationship, serialized as
+// "_relationship".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestGroupActionRelatedActionBuilder) SetRelationshipExt(v Element) *RequestGroupActionRelatedActionBuilder {
+	b.requestGroupActionRelatedAction.RelationshipExt = &v
+	return b
+}
+
+// clearOffset unsets every variant of Offset[x], including the
+// _field companions of the primitive ones.
+func (b *RequestGroupActionRelatedActionBuilder) clearOffset() {
+	b.requestGroupActionRelatedAction.OffsetDuration = nil
+	b.requestGroupActionRelatedAction.OffsetRange = nil
+}

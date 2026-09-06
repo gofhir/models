@@ -597,3 +597,194 @@ func (b *SubscriptionBuilder) SetChannel(v SubscriptionChannel) *SubscriptionBui
 	b.subscription.Channel = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionBuilder) SetImplicitRulesExt(v Element) *SubscriptionBuilder {
+	b.subscription.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionBuilder) SetLanguageExt(v Element) *SubscriptionBuilder {
+	b.subscription.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionBuilder) SetStatusExt(v Element) *SubscriptionBuilder {
+	b.subscription.StatusExt = &v
+	return b
+}
+
+// SetEndExt sets the extensions carried by End, serialized as
+// "_end".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionBuilder) SetEndExt(v Element) *SubscriptionBuilder {
+	b.subscription.EndExt = &v
+	return b
+}
+
+// SetReasonExt sets the extensions carried by Reason, serialized as
+// "_reason".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionBuilder) SetReasonExt(v Element) *SubscriptionBuilder {
+	b.subscription.ReasonExt = &v
+	return b
+}
+
+// SetCriteriaExt sets the extensions carried by Criteria, serialized as
+// "_criteria".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionBuilder) SetCriteriaExt(v Element) *SubscriptionBuilder {
+	b.subscription.CriteriaExt = &v
+	return b
+}
+
+// SetErrorExt sets the extensions carried by Error, serialized as
+// "_error".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionBuilder) SetErrorExt(v Element) *SubscriptionBuilder {
+	b.subscription.ErrorExt = &v
+	return b
+}
+
+// =============================================================================
+// SubscriptionChannel - Fluent Builder
+// =============================================================================
+
+// SubscriptionChannelBuilder provides a fluent API for constructing SubscriptionChannel values.
+type SubscriptionChannelBuilder struct {
+	subscriptionChannel *SubscriptionChannel
+}
+
+// NewSubscriptionChannelBuilder creates a new SubscriptionChannelBuilder.
+func NewSubscriptionChannelBuilder() *SubscriptionChannelBuilder {
+	return &SubscriptionChannelBuilder{
+		subscriptionChannel: &SubscriptionChannel{},
+	}
+}
+
+// Build returns the constructed SubscriptionChannel.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubscriptionChannelBuilder) Build() SubscriptionChannel {
+	return *b.subscriptionChannel
+}
+
+// SetId sets the Id field.
+func (b *SubscriptionChannelBuilder) SetId(v string) *SubscriptionChannelBuilder {
+	b.subscriptionChannel.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubscriptionChannelBuilder) AddExtension(v Extension) *SubscriptionChannelBuilder {
+	b.subscriptionChannel.Extension = append(b.subscriptionChannel.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubscriptionChannelBuilder) AddModifierExtension(v Extension) *SubscriptionChannelBuilder {
+	b.subscriptionChannel.ModifierExtension = append(b.subscriptionChannel.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *SubscriptionChannelBuilder) SetType(v SubscriptionChannelType) *SubscriptionChannelBuilder {
+	b.subscriptionChannel.Type = &v
+	return b
+}
+
+// SetEndpoint sets the Endpoint field.
+func (b *SubscriptionChannelBuilder) SetEndpoint(v string) *SubscriptionChannelBuilder {
+	b.subscriptionChannel.Endpoint = &v
+	return b
+}
+
+// SetPayload sets the Payload field.
+func (b *SubscriptionChannelBuilder) SetPayload(v string) *SubscriptionChannelBuilder {
+	b.subscriptionChannel.Payload = &v
+	return b
+}
+
+// AddHeader adds a Header element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *SubscriptionChannelBuilder) AddHeader(v string) *SubscriptionChannelBuilder {
+	b.subscriptionChannel.Header = append(b.subscriptionChannel.Header, &v)
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionChannelBuilder) SetTypeExt(v Element) *SubscriptionChannelBuilder {
+	b.subscriptionChannel.TypeExt = &v
+	return b
+}
+
+// SetEndpointExt sets the extensions carried by Endpoint, serialized as
+// "_endpoint".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionChannelBuilder) SetEndpointExt(v Element) *SubscriptionChannelBuilder {
+	b.subscriptionChannel.EndpointExt = &v
+	return b
+}
+
+// SetPayloadExt sets the extensions carried by Payload, serialized as
+// "_payload".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionChannelBuilder) SetPayloadExt(v Element) *SubscriptionChannelBuilder {
+	b.subscriptionChannel.PayloadExt = &v
+	return b
+}
+
+// AddHeaderExt attaches extensions to the Header element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddHeader twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *SubscriptionChannelBuilder) AddHeaderExt(v *Element) *SubscriptionChannelBuilder {
+	for len(b.subscriptionChannel.HeaderExt) < len(b.subscriptionChannel.Header)-1 {
+		b.subscriptionChannel.HeaderExt = append(b.subscriptionChannel.HeaderExt, nil)
+	}
+	b.subscriptionChannel.HeaderExt = append(b.subscriptionChannel.HeaderExt, v)
+	return b
+}

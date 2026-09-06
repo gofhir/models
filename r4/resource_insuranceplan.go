@@ -1685,3 +1685,676 @@ func (b *InsurancePlanBuilder) AddPlan(v InsurancePlanPlan) *InsurancePlanBuilde
 	b.insurancePlan.Plan = append(b.insurancePlan.Plan, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InsurancePlanBuilder) SetImplicitRulesExt(v Element) *InsurancePlanBuilder {
+	b.insurancePlan.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InsurancePlanBuilder) SetLanguageExt(v Element) *InsurancePlanBuilder {
+	b.insurancePlan.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InsurancePlanBuilder) SetStatusExt(v Element) *InsurancePlanBuilder {
+	b.insurancePlan.StatusExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InsurancePlanBuilder) SetNameExt(v Element) *InsurancePlanBuilder {
+	b.insurancePlan.NameExt = &v
+	return b
+}
+
+// AddAliasExt attaches extensions to the Alias element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddAlias twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *InsurancePlanBuilder) AddAliasExt(v *Element) *InsurancePlanBuilder {
+	for len(b.insurancePlan.AliasExt) < len(b.insurancePlan.Alias)-1 {
+		b.insurancePlan.AliasExt = append(b.insurancePlan.AliasExt, nil)
+	}
+	b.insurancePlan.AliasExt = append(b.insurancePlan.AliasExt, v)
+	return b
+}
+
+// =============================================================================
+// InsurancePlanContact - Fluent Builder
+// =============================================================================
+
+// InsurancePlanContactBuilder provides a fluent API for constructing InsurancePlanContact values.
+type InsurancePlanContactBuilder struct {
+	insurancePlanContact *InsurancePlanContact
+}
+
+// NewInsurancePlanContactBuilder creates a new InsurancePlanContactBuilder.
+func NewInsurancePlanContactBuilder() *InsurancePlanContactBuilder {
+	return &InsurancePlanContactBuilder{
+		insurancePlanContact: &InsurancePlanContact{},
+	}
+}
+
+// Build returns the constructed InsurancePlanContact.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *InsurancePlanContactBuilder) Build() InsurancePlanContact {
+	return *b.insurancePlanContact
+}
+
+// SetId sets the Id field.
+func (b *InsurancePlanContactBuilder) SetId(v string) *InsurancePlanContactBuilder {
+	b.insurancePlanContact.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *InsurancePlanContactBuilder) AddExtension(v Extension) *InsurancePlanContactBuilder {
+	b.insurancePlanContact.Extension = append(b.insurancePlanContact.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *InsurancePlanContactBuilder) AddModifierExtension(v Extension) *InsurancePlanContactBuilder {
+	b.insurancePlanContact.ModifierExtension = append(b.insurancePlanContact.ModifierExtension, v)
+	return b
+}
+
+// SetPurpose sets the Purpose field.
+func (b *InsurancePlanContactBuilder) SetPurpose(v CodeableConcept) *InsurancePlanContactBuilder {
+	b.insurancePlanContact.Purpose = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *InsurancePlanContactBuilder) SetName(v HumanName) *InsurancePlanContactBuilder {
+	b.insurancePlanContact.Name = &v
+	return b
+}
+
+// AddTelecom adds a Telecom element.
+func (b *InsurancePlanContactBuilder) AddTelecom(v ContactPoint) *InsurancePlanContactBuilder {
+	b.insurancePlanContact.Telecom = append(b.insurancePlanContact.Telecom, v)
+	return b
+}
+
+// SetAddress sets the Address field.
+func (b *InsurancePlanContactBuilder) SetAddress(v Address) *InsurancePlanContactBuilder {
+	b.insurancePlanContact.Address = &v
+	return b
+}
+
+// =============================================================================
+// InsurancePlanCoverage - Fluent Builder
+// =============================================================================
+
+// InsurancePlanCoverageBuilder provides a fluent API for constructing InsurancePlanCoverage values.
+type InsurancePlanCoverageBuilder struct {
+	insurancePlanCoverage *InsurancePlanCoverage
+}
+
+// NewInsurancePlanCoverageBuilder creates a new InsurancePlanCoverageBuilder.
+func NewInsurancePlanCoverageBuilder() *InsurancePlanCoverageBuilder {
+	return &InsurancePlanCoverageBuilder{
+		insurancePlanCoverage: &InsurancePlanCoverage{},
+	}
+}
+
+// Build returns the constructed InsurancePlanCoverage.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *InsurancePlanCoverageBuilder) Build() InsurancePlanCoverage {
+	return *b.insurancePlanCoverage
+}
+
+// SetId sets the Id field.
+func (b *InsurancePlanCoverageBuilder) SetId(v string) *InsurancePlanCoverageBuilder {
+	b.insurancePlanCoverage.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *InsurancePlanCoverageBuilder) AddExtension(v Extension) *InsurancePlanCoverageBuilder {
+	b.insurancePlanCoverage.Extension = append(b.insurancePlanCoverage.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *InsurancePlanCoverageBuilder) AddModifierExtension(v Extension) *InsurancePlanCoverageBuilder {
+	b.insurancePlanCoverage.ModifierExtension = append(b.insurancePlanCoverage.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *InsurancePlanCoverageBuilder) SetType(v CodeableConcept) *InsurancePlanCoverageBuilder {
+	b.insurancePlanCoverage.Type = &v
+	return b
+}
+
+// AddNetwork adds a Network element.
+func (b *InsurancePlanCoverageBuilder) AddNetwork(v Reference) *InsurancePlanCoverageBuilder {
+	b.insurancePlanCoverage.Network = append(b.insurancePlanCoverage.Network, v)
+	return b
+}
+
+// AddBenefit adds a Benefit element.
+func (b *InsurancePlanCoverageBuilder) AddBenefit(v InsurancePlanCoverageBenefit) *InsurancePlanCoverageBuilder {
+	b.insurancePlanCoverage.Benefit = append(b.insurancePlanCoverage.Benefit, v)
+	return b
+}
+
+// =============================================================================
+// InsurancePlanCoverageBenefit - Fluent Builder
+// =============================================================================
+
+// InsurancePlanCoverageBenefitBuilder provides a fluent API for constructing InsurancePlanCoverageBenefit values.
+type InsurancePlanCoverageBenefitBuilder struct {
+	insurancePlanCoverageBenefit *InsurancePlanCoverageBenefit
+}
+
+// NewInsurancePlanCoverageBenefitBuilder creates a new InsurancePlanCoverageBenefitBuilder.
+func NewInsurancePlanCoverageBenefitBuilder() *InsurancePlanCoverageBenefitBuilder {
+	return &InsurancePlanCoverageBenefitBuilder{
+		insurancePlanCoverageBenefit: &InsurancePlanCoverageBenefit{},
+	}
+}
+
+// Build returns the constructed InsurancePlanCoverageBenefit.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *InsurancePlanCoverageBenefitBuilder) Build() InsurancePlanCoverageBenefit {
+	return *b.insurancePlanCoverageBenefit
+}
+
+// SetId sets the Id field.
+func (b *InsurancePlanCoverageBenefitBuilder) SetId(v string) *InsurancePlanCoverageBenefitBuilder {
+	b.insurancePlanCoverageBenefit.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *InsurancePlanCoverageBenefitBuilder) AddExtension(v Extension) *InsurancePlanCoverageBenefitBuilder {
+	b.insurancePlanCoverageBenefit.Extension = append(b.insurancePlanCoverageBenefit.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *InsurancePlanCoverageBenefitBuilder) AddModifierExtension(v Extension) *InsurancePlanCoverageBenefitBuilder {
+	b.insurancePlanCoverageBenefit.ModifierExtension = append(b.insurancePlanCoverageBenefit.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *InsurancePlanCoverageBenefitBuilder) SetType(v CodeableConcept) *InsurancePlanCoverageBenefitBuilder {
+	b.insurancePlanCoverageBenefit.Type = &v
+	return b
+}
+
+// SetRequirement sets the Requirement field.
+func (b *InsurancePlanCoverageBenefitBuilder) SetRequirement(v string) *InsurancePlanCoverageBenefitBuilder {
+	b.insurancePlanCoverageBenefit.Requirement = &v
+	return b
+}
+
+// AddLimit adds a Limit element.
+func (b *InsurancePlanCoverageBenefitBuilder) AddLimit(v InsurancePlanCoverageBenefitLimit) *InsurancePlanCoverageBenefitBuilder {
+	b.insurancePlanCoverageBenefit.Limit = append(b.insurancePlanCoverageBenefit.Limit, v)
+	return b
+}
+
+// SetRequirementExt sets the extensions carried by Requirement, serialized as
+// "_requirement".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InsurancePlanCoverageBenefitBuilder) SetRequirementExt(v Element) *InsurancePlanCoverageBenefitBuilder {
+	b.insurancePlanCoverageBenefit.RequirementExt = &v
+	return b
+}
+
+// =============================================================================
+// InsurancePlanCoverageBenefitLimit - Fluent Builder
+// =============================================================================
+
+// InsurancePlanCoverageBenefitLimitBuilder provides a fluent API for constructing InsurancePlanCoverageBenefitLimit values.
+type InsurancePlanCoverageBenefitLimitBuilder struct {
+	insurancePlanCoverageBenefitLimit *InsurancePlanCoverageBenefitLimit
+}
+
+// NewInsurancePlanCoverageBenefitLimitBuilder creates a new InsurancePlanCoverageBenefitLimitBuilder.
+func NewInsurancePlanCoverageBenefitLimitBuilder() *InsurancePlanCoverageBenefitLimitBuilder {
+	return &InsurancePlanCoverageBenefitLimitBuilder{
+		insurancePlanCoverageBenefitLimit: &InsurancePlanCoverageBenefitLimit{},
+	}
+}
+
+// Build returns the constructed InsurancePlanCoverageBenefitLimit.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *InsurancePlanCoverageBenefitLimitBuilder) Build() InsurancePlanCoverageBenefitLimit {
+	return *b.insurancePlanCoverageBenefitLimit
+}
+
+// SetId sets the Id field.
+func (b *InsurancePlanCoverageBenefitLimitBuilder) SetId(v string) *InsurancePlanCoverageBenefitLimitBuilder {
+	b.insurancePlanCoverageBenefitLimit.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *InsurancePlanCoverageBenefitLimitBuilder) AddExtension(v Extension) *InsurancePlanCoverageBenefitLimitBuilder {
+	b.insurancePlanCoverageBenefitLimit.Extension = append(b.insurancePlanCoverageBenefitLimit.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *InsurancePlanCoverageBenefitLimitBuilder) AddModifierExtension(v Extension) *InsurancePlanCoverageBenefitLimitBuilder {
+	b.insurancePlanCoverageBenefitLimit.ModifierExtension = append(b.insurancePlanCoverageBenefitLimit.ModifierExtension, v)
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *InsurancePlanCoverageBenefitLimitBuilder) SetValue(v Quantity) *InsurancePlanCoverageBenefitLimitBuilder {
+	b.insurancePlanCoverageBenefitLimit.Value = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *InsurancePlanCoverageBenefitLimitBuilder) SetCode(v CodeableConcept) *InsurancePlanCoverageBenefitLimitBuilder {
+	b.insurancePlanCoverageBenefitLimit.Code = &v
+	return b
+}
+
+// =============================================================================
+// InsurancePlanPlan - Fluent Builder
+// =============================================================================
+
+// InsurancePlanPlanBuilder provides a fluent API for constructing InsurancePlanPlan values.
+type InsurancePlanPlanBuilder struct {
+	insurancePlanPlan *InsurancePlanPlan
+}
+
+// NewInsurancePlanPlanBuilder creates a new InsurancePlanPlanBuilder.
+func NewInsurancePlanPlanBuilder() *InsurancePlanPlanBuilder {
+	return &InsurancePlanPlanBuilder{
+		insurancePlanPlan: &InsurancePlanPlan{},
+	}
+}
+
+// Build returns the constructed InsurancePlanPlan.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *InsurancePlanPlanBuilder) Build() InsurancePlanPlan {
+	return *b.insurancePlanPlan
+}
+
+// SetId sets the Id field.
+func (b *InsurancePlanPlanBuilder) SetId(v string) *InsurancePlanPlanBuilder {
+	b.insurancePlanPlan.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *InsurancePlanPlanBuilder) AddExtension(v Extension) *InsurancePlanPlanBuilder {
+	b.insurancePlanPlan.Extension = append(b.insurancePlanPlan.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *InsurancePlanPlanBuilder) AddModifierExtension(v Extension) *InsurancePlanPlanBuilder {
+	b.insurancePlanPlan.ModifierExtension = append(b.insurancePlanPlan.ModifierExtension, v)
+	return b
+}
+
+// AddIdentifier adds a Identifier element.
+func (b *InsurancePlanPlanBuilder) AddIdentifier(v Identifier) *InsurancePlanPlanBuilder {
+	b.insurancePlanPlan.Identifier = append(b.insurancePlanPlan.Identifier, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *InsurancePlanPlanBuilder) SetType(v CodeableConcept) *InsurancePlanPlanBuilder {
+	b.insurancePlanPlan.Type = &v
+	return b
+}
+
+// AddCoverageArea adds a CoverageArea element.
+func (b *InsurancePlanPlanBuilder) AddCoverageArea(v Reference) *InsurancePlanPlanBuilder {
+	b.insurancePlanPlan.CoverageArea = append(b.insurancePlanPlan.CoverageArea, v)
+	return b
+}
+
+// AddNetwork adds a Network element.
+func (b *InsurancePlanPlanBuilder) AddNetwork(v Reference) *InsurancePlanPlanBuilder {
+	b.insurancePlanPlan.Network = append(b.insurancePlanPlan.Network, v)
+	return b
+}
+
+// AddGeneralCost adds a GeneralCost element.
+func (b *InsurancePlanPlanBuilder) AddGeneralCost(v InsurancePlanPlanGeneralCost) *InsurancePlanPlanBuilder {
+	b.insurancePlanPlan.GeneralCost = append(b.insurancePlanPlan.GeneralCost, v)
+	return b
+}
+
+// AddSpecificCost adds a SpecificCost element.
+func (b *InsurancePlanPlanBuilder) AddSpecificCost(v InsurancePlanPlanSpecificCost) *InsurancePlanPlanBuilder {
+	b.insurancePlanPlan.SpecificCost = append(b.insurancePlanPlan.SpecificCost, v)
+	return b
+}
+
+// =============================================================================
+// InsurancePlanPlanGeneralCost - Fluent Builder
+// =============================================================================
+
+// InsurancePlanPlanGeneralCostBuilder provides a fluent API for constructing InsurancePlanPlanGeneralCost values.
+type InsurancePlanPlanGeneralCostBuilder struct {
+	insurancePlanPlanGeneralCost *InsurancePlanPlanGeneralCost
+}
+
+// NewInsurancePlanPlanGeneralCostBuilder creates a new InsurancePlanPlanGeneralCostBuilder.
+func NewInsurancePlanPlanGeneralCostBuilder() *InsurancePlanPlanGeneralCostBuilder {
+	return &InsurancePlanPlanGeneralCostBuilder{
+		insurancePlanPlanGeneralCost: &InsurancePlanPlanGeneralCost{},
+	}
+}
+
+// Build returns the constructed InsurancePlanPlanGeneralCost.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *InsurancePlanPlanGeneralCostBuilder) Build() InsurancePlanPlanGeneralCost {
+	return *b.insurancePlanPlanGeneralCost
+}
+
+// SetId sets the Id field.
+func (b *InsurancePlanPlanGeneralCostBuilder) SetId(v string) *InsurancePlanPlanGeneralCostBuilder {
+	b.insurancePlanPlanGeneralCost.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *InsurancePlanPlanGeneralCostBuilder) AddExtension(v Extension) *InsurancePlanPlanGeneralCostBuilder {
+	b.insurancePlanPlanGeneralCost.Extension = append(b.insurancePlanPlanGeneralCost.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *InsurancePlanPlanGeneralCostBuilder) AddModifierExtension(v Extension) *InsurancePlanPlanGeneralCostBuilder {
+	b.insurancePlanPlanGeneralCost.ModifierExtension = append(b.insurancePlanPlanGeneralCost.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *InsurancePlanPlanGeneralCostBuilder) SetType(v CodeableConcept) *InsurancePlanPlanGeneralCostBuilder {
+	b.insurancePlanPlanGeneralCost.Type = &v
+	return b
+}
+
+// SetGroupSize sets the GroupSize field.
+func (b *InsurancePlanPlanGeneralCostBuilder) SetGroupSize(v uint32) *InsurancePlanPlanGeneralCostBuilder {
+	b.insurancePlanPlanGeneralCost.GroupSize = &v
+	return b
+}
+
+// SetCost sets the Cost field.
+func (b *InsurancePlanPlanGeneralCostBuilder) SetCost(v Money) *InsurancePlanPlanGeneralCostBuilder {
+	b.insurancePlanPlanGeneralCost.Cost = &v
+	return b
+}
+
+// SetComment sets the Comment field.
+func (b *InsurancePlanPlanGeneralCostBuilder) SetComment(v string) *InsurancePlanPlanGeneralCostBuilder {
+	b.insurancePlanPlanGeneralCost.Comment = &v
+	return b
+}
+
+// SetGroupSizeExt sets the extensions carried by GroupSize, serialized as
+// "_groupSize".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InsurancePlanPlanGeneralCostBuilder) SetGroupSizeExt(v Element) *InsurancePlanPlanGeneralCostBuilder {
+	b.insurancePlanPlanGeneralCost.GroupSizeExt = &v
+	return b
+}
+
+// SetCommentExt sets the extensions carried by Comment, serialized as
+// "_comment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InsurancePlanPlanGeneralCostBuilder) SetCommentExt(v Element) *InsurancePlanPlanGeneralCostBuilder {
+	b.insurancePlanPlanGeneralCost.CommentExt = &v
+	return b
+}
+
+// =============================================================================
+// InsurancePlanPlanSpecificCost - Fluent Builder
+// =============================================================================
+
+// InsurancePlanPlanSpecificCostBuilder provides a fluent API for constructing InsurancePlanPlanSpecificCost values.
+type InsurancePlanPlanSpecificCostBuilder struct {
+	insurancePlanPlanSpecificCost *InsurancePlanPlanSpecificCost
+}
+
+// NewInsurancePlanPlanSpecificCostBuilder creates a new InsurancePlanPlanSpecificCostBuilder.
+func NewInsurancePlanPlanSpecificCostBuilder() *InsurancePlanPlanSpecificCostBuilder {
+	return &InsurancePlanPlanSpecificCostBuilder{
+		insurancePlanPlanSpecificCost: &InsurancePlanPlanSpecificCost{},
+	}
+}
+
+// Build returns the constructed InsurancePlanPlanSpecificCost.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *InsurancePlanPlanSpecificCostBuilder) Build() InsurancePlanPlanSpecificCost {
+	return *b.insurancePlanPlanSpecificCost
+}
+
+// SetId sets the Id field.
+func (b *InsurancePlanPlanSpecificCostBuilder) SetId(v string) *InsurancePlanPlanSpecificCostBuilder {
+	b.insurancePlanPlanSpecificCost.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *InsurancePlanPlanSpecificCostBuilder) AddExtension(v Extension) *InsurancePlanPlanSpecificCostBuilder {
+	b.insurancePlanPlanSpecificCost.Extension = append(b.insurancePlanPlanSpecificCost.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *InsurancePlanPlanSpecificCostBuilder) AddModifierExtension(v Extension) *InsurancePlanPlanSpecificCostBuilder {
+	b.insurancePlanPlanSpecificCost.ModifierExtension = append(b.insurancePlanPlanSpecificCost.ModifierExtension, v)
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *InsurancePlanPlanSpecificCostBuilder) SetCategory(v CodeableConcept) *InsurancePlanPlanSpecificCostBuilder {
+	b.insurancePlanPlanSpecificCost.Category = &v
+	return b
+}
+
+// AddBenefit adds a Benefit element.
+func (b *InsurancePlanPlanSpecificCostBuilder) AddBenefit(v InsurancePlanPlanSpecificCostBenefit) *InsurancePlanPlanSpecificCostBuilder {
+	b.insurancePlanPlanSpecificCost.Benefit = append(b.insurancePlanPlanSpecificCost.Benefit, v)
+	return b
+}
+
+// =============================================================================
+// InsurancePlanPlanSpecificCostBenefit - Fluent Builder
+// =============================================================================
+
+// InsurancePlanPlanSpecificCostBenefitBuilder provides a fluent API for constructing InsurancePlanPlanSpecificCostBenefit values.
+type InsurancePlanPlanSpecificCostBenefitBuilder struct {
+	insurancePlanPlanSpecificCostBenefit *InsurancePlanPlanSpecificCostBenefit
+}
+
+// NewInsurancePlanPlanSpecificCostBenefitBuilder creates a new InsurancePlanPlanSpecificCostBenefitBuilder.
+func NewInsurancePlanPlanSpecificCostBenefitBuilder() *InsurancePlanPlanSpecificCostBenefitBuilder {
+	return &InsurancePlanPlanSpecificCostBenefitBuilder{
+		insurancePlanPlanSpecificCostBenefit: &InsurancePlanPlanSpecificCostBenefit{},
+	}
+}
+
+// Build returns the constructed InsurancePlanPlanSpecificCostBenefit.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *InsurancePlanPlanSpecificCostBenefitBuilder) Build() InsurancePlanPlanSpecificCostBenefit {
+	return *b.insurancePlanPlanSpecificCostBenefit
+}
+
+// SetId sets the Id field.
+func (b *InsurancePlanPlanSpecificCostBenefitBuilder) SetId(v string) *InsurancePlanPlanSpecificCostBenefitBuilder {
+	b.insurancePlanPlanSpecificCostBenefit.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *InsurancePlanPlanSpecificCostBenefitBuilder) AddExtension(v Extension) *InsurancePlanPlanSpecificCostBenefitBuilder {
+	b.insurancePlanPlanSpecificCostBenefit.Extension = append(b.insurancePlanPlanSpecificCostBenefit.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *InsurancePlanPlanSpecificCostBenefitBuilder) AddModifierExtension(v Extension) *InsurancePlanPlanSpecificCostBenefitBuilder {
+	b.insurancePlanPlanSpecificCostBenefit.ModifierExtension = append(b.insurancePlanPlanSpecificCostBenefit.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *InsurancePlanPlanSpecificCostBenefitBuilder) SetType(v CodeableConcept) *InsurancePlanPlanSpecificCostBenefitBuilder {
+	b.insurancePlanPlanSpecificCostBenefit.Type = &v
+	return b
+}
+
+// AddCost adds a Cost element.
+func (b *InsurancePlanPlanSpecificCostBenefitBuilder) AddCost(v InsurancePlanPlanSpecificCostBenefitCost) *InsurancePlanPlanSpecificCostBenefitBuilder {
+	b.insurancePlanPlanSpecificCostBenefit.Cost = append(b.insurancePlanPlanSpecificCostBenefit.Cost, v)
+	return b
+}
+
+// =============================================================================
+// InsurancePlanPlanSpecificCostBenefitCost - Fluent Builder
+// =============================================================================
+
+// InsurancePlanPlanSpecificCostBenefitCostBuilder provides a fluent API for constructing InsurancePlanPlanSpecificCostBenefitCost values.
+type InsurancePlanPlanSpecificCostBenefitCostBuilder struct {
+	insurancePlanPlanSpecificCostBenefitCost *InsurancePlanPlanSpecificCostBenefitCost
+}
+
+// NewInsurancePlanPlanSpecificCostBenefitCostBuilder creates a new InsurancePlanPlanSpecificCostBenefitCostBuilder.
+func NewInsurancePlanPlanSpecificCostBenefitCostBuilder() *InsurancePlanPlanSpecificCostBenefitCostBuilder {
+	return &InsurancePlanPlanSpecificCostBenefitCostBuilder{
+		insurancePlanPlanSpecificCostBenefitCost: &InsurancePlanPlanSpecificCostBenefitCost{},
+	}
+}
+
+// Build returns the constructed InsurancePlanPlanSpecificCostBenefitCost.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *InsurancePlanPlanSpecificCostBenefitCostBuilder) Build() InsurancePlanPlanSpecificCostBenefitCost {
+	return *b.insurancePlanPlanSpecificCostBenefitCost
+}
+
+// SetId sets the Id field.
+func (b *InsurancePlanPlanSpecificCostBenefitCostBuilder) SetId(v string) *InsurancePlanPlanSpecificCostBenefitCostBuilder {
+	b.insurancePlanPlanSpecificCostBenefitCost.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *InsurancePlanPlanSpecificCostBenefitCostBuilder) AddExtension(v Extension) *InsurancePlanPlanSpecificCostBenefitCostBuilder {
+	b.insurancePlanPlanSpecificCostBenefitCost.Extension = append(b.insurancePlanPlanSpecificCostBenefitCost.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *InsurancePlanPlanSpecificCostBenefitCostBuilder) AddModifierExtension(v Extension) *InsurancePlanPlanSpecificCostBenefitCostBuilder {
+	b.insurancePlanPlanSpecificCostBenefitCost.ModifierExtension = append(b.insurancePlanPlanSpecificCostBenefitCost.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *InsurancePlanPlanSpecificCostBenefitCostBuilder) SetType(v CodeableConcept) *InsurancePlanPlanSpecificCostBenefitCostBuilder {
+	b.insurancePlanPlanSpecificCostBenefitCost.Type = &v
+	return b
+}
+
+// SetApplicability sets the Applicability field.
+func (b *InsurancePlanPlanSpecificCostBenefitCostBuilder) SetApplicability(v CodeableConcept) *InsurancePlanPlanSpecificCostBenefitCostBuilder {
+	b.insurancePlanPlanSpecificCostBenefitCost.Applicability = &v
+	return b
+}
+
+// AddQualifiers adds a Qualifiers element.
+func (b *InsurancePlanPlanSpecificCostBenefitCostBuilder) AddQualifiers(v CodeableConcept) *InsurancePlanPlanSpecificCostBenefitCostBuilder {
+	b.insurancePlanPlanSpecificCostBenefitCost.Qualifiers = append(b.insurancePlanPlanSpecificCostBenefitCost.Qualifiers, v)
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *InsurancePlanPlanSpecificCostBenefitCostBuilder) SetValue(v Quantity) *InsurancePlanPlanSpecificCostBenefitCostBuilder {
+	b.insurancePlanPlanSpecificCostBenefitCost.Value = &v
+	return b
+}

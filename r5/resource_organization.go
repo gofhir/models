@@ -653,3 +653,140 @@ func (b *OrganizationBuilder) AddQualification(v OrganizationQualification) *Org
 	b.organization.Qualification = append(b.organization.Qualification, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OrganizationBuilder) SetImplicitRulesExt(v Element) *OrganizationBuilder {
+	b.organization.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OrganizationBuilder) SetLanguageExt(v Element) *OrganizationBuilder {
+	b.organization.LanguageExt = &v
+	return b
+}
+
+// SetActiveExt sets the extensions carried by Active, serialized as
+// "_active".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OrganizationBuilder) SetActiveExt(v Element) *OrganizationBuilder {
+	b.organization.ActiveExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OrganizationBuilder) SetNameExt(v Element) *OrganizationBuilder {
+	b.organization.NameExt = &v
+	return b
+}
+
+// AddAliasExt attaches extensions to the Alias element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddAlias twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *OrganizationBuilder) AddAliasExt(v *Element) *OrganizationBuilder {
+	for len(b.organization.AliasExt) < len(b.organization.Alias)-1 {
+		b.organization.AliasExt = append(b.organization.AliasExt, nil)
+	}
+	b.organization.AliasExt = append(b.organization.AliasExt, v)
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OrganizationBuilder) SetDescriptionExt(v Element) *OrganizationBuilder {
+	b.organization.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// OrganizationQualification - Fluent Builder
+// =============================================================================
+
+// OrganizationQualificationBuilder provides a fluent API for constructing OrganizationQualification values.
+type OrganizationQualificationBuilder struct {
+	organizationQualification *OrganizationQualification
+}
+
+// NewOrganizationQualificationBuilder creates a new OrganizationQualificationBuilder.
+func NewOrganizationQualificationBuilder() *OrganizationQualificationBuilder {
+	return &OrganizationQualificationBuilder{
+		organizationQualification: &OrganizationQualification{},
+	}
+}
+
+// Build returns the constructed OrganizationQualification.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *OrganizationQualificationBuilder) Build() OrganizationQualification {
+	return *b.organizationQualification
+}
+
+// SetId sets the Id field.
+func (b *OrganizationQualificationBuilder) SetId(v string) *OrganizationQualificationBuilder {
+	b.organizationQualification.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *OrganizationQualificationBuilder) AddExtension(v Extension) *OrganizationQualificationBuilder {
+	b.organizationQualification.Extension = append(b.organizationQualification.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *OrganizationQualificationBuilder) AddModifierExtension(v Extension) *OrganizationQualificationBuilder {
+	b.organizationQualification.ModifierExtension = append(b.organizationQualification.ModifierExtension, v)
+	return b
+}
+
+// AddIdentifier adds a Identifier element.
+func (b *OrganizationQualificationBuilder) AddIdentifier(v Identifier) *OrganizationQualificationBuilder {
+	b.organizationQualification.Identifier = append(b.organizationQualification.Identifier, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *OrganizationQualificationBuilder) SetCode(v CodeableConcept) *OrganizationQualificationBuilder {
+	b.organizationQualification.Code = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *OrganizationQualificationBuilder) SetPeriod(v Period) *OrganizationQualificationBuilder {
+	b.organizationQualification.Period = &v
+	return b
+}
+
+// SetIssuer sets the Issuer field.
+func (b *OrganizationQualificationBuilder) SetIssuer(v Reference) *OrganizationQualificationBuilder {
+	b.organizationQualification.Issuer = &v
+	return b
+}

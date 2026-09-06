@@ -990,3 +990,363 @@ func (b *SubstanceReferenceInformationBuilder) AddTarget(v SubstanceReferenceInf
 	b.substanceReferenceInformation.Target = append(b.substanceReferenceInformation.Target, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceReferenceInformationBuilder) SetImplicitRulesExt(v Element) *SubstanceReferenceInformationBuilder {
+	b.substanceReferenceInformation.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceReferenceInformationBuilder) SetLanguageExt(v Element) *SubstanceReferenceInformationBuilder {
+	b.substanceReferenceInformation.LanguageExt = &v
+	return b
+}
+
+// SetCommentExt sets the extensions carried by Comment, serialized as
+// "_comment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceReferenceInformationBuilder) SetCommentExt(v Element) *SubstanceReferenceInformationBuilder {
+	b.substanceReferenceInformation.CommentExt = &v
+	return b
+}
+
+// =============================================================================
+// SubstanceReferenceInformationClassification - Fluent Builder
+// =============================================================================
+
+// SubstanceReferenceInformationClassificationBuilder provides a fluent API for constructing SubstanceReferenceInformationClassification values.
+type SubstanceReferenceInformationClassificationBuilder struct {
+	substanceReferenceInformationClassification *SubstanceReferenceInformationClassification
+}
+
+// NewSubstanceReferenceInformationClassificationBuilder creates a new SubstanceReferenceInformationClassificationBuilder.
+func NewSubstanceReferenceInformationClassificationBuilder() *SubstanceReferenceInformationClassificationBuilder {
+	return &SubstanceReferenceInformationClassificationBuilder{
+		substanceReferenceInformationClassification: &SubstanceReferenceInformationClassification{},
+	}
+}
+
+// Build returns the constructed SubstanceReferenceInformationClassification.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceReferenceInformationClassificationBuilder) Build() SubstanceReferenceInformationClassification {
+	return *b.substanceReferenceInformationClassification
+}
+
+// SetId sets the Id field.
+func (b *SubstanceReferenceInformationClassificationBuilder) SetId(v string) *SubstanceReferenceInformationClassificationBuilder {
+	b.substanceReferenceInformationClassification.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceReferenceInformationClassificationBuilder) AddExtension(v Extension) *SubstanceReferenceInformationClassificationBuilder {
+	b.substanceReferenceInformationClassification.Extension = append(b.substanceReferenceInformationClassification.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceReferenceInformationClassificationBuilder) AddModifierExtension(v Extension) *SubstanceReferenceInformationClassificationBuilder {
+	b.substanceReferenceInformationClassification.ModifierExtension = append(b.substanceReferenceInformationClassification.ModifierExtension, v)
+	return b
+}
+
+// SetDomain sets the Domain field.
+func (b *SubstanceReferenceInformationClassificationBuilder) SetDomain(v CodeableConcept) *SubstanceReferenceInformationClassificationBuilder {
+	b.substanceReferenceInformationClassification.Domain = &v
+	return b
+}
+
+// SetClassification sets the Classification field.
+func (b *SubstanceReferenceInformationClassificationBuilder) SetClassification(v CodeableConcept) *SubstanceReferenceInformationClassificationBuilder {
+	b.substanceReferenceInformationClassification.Classification = &v
+	return b
+}
+
+// AddSubtype adds a Subtype element.
+func (b *SubstanceReferenceInformationClassificationBuilder) AddSubtype(v CodeableConcept) *SubstanceReferenceInformationClassificationBuilder {
+	b.substanceReferenceInformationClassification.Subtype = append(b.substanceReferenceInformationClassification.Subtype, v)
+	return b
+}
+
+// AddSource adds a Source element.
+func (b *SubstanceReferenceInformationClassificationBuilder) AddSource(v Reference) *SubstanceReferenceInformationClassificationBuilder {
+	b.substanceReferenceInformationClassification.Source = append(b.substanceReferenceInformationClassification.Source, v)
+	return b
+}
+
+// =============================================================================
+// SubstanceReferenceInformationGene - Fluent Builder
+// =============================================================================
+
+// SubstanceReferenceInformationGeneBuilder provides a fluent API for constructing SubstanceReferenceInformationGene values.
+type SubstanceReferenceInformationGeneBuilder struct {
+	substanceReferenceInformationGene *SubstanceReferenceInformationGene
+}
+
+// NewSubstanceReferenceInformationGeneBuilder creates a new SubstanceReferenceInformationGeneBuilder.
+func NewSubstanceReferenceInformationGeneBuilder() *SubstanceReferenceInformationGeneBuilder {
+	return &SubstanceReferenceInformationGeneBuilder{
+		substanceReferenceInformationGene: &SubstanceReferenceInformationGene{},
+	}
+}
+
+// Build returns the constructed SubstanceReferenceInformationGene.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceReferenceInformationGeneBuilder) Build() SubstanceReferenceInformationGene {
+	return *b.substanceReferenceInformationGene
+}
+
+// SetId sets the Id field.
+func (b *SubstanceReferenceInformationGeneBuilder) SetId(v string) *SubstanceReferenceInformationGeneBuilder {
+	b.substanceReferenceInformationGene.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceReferenceInformationGeneBuilder) AddExtension(v Extension) *SubstanceReferenceInformationGeneBuilder {
+	b.substanceReferenceInformationGene.Extension = append(b.substanceReferenceInformationGene.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceReferenceInformationGeneBuilder) AddModifierExtension(v Extension) *SubstanceReferenceInformationGeneBuilder {
+	b.substanceReferenceInformationGene.ModifierExtension = append(b.substanceReferenceInformationGene.ModifierExtension, v)
+	return b
+}
+
+// SetGeneSequenceOrigin sets the GeneSequenceOrigin field.
+func (b *SubstanceReferenceInformationGeneBuilder) SetGeneSequenceOrigin(v CodeableConcept) *SubstanceReferenceInformationGeneBuilder {
+	b.substanceReferenceInformationGene.GeneSequenceOrigin = &v
+	return b
+}
+
+// SetGene sets the Gene field.
+func (b *SubstanceReferenceInformationGeneBuilder) SetGene(v CodeableConcept) *SubstanceReferenceInformationGeneBuilder {
+	b.substanceReferenceInformationGene.Gene = &v
+	return b
+}
+
+// AddSource adds a Source element.
+func (b *SubstanceReferenceInformationGeneBuilder) AddSource(v Reference) *SubstanceReferenceInformationGeneBuilder {
+	b.substanceReferenceInformationGene.Source = append(b.substanceReferenceInformationGene.Source, v)
+	return b
+}
+
+// =============================================================================
+// SubstanceReferenceInformationGeneElement - Fluent Builder
+// =============================================================================
+
+// SubstanceReferenceInformationGeneElementBuilder provides a fluent API for constructing SubstanceReferenceInformationGeneElement values.
+type SubstanceReferenceInformationGeneElementBuilder struct {
+	substanceReferenceInformationGeneElement *SubstanceReferenceInformationGeneElement
+}
+
+// NewSubstanceReferenceInformationGeneElementBuilder creates a new SubstanceReferenceInformationGeneElementBuilder.
+func NewSubstanceReferenceInformationGeneElementBuilder() *SubstanceReferenceInformationGeneElementBuilder {
+	return &SubstanceReferenceInformationGeneElementBuilder{
+		substanceReferenceInformationGeneElement: &SubstanceReferenceInformationGeneElement{},
+	}
+}
+
+// Build returns the constructed SubstanceReferenceInformationGeneElement.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceReferenceInformationGeneElementBuilder) Build() SubstanceReferenceInformationGeneElement {
+	return *b.substanceReferenceInformationGeneElement
+}
+
+// SetId sets the Id field.
+func (b *SubstanceReferenceInformationGeneElementBuilder) SetId(v string) *SubstanceReferenceInformationGeneElementBuilder {
+	b.substanceReferenceInformationGeneElement.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceReferenceInformationGeneElementBuilder) AddExtension(v Extension) *SubstanceReferenceInformationGeneElementBuilder {
+	b.substanceReferenceInformationGeneElement.Extension = append(b.substanceReferenceInformationGeneElement.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceReferenceInformationGeneElementBuilder) AddModifierExtension(v Extension) *SubstanceReferenceInformationGeneElementBuilder {
+	b.substanceReferenceInformationGeneElement.ModifierExtension = append(b.substanceReferenceInformationGeneElement.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *SubstanceReferenceInformationGeneElementBuilder) SetType(v CodeableConcept) *SubstanceReferenceInformationGeneElementBuilder {
+	b.substanceReferenceInformationGeneElement.Type = &v
+	return b
+}
+
+// SetElement sets the Element field.
+func (b *SubstanceReferenceInformationGeneElementBuilder) SetElement(v Identifier) *SubstanceReferenceInformationGeneElementBuilder {
+	b.substanceReferenceInformationGeneElement.Element = &v
+	return b
+}
+
+// AddSource adds a Source element.
+func (b *SubstanceReferenceInformationGeneElementBuilder) AddSource(v Reference) *SubstanceReferenceInformationGeneElementBuilder {
+	b.substanceReferenceInformationGeneElement.Source = append(b.substanceReferenceInformationGeneElement.Source, v)
+	return b
+}
+
+// =============================================================================
+// SubstanceReferenceInformationTarget - Fluent Builder
+// =============================================================================
+
+// SubstanceReferenceInformationTargetBuilder provides a fluent API for constructing SubstanceReferenceInformationTarget values.
+type SubstanceReferenceInformationTargetBuilder struct {
+	substanceReferenceInformationTarget *SubstanceReferenceInformationTarget
+}
+
+// NewSubstanceReferenceInformationTargetBuilder creates a new SubstanceReferenceInformationTargetBuilder.
+func NewSubstanceReferenceInformationTargetBuilder() *SubstanceReferenceInformationTargetBuilder {
+	return &SubstanceReferenceInformationTargetBuilder{
+		substanceReferenceInformationTarget: &SubstanceReferenceInformationTarget{},
+	}
+}
+
+// Build returns the constructed SubstanceReferenceInformationTarget.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceReferenceInformationTargetBuilder) Build() SubstanceReferenceInformationTarget {
+	return *b.substanceReferenceInformationTarget
+}
+
+// SetId sets the Id field.
+func (b *SubstanceReferenceInformationTargetBuilder) SetId(v string) *SubstanceReferenceInformationTargetBuilder {
+	b.substanceReferenceInformationTarget.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceReferenceInformationTargetBuilder) AddExtension(v Extension) *SubstanceReferenceInformationTargetBuilder {
+	b.substanceReferenceInformationTarget.Extension = append(b.substanceReferenceInformationTarget.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceReferenceInformationTargetBuilder) AddModifierExtension(v Extension) *SubstanceReferenceInformationTargetBuilder {
+	b.substanceReferenceInformationTarget.ModifierExtension = append(b.substanceReferenceInformationTarget.ModifierExtension, v)
+	return b
+}
+
+// SetTarget sets the Target field.
+func (b *SubstanceReferenceInformationTargetBuilder) SetTarget(v Identifier) *SubstanceReferenceInformationTargetBuilder {
+	b.substanceReferenceInformationTarget.Target = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *SubstanceReferenceInformationTargetBuilder) SetType(v CodeableConcept) *SubstanceReferenceInformationTargetBuilder {
+	b.substanceReferenceInformationTarget.Type = &v
+	return b
+}
+
+// SetInteraction sets the Interaction field.
+func (b *SubstanceReferenceInformationTargetBuilder) SetInteraction(v CodeableConcept) *SubstanceReferenceInformationTargetBuilder {
+	b.substanceReferenceInformationTarget.Interaction = &v
+	return b
+}
+
+// SetOrganism sets the Organism field.
+func (b *SubstanceReferenceInformationTargetBuilder) SetOrganism(v CodeableConcept) *SubstanceReferenceInformationTargetBuilder {
+	b.substanceReferenceInformationTarget.Organism = &v
+	return b
+}
+
+// SetOrganismType sets the OrganismType field.
+func (b *SubstanceReferenceInformationTargetBuilder) SetOrganismType(v CodeableConcept) *SubstanceReferenceInformationTargetBuilder {
+	b.substanceReferenceInformationTarget.OrganismType = &v
+	return b
+}
+
+// SetAmountQuantity sets Amount[x] to its AmountQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SubstanceReferenceInformationTargetBuilder) SetAmountQuantity(v Quantity) *SubstanceReferenceInformationTargetBuilder {
+	b.clearAmount()
+	b.substanceReferenceInformationTarget.AmountQuantity = &v
+	return b
+}
+
+// SetAmountRange sets Amount[x] to its AmountRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SubstanceReferenceInformationTargetBuilder) SetAmountRange(v Range) *SubstanceReferenceInformationTargetBuilder {
+	b.clearAmount()
+	b.substanceReferenceInformationTarget.AmountRange = &v
+	return b
+}
+
+// SetAmountString sets Amount[x] to its AmountString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SubstanceReferenceInformationTargetBuilder) SetAmountString(v string) *SubstanceReferenceInformationTargetBuilder {
+	b.clearAmount()
+	b.substanceReferenceInformationTarget.AmountString = &v
+	return b
+}
+
+// SetAmountStringExt sets the AmountStringExt field.
+func (b *SubstanceReferenceInformationTargetBuilder) SetAmountStringExt(v Element) *SubstanceReferenceInformationTargetBuilder {
+	b.substanceReferenceInformationTarget.AmountStringExt = &v
+	return b
+}
+
+// SetAmountType sets the AmountType field.
+func (b *SubstanceReferenceInformationTargetBuilder) SetAmountType(v CodeableConcept) *SubstanceReferenceInformationTargetBuilder {
+	b.substanceReferenceInformationTarget.AmountType = &v
+	return b
+}
+
+// AddSource adds a Source element.
+func (b *SubstanceReferenceInformationTargetBuilder) AddSource(v Reference) *SubstanceReferenceInformationTargetBuilder {
+	b.substanceReferenceInformationTarget.Source = append(b.substanceReferenceInformationTarget.Source, v)
+	return b
+}
+
+// clearAmount unsets every variant of Amount[x], including the
+// _field companions of the primitive ones.
+func (b *SubstanceReferenceInformationTargetBuilder) clearAmount() {
+	b.substanceReferenceInformationTarget.AmountQuantity = nil
+	b.substanceReferenceInformationTarget.AmountRange = nil
+	b.substanceReferenceInformationTarget.AmountString = nil
+	b.substanceReferenceInformationTarget.AmountStringExt = nil
+}

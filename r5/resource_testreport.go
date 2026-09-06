@@ -1629,3 +1629,815 @@ func (b *TestReportBuilder) SetTeardown(v TestReportTeardown) *TestReportBuilder
 	b.testReport.Teardown = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestReportBuilder) SetImplicitRulesExt(v Element) *TestReportBuilder {
+	b.testReport.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestReportBuilder) SetLanguageExt(v Element) *TestReportBuilder {
+	b.testReport.LanguageExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestReportBuilder) SetNameExt(v Element) *TestReportBuilder {
+	b.testReport.NameExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestReportBuilder) SetStatusExt(v Element) *TestReportBuilder {
+	b.testReport.StatusExt = &v
+	return b
+}
+
+// SetTestScriptExt sets the extensions carried by TestScript, serialized as
+// "_testScript".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestReportBuilder) SetTestScriptExt(v Element) *TestReportBuilder {
+	b.testReport.TestScriptExt = &v
+	return b
+}
+
+// SetResultExt sets the extensions carried by Result, serialized as
+// "_result".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestReportBuilder) SetResultExt(v Element) *TestReportBuilder {
+	b.testReport.ResultExt = &v
+	return b
+}
+
+// SetScoreExt sets the extensions carried by Score, serialized as
+// "_score".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestReportBuilder) SetScoreExt(v Element) *TestReportBuilder {
+	b.testReport.ScoreExt = &v
+	return b
+}
+
+// SetTesterExt sets the extensions carried by Tester, serialized as
+// "_tester".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestReportBuilder) SetTesterExt(v Element) *TestReportBuilder {
+	b.testReport.TesterExt = &v
+	return b
+}
+
+// SetIssuedExt sets the extensions carried by Issued, serialized as
+// "_issued".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestReportBuilder) SetIssuedExt(v Element) *TestReportBuilder {
+	b.testReport.IssuedExt = &v
+	return b
+}
+
+// =============================================================================
+// TestReportParticipant - Fluent Builder
+// =============================================================================
+
+// TestReportParticipantBuilder provides a fluent API for constructing TestReportParticipant values.
+type TestReportParticipantBuilder struct {
+	testReportParticipant *TestReportParticipant
+}
+
+// NewTestReportParticipantBuilder creates a new TestReportParticipantBuilder.
+func NewTestReportParticipantBuilder() *TestReportParticipantBuilder {
+	return &TestReportParticipantBuilder{
+		testReportParticipant: &TestReportParticipant{},
+	}
+}
+
+// Build returns the constructed TestReportParticipant.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TestReportParticipantBuilder) Build() TestReportParticipant {
+	return *b.testReportParticipant
+}
+
+// SetId sets the Id field.
+func (b *TestReportParticipantBuilder) SetId(v string) *TestReportParticipantBuilder {
+	b.testReportParticipant.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TestReportParticipantBuilder) AddExtension(v Extension) *TestReportParticipantBuilder {
+	b.testReportParticipant.Extension = append(b.testReportParticipant.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TestReportParticipantBuilder) AddModifierExtension(v Extension) *TestReportParticipantBuilder {
+	b.testReportParticipant.ModifierExtension = append(b.testReportParticipant.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *TestReportParticipantBuilder) SetType(v TestReportParticipantType) *TestReportParticipantBuilder {
+	b.testReportParticipant.Type = &v
+	return b
+}
+
+// SetUri sets the Uri field.
+func (b *TestReportParticipantBuilder) SetUri(v string) *TestReportParticipantBuilder {
+	b.testReportParticipant.Uri = &v
+	return b
+}
+
+// SetDisplay sets the Display field.
+func (b *TestReportParticipantBuilder) SetDisplay(v string) *TestReportParticipantBuilder {
+	b.testReportParticipant.Display = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestReportParticipantBuilder) SetTypeExt(v Element) *TestReportParticipantBuilder {
+	b.testReportParticipant.TypeExt = &v
+	return b
+}
+
+// SetUriExt sets the extensions carried by Uri, serialized as
+// "_uri".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestReportParticipantBuilder) SetUriExt(v Element) *TestReportParticipantBuilder {
+	b.testReportParticipant.UriExt = &v
+	return b
+}
+
+// SetDisplayExt sets the extensions carried by Display, serialized as
+// "_display".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestReportParticipantBuilder) SetDisplayExt(v Element) *TestReportParticipantBuilder {
+	b.testReportParticipant.DisplayExt = &v
+	return b
+}
+
+// =============================================================================
+// TestReportSetup - Fluent Builder
+// =============================================================================
+
+// TestReportSetupBuilder provides a fluent API for constructing TestReportSetup values.
+type TestReportSetupBuilder struct {
+	testReportSetup *TestReportSetup
+}
+
+// NewTestReportSetupBuilder creates a new TestReportSetupBuilder.
+func NewTestReportSetupBuilder() *TestReportSetupBuilder {
+	return &TestReportSetupBuilder{
+		testReportSetup: &TestReportSetup{},
+	}
+}
+
+// Build returns the constructed TestReportSetup.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TestReportSetupBuilder) Build() TestReportSetup {
+	return *b.testReportSetup
+}
+
+// SetId sets the Id field.
+func (b *TestReportSetupBuilder) SetId(v string) *TestReportSetupBuilder {
+	b.testReportSetup.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TestReportSetupBuilder) AddExtension(v Extension) *TestReportSetupBuilder {
+	b.testReportSetup.Extension = append(b.testReportSetup.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TestReportSetupBuilder) AddModifierExtension(v Extension) *TestReportSetupBuilder {
+	b.testReportSetup.ModifierExtension = append(b.testReportSetup.ModifierExtension, v)
+	return b
+}
+
+// AddAction adds a Action element.
+func (b *TestReportSetupBuilder) AddAction(v TestReportSetupAction) *TestReportSetupBuilder {
+	b.testReportSetup.Action = append(b.testReportSetup.Action, v)
+	return b
+}
+
+// =============================================================================
+// TestReportSetupAction - Fluent Builder
+// =============================================================================
+
+// TestReportSetupActionBuilder provides a fluent API for constructing TestReportSetupAction values.
+type TestReportSetupActionBuilder struct {
+	testReportSetupAction *TestReportSetupAction
+}
+
+// NewTestReportSetupActionBuilder creates a new TestReportSetupActionBuilder.
+func NewTestReportSetupActionBuilder() *TestReportSetupActionBuilder {
+	return &TestReportSetupActionBuilder{
+		testReportSetupAction: &TestReportSetupAction{},
+	}
+}
+
+// Build returns the constructed TestReportSetupAction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TestReportSetupActionBuilder) Build() TestReportSetupAction {
+	return *b.testReportSetupAction
+}
+
+// SetId sets the Id field.
+func (b *TestReportSetupActionBuilder) SetId(v string) *TestReportSetupActionBuilder {
+	b.testReportSetupAction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TestReportSetupActionBuilder) AddExtension(v Extension) *TestReportSetupActionBuilder {
+	b.testReportSetupAction.Extension = append(b.testReportSetupAction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TestReportSetupActionBuilder) AddModifierExtension(v Extension) *TestReportSetupActionBuilder {
+	b.testReportSetupAction.ModifierExtension = append(b.testReportSetupAction.ModifierExtension, v)
+	return b
+}
+
+// SetOperation sets the Operation field.
+func (b *TestReportSetupActionBuilder) SetOperation(v TestReportSetupActionOperation) *TestReportSetupActionBuilder {
+	b.testReportSetupAction.Operation = &v
+	return b
+}
+
+// SetAssert sets the Assert field.
+func (b *TestReportSetupActionBuilder) SetAssert(v TestReportSetupActionAssert) *TestReportSetupActionBuilder {
+	b.testReportSetupAction.Assert = &v
+	return b
+}
+
+// =============================================================================
+// TestReportSetupActionAssert - Fluent Builder
+// =============================================================================
+
+// TestReportSetupActionAssertBuilder provides a fluent API for constructing TestReportSetupActionAssert values.
+type TestReportSetupActionAssertBuilder struct {
+	testReportSetupActionAssert *TestReportSetupActionAssert
+}
+
+// NewTestReportSetupActionAssertBuilder creates a new TestReportSetupActionAssertBuilder.
+func NewTestReportSetupActionAssertBuilder() *TestReportSetupActionAssertBuilder {
+	return &TestReportSetupActionAssertBuilder{
+		testReportSetupActionAssert: &TestReportSetupActionAssert{},
+	}
+}
+
+// Build returns the constructed TestReportSetupActionAssert.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TestReportSetupActionAssertBuilder) Build() TestReportSetupActionAssert {
+	return *b.testReportSetupActionAssert
+}
+
+// SetId sets the Id field.
+func (b *TestReportSetupActionAssertBuilder) SetId(v string) *TestReportSetupActionAssertBuilder {
+	b.testReportSetupActionAssert.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TestReportSetupActionAssertBuilder) AddExtension(v Extension) *TestReportSetupActionAssertBuilder {
+	b.testReportSetupActionAssert.Extension = append(b.testReportSetupActionAssert.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TestReportSetupActionAssertBuilder) AddModifierExtension(v Extension) *TestReportSetupActionAssertBuilder {
+	b.testReportSetupActionAssert.ModifierExtension = append(b.testReportSetupActionAssert.ModifierExtension, v)
+	return b
+}
+
+// SetResult sets the Result field.
+func (b *TestReportSetupActionAssertBuilder) SetResult(v TestReportActionResult) *TestReportSetupActionAssertBuilder {
+	b.testReportSetupActionAssert.Result = &v
+	return b
+}
+
+// SetMessage sets the Message field.
+func (b *TestReportSetupActionAssertBuilder) SetMessage(v string) *TestReportSetupActionAssertBuilder {
+	b.testReportSetupActionAssert.Message = &v
+	return b
+}
+
+// SetDetail sets the Detail field.
+func (b *TestReportSetupActionAssertBuilder) SetDetail(v string) *TestReportSetupActionAssertBuilder {
+	b.testReportSetupActionAssert.Detail = &v
+	return b
+}
+
+// AddRequirement adds a Requirement element.
+func (b *TestReportSetupActionAssertBuilder) AddRequirement(v TestReportSetupActionAssertRequirement) *TestReportSetupActionAssertBuilder {
+	b.testReportSetupActionAssert.Requirement = append(b.testReportSetupActionAssert.Requirement, v)
+	return b
+}
+
+// SetResultExt sets the extensions carried by Result, serialized as
+// "_result".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestReportSetupActionAssertBuilder) SetResultExt(v Element) *TestReportSetupActionAssertBuilder {
+	b.testReportSetupActionAssert.ResultExt = &v
+	return b
+}
+
+// SetMessageExt sets the extensions carried by Message, serialized as
+// "_message".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestReportSetupActionAssertBuilder) SetMessageExt(v Element) *TestReportSetupActionAssertBuilder {
+	b.testReportSetupActionAssert.MessageExt = &v
+	return b
+}
+
+// SetDetailExt sets the extensions carried by Detail, serialized as
+// "_detail".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestReportSetupActionAssertBuilder) SetDetailExt(v Element) *TestReportSetupActionAssertBuilder {
+	b.testReportSetupActionAssert.DetailExt = &v
+	return b
+}
+
+// =============================================================================
+// TestReportSetupActionAssertRequirement - Fluent Builder
+// =============================================================================
+
+// TestReportSetupActionAssertRequirementBuilder provides a fluent API for constructing TestReportSetupActionAssertRequirement values.
+type TestReportSetupActionAssertRequirementBuilder struct {
+	testReportSetupActionAssertRequirement *TestReportSetupActionAssertRequirement
+}
+
+// NewTestReportSetupActionAssertRequirementBuilder creates a new TestReportSetupActionAssertRequirementBuilder.
+func NewTestReportSetupActionAssertRequirementBuilder() *TestReportSetupActionAssertRequirementBuilder {
+	return &TestReportSetupActionAssertRequirementBuilder{
+		testReportSetupActionAssertRequirement: &TestReportSetupActionAssertRequirement{},
+	}
+}
+
+// Build returns the constructed TestReportSetupActionAssertRequirement.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TestReportSetupActionAssertRequirementBuilder) Build() TestReportSetupActionAssertRequirement {
+	return *b.testReportSetupActionAssertRequirement
+}
+
+// SetId sets the Id field.
+func (b *TestReportSetupActionAssertRequirementBuilder) SetId(v string) *TestReportSetupActionAssertRequirementBuilder {
+	b.testReportSetupActionAssertRequirement.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TestReportSetupActionAssertRequirementBuilder) AddExtension(v Extension) *TestReportSetupActionAssertRequirementBuilder {
+	b.testReportSetupActionAssertRequirement.Extension = append(b.testReportSetupActionAssertRequirement.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TestReportSetupActionAssertRequirementBuilder) AddModifierExtension(v Extension) *TestReportSetupActionAssertRequirementBuilder {
+	b.testReportSetupActionAssertRequirement.ModifierExtension = append(b.testReportSetupActionAssertRequirement.ModifierExtension, v)
+	return b
+}
+
+// SetLinkUri sets Link[x] to its LinkUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TestReportSetupActionAssertRequirementBuilder) SetLinkUri(v string) *TestReportSetupActionAssertRequirementBuilder {
+	b.clearLink()
+	b.testReportSetupActionAssertRequirement.LinkUri = &v
+	return b
+}
+
+// SetLinkUriExt sets the LinkUriExt field.
+func (b *TestReportSetupActionAssertRequirementBuilder) SetLinkUriExt(v Element) *TestReportSetupActionAssertRequirementBuilder {
+	b.testReportSetupActionAssertRequirement.LinkUriExt = &v
+	return b
+}
+
+// SetLinkCanonical sets Link[x] to its LinkCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TestReportSetupActionAssertRequirementBuilder) SetLinkCanonical(v string) *TestReportSetupActionAssertRequirementBuilder {
+	b.clearLink()
+	b.testReportSetupActionAssertRequirement.LinkCanonical = &v
+	return b
+}
+
+// SetLinkCanonicalExt sets the LinkCanonicalExt field.
+func (b *TestReportSetupActionAssertRequirementBuilder) SetLinkCanonicalExt(v Element) *TestReportSetupActionAssertRequirementBuilder {
+	b.testReportSetupActionAssertRequirement.LinkCanonicalExt = &v
+	return b
+}
+
+// clearLink unsets every variant of Link[x], including the
+// _field companions of the primitive ones.
+func (b *TestReportSetupActionAssertRequirementBuilder) clearLink() {
+	b.testReportSetupActionAssertRequirement.LinkUri = nil
+	b.testReportSetupActionAssertRequirement.LinkCanonical = nil
+	b.testReportSetupActionAssertRequirement.LinkCanonicalExt = nil
+}
+
+// =============================================================================
+// TestReportSetupActionOperation - Fluent Builder
+// =============================================================================
+
+// TestReportSetupActionOperationBuilder provides a fluent API for constructing TestReportSetupActionOperation values.
+type TestReportSetupActionOperationBuilder struct {
+	testReportSetupActionOperation *TestReportSetupActionOperation
+}
+
+// NewTestReportSetupActionOperationBuilder creates a new TestReportSetupActionOperationBuilder.
+func NewTestReportSetupActionOperationBuilder() *TestReportSetupActionOperationBuilder {
+	return &TestReportSetupActionOperationBuilder{
+		testReportSetupActionOperation: &TestReportSetupActionOperation{},
+	}
+}
+
+// Build returns the constructed TestReportSetupActionOperation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TestReportSetupActionOperationBuilder) Build() TestReportSetupActionOperation {
+	return *b.testReportSetupActionOperation
+}
+
+// SetId sets the Id field.
+func (b *TestReportSetupActionOperationBuilder) SetId(v string) *TestReportSetupActionOperationBuilder {
+	b.testReportSetupActionOperation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TestReportSetupActionOperationBuilder) AddExtension(v Extension) *TestReportSetupActionOperationBuilder {
+	b.testReportSetupActionOperation.Extension = append(b.testReportSetupActionOperation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TestReportSetupActionOperationBuilder) AddModifierExtension(v Extension) *TestReportSetupActionOperationBuilder {
+	b.testReportSetupActionOperation.ModifierExtension = append(b.testReportSetupActionOperation.ModifierExtension, v)
+	return b
+}
+
+// SetResult sets the Result field.
+func (b *TestReportSetupActionOperationBuilder) SetResult(v TestReportActionResult) *TestReportSetupActionOperationBuilder {
+	b.testReportSetupActionOperation.Result = &v
+	return b
+}
+
+// SetMessage sets the Message field.
+func (b *TestReportSetupActionOperationBuilder) SetMessage(v string) *TestReportSetupActionOperationBuilder {
+	b.testReportSetupActionOperation.Message = &v
+	return b
+}
+
+// SetDetail sets the Detail field.
+func (b *TestReportSetupActionOperationBuilder) SetDetail(v string) *TestReportSetupActionOperationBuilder {
+	b.testReportSetupActionOperation.Detail = &v
+	return b
+}
+
+// SetResultExt sets the extensions carried by Result, serialized as
+// "_result".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestReportSetupActionOperationBuilder) SetResultExt(v Element) *TestReportSetupActionOperationBuilder {
+	b.testReportSetupActionOperation.ResultExt = &v
+	return b
+}
+
+// SetMessageExt sets the extensions carried by Message, serialized as
+// "_message".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestReportSetupActionOperationBuilder) SetMessageExt(v Element) *TestReportSetupActionOperationBuilder {
+	b.testReportSetupActionOperation.MessageExt = &v
+	return b
+}
+
+// SetDetailExt sets the extensions carried by Detail, serialized as
+// "_detail".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestReportSetupActionOperationBuilder) SetDetailExt(v Element) *TestReportSetupActionOperationBuilder {
+	b.testReportSetupActionOperation.DetailExt = &v
+	return b
+}
+
+// =============================================================================
+// TestReportTeardown - Fluent Builder
+// =============================================================================
+
+// TestReportTeardownBuilder provides a fluent API for constructing TestReportTeardown values.
+type TestReportTeardownBuilder struct {
+	testReportTeardown *TestReportTeardown
+}
+
+// NewTestReportTeardownBuilder creates a new TestReportTeardownBuilder.
+func NewTestReportTeardownBuilder() *TestReportTeardownBuilder {
+	return &TestReportTeardownBuilder{
+		testReportTeardown: &TestReportTeardown{},
+	}
+}
+
+// Build returns the constructed TestReportTeardown.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TestReportTeardownBuilder) Build() TestReportTeardown {
+	return *b.testReportTeardown
+}
+
+// SetId sets the Id field.
+func (b *TestReportTeardownBuilder) SetId(v string) *TestReportTeardownBuilder {
+	b.testReportTeardown.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TestReportTeardownBuilder) AddExtension(v Extension) *TestReportTeardownBuilder {
+	b.testReportTeardown.Extension = append(b.testReportTeardown.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TestReportTeardownBuilder) AddModifierExtension(v Extension) *TestReportTeardownBuilder {
+	b.testReportTeardown.ModifierExtension = append(b.testReportTeardown.ModifierExtension, v)
+	return b
+}
+
+// AddAction adds a Action element.
+func (b *TestReportTeardownBuilder) AddAction(v TestReportTeardownAction) *TestReportTeardownBuilder {
+	b.testReportTeardown.Action = append(b.testReportTeardown.Action, v)
+	return b
+}
+
+// =============================================================================
+// TestReportTeardownAction - Fluent Builder
+// =============================================================================
+
+// TestReportTeardownActionBuilder provides a fluent API for constructing TestReportTeardownAction values.
+type TestReportTeardownActionBuilder struct {
+	testReportTeardownAction *TestReportTeardownAction
+}
+
+// NewTestReportTeardownActionBuilder creates a new TestReportTeardownActionBuilder.
+func NewTestReportTeardownActionBuilder() *TestReportTeardownActionBuilder {
+	return &TestReportTeardownActionBuilder{
+		testReportTeardownAction: &TestReportTeardownAction{},
+	}
+}
+
+// Build returns the constructed TestReportTeardownAction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TestReportTeardownActionBuilder) Build() TestReportTeardownAction {
+	return *b.testReportTeardownAction
+}
+
+// SetId sets the Id field.
+func (b *TestReportTeardownActionBuilder) SetId(v string) *TestReportTeardownActionBuilder {
+	b.testReportTeardownAction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TestReportTeardownActionBuilder) AddExtension(v Extension) *TestReportTeardownActionBuilder {
+	b.testReportTeardownAction.Extension = append(b.testReportTeardownAction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TestReportTeardownActionBuilder) AddModifierExtension(v Extension) *TestReportTeardownActionBuilder {
+	b.testReportTeardownAction.ModifierExtension = append(b.testReportTeardownAction.ModifierExtension, v)
+	return b
+}
+
+// SetOperation sets the Operation field.
+func (b *TestReportTeardownActionBuilder) SetOperation(v TestReportSetupActionOperation) *TestReportTeardownActionBuilder {
+	b.testReportTeardownAction.Operation = &v
+	return b
+}
+
+// =============================================================================
+// TestReportTest - Fluent Builder
+// =============================================================================
+
+// TestReportTestBuilder provides a fluent API for constructing TestReportTest values.
+type TestReportTestBuilder struct {
+	testReportTest *TestReportTest
+}
+
+// NewTestReportTestBuilder creates a new TestReportTestBuilder.
+func NewTestReportTestBuilder() *TestReportTestBuilder {
+	return &TestReportTestBuilder{
+		testReportTest: &TestReportTest{},
+	}
+}
+
+// Build returns the constructed TestReportTest.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TestReportTestBuilder) Build() TestReportTest {
+	return *b.testReportTest
+}
+
+// SetId sets the Id field.
+func (b *TestReportTestBuilder) SetId(v string) *TestReportTestBuilder {
+	b.testReportTest.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TestReportTestBuilder) AddExtension(v Extension) *TestReportTestBuilder {
+	b.testReportTest.Extension = append(b.testReportTest.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TestReportTestBuilder) AddModifierExtension(v Extension) *TestReportTestBuilder {
+	b.testReportTest.ModifierExtension = append(b.testReportTest.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *TestReportTestBuilder) SetName(v string) *TestReportTestBuilder {
+	b.testReportTest.Name = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *TestReportTestBuilder) SetDescription(v string) *TestReportTestBuilder {
+	b.testReportTest.Description = &v
+	return b
+}
+
+// AddAction adds a Action element.
+func (b *TestReportTestBuilder) AddAction(v TestReportTestAction) *TestReportTestBuilder {
+	b.testReportTest.Action = append(b.testReportTest.Action, v)
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestReportTestBuilder) SetNameExt(v Element) *TestReportTestBuilder {
+	b.testReportTest.NameExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestReportTestBuilder) SetDescriptionExt(v Element) *TestReportTestBuilder {
+	b.testReportTest.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// TestReportTestAction - Fluent Builder
+// =============================================================================
+
+// TestReportTestActionBuilder provides a fluent API for constructing TestReportTestAction values.
+type TestReportTestActionBuilder struct {
+	testReportTestAction *TestReportTestAction
+}
+
+// NewTestReportTestActionBuilder creates a new TestReportTestActionBuilder.
+func NewTestReportTestActionBuilder() *TestReportTestActionBuilder {
+	return &TestReportTestActionBuilder{
+		testReportTestAction: &TestReportTestAction{},
+	}
+}
+
+// Build returns the constructed TestReportTestAction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TestReportTestActionBuilder) Build() TestReportTestAction {
+	return *b.testReportTestAction
+}
+
+// SetId sets the Id field.
+func (b *TestReportTestActionBuilder) SetId(v string) *TestReportTestActionBuilder {
+	b.testReportTestAction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TestReportTestActionBuilder) AddExtension(v Extension) *TestReportTestActionBuilder {
+	b.testReportTestAction.Extension = append(b.testReportTestAction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TestReportTestActionBuilder) AddModifierExtension(v Extension) *TestReportTestActionBuilder {
+	b.testReportTestAction.ModifierExtension = append(b.testReportTestAction.ModifierExtension, v)
+	return b
+}
+
+// SetOperation sets the Operation field.
+func (b *TestReportTestActionBuilder) SetOperation(v TestReportSetupActionOperation) *TestReportTestActionBuilder {
+	b.testReportTestAction.Operation = &v
+	return b
+}
+
+// SetAssert sets the Assert field.
+func (b *TestReportTestActionBuilder) SetAssert(v TestReportSetupActionAssert) *TestReportTestActionBuilder {
+	b.testReportTestAction.Assert = &v
+	return b
+}

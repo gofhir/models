@@ -2024,9 +2024,1051 @@ func (b *TerminologyCapabilitiesBuilder) SetClosure(v TerminologyCapabilitiesClo
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesBuilder) SetImplicitRulesExt(v Element) *TerminologyCapabilitiesBuilder {
+	b.terminologyCapabilities.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesBuilder) SetLanguageExt(v Element) *TerminologyCapabilitiesBuilder {
+	b.terminologyCapabilities.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesBuilder) SetUrlExt(v Element) *TerminologyCapabilitiesBuilder {
+	b.terminologyCapabilities.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesBuilder) SetVersionExt(v Element) *TerminologyCapabilitiesBuilder {
+	b.terminologyCapabilities.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesBuilder) SetNameExt(v Element) *TerminologyCapabilitiesBuilder {
+	b.terminologyCapabilities.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesBuilder) SetTitleExt(v Element) *TerminologyCapabilitiesBuilder {
+	b.terminologyCapabilities.TitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesBuilder) SetStatusExt(v Element) *TerminologyCapabilitiesBuilder {
+	b.terminologyCapabilities.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesBuilder) SetExperimentalExt(v Element) *TerminologyCapabilitiesBuilder {
+	b.terminologyCapabilities.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesBuilder) SetDateExt(v Element) *TerminologyCapabilitiesBuilder {
+	b.terminologyCapabilities.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesBuilder) SetPublisherExt(v Element) *TerminologyCapabilitiesBuilder {
+	b.terminologyCapabilities.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesBuilder) SetDescriptionExt(v Element) *TerminologyCapabilitiesBuilder {
+	b.terminologyCapabilities.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesBuilder) SetPurposeExt(v Element) *TerminologyCapabilitiesBuilder {
+	b.terminologyCapabilities.PurposeExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesBuilder) SetCopyrightExt(v Element) *TerminologyCapabilitiesBuilder {
+	b.terminologyCapabilities.CopyrightExt = &v
+	return b
+}
+
+// SetCopyrightLabelExt sets the extensions carried by CopyrightLabel, serialized as
+// "_copyrightLabel".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesBuilder) SetCopyrightLabelExt(v Element) *TerminologyCapabilitiesBuilder {
+	b.terminologyCapabilities.CopyrightLabelExt = &v
+	return b
+}
+
+// SetKindExt sets the extensions carried by Kind, serialized as
+// "_kind".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesBuilder) SetKindExt(v Element) *TerminologyCapabilitiesBuilder {
+	b.terminologyCapabilities.KindExt = &v
+	return b
+}
+
+// SetLockedDateExt sets the extensions carried by LockedDate, serialized as
+// "_lockedDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesBuilder) SetLockedDateExt(v Element) *TerminologyCapabilitiesBuilder {
+	b.terminologyCapabilities.LockedDateExt = &v
+	return b
+}
+
+// SetCodeSearchExt sets the extensions carried by CodeSearch, serialized as
+// "_codeSearch".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesBuilder) SetCodeSearchExt(v Element) *TerminologyCapabilitiesBuilder {
+	b.terminologyCapabilities.CodeSearchExt = &v
+	return b
+}
+
 // clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
 // _field companions of the primitive ones.
 func (b *TerminologyCapabilitiesBuilder) clearVersionAlgorithm() {
 	b.terminologyCapabilities.VersionAlgorithmString = nil
 	b.terminologyCapabilities.VersionAlgorithmCoding = nil
+}
+
+// =============================================================================
+// TerminologyCapabilitiesClosure - Fluent Builder
+// =============================================================================
+
+// TerminologyCapabilitiesClosureBuilder provides a fluent API for constructing TerminologyCapabilitiesClosure values.
+type TerminologyCapabilitiesClosureBuilder struct {
+	terminologyCapabilitiesClosure *TerminologyCapabilitiesClosure
+}
+
+// NewTerminologyCapabilitiesClosureBuilder creates a new TerminologyCapabilitiesClosureBuilder.
+func NewTerminologyCapabilitiesClosureBuilder() *TerminologyCapabilitiesClosureBuilder {
+	return &TerminologyCapabilitiesClosureBuilder{
+		terminologyCapabilitiesClosure: &TerminologyCapabilitiesClosure{},
+	}
+}
+
+// Build returns the constructed TerminologyCapabilitiesClosure.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TerminologyCapabilitiesClosureBuilder) Build() TerminologyCapabilitiesClosure {
+	return *b.terminologyCapabilitiesClosure
+}
+
+// SetId sets the Id field.
+func (b *TerminologyCapabilitiesClosureBuilder) SetId(v string) *TerminologyCapabilitiesClosureBuilder {
+	b.terminologyCapabilitiesClosure.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TerminologyCapabilitiesClosureBuilder) AddExtension(v Extension) *TerminologyCapabilitiesClosureBuilder {
+	b.terminologyCapabilitiesClosure.Extension = append(b.terminologyCapabilitiesClosure.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TerminologyCapabilitiesClosureBuilder) AddModifierExtension(v Extension) *TerminologyCapabilitiesClosureBuilder {
+	b.terminologyCapabilitiesClosure.ModifierExtension = append(b.terminologyCapabilitiesClosure.ModifierExtension, v)
+	return b
+}
+
+// SetTranslation sets the Translation field.
+func (b *TerminologyCapabilitiesClosureBuilder) SetTranslation(v bool) *TerminologyCapabilitiesClosureBuilder {
+	b.terminologyCapabilitiesClosure.Translation = &v
+	return b
+}
+
+// SetTranslationExt sets the extensions carried by Translation, serialized as
+// "_translation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesClosureBuilder) SetTranslationExt(v Element) *TerminologyCapabilitiesClosureBuilder {
+	b.terminologyCapabilitiesClosure.TranslationExt = &v
+	return b
+}
+
+// =============================================================================
+// TerminologyCapabilitiesCodeSystem - Fluent Builder
+// =============================================================================
+
+// TerminologyCapabilitiesCodeSystemBuilder provides a fluent API for constructing TerminologyCapabilitiesCodeSystem values.
+type TerminologyCapabilitiesCodeSystemBuilder struct {
+	terminologyCapabilitiesCodeSystem *TerminologyCapabilitiesCodeSystem
+}
+
+// NewTerminologyCapabilitiesCodeSystemBuilder creates a new TerminologyCapabilitiesCodeSystemBuilder.
+func NewTerminologyCapabilitiesCodeSystemBuilder() *TerminologyCapabilitiesCodeSystemBuilder {
+	return &TerminologyCapabilitiesCodeSystemBuilder{
+		terminologyCapabilitiesCodeSystem: &TerminologyCapabilitiesCodeSystem{},
+	}
+}
+
+// Build returns the constructed TerminologyCapabilitiesCodeSystem.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TerminologyCapabilitiesCodeSystemBuilder) Build() TerminologyCapabilitiesCodeSystem {
+	return *b.terminologyCapabilitiesCodeSystem
+}
+
+// SetId sets the Id field.
+func (b *TerminologyCapabilitiesCodeSystemBuilder) SetId(v string) *TerminologyCapabilitiesCodeSystemBuilder {
+	b.terminologyCapabilitiesCodeSystem.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TerminologyCapabilitiesCodeSystemBuilder) AddExtension(v Extension) *TerminologyCapabilitiesCodeSystemBuilder {
+	b.terminologyCapabilitiesCodeSystem.Extension = append(b.terminologyCapabilitiesCodeSystem.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TerminologyCapabilitiesCodeSystemBuilder) AddModifierExtension(v Extension) *TerminologyCapabilitiesCodeSystemBuilder {
+	b.terminologyCapabilitiesCodeSystem.ModifierExtension = append(b.terminologyCapabilitiesCodeSystem.ModifierExtension, v)
+	return b
+}
+
+// SetUri sets the Uri field.
+func (b *TerminologyCapabilitiesCodeSystemBuilder) SetUri(v string) *TerminologyCapabilitiesCodeSystemBuilder {
+	b.terminologyCapabilitiesCodeSystem.Uri = &v
+	return b
+}
+
+// AddVersion adds a Version element.
+func (b *TerminologyCapabilitiesCodeSystemBuilder) AddVersion(v TerminologyCapabilitiesCodeSystemVersion) *TerminologyCapabilitiesCodeSystemBuilder {
+	b.terminologyCapabilitiesCodeSystem.Version = append(b.terminologyCapabilitiesCodeSystem.Version, v)
+	return b
+}
+
+// SetContent sets the Content field.
+func (b *TerminologyCapabilitiesCodeSystemBuilder) SetContent(v CodeSystemContentMode) *TerminologyCapabilitiesCodeSystemBuilder {
+	b.terminologyCapabilitiesCodeSystem.Content = &v
+	return b
+}
+
+// SetSubsumption sets the Subsumption field.
+func (b *TerminologyCapabilitiesCodeSystemBuilder) SetSubsumption(v bool) *TerminologyCapabilitiesCodeSystemBuilder {
+	b.terminologyCapabilitiesCodeSystem.Subsumption = &v
+	return b
+}
+
+// SetUriExt sets the extensions carried by Uri, serialized as
+// "_uri".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesCodeSystemBuilder) SetUriExt(v Element) *TerminologyCapabilitiesCodeSystemBuilder {
+	b.terminologyCapabilitiesCodeSystem.UriExt = &v
+	return b
+}
+
+// SetContentExt sets the extensions carried by Content, serialized as
+// "_content".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesCodeSystemBuilder) SetContentExt(v Element) *TerminologyCapabilitiesCodeSystemBuilder {
+	b.terminologyCapabilitiesCodeSystem.ContentExt = &v
+	return b
+}
+
+// SetSubsumptionExt sets the extensions carried by Subsumption, serialized as
+// "_subsumption".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesCodeSystemBuilder) SetSubsumptionExt(v Element) *TerminologyCapabilitiesCodeSystemBuilder {
+	b.terminologyCapabilitiesCodeSystem.SubsumptionExt = &v
+	return b
+}
+
+// =============================================================================
+// TerminologyCapabilitiesCodeSystemVersion - Fluent Builder
+// =============================================================================
+
+// TerminologyCapabilitiesCodeSystemVersionBuilder provides a fluent API for constructing TerminologyCapabilitiesCodeSystemVersion values.
+type TerminologyCapabilitiesCodeSystemVersionBuilder struct {
+	terminologyCapabilitiesCodeSystemVersion *TerminologyCapabilitiesCodeSystemVersion
+}
+
+// NewTerminologyCapabilitiesCodeSystemVersionBuilder creates a new TerminologyCapabilitiesCodeSystemVersionBuilder.
+func NewTerminologyCapabilitiesCodeSystemVersionBuilder() *TerminologyCapabilitiesCodeSystemVersionBuilder {
+	return &TerminologyCapabilitiesCodeSystemVersionBuilder{
+		terminologyCapabilitiesCodeSystemVersion: &TerminologyCapabilitiesCodeSystemVersion{},
+	}
+}
+
+// Build returns the constructed TerminologyCapabilitiesCodeSystemVersion.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) Build() TerminologyCapabilitiesCodeSystemVersion {
+	return *b.terminologyCapabilitiesCodeSystemVersion
+}
+
+// SetId sets the Id field.
+func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) SetId(v string) *TerminologyCapabilitiesCodeSystemVersionBuilder {
+	b.terminologyCapabilitiesCodeSystemVersion.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) AddExtension(v Extension) *TerminologyCapabilitiesCodeSystemVersionBuilder {
+	b.terminologyCapabilitiesCodeSystemVersion.Extension = append(b.terminologyCapabilitiesCodeSystemVersion.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) AddModifierExtension(v Extension) *TerminologyCapabilitiesCodeSystemVersionBuilder {
+	b.terminologyCapabilitiesCodeSystemVersion.ModifierExtension = append(b.terminologyCapabilitiesCodeSystemVersion.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) SetCode(v string) *TerminologyCapabilitiesCodeSystemVersionBuilder {
+	b.terminologyCapabilitiesCodeSystemVersion.Code = &v
+	return b
+}
+
+// SetIsDefault sets the IsDefault field.
+func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) SetIsDefault(v bool) *TerminologyCapabilitiesCodeSystemVersionBuilder {
+	b.terminologyCapabilitiesCodeSystemVersion.IsDefault = &v
+	return b
+}
+
+// SetCompositional sets the Compositional field.
+func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) SetCompositional(v bool) *TerminologyCapabilitiesCodeSystemVersionBuilder {
+	b.terminologyCapabilitiesCodeSystemVersion.Compositional = &v
+	return b
+}
+
+// AddLanguage adds a Language element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) AddLanguage(v CommonLanguages) *TerminologyCapabilitiesCodeSystemVersionBuilder {
+	b.terminologyCapabilitiesCodeSystemVersion.Language = append(b.terminologyCapabilitiesCodeSystemVersion.Language, &v)
+	return b
+}
+
+// AddFilter adds a Filter element.
+func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) AddFilter(v TerminologyCapabilitiesCodeSystemVersionFilter) *TerminologyCapabilitiesCodeSystemVersionBuilder {
+	b.terminologyCapabilitiesCodeSystemVersion.Filter = append(b.terminologyCapabilitiesCodeSystemVersion.Filter, v)
+	return b
+}
+
+// AddProperty adds a Property element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) AddProperty(v string) *TerminologyCapabilitiesCodeSystemVersionBuilder {
+	b.terminologyCapabilitiesCodeSystemVersion.Property = append(b.terminologyCapabilitiesCodeSystemVersion.Property, &v)
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) SetCodeExt(v Element) *TerminologyCapabilitiesCodeSystemVersionBuilder {
+	b.terminologyCapabilitiesCodeSystemVersion.CodeExt = &v
+	return b
+}
+
+// SetIsDefaultExt sets the extensions carried by IsDefault, serialized as
+// "_isDefault".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) SetIsDefaultExt(v Element) *TerminologyCapabilitiesCodeSystemVersionBuilder {
+	b.terminologyCapabilitiesCodeSystemVersion.IsDefaultExt = &v
+	return b
+}
+
+// SetCompositionalExt sets the extensions carried by Compositional, serialized as
+// "_compositional".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) SetCompositionalExt(v Element) *TerminologyCapabilitiesCodeSystemVersionBuilder {
+	b.terminologyCapabilitiesCodeSystemVersion.CompositionalExt = &v
+	return b
+}
+
+// AddLanguageExt attaches extensions to the Language element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddLanguage twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) AddLanguageExt(v *Element) *TerminologyCapabilitiesCodeSystemVersionBuilder {
+	for len(b.terminologyCapabilitiesCodeSystemVersion.LanguageExt) < len(b.terminologyCapabilitiesCodeSystemVersion.Language)-1 {
+		b.terminologyCapabilitiesCodeSystemVersion.LanguageExt = append(b.terminologyCapabilitiesCodeSystemVersion.LanguageExt, nil)
+	}
+	b.terminologyCapabilitiesCodeSystemVersion.LanguageExt = append(b.terminologyCapabilitiesCodeSystemVersion.LanguageExt, v)
+	return b
+}
+
+// AddPropertyExt attaches extensions to the Property element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddProperty twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) AddPropertyExt(v *Element) *TerminologyCapabilitiesCodeSystemVersionBuilder {
+	for len(b.terminologyCapabilitiesCodeSystemVersion.PropertyExt) < len(b.terminologyCapabilitiesCodeSystemVersion.Property)-1 {
+		b.terminologyCapabilitiesCodeSystemVersion.PropertyExt = append(b.terminologyCapabilitiesCodeSystemVersion.PropertyExt, nil)
+	}
+	b.terminologyCapabilitiesCodeSystemVersion.PropertyExt = append(b.terminologyCapabilitiesCodeSystemVersion.PropertyExt, v)
+	return b
+}
+
+// =============================================================================
+// TerminologyCapabilitiesCodeSystemVersionFilter - Fluent Builder
+// =============================================================================
+
+// TerminologyCapabilitiesCodeSystemVersionFilterBuilder provides a fluent API for constructing TerminologyCapabilitiesCodeSystemVersionFilter values.
+type TerminologyCapabilitiesCodeSystemVersionFilterBuilder struct {
+	terminologyCapabilitiesCodeSystemVersionFilter *TerminologyCapabilitiesCodeSystemVersionFilter
+}
+
+// NewTerminologyCapabilitiesCodeSystemVersionFilterBuilder creates a new TerminologyCapabilitiesCodeSystemVersionFilterBuilder.
+func NewTerminologyCapabilitiesCodeSystemVersionFilterBuilder() *TerminologyCapabilitiesCodeSystemVersionFilterBuilder {
+	return &TerminologyCapabilitiesCodeSystemVersionFilterBuilder{
+		terminologyCapabilitiesCodeSystemVersionFilter: &TerminologyCapabilitiesCodeSystemVersionFilter{},
+	}
+}
+
+// Build returns the constructed TerminologyCapabilitiesCodeSystemVersionFilter.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TerminologyCapabilitiesCodeSystemVersionFilterBuilder) Build() TerminologyCapabilitiesCodeSystemVersionFilter {
+	return *b.terminologyCapabilitiesCodeSystemVersionFilter
+}
+
+// SetId sets the Id field.
+func (b *TerminologyCapabilitiesCodeSystemVersionFilterBuilder) SetId(v string) *TerminologyCapabilitiesCodeSystemVersionFilterBuilder {
+	b.terminologyCapabilitiesCodeSystemVersionFilter.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TerminologyCapabilitiesCodeSystemVersionFilterBuilder) AddExtension(v Extension) *TerminologyCapabilitiesCodeSystemVersionFilterBuilder {
+	b.terminologyCapabilitiesCodeSystemVersionFilter.Extension = append(b.terminologyCapabilitiesCodeSystemVersionFilter.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TerminologyCapabilitiesCodeSystemVersionFilterBuilder) AddModifierExtension(v Extension) *TerminologyCapabilitiesCodeSystemVersionFilterBuilder {
+	b.terminologyCapabilitiesCodeSystemVersionFilter.ModifierExtension = append(b.terminologyCapabilitiesCodeSystemVersionFilter.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *TerminologyCapabilitiesCodeSystemVersionFilterBuilder) SetCode(v string) *TerminologyCapabilitiesCodeSystemVersionFilterBuilder {
+	b.terminologyCapabilitiesCodeSystemVersionFilter.Code = &v
+	return b
+}
+
+// AddOp adds a Op element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *TerminologyCapabilitiesCodeSystemVersionFilterBuilder) AddOp(v string) *TerminologyCapabilitiesCodeSystemVersionFilterBuilder {
+	b.terminologyCapabilitiesCodeSystemVersionFilter.Op = append(b.terminologyCapabilitiesCodeSystemVersionFilter.Op, &v)
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesCodeSystemVersionFilterBuilder) SetCodeExt(v Element) *TerminologyCapabilitiesCodeSystemVersionFilterBuilder {
+	b.terminologyCapabilitiesCodeSystemVersionFilter.CodeExt = &v
+	return b
+}
+
+// AddOpExt attaches extensions to the Op element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddOp twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *TerminologyCapabilitiesCodeSystemVersionFilterBuilder) AddOpExt(v *Element) *TerminologyCapabilitiesCodeSystemVersionFilterBuilder {
+	for len(b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt) < len(b.terminologyCapabilitiesCodeSystemVersionFilter.Op)-1 {
+		b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt = append(b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt, nil)
+	}
+	b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt = append(b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt, v)
+	return b
+}
+
+// =============================================================================
+// TerminologyCapabilitiesExpansion - Fluent Builder
+// =============================================================================
+
+// TerminologyCapabilitiesExpansionBuilder provides a fluent API for constructing TerminologyCapabilitiesExpansion values.
+type TerminologyCapabilitiesExpansionBuilder struct {
+	terminologyCapabilitiesExpansion *TerminologyCapabilitiesExpansion
+}
+
+// NewTerminologyCapabilitiesExpansionBuilder creates a new TerminologyCapabilitiesExpansionBuilder.
+func NewTerminologyCapabilitiesExpansionBuilder() *TerminologyCapabilitiesExpansionBuilder {
+	return &TerminologyCapabilitiesExpansionBuilder{
+		terminologyCapabilitiesExpansion: &TerminologyCapabilitiesExpansion{},
+	}
+}
+
+// Build returns the constructed TerminologyCapabilitiesExpansion.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TerminologyCapabilitiesExpansionBuilder) Build() TerminologyCapabilitiesExpansion {
+	return *b.terminologyCapabilitiesExpansion
+}
+
+// SetId sets the Id field.
+func (b *TerminologyCapabilitiesExpansionBuilder) SetId(v string) *TerminologyCapabilitiesExpansionBuilder {
+	b.terminologyCapabilitiesExpansion.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TerminologyCapabilitiesExpansionBuilder) AddExtension(v Extension) *TerminologyCapabilitiesExpansionBuilder {
+	b.terminologyCapabilitiesExpansion.Extension = append(b.terminologyCapabilitiesExpansion.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TerminologyCapabilitiesExpansionBuilder) AddModifierExtension(v Extension) *TerminologyCapabilitiesExpansionBuilder {
+	b.terminologyCapabilitiesExpansion.ModifierExtension = append(b.terminologyCapabilitiesExpansion.ModifierExtension, v)
+	return b
+}
+
+// SetHierarchical sets the Hierarchical field.
+func (b *TerminologyCapabilitiesExpansionBuilder) SetHierarchical(v bool) *TerminologyCapabilitiesExpansionBuilder {
+	b.terminologyCapabilitiesExpansion.Hierarchical = &v
+	return b
+}
+
+// SetPaging sets the Paging field.
+func (b *TerminologyCapabilitiesExpansionBuilder) SetPaging(v bool) *TerminologyCapabilitiesExpansionBuilder {
+	b.terminologyCapabilitiesExpansion.Paging = &v
+	return b
+}
+
+// SetIncomplete sets the Incomplete field.
+func (b *TerminologyCapabilitiesExpansionBuilder) SetIncomplete(v bool) *TerminologyCapabilitiesExpansionBuilder {
+	b.terminologyCapabilitiesExpansion.Incomplete = &v
+	return b
+}
+
+// AddParameter adds a Parameter element.
+func (b *TerminologyCapabilitiesExpansionBuilder) AddParameter(v TerminologyCapabilitiesExpansionParameter) *TerminologyCapabilitiesExpansionBuilder {
+	b.terminologyCapabilitiesExpansion.Parameter = append(b.terminologyCapabilitiesExpansion.Parameter, v)
+	return b
+}
+
+// SetTextFilter sets the TextFilter field.
+func (b *TerminologyCapabilitiesExpansionBuilder) SetTextFilter(v string) *TerminologyCapabilitiesExpansionBuilder {
+	b.terminologyCapabilitiesExpansion.TextFilter = &v
+	return b
+}
+
+// SetHierarchicalExt sets the extensions carried by Hierarchical, serialized as
+// "_hierarchical".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesExpansionBuilder) SetHierarchicalExt(v Element) *TerminologyCapabilitiesExpansionBuilder {
+	b.terminologyCapabilitiesExpansion.HierarchicalExt = &v
+	return b
+}
+
+// SetPagingExt sets the extensions carried by Paging, serialized as
+// "_paging".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesExpansionBuilder) SetPagingExt(v Element) *TerminologyCapabilitiesExpansionBuilder {
+	b.terminologyCapabilitiesExpansion.PagingExt = &v
+	return b
+}
+
+// SetIncompleteExt sets the extensions carried by Incomplete, serialized as
+// "_incomplete".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesExpansionBuilder) SetIncompleteExt(v Element) *TerminologyCapabilitiesExpansionBuilder {
+	b.terminologyCapabilitiesExpansion.IncompleteExt = &v
+	return b
+}
+
+// SetTextFilterExt sets the extensions carried by TextFilter, serialized as
+// "_textFilter".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesExpansionBuilder) SetTextFilterExt(v Element) *TerminologyCapabilitiesExpansionBuilder {
+	b.terminologyCapabilitiesExpansion.TextFilterExt = &v
+	return b
+}
+
+// =============================================================================
+// TerminologyCapabilitiesExpansionParameter - Fluent Builder
+// =============================================================================
+
+// TerminologyCapabilitiesExpansionParameterBuilder provides a fluent API for constructing TerminologyCapabilitiesExpansionParameter values.
+type TerminologyCapabilitiesExpansionParameterBuilder struct {
+	terminologyCapabilitiesExpansionParameter *TerminologyCapabilitiesExpansionParameter
+}
+
+// NewTerminologyCapabilitiesExpansionParameterBuilder creates a new TerminologyCapabilitiesExpansionParameterBuilder.
+func NewTerminologyCapabilitiesExpansionParameterBuilder() *TerminologyCapabilitiesExpansionParameterBuilder {
+	return &TerminologyCapabilitiesExpansionParameterBuilder{
+		terminologyCapabilitiesExpansionParameter: &TerminologyCapabilitiesExpansionParameter{},
+	}
+}
+
+// Build returns the constructed TerminologyCapabilitiesExpansionParameter.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TerminologyCapabilitiesExpansionParameterBuilder) Build() TerminologyCapabilitiesExpansionParameter {
+	return *b.terminologyCapabilitiesExpansionParameter
+}
+
+// SetId sets the Id field.
+func (b *TerminologyCapabilitiesExpansionParameterBuilder) SetId(v string) *TerminologyCapabilitiesExpansionParameterBuilder {
+	b.terminologyCapabilitiesExpansionParameter.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TerminologyCapabilitiesExpansionParameterBuilder) AddExtension(v Extension) *TerminologyCapabilitiesExpansionParameterBuilder {
+	b.terminologyCapabilitiesExpansionParameter.Extension = append(b.terminologyCapabilitiesExpansionParameter.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TerminologyCapabilitiesExpansionParameterBuilder) AddModifierExtension(v Extension) *TerminologyCapabilitiesExpansionParameterBuilder {
+	b.terminologyCapabilitiesExpansionParameter.ModifierExtension = append(b.terminologyCapabilitiesExpansionParameter.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *TerminologyCapabilitiesExpansionParameterBuilder) SetName(v string) *TerminologyCapabilitiesExpansionParameterBuilder {
+	b.terminologyCapabilitiesExpansionParameter.Name = &v
+	return b
+}
+
+// SetDocumentation sets the Documentation field.
+func (b *TerminologyCapabilitiesExpansionParameterBuilder) SetDocumentation(v string) *TerminologyCapabilitiesExpansionParameterBuilder {
+	b.terminologyCapabilitiesExpansionParameter.Documentation = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesExpansionParameterBuilder) SetNameExt(v Element) *TerminologyCapabilitiesExpansionParameterBuilder {
+	b.terminologyCapabilitiesExpansionParameter.NameExt = &v
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesExpansionParameterBuilder) SetDocumentationExt(v Element) *TerminologyCapabilitiesExpansionParameterBuilder {
+	b.terminologyCapabilitiesExpansionParameter.DocumentationExt = &v
+	return b
+}
+
+// =============================================================================
+// TerminologyCapabilitiesImplementation - Fluent Builder
+// =============================================================================
+
+// TerminologyCapabilitiesImplementationBuilder provides a fluent API for constructing TerminologyCapabilitiesImplementation values.
+type TerminologyCapabilitiesImplementationBuilder struct {
+	terminologyCapabilitiesImplementation *TerminologyCapabilitiesImplementation
+}
+
+// NewTerminologyCapabilitiesImplementationBuilder creates a new TerminologyCapabilitiesImplementationBuilder.
+func NewTerminologyCapabilitiesImplementationBuilder() *TerminologyCapabilitiesImplementationBuilder {
+	return &TerminologyCapabilitiesImplementationBuilder{
+		terminologyCapabilitiesImplementation: &TerminologyCapabilitiesImplementation{},
+	}
+}
+
+// Build returns the constructed TerminologyCapabilitiesImplementation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TerminologyCapabilitiesImplementationBuilder) Build() TerminologyCapabilitiesImplementation {
+	return *b.terminologyCapabilitiesImplementation
+}
+
+// SetId sets the Id field.
+func (b *TerminologyCapabilitiesImplementationBuilder) SetId(v string) *TerminologyCapabilitiesImplementationBuilder {
+	b.terminologyCapabilitiesImplementation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TerminologyCapabilitiesImplementationBuilder) AddExtension(v Extension) *TerminologyCapabilitiesImplementationBuilder {
+	b.terminologyCapabilitiesImplementation.Extension = append(b.terminologyCapabilitiesImplementation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TerminologyCapabilitiesImplementationBuilder) AddModifierExtension(v Extension) *TerminologyCapabilitiesImplementationBuilder {
+	b.terminologyCapabilitiesImplementation.ModifierExtension = append(b.terminologyCapabilitiesImplementation.ModifierExtension, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *TerminologyCapabilitiesImplementationBuilder) SetDescription(v string) *TerminologyCapabilitiesImplementationBuilder {
+	b.terminologyCapabilitiesImplementation.Description = &v
+	return b
+}
+
+// SetUrl sets the Url field.
+func (b *TerminologyCapabilitiesImplementationBuilder) SetUrl(v string) *TerminologyCapabilitiesImplementationBuilder {
+	b.terminologyCapabilitiesImplementation.Url = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesImplementationBuilder) SetDescriptionExt(v Element) *TerminologyCapabilitiesImplementationBuilder {
+	b.terminologyCapabilitiesImplementation.DescriptionExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesImplementationBuilder) SetUrlExt(v Element) *TerminologyCapabilitiesImplementationBuilder {
+	b.terminologyCapabilitiesImplementation.UrlExt = &v
+	return b
+}
+
+// =============================================================================
+// TerminologyCapabilitiesSoftware - Fluent Builder
+// =============================================================================
+
+// TerminologyCapabilitiesSoftwareBuilder provides a fluent API for constructing TerminologyCapabilitiesSoftware values.
+type TerminologyCapabilitiesSoftwareBuilder struct {
+	terminologyCapabilitiesSoftware *TerminologyCapabilitiesSoftware
+}
+
+// NewTerminologyCapabilitiesSoftwareBuilder creates a new TerminologyCapabilitiesSoftwareBuilder.
+func NewTerminologyCapabilitiesSoftwareBuilder() *TerminologyCapabilitiesSoftwareBuilder {
+	return &TerminologyCapabilitiesSoftwareBuilder{
+		terminologyCapabilitiesSoftware: &TerminologyCapabilitiesSoftware{},
+	}
+}
+
+// Build returns the constructed TerminologyCapabilitiesSoftware.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TerminologyCapabilitiesSoftwareBuilder) Build() TerminologyCapabilitiesSoftware {
+	return *b.terminologyCapabilitiesSoftware
+}
+
+// SetId sets the Id field.
+func (b *TerminologyCapabilitiesSoftwareBuilder) SetId(v string) *TerminologyCapabilitiesSoftwareBuilder {
+	b.terminologyCapabilitiesSoftware.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TerminologyCapabilitiesSoftwareBuilder) AddExtension(v Extension) *TerminologyCapabilitiesSoftwareBuilder {
+	b.terminologyCapabilitiesSoftware.Extension = append(b.terminologyCapabilitiesSoftware.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TerminologyCapabilitiesSoftwareBuilder) AddModifierExtension(v Extension) *TerminologyCapabilitiesSoftwareBuilder {
+	b.terminologyCapabilitiesSoftware.ModifierExtension = append(b.terminologyCapabilitiesSoftware.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *TerminologyCapabilitiesSoftwareBuilder) SetName(v string) *TerminologyCapabilitiesSoftwareBuilder {
+	b.terminologyCapabilitiesSoftware.Name = &v
+	return b
+}
+
+// SetVersion sets the Version field.
+func (b *TerminologyCapabilitiesSoftwareBuilder) SetVersion(v string) *TerminologyCapabilitiesSoftwareBuilder {
+	b.terminologyCapabilitiesSoftware.Version = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesSoftwareBuilder) SetNameExt(v Element) *TerminologyCapabilitiesSoftwareBuilder {
+	b.terminologyCapabilitiesSoftware.NameExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesSoftwareBuilder) SetVersionExt(v Element) *TerminologyCapabilitiesSoftwareBuilder {
+	b.terminologyCapabilitiesSoftware.VersionExt = &v
+	return b
+}
+
+// =============================================================================
+// TerminologyCapabilitiesTranslation - Fluent Builder
+// =============================================================================
+
+// TerminologyCapabilitiesTranslationBuilder provides a fluent API for constructing TerminologyCapabilitiesTranslation values.
+type TerminologyCapabilitiesTranslationBuilder struct {
+	terminologyCapabilitiesTranslation *TerminologyCapabilitiesTranslation
+}
+
+// NewTerminologyCapabilitiesTranslationBuilder creates a new TerminologyCapabilitiesTranslationBuilder.
+func NewTerminologyCapabilitiesTranslationBuilder() *TerminologyCapabilitiesTranslationBuilder {
+	return &TerminologyCapabilitiesTranslationBuilder{
+		terminologyCapabilitiesTranslation: &TerminologyCapabilitiesTranslation{},
+	}
+}
+
+// Build returns the constructed TerminologyCapabilitiesTranslation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TerminologyCapabilitiesTranslationBuilder) Build() TerminologyCapabilitiesTranslation {
+	return *b.terminologyCapabilitiesTranslation
+}
+
+// SetId sets the Id field.
+func (b *TerminologyCapabilitiesTranslationBuilder) SetId(v string) *TerminologyCapabilitiesTranslationBuilder {
+	b.terminologyCapabilitiesTranslation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TerminologyCapabilitiesTranslationBuilder) AddExtension(v Extension) *TerminologyCapabilitiesTranslationBuilder {
+	b.terminologyCapabilitiesTranslation.Extension = append(b.terminologyCapabilitiesTranslation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TerminologyCapabilitiesTranslationBuilder) AddModifierExtension(v Extension) *TerminologyCapabilitiesTranslationBuilder {
+	b.terminologyCapabilitiesTranslation.ModifierExtension = append(b.terminologyCapabilitiesTranslation.ModifierExtension, v)
+	return b
+}
+
+// SetNeedsMap sets the NeedsMap field.
+func (b *TerminologyCapabilitiesTranslationBuilder) SetNeedsMap(v bool) *TerminologyCapabilitiesTranslationBuilder {
+	b.terminologyCapabilitiesTranslation.NeedsMap = &v
+	return b
+}
+
+// SetNeedsMapExt sets the extensions carried by NeedsMap, serialized as
+// "_needsMap".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesTranslationBuilder) SetNeedsMapExt(v Element) *TerminologyCapabilitiesTranslationBuilder {
+	b.terminologyCapabilitiesTranslation.NeedsMapExt = &v
+	return b
+}
+
+// =============================================================================
+// TerminologyCapabilitiesValidateCode - Fluent Builder
+// =============================================================================
+
+// TerminologyCapabilitiesValidateCodeBuilder provides a fluent API for constructing TerminologyCapabilitiesValidateCode values.
+type TerminologyCapabilitiesValidateCodeBuilder struct {
+	terminologyCapabilitiesValidateCode *TerminologyCapabilitiesValidateCode
+}
+
+// NewTerminologyCapabilitiesValidateCodeBuilder creates a new TerminologyCapabilitiesValidateCodeBuilder.
+func NewTerminologyCapabilitiesValidateCodeBuilder() *TerminologyCapabilitiesValidateCodeBuilder {
+	return &TerminologyCapabilitiesValidateCodeBuilder{
+		terminologyCapabilitiesValidateCode: &TerminologyCapabilitiesValidateCode{},
+	}
+}
+
+// Build returns the constructed TerminologyCapabilitiesValidateCode.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TerminologyCapabilitiesValidateCodeBuilder) Build() TerminologyCapabilitiesValidateCode {
+	return *b.terminologyCapabilitiesValidateCode
+}
+
+// SetId sets the Id field.
+func (b *TerminologyCapabilitiesValidateCodeBuilder) SetId(v string) *TerminologyCapabilitiesValidateCodeBuilder {
+	b.terminologyCapabilitiesValidateCode.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TerminologyCapabilitiesValidateCodeBuilder) AddExtension(v Extension) *TerminologyCapabilitiesValidateCodeBuilder {
+	b.terminologyCapabilitiesValidateCode.Extension = append(b.terminologyCapabilitiesValidateCode.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TerminologyCapabilitiesValidateCodeBuilder) AddModifierExtension(v Extension) *TerminologyCapabilitiesValidateCodeBuilder {
+	b.terminologyCapabilitiesValidateCode.ModifierExtension = append(b.terminologyCapabilitiesValidateCode.ModifierExtension, v)
+	return b
+}
+
+// SetTranslations sets the Translations field.
+func (b *TerminologyCapabilitiesValidateCodeBuilder) SetTranslations(v bool) *TerminologyCapabilitiesValidateCodeBuilder {
+	b.terminologyCapabilitiesValidateCode.Translations = &v
+	return b
+}
+
+// SetTranslationsExt sets the extensions carried by Translations, serialized as
+// "_translations".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TerminologyCapabilitiesValidateCodeBuilder) SetTranslationsExt(v Element) *TerminologyCapabilitiesValidateCodeBuilder {
+	b.terminologyCapabilitiesValidateCode.TranslationsExt = &v
+	return b
 }

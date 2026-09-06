@@ -1065,3 +1065,423 @@ func (b *NutritionProductBuilder) AddNote(v Annotation) *NutritionProductBuilder
 	b.nutritionProduct.Note = append(b.nutritionProduct.Note, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionProductBuilder) SetImplicitRulesExt(v Element) *NutritionProductBuilder {
+	b.nutritionProduct.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionProductBuilder) SetLanguageExt(v Element) *NutritionProductBuilder {
+	b.nutritionProduct.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionProductBuilder) SetStatusExt(v Element) *NutritionProductBuilder {
+	b.nutritionProduct.StatusExt = &v
+	return b
+}
+
+// =============================================================================
+// NutritionProductCharacteristic - Fluent Builder
+// =============================================================================
+
+// NutritionProductCharacteristicBuilder provides a fluent API for constructing NutritionProductCharacteristic values.
+type NutritionProductCharacteristicBuilder struct {
+	nutritionProductCharacteristic *NutritionProductCharacteristic
+}
+
+// NewNutritionProductCharacteristicBuilder creates a new NutritionProductCharacteristicBuilder.
+func NewNutritionProductCharacteristicBuilder() *NutritionProductCharacteristicBuilder {
+	return &NutritionProductCharacteristicBuilder{
+		nutritionProductCharacteristic: &NutritionProductCharacteristic{},
+	}
+}
+
+// Build returns the constructed NutritionProductCharacteristic.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *NutritionProductCharacteristicBuilder) Build() NutritionProductCharacteristic {
+	return *b.nutritionProductCharacteristic
+}
+
+// SetId sets the Id field.
+func (b *NutritionProductCharacteristicBuilder) SetId(v string) *NutritionProductCharacteristicBuilder {
+	b.nutritionProductCharacteristic.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *NutritionProductCharacteristicBuilder) AddExtension(v Extension) *NutritionProductCharacteristicBuilder {
+	b.nutritionProductCharacteristic.Extension = append(b.nutritionProductCharacteristic.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *NutritionProductCharacteristicBuilder) AddModifierExtension(v Extension) *NutritionProductCharacteristicBuilder {
+	b.nutritionProductCharacteristic.ModifierExtension = append(b.nutritionProductCharacteristic.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *NutritionProductCharacteristicBuilder) SetType(v CodeableConcept) *NutritionProductCharacteristicBuilder {
+	b.nutritionProductCharacteristic.Type = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *NutritionProductCharacteristicBuilder) SetValueCodeableConcept(v CodeableConcept) *NutritionProductCharacteristicBuilder {
+	b.clearValue()
+	b.nutritionProductCharacteristic.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *NutritionProductCharacteristicBuilder) SetValueString(v string) *NutritionProductCharacteristicBuilder {
+	b.clearValue()
+	b.nutritionProductCharacteristic.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *NutritionProductCharacteristicBuilder) SetValueStringExt(v Element) *NutritionProductCharacteristicBuilder {
+	b.nutritionProductCharacteristic.ValueStringExt = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *NutritionProductCharacteristicBuilder) SetValueQuantity(v Quantity) *NutritionProductCharacteristicBuilder {
+	b.clearValue()
+	b.nutritionProductCharacteristic.ValueQuantity = &v
+	return b
+}
+
+// SetValueBase64Binary sets Value[x] to its ValueBase64Binary variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *NutritionProductCharacteristicBuilder) SetValueBase64Binary(v string) *NutritionProductCharacteristicBuilder {
+	b.clearValue()
+	b.nutritionProductCharacteristic.ValueBase64Binary = &v
+	return b
+}
+
+// SetValueBase64BinaryExt sets the ValueBase64BinaryExt field.
+func (b *NutritionProductCharacteristicBuilder) SetValueBase64BinaryExt(v Element) *NutritionProductCharacteristicBuilder {
+	b.nutritionProductCharacteristic.ValueBase64BinaryExt = &v
+	return b
+}
+
+// SetValueAttachment sets Value[x] to its ValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *NutritionProductCharacteristicBuilder) SetValueAttachment(v Attachment) *NutritionProductCharacteristicBuilder {
+	b.clearValue()
+	b.nutritionProductCharacteristic.ValueAttachment = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *NutritionProductCharacteristicBuilder) SetValueBoolean(v bool) *NutritionProductCharacteristicBuilder {
+	b.clearValue()
+	b.nutritionProductCharacteristic.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *NutritionProductCharacteristicBuilder) SetValueBooleanExt(v Element) *NutritionProductCharacteristicBuilder {
+	b.nutritionProductCharacteristic.ValueBooleanExt = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *NutritionProductCharacteristicBuilder) clearValue() {
+	b.nutritionProductCharacteristic.ValueCodeableConcept = nil
+	b.nutritionProductCharacteristic.ValueString = nil
+	b.nutritionProductCharacteristic.ValueStringExt = nil
+	b.nutritionProductCharacteristic.ValueQuantity = nil
+	b.nutritionProductCharacteristic.ValueBase64Binary = nil
+	b.nutritionProductCharacteristic.ValueBase64BinaryExt = nil
+	b.nutritionProductCharacteristic.ValueAttachment = nil
+	b.nutritionProductCharacteristic.ValueBoolean = nil
+	b.nutritionProductCharacteristic.ValueBooleanExt = nil
+}
+
+// =============================================================================
+// NutritionProductIngredient - Fluent Builder
+// =============================================================================
+
+// NutritionProductIngredientBuilder provides a fluent API for constructing NutritionProductIngredient values.
+type NutritionProductIngredientBuilder struct {
+	nutritionProductIngredient *NutritionProductIngredient
+}
+
+// NewNutritionProductIngredientBuilder creates a new NutritionProductIngredientBuilder.
+func NewNutritionProductIngredientBuilder() *NutritionProductIngredientBuilder {
+	return &NutritionProductIngredientBuilder{
+		nutritionProductIngredient: &NutritionProductIngredient{},
+	}
+}
+
+// Build returns the constructed NutritionProductIngredient.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *NutritionProductIngredientBuilder) Build() NutritionProductIngredient {
+	return *b.nutritionProductIngredient
+}
+
+// SetId sets the Id field.
+func (b *NutritionProductIngredientBuilder) SetId(v string) *NutritionProductIngredientBuilder {
+	b.nutritionProductIngredient.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *NutritionProductIngredientBuilder) AddExtension(v Extension) *NutritionProductIngredientBuilder {
+	b.nutritionProductIngredient.Extension = append(b.nutritionProductIngredient.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *NutritionProductIngredientBuilder) AddModifierExtension(v Extension) *NutritionProductIngredientBuilder {
+	b.nutritionProductIngredient.ModifierExtension = append(b.nutritionProductIngredient.ModifierExtension, v)
+	return b
+}
+
+// SetItem sets the Item field.
+func (b *NutritionProductIngredientBuilder) SetItem(v CodeableReference) *NutritionProductIngredientBuilder {
+	b.nutritionProductIngredient.Item = &v
+	return b
+}
+
+// AddAmount adds a Amount element.
+func (b *NutritionProductIngredientBuilder) AddAmount(v Ratio) *NutritionProductIngredientBuilder {
+	b.nutritionProductIngredient.Amount = append(b.nutritionProductIngredient.Amount, v)
+	return b
+}
+
+// =============================================================================
+// NutritionProductInstance - Fluent Builder
+// =============================================================================
+
+// NutritionProductInstanceBuilder provides a fluent API for constructing NutritionProductInstance values.
+type NutritionProductInstanceBuilder struct {
+	nutritionProductInstance *NutritionProductInstance
+}
+
+// NewNutritionProductInstanceBuilder creates a new NutritionProductInstanceBuilder.
+func NewNutritionProductInstanceBuilder() *NutritionProductInstanceBuilder {
+	return &NutritionProductInstanceBuilder{
+		nutritionProductInstance: &NutritionProductInstance{},
+	}
+}
+
+// Build returns the constructed NutritionProductInstance.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *NutritionProductInstanceBuilder) Build() NutritionProductInstance {
+	return *b.nutritionProductInstance
+}
+
+// SetId sets the Id field.
+func (b *NutritionProductInstanceBuilder) SetId(v string) *NutritionProductInstanceBuilder {
+	b.nutritionProductInstance.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *NutritionProductInstanceBuilder) AddExtension(v Extension) *NutritionProductInstanceBuilder {
+	b.nutritionProductInstance.Extension = append(b.nutritionProductInstance.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *NutritionProductInstanceBuilder) AddModifierExtension(v Extension) *NutritionProductInstanceBuilder {
+	b.nutritionProductInstance.ModifierExtension = append(b.nutritionProductInstance.ModifierExtension, v)
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *NutritionProductInstanceBuilder) SetQuantity(v Quantity) *NutritionProductInstanceBuilder {
+	b.nutritionProductInstance.Quantity = &v
+	return b
+}
+
+// AddIdentifier adds a Identifier element.
+func (b *NutritionProductInstanceBuilder) AddIdentifier(v Identifier) *NutritionProductInstanceBuilder {
+	b.nutritionProductInstance.Identifier = append(b.nutritionProductInstance.Identifier, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *NutritionProductInstanceBuilder) SetName(v string) *NutritionProductInstanceBuilder {
+	b.nutritionProductInstance.Name = &v
+	return b
+}
+
+// SetLotNumber sets the LotNumber field.
+func (b *NutritionProductInstanceBuilder) SetLotNumber(v string) *NutritionProductInstanceBuilder {
+	b.nutritionProductInstance.LotNumber = &v
+	return b
+}
+
+// SetExpiry sets the Expiry field.
+func (b *NutritionProductInstanceBuilder) SetExpiry(v string) *NutritionProductInstanceBuilder {
+	b.nutritionProductInstance.Expiry = &v
+	return b
+}
+
+// SetUseBy sets the UseBy field.
+func (b *NutritionProductInstanceBuilder) SetUseBy(v string) *NutritionProductInstanceBuilder {
+	b.nutritionProductInstance.UseBy = &v
+	return b
+}
+
+// SetBiologicalSourceEvent sets the BiologicalSourceEvent field.
+func (b *NutritionProductInstanceBuilder) SetBiologicalSourceEvent(v Identifier) *NutritionProductInstanceBuilder {
+	b.nutritionProductInstance.BiologicalSourceEvent = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionProductInstanceBuilder) SetNameExt(v Element) *NutritionProductInstanceBuilder {
+	b.nutritionProductInstance.NameExt = &v
+	return b
+}
+
+// SetLotNumberExt sets the extensions carried by LotNumber, serialized as
+// "_lotNumber".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionProductInstanceBuilder) SetLotNumberExt(v Element) *NutritionProductInstanceBuilder {
+	b.nutritionProductInstance.LotNumberExt = &v
+	return b
+}
+
+// SetExpiryExt sets the extensions carried by Expiry, serialized as
+// "_expiry".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionProductInstanceBuilder) SetExpiryExt(v Element) *NutritionProductInstanceBuilder {
+	b.nutritionProductInstance.ExpiryExt = &v
+	return b
+}
+
+// SetUseByExt sets the extensions carried by UseBy, serialized as
+// "_useBy".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionProductInstanceBuilder) SetUseByExt(v Element) *NutritionProductInstanceBuilder {
+	b.nutritionProductInstance.UseByExt = &v
+	return b
+}
+
+// =============================================================================
+// NutritionProductNutrient - Fluent Builder
+// =============================================================================
+
+// NutritionProductNutrientBuilder provides a fluent API for constructing NutritionProductNutrient values.
+type NutritionProductNutrientBuilder struct {
+	nutritionProductNutrient *NutritionProductNutrient
+}
+
+// NewNutritionProductNutrientBuilder creates a new NutritionProductNutrientBuilder.
+func NewNutritionProductNutrientBuilder() *NutritionProductNutrientBuilder {
+	return &NutritionProductNutrientBuilder{
+		nutritionProductNutrient: &NutritionProductNutrient{},
+	}
+}
+
+// Build returns the constructed NutritionProductNutrient.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *NutritionProductNutrientBuilder) Build() NutritionProductNutrient {
+	return *b.nutritionProductNutrient
+}
+
+// SetId sets the Id field.
+func (b *NutritionProductNutrientBuilder) SetId(v string) *NutritionProductNutrientBuilder {
+	b.nutritionProductNutrient.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *NutritionProductNutrientBuilder) AddExtension(v Extension) *NutritionProductNutrientBuilder {
+	b.nutritionProductNutrient.Extension = append(b.nutritionProductNutrient.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *NutritionProductNutrientBuilder) AddModifierExtension(v Extension) *NutritionProductNutrientBuilder {
+	b.nutritionProductNutrient.ModifierExtension = append(b.nutritionProductNutrient.ModifierExtension, v)
+	return b
+}
+
+// SetItem sets the Item field.
+func (b *NutritionProductNutrientBuilder) SetItem(v CodeableReference) *NutritionProductNutrientBuilder {
+	b.nutritionProductNutrient.Item = &v
+	return b
+}
+
+// AddAmount adds a Amount element.
+func (b *NutritionProductNutrientBuilder) AddAmount(v Ratio) *NutritionProductNutrientBuilder {
+	b.nutritionProductNutrient.Amount = append(b.nutritionProductNutrient.Amount, v)
+	return b
+}

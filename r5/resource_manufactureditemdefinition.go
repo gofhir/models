@@ -985,3 +985,354 @@ func (b *ManufacturedItemDefinitionBuilder) AddComponent(v ManufacturedItemDefin
 	b.manufacturedItemDefinition.Component = append(b.manufacturedItemDefinition.Component, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ManufacturedItemDefinitionBuilder) SetImplicitRulesExt(v Element) *ManufacturedItemDefinitionBuilder {
+	b.manufacturedItemDefinition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ManufacturedItemDefinitionBuilder) SetLanguageExt(v Element) *ManufacturedItemDefinitionBuilder {
+	b.manufacturedItemDefinition.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ManufacturedItemDefinitionBuilder) SetStatusExt(v Element) *ManufacturedItemDefinitionBuilder {
+	b.manufacturedItemDefinition.StatusExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ManufacturedItemDefinitionBuilder) SetNameExt(v Element) *ManufacturedItemDefinitionBuilder {
+	b.manufacturedItemDefinition.NameExt = &v
+	return b
+}
+
+// =============================================================================
+// ManufacturedItemDefinitionComponent - Fluent Builder
+// =============================================================================
+
+// ManufacturedItemDefinitionComponentBuilder provides a fluent API for constructing ManufacturedItemDefinitionComponent values.
+type ManufacturedItemDefinitionComponentBuilder struct {
+	manufacturedItemDefinitionComponent *ManufacturedItemDefinitionComponent
+}
+
+// NewManufacturedItemDefinitionComponentBuilder creates a new ManufacturedItemDefinitionComponentBuilder.
+func NewManufacturedItemDefinitionComponentBuilder() *ManufacturedItemDefinitionComponentBuilder {
+	return &ManufacturedItemDefinitionComponentBuilder{
+		manufacturedItemDefinitionComponent: &ManufacturedItemDefinitionComponent{},
+	}
+}
+
+// Build returns the constructed ManufacturedItemDefinitionComponent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ManufacturedItemDefinitionComponentBuilder) Build() ManufacturedItemDefinitionComponent {
+	return *b.manufacturedItemDefinitionComponent
+}
+
+// SetId sets the Id field.
+func (b *ManufacturedItemDefinitionComponentBuilder) SetId(v string) *ManufacturedItemDefinitionComponentBuilder {
+	b.manufacturedItemDefinitionComponent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ManufacturedItemDefinitionComponentBuilder) AddExtension(v Extension) *ManufacturedItemDefinitionComponentBuilder {
+	b.manufacturedItemDefinitionComponent.Extension = append(b.manufacturedItemDefinitionComponent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ManufacturedItemDefinitionComponentBuilder) AddModifierExtension(v Extension) *ManufacturedItemDefinitionComponentBuilder {
+	b.manufacturedItemDefinitionComponent.ModifierExtension = append(b.manufacturedItemDefinitionComponent.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ManufacturedItemDefinitionComponentBuilder) SetType(v CodeableConcept) *ManufacturedItemDefinitionComponentBuilder {
+	b.manufacturedItemDefinitionComponent.Type = &v
+	return b
+}
+
+// AddFunction adds a Function element.
+func (b *ManufacturedItemDefinitionComponentBuilder) AddFunction(v CodeableConcept) *ManufacturedItemDefinitionComponentBuilder {
+	b.manufacturedItemDefinitionComponent.Function = append(b.manufacturedItemDefinitionComponent.Function, v)
+	return b
+}
+
+// AddAmount adds a Amount element.
+func (b *ManufacturedItemDefinitionComponentBuilder) AddAmount(v Quantity) *ManufacturedItemDefinitionComponentBuilder {
+	b.manufacturedItemDefinitionComponent.Amount = append(b.manufacturedItemDefinitionComponent.Amount, v)
+	return b
+}
+
+// AddConstituent adds a Constituent element.
+func (b *ManufacturedItemDefinitionComponentBuilder) AddConstituent(v ManufacturedItemDefinitionComponentConstituent) *ManufacturedItemDefinitionComponentBuilder {
+	b.manufacturedItemDefinitionComponent.Constituent = append(b.manufacturedItemDefinitionComponent.Constituent, v)
+	return b
+}
+
+// AddProperty adds a Property element.
+func (b *ManufacturedItemDefinitionComponentBuilder) AddProperty(v ManufacturedItemDefinitionProperty) *ManufacturedItemDefinitionComponentBuilder {
+	b.manufacturedItemDefinitionComponent.Property = append(b.manufacturedItemDefinitionComponent.Property, v)
+	return b
+}
+
+// AddComponent adds a Component element.
+func (b *ManufacturedItemDefinitionComponentBuilder) AddComponent(v ManufacturedItemDefinitionComponent) *ManufacturedItemDefinitionComponentBuilder {
+	b.manufacturedItemDefinitionComponent.Component = append(b.manufacturedItemDefinitionComponent.Component, v)
+	return b
+}
+
+// =============================================================================
+// ManufacturedItemDefinitionComponentConstituent - Fluent Builder
+// =============================================================================
+
+// ManufacturedItemDefinitionComponentConstituentBuilder provides a fluent API for constructing ManufacturedItemDefinitionComponentConstituent values.
+type ManufacturedItemDefinitionComponentConstituentBuilder struct {
+	manufacturedItemDefinitionComponentConstituent *ManufacturedItemDefinitionComponentConstituent
+}
+
+// NewManufacturedItemDefinitionComponentConstituentBuilder creates a new ManufacturedItemDefinitionComponentConstituentBuilder.
+func NewManufacturedItemDefinitionComponentConstituentBuilder() *ManufacturedItemDefinitionComponentConstituentBuilder {
+	return &ManufacturedItemDefinitionComponentConstituentBuilder{
+		manufacturedItemDefinitionComponentConstituent: &ManufacturedItemDefinitionComponentConstituent{},
+	}
+}
+
+// Build returns the constructed ManufacturedItemDefinitionComponentConstituent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ManufacturedItemDefinitionComponentConstituentBuilder) Build() ManufacturedItemDefinitionComponentConstituent {
+	return *b.manufacturedItemDefinitionComponentConstituent
+}
+
+// SetId sets the Id field.
+func (b *ManufacturedItemDefinitionComponentConstituentBuilder) SetId(v string) *ManufacturedItemDefinitionComponentConstituentBuilder {
+	b.manufacturedItemDefinitionComponentConstituent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ManufacturedItemDefinitionComponentConstituentBuilder) AddExtension(v Extension) *ManufacturedItemDefinitionComponentConstituentBuilder {
+	b.manufacturedItemDefinitionComponentConstituent.Extension = append(b.manufacturedItemDefinitionComponentConstituent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ManufacturedItemDefinitionComponentConstituentBuilder) AddModifierExtension(v Extension) *ManufacturedItemDefinitionComponentConstituentBuilder {
+	b.manufacturedItemDefinitionComponentConstituent.ModifierExtension = append(b.manufacturedItemDefinitionComponentConstituent.ModifierExtension, v)
+	return b
+}
+
+// AddAmount adds a Amount element.
+func (b *ManufacturedItemDefinitionComponentConstituentBuilder) AddAmount(v Quantity) *ManufacturedItemDefinitionComponentConstituentBuilder {
+	b.manufacturedItemDefinitionComponentConstituent.Amount = append(b.manufacturedItemDefinitionComponentConstituent.Amount, v)
+	return b
+}
+
+// AddLocation adds a Location element.
+func (b *ManufacturedItemDefinitionComponentConstituentBuilder) AddLocation(v CodeableConcept) *ManufacturedItemDefinitionComponentConstituentBuilder {
+	b.manufacturedItemDefinitionComponentConstituent.Location = append(b.manufacturedItemDefinitionComponentConstituent.Location, v)
+	return b
+}
+
+// AddFunction adds a Function element.
+func (b *ManufacturedItemDefinitionComponentConstituentBuilder) AddFunction(v CodeableConcept) *ManufacturedItemDefinitionComponentConstituentBuilder {
+	b.manufacturedItemDefinitionComponentConstituent.Function = append(b.manufacturedItemDefinitionComponentConstituent.Function, v)
+	return b
+}
+
+// AddHasIngredient adds a HasIngredient element.
+func (b *ManufacturedItemDefinitionComponentConstituentBuilder) AddHasIngredient(v CodeableReference) *ManufacturedItemDefinitionComponentConstituentBuilder {
+	b.manufacturedItemDefinitionComponentConstituent.HasIngredient = append(b.manufacturedItemDefinitionComponentConstituent.HasIngredient, v)
+	return b
+}
+
+// =============================================================================
+// ManufacturedItemDefinitionProperty - Fluent Builder
+// =============================================================================
+
+// ManufacturedItemDefinitionPropertyBuilder provides a fluent API for constructing ManufacturedItemDefinitionProperty values.
+type ManufacturedItemDefinitionPropertyBuilder struct {
+	manufacturedItemDefinitionProperty *ManufacturedItemDefinitionProperty
+}
+
+// NewManufacturedItemDefinitionPropertyBuilder creates a new ManufacturedItemDefinitionPropertyBuilder.
+func NewManufacturedItemDefinitionPropertyBuilder() *ManufacturedItemDefinitionPropertyBuilder {
+	return &ManufacturedItemDefinitionPropertyBuilder{
+		manufacturedItemDefinitionProperty: &ManufacturedItemDefinitionProperty{},
+	}
+}
+
+// Build returns the constructed ManufacturedItemDefinitionProperty.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ManufacturedItemDefinitionPropertyBuilder) Build() ManufacturedItemDefinitionProperty {
+	return *b.manufacturedItemDefinitionProperty
+}
+
+// SetId sets the Id field.
+func (b *ManufacturedItemDefinitionPropertyBuilder) SetId(v string) *ManufacturedItemDefinitionPropertyBuilder {
+	b.manufacturedItemDefinitionProperty.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ManufacturedItemDefinitionPropertyBuilder) AddExtension(v Extension) *ManufacturedItemDefinitionPropertyBuilder {
+	b.manufacturedItemDefinitionProperty.Extension = append(b.manufacturedItemDefinitionProperty.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ManufacturedItemDefinitionPropertyBuilder) AddModifierExtension(v Extension) *ManufacturedItemDefinitionPropertyBuilder {
+	b.manufacturedItemDefinitionProperty.ModifierExtension = append(b.manufacturedItemDefinitionProperty.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ManufacturedItemDefinitionPropertyBuilder) SetType(v CodeableConcept) *ManufacturedItemDefinitionPropertyBuilder {
+	b.manufacturedItemDefinitionProperty.Type = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ManufacturedItemDefinitionPropertyBuilder) SetValueCodeableConcept(v CodeableConcept) *ManufacturedItemDefinitionPropertyBuilder {
+	b.clearValue()
+	b.manufacturedItemDefinitionProperty.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ManufacturedItemDefinitionPropertyBuilder) SetValueQuantity(v Quantity) *ManufacturedItemDefinitionPropertyBuilder {
+	b.clearValue()
+	b.manufacturedItemDefinitionProperty.ValueQuantity = &v
+	return b
+}
+
+// SetValueDate sets Value[x] to its ValueDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ManufacturedItemDefinitionPropertyBuilder) SetValueDate(v string) *ManufacturedItemDefinitionPropertyBuilder {
+	b.clearValue()
+	b.manufacturedItemDefinitionProperty.ValueDate = &v
+	return b
+}
+
+// SetValueDateExt sets the ValueDateExt field.
+func (b *ManufacturedItemDefinitionPropertyBuilder) SetValueDateExt(v Element) *ManufacturedItemDefinitionPropertyBuilder {
+	b.manufacturedItemDefinitionProperty.ValueDateExt = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ManufacturedItemDefinitionPropertyBuilder) SetValueBoolean(v bool) *ManufacturedItemDefinitionPropertyBuilder {
+	b.clearValue()
+	b.manufacturedItemDefinitionProperty.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *ManufacturedItemDefinitionPropertyBuilder) SetValueBooleanExt(v Element) *ManufacturedItemDefinitionPropertyBuilder {
+	b.manufacturedItemDefinitionProperty.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueMarkdown sets Value[x] to its ValueMarkdown variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ManufacturedItemDefinitionPropertyBuilder) SetValueMarkdown(v string) *ManufacturedItemDefinitionPropertyBuilder {
+	b.clearValue()
+	b.manufacturedItemDefinitionProperty.ValueMarkdown = &v
+	return b
+}
+
+// SetValueMarkdownExt sets the ValueMarkdownExt field.
+func (b *ManufacturedItemDefinitionPropertyBuilder) SetValueMarkdownExt(v Element) *ManufacturedItemDefinitionPropertyBuilder {
+	b.manufacturedItemDefinitionProperty.ValueMarkdownExt = &v
+	return b
+}
+
+// SetValueAttachment sets Value[x] to its ValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ManufacturedItemDefinitionPropertyBuilder) SetValueAttachment(v Attachment) *ManufacturedItemDefinitionPropertyBuilder {
+	b.clearValue()
+	b.manufacturedItemDefinitionProperty.ValueAttachment = &v
+	return b
+}
+
+// SetValueReference sets Value[x] to its ValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ManufacturedItemDefinitionPropertyBuilder) SetValueReference(v Reference) *ManufacturedItemDefinitionPropertyBuilder {
+	b.clearValue()
+	b.manufacturedItemDefinitionProperty.ValueReference = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *ManufacturedItemDefinitionPropertyBuilder) clearValue() {
+	b.manufacturedItemDefinitionProperty.ValueCodeableConcept = nil
+	b.manufacturedItemDefinitionProperty.ValueQuantity = nil
+	b.manufacturedItemDefinitionProperty.ValueDate = nil
+	b.manufacturedItemDefinitionProperty.ValueDateExt = nil
+	b.manufacturedItemDefinitionProperty.ValueBoolean = nil
+	b.manufacturedItemDefinitionProperty.ValueBooleanExt = nil
+	b.manufacturedItemDefinitionProperty.ValueMarkdown = nil
+	b.manufacturedItemDefinitionProperty.ValueMarkdownExt = nil
+	b.manufacturedItemDefinitionProperty.ValueAttachment = nil
+	b.manufacturedItemDefinitionProperty.ValueReference = nil
+}

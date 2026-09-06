@@ -4118,3 +4118,2302 @@ func (b *CitationBuilder) SetCitedArtifact(v CitationCitedArtifact) *CitationBui
 	b.citation.CitedArtifact = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationBuilder) SetImplicitRulesExt(v Element) *CitationBuilder {
+	b.citation.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationBuilder) SetLanguageExt(v Element) *CitationBuilder {
+	b.citation.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationBuilder) SetUrlExt(v Element) *CitationBuilder {
+	b.citation.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationBuilder) SetVersionExt(v Element) *CitationBuilder {
+	b.citation.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationBuilder) SetNameExt(v Element) *CitationBuilder {
+	b.citation.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationBuilder) SetTitleExt(v Element) *CitationBuilder {
+	b.citation.TitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationBuilder) SetStatusExt(v Element) *CitationBuilder {
+	b.citation.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationBuilder) SetExperimentalExt(v Element) *CitationBuilder {
+	b.citation.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationBuilder) SetDateExt(v Element) *CitationBuilder {
+	b.citation.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationBuilder) SetPublisherExt(v Element) *CitationBuilder {
+	b.citation.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationBuilder) SetDescriptionExt(v Element) *CitationBuilder {
+	b.citation.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationBuilder) SetPurposeExt(v Element) *CitationBuilder {
+	b.citation.PurposeExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationBuilder) SetCopyrightExt(v Element) *CitationBuilder {
+	b.citation.CopyrightExt = &v
+	return b
+}
+
+// SetApprovalDateExt sets the extensions carried by ApprovalDate, serialized as
+// "_approvalDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationBuilder) SetApprovalDateExt(v Element) *CitationBuilder {
+	b.citation.ApprovalDateExt = &v
+	return b
+}
+
+// SetLastReviewDateExt sets the extensions carried by LastReviewDate, serialized as
+// "_lastReviewDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationBuilder) SetLastReviewDateExt(v Element) *CitationBuilder {
+	b.citation.LastReviewDateExt = &v
+	return b
+}
+
+// =============================================================================
+// CitationCitedArtifact - Fluent Builder
+// =============================================================================
+
+// CitationCitedArtifactBuilder provides a fluent API for constructing CitationCitedArtifact values.
+type CitationCitedArtifactBuilder struct {
+	citationCitedArtifact *CitationCitedArtifact
+}
+
+// NewCitationCitedArtifactBuilder creates a new CitationCitedArtifactBuilder.
+func NewCitationCitedArtifactBuilder() *CitationCitedArtifactBuilder {
+	return &CitationCitedArtifactBuilder{
+		citationCitedArtifact: &CitationCitedArtifact{},
+	}
+}
+
+// Build returns the constructed CitationCitedArtifact.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationCitedArtifactBuilder) Build() CitationCitedArtifact {
+	return *b.citationCitedArtifact
+}
+
+// SetId sets the Id field.
+func (b *CitationCitedArtifactBuilder) SetId(v string) *CitationCitedArtifactBuilder {
+	b.citationCitedArtifact.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationCitedArtifactBuilder) AddExtension(v Extension) *CitationCitedArtifactBuilder {
+	b.citationCitedArtifact.Extension = append(b.citationCitedArtifact.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationCitedArtifactBuilder) AddModifierExtension(v Extension) *CitationCitedArtifactBuilder {
+	b.citationCitedArtifact.ModifierExtension = append(b.citationCitedArtifact.ModifierExtension, v)
+	return b
+}
+
+// AddIdentifier adds a Identifier element.
+func (b *CitationCitedArtifactBuilder) AddIdentifier(v Identifier) *CitationCitedArtifactBuilder {
+	b.citationCitedArtifact.Identifier = append(b.citationCitedArtifact.Identifier, v)
+	return b
+}
+
+// AddRelatedIdentifier adds a RelatedIdentifier element.
+func (b *CitationCitedArtifactBuilder) AddRelatedIdentifier(v Identifier) *CitationCitedArtifactBuilder {
+	b.citationCitedArtifact.RelatedIdentifier = append(b.citationCitedArtifact.RelatedIdentifier, v)
+	return b
+}
+
+// SetDateAccessed sets the DateAccessed field.
+func (b *CitationCitedArtifactBuilder) SetDateAccessed(v string) *CitationCitedArtifactBuilder {
+	b.citationCitedArtifact.DateAccessed = &v
+	return b
+}
+
+// SetVersion sets the Version field.
+func (b *CitationCitedArtifactBuilder) SetVersion(v CitationCitedArtifactVersion) *CitationCitedArtifactBuilder {
+	b.citationCitedArtifact.Version = &v
+	return b
+}
+
+// AddCurrentState adds a CurrentState element.
+func (b *CitationCitedArtifactBuilder) AddCurrentState(v CodeableConcept) *CitationCitedArtifactBuilder {
+	b.citationCitedArtifact.CurrentState = append(b.citationCitedArtifact.CurrentState, v)
+	return b
+}
+
+// AddStatusDate adds a StatusDate element.
+func (b *CitationCitedArtifactBuilder) AddStatusDate(v CitationCitedArtifactStatusDate) *CitationCitedArtifactBuilder {
+	b.citationCitedArtifact.StatusDate = append(b.citationCitedArtifact.StatusDate, v)
+	return b
+}
+
+// AddTitle adds a Title element.
+func (b *CitationCitedArtifactBuilder) AddTitle(v CitationCitedArtifactTitle) *CitationCitedArtifactBuilder {
+	b.citationCitedArtifact.Title = append(b.citationCitedArtifact.Title, v)
+	return b
+}
+
+// AddAbstract adds a Abstract element.
+func (b *CitationCitedArtifactBuilder) AddAbstract(v CitationCitedArtifactAbstract) *CitationCitedArtifactBuilder {
+	b.citationCitedArtifact.Abstract = append(b.citationCitedArtifact.Abstract, v)
+	return b
+}
+
+// SetPart sets the Part field.
+func (b *CitationCitedArtifactBuilder) SetPart(v CitationCitedArtifactPart) *CitationCitedArtifactBuilder {
+	b.citationCitedArtifact.Part = &v
+	return b
+}
+
+// AddRelatesTo adds a RelatesTo element.
+func (b *CitationCitedArtifactBuilder) AddRelatesTo(v CitationCitedArtifactRelatesTo) *CitationCitedArtifactBuilder {
+	b.citationCitedArtifact.RelatesTo = append(b.citationCitedArtifact.RelatesTo, v)
+	return b
+}
+
+// AddPublicationForm adds a PublicationForm element.
+func (b *CitationCitedArtifactBuilder) AddPublicationForm(v CitationCitedArtifactPublicationForm) *CitationCitedArtifactBuilder {
+	b.citationCitedArtifact.PublicationForm = append(b.citationCitedArtifact.PublicationForm, v)
+	return b
+}
+
+// AddWebLocation adds a WebLocation element.
+func (b *CitationCitedArtifactBuilder) AddWebLocation(v CitationCitedArtifactWebLocation) *CitationCitedArtifactBuilder {
+	b.citationCitedArtifact.WebLocation = append(b.citationCitedArtifact.WebLocation, v)
+	return b
+}
+
+// AddClassification adds a Classification element.
+func (b *CitationCitedArtifactBuilder) AddClassification(v CitationCitedArtifactClassification) *CitationCitedArtifactBuilder {
+	b.citationCitedArtifact.Classification = append(b.citationCitedArtifact.Classification, v)
+	return b
+}
+
+// SetContributorship sets the Contributorship field.
+func (b *CitationCitedArtifactBuilder) SetContributorship(v CitationCitedArtifactContributorship) *CitationCitedArtifactBuilder {
+	b.citationCitedArtifact.Contributorship = &v
+	return b
+}
+
+// AddNote adds a Note element.
+func (b *CitationCitedArtifactBuilder) AddNote(v Annotation) *CitationCitedArtifactBuilder {
+	b.citationCitedArtifact.Note = append(b.citationCitedArtifact.Note, v)
+	return b
+}
+
+// SetDateAccessedExt sets the extensions carried by DateAccessed, serialized as
+// "_dateAccessed".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactBuilder) SetDateAccessedExt(v Element) *CitationCitedArtifactBuilder {
+	b.citationCitedArtifact.DateAccessedExt = &v
+	return b
+}
+
+// =============================================================================
+// CitationCitedArtifactAbstract - Fluent Builder
+// =============================================================================
+
+// CitationCitedArtifactAbstractBuilder provides a fluent API for constructing CitationCitedArtifactAbstract values.
+type CitationCitedArtifactAbstractBuilder struct {
+	citationCitedArtifactAbstract *CitationCitedArtifactAbstract
+}
+
+// NewCitationCitedArtifactAbstractBuilder creates a new CitationCitedArtifactAbstractBuilder.
+func NewCitationCitedArtifactAbstractBuilder() *CitationCitedArtifactAbstractBuilder {
+	return &CitationCitedArtifactAbstractBuilder{
+		citationCitedArtifactAbstract: &CitationCitedArtifactAbstract{},
+	}
+}
+
+// Build returns the constructed CitationCitedArtifactAbstract.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationCitedArtifactAbstractBuilder) Build() CitationCitedArtifactAbstract {
+	return *b.citationCitedArtifactAbstract
+}
+
+// SetId sets the Id field.
+func (b *CitationCitedArtifactAbstractBuilder) SetId(v string) *CitationCitedArtifactAbstractBuilder {
+	b.citationCitedArtifactAbstract.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationCitedArtifactAbstractBuilder) AddExtension(v Extension) *CitationCitedArtifactAbstractBuilder {
+	b.citationCitedArtifactAbstract.Extension = append(b.citationCitedArtifactAbstract.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationCitedArtifactAbstractBuilder) AddModifierExtension(v Extension) *CitationCitedArtifactAbstractBuilder {
+	b.citationCitedArtifactAbstract.ModifierExtension = append(b.citationCitedArtifactAbstract.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *CitationCitedArtifactAbstractBuilder) SetType(v CodeableConcept) *CitationCitedArtifactAbstractBuilder {
+	b.citationCitedArtifactAbstract.Type = &v
+	return b
+}
+
+// SetLanguage sets the Language field.
+func (b *CitationCitedArtifactAbstractBuilder) SetLanguage(v CodeableConcept) *CitationCitedArtifactAbstractBuilder {
+	b.citationCitedArtifactAbstract.Language = &v
+	return b
+}
+
+// SetText sets the Text field.
+func (b *CitationCitedArtifactAbstractBuilder) SetText(v string) *CitationCitedArtifactAbstractBuilder {
+	b.citationCitedArtifactAbstract.Text = &v
+	return b
+}
+
+// SetCopyright sets the Copyright field.
+func (b *CitationCitedArtifactAbstractBuilder) SetCopyright(v string) *CitationCitedArtifactAbstractBuilder {
+	b.citationCitedArtifactAbstract.Copyright = &v
+	return b
+}
+
+// SetTextExt sets the extensions carried by Text, serialized as
+// "_text".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactAbstractBuilder) SetTextExt(v Element) *CitationCitedArtifactAbstractBuilder {
+	b.citationCitedArtifactAbstract.TextExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactAbstractBuilder) SetCopyrightExt(v Element) *CitationCitedArtifactAbstractBuilder {
+	b.citationCitedArtifactAbstract.CopyrightExt = &v
+	return b
+}
+
+// =============================================================================
+// CitationCitedArtifactClassification - Fluent Builder
+// =============================================================================
+
+// CitationCitedArtifactClassificationBuilder provides a fluent API for constructing CitationCitedArtifactClassification values.
+type CitationCitedArtifactClassificationBuilder struct {
+	citationCitedArtifactClassification *CitationCitedArtifactClassification
+}
+
+// NewCitationCitedArtifactClassificationBuilder creates a new CitationCitedArtifactClassificationBuilder.
+func NewCitationCitedArtifactClassificationBuilder() *CitationCitedArtifactClassificationBuilder {
+	return &CitationCitedArtifactClassificationBuilder{
+		citationCitedArtifactClassification: &CitationCitedArtifactClassification{},
+	}
+}
+
+// Build returns the constructed CitationCitedArtifactClassification.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationCitedArtifactClassificationBuilder) Build() CitationCitedArtifactClassification {
+	return *b.citationCitedArtifactClassification
+}
+
+// SetId sets the Id field.
+func (b *CitationCitedArtifactClassificationBuilder) SetId(v string) *CitationCitedArtifactClassificationBuilder {
+	b.citationCitedArtifactClassification.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationCitedArtifactClassificationBuilder) AddExtension(v Extension) *CitationCitedArtifactClassificationBuilder {
+	b.citationCitedArtifactClassification.Extension = append(b.citationCitedArtifactClassification.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationCitedArtifactClassificationBuilder) AddModifierExtension(v Extension) *CitationCitedArtifactClassificationBuilder {
+	b.citationCitedArtifactClassification.ModifierExtension = append(b.citationCitedArtifactClassification.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *CitationCitedArtifactClassificationBuilder) SetType(v CodeableConcept) *CitationCitedArtifactClassificationBuilder {
+	b.citationCitedArtifactClassification.Type = &v
+	return b
+}
+
+// AddClassifier adds a Classifier element.
+func (b *CitationCitedArtifactClassificationBuilder) AddClassifier(v CodeableConcept) *CitationCitedArtifactClassificationBuilder {
+	b.citationCitedArtifactClassification.Classifier = append(b.citationCitedArtifactClassification.Classifier, v)
+	return b
+}
+
+// SetWhoClassified sets the WhoClassified field.
+func (b *CitationCitedArtifactClassificationBuilder) SetWhoClassified(v CitationCitedArtifactClassificationWhoClassified) *CitationCitedArtifactClassificationBuilder {
+	b.citationCitedArtifactClassification.WhoClassified = &v
+	return b
+}
+
+// =============================================================================
+// CitationCitedArtifactClassificationWhoClassified - Fluent Builder
+// =============================================================================
+
+// CitationCitedArtifactClassificationWhoClassifiedBuilder provides a fluent API for constructing CitationCitedArtifactClassificationWhoClassified values.
+type CitationCitedArtifactClassificationWhoClassifiedBuilder struct {
+	citationCitedArtifactClassificationWhoClassified *CitationCitedArtifactClassificationWhoClassified
+}
+
+// NewCitationCitedArtifactClassificationWhoClassifiedBuilder creates a new CitationCitedArtifactClassificationWhoClassifiedBuilder.
+func NewCitationCitedArtifactClassificationWhoClassifiedBuilder() *CitationCitedArtifactClassificationWhoClassifiedBuilder {
+	return &CitationCitedArtifactClassificationWhoClassifiedBuilder{
+		citationCitedArtifactClassificationWhoClassified: &CitationCitedArtifactClassificationWhoClassified{},
+	}
+}
+
+// Build returns the constructed CitationCitedArtifactClassificationWhoClassified.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationCitedArtifactClassificationWhoClassifiedBuilder) Build() CitationCitedArtifactClassificationWhoClassified {
+	return *b.citationCitedArtifactClassificationWhoClassified
+}
+
+// SetId sets the Id field.
+func (b *CitationCitedArtifactClassificationWhoClassifiedBuilder) SetId(v string) *CitationCitedArtifactClassificationWhoClassifiedBuilder {
+	b.citationCitedArtifactClassificationWhoClassified.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationCitedArtifactClassificationWhoClassifiedBuilder) AddExtension(v Extension) *CitationCitedArtifactClassificationWhoClassifiedBuilder {
+	b.citationCitedArtifactClassificationWhoClassified.Extension = append(b.citationCitedArtifactClassificationWhoClassified.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationCitedArtifactClassificationWhoClassifiedBuilder) AddModifierExtension(v Extension) *CitationCitedArtifactClassificationWhoClassifiedBuilder {
+	b.citationCitedArtifactClassificationWhoClassified.ModifierExtension = append(b.citationCitedArtifactClassificationWhoClassified.ModifierExtension, v)
+	return b
+}
+
+// SetPerson sets the Person field.
+func (b *CitationCitedArtifactClassificationWhoClassifiedBuilder) SetPerson(v Reference) *CitationCitedArtifactClassificationWhoClassifiedBuilder {
+	b.citationCitedArtifactClassificationWhoClassified.Person = &v
+	return b
+}
+
+// SetOrganization sets the Organization field.
+func (b *CitationCitedArtifactClassificationWhoClassifiedBuilder) SetOrganization(v Reference) *CitationCitedArtifactClassificationWhoClassifiedBuilder {
+	b.citationCitedArtifactClassificationWhoClassified.Organization = &v
+	return b
+}
+
+// SetPublisher sets the Publisher field.
+func (b *CitationCitedArtifactClassificationWhoClassifiedBuilder) SetPublisher(v Reference) *CitationCitedArtifactClassificationWhoClassifiedBuilder {
+	b.citationCitedArtifactClassificationWhoClassified.Publisher = &v
+	return b
+}
+
+// SetClassifierCopyright sets the ClassifierCopyright field.
+func (b *CitationCitedArtifactClassificationWhoClassifiedBuilder) SetClassifierCopyright(v string) *CitationCitedArtifactClassificationWhoClassifiedBuilder {
+	b.citationCitedArtifactClassificationWhoClassified.ClassifierCopyright = &v
+	return b
+}
+
+// SetFreeToShare sets the FreeToShare field.
+func (b *CitationCitedArtifactClassificationWhoClassifiedBuilder) SetFreeToShare(v bool) *CitationCitedArtifactClassificationWhoClassifiedBuilder {
+	b.citationCitedArtifactClassificationWhoClassified.FreeToShare = &v
+	return b
+}
+
+// SetClassifierCopyrightExt sets the extensions carried by ClassifierCopyright, serialized as
+// "_classifierCopyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactClassificationWhoClassifiedBuilder) SetClassifierCopyrightExt(v Element) *CitationCitedArtifactClassificationWhoClassifiedBuilder {
+	b.citationCitedArtifactClassificationWhoClassified.ClassifierCopyrightExt = &v
+	return b
+}
+
+// SetFreeToShareExt sets the extensions carried by FreeToShare, serialized as
+// "_freeToShare".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactClassificationWhoClassifiedBuilder) SetFreeToShareExt(v Element) *CitationCitedArtifactClassificationWhoClassifiedBuilder {
+	b.citationCitedArtifactClassificationWhoClassified.FreeToShareExt = &v
+	return b
+}
+
+// =============================================================================
+// CitationCitedArtifactContributorship - Fluent Builder
+// =============================================================================
+
+// CitationCitedArtifactContributorshipBuilder provides a fluent API for constructing CitationCitedArtifactContributorship values.
+type CitationCitedArtifactContributorshipBuilder struct {
+	citationCitedArtifactContributorship *CitationCitedArtifactContributorship
+}
+
+// NewCitationCitedArtifactContributorshipBuilder creates a new CitationCitedArtifactContributorshipBuilder.
+func NewCitationCitedArtifactContributorshipBuilder() *CitationCitedArtifactContributorshipBuilder {
+	return &CitationCitedArtifactContributorshipBuilder{
+		citationCitedArtifactContributorship: &CitationCitedArtifactContributorship{},
+	}
+}
+
+// Build returns the constructed CitationCitedArtifactContributorship.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationCitedArtifactContributorshipBuilder) Build() CitationCitedArtifactContributorship {
+	return *b.citationCitedArtifactContributorship
+}
+
+// SetId sets the Id field.
+func (b *CitationCitedArtifactContributorshipBuilder) SetId(v string) *CitationCitedArtifactContributorshipBuilder {
+	b.citationCitedArtifactContributorship.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationCitedArtifactContributorshipBuilder) AddExtension(v Extension) *CitationCitedArtifactContributorshipBuilder {
+	b.citationCitedArtifactContributorship.Extension = append(b.citationCitedArtifactContributorship.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationCitedArtifactContributorshipBuilder) AddModifierExtension(v Extension) *CitationCitedArtifactContributorshipBuilder {
+	b.citationCitedArtifactContributorship.ModifierExtension = append(b.citationCitedArtifactContributorship.ModifierExtension, v)
+	return b
+}
+
+// SetComplete sets the Complete field.
+func (b *CitationCitedArtifactContributorshipBuilder) SetComplete(v bool) *CitationCitedArtifactContributorshipBuilder {
+	b.citationCitedArtifactContributorship.Complete = &v
+	return b
+}
+
+// AddEntry adds a Entry element.
+func (b *CitationCitedArtifactContributorshipBuilder) AddEntry(v CitationCitedArtifactContributorshipEntry) *CitationCitedArtifactContributorshipBuilder {
+	b.citationCitedArtifactContributorship.Entry = append(b.citationCitedArtifactContributorship.Entry, v)
+	return b
+}
+
+// AddSummary adds a Summary element.
+func (b *CitationCitedArtifactContributorshipBuilder) AddSummary(v CitationCitedArtifactContributorshipSummary) *CitationCitedArtifactContributorshipBuilder {
+	b.citationCitedArtifactContributorship.Summary = append(b.citationCitedArtifactContributorship.Summary, v)
+	return b
+}
+
+// SetCompleteExt sets the extensions carried by Complete, serialized as
+// "_complete".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactContributorshipBuilder) SetCompleteExt(v Element) *CitationCitedArtifactContributorshipBuilder {
+	b.citationCitedArtifactContributorship.CompleteExt = &v
+	return b
+}
+
+// =============================================================================
+// CitationCitedArtifactContributorshipEntry - Fluent Builder
+// =============================================================================
+
+// CitationCitedArtifactContributorshipEntryBuilder provides a fluent API for constructing CitationCitedArtifactContributorshipEntry values.
+type CitationCitedArtifactContributorshipEntryBuilder struct {
+	citationCitedArtifactContributorshipEntry *CitationCitedArtifactContributorshipEntry
+}
+
+// NewCitationCitedArtifactContributorshipEntryBuilder creates a new CitationCitedArtifactContributorshipEntryBuilder.
+func NewCitationCitedArtifactContributorshipEntryBuilder() *CitationCitedArtifactContributorshipEntryBuilder {
+	return &CitationCitedArtifactContributorshipEntryBuilder{
+		citationCitedArtifactContributorshipEntry: &CitationCitedArtifactContributorshipEntry{},
+	}
+}
+
+// Build returns the constructed CitationCitedArtifactContributorshipEntry.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationCitedArtifactContributorshipEntryBuilder) Build() CitationCitedArtifactContributorshipEntry {
+	return *b.citationCitedArtifactContributorshipEntry
+}
+
+// SetId sets the Id field.
+func (b *CitationCitedArtifactContributorshipEntryBuilder) SetId(v string) *CitationCitedArtifactContributorshipEntryBuilder {
+	b.citationCitedArtifactContributorshipEntry.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationCitedArtifactContributorshipEntryBuilder) AddExtension(v Extension) *CitationCitedArtifactContributorshipEntryBuilder {
+	b.citationCitedArtifactContributorshipEntry.Extension = append(b.citationCitedArtifactContributorshipEntry.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationCitedArtifactContributorshipEntryBuilder) AddModifierExtension(v Extension) *CitationCitedArtifactContributorshipEntryBuilder {
+	b.citationCitedArtifactContributorshipEntry.ModifierExtension = append(b.citationCitedArtifactContributorshipEntry.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *CitationCitedArtifactContributorshipEntryBuilder) SetName(v HumanName) *CitationCitedArtifactContributorshipEntryBuilder {
+	b.citationCitedArtifactContributorshipEntry.Name = &v
+	return b
+}
+
+// SetInitials sets the Initials field.
+func (b *CitationCitedArtifactContributorshipEntryBuilder) SetInitials(v string) *CitationCitedArtifactContributorshipEntryBuilder {
+	b.citationCitedArtifactContributorshipEntry.Initials = &v
+	return b
+}
+
+// SetCollectiveName sets the CollectiveName field.
+func (b *CitationCitedArtifactContributorshipEntryBuilder) SetCollectiveName(v string) *CitationCitedArtifactContributorshipEntryBuilder {
+	b.citationCitedArtifactContributorshipEntry.CollectiveName = &v
+	return b
+}
+
+// AddIdentifier adds a Identifier element.
+func (b *CitationCitedArtifactContributorshipEntryBuilder) AddIdentifier(v Identifier) *CitationCitedArtifactContributorshipEntryBuilder {
+	b.citationCitedArtifactContributorshipEntry.Identifier = append(b.citationCitedArtifactContributorshipEntry.Identifier, v)
+	return b
+}
+
+// AddAffiliationInfo adds a AffiliationInfo element.
+func (b *CitationCitedArtifactContributorshipEntryBuilder) AddAffiliationInfo(v CitationCitedArtifactContributorshipEntryAffiliationInfo) *CitationCitedArtifactContributorshipEntryBuilder {
+	b.citationCitedArtifactContributorshipEntry.AffiliationInfo = append(b.citationCitedArtifactContributorshipEntry.AffiliationInfo, v)
+	return b
+}
+
+// AddAddress adds a Address element.
+func (b *CitationCitedArtifactContributorshipEntryBuilder) AddAddress(v Address) *CitationCitedArtifactContributorshipEntryBuilder {
+	b.citationCitedArtifactContributorshipEntry.Address = append(b.citationCitedArtifactContributorshipEntry.Address, v)
+	return b
+}
+
+// AddTelecom adds a Telecom element.
+func (b *CitationCitedArtifactContributorshipEntryBuilder) AddTelecom(v ContactPoint) *CitationCitedArtifactContributorshipEntryBuilder {
+	b.citationCitedArtifactContributorshipEntry.Telecom = append(b.citationCitedArtifactContributorshipEntry.Telecom, v)
+	return b
+}
+
+// AddContributionType adds a ContributionType element.
+func (b *CitationCitedArtifactContributorshipEntryBuilder) AddContributionType(v CodeableConcept) *CitationCitedArtifactContributorshipEntryBuilder {
+	b.citationCitedArtifactContributorshipEntry.ContributionType = append(b.citationCitedArtifactContributorshipEntry.ContributionType, v)
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *CitationCitedArtifactContributorshipEntryBuilder) SetRole(v CodeableConcept) *CitationCitedArtifactContributorshipEntryBuilder {
+	b.citationCitedArtifactContributorshipEntry.Role = &v
+	return b
+}
+
+// AddContributionInstance adds a ContributionInstance element.
+func (b *CitationCitedArtifactContributorshipEntryBuilder) AddContributionInstance(v CitationCitedArtifactContributorshipEntryContributionInstance) *CitationCitedArtifactContributorshipEntryBuilder {
+	b.citationCitedArtifactContributorshipEntry.ContributionInstance = append(b.citationCitedArtifactContributorshipEntry.ContributionInstance, v)
+	return b
+}
+
+// SetCorrespondingContact sets the CorrespondingContact field.
+func (b *CitationCitedArtifactContributorshipEntryBuilder) SetCorrespondingContact(v bool) *CitationCitedArtifactContributorshipEntryBuilder {
+	b.citationCitedArtifactContributorshipEntry.CorrespondingContact = &v
+	return b
+}
+
+// SetListOrder sets the ListOrder field.
+func (b *CitationCitedArtifactContributorshipEntryBuilder) SetListOrder(v uint32) *CitationCitedArtifactContributorshipEntryBuilder {
+	b.citationCitedArtifactContributorshipEntry.ListOrder = &v
+	return b
+}
+
+// SetInitialsExt sets the extensions carried by Initials, serialized as
+// "_initials".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactContributorshipEntryBuilder) SetInitialsExt(v Element) *CitationCitedArtifactContributorshipEntryBuilder {
+	b.citationCitedArtifactContributorshipEntry.InitialsExt = &v
+	return b
+}
+
+// SetCollectiveNameExt sets the extensions carried by CollectiveName, serialized as
+// "_collectiveName".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactContributorshipEntryBuilder) SetCollectiveNameExt(v Element) *CitationCitedArtifactContributorshipEntryBuilder {
+	b.citationCitedArtifactContributorshipEntry.CollectiveNameExt = &v
+	return b
+}
+
+// SetCorrespondingContactExt sets the extensions carried by CorrespondingContact, serialized as
+// "_correspondingContact".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactContributorshipEntryBuilder) SetCorrespondingContactExt(v Element) *CitationCitedArtifactContributorshipEntryBuilder {
+	b.citationCitedArtifactContributorshipEntry.CorrespondingContactExt = &v
+	return b
+}
+
+// SetListOrderExt sets the extensions carried by ListOrder, serialized as
+// "_listOrder".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactContributorshipEntryBuilder) SetListOrderExt(v Element) *CitationCitedArtifactContributorshipEntryBuilder {
+	b.citationCitedArtifactContributorshipEntry.ListOrderExt = &v
+	return b
+}
+
+// =============================================================================
+// CitationCitedArtifactContributorshipEntryAffiliationInfo - Fluent Builder
+// =============================================================================
+
+// CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder provides a fluent API for constructing CitationCitedArtifactContributorshipEntryAffiliationInfo values.
+type CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder struct {
+	citationCitedArtifactContributorshipEntryAffiliationInfo *CitationCitedArtifactContributorshipEntryAffiliationInfo
+}
+
+// NewCitationCitedArtifactContributorshipEntryAffiliationInfoBuilder creates a new CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder.
+func NewCitationCitedArtifactContributorshipEntryAffiliationInfoBuilder() *CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder {
+	return &CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder{
+		citationCitedArtifactContributorshipEntryAffiliationInfo: &CitationCitedArtifactContributorshipEntryAffiliationInfo{},
+	}
+}
+
+// Build returns the constructed CitationCitedArtifactContributorshipEntryAffiliationInfo.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder) Build() CitationCitedArtifactContributorshipEntryAffiliationInfo {
+	return *b.citationCitedArtifactContributorshipEntryAffiliationInfo
+}
+
+// SetId sets the Id field.
+func (b *CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder) SetId(v string) *CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder {
+	b.citationCitedArtifactContributorshipEntryAffiliationInfo.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder) AddExtension(v Extension) *CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder {
+	b.citationCitedArtifactContributorshipEntryAffiliationInfo.Extension = append(b.citationCitedArtifactContributorshipEntryAffiliationInfo.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder) AddModifierExtension(v Extension) *CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder {
+	b.citationCitedArtifactContributorshipEntryAffiliationInfo.ModifierExtension = append(b.citationCitedArtifactContributorshipEntryAffiliationInfo.ModifierExtension, v)
+	return b
+}
+
+// SetAffiliation sets the Affiliation field.
+func (b *CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder) SetAffiliation(v string) *CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder {
+	b.citationCitedArtifactContributorshipEntryAffiliationInfo.Affiliation = &v
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder) SetRole(v string) *CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder {
+	b.citationCitedArtifactContributorshipEntryAffiliationInfo.Role = &v
+	return b
+}
+
+// AddIdentifier adds a Identifier element.
+func (b *CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder) AddIdentifier(v Identifier) *CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder {
+	b.citationCitedArtifactContributorshipEntryAffiliationInfo.Identifier = append(b.citationCitedArtifactContributorshipEntryAffiliationInfo.Identifier, v)
+	return b
+}
+
+// SetAffiliationExt sets the extensions carried by Affiliation, serialized as
+// "_affiliation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder) SetAffiliationExt(v Element) *CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder {
+	b.citationCitedArtifactContributorshipEntryAffiliationInfo.AffiliationExt = &v
+	return b
+}
+
+// SetRoleExt sets the extensions carried by Role, serialized as
+// "_role".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder) SetRoleExt(v Element) *CitationCitedArtifactContributorshipEntryAffiliationInfoBuilder {
+	b.citationCitedArtifactContributorshipEntryAffiliationInfo.RoleExt = &v
+	return b
+}
+
+// =============================================================================
+// CitationCitedArtifactContributorshipEntryContributionInstance - Fluent Builder
+// =============================================================================
+
+// CitationCitedArtifactContributorshipEntryContributionInstanceBuilder provides a fluent API for constructing CitationCitedArtifactContributorshipEntryContributionInstance values.
+type CitationCitedArtifactContributorshipEntryContributionInstanceBuilder struct {
+	citationCitedArtifactContributorshipEntryContributionInstance *CitationCitedArtifactContributorshipEntryContributionInstance
+}
+
+// NewCitationCitedArtifactContributorshipEntryContributionInstanceBuilder creates a new CitationCitedArtifactContributorshipEntryContributionInstanceBuilder.
+func NewCitationCitedArtifactContributorshipEntryContributionInstanceBuilder() *CitationCitedArtifactContributorshipEntryContributionInstanceBuilder {
+	return &CitationCitedArtifactContributorshipEntryContributionInstanceBuilder{
+		citationCitedArtifactContributorshipEntryContributionInstance: &CitationCitedArtifactContributorshipEntryContributionInstance{},
+	}
+}
+
+// Build returns the constructed CitationCitedArtifactContributorshipEntryContributionInstance.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationCitedArtifactContributorshipEntryContributionInstanceBuilder) Build() CitationCitedArtifactContributorshipEntryContributionInstance {
+	return *b.citationCitedArtifactContributorshipEntryContributionInstance
+}
+
+// SetId sets the Id field.
+func (b *CitationCitedArtifactContributorshipEntryContributionInstanceBuilder) SetId(v string) *CitationCitedArtifactContributorshipEntryContributionInstanceBuilder {
+	b.citationCitedArtifactContributorshipEntryContributionInstance.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationCitedArtifactContributorshipEntryContributionInstanceBuilder) AddExtension(v Extension) *CitationCitedArtifactContributorshipEntryContributionInstanceBuilder {
+	b.citationCitedArtifactContributorshipEntryContributionInstance.Extension = append(b.citationCitedArtifactContributorshipEntryContributionInstance.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationCitedArtifactContributorshipEntryContributionInstanceBuilder) AddModifierExtension(v Extension) *CitationCitedArtifactContributorshipEntryContributionInstanceBuilder {
+	b.citationCitedArtifactContributorshipEntryContributionInstance.ModifierExtension = append(b.citationCitedArtifactContributorshipEntryContributionInstance.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *CitationCitedArtifactContributorshipEntryContributionInstanceBuilder) SetType(v CodeableConcept) *CitationCitedArtifactContributorshipEntryContributionInstanceBuilder {
+	b.citationCitedArtifactContributorshipEntryContributionInstance.Type = &v
+	return b
+}
+
+// SetTime sets the Time field.
+func (b *CitationCitedArtifactContributorshipEntryContributionInstanceBuilder) SetTime(v string) *CitationCitedArtifactContributorshipEntryContributionInstanceBuilder {
+	b.citationCitedArtifactContributorshipEntryContributionInstance.Time = &v
+	return b
+}
+
+// SetTimeExt sets the extensions carried by Time, serialized as
+// "_time".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactContributorshipEntryContributionInstanceBuilder) SetTimeExt(v Element) *CitationCitedArtifactContributorshipEntryContributionInstanceBuilder {
+	b.citationCitedArtifactContributorshipEntryContributionInstance.TimeExt = &v
+	return b
+}
+
+// =============================================================================
+// CitationCitedArtifactContributorshipSummary - Fluent Builder
+// =============================================================================
+
+// CitationCitedArtifactContributorshipSummaryBuilder provides a fluent API for constructing CitationCitedArtifactContributorshipSummary values.
+type CitationCitedArtifactContributorshipSummaryBuilder struct {
+	citationCitedArtifactContributorshipSummary *CitationCitedArtifactContributorshipSummary
+}
+
+// NewCitationCitedArtifactContributorshipSummaryBuilder creates a new CitationCitedArtifactContributorshipSummaryBuilder.
+func NewCitationCitedArtifactContributorshipSummaryBuilder() *CitationCitedArtifactContributorshipSummaryBuilder {
+	return &CitationCitedArtifactContributorshipSummaryBuilder{
+		citationCitedArtifactContributorshipSummary: &CitationCitedArtifactContributorshipSummary{},
+	}
+}
+
+// Build returns the constructed CitationCitedArtifactContributorshipSummary.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationCitedArtifactContributorshipSummaryBuilder) Build() CitationCitedArtifactContributorshipSummary {
+	return *b.citationCitedArtifactContributorshipSummary
+}
+
+// SetId sets the Id field.
+func (b *CitationCitedArtifactContributorshipSummaryBuilder) SetId(v string) *CitationCitedArtifactContributorshipSummaryBuilder {
+	b.citationCitedArtifactContributorshipSummary.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationCitedArtifactContributorshipSummaryBuilder) AddExtension(v Extension) *CitationCitedArtifactContributorshipSummaryBuilder {
+	b.citationCitedArtifactContributorshipSummary.Extension = append(b.citationCitedArtifactContributorshipSummary.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationCitedArtifactContributorshipSummaryBuilder) AddModifierExtension(v Extension) *CitationCitedArtifactContributorshipSummaryBuilder {
+	b.citationCitedArtifactContributorshipSummary.ModifierExtension = append(b.citationCitedArtifactContributorshipSummary.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *CitationCitedArtifactContributorshipSummaryBuilder) SetType(v CodeableConcept) *CitationCitedArtifactContributorshipSummaryBuilder {
+	b.citationCitedArtifactContributorshipSummary.Type = &v
+	return b
+}
+
+// SetStyle sets the Style field.
+func (b *CitationCitedArtifactContributorshipSummaryBuilder) SetStyle(v CodeableConcept) *CitationCitedArtifactContributorshipSummaryBuilder {
+	b.citationCitedArtifactContributorshipSummary.Style = &v
+	return b
+}
+
+// SetSource sets the Source field.
+func (b *CitationCitedArtifactContributorshipSummaryBuilder) SetSource(v CodeableConcept) *CitationCitedArtifactContributorshipSummaryBuilder {
+	b.citationCitedArtifactContributorshipSummary.Source = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *CitationCitedArtifactContributorshipSummaryBuilder) SetValue(v string) *CitationCitedArtifactContributorshipSummaryBuilder {
+	b.citationCitedArtifactContributorshipSummary.Value = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactContributorshipSummaryBuilder) SetValueExt(v Element) *CitationCitedArtifactContributorshipSummaryBuilder {
+	b.citationCitedArtifactContributorshipSummary.ValueExt = &v
+	return b
+}
+
+// =============================================================================
+// CitationCitedArtifactPart - Fluent Builder
+// =============================================================================
+
+// CitationCitedArtifactPartBuilder provides a fluent API for constructing CitationCitedArtifactPart values.
+type CitationCitedArtifactPartBuilder struct {
+	citationCitedArtifactPart *CitationCitedArtifactPart
+}
+
+// NewCitationCitedArtifactPartBuilder creates a new CitationCitedArtifactPartBuilder.
+func NewCitationCitedArtifactPartBuilder() *CitationCitedArtifactPartBuilder {
+	return &CitationCitedArtifactPartBuilder{
+		citationCitedArtifactPart: &CitationCitedArtifactPart{},
+	}
+}
+
+// Build returns the constructed CitationCitedArtifactPart.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationCitedArtifactPartBuilder) Build() CitationCitedArtifactPart {
+	return *b.citationCitedArtifactPart
+}
+
+// SetId sets the Id field.
+func (b *CitationCitedArtifactPartBuilder) SetId(v string) *CitationCitedArtifactPartBuilder {
+	b.citationCitedArtifactPart.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationCitedArtifactPartBuilder) AddExtension(v Extension) *CitationCitedArtifactPartBuilder {
+	b.citationCitedArtifactPart.Extension = append(b.citationCitedArtifactPart.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationCitedArtifactPartBuilder) AddModifierExtension(v Extension) *CitationCitedArtifactPartBuilder {
+	b.citationCitedArtifactPart.ModifierExtension = append(b.citationCitedArtifactPart.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *CitationCitedArtifactPartBuilder) SetType(v CodeableConcept) *CitationCitedArtifactPartBuilder {
+	b.citationCitedArtifactPart.Type = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *CitationCitedArtifactPartBuilder) SetValue(v string) *CitationCitedArtifactPartBuilder {
+	b.citationCitedArtifactPart.Value = &v
+	return b
+}
+
+// SetBaseCitation sets the BaseCitation field.
+func (b *CitationCitedArtifactPartBuilder) SetBaseCitation(v Reference) *CitationCitedArtifactPartBuilder {
+	b.citationCitedArtifactPart.BaseCitation = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactPartBuilder) SetValueExt(v Element) *CitationCitedArtifactPartBuilder {
+	b.citationCitedArtifactPart.ValueExt = &v
+	return b
+}
+
+// =============================================================================
+// CitationCitedArtifactPublicationForm - Fluent Builder
+// =============================================================================
+
+// CitationCitedArtifactPublicationFormBuilder provides a fluent API for constructing CitationCitedArtifactPublicationForm values.
+type CitationCitedArtifactPublicationFormBuilder struct {
+	citationCitedArtifactPublicationForm *CitationCitedArtifactPublicationForm
+}
+
+// NewCitationCitedArtifactPublicationFormBuilder creates a new CitationCitedArtifactPublicationFormBuilder.
+func NewCitationCitedArtifactPublicationFormBuilder() *CitationCitedArtifactPublicationFormBuilder {
+	return &CitationCitedArtifactPublicationFormBuilder{
+		citationCitedArtifactPublicationForm: &CitationCitedArtifactPublicationForm{},
+	}
+}
+
+// Build returns the constructed CitationCitedArtifactPublicationForm.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationCitedArtifactPublicationFormBuilder) Build() CitationCitedArtifactPublicationForm {
+	return *b.citationCitedArtifactPublicationForm
+}
+
+// SetId sets the Id field.
+func (b *CitationCitedArtifactPublicationFormBuilder) SetId(v string) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationCitedArtifactPublicationFormBuilder) AddExtension(v Extension) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.Extension = append(b.citationCitedArtifactPublicationForm.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationCitedArtifactPublicationFormBuilder) AddModifierExtension(v Extension) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.ModifierExtension = append(b.citationCitedArtifactPublicationForm.ModifierExtension, v)
+	return b
+}
+
+// SetPublishedIn sets the PublishedIn field.
+func (b *CitationCitedArtifactPublicationFormBuilder) SetPublishedIn(v CitationCitedArtifactPublicationFormPublishedIn) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.PublishedIn = &v
+	return b
+}
+
+// SetPeriodicRelease sets the PeriodicRelease field.
+func (b *CitationCitedArtifactPublicationFormBuilder) SetPeriodicRelease(v CitationCitedArtifactPublicationFormPeriodicRelease) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.PeriodicRelease = &v
+	return b
+}
+
+// SetArticleDate sets the ArticleDate field.
+func (b *CitationCitedArtifactPublicationFormBuilder) SetArticleDate(v string) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.ArticleDate = &v
+	return b
+}
+
+// SetLastRevisionDate sets the LastRevisionDate field.
+func (b *CitationCitedArtifactPublicationFormBuilder) SetLastRevisionDate(v string) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.LastRevisionDate = &v
+	return b
+}
+
+// AddLanguage adds a Language element.
+func (b *CitationCitedArtifactPublicationFormBuilder) AddLanguage(v CodeableConcept) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.Language = append(b.citationCitedArtifactPublicationForm.Language, v)
+	return b
+}
+
+// SetAccessionNumber sets the AccessionNumber field.
+func (b *CitationCitedArtifactPublicationFormBuilder) SetAccessionNumber(v string) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.AccessionNumber = &v
+	return b
+}
+
+// SetPageString sets the PageString field.
+func (b *CitationCitedArtifactPublicationFormBuilder) SetPageString(v string) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.PageString = &v
+	return b
+}
+
+// SetFirstPage sets the FirstPage field.
+func (b *CitationCitedArtifactPublicationFormBuilder) SetFirstPage(v string) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.FirstPage = &v
+	return b
+}
+
+// SetLastPage sets the LastPage field.
+func (b *CitationCitedArtifactPublicationFormBuilder) SetLastPage(v string) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.LastPage = &v
+	return b
+}
+
+// SetPageCount sets the PageCount field.
+func (b *CitationCitedArtifactPublicationFormBuilder) SetPageCount(v string) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.PageCount = &v
+	return b
+}
+
+// SetCopyright sets the Copyright field.
+func (b *CitationCitedArtifactPublicationFormBuilder) SetCopyright(v string) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.Copyright = &v
+	return b
+}
+
+// SetArticleDateExt sets the extensions carried by ArticleDate, serialized as
+// "_articleDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactPublicationFormBuilder) SetArticleDateExt(v Element) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.ArticleDateExt = &v
+	return b
+}
+
+// SetLastRevisionDateExt sets the extensions carried by LastRevisionDate, serialized as
+// "_lastRevisionDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactPublicationFormBuilder) SetLastRevisionDateExt(v Element) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.LastRevisionDateExt = &v
+	return b
+}
+
+// SetAccessionNumberExt sets the extensions carried by AccessionNumber, serialized as
+// "_accessionNumber".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactPublicationFormBuilder) SetAccessionNumberExt(v Element) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.AccessionNumberExt = &v
+	return b
+}
+
+// SetPageStringExt sets the extensions carried by PageString, serialized as
+// "_pageString".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactPublicationFormBuilder) SetPageStringExt(v Element) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.PageStringExt = &v
+	return b
+}
+
+// SetFirstPageExt sets the extensions carried by FirstPage, serialized as
+// "_firstPage".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactPublicationFormBuilder) SetFirstPageExt(v Element) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.FirstPageExt = &v
+	return b
+}
+
+// SetLastPageExt sets the extensions carried by LastPage, serialized as
+// "_lastPage".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactPublicationFormBuilder) SetLastPageExt(v Element) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.LastPageExt = &v
+	return b
+}
+
+// SetPageCountExt sets the extensions carried by PageCount, serialized as
+// "_pageCount".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactPublicationFormBuilder) SetPageCountExt(v Element) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.PageCountExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactPublicationFormBuilder) SetCopyrightExt(v Element) *CitationCitedArtifactPublicationFormBuilder {
+	b.citationCitedArtifactPublicationForm.CopyrightExt = &v
+	return b
+}
+
+// =============================================================================
+// CitationCitedArtifactPublicationFormPeriodicRelease - Fluent Builder
+// =============================================================================
+
+// CitationCitedArtifactPublicationFormPeriodicReleaseBuilder provides a fluent API for constructing CitationCitedArtifactPublicationFormPeriodicRelease values.
+type CitationCitedArtifactPublicationFormPeriodicReleaseBuilder struct {
+	citationCitedArtifactPublicationFormPeriodicRelease *CitationCitedArtifactPublicationFormPeriodicRelease
+}
+
+// NewCitationCitedArtifactPublicationFormPeriodicReleaseBuilder creates a new CitationCitedArtifactPublicationFormPeriodicReleaseBuilder.
+func NewCitationCitedArtifactPublicationFormPeriodicReleaseBuilder() *CitationCitedArtifactPublicationFormPeriodicReleaseBuilder {
+	return &CitationCitedArtifactPublicationFormPeriodicReleaseBuilder{
+		citationCitedArtifactPublicationFormPeriodicRelease: &CitationCitedArtifactPublicationFormPeriodicRelease{},
+	}
+}
+
+// Build returns the constructed CitationCitedArtifactPublicationFormPeriodicRelease.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseBuilder) Build() CitationCitedArtifactPublicationFormPeriodicRelease {
+	return *b.citationCitedArtifactPublicationFormPeriodicRelease
+}
+
+// SetId sets the Id field.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseBuilder) SetId(v string) *CitationCitedArtifactPublicationFormPeriodicReleaseBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicRelease.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseBuilder) AddExtension(v Extension) *CitationCitedArtifactPublicationFormPeriodicReleaseBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicRelease.Extension = append(b.citationCitedArtifactPublicationFormPeriodicRelease.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseBuilder) AddModifierExtension(v Extension) *CitationCitedArtifactPublicationFormPeriodicReleaseBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicRelease.ModifierExtension = append(b.citationCitedArtifactPublicationFormPeriodicRelease.ModifierExtension, v)
+	return b
+}
+
+// SetCitedMedium sets the CitedMedium field.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseBuilder) SetCitedMedium(v CodeableConcept) *CitationCitedArtifactPublicationFormPeriodicReleaseBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicRelease.CitedMedium = &v
+	return b
+}
+
+// SetVolume sets the Volume field.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseBuilder) SetVolume(v string) *CitationCitedArtifactPublicationFormPeriodicReleaseBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicRelease.Volume = &v
+	return b
+}
+
+// SetIssue sets the Issue field.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseBuilder) SetIssue(v string) *CitationCitedArtifactPublicationFormPeriodicReleaseBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicRelease.Issue = &v
+	return b
+}
+
+// SetDateOfPublication sets the DateOfPublication field.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseBuilder) SetDateOfPublication(v CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication) *CitationCitedArtifactPublicationFormPeriodicReleaseBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicRelease.DateOfPublication = &v
+	return b
+}
+
+// SetVolumeExt sets the extensions carried by Volume, serialized as
+// "_volume".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseBuilder) SetVolumeExt(v Element) *CitationCitedArtifactPublicationFormPeriodicReleaseBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicRelease.VolumeExt = &v
+	return b
+}
+
+// SetIssueExt sets the extensions carried by Issue, serialized as
+// "_issue".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseBuilder) SetIssueExt(v Element) *CitationCitedArtifactPublicationFormPeriodicReleaseBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicRelease.IssueExt = &v
+	return b
+}
+
+// =============================================================================
+// CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication - Fluent Builder
+// =============================================================================
+
+// CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder provides a fluent API for constructing CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication values.
+type CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder struct {
+	citationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication
+}
+
+// NewCitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder creates a new CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder.
+func NewCitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder() *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder {
+	return &CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder{
+		citationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication: &CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication{},
+	}
+}
+
+// Build returns the constructed CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder) Build() CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication {
+	return *b.citationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication
+}
+
+// SetId sets the Id field.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder) SetId(v string) *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder) AddExtension(v Extension) *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication.Extension = append(b.citationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder) AddModifierExtension(v Extension) *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication.ModifierExtension = append(b.citationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication.ModifierExtension, v)
+	return b
+}
+
+// SetDate sets the Date field.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder) SetDate(v string) *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication.Date = &v
+	return b
+}
+
+// SetYear sets the Year field.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder) SetYear(v string) *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication.Year = &v
+	return b
+}
+
+// SetMonth sets the Month field.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder) SetMonth(v string) *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication.Month = &v
+	return b
+}
+
+// SetDay sets the Day field.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder) SetDay(v string) *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication.Day = &v
+	return b
+}
+
+// SetSeason sets the Season field.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder) SetSeason(v string) *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication.Season = &v
+	return b
+}
+
+// SetText sets the Text field.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder) SetText(v string) *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication.Text = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder) SetDateExt(v Element) *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication.DateExt = &v
+	return b
+}
+
+// SetYearExt sets the extensions carried by Year, serialized as
+// "_year".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder) SetYearExt(v Element) *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication.YearExt = &v
+	return b
+}
+
+// SetMonthExt sets the extensions carried by Month, serialized as
+// "_month".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder) SetMonthExt(v Element) *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication.MonthExt = &v
+	return b
+}
+
+// SetDayExt sets the extensions carried by Day, serialized as
+// "_day".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder) SetDayExt(v Element) *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication.DayExt = &v
+	return b
+}
+
+// SetSeasonExt sets the extensions carried by Season, serialized as
+// "_season".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder) SetSeasonExt(v Element) *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication.SeasonExt = &v
+	return b
+}
+
+// SetTextExt sets the extensions carried by Text, serialized as
+// "_text".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder) SetTextExt(v Element) *CitationCitedArtifactPublicationFormPeriodicReleaseDateOfPublicationBuilder {
+	b.citationCitedArtifactPublicationFormPeriodicReleaseDateOfPublication.TextExt = &v
+	return b
+}
+
+// =============================================================================
+// CitationCitedArtifactPublicationFormPublishedIn - Fluent Builder
+// =============================================================================
+
+// CitationCitedArtifactPublicationFormPublishedInBuilder provides a fluent API for constructing CitationCitedArtifactPublicationFormPublishedIn values.
+type CitationCitedArtifactPublicationFormPublishedInBuilder struct {
+	citationCitedArtifactPublicationFormPublishedIn *CitationCitedArtifactPublicationFormPublishedIn
+}
+
+// NewCitationCitedArtifactPublicationFormPublishedInBuilder creates a new CitationCitedArtifactPublicationFormPublishedInBuilder.
+func NewCitationCitedArtifactPublicationFormPublishedInBuilder() *CitationCitedArtifactPublicationFormPublishedInBuilder {
+	return &CitationCitedArtifactPublicationFormPublishedInBuilder{
+		citationCitedArtifactPublicationFormPublishedIn: &CitationCitedArtifactPublicationFormPublishedIn{},
+	}
+}
+
+// Build returns the constructed CitationCitedArtifactPublicationFormPublishedIn.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationCitedArtifactPublicationFormPublishedInBuilder) Build() CitationCitedArtifactPublicationFormPublishedIn {
+	return *b.citationCitedArtifactPublicationFormPublishedIn
+}
+
+// SetId sets the Id field.
+func (b *CitationCitedArtifactPublicationFormPublishedInBuilder) SetId(v string) *CitationCitedArtifactPublicationFormPublishedInBuilder {
+	b.citationCitedArtifactPublicationFormPublishedIn.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationCitedArtifactPublicationFormPublishedInBuilder) AddExtension(v Extension) *CitationCitedArtifactPublicationFormPublishedInBuilder {
+	b.citationCitedArtifactPublicationFormPublishedIn.Extension = append(b.citationCitedArtifactPublicationFormPublishedIn.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationCitedArtifactPublicationFormPublishedInBuilder) AddModifierExtension(v Extension) *CitationCitedArtifactPublicationFormPublishedInBuilder {
+	b.citationCitedArtifactPublicationFormPublishedIn.ModifierExtension = append(b.citationCitedArtifactPublicationFormPublishedIn.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *CitationCitedArtifactPublicationFormPublishedInBuilder) SetType(v CodeableConcept) *CitationCitedArtifactPublicationFormPublishedInBuilder {
+	b.citationCitedArtifactPublicationFormPublishedIn.Type = &v
+	return b
+}
+
+// AddIdentifier adds a Identifier element.
+func (b *CitationCitedArtifactPublicationFormPublishedInBuilder) AddIdentifier(v Identifier) *CitationCitedArtifactPublicationFormPublishedInBuilder {
+	b.citationCitedArtifactPublicationFormPublishedIn.Identifier = append(b.citationCitedArtifactPublicationFormPublishedIn.Identifier, v)
+	return b
+}
+
+// SetTitle sets the Title field.
+func (b *CitationCitedArtifactPublicationFormPublishedInBuilder) SetTitle(v string) *CitationCitedArtifactPublicationFormPublishedInBuilder {
+	b.citationCitedArtifactPublicationFormPublishedIn.Title = &v
+	return b
+}
+
+// SetPublisher sets the Publisher field.
+func (b *CitationCitedArtifactPublicationFormPublishedInBuilder) SetPublisher(v Reference) *CitationCitedArtifactPublicationFormPublishedInBuilder {
+	b.citationCitedArtifactPublicationFormPublishedIn.Publisher = &v
+	return b
+}
+
+// SetPublisherLocation sets the PublisherLocation field.
+func (b *CitationCitedArtifactPublicationFormPublishedInBuilder) SetPublisherLocation(v string) *CitationCitedArtifactPublicationFormPublishedInBuilder {
+	b.citationCitedArtifactPublicationFormPublishedIn.PublisherLocation = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactPublicationFormPublishedInBuilder) SetTitleExt(v Element) *CitationCitedArtifactPublicationFormPublishedInBuilder {
+	b.citationCitedArtifactPublicationFormPublishedIn.TitleExt = &v
+	return b
+}
+
+// SetPublisherLocationExt sets the extensions carried by PublisherLocation, serialized as
+// "_publisherLocation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactPublicationFormPublishedInBuilder) SetPublisherLocationExt(v Element) *CitationCitedArtifactPublicationFormPublishedInBuilder {
+	b.citationCitedArtifactPublicationFormPublishedIn.PublisherLocationExt = &v
+	return b
+}
+
+// =============================================================================
+// CitationCitedArtifactRelatesTo - Fluent Builder
+// =============================================================================
+
+// CitationCitedArtifactRelatesToBuilder provides a fluent API for constructing CitationCitedArtifactRelatesTo values.
+type CitationCitedArtifactRelatesToBuilder struct {
+	citationCitedArtifactRelatesTo *CitationCitedArtifactRelatesTo
+}
+
+// NewCitationCitedArtifactRelatesToBuilder creates a new CitationCitedArtifactRelatesToBuilder.
+func NewCitationCitedArtifactRelatesToBuilder() *CitationCitedArtifactRelatesToBuilder {
+	return &CitationCitedArtifactRelatesToBuilder{
+		citationCitedArtifactRelatesTo: &CitationCitedArtifactRelatesTo{},
+	}
+}
+
+// Build returns the constructed CitationCitedArtifactRelatesTo.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationCitedArtifactRelatesToBuilder) Build() CitationCitedArtifactRelatesTo {
+	return *b.citationCitedArtifactRelatesTo
+}
+
+// SetId sets the Id field.
+func (b *CitationCitedArtifactRelatesToBuilder) SetId(v string) *CitationCitedArtifactRelatesToBuilder {
+	b.citationCitedArtifactRelatesTo.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationCitedArtifactRelatesToBuilder) AddExtension(v Extension) *CitationCitedArtifactRelatesToBuilder {
+	b.citationCitedArtifactRelatesTo.Extension = append(b.citationCitedArtifactRelatesTo.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationCitedArtifactRelatesToBuilder) AddModifierExtension(v Extension) *CitationCitedArtifactRelatesToBuilder {
+	b.citationCitedArtifactRelatesTo.ModifierExtension = append(b.citationCitedArtifactRelatesTo.ModifierExtension, v)
+	return b
+}
+
+// SetRelationshipType sets the RelationshipType field.
+func (b *CitationCitedArtifactRelatesToBuilder) SetRelationshipType(v CodeableConcept) *CitationCitedArtifactRelatesToBuilder {
+	b.citationCitedArtifactRelatesTo.RelationshipType = &v
+	return b
+}
+
+// AddTargetClassifier adds a TargetClassifier element.
+func (b *CitationCitedArtifactRelatesToBuilder) AddTargetClassifier(v CodeableConcept) *CitationCitedArtifactRelatesToBuilder {
+	b.citationCitedArtifactRelatesTo.TargetClassifier = append(b.citationCitedArtifactRelatesTo.TargetClassifier, v)
+	return b
+}
+
+// SetTargetUri sets Target[x] to its TargetUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CitationCitedArtifactRelatesToBuilder) SetTargetUri(v string) *CitationCitedArtifactRelatesToBuilder {
+	b.clearTarget()
+	b.citationCitedArtifactRelatesTo.TargetUri = &v
+	return b
+}
+
+// SetTargetUriExt sets the TargetUriExt field.
+func (b *CitationCitedArtifactRelatesToBuilder) SetTargetUriExt(v Element) *CitationCitedArtifactRelatesToBuilder {
+	b.citationCitedArtifactRelatesTo.TargetUriExt = &v
+	return b
+}
+
+// SetTargetIdentifier sets Target[x] to its TargetIdentifier variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CitationCitedArtifactRelatesToBuilder) SetTargetIdentifier(v Identifier) *CitationCitedArtifactRelatesToBuilder {
+	b.clearTarget()
+	b.citationCitedArtifactRelatesTo.TargetIdentifier = &v
+	return b
+}
+
+// SetTargetReference sets Target[x] to its TargetReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CitationCitedArtifactRelatesToBuilder) SetTargetReference(v Reference) *CitationCitedArtifactRelatesToBuilder {
+	b.clearTarget()
+	b.citationCitedArtifactRelatesTo.TargetReference = &v
+	return b
+}
+
+// SetTargetAttachment sets Target[x] to its TargetAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CitationCitedArtifactRelatesToBuilder) SetTargetAttachment(v Attachment) *CitationCitedArtifactRelatesToBuilder {
+	b.clearTarget()
+	b.citationCitedArtifactRelatesTo.TargetAttachment = &v
+	return b
+}
+
+// clearTarget unsets every variant of Target[x], including the
+// _field companions of the primitive ones.
+func (b *CitationCitedArtifactRelatesToBuilder) clearTarget() {
+	b.citationCitedArtifactRelatesTo.TargetUri = nil
+	b.citationCitedArtifactRelatesTo.TargetIdentifier = nil
+	b.citationCitedArtifactRelatesTo.TargetReference = nil
+	b.citationCitedArtifactRelatesTo.TargetAttachment = nil
+}
+
+// =============================================================================
+// CitationCitedArtifactStatusDate - Fluent Builder
+// =============================================================================
+
+// CitationCitedArtifactStatusDateBuilder provides a fluent API for constructing CitationCitedArtifactStatusDate values.
+type CitationCitedArtifactStatusDateBuilder struct {
+	citationCitedArtifactStatusDate *CitationCitedArtifactStatusDate
+}
+
+// NewCitationCitedArtifactStatusDateBuilder creates a new CitationCitedArtifactStatusDateBuilder.
+func NewCitationCitedArtifactStatusDateBuilder() *CitationCitedArtifactStatusDateBuilder {
+	return &CitationCitedArtifactStatusDateBuilder{
+		citationCitedArtifactStatusDate: &CitationCitedArtifactStatusDate{},
+	}
+}
+
+// Build returns the constructed CitationCitedArtifactStatusDate.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationCitedArtifactStatusDateBuilder) Build() CitationCitedArtifactStatusDate {
+	return *b.citationCitedArtifactStatusDate
+}
+
+// SetId sets the Id field.
+func (b *CitationCitedArtifactStatusDateBuilder) SetId(v string) *CitationCitedArtifactStatusDateBuilder {
+	b.citationCitedArtifactStatusDate.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationCitedArtifactStatusDateBuilder) AddExtension(v Extension) *CitationCitedArtifactStatusDateBuilder {
+	b.citationCitedArtifactStatusDate.Extension = append(b.citationCitedArtifactStatusDate.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationCitedArtifactStatusDateBuilder) AddModifierExtension(v Extension) *CitationCitedArtifactStatusDateBuilder {
+	b.citationCitedArtifactStatusDate.ModifierExtension = append(b.citationCitedArtifactStatusDate.ModifierExtension, v)
+	return b
+}
+
+// SetActivity sets the Activity field.
+func (b *CitationCitedArtifactStatusDateBuilder) SetActivity(v CodeableConcept) *CitationCitedArtifactStatusDateBuilder {
+	b.citationCitedArtifactStatusDate.Activity = &v
+	return b
+}
+
+// SetActual sets the Actual field.
+func (b *CitationCitedArtifactStatusDateBuilder) SetActual(v bool) *CitationCitedArtifactStatusDateBuilder {
+	b.citationCitedArtifactStatusDate.Actual = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *CitationCitedArtifactStatusDateBuilder) SetPeriod(v Period) *CitationCitedArtifactStatusDateBuilder {
+	b.citationCitedArtifactStatusDate.Period = &v
+	return b
+}
+
+// SetActualExt sets the extensions carried by Actual, serialized as
+// "_actual".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactStatusDateBuilder) SetActualExt(v Element) *CitationCitedArtifactStatusDateBuilder {
+	b.citationCitedArtifactStatusDate.ActualExt = &v
+	return b
+}
+
+// =============================================================================
+// CitationCitedArtifactTitle - Fluent Builder
+// =============================================================================
+
+// CitationCitedArtifactTitleBuilder provides a fluent API for constructing CitationCitedArtifactTitle values.
+type CitationCitedArtifactTitleBuilder struct {
+	citationCitedArtifactTitle *CitationCitedArtifactTitle
+}
+
+// NewCitationCitedArtifactTitleBuilder creates a new CitationCitedArtifactTitleBuilder.
+func NewCitationCitedArtifactTitleBuilder() *CitationCitedArtifactTitleBuilder {
+	return &CitationCitedArtifactTitleBuilder{
+		citationCitedArtifactTitle: &CitationCitedArtifactTitle{},
+	}
+}
+
+// Build returns the constructed CitationCitedArtifactTitle.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationCitedArtifactTitleBuilder) Build() CitationCitedArtifactTitle {
+	return *b.citationCitedArtifactTitle
+}
+
+// SetId sets the Id field.
+func (b *CitationCitedArtifactTitleBuilder) SetId(v string) *CitationCitedArtifactTitleBuilder {
+	b.citationCitedArtifactTitle.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationCitedArtifactTitleBuilder) AddExtension(v Extension) *CitationCitedArtifactTitleBuilder {
+	b.citationCitedArtifactTitle.Extension = append(b.citationCitedArtifactTitle.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationCitedArtifactTitleBuilder) AddModifierExtension(v Extension) *CitationCitedArtifactTitleBuilder {
+	b.citationCitedArtifactTitle.ModifierExtension = append(b.citationCitedArtifactTitle.ModifierExtension, v)
+	return b
+}
+
+// AddType adds a Type element.
+func (b *CitationCitedArtifactTitleBuilder) AddType(v CodeableConcept) *CitationCitedArtifactTitleBuilder {
+	b.citationCitedArtifactTitle.Type = append(b.citationCitedArtifactTitle.Type, v)
+	return b
+}
+
+// SetLanguage sets the Language field.
+func (b *CitationCitedArtifactTitleBuilder) SetLanguage(v CodeableConcept) *CitationCitedArtifactTitleBuilder {
+	b.citationCitedArtifactTitle.Language = &v
+	return b
+}
+
+// SetText sets the Text field.
+func (b *CitationCitedArtifactTitleBuilder) SetText(v string) *CitationCitedArtifactTitleBuilder {
+	b.citationCitedArtifactTitle.Text = &v
+	return b
+}
+
+// SetTextExt sets the extensions carried by Text, serialized as
+// "_text".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactTitleBuilder) SetTextExt(v Element) *CitationCitedArtifactTitleBuilder {
+	b.citationCitedArtifactTitle.TextExt = &v
+	return b
+}
+
+// =============================================================================
+// CitationCitedArtifactVersion - Fluent Builder
+// =============================================================================
+
+// CitationCitedArtifactVersionBuilder provides a fluent API for constructing CitationCitedArtifactVersion values.
+type CitationCitedArtifactVersionBuilder struct {
+	citationCitedArtifactVersion *CitationCitedArtifactVersion
+}
+
+// NewCitationCitedArtifactVersionBuilder creates a new CitationCitedArtifactVersionBuilder.
+func NewCitationCitedArtifactVersionBuilder() *CitationCitedArtifactVersionBuilder {
+	return &CitationCitedArtifactVersionBuilder{
+		citationCitedArtifactVersion: &CitationCitedArtifactVersion{},
+	}
+}
+
+// Build returns the constructed CitationCitedArtifactVersion.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationCitedArtifactVersionBuilder) Build() CitationCitedArtifactVersion {
+	return *b.citationCitedArtifactVersion
+}
+
+// SetId sets the Id field.
+func (b *CitationCitedArtifactVersionBuilder) SetId(v string) *CitationCitedArtifactVersionBuilder {
+	b.citationCitedArtifactVersion.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationCitedArtifactVersionBuilder) AddExtension(v Extension) *CitationCitedArtifactVersionBuilder {
+	b.citationCitedArtifactVersion.Extension = append(b.citationCitedArtifactVersion.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationCitedArtifactVersionBuilder) AddModifierExtension(v Extension) *CitationCitedArtifactVersionBuilder {
+	b.citationCitedArtifactVersion.ModifierExtension = append(b.citationCitedArtifactVersion.ModifierExtension, v)
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *CitationCitedArtifactVersionBuilder) SetValue(v string) *CitationCitedArtifactVersionBuilder {
+	b.citationCitedArtifactVersion.Value = &v
+	return b
+}
+
+// SetBaseCitation sets the BaseCitation field.
+func (b *CitationCitedArtifactVersionBuilder) SetBaseCitation(v Reference) *CitationCitedArtifactVersionBuilder {
+	b.citationCitedArtifactVersion.BaseCitation = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactVersionBuilder) SetValueExt(v Element) *CitationCitedArtifactVersionBuilder {
+	b.citationCitedArtifactVersion.ValueExt = &v
+	return b
+}
+
+// =============================================================================
+// CitationCitedArtifactWebLocation - Fluent Builder
+// =============================================================================
+
+// CitationCitedArtifactWebLocationBuilder provides a fluent API for constructing CitationCitedArtifactWebLocation values.
+type CitationCitedArtifactWebLocationBuilder struct {
+	citationCitedArtifactWebLocation *CitationCitedArtifactWebLocation
+}
+
+// NewCitationCitedArtifactWebLocationBuilder creates a new CitationCitedArtifactWebLocationBuilder.
+func NewCitationCitedArtifactWebLocationBuilder() *CitationCitedArtifactWebLocationBuilder {
+	return &CitationCitedArtifactWebLocationBuilder{
+		citationCitedArtifactWebLocation: &CitationCitedArtifactWebLocation{},
+	}
+}
+
+// Build returns the constructed CitationCitedArtifactWebLocation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationCitedArtifactWebLocationBuilder) Build() CitationCitedArtifactWebLocation {
+	return *b.citationCitedArtifactWebLocation
+}
+
+// SetId sets the Id field.
+func (b *CitationCitedArtifactWebLocationBuilder) SetId(v string) *CitationCitedArtifactWebLocationBuilder {
+	b.citationCitedArtifactWebLocation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationCitedArtifactWebLocationBuilder) AddExtension(v Extension) *CitationCitedArtifactWebLocationBuilder {
+	b.citationCitedArtifactWebLocation.Extension = append(b.citationCitedArtifactWebLocation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationCitedArtifactWebLocationBuilder) AddModifierExtension(v Extension) *CitationCitedArtifactWebLocationBuilder {
+	b.citationCitedArtifactWebLocation.ModifierExtension = append(b.citationCitedArtifactWebLocation.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *CitationCitedArtifactWebLocationBuilder) SetType(v CodeableConcept) *CitationCitedArtifactWebLocationBuilder {
+	b.citationCitedArtifactWebLocation.Type = &v
+	return b
+}
+
+// SetUrl sets the Url field.
+func (b *CitationCitedArtifactWebLocationBuilder) SetUrl(v string) *CitationCitedArtifactWebLocationBuilder {
+	b.citationCitedArtifactWebLocation.Url = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationCitedArtifactWebLocationBuilder) SetUrlExt(v Element) *CitationCitedArtifactWebLocationBuilder {
+	b.citationCitedArtifactWebLocation.UrlExt = &v
+	return b
+}
+
+// =============================================================================
+// CitationClassification - Fluent Builder
+// =============================================================================
+
+// CitationClassificationBuilder provides a fluent API for constructing CitationClassification values.
+type CitationClassificationBuilder struct {
+	citationClassification *CitationClassification
+}
+
+// NewCitationClassificationBuilder creates a new CitationClassificationBuilder.
+func NewCitationClassificationBuilder() *CitationClassificationBuilder {
+	return &CitationClassificationBuilder{
+		citationClassification: &CitationClassification{},
+	}
+}
+
+// Build returns the constructed CitationClassification.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationClassificationBuilder) Build() CitationClassification {
+	return *b.citationClassification
+}
+
+// SetId sets the Id field.
+func (b *CitationClassificationBuilder) SetId(v string) *CitationClassificationBuilder {
+	b.citationClassification.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationClassificationBuilder) AddExtension(v Extension) *CitationClassificationBuilder {
+	b.citationClassification.Extension = append(b.citationClassification.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationClassificationBuilder) AddModifierExtension(v Extension) *CitationClassificationBuilder {
+	b.citationClassification.ModifierExtension = append(b.citationClassification.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *CitationClassificationBuilder) SetType(v CodeableConcept) *CitationClassificationBuilder {
+	b.citationClassification.Type = &v
+	return b
+}
+
+// AddClassifier adds a Classifier element.
+func (b *CitationClassificationBuilder) AddClassifier(v CodeableConcept) *CitationClassificationBuilder {
+	b.citationClassification.Classifier = append(b.citationClassification.Classifier, v)
+	return b
+}
+
+// =============================================================================
+// CitationRelatesTo - Fluent Builder
+// =============================================================================
+
+// CitationRelatesToBuilder provides a fluent API for constructing CitationRelatesTo values.
+type CitationRelatesToBuilder struct {
+	citationRelatesTo *CitationRelatesTo
+}
+
+// NewCitationRelatesToBuilder creates a new CitationRelatesToBuilder.
+func NewCitationRelatesToBuilder() *CitationRelatesToBuilder {
+	return &CitationRelatesToBuilder{
+		citationRelatesTo: &CitationRelatesTo{},
+	}
+}
+
+// Build returns the constructed CitationRelatesTo.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationRelatesToBuilder) Build() CitationRelatesTo {
+	return *b.citationRelatesTo
+}
+
+// SetId sets the Id field.
+func (b *CitationRelatesToBuilder) SetId(v string) *CitationRelatesToBuilder {
+	b.citationRelatesTo.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationRelatesToBuilder) AddExtension(v Extension) *CitationRelatesToBuilder {
+	b.citationRelatesTo.Extension = append(b.citationRelatesTo.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationRelatesToBuilder) AddModifierExtension(v Extension) *CitationRelatesToBuilder {
+	b.citationRelatesTo.ModifierExtension = append(b.citationRelatesTo.ModifierExtension, v)
+	return b
+}
+
+// SetRelationshipType sets the RelationshipType field.
+func (b *CitationRelatesToBuilder) SetRelationshipType(v CodeableConcept) *CitationRelatesToBuilder {
+	b.citationRelatesTo.RelationshipType = &v
+	return b
+}
+
+// AddTargetClassifier adds a TargetClassifier element.
+func (b *CitationRelatesToBuilder) AddTargetClassifier(v CodeableConcept) *CitationRelatesToBuilder {
+	b.citationRelatesTo.TargetClassifier = append(b.citationRelatesTo.TargetClassifier, v)
+	return b
+}
+
+// SetTargetUri sets Target[x] to its TargetUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CitationRelatesToBuilder) SetTargetUri(v string) *CitationRelatesToBuilder {
+	b.clearTarget()
+	b.citationRelatesTo.TargetUri = &v
+	return b
+}
+
+// SetTargetUriExt sets the TargetUriExt field.
+func (b *CitationRelatesToBuilder) SetTargetUriExt(v Element) *CitationRelatesToBuilder {
+	b.citationRelatesTo.TargetUriExt = &v
+	return b
+}
+
+// SetTargetIdentifier sets Target[x] to its TargetIdentifier variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CitationRelatesToBuilder) SetTargetIdentifier(v Identifier) *CitationRelatesToBuilder {
+	b.clearTarget()
+	b.citationRelatesTo.TargetIdentifier = &v
+	return b
+}
+
+// SetTargetReference sets Target[x] to its TargetReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CitationRelatesToBuilder) SetTargetReference(v Reference) *CitationRelatesToBuilder {
+	b.clearTarget()
+	b.citationRelatesTo.TargetReference = &v
+	return b
+}
+
+// SetTargetAttachment sets Target[x] to its TargetAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CitationRelatesToBuilder) SetTargetAttachment(v Attachment) *CitationRelatesToBuilder {
+	b.clearTarget()
+	b.citationRelatesTo.TargetAttachment = &v
+	return b
+}
+
+// clearTarget unsets every variant of Target[x], including the
+// _field companions of the primitive ones.
+func (b *CitationRelatesToBuilder) clearTarget() {
+	b.citationRelatesTo.TargetUri = nil
+	b.citationRelatesTo.TargetIdentifier = nil
+	b.citationRelatesTo.TargetReference = nil
+	b.citationRelatesTo.TargetAttachment = nil
+}
+
+// =============================================================================
+// CitationStatusDate - Fluent Builder
+// =============================================================================
+
+// CitationStatusDateBuilder provides a fluent API for constructing CitationStatusDate values.
+type CitationStatusDateBuilder struct {
+	citationStatusDate *CitationStatusDate
+}
+
+// NewCitationStatusDateBuilder creates a new CitationStatusDateBuilder.
+func NewCitationStatusDateBuilder() *CitationStatusDateBuilder {
+	return &CitationStatusDateBuilder{
+		citationStatusDate: &CitationStatusDate{},
+	}
+}
+
+// Build returns the constructed CitationStatusDate.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationStatusDateBuilder) Build() CitationStatusDate {
+	return *b.citationStatusDate
+}
+
+// SetId sets the Id field.
+func (b *CitationStatusDateBuilder) SetId(v string) *CitationStatusDateBuilder {
+	b.citationStatusDate.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationStatusDateBuilder) AddExtension(v Extension) *CitationStatusDateBuilder {
+	b.citationStatusDate.Extension = append(b.citationStatusDate.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationStatusDateBuilder) AddModifierExtension(v Extension) *CitationStatusDateBuilder {
+	b.citationStatusDate.ModifierExtension = append(b.citationStatusDate.ModifierExtension, v)
+	return b
+}
+
+// SetActivity sets the Activity field.
+func (b *CitationStatusDateBuilder) SetActivity(v CodeableConcept) *CitationStatusDateBuilder {
+	b.citationStatusDate.Activity = &v
+	return b
+}
+
+// SetActual sets the Actual field.
+func (b *CitationStatusDateBuilder) SetActual(v bool) *CitationStatusDateBuilder {
+	b.citationStatusDate.Actual = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *CitationStatusDateBuilder) SetPeriod(v Period) *CitationStatusDateBuilder {
+	b.citationStatusDate.Period = &v
+	return b
+}
+
+// SetActualExt sets the extensions carried by Actual, serialized as
+// "_actual".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationStatusDateBuilder) SetActualExt(v Element) *CitationStatusDateBuilder {
+	b.citationStatusDate.ActualExt = &v
+	return b
+}
+
+// =============================================================================
+// CitationSummary - Fluent Builder
+// =============================================================================
+
+// CitationSummaryBuilder provides a fluent API for constructing CitationSummary values.
+type CitationSummaryBuilder struct {
+	citationSummary *CitationSummary
+}
+
+// NewCitationSummaryBuilder creates a new CitationSummaryBuilder.
+func NewCitationSummaryBuilder() *CitationSummaryBuilder {
+	return &CitationSummaryBuilder{
+		citationSummary: &CitationSummary{},
+	}
+}
+
+// Build returns the constructed CitationSummary.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CitationSummaryBuilder) Build() CitationSummary {
+	return *b.citationSummary
+}
+
+// SetId sets the Id field.
+func (b *CitationSummaryBuilder) SetId(v string) *CitationSummaryBuilder {
+	b.citationSummary.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CitationSummaryBuilder) AddExtension(v Extension) *CitationSummaryBuilder {
+	b.citationSummary.Extension = append(b.citationSummary.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CitationSummaryBuilder) AddModifierExtension(v Extension) *CitationSummaryBuilder {
+	b.citationSummary.ModifierExtension = append(b.citationSummary.ModifierExtension, v)
+	return b
+}
+
+// SetStyle sets the Style field.
+func (b *CitationSummaryBuilder) SetStyle(v CodeableConcept) *CitationSummaryBuilder {
+	b.citationSummary.Style = &v
+	return b
+}
+
+// SetText sets the Text field.
+func (b *CitationSummaryBuilder) SetText(v string) *CitationSummaryBuilder {
+	b.citationSummary.Text = &v
+	return b
+}
+
+// SetTextExt sets the extensions carried by Text, serialized as
+// "_text".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CitationSummaryBuilder) SetTextExt(v Element) *CitationSummaryBuilder {
+	b.citationSummary.TextExt = &v
+	return b
+}

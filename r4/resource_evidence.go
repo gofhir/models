@@ -870,3 +870,153 @@ func (b *EvidenceBuilder) AddOutcome(v Reference) *EvidenceBuilder {
 	b.evidence.Outcome = append(b.evidence.Outcome, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceBuilder) SetImplicitRulesExt(v Element) *EvidenceBuilder {
+	b.evidence.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceBuilder) SetLanguageExt(v Element) *EvidenceBuilder {
+	b.evidence.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceBuilder) SetUrlExt(v Element) *EvidenceBuilder {
+	b.evidence.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceBuilder) SetVersionExt(v Element) *EvidenceBuilder {
+	b.evidence.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceBuilder) SetNameExt(v Element) *EvidenceBuilder {
+	b.evidence.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceBuilder) SetTitleExt(v Element) *EvidenceBuilder {
+	b.evidence.TitleExt = &v
+	return b
+}
+
+// SetShortTitleExt sets the extensions carried by ShortTitle, serialized as
+// "_shortTitle".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceBuilder) SetShortTitleExt(v Element) *EvidenceBuilder {
+	b.evidence.ShortTitleExt = &v
+	return b
+}
+
+// SetSubtitleExt sets the extensions carried by Subtitle, serialized as
+// "_subtitle".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceBuilder) SetSubtitleExt(v Element) *EvidenceBuilder {
+	b.evidence.SubtitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceBuilder) SetStatusExt(v Element) *EvidenceBuilder {
+	b.evidence.StatusExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceBuilder) SetDateExt(v Element) *EvidenceBuilder {
+	b.evidence.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceBuilder) SetPublisherExt(v Element) *EvidenceBuilder {
+	b.evidence.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceBuilder) SetDescriptionExt(v Element) *EvidenceBuilder {
+	b.evidence.DescriptionExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceBuilder) SetCopyrightExt(v Element) *EvidenceBuilder {
+	b.evidence.CopyrightExt = &v
+	return b
+}
+
+// SetApprovalDateExt sets the extensions carried by ApprovalDate, serialized as
+// "_approvalDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceBuilder) SetApprovalDateExt(v Element) *EvidenceBuilder {
+	b.evidence.ApprovalDateExt = &v
+	return b
+}
+
+// SetLastReviewDateExt sets the extensions carried by LastReviewDate, serialized as
+// "_lastReviewDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceBuilder) SetLastReviewDateExt(v Element) *EvidenceBuilder {
+	b.evidence.LastReviewDateExt = &v
+	return b
+}

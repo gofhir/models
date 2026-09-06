@@ -758,3 +758,193 @@ func (b *AccountBuilder) SetPartOf(v Reference) *AccountBuilder {
 	b.account.PartOf = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountBuilder) SetImplicitRulesExt(v Element) *AccountBuilder {
+	b.account.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountBuilder) SetLanguageExt(v Element) *AccountBuilder {
+	b.account.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountBuilder) SetStatusExt(v Element) *AccountBuilder {
+	b.account.StatusExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountBuilder) SetNameExt(v Element) *AccountBuilder {
+	b.account.NameExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountBuilder) SetDescriptionExt(v Element) *AccountBuilder {
+	b.account.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// AccountCoverage - Fluent Builder
+// =============================================================================
+
+// AccountCoverageBuilder provides a fluent API for constructing AccountCoverage values.
+type AccountCoverageBuilder struct {
+	accountCoverage *AccountCoverage
+}
+
+// NewAccountCoverageBuilder creates a new AccountCoverageBuilder.
+func NewAccountCoverageBuilder() *AccountCoverageBuilder {
+	return &AccountCoverageBuilder{
+		accountCoverage: &AccountCoverage{},
+	}
+}
+
+// Build returns the constructed AccountCoverage.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AccountCoverageBuilder) Build() AccountCoverage {
+	return *b.accountCoverage
+}
+
+// SetId sets the Id field.
+func (b *AccountCoverageBuilder) SetId(v string) *AccountCoverageBuilder {
+	b.accountCoverage.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AccountCoverageBuilder) AddExtension(v Extension) *AccountCoverageBuilder {
+	b.accountCoverage.Extension = append(b.accountCoverage.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AccountCoverageBuilder) AddModifierExtension(v Extension) *AccountCoverageBuilder {
+	b.accountCoverage.ModifierExtension = append(b.accountCoverage.ModifierExtension, v)
+	return b
+}
+
+// SetCoverage sets the Coverage field.
+func (b *AccountCoverageBuilder) SetCoverage(v Reference) *AccountCoverageBuilder {
+	b.accountCoverage.Coverage = &v
+	return b
+}
+
+// SetPriority sets the Priority field.
+func (b *AccountCoverageBuilder) SetPriority(v uint32) *AccountCoverageBuilder {
+	b.accountCoverage.Priority = &v
+	return b
+}
+
+// SetPriorityExt sets the extensions carried by Priority, serialized as
+// "_priority".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountCoverageBuilder) SetPriorityExt(v Element) *AccountCoverageBuilder {
+	b.accountCoverage.PriorityExt = &v
+	return b
+}
+
+// =============================================================================
+// AccountGuarantor - Fluent Builder
+// =============================================================================
+
+// AccountGuarantorBuilder provides a fluent API for constructing AccountGuarantor values.
+type AccountGuarantorBuilder struct {
+	accountGuarantor *AccountGuarantor
+}
+
+// NewAccountGuarantorBuilder creates a new AccountGuarantorBuilder.
+func NewAccountGuarantorBuilder() *AccountGuarantorBuilder {
+	return &AccountGuarantorBuilder{
+		accountGuarantor: &AccountGuarantor{},
+	}
+}
+
+// Build returns the constructed AccountGuarantor.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AccountGuarantorBuilder) Build() AccountGuarantor {
+	return *b.accountGuarantor
+}
+
+// SetId sets the Id field.
+func (b *AccountGuarantorBuilder) SetId(v string) *AccountGuarantorBuilder {
+	b.accountGuarantor.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AccountGuarantorBuilder) AddExtension(v Extension) *AccountGuarantorBuilder {
+	b.accountGuarantor.Extension = append(b.accountGuarantor.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AccountGuarantorBuilder) AddModifierExtension(v Extension) *AccountGuarantorBuilder {
+	b.accountGuarantor.ModifierExtension = append(b.accountGuarantor.ModifierExtension, v)
+	return b
+}
+
+// SetParty sets the Party field.
+func (b *AccountGuarantorBuilder) SetParty(v Reference) *AccountGuarantorBuilder {
+	b.accountGuarantor.Party = &v
+	return b
+}
+
+// SetOnHold sets the OnHold field.
+func (b *AccountGuarantorBuilder) SetOnHold(v bool) *AccountGuarantorBuilder {
+	b.accountGuarantor.OnHold = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *AccountGuarantorBuilder) SetPeriod(v Period) *AccountGuarantorBuilder {
+	b.accountGuarantor.Period = &v
+	return b
+}
+
+// SetOnHoldExt sets the extensions carried by OnHold, serialized as
+// "_onHold".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountGuarantorBuilder) SetOnHoldExt(v Element) *AccountGuarantorBuilder {
+	b.accountGuarantor.OnHoldExt = &v
+	return b
+}

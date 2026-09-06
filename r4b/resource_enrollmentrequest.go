@@ -460,3 +460,43 @@ func (b *EnrollmentRequestBuilder) SetCoverage(v Reference) *EnrollmentRequestBu
 	b.enrollmentRequest.Coverage = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EnrollmentRequestBuilder) SetImplicitRulesExt(v Element) *EnrollmentRequestBuilder {
+	b.enrollmentRequest.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EnrollmentRequestBuilder) SetLanguageExt(v Element) *EnrollmentRequestBuilder {
+	b.enrollmentRequest.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EnrollmentRequestBuilder) SetStatusExt(v Element) *EnrollmentRequestBuilder {
+	b.enrollmentRequest.StatusExt = &v
+	return b
+}
+
+// SetCreatedExt sets the extensions carried by Created, serialized as
+// "_created".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EnrollmentRequestBuilder) SetCreatedExt(v Element) *EnrollmentRequestBuilder {
+	b.enrollmentRequest.CreatedExt = &v
+	return b
+}

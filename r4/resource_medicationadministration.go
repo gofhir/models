@@ -1031,6 +1031,54 @@ func (b *MedicationAdministrationBuilder) AddEventHistory(v Reference) *Medicati
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationAdministrationBuilder) SetImplicitRulesExt(v Element) *MedicationAdministrationBuilder {
+	b.medicationAdministration.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationAdministrationBuilder) SetLanguageExt(v Element) *MedicationAdministrationBuilder {
+	b.medicationAdministration.LanguageExt = &v
+	return b
+}
+
+// AddInstantiatesExt attaches extensions to the Instantiates element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiates twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *MedicationAdministrationBuilder) AddInstantiatesExt(v *Element) *MedicationAdministrationBuilder {
+	for len(b.medicationAdministration.InstantiatesExt) < len(b.medicationAdministration.Instantiates)-1 {
+		b.medicationAdministration.InstantiatesExt = append(b.medicationAdministration.InstantiatesExt, nil)
+	}
+	b.medicationAdministration.InstantiatesExt = append(b.medicationAdministration.InstantiatesExt, v)
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationAdministrationBuilder) SetStatusExt(v Element) *MedicationAdministrationBuilder {
+	b.medicationAdministration.StatusExt = &v
+	return b
+}
+
 // clearMedication unsets every variant of Medication[x], including the
 // _field companions of the primitive ones.
 func (b *MedicationAdministrationBuilder) clearMedication() {
@@ -1043,4 +1091,175 @@ func (b *MedicationAdministrationBuilder) clearMedication() {
 func (b *MedicationAdministrationBuilder) clearEffective() {
 	b.medicationAdministration.EffectiveDateTime = nil
 	b.medicationAdministration.EffectivePeriod = nil
+}
+
+// =============================================================================
+// MedicationAdministrationDosage - Fluent Builder
+// =============================================================================
+
+// MedicationAdministrationDosageBuilder provides a fluent API for constructing MedicationAdministrationDosage values.
+type MedicationAdministrationDosageBuilder struct {
+	medicationAdministrationDosage *MedicationAdministrationDosage
+}
+
+// NewMedicationAdministrationDosageBuilder creates a new MedicationAdministrationDosageBuilder.
+func NewMedicationAdministrationDosageBuilder() *MedicationAdministrationDosageBuilder {
+	return &MedicationAdministrationDosageBuilder{
+		medicationAdministrationDosage: &MedicationAdministrationDosage{},
+	}
+}
+
+// Build returns the constructed MedicationAdministrationDosage.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationAdministrationDosageBuilder) Build() MedicationAdministrationDosage {
+	return *b.medicationAdministrationDosage
+}
+
+// SetId sets the Id field.
+func (b *MedicationAdministrationDosageBuilder) SetId(v string) *MedicationAdministrationDosageBuilder {
+	b.medicationAdministrationDosage.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationAdministrationDosageBuilder) AddExtension(v Extension) *MedicationAdministrationDosageBuilder {
+	b.medicationAdministrationDosage.Extension = append(b.medicationAdministrationDosage.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationAdministrationDosageBuilder) AddModifierExtension(v Extension) *MedicationAdministrationDosageBuilder {
+	b.medicationAdministrationDosage.ModifierExtension = append(b.medicationAdministrationDosage.ModifierExtension, v)
+	return b
+}
+
+// SetText sets the Text field.
+func (b *MedicationAdministrationDosageBuilder) SetText(v string) *MedicationAdministrationDosageBuilder {
+	b.medicationAdministrationDosage.Text = &v
+	return b
+}
+
+// SetSite sets the Site field.
+func (b *MedicationAdministrationDosageBuilder) SetSite(v CodeableConcept) *MedicationAdministrationDosageBuilder {
+	b.medicationAdministrationDosage.Site = &v
+	return b
+}
+
+// SetRoute sets the Route field.
+func (b *MedicationAdministrationDosageBuilder) SetRoute(v CodeableConcept) *MedicationAdministrationDosageBuilder {
+	b.medicationAdministrationDosage.Route = &v
+	return b
+}
+
+// SetMethod sets the Method field.
+func (b *MedicationAdministrationDosageBuilder) SetMethod(v CodeableConcept) *MedicationAdministrationDosageBuilder {
+	b.medicationAdministrationDosage.Method = &v
+	return b
+}
+
+// SetDose sets the Dose field.
+func (b *MedicationAdministrationDosageBuilder) SetDose(v Quantity) *MedicationAdministrationDosageBuilder {
+	b.medicationAdministrationDosage.Dose = &v
+	return b
+}
+
+// SetRateRatio sets Rate[x] to its RateRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicationAdministrationDosageBuilder) SetRateRatio(v Ratio) *MedicationAdministrationDosageBuilder {
+	b.clearRate()
+	b.medicationAdministrationDosage.RateRatio = &v
+	return b
+}
+
+// SetRateQuantity sets Rate[x] to its RateQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicationAdministrationDosageBuilder) SetRateQuantity(v Quantity) *MedicationAdministrationDosageBuilder {
+	b.clearRate()
+	b.medicationAdministrationDosage.RateQuantity = &v
+	return b
+}
+
+// SetTextExt sets the extensions carried by Text, serialized as
+// "_text".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationAdministrationDosageBuilder) SetTextExt(v Element) *MedicationAdministrationDosageBuilder {
+	b.medicationAdministrationDosage.TextExt = &v
+	return b
+}
+
+// clearRate unsets every variant of Rate[x], including the
+// _field companions of the primitive ones.
+func (b *MedicationAdministrationDosageBuilder) clearRate() {
+	b.medicationAdministrationDosage.RateRatio = nil
+	b.medicationAdministrationDosage.RateQuantity = nil
+}
+
+// =============================================================================
+// MedicationAdministrationPerformer - Fluent Builder
+// =============================================================================
+
+// MedicationAdministrationPerformerBuilder provides a fluent API for constructing MedicationAdministrationPerformer values.
+type MedicationAdministrationPerformerBuilder struct {
+	medicationAdministrationPerformer *MedicationAdministrationPerformer
+}
+
+// NewMedicationAdministrationPerformerBuilder creates a new MedicationAdministrationPerformerBuilder.
+func NewMedicationAdministrationPerformerBuilder() *MedicationAdministrationPerformerBuilder {
+	return &MedicationAdministrationPerformerBuilder{
+		medicationAdministrationPerformer: &MedicationAdministrationPerformer{},
+	}
+}
+
+// Build returns the constructed MedicationAdministrationPerformer.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationAdministrationPerformerBuilder) Build() MedicationAdministrationPerformer {
+	return *b.medicationAdministrationPerformer
+}
+
+// SetId sets the Id field.
+func (b *MedicationAdministrationPerformerBuilder) SetId(v string) *MedicationAdministrationPerformerBuilder {
+	b.medicationAdministrationPerformer.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationAdministrationPerformerBuilder) AddExtension(v Extension) *MedicationAdministrationPerformerBuilder {
+	b.medicationAdministrationPerformer.Extension = append(b.medicationAdministrationPerformer.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationAdministrationPerformerBuilder) AddModifierExtension(v Extension) *MedicationAdministrationPerformerBuilder {
+	b.medicationAdministrationPerformer.ModifierExtension = append(b.medicationAdministrationPerformer.ModifierExtension, v)
+	return b
+}
+
+// SetFunction sets the Function field.
+func (b *MedicationAdministrationPerformerBuilder) SetFunction(v CodeableConcept) *MedicationAdministrationPerformerBuilder {
+	b.medicationAdministrationPerformer.Function = &v
+	return b
+}
+
+// SetActor sets the Actor field.
+func (b *MedicationAdministrationPerformerBuilder) SetActor(v Reference) *MedicationAdministrationPerformerBuilder {
+	b.medicationAdministrationPerformer.Actor = &v
+	return b
 }

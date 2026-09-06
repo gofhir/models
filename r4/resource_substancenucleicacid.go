@@ -856,3 +856,348 @@ func (b *SubstanceNucleicAcidBuilder) AddSubunit(v SubstanceNucleicAcidSubunit) 
 	b.substanceNucleicAcid.Subunit = append(b.substanceNucleicAcid.Subunit, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceNucleicAcidBuilder) SetImplicitRulesExt(v Element) *SubstanceNucleicAcidBuilder {
+	b.substanceNucleicAcid.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceNucleicAcidBuilder) SetLanguageExt(v Element) *SubstanceNucleicAcidBuilder {
+	b.substanceNucleicAcid.LanguageExt = &v
+	return b
+}
+
+// SetNumberOfSubunitsExt sets the extensions carried by NumberOfSubunits, serialized as
+// "_numberOfSubunits".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceNucleicAcidBuilder) SetNumberOfSubunitsExt(v Element) *SubstanceNucleicAcidBuilder {
+	b.substanceNucleicAcid.NumberOfSubunitsExt = &v
+	return b
+}
+
+// SetAreaOfHybridisationExt sets the extensions carried by AreaOfHybridisation, serialized as
+// "_areaOfHybridisation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceNucleicAcidBuilder) SetAreaOfHybridisationExt(v Element) *SubstanceNucleicAcidBuilder {
+	b.substanceNucleicAcid.AreaOfHybridisationExt = &v
+	return b
+}
+
+// =============================================================================
+// SubstanceNucleicAcidSubunit - Fluent Builder
+// =============================================================================
+
+// SubstanceNucleicAcidSubunitBuilder provides a fluent API for constructing SubstanceNucleicAcidSubunit values.
+type SubstanceNucleicAcidSubunitBuilder struct {
+	substanceNucleicAcidSubunit *SubstanceNucleicAcidSubunit
+}
+
+// NewSubstanceNucleicAcidSubunitBuilder creates a new SubstanceNucleicAcidSubunitBuilder.
+func NewSubstanceNucleicAcidSubunitBuilder() *SubstanceNucleicAcidSubunitBuilder {
+	return &SubstanceNucleicAcidSubunitBuilder{
+		substanceNucleicAcidSubunit: &SubstanceNucleicAcidSubunit{},
+	}
+}
+
+// Build returns the constructed SubstanceNucleicAcidSubunit.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceNucleicAcidSubunitBuilder) Build() SubstanceNucleicAcidSubunit {
+	return *b.substanceNucleicAcidSubunit
+}
+
+// SetId sets the Id field.
+func (b *SubstanceNucleicAcidSubunitBuilder) SetId(v string) *SubstanceNucleicAcidSubunitBuilder {
+	b.substanceNucleicAcidSubunit.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceNucleicAcidSubunitBuilder) AddExtension(v Extension) *SubstanceNucleicAcidSubunitBuilder {
+	b.substanceNucleicAcidSubunit.Extension = append(b.substanceNucleicAcidSubunit.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceNucleicAcidSubunitBuilder) AddModifierExtension(v Extension) *SubstanceNucleicAcidSubunitBuilder {
+	b.substanceNucleicAcidSubunit.ModifierExtension = append(b.substanceNucleicAcidSubunit.ModifierExtension, v)
+	return b
+}
+
+// SetSubunit sets the Subunit field.
+func (b *SubstanceNucleicAcidSubunitBuilder) SetSubunit(v int) *SubstanceNucleicAcidSubunitBuilder {
+	b.substanceNucleicAcidSubunit.Subunit = &v
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *SubstanceNucleicAcidSubunitBuilder) SetSequence(v string) *SubstanceNucleicAcidSubunitBuilder {
+	b.substanceNucleicAcidSubunit.Sequence = &v
+	return b
+}
+
+// SetLength sets the Length field.
+func (b *SubstanceNucleicAcidSubunitBuilder) SetLength(v int) *SubstanceNucleicAcidSubunitBuilder {
+	b.substanceNucleicAcidSubunit.Length = &v
+	return b
+}
+
+// SetSequenceAttachment sets the SequenceAttachment field.
+func (b *SubstanceNucleicAcidSubunitBuilder) SetSequenceAttachment(v Attachment) *SubstanceNucleicAcidSubunitBuilder {
+	b.substanceNucleicAcidSubunit.SequenceAttachment = &v
+	return b
+}
+
+// SetFivePrime sets the FivePrime field.
+func (b *SubstanceNucleicAcidSubunitBuilder) SetFivePrime(v CodeableConcept) *SubstanceNucleicAcidSubunitBuilder {
+	b.substanceNucleicAcidSubunit.FivePrime = &v
+	return b
+}
+
+// SetThreePrime sets the ThreePrime field.
+func (b *SubstanceNucleicAcidSubunitBuilder) SetThreePrime(v CodeableConcept) *SubstanceNucleicAcidSubunitBuilder {
+	b.substanceNucleicAcidSubunit.ThreePrime = &v
+	return b
+}
+
+// AddLinkage adds a Linkage element.
+func (b *SubstanceNucleicAcidSubunitBuilder) AddLinkage(v SubstanceNucleicAcidSubunitLinkage) *SubstanceNucleicAcidSubunitBuilder {
+	b.substanceNucleicAcidSubunit.Linkage = append(b.substanceNucleicAcidSubunit.Linkage, v)
+	return b
+}
+
+// AddSugar adds a Sugar element.
+func (b *SubstanceNucleicAcidSubunitBuilder) AddSugar(v SubstanceNucleicAcidSubunitSugar) *SubstanceNucleicAcidSubunitBuilder {
+	b.substanceNucleicAcidSubunit.Sugar = append(b.substanceNucleicAcidSubunit.Sugar, v)
+	return b
+}
+
+// SetSubunitExt sets the extensions carried by Subunit, serialized as
+// "_subunit".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceNucleicAcidSubunitBuilder) SetSubunitExt(v Element) *SubstanceNucleicAcidSubunitBuilder {
+	b.substanceNucleicAcidSubunit.SubunitExt = &v
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceNucleicAcidSubunitBuilder) SetSequenceExt(v Element) *SubstanceNucleicAcidSubunitBuilder {
+	b.substanceNucleicAcidSubunit.SequenceExt = &v
+	return b
+}
+
+// SetLengthExt sets the extensions carried by Length, serialized as
+// "_length".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceNucleicAcidSubunitBuilder) SetLengthExt(v Element) *SubstanceNucleicAcidSubunitBuilder {
+	b.substanceNucleicAcidSubunit.LengthExt = &v
+	return b
+}
+
+// =============================================================================
+// SubstanceNucleicAcidSubunitLinkage - Fluent Builder
+// =============================================================================
+
+// SubstanceNucleicAcidSubunitLinkageBuilder provides a fluent API for constructing SubstanceNucleicAcidSubunitLinkage values.
+type SubstanceNucleicAcidSubunitLinkageBuilder struct {
+	substanceNucleicAcidSubunitLinkage *SubstanceNucleicAcidSubunitLinkage
+}
+
+// NewSubstanceNucleicAcidSubunitLinkageBuilder creates a new SubstanceNucleicAcidSubunitLinkageBuilder.
+func NewSubstanceNucleicAcidSubunitLinkageBuilder() *SubstanceNucleicAcidSubunitLinkageBuilder {
+	return &SubstanceNucleicAcidSubunitLinkageBuilder{
+		substanceNucleicAcidSubunitLinkage: &SubstanceNucleicAcidSubunitLinkage{},
+	}
+}
+
+// Build returns the constructed SubstanceNucleicAcidSubunitLinkage.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceNucleicAcidSubunitLinkageBuilder) Build() SubstanceNucleicAcidSubunitLinkage {
+	return *b.substanceNucleicAcidSubunitLinkage
+}
+
+// SetId sets the Id field.
+func (b *SubstanceNucleicAcidSubunitLinkageBuilder) SetId(v string) *SubstanceNucleicAcidSubunitLinkageBuilder {
+	b.substanceNucleicAcidSubunitLinkage.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceNucleicAcidSubunitLinkageBuilder) AddExtension(v Extension) *SubstanceNucleicAcidSubunitLinkageBuilder {
+	b.substanceNucleicAcidSubunitLinkage.Extension = append(b.substanceNucleicAcidSubunitLinkage.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceNucleicAcidSubunitLinkageBuilder) AddModifierExtension(v Extension) *SubstanceNucleicAcidSubunitLinkageBuilder {
+	b.substanceNucleicAcidSubunitLinkage.ModifierExtension = append(b.substanceNucleicAcidSubunitLinkage.ModifierExtension, v)
+	return b
+}
+
+// SetConnectivity sets the Connectivity field.
+func (b *SubstanceNucleicAcidSubunitLinkageBuilder) SetConnectivity(v string) *SubstanceNucleicAcidSubunitLinkageBuilder {
+	b.substanceNucleicAcidSubunitLinkage.Connectivity = &v
+	return b
+}
+
+// SetIdentifier sets the Identifier field.
+func (b *SubstanceNucleicAcidSubunitLinkageBuilder) SetIdentifier(v Identifier) *SubstanceNucleicAcidSubunitLinkageBuilder {
+	b.substanceNucleicAcidSubunitLinkage.Identifier = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *SubstanceNucleicAcidSubunitLinkageBuilder) SetName(v string) *SubstanceNucleicAcidSubunitLinkageBuilder {
+	b.substanceNucleicAcidSubunitLinkage.Name = &v
+	return b
+}
+
+// SetResidueSite sets the ResidueSite field.
+func (b *SubstanceNucleicAcidSubunitLinkageBuilder) SetResidueSite(v string) *SubstanceNucleicAcidSubunitLinkageBuilder {
+	b.substanceNucleicAcidSubunitLinkage.ResidueSite = &v
+	return b
+}
+
+// SetConnectivityExt sets the extensions carried by Connectivity, serialized as
+// "_connectivity".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceNucleicAcidSubunitLinkageBuilder) SetConnectivityExt(v Element) *SubstanceNucleicAcidSubunitLinkageBuilder {
+	b.substanceNucleicAcidSubunitLinkage.ConnectivityExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceNucleicAcidSubunitLinkageBuilder) SetNameExt(v Element) *SubstanceNucleicAcidSubunitLinkageBuilder {
+	b.substanceNucleicAcidSubunitLinkage.NameExt = &v
+	return b
+}
+
+// SetResidueSiteExt sets the extensions carried by ResidueSite, serialized as
+// "_residueSite".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceNucleicAcidSubunitLinkageBuilder) SetResidueSiteExt(v Element) *SubstanceNucleicAcidSubunitLinkageBuilder {
+	b.substanceNucleicAcidSubunitLinkage.ResidueSiteExt = &v
+	return b
+}
+
+// =============================================================================
+// SubstanceNucleicAcidSubunitSugar - Fluent Builder
+// =============================================================================
+
+// SubstanceNucleicAcidSubunitSugarBuilder provides a fluent API for constructing SubstanceNucleicAcidSubunitSugar values.
+type SubstanceNucleicAcidSubunitSugarBuilder struct {
+	substanceNucleicAcidSubunitSugar *SubstanceNucleicAcidSubunitSugar
+}
+
+// NewSubstanceNucleicAcidSubunitSugarBuilder creates a new SubstanceNucleicAcidSubunitSugarBuilder.
+func NewSubstanceNucleicAcidSubunitSugarBuilder() *SubstanceNucleicAcidSubunitSugarBuilder {
+	return &SubstanceNucleicAcidSubunitSugarBuilder{
+		substanceNucleicAcidSubunitSugar: &SubstanceNucleicAcidSubunitSugar{},
+	}
+}
+
+// Build returns the constructed SubstanceNucleicAcidSubunitSugar.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceNucleicAcidSubunitSugarBuilder) Build() SubstanceNucleicAcidSubunitSugar {
+	return *b.substanceNucleicAcidSubunitSugar
+}
+
+// SetId sets the Id field.
+func (b *SubstanceNucleicAcidSubunitSugarBuilder) SetId(v string) *SubstanceNucleicAcidSubunitSugarBuilder {
+	b.substanceNucleicAcidSubunitSugar.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceNucleicAcidSubunitSugarBuilder) AddExtension(v Extension) *SubstanceNucleicAcidSubunitSugarBuilder {
+	b.substanceNucleicAcidSubunitSugar.Extension = append(b.substanceNucleicAcidSubunitSugar.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceNucleicAcidSubunitSugarBuilder) AddModifierExtension(v Extension) *SubstanceNucleicAcidSubunitSugarBuilder {
+	b.substanceNucleicAcidSubunitSugar.ModifierExtension = append(b.substanceNucleicAcidSubunitSugar.ModifierExtension, v)
+	return b
+}
+
+// SetIdentifier sets the Identifier field.
+func (b *SubstanceNucleicAcidSubunitSugarBuilder) SetIdentifier(v Identifier) *SubstanceNucleicAcidSubunitSugarBuilder {
+	b.substanceNucleicAcidSubunitSugar.Identifier = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *SubstanceNucleicAcidSubunitSugarBuilder) SetName(v string) *SubstanceNucleicAcidSubunitSugarBuilder {
+	b.substanceNucleicAcidSubunitSugar.Name = &v
+	return b
+}
+
+// SetResidueSite sets the ResidueSite field.
+func (b *SubstanceNucleicAcidSubunitSugarBuilder) SetResidueSite(v string) *SubstanceNucleicAcidSubunitSugarBuilder {
+	b.substanceNucleicAcidSubunitSugar.ResidueSite = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceNucleicAcidSubunitSugarBuilder) SetNameExt(v Element) *SubstanceNucleicAcidSubunitSugarBuilder {
+	b.substanceNucleicAcidSubunitSugar.NameExt = &v
+	return b
+}
+
+// SetResidueSiteExt sets the extensions carried by ResidueSite, serialized as
+// "_residueSite".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceNucleicAcidSubunitSugarBuilder) SetResidueSiteExt(v Element) *SubstanceNucleicAcidSubunitSugarBuilder {
+	b.substanceNucleicAcidSubunitSugar.ResidueSiteExt = &v
+	return b
+}

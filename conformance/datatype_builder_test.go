@@ -208,3 +208,107 @@ func TestResourceBuilderReturnsTheSameInstance(t *testing.T) {
 		t.Error("the two are no longer the same object")
 	}
 }
+
+// TestTheChainNeverBreaks is the point of completing the builder surface.
+//
+// A caller building a resource used to drop into a struct literal the moment they
+// reached a backbone or a datatype, and again for any extension on a primitive.
+// Those are not corner cases: a backbone is where most of a resource's data lives,
+// and a _field companion is the only way FHIR expresses an extension on a
+// primitive value.
+//
+// This builds one document through every layer without a single literal.
+func TestTheChainNeverBreaks(t *testing.T) {
+	p := r4.NewPatientBuilder().
+		SetId("p1").
+		// datatype
+		AddName(r4.NewHumanNameBuilder().
+			SetFamily("Smith").
+			AddGiven("John").
+			Build()).
+		// backbone, with a datatype inside it
+		AddContact(r4.NewPatientContactBuilder().
+			SetName(r4.NewHumanNameBuilder().SetFamily("Doe").Build()).
+			AddTelecom(r4.NewContactPointBuilder().
+				SetSystem(r4.ContactPointSystemPhone).
+				SetValue("555").
+				Build()).
+			Build()).
+		// extension on a primitive, through its companion
+		SetBirthDateExt(r4.NewElementBuilder().
+			AddExtension(r4.NewExtensionBuilder().
+				SetUrl("http://hl7.org/fhir/StructureDefinition/data-absent-reason").
+				SetValueCode("asked-declined").
+				Build()).
+			Build()).
+		Build()
+
+	out, err := json.Marshal(p)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	for _, want := range []string{
+		`"family":"Smith"`, `"given":["John"]`,
+		`"contact":[{`, `"family":"Doe"`, `"value":"555"`,
+		`"_birthDate":{`, `"asked-declined"`,
+	} {
+		if !strings.Contains(string(out), want) {
+			t.Errorf("%s missing from:\n%s", want, out)
+		}
+	}
+
+	// And it reads back as what was built.
+	var back r4.Patient
+	if err := json.Unmarshal(out, &back); err != nil {
+		t.Fatalf("reparse: %v", err)
+	}
+	if len(back.Contact) != 1 || back.Contact[0].Name == nil {
+		t.Error("the backbone did not survive the round trip")
+	}
+	if back.BirthDateExt == nil || len(back.BirthDateExt.Extension) != 1 {
+		t.Error("the primitive's extension did not survive the round trip")
+	}
+	if back.BirthDate != nil {
+		t.Error("birthDate has no value; only its extension was set")
+	}
+}
+
+// TestExtensionSlotsLineUpWithTheirValues covers a defect that produced a wrong
+// document without any error.
+//
+// The value and extension slices of a repeating primitive are parallel by
+// position. AddGivenExt used to append blindly, so after adding two given names
+// the extension landed at index 0 and belonged to the first name rather than the
+// second — the obvious reading of the code being wrong, silently.
+func TestExtensionSlotsLineUpWithTheirValues(t *testing.T) {
+	ext := r4.NewElementBuilder().
+		AddExtension(r4.NewExtensionBuilder().SetUrl("http://x").SetValueCode("c").Build()).
+		Build()
+
+	n := r4.NewHumanNameBuilder().
+		AddGiven("A").
+		AddGiven("B").
+		AddGivenExt(&ext).
+		Build()
+
+	if len(n.Given) != 2 {
+		t.Fatalf("got %d given, want 2", len(n.Given))
+	}
+	if len(n.GivenExt) != 2 {
+		t.Fatalf("got %d extension slots for 2 values; they are parallel by position", len(n.GivenExt))
+	}
+	if n.GivenExt[0] != nil {
+		t.Error("the first name has no extension, so its slot must be nil")
+	}
+	if n.GivenExt[1] == nil {
+		t.Fatal("the extension did not land on the name it was added after")
+	}
+
+	out, err := json.Marshal(n)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	if !strings.Contains(string(out), `"_given":[null,{`) {
+		t.Errorf("the wire form does not line up: %s", out)
+	}
+}

@@ -764,3 +764,195 @@ func (b *InventoryReportBuilder) AddNote(v Annotation) *InventoryReportBuilder {
 	b.inventoryReport.Note = append(b.inventoryReport.Note, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InventoryReportBuilder) SetImplicitRulesExt(v Element) *InventoryReportBuilder {
+	b.inventoryReport.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InventoryReportBuilder) SetLanguageExt(v Element) *InventoryReportBuilder {
+	b.inventoryReport.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InventoryReportBuilder) SetStatusExt(v Element) *InventoryReportBuilder {
+	b.inventoryReport.StatusExt = &v
+	return b
+}
+
+// SetCountTypeExt sets the extensions carried by CountType, serialized as
+// "_countType".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InventoryReportBuilder) SetCountTypeExt(v Element) *InventoryReportBuilder {
+	b.inventoryReport.CountTypeExt = &v
+	return b
+}
+
+// SetReportedDateTimeExt sets the extensions carried by ReportedDateTime, serialized as
+// "_reportedDateTime".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InventoryReportBuilder) SetReportedDateTimeExt(v Element) *InventoryReportBuilder {
+	b.inventoryReport.ReportedDateTimeExt = &v
+	return b
+}
+
+// =============================================================================
+// InventoryReportInventoryListing - Fluent Builder
+// =============================================================================
+
+// InventoryReportInventoryListingBuilder provides a fluent API for constructing InventoryReportInventoryListing values.
+type InventoryReportInventoryListingBuilder struct {
+	inventoryReportInventoryListing *InventoryReportInventoryListing
+}
+
+// NewInventoryReportInventoryListingBuilder creates a new InventoryReportInventoryListingBuilder.
+func NewInventoryReportInventoryListingBuilder() *InventoryReportInventoryListingBuilder {
+	return &InventoryReportInventoryListingBuilder{
+		inventoryReportInventoryListing: &InventoryReportInventoryListing{},
+	}
+}
+
+// Build returns the constructed InventoryReportInventoryListing.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *InventoryReportInventoryListingBuilder) Build() InventoryReportInventoryListing {
+	return *b.inventoryReportInventoryListing
+}
+
+// SetId sets the Id field.
+func (b *InventoryReportInventoryListingBuilder) SetId(v string) *InventoryReportInventoryListingBuilder {
+	b.inventoryReportInventoryListing.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *InventoryReportInventoryListingBuilder) AddExtension(v Extension) *InventoryReportInventoryListingBuilder {
+	b.inventoryReportInventoryListing.Extension = append(b.inventoryReportInventoryListing.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *InventoryReportInventoryListingBuilder) AddModifierExtension(v Extension) *InventoryReportInventoryListingBuilder {
+	b.inventoryReportInventoryListing.ModifierExtension = append(b.inventoryReportInventoryListing.ModifierExtension, v)
+	return b
+}
+
+// SetLocation sets the Location field.
+func (b *InventoryReportInventoryListingBuilder) SetLocation(v Reference) *InventoryReportInventoryListingBuilder {
+	b.inventoryReportInventoryListing.Location = &v
+	return b
+}
+
+// SetItemStatus sets the ItemStatus field.
+func (b *InventoryReportInventoryListingBuilder) SetItemStatus(v CodeableConcept) *InventoryReportInventoryListingBuilder {
+	b.inventoryReportInventoryListing.ItemStatus = &v
+	return b
+}
+
+// SetCountingDateTime sets the CountingDateTime field.
+func (b *InventoryReportInventoryListingBuilder) SetCountingDateTime(v string) *InventoryReportInventoryListingBuilder {
+	b.inventoryReportInventoryListing.CountingDateTime = &v
+	return b
+}
+
+// AddItem adds a Item element.
+func (b *InventoryReportInventoryListingBuilder) AddItem(v InventoryReportInventoryListingItem) *InventoryReportInventoryListingBuilder {
+	b.inventoryReportInventoryListing.Item = append(b.inventoryReportInventoryListing.Item, v)
+	return b
+}
+
+// SetCountingDateTimeExt sets the extensions carried by CountingDateTime, serialized as
+// "_countingDateTime".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InventoryReportInventoryListingBuilder) SetCountingDateTimeExt(v Element) *InventoryReportInventoryListingBuilder {
+	b.inventoryReportInventoryListing.CountingDateTimeExt = &v
+	return b
+}
+
+// =============================================================================
+// InventoryReportInventoryListingItem - Fluent Builder
+// =============================================================================
+
+// InventoryReportInventoryListingItemBuilder provides a fluent API for constructing InventoryReportInventoryListingItem values.
+type InventoryReportInventoryListingItemBuilder struct {
+	inventoryReportInventoryListingItem *InventoryReportInventoryListingItem
+}
+
+// NewInventoryReportInventoryListingItemBuilder creates a new InventoryReportInventoryListingItemBuilder.
+func NewInventoryReportInventoryListingItemBuilder() *InventoryReportInventoryListingItemBuilder {
+	return &InventoryReportInventoryListingItemBuilder{
+		inventoryReportInventoryListingItem: &InventoryReportInventoryListingItem{},
+	}
+}
+
+// Build returns the constructed InventoryReportInventoryListingItem.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *InventoryReportInventoryListingItemBuilder) Build() InventoryReportInventoryListingItem {
+	return *b.inventoryReportInventoryListingItem
+}
+
+// SetId sets the Id field.
+func (b *InventoryReportInventoryListingItemBuilder) SetId(v string) *InventoryReportInventoryListingItemBuilder {
+	b.inventoryReportInventoryListingItem.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *InventoryReportInventoryListingItemBuilder) AddExtension(v Extension) *InventoryReportInventoryListingItemBuilder {
+	b.inventoryReportInventoryListingItem.Extension = append(b.inventoryReportInventoryListingItem.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *InventoryReportInventoryListingItemBuilder) AddModifierExtension(v Extension) *InventoryReportInventoryListingItemBuilder {
+	b.inventoryReportInventoryListingItem.ModifierExtension = append(b.inventoryReportInventoryListingItem.ModifierExtension, v)
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *InventoryReportInventoryListingItemBuilder) SetCategory(v CodeableConcept) *InventoryReportInventoryListingItemBuilder {
+	b.inventoryReportInventoryListingItem.Category = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *InventoryReportInventoryListingItemBuilder) SetQuantity(v Quantity) *InventoryReportInventoryListingItemBuilder {
+	b.inventoryReportInventoryListingItem.Quantity = &v
+	return b
+}
+
+// SetItem sets the Item field.
+func (b *InventoryReportInventoryListingItemBuilder) SetItem(v CodeableReference) *InventoryReportInventoryListingItemBuilder {
+	b.inventoryReportInventoryListingItem.Item = &v
+	return b
+}

@@ -896,3 +896,208 @@ func (b *AppointmentBuilder) AddRequestedPeriod(v Period) *AppointmentBuilder {
 	b.appointment.RequestedPeriod = append(b.appointment.RequestedPeriod, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetImplicitRulesExt(v Element) *AppointmentBuilder {
+	b.appointment.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetLanguageExt(v Element) *AppointmentBuilder {
+	b.appointment.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetStatusExt(v Element) *AppointmentBuilder {
+	b.appointment.StatusExt = &v
+	return b
+}
+
+// SetPriorityExt sets the extensions carried by Priority, serialized as
+// "_priority".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetPriorityExt(v Element) *AppointmentBuilder {
+	b.appointment.PriorityExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetDescriptionExt(v Element) *AppointmentBuilder {
+	b.appointment.DescriptionExt = &v
+	return b
+}
+
+// SetStartExt sets the extensions carried by Start, serialized as
+// "_start".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetStartExt(v Element) *AppointmentBuilder {
+	b.appointment.StartExt = &v
+	return b
+}
+
+// SetEndExt sets the extensions carried by End, serialized as
+// "_end".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetEndExt(v Element) *AppointmentBuilder {
+	b.appointment.EndExt = &v
+	return b
+}
+
+// SetMinutesDurationExt sets the extensions carried by MinutesDuration, serialized as
+// "_minutesDuration".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetMinutesDurationExt(v Element) *AppointmentBuilder {
+	b.appointment.MinutesDurationExt = &v
+	return b
+}
+
+// SetCreatedExt sets the extensions carried by Created, serialized as
+// "_created".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetCreatedExt(v Element) *AppointmentBuilder {
+	b.appointment.CreatedExt = &v
+	return b
+}
+
+// SetCommentExt sets the extensions carried by Comment, serialized as
+// "_comment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetCommentExt(v Element) *AppointmentBuilder {
+	b.appointment.CommentExt = &v
+	return b
+}
+
+// SetPatientInstructionExt sets the extensions carried by PatientInstruction, serialized as
+// "_patientInstruction".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetPatientInstructionExt(v Element) *AppointmentBuilder {
+	b.appointment.PatientInstructionExt = &v
+	return b
+}
+
+// =============================================================================
+// AppointmentParticipant - Fluent Builder
+// =============================================================================
+
+// AppointmentParticipantBuilder provides a fluent API for constructing AppointmentParticipant values.
+type AppointmentParticipantBuilder struct {
+	appointmentParticipant *AppointmentParticipant
+}
+
+// NewAppointmentParticipantBuilder creates a new AppointmentParticipantBuilder.
+func NewAppointmentParticipantBuilder() *AppointmentParticipantBuilder {
+	return &AppointmentParticipantBuilder{
+		appointmentParticipant: &AppointmentParticipant{},
+	}
+}
+
+// Build returns the constructed AppointmentParticipant.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AppointmentParticipantBuilder) Build() AppointmentParticipant {
+	return *b.appointmentParticipant
+}
+
+// SetId sets the Id field.
+func (b *AppointmentParticipantBuilder) SetId(v string) *AppointmentParticipantBuilder {
+	b.appointmentParticipant.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AppointmentParticipantBuilder) AddExtension(v Extension) *AppointmentParticipantBuilder {
+	b.appointmentParticipant.Extension = append(b.appointmentParticipant.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AppointmentParticipantBuilder) AddModifierExtension(v Extension) *AppointmentParticipantBuilder {
+	b.appointmentParticipant.ModifierExtension = append(b.appointmentParticipant.ModifierExtension, v)
+	return b
+}
+
+// AddType adds a Type element.
+func (b *AppointmentParticipantBuilder) AddType(v CodeableConcept) *AppointmentParticipantBuilder {
+	b.appointmentParticipant.Type = append(b.appointmentParticipant.Type, v)
+	return b
+}
+
+// SetActor sets the Actor field.
+func (b *AppointmentParticipantBuilder) SetActor(v Reference) *AppointmentParticipantBuilder {
+	b.appointmentParticipant.Actor = &v
+	return b
+}
+
+// SetRequired sets the Required field.
+func (b *AppointmentParticipantBuilder) SetRequired(v ParticipantRequired) *AppointmentParticipantBuilder {
+	b.appointmentParticipant.Required = &v
+	return b
+}
+
+// SetStatus sets the Status field.
+func (b *AppointmentParticipantBuilder) SetStatus(v ParticipationStatus) *AppointmentParticipantBuilder {
+	b.appointmentParticipant.Status = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *AppointmentParticipantBuilder) SetPeriod(v Period) *AppointmentParticipantBuilder {
+	b.appointmentParticipant.Period = &v
+	return b
+}
+
+// SetRequiredExt sets the extensions carried by Required, serialized as
+// "_required".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentParticipantBuilder) SetRequiredExt(v Element) *AppointmentParticipantBuilder {
+	b.appointmentParticipant.RequiredExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentParticipantBuilder) SetStatusExt(v Element) *AppointmentParticipantBuilder {
+	b.appointmentParticipant.StatusExt = &v
+	return b
+}

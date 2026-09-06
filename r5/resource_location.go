@@ -796,3 +796,174 @@ func (b *LocationBuilder) AddEndpoint(v Reference) *LocationBuilder {
 	b.location.Endpoint = append(b.location.Endpoint, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *LocationBuilder) SetImplicitRulesExt(v Element) *LocationBuilder {
+	b.location.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *LocationBuilder) SetLanguageExt(v Element) *LocationBuilder {
+	b.location.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *LocationBuilder) SetStatusExt(v Element) *LocationBuilder {
+	b.location.StatusExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *LocationBuilder) SetNameExt(v Element) *LocationBuilder {
+	b.location.NameExt = &v
+	return b
+}
+
+// AddAliasExt attaches extensions to the Alias element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddAlias twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *LocationBuilder) AddAliasExt(v *Element) *LocationBuilder {
+	for len(b.location.AliasExt) < len(b.location.Alias)-1 {
+		b.location.AliasExt = append(b.location.AliasExt, nil)
+	}
+	b.location.AliasExt = append(b.location.AliasExt, v)
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *LocationBuilder) SetDescriptionExt(v Element) *LocationBuilder {
+	b.location.DescriptionExt = &v
+	return b
+}
+
+// SetModeExt sets the extensions carried by Mode, serialized as
+// "_mode".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *LocationBuilder) SetModeExt(v Element) *LocationBuilder {
+	b.location.ModeExt = &v
+	return b
+}
+
+// =============================================================================
+// LocationPosition - Fluent Builder
+// =============================================================================
+
+// LocationPositionBuilder provides a fluent API for constructing LocationPosition values.
+type LocationPositionBuilder struct {
+	locationPosition *LocationPosition
+}
+
+// NewLocationPositionBuilder creates a new LocationPositionBuilder.
+func NewLocationPositionBuilder() *LocationPositionBuilder {
+	return &LocationPositionBuilder{
+		locationPosition: &LocationPosition{},
+	}
+}
+
+// Build returns the constructed LocationPosition.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *LocationPositionBuilder) Build() LocationPosition {
+	return *b.locationPosition
+}
+
+// SetId sets the Id field.
+func (b *LocationPositionBuilder) SetId(v string) *LocationPositionBuilder {
+	b.locationPosition.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *LocationPositionBuilder) AddExtension(v Extension) *LocationPositionBuilder {
+	b.locationPosition.Extension = append(b.locationPosition.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *LocationPositionBuilder) AddModifierExtension(v Extension) *LocationPositionBuilder {
+	b.locationPosition.ModifierExtension = append(b.locationPosition.ModifierExtension, v)
+	return b
+}
+
+// SetLongitude sets the Longitude field.
+func (b *LocationPositionBuilder) SetLongitude(v Decimal) *LocationPositionBuilder {
+	b.locationPosition.Longitude = &v
+	return b
+}
+
+// SetLatitude sets the Latitude field.
+func (b *LocationPositionBuilder) SetLatitude(v Decimal) *LocationPositionBuilder {
+	b.locationPosition.Latitude = &v
+	return b
+}
+
+// SetAltitude sets the Altitude field.
+func (b *LocationPositionBuilder) SetAltitude(v Decimal) *LocationPositionBuilder {
+	b.locationPosition.Altitude = &v
+	return b
+}
+
+// SetLongitudeExt sets the extensions carried by Longitude, serialized as
+// "_longitude".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *LocationPositionBuilder) SetLongitudeExt(v Element) *LocationPositionBuilder {
+	b.locationPosition.LongitudeExt = &v
+	return b
+}
+
+// SetLatitudeExt sets the extensions carried by Latitude, serialized as
+// "_latitude".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *LocationPositionBuilder) SetLatitudeExt(v Element) *LocationPositionBuilder {
+	b.locationPosition.LatitudeExt = &v
+	return b
+}
+
+// SetAltitudeExt sets the extensions carried by Altitude, serialized as
+// "_altitude".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *LocationPositionBuilder) SetAltitudeExt(v Element) *LocationPositionBuilder {
+	b.locationPosition.AltitudeExt = &v
+	return b
+}

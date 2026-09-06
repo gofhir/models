@@ -1644,9 +1644,702 @@ func (b *TestPlanBuilder) AddTestCase(v TestPlanTestCase) *TestPlanBuilder {
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestPlanBuilder) SetImplicitRulesExt(v Element) *TestPlanBuilder {
+	b.testPlan.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestPlanBuilder) SetLanguageExt(v Element) *TestPlanBuilder {
+	b.testPlan.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestPlanBuilder) SetUrlExt(v Element) *TestPlanBuilder {
+	b.testPlan.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestPlanBuilder) SetVersionExt(v Element) *TestPlanBuilder {
+	b.testPlan.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestPlanBuilder) SetNameExt(v Element) *TestPlanBuilder {
+	b.testPlan.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestPlanBuilder) SetTitleExt(v Element) *TestPlanBuilder {
+	b.testPlan.TitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestPlanBuilder) SetStatusExt(v Element) *TestPlanBuilder {
+	b.testPlan.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestPlanBuilder) SetExperimentalExt(v Element) *TestPlanBuilder {
+	b.testPlan.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestPlanBuilder) SetDateExt(v Element) *TestPlanBuilder {
+	b.testPlan.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestPlanBuilder) SetPublisherExt(v Element) *TestPlanBuilder {
+	b.testPlan.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestPlanBuilder) SetDescriptionExt(v Element) *TestPlanBuilder {
+	b.testPlan.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestPlanBuilder) SetPurposeExt(v Element) *TestPlanBuilder {
+	b.testPlan.PurposeExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestPlanBuilder) SetCopyrightExt(v Element) *TestPlanBuilder {
+	b.testPlan.CopyrightExt = &v
+	return b
+}
+
+// SetCopyrightLabelExt sets the extensions carried by CopyrightLabel, serialized as
+// "_copyrightLabel".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestPlanBuilder) SetCopyrightLabelExt(v Element) *TestPlanBuilder {
+	b.testPlan.CopyrightLabelExt = &v
+	return b
+}
+
+// SetTestToolsExt sets the extensions carried by TestTools, serialized as
+// "_testTools".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestPlanBuilder) SetTestToolsExt(v Element) *TestPlanBuilder {
+	b.testPlan.TestToolsExt = &v
+	return b
+}
+
+// SetExitCriteriaExt sets the extensions carried by ExitCriteria, serialized as
+// "_exitCriteria".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestPlanBuilder) SetExitCriteriaExt(v Element) *TestPlanBuilder {
+	b.testPlan.ExitCriteriaExt = &v
+	return b
+}
+
 // clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
 // _field companions of the primitive ones.
 func (b *TestPlanBuilder) clearVersionAlgorithm() {
 	b.testPlan.VersionAlgorithmString = nil
 	b.testPlan.VersionAlgorithmCoding = nil
+}
+
+// =============================================================================
+// TestPlanDependency - Fluent Builder
+// =============================================================================
+
+// TestPlanDependencyBuilder provides a fluent API for constructing TestPlanDependency values.
+type TestPlanDependencyBuilder struct {
+	testPlanDependency *TestPlanDependency
+}
+
+// NewTestPlanDependencyBuilder creates a new TestPlanDependencyBuilder.
+func NewTestPlanDependencyBuilder() *TestPlanDependencyBuilder {
+	return &TestPlanDependencyBuilder{
+		testPlanDependency: &TestPlanDependency{},
+	}
+}
+
+// Build returns the constructed TestPlanDependency.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TestPlanDependencyBuilder) Build() TestPlanDependency {
+	return *b.testPlanDependency
+}
+
+// SetId sets the Id field.
+func (b *TestPlanDependencyBuilder) SetId(v string) *TestPlanDependencyBuilder {
+	b.testPlanDependency.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TestPlanDependencyBuilder) AddExtension(v Extension) *TestPlanDependencyBuilder {
+	b.testPlanDependency.Extension = append(b.testPlanDependency.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TestPlanDependencyBuilder) AddModifierExtension(v Extension) *TestPlanDependencyBuilder {
+	b.testPlanDependency.ModifierExtension = append(b.testPlanDependency.ModifierExtension, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *TestPlanDependencyBuilder) SetDescription(v string) *TestPlanDependencyBuilder {
+	b.testPlanDependency.Description = &v
+	return b
+}
+
+// SetPredecessor sets the Predecessor field.
+func (b *TestPlanDependencyBuilder) SetPredecessor(v Reference) *TestPlanDependencyBuilder {
+	b.testPlanDependency.Predecessor = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestPlanDependencyBuilder) SetDescriptionExt(v Element) *TestPlanDependencyBuilder {
+	b.testPlanDependency.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// TestPlanTestCase - Fluent Builder
+// =============================================================================
+
+// TestPlanTestCaseBuilder provides a fluent API for constructing TestPlanTestCase values.
+type TestPlanTestCaseBuilder struct {
+	testPlanTestCase *TestPlanTestCase
+}
+
+// NewTestPlanTestCaseBuilder creates a new TestPlanTestCaseBuilder.
+func NewTestPlanTestCaseBuilder() *TestPlanTestCaseBuilder {
+	return &TestPlanTestCaseBuilder{
+		testPlanTestCase: &TestPlanTestCase{},
+	}
+}
+
+// Build returns the constructed TestPlanTestCase.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TestPlanTestCaseBuilder) Build() TestPlanTestCase {
+	return *b.testPlanTestCase
+}
+
+// SetId sets the Id field.
+func (b *TestPlanTestCaseBuilder) SetId(v string) *TestPlanTestCaseBuilder {
+	b.testPlanTestCase.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TestPlanTestCaseBuilder) AddExtension(v Extension) *TestPlanTestCaseBuilder {
+	b.testPlanTestCase.Extension = append(b.testPlanTestCase.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TestPlanTestCaseBuilder) AddModifierExtension(v Extension) *TestPlanTestCaseBuilder {
+	b.testPlanTestCase.ModifierExtension = append(b.testPlanTestCase.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *TestPlanTestCaseBuilder) SetSequence(v int) *TestPlanTestCaseBuilder {
+	b.testPlanTestCase.Sequence = &v
+	return b
+}
+
+// AddScope adds a Scope element.
+func (b *TestPlanTestCaseBuilder) AddScope(v Reference) *TestPlanTestCaseBuilder {
+	b.testPlanTestCase.Scope = append(b.testPlanTestCase.Scope, v)
+	return b
+}
+
+// AddDependency adds a Dependency element.
+func (b *TestPlanTestCaseBuilder) AddDependency(v TestPlanTestCaseDependency) *TestPlanTestCaseBuilder {
+	b.testPlanTestCase.Dependency = append(b.testPlanTestCase.Dependency, v)
+	return b
+}
+
+// AddTestRun adds a TestRun element.
+func (b *TestPlanTestCaseBuilder) AddTestRun(v TestPlanTestCaseTestRun) *TestPlanTestCaseBuilder {
+	b.testPlanTestCase.TestRun = append(b.testPlanTestCase.TestRun, v)
+	return b
+}
+
+// AddTestData adds a TestData element.
+func (b *TestPlanTestCaseBuilder) AddTestData(v TestPlanTestCaseTestData) *TestPlanTestCaseBuilder {
+	b.testPlanTestCase.TestData = append(b.testPlanTestCase.TestData, v)
+	return b
+}
+
+// AddAssertion adds a Assertion element.
+func (b *TestPlanTestCaseBuilder) AddAssertion(v TestPlanTestCaseAssertion) *TestPlanTestCaseBuilder {
+	b.testPlanTestCase.Assertion = append(b.testPlanTestCase.Assertion, v)
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestPlanTestCaseBuilder) SetSequenceExt(v Element) *TestPlanTestCaseBuilder {
+	b.testPlanTestCase.SequenceExt = &v
+	return b
+}
+
+// =============================================================================
+// TestPlanTestCaseAssertion - Fluent Builder
+// =============================================================================
+
+// TestPlanTestCaseAssertionBuilder provides a fluent API for constructing TestPlanTestCaseAssertion values.
+type TestPlanTestCaseAssertionBuilder struct {
+	testPlanTestCaseAssertion *TestPlanTestCaseAssertion
+}
+
+// NewTestPlanTestCaseAssertionBuilder creates a new TestPlanTestCaseAssertionBuilder.
+func NewTestPlanTestCaseAssertionBuilder() *TestPlanTestCaseAssertionBuilder {
+	return &TestPlanTestCaseAssertionBuilder{
+		testPlanTestCaseAssertion: &TestPlanTestCaseAssertion{},
+	}
+}
+
+// Build returns the constructed TestPlanTestCaseAssertion.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TestPlanTestCaseAssertionBuilder) Build() TestPlanTestCaseAssertion {
+	return *b.testPlanTestCaseAssertion
+}
+
+// SetId sets the Id field.
+func (b *TestPlanTestCaseAssertionBuilder) SetId(v string) *TestPlanTestCaseAssertionBuilder {
+	b.testPlanTestCaseAssertion.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TestPlanTestCaseAssertionBuilder) AddExtension(v Extension) *TestPlanTestCaseAssertionBuilder {
+	b.testPlanTestCaseAssertion.Extension = append(b.testPlanTestCaseAssertion.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TestPlanTestCaseAssertionBuilder) AddModifierExtension(v Extension) *TestPlanTestCaseAssertionBuilder {
+	b.testPlanTestCaseAssertion.ModifierExtension = append(b.testPlanTestCaseAssertion.ModifierExtension, v)
+	return b
+}
+
+// AddType adds a Type element.
+func (b *TestPlanTestCaseAssertionBuilder) AddType(v CodeableConcept) *TestPlanTestCaseAssertionBuilder {
+	b.testPlanTestCaseAssertion.Type = append(b.testPlanTestCaseAssertion.Type, v)
+	return b
+}
+
+// AddObject adds a Object element.
+func (b *TestPlanTestCaseAssertionBuilder) AddObject(v CodeableReference) *TestPlanTestCaseAssertionBuilder {
+	b.testPlanTestCaseAssertion.Object = append(b.testPlanTestCaseAssertion.Object, v)
+	return b
+}
+
+// AddResult adds a Result element.
+func (b *TestPlanTestCaseAssertionBuilder) AddResult(v CodeableReference) *TestPlanTestCaseAssertionBuilder {
+	b.testPlanTestCaseAssertion.Result = append(b.testPlanTestCaseAssertion.Result, v)
+	return b
+}
+
+// =============================================================================
+// TestPlanTestCaseDependency - Fluent Builder
+// =============================================================================
+
+// TestPlanTestCaseDependencyBuilder provides a fluent API for constructing TestPlanTestCaseDependency values.
+type TestPlanTestCaseDependencyBuilder struct {
+	testPlanTestCaseDependency *TestPlanTestCaseDependency
+}
+
+// NewTestPlanTestCaseDependencyBuilder creates a new TestPlanTestCaseDependencyBuilder.
+func NewTestPlanTestCaseDependencyBuilder() *TestPlanTestCaseDependencyBuilder {
+	return &TestPlanTestCaseDependencyBuilder{
+		testPlanTestCaseDependency: &TestPlanTestCaseDependency{},
+	}
+}
+
+// Build returns the constructed TestPlanTestCaseDependency.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TestPlanTestCaseDependencyBuilder) Build() TestPlanTestCaseDependency {
+	return *b.testPlanTestCaseDependency
+}
+
+// SetId sets the Id field.
+func (b *TestPlanTestCaseDependencyBuilder) SetId(v string) *TestPlanTestCaseDependencyBuilder {
+	b.testPlanTestCaseDependency.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TestPlanTestCaseDependencyBuilder) AddExtension(v Extension) *TestPlanTestCaseDependencyBuilder {
+	b.testPlanTestCaseDependency.Extension = append(b.testPlanTestCaseDependency.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TestPlanTestCaseDependencyBuilder) AddModifierExtension(v Extension) *TestPlanTestCaseDependencyBuilder {
+	b.testPlanTestCaseDependency.ModifierExtension = append(b.testPlanTestCaseDependency.ModifierExtension, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *TestPlanTestCaseDependencyBuilder) SetDescription(v string) *TestPlanTestCaseDependencyBuilder {
+	b.testPlanTestCaseDependency.Description = &v
+	return b
+}
+
+// SetPredecessor sets the Predecessor field.
+func (b *TestPlanTestCaseDependencyBuilder) SetPredecessor(v Reference) *TestPlanTestCaseDependencyBuilder {
+	b.testPlanTestCaseDependency.Predecessor = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestPlanTestCaseDependencyBuilder) SetDescriptionExt(v Element) *TestPlanTestCaseDependencyBuilder {
+	b.testPlanTestCaseDependency.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// TestPlanTestCaseTestData - Fluent Builder
+// =============================================================================
+
+// TestPlanTestCaseTestDataBuilder provides a fluent API for constructing TestPlanTestCaseTestData values.
+type TestPlanTestCaseTestDataBuilder struct {
+	testPlanTestCaseTestData *TestPlanTestCaseTestData
+}
+
+// NewTestPlanTestCaseTestDataBuilder creates a new TestPlanTestCaseTestDataBuilder.
+func NewTestPlanTestCaseTestDataBuilder() *TestPlanTestCaseTestDataBuilder {
+	return &TestPlanTestCaseTestDataBuilder{
+		testPlanTestCaseTestData: &TestPlanTestCaseTestData{},
+	}
+}
+
+// Build returns the constructed TestPlanTestCaseTestData.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TestPlanTestCaseTestDataBuilder) Build() TestPlanTestCaseTestData {
+	return *b.testPlanTestCaseTestData
+}
+
+// SetId sets the Id field.
+func (b *TestPlanTestCaseTestDataBuilder) SetId(v string) *TestPlanTestCaseTestDataBuilder {
+	b.testPlanTestCaseTestData.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TestPlanTestCaseTestDataBuilder) AddExtension(v Extension) *TestPlanTestCaseTestDataBuilder {
+	b.testPlanTestCaseTestData.Extension = append(b.testPlanTestCaseTestData.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TestPlanTestCaseTestDataBuilder) AddModifierExtension(v Extension) *TestPlanTestCaseTestDataBuilder {
+	b.testPlanTestCaseTestData.ModifierExtension = append(b.testPlanTestCaseTestData.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *TestPlanTestCaseTestDataBuilder) SetType(v Coding) *TestPlanTestCaseTestDataBuilder {
+	b.testPlanTestCaseTestData.Type = &v
+	return b
+}
+
+// SetContent sets the Content field.
+func (b *TestPlanTestCaseTestDataBuilder) SetContent(v Reference) *TestPlanTestCaseTestDataBuilder {
+	b.testPlanTestCaseTestData.Content = &v
+	return b
+}
+
+// SetSourceString sets Source[x] to its SourceString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TestPlanTestCaseTestDataBuilder) SetSourceString(v string) *TestPlanTestCaseTestDataBuilder {
+	b.clearSource()
+	b.testPlanTestCaseTestData.SourceString = &v
+	return b
+}
+
+// SetSourceStringExt sets the SourceStringExt field.
+func (b *TestPlanTestCaseTestDataBuilder) SetSourceStringExt(v Element) *TestPlanTestCaseTestDataBuilder {
+	b.testPlanTestCaseTestData.SourceStringExt = &v
+	return b
+}
+
+// SetSourceReference sets Source[x] to its SourceReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TestPlanTestCaseTestDataBuilder) SetSourceReference(v Reference) *TestPlanTestCaseTestDataBuilder {
+	b.clearSource()
+	b.testPlanTestCaseTestData.SourceReference = &v
+	return b
+}
+
+// clearSource unsets every variant of Source[x], including the
+// _field companions of the primitive ones.
+func (b *TestPlanTestCaseTestDataBuilder) clearSource() {
+	b.testPlanTestCaseTestData.SourceString = nil
+	b.testPlanTestCaseTestData.SourceReference = nil
+}
+
+// =============================================================================
+// TestPlanTestCaseTestRun - Fluent Builder
+// =============================================================================
+
+// TestPlanTestCaseTestRunBuilder provides a fluent API for constructing TestPlanTestCaseTestRun values.
+type TestPlanTestCaseTestRunBuilder struct {
+	testPlanTestCaseTestRun *TestPlanTestCaseTestRun
+}
+
+// NewTestPlanTestCaseTestRunBuilder creates a new TestPlanTestCaseTestRunBuilder.
+func NewTestPlanTestCaseTestRunBuilder() *TestPlanTestCaseTestRunBuilder {
+	return &TestPlanTestCaseTestRunBuilder{
+		testPlanTestCaseTestRun: &TestPlanTestCaseTestRun{},
+	}
+}
+
+// Build returns the constructed TestPlanTestCaseTestRun.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TestPlanTestCaseTestRunBuilder) Build() TestPlanTestCaseTestRun {
+	return *b.testPlanTestCaseTestRun
+}
+
+// SetId sets the Id field.
+func (b *TestPlanTestCaseTestRunBuilder) SetId(v string) *TestPlanTestCaseTestRunBuilder {
+	b.testPlanTestCaseTestRun.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TestPlanTestCaseTestRunBuilder) AddExtension(v Extension) *TestPlanTestCaseTestRunBuilder {
+	b.testPlanTestCaseTestRun.Extension = append(b.testPlanTestCaseTestRun.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TestPlanTestCaseTestRunBuilder) AddModifierExtension(v Extension) *TestPlanTestCaseTestRunBuilder {
+	b.testPlanTestCaseTestRun.ModifierExtension = append(b.testPlanTestCaseTestRun.ModifierExtension, v)
+	return b
+}
+
+// SetNarrative sets the Narrative field.
+func (b *TestPlanTestCaseTestRunBuilder) SetNarrative(v string) *TestPlanTestCaseTestRunBuilder {
+	b.testPlanTestCaseTestRun.Narrative = &v
+	return b
+}
+
+// SetScript sets the Script field.
+func (b *TestPlanTestCaseTestRunBuilder) SetScript(v TestPlanTestCaseTestRunScript) *TestPlanTestCaseTestRunBuilder {
+	b.testPlanTestCaseTestRun.Script = &v
+	return b
+}
+
+// SetNarrativeExt sets the extensions carried by Narrative, serialized as
+// "_narrative".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TestPlanTestCaseTestRunBuilder) SetNarrativeExt(v Element) *TestPlanTestCaseTestRunBuilder {
+	b.testPlanTestCaseTestRun.NarrativeExt = &v
+	return b
+}
+
+// =============================================================================
+// TestPlanTestCaseTestRunScript - Fluent Builder
+// =============================================================================
+
+// TestPlanTestCaseTestRunScriptBuilder provides a fluent API for constructing TestPlanTestCaseTestRunScript values.
+type TestPlanTestCaseTestRunScriptBuilder struct {
+	testPlanTestCaseTestRunScript *TestPlanTestCaseTestRunScript
+}
+
+// NewTestPlanTestCaseTestRunScriptBuilder creates a new TestPlanTestCaseTestRunScriptBuilder.
+func NewTestPlanTestCaseTestRunScriptBuilder() *TestPlanTestCaseTestRunScriptBuilder {
+	return &TestPlanTestCaseTestRunScriptBuilder{
+		testPlanTestCaseTestRunScript: &TestPlanTestCaseTestRunScript{},
+	}
+}
+
+// Build returns the constructed TestPlanTestCaseTestRunScript.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TestPlanTestCaseTestRunScriptBuilder) Build() TestPlanTestCaseTestRunScript {
+	return *b.testPlanTestCaseTestRunScript
+}
+
+// SetId sets the Id field.
+func (b *TestPlanTestCaseTestRunScriptBuilder) SetId(v string) *TestPlanTestCaseTestRunScriptBuilder {
+	b.testPlanTestCaseTestRunScript.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TestPlanTestCaseTestRunScriptBuilder) AddExtension(v Extension) *TestPlanTestCaseTestRunScriptBuilder {
+	b.testPlanTestCaseTestRunScript.Extension = append(b.testPlanTestCaseTestRunScript.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TestPlanTestCaseTestRunScriptBuilder) AddModifierExtension(v Extension) *TestPlanTestCaseTestRunScriptBuilder {
+	b.testPlanTestCaseTestRunScript.ModifierExtension = append(b.testPlanTestCaseTestRunScript.ModifierExtension, v)
+	return b
+}
+
+// SetLanguage sets the Language field.
+func (b *TestPlanTestCaseTestRunScriptBuilder) SetLanguage(v CodeableConcept) *TestPlanTestCaseTestRunScriptBuilder {
+	b.testPlanTestCaseTestRunScript.Language = &v
+	return b
+}
+
+// SetSourceString sets Source[x] to its SourceString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TestPlanTestCaseTestRunScriptBuilder) SetSourceString(v string) *TestPlanTestCaseTestRunScriptBuilder {
+	b.clearSource()
+	b.testPlanTestCaseTestRunScript.SourceString = &v
+	return b
+}
+
+// SetSourceStringExt sets the SourceStringExt field.
+func (b *TestPlanTestCaseTestRunScriptBuilder) SetSourceStringExt(v Element) *TestPlanTestCaseTestRunScriptBuilder {
+	b.testPlanTestCaseTestRunScript.SourceStringExt = &v
+	return b
+}
+
+// SetSourceReference sets Source[x] to its SourceReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TestPlanTestCaseTestRunScriptBuilder) SetSourceReference(v Reference) *TestPlanTestCaseTestRunScriptBuilder {
+	b.clearSource()
+	b.testPlanTestCaseTestRunScript.SourceReference = &v
+	return b
+}
+
+// clearSource unsets every variant of Source[x], including the
+// _field companions of the primitive ones.
+func (b *TestPlanTestCaseTestRunScriptBuilder) clearSource() {
+	b.testPlanTestCaseTestRunScript.SourceString = nil
+	b.testPlanTestCaseTestRunScript.SourceReference = nil
 }

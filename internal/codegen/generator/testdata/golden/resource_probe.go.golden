@@ -419,10 +419,118 @@ func (b *ProbeBuilder) AddDetail(v ProbeDetail) *ProbeBuilder {
 	return b
 }
 
+// SetIdExt sets the extensions carried by Id, serialized as
+// "_id".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ProbeBuilder) SetIdExt(v Element) *ProbeBuilder {
+	b.probe.IdExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ProbeBuilder) SetStatusExt(v Element) *ProbeBuilder {
+	b.probe.StatusExt = &v
+	return b
+}
+
+// AddAliasExt attaches extensions to the Alias element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddAlias twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ProbeBuilder) AddAliasExt(v *Element) *ProbeBuilder {
+	for len(b.probe.AliasExt) < len(b.probe.Alias)-1 {
+		b.probe.AliasExt = append(b.probe.AliasExt, nil)
+	}
+	b.probe.AliasExt = append(b.probe.AliasExt, v)
+	return b
+}
+
 // clearValue unsets every variant of Value[x], including the
 // _field companions of the primitive ones.
 func (b *ProbeBuilder) clearValue() {
 	b.probe.ValueBoolean = nil
 	b.probe.ValueString = nil
 	b.probe.ValueStringExt = nil
+}
+
+// =============================================================================
+// ProbeDetail - Fluent Builder
+// =============================================================================
+
+// ProbeDetailBuilder provides a fluent API for constructing ProbeDetail values.
+type ProbeDetailBuilder struct {
+	probeDetail *ProbeDetail
+}
+
+// NewProbeDetailBuilder creates a new ProbeDetailBuilder.
+func NewProbeDetailBuilder() *ProbeDetailBuilder {
+	return &ProbeDetailBuilder{
+		probeDetail: &ProbeDetail{},
+	}
+}
+
+// Build returns the constructed ProbeDetail.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ProbeDetailBuilder) Build() ProbeDetail {
+	return *b.probeDetail
+}
+
+// SetLabel sets the Label field.
+func (b *ProbeDetailBuilder) SetLabel(v string) *ProbeDetailBuilder {
+	b.probeDetail.Label = &v
+	return b
+}
+
+// SetLabelExt sets the extensions carried by Label, serialized as
+// "_label".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ProbeDetailBuilder) SetLabelExt(v Element) *ProbeDetailBuilder {
+	b.probeDetail.LabelExt = &v
+	return b
+}
+
+// =============================================================================
+// ProbeMarker - Fluent Builder
+// =============================================================================
+
+// ProbeMarkerBuilder provides a fluent API for constructing ProbeMarker values.
+type ProbeMarkerBuilder struct {
+	probeMarker *ProbeMarker
+}
+
+// NewProbeMarkerBuilder creates a new ProbeMarkerBuilder.
+func NewProbeMarkerBuilder() *ProbeMarkerBuilder {
+	return &ProbeMarkerBuilder{
+		probeMarker: &ProbeMarker{},
+	}
+}
+
+// Build returns the constructed ProbeMarker.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ProbeMarkerBuilder) Build() ProbeMarker {
+	return *b.probeMarker
 }

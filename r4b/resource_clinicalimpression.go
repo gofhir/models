@@ -972,9 +972,217 @@ func (b *ClinicalImpressionBuilder) AddNote(v Annotation) *ClinicalImpressionBui
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClinicalImpressionBuilder) SetImplicitRulesExt(v Element) *ClinicalImpressionBuilder {
+	b.clinicalImpression.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClinicalImpressionBuilder) SetLanguageExt(v Element) *ClinicalImpressionBuilder {
+	b.clinicalImpression.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClinicalImpressionBuilder) SetStatusExt(v Element) *ClinicalImpressionBuilder {
+	b.clinicalImpression.StatusExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClinicalImpressionBuilder) SetDescriptionExt(v Element) *ClinicalImpressionBuilder {
+	b.clinicalImpression.DescriptionExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClinicalImpressionBuilder) SetDateExt(v Element) *ClinicalImpressionBuilder {
+	b.clinicalImpression.DateExt = &v
+	return b
+}
+
+// AddProtocolExt attaches extensions to the Protocol element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddProtocol twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ClinicalImpressionBuilder) AddProtocolExt(v *Element) *ClinicalImpressionBuilder {
+	for len(b.clinicalImpression.ProtocolExt) < len(b.clinicalImpression.Protocol)-1 {
+		b.clinicalImpression.ProtocolExt = append(b.clinicalImpression.ProtocolExt, nil)
+	}
+	b.clinicalImpression.ProtocolExt = append(b.clinicalImpression.ProtocolExt, v)
+	return b
+}
+
+// SetSummaryExt sets the extensions carried by Summary, serialized as
+// "_summary".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClinicalImpressionBuilder) SetSummaryExt(v Element) *ClinicalImpressionBuilder {
+	b.clinicalImpression.SummaryExt = &v
+	return b
+}
+
 // clearEffective unsets every variant of Effective[x], including the
 // _field companions of the primitive ones.
 func (b *ClinicalImpressionBuilder) clearEffective() {
 	b.clinicalImpression.EffectiveDateTime = nil
 	b.clinicalImpression.EffectivePeriod = nil
+}
+
+// =============================================================================
+// ClinicalImpressionFinding - Fluent Builder
+// =============================================================================
+
+// ClinicalImpressionFindingBuilder provides a fluent API for constructing ClinicalImpressionFinding values.
+type ClinicalImpressionFindingBuilder struct {
+	clinicalImpressionFinding *ClinicalImpressionFinding
+}
+
+// NewClinicalImpressionFindingBuilder creates a new ClinicalImpressionFindingBuilder.
+func NewClinicalImpressionFindingBuilder() *ClinicalImpressionFindingBuilder {
+	return &ClinicalImpressionFindingBuilder{
+		clinicalImpressionFinding: &ClinicalImpressionFinding{},
+	}
+}
+
+// Build returns the constructed ClinicalImpressionFinding.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClinicalImpressionFindingBuilder) Build() ClinicalImpressionFinding {
+	return *b.clinicalImpressionFinding
+}
+
+// SetId sets the Id field.
+func (b *ClinicalImpressionFindingBuilder) SetId(v string) *ClinicalImpressionFindingBuilder {
+	b.clinicalImpressionFinding.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClinicalImpressionFindingBuilder) AddExtension(v Extension) *ClinicalImpressionFindingBuilder {
+	b.clinicalImpressionFinding.Extension = append(b.clinicalImpressionFinding.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClinicalImpressionFindingBuilder) AddModifierExtension(v Extension) *ClinicalImpressionFindingBuilder {
+	b.clinicalImpressionFinding.ModifierExtension = append(b.clinicalImpressionFinding.ModifierExtension, v)
+	return b
+}
+
+// SetItemCodeableConcept sets the ItemCodeableConcept field.
+func (b *ClinicalImpressionFindingBuilder) SetItemCodeableConcept(v CodeableConcept) *ClinicalImpressionFindingBuilder {
+	b.clinicalImpressionFinding.ItemCodeableConcept = &v
+	return b
+}
+
+// SetItemReference sets the ItemReference field.
+func (b *ClinicalImpressionFindingBuilder) SetItemReference(v Reference) *ClinicalImpressionFindingBuilder {
+	b.clinicalImpressionFinding.ItemReference = &v
+	return b
+}
+
+// SetBasis sets the Basis field.
+func (b *ClinicalImpressionFindingBuilder) SetBasis(v string) *ClinicalImpressionFindingBuilder {
+	b.clinicalImpressionFinding.Basis = &v
+	return b
+}
+
+// SetBasisExt sets the extensions carried by Basis, serialized as
+// "_basis".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClinicalImpressionFindingBuilder) SetBasisExt(v Element) *ClinicalImpressionFindingBuilder {
+	b.clinicalImpressionFinding.BasisExt = &v
+	return b
+}
+
+// =============================================================================
+// ClinicalImpressionInvestigation - Fluent Builder
+// =============================================================================
+
+// ClinicalImpressionInvestigationBuilder provides a fluent API for constructing ClinicalImpressionInvestigation values.
+type ClinicalImpressionInvestigationBuilder struct {
+	clinicalImpressionInvestigation *ClinicalImpressionInvestigation
+}
+
+// NewClinicalImpressionInvestigationBuilder creates a new ClinicalImpressionInvestigationBuilder.
+func NewClinicalImpressionInvestigationBuilder() *ClinicalImpressionInvestigationBuilder {
+	return &ClinicalImpressionInvestigationBuilder{
+		clinicalImpressionInvestigation: &ClinicalImpressionInvestigation{},
+	}
+}
+
+// Build returns the constructed ClinicalImpressionInvestigation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClinicalImpressionInvestigationBuilder) Build() ClinicalImpressionInvestigation {
+	return *b.clinicalImpressionInvestigation
+}
+
+// SetId sets the Id field.
+func (b *ClinicalImpressionInvestigationBuilder) SetId(v string) *ClinicalImpressionInvestigationBuilder {
+	b.clinicalImpressionInvestigation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClinicalImpressionInvestigationBuilder) AddExtension(v Extension) *ClinicalImpressionInvestigationBuilder {
+	b.clinicalImpressionInvestigation.Extension = append(b.clinicalImpressionInvestigation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClinicalImpressionInvestigationBuilder) AddModifierExtension(v Extension) *ClinicalImpressionInvestigationBuilder {
+	b.clinicalImpressionInvestigation.ModifierExtension = append(b.clinicalImpressionInvestigation.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ClinicalImpressionInvestigationBuilder) SetCode(v CodeableConcept) *ClinicalImpressionInvestigationBuilder {
+	b.clinicalImpressionInvestigation.Code = &v
+	return b
+}
+
+// AddItem adds a Item element.
+func (b *ClinicalImpressionInvestigationBuilder) AddItem(v Reference) *ClinicalImpressionInvestigationBuilder {
+	b.clinicalImpressionInvestigation.Item = append(b.clinicalImpressionInvestigation.Item, v)
+	return b
 }

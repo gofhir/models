@@ -1077,3 +1077,219 @@ func (b *MedicationDispenseBuilder) AddEventHistory(v Reference) *MedicationDisp
 	b.medicationDispense.EventHistory = append(b.medicationDispense.EventHistory, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationDispenseBuilder) SetImplicitRulesExt(v Element) *MedicationDispenseBuilder {
+	b.medicationDispense.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationDispenseBuilder) SetLanguageExt(v Element) *MedicationDispenseBuilder {
+	b.medicationDispense.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationDispenseBuilder) SetStatusExt(v Element) *MedicationDispenseBuilder {
+	b.medicationDispense.StatusExt = &v
+	return b
+}
+
+// SetStatusChangedExt sets the extensions carried by StatusChanged, serialized as
+// "_statusChanged".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationDispenseBuilder) SetStatusChangedExt(v Element) *MedicationDispenseBuilder {
+	b.medicationDispense.StatusChangedExt = &v
+	return b
+}
+
+// SetRecordedExt sets the extensions carried by Recorded, serialized as
+// "_recorded".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationDispenseBuilder) SetRecordedExt(v Element) *MedicationDispenseBuilder {
+	b.medicationDispense.RecordedExt = &v
+	return b
+}
+
+// SetWhenPreparedExt sets the extensions carried by WhenPrepared, serialized as
+// "_whenPrepared".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationDispenseBuilder) SetWhenPreparedExt(v Element) *MedicationDispenseBuilder {
+	b.medicationDispense.WhenPreparedExt = &v
+	return b
+}
+
+// SetWhenHandedOverExt sets the extensions carried by WhenHandedOver, serialized as
+// "_whenHandedOver".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationDispenseBuilder) SetWhenHandedOverExt(v Element) *MedicationDispenseBuilder {
+	b.medicationDispense.WhenHandedOverExt = &v
+	return b
+}
+
+// SetRenderedDosageInstructionExt sets the extensions carried by RenderedDosageInstruction, serialized as
+// "_renderedDosageInstruction".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationDispenseBuilder) SetRenderedDosageInstructionExt(v Element) *MedicationDispenseBuilder {
+	b.medicationDispense.RenderedDosageInstructionExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicationDispensePerformer - Fluent Builder
+// =============================================================================
+
+// MedicationDispensePerformerBuilder provides a fluent API for constructing MedicationDispensePerformer values.
+type MedicationDispensePerformerBuilder struct {
+	medicationDispensePerformer *MedicationDispensePerformer
+}
+
+// NewMedicationDispensePerformerBuilder creates a new MedicationDispensePerformerBuilder.
+func NewMedicationDispensePerformerBuilder() *MedicationDispensePerformerBuilder {
+	return &MedicationDispensePerformerBuilder{
+		medicationDispensePerformer: &MedicationDispensePerformer{},
+	}
+}
+
+// Build returns the constructed MedicationDispensePerformer.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationDispensePerformerBuilder) Build() MedicationDispensePerformer {
+	return *b.medicationDispensePerformer
+}
+
+// SetId sets the Id field.
+func (b *MedicationDispensePerformerBuilder) SetId(v string) *MedicationDispensePerformerBuilder {
+	b.medicationDispensePerformer.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationDispensePerformerBuilder) AddExtension(v Extension) *MedicationDispensePerformerBuilder {
+	b.medicationDispensePerformer.Extension = append(b.medicationDispensePerformer.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationDispensePerformerBuilder) AddModifierExtension(v Extension) *MedicationDispensePerformerBuilder {
+	b.medicationDispensePerformer.ModifierExtension = append(b.medicationDispensePerformer.ModifierExtension, v)
+	return b
+}
+
+// SetFunction sets the Function field.
+func (b *MedicationDispensePerformerBuilder) SetFunction(v CodeableConcept) *MedicationDispensePerformerBuilder {
+	b.medicationDispensePerformer.Function = &v
+	return b
+}
+
+// SetActor sets the Actor field.
+func (b *MedicationDispensePerformerBuilder) SetActor(v Reference) *MedicationDispensePerformerBuilder {
+	b.medicationDispensePerformer.Actor = &v
+	return b
+}
+
+// =============================================================================
+// MedicationDispenseSubstitution - Fluent Builder
+// =============================================================================
+
+// MedicationDispenseSubstitutionBuilder provides a fluent API for constructing MedicationDispenseSubstitution values.
+type MedicationDispenseSubstitutionBuilder struct {
+	medicationDispenseSubstitution *MedicationDispenseSubstitution
+}
+
+// NewMedicationDispenseSubstitutionBuilder creates a new MedicationDispenseSubstitutionBuilder.
+func NewMedicationDispenseSubstitutionBuilder() *MedicationDispenseSubstitutionBuilder {
+	return &MedicationDispenseSubstitutionBuilder{
+		medicationDispenseSubstitution: &MedicationDispenseSubstitution{},
+	}
+}
+
+// Build returns the constructed MedicationDispenseSubstitution.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationDispenseSubstitutionBuilder) Build() MedicationDispenseSubstitution {
+	return *b.medicationDispenseSubstitution
+}
+
+// SetId sets the Id field.
+func (b *MedicationDispenseSubstitutionBuilder) SetId(v string) *MedicationDispenseSubstitutionBuilder {
+	b.medicationDispenseSubstitution.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationDispenseSubstitutionBuilder) AddExtension(v Extension) *MedicationDispenseSubstitutionBuilder {
+	b.medicationDispenseSubstitution.Extension = append(b.medicationDispenseSubstitution.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationDispenseSubstitutionBuilder) AddModifierExtension(v Extension) *MedicationDispenseSubstitutionBuilder {
+	b.medicationDispenseSubstitution.ModifierExtension = append(b.medicationDispenseSubstitution.ModifierExtension, v)
+	return b
+}
+
+// SetWasSubstituted sets the WasSubstituted field.
+func (b *MedicationDispenseSubstitutionBuilder) SetWasSubstituted(v bool) *MedicationDispenseSubstitutionBuilder {
+	b.medicationDispenseSubstitution.WasSubstituted = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *MedicationDispenseSubstitutionBuilder) SetType(v CodeableConcept) *MedicationDispenseSubstitutionBuilder {
+	b.medicationDispenseSubstitution.Type = &v
+	return b
+}
+
+// AddReason adds a Reason element.
+func (b *MedicationDispenseSubstitutionBuilder) AddReason(v CodeableConcept) *MedicationDispenseSubstitutionBuilder {
+	b.medicationDispenseSubstitution.Reason = append(b.medicationDispenseSubstitution.Reason, v)
+	return b
+}
+
+// SetResponsibleParty sets the ResponsibleParty field.
+func (b *MedicationDispenseSubstitutionBuilder) SetResponsibleParty(v Reference) *MedicationDispenseSubstitutionBuilder {
+	b.medicationDispenseSubstitution.ResponsibleParty = &v
+	return b
+}
+
+// SetWasSubstitutedExt sets the extensions carried by WasSubstituted, serialized as
+// "_wasSubstituted".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationDispenseSubstitutionBuilder) SetWasSubstitutedExt(v Element) *MedicationDispenseSubstitutionBuilder {
+	b.medicationDispenseSubstitution.WasSubstitutedExt = &v
+	return b
+}

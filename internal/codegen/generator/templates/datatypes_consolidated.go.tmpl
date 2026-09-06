@@ -130,6 +130,9 @@ func (b *{{.Name}}) UnmarshalJSON(data []byte) error {
 {{range .Builders}}
 {{template "builder" .}}
 {{end}}
+{{range .BackboneBuilders}}
+{{template "builder" .}}
+{{end}}
 
 // =============================================================================
 // Datatype XML Serialization

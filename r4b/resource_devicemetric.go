@@ -637,3 +637,146 @@ func (b *DeviceMetricBuilder) AddCalibration(v DeviceMetricCalibration) *DeviceM
 	b.deviceMetric.Calibration = append(b.deviceMetric.Calibration, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceMetricBuilder) SetImplicitRulesExt(v Element) *DeviceMetricBuilder {
+	b.deviceMetric.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceMetricBuilder) SetLanguageExt(v Element) *DeviceMetricBuilder {
+	b.deviceMetric.LanguageExt = &v
+	return b
+}
+
+// SetOperationalStatusExt sets the extensions carried by OperationalStatus, serialized as
+// "_operationalStatus".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceMetricBuilder) SetOperationalStatusExt(v Element) *DeviceMetricBuilder {
+	b.deviceMetric.OperationalStatusExt = &v
+	return b
+}
+
+// SetColorExt sets the extensions carried by Color, serialized as
+// "_color".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceMetricBuilder) SetColorExt(v Element) *DeviceMetricBuilder {
+	b.deviceMetric.ColorExt = &v
+	return b
+}
+
+// SetCategoryExt sets the extensions carried by Category, serialized as
+// "_category".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceMetricBuilder) SetCategoryExt(v Element) *DeviceMetricBuilder {
+	b.deviceMetric.CategoryExt = &v
+	return b
+}
+
+// =============================================================================
+// DeviceMetricCalibration - Fluent Builder
+// =============================================================================
+
+// DeviceMetricCalibrationBuilder provides a fluent API for constructing DeviceMetricCalibration values.
+type DeviceMetricCalibrationBuilder struct {
+	deviceMetricCalibration *DeviceMetricCalibration
+}
+
+// NewDeviceMetricCalibrationBuilder creates a new DeviceMetricCalibrationBuilder.
+func NewDeviceMetricCalibrationBuilder() *DeviceMetricCalibrationBuilder {
+	return &DeviceMetricCalibrationBuilder{
+		deviceMetricCalibration: &DeviceMetricCalibration{},
+	}
+}
+
+// Build returns the constructed DeviceMetricCalibration.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DeviceMetricCalibrationBuilder) Build() DeviceMetricCalibration {
+	return *b.deviceMetricCalibration
+}
+
+// SetId sets the Id field.
+func (b *DeviceMetricCalibrationBuilder) SetId(v string) *DeviceMetricCalibrationBuilder {
+	b.deviceMetricCalibration.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DeviceMetricCalibrationBuilder) AddExtension(v Extension) *DeviceMetricCalibrationBuilder {
+	b.deviceMetricCalibration.Extension = append(b.deviceMetricCalibration.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *DeviceMetricCalibrationBuilder) AddModifierExtension(v Extension) *DeviceMetricCalibrationBuilder {
+	b.deviceMetricCalibration.ModifierExtension = append(b.deviceMetricCalibration.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *DeviceMetricCalibrationBuilder) SetType(v DeviceMetricCalibrationType) *DeviceMetricCalibrationBuilder {
+	b.deviceMetricCalibration.Type = &v
+	return b
+}
+
+// SetState sets the State field.
+func (b *DeviceMetricCalibrationBuilder) SetState(v DeviceMetricCalibrationState) *DeviceMetricCalibrationBuilder {
+	b.deviceMetricCalibration.State = &v
+	return b
+}
+
+// SetTime sets the Time field.
+func (b *DeviceMetricCalibrationBuilder) SetTime(v string) *DeviceMetricCalibrationBuilder {
+	b.deviceMetricCalibration.Time = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceMetricCalibrationBuilder) SetTypeExt(v Element) *DeviceMetricCalibrationBuilder {
+	b.deviceMetricCalibration.TypeExt = &v
+	return b
+}
+
+// SetStateExt sets the extensions carried by State, serialized as
+// "_state".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceMetricCalibrationBuilder) SetStateExt(v Element) *DeviceMetricCalibrationBuilder {
+	b.deviceMetricCalibration.StateExt = &v
+	return b
+}
+
+// SetTimeExt sets the extensions carried by Time, serialized as
+// "_time".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceMetricCalibrationBuilder) SetTimeExt(v Element) *DeviceMetricCalibrationBuilder {
+	b.deviceMetricCalibration.TimeExt = &v
+	return b
+}

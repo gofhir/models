@@ -918,3 +918,237 @@ func (b *MedicinalProductAuthorizationBuilder) SetProcedure(v MedicinalProductAu
 	b.medicinalProductAuthorization.Procedure = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductAuthorizationBuilder) SetImplicitRulesExt(v Element) *MedicinalProductAuthorizationBuilder {
+	b.medicinalProductAuthorization.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductAuthorizationBuilder) SetLanguageExt(v Element) *MedicinalProductAuthorizationBuilder {
+	b.medicinalProductAuthorization.LanguageExt = &v
+	return b
+}
+
+// SetStatusDateExt sets the extensions carried by StatusDate, serialized as
+// "_statusDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductAuthorizationBuilder) SetStatusDateExt(v Element) *MedicinalProductAuthorizationBuilder {
+	b.medicinalProductAuthorization.StatusDateExt = &v
+	return b
+}
+
+// SetRestoreDateExt sets the extensions carried by RestoreDate, serialized as
+// "_restoreDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductAuthorizationBuilder) SetRestoreDateExt(v Element) *MedicinalProductAuthorizationBuilder {
+	b.medicinalProductAuthorization.RestoreDateExt = &v
+	return b
+}
+
+// SetDateOfFirstAuthorizationExt sets the extensions carried by DateOfFirstAuthorization, serialized as
+// "_dateOfFirstAuthorization".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductAuthorizationBuilder) SetDateOfFirstAuthorizationExt(v Element) *MedicinalProductAuthorizationBuilder {
+	b.medicinalProductAuthorization.DateOfFirstAuthorizationExt = &v
+	return b
+}
+
+// SetInternationalBirthDateExt sets the extensions carried by InternationalBirthDate, serialized as
+// "_internationalBirthDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductAuthorizationBuilder) SetInternationalBirthDateExt(v Element) *MedicinalProductAuthorizationBuilder {
+	b.medicinalProductAuthorization.InternationalBirthDateExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicinalProductAuthorizationJurisdictionalAuthorization - Fluent Builder
+// =============================================================================
+
+// MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder provides a fluent API for constructing MedicinalProductAuthorizationJurisdictionalAuthorization values.
+type MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder struct {
+	medicinalProductAuthorizationJurisdictionalAuthorization *MedicinalProductAuthorizationJurisdictionalAuthorization
+}
+
+// NewMedicinalProductAuthorizationJurisdictionalAuthorizationBuilder creates a new MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder.
+func NewMedicinalProductAuthorizationJurisdictionalAuthorizationBuilder() *MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder {
+	return &MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder{
+		medicinalProductAuthorizationJurisdictionalAuthorization: &MedicinalProductAuthorizationJurisdictionalAuthorization{},
+	}
+}
+
+// Build returns the constructed MedicinalProductAuthorizationJurisdictionalAuthorization.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder) Build() MedicinalProductAuthorizationJurisdictionalAuthorization {
+	return *b.medicinalProductAuthorizationJurisdictionalAuthorization
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder) SetId(v string) *MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder {
+	b.medicinalProductAuthorizationJurisdictionalAuthorization.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder) AddExtension(v Extension) *MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder {
+	b.medicinalProductAuthorizationJurisdictionalAuthorization.Extension = append(b.medicinalProductAuthorizationJurisdictionalAuthorization.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder) AddModifierExtension(v Extension) *MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder {
+	b.medicinalProductAuthorizationJurisdictionalAuthorization.ModifierExtension = append(b.medicinalProductAuthorizationJurisdictionalAuthorization.ModifierExtension, v)
+	return b
+}
+
+// AddIdentifier adds a Identifier element.
+func (b *MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder) AddIdentifier(v Identifier) *MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder {
+	b.medicinalProductAuthorizationJurisdictionalAuthorization.Identifier = append(b.medicinalProductAuthorizationJurisdictionalAuthorization.Identifier, v)
+	return b
+}
+
+// SetCountry sets the Country field.
+func (b *MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder) SetCountry(v CodeableConcept) *MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder {
+	b.medicinalProductAuthorizationJurisdictionalAuthorization.Country = &v
+	return b
+}
+
+// AddJurisdiction adds a Jurisdiction element.
+func (b *MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder) AddJurisdiction(v CodeableConcept) *MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder {
+	b.medicinalProductAuthorizationJurisdictionalAuthorization.Jurisdiction = append(b.medicinalProductAuthorizationJurisdictionalAuthorization.Jurisdiction, v)
+	return b
+}
+
+// SetLegalStatusOfSupply sets the LegalStatusOfSupply field.
+func (b *MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder) SetLegalStatusOfSupply(v CodeableConcept) *MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder {
+	b.medicinalProductAuthorizationJurisdictionalAuthorization.LegalStatusOfSupply = &v
+	return b
+}
+
+// SetValidityPeriod sets the ValidityPeriod field.
+func (b *MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder) SetValidityPeriod(v Period) *MedicinalProductAuthorizationJurisdictionalAuthorizationBuilder {
+	b.medicinalProductAuthorizationJurisdictionalAuthorization.ValidityPeriod = &v
+	return b
+}
+
+// =============================================================================
+// MedicinalProductAuthorizationProcedure - Fluent Builder
+// =============================================================================
+
+// MedicinalProductAuthorizationProcedureBuilder provides a fluent API for constructing MedicinalProductAuthorizationProcedure values.
+type MedicinalProductAuthorizationProcedureBuilder struct {
+	medicinalProductAuthorizationProcedure *MedicinalProductAuthorizationProcedure
+}
+
+// NewMedicinalProductAuthorizationProcedureBuilder creates a new MedicinalProductAuthorizationProcedureBuilder.
+func NewMedicinalProductAuthorizationProcedureBuilder() *MedicinalProductAuthorizationProcedureBuilder {
+	return &MedicinalProductAuthorizationProcedureBuilder{
+		medicinalProductAuthorizationProcedure: &MedicinalProductAuthorizationProcedure{},
+	}
+}
+
+// Build returns the constructed MedicinalProductAuthorizationProcedure.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductAuthorizationProcedureBuilder) Build() MedicinalProductAuthorizationProcedure {
+	return *b.medicinalProductAuthorizationProcedure
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductAuthorizationProcedureBuilder) SetId(v string) *MedicinalProductAuthorizationProcedureBuilder {
+	b.medicinalProductAuthorizationProcedure.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductAuthorizationProcedureBuilder) AddExtension(v Extension) *MedicinalProductAuthorizationProcedureBuilder {
+	b.medicinalProductAuthorizationProcedure.Extension = append(b.medicinalProductAuthorizationProcedure.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductAuthorizationProcedureBuilder) AddModifierExtension(v Extension) *MedicinalProductAuthorizationProcedureBuilder {
+	b.medicinalProductAuthorizationProcedure.ModifierExtension = append(b.medicinalProductAuthorizationProcedure.ModifierExtension, v)
+	return b
+}
+
+// SetIdentifier sets the Identifier field.
+func (b *MedicinalProductAuthorizationProcedureBuilder) SetIdentifier(v Identifier) *MedicinalProductAuthorizationProcedureBuilder {
+	b.medicinalProductAuthorizationProcedure.Identifier = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *MedicinalProductAuthorizationProcedureBuilder) SetType(v CodeableConcept) *MedicinalProductAuthorizationProcedureBuilder {
+	b.medicinalProductAuthorizationProcedure.Type = &v
+	return b
+}
+
+// SetDatePeriod sets Date[x] to its DatePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicinalProductAuthorizationProcedureBuilder) SetDatePeriod(v Period) *MedicinalProductAuthorizationProcedureBuilder {
+	b.clearDate()
+	b.medicinalProductAuthorizationProcedure.DatePeriod = &v
+	return b
+}
+
+// SetDateDateTime sets Date[x] to its DateDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicinalProductAuthorizationProcedureBuilder) SetDateDateTime(v string) *MedicinalProductAuthorizationProcedureBuilder {
+	b.clearDate()
+	b.medicinalProductAuthorizationProcedure.DateDateTime = &v
+	return b
+}
+
+// SetDateDateTimeExt sets the DateDateTimeExt field.
+func (b *MedicinalProductAuthorizationProcedureBuilder) SetDateDateTimeExt(v Element) *MedicinalProductAuthorizationProcedureBuilder {
+	b.medicinalProductAuthorizationProcedure.DateDateTimeExt = &v
+	return b
+}
+
+// AddApplication adds a Application element.
+func (b *MedicinalProductAuthorizationProcedureBuilder) AddApplication(v MedicinalProductAuthorizationProcedure) *MedicinalProductAuthorizationProcedureBuilder {
+	b.medicinalProductAuthorizationProcedure.Application = append(b.medicinalProductAuthorizationProcedure.Application, v)
+	return b
+}
+
+// clearDate unsets every variant of Date[x], including the
+// _field companions of the primitive ones.
+func (b *MedicinalProductAuthorizationProcedureBuilder) clearDate() {
+	b.medicinalProductAuthorizationProcedure.DatePeriod = nil
+	b.medicinalProductAuthorizationProcedure.DateDateTime = nil
+	b.medicinalProductAuthorizationProcedure.DateDateTimeExt = nil
+}

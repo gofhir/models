@@ -1267,3 +1267,480 @@ func (b *CarePlanBuilder) AddNote(v Annotation) *CarePlanBuilder {
 	b.carePlan.Note = append(b.carePlan.Note, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CarePlanBuilder) SetImplicitRulesExt(v Element) *CarePlanBuilder {
+	b.carePlan.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CarePlanBuilder) SetLanguageExt(v Element) *CarePlanBuilder {
+	b.carePlan.LanguageExt = &v
+	return b
+}
+
+// AddInstantiatesCanonicalExt attaches extensions to the InstantiatesCanonical element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesCanonical twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *CarePlanBuilder) AddInstantiatesCanonicalExt(v *Element) *CarePlanBuilder {
+	for len(b.carePlan.InstantiatesCanonicalExt) < len(b.carePlan.InstantiatesCanonical)-1 {
+		b.carePlan.InstantiatesCanonicalExt = append(b.carePlan.InstantiatesCanonicalExt, nil)
+	}
+	b.carePlan.InstantiatesCanonicalExt = append(b.carePlan.InstantiatesCanonicalExt, v)
+	return b
+}
+
+// AddInstantiatesUriExt attaches extensions to the InstantiatesUri element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesUri twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *CarePlanBuilder) AddInstantiatesUriExt(v *Element) *CarePlanBuilder {
+	for len(b.carePlan.InstantiatesUriExt) < len(b.carePlan.InstantiatesUri)-1 {
+		b.carePlan.InstantiatesUriExt = append(b.carePlan.InstantiatesUriExt, nil)
+	}
+	b.carePlan.InstantiatesUriExt = append(b.carePlan.InstantiatesUriExt, v)
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CarePlanBuilder) SetStatusExt(v Element) *CarePlanBuilder {
+	b.carePlan.StatusExt = &v
+	return b
+}
+
+// SetIntentExt sets the extensions carried by Intent, serialized as
+// "_intent".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CarePlanBuilder) SetIntentExt(v Element) *CarePlanBuilder {
+	b.carePlan.IntentExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CarePlanBuilder) SetTitleExt(v Element) *CarePlanBuilder {
+	b.carePlan.TitleExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CarePlanBuilder) SetDescriptionExt(v Element) *CarePlanBuilder {
+	b.carePlan.DescriptionExt = &v
+	return b
+}
+
+// SetCreatedExt sets the extensions carried by Created, serialized as
+// "_created".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CarePlanBuilder) SetCreatedExt(v Element) *CarePlanBuilder {
+	b.carePlan.CreatedExt = &v
+	return b
+}
+
+// =============================================================================
+// CarePlanActivity - Fluent Builder
+// =============================================================================
+
+// CarePlanActivityBuilder provides a fluent API for constructing CarePlanActivity values.
+type CarePlanActivityBuilder struct {
+	carePlanActivity *CarePlanActivity
+}
+
+// NewCarePlanActivityBuilder creates a new CarePlanActivityBuilder.
+func NewCarePlanActivityBuilder() *CarePlanActivityBuilder {
+	return &CarePlanActivityBuilder{
+		carePlanActivity: &CarePlanActivity{},
+	}
+}
+
+// Build returns the constructed CarePlanActivity.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CarePlanActivityBuilder) Build() CarePlanActivity {
+	return *b.carePlanActivity
+}
+
+// SetId sets the Id field.
+func (b *CarePlanActivityBuilder) SetId(v string) *CarePlanActivityBuilder {
+	b.carePlanActivity.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CarePlanActivityBuilder) AddExtension(v Extension) *CarePlanActivityBuilder {
+	b.carePlanActivity.Extension = append(b.carePlanActivity.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CarePlanActivityBuilder) AddModifierExtension(v Extension) *CarePlanActivityBuilder {
+	b.carePlanActivity.ModifierExtension = append(b.carePlanActivity.ModifierExtension, v)
+	return b
+}
+
+// AddOutcomeCodeableConcept adds a OutcomeCodeableConcept element.
+func (b *CarePlanActivityBuilder) AddOutcomeCodeableConcept(v CodeableConcept) *CarePlanActivityBuilder {
+	b.carePlanActivity.OutcomeCodeableConcept = append(b.carePlanActivity.OutcomeCodeableConcept, v)
+	return b
+}
+
+// AddOutcomeReference adds a OutcomeReference element.
+func (b *CarePlanActivityBuilder) AddOutcomeReference(v Reference) *CarePlanActivityBuilder {
+	b.carePlanActivity.OutcomeReference = append(b.carePlanActivity.OutcomeReference, v)
+	return b
+}
+
+// AddProgress adds a Progress element.
+func (b *CarePlanActivityBuilder) AddProgress(v Annotation) *CarePlanActivityBuilder {
+	b.carePlanActivity.Progress = append(b.carePlanActivity.Progress, v)
+	return b
+}
+
+// SetReference sets the Reference field.
+func (b *CarePlanActivityBuilder) SetReference(v Reference) *CarePlanActivityBuilder {
+	b.carePlanActivity.Reference = &v
+	return b
+}
+
+// SetDetail sets the Detail field.
+func (b *CarePlanActivityBuilder) SetDetail(v CarePlanActivityDetail) *CarePlanActivityBuilder {
+	b.carePlanActivity.Detail = &v
+	return b
+}
+
+// =============================================================================
+// CarePlanActivityDetail - Fluent Builder
+// =============================================================================
+
+// CarePlanActivityDetailBuilder provides a fluent API for constructing CarePlanActivityDetail values.
+type CarePlanActivityDetailBuilder struct {
+	carePlanActivityDetail *CarePlanActivityDetail
+}
+
+// NewCarePlanActivityDetailBuilder creates a new CarePlanActivityDetailBuilder.
+func NewCarePlanActivityDetailBuilder() *CarePlanActivityDetailBuilder {
+	return &CarePlanActivityDetailBuilder{
+		carePlanActivityDetail: &CarePlanActivityDetail{},
+	}
+}
+
+// Build returns the constructed CarePlanActivityDetail.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CarePlanActivityDetailBuilder) Build() CarePlanActivityDetail {
+	return *b.carePlanActivityDetail
+}
+
+// SetId sets the Id field.
+func (b *CarePlanActivityDetailBuilder) SetId(v string) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CarePlanActivityDetailBuilder) AddExtension(v Extension) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.Extension = append(b.carePlanActivityDetail.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CarePlanActivityDetailBuilder) AddModifierExtension(v Extension) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.ModifierExtension = append(b.carePlanActivityDetail.ModifierExtension, v)
+	return b
+}
+
+// SetKind sets the Kind field.
+func (b *CarePlanActivityDetailBuilder) SetKind(v CarePlanActivityKind) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.Kind = &v
+	return b
+}
+
+// AddInstantiatesCanonical adds a InstantiatesCanonical element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *CarePlanActivityDetailBuilder) AddInstantiatesCanonical(v string) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.InstantiatesCanonical = append(b.carePlanActivityDetail.InstantiatesCanonical, &v)
+	return b
+}
+
+// AddInstantiatesUri adds a InstantiatesUri element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *CarePlanActivityDetailBuilder) AddInstantiatesUri(v string) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.InstantiatesUri = append(b.carePlanActivityDetail.InstantiatesUri, &v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *CarePlanActivityDetailBuilder) SetCode(v CodeableConcept) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.Code = &v
+	return b
+}
+
+// AddReasonCode adds a ReasonCode element.
+func (b *CarePlanActivityDetailBuilder) AddReasonCode(v CodeableConcept) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.ReasonCode = append(b.carePlanActivityDetail.ReasonCode, v)
+	return b
+}
+
+// AddReasonReference adds a ReasonReference element.
+func (b *CarePlanActivityDetailBuilder) AddReasonReference(v Reference) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.ReasonReference = append(b.carePlanActivityDetail.ReasonReference, v)
+	return b
+}
+
+// AddGoal adds a Goal element.
+func (b *CarePlanActivityDetailBuilder) AddGoal(v Reference) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.Goal = append(b.carePlanActivityDetail.Goal, v)
+	return b
+}
+
+// SetStatus sets the Status field.
+func (b *CarePlanActivityDetailBuilder) SetStatus(v CarePlanActivityStatus) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.Status = &v
+	return b
+}
+
+// SetStatusReason sets the StatusReason field.
+func (b *CarePlanActivityDetailBuilder) SetStatusReason(v CodeableConcept) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.StatusReason = &v
+	return b
+}
+
+// SetDoNotPerform sets the DoNotPerform field.
+func (b *CarePlanActivityDetailBuilder) SetDoNotPerform(v bool) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.DoNotPerform = &v
+	return b
+}
+
+// SetScheduledTiming sets Scheduled[x] to its ScheduledTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CarePlanActivityDetailBuilder) SetScheduledTiming(v Timing) *CarePlanActivityDetailBuilder {
+	b.clearScheduled()
+	b.carePlanActivityDetail.ScheduledTiming = &v
+	return b
+}
+
+// SetScheduledPeriod sets Scheduled[x] to its ScheduledPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CarePlanActivityDetailBuilder) SetScheduledPeriod(v Period) *CarePlanActivityDetailBuilder {
+	b.clearScheduled()
+	b.carePlanActivityDetail.ScheduledPeriod = &v
+	return b
+}
+
+// SetScheduledString sets Scheduled[x] to its ScheduledString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CarePlanActivityDetailBuilder) SetScheduledString(v string) *CarePlanActivityDetailBuilder {
+	b.clearScheduled()
+	b.carePlanActivityDetail.ScheduledString = &v
+	return b
+}
+
+// SetScheduledStringExt sets the ScheduledStringExt field.
+func (b *CarePlanActivityDetailBuilder) SetScheduledStringExt(v Element) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.ScheduledStringExt = &v
+	return b
+}
+
+// SetLocation sets the Location field.
+func (b *CarePlanActivityDetailBuilder) SetLocation(v Reference) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.Location = &v
+	return b
+}
+
+// AddPerformer adds a Performer element.
+func (b *CarePlanActivityDetailBuilder) AddPerformer(v Reference) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.Performer = append(b.carePlanActivityDetail.Performer, v)
+	return b
+}
+
+// SetProductCodeableConcept sets Product[x] to its ProductCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CarePlanActivityDetailBuilder) SetProductCodeableConcept(v CodeableConcept) *CarePlanActivityDetailBuilder {
+	b.clearProduct()
+	b.carePlanActivityDetail.ProductCodeableConcept = &v
+	return b
+}
+
+// SetProductReference sets Product[x] to its ProductReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CarePlanActivityDetailBuilder) SetProductReference(v Reference) *CarePlanActivityDetailBuilder {
+	b.clearProduct()
+	b.carePlanActivityDetail.ProductReference = &v
+	return b
+}
+
+// SetDailyAmount sets the DailyAmount field.
+func (b *CarePlanActivityDetailBuilder) SetDailyAmount(v Quantity) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.DailyAmount = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *CarePlanActivityDetailBuilder) SetQuantity(v Quantity) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.Quantity = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *CarePlanActivityDetailBuilder) SetDescription(v string) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.Description = &v
+	return b
+}
+
+// SetKindExt sets the extensions carried by Kind, serialized as
+// "_kind".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CarePlanActivityDetailBuilder) SetKindExt(v Element) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.KindExt = &v
+	return b
+}
+
+// AddInstantiatesCanonicalExt attaches extensions to the InstantiatesCanonical element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesCanonical twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *CarePlanActivityDetailBuilder) AddInstantiatesCanonicalExt(v *Element) *CarePlanActivityDetailBuilder {
+	for len(b.carePlanActivityDetail.InstantiatesCanonicalExt) < len(b.carePlanActivityDetail.InstantiatesCanonical)-1 {
+		b.carePlanActivityDetail.InstantiatesCanonicalExt = append(b.carePlanActivityDetail.InstantiatesCanonicalExt, nil)
+	}
+	b.carePlanActivityDetail.InstantiatesCanonicalExt = append(b.carePlanActivityDetail.InstantiatesCanonicalExt, v)
+	return b
+}
+
+// AddInstantiatesUriExt attaches extensions to the InstantiatesUri element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesUri twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *CarePlanActivityDetailBuilder) AddInstantiatesUriExt(v *Element) *CarePlanActivityDetailBuilder {
+	for len(b.carePlanActivityDetail.InstantiatesUriExt) < len(b.carePlanActivityDetail.InstantiatesUri)-1 {
+		b.carePlanActivityDetail.InstantiatesUriExt = append(b.carePlanActivityDetail.InstantiatesUriExt, nil)
+	}
+	b.carePlanActivityDetail.InstantiatesUriExt = append(b.carePlanActivityDetail.InstantiatesUriExt, v)
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CarePlanActivityDetailBuilder) SetStatusExt(v Element) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.StatusExt = &v
+	return b
+}
+
+// SetDoNotPerformExt sets the extensions carried by DoNotPerform, serialized as
+// "_doNotPerform".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CarePlanActivityDetailBuilder) SetDoNotPerformExt(v Element) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.DoNotPerformExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CarePlanActivityDetailBuilder) SetDescriptionExt(v Element) *CarePlanActivityDetailBuilder {
+	b.carePlanActivityDetail.DescriptionExt = &v
+	return b
+}
+
+// clearScheduled unsets every variant of Scheduled[x], including the
+// _field companions of the primitive ones.
+func (b *CarePlanActivityDetailBuilder) clearScheduled() {
+	b.carePlanActivityDetail.ScheduledTiming = nil
+	b.carePlanActivityDetail.ScheduledPeriod = nil
+	b.carePlanActivityDetail.ScheduledString = nil
+	b.carePlanActivityDetail.ScheduledStringExt = nil
+}
+
+// clearProduct unsets every variant of Product[x], including the
+// _field companions of the primitive ones.
+func (b *CarePlanActivityDetailBuilder) clearProduct() {
+	b.carePlanActivityDetail.ProductCodeableConcept = nil
+	b.carePlanActivityDetail.ProductReference = nil
+}

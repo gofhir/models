@@ -707,3 +707,152 @@ func (b *ListBuilder) SetEmptyReason(v CodeableConcept) *ListBuilder {
 	b.list.EmptyReason = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ListBuilder) SetImplicitRulesExt(v Element) *ListBuilder {
+	b.list.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ListBuilder) SetLanguageExt(v Element) *ListBuilder {
+	b.list.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ListBuilder) SetStatusExt(v Element) *ListBuilder {
+	b.list.StatusExt = &v
+	return b
+}
+
+// SetModeExt sets the extensions carried by Mode, serialized as
+// "_mode".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ListBuilder) SetModeExt(v Element) *ListBuilder {
+	b.list.ModeExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ListBuilder) SetTitleExt(v Element) *ListBuilder {
+	b.list.TitleExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ListBuilder) SetDateExt(v Element) *ListBuilder {
+	b.list.DateExt = &v
+	return b
+}
+
+// =============================================================================
+// ListEntry - Fluent Builder
+// =============================================================================
+
+// ListEntryBuilder provides a fluent API for constructing ListEntry values.
+type ListEntryBuilder struct {
+	listEntry *ListEntry
+}
+
+// NewListEntryBuilder creates a new ListEntryBuilder.
+func NewListEntryBuilder() *ListEntryBuilder {
+	return &ListEntryBuilder{
+		listEntry: &ListEntry{},
+	}
+}
+
+// Build returns the constructed ListEntry.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ListEntryBuilder) Build() ListEntry {
+	return *b.listEntry
+}
+
+// SetId sets the Id field.
+func (b *ListEntryBuilder) SetId(v string) *ListEntryBuilder {
+	b.listEntry.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ListEntryBuilder) AddExtension(v Extension) *ListEntryBuilder {
+	b.listEntry.Extension = append(b.listEntry.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ListEntryBuilder) AddModifierExtension(v Extension) *ListEntryBuilder {
+	b.listEntry.ModifierExtension = append(b.listEntry.ModifierExtension, v)
+	return b
+}
+
+// SetFlag sets the Flag field.
+func (b *ListEntryBuilder) SetFlag(v CodeableConcept) *ListEntryBuilder {
+	b.listEntry.Flag = &v
+	return b
+}
+
+// SetDeleted sets the Deleted field.
+func (b *ListEntryBuilder) SetDeleted(v bool) *ListEntryBuilder {
+	b.listEntry.Deleted = &v
+	return b
+}
+
+// SetDate sets the Date field.
+func (b *ListEntryBuilder) SetDate(v string) *ListEntryBuilder {
+	b.listEntry.Date = &v
+	return b
+}
+
+// SetItem sets the Item field.
+func (b *ListEntryBuilder) SetItem(v Reference) *ListEntryBuilder {
+	b.listEntry.Item = &v
+	return b
+}
+
+// SetDeletedExt sets the extensions carried by Deleted, serialized as
+// "_deleted".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ListEntryBuilder) SetDeletedExt(v Element) *ListEntryBuilder {
+	b.listEntry.DeletedExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ListEntryBuilder) SetDateExt(v Element) *ListEntryBuilder {
+	b.listEntry.DateExt = &v
+	return b
+}

@@ -123,6 +123,46 @@ func (b *{{$r.Name}}Builder) Set{{.Name}}(v {{.GoType}}) *{{$r.Name}}Builder {
 {{- end}}
 {{- end}}
 {{- end}}
+{{- /* The _field companions. They are emitted by the struct template from
+       HasExtension rather than existing as properties, so the builder could not
+       see them and a caller had to leave the chain to attach an extension to a
+       primitive — the one thing FHIR uses them for. */ -}}
+{{range $r.Properties}}
+{{- if .HasExtension}}
+{{- if .IsArray}}
+
+// Add{{.Name}}Ext attaches extensions to the {{.Name}} element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after Add{{.Name}} twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *{{$r.Name}}Builder) Add{{.Name}}Ext(v *Element) *{{$r.Name}}Builder {
+	for len(b.{{$r.LowerName}}.{{.Name}}Ext) < len(b.{{$r.LowerName}}.{{.Name}})-1 {
+		b.{{$r.LowerName}}.{{.Name}}Ext = append(b.{{$r.LowerName}}.{{.Name}}Ext, nil)
+	}
+	b.{{$r.LowerName}}.{{.Name}}Ext = append(b.{{$r.LowerName}}.{{.Name}}Ext, v)
+	return b
+}
+{{- else}}
+
+// Set{{.Name}}Ext sets the extensions carried by {{.Name}}, serialized as
+// "_{{.JSONName}}".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *{{$r.Name}}Builder) Set{{.Name}}Ext(v Element) *{{$r.Name}}Builder {
+	b.{{$r.LowerName}}.{{.Name}}Ext = &v
+	return b
+}
+{{- end}}
+{{- end}}
+{{- end}}
+
 {{- /* One clear per choice group, emitted from the group's first variant. */ -}}
 {{- range $r.Properties}}
 {{- if .ChoiceLead}}

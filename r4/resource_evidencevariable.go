@@ -1129,3 +1129,411 @@ func (b *EvidenceVariableBuilder) AddCharacteristic(v EvidenceVariableCharacteri
 	b.evidenceVariable.Characteristic = append(b.evidenceVariable.Characteristic, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceVariableBuilder) SetImplicitRulesExt(v Element) *EvidenceVariableBuilder {
+	b.evidenceVariable.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceVariableBuilder) SetLanguageExt(v Element) *EvidenceVariableBuilder {
+	b.evidenceVariable.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceVariableBuilder) SetUrlExt(v Element) *EvidenceVariableBuilder {
+	b.evidenceVariable.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceVariableBuilder) SetVersionExt(v Element) *EvidenceVariableBuilder {
+	b.evidenceVariable.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceVariableBuilder) SetNameExt(v Element) *EvidenceVariableBuilder {
+	b.evidenceVariable.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceVariableBuilder) SetTitleExt(v Element) *EvidenceVariableBuilder {
+	b.evidenceVariable.TitleExt = &v
+	return b
+}
+
+// SetShortTitleExt sets the extensions carried by ShortTitle, serialized as
+// "_shortTitle".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceVariableBuilder) SetShortTitleExt(v Element) *EvidenceVariableBuilder {
+	b.evidenceVariable.ShortTitleExt = &v
+	return b
+}
+
+// SetSubtitleExt sets the extensions carried by Subtitle, serialized as
+// "_subtitle".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceVariableBuilder) SetSubtitleExt(v Element) *EvidenceVariableBuilder {
+	b.evidenceVariable.SubtitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceVariableBuilder) SetStatusExt(v Element) *EvidenceVariableBuilder {
+	b.evidenceVariable.StatusExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceVariableBuilder) SetDateExt(v Element) *EvidenceVariableBuilder {
+	b.evidenceVariable.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceVariableBuilder) SetPublisherExt(v Element) *EvidenceVariableBuilder {
+	b.evidenceVariable.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceVariableBuilder) SetDescriptionExt(v Element) *EvidenceVariableBuilder {
+	b.evidenceVariable.DescriptionExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceVariableBuilder) SetCopyrightExt(v Element) *EvidenceVariableBuilder {
+	b.evidenceVariable.CopyrightExt = &v
+	return b
+}
+
+// SetApprovalDateExt sets the extensions carried by ApprovalDate, serialized as
+// "_approvalDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceVariableBuilder) SetApprovalDateExt(v Element) *EvidenceVariableBuilder {
+	b.evidenceVariable.ApprovalDateExt = &v
+	return b
+}
+
+// SetLastReviewDateExt sets the extensions carried by LastReviewDate, serialized as
+// "_lastReviewDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceVariableBuilder) SetLastReviewDateExt(v Element) *EvidenceVariableBuilder {
+	b.evidenceVariable.LastReviewDateExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceVariableBuilder) SetTypeExt(v Element) *EvidenceVariableBuilder {
+	b.evidenceVariable.TypeExt = &v
+	return b
+}
+
+// =============================================================================
+// EvidenceVariableCharacteristic - Fluent Builder
+// =============================================================================
+
+// EvidenceVariableCharacteristicBuilder provides a fluent API for constructing EvidenceVariableCharacteristic values.
+type EvidenceVariableCharacteristicBuilder struct {
+	evidenceVariableCharacteristic *EvidenceVariableCharacteristic
+}
+
+// NewEvidenceVariableCharacteristicBuilder creates a new EvidenceVariableCharacteristicBuilder.
+func NewEvidenceVariableCharacteristicBuilder() *EvidenceVariableCharacteristicBuilder {
+	return &EvidenceVariableCharacteristicBuilder{
+		evidenceVariableCharacteristic: &EvidenceVariableCharacteristic{},
+	}
+}
+
+// Build returns the constructed EvidenceVariableCharacteristic.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *EvidenceVariableCharacteristicBuilder) Build() EvidenceVariableCharacteristic {
+	return *b.evidenceVariableCharacteristic
+}
+
+// SetId sets the Id field.
+func (b *EvidenceVariableCharacteristicBuilder) SetId(v string) *EvidenceVariableCharacteristicBuilder {
+	b.evidenceVariableCharacteristic.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *EvidenceVariableCharacteristicBuilder) AddExtension(v Extension) *EvidenceVariableCharacteristicBuilder {
+	b.evidenceVariableCharacteristic.Extension = append(b.evidenceVariableCharacteristic.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *EvidenceVariableCharacteristicBuilder) AddModifierExtension(v Extension) *EvidenceVariableCharacteristicBuilder {
+	b.evidenceVariableCharacteristic.ModifierExtension = append(b.evidenceVariableCharacteristic.ModifierExtension, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *EvidenceVariableCharacteristicBuilder) SetDescription(v string) *EvidenceVariableCharacteristicBuilder {
+	b.evidenceVariableCharacteristic.Description = &v
+	return b
+}
+
+// SetDefinitionReference sets Definition[x] to its DefinitionReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *EvidenceVariableCharacteristicBuilder) SetDefinitionReference(v Reference) *EvidenceVariableCharacteristicBuilder {
+	b.clearDefinition()
+	b.evidenceVariableCharacteristic.DefinitionReference = &v
+	return b
+}
+
+// SetDefinitionCanonical sets Definition[x] to its DefinitionCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *EvidenceVariableCharacteristicBuilder) SetDefinitionCanonical(v string) *EvidenceVariableCharacteristicBuilder {
+	b.clearDefinition()
+	b.evidenceVariableCharacteristic.DefinitionCanonical = &v
+	return b
+}
+
+// SetDefinitionCanonicalExt sets the DefinitionCanonicalExt field.
+func (b *EvidenceVariableCharacteristicBuilder) SetDefinitionCanonicalExt(v Element) *EvidenceVariableCharacteristicBuilder {
+	b.evidenceVariableCharacteristic.DefinitionCanonicalExt = &v
+	return b
+}
+
+// SetDefinitionCodeableConcept sets Definition[x] to its DefinitionCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *EvidenceVariableCharacteristicBuilder) SetDefinitionCodeableConcept(v CodeableConcept) *EvidenceVariableCharacteristicBuilder {
+	b.clearDefinition()
+	b.evidenceVariableCharacteristic.DefinitionCodeableConcept = &v
+	return b
+}
+
+// SetDefinitionExpression sets Definition[x] to its DefinitionExpression variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *EvidenceVariableCharacteristicBuilder) SetDefinitionExpression(v Expression) *EvidenceVariableCharacteristicBuilder {
+	b.clearDefinition()
+	b.evidenceVariableCharacteristic.DefinitionExpression = &v
+	return b
+}
+
+// SetDefinitionDataRequirement sets Definition[x] to its DefinitionDataRequirement variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *EvidenceVariableCharacteristicBuilder) SetDefinitionDataRequirement(v DataRequirement) *EvidenceVariableCharacteristicBuilder {
+	b.clearDefinition()
+	b.evidenceVariableCharacteristic.DefinitionDataRequirement = &v
+	return b
+}
+
+// SetDefinitionTriggerDefinition sets Definition[x] to its DefinitionTriggerDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *EvidenceVariableCharacteristicBuilder) SetDefinitionTriggerDefinition(v TriggerDefinition) *EvidenceVariableCharacteristicBuilder {
+	b.clearDefinition()
+	b.evidenceVariableCharacteristic.DefinitionTriggerDefinition = &v
+	return b
+}
+
+// AddUsageContext adds a UsageContext element.
+func (b *EvidenceVariableCharacteristicBuilder) AddUsageContext(v UsageContext) *EvidenceVariableCharacteristicBuilder {
+	b.evidenceVariableCharacteristic.UsageContext = append(b.evidenceVariableCharacteristic.UsageContext, v)
+	return b
+}
+
+// SetExclude sets the Exclude field.
+func (b *EvidenceVariableCharacteristicBuilder) SetExclude(v bool) *EvidenceVariableCharacteristicBuilder {
+	b.evidenceVariableCharacteristic.Exclude = &v
+	return b
+}
+
+// SetParticipantEffectiveDateTime sets ParticipantEffective[x] to its ParticipantEffectiveDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *EvidenceVariableCharacteristicBuilder) SetParticipantEffectiveDateTime(v string) *EvidenceVariableCharacteristicBuilder {
+	b.clearParticipantEffective()
+	b.evidenceVariableCharacteristic.ParticipantEffectiveDateTime = &v
+	return b
+}
+
+// SetParticipantEffectiveDateTimeExt sets the ParticipantEffectiveDateTimeExt field.
+func (b *EvidenceVariableCharacteristicBuilder) SetParticipantEffectiveDateTimeExt(v Element) *EvidenceVariableCharacteristicBuilder {
+	b.evidenceVariableCharacteristic.ParticipantEffectiveDateTimeExt = &v
+	return b
+}
+
+// SetParticipantEffectivePeriod sets ParticipantEffective[x] to its ParticipantEffectivePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *EvidenceVariableCharacteristicBuilder) SetParticipantEffectivePeriod(v Period) *EvidenceVariableCharacteristicBuilder {
+	b.clearParticipantEffective()
+	b.evidenceVariableCharacteristic.ParticipantEffectivePeriod = &v
+	return b
+}
+
+// SetParticipantEffectiveDuration sets ParticipantEffective[x] to its ParticipantEffectiveDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *EvidenceVariableCharacteristicBuilder) SetParticipantEffectiveDuration(v Duration) *EvidenceVariableCharacteristicBuilder {
+	b.clearParticipantEffective()
+	b.evidenceVariableCharacteristic.ParticipantEffectiveDuration = &v
+	return b
+}
+
+// SetParticipantEffectiveTiming sets ParticipantEffective[x] to its ParticipantEffectiveTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *EvidenceVariableCharacteristicBuilder) SetParticipantEffectiveTiming(v Timing) *EvidenceVariableCharacteristicBuilder {
+	b.clearParticipantEffective()
+	b.evidenceVariableCharacteristic.ParticipantEffectiveTiming = &v
+	return b
+}
+
+// SetTimeFromStart sets the TimeFromStart field.
+func (b *EvidenceVariableCharacteristicBuilder) SetTimeFromStart(v Duration) *EvidenceVariableCharacteristicBuilder {
+	b.evidenceVariableCharacteristic.TimeFromStart = &v
+	return b
+}
+
+// SetGroupMeasure sets the GroupMeasure field.
+func (b *EvidenceVariableCharacteristicBuilder) SetGroupMeasure(v GroupMeasure) *EvidenceVariableCharacteristicBuilder {
+	b.evidenceVariableCharacteristic.GroupMeasure = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceVariableCharacteristicBuilder) SetDescriptionExt(v Element) *EvidenceVariableCharacteristicBuilder {
+	b.evidenceVariableCharacteristic.DescriptionExt = &v
+	return b
+}
+
+// SetExcludeExt sets the extensions carried by Exclude, serialized as
+// "_exclude".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceVariableCharacteristicBuilder) SetExcludeExt(v Element) *EvidenceVariableCharacteristicBuilder {
+	b.evidenceVariableCharacteristic.ExcludeExt = &v
+	return b
+}
+
+// SetGroupMeasureExt sets the extensions carried by GroupMeasure, serialized as
+// "_groupMeasure".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceVariableCharacteristicBuilder) SetGroupMeasureExt(v Element) *EvidenceVariableCharacteristicBuilder {
+	b.evidenceVariableCharacteristic.GroupMeasureExt = &v
+	return b
+}
+
+// clearDefinition unsets every variant of Definition[x], including the
+// _field companions of the primitive ones.
+func (b *EvidenceVariableCharacteristicBuilder) clearDefinition() {
+	b.evidenceVariableCharacteristic.DefinitionReference = nil
+	b.evidenceVariableCharacteristic.DefinitionCanonical = nil
+	b.evidenceVariableCharacteristic.DefinitionCanonicalExt = nil
+	b.evidenceVariableCharacteristic.DefinitionCodeableConcept = nil
+	b.evidenceVariableCharacteristic.DefinitionExpression = nil
+	b.evidenceVariableCharacteristic.DefinitionDataRequirement = nil
+	b.evidenceVariableCharacteristic.DefinitionTriggerDefinition = nil
+}
+
+// clearParticipantEffective unsets every variant of ParticipantEffective[x], including the
+// _field companions of the primitive ones.
+func (b *EvidenceVariableCharacteristicBuilder) clearParticipantEffective() {
+	b.evidenceVariableCharacteristic.ParticipantEffectiveDateTime = nil
+	b.evidenceVariableCharacteristic.ParticipantEffectivePeriod = nil
+	b.evidenceVariableCharacteristic.ParticipantEffectiveDuration = nil
+	b.evidenceVariableCharacteristic.ParticipantEffectiveTiming = nil
+}

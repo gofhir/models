@@ -1457,10 +1457,675 @@ func (b *AuditEventBuilder) AddEntity(v AuditEventEntity) *AuditEventBuilder {
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AuditEventBuilder) SetImplicitRulesExt(v Element) *AuditEventBuilder {
+	b.auditEvent.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AuditEventBuilder) SetLanguageExt(v Element) *AuditEventBuilder {
+	b.auditEvent.LanguageExt = &v
+	return b
+}
+
+// SetActionExt sets the extensions carried by Action, serialized as
+// "_action".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AuditEventBuilder) SetActionExt(v Element) *AuditEventBuilder {
+	b.auditEvent.ActionExt = &v
+	return b
+}
+
+// SetSeverityExt sets the extensions carried by Severity, serialized as
+// "_severity".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AuditEventBuilder) SetSeverityExt(v Element) *AuditEventBuilder {
+	b.auditEvent.SeverityExt = &v
+	return b
+}
+
+// SetRecordedExt sets the extensions carried by Recorded, serialized as
+// "_recorded".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AuditEventBuilder) SetRecordedExt(v Element) *AuditEventBuilder {
+	b.auditEvent.RecordedExt = &v
+	return b
+}
+
 // clearOccurred unsets every variant of Occurred[x], including the
 // _field companions of the primitive ones.
 func (b *AuditEventBuilder) clearOccurred() {
 	b.auditEvent.OccurredPeriod = nil
 	b.auditEvent.OccurredDateTime = nil
 	b.auditEvent.OccurredDateTimeExt = nil
+}
+
+// =============================================================================
+// AuditEventAgent - Fluent Builder
+// =============================================================================
+
+// AuditEventAgentBuilder provides a fluent API for constructing AuditEventAgent values.
+type AuditEventAgentBuilder struct {
+	auditEventAgent *AuditEventAgent
+}
+
+// NewAuditEventAgentBuilder creates a new AuditEventAgentBuilder.
+func NewAuditEventAgentBuilder() *AuditEventAgentBuilder {
+	return &AuditEventAgentBuilder{
+		auditEventAgent: &AuditEventAgent{},
+	}
+}
+
+// Build returns the constructed AuditEventAgent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AuditEventAgentBuilder) Build() AuditEventAgent {
+	return *b.auditEventAgent
+}
+
+// SetId sets the Id field.
+func (b *AuditEventAgentBuilder) SetId(v string) *AuditEventAgentBuilder {
+	b.auditEventAgent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AuditEventAgentBuilder) AddExtension(v Extension) *AuditEventAgentBuilder {
+	b.auditEventAgent.Extension = append(b.auditEventAgent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AuditEventAgentBuilder) AddModifierExtension(v Extension) *AuditEventAgentBuilder {
+	b.auditEventAgent.ModifierExtension = append(b.auditEventAgent.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *AuditEventAgentBuilder) SetType(v CodeableConcept) *AuditEventAgentBuilder {
+	b.auditEventAgent.Type = &v
+	return b
+}
+
+// AddRole adds a Role element.
+func (b *AuditEventAgentBuilder) AddRole(v CodeableConcept) *AuditEventAgentBuilder {
+	b.auditEventAgent.Role = append(b.auditEventAgent.Role, v)
+	return b
+}
+
+// SetWho sets the Who field.
+func (b *AuditEventAgentBuilder) SetWho(v Reference) *AuditEventAgentBuilder {
+	b.auditEventAgent.Who = &v
+	return b
+}
+
+// SetRequestor sets the Requestor field.
+func (b *AuditEventAgentBuilder) SetRequestor(v bool) *AuditEventAgentBuilder {
+	b.auditEventAgent.Requestor = &v
+	return b
+}
+
+// SetLocation sets the Location field.
+func (b *AuditEventAgentBuilder) SetLocation(v Reference) *AuditEventAgentBuilder {
+	b.auditEventAgent.Location = &v
+	return b
+}
+
+// AddPolicy adds a Policy element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *AuditEventAgentBuilder) AddPolicy(v string) *AuditEventAgentBuilder {
+	b.auditEventAgent.Policy = append(b.auditEventAgent.Policy, &v)
+	return b
+}
+
+// SetNetworkReference sets Network[x] to its NetworkReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AuditEventAgentBuilder) SetNetworkReference(v Reference) *AuditEventAgentBuilder {
+	b.clearNetwork()
+	b.auditEventAgent.NetworkReference = &v
+	return b
+}
+
+// SetNetworkUri sets Network[x] to its NetworkUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AuditEventAgentBuilder) SetNetworkUri(v string) *AuditEventAgentBuilder {
+	b.clearNetwork()
+	b.auditEventAgent.NetworkUri = &v
+	return b
+}
+
+// SetNetworkUriExt sets the NetworkUriExt field.
+func (b *AuditEventAgentBuilder) SetNetworkUriExt(v Element) *AuditEventAgentBuilder {
+	b.auditEventAgent.NetworkUriExt = &v
+	return b
+}
+
+// SetNetworkString sets Network[x] to its NetworkString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AuditEventAgentBuilder) SetNetworkString(v string) *AuditEventAgentBuilder {
+	b.clearNetwork()
+	b.auditEventAgent.NetworkString = &v
+	return b
+}
+
+// SetNetworkStringExt sets the NetworkStringExt field.
+func (b *AuditEventAgentBuilder) SetNetworkStringExt(v Element) *AuditEventAgentBuilder {
+	b.auditEventAgent.NetworkStringExt = &v
+	return b
+}
+
+// AddAuthorization adds a Authorization element.
+func (b *AuditEventAgentBuilder) AddAuthorization(v CodeableConcept) *AuditEventAgentBuilder {
+	b.auditEventAgent.Authorization = append(b.auditEventAgent.Authorization, v)
+	return b
+}
+
+// SetRequestorExt sets the extensions carried by Requestor, serialized as
+// "_requestor".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AuditEventAgentBuilder) SetRequestorExt(v Element) *AuditEventAgentBuilder {
+	b.auditEventAgent.RequestorExt = &v
+	return b
+}
+
+// AddPolicyExt attaches extensions to the Policy element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddPolicy twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *AuditEventAgentBuilder) AddPolicyExt(v *Element) *AuditEventAgentBuilder {
+	for len(b.auditEventAgent.PolicyExt) < len(b.auditEventAgent.Policy)-1 {
+		b.auditEventAgent.PolicyExt = append(b.auditEventAgent.PolicyExt, nil)
+	}
+	b.auditEventAgent.PolicyExt = append(b.auditEventAgent.PolicyExt, v)
+	return b
+}
+
+// clearNetwork unsets every variant of Network[x], including the
+// _field companions of the primitive ones.
+func (b *AuditEventAgentBuilder) clearNetwork() {
+	b.auditEventAgent.NetworkReference = nil
+	b.auditEventAgent.NetworkUri = nil
+	b.auditEventAgent.NetworkUriExt = nil
+	b.auditEventAgent.NetworkString = nil
+	b.auditEventAgent.NetworkStringExt = nil
+}
+
+// =============================================================================
+// AuditEventEntity - Fluent Builder
+// =============================================================================
+
+// AuditEventEntityBuilder provides a fluent API for constructing AuditEventEntity values.
+type AuditEventEntityBuilder struct {
+	auditEventEntity *AuditEventEntity
+}
+
+// NewAuditEventEntityBuilder creates a new AuditEventEntityBuilder.
+func NewAuditEventEntityBuilder() *AuditEventEntityBuilder {
+	return &AuditEventEntityBuilder{
+		auditEventEntity: &AuditEventEntity{},
+	}
+}
+
+// Build returns the constructed AuditEventEntity.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AuditEventEntityBuilder) Build() AuditEventEntity {
+	return *b.auditEventEntity
+}
+
+// SetId sets the Id field.
+func (b *AuditEventEntityBuilder) SetId(v string) *AuditEventEntityBuilder {
+	b.auditEventEntity.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AuditEventEntityBuilder) AddExtension(v Extension) *AuditEventEntityBuilder {
+	b.auditEventEntity.Extension = append(b.auditEventEntity.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AuditEventEntityBuilder) AddModifierExtension(v Extension) *AuditEventEntityBuilder {
+	b.auditEventEntity.ModifierExtension = append(b.auditEventEntity.ModifierExtension, v)
+	return b
+}
+
+// SetWhat sets the What field.
+func (b *AuditEventEntityBuilder) SetWhat(v Reference) *AuditEventEntityBuilder {
+	b.auditEventEntity.What = &v
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *AuditEventEntityBuilder) SetRole(v CodeableConcept) *AuditEventEntityBuilder {
+	b.auditEventEntity.Role = &v
+	return b
+}
+
+// AddSecurityLabel adds a SecurityLabel element.
+func (b *AuditEventEntityBuilder) AddSecurityLabel(v CodeableConcept) *AuditEventEntityBuilder {
+	b.auditEventEntity.SecurityLabel = append(b.auditEventEntity.SecurityLabel, v)
+	return b
+}
+
+// SetQuery sets the Query field.
+func (b *AuditEventEntityBuilder) SetQuery(v string) *AuditEventEntityBuilder {
+	b.auditEventEntity.Query = &v
+	return b
+}
+
+// AddDetail adds a Detail element.
+func (b *AuditEventEntityBuilder) AddDetail(v AuditEventEntityDetail) *AuditEventEntityBuilder {
+	b.auditEventEntity.Detail = append(b.auditEventEntity.Detail, v)
+	return b
+}
+
+// AddAgent adds a Agent element.
+func (b *AuditEventEntityBuilder) AddAgent(v AuditEventAgent) *AuditEventEntityBuilder {
+	b.auditEventEntity.Agent = append(b.auditEventEntity.Agent, v)
+	return b
+}
+
+// SetQueryExt sets the extensions carried by Query, serialized as
+// "_query".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AuditEventEntityBuilder) SetQueryExt(v Element) *AuditEventEntityBuilder {
+	b.auditEventEntity.QueryExt = &v
+	return b
+}
+
+// =============================================================================
+// AuditEventEntityDetail - Fluent Builder
+// =============================================================================
+
+// AuditEventEntityDetailBuilder provides a fluent API for constructing AuditEventEntityDetail values.
+type AuditEventEntityDetailBuilder struct {
+	auditEventEntityDetail *AuditEventEntityDetail
+}
+
+// NewAuditEventEntityDetailBuilder creates a new AuditEventEntityDetailBuilder.
+func NewAuditEventEntityDetailBuilder() *AuditEventEntityDetailBuilder {
+	return &AuditEventEntityDetailBuilder{
+		auditEventEntityDetail: &AuditEventEntityDetail{},
+	}
+}
+
+// Build returns the constructed AuditEventEntityDetail.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AuditEventEntityDetailBuilder) Build() AuditEventEntityDetail {
+	return *b.auditEventEntityDetail
+}
+
+// SetId sets the Id field.
+func (b *AuditEventEntityDetailBuilder) SetId(v string) *AuditEventEntityDetailBuilder {
+	b.auditEventEntityDetail.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AuditEventEntityDetailBuilder) AddExtension(v Extension) *AuditEventEntityDetailBuilder {
+	b.auditEventEntityDetail.Extension = append(b.auditEventEntityDetail.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AuditEventEntityDetailBuilder) AddModifierExtension(v Extension) *AuditEventEntityDetailBuilder {
+	b.auditEventEntityDetail.ModifierExtension = append(b.auditEventEntityDetail.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *AuditEventEntityDetailBuilder) SetType(v CodeableConcept) *AuditEventEntityDetailBuilder {
+	b.auditEventEntityDetail.Type = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AuditEventEntityDetailBuilder) SetValueQuantity(v Quantity) *AuditEventEntityDetailBuilder {
+	b.clearValue()
+	b.auditEventEntityDetail.ValueQuantity = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AuditEventEntityDetailBuilder) SetValueCodeableConcept(v CodeableConcept) *AuditEventEntityDetailBuilder {
+	b.clearValue()
+	b.auditEventEntityDetail.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AuditEventEntityDetailBuilder) SetValueString(v string) *AuditEventEntityDetailBuilder {
+	b.clearValue()
+	b.auditEventEntityDetail.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *AuditEventEntityDetailBuilder) SetValueStringExt(v Element) *AuditEventEntityDetailBuilder {
+	b.auditEventEntityDetail.ValueStringExt = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AuditEventEntityDetailBuilder) SetValueBoolean(v bool) *AuditEventEntityDetailBuilder {
+	b.clearValue()
+	b.auditEventEntityDetail.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *AuditEventEntityDetailBuilder) SetValueBooleanExt(v Element) *AuditEventEntityDetailBuilder {
+	b.auditEventEntityDetail.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueInteger sets Value[x] to its ValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AuditEventEntityDetailBuilder) SetValueInteger(v int) *AuditEventEntityDetailBuilder {
+	b.clearValue()
+	b.auditEventEntityDetail.ValueInteger = &v
+	return b
+}
+
+// SetValueIntegerExt sets the ValueIntegerExt field.
+func (b *AuditEventEntityDetailBuilder) SetValueIntegerExt(v Element) *AuditEventEntityDetailBuilder {
+	b.auditEventEntityDetail.ValueIntegerExt = &v
+	return b
+}
+
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AuditEventEntityDetailBuilder) SetValueRange(v Range) *AuditEventEntityDetailBuilder {
+	b.clearValue()
+	b.auditEventEntityDetail.ValueRange = &v
+	return b
+}
+
+// SetValueRatio sets Value[x] to its ValueRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AuditEventEntityDetailBuilder) SetValueRatio(v Ratio) *AuditEventEntityDetailBuilder {
+	b.clearValue()
+	b.auditEventEntityDetail.ValueRatio = &v
+	return b
+}
+
+// SetValueTime sets Value[x] to its ValueTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AuditEventEntityDetailBuilder) SetValueTime(v string) *AuditEventEntityDetailBuilder {
+	b.clearValue()
+	b.auditEventEntityDetail.ValueTime = &v
+	return b
+}
+
+// SetValueTimeExt sets the ValueTimeExt field.
+func (b *AuditEventEntityDetailBuilder) SetValueTimeExt(v Element) *AuditEventEntityDetailBuilder {
+	b.auditEventEntityDetail.ValueTimeExt = &v
+	return b
+}
+
+// SetValueDateTime sets Value[x] to its ValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AuditEventEntityDetailBuilder) SetValueDateTime(v string) *AuditEventEntityDetailBuilder {
+	b.clearValue()
+	b.auditEventEntityDetail.ValueDateTime = &v
+	return b
+}
+
+// SetValueDateTimeExt sets the ValueDateTimeExt field.
+func (b *AuditEventEntityDetailBuilder) SetValueDateTimeExt(v Element) *AuditEventEntityDetailBuilder {
+	b.auditEventEntityDetail.ValueDateTimeExt = &v
+	return b
+}
+
+// SetValuePeriod sets Value[x] to its ValuePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AuditEventEntityDetailBuilder) SetValuePeriod(v Period) *AuditEventEntityDetailBuilder {
+	b.clearValue()
+	b.auditEventEntityDetail.ValuePeriod = &v
+	return b
+}
+
+// SetValueBase64Binary sets Value[x] to its ValueBase64Binary variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AuditEventEntityDetailBuilder) SetValueBase64Binary(v string) *AuditEventEntityDetailBuilder {
+	b.clearValue()
+	b.auditEventEntityDetail.ValueBase64Binary = &v
+	return b
+}
+
+// SetValueBase64BinaryExt sets the ValueBase64BinaryExt field.
+func (b *AuditEventEntityDetailBuilder) SetValueBase64BinaryExt(v Element) *AuditEventEntityDetailBuilder {
+	b.auditEventEntityDetail.ValueBase64BinaryExt = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *AuditEventEntityDetailBuilder) clearValue() {
+	b.auditEventEntityDetail.ValueQuantity = nil
+	b.auditEventEntityDetail.ValueCodeableConcept = nil
+	b.auditEventEntityDetail.ValueString = nil
+	b.auditEventEntityDetail.ValueStringExt = nil
+	b.auditEventEntityDetail.ValueBoolean = nil
+	b.auditEventEntityDetail.ValueBooleanExt = nil
+	b.auditEventEntityDetail.ValueInteger = nil
+	b.auditEventEntityDetail.ValueIntegerExt = nil
+	b.auditEventEntityDetail.ValueRange = nil
+	b.auditEventEntityDetail.ValueRatio = nil
+	b.auditEventEntityDetail.ValueTime = nil
+	b.auditEventEntityDetail.ValueTimeExt = nil
+	b.auditEventEntityDetail.ValueDateTime = nil
+	b.auditEventEntityDetail.ValueDateTimeExt = nil
+	b.auditEventEntityDetail.ValuePeriod = nil
+	b.auditEventEntityDetail.ValueBase64Binary = nil
+	b.auditEventEntityDetail.ValueBase64BinaryExt = nil
+}
+
+// =============================================================================
+// AuditEventOutcome - Fluent Builder
+// =============================================================================
+
+// AuditEventOutcomeBuilder provides a fluent API for constructing AuditEventOutcome values.
+type AuditEventOutcomeBuilder struct {
+	auditEventOutcome *AuditEventOutcome
+}
+
+// NewAuditEventOutcomeBuilder creates a new AuditEventOutcomeBuilder.
+func NewAuditEventOutcomeBuilder() *AuditEventOutcomeBuilder {
+	return &AuditEventOutcomeBuilder{
+		auditEventOutcome: &AuditEventOutcome{},
+	}
+}
+
+// Build returns the constructed AuditEventOutcome.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AuditEventOutcomeBuilder) Build() AuditEventOutcome {
+	return *b.auditEventOutcome
+}
+
+// SetId sets the Id field.
+func (b *AuditEventOutcomeBuilder) SetId(v string) *AuditEventOutcomeBuilder {
+	b.auditEventOutcome.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AuditEventOutcomeBuilder) AddExtension(v Extension) *AuditEventOutcomeBuilder {
+	b.auditEventOutcome.Extension = append(b.auditEventOutcome.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AuditEventOutcomeBuilder) AddModifierExtension(v Extension) *AuditEventOutcomeBuilder {
+	b.auditEventOutcome.ModifierExtension = append(b.auditEventOutcome.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *AuditEventOutcomeBuilder) SetCode(v Coding) *AuditEventOutcomeBuilder {
+	b.auditEventOutcome.Code = &v
+	return b
+}
+
+// AddDetail adds a Detail element.
+func (b *AuditEventOutcomeBuilder) AddDetail(v CodeableConcept) *AuditEventOutcomeBuilder {
+	b.auditEventOutcome.Detail = append(b.auditEventOutcome.Detail, v)
+	return b
+}
+
+// =============================================================================
+// AuditEventSource - Fluent Builder
+// =============================================================================
+
+// AuditEventSourceBuilder provides a fluent API for constructing AuditEventSource values.
+type AuditEventSourceBuilder struct {
+	auditEventSource *AuditEventSource
+}
+
+// NewAuditEventSourceBuilder creates a new AuditEventSourceBuilder.
+func NewAuditEventSourceBuilder() *AuditEventSourceBuilder {
+	return &AuditEventSourceBuilder{
+		auditEventSource: &AuditEventSource{},
+	}
+}
+
+// Build returns the constructed AuditEventSource.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AuditEventSourceBuilder) Build() AuditEventSource {
+	return *b.auditEventSource
+}
+
+// SetId sets the Id field.
+func (b *AuditEventSourceBuilder) SetId(v string) *AuditEventSourceBuilder {
+	b.auditEventSource.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AuditEventSourceBuilder) AddExtension(v Extension) *AuditEventSourceBuilder {
+	b.auditEventSource.Extension = append(b.auditEventSource.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AuditEventSourceBuilder) AddModifierExtension(v Extension) *AuditEventSourceBuilder {
+	b.auditEventSource.ModifierExtension = append(b.auditEventSource.ModifierExtension, v)
+	return b
+}
+
+// SetSite sets the Site field.
+func (b *AuditEventSourceBuilder) SetSite(v Reference) *AuditEventSourceBuilder {
+	b.auditEventSource.Site = &v
+	return b
+}
+
+// SetObserver sets the Observer field.
+func (b *AuditEventSourceBuilder) SetObserver(v Reference) *AuditEventSourceBuilder {
+	b.auditEventSource.Observer = &v
+	return b
+}
+
+// AddType adds a Type element.
+func (b *AuditEventSourceBuilder) AddType(v CodeableConcept) *AuditEventSourceBuilder {
+	b.auditEventSource.Type = append(b.auditEventSource.Type, v)
+	return b
 }

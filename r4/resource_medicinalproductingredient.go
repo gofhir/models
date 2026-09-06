@@ -984,3 +984,341 @@ func (b *MedicinalProductIngredientBuilder) SetSubstance(v MedicinalProductIngre
 	b.medicinalProductIngredient.Substance = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductIngredientBuilder) SetImplicitRulesExt(v Element) *MedicinalProductIngredientBuilder {
+	b.medicinalProductIngredient.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductIngredientBuilder) SetLanguageExt(v Element) *MedicinalProductIngredientBuilder {
+	b.medicinalProductIngredient.LanguageExt = &v
+	return b
+}
+
+// SetAllergenicIndicatorExt sets the extensions carried by AllergenicIndicator, serialized as
+// "_allergenicIndicator".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductIngredientBuilder) SetAllergenicIndicatorExt(v Element) *MedicinalProductIngredientBuilder {
+	b.medicinalProductIngredient.AllergenicIndicatorExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicinalProductIngredientSpecifiedSubstance - Fluent Builder
+// =============================================================================
+
+// MedicinalProductIngredientSpecifiedSubstanceBuilder provides a fluent API for constructing MedicinalProductIngredientSpecifiedSubstance values.
+type MedicinalProductIngredientSpecifiedSubstanceBuilder struct {
+	medicinalProductIngredientSpecifiedSubstance *MedicinalProductIngredientSpecifiedSubstance
+}
+
+// NewMedicinalProductIngredientSpecifiedSubstanceBuilder creates a new MedicinalProductIngredientSpecifiedSubstanceBuilder.
+func NewMedicinalProductIngredientSpecifiedSubstanceBuilder() *MedicinalProductIngredientSpecifiedSubstanceBuilder {
+	return &MedicinalProductIngredientSpecifiedSubstanceBuilder{
+		medicinalProductIngredientSpecifiedSubstance: &MedicinalProductIngredientSpecifiedSubstance{},
+	}
+}
+
+// Build returns the constructed MedicinalProductIngredientSpecifiedSubstance.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductIngredientSpecifiedSubstanceBuilder) Build() MedicinalProductIngredientSpecifiedSubstance {
+	return *b.medicinalProductIngredientSpecifiedSubstance
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductIngredientSpecifiedSubstanceBuilder) SetId(v string) *MedicinalProductIngredientSpecifiedSubstanceBuilder {
+	b.medicinalProductIngredientSpecifiedSubstance.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductIngredientSpecifiedSubstanceBuilder) AddExtension(v Extension) *MedicinalProductIngredientSpecifiedSubstanceBuilder {
+	b.medicinalProductIngredientSpecifiedSubstance.Extension = append(b.medicinalProductIngredientSpecifiedSubstance.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductIngredientSpecifiedSubstanceBuilder) AddModifierExtension(v Extension) *MedicinalProductIngredientSpecifiedSubstanceBuilder {
+	b.medicinalProductIngredientSpecifiedSubstance.ModifierExtension = append(b.medicinalProductIngredientSpecifiedSubstance.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MedicinalProductIngredientSpecifiedSubstanceBuilder) SetCode(v CodeableConcept) *MedicinalProductIngredientSpecifiedSubstanceBuilder {
+	b.medicinalProductIngredientSpecifiedSubstance.Code = &v
+	return b
+}
+
+// SetGroup sets the Group field.
+func (b *MedicinalProductIngredientSpecifiedSubstanceBuilder) SetGroup(v CodeableConcept) *MedicinalProductIngredientSpecifiedSubstanceBuilder {
+	b.medicinalProductIngredientSpecifiedSubstance.Group = &v
+	return b
+}
+
+// SetConfidentiality sets the Confidentiality field.
+func (b *MedicinalProductIngredientSpecifiedSubstanceBuilder) SetConfidentiality(v CodeableConcept) *MedicinalProductIngredientSpecifiedSubstanceBuilder {
+	b.medicinalProductIngredientSpecifiedSubstance.Confidentiality = &v
+	return b
+}
+
+// AddStrength adds a Strength element.
+func (b *MedicinalProductIngredientSpecifiedSubstanceBuilder) AddStrength(v MedicinalProductIngredientSpecifiedSubstanceStrength) *MedicinalProductIngredientSpecifiedSubstanceBuilder {
+	b.medicinalProductIngredientSpecifiedSubstance.Strength = append(b.medicinalProductIngredientSpecifiedSubstance.Strength, v)
+	return b
+}
+
+// =============================================================================
+// MedicinalProductIngredientSpecifiedSubstanceStrength - Fluent Builder
+// =============================================================================
+
+// MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder provides a fluent API for constructing MedicinalProductIngredientSpecifiedSubstanceStrength values.
+type MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder struct {
+	medicinalProductIngredientSpecifiedSubstanceStrength *MedicinalProductIngredientSpecifiedSubstanceStrength
+}
+
+// NewMedicinalProductIngredientSpecifiedSubstanceStrengthBuilder creates a new MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder.
+func NewMedicinalProductIngredientSpecifiedSubstanceStrengthBuilder() *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder {
+	return &MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder{
+		medicinalProductIngredientSpecifiedSubstanceStrength: &MedicinalProductIngredientSpecifiedSubstanceStrength{},
+	}
+}
+
+// Build returns the constructed MedicinalProductIngredientSpecifiedSubstanceStrength.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder) Build() MedicinalProductIngredientSpecifiedSubstanceStrength {
+	return *b.medicinalProductIngredientSpecifiedSubstanceStrength
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder) SetId(v string) *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder {
+	b.medicinalProductIngredientSpecifiedSubstanceStrength.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder) AddExtension(v Extension) *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder {
+	b.medicinalProductIngredientSpecifiedSubstanceStrength.Extension = append(b.medicinalProductIngredientSpecifiedSubstanceStrength.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder) AddModifierExtension(v Extension) *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder {
+	b.medicinalProductIngredientSpecifiedSubstanceStrength.ModifierExtension = append(b.medicinalProductIngredientSpecifiedSubstanceStrength.ModifierExtension, v)
+	return b
+}
+
+// SetPresentation sets the Presentation field.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder) SetPresentation(v Ratio) *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder {
+	b.medicinalProductIngredientSpecifiedSubstanceStrength.Presentation = &v
+	return b
+}
+
+// SetPresentationLowLimit sets the PresentationLowLimit field.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder) SetPresentationLowLimit(v Ratio) *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder {
+	b.medicinalProductIngredientSpecifiedSubstanceStrength.PresentationLowLimit = &v
+	return b
+}
+
+// SetConcentration sets the Concentration field.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder) SetConcentration(v Ratio) *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder {
+	b.medicinalProductIngredientSpecifiedSubstanceStrength.Concentration = &v
+	return b
+}
+
+// SetConcentrationLowLimit sets the ConcentrationLowLimit field.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder) SetConcentrationLowLimit(v Ratio) *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder {
+	b.medicinalProductIngredientSpecifiedSubstanceStrength.ConcentrationLowLimit = &v
+	return b
+}
+
+// SetMeasurementPoint sets the MeasurementPoint field.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder) SetMeasurementPoint(v string) *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder {
+	b.medicinalProductIngredientSpecifiedSubstanceStrength.MeasurementPoint = &v
+	return b
+}
+
+// AddCountry adds a Country element.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder) AddCountry(v CodeableConcept) *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder {
+	b.medicinalProductIngredientSpecifiedSubstanceStrength.Country = append(b.medicinalProductIngredientSpecifiedSubstanceStrength.Country, v)
+	return b
+}
+
+// AddReferenceStrength adds a ReferenceStrength element.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder) AddReferenceStrength(v MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength) *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder {
+	b.medicinalProductIngredientSpecifiedSubstanceStrength.ReferenceStrength = append(b.medicinalProductIngredientSpecifiedSubstanceStrength.ReferenceStrength, v)
+	return b
+}
+
+// SetMeasurementPointExt sets the extensions carried by MeasurementPoint, serialized as
+// "_measurementPoint".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder) SetMeasurementPointExt(v Element) *MedicinalProductIngredientSpecifiedSubstanceStrengthBuilder {
+	b.medicinalProductIngredientSpecifiedSubstanceStrength.MeasurementPointExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength - Fluent Builder
+// =============================================================================
+
+// MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder provides a fluent API for constructing MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength values.
+type MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder struct {
+	medicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength
+}
+
+// NewMedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder creates a new MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder.
+func NewMedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder() *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder {
+	return &MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder{
+		medicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength: &MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength{},
+	}
+}
+
+// Build returns the constructed MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder) Build() MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength {
+	return *b.medicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder) SetId(v string) *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder {
+	b.medicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder) AddExtension(v Extension) *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder {
+	b.medicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength.Extension = append(b.medicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder) AddModifierExtension(v Extension) *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder {
+	b.medicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength.ModifierExtension = append(b.medicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength.ModifierExtension, v)
+	return b
+}
+
+// SetSubstance sets the Substance field.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder) SetSubstance(v CodeableConcept) *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder {
+	b.medicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength.Substance = &v
+	return b
+}
+
+// SetStrength sets the Strength field.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder) SetStrength(v Ratio) *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder {
+	b.medicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength.Strength = &v
+	return b
+}
+
+// SetStrengthLowLimit sets the StrengthLowLimit field.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder) SetStrengthLowLimit(v Ratio) *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder {
+	b.medicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength.StrengthLowLimit = &v
+	return b
+}
+
+// SetMeasurementPoint sets the MeasurementPoint field.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder) SetMeasurementPoint(v string) *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder {
+	b.medicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength.MeasurementPoint = &v
+	return b
+}
+
+// AddCountry adds a Country element.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder) AddCountry(v CodeableConcept) *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder {
+	b.medicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength.Country = append(b.medicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength.Country, v)
+	return b
+}
+
+// SetMeasurementPointExt sets the extensions carried by MeasurementPoint, serialized as
+// "_measurementPoint".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder) SetMeasurementPointExt(v Element) *MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrengthBuilder {
+	b.medicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength.MeasurementPointExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicinalProductIngredientSubstance - Fluent Builder
+// =============================================================================
+
+// MedicinalProductIngredientSubstanceBuilder provides a fluent API for constructing MedicinalProductIngredientSubstance values.
+type MedicinalProductIngredientSubstanceBuilder struct {
+	medicinalProductIngredientSubstance *MedicinalProductIngredientSubstance
+}
+
+// NewMedicinalProductIngredientSubstanceBuilder creates a new MedicinalProductIngredientSubstanceBuilder.
+func NewMedicinalProductIngredientSubstanceBuilder() *MedicinalProductIngredientSubstanceBuilder {
+	return &MedicinalProductIngredientSubstanceBuilder{
+		medicinalProductIngredientSubstance: &MedicinalProductIngredientSubstance{},
+	}
+}
+
+// Build returns the constructed MedicinalProductIngredientSubstance.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductIngredientSubstanceBuilder) Build() MedicinalProductIngredientSubstance {
+	return *b.medicinalProductIngredientSubstance
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductIngredientSubstanceBuilder) SetId(v string) *MedicinalProductIngredientSubstanceBuilder {
+	b.medicinalProductIngredientSubstance.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductIngredientSubstanceBuilder) AddExtension(v Extension) *MedicinalProductIngredientSubstanceBuilder {
+	b.medicinalProductIngredientSubstance.Extension = append(b.medicinalProductIngredientSubstance.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductIngredientSubstanceBuilder) AddModifierExtension(v Extension) *MedicinalProductIngredientSubstanceBuilder {
+	b.medicinalProductIngredientSubstance.ModifierExtension = append(b.medicinalProductIngredientSubstance.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MedicinalProductIngredientSubstanceBuilder) SetCode(v CodeableConcept) *MedicinalProductIngredientSubstanceBuilder {
+	b.medicinalProductIngredientSubstance.Code = &v
+	return b
+}
+
+// AddStrength adds a Strength element.
+func (b *MedicinalProductIngredientSubstanceBuilder) AddStrength(v MedicinalProductIngredientSpecifiedSubstanceStrength) *MedicinalProductIngredientSubstanceBuilder {
+	b.medicinalProductIngredientSubstance.Strength = append(b.medicinalProductIngredientSubstance.Strength, v)
+	return b
+}

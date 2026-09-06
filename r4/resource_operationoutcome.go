@@ -506,3 +506,178 @@ func (b *OperationOutcomeBuilder) AddIssue(v OperationOutcomeIssue) *OperationOu
 	b.operationOutcome.Issue = append(b.operationOutcome.Issue, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationOutcomeBuilder) SetImplicitRulesExt(v Element) *OperationOutcomeBuilder {
+	b.operationOutcome.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationOutcomeBuilder) SetLanguageExt(v Element) *OperationOutcomeBuilder {
+	b.operationOutcome.LanguageExt = &v
+	return b
+}
+
+// =============================================================================
+// OperationOutcomeIssue - Fluent Builder
+// =============================================================================
+
+// OperationOutcomeIssueBuilder provides a fluent API for constructing OperationOutcomeIssue values.
+type OperationOutcomeIssueBuilder struct {
+	operationOutcomeIssue *OperationOutcomeIssue
+}
+
+// NewOperationOutcomeIssueBuilder creates a new OperationOutcomeIssueBuilder.
+func NewOperationOutcomeIssueBuilder() *OperationOutcomeIssueBuilder {
+	return &OperationOutcomeIssueBuilder{
+		operationOutcomeIssue: &OperationOutcomeIssue{},
+	}
+}
+
+// Build returns the constructed OperationOutcomeIssue.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *OperationOutcomeIssueBuilder) Build() OperationOutcomeIssue {
+	return *b.operationOutcomeIssue
+}
+
+// SetId sets the Id field.
+func (b *OperationOutcomeIssueBuilder) SetId(v string) *OperationOutcomeIssueBuilder {
+	b.operationOutcomeIssue.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *OperationOutcomeIssueBuilder) AddExtension(v Extension) *OperationOutcomeIssueBuilder {
+	b.operationOutcomeIssue.Extension = append(b.operationOutcomeIssue.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *OperationOutcomeIssueBuilder) AddModifierExtension(v Extension) *OperationOutcomeIssueBuilder {
+	b.operationOutcomeIssue.ModifierExtension = append(b.operationOutcomeIssue.ModifierExtension, v)
+	return b
+}
+
+// SetSeverity sets the Severity field.
+func (b *OperationOutcomeIssueBuilder) SetSeverity(v IssueSeverity) *OperationOutcomeIssueBuilder {
+	b.operationOutcomeIssue.Severity = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *OperationOutcomeIssueBuilder) SetCode(v IssueType) *OperationOutcomeIssueBuilder {
+	b.operationOutcomeIssue.Code = &v
+	return b
+}
+
+// SetDetails sets the Details field.
+func (b *OperationOutcomeIssueBuilder) SetDetails(v CodeableConcept) *OperationOutcomeIssueBuilder {
+	b.operationOutcomeIssue.Details = &v
+	return b
+}
+
+// SetDiagnostics sets the Diagnostics field.
+func (b *OperationOutcomeIssueBuilder) SetDiagnostics(v string) *OperationOutcomeIssueBuilder {
+	b.operationOutcomeIssue.Diagnostics = &v
+	return b
+}
+
+// AddLocation adds a Location element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *OperationOutcomeIssueBuilder) AddLocation(v string) *OperationOutcomeIssueBuilder {
+	b.operationOutcomeIssue.Location = append(b.operationOutcomeIssue.Location, &v)
+	return b
+}
+
+// AddExpression adds a Expression element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *OperationOutcomeIssueBuilder) AddExpression(v string) *OperationOutcomeIssueBuilder {
+	b.operationOutcomeIssue.Expression = append(b.operationOutcomeIssue.Expression, &v)
+	return b
+}
+
+// SetSeverityExt sets the extensions carried by Severity, serialized as
+// "_severity".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationOutcomeIssueBuilder) SetSeverityExt(v Element) *OperationOutcomeIssueBuilder {
+	b.operationOutcomeIssue.SeverityExt = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationOutcomeIssueBuilder) SetCodeExt(v Element) *OperationOutcomeIssueBuilder {
+	b.operationOutcomeIssue.CodeExt = &v
+	return b
+}
+
+// SetDiagnosticsExt sets the extensions carried by Diagnostics, serialized as
+// "_diagnostics".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationOutcomeIssueBuilder) SetDiagnosticsExt(v Element) *OperationOutcomeIssueBuilder {
+	b.operationOutcomeIssue.DiagnosticsExt = &v
+	return b
+}
+
+// AddLocationExt attaches extensions to the Location element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddLocation twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *OperationOutcomeIssueBuilder) AddLocationExt(v *Element) *OperationOutcomeIssueBuilder {
+	for len(b.operationOutcomeIssue.LocationExt) < len(b.operationOutcomeIssue.Location)-1 {
+		b.operationOutcomeIssue.LocationExt = append(b.operationOutcomeIssue.LocationExt, nil)
+	}
+	b.operationOutcomeIssue.LocationExt = append(b.operationOutcomeIssue.LocationExt, v)
+	return b
+}
+
+// AddExpressionExt attaches extensions to the Expression element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddExpression twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *OperationOutcomeIssueBuilder) AddExpressionExt(v *Element) *OperationOutcomeIssueBuilder {
+	for len(b.operationOutcomeIssue.ExpressionExt) < len(b.operationOutcomeIssue.Expression)-1 {
+		b.operationOutcomeIssue.ExpressionExt = append(b.operationOutcomeIssue.ExpressionExt, nil)
+	}
+	b.operationOutcomeIssue.ExpressionExt = append(b.operationOutcomeIssue.ExpressionExt, v)
+	return b
+}

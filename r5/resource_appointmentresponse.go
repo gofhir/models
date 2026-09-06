@@ -561,3 +561,103 @@ func (b *AppointmentResponseBuilder) SetRecurrenceId(v uint32) *AppointmentRespo
 	b.appointmentResponse.RecurrenceId = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentResponseBuilder) SetImplicitRulesExt(v Element) *AppointmentResponseBuilder {
+	b.appointmentResponse.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentResponseBuilder) SetLanguageExt(v Element) *AppointmentResponseBuilder {
+	b.appointmentResponse.LanguageExt = &v
+	return b
+}
+
+// SetProposedNewTimeExt sets the extensions carried by ProposedNewTime, serialized as
+// "_proposedNewTime".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentResponseBuilder) SetProposedNewTimeExt(v Element) *AppointmentResponseBuilder {
+	b.appointmentResponse.ProposedNewTimeExt = &v
+	return b
+}
+
+// SetStartExt sets the extensions carried by Start, serialized as
+// "_start".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentResponseBuilder) SetStartExt(v Element) *AppointmentResponseBuilder {
+	b.appointmentResponse.StartExt = &v
+	return b
+}
+
+// SetEndExt sets the extensions carried by End, serialized as
+// "_end".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentResponseBuilder) SetEndExt(v Element) *AppointmentResponseBuilder {
+	b.appointmentResponse.EndExt = &v
+	return b
+}
+
+// SetParticipantStatusExt sets the extensions carried by ParticipantStatus, serialized as
+// "_participantStatus".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentResponseBuilder) SetParticipantStatusExt(v Element) *AppointmentResponseBuilder {
+	b.appointmentResponse.ParticipantStatusExt = &v
+	return b
+}
+
+// SetCommentExt sets the extensions carried by Comment, serialized as
+// "_comment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentResponseBuilder) SetCommentExt(v Element) *AppointmentResponseBuilder {
+	b.appointmentResponse.CommentExt = &v
+	return b
+}
+
+// SetRecurringExt sets the extensions carried by Recurring, serialized as
+// "_recurring".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentResponseBuilder) SetRecurringExt(v Element) *AppointmentResponseBuilder {
+	b.appointmentResponse.RecurringExt = &v
+	return b
+}
+
+// SetOccurrenceDateExt sets the extensions carried by OccurrenceDate, serialized as
+// "_occurrenceDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentResponseBuilder) SetOccurrenceDateExt(v Element) *AppointmentResponseBuilder {
+	b.appointmentResponse.OccurrenceDateExt = &v
+	return b
+}
+
+// SetRecurrenceIdExt sets the extensions carried by RecurrenceId, serialized as
+// "_recurrenceId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentResponseBuilder) SetRecurrenceIdExt(v Element) *AppointmentResponseBuilder {
+	b.appointmentResponse.RecurrenceIdExt = &v
+	return b
+}

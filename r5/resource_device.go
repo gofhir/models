@@ -1655,3 +1655,680 @@ func (b *DeviceBuilder) SetParent(v Reference) *DeviceBuilder {
 	b.device.Parent = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceBuilder) SetImplicitRulesExt(v Element) *DeviceBuilder {
+	b.device.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceBuilder) SetLanguageExt(v Element) *DeviceBuilder {
+	b.device.LanguageExt = &v
+	return b
+}
+
+// SetDisplayNameExt sets the extensions carried by DisplayName, serialized as
+// "_displayName".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceBuilder) SetDisplayNameExt(v Element) *DeviceBuilder {
+	b.device.DisplayNameExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceBuilder) SetStatusExt(v Element) *DeviceBuilder {
+	b.device.StatusExt = &v
+	return b
+}
+
+// SetManufacturerExt sets the extensions carried by Manufacturer, serialized as
+// "_manufacturer".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceBuilder) SetManufacturerExt(v Element) *DeviceBuilder {
+	b.device.ManufacturerExt = &v
+	return b
+}
+
+// SetManufactureDateExt sets the extensions carried by ManufactureDate, serialized as
+// "_manufactureDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceBuilder) SetManufactureDateExt(v Element) *DeviceBuilder {
+	b.device.ManufactureDateExt = &v
+	return b
+}
+
+// SetExpirationDateExt sets the extensions carried by ExpirationDate, serialized as
+// "_expirationDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceBuilder) SetExpirationDateExt(v Element) *DeviceBuilder {
+	b.device.ExpirationDateExt = &v
+	return b
+}
+
+// SetLotNumberExt sets the extensions carried by LotNumber, serialized as
+// "_lotNumber".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceBuilder) SetLotNumberExt(v Element) *DeviceBuilder {
+	b.device.LotNumberExt = &v
+	return b
+}
+
+// SetSerialNumberExt sets the extensions carried by SerialNumber, serialized as
+// "_serialNumber".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceBuilder) SetSerialNumberExt(v Element) *DeviceBuilder {
+	b.device.SerialNumberExt = &v
+	return b
+}
+
+// SetModelNumberExt sets the extensions carried by ModelNumber, serialized as
+// "_modelNumber".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceBuilder) SetModelNumberExt(v Element) *DeviceBuilder {
+	b.device.ModelNumberExt = &v
+	return b
+}
+
+// SetPartNumberExt sets the extensions carried by PartNumber, serialized as
+// "_partNumber".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceBuilder) SetPartNumberExt(v Element) *DeviceBuilder {
+	b.device.PartNumberExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceBuilder) SetUrlExt(v Element) *DeviceBuilder {
+	b.device.UrlExt = &v
+	return b
+}
+
+// =============================================================================
+// DeviceConformsTo - Fluent Builder
+// =============================================================================
+
+// DeviceConformsToBuilder provides a fluent API for constructing DeviceConformsTo values.
+type DeviceConformsToBuilder struct {
+	deviceConformsTo *DeviceConformsTo
+}
+
+// NewDeviceConformsToBuilder creates a new DeviceConformsToBuilder.
+func NewDeviceConformsToBuilder() *DeviceConformsToBuilder {
+	return &DeviceConformsToBuilder{
+		deviceConformsTo: &DeviceConformsTo{},
+	}
+}
+
+// Build returns the constructed DeviceConformsTo.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DeviceConformsToBuilder) Build() DeviceConformsTo {
+	return *b.deviceConformsTo
+}
+
+// SetId sets the Id field.
+func (b *DeviceConformsToBuilder) SetId(v string) *DeviceConformsToBuilder {
+	b.deviceConformsTo.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DeviceConformsToBuilder) AddExtension(v Extension) *DeviceConformsToBuilder {
+	b.deviceConformsTo.Extension = append(b.deviceConformsTo.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *DeviceConformsToBuilder) AddModifierExtension(v Extension) *DeviceConformsToBuilder {
+	b.deviceConformsTo.ModifierExtension = append(b.deviceConformsTo.ModifierExtension, v)
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *DeviceConformsToBuilder) SetCategory(v CodeableConcept) *DeviceConformsToBuilder {
+	b.deviceConformsTo.Category = &v
+	return b
+}
+
+// SetSpecification sets the Specification field.
+func (b *DeviceConformsToBuilder) SetSpecification(v CodeableConcept) *DeviceConformsToBuilder {
+	b.deviceConformsTo.Specification = &v
+	return b
+}
+
+// SetVersion sets the Version field.
+func (b *DeviceConformsToBuilder) SetVersion(v string) *DeviceConformsToBuilder {
+	b.deviceConformsTo.Version = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceConformsToBuilder) SetVersionExt(v Element) *DeviceConformsToBuilder {
+	b.deviceConformsTo.VersionExt = &v
+	return b
+}
+
+// =============================================================================
+// DeviceName - Fluent Builder
+// =============================================================================
+
+// DeviceNameBuilder provides a fluent API for constructing DeviceName values.
+type DeviceNameBuilder struct {
+	deviceName *DeviceName
+}
+
+// NewDeviceNameBuilder creates a new DeviceNameBuilder.
+func NewDeviceNameBuilder() *DeviceNameBuilder {
+	return &DeviceNameBuilder{
+		deviceName: &DeviceName{},
+	}
+}
+
+// Build returns the constructed DeviceName.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DeviceNameBuilder) Build() DeviceName {
+	return *b.deviceName
+}
+
+// SetId sets the Id field.
+func (b *DeviceNameBuilder) SetId(v string) *DeviceNameBuilder {
+	b.deviceName.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DeviceNameBuilder) AddExtension(v Extension) *DeviceNameBuilder {
+	b.deviceName.Extension = append(b.deviceName.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *DeviceNameBuilder) AddModifierExtension(v Extension) *DeviceNameBuilder {
+	b.deviceName.ModifierExtension = append(b.deviceName.ModifierExtension, v)
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *DeviceNameBuilder) SetValue(v string) *DeviceNameBuilder {
+	b.deviceName.Value = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *DeviceNameBuilder) SetType(v DeviceNameType) *DeviceNameBuilder {
+	b.deviceName.Type = &v
+	return b
+}
+
+// SetDisplay sets the Display field.
+func (b *DeviceNameBuilder) SetDisplay(v bool) *DeviceNameBuilder {
+	b.deviceName.Display = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceNameBuilder) SetValueExt(v Element) *DeviceNameBuilder {
+	b.deviceName.ValueExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceNameBuilder) SetTypeExt(v Element) *DeviceNameBuilder {
+	b.deviceName.TypeExt = &v
+	return b
+}
+
+// SetDisplayExt sets the extensions carried by Display, serialized as
+// "_display".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceNameBuilder) SetDisplayExt(v Element) *DeviceNameBuilder {
+	b.deviceName.DisplayExt = &v
+	return b
+}
+
+// =============================================================================
+// DeviceProperty - Fluent Builder
+// =============================================================================
+
+// DevicePropertyBuilder provides a fluent API for constructing DeviceProperty values.
+type DevicePropertyBuilder struct {
+	deviceProperty *DeviceProperty
+}
+
+// NewDevicePropertyBuilder creates a new DevicePropertyBuilder.
+func NewDevicePropertyBuilder() *DevicePropertyBuilder {
+	return &DevicePropertyBuilder{
+		deviceProperty: &DeviceProperty{},
+	}
+}
+
+// Build returns the constructed DeviceProperty.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DevicePropertyBuilder) Build() DeviceProperty {
+	return *b.deviceProperty
+}
+
+// SetId sets the Id field.
+func (b *DevicePropertyBuilder) SetId(v string) *DevicePropertyBuilder {
+	b.deviceProperty.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DevicePropertyBuilder) AddExtension(v Extension) *DevicePropertyBuilder {
+	b.deviceProperty.Extension = append(b.deviceProperty.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *DevicePropertyBuilder) AddModifierExtension(v Extension) *DevicePropertyBuilder {
+	b.deviceProperty.ModifierExtension = append(b.deviceProperty.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *DevicePropertyBuilder) SetType(v CodeableConcept) *DevicePropertyBuilder {
+	b.deviceProperty.Type = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DevicePropertyBuilder) SetValueQuantity(v Quantity) *DevicePropertyBuilder {
+	b.clearValue()
+	b.deviceProperty.ValueQuantity = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DevicePropertyBuilder) SetValueCodeableConcept(v CodeableConcept) *DevicePropertyBuilder {
+	b.clearValue()
+	b.deviceProperty.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DevicePropertyBuilder) SetValueString(v string) *DevicePropertyBuilder {
+	b.clearValue()
+	b.deviceProperty.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *DevicePropertyBuilder) SetValueStringExt(v Element) *DevicePropertyBuilder {
+	b.deviceProperty.ValueStringExt = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DevicePropertyBuilder) SetValueBoolean(v bool) *DevicePropertyBuilder {
+	b.clearValue()
+	b.deviceProperty.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *DevicePropertyBuilder) SetValueBooleanExt(v Element) *DevicePropertyBuilder {
+	b.deviceProperty.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueInteger sets Value[x] to its ValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DevicePropertyBuilder) SetValueInteger(v int) *DevicePropertyBuilder {
+	b.clearValue()
+	b.deviceProperty.ValueInteger = &v
+	return b
+}
+
+// SetValueIntegerExt sets the ValueIntegerExt field.
+func (b *DevicePropertyBuilder) SetValueIntegerExt(v Element) *DevicePropertyBuilder {
+	b.deviceProperty.ValueIntegerExt = &v
+	return b
+}
+
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DevicePropertyBuilder) SetValueRange(v Range) *DevicePropertyBuilder {
+	b.clearValue()
+	b.deviceProperty.ValueRange = &v
+	return b
+}
+
+// SetValueAttachment sets Value[x] to its ValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DevicePropertyBuilder) SetValueAttachment(v Attachment) *DevicePropertyBuilder {
+	b.clearValue()
+	b.deviceProperty.ValueAttachment = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *DevicePropertyBuilder) clearValue() {
+	b.deviceProperty.ValueQuantity = nil
+	b.deviceProperty.ValueCodeableConcept = nil
+	b.deviceProperty.ValueString = nil
+	b.deviceProperty.ValueStringExt = nil
+	b.deviceProperty.ValueBoolean = nil
+	b.deviceProperty.ValueBooleanExt = nil
+	b.deviceProperty.ValueInteger = nil
+	b.deviceProperty.ValueIntegerExt = nil
+	b.deviceProperty.ValueRange = nil
+	b.deviceProperty.ValueAttachment = nil
+}
+
+// =============================================================================
+// DeviceUdiCarrier - Fluent Builder
+// =============================================================================
+
+// DeviceUdiCarrierBuilder provides a fluent API for constructing DeviceUdiCarrier values.
+type DeviceUdiCarrierBuilder struct {
+	deviceUdiCarrier *DeviceUdiCarrier
+}
+
+// NewDeviceUdiCarrierBuilder creates a new DeviceUdiCarrierBuilder.
+func NewDeviceUdiCarrierBuilder() *DeviceUdiCarrierBuilder {
+	return &DeviceUdiCarrierBuilder{
+		deviceUdiCarrier: &DeviceUdiCarrier{},
+	}
+}
+
+// Build returns the constructed DeviceUdiCarrier.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DeviceUdiCarrierBuilder) Build() DeviceUdiCarrier {
+	return *b.deviceUdiCarrier
+}
+
+// SetId sets the Id field.
+func (b *DeviceUdiCarrierBuilder) SetId(v string) *DeviceUdiCarrierBuilder {
+	b.deviceUdiCarrier.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DeviceUdiCarrierBuilder) AddExtension(v Extension) *DeviceUdiCarrierBuilder {
+	b.deviceUdiCarrier.Extension = append(b.deviceUdiCarrier.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *DeviceUdiCarrierBuilder) AddModifierExtension(v Extension) *DeviceUdiCarrierBuilder {
+	b.deviceUdiCarrier.ModifierExtension = append(b.deviceUdiCarrier.ModifierExtension, v)
+	return b
+}
+
+// SetDeviceIdentifier sets the DeviceIdentifier field.
+func (b *DeviceUdiCarrierBuilder) SetDeviceIdentifier(v string) *DeviceUdiCarrierBuilder {
+	b.deviceUdiCarrier.DeviceIdentifier = &v
+	return b
+}
+
+// SetIssuer sets the Issuer field.
+func (b *DeviceUdiCarrierBuilder) SetIssuer(v string) *DeviceUdiCarrierBuilder {
+	b.deviceUdiCarrier.Issuer = &v
+	return b
+}
+
+// SetJurisdiction sets the Jurisdiction field.
+func (b *DeviceUdiCarrierBuilder) SetJurisdiction(v string) *DeviceUdiCarrierBuilder {
+	b.deviceUdiCarrier.Jurisdiction = &v
+	return b
+}
+
+// SetCarrierAIDC sets the CarrierAIDC field.
+func (b *DeviceUdiCarrierBuilder) SetCarrierAIDC(v string) *DeviceUdiCarrierBuilder {
+	b.deviceUdiCarrier.CarrierAIDC = &v
+	return b
+}
+
+// SetCarrierHRF sets the CarrierHRF field.
+func (b *DeviceUdiCarrierBuilder) SetCarrierHRF(v string) *DeviceUdiCarrierBuilder {
+	b.deviceUdiCarrier.CarrierHRF = &v
+	return b
+}
+
+// SetEntryType sets the EntryType field.
+func (b *DeviceUdiCarrierBuilder) SetEntryType(v UDIEntryType) *DeviceUdiCarrierBuilder {
+	b.deviceUdiCarrier.EntryType = &v
+	return b
+}
+
+// SetDeviceIdentifierExt sets the extensions carried by DeviceIdentifier, serialized as
+// "_deviceIdentifier".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceUdiCarrierBuilder) SetDeviceIdentifierExt(v Element) *DeviceUdiCarrierBuilder {
+	b.deviceUdiCarrier.DeviceIdentifierExt = &v
+	return b
+}
+
+// SetIssuerExt sets the extensions carried by Issuer, serialized as
+// "_issuer".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceUdiCarrierBuilder) SetIssuerExt(v Element) *DeviceUdiCarrierBuilder {
+	b.deviceUdiCarrier.IssuerExt = &v
+	return b
+}
+
+// SetJurisdictionExt sets the extensions carried by Jurisdiction, serialized as
+// "_jurisdiction".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceUdiCarrierBuilder) SetJurisdictionExt(v Element) *DeviceUdiCarrierBuilder {
+	b.deviceUdiCarrier.JurisdictionExt = &v
+	return b
+}
+
+// SetCarrierAIDCExt sets the extensions carried by CarrierAIDC, serialized as
+// "_carrierAIDC".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceUdiCarrierBuilder) SetCarrierAIDCExt(v Element) *DeviceUdiCarrierBuilder {
+	b.deviceUdiCarrier.CarrierAIDCExt = &v
+	return b
+}
+
+// SetCarrierHRFExt sets the extensions carried by CarrierHRF, serialized as
+// "_carrierHRF".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceUdiCarrierBuilder) SetCarrierHRFExt(v Element) *DeviceUdiCarrierBuilder {
+	b.deviceUdiCarrier.CarrierHRFExt = &v
+	return b
+}
+
+// SetEntryTypeExt sets the extensions carried by EntryType, serialized as
+// "_entryType".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceUdiCarrierBuilder) SetEntryTypeExt(v Element) *DeviceUdiCarrierBuilder {
+	b.deviceUdiCarrier.EntryTypeExt = &v
+	return b
+}
+
+// =============================================================================
+// DeviceVersion - Fluent Builder
+// =============================================================================
+
+// DeviceVersionBuilder provides a fluent API for constructing DeviceVersion values.
+type DeviceVersionBuilder struct {
+	deviceVersion *DeviceVersion
+}
+
+// NewDeviceVersionBuilder creates a new DeviceVersionBuilder.
+func NewDeviceVersionBuilder() *DeviceVersionBuilder {
+	return &DeviceVersionBuilder{
+		deviceVersion: &DeviceVersion{},
+	}
+}
+
+// Build returns the constructed DeviceVersion.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DeviceVersionBuilder) Build() DeviceVersion {
+	return *b.deviceVersion
+}
+
+// SetId sets the Id field.
+func (b *DeviceVersionBuilder) SetId(v string) *DeviceVersionBuilder {
+	b.deviceVersion.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DeviceVersionBuilder) AddExtension(v Extension) *DeviceVersionBuilder {
+	b.deviceVersion.Extension = append(b.deviceVersion.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *DeviceVersionBuilder) AddModifierExtension(v Extension) *DeviceVersionBuilder {
+	b.deviceVersion.ModifierExtension = append(b.deviceVersion.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *DeviceVersionBuilder) SetType(v CodeableConcept) *DeviceVersionBuilder {
+	b.deviceVersion.Type = &v
+	return b
+}
+
+// SetComponent sets the Component field.
+func (b *DeviceVersionBuilder) SetComponent(v Identifier) *DeviceVersionBuilder {
+	b.deviceVersion.Component = &v
+	return b
+}
+
+// SetInstallDate sets the InstallDate field.
+func (b *DeviceVersionBuilder) SetInstallDate(v string) *DeviceVersionBuilder {
+	b.deviceVersion.InstallDate = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *DeviceVersionBuilder) SetValue(v string) *DeviceVersionBuilder {
+	b.deviceVersion.Value = &v
+	return b
+}
+
+// SetInstallDateExt sets the extensions carried by InstallDate, serialized as
+// "_installDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceVersionBuilder) SetInstallDateExt(v Element) *DeviceVersionBuilder {
+	b.deviceVersion.InstallDateExt = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceVersionBuilder) SetValueExt(v Element) *DeviceVersionBuilder {
+	b.deviceVersion.ValueExt = &v
+	return b
+}

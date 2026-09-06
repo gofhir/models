@@ -1370,9 +1370,572 @@ func (b *ResearchElementDefinitionBuilder) AddCharacteristic(v ResearchElementDe
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionBuilder) SetImplicitRulesExt(v Element) *ResearchElementDefinitionBuilder {
+	b.researchElementDefinition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionBuilder) SetLanguageExt(v Element) *ResearchElementDefinitionBuilder {
+	b.researchElementDefinition.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionBuilder) SetUrlExt(v Element) *ResearchElementDefinitionBuilder {
+	b.researchElementDefinition.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionBuilder) SetVersionExt(v Element) *ResearchElementDefinitionBuilder {
+	b.researchElementDefinition.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionBuilder) SetNameExt(v Element) *ResearchElementDefinitionBuilder {
+	b.researchElementDefinition.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionBuilder) SetTitleExt(v Element) *ResearchElementDefinitionBuilder {
+	b.researchElementDefinition.TitleExt = &v
+	return b
+}
+
+// SetShortTitleExt sets the extensions carried by ShortTitle, serialized as
+// "_shortTitle".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionBuilder) SetShortTitleExt(v Element) *ResearchElementDefinitionBuilder {
+	b.researchElementDefinition.ShortTitleExt = &v
+	return b
+}
+
+// SetSubtitleExt sets the extensions carried by Subtitle, serialized as
+// "_subtitle".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionBuilder) SetSubtitleExt(v Element) *ResearchElementDefinitionBuilder {
+	b.researchElementDefinition.SubtitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionBuilder) SetStatusExt(v Element) *ResearchElementDefinitionBuilder {
+	b.researchElementDefinition.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionBuilder) SetExperimentalExt(v Element) *ResearchElementDefinitionBuilder {
+	b.researchElementDefinition.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionBuilder) SetDateExt(v Element) *ResearchElementDefinitionBuilder {
+	b.researchElementDefinition.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionBuilder) SetPublisherExt(v Element) *ResearchElementDefinitionBuilder {
+	b.researchElementDefinition.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionBuilder) SetDescriptionExt(v Element) *ResearchElementDefinitionBuilder {
+	b.researchElementDefinition.DescriptionExt = &v
+	return b
+}
+
+// AddCommentExt attaches extensions to the Comment element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddComment twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ResearchElementDefinitionBuilder) AddCommentExt(v *Element) *ResearchElementDefinitionBuilder {
+	for len(b.researchElementDefinition.CommentExt) < len(b.researchElementDefinition.Comment)-1 {
+		b.researchElementDefinition.CommentExt = append(b.researchElementDefinition.CommentExt, nil)
+	}
+	b.researchElementDefinition.CommentExt = append(b.researchElementDefinition.CommentExt, v)
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionBuilder) SetPurposeExt(v Element) *ResearchElementDefinitionBuilder {
+	b.researchElementDefinition.PurposeExt = &v
+	return b
+}
+
+// SetUsageExt sets the extensions carried by Usage, serialized as
+// "_usage".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionBuilder) SetUsageExt(v Element) *ResearchElementDefinitionBuilder {
+	b.researchElementDefinition.UsageExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionBuilder) SetCopyrightExt(v Element) *ResearchElementDefinitionBuilder {
+	b.researchElementDefinition.CopyrightExt = &v
+	return b
+}
+
+// SetApprovalDateExt sets the extensions carried by ApprovalDate, serialized as
+// "_approvalDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionBuilder) SetApprovalDateExt(v Element) *ResearchElementDefinitionBuilder {
+	b.researchElementDefinition.ApprovalDateExt = &v
+	return b
+}
+
+// SetLastReviewDateExt sets the extensions carried by LastReviewDate, serialized as
+// "_lastReviewDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionBuilder) SetLastReviewDateExt(v Element) *ResearchElementDefinitionBuilder {
+	b.researchElementDefinition.LastReviewDateExt = &v
+	return b
+}
+
+// AddLibraryExt attaches extensions to the Library element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddLibrary twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ResearchElementDefinitionBuilder) AddLibraryExt(v *Element) *ResearchElementDefinitionBuilder {
+	for len(b.researchElementDefinition.LibraryExt) < len(b.researchElementDefinition.Library)-1 {
+		b.researchElementDefinition.LibraryExt = append(b.researchElementDefinition.LibraryExt, nil)
+	}
+	b.researchElementDefinition.LibraryExt = append(b.researchElementDefinition.LibraryExt, v)
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionBuilder) SetTypeExt(v Element) *ResearchElementDefinitionBuilder {
+	b.researchElementDefinition.TypeExt = &v
+	return b
+}
+
+// SetVariableTypeExt sets the extensions carried by VariableType, serialized as
+// "_variableType".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionBuilder) SetVariableTypeExt(v Element) *ResearchElementDefinitionBuilder {
+	b.researchElementDefinition.VariableTypeExt = &v
+	return b
+}
+
 // clearSubject unsets every variant of Subject[x], including the
 // _field companions of the primitive ones.
 func (b *ResearchElementDefinitionBuilder) clearSubject() {
 	b.researchElementDefinition.SubjectCodeableConcept = nil
 	b.researchElementDefinition.SubjectReference = nil
+}
+
+// =============================================================================
+// ResearchElementDefinitionCharacteristic - Fluent Builder
+// =============================================================================
+
+// ResearchElementDefinitionCharacteristicBuilder provides a fluent API for constructing ResearchElementDefinitionCharacteristic values.
+type ResearchElementDefinitionCharacteristicBuilder struct {
+	researchElementDefinitionCharacteristic *ResearchElementDefinitionCharacteristic
+}
+
+// NewResearchElementDefinitionCharacteristicBuilder creates a new ResearchElementDefinitionCharacteristicBuilder.
+func NewResearchElementDefinitionCharacteristicBuilder() *ResearchElementDefinitionCharacteristicBuilder {
+	return &ResearchElementDefinitionCharacteristicBuilder{
+		researchElementDefinitionCharacteristic: &ResearchElementDefinitionCharacteristic{},
+	}
+}
+
+// Build returns the constructed ResearchElementDefinitionCharacteristic.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ResearchElementDefinitionCharacteristicBuilder) Build() ResearchElementDefinitionCharacteristic {
+	return *b.researchElementDefinitionCharacteristic
+}
+
+// SetId sets the Id field.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetId(v string) *ResearchElementDefinitionCharacteristicBuilder {
+	b.researchElementDefinitionCharacteristic.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ResearchElementDefinitionCharacteristicBuilder) AddExtension(v Extension) *ResearchElementDefinitionCharacteristicBuilder {
+	b.researchElementDefinitionCharacteristic.Extension = append(b.researchElementDefinitionCharacteristic.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ResearchElementDefinitionCharacteristicBuilder) AddModifierExtension(v Extension) *ResearchElementDefinitionCharacteristicBuilder {
+	b.researchElementDefinitionCharacteristic.ModifierExtension = append(b.researchElementDefinitionCharacteristic.ModifierExtension, v)
+	return b
+}
+
+// SetDefinitionCodeableConcept sets Definition[x] to its DefinitionCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetDefinitionCodeableConcept(v CodeableConcept) *ResearchElementDefinitionCharacteristicBuilder {
+	b.clearDefinition()
+	b.researchElementDefinitionCharacteristic.DefinitionCodeableConcept = &v
+	return b
+}
+
+// SetDefinitionCanonical sets Definition[x] to its DefinitionCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetDefinitionCanonical(v string) *ResearchElementDefinitionCharacteristicBuilder {
+	b.clearDefinition()
+	b.researchElementDefinitionCharacteristic.DefinitionCanonical = &v
+	return b
+}
+
+// SetDefinitionCanonicalExt sets the DefinitionCanonicalExt field.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetDefinitionCanonicalExt(v Element) *ResearchElementDefinitionCharacteristicBuilder {
+	b.researchElementDefinitionCharacteristic.DefinitionCanonicalExt = &v
+	return b
+}
+
+// SetDefinitionExpression sets Definition[x] to its DefinitionExpression variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetDefinitionExpression(v Expression) *ResearchElementDefinitionCharacteristicBuilder {
+	b.clearDefinition()
+	b.researchElementDefinitionCharacteristic.DefinitionExpression = &v
+	return b
+}
+
+// SetDefinitionDataRequirement sets Definition[x] to its DefinitionDataRequirement variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetDefinitionDataRequirement(v DataRequirement) *ResearchElementDefinitionCharacteristicBuilder {
+	b.clearDefinition()
+	b.researchElementDefinitionCharacteristic.DefinitionDataRequirement = &v
+	return b
+}
+
+// AddUsageContext adds a UsageContext element.
+func (b *ResearchElementDefinitionCharacteristicBuilder) AddUsageContext(v UsageContext) *ResearchElementDefinitionCharacteristicBuilder {
+	b.researchElementDefinitionCharacteristic.UsageContext = append(b.researchElementDefinitionCharacteristic.UsageContext, v)
+	return b
+}
+
+// SetExclude sets the Exclude field.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetExclude(v bool) *ResearchElementDefinitionCharacteristicBuilder {
+	b.researchElementDefinitionCharacteristic.Exclude = &v
+	return b
+}
+
+// SetUnitOfMeasure sets the UnitOfMeasure field.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetUnitOfMeasure(v CodeableConcept) *ResearchElementDefinitionCharacteristicBuilder {
+	b.researchElementDefinitionCharacteristic.UnitOfMeasure = &v
+	return b
+}
+
+// SetStudyEffectiveDescription sets the StudyEffectiveDescription field.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetStudyEffectiveDescription(v string) *ResearchElementDefinitionCharacteristicBuilder {
+	b.researchElementDefinitionCharacteristic.StudyEffectiveDescription = &v
+	return b
+}
+
+// SetStudyEffectiveDateTime sets StudyEffective[x] to its StudyEffectiveDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetStudyEffectiveDateTime(v string) *ResearchElementDefinitionCharacteristicBuilder {
+	b.clearStudyEffective()
+	b.researchElementDefinitionCharacteristic.StudyEffectiveDateTime = &v
+	return b
+}
+
+// SetStudyEffectiveDateTimeExt sets the StudyEffectiveDateTimeExt field.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetStudyEffectiveDateTimeExt(v Element) *ResearchElementDefinitionCharacteristicBuilder {
+	b.researchElementDefinitionCharacteristic.StudyEffectiveDateTimeExt = &v
+	return b
+}
+
+// SetStudyEffectivePeriod sets StudyEffective[x] to its StudyEffectivePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetStudyEffectivePeriod(v Period) *ResearchElementDefinitionCharacteristicBuilder {
+	b.clearStudyEffective()
+	b.researchElementDefinitionCharacteristic.StudyEffectivePeriod = &v
+	return b
+}
+
+// SetStudyEffectiveDuration sets StudyEffective[x] to its StudyEffectiveDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetStudyEffectiveDuration(v Duration) *ResearchElementDefinitionCharacteristicBuilder {
+	b.clearStudyEffective()
+	b.researchElementDefinitionCharacteristic.StudyEffectiveDuration = &v
+	return b
+}
+
+// SetStudyEffectiveTiming sets StudyEffective[x] to its StudyEffectiveTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetStudyEffectiveTiming(v Timing) *ResearchElementDefinitionCharacteristicBuilder {
+	b.clearStudyEffective()
+	b.researchElementDefinitionCharacteristic.StudyEffectiveTiming = &v
+	return b
+}
+
+// SetStudyEffectiveTimeFromStart sets the StudyEffectiveTimeFromStart field.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetStudyEffectiveTimeFromStart(v Duration) *ResearchElementDefinitionCharacteristicBuilder {
+	b.researchElementDefinitionCharacteristic.StudyEffectiveTimeFromStart = &v
+	return b
+}
+
+// SetStudyEffectiveGroupMeasure sets the StudyEffectiveGroupMeasure field.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetStudyEffectiveGroupMeasure(v GroupMeasure) *ResearchElementDefinitionCharacteristicBuilder {
+	b.researchElementDefinitionCharacteristic.StudyEffectiveGroupMeasure = &v
+	return b
+}
+
+// SetParticipantEffectiveDescription sets the ParticipantEffectiveDescription field.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetParticipantEffectiveDescription(v string) *ResearchElementDefinitionCharacteristicBuilder {
+	b.researchElementDefinitionCharacteristic.ParticipantEffectiveDescription = &v
+	return b
+}
+
+// SetParticipantEffectiveDateTime sets ParticipantEffective[x] to its ParticipantEffectiveDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetParticipantEffectiveDateTime(v string) *ResearchElementDefinitionCharacteristicBuilder {
+	b.clearParticipantEffective()
+	b.researchElementDefinitionCharacteristic.ParticipantEffectiveDateTime = &v
+	return b
+}
+
+// SetParticipantEffectiveDateTimeExt sets the ParticipantEffectiveDateTimeExt field.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetParticipantEffectiveDateTimeExt(v Element) *ResearchElementDefinitionCharacteristicBuilder {
+	b.researchElementDefinitionCharacteristic.ParticipantEffectiveDateTimeExt = &v
+	return b
+}
+
+// SetParticipantEffectivePeriod sets ParticipantEffective[x] to its ParticipantEffectivePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetParticipantEffectivePeriod(v Period) *ResearchElementDefinitionCharacteristicBuilder {
+	b.clearParticipantEffective()
+	b.researchElementDefinitionCharacteristic.ParticipantEffectivePeriod = &v
+	return b
+}
+
+// SetParticipantEffectiveDuration sets ParticipantEffective[x] to its ParticipantEffectiveDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetParticipantEffectiveDuration(v Duration) *ResearchElementDefinitionCharacteristicBuilder {
+	b.clearParticipantEffective()
+	b.researchElementDefinitionCharacteristic.ParticipantEffectiveDuration = &v
+	return b
+}
+
+// SetParticipantEffectiveTiming sets ParticipantEffective[x] to its ParticipantEffectiveTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetParticipantEffectiveTiming(v Timing) *ResearchElementDefinitionCharacteristicBuilder {
+	b.clearParticipantEffective()
+	b.researchElementDefinitionCharacteristic.ParticipantEffectiveTiming = &v
+	return b
+}
+
+// SetParticipantEffectiveTimeFromStart sets the ParticipantEffectiveTimeFromStart field.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetParticipantEffectiveTimeFromStart(v Duration) *ResearchElementDefinitionCharacteristicBuilder {
+	b.researchElementDefinitionCharacteristic.ParticipantEffectiveTimeFromStart = &v
+	return b
+}
+
+// SetParticipantEffectiveGroupMeasure sets the ParticipantEffectiveGroupMeasure field.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetParticipantEffectiveGroupMeasure(v GroupMeasure) *ResearchElementDefinitionCharacteristicBuilder {
+	b.researchElementDefinitionCharacteristic.ParticipantEffectiveGroupMeasure = &v
+	return b
+}
+
+// SetExcludeExt sets the extensions carried by Exclude, serialized as
+// "_exclude".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetExcludeExt(v Element) *ResearchElementDefinitionCharacteristicBuilder {
+	b.researchElementDefinitionCharacteristic.ExcludeExt = &v
+	return b
+}
+
+// SetStudyEffectiveDescriptionExt sets the extensions carried by StudyEffectiveDescription, serialized as
+// "_studyEffectiveDescription".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetStudyEffectiveDescriptionExt(v Element) *ResearchElementDefinitionCharacteristicBuilder {
+	b.researchElementDefinitionCharacteristic.StudyEffectiveDescriptionExt = &v
+	return b
+}
+
+// SetStudyEffectiveGroupMeasureExt sets the extensions carried by StudyEffectiveGroupMeasure, serialized as
+// "_studyEffectiveGroupMeasure".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetStudyEffectiveGroupMeasureExt(v Element) *ResearchElementDefinitionCharacteristicBuilder {
+	b.researchElementDefinitionCharacteristic.StudyEffectiveGroupMeasureExt = &v
+	return b
+}
+
+// SetParticipantEffectiveDescriptionExt sets the extensions carried by ParticipantEffectiveDescription, serialized as
+// "_participantEffectiveDescription".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetParticipantEffectiveDescriptionExt(v Element) *ResearchElementDefinitionCharacteristicBuilder {
+	b.researchElementDefinitionCharacteristic.ParticipantEffectiveDescriptionExt = &v
+	return b
+}
+
+// SetParticipantEffectiveGroupMeasureExt sets the extensions carried by ParticipantEffectiveGroupMeasure, serialized as
+// "_participantEffectiveGroupMeasure".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchElementDefinitionCharacteristicBuilder) SetParticipantEffectiveGroupMeasureExt(v Element) *ResearchElementDefinitionCharacteristicBuilder {
+	b.researchElementDefinitionCharacteristic.ParticipantEffectiveGroupMeasureExt = &v
+	return b
+}
+
+// clearDefinition unsets every variant of Definition[x], including the
+// _field companions of the primitive ones.
+func (b *ResearchElementDefinitionCharacteristicBuilder) clearDefinition() {
+	b.researchElementDefinitionCharacteristic.DefinitionCodeableConcept = nil
+	b.researchElementDefinitionCharacteristic.DefinitionCanonical = nil
+	b.researchElementDefinitionCharacteristic.DefinitionCanonicalExt = nil
+	b.researchElementDefinitionCharacteristic.DefinitionExpression = nil
+	b.researchElementDefinitionCharacteristic.DefinitionDataRequirement = nil
+}
+
+// clearStudyEffective unsets every variant of StudyEffective[x], including the
+// _field companions of the primitive ones.
+func (b *ResearchElementDefinitionCharacteristicBuilder) clearStudyEffective() {
+	b.researchElementDefinitionCharacteristic.StudyEffectiveDateTime = nil
+	b.researchElementDefinitionCharacteristic.StudyEffectivePeriod = nil
+	b.researchElementDefinitionCharacteristic.StudyEffectiveDuration = nil
+	b.researchElementDefinitionCharacteristic.StudyEffectiveTiming = nil
+}
+
+// clearParticipantEffective unsets every variant of ParticipantEffective[x], including the
+// _field companions of the primitive ones.
+func (b *ResearchElementDefinitionCharacteristicBuilder) clearParticipantEffective() {
+	b.researchElementDefinitionCharacteristic.ParticipantEffectiveDateTime = nil
+	b.researchElementDefinitionCharacteristic.ParticipantEffectivePeriod = nil
+	b.researchElementDefinitionCharacteristic.ParticipantEffectiveDuration = nil
+	b.researchElementDefinitionCharacteristic.ParticipantEffectiveTiming = nil
 }

@@ -656,3 +656,154 @@ func (b *ResearchSubjectBuilder) AddConsent(v Reference) *ResearchSubjectBuilder
 	b.researchSubject.Consent = append(b.researchSubject.Consent, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchSubjectBuilder) SetImplicitRulesExt(v Element) *ResearchSubjectBuilder {
+	b.researchSubject.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchSubjectBuilder) SetLanguageExt(v Element) *ResearchSubjectBuilder {
+	b.researchSubject.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchSubjectBuilder) SetStatusExt(v Element) *ResearchSubjectBuilder {
+	b.researchSubject.StatusExt = &v
+	return b
+}
+
+// SetAssignedComparisonGroupExt sets the extensions carried by AssignedComparisonGroup, serialized as
+// "_assignedComparisonGroup".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchSubjectBuilder) SetAssignedComparisonGroupExt(v Element) *ResearchSubjectBuilder {
+	b.researchSubject.AssignedComparisonGroupExt = &v
+	return b
+}
+
+// SetActualComparisonGroupExt sets the extensions carried by ActualComparisonGroup, serialized as
+// "_actualComparisonGroup".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchSubjectBuilder) SetActualComparisonGroupExt(v Element) *ResearchSubjectBuilder {
+	b.researchSubject.ActualComparisonGroupExt = &v
+	return b
+}
+
+// =============================================================================
+// ResearchSubjectProgress - Fluent Builder
+// =============================================================================
+
+// ResearchSubjectProgressBuilder provides a fluent API for constructing ResearchSubjectProgress values.
+type ResearchSubjectProgressBuilder struct {
+	researchSubjectProgress *ResearchSubjectProgress
+}
+
+// NewResearchSubjectProgressBuilder creates a new ResearchSubjectProgressBuilder.
+func NewResearchSubjectProgressBuilder() *ResearchSubjectProgressBuilder {
+	return &ResearchSubjectProgressBuilder{
+		researchSubjectProgress: &ResearchSubjectProgress{},
+	}
+}
+
+// Build returns the constructed ResearchSubjectProgress.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ResearchSubjectProgressBuilder) Build() ResearchSubjectProgress {
+	return *b.researchSubjectProgress
+}
+
+// SetId sets the Id field.
+func (b *ResearchSubjectProgressBuilder) SetId(v string) *ResearchSubjectProgressBuilder {
+	b.researchSubjectProgress.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ResearchSubjectProgressBuilder) AddExtension(v Extension) *ResearchSubjectProgressBuilder {
+	b.researchSubjectProgress.Extension = append(b.researchSubjectProgress.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ResearchSubjectProgressBuilder) AddModifierExtension(v Extension) *ResearchSubjectProgressBuilder {
+	b.researchSubjectProgress.ModifierExtension = append(b.researchSubjectProgress.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ResearchSubjectProgressBuilder) SetType(v CodeableConcept) *ResearchSubjectProgressBuilder {
+	b.researchSubjectProgress.Type = &v
+	return b
+}
+
+// SetSubjectState sets the SubjectState field.
+func (b *ResearchSubjectProgressBuilder) SetSubjectState(v CodeableConcept) *ResearchSubjectProgressBuilder {
+	b.researchSubjectProgress.SubjectState = &v
+	return b
+}
+
+// SetMilestone sets the Milestone field.
+func (b *ResearchSubjectProgressBuilder) SetMilestone(v CodeableConcept) *ResearchSubjectProgressBuilder {
+	b.researchSubjectProgress.Milestone = &v
+	return b
+}
+
+// SetReason sets the Reason field.
+func (b *ResearchSubjectProgressBuilder) SetReason(v CodeableConcept) *ResearchSubjectProgressBuilder {
+	b.researchSubjectProgress.Reason = &v
+	return b
+}
+
+// SetStartDate sets the StartDate field.
+func (b *ResearchSubjectProgressBuilder) SetStartDate(v string) *ResearchSubjectProgressBuilder {
+	b.researchSubjectProgress.StartDate = &v
+	return b
+}
+
+// SetEndDate sets the EndDate field.
+func (b *ResearchSubjectProgressBuilder) SetEndDate(v string) *ResearchSubjectProgressBuilder {
+	b.researchSubjectProgress.EndDate = &v
+	return b
+}
+
+// SetStartDateExt sets the extensions carried by StartDate, serialized as
+// "_startDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchSubjectProgressBuilder) SetStartDateExt(v Element) *ResearchSubjectProgressBuilder {
+	b.researchSubjectProgress.StartDateExt = &v
+	return b
+}
+
+// SetEndDateExt sets the extensions carried by EndDate, serialized as
+// "_endDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchSubjectProgressBuilder) SetEndDateExt(v Element) *ResearchSubjectProgressBuilder {
+	b.researchSubjectProgress.EndDateExt = &v
+	return b
+}

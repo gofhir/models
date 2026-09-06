@@ -592,3 +592,33 @@ func (b *PractitionerRoleBuilder) AddEndpoint(v Reference) *PractitionerRoleBuil
 	b.practitionerRole.Endpoint = append(b.practitionerRole.Endpoint, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PractitionerRoleBuilder) SetImplicitRulesExt(v Element) *PractitionerRoleBuilder {
+	b.practitionerRole.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PractitionerRoleBuilder) SetLanguageExt(v Element) *PractitionerRoleBuilder {
+	b.practitionerRole.LanguageExt = &v
+	return b
+}
+
+// SetActiveExt sets the extensions carried by Active, serialized as
+// "_active".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PractitionerRoleBuilder) SetActiveExt(v Element) *PractitionerRoleBuilder {
+	b.practitionerRole.ActiveExt = &v
+	return b
+}

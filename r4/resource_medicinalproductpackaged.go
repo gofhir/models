@@ -833,3 +833,207 @@ func (b *MedicinalProductPackagedBuilder) AddPackageItem(v MedicinalProductPacka
 	b.medicinalProductPackaged.PackageItem = append(b.medicinalProductPackaged.PackageItem, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductPackagedBuilder) SetImplicitRulesExt(v Element) *MedicinalProductPackagedBuilder {
+	b.medicinalProductPackaged.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductPackagedBuilder) SetLanguageExt(v Element) *MedicinalProductPackagedBuilder {
+	b.medicinalProductPackaged.LanguageExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductPackagedBuilder) SetDescriptionExt(v Element) *MedicinalProductPackagedBuilder {
+	b.medicinalProductPackaged.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicinalProductPackagedBatchIdentifier - Fluent Builder
+// =============================================================================
+
+// MedicinalProductPackagedBatchIdentifierBuilder provides a fluent API for constructing MedicinalProductPackagedBatchIdentifier values.
+type MedicinalProductPackagedBatchIdentifierBuilder struct {
+	medicinalProductPackagedBatchIdentifier *MedicinalProductPackagedBatchIdentifier
+}
+
+// NewMedicinalProductPackagedBatchIdentifierBuilder creates a new MedicinalProductPackagedBatchIdentifierBuilder.
+func NewMedicinalProductPackagedBatchIdentifierBuilder() *MedicinalProductPackagedBatchIdentifierBuilder {
+	return &MedicinalProductPackagedBatchIdentifierBuilder{
+		medicinalProductPackagedBatchIdentifier: &MedicinalProductPackagedBatchIdentifier{},
+	}
+}
+
+// Build returns the constructed MedicinalProductPackagedBatchIdentifier.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductPackagedBatchIdentifierBuilder) Build() MedicinalProductPackagedBatchIdentifier {
+	return *b.medicinalProductPackagedBatchIdentifier
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductPackagedBatchIdentifierBuilder) SetId(v string) *MedicinalProductPackagedBatchIdentifierBuilder {
+	b.medicinalProductPackagedBatchIdentifier.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductPackagedBatchIdentifierBuilder) AddExtension(v Extension) *MedicinalProductPackagedBatchIdentifierBuilder {
+	b.medicinalProductPackagedBatchIdentifier.Extension = append(b.medicinalProductPackagedBatchIdentifier.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductPackagedBatchIdentifierBuilder) AddModifierExtension(v Extension) *MedicinalProductPackagedBatchIdentifierBuilder {
+	b.medicinalProductPackagedBatchIdentifier.ModifierExtension = append(b.medicinalProductPackagedBatchIdentifier.ModifierExtension, v)
+	return b
+}
+
+// SetOuterPackaging sets the OuterPackaging field.
+func (b *MedicinalProductPackagedBatchIdentifierBuilder) SetOuterPackaging(v Identifier) *MedicinalProductPackagedBatchIdentifierBuilder {
+	b.medicinalProductPackagedBatchIdentifier.OuterPackaging = &v
+	return b
+}
+
+// SetImmediatePackaging sets the ImmediatePackaging field.
+func (b *MedicinalProductPackagedBatchIdentifierBuilder) SetImmediatePackaging(v Identifier) *MedicinalProductPackagedBatchIdentifierBuilder {
+	b.medicinalProductPackagedBatchIdentifier.ImmediatePackaging = &v
+	return b
+}
+
+// =============================================================================
+// MedicinalProductPackagedPackageItem - Fluent Builder
+// =============================================================================
+
+// MedicinalProductPackagedPackageItemBuilder provides a fluent API for constructing MedicinalProductPackagedPackageItem values.
+type MedicinalProductPackagedPackageItemBuilder struct {
+	medicinalProductPackagedPackageItem *MedicinalProductPackagedPackageItem
+}
+
+// NewMedicinalProductPackagedPackageItemBuilder creates a new MedicinalProductPackagedPackageItemBuilder.
+func NewMedicinalProductPackagedPackageItemBuilder() *MedicinalProductPackagedPackageItemBuilder {
+	return &MedicinalProductPackagedPackageItemBuilder{
+		medicinalProductPackagedPackageItem: &MedicinalProductPackagedPackageItem{},
+	}
+}
+
+// Build returns the constructed MedicinalProductPackagedPackageItem.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductPackagedPackageItemBuilder) Build() MedicinalProductPackagedPackageItem {
+	return *b.medicinalProductPackagedPackageItem
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductPackagedPackageItemBuilder) SetId(v string) *MedicinalProductPackagedPackageItemBuilder {
+	b.medicinalProductPackagedPackageItem.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductPackagedPackageItemBuilder) AddExtension(v Extension) *MedicinalProductPackagedPackageItemBuilder {
+	b.medicinalProductPackagedPackageItem.Extension = append(b.medicinalProductPackagedPackageItem.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductPackagedPackageItemBuilder) AddModifierExtension(v Extension) *MedicinalProductPackagedPackageItemBuilder {
+	b.medicinalProductPackagedPackageItem.ModifierExtension = append(b.medicinalProductPackagedPackageItem.ModifierExtension, v)
+	return b
+}
+
+// AddIdentifier adds a Identifier element.
+func (b *MedicinalProductPackagedPackageItemBuilder) AddIdentifier(v Identifier) *MedicinalProductPackagedPackageItemBuilder {
+	b.medicinalProductPackagedPackageItem.Identifier = append(b.medicinalProductPackagedPackageItem.Identifier, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *MedicinalProductPackagedPackageItemBuilder) SetType(v CodeableConcept) *MedicinalProductPackagedPackageItemBuilder {
+	b.medicinalProductPackagedPackageItem.Type = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *MedicinalProductPackagedPackageItemBuilder) SetQuantity(v Quantity) *MedicinalProductPackagedPackageItemBuilder {
+	b.medicinalProductPackagedPackageItem.Quantity = &v
+	return b
+}
+
+// AddMaterial adds a Material element.
+func (b *MedicinalProductPackagedPackageItemBuilder) AddMaterial(v CodeableConcept) *MedicinalProductPackagedPackageItemBuilder {
+	b.medicinalProductPackagedPackageItem.Material = append(b.medicinalProductPackagedPackageItem.Material, v)
+	return b
+}
+
+// AddAlternateMaterial adds a AlternateMaterial element.
+func (b *MedicinalProductPackagedPackageItemBuilder) AddAlternateMaterial(v CodeableConcept) *MedicinalProductPackagedPackageItemBuilder {
+	b.medicinalProductPackagedPackageItem.AlternateMaterial = append(b.medicinalProductPackagedPackageItem.AlternateMaterial, v)
+	return b
+}
+
+// AddDevice adds a Device element.
+func (b *MedicinalProductPackagedPackageItemBuilder) AddDevice(v Reference) *MedicinalProductPackagedPackageItemBuilder {
+	b.medicinalProductPackagedPackageItem.Device = append(b.medicinalProductPackagedPackageItem.Device, v)
+	return b
+}
+
+// AddManufacturedItem adds a ManufacturedItem element.
+func (b *MedicinalProductPackagedPackageItemBuilder) AddManufacturedItem(v Reference) *MedicinalProductPackagedPackageItemBuilder {
+	b.medicinalProductPackagedPackageItem.ManufacturedItem = append(b.medicinalProductPackagedPackageItem.ManufacturedItem, v)
+	return b
+}
+
+// AddPackageItem adds a PackageItem element.
+func (b *MedicinalProductPackagedPackageItemBuilder) AddPackageItem(v MedicinalProductPackagedPackageItem) *MedicinalProductPackagedPackageItemBuilder {
+	b.medicinalProductPackagedPackageItem.PackageItem = append(b.medicinalProductPackagedPackageItem.PackageItem, v)
+	return b
+}
+
+// SetPhysicalCharacteristics sets the PhysicalCharacteristics field.
+func (b *MedicinalProductPackagedPackageItemBuilder) SetPhysicalCharacteristics(v ProdCharacteristic) *MedicinalProductPackagedPackageItemBuilder {
+	b.medicinalProductPackagedPackageItem.PhysicalCharacteristics = &v
+	return b
+}
+
+// AddOtherCharacteristics adds a OtherCharacteristics element.
+func (b *MedicinalProductPackagedPackageItemBuilder) AddOtherCharacteristics(v CodeableConcept) *MedicinalProductPackagedPackageItemBuilder {
+	b.medicinalProductPackagedPackageItem.OtherCharacteristics = append(b.medicinalProductPackagedPackageItem.OtherCharacteristics, v)
+	return b
+}
+
+// AddShelfLifeStorage adds a ShelfLifeStorage element.
+func (b *MedicinalProductPackagedPackageItemBuilder) AddShelfLifeStorage(v ProductShelfLife) *MedicinalProductPackagedPackageItemBuilder {
+	b.medicinalProductPackagedPackageItem.ShelfLifeStorage = append(b.medicinalProductPackagedPackageItem.ShelfLifeStorage, v)
+	return b
+}
+
+// AddManufacturer adds a Manufacturer element.
+func (b *MedicinalProductPackagedPackageItemBuilder) AddManufacturer(v Reference) *MedicinalProductPackagedPackageItemBuilder {
+	b.medicinalProductPackagedPackageItem.Manufacturer = append(b.medicinalProductPackagedPackageItem.Manufacturer, v)
+	return b
+}

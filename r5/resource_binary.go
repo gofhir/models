@@ -264,3 +264,43 @@ func (b *BinaryBuilder) SetData(v string) *BinaryBuilder {
 	b.binary.Data = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BinaryBuilder) SetImplicitRulesExt(v Element) *BinaryBuilder {
+	b.binary.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BinaryBuilder) SetLanguageExt(v Element) *BinaryBuilder {
+	b.binary.LanguageExt = &v
+	return b
+}
+
+// SetContentTypeExt sets the extensions carried by ContentType, serialized as
+// "_contentType".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BinaryBuilder) SetContentTypeExt(v Element) *BinaryBuilder {
+	b.binary.ContentTypeExt = &v
+	return b
+}
+
+// SetDataExt sets the extensions carried by Data, serialized as
+// "_data".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BinaryBuilder) SetDataExt(v Element) *BinaryBuilder {
+	b.binary.DataExt = &v
+	return b
+}

@@ -2298,6 +2298,194 @@ func (b *PlanDefinitionBuilder) AddAction(v PlanDefinitionAction) *PlanDefinitio
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionBuilder) SetImplicitRulesExt(v Element) *PlanDefinitionBuilder {
+	b.planDefinition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionBuilder) SetLanguageExt(v Element) *PlanDefinitionBuilder {
+	b.planDefinition.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionBuilder) SetUrlExt(v Element) *PlanDefinitionBuilder {
+	b.planDefinition.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionBuilder) SetVersionExt(v Element) *PlanDefinitionBuilder {
+	b.planDefinition.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionBuilder) SetNameExt(v Element) *PlanDefinitionBuilder {
+	b.planDefinition.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionBuilder) SetTitleExt(v Element) *PlanDefinitionBuilder {
+	b.planDefinition.TitleExt = &v
+	return b
+}
+
+// SetSubtitleExt sets the extensions carried by Subtitle, serialized as
+// "_subtitle".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionBuilder) SetSubtitleExt(v Element) *PlanDefinitionBuilder {
+	b.planDefinition.SubtitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionBuilder) SetStatusExt(v Element) *PlanDefinitionBuilder {
+	b.planDefinition.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionBuilder) SetExperimentalExt(v Element) *PlanDefinitionBuilder {
+	b.planDefinition.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionBuilder) SetDateExt(v Element) *PlanDefinitionBuilder {
+	b.planDefinition.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionBuilder) SetPublisherExt(v Element) *PlanDefinitionBuilder {
+	b.planDefinition.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionBuilder) SetDescriptionExt(v Element) *PlanDefinitionBuilder {
+	b.planDefinition.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionBuilder) SetPurposeExt(v Element) *PlanDefinitionBuilder {
+	b.planDefinition.PurposeExt = &v
+	return b
+}
+
+// SetUsageExt sets the extensions carried by Usage, serialized as
+// "_usage".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionBuilder) SetUsageExt(v Element) *PlanDefinitionBuilder {
+	b.planDefinition.UsageExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionBuilder) SetCopyrightExt(v Element) *PlanDefinitionBuilder {
+	b.planDefinition.CopyrightExt = &v
+	return b
+}
+
+// SetApprovalDateExt sets the extensions carried by ApprovalDate, serialized as
+// "_approvalDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionBuilder) SetApprovalDateExt(v Element) *PlanDefinitionBuilder {
+	b.planDefinition.ApprovalDateExt = &v
+	return b
+}
+
+// SetLastReviewDateExt sets the extensions carried by LastReviewDate, serialized as
+// "_lastReviewDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionBuilder) SetLastReviewDateExt(v Element) *PlanDefinitionBuilder {
+	b.planDefinition.LastReviewDateExt = &v
+	return b
+}
+
+// AddLibraryExt attaches extensions to the Library element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddLibrary twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *PlanDefinitionBuilder) AddLibraryExt(v *Element) *PlanDefinitionBuilder {
+	for len(b.planDefinition.LibraryExt) < len(b.planDefinition.Library)-1 {
+		b.planDefinition.LibraryExt = append(b.planDefinition.LibraryExt, nil)
+	}
+	b.planDefinition.LibraryExt = append(b.planDefinition.LibraryExt, v)
+	return b
+}
+
 // clearSubject unsets every variant of Subject[x], including the
 // _field companions of the primitive ones.
 func (b *PlanDefinitionBuilder) clearSubject() {
@@ -2305,4 +2493,990 @@ func (b *PlanDefinitionBuilder) clearSubject() {
 	b.planDefinition.SubjectReference = nil
 	b.planDefinition.SubjectCanonical = nil
 	b.planDefinition.SubjectCanonicalExt = nil
+}
+
+// =============================================================================
+// PlanDefinitionAction - Fluent Builder
+// =============================================================================
+
+// PlanDefinitionActionBuilder provides a fluent API for constructing PlanDefinitionAction values.
+type PlanDefinitionActionBuilder struct {
+	planDefinitionAction *PlanDefinitionAction
+}
+
+// NewPlanDefinitionActionBuilder creates a new PlanDefinitionActionBuilder.
+func NewPlanDefinitionActionBuilder() *PlanDefinitionActionBuilder {
+	return &PlanDefinitionActionBuilder{
+		planDefinitionAction: &PlanDefinitionAction{},
+	}
+}
+
+// Build returns the constructed PlanDefinitionAction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PlanDefinitionActionBuilder) Build() PlanDefinitionAction {
+	return *b.planDefinitionAction
+}
+
+// SetId sets the Id field.
+func (b *PlanDefinitionActionBuilder) SetId(v string) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PlanDefinitionActionBuilder) AddExtension(v Extension) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.Extension = append(b.planDefinitionAction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PlanDefinitionActionBuilder) AddModifierExtension(v Extension) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.ModifierExtension = append(b.planDefinitionAction.ModifierExtension, v)
+	return b
+}
+
+// SetPrefix sets the Prefix field.
+func (b *PlanDefinitionActionBuilder) SetPrefix(v string) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.Prefix = &v
+	return b
+}
+
+// SetTitle sets the Title field.
+func (b *PlanDefinitionActionBuilder) SetTitle(v string) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.Title = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *PlanDefinitionActionBuilder) SetDescription(v string) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.Description = &v
+	return b
+}
+
+// SetTextEquivalent sets the TextEquivalent field.
+func (b *PlanDefinitionActionBuilder) SetTextEquivalent(v string) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.TextEquivalent = &v
+	return b
+}
+
+// SetPriority sets the Priority field.
+func (b *PlanDefinitionActionBuilder) SetPriority(v RequestPriority) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.Priority = &v
+	return b
+}
+
+// AddCode adds a Code element.
+func (b *PlanDefinitionActionBuilder) AddCode(v CodeableConcept) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.Code = append(b.planDefinitionAction.Code, v)
+	return b
+}
+
+// AddReason adds a Reason element.
+func (b *PlanDefinitionActionBuilder) AddReason(v CodeableConcept) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.Reason = append(b.planDefinitionAction.Reason, v)
+	return b
+}
+
+// AddDocumentation adds a Documentation element.
+func (b *PlanDefinitionActionBuilder) AddDocumentation(v RelatedArtifact) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.Documentation = append(b.planDefinitionAction.Documentation, v)
+	return b
+}
+
+// AddGoalId adds a GoalId element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *PlanDefinitionActionBuilder) AddGoalId(v string) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.GoalId = append(b.planDefinitionAction.GoalId, &v)
+	return b
+}
+
+// SetSubjectCodeableConcept sets Subject[x] to its SubjectCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PlanDefinitionActionBuilder) SetSubjectCodeableConcept(v CodeableConcept) *PlanDefinitionActionBuilder {
+	b.clearSubject()
+	b.planDefinitionAction.SubjectCodeableConcept = &v
+	return b
+}
+
+// SetSubjectReference sets Subject[x] to its SubjectReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PlanDefinitionActionBuilder) SetSubjectReference(v Reference) *PlanDefinitionActionBuilder {
+	b.clearSubject()
+	b.planDefinitionAction.SubjectReference = &v
+	return b
+}
+
+// SetSubjectCanonical sets Subject[x] to its SubjectCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PlanDefinitionActionBuilder) SetSubjectCanonical(v string) *PlanDefinitionActionBuilder {
+	b.clearSubject()
+	b.planDefinitionAction.SubjectCanonical = &v
+	return b
+}
+
+// SetSubjectCanonicalExt sets the SubjectCanonicalExt field.
+func (b *PlanDefinitionActionBuilder) SetSubjectCanonicalExt(v Element) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.SubjectCanonicalExt = &v
+	return b
+}
+
+// AddTrigger adds a Trigger element.
+func (b *PlanDefinitionActionBuilder) AddTrigger(v TriggerDefinition) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.Trigger = append(b.planDefinitionAction.Trigger, v)
+	return b
+}
+
+// AddCondition adds a Condition element.
+func (b *PlanDefinitionActionBuilder) AddCondition(v PlanDefinitionActionCondition) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.Condition = append(b.planDefinitionAction.Condition, v)
+	return b
+}
+
+// AddInput adds a Input element.
+func (b *PlanDefinitionActionBuilder) AddInput(v DataRequirement) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.Input = append(b.planDefinitionAction.Input, v)
+	return b
+}
+
+// AddOutput adds a Output element.
+func (b *PlanDefinitionActionBuilder) AddOutput(v DataRequirement) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.Output = append(b.planDefinitionAction.Output, v)
+	return b
+}
+
+// AddRelatedAction adds a RelatedAction element.
+func (b *PlanDefinitionActionBuilder) AddRelatedAction(v PlanDefinitionActionRelatedAction) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.RelatedAction = append(b.planDefinitionAction.RelatedAction, v)
+	return b
+}
+
+// SetTimingDateTime sets Timing[x] to its TimingDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PlanDefinitionActionBuilder) SetTimingDateTime(v string) *PlanDefinitionActionBuilder {
+	b.clearTiming()
+	b.planDefinitionAction.TimingDateTime = &v
+	return b
+}
+
+// SetTimingDateTimeExt sets the TimingDateTimeExt field.
+func (b *PlanDefinitionActionBuilder) SetTimingDateTimeExt(v Element) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.TimingDateTimeExt = &v
+	return b
+}
+
+// SetTimingAge sets Timing[x] to its TimingAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PlanDefinitionActionBuilder) SetTimingAge(v Age) *PlanDefinitionActionBuilder {
+	b.clearTiming()
+	b.planDefinitionAction.TimingAge = &v
+	return b
+}
+
+// SetTimingPeriod sets Timing[x] to its TimingPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PlanDefinitionActionBuilder) SetTimingPeriod(v Period) *PlanDefinitionActionBuilder {
+	b.clearTiming()
+	b.planDefinitionAction.TimingPeriod = &v
+	return b
+}
+
+// SetTimingDuration sets Timing[x] to its TimingDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PlanDefinitionActionBuilder) SetTimingDuration(v Duration) *PlanDefinitionActionBuilder {
+	b.clearTiming()
+	b.planDefinitionAction.TimingDuration = &v
+	return b
+}
+
+// SetTimingRange sets Timing[x] to its TimingRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PlanDefinitionActionBuilder) SetTimingRange(v Range) *PlanDefinitionActionBuilder {
+	b.clearTiming()
+	b.planDefinitionAction.TimingRange = &v
+	return b
+}
+
+// SetTimingTiming sets Timing[x] to its TimingTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PlanDefinitionActionBuilder) SetTimingTiming(v Timing) *PlanDefinitionActionBuilder {
+	b.clearTiming()
+	b.planDefinitionAction.TimingTiming = &v
+	return b
+}
+
+// AddParticipant adds a Participant element.
+func (b *PlanDefinitionActionBuilder) AddParticipant(v PlanDefinitionActionParticipant) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.Participant = append(b.planDefinitionAction.Participant, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *PlanDefinitionActionBuilder) SetType(v CodeableConcept) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.Type = &v
+	return b
+}
+
+// SetGroupingBehavior sets the GroupingBehavior field.
+func (b *PlanDefinitionActionBuilder) SetGroupingBehavior(v ActionGroupingBehavior) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.GroupingBehavior = &v
+	return b
+}
+
+// SetSelectionBehavior sets the SelectionBehavior field.
+func (b *PlanDefinitionActionBuilder) SetSelectionBehavior(v ActionSelectionBehavior) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.SelectionBehavior = &v
+	return b
+}
+
+// SetRequiredBehavior sets the RequiredBehavior field.
+func (b *PlanDefinitionActionBuilder) SetRequiredBehavior(v ActionRequiredBehavior) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.RequiredBehavior = &v
+	return b
+}
+
+// SetPrecheckBehavior sets the PrecheckBehavior field.
+func (b *PlanDefinitionActionBuilder) SetPrecheckBehavior(v ActionPrecheckBehavior) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.PrecheckBehavior = &v
+	return b
+}
+
+// SetCardinalityBehavior sets the CardinalityBehavior field.
+func (b *PlanDefinitionActionBuilder) SetCardinalityBehavior(v ActionCardinalityBehavior) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.CardinalityBehavior = &v
+	return b
+}
+
+// SetDefinitionCanonical sets Definition[x] to its DefinitionCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PlanDefinitionActionBuilder) SetDefinitionCanonical(v string) *PlanDefinitionActionBuilder {
+	b.clearDefinition()
+	b.planDefinitionAction.DefinitionCanonical = &v
+	return b
+}
+
+// SetDefinitionCanonicalExt sets the DefinitionCanonicalExt field.
+func (b *PlanDefinitionActionBuilder) SetDefinitionCanonicalExt(v Element) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.DefinitionCanonicalExt = &v
+	return b
+}
+
+// SetDefinitionUri sets Definition[x] to its DefinitionUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PlanDefinitionActionBuilder) SetDefinitionUri(v string) *PlanDefinitionActionBuilder {
+	b.clearDefinition()
+	b.planDefinitionAction.DefinitionUri = &v
+	return b
+}
+
+// SetDefinitionUriExt sets the DefinitionUriExt field.
+func (b *PlanDefinitionActionBuilder) SetDefinitionUriExt(v Element) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.DefinitionUriExt = &v
+	return b
+}
+
+// SetTransform sets the Transform field.
+func (b *PlanDefinitionActionBuilder) SetTransform(v string) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.Transform = &v
+	return b
+}
+
+// AddDynamicValue adds a DynamicValue element.
+func (b *PlanDefinitionActionBuilder) AddDynamicValue(v PlanDefinitionActionDynamicValue) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.DynamicValue = append(b.planDefinitionAction.DynamicValue, v)
+	return b
+}
+
+// AddAction adds a Action element.
+func (b *PlanDefinitionActionBuilder) AddAction(v PlanDefinitionAction) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.Action = append(b.planDefinitionAction.Action, v)
+	return b
+}
+
+// SetPrefixExt sets the extensions carried by Prefix, serialized as
+// "_prefix".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionActionBuilder) SetPrefixExt(v Element) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.PrefixExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionActionBuilder) SetTitleExt(v Element) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.TitleExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionActionBuilder) SetDescriptionExt(v Element) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.DescriptionExt = &v
+	return b
+}
+
+// SetTextEquivalentExt sets the extensions carried by TextEquivalent, serialized as
+// "_textEquivalent".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionActionBuilder) SetTextEquivalentExt(v Element) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.TextEquivalentExt = &v
+	return b
+}
+
+// SetPriorityExt sets the extensions carried by Priority, serialized as
+// "_priority".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionActionBuilder) SetPriorityExt(v Element) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.PriorityExt = &v
+	return b
+}
+
+// AddGoalIdExt attaches extensions to the GoalId element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddGoalId twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *PlanDefinitionActionBuilder) AddGoalIdExt(v *Element) *PlanDefinitionActionBuilder {
+	for len(b.planDefinitionAction.GoalIdExt) < len(b.planDefinitionAction.GoalId)-1 {
+		b.planDefinitionAction.GoalIdExt = append(b.planDefinitionAction.GoalIdExt, nil)
+	}
+	b.planDefinitionAction.GoalIdExt = append(b.planDefinitionAction.GoalIdExt, v)
+	return b
+}
+
+// SetGroupingBehaviorExt sets the extensions carried by GroupingBehavior, serialized as
+// "_groupingBehavior".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionActionBuilder) SetGroupingBehaviorExt(v Element) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.GroupingBehaviorExt = &v
+	return b
+}
+
+// SetSelectionBehaviorExt sets the extensions carried by SelectionBehavior, serialized as
+// "_selectionBehavior".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionActionBuilder) SetSelectionBehaviorExt(v Element) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.SelectionBehaviorExt = &v
+	return b
+}
+
+// SetRequiredBehaviorExt sets the extensions carried by RequiredBehavior, serialized as
+// "_requiredBehavior".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionActionBuilder) SetRequiredBehaviorExt(v Element) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.RequiredBehaviorExt = &v
+	return b
+}
+
+// SetPrecheckBehaviorExt sets the extensions carried by PrecheckBehavior, serialized as
+// "_precheckBehavior".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionActionBuilder) SetPrecheckBehaviorExt(v Element) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.PrecheckBehaviorExt = &v
+	return b
+}
+
+// SetCardinalityBehaviorExt sets the extensions carried by CardinalityBehavior, serialized as
+// "_cardinalityBehavior".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionActionBuilder) SetCardinalityBehaviorExt(v Element) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.CardinalityBehaviorExt = &v
+	return b
+}
+
+// SetTransformExt sets the extensions carried by Transform, serialized as
+// "_transform".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionActionBuilder) SetTransformExt(v Element) *PlanDefinitionActionBuilder {
+	b.planDefinitionAction.TransformExt = &v
+	return b
+}
+
+// clearSubject unsets every variant of Subject[x], including the
+// _field companions of the primitive ones.
+func (b *PlanDefinitionActionBuilder) clearSubject() {
+	b.planDefinitionAction.SubjectCodeableConcept = nil
+	b.planDefinitionAction.SubjectReference = nil
+	b.planDefinitionAction.SubjectCanonical = nil
+	b.planDefinitionAction.SubjectCanonicalExt = nil
+}
+
+// clearTiming unsets every variant of Timing[x], including the
+// _field companions of the primitive ones.
+func (b *PlanDefinitionActionBuilder) clearTiming() {
+	b.planDefinitionAction.TimingDateTime = nil
+	b.planDefinitionAction.TimingAge = nil
+	b.planDefinitionAction.TimingPeriod = nil
+	b.planDefinitionAction.TimingDuration = nil
+	b.planDefinitionAction.TimingRange = nil
+	b.planDefinitionAction.TimingTiming = nil
+}
+
+// clearDefinition unsets every variant of Definition[x], including the
+// _field companions of the primitive ones.
+func (b *PlanDefinitionActionBuilder) clearDefinition() {
+	b.planDefinitionAction.DefinitionCanonical = nil
+	b.planDefinitionAction.DefinitionUri = nil
+	b.planDefinitionAction.DefinitionUriExt = nil
+}
+
+// =============================================================================
+// PlanDefinitionActionCondition - Fluent Builder
+// =============================================================================
+
+// PlanDefinitionActionConditionBuilder provides a fluent API for constructing PlanDefinitionActionCondition values.
+type PlanDefinitionActionConditionBuilder struct {
+	planDefinitionActionCondition *PlanDefinitionActionCondition
+}
+
+// NewPlanDefinitionActionConditionBuilder creates a new PlanDefinitionActionConditionBuilder.
+func NewPlanDefinitionActionConditionBuilder() *PlanDefinitionActionConditionBuilder {
+	return &PlanDefinitionActionConditionBuilder{
+		planDefinitionActionCondition: &PlanDefinitionActionCondition{},
+	}
+}
+
+// Build returns the constructed PlanDefinitionActionCondition.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PlanDefinitionActionConditionBuilder) Build() PlanDefinitionActionCondition {
+	return *b.planDefinitionActionCondition
+}
+
+// SetId sets the Id field.
+func (b *PlanDefinitionActionConditionBuilder) SetId(v string) *PlanDefinitionActionConditionBuilder {
+	b.planDefinitionActionCondition.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PlanDefinitionActionConditionBuilder) AddExtension(v Extension) *PlanDefinitionActionConditionBuilder {
+	b.planDefinitionActionCondition.Extension = append(b.planDefinitionActionCondition.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PlanDefinitionActionConditionBuilder) AddModifierExtension(v Extension) *PlanDefinitionActionConditionBuilder {
+	b.planDefinitionActionCondition.ModifierExtension = append(b.planDefinitionActionCondition.ModifierExtension, v)
+	return b
+}
+
+// SetKind sets the Kind field.
+func (b *PlanDefinitionActionConditionBuilder) SetKind(v ActionConditionKind) *PlanDefinitionActionConditionBuilder {
+	b.planDefinitionActionCondition.Kind = &v
+	return b
+}
+
+// SetExpression sets the Expression field.
+func (b *PlanDefinitionActionConditionBuilder) SetExpression(v Expression) *PlanDefinitionActionConditionBuilder {
+	b.planDefinitionActionCondition.Expression = &v
+	return b
+}
+
+// SetKindExt sets the extensions carried by Kind, serialized as
+// "_kind".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionActionConditionBuilder) SetKindExt(v Element) *PlanDefinitionActionConditionBuilder {
+	b.planDefinitionActionCondition.KindExt = &v
+	return b
+}
+
+// =============================================================================
+// PlanDefinitionActionDynamicValue - Fluent Builder
+// =============================================================================
+
+// PlanDefinitionActionDynamicValueBuilder provides a fluent API for constructing PlanDefinitionActionDynamicValue values.
+type PlanDefinitionActionDynamicValueBuilder struct {
+	planDefinitionActionDynamicValue *PlanDefinitionActionDynamicValue
+}
+
+// NewPlanDefinitionActionDynamicValueBuilder creates a new PlanDefinitionActionDynamicValueBuilder.
+func NewPlanDefinitionActionDynamicValueBuilder() *PlanDefinitionActionDynamicValueBuilder {
+	return &PlanDefinitionActionDynamicValueBuilder{
+		planDefinitionActionDynamicValue: &PlanDefinitionActionDynamicValue{},
+	}
+}
+
+// Build returns the constructed PlanDefinitionActionDynamicValue.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PlanDefinitionActionDynamicValueBuilder) Build() PlanDefinitionActionDynamicValue {
+	return *b.planDefinitionActionDynamicValue
+}
+
+// SetId sets the Id field.
+func (b *PlanDefinitionActionDynamicValueBuilder) SetId(v string) *PlanDefinitionActionDynamicValueBuilder {
+	b.planDefinitionActionDynamicValue.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PlanDefinitionActionDynamicValueBuilder) AddExtension(v Extension) *PlanDefinitionActionDynamicValueBuilder {
+	b.planDefinitionActionDynamicValue.Extension = append(b.planDefinitionActionDynamicValue.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PlanDefinitionActionDynamicValueBuilder) AddModifierExtension(v Extension) *PlanDefinitionActionDynamicValueBuilder {
+	b.planDefinitionActionDynamicValue.ModifierExtension = append(b.planDefinitionActionDynamicValue.ModifierExtension, v)
+	return b
+}
+
+// SetPath sets the Path field.
+func (b *PlanDefinitionActionDynamicValueBuilder) SetPath(v string) *PlanDefinitionActionDynamicValueBuilder {
+	b.planDefinitionActionDynamicValue.Path = &v
+	return b
+}
+
+// SetExpression sets the Expression field.
+func (b *PlanDefinitionActionDynamicValueBuilder) SetExpression(v Expression) *PlanDefinitionActionDynamicValueBuilder {
+	b.planDefinitionActionDynamicValue.Expression = &v
+	return b
+}
+
+// SetPathExt sets the extensions carried by Path, serialized as
+// "_path".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionActionDynamicValueBuilder) SetPathExt(v Element) *PlanDefinitionActionDynamicValueBuilder {
+	b.planDefinitionActionDynamicValue.PathExt = &v
+	return b
+}
+
+// =============================================================================
+// PlanDefinitionActionParticipant - Fluent Builder
+// =============================================================================
+
+// PlanDefinitionActionParticipantBuilder provides a fluent API for constructing PlanDefinitionActionParticipant values.
+type PlanDefinitionActionParticipantBuilder struct {
+	planDefinitionActionParticipant *PlanDefinitionActionParticipant
+}
+
+// NewPlanDefinitionActionParticipantBuilder creates a new PlanDefinitionActionParticipantBuilder.
+func NewPlanDefinitionActionParticipantBuilder() *PlanDefinitionActionParticipantBuilder {
+	return &PlanDefinitionActionParticipantBuilder{
+		planDefinitionActionParticipant: &PlanDefinitionActionParticipant{},
+	}
+}
+
+// Build returns the constructed PlanDefinitionActionParticipant.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PlanDefinitionActionParticipantBuilder) Build() PlanDefinitionActionParticipant {
+	return *b.planDefinitionActionParticipant
+}
+
+// SetId sets the Id field.
+func (b *PlanDefinitionActionParticipantBuilder) SetId(v string) *PlanDefinitionActionParticipantBuilder {
+	b.planDefinitionActionParticipant.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PlanDefinitionActionParticipantBuilder) AddExtension(v Extension) *PlanDefinitionActionParticipantBuilder {
+	b.planDefinitionActionParticipant.Extension = append(b.planDefinitionActionParticipant.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PlanDefinitionActionParticipantBuilder) AddModifierExtension(v Extension) *PlanDefinitionActionParticipantBuilder {
+	b.planDefinitionActionParticipant.ModifierExtension = append(b.planDefinitionActionParticipant.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *PlanDefinitionActionParticipantBuilder) SetType(v ActionParticipantType) *PlanDefinitionActionParticipantBuilder {
+	b.planDefinitionActionParticipant.Type = &v
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *PlanDefinitionActionParticipantBuilder) SetRole(v CodeableConcept) *PlanDefinitionActionParticipantBuilder {
+	b.planDefinitionActionParticipant.Role = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionActionParticipantBuilder) SetTypeExt(v Element) *PlanDefinitionActionParticipantBuilder {
+	b.planDefinitionActionParticipant.TypeExt = &v
+	return b
+}
+
+// =============================================================================
+// PlanDefinitionActionRelatedAction - Fluent Builder
+// =============================================================================
+
+// PlanDefinitionActionRelatedActionBuilder provides a fluent API for constructing PlanDefinitionActionRelatedAction values.
+type PlanDefinitionActionRelatedActionBuilder struct {
+	planDefinitionActionRelatedAction *PlanDefinitionActionRelatedAction
+}
+
+// NewPlanDefinitionActionRelatedActionBuilder creates a new PlanDefinitionActionRelatedActionBuilder.
+func NewPlanDefinitionActionRelatedActionBuilder() *PlanDefinitionActionRelatedActionBuilder {
+	return &PlanDefinitionActionRelatedActionBuilder{
+		planDefinitionActionRelatedAction: &PlanDefinitionActionRelatedAction{},
+	}
+}
+
+// Build returns the constructed PlanDefinitionActionRelatedAction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PlanDefinitionActionRelatedActionBuilder) Build() PlanDefinitionActionRelatedAction {
+	return *b.planDefinitionActionRelatedAction
+}
+
+// SetId sets the Id field.
+func (b *PlanDefinitionActionRelatedActionBuilder) SetId(v string) *PlanDefinitionActionRelatedActionBuilder {
+	b.planDefinitionActionRelatedAction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PlanDefinitionActionRelatedActionBuilder) AddExtension(v Extension) *PlanDefinitionActionRelatedActionBuilder {
+	b.planDefinitionActionRelatedAction.Extension = append(b.planDefinitionActionRelatedAction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PlanDefinitionActionRelatedActionBuilder) AddModifierExtension(v Extension) *PlanDefinitionActionRelatedActionBuilder {
+	b.planDefinitionActionRelatedAction.ModifierExtension = append(b.planDefinitionActionRelatedAction.ModifierExtension, v)
+	return b
+}
+
+// SetActionId sets the ActionId field.
+func (b *PlanDefinitionActionRelatedActionBuilder) SetActionId(v string) *PlanDefinitionActionRelatedActionBuilder {
+	b.planDefinitionActionRelatedAction.ActionId = &v
+	return b
+}
+
+// SetRelationship sets the Relationship field.
+func (b *PlanDefinitionActionRelatedActionBuilder) SetRelationship(v ActionRelationshipType) *PlanDefinitionActionRelatedActionBuilder {
+	b.planDefinitionActionRelatedAction.Relationship = &v
+	return b
+}
+
+// SetOffsetDuration sets Offset[x] to its OffsetDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PlanDefinitionActionRelatedActionBuilder) SetOffsetDuration(v Duration) *PlanDefinitionActionRelatedActionBuilder {
+	b.clearOffset()
+	b.planDefinitionActionRelatedAction.OffsetDuration = &v
+	return b
+}
+
+// SetOffsetRange sets Offset[x] to its OffsetRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PlanDefinitionActionRelatedActionBuilder) SetOffsetRange(v Range) *PlanDefinitionActionRelatedActionBuilder {
+	b.clearOffset()
+	b.planDefinitionActionRelatedAction.OffsetRange = &v
+	return b
+}
+
+// SetActionIdExt sets the extensions carried by ActionId, serialized as
+// "_actionId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionActionRelatedActionBuilder) SetActionIdExt(v Element) *PlanDefinitionActionRelatedActionBuilder {
+	b.planDefinitionActionRelatedAction.ActionIdExt = &v
+	return b
+}
+
+// SetRelationshipExt sets the extensions carried by Relationship, serialized as
+// "_relationship".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PlanDefinitionActionRelatedActionBuilder) SetRelationshipExt(v Element) *PlanDefinitionActionRelatedActionBuilder {
+	b.planDefinitionActionRelatedAction.RelationshipExt = &v
+	return b
+}
+
+// clearOffset unsets every variant of Offset[x], including the
+// _field companions of the primitive ones.
+func (b *PlanDefinitionActionRelatedActionBuilder) clearOffset() {
+	b.planDefinitionActionRelatedAction.OffsetDuration = nil
+	b.planDefinitionActionRelatedAction.OffsetRange = nil
+}
+
+// =============================================================================
+// PlanDefinitionGoal - Fluent Builder
+// =============================================================================
+
+// PlanDefinitionGoalBuilder provides a fluent API for constructing PlanDefinitionGoal values.
+type PlanDefinitionGoalBuilder struct {
+	planDefinitionGoal *PlanDefinitionGoal
+}
+
+// NewPlanDefinitionGoalBuilder creates a new PlanDefinitionGoalBuilder.
+func NewPlanDefinitionGoalBuilder() *PlanDefinitionGoalBuilder {
+	return &PlanDefinitionGoalBuilder{
+		planDefinitionGoal: &PlanDefinitionGoal{},
+	}
+}
+
+// Build returns the constructed PlanDefinitionGoal.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PlanDefinitionGoalBuilder) Build() PlanDefinitionGoal {
+	return *b.planDefinitionGoal
+}
+
+// SetId sets the Id field.
+func (b *PlanDefinitionGoalBuilder) SetId(v string) *PlanDefinitionGoalBuilder {
+	b.planDefinitionGoal.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PlanDefinitionGoalBuilder) AddExtension(v Extension) *PlanDefinitionGoalBuilder {
+	b.planDefinitionGoal.Extension = append(b.planDefinitionGoal.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PlanDefinitionGoalBuilder) AddModifierExtension(v Extension) *PlanDefinitionGoalBuilder {
+	b.planDefinitionGoal.ModifierExtension = append(b.planDefinitionGoal.ModifierExtension, v)
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *PlanDefinitionGoalBuilder) SetCategory(v CodeableConcept) *PlanDefinitionGoalBuilder {
+	b.planDefinitionGoal.Category = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *PlanDefinitionGoalBuilder) SetDescription(v CodeableConcept) *PlanDefinitionGoalBuilder {
+	b.planDefinitionGoal.Description = &v
+	return b
+}
+
+// SetPriority sets the Priority field.
+func (b *PlanDefinitionGoalBuilder) SetPriority(v CodeableConcept) *PlanDefinitionGoalBuilder {
+	b.planDefinitionGoal.Priority = &v
+	return b
+}
+
+// SetStart sets the Start field.
+func (b *PlanDefinitionGoalBuilder) SetStart(v CodeableConcept) *PlanDefinitionGoalBuilder {
+	b.planDefinitionGoal.Start = &v
+	return b
+}
+
+// AddAddresses adds a Addresses element.
+func (b *PlanDefinitionGoalBuilder) AddAddresses(v CodeableConcept) *PlanDefinitionGoalBuilder {
+	b.planDefinitionGoal.Addresses = append(b.planDefinitionGoal.Addresses, v)
+	return b
+}
+
+// AddDocumentation adds a Documentation element.
+func (b *PlanDefinitionGoalBuilder) AddDocumentation(v RelatedArtifact) *PlanDefinitionGoalBuilder {
+	b.planDefinitionGoal.Documentation = append(b.planDefinitionGoal.Documentation, v)
+	return b
+}
+
+// AddTarget adds a Target element.
+func (b *PlanDefinitionGoalBuilder) AddTarget(v PlanDefinitionGoalTarget) *PlanDefinitionGoalBuilder {
+	b.planDefinitionGoal.Target = append(b.planDefinitionGoal.Target, v)
+	return b
+}
+
+// =============================================================================
+// PlanDefinitionGoalTarget - Fluent Builder
+// =============================================================================
+
+// PlanDefinitionGoalTargetBuilder provides a fluent API for constructing PlanDefinitionGoalTarget values.
+type PlanDefinitionGoalTargetBuilder struct {
+	planDefinitionGoalTarget *PlanDefinitionGoalTarget
+}
+
+// NewPlanDefinitionGoalTargetBuilder creates a new PlanDefinitionGoalTargetBuilder.
+func NewPlanDefinitionGoalTargetBuilder() *PlanDefinitionGoalTargetBuilder {
+	return &PlanDefinitionGoalTargetBuilder{
+		planDefinitionGoalTarget: &PlanDefinitionGoalTarget{},
+	}
+}
+
+// Build returns the constructed PlanDefinitionGoalTarget.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PlanDefinitionGoalTargetBuilder) Build() PlanDefinitionGoalTarget {
+	return *b.planDefinitionGoalTarget
+}
+
+// SetId sets the Id field.
+func (b *PlanDefinitionGoalTargetBuilder) SetId(v string) *PlanDefinitionGoalTargetBuilder {
+	b.planDefinitionGoalTarget.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PlanDefinitionGoalTargetBuilder) AddExtension(v Extension) *PlanDefinitionGoalTargetBuilder {
+	b.planDefinitionGoalTarget.Extension = append(b.planDefinitionGoalTarget.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PlanDefinitionGoalTargetBuilder) AddModifierExtension(v Extension) *PlanDefinitionGoalTargetBuilder {
+	b.planDefinitionGoalTarget.ModifierExtension = append(b.planDefinitionGoalTarget.ModifierExtension, v)
+	return b
+}
+
+// SetMeasure sets the Measure field.
+func (b *PlanDefinitionGoalTargetBuilder) SetMeasure(v CodeableConcept) *PlanDefinitionGoalTargetBuilder {
+	b.planDefinitionGoalTarget.Measure = &v
+	return b
+}
+
+// SetDetailQuantity sets Detail[x] to its DetailQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PlanDefinitionGoalTargetBuilder) SetDetailQuantity(v Quantity) *PlanDefinitionGoalTargetBuilder {
+	b.clearDetail()
+	b.planDefinitionGoalTarget.DetailQuantity = &v
+	return b
+}
+
+// SetDetailRange sets Detail[x] to its DetailRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PlanDefinitionGoalTargetBuilder) SetDetailRange(v Range) *PlanDefinitionGoalTargetBuilder {
+	b.clearDetail()
+	b.planDefinitionGoalTarget.DetailRange = &v
+	return b
+}
+
+// SetDetailCodeableConcept sets Detail[x] to its DetailCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PlanDefinitionGoalTargetBuilder) SetDetailCodeableConcept(v CodeableConcept) *PlanDefinitionGoalTargetBuilder {
+	b.clearDetail()
+	b.planDefinitionGoalTarget.DetailCodeableConcept = &v
+	return b
+}
+
+// SetDue sets the Due field.
+func (b *PlanDefinitionGoalTargetBuilder) SetDue(v Duration) *PlanDefinitionGoalTargetBuilder {
+	b.planDefinitionGoalTarget.Due = &v
+	return b
+}
+
+// clearDetail unsets every variant of Detail[x], including the
+// _field companions of the primitive ones.
+func (b *PlanDefinitionGoalTargetBuilder) clearDetail() {
+	b.planDefinitionGoalTarget.DetailQuantity = nil
+	b.planDefinitionGoalTarget.DetailRange = nil
+	b.planDefinitionGoalTarget.DetailCodeableConcept = nil
 }

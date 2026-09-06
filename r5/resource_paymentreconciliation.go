@@ -1267,3 +1267,391 @@ func (b *PaymentReconciliationBuilder) AddProcessNote(v PaymentReconciliationPro
 	b.paymentReconciliation.ProcessNote = append(b.paymentReconciliation.ProcessNote, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentReconciliationBuilder) SetImplicitRulesExt(v Element) *PaymentReconciliationBuilder {
+	b.paymentReconciliation.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentReconciliationBuilder) SetLanguageExt(v Element) *PaymentReconciliationBuilder {
+	b.paymentReconciliation.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentReconciliationBuilder) SetStatusExt(v Element) *PaymentReconciliationBuilder {
+	b.paymentReconciliation.StatusExt = &v
+	return b
+}
+
+// SetCreatedExt sets the extensions carried by Created, serialized as
+// "_created".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentReconciliationBuilder) SetCreatedExt(v Element) *PaymentReconciliationBuilder {
+	b.paymentReconciliation.CreatedExt = &v
+	return b
+}
+
+// SetOutcomeExt sets the extensions carried by Outcome, serialized as
+// "_outcome".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentReconciliationBuilder) SetOutcomeExt(v Element) *PaymentReconciliationBuilder {
+	b.paymentReconciliation.OutcomeExt = &v
+	return b
+}
+
+// SetDispositionExt sets the extensions carried by Disposition, serialized as
+// "_disposition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentReconciliationBuilder) SetDispositionExt(v Element) *PaymentReconciliationBuilder {
+	b.paymentReconciliation.DispositionExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentReconciliationBuilder) SetDateExt(v Element) *PaymentReconciliationBuilder {
+	b.paymentReconciliation.DateExt = &v
+	return b
+}
+
+// SetCardBrandExt sets the extensions carried by CardBrand, serialized as
+// "_cardBrand".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentReconciliationBuilder) SetCardBrandExt(v Element) *PaymentReconciliationBuilder {
+	b.paymentReconciliation.CardBrandExt = &v
+	return b
+}
+
+// SetAccountNumberExt sets the extensions carried by AccountNumber, serialized as
+// "_accountNumber".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentReconciliationBuilder) SetAccountNumberExt(v Element) *PaymentReconciliationBuilder {
+	b.paymentReconciliation.AccountNumberExt = &v
+	return b
+}
+
+// SetExpirationDateExt sets the extensions carried by ExpirationDate, serialized as
+// "_expirationDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentReconciliationBuilder) SetExpirationDateExt(v Element) *PaymentReconciliationBuilder {
+	b.paymentReconciliation.ExpirationDateExt = &v
+	return b
+}
+
+// SetProcessorExt sets the extensions carried by Processor, serialized as
+// "_processor".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentReconciliationBuilder) SetProcessorExt(v Element) *PaymentReconciliationBuilder {
+	b.paymentReconciliation.ProcessorExt = &v
+	return b
+}
+
+// SetReferenceNumberExt sets the extensions carried by ReferenceNumber, serialized as
+// "_referenceNumber".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentReconciliationBuilder) SetReferenceNumberExt(v Element) *PaymentReconciliationBuilder {
+	b.paymentReconciliation.ReferenceNumberExt = &v
+	return b
+}
+
+// SetAuthorizationExt sets the extensions carried by Authorization, serialized as
+// "_authorization".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentReconciliationBuilder) SetAuthorizationExt(v Element) *PaymentReconciliationBuilder {
+	b.paymentReconciliation.AuthorizationExt = &v
+	return b
+}
+
+// =============================================================================
+// PaymentReconciliationAllocation - Fluent Builder
+// =============================================================================
+
+// PaymentReconciliationAllocationBuilder provides a fluent API for constructing PaymentReconciliationAllocation values.
+type PaymentReconciliationAllocationBuilder struct {
+	paymentReconciliationAllocation *PaymentReconciliationAllocation
+}
+
+// NewPaymentReconciliationAllocationBuilder creates a new PaymentReconciliationAllocationBuilder.
+func NewPaymentReconciliationAllocationBuilder() *PaymentReconciliationAllocationBuilder {
+	return &PaymentReconciliationAllocationBuilder{
+		paymentReconciliationAllocation: &PaymentReconciliationAllocation{},
+	}
+}
+
+// Build returns the constructed PaymentReconciliationAllocation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PaymentReconciliationAllocationBuilder) Build() PaymentReconciliationAllocation {
+	return *b.paymentReconciliationAllocation
+}
+
+// SetId sets the Id field.
+func (b *PaymentReconciliationAllocationBuilder) SetId(v string) *PaymentReconciliationAllocationBuilder {
+	b.paymentReconciliationAllocation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PaymentReconciliationAllocationBuilder) AddExtension(v Extension) *PaymentReconciliationAllocationBuilder {
+	b.paymentReconciliationAllocation.Extension = append(b.paymentReconciliationAllocation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PaymentReconciliationAllocationBuilder) AddModifierExtension(v Extension) *PaymentReconciliationAllocationBuilder {
+	b.paymentReconciliationAllocation.ModifierExtension = append(b.paymentReconciliationAllocation.ModifierExtension, v)
+	return b
+}
+
+// SetIdentifier sets the Identifier field.
+func (b *PaymentReconciliationAllocationBuilder) SetIdentifier(v Identifier) *PaymentReconciliationAllocationBuilder {
+	b.paymentReconciliationAllocation.Identifier = &v
+	return b
+}
+
+// SetPredecessor sets the Predecessor field.
+func (b *PaymentReconciliationAllocationBuilder) SetPredecessor(v Identifier) *PaymentReconciliationAllocationBuilder {
+	b.paymentReconciliationAllocation.Predecessor = &v
+	return b
+}
+
+// SetTarget sets the Target field.
+func (b *PaymentReconciliationAllocationBuilder) SetTarget(v Reference) *PaymentReconciliationAllocationBuilder {
+	b.paymentReconciliationAllocation.Target = &v
+	return b
+}
+
+// SetTargetItemString sets TargetItem[x] to its TargetItemString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PaymentReconciliationAllocationBuilder) SetTargetItemString(v string) *PaymentReconciliationAllocationBuilder {
+	b.clearTargetItem()
+	b.paymentReconciliationAllocation.TargetItemString = &v
+	return b
+}
+
+// SetTargetItemStringExt sets the TargetItemStringExt field.
+func (b *PaymentReconciliationAllocationBuilder) SetTargetItemStringExt(v Element) *PaymentReconciliationAllocationBuilder {
+	b.paymentReconciliationAllocation.TargetItemStringExt = &v
+	return b
+}
+
+// SetTargetItemIdentifier sets TargetItem[x] to its TargetItemIdentifier variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PaymentReconciliationAllocationBuilder) SetTargetItemIdentifier(v Identifier) *PaymentReconciliationAllocationBuilder {
+	b.clearTargetItem()
+	b.paymentReconciliationAllocation.TargetItemIdentifier = &v
+	return b
+}
+
+// SetTargetItemPositiveInt sets TargetItem[x] to its TargetItemPositiveInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PaymentReconciliationAllocationBuilder) SetTargetItemPositiveInt(v uint32) *PaymentReconciliationAllocationBuilder {
+	b.clearTargetItem()
+	b.paymentReconciliationAllocation.TargetItemPositiveInt = &v
+	return b
+}
+
+// SetTargetItemPositiveIntExt sets the TargetItemPositiveIntExt field.
+func (b *PaymentReconciliationAllocationBuilder) SetTargetItemPositiveIntExt(v Element) *PaymentReconciliationAllocationBuilder {
+	b.paymentReconciliationAllocation.TargetItemPositiveIntExt = &v
+	return b
+}
+
+// SetEncounter sets the Encounter field.
+func (b *PaymentReconciliationAllocationBuilder) SetEncounter(v Reference) *PaymentReconciliationAllocationBuilder {
+	b.paymentReconciliationAllocation.Encounter = &v
+	return b
+}
+
+// SetAccount sets the Account field.
+func (b *PaymentReconciliationAllocationBuilder) SetAccount(v Reference) *PaymentReconciliationAllocationBuilder {
+	b.paymentReconciliationAllocation.Account = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *PaymentReconciliationAllocationBuilder) SetType(v CodeableConcept) *PaymentReconciliationAllocationBuilder {
+	b.paymentReconciliationAllocation.Type = &v
+	return b
+}
+
+// SetSubmitter sets the Submitter field.
+func (b *PaymentReconciliationAllocationBuilder) SetSubmitter(v Reference) *PaymentReconciliationAllocationBuilder {
+	b.paymentReconciliationAllocation.Submitter = &v
+	return b
+}
+
+// SetResponse sets the Response field.
+func (b *PaymentReconciliationAllocationBuilder) SetResponse(v Reference) *PaymentReconciliationAllocationBuilder {
+	b.paymentReconciliationAllocation.Response = &v
+	return b
+}
+
+// SetDate sets the Date field.
+func (b *PaymentReconciliationAllocationBuilder) SetDate(v string) *PaymentReconciliationAllocationBuilder {
+	b.paymentReconciliationAllocation.Date = &v
+	return b
+}
+
+// SetResponsible sets the Responsible field.
+func (b *PaymentReconciliationAllocationBuilder) SetResponsible(v Reference) *PaymentReconciliationAllocationBuilder {
+	b.paymentReconciliationAllocation.Responsible = &v
+	return b
+}
+
+// SetPayee sets the Payee field.
+func (b *PaymentReconciliationAllocationBuilder) SetPayee(v Reference) *PaymentReconciliationAllocationBuilder {
+	b.paymentReconciliationAllocation.Payee = &v
+	return b
+}
+
+// SetAmount sets the Amount field.
+func (b *PaymentReconciliationAllocationBuilder) SetAmount(v Money) *PaymentReconciliationAllocationBuilder {
+	b.paymentReconciliationAllocation.Amount = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentReconciliationAllocationBuilder) SetDateExt(v Element) *PaymentReconciliationAllocationBuilder {
+	b.paymentReconciliationAllocation.DateExt = &v
+	return b
+}
+
+// clearTargetItem unsets every variant of TargetItem[x], including the
+// _field companions of the primitive ones.
+func (b *PaymentReconciliationAllocationBuilder) clearTargetItem() {
+	b.paymentReconciliationAllocation.TargetItemString = nil
+	b.paymentReconciliationAllocation.TargetItemIdentifier = nil
+	b.paymentReconciliationAllocation.TargetItemPositiveInt = nil
+	b.paymentReconciliationAllocation.TargetItemPositiveIntExt = nil
+}
+
+// =============================================================================
+// PaymentReconciliationProcessNote - Fluent Builder
+// =============================================================================
+
+// PaymentReconciliationProcessNoteBuilder provides a fluent API for constructing PaymentReconciliationProcessNote values.
+type PaymentReconciliationProcessNoteBuilder struct {
+	paymentReconciliationProcessNote *PaymentReconciliationProcessNote
+}
+
+// NewPaymentReconciliationProcessNoteBuilder creates a new PaymentReconciliationProcessNoteBuilder.
+func NewPaymentReconciliationProcessNoteBuilder() *PaymentReconciliationProcessNoteBuilder {
+	return &PaymentReconciliationProcessNoteBuilder{
+		paymentReconciliationProcessNote: &PaymentReconciliationProcessNote{},
+	}
+}
+
+// Build returns the constructed PaymentReconciliationProcessNote.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PaymentReconciliationProcessNoteBuilder) Build() PaymentReconciliationProcessNote {
+	return *b.paymentReconciliationProcessNote
+}
+
+// SetId sets the Id field.
+func (b *PaymentReconciliationProcessNoteBuilder) SetId(v string) *PaymentReconciliationProcessNoteBuilder {
+	b.paymentReconciliationProcessNote.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PaymentReconciliationProcessNoteBuilder) AddExtension(v Extension) *PaymentReconciliationProcessNoteBuilder {
+	b.paymentReconciliationProcessNote.Extension = append(b.paymentReconciliationProcessNote.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PaymentReconciliationProcessNoteBuilder) AddModifierExtension(v Extension) *PaymentReconciliationProcessNoteBuilder {
+	b.paymentReconciliationProcessNote.ModifierExtension = append(b.paymentReconciliationProcessNote.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *PaymentReconciliationProcessNoteBuilder) SetType(v NoteType) *PaymentReconciliationProcessNoteBuilder {
+	b.paymentReconciliationProcessNote.Type = &v
+	return b
+}
+
+// SetText sets the Text field.
+func (b *PaymentReconciliationProcessNoteBuilder) SetText(v string) *PaymentReconciliationProcessNoteBuilder {
+	b.paymentReconciliationProcessNote.Text = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentReconciliationProcessNoteBuilder) SetTypeExt(v Element) *PaymentReconciliationProcessNoteBuilder {
+	b.paymentReconciliationProcessNote.TypeExt = &v
+	return b
+}
+
+// SetTextExt sets the extensions carried by Text, serialized as
+// "_text".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentReconciliationProcessNoteBuilder) SetTextExt(v Element) *PaymentReconciliationProcessNoteBuilder {
+	b.paymentReconciliationProcessNote.TextExt = &v
+	return b
+}

@@ -815,10 +815,117 @@ func (b *MedicationStatementBuilder) SetAdherence(v MedicationStatementAdherence
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationStatementBuilder) SetImplicitRulesExt(v Element) *MedicationStatementBuilder {
+	b.medicationStatement.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationStatementBuilder) SetLanguageExt(v Element) *MedicationStatementBuilder {
+	b.medicationStatement.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationStatementBuilder) SetStatusExt(v Element) *MedicationStatementBuilder {
+	b.medicationStatement.StatusExt = &v
+	return b
+}
+
+// SetDateAssertedExt sets the extensions carried by DateAsserted, serialized as
+// "_dateAsserted".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationStatementBuilder) SetDateAssertedExt(v Element) *MedicationStatementBuilder {
+	b.medicationStatement.DateAssertedExt = &v
+	return b
+}
+
+// SetRenderedDosageInstructionExt sets the extensions carried by RenderedDosageInstruction, serialized as
+// "_renderedDosageInstruction".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationStatementBuilder) SetRenderedDosageInstructionExt(v Element) *MedicationStatementBuilder {
+	b.medicationStatement.RenderedDosageInstructionExt = &v
+	return b
+}
+
 // clearEffective unsets every variant of Effective[x], including the
 // _field companions of the primitive ones.
 func (b *MedicationStatementBuilder) clearEffective() {
 	b.medicationStatement.EffectiveDateTime = nil
 	b.medicationStatement.EffectivePeriod = nil
 	b.medicationStatement.EffectiveTiming = nil
+}
+
+// =============================================================================
+// MedicationStatementAdherence - Fluent Builder
+// =============================================================================
+
+// MedicationStatementAdherenceBuilder provides a fluent API for constructing MedicationStatementAdherence values.
+type MedicationStatementAdherenceBuilder struct {
+	medicationStatementAdherence *MedicationStatementAdherence
+}
+
+// NewMedicationStatementAdherenceBuilder creates a new MedicationStatementAdherenceBuilder.
+func NewMedicationStatementAdherenceBuilder() *MedicationStatementAdherenceBuilder {
+	return &MedicationStatementAdherenceBuilder{
+		medicationStatementAdherence: &MedicationStatementAdherence{},
+	}
+}
+
+// Build returns the constructed MedicationStatementAdherence.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationStatementAdherenceBuilder) Build() MedicationStatementAdherence {
+	return *b.medicationStatementAdherence
+}
+
+// SetId sets the Id field.
+func (b *MedicationStatementAdherenceBuilder) SetId(v string) *MedicationStatementAdherenceBuilder {
+	b.medicationStatementAdherence.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationStatementAdherenceBuilder) AddExtension(v Extension) *MedicationStatementAdherenceBuilder {
+	b.medicationStatementAdherence.Extension = append(b.medicationStatementAdherence.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationStatementAdherenceBuilder) AddModifierExtension(v Extension) *MedicationStatementAdherenceBuilder {
+	b.medicationStatementAdherence.ModifierExtension = append(b.medicationStatementAdherence.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MedicationStatementAdherenceBuilder) SetCode(v CodeableConcept) *MedicationStatementAdherenceBuilder {
+	b.medicationStatementAdherence.Code = &v
+	return b
+}
+
+// SetReason sets the Reason field.
+func (b *MedicationStatementAdherenceBuilder) SetReason(v CodeableConcept) *MedicationStatementAdherenceBuilder {
+	b.medicationStatementAdherence.Reason = &v
+	return b
 }

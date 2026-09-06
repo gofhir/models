@@ -814,6 +814,46 @@ func (b *DeviceUsageBuilder) AddNote(v Annotation) *DeviceUsageBuilder {
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceUsageBuilder) SetImplicitRulesExt(v Element) *DeviceUsageBuilder {
+	b.deviceUsage.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceUsageBuilder) SetLanguageExt(v Element) *DeviceUsageBuilder {
+	b.deviceUsage.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceUsageBuilder) SetStatusExt(v Element) *DeviceUsageBuilder {
+	b.deviceUsage.StatusExt = &v
+	return b
+}
+
+// SetDateAssertedExt sets the extensions carried by DateAsserted, serialized as
+// "_dateAsserted".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceUsageBuilder) SetDateAssertedExt(v Element) *DeviceUsageBuilder {
+	b.deviceUsage.DateAssertedExt = &v
+	return b
+}
+
 // clearTiming unsets every variant of Timing[x], including the
 // _field companions of the primitive ones.
 func (b *DeviceUsageBuilder) clearTiming() {
@@ -821,4 +861,61 @@ func (b *DeviceUsageBuilder) clearTiming() {
 	b.deviceUsage.TimingPeriod = nil
 	b.deviceUsage.TimingDateTime = nil
 	b.deviceUsage.TimingDateTimeExt = nil
+}
+
+// =============================================================================
+// DeviceUsageAdherence - Fluent Builder
+// =============================================================================
+
+// DeviceUsageAdherenceBuilder provides a fluent API for constructing DeviceUsageAdherence values.
+type DeviceUsageAdherenceBuilder struct {
+	deviceUsageAdherence *DeviceUsageAdherence
+}
+
+// NewDeviceUsageAdherenceBuilder creates a new DeviceUsageAdherenceBuilder.
+func NewDeviceUsageAdherenceBuilder() *DeviceUsageAdherenceBuilder {
+	return &DeviceUsageAdherenceBuilder{
+		deviceUsageAdherence: &DeviceUsageAdherence{},
+	}
+}
+
+// Build returns the constructed DeviceUsageAdherence.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DeviceUsageAdherenceBuilder) Build() DeviceUsageAdherence {
+	return *b.deviceUsageAdherence
+}
+
+// SetId sets the Id field.
+func (b *DeviceUsageAdherenceBuilder) SetId(v string) *DeviceUsageAdherenceBuilder {
+	b.deviceUsageAdherence.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DeviceUsageAdherenceBuilder) AddExtension(v Extension) *DeviceUsageAdherenceBuilder {
+	b.deviceUsageAdherence.Extension = append(b.deviceUsageAdherence.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *DeviceUsageAdherenceBuilder) AddModifierExtension(v Extension) *DeviceUsageAdherenceBuilder {
+	b.deviceUsageAdherence.ModifierExtension = append(b.deviceUsageAdherence.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *DeviceUsageAdherenceBuilder) SetCode(v CodeableConcept) *DeviceUsageAdherenceBuilder {
+	b.deviceUsageAdherence.Code = &v
+	return b
+}
+
+// AddReason adds a Reason element.
+func (b *DeviceUsageAdherenceBuilder) AddReason(v CodeableConcept) *DeviceUsageAdherenceBuilder {
+	b.deviceUsageAdherence.Reason = append(b.deviceUsageAdherence.Reason, v)
+	return b
 }

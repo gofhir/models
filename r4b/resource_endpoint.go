@@ -549,3 +549,89 @@ func (b *EndpointBuilder) AddHeader(v string) *EndpointBuilder {
 	b.endpoint.Header = append(b.endpoint.Header, &v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EndpointBuilder) SetImplicitRulesExt(v Element) *EndpointBuilder {
+	b.endpoint.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EndpointBuilder) SetLanguageExt(v Element) *EndpointBuilder {
+	b.endpoint.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EndpointBuilder) SetStatusExt(v Element) *EndpointBuilder {
+	b.endpoint.StatusExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EndpointBuilder) SetNameExt(v Element) *EndpointBuilder {
+	b.endpoint.NameExt = &v
+	return b
+}
+
+// AddPayloadMimeTypeExt attaches extensions to the PayloadMimeType element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddPayloadMimeType twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *EndpointBuilder) AddPayloadMimeTypeExt(v *Element) *EndpointBuilder {
+	for len(b.endpoint.PayloadMimeTypeExt) < len(b.endpoint.PayloadMimeType)-1 {
+		b.endpoint.PayloadMimeTypeExt = append(b.endpoint.PayloadMimeTypeExt, nil)
+	}
+	b.endpoint.PayloadMimeTypeExt = append(b.endpoint.PayloadMimeTypeExt, v)
+	return b
+}
+
+// SetAddressExt sets the extensions carried by Address, serialized as
+// "_address".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EndpointBuilder) SetAddressExt(v Element) *EndpointBuilder {
+	b.endpoint.AddressExt = &v
+	return b
+}
+
+// AddHeaderExt attaches extensions to the Header element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddHeader twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *EndpointBuilder) AddHeaderExt(v *Element) *EndpointBuilder {
+	for len(b.endpoint.HeaderExt) < len(b.endpoint.Header)-1 {
+		b.endpoint.HeaderExt = append(b.endpoint.HeaderExt, nil)
+	}
+	b.endpoint.HeaderExt = append(b.endpoint.HeaderExt, v)
+	return b
+}

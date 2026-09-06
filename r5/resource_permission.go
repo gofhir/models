@@ -1048,3 +1048,396 @@ func (b *PermissionBuilder) AddRule(v PermissionRule) *PermissionBuilder {
 	b.permission.Rule = append(b.permission.Rule, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PermissionBuilder) SetImplicitRulesExt(v Element) *PermissionBuilder {
+	b.permission.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PermissionBuilder) SetLanguageExt(v Element) *PermissionBuilder {
+	b.permission.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PermissionBuilder) SetStatusExt(v Element) *PermissionBuilder {
+	b.permission.StatusExt = &v
+	return b
+}
+
+// AddDateExt attaches extensions to the Date element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDate twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *PermissionBuilder) AddDateExt(v *Element) *PermissionBuilder {
+	for len(b.permission.DateExt) < len(b.permission.Date)-1 {
+		b.permission.DateExt = append(b.permission.DateExt, nil)
+	}
+	b.permission.DateExt = append(b.permission.DateExt, v)
+	return b
+}
+
+// SetCombiningExt sets the extensions carried by Combining, serialized as
+// "_combining".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PermissionBuilder) SetCombiningExt(v Element) *PermissionBuilder {
+	b.permission.CombiningExt = &v
+	return b
+}
+
+// =============================================================================
+// PermissionJustification - Fluent Builder
+// =============================================================================
+
+// PermissionJustificationBuilder provides a fluent API for constructing PermissionJustification values.
+type PermissionJustificationBuilder struct {
+	permissionJustification *PermissionJustification
+}
+
+// NewPermissionJustificationBuilder creates a new PermissionJustificationBuilder.
+func NewPermissionJustificationBuilder() *PermissionJustificationBuilder {
+	return &PermissionJustificationBuilder{
+		permissionJustification: &PermissionJustification{},
+	}
+}
+
+// Build returns the constructed PermissionJustification.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PermissionJustificationBuilder) Build() PermissionJustification {
+	return *b.permissionJustification
+}
+
+// SetId sets the Id field.
+func (b *PermissionJustificationBuilder) SetId(v string) *PermissionJustificationBuilder {
+	b.permissionJustification.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PermissionJustificationBuilder) AddExtension(v Extension) *PermissionJustificationBuilder {
+	b.permissionJustification.Extension = append(b.permissionJustification.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PermissionJustificationBuilder) AddModifierExtension(v Extension) *PermissionJustificationBuilder {
+	b.permissionJustification.ModifierExtension = append(b.permissionJustification.ModifierExtension, v)
+	return b
+}
+
+// AddBasis adds a Basis element.
+func (b *PermissionJustificationBuilder) AddBasis(v CodeableConcept) *PermissionJustificationBuilder {
+	b.permissionJustification.Basis = append(b.permissionJustification.Basis, v)
+	return b
+}
+
+// AddEvidence adds a Evidence element.
+func (b *PermissionJustificationBuilder) AddEvidence(v Reference) *PermissionJustificationBuilder {
+	b.permissionJustification.Evidence = append(b.permissionJustification.Evidence, v)
+	return b
+}
+
+// =============================================================================
+// PermissionRule - Fluent Builder
+// =============================================================================
+
+// PermissionRuleBuilder provides a fluent API for constructing PermissionRule values.
+type PermissionRuleBuilder struct {
+	permissionRule *PermissionRule
+}
+
+// NewPermissionRuleBuilder creates a new PermissionRuleBuilder.
+func NewPermissionRuleBuilder() *PermissionRuleBuilder {
+	return &PermissionRuleBuilder{
+		permissionRule: &PermissionRule{},
+	}
+}
+
+// Build returns the constructed PermissionRule.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PermissionRuleBuilder) Build() PermissionRule {
+	return *b.permissionRule
+}
+
+// SetId sets the Id field.
+func (b *PermissionRuleBuilder) SetId(v string) *PermissionRuleBuilder {
+	b.permissionRule.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PermissionRuleBuilder) AddExtension(v Extension) *PermissionRuleBuilder {
+	b.permissionRule.Extension = append(b.permissionRule.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PermissionRuleBuilder) AddModifierExtension(v Extension) *PermissionRuleBuilder {
+	b.permissionRule.ModifierExtension = append(b.permissionRule.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *PermissionRuleBuilder) SetType(v ConsentProvisionType) *PermissionRuleBuilder {
+	b.permissionRule.Type = &v
+	return b
+}
+
+// AddData adds a Data element.
+func (b *PermissionRuleBuilder) AddData(v PermissionRuleData) *PermissionRuleBuilder {
+	b.permissionRule.Data = append(b.permissionRule.Data, v)
+	return b
+}
+
+// AddActivity adds a Activity element.
+func (b *PermissionRuleBuilder) AddActivity(v PermissionRuleActivity) *PermissionRuleBuilder {
+	b.permissionRule.Activity = append(b.permissionRule.Activity, v)
+	return b
+}
+
+// AddLimit adds a Limit element.
+func (b *PermissionRuleBuilder) AddLimit(v CodeableConcept) *PermissionRuleBuilder {
+	b.permissionRule.Limit = append(b.permissionRule.Limit, v)
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PermissionRuleBuilder) SetTypeExt(v Element) *PermissionRuleBuilder {
+	b.permissionRule.TypeExt = &v
+	return b
+}
+
+// =============================================================================
+// PermissionRuleActivity - Fluent Builder
+// =============================================================================
+
+// PermissionRuleActivityBuilder provides a fluent API for constructing PermissionRuleActivity values.
+type PermissionRuleActivityBuilder struct {
+	permissionRuleActivity *PermissionRuleActivity
+}
+
+// NewPermissionRuleActivityBuilder creates a new PermissionRuleActivityBuilder.
+func NewPermissionRuleActivityBuilder() *PermissionRuleActivityBuilder {
+	return &PermissionRuleActivityBuilder{
+		permissionRuleActivity: &PermissionRuleActivity{},
+	}
+}
+
+// Build returns the constructed PermissionRuleActivity.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PermissionRuleActivityBuilder) Build() PermissionRuleActivity {
+	return *b.permissionRuleActivity
+}
+
+// SetId sets the Id field.
+func (b *PermissionRuleActivityBuilder) SetId(v string) *PermissionRuleActivityBuilder {
+	b.permissionRuleActivity.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PermissionRuleActivityBuilder) AddExtension(v Extension) *PermissionRuleActivityBuilder {
+	b.permissionRuleActivity.Extension = append(b.permissionRuleActivity.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PermissionRuleActivityBuilder) AddModifierExtension(v Extension) *PermissionRuleActivityBuilder {
+	b.permissionRuleActivity.ModifierExtension = append(b.permissionRuleActivity.ModifierExtension, v)
+	return b
+}
+
+// AddActor adds a Actor element.
+func (b *PermissionRuleActivityBuilder) AddActor(v Reference) *PermissionRuleActivityBuilder {
+	b.permissionRuleActivity.Actor = append(b.permissionRuleActivity.Actor, v)
+	return b
+}
+
+// AddAction adds a Action element.
+func (b *PermissionRuleActivityBuilder) AddAction(v CodeableConcept) *PermissionRuleActivityBuilder {
+	b.permissionRuleActivity.Action = append(b.permissionRuleActivity.Action, v)
+	return b
+}
+
+// AddPurpose adds a Purpose element.
+func (b *PermissionRuleActivityBuilder) AddPurpose(v CodeableConcept) *PermissionRuleActivityBuilder {
+	b.permissionRuleActivity.Purpose = append(b.permissionRuleActivity.Purpose, v)
+	return b
+}
+
+// =============================================================================
+// PermissionRuleData - Fluent Builder
+// =============================================================================
+
+// PermissionRuleDataBuilder provides a fluent API for constructing PermissionRuleData values.
+type PermissionRuleDataBuilder struct {
+	permissionRuleData *PermissionRuleData
+}
+
+// NewPermissionRuleDataBuilder creates a new PermissionRuleDataBuilder.
+func NewPermissionRuleDataBuilder() *PermissionRuleDataBuilder {
+	return &PermissionRuleDataBuilder{
+		permissionRuleData: &PermissionRuleData{},
+	}
+}
+
+// Build returns the constructed PermissionRuleData.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PermissionRuleDataBuilder) Build() PermissionRuleData {
+	return *b.permissionRuleData
+}
+
+// SetId sets the Id field.
+func (b *PermissionRuleDataBuilder) SetId(v string) *PermissionRuleDataBuilder {
+	b.permissionRuleData.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PermissionRuleDataBuilder) AddExtension(v Extension) *PermissionRuleDataBuilder {
+	b.permissionRuleData.Extension = append(b.permissionRuleData.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PermissionRuleDataBuilder) AddModifierExtension(v Extension) *PermissionRuleDataBuilder {
+	b.permissionRuleData.ModifierExtension = append(b.permissionRuleData.ModifierExtension, v)
+	return b
+}
+
+// AddResource adds a Resource element.
+func (b *PermissionRuleDataBuilder) AddResource(v PermissionRuleDataResource) *PermissionRuleDataBuilder {
+	b.permissionRuleData.Resource = append(b.permissionRuleData.Resource, v)
+	return b
+}
+
+// AddSecurity adds a Security element.
+func (b *PermissionRuleDataBuilder) AddSecurity(v Coding) *PermissionRuleDataBuilder {
+	b.permissionRuleData.Security = append(b.permissionRuleData.Security, v)
+	return b
+}
+
+// AddPeriod adds a Period element.
+func (b *PermissionRuleDataBuilder) AddPeriod(v Period) *PermissionRuleDataBuilder {
+	b.permissionRuleData.Period = append(b.permissionRuleData.Period, v)
+	return b
+}
+
+// SetExpression sets the Expression field.
+func (b *PermissionRuleDataBuilder) SetExpression(v Expression) *PermissionRuleDataBuilder {
+	b.permissionRuleData.Expression = &v
+	return b
+}
+
+// =============================================================================
+// PermissionRuleDataResource - Fluent Builder
+// =============================================================================
+
+// PermissionRuleDataResourceBuilder provides a fluent API for constructing PermissionRuleDataResource values.
+type PermissionRuleDataResourceBuilder struct {
+	permissionRuleDataResource *PermissionRuleDataResource
+}
+
+// NewPermissionRuleDataResourceBuilder creates a new PermissionRuleDataResourceBuilder.
+func NewPermissionRuleDataResourceBuilder() *PermissionRuleDataResourceBuilder {
+	return &PermissionRuleDataResourceBuilder{
+		permissionRuleDataResource: &PermissionRuleDataResource{},
+	}
+}
+
+// Build returns the constructed PermissionRuleDataResource.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PermissionRuleDataResourceBuilder) Build() PermissionRuleDataResource {
+	return *b.permissionRuleDataResource
+}
+
+// SetId sets the Id field.
+func (b *PermissionRuleDataResourceBuilder) SetId(v string) *PermissionRuleDataResourceBuilder {
+	b.permissionRuleDataResource.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PermissionRuleDataResourceBuilder) AddExtension(v Extension) *PermissionRuleDataResourceBuilder {
+	b.permissionRuleDataResource.Extension = append(b.permissionRuleDataResource.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PermissionRuleDataResourceBuilder) AddModifierExtension(v Extension) *PermissionRuleDataResourceBuilder {
+	b.permissionRuleDataResource.ModifierExtension = append(b.permissionRuleDataResource.ModifierExtension, v)
+	return b
+}
+
+// SetMeaning sets the Meaning field.
+func (b *PermissionRuleDataResourceBuilder) SetMeaning(v ConsentDataMeaning) *PermissionRuleDataResourceBuilder {
+	b.permissionRuleDataResource.Meaning = &v
+	return b
+}
+
+// SetReference sets the Reference field.
+func (b *PermissionRuleDataResourceBuilder) SetReference(v Reference) *PermissionRuleDataResourceBuilder {
+	b.permissionRuleDataResource.Reference = &v
+	return b
+}
+
+// SetMeaningExt sets the extensions carried by Meaning, serialized as
+// "_meaning".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PermissionRuleDataResourceBuilder) SetMeaningExt(v Element) *PermissionRuleDataResourceBuilder {
+	b.permissionRuleDataResource.MeaningExt = &v
+	return b
+}

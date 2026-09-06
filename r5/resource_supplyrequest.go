@@ -836,10 +836,171 @@ func (b *SupplyRequestBuilder) SetDeliverTo(v Reference) *SupplyRequestBuilder {
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SupplyRequestBuilder) SetImplicitRulesExt(v Element) *SupplyRequestBuilder {
+	b.supplyRequest.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SupplyRequestBuilder) SetLanguageExt(v Element) *SupplyRequestBuilder {
+	b.supplyRequest.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SupplyRequestBuilder) SetStatusExt(v Element) *SupplyRequestBuilder {
+	b.supplyRequest.StatusExt = &v
+	return b
+}
+
+// SetPriorityExt sets the extensions carried by Priority, serialized as
+// "_priority".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SupplyRequestBuilder) SetPriorityExt(v Element) *SupplyRequestBuilder {
+	b.supplyRequest.PriorityExt = &v
+	return b
+}
+
+// SetAuthoredOnExt sets the extensions carried by AuthoredOn, serialized as
+// "_authoredOn".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SupplyRequestBuilder) SetAuthoredOnExt(v Element) *SupplyRequestBuilder {
+	b.supplyRequest.AuthoredOnExt = &v
+	return b
+}
+
 // clearOccurrence unsets every variant of Occurrence[x], including the
 // _field companions of the primitive ones.
 func (b *SupplyRequestBuilder) clearOccurrence() {
 	b.supplyRequest.OccurrenceDateTime = nil
 	b.supplyRequest.OccurrencePeriod = nil
 	b.supplyRequest.OccurrenceTiming = nil
+}
+
+// =============================================================================
+// SupplyRequestParameter - Fluent Builder
+// =============================================================================
+
+// SupplyRequestParameterBuilder provides a fluent API for constructing SupplyRequestParameter values.
+type SupplyRequestParameterBuilder struct {
+	supplyRequestParameter *SupplyRequestParameter
+}
+
+// NewSupplyRequestParameterBuilder creates a new SupplyRequestParameterBuilder.
+func NewSupplyRequestParameterBuilder() *SupplyRequestParameterBuilder {
+	return &SupplyRequestParameterBuilder{
+		supplyRequestParameter: &SupplyRequestParameter{},
+	}
+}
+
+// Build returns the constructed SupplyRequestParameter.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SupplyRequestParameterBuilder) Build() SupplyRequestParameter {
+	return *b.supplyRequestParameter
+}
+
+// SetId sets the Id field.
+func (b *SupplyRequestParameterBuilder) SetId(v string) *SupplyRequestParameterBuilder {
+	b.supplyRequestParameter.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SupplyRequestParameterBuilder) AddExtension(v Extension) *SupplyRequestParameterBuilder {
+	b.supplyRequestParameter.Extension = append(b.supplyRequestParameter.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SupplyRequestParameterBuilder) AddModifierExtension(v Extension) *SupplyRequestParameterBuilder {
+	b.supplyRequestParameter.ModifierExtension = append(b.supplyRequestParameter.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *SupplyRequestParameterBuilder) SetCode(v CodeableConcept) *SupplyRequestParameterBuilder {
+	b.supplyRequestParameter.Code = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SupplyRequestParameterBuilder) SetValueCodeableConcept(v CodeableConcept) *SupplyRequestParameterBuilder {
+	b.clearValue()
+	b.supplyRequestParameter.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SupplyRequestParameterBuilder) SetValueQuantity(v Quantity) *SupplyRequestParameterBuilder {
+	b.clearValue()
+	b.supplyRequestParameter.ValueQuantity = &v
+	return b
+}
+
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SupplyRequestParameterBuilder) SetValueRange(v Range) *SupplyRequestParameterBuilder {
+	b.clearValue()
+	b.supplyRequestParameter.ValueRange = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SupplyRequestParameterBuilder) SetValueBoolean(v bool) *SupplyRequestParameterBuilder {
+	b.clearValue()
+	b.supplyRequestParameter.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *SupplyRequestParameterBuilder) SetValueBooleanExt(v Element) *SupplyRequestParameterBuilder {
+	b.supplyRequestParameter.ValueBooleanExt = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *SupplyRequestParameterBuilder) clearValue() {
+	b.supplyRequestParameter.ValueCodeableConcept = nil
+	b.supplyRequestParameter.ValueQuantity = nil
+	b.supplyRequestParameter.ValueRange = nil
+	b.supplyRequestParameter.ValueBoolean = nil
+	b.supplyRequestParameter.ValueBooleanExt = nil
 }

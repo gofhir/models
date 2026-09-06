@@ -1625,6 +1625,254 @@ func (b *ActivityDefinitionBuilder) AddDynamicValue(v ActivityDefinitionDynamicV
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetImplicitRulesExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetLanguageExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetUrlExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetVersionExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetNameExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetTitleExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.TitleExt = &v
+	return b
+}
+
+// SetSubtitleExt sets the extensions carried by Subtitle, serialized as
+// "_subtitle".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetSubtitleExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.SubtitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetStatusExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetExperimentalExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetDateExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetPublisherExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetDescriptionExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetPurposeExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.PurposeExt = &v
+	return b
+}
+
+// SetUsageExt sets the extensions carried by Usage, serialized as
+// "_usage".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetUsageExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.UsageExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetCopyrightExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.CopyrightExt = &v
+	return b
+}
+
+// SetApprovalDateExt sets the extensions carried by ApprovalDate, serialized as
+// "_approvalDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetApprovalDateExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.ApprovalDateExt = &v
+	return b
+}
+
+// SetLastReviewDateExt sets the extensions carried by LastReviewDate, serialized as
+// "_lastReviewDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetLastReviewDateExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.LastReviewDateExt = &v
+	return b
+}
+
+// AddLibraryExt attaches extensions to the Library element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddLibrary twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ActivityDefinitionBuilder) AddLibraryExt(v *Element) *ActivityDefinitionBuilder {
+	for len(b.activityDefinition.LibraryExt) < len(b.activityDefinition.Library)-1 {
+		b.activityDefinition.LibraryExt = append(b.activityDefinition.LibraryExt, nil)
+	}
+	b.activityDefinition.LibraryExt = append(b.activityDefinition.LibraryExt, v)
+	return b
+}
+
+// SetKindExt sets the extensions carried by Kind, serialized as
+// "_kind".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetKindExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.KindExt = &v
+	return b
+}
+
+// SetProfileExt sets the extensions carried by Profile, serialized as
+// "_profile".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetProfileExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.ProfileExt = &v
+	return b
+}
+
+// SetIntentExt sets the extensions carried by Intent, serialized as
+// "_intent".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetIntentExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.IntentExt = &v
+	return b
+}
+
+// SetPriorityExt sets the extensions carried by Priority, serialized as
+// "_priority".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetPriorityExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.PriorityExt = &v
+	return b
+}
+
+// SetDoNotPerformExt sets the extensions carried by DoNotPerform, serialized as
+// "_doNotPerform".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetDoNotPerformExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.DoNotPerformExt = &v
+	return b
+}
+
+// SetTransformExt sets the extensions carried by Transform, serialized as
+// "_transform".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionBuilder) SetTransformExt(v Element) *ActivityDefinitionBuilder {
+	b.activityDefinition.TransformExt = &v
+	return b
+}
+
 // clearSubject unsets every variant of Subject[x], including the
 // _field companions of the primitive ones.
 func (b *ActivityDefinitionBuilder) clearSubject() {
@@ -1649,4 +1897,138 @@ func (b *ActivityDefinitionBuilder) clearTiming() {
 func (b *ActivityDefinitionBuilder) clearProduct() {
 	b.activityDefinition.ProductReference = nil
 	b.activityDefinition.ProductCodeableConcept = nil
+}
+
+// =============================================================================
+// ActivityDefinitionDynamicValue - Fluent Builder
+// =============================================================================
+
+// ActivityDefinitionDynamicValueBuilder provides a fluent API for constructing ActivityDefinitionDynamicValue values.
+type ActivityDefinitionDynamicValueBuilder struct {
+	activityDefinitionDynamicValue *ActivityDefinitionDynamicValue
+}
+
+// NewActivityDefinitionDynamicValueBuilder creates a new ActivityDefinitionDynamicValueBuilder.
+func NewActivityDefinitionDynamicValueBuilder() *ActivityDefinitionDynamicValueBuilder {
+	return &ActivityDefinitionDynamicValueBuilder{
+		activityDefinitionDynamicValue: &ActivityDefinitionDynamicValue{},
+	}
+}
+
+// Build returns the constructed ActivityDefinitionDynamicValue.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ActivityDefinitionDynamicValueBuilder) Build() ActivityDefinitionDynamicValue {
+	return *b.activityDefinitionDynamicValue
+}
+
+// SetId sets the Id field.
+func (b *ActivityDefinitionDynamicValueBuilder) SetId(v string) *ActivityDefinitionDynamicValueBuilder {
+	b.activityDefinitionDynamicValue.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ActivityDefinitionDynamicValueBuilder) AddExtension(v Extension) *ActivityDefinitionDynamicValueBuilder {
+	b.activityDefinitionDynamicValue.Extension = append(b.activityDefinitionDynamicValue.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ActivityDefinitionDynamicValueBuilder) AddModifierExtension(v Extension) *ActivityDefinitionDynamicValueBuilder {
+	b.activityDefinitionDynamicValue.ModifierExtension = append(b.activityDefinitionDynamicValue.ModifierExtension, v)
+	return b
+}
+
+// SetPath sets the Path field.
+func (b *ActivityDefinitionDynamicValueBuilder) SetPath(v string) *ActivityDefinitionDynamicValueBuilder {
+	b.activityDefinitionDynamicValue.Path = &v
+	return b
+}
+
+// SetExpression sets the Expression field.
+func (b *ActivityDefinitionDynamicValueBuilder) SetExpression(v Expression) *ActivityDefinitionDynamicValueBuilder {
+	b.activityDefinitionDynamicValue.Expression = &v
+	return b
+}
+
+// SetPathExt sets the extensions carried by Path, serialized as
+// "_path".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionDynamicValueBuilder) SetPathExt(v Element) *ActivityDefinitionDynamicValueBuilder {
+	b.activityDefinitionDynamicValue.PathExt = &v
+	return b
+}
+
+// =============================================================================
+// ActivityDefinitionParticipant - Fluent Builder
+// =============================================================================
+
+// ActivityDefinitionParticipantBuilder provides a fluent API for constructing ActivityDefinitionParticipant values.
+type ActivityDefinitionParticipantBuilder struct {
+	activityDefinitionParticipant *ActivityDefinitionParticipant
+}
+
+// NewActivityDefinitionParticipantBuilder creates a new ActivityDefinitionParticipantBuilder.
+func NewActivityDefinitionParticipantBuilder() *ActivityDefinitionParticipantBuilder {
+	return &ActivityDefinitionParticipantBuilder{
+		activityDefinitionParticipant: &ActivityDefinitionParticipant{},
+	}
+}
+
+// Build returns the constructed ActivityDefinitionParticipant.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ActivityDefinitionParticipantBuilder) Build() ActivityDefinitionParticipant {
+	return *b.activityDefinitionParticipant
+}
+
+// SetId sets the Id field.
+func (b *ActivityDefinitionParticipantBuilder) SetId(v string) *ActivityDefinitionParticipantBuilder {
+	b.activityDefinitionParticipant.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ActivityDefinitionParticipantBuilder) AddExtension(v Extension) *ActivityDefinitionParticipantBuilder {
+	b.activityDefinitionParticipant.Extension = append(b.activityDefinitionParticipant.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ActivityDefinitionParticipantBuilder) AddModifierExtension(v Extension) *ActivityDefinitionParticipantBuilder {
+	b.activityDefinitionParticipant.ModifierExtension = append(b.activityDefinitionParticipant.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ActivityDefinitionParticipantBuilder) SetType(v ActionParticipantType) *ActivityDefinitionParticipantBuilder {
+	b.activityDefinitionParticipant.Type = &v
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *ActivityDefinitionParticipantBuilder) SetRole(v CodeableConcept) *ActivityDefinitionParticipantBuilder {
+	b.activityDefinitionParticipant.Role = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActivityDefinitionParticipantBuilder) SetTypeExt(v Element) *ActivityDefinitionParticipantBuilder {
+	b.activityDefinitionParticipant.TypeExt = &v
+	return b
 }

@@ -680,6 +680,46 @@ func (b *GuidanceResponseBuilder) AddDataRequirement(v DataRequirement) *Guidanc
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GuidanceResponseBuilder) SetImplicitRulesExt(v Element) *GuidanceResponseBuilder {
+	b.guidanceResponse.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GuidanceResponseBuilder) SetLanguageExt(v Element) *GuidanceResponseBuilder {
+	b.guidanceResponse.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GuidanceResponseBuilder) SetStatusExt(v Element) *GuidanceResponseBuilder {
+	b.guidanceResponse.StatusExt = &v
+	return b
+}
+
+// SetOccurrenceDateTimeExt sets the extensions carried by OccurrenceDateTime, serialized as
+// "_occurrenceDateTime".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GuidanceResponseBuilder) SetOccurrenceDateTimeExt(v Element) *GuidanceResponseBuilder {
+	b.guidanceResponse.OccurrenceDateTimeExt = &v
+	return b
+}
+
 // clearModule unsets every variant of Module[x], including the
 // _field companions of the primitive ones.
 func (b *GuidanceResponseBuilder) clearModule() {

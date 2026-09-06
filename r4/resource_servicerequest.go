@@ -1120,6 +1120,122 @@ func (b *ServiceRequestBuilder) AddRelevantHistory(v Reference) *ServiceRequestB
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ServiceRequestBuilder) SetImplicitRulesExt(v Element) *ServiceRequestBuilder {
+	b.serviceRequest.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ServiceRequestBuilder) SetLanguageExt(v Element) *ServiceRequestBuilder {
+	b.serviceRequest.LanguageExt = &v
+	return b
+}
+
+// AddInstantiatesCanonicalExt attaches extensions to the InstantiatesCanonical element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesCanonical twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ServiceRequestBuilder) AddInstantiatesCanonicalExt(v *Element) *ServiceRequestBuilder {
+	for len(b.serviceRequest.InstantiatesCanonicalExt) < len(b.serviceRequest.InstantiatesCanonical)-1 {
+		b.serviceRequest.InstantiatesCanonicalExt = append(b.serviceRequest.InstantiatesCanonicalExt, nil)
+	}
+	b.serviceRequest.InstantiatesCanonicalExt = append(b.serviceRequest.InstantiatesCanonicalExt, v)
+	return b
+}
+
+// AddInstantiatesUriExt attaches extensions to the InstantiatesUri element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesUri twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ServiceRequestBuilder) AddInstantiatesUriExt(v *Element) *ServiceRequestBuilder {
+	for len(b.serviceRequest.InstantiatesUriExt) < len(b.serviceRequest.InstantiatesUri)-1 {
+		b.serviceRequest.InstantiatesUriExt = append(b.serviceRequest.InstantiatesUriExt, nil)
+	}
+	b.serviceRequest.InstantiatesUriExt = append(b.serviceRequest.InstantiatesUriExt, v)
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ServiceRequestBuilder) SetStatusExt(v Element) *ServiceRequestBuilder {
+	b.serviceRequest.StatusExt = &v
+	return b
+}
+
+// SetIntentExt sets the extensions carried by Intent, serialized as
+// "_intent".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ServiceRequestBuilder) SetIntentExt(v Element) *ServiceRequestBuilder {
+	b.serviceRequest.IntentExt = &v
+	return b
+}
+
+// SetPriorityExt sets the extensions carried by Priority, serialized as
+// "_priority".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ServiceRequestBuilder) SetPriorityExt(v Element) *ServiceRequestBuilder {
+	b.serviceRequest.PriorityExt = &v
+	return b
+}
+
+// SetDoNotPerformExt sets the extensions carried by DoNotPerform, serialized as
+// "_doNotPerform".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ServiceRequestBuilder) SetDoNotPerformExt(v Element) *ServiceRequestBuilder {
+	b.serviceRequest.DoNotPerformExt = &v
+	return b
+}
+
+// SetAuthoredOnExt sets the extensions carried by AuthoredOn, serialized as
+// "_authoredOn".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ServiceRequestBuilder) SetAuthoredOnExt(v Element) *ServiceRequestBuilder {
+	b.serviceRequest.AuthoredOnExt = &v
+	return b
+}
+
+// SetPatientInstructionExt sets the extensions carried by PatientInstruction, serialized as
+// "_patientInstruction".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ServiceRequestBuilder) SetPatientInstructionExt(v Element) *ServiceRequestBuilder {
+	b.serviceRequest.PatientInstructionExt = &v
+	return b
+}
+
 // clearQuantity unsets every variant of Quantity[x], including the
 // _field companions of the primitive ones.
 func (b *ServiceRequestBuilder) clearQuantity() {

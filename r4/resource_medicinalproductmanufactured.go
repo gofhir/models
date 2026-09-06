@@ -458,3 +458,23 @@ func (b *MedicinalProductManufacturedBuilder) AddOtherCharacteristics(v Codeable
 	b.medicinalProductManufactured.OtherCharacteristics = append(b.medicinalProductManufactured.OtherCharacteristics, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductManufacturedBuilder) SetImplicitRulesExt(v Element) *MedicinalProductManufacturedBuilder {
+	b.medicinalProductManufactured.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductManufacturedBuilder) SetLanguageExt(v Element) *MedicinalProductManufacturedBuilder {
+	b.medicinalProductManufactured.LanguageExt = &v
+	return b
+}

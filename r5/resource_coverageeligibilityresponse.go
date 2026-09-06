@@ -1465,9 +1465,679 @@ func (b *CoverageEligibilityResponseBuilder) AddError(v CoverageEligibilityRespo
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityResponseBuilder) SetImplicitRulesExt(v Element) *CoverageEligibilityResponseBuilder {
+	b.coverageEligibilityResponse.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityResponseBuilder) SetLanguageExt(v Element) *CoverageEligibilityResponseBuilder {
+	b.coverageEligibilityResponse.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityResponseBuilder) SetStatusExt(v Element) *CoverageEligibilityResponseBuilder {
+	b.coverageEligibilityResponse.StatusExt = &v
+	return b
+}
+
+// AddPurposeExt attaches extensions to the Purpose element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddPurpose twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *CoverageEligibilityResponseBuilder) AddPurposeExt(v *Element) *CoverageEligibilityResponseBuilder {
+	for len(b.coverageEligibilityResponse.PurposeExt) < len(b.coverageEligibilityResponse.Purpose)-1 {
+		b.coverageEligibilityResponse.PurposeExt = append(b.coverageEligibilityResponse.PurposeExt, nil)
+	}
+	b.coverageEligibilityResponse.PurposeExt = append(b.coverageEligibilityResponse.PurposeExt, v)
+	return b
+}
+
+// SetCreatedExt sets the extensions carried by Created, serialized as
+// "_created".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityResponseBuilder) SetCreatedExt(v Element) *CoverageEligibilityResponseBuilder {
+	b.coverageEligibilityResponse.CreatedExt = &v
+	return b
+}
+
+// SetOutcomeExt sets the extensions carried by Outcome, serialized as
+// "_outcome".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityResponseBuilder) SetOutcomeExt(v Element) *CoverageEligibilityResponseBuilder {
+	b.coverageEligibilityResponse.OutcomeExt = &v
+	return b
+}
+
+// SetDispositionExt sets the extensions carried by Disposition, serialized as
+// "_disposition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityResponseBuilder) SetDispositionExt(v Element) *CoverageEligibilityResponseBuilder {
+	b.coverageEligibilityResponse.DispositionExt = &v
+	return b
+}
+
+// SetPreAuthRefExt sets the extensions carried by PreAuthRef, serialized as
+// "_preAuthRef".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityResponseBuilder) SetPreAuthRefExt(v Element) *CoverageEligibilityResponseBuilder {
+	b.coverageEligibilityResponse.PreAuthRefExt = &v
+	return b
+}
+
 // clearServiced unsets every variant of Serviced[x], including the
 // _field companions of the primitive ones.
 func (b *CoverageEligibilityResponseBuilder) clearServiced() {
 	b.coverageEligibilityResponse.ServicedDate = nil
 	b.coverageEligibilityResponse.ServicedPeriod = nil
+}
+
+// =============================================================================
+// CoverageEligibilityResponseError - Fluent Builder
+// =============================================================================
+
+// CoverageEligibilityResponseErrorBuilder provides a fluent API for constructing CoverageEligibilityResponseError values.
+type CoverageEligibilityResponseErrorBuilder struct {
+	coverageEligibilityResponseError *CoverageEligibilityResponseError
+}
+
+// NewCoverageEligibilityResponseErrorBuilder creates a new CoverageEligibilityResponseErrorBuilder.
+func NewCoverageEligibilityResponseErrorBuilder() *CoverageEligibilityResponseErrorBuilder {
+	return &CoverageEligibilityResponseErrorBuilder{
+		coverageEligibilityResponseError: &CoverageEligibilityResponseError{},
+	}
+}
+
+// Build returns the constructed CoverageEligibilityResponseError.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CoverageEligibilityResponseErrorBuilder) Build() CoverageEligibilityResponseError {
+	return *b.coverageEligibilityResponseError
+}
+
+// SetId sets the Id field.
+func (b *CoverageEligibilityResponseErrorBuilder) SetId(v string) *CoverageEligibilityResponseErrorBuilder {
+	b.coverageEligibilityResponseError.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CoverageEligibilityResponseErrorBuilder) AddExtension(v Extension) *CoverageEligibilityResponseErrorBuilder {
+	b.coverageEligibilityResponseError.Extension = append(b.coverageEligibilityResponseError.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CoverageEligibilityResponseErrorBuilder) AddModifierExtension(v Extension) *CoverageEligibilityResponseErrorBuilder {
+	b.coverageEligibilityResponseError.ModifierExtension = append(b.coverageEligibilityResponseError.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *CoverageEligibilityResponseErrorBuilder) SetCode(v CodeableConcept) *CoverageEligibilityResponseErrorBuilder {
+	b.coverageEligibilityResponseError.Code = &v
+	return b
+}
+
+// AddExpression adds a Expression element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *CoverageEligibilityResponseErrorBuilder) AddExpression(v string) *CoverageEligibilityResponseErrorBuilder {
+	b.coverageEligibilityResponseError.Expression = append(b.coverageEligibilityResponseError.Expression, &v)
+	return b
+}
+
+// AddExpressionExt attaches extensions to the Expression element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddExpression twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *CoverageEligibilityResponseErrorBuilder) AddExpressionExt(v *Element) *CoverageEligibilityResponseErrorBuilder {
+	for len(b.coverageEligibilityResponseError.ExpressionExt) < len(b.coverageEligibilityResponseError.Expression)-1 {
+		b.coverageEligibilityResponseError.ExpressionExt = append(b.coverageEligibilityResponseError.ExpressionExt, nil)
+	}
+	b.coverageEligibilityResponseError.ExpressionExt = append(b.coverageEligibilityResponseError.ExpressionExt, v)
+	return b
+}
+
+// =============================================================================
+// CoverageEligibilityResponseEvent - Fluent Builder
+// =============================================================================
+
+// CoverageEligibilityResponseEventBuilder provides a fluent API for constructing CoverageEligibilityResponseEvent values.
+type CoverageEligibilityResponseEventBuilder struct {
+	coverageEligibilityResponseEvent *CoverageEligibilityResponseEvent
+}
+
+// NewCoverageEligibilityResponseEventBuilder creates a new CoverageEligibilityResponseEventBuilder.
+func NewCoverageEligibilityResponseEventBuilder() *CoverageEligibilityResponseEventBuilder {
+	return &CoverageEligibilityResponseEventBuilder{
+		coverageEligibilityResponseEvent: &CoverageEligibilityResponseEvent{},
+	}
+}
+
+// Build returns the constructed CoverageEligibilityResponseEvent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CoverageEligibilityResponseEventBuilder) Build() CoverageEligibilityResponseEvent {
+	return *b.coverageEligibilityResponseEvent
+}
+
+// SetId sets the Id field.
+func (b *CoverageEligibilityResponseEventBuilder) SetId(v string) *CoverageEligibilityResponseEventBuilder {
+	b.coverageEligibilityResponseEvent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CoverageEligibilityResponseEventBuilder) AddExtension(v Extension) *CoverageEligibilityResponseEventBuilder {
+	b.coverageEligibilityResponseEvent.Extension = append(b.coverageEligibilityResponseEvent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CoverageEligibilityResponseEventBuilder) AddModifierExtension(v Extension) *CoverageEligibilityResponseEventBuilder {
+	b.coverageEligibilityResponseEvent.ModifierExtension = append(b.coverageEligibilityResponseEvent.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *CoverageEligibilityResponseEventBuilder) SetType(v CodeableConcept) *CoverageEligibilityResponseEventBuilder {
+	b.coverageEligibilityResponseEvent.Type = &v
+	return b
+}
+
+// SetWhenDateTime sets When[x] to its WhenDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CoverageEligibilityResponseEventBuilder) SetWhenDateTime(v string) *CoverageEligibilityResponseEventBuilder {
+	b.clearWhen()
+	b.coverageEligibilityResponseEvent.WhenDateTime = &v
+	return b
+}
+
+// SetWhenDateTimeExt sets the WhenDateTimeExt field.
+func (b *CoverageEligibilityResponseEventBuilder) SetWhenDateTimeExt(v Element) *CoverageEligibilityResponseEventBuilder {
+	b.coverageEligibilityResponseEvent.WhenDateTimeExt = &v
+	return b
+}
+
+// SetWhenPeriod sets When[x] to its WhenPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CoverageEligibilityResponseEventBuilder) SetWhenPeriod(v Period) *CoverageEligibilityResponseEventBuilder {
+	b.clearWhen()
+	b.coverageEligibilityResponseEvent.WhenPeriod = &v
+	return b
+}
+
+// clearWhen unsets every variant of When[x], including the
+// _field companions of the primitive ones.
+func (b *CoverageEligibilityResponseEventBuilder) clearWhen() {
+	b.coverageEligibilityResponseEvent.WhenDateTime = nil
+	b.coverageEligibilityResponseEvent.WhenPeriod = nil
+}
+
+// =============================================================================
+// CoverageEligibilityResponseInsurance - Fluent Builder
+// =============================================================================
+
+// CoverageEligibilityResponseInsuranceBuilder provides a fluent API for constructing CoverageEligibilityResponseInsurance values.
+type CoverageEligibilityResponseInsuranceBuilder struct {
+	coverageEligibilityResponseInsurance *CoverageEligibilityResponseInsurance
+}
+
+// NewCoverageEligibilityResponseInsuranceBuilder creates a new CoverageEligibilityResponseInsuranceBuilder.
+func NewCoverageEligibilityResponseInsuranceBuilder() *CoverageEligibilityResponseInsuranceBuilder {
+	return &CoverageEligibilityResponseInsuranceBuilder{
+		coverageEligibilityResponseInsurance: &CoverageEligibilityResponseInsurance{},
+	}
+}
+
+// Build returns the constructed CoverageEligibilityResponseInsurance.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CoverageEligibilityResponseInsuranceBuilder) Build() CoverageEligibilityResponseInsurance {
+	return *b.coverageEligibilityResponseInsurance
+}
+
+// SetId sets the Id field.
+func (b *CoverageEligibilityResponseInsuranceBuilder) SetId(v string) *CoverageEligibilityResponseInsuranceBuilder {
+	b.coverageEligibilityResponseInsurance.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CoverageEligibilityResponseInsuranceBuilder) AddExtension(v Extension) *CoverageEligibilityResponseInsuranceBuilder {
+	b.coverageEligibilityResponseInsurance.Extension = append(b.coverageEligibilityResponseInsurance.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CoverageEligibilityResponseInsuranceBuilder) AddModifierExtension(v Extension) *CoverageEligibilityResponseInsuranceBuilder {
+	b.coverageEligibilityResponseInsurance.ModifierExtension = append(b.coverageEligibilityResponseInsurance.ModifierExtension, v)
+	return b
+}
+
+// SetCoverage sets the Coverage field.
+func (b *CoverageEligibilityResponseInsuranceBuilder) SetCoverage(v Reference) *CoverageEligibilityResponseInsuranceBuilder {
+	b.coverageEligibilityResponseInsurance.Coverage = &v
+	return b
+}
+
+// SetInforce sets the Inforce field.
+func (b *CoverageEligibilityResponseInsuranceBuilder) SetInforce(v bool) *CoverageEligibilityResponseInsuranceBuilder {
+	b.coverageEligibilityResponseInsurance.Inforce = &v
+	return b
+}
+
+// SetBenefitPeriod sets the BenefitPeriod field.
+func (b *CoverageEligibilityResponseInsuranceBuilder) SetBenefitPeriod(v Period) *CoverageEligibilityResponseInsuranceBuilder {
+	b.coverageEligibilityResponseInsurance.BenefitPeriod = &v
+	return b
+}
+
+// AddItem adds a Item element.
+func (b *CoverageEligibilityResponseInsuranceBuilder) AddItem(v CoverageEligibilityResponseInsuranceItem) *CoverageEligibilityResponseInsuranceBuilder {
+	b.coverageEligibilityResponseInsurance.Item = append(b.coverageEligibilityResponseInsurance.Item, v)
+	return b
+}
+
+// SetInforceExt sets the extensions carried by Inforce, serialized as
+// "_inforce".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityResponseInsuranceBuilder) SetInforceExt(v Element) *CoverageEligibilityResponseInsuranceBuilder {
+	b.coverageEligibilityResponseInsurance.InforceExt = &v
+	return b
+}
+
+// =============================================================================
+// CoverageEligibilityResponseInsuranceItem - Fluent Builder
+// =============================================================================
+
+// CoverageEligibilityResponseInsuranceItemBuilder provides a fluent API for constructing CoverageEligibilityResponseInsuranceItem values.
+type CoverageEligibilityResponseInsuranceItemBuilder struct {
+	coverageEligibilityResponseInsuranceItem *CoverageEligibilityResponseInsuranceItem
+}
+
+// NewCoverageEligibilityResponseInsuranceItemBuilder creates a new CoverageEligibilityResponseInsuranceItemBuilder.
+func NewCoverageEligibilityResponseInsuranceItemBuilder() *CoverageEligibilityResponseInsuranceItemBuilder {
+	return &CoverageEligibilityResponseInsuranceItemBuilder{
+		coverageEligibilityResponseInsuranceItem: &CoverageEligibilityResponseInsuranceItem{},
+	}
+}
+
+// Build returns the constructed CoverageEligibilityResponseInsuranceItem.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) Build() CoverageEligibilityResponseInsuranceItem {
+	return *b.coverageEligibilityResponseInsuranceItem
+}
+
+// SetId sets the Id field.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) SetId(v string) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) AddExtension(v Extension) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.Extension = append(b.coverageEligibilityResponseInsuranceItem.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) AddModifierExtension(v Extension) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.ModifierExtension = append(b.coverageEligibilityResponseInsuranceItem.ModifierExtension, v)
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) SetCategory(v CodeableConcept) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.Category = &v
+	return b
+}
+
+// SetProductOrService sets the ProductOrService field.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) SetProductOrService(v CodeableConcept) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.ProductOrService = &v
+	return b
+}
+
+// AddModifier adds a Modifier element.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) AddModifier(v CodeableConcept) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.Modifier = append(b.coverageEligibilityResponseInsuranceItem.Modifier, v)
+	return b
+}
+
+// SetProvider sets the Provider field.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) SetProvider(v Reference) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.Provider = &v
+	return b
+}
+
+// SetExcluded sets the Excluded field.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) SetExcluded(v bool) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.Excluded = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) SetName(v string) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.Name = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) SetDescription(v string) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.Description = &v
+	return b
+}
+
+// SetNetwork sets the Network field.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) SetNetwork(v CodeableConcept) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.Network = &v
+	return b
+}
+
+// SetUnit sets the Unit field.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) SetUnit(v CodeableConcept) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.Unit = &v
+	return b
+}
+
+// SetTerm sets the Term field.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) SetTerm(v CodeableConcept) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.Term = &v
+	return b
+}
+
+// AddBenefit adds a Benefit element.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) AddBenefit(v CoverageEligibilityResponseInsuranceItemBenefit) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.Benefit = append(b.coverageEligibilityResponseInsuranceItem.Benefit, v)
+	return b
+}
+
+// SetAuthorizationRequired sets the AuthorizationRequired field.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) SetAuthorizationRequired(v bool) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.AuthorizationRequired = &v
+	return b
+}
+
+// AddAuthorizationSupporting adds a AuthorizationSupporting element.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) AddAuthorizationSupporting(v CodeableConcept) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.AuthorizationSupporting = append(b.coverageEligibilityResponseInsuranceItem.AuthorizationSupporting, v)
+	return b
+}
+
+// SetAuthorizationUrl sets the AuthorizationUrl field.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) SetAuthorizationUrl(v string) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.AuthorizationUrl = &v
+	return b
+}
+
+// SetExcludedExt sets the extensions carried by Excluded, serialized as
+// "_excluded".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) SetExcludedExt(v Element) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.ExcludedExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) SetNameExt(v Element) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.NameExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) SetDescriptionExt(v Element) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.DescriptionExt = &v
+	return b
+}
+
+// SetAuthorizationRequiredExt sets the extensions carried by AuthorizationRequired, serialized as
+// "_authorizationRequired".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) SetAuthorizationRequiredExt(v Element) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.AuthorizationRequiredExt = &v
+	return b
+}
+
+// SetAuthorizationUrlExt sets the extensions carried by AuthorizationUrl, serialized as
+// "_authorizationUrl".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityResponseInsuranceItemBuilder) SetAuthorizationUrlExt(v Element) *CoverageEligibilityResponseInsuranceItemBuilder {
+	b.coverageEligibilityResponseInsuranceItem.AuthorizationUrlExt = &v
+	return b
+}
+
+// =============================================================================
+// CoverageEligibilityResponseInsuranceItemBenefit - Fluent Builder
+// =============================================================================
+
+// CoverageEligibilityResponseInsuranceItemBenefitBuilder provides a fluent API for constructing CoverageEligibilityResponseInsuranceItemBenefit values.
+type CoverageEligibilityResponseInsuranceItemBenefitBuilder struct {
+	coverageEligibilityResponseInsuranceItemBenefit *CoverageEligibilityResponseInsuranceItemBenefit
+}
+
+// NewCoverageEligibilityResponseInsuranceItemBenefitBuilder creates a new CoverageEligibilityResponseInsuranceItemBenefitBuilder.
+func NewCoverageEligibilityResponseInsuranceItemBenefitBuilder() *CoverageEligibilityResponseInsuranceItemBenefitBuilder {
+	return &CoverageEligibilityResponseInsuranceItemBenefitBuilder{
+		coverageEligibilityResponseInsuranceItemBenefit: &CoverageEligibilityResponseInsuranceItemBenefit{},
+	}
+}
+
+// Build returns the constructed CoverageEligibilityResponseInsuranceItemBenefit.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CoverageEligibilityResponseInsuranceItemBenefitBuilder) Build() CoverageEligibilityResponseInsuranceItemBenefit {
+	return *b.coverageEligibilityResponseInsuranceItemBenefit
+}
+
+// SetId sets the Id field.
+func (b *CoverageEligibilityResponseInsuranceItemBenefitBuilder) SetId(v string) *CoverageEligibilityResponseInsuranceItemBenefitBuilder {
+	b.coverageEligibilityResponseInsuranceItemBenefit.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CoverageEligibilityResponseInsuranceItemBenefitBuilder) AddExtension(v Extension) *CoverageEligibilityResponseInsuranceItemBenefitBuilder {
+	b.coverageEligibilityResponseInsuranceItemBenefit.Extension = append(b.coverageEligibilityResponseInsuranceItemBenefit.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CoverageEligibilityResponseInsuranceItemBenefitBuilder) AddModifierExtension(v Extension) *CoverageEligibilityResponseInsuranceItemBenefitBuilder {
+	b.coverageEligibilityResponseInsuranceItemBenefit.ModifierExtension = append(b.coverageEligibilityResponseInsuranceItemBenefit.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *CoverageEligibilityResponseInsuranceItemBenefitBuilder) SetType(v CodeableConcept) *CoverageEligibilityResponseInsuranceItemBenefitBuilder {
+	b.coverageEligibilityResponseInsuranceItemBenefit.Type = &v
+	return b
+}
+
+// SetAllowedUnsignedInt sets Allowed[x] to its AllowedUnsignedInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CoverageEligibilityResponseInsuranceItemBenefitBuilder) SetAllowedUnsignedInt(v uint32) *CoverageEligibilityResponseInsuranceItemBenefitBuilder {
+	b.clearAllowed()
+	b.coverageEligibilityResponseInsuranceItemBenefit.AllowedUnsignedInt = &v
+	return b
+}
+
+// SetAllowedUnsignedIntExt sets the AllowedUnsignedIntExt field.
+func (b *CoverageEligibilityResponseInsuranceItemBenefitBuilder) SetAllowedUnsignedIntExt(v Element) *CoverageEligibilityResponseInsuranceItemBenefitBuilder {
+	b.coverageEligibilityResponseInsuranceItemBenefit.AllowedUnsignedIntExt = &v
+	return b
+}
+
+// SetAllowedString sets Allowed[x] to its AllowedString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CoverageEligibilityResponseInsuranceItemBenefitBuilder) SetAllowedString(v string) *CoverageEligibilityResponseInsuranceItemBenefitBuilder {
+	b.clearAllowed()
+	b.coverageEligibilityResponseInsuranceItemBenefit.AllowedString = &v
+	return b
+}
+
+// SetAllowedStringExt sets the AllowedStringExt field.
+func (b *CoverageEligibilityResponseInsuranceItemBenefitBuilder) SetAllowedStringExt(v Element) *CoverageEligibilityResponseInsuranceItemBenefitBuilder {
+	b.coverageEligibilityResponseInsuranceItemBenefit.AllowedStringExt = &v
+	return b
+}
+
+// SetAllowedMoney sets Allowed[x] to its AllowedMoney variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CoverageEligibilityResponseInsuranceItemBenefitBuilder) SetAllowedMoney(v Money) *CoverageEligibilityResponseInsuranceItemBenefitBuilder {
+	b.clearAllowed()
+	b.coverageEligibilityResponseInsuranceItemBenefit.AllowedMoney = &v
+	return b
+}
+
+// SetUsedUnsignedInt sets Used[x] to its UsedUnsignedInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CoverageEligibilityResponseInsuranceItemBenefitBuilder) SetUsedUnsignedInt(v uint32) *CoverageEligibilityResponseInsuranceItemBenefitBuilder {
+	b.clearUsed()
+	b.coverageEligibilityResponseInsuranceItemBenefit.UsedUnsignedInt = &v
+	return b
+}
+
+// SetUsedUnsignedIntExt sets the UsedUnsignedIntExt field.
+func (b *CoverageEligibilityResponseInsuranceItemBenefitBuilder) SetUsedUnsignedIntExt(v Element) *CoverageEligibilityResponseInsuranceItemBenefitBuilder {
+	b.coverageEligibilityResponseInsuranceItemBenefit.UsedUnsignedIntExt = &v
+	return b
+}
+
+// SetUsedString sets Used[x] to its UsedString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CoverageEligibilityResponseInsuranceItemBenefitBuilder) SetUsedString(v string) *CoverageEligibilityResponseInsuranceItemBenefitBuilder {
+	b.clearUsed()
+	b.coverageEligibilityResponseInsuranceItemBenefit.UsedString = &v
+	return b
+}
+
+// SetUsedStringExt sets the UsedStringExt field.
+func (b *CoverageEligibilityResponseInsuranceItemBenefitBuilder) SetUsedStringExt(v Element) *CoverageEligibilityResponseInsuranceItemBenefitBuilder {
+	b.coverageEligibilityResponseInsuranceItemBenefit.UsedStringExt = &v
+	return b
+}
+
+// SetUsedMoney sets Used[x] to its UsedMoney variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CoverageEligibilityResponseInsuranceItemBenefitBuilder) SetUsedMoney(v Money) *CoverageEligibilityResponseInsuranceItemBenefitBuilder {
+	b.clearUsed()
+	b.coverageEligibilityResponseInsuranceItemBenefit.UsedMoney = &v
+	return b
+}
+
+// clearAllowed unsets every variant of Allowed[x], including the
+// _field companions of the primitive ones.
+func (b *CoverageEligibilityResponseInsuranceItemBenefitBuilder) clearAllowed() {
+	b.coverageEligibilityResponseInsuranceItemBenefit.AllowedUnsignedInt = nil
+	b.coverageEligibilityResponseInsuranceItemBenefit.AllowedString = nil
+	b.coverageEligibilityResponseInsuranceItemBenefit.AllowedStringExt = nil
+	b.coverageEligibilityResponseInsuranceItemBenefit.AllowedMoney = nil
+}
+
+// clearUsed unsets every variant of Used[x], including the
+// _field companions of the primitive ones.
+func (b *CoverageEligibilityResponseInsuranceItemBenefitBuilder) clearUsed() {
+	b.coverageEligibilityResponseInsuranceItemBenefit.UsedUnsignedInt = nil
+	b.coverageEligibilityResponseInsuranceItemBenefit.UsedString = nil
+	b.coverageEligibilityResponseInsuranceItemBenefit.UsedStringExt = nil
+	b.coverageEligibilityResponseInsuranceItemBenefit.UsedMoney = nil
 }

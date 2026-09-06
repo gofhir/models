@@ -749,3 +749,148 @@ func (b *RegulatedAuthorizationBuilder) SetCase(v RegulatedAuthorizationCase) *R
 	b.regulatedAuthorization.Case = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RegulatedAuthorizationBuilder) SetImplicitRulesExt(v Element) *RegulatedAuthorizationBuilder {
+	b.regulatedAuthorization.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RegulatedAuthorizationBuilder) SetLanguageExt(v Element) *RegulatedAuthorizationBuilder {
+	b.regulatedAuthorization.LanguageExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RegulatedAuthorizationBuilder) SetDescriptionExt(v Element) *RegulatedAuthorizationBuilder {
+	b.regulatedAuthorization.DescriptionExt = &v
+	return b
+}
+
+// SetStatusDateExt sets the extensions carried by StatusDate, serialized as
+// "_statusDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RegulatedAuthorizationBuilder) SetStatusDateExt(v Element) *RegulatedAuthorizationBuilder {
+	b.regulatedAuthorization.StatusDateExt = &v
+	return b
+}
+
+// =============================================================================
+// RegulatedAuthorizationCase - Fluent Builder
+// =============================================================================
+
+// RegulatedAuthorizationCaseBuilder provides a fluent API for constructing RegulatedAuthorizationCase values.
+type RegulatedAuthorizationCaseBuilder struct {
+	regulatedAuthorizationCase *RegulatedAuthorizationCase
+}
+
+// NewRegulatedAuthorizationCaseBuilder creates a new RegulatedAuthorizationCaseBuilder.
+func NewRegulatedAuthorizationCaseBuilder() *RegulatedAuthorizationCaseBuilder {
+	return &RegulatedAuthorizationCaseBuilder{
+		regulatedAuthorizationCase: &RegulatedAuthorizationCase{},
+	}
+}
+
+// Build returns the constructed RegulatedAuthorizationCase.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RegulatedAuthorizationCaseBuilder) Build() RegulatedAuthorizationCase {
+	return *b.regulatedAuthorizationCase
+}
+
+// SetId sets the Id field.
+func (b *RegulatedAuthorizationCaseBuilder) SetId(v string) *RegulatedAuthorizationCaseBuilder {
+	b.regulatedAuthorizationCase.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RegulatedAuthorizationCaseBuilder) AddExtension(v Extension) *RegulatedAuthorizationCaseBuilder {
+	b.regulatedAuthorizationCase.Extension = append(b.regulatedAuthorizationCase.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *RegulatedAuthorizationCaseBuilder) AddModifierExtension(v Extension) *RegulatedAuthorizationCaseBuilder {
+	b.regulatedAuthorizationCase.ModifierExtension = append(b.regulatedAuthorizationCase.ModifierExtension, v)
+	return b
+}
+
+// SetIdentifier sets the Identifier field.
+func (b *RegulatedAuthorizationCaseBuilder) SetIdentifier(v Identifier) *RegulatedAuthorizationCaseBuilder {
+	b.regulatedAuthorizationCase.Identifier = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *RegulatedAuthorizationCaseBuilder) SetType(v CodeableConcept) *RegulatedAuthorizationCaseBuilder {
+	b.regulatedAuthorizationCase.Type = &v
+	return b
+}
+
+// SetStatus sets the Status field.
+func (b *RegulatedAuthorizationCaseBuilder) SetStatus(v CodeableConcept) *RegulatedAuthorizationCaseBuilder {
+	b.regulatedAuthorizationCase.Status = &v
+	return b
+}
+
+// SetDatePeriod sets Date[x] to its DatePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RegulatedAuthorizationCaseBuilder) SetDatePeriod(v Period) *RegulatedAuthorizationCaseBuilder {
+	b.clearDate()
+	b.regulatedAuthorizationCase.DatePeriod = &v
+	return b
+}
+
+// SetDateDateTime sets Date[x] to its DateDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RegulatedAuthorizationCaseBuilder) SetDateDateTime(v string) *RegulatedAuthorizationCaseBuilder {
+	b.clearDate()
+	b.regulatedAuthorizationCase.DateDateTime = &v
+	return b
+}
+
+// SetDateDateTimeExt sets the DateDateTimeExt field.
+func (b *RegulatedAuthorizationCaseBuilder) SetDateDateTimeExt(v Element) *RegulatedAuthorizationCaseBuilder {
+	b.regulatedAuthorizationCase.DateDateTimeExt = &v
+	return b
+}
+
+// AddApplication adds a Application element.
+func (b *RegulatedAuthorizationCaseBuilder) AddApplication(v RegulatedAuthorizationCase) *RegulatedAuthorizationCaseBuilder {
+	b.regulatedAuthorizationCase.Application = append(b.regulatedAuthorizationCase.Application, v)
+	return b
+}
+
+// clearDate unsets every variant of Date[x], including the
+// _field companions of the primitive ones.
+func (b *RegulatedAuthorizationCaseBuilder) clearDate() {
+	b.regulatedAuthorizationCase.DatePeriod = nil
+	b.regulatedAuthorizationCase.DateDateTime = nil
+	b.regulatedAuthorizationCase.DateDateTimeExt = nil
+}

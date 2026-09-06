@@ -807,6 +807,212 @@ func (b *ActorDefinitionBuilder) AddDerivedFrom(v string) *ActorDefinitionBuilde
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActorDefinitionBuilder) SetImplicitRulesExt(v Element) *ActorDefinitionBuilder {
+	b.actorDefinition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActorDefinitionBuilder) SetLanguageExt(v Element) *ActorDefinitionBuilder {
+	b.actorDefinition.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActorDefinitionBuilder) SetUrlExt(v Element) *ActorDefinitionBuilder {
+	b.actorDefinition.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActorDefinitionBuilder) SetVersionExt(v Element) *ActorDefinitionBuilder {
+	b.actorDefinition.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActorDefinitionBuilder) SetNameExt(v Element) *ActorDefinitionBuilder {
+	b.actorDefinition.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActorDefinitionBuilder) SetTitleExt(v Element) *ActorDefinitionBuilder {
+	b.actorDefinition.TitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActorDefinitionBuilder) SetStatusExt(v Element) *ActorDefinitionBuilder {
+	b.actorDefinition.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActorDefinitionBuilder) SetExperimentalExt(v Element) *ActorDefinitionBuilder {
+	b.actorDefinition.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActorDefinitionBuilder) SetDateExt(v Element) *ActorDefinitionBuilder {
+	b.actorDefinition.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActorDefinitionBuilder) SetPublisherExt(v Element) *ActorDefinitionBuilder {
+	b.actorDefinition.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActorDefinitionBuilder) SetDescriptionExt(v Element) *ActorDefinitionBuilder {
+	b.actorDefinition.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActorDefinitionBuilder) SetPurposeExt(v Element) *ActorDefinitionBuilder {
+	b.actorDefinition.PurposeExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActorDefinitionBuilder) SetCopyrightExt(v Element) *ActorDefinitionBuilder {
+	b.actorDefinition.CopyrightExt = &v
+	return b
+}
+
+// SetCopyrightLabelExt sets the extensions carried by CopyrightLabel, serialized as
+// "_copyrightLabel".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActorDefinitionBuilder) SetCopyrightLabelExt(v Element) *ActorDefinitionBuilder {
+	b.actorDefinition.CopyrightLabelExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActorDefinitionBuilder) SetTypeExt(v Element) *ActorDefinitionBuilder {
+	b.actorDefinition.TypeExt = &v
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActorDefinitionBuilder) SetDocumentationExt(v Element) *ActorDefinitionBuilder {
+	b.actorDefinition.DocumentationExt = &v
+	return b
+}
+
+// AddReferenceExt attaches extensions to the Reference element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddReference twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ActorDefinitionBuilder) AddReferenceExt(v *Element) *ActorDefinitionBuilder {
+	for len(b.actorDefinition.ReferenceExt) < len(b.actorDefinition.Reference)-1 {
+		b.actorDefinition.ReferenceExt = append(b.actorDefinition.ReferenceExt, nil)
+	}
+	b.actorDefinition.ReferenceExt = append(b.actorDefinition.ReferenceExt, v)
+	return b
+}
+
+// SetCapabilitiesExt sets the extensions carried by Capabilities, serialized as
+// "_capabilities".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ActorDefinitionBuilder) SetCapabilitiesExt(v Element) *ActorDefinitionBuilder {
+	b.actorDefinition.CapabilitiesExt = &v
+	return b
+}
+
+// AddDerivedFromExt attaches extensions to the DerivedFrom element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDerivedFrom twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ActorDefinitionBuilder) AddDerivedFromExt(v *Element) *ActorDefinitionBuilder {
+	for len(b.actorDefinition.DerivedFromExt) < len(b.actorDefinition.DerivedFrom)-1 {
+		b.actorDefinition.DerivedFromExt = append(b.actorDefinition.DerivedFromExt, nil)
+	}
+	b.actorDefinition.DerivedFromExt = append(b.actorDefinition.DerivedFromExt, v)
+	return b
+}
+
 // clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
 // _field companions of the primitive ones.
 func (b *ActorDefinitionBuilder) clearVersionAlgorithm() {

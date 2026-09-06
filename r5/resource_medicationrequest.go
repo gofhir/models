@@ -1375,3 +1375,355 @@ func (b *MedicationRequestBuilder) AddEventHistory(v Reference) *MedicationReque
 	b.medicationRequest.EventHistory = append(b.medicationRequest.EventHistory, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationRequestBuilder) SetImplicitRulesExt(v Element) *MedicationRequestBuilder {
+	b.medicationRequest.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationRequestBuilder) SetLanguageExt(v Element) *MedicationRequestBuilder {
+	b.medicationRequest.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationRequestBuilder) SetStatusExt(v Element) *MedicationRequestBuilder {
+	b.medicationRequest.StatusExt = &v
+	return b
+}
+
+// SetStatusChangedExt sets the extensions carried by StatusChanged, serialized as
+// "_statusChanged".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationRequestBuilder) SetStatusChangedExt(v Element) *MedicationRequestBuilder {
+	b.medicationRequest.StatusChangedExt = &v
+	return b
+}
+
+// SetIntentExt sets the extensions carried by Intent, serialized as
+// "_intent".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationRequestBuilder) SetIntentExt(v Element) *MedicationRequestBuilder {
+	b.medicationRequest.IntentExt = &v
+	return b
+}
+
+// SetPriorityExt sets the extensions carried by Priority, serialized as
+// "_priority".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationRequestBuilder) SetPriorityExt(v Element) *MedicationRequestBuilder {
+	b.medicationRequest.PriorityExt = &v
+	return b
+}
+
+// SetDoNotPerformExt sets the extensions carried by DoNotPerform, serialized as
+// "_doNotPerform".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationRequestBuilder) SetDoNotPerformExt(v Element) *MedicationRequestBuilder {
+	b.medicationRequest.DoNotPerformExt = &v
+	return b
+}
+
+// SetAuthoredOnExt sets the extensions carried by AuthoredOn, serialized as
+// "_authoredOn".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationRequestBuilder) SetAuthoredOnExt(v Element) *MedicationRequestBuilder {
+	b.medicationRequest.AuthoredOnExt = &v
+	return b
+}
+
+// SetReportedExt sets the extensions carried by Reported, serialized as
+// "_reported".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationRequestBuilder) SetReportedExt(v Element) *MedicationRequestBuilder {
+	b.medicationRequest.ReportedExt = &v
+	return b
+}
+
+// SetRenderedDosageInstructionExt sets the extensions carried by RenderedDosageInstruction, serialized as
+// "_renderedDosageInstruction".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationRequestBuilder) SetRenderedDosageInstructionExt(v Element) *MedicationRequestBuilder {
+	b.medicationRequest.RenderedDosageInstructionExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicationRequestDispenseRequest - Fluent Builder
+// =============================================================================
+
+// MedicationRequestDispenseRequestBuilder provides a fluent API for constructing MedicationRequestDispenseRequest values.
+type MedicationRequestDispenseRequestBuilder struct {
+	medicationRequestDispenseRequest *MedicationRequestDispenseRequest
+}
+
+// NewMedicationRequestDispenseRequestBuilder creates a new MedicationRequestDispenseRequestBuilder.
+func NewMedicationRequestDispenseRequestBuilder() *MedicationRequestDispenseRequestBuilder {
+	return &MedicationRequestDispenseRequestBuilder{
+		medicationRequestDispenseRequest: &MedicationRequestDispenseRequest{},
+	}
+}
+
+// Build returns the constructed MedicationRequestDispenseRequest.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationRequestDispenseRequestBuilder) Build() MedicationRequestDispenseRequest {
+	return *b.medicationRequestDispenseRequest
+}
+
+// SetId sets the Id field.
+func (b *MedicationRequestDispenseRequestBuilder) SetId(v string) *MedicationRequestDispenseRequestBuilder {
+	b.medicationRequestDispenseRequest.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationRequestDispenseRequestBuilder) AddExtension(v Extension) *MedicationRequestDispenseRequestBuilder {
+	b.medicationRequestDispenseRequest.Extension = append(b.medicationRequestDispenseRequest.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationRequestDispenseRequestBuilder) AddModifierExtension(v Extension) *MedicationRequestDispenseRequestBuilder {
+	b.medicationRequestDispenseRequest.ModifierExtension = append(b.medicationRequestDispenseRequest.ModifierExtension, v)
+	return b
+}
+
+// SetInitialFill sets the InitialFill field.
+func (b *MedicationRequestDispenseRequestBuilder) SetInitialFill(v MedicationRequestDispenseRequestInitialFill) *MedicationRequestDispenseRequestBuilder {
+	b.medicationRequestDispenseRequest.InitialFill = &v
+	return b
+}
+
+// SetDispenseInterval sets the DispenseInterval field.
+func (b *MedicationRequestDispenseRequestBuilder) SetDispenseInterval(v Duration) *MedicationRequestDispenseRequestBuilder {
+	b.medicationRequestDispenseRequest.DispenseInterval = &v
+	return b
+}
+
+// SetValidityPeriod sets the ValidityPeriod field.
+func (b *MedicationRequestDispenseRequestBuilder) SetValidityPeriod(v Period) *MedicationRequestDispenseRequestBuilder {
+	b.medicationRequestDispenseRequest.ValidityPeriod = &v
+	return b
+}
+
+// SetNumberOfRepeatsAllowed sets the NumberOfRepeatsAllowed field.
+func (b *MedicationRequestDispenseRequestBuilder) SetNumberOfRepeatsAllowed(v uint32) *MedicationRequestDispenseRequestBuilder {
+	b.medicationRequestDispenseRequest.NumberOfRepeatsAllowed = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *MedicationRequestDispenseRequestBuilder) SetQuantity(v Quantity) *MedicationRequestDispenseRequestBuilder {
+	b.medicationRequestDispenseRequest.Quantity = &v
+	return b
+}
+
+// SetExpectedSupplyDuration sets the ExpectedSupplyDuration field.
+func (b *MedicationRequestDispenseRequestBuilder) SetExpectedSupplyDuration(v Duration) *MedicationRequestDispenseRequestBuilder {
+	b.medicationRequestDispenseRequest.ExpectedSupplyDuration = &v
+	return b
+}
+
+// SetDispenser sets the Dispenser field.
+func (b *MedicationRequestDispenseRequestBuilder) SetDispenser(v Reference) *MedicationRequestDispenseRequestBuilder {
+	b.medicationRequestDispenseRequest.Dispenser = &v
+	return b
+}
+
+// AddDispenserInstruction adds a DispenserInstruction element.
+func (b *MedicationRequestDispenseRequestBuilder) AddDispenserInstruction(v Annotation) *MedicationRequestDispenseRequestBuilder {
+	b.medicationRequestDispenseRequest.DispenserInstruction = append(b.medicationRequestDispenseRequest.DispenserInstruction, v)
+	return b
+}
+
+// SetDoseAdministrationAid sets the DoseAdministrationAid field.
+func (b *MedicationRequestDispenseRequestBuilder) SetDoseAdministrationAid(v CodeableConcept) *MedicationRequestDispenseRequestBuilder {
+	b.medicationRequestDispenseRequest.DoseAdministrationAid = &v
+	return b
+}
+
+// SetNumberOfRepeatsAllowedExt sets the extensions carried by NumberOfRepeatsAllowed, serialized as
+// "_numberOfRepeatsAllowed".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicationRequestDispenseRequestBuilder) SetNumberOfRepeatsAllowedExt(v Element) *MedicationRequestDispenseRequestBuilder {
+	b.medicationRequestDispenseRequest.NumberOfRepeatsAllowedExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicationRequestDispenseRequestInitialFill - Fluent Builder
+// =============================================================================
+
+// MedicationRequestDispenseRequestInitialFillBuilder provides a fluent API for constructing MedicationRequestDispenseRequestInitialFill values.
+type MedicationRequestDispenseRequestInitialFillBuilder struct {
+	medicationRequestDispenseRequestInitialFill *MedicationRequestDispenseRequestInitialFill
+}
+
+// NewMedicationRequestDispenseRequestInitialFillBuilder creates a new MedicationRequestDispenseRequestInitialFillBuilder.
+func NewMedicationRequestDispenseRequestInitialFillBuilder() *MedicationRequestDispenseRequestInitialFillBuilder {
+	return &MedicationRequestDispenseRequestInitialFillBuilder{
+		medicationRequestDispenseRequestInitialFill: &MedicationRequestDispenseRequestInitialFill{},
+	}
+}
+
+// Build returns the constructed MedicationRequestDispenseRequestInitialFill.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationRequestDispenseRequestInitialFillBuilder) Build() MedicationRequestDispenseRequestInitialFill {
+	return *b.medicationRequestDispenseRequestInitialFill
+}
+
+// SetId sets the Id field.
+func (b *MedicationRequestDispenseRequestInitialFillBuilder) SetId(v string) *MedicationRequestDispenseRequestInitialFillBuilder {
+	b.medicationRequestDispenseRequestInitialFill.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationRequestDispenseRequestInitialFillBuilder) AddExtension(v Extension) *MedicationRequestDispenseRequestInitialFillBuilder {
+	b.medicationRequestDispenseRequestInitialFill.Extension = append(b.medicationRequestDispenseRequestInitialFill.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationRequestDispenseRequestInitialFillBuilder) AddModifierExtension(v Extension) *MedicationRequestDispenseRequestInitialFillBuilder {
+	b.medicationRequestDispenseRequestInitialFill.ModifierExtension = append(b.medicationRequestDispenseRequestInitialFill.ModifierExtension, v)
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *MedicationRequestDispenseRequestInitialFillBuilder) SetQuantity(v Quantity) *MedicationRequestDispenseRequestInitialFillBuilder {
+	b.medicationRequestDispenseRequestInitialFill.Quantity = &v
+	return b
+}
+
+// SetDuration sets the Duration field.
+func (b *MedicationRequestDispenseRequestInitialFillBuilder) SetDuration(v Duration) *MedicationRequestDispenseRequestInitialFillBuilder {
+	b.medicationRequestDispenseRequestInitialFill.Duration = &v
+	return b
+}
+
+// =============================================================================
+// MedicationRequestSubstitution - Fluent Builder
+// =============================================================================
+
+// MedicationRequestSubstitutionBuilder provides a fluent API for constructing MedicationRequestSubstitution values.
+type MedicationRequestSubstitutionBuilder struct {
+	medicationRequestSubstitution *MedicationRequestSubstitution
+}
+
+// NewMedicationRequestSubstitutionBuilder creates a new MedicationRequestSubstitutionBuilder.
+func NewMedicationRequestSubstitutionBuilder() *MedicationRequestSubstitutionBuilder {
+	return &MedicationRequestSubstitutionBuilder{
+		medicationRequestSubstitution: &MedicationRequestSubstitution{},
+	}
+}
+
+// Build returns the constructed MedicationRequestSubstitution.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicationRequestSubstitutionBuilder) Build() MedicationRequestSubstitution {
+	return *b.medicationRequestSubstitution
+}
+
+// SetId sets the Id field.
+func (b *MedicationRequestSubstitutionBuilder) SetId(v string) *MedicationRequestSubstitutionBuilder {
+	b.medicationRequestSubstitution.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicationRequestSubstitutionBuilder) AddExtension(v Extension) *MedicationRequestSubstitutionBuilder {
+	b.medicationRequestSubstitution.Extension = append(b.medicationRequestSubstitution.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicationRequestSubstitutionBuilder) AddModifierExtension(v Extension) *MedicationRequestSubstitutionBuilder {
+	b.medicationRequestSubstitution.ModifierExtension = append(b.medicationRequestSubstitution.ModifierExtension, v)
+	return b
+}
+
+// SetAllowedBoolean sets Allowed[x] to its AllowedBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicationRequestSubstitutionBuilder) SetAllowedBoolean(v bool) *MedicationRequestSubstitutionBuilder {
+	b.clearAllowed()
+	b.medicationRequestSubstitution.AllowedBoolean = &v
+	return b
+}
+
+// SetAllowedBooleanExt sets the AllowedBooleanExt field.
+func (b *MedicationRequestSubstitutionBuilder) SetAllowedBooleanExt(v Element) *MedicationRequestSubstitutionBuilder {
+	b.medicationRequestSubstitution.AllowedBooleanExt = &v
+	return b
+}
+
+// SetAllowedCodeableConcept sets Allowed[x] to its AllowedCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicationRequestSubstitutionBuilder) SetAllowedCodeableConcept(v CodeableConcept) *MedicationRequestSubstitutionBuilder {
+	b.clearAllowed()
+	b.medicationRequestSubstitution.AllowedCodeableConcept = &v
+	return b
+}
+
+// SetReason sets the Reason field.
+func (b *MedicationRequestSubstitutionBuilder) SetReason(v CodeableConcept) *MedicationRequestSubstitutionBuilder {
+	b.medicationRequestSubstitution.Reason = &v
+	return b
+}
+
+// clearAllowed unsets every variant of Allowed[x], including the
+// _field companions of the primitive ones.
+func (b *MedicationRequestSubstitutionBuilder) clearAllowed() {
+	b.medicationRequestSubstitution.AllowedBoolean = nil
+	b.medicationRequestSubstitution.AllowedCodeableConcept = nil
+}

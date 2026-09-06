@@ -1345,10 +1345,489 @@ func (b *EvidenceReportBuilder) AddSection(v EvidenceReportSection) *EvidenceRep
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceReportBuilder) SetImplicitRulesExt(v Element) *EvidenceReportBuilder {
+	b.evidenceReport.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceReportBuilder) SetLanguageExt(v Element) *EvidenceReportBuilder {
+	b.evidenceReport.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceReportBuilder) SetUrlExt(v Element) *EvidenceReportBuilder {
+	b.evidenceReport.UrlExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceReportBuilder) SetStatusExt(v Element) *EvidenceReportBuilder {
+	b.evidenceReport.StatusExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceReportBuilder) SetPublisherExt(v Element) *EvidenceReportBuilder {
+	b.evidenceReport.PublisherExt = &v
+	return b
+}
+
 // clearCiteAs unsets every variant of CiteAs[x], including the
 // _field companions of the primitive ones.
 func (b *EvidenceReportBuilder) clearCiteAs() {
 	b.evidenceReport.CiteAsReference = nil
 	b.evidenceReport.CiteAsMarkdown = nil
 	b.evidenceReport.CiteAsMarkdownExt = nil
+}
+
+// =============================================================================
+// EvidenceReportRelatesTo - Fluent Builder
+// =============================================================================
+
+// EvidenceReportRelatesToBuilder provides a fluent API for constructing EvidenceReportRelatesTo values.
+type EvidenceReportRelatesToBuilder struct {
+	evidenceReportRelatesTo *EvidenceReportRelatesTo
+}
+
+// NewEvidenceReportRelatesToBuilder creates a new EvidenceReportRelatesToBuilder.
+func NewEvidenceReportRelatesToBuilder() *EvidenceReportRelatesToBuilder {
+	return &EvidenceReportRelatesToBuilder{
+		evidenceReportRelatesTo: &EvidenceReportRelatesTo{},
+	}
+}
+
+// Build returns the constructed EvidenceReportRelatesTo.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *EvidenceReportRelatesToBuilder) Build() EvidenceReportRelatesTo {
+	return *b.evidenceReportRelatesTo
+}
+
+// SetId sets the Id field.
+func (b *EvidenceReportRelatesToBuilder) SetId(v string) *EvidenceReportRelatesToBuilder {
+	b.evidenceReportRelatesTo.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *EvidenceReportRelatesToBuilder) AddExtension(v Extension) *EvidenceReportRelatesToBuilder {
+	b.evidenceReportRelatesTo.Extension = append(b.evidenceReportRelatesTo.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *EvidenceReportRelatesToBuilder) AddModifierExtension(v Extension) *EvidenceReportRelatesToBuilder {
+	b.evidenceReportRelatesTo.ModifierExtension = append(b.evidenceReportRelatesTo.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *EvidenceReportRelatesToBuilder) SetCode(v ReportRelationshipType) *EvidenceReportRelatesToBuilder {
+	b.evidenceReportRelatesTo.Code = &v
+	return b
+}
+
+// SetTargetIdentifier sets Target[x] to its TargetIdentifier variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *EvidenceReportRelatesToBuilder) SetTargetIdentifier(v Identifier) *EvidenceReportRelatesToBuilder {
+	b.clearTarget()
+	b.evidenceReportRelatesTo.TargetIdentifier = &v
+	return b
+}
+
+// SetTargetReference sets Target[x] to its TargetReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *EvidenceReportRelatesToBuilder) SetTargetReference(v Reference) *EvidenceReportRelatesToBuilder {
+	b.clearTarget()
+	b.evidenceReportRelatesTo.TargetReference = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceReportRelatesToBuilder) SetCodeExt(v Element) *EvidenceReportRelatesToBuilder {
+	b.evidenceReportRelatesTo.CodeExt = &v
+	return b
+}
+
+// clearTarget unsets every variant of Target[x], including the
+// _field companions of the primitive ones.
+func (b *EvidenceReportRelatesToBuilder) clearTarget() {
+	b.evidenceReportRelatesTo.TargetIdentifier = nil
+	b.evidenceReportRelatesTo.TargetReference = nil
+}
+
+// =============================================================================
+// EvidenceReportSection - Fluent Builder
+// =============================================================================
+
+// EvidenceReportSectionBuilder provides a fluent API for constructing EvidenceReportSection values.
+type EvidenceReportSectionBuilder struct {
+	evidenceReportSection *EvidenceReportSection
+}
+
+// NewEvidenceReportSectionBuilder creates a new EvidenceReportSectionBuilder.
+func NewEvidenceReportSectionBuilder() *EvidenceReportSectionBuilder {
+	return &EvidenceReportSectionBuilder{
+		evidenceReportSection: &EvidenceReportSection{},
+	}
+}
+
+// Build returns the constructed EvidenceReportSection.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *EvidenceReportSectionBuilder) Build() EvidenceReportSection {
+	return *b.evidenceReportSection
+}
+
+// SetId sets the Id field.
+func (b *EvidenceReportSectionBuilder) SetId(v string) *EvidenceReportSectionBuilder {
+	b.evidenceReportSection.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *EvidenceReportSectionBuilder) AddExtension(v Extension) *EvidenceReportSectionBuilder {
+	b.evidenceReportSection.Extension = append(b.evidenceReportSection.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *EvidenceReportSectionBuilder) AddModifierExtension(v Extension) *EvidenceReportSectionBuilder {
+	b.evidenceReportSection.ModifierExtension = append(b.evidenceReportSection.ModifierExtension, v)
+	return b
+}
+
+// SetTitle sets the Title field.
+func (b *EvidenceReportSectionBuilder) SetTitle(v string) *EvidenceReportSectionBuilder {
+	b.evidenceReportSection.Title = &v
+	return b
+}
+
+// SetFocus sets the Focus field.
+func (b *EvidenceReportSectionBuilder) SetFocus(v CodeableConcept) *EvidenceReportSectionBuilder {
+	b.evidenceReportSection.Focus = &v
+	return b
+}
+
+// SetFocusReference sets the FocusReference field.
+func (b *EvidenceReportSectionBuilder) SetFocusReference(v Reference) *EvidenceReportSectionBuilder {
+	b.evidenceReportSection.FocusReference = &v
+	return b
+}
+
+// AddAuthor adds a Author element.
+func (b *EvidenceReportSectionBuilder) AddAuthor(v Reference) *EvidenceReportSectionBuilder {
+	b.evidenceReportSection.Author = append(b.evidenceReportSection.Author, v)
+	return b
+}
+
+// SetText sets the Text field.
+func (b *EvidenceReportSectionBuilder) SetText(v Narrative) *EvidenceReportSectionBuilder {
+	b.evidenceReportSection.Text = &v
+	return b
+}
+
+// SetMode sets the Mode field.
+func (b *EvidenceReportSectionBuilder) SetMode(v ListMode) *EvidenceReportSectionBuilder {
+	b.evidenceReportSection.Mode = &v
+	return b
+}
+
+// SetOrderedBy sets the OrderedBy field.
+func (b *EvidenceReportSectionBuilder) SetOrderedBy(v CodeableConcept) *EvidenceReportSectionBuilder {
+	b.evidenceReportSection.OrderedBy = &v
+	return b
+}
+
+// AddEntryClassifier adds a EntryClassifier element.
+func (b *EvidenceReportSectionBuilder) AddEntryClassifier(v CodeableConcept) *EvidenceReportSectionBuilder {
+	b.evidenceReportSection.EntryClassifier = append(b.evidenceReportSection.EntryClassifier, v)
+	return b
+}
+
+// AddEntryReference adds a EntryReference element.
+func (b *EvidenceReportSectionBuilder) AddEntryReference(v Reference) *EvidenceReportSectionBuilder {
+	b.evidenceReportSection.EntryReference = append(b.evidenceReportSection.EntryReference, v)
+	return b
+}
+
+// AddEntryQuantity adds a EntryQuantity element.
+func (b *EvidenceReportSectionBuilder) AddEntryQuantity(v Quantity) *EvidenceReportSectionBuilder {
+	b.evidenceReportSection.EntryQuantity = append(b.evidenceReportSection.EntryQuantity, v)
+	return b
+}
+
+// SetEmptyReason sets the EmptyReason field.
+func (b *EvidenceReportSectionBuilder) SetEmptyReason(v CodeableConcept) *EvidenceReportSectionBuilder {
+	b.evidenceReportSection.EmptyReason = &v
+	return b
+}
+
+// AddSection adds a Section element.
+func (b *EvidenceReportSectionBuilder) AddSection(v EvidenceReportSection) *EvidenceReportSectionBuilder {
+	b.evidenceReportSection.Section = append(b.evidenceReportSection.Section, v)
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceReportSectionBuilder) SetTitleExt(v Element) *EvidenceReportSectionBuilder {
+	b.evidenceReportSection.TitleExt = &v
+	return b
+}
+
+// SetModeExt sets the extensions carried by Mode, serialized as
+// "_mode".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceReportSectionBuilder) SetModeExt(v Element) *EvidenceReportSectionBuilder {
+	b.evidenceReportSection.ModeExt = &v
+	return b
+}
+
+// =============================================================================
+// EvidenceReportSubject - Fluent Builder
+// =============================================================================
+
+// EvidenceReportSubjectBuilder provides a fluent API for constructing EvidenceReportSubject values.
+type EvidenceReportSubjectBuilder struct {
+	evidenceReportSubject *EvidenceReportSubject
+}
+
+// NewEvidenceReportSubjectBuilder creates a new EvidenceReportSubjectBuilder.
+func NewEvidenceReportSubjectBuilder() *EvidenceReportSubjectBuilder {
+	return &EvidenceReportSubjectBuilder{
+		evidenceReportSubject: &EvidenceReportSubject{},
+	}
+}
+
+// Build returns the constructed EvidenceReportSubject.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *EvidenceReportSubjectBuilder) Build() EvidenceReportSubject {
+	return *b.evidenceReportSubject
+}
+
+// SetId sets the Id field.
+func (b *EvidenceReportSubjectBuilder) SetId(v string) *EvidenceReportSubjectBuilder {
+	b.evidenceReportSubject.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *EvidenceReportSubjectBuilder) AddExtension(v Extension) *EvidenceReportSubjectBuilder {
+	b.evidenceReportSubject.Extension = append(b.evidenceReportSubject.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *EvidenceReportSubjectBuilder) AddModifierExtension(v Extension) *EvidenceReportSubjectBuilder {
+	b.evidenceReportSubject.ModifierExtension = append(b.evidenceReportSubject.ModifierExtension, v)
+	return b
+}
+
+// AddCharacteristic adds a Characteristic element.
+func (b *EvidenceReportSubjectBuilder) AddCharacteristic(v EvidenceReportSubjectCharacteristic) *EvidenceReportSubjectBuilder {
+	b.evidenceReportSubject.Characteristic = append(b.evidenceReportSubject.Characteristic, v)
+	return b
+}
+
+// AddNote adds a Note element.
+func (b *EvidenceReportSubjectBuilder) AddNote(v Annotation) *EvidenceReportSubjectBuilder {
+	b.evidenceReportSubject.Note = append(b.evidenceReportSubject.Note, v)
+	return b
+}
+
+// =============================================================================
+// EvidenceReportSubjectCharacteristic - Fluent Builder
+// =============================================================================
+
+// EvidenceReportSubjectCharacteristicBuilder provides a fluent API for constructing EvidenceReportSubjectCharacteristic values.
+type EvidenceReportSubjectCharacteristicBuilder struct {
+	evidenceReportSubjectCharacteristic *EvidenceReportSubjectCharacteristic
+}
+
+// NewEvidenceReportSubjectCharacteristicBuilder creates a new EvidenceReportSubjectCharacteristicBuilder.
+func NewEvidenceReportSubjectCharacteristicBuilder() *EvidenceReportSubjectCharacteristicBuilder {
+	return &EvidenceReportSubjectCharacteristicBuilder{
+		evidenceReportSubjectCharacteristic: &EvidenceReportSubjectCharacteristic{},
+	}
+}
+
+// Build returns the constructed EvidenceReportSubjectCharacteristic.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *EvidenceReportSubjectCharacteristicBuilder) Build() EvidenceReportSubjectCharacteristic {
+	return *b.evidenceReportSubjectCharacteristic
+}
+
+// SetId sets the Id field.
+func (b *EvidenceReportSubjectCharacteristicBuilder) SetId(v string) *EvidenceReportSubjectCharacteristicBuilder {
+	b.evidenceReportSubjectCharacteristic.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *EvidenceReportSubjectCharacteristicBuilder) AddExtension(v Extension) *EvidenceReportSubjectCharacteristicBuilder {
+	b.evidenceReportSubjectCharacteristic.Extension = append(b.evidenceReportSubjectCharacteristic.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *EvidenceReportSubjectCharacteristicBuilder) AddModifierExtension(v Extension) *EvidenceReportSubjectCharacteristicBuilder {
+	b.evidenceReportSubjectCharacteristic.ModifierExtension = append(b.evidenceReportSubjectCharacteristic.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *EvidenceReportSubjectCharacteristicBuilder) SetCode(v CodeableConcept) *EvidenceReportSubjectCharacteristicBuilder {
+	b.evidenceReportSubjectCharacteristic.Code = &v
+	return b
+}
+
+// SetValueReference sets Value[x] to its ValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *EvidenceReportSubjectCharacteristicBuilder) SetValueReference(v Reference) *EvidenceReportSubjectCharacteristicBuilder {
+	b.clearValue()
+	b.evidenceReportSubjectCharacteristic.ValueReference = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *EvidenceReportSubjectCharacteristicBuilder) SetValueCodeableConcept(v CodeableConcept) *EvidenceReportSubjectCharacteristicBuilder {
+	b.clearValue()
+	b.evidenceReportSubjectCharacteristic.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *EvidenceReportSubjectCharacteristicBuilder) SetValueBoolean(v bool) *EvidenceReportSubjectCharacteristicBuilder {
+	b.clearValue()
+	b.evidenceReportSubjectCharacteristic.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *EvidenceReportSubjectCharacteristicBuilder) SetValueBooleanExt(v Element) *EvidenceReportSubjectCharacteristicBuilder {
+	b.evidenceReportSubjectCharacteristic.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *EvidenceReportSubjectCharacteristicBuilder) SetValueQuantity(v Quantity) *EvidenceReportSubjectCharacteristicBuilder {
+	b.clearValue()
+	b.evidenceReportSubjectCharacteristic.ValueQuantity = &v
+	return b
+}
+
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *EvidenceReportSubjectCharacteristicBuilder) SetValueRange(v Range) *EvidenceReportSubjectCharacteristicBuilder {
+	b.clearValue()
+	b.evidenceReportSubjectCharacteristic.ValueRange = &v
+	return b
+}
+
+// SetExclude sets the Exclude field.
+func (b *EvidenceReportSubjectCharacteristicBuilder) SetExclude(v bool) *EvidenceReportSubjectCharacteristicBuilder {
+	b.evidenceReportSubjectCharacteristic.Exclude = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *EvidenceReportSubjectCharacteristicBuilder) SetPeriod(v Period) *EvidenceReportSubjectCharacteristicBuilder {
+	b.evidenceReportSubjectCharacteristic.Period = &v
+	return b
+}
+
+// SetExcludeExt sets the extensions carried by Exclude, serialized as
+// "_exclude".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EvidenceReportSubjectCharacteristicBuilder) SetExcludeExt(v Element) *EvidenceReportSubjectCharacteristicBuilder {
+	b.evidenceReportSubjectCharacteristic.ExcludeExt = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *EvidenceReportSubjectCharacteristicBuilder) clearValue() {
+	b.evidenceReportSubjectCharacteristic.ValueReference = nil
+	b.evidenceReportSubjectCharacteristic.ValueCodeableConcept = nil
+	b.evidenceReportSubjectCharacteristic.ValueBoolean = nil
+	b.evidenceReportSubjectCharacteristic.ValueBooleanExt = nil
+	b.evidenceReportSubjectCharacteristic.ValueQuantity = nil
+	b.evidenceReportSubjectCharacteristic.ValueRange = nil
 }

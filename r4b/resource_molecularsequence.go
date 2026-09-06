@@ -1973,3 +1973,1229 @@ func (b *MolecularSequenceBuilder) AddStructureVariant(v MolecularSequenceStruct
 	b.molecularSequence.StructureVariant = append(b.molecularSequence.StructureVariant, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceBuilder) SetImplicitRulesExt(v Element) *MolecularSequenceBuilder {
+	b.molecularSequence.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceBuilder) SetLanguageExt(v Element) *MolecularSequenceBuilder {
+	b.molecularSequence.LanguageExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceBuilder) SetTypeExt(v Element) *MolecularSequenceBuilder {
+	b.molecularSequence.TypeExt = &v
+	return b
+}
+
+// SetCoordinateSystemExt sets the extensions carried by CoordinateSystem, serialized as
+// "_coordinateSystem".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceBuilder) SetCoordinateSystemExt(v Element) *MolecularSequenceBuilder {
+	b.molecularSequence.CoordinateSystemExt = &v
+	return b
+}
+
+// SetObservedSeqExt sets the extensions carried by ObservedSeq, serialized as
+// "_observedSeq".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceBuilder) SetObservedSeqExt(v Element) *MolecularSequenceBuilder {
+	b.molecularSequence.ObservedSeqExt = &v
+	return b
+}
+
+// SetReadCoverageExt sets the extensions carried by ReadCoverage, serialized as
+// "_readCoverage".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceBuilder) SetReadCoverageExt(v Element) *MolecularSequenceBuilder {
+	b.molecularSequence.ReadCoverageExt = &v
+	return b
+}
+
+// =============================================================================
+// MolecularSequenceQuality - Fluent Builder
+// =============================================================================
+
+// MolecularSequenceQualityBuilder provides a fluent API for constructing MolecularSequenceQuality values.
+type MolecularSequenceQualityBuilder struct {
+	molecularSequenceQuality *MolecularSequenceQuality
+}
+
+// NewMolecularSequenceQualityBuilder creates a new MolecularSequenceQualityBuilder.
+func NewMolecularSequenceQualityBuilder() *MolecularSequenceQualityBuilder {
+	return &MolecularSequenceQualityBuilder{
+		molecularSequenceQuality: &MolecularSequenceQuality{},
+	}
+}
+
+// Build returns the constructed MolecularSequenceQuality.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MolecularSequenceQualityBuilder) Build() MolecularSequenceQuality {
+	return *b.molecularSequenceQuality
+}
+
+// SetId sets the Id field.
+func (b *MolecularSequenceQualityBuilder) SetId(v string) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MolecularSequenceQualityBuilder) AddExtension(v Extension) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.Extension = append(b.molecularSequenceQuality.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MolecularSequenceQualityBuilder) AddModifierExtension(v Extension) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.ModifierExtension = append(b.molecularSequenceQuality.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *MolecularSequenceQualityBuilder) SetType(v QualityType) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.Type = &v
+	return b
+}
+
+// SetStandardSequence sets the StandardSequence field.
+func (b *MolecularSequenceQualityBuilder) SetStandardSequence(v CodeableConcept) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.StandardSequence = &v
+	return b
+}
+
+// SetStart sets the Start field.
+func (b *MolecularSequenceQualityBuilder) SetStart(v int) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.Start = &v
+	return b
+}
+
+// SetEnd sets the End field.
+func (b *MolecularSequenceQualityBuilder) SetEnd(v int) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.End = &v
+	return b
+}
+
+// SetScore sets the Score field.
+func (b *MolecularSequenceQualityBuilder) SetScore(v Quantity) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.Score = &v
+	return b
+}
+
+// SetMethod sets the Method field.
+func (b *MolecularSequenceQualityBuilder) SetMethod(v CodeableConcept) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.Method = &v
+	return b
+}
+
+// SetTruthTP sets the TruthTP field.
+func (b *MolecularSequenceQualityBuilder) SetTruthTP(v Decimal) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.TruthTP = &v
+	return b
+}
+
+// SetQueryTP sets the QueryTP field.
+func (b *MolecularSequenceQualityBuilder) SetQueryTP(v Decimal) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.QueryTP = &v
+	return b
+}
+
+// SetTruthFN sets the TruthFN field.
+func (b *MolecularSequenceQualityBuilder) SetTruthFN(v Decimal) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.TruthFN = &v
+	return b
+}
+
+// SetQueryFP sets the QueryFP field.
+func (b *MolecularSequenceQualityBuilder) SetQueryFP(v Decimal) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.QueryFP = &v
+	return b
+}
+
+// SetGtFP sets the GtFP field.
+func (b *MolecularSequenceQualityBuilder) SetGtFP(v Decimal) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.GtFP = &v
+	return b
+}
+
+// SetPrecision sets the Precision field.
+func (b *MolecularSequenceQualityBuilder) SetPrecision(v Decimal) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.Precision = &v
+	return b
+}
+
+// SetRecall sets the Recall field.
+func (b *MolecularSequenceQualityBuilder) SetRecall(v Decimal) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.Recall = &v
+	return b
+}
+
+// SetFScore sets the FScore field.
+func (b *MolecularSequenceQualityBuilder) SetFScore(v Decimal) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.FScore = &v
+	return b
+}
+
+// SetRoc sets the Roc field.
+func (b *MolecularSequenceQualityBuilder) SetRoc(v MolecularSequenceQualityRoc) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.Roc = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceQualityBuilder) SetTypeExt(v Element) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.TypeExt = &v
+	return b
+}
+
+// SetStartExt sets the extensions carried by Start, serialized as
+// "_start".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceQualityBuilder) SetStartExt(v Element) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.StartExt = &v
+	return b
+}
+
+// SetEndExt sets the extensions carried by End, serialized as
+// "_end".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceQualityBuilder) SetEndExt(v Element) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.EndExt = &v
+	return b
+}
+
+// SetTruthTPExt sets the extensions carried by TruthTP, serialized as
+// "_truthTP".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceQualityBuilder) SetTruthTPExt(v Element) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.TruthTPExt = &v
+	return b
+}
+
+// SetQueryTPExt sets the extensions carried by QueryTP, serialized as
+// "_queryTP".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceQualityBuilder) SetQueryTPExt(v Element) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.QueryTPExt = &v
+	return b
+}
+
+// SetTruthFNExt sets the extensions carried by TruthFN, serialized as
+// "_truthFN".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceQualityBuilder) SetTruthFNExt(v Element) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.TruthFNExt = &v
+	return b
+}
+
+// SetQueryFPExt sets the extensions carried by QueryFP, serialized as
+// "_queryFP".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceQualityBuilder) SetQueryFPExt(v Element) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.QueryFPExt = &v
+	return b
+}
+
+// SetGtFPExt sets the extensions carried by GtFP, serialized as
+// "_gtFP".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceQualityBuilder) SetGtFPExt(v Element) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.GtFPExt = &v
+	return b
+}
+
+// SetPrecisionExt sets the extensions carried by Precision, serialized as
+// "_precision".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceQualityBuilder) SetPrecisionExt(v Element) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.PrecisionExt = &v
+	return b
+}
+
+// SetRecallExt sets the extensions carried by Recall, serialized as
+// "_recall".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceQualityBuilder) SetRecallExt(v Element) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.RecallExt = &v
+	return b
+}
+
+// SetFScoreExt sets the extensions carried by FScore, serialized as
+// "_fScore".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceQualityBuilder) SetFScoreExt(v Element) *MolecularSequenceQualityBuilder {
+	b.molecularSequenceQuality.FScoreExt = &v
+	return b
+}
+
+// =============================================================================
+// MolecularSequenceQualityRoc - Fluent Builder
+// =============================================================================
+
+// MolecularSequenceQualityRocBuilder provides a fluent API for constructing MolecularSequenceQualityRoc values.
+type MolecularSequenceQualityRocBuilder struct {
+	molecularSequenceQualityRoc *MolecularSequenceQualityRoc
+}
+
+// NewMolecularSequenceQualityRocBuilder creates a new MolecularSequenceQualityRocBuilder.
+func NewMolecularSequenceQualityRocBuilder() *MolecularSequenceQualityRocBuilder {
+	return &MolecularSequenceQualityRocBuilder{
+		molecularSequenceQualityRoc: &MolecularSequenceQualityRoc{},
+	}
+}
+
+// Build returns the constructed MolecularSequenceQualityRoc.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MolecularSequenceQualityRocBuilder) Build() MolecularSequenceQualityRoc {
+	return *b.molecularSequenceQualityRoc
+}
+
+// SetId sets the Id field.
+func (b *MolecularSequenceQualityRocBuilder) SetId(v string) *MolecularSequenceQualityRocBuilder {
+	b.molecularSequenceQualityRoc.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MolecularSequenceQualityRocBuilder) AddExtension(v Extension) *MolecularSequenceQualityRocBuilder {
+	b.molecularSequenceQualityRoc.Extension = append(b.molecularSequenceQualityRoc.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MolecularSequenceQualityRocBuilder) AddModifierExtension(v Extension) *MolecularSequenceQualityRocBuilder {
+	b.molecularSequenceQualityRoc.ModifierExtension = append(b.molecularSequenceQualityRoc.ModifierExtension, v)
+	return b
+}
+
+// AddScore adds a Score element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *MolecularSequenceQualityRocBuilder) AddScore(v int) *MolecularSequenceQualityRocBuilder {
+	b.molecularSequenceQualityRoc.Score = append(b.molecularSequenceQualityRoc.Score, &v)
+	return b
+}
+
+// AddNumTP adds a NumTP element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *MolecularSequenceQualityRocBuilder) AddNumTP(v int) *MolecularSequenceQualityRocBuilder {
+	b.molecularSequenceQualityRoc.NumTP = append(b.molecularSequenceQualityRoc.NumTP, &v)
+	return b
+}
+
+// AddNumFP adds a NumFP element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *MolecularSequenceQualityRocBuilder) AddNumFP(v int) *MolecularSequenceQualityRocBuilder {
+	b.molecularSequenceQualityRoc.NumFP = append(b.molecularSequenceQualityRoc.NumFP, &v)
+	return b
+}
+
+// AddNumFN adds a NumFN element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *MolecularSequenceQualityRocBuilder) AddNumFN(v int) *MolecularSequenceQualityRocBuilder {
+	b.molecularSequenceQualityRoc.NumFN = append(b.molecularSequenceQualityRoc.NumFN, &v)
+	return b
+}
+
+// AddPrecision adds a Precision element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *MolecularSequenceQualityRocBuilder) AddPrecision(v Decimal) *MolecularSequenceQualityRocBuilder {
+	b.molecularSequenceQualityRoc.Precision = append(b.molecularSequenceQualityRoc.Precision, &v)
+	return b
+}
+
+// AddSensitivity adds a Sensitivity element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *MolecularSequenceQualityRocBuilder) AddSensitivity(v Decimal) *MolecularSequenceQualityRocBuilder {
+	b.molecularSequenceQualityRoc.Sensitivity = append(b.molecularSequenceQualityRoc.Sensitivity, &v)
+	return b
+}
+
+// AddFMeasure adds a FMeasure element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *MolecularSequenceQualityRocBuilder) AddFMeasure(v Decimal) *MolecularSequenceQualityRocBuilder {
+	b.molecularSequenceQualityRoc.FMeasure = append(b.molecularSequenceQualityRoc.FMeasure, &v)
+	return b
+}
+
+// AddScoreExt attaches extensions to the Score element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddScore twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *MolecularSequenceQualityRocBuilder) AddScoreExt(v *Element) *MolecularSequenceQualityRocBuilder {
+	for len(b.molecularSequenceQualityRoc.ScoreExt) < len(b.molecularSequenceQualityRoc.Score)-1 {
+		b.molecularSequenceQualityRoc.ScoreExt = append(b.molecularSequenceQualityRoc.ScoreExt, nil)
+	}
+	b.molecularSequenceQualityRoc.ScoreExt = append(b.molecularSequenceQualityRoc.ScoreExt, v)
+	return b
+}
+
+// AddNumTPExt attaches extensions to the NumTP element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddNumTP twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *MolecularSequenceQualityRocBuilder) AddNumTPExt(v *Element) *MolecularSequenceQualityRocBuilder {
+	for len(b.molecularSequenceQualityRoc.NumTPExt) < len(b.molecularSequenceQualityRoc.NumTP)-1 {
+		b.molecularSequenceQualityRoc.NumTPExt = append(b.molecularSequenceQualityRoc.NumTPExt, nil)
+	}
+	b.molecularSequenceQualityRoc.NumTPExt = append(b.molecularSequenceQualityRoc.NumTPExt, v)
+	return b
+}
+
+// AddNumFPExt attaches extensions to the NumFP element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddNumFP twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *MolecularSequenceQualityRocBuilder) AddNumFPExt(v *Element) *MolecularSequenceQualityRocBuilder {
+	for len(b.molecularSequenceQualityRoc.NumFPExt) < len(b.molecularSequenceQualityRoc.NumFP)-1 {
+		b.molecularSequenceQualityRoc.NumFPExt = append(b.molecularSequenceQualityRoc.NumFPExt, nil)
+	}
+	b.molecularSequenceQualityRoc.NumFPExt = append(b.molecularSequenceQualityRoc.NumFPExt, v)
+	return b
+}
+
+// AddNumFNExt attaches extensions to the NumFN element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddNumFN twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *MolecularSequenceQualityRocBuilder) AddNumFNExt(v *Element) *MolecularSequenceQualityRocBuilder {
+	for len(b.molecularSequenceQualityRoc.NumFNExt) < len(b.molecularSequenceQualityRoc.NumFN)-1 {
+		b.molecularSequenceQualityRoc.NumFNExt = append(b.molecularSequenceQualityRoc.NumFNExt, nil)
+	}
+	b.molecularSequenceQualityRoc.NumFNExt = append(b.molecularSequenceQualityRoc.NumFNExt, v)
+	return b
+}
+
+// AddPrecisionExt attaches extensions to the Precision element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddPrecision twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *MolecularSequenceQualityRocBuilder) AddPrecisionExt(v *Element) *MolecularSequenceQualityRocBuilder {
+	for len(b.molecularSequenceQualityRoc.PrecisionExt) < len(b.molecularSequenceQualityRoc.Precision)-1 {
+		b.molecularSequenceQualityRoc.PrecisionExt = append(b.molecularSequenceQualityRoc.PrecisionExt, nil)
+	}
+	b.molecularSequenceQualityRoc.PrecisionExt = append(b.molecularSequenceQualityRoc.PrecisionExt, v)
+	return b
+}
+
+// AddSensitivityExt attaches extensions to the Sensitivity element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddSensitivity twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *MolecularSequenceQualityRocBuilder) AddSensitivityExt(v *Element) *MolecularSequenceQualityRocBuilder {
+	for len(b.molecularSequenceQualityRoc.SensitivityExt) < len(b.molecularSequenceQualityRoc.Sensitivity)-1 {
+		b.molecularSequenceQualityRoc.SensitivityExt = append(b.molecularSequenceQualityRoc.SensitivityExt, nil)
+	}
+	b.molecularSequenceQualityRoc.SensitivityExt = append(b.molecularSequenceQualityRoc.SensitivityExt, v)
+	return b
+}
+
+// AddFMeasureExt attaches extensions to the FMeasure element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddFMeasure twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *MolecularSequenceQualityRocBuilder) AddFMeasureExt(v *Element) *MolecularSequenceQualityRocBuilder {
+	for len(b.molecularSequenceQualityRoc.FMeasureExt) < len(b.molecularSequenceQualityRoc.FMeasure)-1 {
+		b.molecularSequenceQualityRoc.FMeasureExt = append(b.molecularSequenceQualityRoc.FMeasureExt, nil)
+	}
+	b.molecularSequenceQualityRoc.FMeasureExt = append(b.molecularSequenceQualityRoc.FMeasureExt, v)
+	return b
+}
+
+// =============================================================================
+// MolecularSequenceReferenceSeq - Fluent Builder
+// =============================================================================
+
+// MolecularSequenceReferenceSeqBuilder provides a fluent API for constructing MolecularSequenceReferenceSeq values.
+type MolecularSequenceReferenceSeqBuilder struct {
+	molecularSequenceReferenceSeq *MolecularSequenceReferenceSeq
+}
+
+// NewMolecularSequenceReferenceSeqBuilder creates a new MolecularSequenceReferenceSeqBuilder.
+func NewMolecularSequenceReferenceSeqBuilder() *MolecularSequenceReferenceSeqBuilder {
+	return &MolecularSequenceReferenceSeqBuilder{
+		molecularSequenceReferenceSeq: &MolecularSequenceReferenceSeq{},
+	}
+}
+
+// Build returns the constructed MolecularSequenceReferenceSeq.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MolecularSequenceReferenceSeqBuilder) Build() MolecularSequenceReferenceSeq {
+	return *b.molecularSequenceReferenceSeq
+}
+
+// SetId sets the Id field.
+func (b *MolecularSequenceReferenceSeqBuilder) SetId(v string) *MolecularSequenceReferenceSeqBuilder {
+	b.molecularSequenceReferenceSeq.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MolecularSequenceReferenceSeqBuilder) AddExtension(v Extension) *MolecularSequenceReferenceSeqBuilder {
+	b.molecularSequenceReferenceSeq.Extension = append(b.molecularSequenceReferenceSeq.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MolecularSequenceReferenceSeqBuilder) AddModifierExtension(v Extension) *MolecularSequenceReferenceSeqBuilder {
+	b.molecularSequenceReferenceSeq.ModifierExtension = append(b.molecularSequenceReferenceSeq.ModifierExtension, v)
+	return b
+}
+
+// SetChromosome sets the Chromosome field.
+func (b *MolecularSequenceReferenceSeqBuilder) SetChromosome(v CodeableConcept) *MolecularSequenceReferenceSeqBuilder {
+	b.molecularSequenceReferenceSeq.Chromosome = &v
+	return b
+}
+
+// SetGenomeBuild sets the GenomeBuild field.
+func (b *MolecularSequenceReferenceSeqBuilder) SetGenomeBuild(v string) *MolecularSequenceReferenceSeqBuilder {
+	b.molecularSequenceReferenceSeq.GenomeBuild = &v
+	return b
+}
+
+// SetOrientation sets the Orientation field.
+func (b *MolecularSequenceReferenceSeqBuilder) SetOrientation(v OrientationType) *MolecularSequenceReferenceSeqBuilder {
+	b.molecularSequenceReferenceSeq.Orientation = &v
+	return b
+}
+
+// SetReferenceSeqId sets the ReferenceSeqId field.
+func (b *MolecularSequenceReferenceSeqBuilder) SetReferenceSeqId(v CodeableConcept) *MolecularSequenceReferenceSeqBuilder {
+	b.molecularSequenceReferenceSeq.ReferenceSeqId = &v
+	return b
+}
+
+// SetReferenceSeqPointer sets the ReferenceSeqPointer field.
+func (b *MolecularSequenceReferenceSeqBuilder) SetReferenceSeqPointer(v Reference) *MolecularSequenceReferenceSeqBuilder {
+	b.molecularSequenceReferenceSeq.ReferenceSeqPointer = &v
+	return b
+}
+
+// SetReferenceSeqString sets the ReferenceSeqString field.
+func (b *MolecularSequenceReferenceSeqBuilder) SetReferenceSeqString(v string) *MolecularSequenceReferenceSeqBuilder {
+	b.molecularSequenceReferenceSeq.ReferenceSeqString = &v
+	return b
+}
+
+// SetStrand sets the Strand field.
+func (b *MolecularSequenceReferenceSeqBuilder) SetStrand(v StrandType) *MolecularSequenceReferenceSeqBuilder {
+	b.molecularSequenceReferenceSeq.Strand = &v
+	return b
+}
+
+// SetWindowStart sets the WindowStart field.
+func (b *MolecularSequenceReferenceSeqBuilder) SetWindowStart(v int) *MolecularSequenceReferenceSeqBuilder {
+	b.molecularSequenceReferenceSeq.WindowStart = &v
+	return b
+}
+
+// SetWindowEnd sets the WindowEnd field.
+func (b *MolecularSequenceReferenceSeqBuilder) SetWindowEnd(v int) *MolecularSequenceReferenceSeqBuilder {
+	b.molecularSequenceReferenceSeq.WindowEnd = &v
+	return b
+}
+
+// SetGenomeBuildExt sets the extensions carried by GenomeBuild, serialized as
+// "_genomeBuild".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceReferenceSeqBuilder) SetGenomeBuildExt(v Element) *MolecularSequenceReferenceSeqBuilder {
+	b.molecularSequenceReferenceSeq.GenomeBuildExt = &v
+	return b
+}
+
+// SetOrientationExt sets the extensions carried by Orientation, serialized as
+// "_orientation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceReferenceSeqBuilder) SetOrientationExt(v Element) *MolecularSequenceReferenceSeqBuilder {
+	b.molecularSequenceReferenceSeq.OrientationExt = &v
+	return b
+}
+
+// SetReferenceSeqStringExt sets the extensions carried by ReferenceSeqString, serialized as
+// "_referenceSeqString".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceReferenceSeqBuilder) SetReferenceSeqStringExt(v Element) *MolecularSequenceReferenceSeqBuilder {
+	b.molecularSequenceReferenceSeq.ReferenceSeqStringExt = &v
+	return b
+}
+
+// SetStrandExt sets the extensions carried by Strand, serialized as
+// "_strand".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceReferenceSeqBuilder) SetStrandExt(v Element) *MolecularSequenceReferenceSeqBuilder {
+	b.molecularSequenceReferenceSeq.StrandExt = &v
+	return b
+}
+
+// SetWindowStartExt sets the extensions carried by WindowStart, serialized as
+// "_windowStart".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceReferenceSeqBuilder) SetWindowStartExt(v Element) *MolecularSequenceReferenceSeqBuilder {
+	b.molecularSequenceReferenceSeq.WindowStartExt = &v
+	return b
+}
+
+// SetWindowEndExt sets the extensions carried by WindowEnd, serialized as
+// "_windowEnd".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceReferenceSeqBuilder) SetWindowEndExt(v Element) *MolecularSequenceReferenceSeqBuilder {
+	b.molecularSequenceReferenceSeq.WindowEndExt = &v
+	return b
+}
+
+// =============================================================================
+// MolecularSequenceRepository - Fluent Builder
+// =============================================================================
+
+// MolecularSequenceRepositoryBuilder provides a fluent API for constructing MolecularSequenceRepository values.
+type MolecularSequenceRepositoryBuilder struct {
+	molecularSequenceRepository *MolecularSequenceRepository
+}
+
+// NewMolecularSequenceRepositoryBuilder creates a new MolecularSequenceRepositoryBuilder.
+func NewMolecularSequenceRepositoryBuilder() *MolecularSequenceRepositoryBuilder {
+	return &MolecularSequenceRepositoryBuilder{
+		molecularSequenceRepository: &MolecularSequenceRepository{},
+	}
+}
+
+// Build returns the constructed MolecularSequenceRepository.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MolecularSequenceRepositoryBuilder) Build() MolecularSequenceRepository {
+	return *b.molecularSequenceRepository
+}
+
+// SetId sets the Id field.
+func (b *MolecularSequenceRepositoryBuilder) SetId(v string) *MolecularSequenceRepositoryBuilder {
+	b.molecularSequenceRepository.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MolecularSequenceRepositoryBuilder) AddExtension(v Extension) *MolecularSequenceRepositoryBuilder {
+	b.molecularSequenceRepository.Extension = append(b.molecularSequenceRepository.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MolecularSequenceRepositoryBuilder) AddModifierExtension(v Extension) *MolecularSequenceRepositoryBuilder {
+	b.molecularSequenceRepository.ModifierExtension = append(b.molecularSequenceRepository.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *MolecularSequenceRepositoryBuilder) SetType(v RepositoryType) *MolecularSequenceRepositoryBuilder {
+	b.molecularSequenceRepository.Type = &v
+	return b
+}
+
+// SetUrl sets the Url field.
+func (b *MolecularSequenceRepositoryBuilder) SetUrl(v string) *MolecularSequenceRepositoryBuilder {
+	b.molecularSequenceRepository.Url = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *MolecularSequenceRepositoryBuilder) SetName(v string) *MolecularSequenceRepositoryBuilder {
+	b.molecularSequenceRepository.Name = &v
+	return b
+}
+
+// SetDatasetId sets the DatasetId field.
+func (b *MolecularSequenceRepositoryBuilder) SetDatasetId(v string) *MolecularSequenceRepositoryBuilder {
+	b.molecularSequenceRepository.DatasetId = &v
+	return b
+}
+
+// SetVariantsetId sets the VariantsetId field.
+func (b *MolecularSequenceRepositoryBuilder) SetVariantsetId(v string) *MolecularSequenceRepositoryBuilder {
+	b.molecularSequenceRepository.VariantsetId = &v
+	return b
+}
+
+// SetReadsetId sets the ReadsetId field.
+func (b *MolecularSequenceRepositoryBuilder) SetReadsetId(v string) *MolecularSequenceRepositoryBuilder {
+	b.molecularSequenceRepository.ReadsetId = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceRepositoryBuilder) SetTypeExt(v Element) *MolecularSequenceRepositoryBuilder {
+	b.molecularSequenceRepository.TypeExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceRepositoryBuilder) SetUrlExt(v Element) *MolecularSequenceRepositoryBuilder {
+	b.molecularSequenceRepository.UrlExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceRepositoryBuilder) SetNameExt(v Element) *MolecularSequenceRepositoryBuilder {
+	b.molecularSequenceRepository.NameExt = &v
+	return b
+}
+
+// SetDatasetIdExt sets the extensions carried by DatasetId, serialized as
+// "_datasetId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceRepositoryBuilder) SetDatasetIdExt(v Element) *MolecularSequenceRepositoryBuilder {
+	b.molecularSequenceRepository.DatasetIdExt = &v
+	return b
+}
+
+// SetVariantsetIdExt sets the extensions carried by VariantsetId, serialized as
+// "_variantsetId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceRepositoryBuilder) SetVariantsetIdExt(v Element) *MolecularSequenceRepositoryBuilder {
+	b.molecularSequenceRepository.VariantsetIdExt = &v
+	return b
+}
+
+// SetReadsetIdExt sets the extensions carried by ReadsetId, serialized as
+// "_readsetId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceRepositoryBuilder) SetReadsetIdExt(v Element) *MolecularSequenceRepositoryBuilder {
+	b.molecularSequenceRepository.ReadsetIdExt = &v
+	return b
+}
+
+// =============================================================================
+// MolecularSequenceStructureVariant - Fluent Builder
+// =============================================================================
+
+// MolecularSequenceStructureVariantBuilder provides a fluent API for constructing MolecularSequenceStructureVariant values.
+type MolecularSequenceStructureVariantBuilder struct {
+	molecularSequenceStructureVariant *MolecularSequenceStructureVariant
+}
+
+// NewMolecularSequenceStructureVariantBuilder creates a new MolecularSequenceStructureVariantBuilder.
+func NewMolecularSequenceStructureVariantBuilder() *MolecularSequenceStructureVariantBuilder {
+	return &MolecularSequenceStructureVariantBuilder{
+		molecularSequenceStructureVariant: &MolecularSequenceStructureVariant{},
+	}
+}
+
+// Build returns the constructed MolecularSequenceStructureVariant.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MolecularSequenceStructureVariantBuilder) Build() MolecularSequenceStructureVariant {
+	return *b.molecularSequenceStructureVariant
+}
+
+// SetId sets the Id field.
+func (b *MolecularSequenceStructureVariantBuilder) SetId(v string) *MolecularSequenceStructureVariantBuilder {
+	b.molecularSequenceStructureVariant.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MolecularSequenceStructureVariantBuilder) AddExtension(v Extension) *MolecularSequenceStructureVariantBuilder {
+	b.molecularSequenceStructureVariant.Extension = append(b.molecularSequenceStructureVariant.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MolecularSequenceStructureVariantBuilder) AddModifierExtension(v Extension) *MolecularSequenceStructureVariantBuilder {
+	b.molecularSequenceStructureVariant.ModifierExtension = append(b.molecularSequenceStructureVariant.ModifierExtension, v)
+	return b
+}
+
+// SetVariantType sets the VariantType field.
+func (b *MolecularSequenceStructureVariantBuilder) SetVariantType(v CodeableConcept) *MolecularSequenceStructureVariantBuilder {
+	b.molecularSequenceStructureVariant.VariantType = &v
+	return b
+}
+
+// SetExact sets the Exact field.
+func (b *MolecularSequenceStructureVariantBuilder) SetExact(v bool) *MolecularSequenceStructureVariantBuilder {
+	b.molecularSequenceStructureVariant.Exact = &v
+	return b
+}
+
+// SetLength sets the Length field.
+func (b *MolecularSequenceStructureVariantBuilder) SetLength(v int) *MolecularSequenceStructureVariantBuilder {
+	b.molecularSequenceStructureVariant.Length = &v
+	return b
+}
+
+// SetOuter sets the Outer field.
+func (b *MolecularSequenceStructureVariantBuilder) SetOuter(v MolecularSequenceStructureVariantOuter) *MolecularSequenceStructureVariantBuilder {
+	b.molecularSequenceStructureVariant.Outer = &v
+	return b
+}
+
+// SetInner sets the Inner field.
+func (b *MolecularSequenceStructureVariantBuilder) SetInner(v MolecularSequenceStructureVariantInner) *MolecularSequenceStructureVariantBuilder {
+	b.molecularSequenceStructureVariant.Inner = &v
+	return b
+}
+
+// SetExactExt sets the extensions carried by Exact, serialized as
+// "_exact".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceStructureVariantBuilder) SetExactExt(v Element) *MolecularSequenceStructureVariantBuilder {
+	b.molecularSequenceStructureVariant.ExactExt = &v
+	return b
+}
+
+// SetLengthExt sets the extensions carried by Length, serialized as
+// "_length".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceStructureVariantBuilder) SetLengthExt(v Element) *MolecularSequenceStructureVariantBuilder {
+	b.molecularSequenceStructureVariant.LengthExt = &v
+	return b
+}
+
+// =============================================================================
+// MolecularSequenceStructureVariantInner - Fluent Builder
+// =============================================================================
+
+// MolecularSequenceStructureVariantInnerBuilder provides a fluent API for constructing MolecularSequenceStructureVariantInner values.
+type MolecularSequenceStructureVariantInnerBuilder struct {
+	molecularSequenceStructureVariantInner *MolecularSequenceStructureVariantInner
+}
+
+// NewMolecularSequenceStructureVariantInnerBuilder creates a new MolecularSequenceStructureVariantInnerBuilder.
+func NewMolecularSequenceStructureVariantInnerBuilder() *MolecularSequenceStructureVariantInnerBuilder {
+	return &MolecularSequenceStructureVariantInnerBuilder{
+		molecularSequenceStructureVariantInner: &MolecularSequenceStructureVariantInner{},
+	}
+}
+
+// Build returns the constructed MolecularSequenceStructureVariantInner.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MolecularSequenceStructureVariantInnerBuilder) Build() MolecularSequenceStructureVariantInner {
+	return *b.molecularSequenceStructureVariantInner
+}
+
+// SetId sets the Id field.
+func (b *MolecularSequenceStructureVariantInnerBuilder) SetId(v string) *MolecularSequenceStructureVariantInnerBuilder {
+	b.molecularSequenceStructureVariantInner.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MolecularSequenceStructureVariantInnerBuilder) AddExtension(v Extension) *MolecularSequenceStructureVariantInnerBuilder {
+	b.molecularSequenceStructureVariantInner.Extension = append(b.molecularSequenceStructureVariantInner.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MolecularSequenceStructureVariantInnerBuilder) AddModifierExtension(v Extension) *MolecularSequenceStructureVariantInnerBuilder {
+	b.molecularSequenceStructureVariantInner.ModifierExtension = append(b.molecularSequenceStructureVariantInner.ModifierExtension, v)
+	return b
+}
+
+// SetStart sets the Start field.
+func (b *MolecularSequenceStructureVariantInnerBuilder) SetStart(v int) *MolecularSequenceStructureVariantInnerBuilder {
+	b.molecularSequenceStructureVariantInner.Start = &v
+	return b
+}
+
+// SetEnd sets the End field.
+func (b *MolecularSequenceStructureVariantInnerBuilder) SetEnd(v int) *MolecularSequenceStructureVariantInnerBuilder {
+	b.molecularSequenceStructureVariantInner.End = &v
+	return b
+}
+
+// SetStartExt sets the extensions carried by Start, serialized as
+// "_start".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceStructureVariantInnerBuilder) SetStartExt(v Element) *MolecularSequenceStructureVariantInnerBuilder {
+	b.molecularSequenceStructureVariantInner.StartExt = &v
+	return b
+}
+
+// SetEndExt sets the extensions carried by End, serialized as
+// "_end".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceStructureVariantInnerBuilder) SetEndExt(v Element) *MolecularSequenceStructureVariantInnerBuilder {
+	b.molecularSequenceStructureVariantInner.EndExt = &v
+	return b
+}
+
+// =============================================================================
+// MolecularSequenceStructureVariantOuter - Fluent Builder
+// =============================================================================
+
+// MolecularSequenceStructureVariantOuterBuilder provides a fluent API for constructing MolecularSequenceStructureVariantOuter values.
+type MolecularSequenceStructureVariantOuterBuilder struct {
+	molecularSequenceStructureVariantOuter *MolecularSequenceStructureVariantOuter
+}
+
+// NewMolecularSequenceStructureVariantOuterBuilder creates a new MolecularSequenceStructureVariantOuterBuilder.
+func NewMolecularSequenceStructureVariantOuterBuilder() *MolecularSequenceStructureVariantOuterBuilder {
+	return &MolecularSequenceStructureVariantOuterBuilder{
+		molecularSequenceStructureVariantOuter: &MolecularSequenceStructureVariantOuter{},
+	}
+}
+
+// Build returns the constructed MolecularSequenceStructureVariantOuter.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MolecularSequenceStructureVariantOuterBuilder) Build() MolecularSequenceStructureVariantOuter {
+	return *b.molecularSequenceStructureVariantOuter
+}
+
+// SetId sets the Id field.
+func (b *MolecularSequenceStructureVariantOuterBuilder) SetId(v string) *MolecularSequenceStructureVariantOuterBuilder {
+	b.molecularSequenceStructureVariantOuter.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MolecularSequenceStructureVariantOuterBuilder) AddExtension(v Extension) *MolecularSequenceStructureVariantOuterBuilder {
+	b.molecularSequenceStructureVariantOuter.Extension = append(b.molecularSequenceStructureVariantOuter.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MolecularSequenceStructureVariantOuterBuilder) AddModifierExtension(v Extension) *MolecularSequenceStructureVariantOuterBuilder {
+	b.molecularSequenceStructureVariantOuter.ModifierExtension = append(b.molecularSequenceStructureVariantOuter.ModifierExtension, v)
+	return b
+}
+
+// SetStart sets the Start field.
+func (b *MolecularSequenceStructureVariantOuterBuilder) SetStart(v int) *MolecularSequenceStructureVariantOuterBuilder {
+	b.molecularSequenceStructureVariantOuter.Start = &v
+	return b
+}
+
+// SetEnd sets the End field.
+func (b *MolecularSequenceStructureVariantOuterBuilder) SetEnd(v int) *MolecularSequenceStructureVariantOuterBuilder {
+	b.molecularSequenceStructureVariantOuter.End = &v
+	return b
+}
+
+// SetStartExt sets the extensions carried by Start, serialized as
+// "_start".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceStructureVariantOuterBuilder) SetStartExt(v Element) *MolecularSequenceStructureVariantOuterBuilder {
+	b.molecularSequenceStructureVariantOuter.StartExt = &v
+	return b
+}
+
+// SetEndExt sets the extensions carried by End, serialized as
+// "_end".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceStructureVariantOuterBuilder) SetEndExt(v Element) *MolecularSequenceStructureVariantOuterBuilder {
+	b.molecularSequenceStructureVariantOuter.EndExt = &v
+	return b
+}
+
+// =============================================================================
+// MolecularSequenceVariant - Fluent Builder
+// =============================================================================
+
+// MolecularSequenceVariantBuilder provides a fluent API for constructing MolecularSequenceVariant values.
+type MolecularSequenceVariantBuilder struct {
+	molecularSequenceVariant *MolecularSequenceVariant
+}
+
+// NewMolecularSequenceVariantBuilder creates a new MolecularSequenceVariantBuilder.
+func NewMolecularSequenceVariantBuilder() *MolecularSequenceVariantBuilder {
+	return &MolecularSequenceVariantBuilder{
+		molecularSequenceVariant: &MolecularSequenceVariant{},
+	}
+}
+
+// Build returns the constructed MolecularSequenceVariant.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MolecularSequenceVariantBuilder) Build() MolecularSequenceVariant {
+	return *b.molecularSequenceVariant
+}
+
+// SetId sets the Id field.
+func (b *MolecularSequenceVariantBuilder) SetId(v string) *MolecularSequenceVariantBuilder {
+	b.molecularSequenceVariant.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MolecularSequenceVariantBuilder) AddExtension(v Extension) *MolecularSequenceVariantBuilder {
+	b.molecularSequenceVariant.Extension = append(b.molecularSequenceVariant.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MolecularSequenceVariantBuilder) AddModifierExtension(v Extension) *MolecularSequenceVariantBuilder {
+	b.molecularSequenceVariant.ModifierExtension = append(b.molecularSequenceVariant.ModifierExtension, v)
+	return b
+}
+
+// SetStart sets the Start field.
+func (b *MolecularSequenceVariantBuilder) SetStart(v int) *MolecularSequenceVariantBuilder {
+	b.molecularSequenceVariant.Start = &v
+	return b
+}
+
+// SetEnd sets the End field.
+func (b *MolecularSequenceVariantBuilder) SetEnd(v int) *MolecularSequenceVariantBuilder {
+	b.molecularSequenceVariant.End = &v
+	return b
+}
+
+// SetObservedAllele sets the ObservedAllele field.
+func (b *MolecularSequenceVariantBuilder) SetObservedAllele(v string) *MolecularSequenceVariantBuilder {
+	b.molecularSequenceVariant.ObservedAllele = &v
+	return b
+}
+
+// SetReferenceAllele sets the ReferenceAllele field.
+func (b *MolecularSequenceVariantBuilder) SetReferenceAllele(v string) *MolecularSequenceVariantBuilder {
+	b.molecularSequenceVariant.ReferenceAllele = &v
+	return b
+}
+
+// SetCigar sets the Cigar field.
+func (b *MolecularSequenceVariantBuilder) SetCigar(v string) *MolecularSequenceVariantBuilder {
+	b.molecularSequenceVariant.Cigar = &v
+	return b
+}
+
+// SetVariantPointer sets the VariantPointer field.
+func (b *MolecularSequenceVariantBuilder) SetVariantPointer(v Reference) *MolecularSequenceVariantBuilder {
+	b.molecularSequenceVariant.VariantPointer = &v
+	return b
+}
+
+// SetStartExt sets the extensions carried by Start, serialized as
+// "_start".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceVariantBuilder) SetStartExt(v Element) *MolecularSequenceVariantBuilder {
+	b.molecularSequenceVariant.StartExt = &v
+	return b
+}
+
+// SetEndExt sets the extensions carried by End, serialized as
+// "_end".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceVariantBuilder) SetEndExt(v Element) *MolecularSequenceVariantBuilder {
+	b.molecularSequenceVariant.EndExt = &v
+	return b
+}
+
+// SetObservedAlleleExt sets the extensions carried by ObservedAllele, serialized as
+// "_observedAllele".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceVariantBuilder) SetObservedAlleleExt(v Element) *MolecularSequenceVariantBuilder {
+	b.molecularSequenceVariant.ObservedAlleleExt = &v
+	return b
+}
+
+// SetReferenceAlleleExt sets the extensions carried by ReferenceAllele, serialized as
+// "_referenceAllele".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceVariantBuilder) SetReferenceAlleleExt(v Element) *MolecularSequenceVariantBuilder {
+	b.molecularSequenceVariant.ReferenceAlleleExt = &v
+	return b
+}
+
+// SetCigarExt sets the extensions carried by Cigar, serialized as
+// "_cigar".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MolecularSequenceVariantBuilder) SetCigarExt(v Element) *MolecularSequenceVariantBuilder {
+	b.molecularSequenceVariant.CigarExt = &v
+	return b
+}

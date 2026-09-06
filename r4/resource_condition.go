@@ -1099,6 +1099,36 @@ func (b *ConditionBuilder) AddNote(v Annotation) *ConditionBuilder {
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConditionBuilder) SetImplicitRulesExt(v Element) *ConditionBuilder {
+	b.condition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConditionBuilder) SetLanguageExt(v Element) *ConditionBuilder {
+	b.condition.LanguageExt = &v
+	return b
+}
+
+// SetRecordedDateExt sets the extensions carried by RecordedDate, serialized as
+// "_recordedDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConditionBuilder) SetRecordedDateExt(v Element) *ConditionBuilder {
+	b.condition.RecordedDateExt = &v
+	return b
+}
+
 // clearOnset unsets every variant of Onset[x], including the
 // _field companions of the primitive ones.
 func (b *ConditionBuilder) clearOnset() {
@@ -1119,4 +1149,124 @@ func (b *ConditionBuilder) clearAbatement() {
 	b.condition.AbatementRange = nil
 	b.condition.AbatementString = nil
 	b.condition.AbatementStringExt = nil
+}
+
+// =============================================================================
+// ConditionEvidence - Fluent Builder
+// =============================================================================
+
+// ConditionEvidenceBuilder provides a fluent API for constructing ConditionEvidence values.
+type ConditionEvidenceBuilder struct {
+	conditionEvidence *ConditionEvidence
+}
+
+// NewConditionEvidenceBuilder creates a new ConditionEvidenceBuilder.
+func NewConditionEvidenceBuilder() *ConditionEvidenceBuilder {
+	return &ConditionEvidenceBuilder{
+		conditionEvidence: &ConditionEvidence{},
+	}
+}
+
+// Build returns the constructed ConditionEvidence.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ConditionEvidenceBuilder) Build() ConditionEvidence {
+	return *b.conditionEvidence
+}
+
+// SetId sets the Id field.
+func (b *ConditionEvidenceBuilder) SetId(v string) *ConditionEvidenceBuilder {
+	b.conditionEvidence.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ConditionEvidenceBuilder) AddExtension(v Extension) *ConditionEvidenceBuilder {
+	b.conditionEvidence.Extension = append(b.conditionEvidence.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ConditionEvidenceBuilder) AddModifierExtension(v Extension) *ConditionEvidenceBuilder {
+	b.conditionEvidence.ModifierExtension = append(b.conditionEvidence.ModifierExtension, v)
+	return b
+}
+
+// AddCode adds a Code element.
+func (b *ConditionEvidenceBuilder) AddCode(v CodeableConcept) *ConditionEvidenceBuilder {
+	b.conditionEvidence.Code = append(b.conditionEvidence.Code, v)
+	return b
+}
+
+// AddDetail adds a Detail element.
+func (b *ConditionEvidenceBuilder) AddDetail(v Reference) *ConditionEvidenceBuilder {
+	b.conditionEvidence.Detail = append(b.conditionEvidence.Detail, v)
+	return b
+}
+
+// =============================================================================
+// ConditionStage - Fluent Builder
+// =============================================================================
+
+// ConditionStageBuilder provides a fluent API for constructing ConditionStage values.
+type ConditionStageBuilder struct {
+	conditionStage *ConditionStage
+}
+
+// NewConditionStageBuilder creates a new ConditionStageBuilder.
+func NewConditionStageBuilder() *ConditionStageBuilder {
+	return &ConditionStageBuilder{
+		conditionStage: &ConditionStage{},
+	}
+}
+
+// Build returns the constructed ConditionStage.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ConditionStageBuilder) Build() ConditionStage {
+	return *b.conditionStage
+}
+
+// SetId sets the Id field.
+func (b *ConditionStageBuilder) SetId(v string) *ConditionStageBuilder {
+	b.conditionStage.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ConditionStageBuilder) AddExtension(v Extension) *ConditionStageBuilder {
+	b.conditionStage.Extension = append(b.conditionStage.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ConditionStageBuilder) AddModifierExtension(v Extension) *ConditionStageBuilder {
+	b.conditionStage.ModifierExtension = append(b.conditionStage.ModifierExtension, v)
+	return b
+}
+
+// SetSummary sets the Summary field.
+func (b *ConditionStageBuilder) SetSummary(v CodeableConcept) *ConditionStageBuilder {
+	b.conditionStage.Summary = &v
+	return b
+}
+
+// AddAssessment adds a Assessment element.
+func (b *ConditionStageBuilder) AddAssessment(v Reference) *ConditionStageBuilder {
+	b.conditionStage.Assessment = append(b.conditionStage.Assessment, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ConditionStageBuilder) SetType(v CodeableConcept) *ConditionStageBuilder {
+	b.conditionStage.Type = &v
+	return b
 }

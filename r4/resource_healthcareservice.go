@@ -1129,3 +1129,338 @@ func (b *HealthcareServiceBuilder) AddEndpoint(v Reference) *HealthcareServiceBu
 	b.healthcareService.Endpoint = append(b.healthcareService.Endpoint, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceBuilder) SetImplicitRulesExt(v Element) *HealthcareServiceBuilder {
+	b.healthcareService.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceBuilder) SetLanguageExt(v Element) *HealthcareServiceBuilder {
+	b.healthcareService.LanguageExt = &v
+	return b
+}
+
+// SetActiveExt sets the extensions carried by Active, serialized as
+// "_active".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceBuilder) SetActiveExt(v Element) *HealthcareServiceBuilder {
+	b.healthcareService.ActiveExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceBuilder) SetNameExt(v Element) *HealthcareServiceBuilder {
+	b.healthcareService.NameExt = &v
+	return b
+}
+
+// SetCommentExt sets the extensions carried by Comment, serialized as
+// "_comment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceBuilder) SetCommentExt(v Element) *HealthcareServiceBuilder {
+	b.healthcareService.CommentExt = &v
+	return b
+}
+
+// SetExtraDetailsExt sets the extensions carried by ExtraDetails, serialized as
+// "_extraDetails".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceBuilder) SetExtraDetailsExt(v Element) *HealthcareServiceBuilder {
+	b.healthcareService.ExtraDetailsExt = &v
+	return b
+}
+
+// SetAppointmentRequiredExt sets the extensions carried by AppointmentRequired, serialized as
+// "_appointmentRequired".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceBuilder) SetAppointmentRequiredExt(v Element) *HealthcareServiceBuilder {
+	b.healthcareService.AppointmentRequiredExt = &v
+	return b
+}
+
+// SetAvailabilityExceptionsExt sets the extensions carried by AvailabilityExceptions, serialized as
+// "_availabilityExceptions".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceBuilder) SetAvailabilityExceptionsExt(v Element) *HealthcareServiceBuilder {
+	b.healthcareService.AvailabilityExceptionsExt = &v
+	return b
+}
+
+// =============================================================================
+// HealthcareServiceAvailableTime - Fluent Builder
+// =============================================================================
+
+// HealthcareServiceAvailableTimeBuilder provides a fluent API for constructing HealthcareServiceAvailableTime values.
+type HealthcareServiceAvailableTimeBuilder struct {
+	healthcareServiceAvailableTime *HealthcareServiceAvailableTime
+}
+
+// NewHealthcareServiceAvailableTimeBuilder creates a new HealthcareServiceAvailableTimeBuilder.
+func NewHealthcareServiceAvailableTimeBuilder() *HealthcareServiceAvailableTimeBuilder {
+	return &HealthcareServiceAvailableTimeBuilder{
+		healthcareServiceAvailableTime: &HealthcareServiceAvailableTime{},
+	}
+}
+
+// Build returns the constructed HealthcareServiceAvailableTime.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *HealthcareServiceAvailableTimeBuilder) Build() HealthcareServiceAvailableTime {
+	return *b.healthcareServiceAvailableTime
+}
+
+// SetId sets the Id field.
+func (b *HealthcareServiceAvailableTimeBuilder) SetId(v string) *HealthcareServiceAvailableTimeBuilder {
+	b.healthcareServiceAvailableTime.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *HealthcareServiceAvailableTimeBuilder) AddExtension(v Extension) *HealthcareServiceAvailableTimeBuilder {
+	b.healthcareServiceAvailableTime.Extension = append(b.healthcareServiceAvailableTime.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *HealthcareServiceAvailableTimeBuilder) AddModifierExtension(v Extension) *HealthcareServiceAvailableTimeBuilder {
+	b.healthcareServiceAvailableTime.ModifierExtension = append(b.healthcareServiceAvailableTime.ModifierExtension, v)
+	return b
+}
+
+// AddDaysOfWeek adds a DaysOfWeek element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *HealthcareServiceAvailableTimeBuilder) AddDaysOfWeek(v DaysOfWeek) *HealthcareServiceAvailableTimeBuilder {
+	b.healthcareServiceAvailableTime.DaysOfWeek = append(b.healthcareServiceAvailableTime.DaysOfWeek, &v)
+	return b
+}
+
+// SetAllDay sets the AllDay field.
+func (b *HealthcareServiceAvailableTimeBuilder) SetAllDay(v bool) *HealthcareServiceAvailableTimeBuilder {
+	b.healthcareServiceAvailableTime.AllDay = &v
+	return b
+}
+
+// SetAvailableStartTime sets the AvailableStartTime field.
+func (b *HealthcareServiceAvailableTimeBuilder) SetAvailableStartTime(v string) *HealthcareServiceAvailableTimeBuilder {
+	b.healthcareServiceAvailableTime.AvailableStartTime = &v
+	return b
+}
+
+// SetAvailableEndTime sets the AvailableEndTime field.
+func (b *HealthcareServiceAvailableTimeBuilder) SetAvailableEndTime(v string) *HealthcareServiceAvailableTimeBuilder {
+	b.healthcareServiceAvailableTime.AvailableEndTime = &v
+	return b
+}
+
+// AddDaysOfWeekExt attaches extensions to the DaysOfWeek element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDaysOfWeek twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *HealthcareServiceAvailableTimeBuilder) AddDaysOfWeekExt(v *Element) *HealthcareServiceAvailableTimeBuilder {
+	for len(b.healthcareServiceAvailableTime.DaysOfWeekExt) < len(b.healthcareServiceAvailableTime.DaysOfWeek)-1 {
+		b.healthcareServiceAvailableTime.DaysOfWeekExt = append(b.healthcareServiceAvailableTime.DaysOfWeekExt, nil)
+	}
+	b.healthcareServiceAvailableTime.DaysOfWeekExt = append(b.healthcareServiceAvailableTime.DaysOfWeekExt, v)
+	return b
+}
+
+// SetAllDayExt sets the extensions carried by AllDay, serialized as
+// "_allDay".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceAvailableTimeBuilder) SetAllDayExt(v Element) *HealthcareServiceAvailableTimeBuilder {
+	b.healthcareServiceAvailableTime.AllDayExt = &v
+	return b
+}
+
+// SetAvailableStartTimeExt sets the extensions carried by AvailableStartTime, serialized as
+// "_availableStartTime".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceAvailableTimeBuilder) SetAvailableStartTimeExt(v Element) *HealthcareServiceAvailableTimeBuilder {
+	b.healthcareServiceAvailableTime.AvailableStartTimeExt = &v
+	return b
+}
+
+// SetAvailableEndTimeExt sets the extensions carried by AvailableEndTime, serialized as
+// "_availableEndTime".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceAvailableTimeBuilder) SetAvailableEndTimeExt(v Element) *HealthcareServiceAvailableTimeBuilder {
+	b.healthcareServiceAvailableTime.AvailableEndTimeExt = &v
+	return b
+}
+
+// =============================================================================
+// HealthcareServiceEligibility - Fluent Builder
+// =============================================================================
+
+// HealthcareServiceEligibilityBuilder provides a fluent API for constructing HealthcareServiceEligibility values.
+type HealthcareServiceEligibilityBuilder struct {
+	healthcareServiceEligibility *HealthcareServiceEligibility
+}
+
+// NewHealthcareServiceEligibilityBuilder creates a new HealthcareServiceEligibilityBuilder.
+func NewHealthcareServiceEligibilityBuilder() *HealthcareServiceEligibilityBuilder {
+	return &HealthcareServiceEligibilityBuilder{
+		healthcareServiceEligibility: &HealthcareServiceEligibility{},
+	}
+}
+
+// Build returns the constructed HealthcareServiceEligibility.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *HealthcareServiceEligibilityBuilder) Build() HealthcareServiceEligibility {
+	return *b.healthcareServiceEligibility
+}
+
+// SetId sets the Id field.
+func (b *HealthcareServiceEligibilityBuilder) SetId(v string) *HealthcareServiceEligibilityBuilder {
+	b.healthcareServiceEligibility.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *HealthcareServiceEligibilityBuilder) AddExtension(v Extension) *HealthcareServiceEligibilityBuilder {
+	b.healthcareServiceEligibility.Extension = append(b.healthcareServiceEligibility.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *HealthcareServiceEligibilityBuilder) AddModifierExtension(v Extension) *HealthcareServiceEligibilityBuilder {
+	b.healthcareServiceEligibility.ModifierExtension = append(b.healthcareServiceEligibility.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *HealthcareServiceEligibilityBuilder) SetCode(v CodeableConcept) *HealthcareServiceEligibilityBuilder {
+	b.healthcareServiceEligibility.Code = &v
+	return b
+}
+
+// SetComment sets the Comment field.
+func (b *HealthcareServiceEligibilityBuilder) SetComment(v string) *HealthcareServiceEligibilityBuilder {
+	b.healthcareServiceEligibility.Comment = &v
+	return b
+}
+
+// SetCommentExt sets the extensions carried by Comment, serialized as
+// "_comment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceEligibilityBuilder) SetCommentExt(v Element) *HealthcareServiceEligibilityBuilder {
+	b.healthcareServiceEligibility.CommentExt = &v
+	return b
+}
+
+// =============================================================================
+// HealthcareServiceNotAvailable - Fluent Builder
+// =============================================================================
+
+// HealthcareServiceNotAvailableBuilder provides a fluent API for constructing HealthcareServiceNotAvailable values.
+type HealthcareServiceNotAvailableBuilder struct {
+	healthcareServiceNotAvailable *HealthcareServiceNotAvailable
+}
+
+// NewHealthcareServiceNotAvailableBuilder creates a new HealthcareServiceNotAvailableBuilder.
+func NewHealthcareServiceNotAvailableBuilder() *HealthcareServiceNotAvailableBuilder {
+	return &HealthcareServiceNotAvailableBuilder{
+		healthcareServiceNotAvailable: &HealthcareServiceNotAvailable{},
+	}
+}
+
+// Build returns the constructed HealthcareServiceNotAvailable.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *HealthcareServiceNotAvailableBuilder) Build() HealthcareServiceNotAvailable {
+	return *b.healthcareServiceNotAvailable
+}
+
+// SetId sets the Id field.
+func (b *HealthcareServiceNotAvailableBuilder) SetId(v string) *HealthcareServiceNotAvailableBuilder {
+	b.healthcareServiceNotAvailable.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *HealthcareServiceNotAvailableBuilder) AddExtension(v Extension) *HealthcareServiceNotAvailableBuilder {
+	b.healthcareServiceNotAvailable.Extension = append(b.healthcareServiceNotAvailable.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *HealthcareServiceNotAvailableBuilder) AddModifierExtension(v Extension) *HealthcareServiceNotAvailableBuilder {
+	b.healthcareServiceNotAvailable.ModifierExtension = append(b.healthcareServiceNotAvailable.ModifierExtension, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *HealthcareServiceNotAvailableBuilder) SetDescription(v string) *HealthcareServiceNotAvailableBuilder {
+	b.healthcareServiceNotAvailable.Description = &v
+	return b
+}
+
+// SetDuring sets the During field.
+func (b *HealthcareServiceNotAvailableBuilder) SetDuring(v Period) *HealthcareServiceNotAvailableBuilder {
+	b.healthcareServiceNotAvailable.During = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceNotAvailableBuilder) SetDescriptionExt(v Element) *HealthcareServiceNotAvailableBuilder {
+	b.healthcareServiceNotAvailable.DescriptionExt = &v
+	return b
+}

@@ -574,3 +574,103 @@ func (b *MedicinalProductContraindicationBuilder) AddPopulation(v Population) *M
 	b.medicinalProductContraindication.Population = append(b.medicinalProductContraindication.Population, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductContraindicationBuilder) SetImplicitRulesExt(v Element) *MedicinalProductContraindicationBuilder {
+	b.medicinalProductContraindication.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductContraindicationBuilder) SetLanguageExt(v Element) *MedicinalProductContraindicationBuilder {
+	b.medicinalProductContraindication.LanguageExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicinalProductContraindicationOtherTherapy - Fluent Builder
+// =============================================================================
+
+// MedicinalProductContraindicationOtherTherapyBuilder provides a fluent API for constructing MedicinalProductContraindicationOtherTherapy values.
+type MedicinalProductContraindicationOtherTherapyBuilder struct {
+	medicinalProductContraindicationOtherTherapy *MedicinalProductContraindicationOtherTherapy
+}
+
+// NewMedicinalProductContraindicationOtherTherapyBuilder creates a new MedicinalProductContraindicationOtherTherapyBuilder.
+func NewMedicinalProductContraindicationOtherTherapyBuilder() *MedicinalProductContraindicationOtherTherapyBuilder {
+	return &MedicinalProductContraindicationOtherTherapyBuilder{
+		medicinalProductContraindicationOtherTherapy: &MedicinalProductContraindicationOtherTherapy{},
+	}
+}
+
+// Build returns the constructed MedicinalProductContraindicationOtherTherapy.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductContraindicationOtherTherapyBuilder) Build() MedicinalProductContraindicationOtherTherapy {
+	return *b.medicinalProductContraindicationOtherTherapy
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductContraindicationOtherTherapyBuilder) SetId(v string) *MedicinalProductContraindicationOtherTherapyBuilder {
+	b.medicinalProductContraindicationOtherTherapy.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductContraindicationOtherTherapyBuilder) AddExtension(v Extension) *MedicinalProductContraindicationOtherTherapyBuilder {
+	b.medicinalProductContraindicationOtherTherapy.Extension = append(b.medicinalProductContraindicationOtherTherapy.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductContraindicationOtherTherapyBuilder) AddModifierExtension(v Extension) *MedicinalProductContraindicationOtherTherapyBuilder {
+	b.medicinalProductContraindicationOtherTherapy.ModifierExtension = append(b.medicinalProductContraindicationOtherTherapy.ModifierExtension, v)
+	return b
+}
+
+// SetTherapyRelationshipType sets the TherapyRelationshipType field.
+func (b *MedicinalProductContraindicationOtherTherapyBuilder) SetTherapyRelationshipType(v CodeableConcept) *MedicinalProductContraindicationOtherTherapyBuilder {
+	b.medicinalProductContraindicationOtherTherapy.TherapyRelationshipType = &v
+	return b
+}
+
+// SetMedicationCodeableConcept sets Medication[x] to its MedicationCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicinalProductContraindicationOtherTherapyBuilder) SetMedicationCodeableConcept(v CodeableConcept) *MedicinalProductContraindicationOtherTherapyBuilder {
+	b.clearMedication()
+	b.medicinalProductContraindicationOtherTherapy.MedicationCodeableConcept = &v
+	return b
+}
+
+// SetMedicationReference sets Medication[x] to its MedicationReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicinalProductContraindicationOtherTherapyBuilder) SetMedicationReference(v Reference) *MedicinalProductContraindicationOtherTherapyBuilder {
+	b.clearMedication()
+	b.medicinalProductContraindicationOtherTherapy.MedicationReference = &v
+	return b
+}
+
+// clearMedication unsets every variant of Medication[x], including the
+// _field companions of the primitive ones.
+func (b *MedicinalProductContraindicationOtherTherapyBuilder) clearMedication() {
+	b.medicinalProductContraindicationOtherTherapy.MedicationCodeableConcept = nil
+	b.medicinalProductContraindicationOtherTherapy.MedicationReference = nil
+}

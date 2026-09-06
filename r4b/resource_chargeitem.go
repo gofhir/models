@@ -1028,6 +1028,102 @@ func (b *ChargeItemBuilder) AddSupportingInformation(v Reference) *ChargeItemBui
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemBuilder) SetImplicitRulesExt(v Element) *ChargeItemBuilder {
+	b.chargeItem.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemBuilder) SetLanguageExt(v Element) *ChargeItemBuilder {
+	b.chargeItem.LanguageExt = &v
+	return b
+}
+
+// AddDefinitionUriExt attaches extensions to the DefinitionUri element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDefinitionUri twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ChargeItemBuilder) AddDefinitionUriExt(v *Element) *ChargeItemBuilder {
+	for len(b.chargeItem.DefinitionUriExt) < len(b.chargeItem.DefinitionUri)-1 {
+		b.chargeItem.DefinitionUriExt = append(b.chargeItem.DefinitionUriExt, nil)
+	}
+	b.chargeItem.DefinitionUriExt = append(b.chargeItem.DefinitionUriExt, v)
+	return b
+}
+
+// AddDefinitionCanonicalExt attaches extensions to the DefinitionCanonical element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDefinitionCanonical twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ChargeItemBuilder) AddDefinitionCanonicalExt(v *Element) *ChargeItemBuilder {
+	for len(b.chargeItem.DefinitionCanonicalExt) < len(b.chargeItem.DefinitionCanonical)-1 {
+		b.chargeItem.DefinitionCanonicalExt = append(b.chargeItem.DefinitionCanonicalExt, nil)
+	}
+	b.chargeItem.DefinitionCanonicalExt = append(b.chargeItem.DefinitionCanonicalExt, v)
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemBuilder) SetStatusExt(v Element) *ChargeItemBuilder {
+	b.chargeItem.StatusExt = &v
+	return b
+}
+
+// SetFactorOverrideExt sets the extensions carried by FactorOverride, serialized as
+// "_factorOverride".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemBuilder) SetFactorOverrideExt(v Element) *ChargeItemBuilder {
+	b.chargeItem.FactorOverrideExt = &v
+	return b
+}
+
+// SetOverrideReasonExt sets the extensions carried by OverrideReason, serialized as
+// "_overrideReason".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemBuilder) SetOverrideReasonExt(v Element) *ChargeItemBuilder {
+	b.chargeItem.OverrideReasonExt = &v
+	return b
+}
+
+// SetEnteredDateExt sets the extensions carried by EnteredDate, serialized as
+// "_enteredDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ChargeItemBuilder) SetEnteredDateExt(v Element) *ChargeItemBuilder {
+	b.chargeItem.EnteredDateExt = &v
+	return b
+}
+
 // clearOccurrence unsets every variant of Occurrence[x], including the
 // _field companions of the primitive ones.
 func (b *ChargeItemBuilder) clearOccurrence() {
@@ -1041,4 +1137,61 @@ func (b *ChargeItemBuilder) clearOccurrence() {
 func (b *ChargeItemBuilder) clearProduct() {
 	b.chargeItem.ProductReference = nil
 	b.chargeItem.ProductCodeableConcept = nil
+}
+
+// =============================================================================
+// ChargeItemPerformer - Fluent Builder
+// =============================================================================
+
+// ChargeItemPerformerBuilder provides a fluent API for constructing ChargeItemPerformer values.
+type ChargeItemPerformerBuilder struct {
+	chargeItemPerformer *ChargeItemPerformer
+}
+
+// NewChargeItemPerformerBuilder creates a new ChargeItemPerformerBuilder.
+func NewChargeItemPerformerBuilder() *ChargeItemPerformerBuilder {
+	return &ChargeItemPerformerBuilder{
+		chargeItemPerformer: &ChargeItemPerformer{},
+	}
+}
+
+// Build returns the constructed ChargeItemPerformer.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ChargeItemPerformerBuilder) Build() ChargeItemPerformer {
+	return *b.chargeItemPerformer
+}
+
+// SetId sets the Id field.
+func (b *ChargeItemPerformerBuilder) SetId(v string) *ChargeItemPerformerBuilder {
+	b.chargeItemPerformer.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ChargeItemPerformerBuilder) AddExtension(v Extension) *ChargeItemPerformerBuilder {
+	b.chargeItemPerformer.Extension = append(b.chargeItemPerformer.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ChargeItemPerformerBuilder) AddModifierExtension(v Extension) *ChargeItemPerformerBuilder {
+	b.chargeItemPerformer.ModifierExtension = append(b.chargeItemPerformer.ModifierExtension, v)
+	return b
+}
+
+// SetFunction sets the Function field.
+func (b *ChargeItemPerformerBuilder) SetFunction(v CodeableConcept) *ChargeItemPerformerBuilder {
+	b.chargeItemPerformer.Function = &v
+	return b
+}
+
+// SetActor sets the Actor field.
+func (b *ChargeItemPerformerBuilder) SetActor(v Reference) *ChargeItemPerformerBuilder {
+	b.chargeItemPerformer.Actor = &v
+	return b
 }

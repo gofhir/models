@@ -2260,6 +2260,274 @@ func (b *MeasureBuilder) AddSupplementalData(v MeasureSupplementalData) *Measure
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetImplicitRulesExt(v Element) *MeasureBuilder {
+	b.measure.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetLanguageExt(v Element) *MeasureBuilder {
+	b.measure.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetUrlExt(v Element) *MeasureBuilder {
+	b.measure.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetVersionExt(v Element) *MeasureBuilder {
+	b.measure.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetNameExt(v Element) *MeasureBuilder {
+	b.measure.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetTitleExt(v Element) *MeasureBuilder {
+	b.measure.TitleExt = &v
+	return b
+}
+
+// SetSubtitleExt sets the extensions carried by Subtitle, serialized as
+// "_subtitle".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetSubtitleExt(v Element) *MeasureBuilder {
+	b.measure.SubtitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetStatusExt(v Element) *MeasureBuilder {
+	b.measure.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetExperimentalExt(v Element) *MeasureBuilder {
+	b.measure.ExperimentalExt = &v
+	return b
+}
+
+// SetBasisExt sets the extensions carried by Basis, serialized as
+// "_basis".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetBasisExt(v Element) *MeasureBuilder {
+	b.measure.BasisExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetDateExt(v Element) *MeasureBuilder {
+	b.measure.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetPublisherExt(v Element) *MeasureBuilder {
+	b.measure.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetDescriptionExt(v Element) *MeasureBuilder {
+	b.measure.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetPurposeExt(v Element) *MeasureBuilder {
+	b.measure.PurposeExt = &v
+	return b
+}
+
+// SetUsageExt sets the extensions carried by Usage, serialized as
+// "_usage".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetUsageExt(v Element) *MeasureBuilder {
+	b.measure.UsageExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetCopyrightExt(v Element) *MeasureBuilder {
+	b.measure.CopyrightExt = &v
+	return b
+}
+
+// SetCopyrightLabelExt sets the extensions carried by CopyrightLabel, serialized as
+// "_copyrightLabel".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetCopyrightLabelExt(v Element) *MeasureBuilder {
+	b.measure.CopyrightLabelExt = &v
+	return b
+}
+
+// SetApprovalDateExt sets the extensions carried by ApprovalDate, serialized as
+// "_approvalDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetApprovalDateExt(v Element) *MeasureBuilder {
+	b.measure.ApprovalDateExt = &v
+	return b
+}
+
+// SetLastReviewDateExt sets the extensions carried by LastReviewDate, serialized as
+// "_lastReviewDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetLastReviewDateExt(v Element) *MeasureBuilder {
+	b.measure.LastReviewDateExt = &v
+	return b
+}
+
+// AddLibraryExt attaches extensions to the Library element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddLibrary twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *MeasureBuilder) AddLibraryExt(v *Element) *MeasureBuilder {
+	for len(b.measure.LibraryExt) < len(b.measure.Library)-1 {
+		b.measure.LibraryExt = append(b.measure.LibraryExt, nil)
+	}
+	b.measure.LibraryExt = append(b.measure.LibraryExt, v)
+	return b
+}
+
+// SetDisclaimerExt sets the extensions carried by Disclaimer, serialized as
+// "_disclaimer".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetDisclaimerExt(v Element) *MeasureBuilder {
+	b.measure.DisclaimerExt = &v
+	return b
+}
+
+// SetRiskAdjustmentExt sets the extensions carried by RiskAdjustment, serialized as
+// "_riskAdjustment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetRiskAdjustmentExt(v Element) *MeasureBuilder {
+	b.measure.RiskAdjustmentExt = &v
+	return b
+}
+
+// SetRateAggregationExt sets the extensions carried by RateAggregation, serialized as
+// "_rateAggregation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetRateAggregationExt(v Element) *MeasureBuilder {
+	b.measure.RateAggregationExt = &v
+	return b
+}
+
+// SetRationaleExt sets the extensions carried by Rationale, serialized as
+// "_rationale".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetRationaleExt(v Element) *MeasureBuilder {
+	b.measure.RationaleExt = &v
+	return b
+}
+
+// SetClinicalRecommendationStatementExt sets the extensions carried by ClinicalRecommendationStatement, serialized as
+// "_clinicalRecommendationStatement".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetClinicalRecommendationStatementExt(v Element) *MeasureBuilder {
+	b.measure.ClinicalRecommendationStatementExt = &v
+	return b
+}
+
+// SetGuidanceExt sets the extensions carried by Guidance, serialized as
+// "_guidance".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureBuilder) SetGuidanceExt(v Element) *MeasureBuilder {
+	b.measure.GuidanceExt = &v
+	return b
+}
+
 // clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
 // _field companions of the primitive ones.
 func (b *MeasureBuilder) clearVersionAlgorithm() {
@@ -2272,4 +2540,687 @@ func (b *MeasureBuilder) clearVersionAlgorithm() {
 func (b *MeasureBuilder) clearSubject() {
 	b.measure.SubjectCodeableConcept = nil
 	b.measure.SubjectReference = nil
+}
+
+// =============================================================================
+// MeasureGroup - Fluent Builder
+// =============================================================================
+
+// MeasureGroupBuilder provides a fluent API for constructing MeasureGroup values.
+type MeasureGroupBuilder struct {
+	measureGroup *MeasureGroup
+}
+
+// NewMeasureGroupBuilder creates a new MeasureGroupBuilder.
+func NewMeasureGroupBuilder() *MeasureGroupBuilder {
+	return &MeasureGroupBuilder{
+		measureGroup: &MeasureGroup{},
+	}
+}
+
+// Build returns the constructed MeasureGroup.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MeasureGroupBuilder) Build() MeasureGroup {
+	return *b.measureGroup
+}
+
+// SetId sets the Id field.
+func (b *MeasureGroupBuilder) SetId(v string) *MeasureGroupBuilder {
+	b.measureGroup.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MeasureGroupBuilder) AddExtension(v Extension) *MeasureGroupBuilder {
+	b.measureGroup.Extension = append(b.measureGroup.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MeasureGroupBuilder) AddModifierExtension(v Extension) *MeasureGroupBuilder {
+	b.measureGroup.ModifierExtension = append(b.measureGroup.ModifierExtension, v)
+	return b
+}
+
+// SetLinkId sets the LinkId field.
+func (b *MeasureGroupBuilder) SetLinkId(v string) *MeasureGroupBuilder {
+	b.measureGroup.LinkId = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MeasureGroupBuilder) SetCode(v CodeableConcept) *MeasureGroupBuilder {
+	b.measureGroup.Code = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *MeasureGroupBuilder) SetDescription(v string) *MeasureGroupBuilder {
+	b.measureGroup.Description = &v
+	return b
+}
+
+// AddType adds a Type element.
+func (b *MeasureGroupBuilder) AddType(v CodeableConcept) *MeasureGroupBuilder {
+	b.measureGroup.Type = append(b.measureGroup.Type, v)
+	return b
+}
+
+// SetSubjectCodeableConcept sets Subject[x] to its SubjectCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureGroupBuilder) SetSubjectCodeableConcept(v CodeableConcept) *MeasureGroupBuilder {
+	b.clearSubject()
+	b.measureGroup.SubjectCodeableConcept = &v
+	return b
+}
+
+// SetSubjectReference sets Subject[x] to its SubjectReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureGroupBuilder) SetSubjectReference(v Reference) *MeasureGroupBuilder {
+	b.clearSubject()
+	b.measureGroup.SubjectReference = &v
+	return b
+}
+
+// SetBasis sets the Basis field.
+func (b *MeasureGroupBuilder) SetBasis(v string) *MeasureGroupBuilder {
+	b.measureGroup.Basis = &v
+	return b
+}
+
+// SetScoring sets the Scoring field.
+func (b *MeasureGroupBuilder) SetScoring(v CodeableConcept) *MeasureGroupBuilder {
+	b.measureGroup.Scoring = &v
+	return b
+}
+
+// SetScoringUnit sets the ScoringUnit field.
+func (b *MeasureGroupBuilder) SetScoringUnit(v CodeableConcept) *MeasureGroupBuilder {
+	b.measureGroup.ScoringUnit = &v
+	return b
+}
+
+// SetRateAggregation sets the RateAggregation field.
+func (b *MeasureGroupBuilder) SetRateAggregation(v string) *MeasureGroupBuilder {
+	b.measureGroup.RateAggregation = &v
+	return b
+}
+
+// SetImprovementNotation sets the ImprovementNotation field.
+func (b *MeasureGroupBuilder) SetImprovementNotation(v CodeableConcept) *MeasureGroupBuilder {
+	b.measureGroup.ImprovementNotation = &v
+	return b
+}
+
+// AddLibrary adds a Library element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *MeasureGroupBuilder) AddLibrary(v string) *MeasureGroupBuilder {
+	b.measureGroup.Library = append(b.measureGroup.Library, &v)
+	return b
+}
+
+// AddPopulation adds a Population element.
+func (b *MeasureGroupBuilder) AddPopulation(v MeasureGroupPopulation) *MeasureGroupBuilder {
+	b.measureGroup.Population = append(b.measureGroup.Population, v)
+	return b
+}
+
+// AddStratifier adds a Stratifier element.
+func (b *MeasureGroupBuilder) AddStratifier(v MeasureGroupStratifier) *MeasureGroupBuilder {
+	b.measureGroup.Stratifier = append(b.measureGroup.Stratifier, v)
+	return b
+}
+
+// SetLinkIdExt sets the extensions carried by LinkId, serialized as
+// "_linkId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureGroupBuilder) SetLinkIdExt(v Element) *MeasureGroupBuilder {
+	b.measureGroup.LinkIdExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureGroupBuilder) SetDescriptionExt(v Element) *MeasureGroupBuilder {
+	b.measureGroup.DescriptionExt = &v
+	return b
+}
+
+// SetBasisExt sets the extensions carried by Basis, serialized as
+// "_basis".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureGroupBuilder) SetBasisExt(v Element) *MeasureGroupBuilder {
+	b.measureGroup.BasisExt = &v
+	return b
+}
+
+// SetRateAggregationExt sets the extensions carried by RateAggregation, serialized as
+// "_rateAggregation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureGroupBuilder) SetRateAggregationExt(v Element) *MeasureGroupBuilder {
+	b.measureGroup.RateAggregationExt = &v
+	return b
+}
+
+// AddLibraryExt attaches extensions to the Library element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddLibrary twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *MeasureGroupBuilder) AddLibraryExt(v *Element) *MeasureGroupBuilder {
+	for len(b.measureGroup.LibraryExt) < len(b.measureGroup.Library)-1 {
+		b.measureGroup.LibraryExt = append(b.measureGroup.LibraryExt, nil)
+	}
+	b.measureGroup.LibraryExt = append(b.measureGroup.LibraryExt, v)
+	return b
+}
+
+// clearSubject unsets every variant of Subject[x], including the
+// _field companions of the primitive ones.
+func (b *MeasureGroupBuilder) clearSubject() {
+	b.measureGroup.SubjectCodeableConcept = nil
+	b.measureGroup.SubjectReference = nil
+}
+
+// =============================================================================
+// MeasureGroupPopulation - Fluent Builder
+// =============================================================================
+
+// MeasureGroupPopulationBuilder provides a fluent API for constructing MeasureGroupPopulation values.
+type MeasureGroupPopulationBuilder struct {
+	measureGroupPopulation *MeasureGroupPopulation
+}
+
+// NewMeasureGroupPopulationBuilder creates a new MeasureGroupPopulationBuilder.
+func NewMeasureGroupPopulationBuilder() *MeasureGroupPopulationBuilder {
+	return &MeasureGroupPopulationBuilder{
+		measureGroupPopulation: &MeasureGroupPopulation{},
+	}
+}
+
+// Build returns the constructed MeasureGroupPopulation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MeasureGroupPopulationBuilder) Build() MeasureGroupPopulation {
+	return *b.measureGroupPopulation
+}
+
+// SetId sets the Id field.
+func (b *MeasureGroupPopulationBuilder) SetId(v string) *MeasureGroupPopulationBuilder {
+	b.measureGroupPopulation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MeasureGroupPopulationBuilder) AddExtension(v Extension) *MeasureGroupPopulationBuilder {
+	b.measureGroupPopulation.Extension = append(b.measureGroupPopulation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MeasureGroupPopulationBuilder) AddModifierExtension(v Extension) *MeasureGroupPopulationBuilder {
+	b.measureGroupPopulation.ModifierExtension = append(b.measureGroupPopulation.ModifierExtension, v)
+	return b
+}
+
+// SetLinkId sets the LinkId field.
+func (b *MeasureGroupPopulationBuilder) SetLinkId(v string) *MeasureGroupPopulationBuilder {
+	b.measureGroupPopulation.LinkId = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MeasureGroupPopulationBuilder) SetCode(v CodeableConcept) *MeasureGroupPopulationBuilder {
+	b.measureGroupPopulation.Code = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *MeasureGroupPopulationBuilder) SetDescription(v string) *MeasureGroupPopulationBuilder {
+	b.measureGroupPopulation.Description = &v
+	return b
+}
+
+// SetCriteria sets the Criteria field.
+func (b *MeasureGroupPopulationBuilder) SetCriteria(v Expression) *MeasureGroupPopulationBuilder {
+	b.measureGroupPopulation.Criteria = &v
+	return b
+}
+
+// SetGroupDefinition sets the GroupDefinition field.
+func (b *MeasureGroupPopulationBuilder) SetGroupDefinition(v Reference) *MeasureGroupPopulationBuilder {
+	b.measureGroupPopulation.GroupDefinition = &v
+	return b
+}
+
+// SetInputPopulationId sets the InputPopulationId field.
+func (b *MeasureGroupPopulationBuilder) SetInputPopulationId(v string) *MeasureGroupPopulationBuilder {
+	b.measureGroupPopulation.InputPopulationId = &v
+	return b
+}
+
+// SetAggregateMethod sets the AggregateMethod field.
+func (b *MeasureGroupPopulationBuilder) SetAggregateMethod(v CodeableConcept) *MeasureGroupPopulationBuilder {
+	b.measureGroupPopulation.AggregateMethod = &v
+	return b
+}
+
+// SetLinkIdExt sets the extensions carried by LinkId, serialized as
+// "_linkId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureGroupPopulationBuilder) SetLinkIdExt(v Element) *MeasureGroupPopulationBuilder {
+	b.measureGroupPopulation.LinkIdExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureGroupPopulationBuilder) SetDescriptionExt(v Element) *MeasureGroupPopulationBuilder {
+	b.measureGroupPopulation.DescriptionExt = &v
+	return b
+}
+
+// SetInputPopulationIdExt sets the extensions carried by InputPopulationId, serialized as
+// "_inputPopulationId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureGroupPopulationBuilder) SetInputPopulationIdExt(v Element) *MeasureGroupPopulationBuilder {
+	b.measureGroupPopulation.InputPopulationIdExt = &v
+	return b
+}
+
+// =============================================================================
+// MeasureGroupStratifier - Fluent Builder
+// =============================================================================
+
+// MeasureGroupStratifierBuilder provides a fluent API for constructing MeasureGroupStratifier values.
+type MeasureGroupStratifierBuilder struct {
+	measureGroupStratifier *MeasureGroupStratifier
+}
+
+// NewMeasureGroupStratifierBuilder creates a new MeasureGroupStratifierBuilder.
+func NewMeasureGroupStratifierBuilder() *MeasureGroupStratifierBuilder {
+	return &MeasureGroupStratifierBuilder{
+		measureGroupStratifier: &MeasureGroupStratifier{},
+	}
+}
+
+// Build returns the constructed MeasureGroupStratifier.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MeasureGroupStratifierBuilder) Build() MeasureGroupStratifier {
+	return *b.measureGroupStratifier
+}
+
+// SetId sets the Id field.
+func (b *MeasureGroupStratifierBuilder) SetId(v string) *MeasureGroupStratifierBuilder {
+	b.measureGroupStratifier.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MeasureGroupStratifierBuilder) AddExtension(v Extension) *MeasureGroupStratifierBuilder {
+	b.measureGroupStratifier.Extension = append(b.measureGroupStratifier.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MeasureGroupStratifierBuilder) AddModifierExtension(v Extension) *MeasureGroupStratifierBuilder {
+	b.measureGroupStratifier.ModifierExtension = append(b.measureGroupStratifier.ModifierExtension, v)
+	return b
+}
+
+// SetLinkId sets the LinkId field.
+func (b *MeasureGroupStratifierBuilder) SetLinkId(v string) *MeasureGroupStratifierBuilder {
+	b.measureGroupStratifier.LinkId = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MeasureGroupStratifierBuilder) SetCode(v CodeableConcept) *MeasureGroupStratifierBuilder {
+	b.measureGroupStratifier.Code = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *MeasureGroupStratifierBuilder) SetDescription(v string) *MeasureGroupStratifierBuilder {
+	b.measureGroupStratifier.Description = &v
+	return b
+}
+
+// SetCriteria sets the Criteria field.
+func (b *MeasureGroupStratifierBuilder) SetCriteria(v Expression) *MeasureGroupStratifierBuilder {
+	b.measureGroupStratifier.Criteria = &v
+	return b
+}
+
+// SetGroupDefinition sets the GroupDefinition field.
+func (b *MeasureGroupStratifierBuilder) SetGroupDefinition(v Reference) *MeasureGroupStratifierBuilder {
+	b.measureGroupStratifier.GroupDefinition = &v
+	return b
+}
+
+// AddComponent adds a Component element.
+func (b *MeasureGroupStratifierBuilder) AddComponent(v MeasureGroupStratifierComponent) *MeasureGroupStratifierBuilder {
+	b.measureGroupStratifier.Component = append(b.measureGroupStratifier.Component, v)
+	return b
+}
+
+// SetLinkIdExt sets the extensions carried by LinkId, serialized as
+// "_linkId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureGroupStratifierBuilder) SetLinkIdExt(v Element) *MeasureGroupStratifierBuilder {
+	b.measureGroupStratifier.LinkIdExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureGroupStratifierBuilder) SetDescriptionExt(v Element) *MeasureGroupStratifierBuilder {
+	b.measureGroupStratifier.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// MeasureGroupStratifierComponent - Fluent Builder
+// =============================================================================
+
+// MeasureGroupStratifierComponentBuilder provides a fluent API for constructing MeasureGroupStratifierComponent values.
+type MeasureGroupStratifierComponentBuilder struct {
+	measureGroupStratifierComponent *MeasureGroupStratifierComponent
+}
+
+// NewMeasureGroupStratifierComponentBuilder creates a new MeasureGroupStratifierComponentBuilder.
+func NewMeasureGroupStratifierComponentBuilder() *MeasureGroupStratifierComponentBuilder {
+	return &MeasureGroupStratifierComponentBuilder{
+		measureGroupStratifierComponent: &MeasureGroupStratifierComponent{},
+	}
+}
+
+// Build returns the constructed MeasureGroupStratifierComponent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MeasureGroupStratifierComponentBuilder) Build() MeasureGroupStratifierComponent {
+	return *b.measureGroupStratifierComponent
+}
+
+// SetId sets the Id field.
+func (b *MeasureGroupStratifierComponentBuilder) SetId(v string) *MeasureGroupStratifierComponentBuilder {
+	b.measureGroupStratifierComponent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MeasureGroupStratifierComponentBuilder) AddExtension(v Extension) *MeasureGroupStratifierComponentBuilder {
+	b.measureGroupStratifierComponent.Extension = append(b.measureGroupStratifierComponent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MeasureGroupStratifierComponentBuilder) AddModifierExtension(v Extension) *MeasureGroupStratifierComponentBuilder {
+	b.measureGroupStratifierComponent.ModifierExtension = append(b.measureGroupStratifierComponent.ModifierExtension, v)
+	return b
+}
+
+// SetLinkId sets the LinkId field.
+func (b *MeasureGroupStratifierComponentBuilder) SetLinkId(v string) *MeasureGroupStratifierComponentBuilder {
+	b.measureGroupStratifierComponent.LinkId = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MeasureGroupStratifierComponentBuilder) SetCode(v CodeableConcept) *MeasureGroupStratifierComponentBuilder {
+	b.measureGroupStratifierComponent.Code = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *MeasureGroupStratifierComponentBuilder) SetDescription(v string) *MeasureGroupStratifierComponentBuilder {
+	b.measureGroupStratifierComponent.Description = &v
+	return b
+}
+
+// SetCriteria sets the Criteria field.
+func (b *MeasureGroupStratifierComponentBuilder) SetCriteria(v Expression) *MeasureGroupStratifierComponentBuilder {
+	b.measureGroupStratifierComponent.Criteria = &v
+	return b
+}
+
+// SetGroupDefinition sets the GroupDefinition field.
+func (b *MeasureGroupStratifierComponentBuilder) SetGroupDefinition(v Reference) *MeasureGroupStratifierComponentBuilder {
+	b.measureGroupStratifierComponent.GroupDefinition = &v
+	return b
+}
+
+// SetLinkIdExt sets the extensions carried by LinkId, serialized as
+// "_linkId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureGroupStratifierComponentBuilder) SetLinkIdExt(v Element) *MeasureGroupStratifierComponentBuilder {
+	b.measureGroupStratifierComponent.LinkIdExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureGroupStratifierComponentBuilder) SetDescriptionExt(v Element) *MeasureGroupStratifierComponentBuilder {
+	b.measureGroupStratifierComponent.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// MeasureSupplementalData - Fluent Builder
+// =============================================================================
+
+// MeasureSupplementalDataBuilder provides a fluent API for constructing MeasureSupplementalData values.
+type MeasureSupplementalDataBuilder struct {
+	measureSupplementalData *MeasureSupplementalData
+}
+
+// NewMeasureSupplementalDataBuilder creates a new MeasureSupplementalDataBuilder.
+func NewMeasureSupplementalDataBuilder() *MeasureSupplementalDataBuilder {
+	return &MeasureSupplementalDataBuilder{
+		measureSupplementalData: &MeasureSupplementalData{},
+	}
+}
+
+// Build returns the constructed MeasureSupplementalData.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MeasureSupplementalDataBuilder) Build() MeasureSupplementalData {
+	return *b.measureSupplementalData
+}
+
+// SetId sets the Id field.
+func (b *MeasureSupplementalDataBuilder) SetId(v string) *MeasureSupplementalDataBuilder {
+	b.measureSupplementalData.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MeasureSupplementalDataBuilder) AddExtension(v Extension) *MeasureSupplementalDataBuilder {
+	b.measureSupplementalData.Extension = append(b.measureSupplementalData.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MeasureSupplementalDataBuilder) AddModifierExtension(v Extension) *MeasureSupplementalDataBuilder {
+	b.measureSupplementalData.ModifierExtension = append(b.measureSupplementalData.ModifierExtension, v)
+	return b
+}
+
+// SetLinkId sets the LinkId field.
+func (b *MeasureSupplementalDataBuilder) SetLinkId(v string) *MeasureSupplementalDataBuilder {
+	b.measureSupplementalData.LinkId = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MeasureSupplementalDataBuilder) SetCode(v CodeableConcept) *MeasureSupplementalDataBuilder {
+	b.measureSupplementalData.Code = &v
+	return b
+}
+
+// AddUsage adds a Usage element.
+func (b *MeasureSupplementalDataBuilder) AddUsage(v CodeableConcept) *MeasureSupplementalDataBuilder {
+	b.measureSupplementalData.Usage = append(b.measureSupplementalData.Usage, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *MeasureSupplementalDataBuilder) SetDescription(v string) *MeasureSupplementalDataBuilder {
+	b.measureSupplementalData.Description = &v
+	return b
+}
+
+// SetCriteria sets the Criteria field.
+func (b *MeasureSupplementalDataBuilder) SetCriteria(v Expression) *MeasureSupplementalDataBuilder {
+	b.measureSupplementalData.Criteria = &v
+	return b
+}
+
+// SetLinkIdExt sets the extensions carried by LinkId, serialized as
+// "_linkId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureSupplementalDataBuilder) SetLinkIdExt(v Element) *MeasureSupplementalDataBuilder {
+	b.measureSupplementalData.LinkIdExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureSupplementalDataBuilder) SetDescriptionExt(v Element) *MeasureSupplementalDataBuilder {
+	b.measureSupplementalData.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// MeasureTerm - Fluent Builder
+// =============================================================================
+
+// MeasureTermBuilder provides a fluent API for constructing MeasureTerm values.
+type MeasureTermBuilder struct {
+	measureTerm *MeasureTerm
+}
+
+// NewMeasureTermBuilder creates a new MeasureTermBuilder.
+func NewMeasureTermBuilder() *MeasureTermBuilder {
+	return &MeasureTermBuilder{
+		measureTerm: &MeasureTerm{},
+	}
+}
+
+// Build returns the constructed MeasureTerm.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MeasureTermBuilder) Build() MeasureTerm {
+	return *b.measureTerm
+}
+
+// SetId sets the Id field.
+func (b *MeasureTermBuilder) SetId(v string) *MeasureTermBuilder {
+	b.measureTerm.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MeasureTermBuilder) AddExtension(v Extension) *MeasureTermBuilder {
+	b.measureTerm.Extension = append(b.measureTerm.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MeasureTermBuilder) AddModifierExtension(v Extension) *MeasureTermBuilder {
+	b.measureTerm.ModifierExtension = append(b.measureTerm.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MeasureTermBuilder) SetCode(v CodeableConcept) *MeasureTermBuilder {
+	b.measureTerm.Code = &v
+	return b
+}
+
+// SetDefinition sets the Definition field.
+func (b *MeasureTermBuilder) SetDefinition(v string) *MeasureTermBuilder {
+	b.measureTerm.Definition = &v
+	return b
+}
+
+// SetDefinitionExt sets the extensions carried by Definition, serialized as
+// "_definition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureTermBuilder) SetDefinitionExt(v Element) *MeasureTermBuilder {
+	b.measureTerm.DefinitionExt = &v
+	return b
 }

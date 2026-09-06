@@ -574,7 +574,11 @@ Extender los builders a datatypes y backbones **primero**; retirar después. Hoy
 
 > **Se hizo al revés, y luego se saldó a medias.** La 6.6 retiró las opciones sin extender antes. No hubo regresión —verificado contra `r4/v1.7.0`: las opciones tampoco cubrían datatypes—, y los **datatypes ya tienen builder**: **44 de 44** en r4 y r4b, **46 de 46** en r5 —cobertura completa—, **+19.952 líneas** en los tres (la estimación previa era ~21.000). El «58» que se citaba antes contaba juntos los 44 datatypes y los 14 backbones de datatype; estos últimos quedan fuera con el resto de backbones.
 >
-> **Los backbones se quedan fuera a propósito**, incluidos los 14 que viven en `datatypes.go`. Medido: 578 tipos en r4 y 733 en r5, unas **120.000 líneas** frente a las 20.000 de los datatypes, y son tipos que se construyen dentro de su recurso, no a mano. La decisión se apoya en el uso real del corpus: sobre 1.200 ejemplos de R4, `CodeableConcept` aparece **165.085** veces, `Reference` 62.690, `Extension` 23.378 — y **26 de los 58 datatypes no aparecen ni una vez**. El valor está concentrado donde ahora hay builder.
+> **Y luego se completó.** Los backbones también tienen builder, y los compañeros `_campo` también: **663 builders en r4, 681 en r4b, 832 en r5**, +214.062 líneas.
+>
+> El criterio de «cuánto aparece en el corpus» era el equivocado y se descartó. El corpus mide lo que HL7 publica como ejemplos, no lo que alguien necesita **poder escribir**: sin `SetBirthDateExt` la cadena se rompe y hay que salir a asignación directa, y eso es funcionalidad ausente, no una comodidad que se decida por frecuencia. Una API que se detiene a mitad obliga al literal justo donde los campos puntero lo hacen incómodo.
+>
+> El coste real está medido y es cero donde importa: el mismo programa que no toca un builder enlaza a **5,23 MB** contra `main` y contra la rama, con 214.000 líneas de diferencia. El linker las descarta enteras. Compilar `r4` desde cero: 4 s.
 >
 > **Pendiente que la revisión sacó a la luz:** los builders no generan `Set<Campo>Ext`, así que de **2.230 compañeros `_ext` en r4** solo **66** son alcanzables desde un builder. La causa es estructural: el campo `Ext` lo emite la plantilla a partir de `.HasExtension` y no es una propiedad de la lista, así que el builder no lo ve —los 66 que sí llegan son los de choice, que el analyzer sí añade como propiedades—. Es anterior a los builders de datatypes y se mide en `TestPrimitiveExtensionGap`.
 >

@@ -1004,3 +1004,309 @@ func (b *CoverageBuilder) AddContract(v Reference) *CoverageBuilder {
 	b.coverage.Contract = append(b.coverage.Contract, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageBuilder) SetImplicitRulesExt(v Element) *CoverageBuilder {
+	b.coverage.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageBuilder) SetLanguageExt(v Element) *CoverageBuilder {
+	b.coverage.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageBuilder) SetStatusExt(v Element) *CoverageBuilder {
+	b.coverage.StatusExt = &v
+	return b
+}
+
+// SetSubscriberIdExt sets the extensions carried by SubscriberId, serialized as
+// "_subscriberId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageBuilder) SetSubscriberIdExt(v Element) *CoverageBuilder {
+	b.coverage.SubscriberIdExt = &v
+	return b
+}
+
+// SetDependentExt sets the extensions carried by Dependent, serialized as
+// "_dependent".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageBuilder) SetDependentExt(v Element) *CoverageBuilder {
+	b.coverage.DependentExt = &v
+	return b
+}
+
+// SetOrderExt sets the extensions carried by Order, serialized as
+// "_order".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageBuilder) SetOrderExt(v Element) *CoverageBuilder {
+	b.coverage.OrderExt = &v
+	return b
+}
+
+// SetNetworkExt sets the extensions carried by Network, serialized as
+// "_network".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageBuilder) SetNetworkExt(v Element) *CoverageBuilder {
+	b.coverage.NetworkExt = &v
+	return b
+}
+
+// SetSubrogationExt sets the extensions carried by Subrogation, serialized as
+// "_subrogation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageBuilder) SetSubrogationExt(v Element) *CoverageBuilder {
+	b.coverage.SubrogationExt = &v
+	return b
+}
+
+// =============================================================================
+// CoverageClass - Fluent Builder
+// =============================================================================
+
+// CoverageClassBuilder provides a fluent API for constructing CoverageClass values.
+type CoverageClassBuilder struct {
+	coverageClass *CoverageClass
+}
+
+// NewCoverageClassBuilder creates a new CoverageClassBuilder.
+func NewCoverageClassBuilder() *CoverageClassBuilder {
+	return &CoverageClassBuilder{
+		coverageClass: &CoverageClass{},
+	}
+}
+
+// Build returns the constructed CoverageClass.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CoverageClassBuilder) Build() CoverageClass {
+	return *b.coverageClass
+}
+
+// SetId sets the Id field.
+func (b *CoverageClassBuilder) SetId(v string) *CoverageClassBuilder {
+	b.coverageClass.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CoverageClassBuilder) AddExtension(v Extension) *CoverageClassBuilder {
+	b.coverageClass.Extension = append(b.coverageClass.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CoverageClassBuilder) AddModifierExtension(v Extension) *CoverageClassBuilder {
+	b.coverageClass.ModifierExtension = append(b.coverageClass.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *CoverageClassBuilder) SetType(v CodeableConcept) *CoverageClassBuilder {
+	b.coverageClass.Type = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *CoverageClassBuilder) SetValue(v string) *CoverageClassBuilder {
+	b.coverageClass.Value = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *CoverageClassBuilder) SetName(v string) *CoverageClassBuilder {
+	b.coverageClass.Name = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageClassBuilder) SetValueExt(v Element) *CoverageClassBuilder {
+	b.coverageClass.ValueExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageClassBuilder) SetNameExt(v Element) *CoverageClassBuilder {
+	b.coverageClass.NameExt = &v
+	return b
+}
+
+// =============================================================================
+// CoverageCostToBeneficiary - Fluent Builder
+// =============================================================================
+
+// CoverageCostToBeneficiaryBuilder provides a fluent API for constructing CoverageCostToBeneficiary values.
+type CoverageCostToBeneficiaryBuilder struct {
+	coverageCostToBeneficiary *CoverageCostToBeneficiary
+}
+
+// NewCoverageCostToBeneficiaryBuilder creates a new CoverageCostToBeneficiaryBuilder.
+func NewCoverageCostToBeneficiaryBuilder() *CoverageCostToBeneficiaryBuilder {
+	return &CoverageCostToBeneficiaryBuilder{
+		coverageCostToBeneficiary: &CoverageCostToBeneficiary{},
+	}
+}
+
+// Build returns the constructed CoverageCostToBeneficiary.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CoverageCostToBeneficiaryBuilder) Build() CoverageCostToBeneficiary {
+	return *b.coverageCostToBeneficiary
+}
+
+// SetId sets the Id field.
+func (b *CoverageCostToBeneficiaryBuilder) SetId(v string) *CoverageCostToBeneficiaryBuilder {
+	b.coverageCostToBeneficiary.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CoverageCostToBeneficiaryBuilder) AddExtension(v Extension) *CoverageCostToBeneficiaryBuilder {
+	b.coverageCostToBeneficiary.Extension = append(b.coverageCostToBeneficiary.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CoverageCostToBeneficiaryBuilder) AddModifierExtension(v Extension) *CoverageCostToBeneficiaryBuilder {
+	b.coverageCostToBeneficiary.ModifierExtension = append(b.coverageCostToBeneficiary.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *CoverageCostToBeneficiaryBuilder) SetType(v CodeableConcept) *CoverageCostToBeneficiaryBuilder {
+	b.coverageCostToBeneficiary.Type = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CoverageCostToBeneficiaryBuilder) SetValueQuantity(v Quantity) *CoverageCostToBeneficiaryBuilder {
+	b.clearValue()
+	b.coverageCostToBeneficiary.ValueQuantity = &v
+	return b
+}
+
+// SetValueMoney sets Value[x] to its ValueMoney variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CoverageCostToBeneficiaryBuilder) SetValueMoney(v Money) *CoverageCostToBeneficiaryBuilder {
+	b.clearValue()
+	b.coverageCostToBeneficiary.ValueMoney = &v
+	return b
+}
+
+// AddException adds a Exception element.
+func (b *CoverageCostToBeneficiaryBuilder) AddException(v CoverageCostToBeneficiaryException) *CoverageCostToBeneficiaryBuilder {
+	b.coverageCostToBeneficiary.Exception = append(b.coverageCostToBeneficiary.Exception, v)
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *CoverageCostToBeneficiaryBuilder) clearValue() {
+	b.coverageCostToBeneficiary.ValueQuantity = nil
+	b.coverageCostToBeneficiary.ValueMoney = nil
+}
+
+// =============================================================================
+// CoverageCostToBeneficiaryException - Fluent Builder
+// =============================================================================
+
+// CoverageCostToBeneficiaryExceptionBuilder provides a fluent API for constructing CoverageCostToBeneficiaryException values.
+type CoverageCostToBeneficiaryExceptionBuilder struct {
+	coverageCostToBeneficiaryException *CoverageCostToBeneficiaryException
+}
+
+// NewCoverageCostToBeneficiaryExceptionBuilder creates a new CoverageCostToBeneficiaryExceptionBuilder.
+func NewCoverageCostToBeneficiaryExceptionBuilder() *CoverageCostToBeneficiaryExceptionBuilder {
+	return &CoverageCostToBeneficiaryExceptionBuilder{
+		coverageCostToBeneficiaryException: &CoverageCostToBeneficiaryException{},
+	}
+}
+
+// Build returns the constructed CoverageCostToBeneficiaryException.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CoverageCostToBeneficiaryExceptionBuilder) Build() CoverageCostToBeneficiaryException {
+	return *b.coverageCostToBeneficiaryException
+}
+
+// SetId sets the Id field.
+func (b *CoverageCostToBeneficiaryExceptionBuilder) SetId(v string) *CoverageCostToBeneficiaryExceptionBuilder {
+	b.coverageCostToBeneficiaryException.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CoverageCostToBeneficiaryExceptionBuilder) AddExtension(v Extension) *CoverageCostToBeneficiaryExceptionBuilder {
+	b.coverageCostToBeneficiaryException.Extension = append(b.coverageCostToBeneficiaryException.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CoverageCostToBeneficiaryExceptionBuilder) AddModifierExtension(v Extension) *CoverageCostToBeneficiaryExceptionBuilder {
+	b.coverageCostToBeneficiaryException.ModifierExtension = append(b.coverageCostToBeneficiaryException.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *CoverageCostToBeneficiaryExceptionBuilder) SetType(v CodeableConcept) *CoverageCostToBeneficiaryExceptionBuilder {
+	b.coverageCostToBeneficiaryException.Type = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *CoverageCostToBeneficiaryExceptionBuilder) SetPeriod(v Period) *CoverageCostToBeneficiaryExceptionBuilder {
+	b.coverageCostToBeneficiaryException.Period = &v
+	return b
+}

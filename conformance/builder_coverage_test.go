@@ -128,16 +128,17 @@ func TestEveryFieldHasABuilderMethod(t *testing.T) {
 	}
 }
 
-// TestPrimitiveExtensionGap measures a gap rather than guarding an invariant.
+// TestEveryCompanionIsReachableFromABuilder was TestPrimitiveExtensionGap, which
+// measured a gap instead of guarding an invariant.
 //
-// A primitive's extension companion — BirthDateExt for birthDate — can only be
-// set through a struct literal. There has never been a builder method or a
-// functional option for one, so builder-only code cannot attach an extension to
-// a primitive at all.
+// A primitive's extension companion — BirthDateExt for birthDate — is how FHIR
+// expresses an extension on a primitive: a data-absent-reason on a birthDate lives
+// there, not on the value. For a long time none could be set through a builder, so
+// builder code had to break the chain and assign the field, and 2,230 of them in
+// r4 were reachable only that way.
 //
-// The count is pinned so it cannot grow quietly. Closing it is additive work: a
-// Set<Field>Ext per companion, which would break nothing.
-func TestPrimitiveExtensionGap(t *testing.T) {
+// They are all reachable now, so this asserts rather than counts.
+func TestEveryCompanionIsReachableFromABuilder(t *testing.T) {
 	for _, module := range []string{"r4", "r4b", "r5"} {
 		t.Run(module, func(t *testing.T) {
 			files, err := filepath.Glob(filepath.Join("..", module, "resource_*.go"))
@@ -194,12 +195,14 @@ func TestPrimitiveExtensionGap(t *testing.T) {
 				}
 			}
 
-			t.Logf("%d primitive extension companions, %d reachable from a builder", withoutBuilder+withBuilder, withBuilder)
-			if withBuilder != 0 {
-				t.Logf("some now have builder methods; if the gap is being closed, update this test")
+			total := withBuilder + withoutBuilder
+			if total < 1000 {
+				t.Fatalf("only %d extension companions found in %s; the check is not seeing the generated code", total, module)
 			}
-			if withoutBuilder == 0 {
-				t.Error("no extension companions found at all; the check is not seeing the generated code")
+			t.Logf("%d primitive extension companions, all reachable from a builder", total)
+			if withoutBuilder != 0 {
+				t.Errorf("%d companions have no builder method, so an extension on those primitives"+
+					" can only be attached through a struct literal", withoutBuilder)
 			}
 		})
 	}

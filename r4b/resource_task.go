@@ -2557,3 +2557,1752 @@ func (b *TaskBuilder) AddOutput(v TaskOutput) *TaskBuilder {
 	b.task.Output = append(b.task.Output, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TaskBuilder) SetImplicitRulesExt(v Element) *TaskBuilder {
+	b.task.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TaskBuilder) SetLanguageExt(v Element) *TaskBuilder {
+	b.task.LanguageExt = &v
+	return b
+}
+
+// SetInstantiatesCanonicalExt sets the extensions carried by InstantiatesCanonical, serialized as
+// "_instantiatesCanonical".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TaskBuilder) SetInstantiatesCanonicalExt(v Element) *TaskBuilder {
+	b.task.InstantiatesCanonicalExt = &v
+	return b
+}
+
+// SetInstantiatesUriExt sets the extensions carried by InstantiatesUri, serialized as
+// "_instantiatesUri".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TaskBuilder) SetInstantiatesUriExt(v Element) *TaskBuilder {
+	b.task.InstantiatesUriExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TaskBuilder) SetStatusExt(v Element) *TaskBuilder {
+	b.task.StatusExt = &v
+	return b
+}
+
+// SetIntentExt sets the extensions carried by Intent, serialized as
+// "_intent".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TaskBuilder) SetIntentExt(v Element) *TaskBuilder {
+	b.task.IntentExt = &v
+	return b
+}
+
+// SetPriorityExt sets the extensions carried by Priority, serialized as
+// "_priority".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TaskBuilder) SetPriorityExt(v Element) *TaskBuilder {
+	b.task.PriorityExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TaskBuilder) SetDescriptionExt(v Element) *TaskBuilder {
+	b.task.DescriptionExt = &v
+	return b
+}
+
+// SetAuthoredOnExt sets the extensions carried by AuthoredOn, serialized as
+// "_authoredOn".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TaskBuilder) SetAuthoredOnExt(v Element) *TaskBuilder {
+	b.task.AuthoredOnExt = &v
+	return b
+}
+
+// SetLastModifiedExt sets the extensions carried by LastModified, serialized as
+// "_lastModified".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TaskBuilder) SetLastModifiedExt(v Element) *TaskBuilder {
+	b.task.LastModifiedExt = &v
+	return b
+}
+
+// =============================================================================
+// TaskInput - Fluent Builder
+// =============================================================================
+
+// TaskInputBuilder provides a fluent API for constructing TaskInput values.
+type TaskInputBuilder struct {
+	taskInput *TaskInput
+}
+
+// NewTaskInputBuilder creates a new TaskInputBuilder.
+func NewTaskInputBuilder() *TaskInputBuilder {
+	return &TaskInputBuilder{
+		taskInput: &TaskInput{},
+	}
+}
+
+// Build returns the constructed TaskInput.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TaskInputBuilder) Build() TaskInput {
+	return *b.taskInput
+}
+
+// SetId sets the Id field.
+func (b *TaskInputBuilder) SetId(v string) *TaskInputBuilder {
+	b.taskInput.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TaskInputBuilder) AddExtension(v Extension) *TaskInputBuilder {
+	b.taskInput.Extension = append(b.taskInput.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TaskInputBuilder) AddModifierExtension(v Extension) *TaskInputBuilder {
+	b.taskInput.ModifierExtension = append(b.taskInput.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *TaskInputBuilder) SetType(v CodeableConcept) *TaskInputBuilder {
+	b.taskInput.Type = &v
+	return b
+}
+
+// SetValueBase64Binary sets Value[x] to its ValueBase64Binary variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueBase64Binary(v string) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueBase64Binary = &v
+	return b
+}
+
+// SetValueBase64BinaryExt sets the ValueBase64BinaryExt field.
+func (b *TaskInputBuilder) SetValueBase64BinaryExt(v Element) *TaskInputBuilder {
+	b.taskInput.ValueBase64BinaryExt = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueBoolean(v bool) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *TaskInputBuilder) SetValueBooleanExt(v Element) *TaskInputBuilder {
+	b.taskInput.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueCanonical sets Value[x] to its ValueCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueCanonical(v string) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueCanonical = &v
+	return b
+}
+
+// SetValueCanonicalExt sets the ValueCanonicalExt field.
+func (b *TaskInputBuilder) SetValueCanonicalExt(v Element) *TaskInputBuilder {
+	b.taskInput.ValueCanonicalExt = &v
+	return b
+}
+
+// SetValueCode sets Value[x] to its ValueCode variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueCode(v string) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueCode = &v
+	return b
+}
+
+// SetValueCodeExt sets the ValueCodeExt field.
+func (b *TaskInputBuilder) SetValueCodeExt(v Element) *TaskInputBuilder {
+	b.taskInput.ValueCodeExt = &v
+	return b
+}
+
+// SetValueDate sets Value[x] to its ValueDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueDate(v string) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueDate = &v
+	return b
+}
+
+// SetValueDateExt sets the ValueDateExt field.
+func (b *TaskInputBuilder) SetValueDateExt(v Element) *TaskInputBuilder {
+	b.taskInput.ValueDateExt = &v
+	return b
+}
+
+// SetValueDateTime sets Value[x] to its ValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueDateTime(v string) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueDateTime = &v
+	return b
+}
+
+// SetValueDateTimeExt sets the ValueDateTimeExt field.
+func (b *TaskInputBuilder) SetValueDateTimeExt(v Element) *TaskInputBuilder {
+	b.taskInput.ValueDateTimeExt = &v
+	return b
+}
+
+// SetValueDecimal sets Value[x] to its ValueDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueDecimal(v Decimal) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueDecimal = &v
+	return b
+}
+
+// SetValueDecimalExt sets the ValueDecimalExt field.
+func (b *TaskInputBuilder) SetValueDecimalExt(v Element) *TaskInputBuilder {
+	b.taskInput.ValueDecimalExt = &v
+	return b
+}
+
+// SetValueId sets Value[x] to its ValueId variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueId(v string) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueId = &v
+	return b
+}
+
+// SetValueIdExt sets the ValueIdExt field.
+func (b *TaskInputBuilder) SetValueIdExt(v Element) *TaskInputBuilder {
+	b.taskInput.ValueIdExt = &v
+	return b
+}
+
+// SetValueInstant sets Value[x] to its ValueInstant variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueInstant(v string) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueInstant = &v
+	return b
+}
+
+// SetValueInstantExt sets the ValueInstantExt field.
+func (b *TaskInputBuilder) SetValueInstantExt(v Element) *TaskInputBuilder {
+	b.taskInput.ValueInstantExt = &v
+	return b
+}
+
+// SetValueInteger sets Value[x] to its ValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueInteger(v int) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueInteger = &v
+	return b
+}
+
+// SetValueIntegerExt sets the ValueIntegerExt field.
+func (b *TaskInputBuilder) SetValueIntegerExt(v Element) *TaskInputBuilder {
+	b.taskInput.ValueIntegerExt = &v
+	return b
+}
+
+// SetValueMarkdown sets Value[x] to its ValueMarkdown variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueMarkdown(v string) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueMarkdown = &v
+	return b
+}
+
+// SetValueMarkdownExt sets the ValueMarkdownExt field.
+func (b *TaskInputBuilder) SetValueMarkdownExt(v Element) *TaskInputBuilder {
+	b.taskInput.ValueMarkdownExt = &v
+	return b
+}
+
+// SetValueOid sets Value[x] to its ValueOid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueOid(v string) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueOid = &v
+	return b
+}
+
+// SetValueOidExt sets the ValueOidExt field.
+func (b *TaskInputBuilder) SetValueOidExt(v Element) *TaskInputBuilder {
+	b.taskInput.ValueOidExt = &v
+	return b
+}
+
+// SetValuePositiveInt sets Value[x] to its ValuePositiveInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValuePositiveInt(v uint32) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValuePositiveInt = &v
+	return b
+}
+
+// SetValuePositiveIntExt sets the ValuePositiveIntExt field.
+func (b *TaskInputBuilder) SetValuePositiveIntExt(v Element) *TaskInputBuilder {
+	b.taskInput.ValuePositiveIntExt = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueString(v string) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *TaskInputBuilder) SetValueStringExt(v Element) *TaskInputBuilder {
+	b.taskInput.ValueStringExt = &v
+	return b
+}
+
+// SetValueTime sets Value[x] to its ValueTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueTime(v string) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueTime = &v
+	return b
+}
+
+// SetValueTimeExt sets the ValueTimeExt field.
+func (b *TaskInputBuilder) SetValueTimeExt(v Element) *TaskInputBuilder {
+	b.taskInput.ValueTimeExt = &v
+	return b
+}
+
+// SetValueUnsignedInt sets Value[x] to its ValueUnsignedInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueUnsignedInt(v uint32) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueUnsignedInt = &v
+	return b
+}
+
+// SetValueUnsignedIntExt sets the ValueUnsignedIntExt field.
+func (b *TaskInputBuilder) SetValueUnsignedIntExt(v Element) *TaskInputBuilder {
+	b.taskInput.ValueUnsignedIntExt = &v
+	return b
+}
+
+// SetValueUri sets Value[x] to its ValueUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueUri(v string) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueUri = &v
+	return b
+}
+
+// SetValueUriExt sets the ValueUriExt field.
+func (b *TaskInputBuilder) SetValueUriExt(v Element) *TaskInputBuilder {
+	b.taskInput.ValueUriExt = &v
+	return b
+}
+
+// SetValueUrl sets Value[x] to its ValueUrl variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueUrl(v string) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueUrl = &v
+	return b
+}
+
+// SetValueUrlExt sets the ValueUrlExt field.
+func (b *TaskInputBuilder) SetValueUrlExt(v Element) *TaskInputBuilder {
+	b.taskInput.ValueUrlExt = &v
+	return b
+}
+
+// SetValueUuid sets Value[x] to its ValueUuid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueUuid(v string) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueUuid = &v
+	return b
+}
+
+// SetValueUuidExt sets the ValueUuidExt field.
+func (b *TaskInputBuilder) SetValueUuidExt(v Element) *TaskInputBuilder {
+	b.taskInput.ValueUuidExt = &v
+	return b
+}
+
+// SetValueAddress sets Value[x] to its ValueAddress variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueAddress(v Address) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueAddress = &v
+	return b
+}
+
+// SetValueAge sets Value[x] to its ValueAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueAge(v Age) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueAge = &v
+	return b
+}
+
+// SetValueAnnotation sets Value[x] to its ValueAnnotation variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueAnnotation(v Annotation) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueAnnotation = &v
+	return b
+}
+
+// SetValueAttachment sets Value[x] to its ValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueAttachment(v Attachment) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueAttachment = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueCodeableConcept(v CodeableConcept) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueCoding sets Value[x] to its ValueCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueCoding(v Coding) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueCoding = &v
+	return b
+}
+
+// SetValueContactPoint sets Value[x] to its ValueContactPoint variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueContactPoint(v ContactPoint) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueContactPoint = &v
+	return b
+}
+
+// SetValueCount sets Value[x] to its ValueCount variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueCount(v Count) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueCount = &v
+	return b
+}
+
+// SetValueDistance sets Value[x] to its ValueDistance variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueDistance(v Distance) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueDistance = &v
+	return b
+}
+
+// SetValueDuration sets Value[x] to its ValueDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueDuration(v Duration) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueDuration = &v
+	return b
+}
+
+// SetValueHumanName sets Value[x] to its ValueHumanName variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueHumanName(v HumanName) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueHumanName = &v
+	return b
+}
+
+// SetValueIdentifier sets Value[x] to its ValueIdentifier variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueIdentifier(v Identifier) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueIdentifier = &v
+	return b
+}
+
+// SetValueMoney sets Value[x] to its ValueMoney variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueMoney(v Money) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueMoney = &v
+	return b
+}
+
+// SetValuePeriod sets Value[x] to its ValuePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValuePeriod(v Period) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValuePeriod = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueQuantity(v Quantity) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueQuantity = &v
+	return b
+}
+
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueRange(v Range) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueRange = &v
+	return b
+}
+
+// SetValueRatio sets Value[x] to its ValueRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueRatio(v Ratio) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueRatio = &v
+	return b
+}
+
+// SetValueReference sets Value[x] to its ValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueReference(v Reference) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueReference = &v
+	return b
+}
+
+// SetValueSampledData sets Value[x] to its ValueSampledData variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueSampledData(v SampledData) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueSampledData = &v
+	return b
+}
+
+// SetValueSignature sets Value[x] to its ValueSignature variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueSignature(v Signature) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueSignature = &v
+	return b
+}
+
+// SetValueTiming sets Value[x] to its ValueTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueTiming(v Timing) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueTiming = &v
+	return b
+}
+
+// SetValueContactDetail sets Value[x] to its ValueContactDetail variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueContactDetail(v ContactDetail) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueContactDetail = &v
+	return b
+}
+
+// SetValueContributor sets Value[x] to its ValueContributor variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueContributor(v Contributor) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueContributor = &v
+	return b
+}
+
+// SetValueDataRequirement sets Value[x] to its ValueDataRequirement variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueDataRequirement(v DataRequirement) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueDataRequirement = &v
+	return b
+}
+
+// SetValueExpression sets Value[x] to its ValueExpression variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueExpression(v Expression) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueExpression = &v
+	return b
+}
+
+// SetValueParameterDefinition sets Value[x] to its ValueParameterDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueParameterDefinition(v ParameterDefinition) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueParameterDefinition = &v
+	return b
+}
+
+// SetValueRelatedArtifact sets Value[x] to its ValueRelatedArtifact variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueRelatedArtifact(v RelatedArtifact) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueRelatedArtifact = &v
+	return b
+}
+
+// SetValueTriggerDefinition sets Value[x] to its ValueTriggerDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueTriggerDefinition(v TriggerDefinition) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueTriggerDefinition = &v
+	return b
+}
+
+// SetValueUsageContext sets Value[x] to its ValueUsageContext variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueUsageContext(v UsageContext) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueUsageContext = &v
+	return b
+}
+
+// SetValueDosage sets Value[x] to its ValueDosage variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueDosage(v Dosage) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueDosage = &v
+	return b
+}
+
+// SetValueMeta sets Value[x] to its ValueMeta variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskInputBuilder) SetValueMeta(v Meta) *TaskInputBuilder {
+	b.clearValue()
+	b.taskInput.ValueMeta = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *TaskInputBuilder) clearValue() {
+	b.taskInput.ValueBase64Binary = nil
+	b.taskInput.ValueBoolean = nil
+	b.taskInput.ValueBooleanExt = nil
+	b.taskInput.ValueCanonical = nil
+	b.taskInput.ValueCanonicalExt = nil
+	b.taskInput.ValueCode = nil
+	b.taskInput.ValueCodeExt = nil
+	b.taskInput.ValueDate = nil
+	b.taskInput.ValueDateExt = nil
+	b.taskInput.ValueDateTime = nil
+	b.taskInput.ValueDateTimeExt = nil
+	b.taskInput.ValueDecimal = nil
+	b.taskInput.ValueDecimalExt = nil
+	b.taskInput.ValueId = nil
+	b.taskInput.ValueIdExt = nil
+	b.taskInput.ValueInstant = nil
+	b.taskInput.ValueInstantExt = nil
+	b.taskInput.ValueInteger = nil
+	b.taskInput.ValueIntegerExt = nil
+	b.taskInput.ValueMarkdown = nil
+	b.taskInput.ValueMarkdownExt = nil
+	b.taskInput.ValueOid = nil
+	b.taskInput.ValueOidExt = nil
+	b.taskInput.ValuePositiveInt = nil
+	b.taskInput.ValuePositiveIntExt = nil
+	b.taskInput.ValueString = nil
+	b.taskInput.ValueStringExt = nil
+	b.taskInput.ValueTime = nil
+	b.taskInput.ValueTimeExt = nil
+	b.taskInput.ValueUnsignedInt = nil
+	b.taskInput.ValueUnsignedIntExt = nil
+	b.taskInput.ValueUri = nil
+	b.taskInput.ValueUriExt = nil
+	b.taskInput.ValueUrl = nil
+	b.taskInput.ValueUrlExt = nil
+	b.taskInput.ValueUuid = nil
+	b.taskInput.ValueUuidExt = nil
+	b.taskInput.ValueAddress = nil
+	b.taskInput.ValueAge = nil
+	b.taskInput.ValueAnnotation = nil
+	b.taskInput.ValueAttachment = nil
+	b.taskInput.ValueCodeableConcept = nil
+	b.taskInput.ValueCoding = nil
+	b.taskInput.ValueContactPoint = nil
+	b.taskInput.ValueCount = nil
+	b.taskInput.ValueDistance = nil
+	b.taskInput.ValueDuration = nil
+	b.taskInput.ValueHumanName = nil
+	b.taskInput.ValueIdentifier = nil
+	b.taskInput.ValueMoney = nil
+	b.taskInput.ValuePeriod = nil
+	b.taskInput.ValueQuantity = nil
+	b.taskInput.ValueRange = nil
+	b.taskInput.ValueRatio = nil
+	b.taskInput.ValueReference = nil
+	b.taskInput.ValueSampledData = nil
+	b.taskInput.ValueSignature = nil
+	b.taskInput.ValueTiming = nil
+	b.taskInput.ValueContactDetail = nil
+	b.taskInput.ValueContributor = nil
+	b.taskInput.ValueDataRequirement = nil
+	b.taskInput.ValueExpression = nil
+	b.taskInput.ValueParameterDefinition = nil
+	b.taskInput.ValueRelatedArtifact = nil
+	b.taskInput.ValueTriggerDefinition = nil
+	b.taskInput.ValueUsageContext = nil
+	b.taskInput.ValueDosage = nil
+	b.taskInput.ValueMeta = nil
+}
+
+// =============================================================================
+// TaskOutput - Fluent Builder
+// =============================================================================
+
+// TaskOutputBuilder provides a fluent API for constructing TaskOutput values.
+type TaskOutputBuilder struct {
+	taskOutput *TaskOutput
+}
+
+// NewTaskOutputBuilder creates a new TaskOutputBuilder.
+func NewTaskOutputBuilder() *TaskOutputBuilder {
+	return &TaskOutputBuilder{
+		taskOutput: &TaskOutput{},
+	}
+}
+
+// Build returns the constructed TaskOutput.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TaskOutputBuilder) Build() TaskOutput {
+	return *b.taskOutput
+}
+
+// SetId sets the Id field.
+func (b *TaskOutputBuilder) SetId(v string) *TaskOutputBuilder {
+	b.taskOutput.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TaskOutputBuilder) AddExtension(v Extension) *TaskOutputBuilder {
+	b.taskOutput.Extension = append(b.taskOutput.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TaskOutputBuilder) AddModifierExtension(v Extension) *TaskOutputBuilder {
+	b.taskOutput.ModifierExtension = append(b.taskOutput.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *TaskOutputBuilder) SetType(v CodeableConcept) *TaskOutputBuilder {
+	b.taskOutput.Type = &v
+	return b
+}
+
+// SetValueBase64Binary sets Value[x] to its ValueBase64Binary variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueBase64Binary(v string) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueBase64Binary = &v
+	return b
+}
+
+// SetValueBase64BinaryExt sets the ValueBase64BinaryExt field.
+func (b *TaskOutputBuilder) SetValueBase64BinaryExt(v Element) *TaskOutputBuilder {
+	b.taskOutput.ValueBase64BinaryExt = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueBoolean(v bool) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *TaskOutputBuilder) SetValueBooleanExt(v Element) *TaskOutputBuilder {
+	b.taskOutput.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueCanonical sets Value[x] to its ValueCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueCanonical(v string) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueCanonical = &v
+	return b
+}
+
+// SetValueCanonicalExt sets the ValueCanonicalExt field.
+func (b *TaskOutputBuilder) SetValueCanonicalExt(v Element) *TaskOutputBuilder {
+	b.taskOutput.ValueCanonicalExt = &v
+	return b
+}
+
+// SetValueCode sets Value[x] to its ValueCode variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueCode(v string) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueCode = &v
+	return b
+}
+
+// SetValueCodeExt sets the ValueCodeExt field.
+func (b *TaskOutputBuilder) SetValueCodeExt(v Element) *TaskOutputBuilder {
+	b.taskOutput.ValueCodeExt = &v
+	return b
+}
+
+// SetValueDate sets Value[x] to its ValueDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueDate(v string) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueDate = &v
+	return b
+}
+
+// SetValueDateExt sets the ValueDateExt field.
+func (b *TaskOutputBuilder) SetValueDateExt(v Element) *TaskOutputBuilder {
+	b.taskOutput.ValueDateExt = &v
+	return b
+}
+
+// SetValueDateTime sets Value[x] to its ValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueDateTime(v string) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueDateTime = &v
+	return b
+}
+
+// SetValueDateTimeExt sets the ValueDateTimeExt field.
+func (b *TaskOutputBuilder) SetValueDateTimeExt(v Element) *TaskOutputBuilder {
+	b.taskOutput.ValueDateTimeExt = &v
+	return b
+}
+
+// SetValueDecimal sets Value[x] to its ValueDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueDecimal(v Decimal) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueDecimal = &v
+	return b
+}
+
+// SetValueDecimalExt sets the ValueDecimalExt field.
+func (b *TaskOutputBuilder) SetValueDecimalExt(v Element) *TaskOutputBuilder {
+	b.taskOutput.ValueDecimalExt = &v
+	return b
+}
+
+// SetValueId sets Value[x] to its ValueId variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueId(v string) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueId = &v
+	return b
+}
+
+// SetValueIdExt sets the ValueIdExt field.
+func (b *TaskOutputBuilder) SetValueIdExt(v Element) *TaskOutputBuilder {
+	b.taskOutput.ValueIdExt = &v
+	return b
+}
+
+// SetValueInstant sets Value[x] to its ValueInstant variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueInstant(v string) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueInstant = &v
+	return b
+}
+
+// SetValueInstantExt sets the ValueInstantExt field.
+func (b *TaskOutputBuilder) SetValueInstantExt(v Element) *TaskOutputBuilder {
+	b.taskOutput.ValueInstantExt = &v
+	return b
+}
+
+// SetValueInteger sets Value[x] to its ValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueInteger(v int) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueInteger = &v
+	return b
+}
+
+// SetValueIntegerExt sets the ValueIntegerExt field.
+func (b *TaskOutputBuilder) SetValueIntegerExt(v Element) *TaskOutputBuilder {
+	b.taskOutput.ValueIntegerExt = &v
+	return b
+}
+
+// SetValueMarkdown sets Value[x] to its ValueMarkdown variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueMarkdown(v string) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueMarkdown = &v
+	return b
+}
+
+// SetValueMarkdownExt sets the ValueMarkdownExt field.
+func (b *TaskOutputBuilder) SetValueMarkdownExt(v Element) *TaskOutputBuilder {
+	b.taskOutput.ValueMarkdownExt = &v
+	return b
+}
+
+// SetValueOid sets Value[x] to its ValueOid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueOid(v string) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueOid = &v
+	return b
+}
+
+// SetValueOidExt sets the ValueOidExt field.
+func (b *TaskOutputBuilder) SetValueOidExt(v Element) *TaskOutputBuilder {
+	b.taskOutput.ValueOidExt = &v
+	return b
+}
+
+// SetValuePositiveInt sets Value[x] to its ValuePositiveInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValuePositiveInt(v uint32) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValuePositiveInt = &v
+	return b
+}
+
+// SetValuePositiveIntExt sets the ValuePositiveIntExt field.
+func (b *TaskOutputBuilder) SetValuePositiveIntExt(v Element) *TaskOutputBuilder {
+	b.taskOutput.ValuePositiveIntExt = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueString(v string) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *TaskOutputBuilder) SetValueStringExt(v Element) *TaskOutputBuilder {
+	b.taskOutput.ValueStringExt = &v
+	return b
+}
+
+// SetValueTime sets Value[x] to its ValueTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueTime(v string) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueTime = &v
+	return b
+}
+
+// SetValueTimeExt sets the ValueTimeExt field.
+func (b *TaskOutputBuilder) SetValueTimeExt(v Element) *TaskOutputBuilder {
+	b.taskOutput.ValueTimeExt = &v
+	return b
+}
+
+// SetValueUnsignedInt sets Value[x] to its ValueUnsignedInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueUnsignedInt(v uint32) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueUnsignedInt = &v
+	return b
+}
+
+// SetValueUnsignedIntExt sets the ValueUnsignedIntExt field.
+func (b *TaskOutputBuilder) SetValueUnsignedIntExt(v Element) *TaskOutputBuilder {
+	b.taskOutput.ValueUnsignedIntExt = &v
+	return b
+}
+
+// SetValueUri sets Value[x] to its ValueUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueUri(v string) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueUri = &v
+	return b
+}
+
+// SetValueUriExt sets the ValueUriExt field.
+func (b *TaskOutputBuilder) SetValueUriExt(v Element) *TaskOutputBuilder {
+	b.taskOutput.ValueUriExt = &v
+	return b
+}
+
+// SetValueUrl sets Value[x] to its ValueUrl variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueUrl(v string) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueUrl = &v
+	return b
+}
+
+// SetValueUrlExt sets the ValueUrlExt field.
+func (b *TaskOutputBuilder) SetValueUrlExt(v Element) *TaskOutputBuilder {
+	b.taskOutput.ValueUrlExt = &v
+	return b
+}
+
+// SetValueUuid sets Value[x] to its ValueUuid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueUuid(v string) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueUuid = &v
+	return b
+}
+
+// SetValueUuidExt sets the ValueUuidExt field.
+func (b *TaskOutputBuilder) SetValueUuidExt(v Element) *TaskOutputBuilder {
+	b.taskOutput.ValueUuidExt = &v
+	return b
+}
+
+// SetValueAddress sets Value[x] to its ValueAddress variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueAddress(v Address) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueAddress = &v
+	return b
+}
+
+// SetValueAge sets Value[x] to its ValueAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueAge(v Age) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueAge = &v
+	return b
+}
+
+// SetValueAnnotation sets Value[x] to its ValueAnnotation variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueAnnotation(v Annotation) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueAnnotation = &v
+	return b
+}
+
+// SetValueAttachment sets Value[x] to its ValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueAttachment(v Attachment) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueAttachment = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueCodeableConcept(v CodeableConcept) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueCoding sets Value[x] to its ValueCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueCoding(v Coding) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueCoding = &v
+	return b
+}
+
+// SetValueContactPoint sets Value[x] to its ValueContactPoint variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueContactPoint(v ContactPoint) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueContactPoint = &v
+	return b
+}
+
+// SetValueCount sets Value[x] to its ValueCount variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueCount(v Count) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueCount = &v
+	return b
+}
+
+// SetValueDistance sets Value[x] to its ValueDistance variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueDistance(v Distance) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueDistance = &v
+	return b
+}
+
+// SetValueDuration sets Value[x] to its ValueDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueDuration(v Duration) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueDuration = &v
+	return b
+}
+
+// SetValueHumanName sets Value[x] to its ValueHumanName variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueHumanName(v HumanName) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueHumanName = &v
+	return b
+}
+
+// SetValueIdentifier sets Value[x] to its ValueIdentifier variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueIdentifier(v Identifier) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueIdentifier = &v
+	return b
+}
+
+// SetValueMoney sets Value[x] to its ValueMoney variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueMoney(v Money) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueMoney = &v
+	return b
+}
+
+// SetValuePeriod sets Value[x] to its ValuePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValuePeriod(v Period) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValuePeriod = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueQuantity(v Quantity) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueQuantity = &v
+	return b
+}
+
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueRange(v Range) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueRange = &v
+	return b
+}
+
+// SetValueRatio sets Value[x] to its ValueRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueRatio(v Ratio) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueRatio = &v
+	return b
+}
+
+// SetValueReference sets Value[x] to its ValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueReference(v Reference) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueReference = &v
+	return b
+}
+
+// SetValueSampledData sets Value[x] to its ValueSampledData variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueSampledData(v SampledData) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueSampledData = &v
+	return b
+}
+
+// SetValueSignature sets Value[x] to its ValueSignature variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueSignature(v Signature) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueSignature = &v
+	return b
+}
+
+// SetValueTiming sets Value[x] to its ValueTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueTiming(v Timing) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueTiming = &v
+	return b
+}
+
+// SetValueContactDetail sets Value[x] to its ValueContactDetail variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueContactDetail(v ContactDetail) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueContactDetail = &v
+	return b
+}
+
+// SetValueContributor sets Value[x] to its ValueContributor variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueContributor(v Contributor) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueContributor = &v
+	return b
+}
+
+// SetValueDataRequirement sets Value[x] to its ValueDataRequirement variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueDataRequirement(v DataRequirement) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueDataRequirement = &v
+	return b
+}
+
+// SetValueExpression sets Value[x] to its ValueExpression variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueExpression(v Expression) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueExpression = &v
+	return b
+}
+
+// SetValueParameterDefinition sets Value[x] to its ValueParameterDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueParameterDefinition(v ParameterDefinition) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueParameterDefinition = &v
+	return b
+}
+
+// SetValueRelatedArtifact sets Value[x] to its ValueRelatedArtifact variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueRelatedArtifact(v RelatedArtifact) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueRelatedArtifact = &v
+	return b
+}
+
+// SetValueTriggerDefinition sets Value[x] to its ValueTriggerDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueTriggerDefinition(v TriggerDefinition) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueTriggerDefinition = &v
+	return b
+}
+
+// SetValueUsageContext sets Value[x] to its ValueUsageContext variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueUsageContext(v UsageContext) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueUsageContext = &v
+	return b
+}
+
+// SetValueDosage sets Value[x] to its ValueDosage variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueDosage(v Dosage) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueDosage = &v
+	return b
+}
+
+// SetValueMeta sets Value[x] to its ValueMeta variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TaskOutputBuilder) SetValueMeta(v Meta) *TaskOutputBuilder {
+	b.clearValue()
+	b.taskOutput.ValueMeta = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *TaskOutputBuilder) clearValue() {
+	b.taskOutput.ValueBase64Binary = nil
+	b.taskOutput.ValueBoolean = nil
+	b.taskOutput.ValueBooleanExt = nil
+	b.taskOutput.ValueCanonical = nil
+	b.taskOutput.ValueCanonicalExt = nil
+	b.taskOutput.ValueCode = nil
+	b.taskOutput.ValueCodeExt = nil
+	b.taskOutput.ValueDate = nil
+	b.taskOutput.ValueDateExt = nil
+	b.taskOutput.ValueDateTime = nil
+	b.taskOutput.ValueDateTimeExt = nil
+	b.taskOutput.ValueDecimal = nil
+	b.taskOutput.ValueDecimalExt = nil
+	b.taskOutput.ValueId = nil
+	b.taskOutput.ValueIdExt = nil
+	b.taskOutput.ValueInstant = nil
+	b.taskOutput.ValueInstantExt = nil
+	b.taskOutput.ValueInteger = nil
+	b.taskOutput.ValueIntegerExt = nil
+	b.taskOutput.ValueMarkdown = nil
+	b.taskOutput.ValueMarkdownExt = nil
+	b.taskOutput.ValueOid = nil
+	b.taskOutput.ValueOidExt = nil
+	b.taskOutput.ValuePositiveInt = nil
+	b.taskOutput.ValuePositiveIntExt = nil
+	b.taskOutput.ValueString = nil
+	b.taskOutput.ValueStringExt = nil
+	b.taskOutput.ValueTime = nil
+	b.taskOutput.ValueTimeExt = nil
+	b.taskOutput.ValueUnsignedInt = nil
+	b.taskOutput.ValueUnsignedIntExt = nil
+	b.taskOutput.ValueUri = nil
+	b.taskOutput.ValueUriExt = nil
+	b.taskOutput.ValueUrl = nil
+	b.taskOutput.ValueUrlExt = nil
+	b.taskOutput.ValueUuid = nil
+	b.taskOutput.ValueUuidExt = nil
+	b.taskOutput.ValueAddress = nil
+	b.taskOutput.ValueAge = nil
+	b.taskOutput.ValueAnnotation = nil
+	b.taskOutput.ValueAttachment = nil
+	b.taskOutput.ValueCodeableConcept = nil
+	b.taskOutput.ValueCoding = nil
+	b.taskOutput.ValueContactPoint = nil
+	b.taskOutput.ValueCount = nil
+	b.taskOutput.ValueDistance = nil
+	b.taskOutput.ValueDuration = nil
+	b.taskOutput.ValueHumanName = nil
+	b.taskOutput.ValueIdentifier = nil
+	b.taskOutput.ValueMoney = nil
+	b.taskOutput.ValuePeriod = nil
+	b.taskOutput.ValueQuantity = nil
+	b.taskOutput.ValueRange = nil
+	b.taskOutput.ValueRatio = nil
+	b.taskOutput.ValueReference = nil
+	b.taskOutput.ValueSampledData = nil
+	b.taskOutput.ValueSignature = nil
+	b.taskOutput.ValueTiming = nil
+	b.taskOutput.ValueContactDetail = nil
+	b.taskOutput.ValueContributor = nil
+	b.taskOutput.ValueDataRequirement = nil
+	b.taskOutput.ValueExpression = nil
+	b.taskOutput.ValueParameterDefinition = nil
+	b.taskOutput.ValueRelatedArtifact = nil
+	b.taskOutput.ValueTriggerDefinition = nil
+	b.taskOutput.ValueUsageContext = nil
+	b.taskOutput.ValueDosage = nil
+	b.taskOutput.ValueMeta = nil
+}
+
+// =============================================================================
+// TaskRestriction - Fluent Builder
+// =============================================================================
+
+// TaskRestrictionBuilder provides a fluent API for constructing TaskRestriction values.
+type TaskRestrictionBuilder struct {
+	taskRestriction *TaskRestriction
+}
+
+// NewTaskRestrictionBuilder creates a new TaskRestrictionBuilder.
+func NewTaskRestrictionBuilder() *TaskRestrictionBuilder {
+	return &TaskRestrictionBuilder{
+		taskRestriction: &TaskRestriction{},
+	}
+}
+
+// Build returns the constructed TaskRestriction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TaskRestrictionBuilder) Build() TaskRestriction {
+	return *b.taskRestriction
+}
+
+// SetId sets the Id field.
+func (b *TaskRestrictionBuilder) SetId(v string) *TaskRestrictionBuilder {
+	b.taskRestriction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TaskRestrictionBuilder) AddExtension(v Extension) *TaskRestrictionBuilder {
+	b.taskRestriction.Extension = append(b.taskRestriction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TaskRestrictionBuilder) AddModifierExtension(v Extension) *TaskRestrictionBuilder {
+	b.taskRestriction.ModifierExtension = append(b.taskRestriction.ModifierExtension, v)
+	return b
+}
+
+// SetRepetitions sets the Repetitions field.
+func (b *TaskRestrictionBuilder) SetRepetitions(v uint32) *TaskRestrictionBuilder {
+	b.taskRestriction.Repetitions = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *TaskRestrictionBuilder) SetPeriod(v Period) *TaskRestrictionBuilder {
+	b.taskRestriction.Period = &v
+	return b
+}
+
+// AddRecipient adds a Recipient element.
+func (b *TaskRestrictionBuilder) AddRecipient(v Reference) *TaskRestrictionBuilder {
+	b.taskRestriction.Recipient = append(b.taskRestriction.Recipient, v)
+	return b
+}
+
+// SetRepetitionsExt sets the extensions carried by Repetitions, serialized as
+// "_repetitions".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TaskRestrictionBuilder) SetRepetitionsExt(v Element) *TaskRestrictionBuilder {
+	b.taskRestriction.RepetitionsExt = &v
+	return b
+}

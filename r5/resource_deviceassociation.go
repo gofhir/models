@@ -612,3 +612,86 @@ func (b *DeviceAssociationBuilder) AddOperation(v DeviceAssociationOperation) *D
 	b.deviceAssociation.Operation = append(b.deviceAssociation.Operation, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceAssociationBuilder) SetImplicitRulesExt(v Element) *DeviceAssociationBuilder {
+	b.deviceAssociation.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceAssociationBuilder) SetLanguageExt(v Element) *DeviceAssociationBuilder {
+	b.deviceAssociation.LanguageExt = &v
+	return b
+}
+
+// =============================================================================
+// DeviceAssociationOperation - Fluent Builder
+// =============================================================================
+
+// DeviceAssociationOperationBuilder provides a fluent API for constructing DeviceAssociationOperation values.
+type DeviceAssociationOperationBuilder struct {
+	deviceAssociationOperation *DeviceAssociationOperation
+}
+
+// NewDeviceAssociationOperationBuilder creates a new DeviceAssociationOperationBuilder.
+func NewDeviceAssociationOperationBuilder() *DeviceAssociationOperationBuilder {
+	return &DeviceAssociationOperationBuilder{
+		deviceAssociationOperation: &DeviceAssociationOperation{},
+	}
+}
+
+// Build returns the constructed DeviceAssociationOperation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DeviceAssociationOperationBuilder) Build() DeviceAssociationOperation {
+	return *b.deviceAssociationOperation
+}
+
+// SetId sets the Id field.
+func (b *DeviceAssociationOperationBuilder) SetId(v string) *DeviceAssociationOperationBuilder {
+	b.deviceAssociationOperation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DeviceAssociationOperationBuilder) AddExtension(v Extension) *DeviceAssociationOperationBuilder {
+	b.deviceAssociationOperation.Extension = append(b.deviceAssociationOperation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *DeviceAssociationOperationBuilder) AddModifierExtension(v Extension) *DeviceAssociationOperationBuilder {
+	b.deviceAssociationOperation.ModifierExtension = append(b.deviceAssociationOperation.ModifierExtension, v)
+	return b
+}
+
+// SetStatus sets the Status field.
+func (b *DeviceAssociationOperationBuilder) SetStatus(v CodeableConcept) *DeviceAssociationOperationBuilder {
+	b.deviceAssociationOperation.Status = &v
+	return b
+}
+
+// AddOperator adds a Operator element.
+func (b *DeviceAssociationOperationBuilder) AddOperator(v Reference) *DeviceAssociationOperationBuilder {
+	b.deviceAssociationOperation.Operator = append(b.deviceAssociationOperation.Operator, v)
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *DeviceAssociationOperationBuilder) SetPeriod(v Period) *DeviceAssociationOperationBuilder {
+	b.deviceAssociationOperation.Period = &v
+	return b
+}

@@ -831,3 +831,231 @@ func (b *PractitionerRoleBuilder) AddEndpoint(v Reference) *PractitionerRoleBuil
 	b.practitionerRole.Endpoint = append(b.practitionerRole.Endpoint, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PractitionerRoleBuilder) SetImplicitRulesExt(v Element) *PractitionerRoleBuilder {
+	b.practitionerRole.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PractitionerRoleBuilder) SetLanguageExt(v Element) *PractitionerRoleBuilder {
+	b.practitionerRole.LanguageExt = &v
+	return b
+}
+
+// SetActiveExt sets the extensions carried by Active, serialized as
+// "_active".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PractitionerRoleBuilder) SetActiveExt(v Element) *PractitionerRoleBuilder {
+	b.practitionerRole.ActiveExt = &v
+	return b
+}
+
+// SetAvailabilityExceptionsExt sets the extensions carried by AvailabilityExceptions, serialized as
+// "_availabilityExceptions".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PractitionerRoleBuilder) SetAvailabilityExceptionsExt(v Element) *PractitionerRoleBuilder {
+	b.practitionerRole.AvailabilityExceptionsExt = &v
+	return b
+}
+
+// =============================================================================
+// PractitionerRoleAvailableTime - Fluent Builder
+// =============================================================================
+
+// PractitionerRoleAvailableTimeBuilder provides a fluent API for constructing PractitionerRoleAvailableTime values.
+type PractitionerRoleAvailableTimeBuilder struct {
+	practitionerRoleAvailableTime *PractitionerRoleAvailableTime
+}
+
+// NewPractitionerRoleAvailableTimeBuilder creates a new PractitionerRoleAvailableTimeBuilder.
+func NewPractitionerRoleAvailableTimeBuilder() *PractitionerRoleAvailableTimeBuilder {
+	return &PractitionerRoleAvailableTimeBuilder{
+		practitionerRoleAvailableTime: &PractitionerRoleAvailableTime{},
+	}
+}
+
+// Build returns the constructed PractitionerRoleAvailableTime.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PractitionerRoleAvailableTimeBuilder) Build() PractitionerRoleAvailableTime {
+	return *b.practitionerRoleAvailableTime
+}
+
+// SetId sets the Id field.
+func (b *PractitionerRoleAvailableTimeBuilder) SetId(v string) *PractitionerRoleAvailableTimeBuilder {
+	b.practitionerRoleAvailableTime.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PractitionerRoleAvailableTimeBuilder) AddExtension(v Extension) *PractitionerRoleAvailableTimeBuilder {
+	b.practitionerRoleAvailableTime.Extension = append(b.practitionerRoleAvailableTime.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PractitionerRoleAvailableTimeBuilder) AddModifierExtension(v Extension) *PractitionerRoleAvailableTimeBuilder {
+	b.practitionerRoleAvailableTime.ModifierExtension = append(b.practitionerRoleAvailableTime.ModifierExtension, v)
+	return b
+}
+
+// AddDaysOfWeek adds a DaysOfWeek element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *PractitionerRoleAvailableTimeBuilder) AddDaysOfWeek(v DaysOfWeek) *PractitionerRoleAvailableTimeBuilder {
+	b.practitionerRoleAvailableTime.DaysOfWeek = append(b.practitionerRoleAvailableTime.DaysOfWeek, &v)
+	return b
+}
+
+// SetAllDay sets the AllDay field.
+func (b *PractitionerRoleAvailableTimeBuilder) SetAllDay(v bool) *PractitionerRoleAvailableTimeBuilder {
+	b.practitionerRoleAvailableTime.AllDay = &v
+	return b
+}
+
+// SetAvailableStartTime sets the AvailableStartTime field.
+func (b *PractitionerRoleAvailableTimeBuilder) SetAvailableStartTime(v string) *PractitionerRoleAvailableTimeBuilder {
+	b.practitionerRoleAvailableTime.AvailableStartTime = &v
+	return b
+}
+
+// SetAvailableEndTime sets the AvailableEndTime field.
+func (b *PractitionerRoleAvailableTimeBuilder) SetAvailableEndTime(v string) *PractitionerRoleAvailableTimeBuilder {
+	b.practitionerRoleAvailableTime.AvailableEndTime = &v
+	return b
+}
+
+// AddDaysOfWeekExt attaches extensions to the DaysOfWeek element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDaysOfWeek twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *PractitionerRoleAvailableTimeBuilder) AddDaysOfWeekExt(v *Element) *PractitionerRoleAvailableTimeBuilder {
+	for len(b.practitionerRoleAvailableTime.DaysOfWeekExt) < len(b.practitionerRoleAvailableTime.DaysOfWeek)-1 {
+		b.practitionerRoleAvailableTime.DaysOfWeekExt = append(b.practitionerRoleAvailableTime.DaysOfWeekExt, nil)
+	}
+	b.practitionerRoleAvailableTime.DaysOfWeekExt = append(b.practitionerRoleAvailableTime.DaysOfWeekExt, v)
+	return b
+}
+
+// SetAllDayExt sets the extensions carried by AllDay, serialized as
+// "_allDay".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PractitionerRoleAvailableTimeBuilder) SetAllDayExt(v Element) *PractitionerRoleAvailableTimeBuilder {
+	b.practitionerRoleAvailableTime.AllDayExt = &v
+	return b
+}
+
+// SetAvailableStartTimeExt sets the extensions carried by AvailableStartTime, serialized as
+// "_availableStartTime".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PractitionerRoleAvailableTimeBuilder) SetAvailableStartTimeExt(v Element) *PractitionerRoleAvailableTimeBuilder {
+	b.practitionerRoleAvailableTime.AvailableStartTimeExt = &v
+	return b
+}
+
+// SetAvailableEndTimeExt sets the extensions carried by AvailableEndTime, serialized as
+// "_availableEndTime".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PractitionerRoleAvailableTimeBuilder) SetAvailableEndTimeExt(v Element) *PractitionerRoleAvailableTimeBuilder {
+	b.practitionerRoleAvailableTime.AvailableEndTimeExt = &v
+	return b
+}
+
+// =============================================================================
+// PractitionerRoleNotAvailable - Fluent Builder
+// =============================================================================
+
+// PractitionerRoleNotAvailableBuilder provides a fluent API for constructing PractitionerRoleNotAvailable values.
+type PractitionerRoleNotAvailableBuilder struct {
+	practitionerRoleNotAvailable *PractitionerRoleNotAvailable
+}
+
+// NewPractitionerRoleNotAvailableBuilder creates a new PractitionerRoleNotAvailableBuilder.
+func NewPractitionerRoleNotAvailableBuilder() *PractitionerRoleNotAvailableBuilder {
+	return &PractitionerRoleNotAvailableBuilder{
+		practitionerRoleNotAvailable: &PractitionerRoleNotAvailable{},
+	}
+}
+
+// Build returns the constructed PractitionerRoleNotAvailable.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PractitionerRoleNotAvailableBuilder) Build() PractitionerRoleNotAvailable {
+	return *b.practitionerRoleNotAvailable
+}
+
+// SetId sets the Id field.
+func (b *PractitionerRoleNotAvailableBuilder) SetId(v string) *PractitionerRoleNotAvailableBuilder {
+	b.practitionerRoleNotAvailable.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PractitionerRoleNotAvailableBuilder) AddExtension(v Extension) *PractitionerRoleNotAvailableBuilder {
+	b.practitionerRoleNotAvailable.Extension = append(b.practitionerRoleNotAvailable.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PractitionerRoleNotAvailableBuilder) AddModifierExtension(v Extension) *PractitionerRoleNotAvailableBuilder {
+	b.practitionerRoleNotAvailable.ModifierExtension = append(b.practitionerRoleNotAvailable.ModifierExtension, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *PractitionerRoleNotAvailableBuilder) SetDescription(v string) *PractitionerRoleNotAvailableBuilder {
+	b.practitionerRoleNotAvailable.Description = &v
+	return b
+}
+
+// SetDuring sets the During field.
+func (b *PractitionerRoleNotAvailableBuilder) SetDuring(v Period) *PractitionerRoleNotAvailableBuilder {
+	b.practitionerRoleNotAvailable.During = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PractitionerRoleNotAvailableBuilder) SetDescriptionExt(v Element) *PractitionerRoleNotAvailableBuilder {
+	b.practitionerRoleNotAvailable.DescriptionExt = &v
+	return b
+}

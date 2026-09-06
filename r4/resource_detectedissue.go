@@ -814,9 +814,199 @@ func (b *DetectedIssueBuilder) AddMitigation(v DetectedIssueMitigation) *Detecte
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DetectedIssueBuilder) SetImplicitRulesExt(v Element) *DetectedIssueBuilder {
+	b.detectedIssue.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DetectedIssueBuilder) SetLanguageExt(v Element) *DetectedIssueBuilder {
+	b.detectedIssue.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DetectedIssueBuilder) SetStatusExt(v Element) *DetectedIssueBuilder {
+	b.detectedIssue.StatusExt = &v
+	return b
+}
+
+// SetSeverityExt sets the extensions carried by Severity, serialized as
+// "_severity".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DetectedIssueBuilder) SetSeverityExt(v Element) *DetectedIssueBuilder {
+	b.detectedIssue.SeverityExt = &v
+	return b
+}
+
+// SetDetailExt sets the extensions carried by Detail, serialized as
+// "_detail".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DetectedIssueBuilder) SetDetailExt(v Element) *DetectedIssueBuilder {
+	b.detectedIssue.DetailExt = &v
+	return b
+}
+
+// SetReferenceExt sets the extensions carried by Reference, serialized as
+// "_reference".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DetectedIssueBuilder) SetReferenceExt(v Element) *DetectedIssueBuilder {
+	b.detectedIssue.ReferenceExt = &v
+	return b
+}
+
 // clearIdentified unsets every variant of Identified[x], including the
 // _field companions of the primitive ones.
 func (b *DetectedIssueBuilder) clearIdentified() {
 	b.detectedIssue.IdentifiedDateTime = nil
 	b.detectedIssue.IdentifiedPeriod = nil
+}
+
+// =============================================================================
+// DetectedIssueEvidence - Fluent Builder
+// =============================================================================
+
+// DetectedIssueEvidenceBuilder provides a fluent API for constructing DetectedIssueEvidence values.
+type DetectedIssueEvidenceBuilder struct {
+	detectedIssueEvidence *DetectedIssueEvidence
+}
+
+// NewDetectedIssueEvidenceBuilder creates a new DetectedIssueEvidenceBuilder.
+func NewDetectedIssueEvidenceBuilder() *DetectedIssueEvidenceBuilder {
+	return &DetectedIssueEvidenceBuilder{
+		detectedIssueEvidence: &DetectedIssueEvidence{},
+	}
+}
+
+// Build returns the constructed DetectedIssueEvidence.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DetectedIssueEvidenceBuilder) Build() DetectedIssueEvidence {
+	return *b.detectedIssueEvidence
+}
+
+// SetId sets the Id field.
+func (b *DetectedIssueEvidenceBuilder) SetId(v string) *DetectedIssueEvidenceBuilder {
+	b.detectedIssueEvidence.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DetectedIssueEvidenceBuilder) AddExtension(v Extension) *DetectedIssueEvidenceBuilder {
+	b.detectedIssueEvidence.Extension = append(b.detectedIssueEvidence.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *DetectedIssueEvidenceBuilder) AddModifierExtension(v Extension) *DetectedIssueEvidenceBuilder {
+	b.detectedIssueEvidence.ModifierExtension = append(b.detectedIssueEvidence.ModifierExtension, v)
+	return b
+}
+
+// AddCode adds a Code element.
+func (b *DetectedIssueEvidenceBuilder) AddCode(v CodeableConcept) *DetectedIssueEvidenceBuilder {
+	b.detectedIssueEvidence.Code = append(b.detectedIssueEvidence.Code, v)
+	return b
+}
+
+// AddDetail adds a Detail element.
+func (b *DetectedIssueEvidenceBuilder) AddDetail(v Reference) *DetectedIssueEvidenceBuilder {
+	b.detectedIssueEvidence.Detail = append(b.detectedIssueEvidence.Detail, v)
+	return b
+}
+
+// =============================================================================
+// DetectedIssueMitigation - Fluent Builder
+// =============================================================================
+
+// DetectedIssueMitigationBuilder provides a fluent API for constructing DetectedIssueMitigation values.
+type DetectedIssueMitigationBuilder struct {
+	detectedIssueMitigation *DetectedIssueMitigation
+}
+
+// NewDetectedIssueMitigationBuilder creates a new DetectedIssueMitigationBuilder.
+func NewDetectedIssueMitigationBuilder() *DetectedIssueMitigationBuilder {
+	return &DetectedIssueMitigationBuilder{
+		detectedIssueMitigation: &DetectedIssueMitigation{},
+	}
+}
+
+// Build returns the constructed DetectedIssueMitigation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DetectedIssueMitigationBuilder) Build() DetectedIssueMitigation {
+	return *b.detectedIssueMitigation
+}
+
+// SetId sets the Id field.
+func (b *DetectedIssueMitigationBuilder) SetId(v string) *DetectedIssueMitigationBuilder {
+	b.detectedIssueMitigation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DetectedIssueMitigationBuilder) AddExtension(v Extension) *DetectedIssueMitigationBuilder {
+	b.detectedIssueMitigation.Extension = append(b.detectedIssueMitigation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *DetectedIssueMitigationBuilder) AddModifierExtension(v Extension) *DetectedIssueMitigationBuilder {
+	b.detectedIssueMitigation.ModifierExtension = append(b.detectedIssueMitigation.ModifierExtension, v)
+	return b
+}
+
+// SetAction sets the Action field.
+func (b *DetectedIssueMitigationBuilder) SetAction(v CodeableConcept) *DetectedIssueMitigationBuilder {
+	b.detectedIssueMitigation.Action = &v
+	return b
+}
+
+// SetDate sets the Date field.
+func (b *DetectedIssueMitigationBuilder) SetDate(v string) *DetectedIssueMitigationBuilder {
+	b.detectedIssueMitigation.Date = &v
+	return b
+}
+
+// SetAuthor sets the Author field.
+func (b *DetectedIssueMitigationBuilder) SetAuthor(v Reference) *DetectedIssueMitigationBuilder {
+	b.detectedIssueMitigation.Author = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DetectedIssueMitigationBuilder) SetDateExt(v Element) *DetectedIssueMitigationBuilder {
+	b.detectedIssueMitigation.DateExt = &v
+	return b
 }

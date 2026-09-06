@@ -2901,3 +2901,1532 @@ func (b *ClaimBuilder) SetTotal(v Money) *ClaimBuilder {
 	b.claim.Total = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimBuilder) SetImplicitRulesExt(v Element) *ClaimBuilder {
+	b.claim.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimBuilder) SetLanguageExt(v Element) *ClaimBuilder {
+	b.claim.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimBuilder) SetStatusExt(v Element) *ClaimBuilder {
+	b.claim.StatusExt = &v
+	return b
+}
+
+// SetUseExt sets the extensions carried by Use, serialized as
+// "_use".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimBuilder) SetUseExt(v Element) *ClaimBuilder {
+	b.claim.UseExt = &v
+	return b
+}
+
+// SetCreatedExt sets the extensions carried by Created, serialized as
+// "_created".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimBuilder) SetCreatedExt(v Element) *ClaimBuilder {
+	b.claim.CreatedExt = &v
+	return b
+}
+
+// =============================================================================
+// ClaimAccident - Fluent Builder
+// =============================================================================
+
+// ClaimAccidentBuilder provides a fluent API for constructing ClaimAccident values.
+type ClaimAccidentBuilder struct {
+	claimAccident *ClaimAccident
+}
+
+// NewClaimAccidentBuilder creates a new ClaimAccidentBuilder.
+func NewClaimAccidentBuilder() *ClaimAccidentBuilder {
+	return &ClaimAccidentBuilder{
+		claimAccident: &ClaimAccident{},
+	}
+}
+
+// Build returns the constructed ClaimAccident.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimAccidentBuilder) Build() ClaimAccident {
+	return *b.claimAccident
+}
+
+// SetId sets the Id field.
+func (b *ClaimAccidentBuilder) SetId(v string) *ClaimAccidentBuilder {
+	b.claimAccident.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimAccidentBuilder) AddExtension(v Extension) *ClaimAccidentBuilder {
+	b.claimAccident.Extension = append(b.claimAccident.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimAccidentBuilder) AddModifierExtension(v Extension) *ClaimAccidentBuilder {
+	b.claimAccident.ModifierExtension = append(b.claimAccident.ModifierExtension, v)
+	return b
+}
+
+// SetDate sets the Date field.
+func (b *ClaimAccidentBuilder) SetDate(v string) *ClaimAccidentBuilder {
+	b.claimAccident.Date = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ClaimAccidentBuilder) SetType(v CodeableConcept) *ClaimAccidentBuilder {
+	b.claimAccident.Type = &v
+	return b
+}
+
+// SetLocationAddress sets Location[x] to its LocationAddress variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimAccidentBuilder) SetLocationAddress(v Address) *ClaimAccidentBuilder {
+	b.clearLocation()
+	b.claimAccident.LocationAddress = &v
+	return b
+}
+
+// SetLocationReference sets Location[x] to its LocationReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimAccidentBuilder) SetLocationReference(v Reference) *ClaimAccidentBuilder {
+	b.clearLocation()
+	b.claimAccident.LocationReference = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimAccidentBuilder) SetDateExt(v Element) *ClaimAccidentBuilder {
+	b.claimAccident.DateExt = &v
+	return b
+}
+
+// clearLocation unsets every variant of Location[x], including the
+// _field companions of the primitive ones.
+func (b *ClaimAccidentBuilder) clearLocation() {
+	b.claimAccident.LocationAddress = nil
+	b.claimAccident.LocationReference = nil
+}
+
+// =============================================================================
+// ClaimCareTeam - Fluent Builder
+// =============================================================================
+
+// ClaimCareTeamBuilder provides a fluent API for constructing ClaimCareTeam values.
+type ClaimCareTeamBuilder struct {
+	claimCareTeam *ClaimCareTeam
+}
+
+// NewClaimCareTeamBuilder creates a new ClaimCareTeamBuilder.
+func NewClaimCareTeamBuilder() *ClaimCareTeamBuilder {
+	return &ClaimCareTeamBuilder{
+		claimCareTeam: &ClaimCareTeam{},
+	}
+}
+
+// Build returns the constructed ClaimCareTeam.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimCareTeamBuilder) Build() ClaimCareTeam {
+	return *b.claimCareTeam
+}
+
+// SetId sets the Id field.
+func (b *ClaimCareTeamBuilder) SetId(v string) *ClaimCareTeamBuilder {
+	b.claimCareTeam.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimCareTeamBuilder) AddExtension(v Extension) *ClaimCareTeamBuilder {
+	b.claimCareTeam.Extension = append(b.claimCareTeam.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimCareTeamBuilder) AddModifierExtension(v Extension) *ClaimCareTeamBuilder {
+	b.claimCareTeam.ModifierExtension = append(b.claimCareTeam.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *ClaimCareTeamBuilder) SetSequence(v uint32) *ClaimCareTeamBuilder {
+	b.claimCareTeam.Sequence = &v
+	return b
+}
+
+// SetProvider sets the Provider field.
+func (b *ClaimCareTeamBuilder) SetProvider(v Reference) *ClaimCareTeamBuilder {
+	b.claimCareTeam.Provider = &v
+	return b
+}
+
+// SetResponsible sets the Responsible field.
+func (b *ClaimCareTeamBuilder) SetResponsible(v bool) *ClaimCareTeamBuilder {
+	b.claimCareTeam.Responsible = &v
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *ClaimCareTeamBuilder) SetRole(v CodeableConcept) *ClaimCareTeamBuilder {
+	b.claimCareTeam.Role = &v
+	return b
+}
+
+// SetQualification sets the Qualification field.
+func (b *ClaimCareTeamBuilder) SetQualification(v CodeableConcept) *ClaimCareTeamBuilder {
+	b.claimCareTeam.Qualification = &v
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimCareTeamBuilder) SetSequenceExt(v Element) *ClaimCareTeamBuilder {
+	b.claimCareTeam.SequenceExt = &v
+	return b
+}
+
+// SetResponsibleExt sets the extensions carried by Responsible, serialized as
+// "_responsible".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimCareTeamBuilder) SetResponsibleExt(v Element) *ClaimCareTeamBuilder {
+	b.claimCareTeam.ResponsibleExt = &v
+	return b
+}
+
+// =============================================================================
+// ClaimDiagnosis - Fluent Builder
+// =============================================================================
+
+// ClaimDiagnosisBuilder provides a fluent API for constructing ClaimDiagnosis values.
+type ClaimDiagnosisBuilder struct {
+	claimDiagnosis *ClaimDiagnosis
+}
+
+// NewClaimDiagnosisBuilder creates a new ClaimDiagnosisBuilder.
+func NewClaimDiagnosisBuilder() *ClaimDiagnosisBuilder {
+	return &ClaimDiagnosisBuilder{
+		claimDiagnosis: &ClaimDiagnosis{},
+	}
+}
+
+// Build returns the constructed ClaimDiagnosis.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimDiagnosisBuilder) Build() ClaimDiagnosis {
+	return *b.claimDiagnosis
+}
+
+// SetId sets the Id field.
+func (b *ClaimDiagnosisBuilder) SetId(v string) *ClaimDiagnosisBuilder {
+	b.claimDiagnosis.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimDiagnosisBuilder) AddExtension(v Extension) *ClaimDiagnosisBuilder {
+	b.claimDiagnosis.Extension = append(b.claimDiagnosis.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimDiagnosisBuilder) AddModifierExtension(v Extension) *ClaimDiagnosisBuilder {
+	b.claimDiagnosis.ModifierExtension = append(b.claimDiagnosis.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *ClaimDiagnosisBuilder) SetSequence(v uint32) *ClaimDiagnosisBuilder {
+	b.claimDiagnosis.Sequence = &v
+	return b
+}
+
+// SetDiagnosisCodeableConcept sets Diagnosis[x] to its DiagnosisCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimDiagnosisBuilder) SetDiagnosisCodeableConcept(v CodeableConcept) *ClaimDiagnosisBuilder {
+	b.clearDiagnosis()
+	b.claimDiagnosis.DiagnosisCodeableConcept = &v
+	return b
+}
+
+// SetDiagnosisReference sets Diagnosis[x] to its DiagnosisReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimDiagnosisBuilder) SetDiagnosisReference(v Reference) *ClaimDiagnosisBuilder {
+	b.clearDiagnosis()
+	b.claimDiagnosis.DiagnosisReference = &v
+	return b
+}
+
+// AddType adds a Type element.
+func (b *ClaimDiagnosisBuilder) AddType(v CodeableConcept) *ClaimDiagnosisBuilder {
+	b.claimDiagnosis.Type = append(b.claimDiagnosis.Type, v)
+	return b
+}
+
+// SetOnAdmission sets the OnAdmission field.
+func (b *ClaimDiagnosisBuilder) SetOnAdmission(v CodeableConcept) *ClaimDiagnosisBuilder {
+	b.claimDiagnosis.OnAdmission = &v
+	return b
+}
+
+// SetPackageCode sets the PackageCode field.
+func (b *ClaimDiagnosisBuilder) SetPackageCode(v CodeableConcept) *ClaimDiagnosisBuilder {
+	b.claimDiagnosis.PackageCode = &v
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimDiagnosisBuilder) SetSequenceExt(v Element) *ClaimDiagnosisBuilder {
+	b.claimDiagnosis.SequenceExt = &v
+	return b
+}
+
+// clearDiagnosis unsets every variant of Diagnosis[x], including the
+// _field companions of the primitive ones.
+func (b *ClaimDiagnosisBuilder) clearDiagnosis() {
+	b.claimDiagnosis.DiagnosisCodeableConcept = nil
+	b.claimDiagnosis.DiagnosisReference = nil
+}
+
+// =============================================================================
+// ClaimInsurance - Fluent Builder
+// =============================================================================
+
+// ClaimInsuranceBuilder provides a fluent API for constructing ClaimInsurance values.
+type ClaimInsuranceBuilder struct {
+	claimInsurance *ClaimInsurance
+}
+
+// NewClaimInsuranceBuilder creates a new ClaimInsuranceBuilder.
+func NewClaimInsuranceBuilder() *ClaimInsuranceBuilder {
+	return &ClaimInsuranceBuilder{
+		claimInsurance: &ClaimInsurance{},
+	}
+}
+
+// Build returns the constructed ClaimInsurance.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimInsuranceBuilder) Build() ClaimInsurance {
+	return *b.claimInsurance
+}
+
+// SetId sets the Id field.
+func (b *ClaimInsuranceBuilder) SetId(v string) *ClaimInsuranceBuilder {
+	b.claimInsurance.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimInsuranceBuilder) AddExtension(v Extension) *ClaimInsuranceBuilder {
+	b.claimInsurance.Extension = append(b.claimInsurance.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimInsuranceBuilder) AddModifierExtension(v Extension) *ClaimInsuranceBuilder {
+	b.claimInsurance.ModifierExtension = append(b.claimInsurance.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *ClaimInsuranceBuilder) SetSequence(v uint32) *ClaimInsuranceBuilder {
+	b.claimInsurance.Sequence = &v
+	return b
+}
+
+// SetFocal sets the Focal field.
+func (b *ClaimInsuranceBuilder) SetFocal(v bool) *ClaimInsuranceBuilder {
+	b.claimInsurance.Focal = &v
+	return b
+}
+
+// SetIdentifier sets the Identifier field.
+func (b *ClaimInsuranceBuilder) SetIdentifier(v Identifier) *ClaimInsuranceBuilder {
+	b.claimInsurance.Identifier = &v
+	return b
+}
+
+// SetCoverage sets the Coverage field.
+func (b *ClaimInsuranceBuilder) SetCoverage(v Reference) *ClaimInsuranceBuilder {
+	b.claimInsurance.Coverage = &v
+	return b
+}
+
+// SetBusinessArrangement sets the BusinessArrangement field.
+func (b *ClaimInsuranceBuilder) SetBusinessArrangement(v string) *ClaimInsuranceBuilder {
+	b.claimInsurance.BusinessArrangement = &v
+	return b
+}
+
+// AddPreAuthRef adds a PreAuthRef element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ClaimInsuranceBuilder) AddPreAuthRef(v string) *ClaimInsuranceBuilder {
+	b.claimInsurance.PreAuthRef = append(b.claimInsurance.PreAuthRef, &v)
+	return b
+}
+
+// SetClaimResponse sets the ClaimResponse field.
+func (b *ClaimInsuranceBuilder) SetClaimResponse(v Reference) *ClaimInsuranceBuilder {
+	b.claimInsurance.ClaimResponse = &v
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimInsuranceBuilder) SetSequenceExt(v Element) *ClaimInsuranceBuilder {
+	b.claimInsurance.SequenceExt = &v
+	return b
+}
+
+// SetFocalExt sets the extensions carried by Focal, serialized as
+// "_focal".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimInsuranceBuilder) SetFocalExt(v Element) *ClaimInsuranceBuilder {
+	b.claimInsurance.FocalExt = &v
+	return b
+}
+
+// SetBusinessArrangementExt sets the extensions carried by BusinessArrangement, serialized as
+// "_businessArrangement".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimInsuranceBuilder) SetBusinessArrangementExt(v Element) *ClaimInsuranceBuilder {
+	b.claimInsurance.BusinessArrangementExt = &v
+	return b
+}
+
+// AddPreAuthRefExt attaches extensions to the PreAuthRef element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddPreAuthRef twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ClaimInsuranceBuilder) AddPreAuthRefExt(v *Element) *ClaimInsuranceBuilder {
+	for len(b.claimInsurance.PreAuthRefExt) < len(b.claimInsurance.PreAuthRef)-1 {
+		b.claimInsurance.PreAuthRefExt = append(b.claimInsurance.PreAuthRefExt, nil)
+	}
+	b.claimInsurance.PreAuthRefExt = append(b.claimInsurance.PreAuthRefExt, v)
+	return b
+}
+
+// =============================================================================
+// ClaimItem - Fluent Builder
+// =============================================================================
+
+// ClaimItemBuilder provides a fluent API for constructing ClaimItem values.
+type ClaimItemBuilder struct {
+	claimItem *ClaimItem
+}
+
+// NewClaimItemBuilder creates a new ClaimItemBuilder.
+func NewClaimItemBuilder() *ClaimItemBuilder {
+	return &ClaimItemBuilder{
+		claimItem: &ClaimItem{},
+	}
+}
+
+// Build returns the constructed ClaimItem.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimItemBuilder) Build() ClaimItem {
+	return *b.claimItem
+}
+
+// SetId sets the Id field.
+func (b *ClaimItemBuilder) SetId(v string) *ClaimItemBuilder {
+	b.claimItem.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimItemBuilder) AddExtension(v Extension) *ClaimItemBuilder {
+	b.claimItem.Extension = append(b.claimItem.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimItemBuilder) AddModifierExtension(v Extension) *ClaimItemBuilder {
+	b.claimItem.ModifierExtension = append(b.claimItem.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *ClaimItemBuilder) SetSequence(v uint32) *ClaimItemBuilder {
+	b.claimItem.Sequence = &v
+	return b
+}
+
+// AddCareTeamSequence adds a CareTeamSequence element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ClaimItemBuilder) AddCareTeamSequence(v uint32) *ClaimItemBuilder {
+	b.claimItem.CareTeamSequence = append(b.claimItem.CareTeamSequence, &v)
+	return b
+}
+
+// AddDiagnosisSequence adds a DiagnosisSequence element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ClaimItemBuilder) AddDiagnosisSequence(v uint32) *ClaimItemBuilder {
+	b.claimItem.DiagnosisSequence = append(b.claimItem.DiagnosisSequence, &v)
+	return b
+}
+
+// AddProcedureSequence adds a ProcedureSequence element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ClaimItemBuilder) AddProcedureSequence(v uint32) *ClaimItemBuilder {
+	b.claimItem.ProcedureSequence = append(b.claimItem.ProcedureSequence, &v)
+	return b
+}
+
+// AddInformationSequence adds a InformationSequence element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ClaimItemBuilder) AddInformationSequence(v uint32) *ClaimItemBuilder {
+	b.claimItem.InformationSequence = append(b.claimItem.InformationSequence, &v)
+	return b
+}
+
+// SetRevenue sets the Revenue field.
+func (b *ClaimItemBuilder) SetRevenue(v CodeableConcept) *ClaimItemBuilder {
+	b.claimItem.Revenue = &v
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *ClaimItemBuilder) SetCategory(v CodeableConcept) *ClaimItemBuilder {
+	b.claimItem.Category = &v
+	return b
+}
+
+// SetProductOrService sets the ProductOrService field.
+func (b *ClaimItemBuilder) SetProductOrService(v CodeableConcept) *ClaimItemBuilder {
+	b.claimItem.ProductOrService = &v
+	return b
+}
+
+// AddModifier adds a Modifier element.
+func (b *ClaimItemBuilder) AddModifier(v CodeableConcept) *ClaimItemBuilder {
+	b.claimItem.Modifier = append(b.claimItem.Modifier, v)
+	return b
+}
+
+// AddProgramCode adds a ProgramCode element.
+func (b *ClaimItemBuilder) AddProgramCode(v CodeableConcept) *ClaimItemBuilder {
+	b.claimItem.ProgramCode = append(b.claimItem.ProgramCode, v)
+	return b
+}
+
+// SetServicedDate sets Serviced[x] to its ServicedDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimItemBuilder) SetServicedDate(v string) *ClaimItemBuilder {
+	b.clearServiced()
+	b.claimItem.ServicedDate = &v
+	return b
+}
+
+// SetServicedDateExt sets the ServicedDateExt field.
+func (b *ClaimItemBuilder) SetServicedDateExt(v Element) *ClaimItemBuilder {
+	b.claimItem.ServicedDateExt = &v
+	return b
+}
+
+// SetServicedPeriod sets Serviced[x] to its ServicedPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimItemBuilder) SetServicedPeriod(v Period) *ClaimItemBuilder {
+	b.clearServiced()
+	b.claimItem.ServicedPeriod = &v
+	return b
+}
+
+// SetLocationCodeableConcept sets Location[x] to its LocationCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimItemBuilder) SetLocationCodeableConcept(v CodeableConcept) *ClaimItemBuilder {
+	b.clearLocation()
+	b.claimItem.LocationCodeableConcept = &v
+	return b
+}
+
+// SetLocationAddress sets Location[x] to its LocationAddress variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimItemBuilder) SetLocationAddress(v Address) *ClaimItemBuilder {
+	b.clearLocation()
+	b.claimItem.LocationAddress = &v
+	return b
+}
+
+// SetLocationReference sets Location[x] to its LocationReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimItemBuilder) SetLocationReference(v Reference) *ClaimItemBuilder {
+	b.clearLocation()
+	b.claimItem.LocationReference = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *ClaimItemBuilder) SetQuantity(v Quantity) *ClaimItemBuilder {
+	b.claimItem.Quantity = &v
+	return b
+}
+
+// SetUnitPrice sets the UnitPrice field.
+func (b *ClaimItemBuilder) SetUnitPrice(v Money) *ClaimItemBuilder {
+	b.claimItem.UnitPrice = &v
+	return b
+}
+
+// SetFactor sets the Factor field.
+func (b *ClaimItemBuilder) SetFactor(v Decimal) *ClaimItemBuilder {
+	b.claimItem.Factor = &v
+	return b
+}
+
+// SetNet sets the Net field.
+func (b *ClaimItemBuilder) SetNet(v Money) *ClaimItemBuilder {
+	b.claimItem.Net = &v
+	return b
+}
+
+// AddUdi adds a Udi element.
+func (b *ClaimItemBuilder) AddUdi(v Reference) *ClaimItemBuilder {
+	b.claimItem.Udi = append(b.claimItem.Udi, v)
+	return b
+}
+
+// SetBodySite sets the BodySite field.
+func (b *ClaimItemBuilder) SetBodySite(v CodeableConcept) *ClaimItemBuilder {
+	b.claimItem.BodySite = &v
+	return b
+}
+
+// AddSubSite adds a SubSite element.
+func (b *ClaimItemBuilder) AddSubSite(v CodeableConcept) *ClaimItemBuilder {
+	b.claimItem.SubSite = append(b.claimItem.SubSite, v)
+	return b
+}
+
+// AddEncounter adds a Encounter element.
+func (b *ClaimItemBuilder) AddEncounter(v Reference) *ClaimItemBuilder {
+	b.claimItem.Encounter = append(b.claimItem.Encounter, v)
+	return b
+}
+
+// AddDetail adds a Detail element.
+func (b *ClaimItemBuilder) AddDetail(v ClaimItemDetail) *ClaimItemBuilder {
+	b.claimItem.Detail = append(b.claimItem.Detail, v)
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimItemBuilder) SetSequenceExt(v Element) *ClaimItemBuilder {
+	b.claimItem.SequenceExt = &v
+	return b
+}
+
+// AddCareTeamSequenceExt attaches extensions to the CareTeamSequence element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddCareTeamSequence twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ClaimItemBuilder) AddCareTeamSequenceExt(v *Element) *ClaimItemBuilder {
+	for len(b.claimItem.CareTeamSequenceExt) < len(b.claimItem.CareTeamSequence)-1 {
+		b.claimItem.CareTeamSequenceExt = append(b.claimItem.CareTeamSequenceExt, nil)
+	}
+	b.claimItem.CareTeamSequenceExt = append(b.claimItem.CareTeamSequenceExt, v)
+	return b
+}
+
+// AddDiagnosisSequenceExt attaches extensions to the DiagnosisSequence element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDiagnosisSequence twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ClaimItemBuilder) AddDiagnosisSequenceExt(v *Element) *ClaimItemBuilder {
+	for len(b.claimItem.DiagnosisSequenceExt) < len(b.claimItem.DiagnosisSequence)-1 {
+		b.claimItem.DiagnosisSequenceExt = append(b.claimItem.DiagnosisSequenceExt, nil)
+	}
+	b.claimItem.DiagnosisSequenceExt = append(b.claimItem.DiagnosisSequenceExt, v)
+	return b
+}
+
+// AddProcedureSequenceExt attaches extensions to the ProcedureSequence element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddProcedureSequence twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ClaimItemBuilder) AddProcedureSequenceExt(v *Element) *ClaimItemBuilder {
+	for len(b.claimItem.ProcedureSequenceExt) < len(b.claimItem.ProcedureSequence)-1 {
+		b.claimItem.ProcedureSequenceExt = append(b.claimItem.ProcedureSequenceExt, nil)
+	}
+	b.claimItem.ProcedureSequenceExt = append(b.claimItem.ProcedureSequenceExt, v)
+	return b
+}
+
+// AddInformationSequenceExt attaches extensions to the InformationSequence element added most
+// recently.
+//
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInformationSequence twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
+func (b *ClaimItemBuilder) AddInformationSequenceExt(v *Element) *ClaimItemBuilder {
+	for len(b.claimItem.InformationSequenceExt) < len(b.claimItem.InformationSequence)-1 {
+		b.claimItem.InformationSequenceExt = append(b.claimItem.InformationSequenceExt, nil)
+	}
+	b.claimItem.InformationSequenceExt = append(b.claimItem.InformationSequenceExt, v)
+	return b
+}
+
+// SetFactorExt sets the extensions carried by Factor, serialized as
+// "_factor".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimItemBuilder) SetFactorExt(v Element) *ClaimItemBuilder {
+	b.claimItem.FactorExt = &v
+	return b
+}
+
+// clearServiced unsets every variant of Serviced[x], including the
+// _field companions of the primitive ones.
+func (b *ClaimItemBuilder) clearServiced() {
+	b.claimItem.ServicedDate = nil
+	b.claimItem.ServicedPeriod = nil
+}
+
+// clearLocation unsets every variant of Location[x], including the
+// _field companions of the primitive ones.
+func (b *ClaimItemBuilder) clearLocation() {
+	b.claimItem.LocationCodeableConcept = nil
+	b.claimItem.LocationAddress = nil
+	b.claimItem.LocationReference = nil
+}
+
+// =============================================================================
+// ClaimItemDetail - Fluent Builder
+// =============================================================================
+
+// ClaimItemDetailBuilder provides a fluent API for constructing ClaimItemDetail values.
+type ClaimItemDetailBuilder struct {
+	claimItemDetail *ClaimItemDetail
+}
+
+// NewClaimItemDetailBuilder creates a new ClaimItemDetailBuilder.
+func NewClaimItemDetailBuilder() *ClaimItemDetailBuilder {
+	return &ClaimItemDetailBuilder{
+		claimItemDetail: &ClaimItemDetail{},
+	}
+}
+
+// Build returns the constructed ClaimItemDetail.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimItemDetailBuilder) Build() ClaimItemDetail {
+	return *b.claimItemDetail
+}
+
+// SetId sets the Id field.
+func (b *ClaimItemDetailBuilder) SetId(v string) *ClaimItemDetailBuilder {
+	b.claimItemDetail.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimItemDetailBuilder) AddExtension(v Extension) *ClaimItemDetailBuilder {
+	b.claimItemDetail.Extension = append(b.claimItemDetail.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimItemDetailBuilder) AddModifierExtension(v Extension) *ClaimItemDetailBuilder {
+	b.claimItemDetail.ModifierExtension = append(b.claimItemDetail.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *ClaimItemDetailBuilder) SetSequence(v uint32) *ClaimItemDetailBuilder {
+	b.claimItemDetail.Sequence = &v
+	return b
+}
+
+// SetRevenue sets the Revenue field.
+func (b *ClaimItemDetailBuilder) SetRevenue(v CodeableConcept) *ClaimItemDetailBuilder {
+	b.claimItemDetail.Revenue = &v
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *ClaimItemDetailBuilder) SetCategory(v CodeableConcept) *ClaimItemDetailBuilder {
+	b.claimItemDetail.Category = &v
+	return b
+}
+
+// SetProductOrService sets the ProductOrService field.
+func (b *ClaimItemDetailBuilder) SetProductOrService(v CodeableConcept) *ClaimItemDetailBuilder {
+	b.claimItemDetail.ProductOrService = &v
+	return b
+}
+
+// AddModifier adds a Modifier element.
+func (b *ClaimItemDetailBuilder) AddModifier(v CodeableConcept) *ClaimItemDetailBuilder {
+	b.claimItemDetail.Modifier = append(b.claimItemDetail.Modifier, v)
+	return b
+}
+
+// AddProgramCode adds a ProgramCode element.
+func (b *ClaimItemDetailBuilder) AddProgramCode(v CodeableConcept) *ClaimItemDetailBuilder {
+	b.claimItemDetail.ProgramCode = append(b.claimItemDetail.ProgramCode, v)
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *ClaimItemDetailBuilder) SetQuantity(v Quantity) *ClaimItemDetailBuilder {
+	b.claimItemDetail.Quantity = &v
+	return b
+}
+
+// SetUnitPrice sets the UnitPrice field.
+func (b *ClaimItemDetailBuilder) SetUnitPrice(v Money) *ClaimItemDetailBuilder {
+	b.claimItemDetail.UnitPrice = &v
+	return b
+}
+
+// SetFactor sets the Factor field.
+func (b *ClaimItemDetailBuilder) SetFactor(v Decimal) *ClaimItemDetailBuilder {
+	b.claimItemDetail.Factor = &v
+	return b
+}
+
+// SetNet sets the Net field.
+func (b *ClaimItemDetailBuilder) SetNet(v Money) *ClaimItemDetailBuilder {
+	b.claimItemDetail.Net = &v
+	return b
+}
+
+// AddUdi adds a Udi element.
+func (b *ClaimItemDetailBuilder) AddUdi(v Reference) *ClaimItemDetailBuilder {
+	b.claimItemDetail.Udi = append(b.claimItemDetail.Udi, v)
+	return b
+}
+
+// AddSubDetail adds a SubDetail element.
+func (b *ClaimItemDetailBuilder) AddSubDetail(v ClaimItemDetailSubDetail) *ClaimItemDetailBuilder {
+	b.claimItemDetail.SubDetail = append(b.claimItemDetail.SubDetail, v)
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimItemDetailBuilder) SetSequenceExt(v Element) *ClaimItemDetailBuilder {
+	b.claimItemDetail.SequenceExt = &v
+	return b
+}
+
+// SetFactorExt sets the extensions carried by Factor, serialized as
+// "_factor".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimItemDetailBuilder) SetFactorExt(v Element) *ClaimItemDetailBuilder {
+	b.claimItemDetail.FactorExt = &v
+	return b
+}
+
+// =============================================================================
+// ClaimItemDetailSubDetail - Fluent Builder
+// =============================================================================
+
+// ClaimItemDetailSubDetailBuilder provides a fluent API for constructing ClaimItemDetailSubDetail values.
+type ClaimItemDetailSubDetailBuilder struct {
+	claimItemDetailSubDetail *ClaimItemDetailSubDetail
+}
+
+// NewClaimItemDetailSubDetailBuilder creates a new ClaimItemDetailSubDetailBuilder.
+func NewClaimItemDetailSubDetailBuilder() *ClaimItemDetailSubDetailBuilder {
+	return &ClaimItemDetailSubDetailBuilder{
+		claimItemDetailSubDetail: &ClaimItemDetailSubDetail{},
+	}
+}
+
+// Build returns the constructed ClaimItemDetailSubDetail.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimItemDetailSubDetailBuilder) Build() ClaimItemDetailSubDetail {
+	return *b.claimItemDetailSubDetail
+}
+
+// SetId sets the Id field.
+func (b *ClaimItemDetailSubDetailBuilder) SetId(v string) *ClaimItemDetailSubDetailBuilder {
+	b.claimItemDetailSubDetail.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimItemDetailSubDetailBuilder) AddExtension(v Extension) *ClaimItemDetailSubDetailBuilder {
+	b.claimItemDetailSubDetail.Extension = append(b.claimItemDetailSubDetail.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimItemDetailSubDetailBuilder) AddModifierExtension(v Extension) *ClaimItemDetailSubDetailBuilder {
+	b.claimItemDetailSubDetail.ModifierExtension = append(b.claimItemDetailSubDetail.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *ClaimItemDetailSubDetailBuilder) SetSequence(v uint32) *ClaimItemDetailSubDetailBuilder {
+	b.claimItemDetailSubDetail.Sequence = &v
+	return b
+}
+
+// SetRevenue sets the Revenue field.
+func (b *ClaimItemDetailSubDetailBuilder) SetRevenue(v CodeableConcept) *ClaimItemDetailSubDetailBuilder {
+	b.claimItemDetailSubDetail.Revenue = &v
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *ClaimItemDetailSubDetailBuilder) SetCategory(v CodeableConcept) *ClaimItemDetailSubDetailBuilder {
+	b.claimItemDetailSubDetail.Category = &v
+	return b
+}
+
+// SetProductOrService sets the ProductOrService field.
+func (b *ClaimItemDetailSubDetailBuilder) SetProductOrService(v CodeableConcept) *ClaimItemDetailSubDetailBuilder {
+	b.claimItemDetailSubDetail.ProductOrService = &v
+	return b
+}
+
+// AddModifier adds a Modifier element.
+func (b *ClaimItemDetailSubDetailBuilder) AddModifier(v CodeableConcept) *ClaimItemDetailSubDetailBuilder {
+	b.claimItemDetailSubDetail.Modifier = append(b.claimItemDetailSubDetail.Modifier, v)
+	return b
+}
+
+// AddProgramCode adds a ProgramCode element.
+func (b *ClaimItemDetailSubDetailBuilder) AddProgramCode(v CodeableConcept) *ClaimItemDetailSubDetailBuilder {
+	b.claimItemDetailSubDetail.ProgramCode = append(b.claimItemDetailSubDetail.ProgramCode, v)
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *ClaimItemDetailSubDetailBuilder) SetQuantity(v Quantity) *ClaimItemDetailSubDetailBuilder {
+	b.claimItemDetailSubDetail.Quantity = &v
+	return b
+}
+
+// SetUnitPrice sets the UnitPrice field.
+func (b *ClaimItemDetailSubDetailBuilder) SetUnitPrice(v Money) *ClaimItemDetailSubDetailBuilder {
+	b.claimItemDetailSubDetail.UnitPrice = &v
+	return b
+}
+
+// SetFactor sets the Factor field.
+func (b *ClaimItemDetailSubDetailBuilder) SetFactor(v Decimal) *ClaimItemDetailSubDetailBuilder {
+	b.claimItemDetailSubDetail.Factor = &v
+	return b
+}
+
+// SetNet sets the Net field.
+func (b *ClaimItemDetailSubDetailBuilder) SetNet(v Money) *ClaimItemDetailSubDetailBuilder {
+	b.claimItemDetailSubDetail.Net = &v
+	return b
+}
+
+// AddUdi adds a Udi element.
+func (b *ClaimItemDetailSubDetailBuilder) AddUdi(v Reference) *ClaimItemDetailSubDetailBuilder {
+	b.claimItemDetailSubDetail.Udi = append(b.claimItemDetailSubDetail.Udi, v)
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimItemDetailSubDetailBuilder) SetSequenceExt(v Element) *ClaimItemDetailSubDetailBuilder {
+	b.claimItemDetailSubDetail.SequenceExt = &v
+	return b
+}
+
+// SetFactorExt sets the extensions carried by Factor, serialized as
+// "_factor".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimItemDetailSubDetailBuilder) SetFactorExt(v Element) *ClaimItemDetailSubDetailBuilder {
+	b.claimItemDetailSubDetail.FactorExt = &v
+	return b
+}
+
+// =============================================================================
+// ClaimPayee - Fluent Builder
+// =============================================================================
+
+// ClaimPayeeBuilder provides a fluent API for constructing ClaimPayee values.
+type ClaimPayeeBuilder struct {
+	claimPayee *ClaimPayee
+}
+
+// NewClaimPayeeBuilder creates a new ClaimPayeeBuilder.
+func NewClaimPayeeBuilder() *ClaimPayeeBuilder {
+	return &ClaimPayeeBuilder{
+		claimPayee: &ClaimPayee{},
+	}
+}
+
+// Build returns the constructed ClaimPayee.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimPayeeBuilder) Build() ClaimPayee {
+	return *b.claimPayee
+}
+
+// SetId sets the Id field.
+func (b *ClaimPayeeBuilder) SetId(v string) *ClaimPayeeBuilder {
+	b.claimPayee.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimPayeeBuilder) AddExtension(v Extension) *ClaimPayeeBuilder {
+	b.claimPayee.Extension = append(b.claimPayee.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimPayeeBuilder) AddModifierExtension(v Extension) *ClaimPayeeBuilder {
+	b.claimPayee.ModifierExtension = append(b.claimPayee.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ClaimPayeeBuilder) SetType(v CodeableConcept) *ClaimPayeeBuilder {
+	b.claimPayee.Type = &v
+	return b
+}
+
+// SetParty sets the Party field.
+func (b *ClaimPayeeBuilder) SetParty(v Reference) *ClaimPayeeBuilder {
+	b.claimPayee.Party = &v
+	return b
+}
+
+// =============================================================================
+// ClaimProcedure - Fluent Builder
+// =============================================================================
+
+// ClaimProcedureBuilder provides a fluent API for constructing ClaimProcedure values.
+type ClaimProcedureBuilder struct {
+	claimProcedure *ClaimProcedure
+}
+
+// NewClaimProcedureBuilder creates a new ClaimProcedureBuilder.
+func NewClaimProcedureBuilder() *ClaimProcedureBuilder {
+	return &ClaimProcedureBuilder{
+		claimProcedure: &ClaimProcedure{},
+	}
+}
+
+// Build returns the constructed ClaimProcedure.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimProcedureBuilder) Build() ClaimProcedure {
+	return *b.claimProcedure
+}
+
+// SetId sets the Id field.
+func (b *ClaimProcedureBuilder) SetId(v string) *ClaimProcedureBuilder {
+	b.claimProcedure.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimProcedureBuilder) AddExtension(v Extension) *ClaimProcedureBuilder {
+	b.claimProcedure.Extension = append(b.claimProcedure.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimProcedureBuilder) AddModifierExtension(v Extension) *ClaimProcedureBuilder {
+	b.claimProcedure.ModifierExtension = append(b.claimProcedure.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *ClaimProcedureBuilder) SetSequence(v uint32) *ClaimProcedureBuilder {
+	b.claimProcedure.Sequence = &v
+	return b
+}
+
+// AddType adds a Type element.
+func (b *ClaimProcedureBuilder) AddType(v CodeableConcept) *ClaimProcedureBuilder {
+	b.claimProcedure.Type = append(b.claimProcedure.Type, v)
+	return b
+}
+
+// SetDate sets the Date field.
+func (b *ClaimProcedureBuilder) SetDate(v string) *ClaimProcedureBuilder {
+	b.claimProcedure.Date = &v
+	return b
+}
+
+// SetProcedureCodeableConcept sets Procedure[x] to its ProcedureCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimProcedureBuilder) SetProcedureCodeableConcept(v CodeableConcept) *ClaimProcedureBuilder {
+	b.clearProcedure()
+	b.claimProcedure.ProcedureCodeableConcept = &v
+	return b
+}
+
+// SetProcedureReference sets Procedure[x] to its ProcedureReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimProcedureBuilder) SetProcedureReference(v Reference) *ClaimProcedureBuilder {
+	b.clearProcedure()
+	b.claimProcedure.ProcedureReference = &v
+	return b
+}
+
+// AddUdi adds a Udi element.
+func (b *ClaimProcedureBuilder) AddUdi(v Reference) *ClaimProcedureBuilder {
+	b.claimProcedure.Udi = append(b.claimProcedure.Udi, v)
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimProcedureBuilder) SetSequenceExt(v Element) *ClaimProcedureBuilder {
+	b.claimProcedure.SequenceExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimProcedureBuilder) SetDateExt(v Element) *ClaimProcedureBuilder {
+	b.claimProcedure.DateExt = &v
+	return b
+}
+
+// clearProcedure unsets every variant of Procedure[x], including the
+// _field companions of the primitive ones.
+func (b *ClaimProcedureBuilder) clearProcedure() {
+	b.claimProcedure.ProcedureCodeableConcept = nil
+	b.claimProcedure.ProcedureReference = nil
+}
+
+// =============================================================================
+// ClaimRelated - Fluent Builder
+// =============================================================================
+
+// ClaimRelatedBuilder provides a fluent API for constructing ClaimRelated values.
+type ClaimRelatedBuilder struct {
+	claimRelated *ClaimRelated
+}
+
+// NewClaimRelatedBuilder creates a new ClaimRelatedBuilder.
+func NewClaimRelatedBuilder() *ClaimRelatedBuilder {
+	return &ClaimRelatedBuilder{
+		claimRelated: &ClaimRelated{},
+	}
+}
+
+// Build returns the constructed ClaimRelated.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimRelatedBuilder) Build() ClaimRelated {
+	return *b.claimRelated
+}
+
+// SetId sets the Id field.
+func (b *ClaimRelatedBuilder) SetId(v string) *ClaimRelatedBuilder {
+	b.claimRelated.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimRelatedBuilder) AddExtension(v Extension) *ClaimRelatedBuilder {
+	b.claimRelated.Extension = append(b.claimRelated.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimRelatedBuilder) AddModifierExtension(v Extension) *ClaimRelatedBuilder {
+	b.claimRelated.ModifierExtension = append(b.claimRelated.ModifierExtension, v)
+	return b
+}
+
+// SetClaim sets the Claim field.
+func (b *ClaimRelatedBuilder) SetClaim(v Reference) *ClaimRelatedBuilder {
+	b.claimRelated.Claim = &v
+	return b
+}
+
+// SetRelationship sets the Relationship field.
+func (b *ClaimRelatedBuilder) SetRelationship(v CodeableConcept) *ClaimRelatedBuilder {
+	b.claimRelated.Relationship = &v
+	return b
+}
+
+// SetReference sets the Reference field.
+func (b *ClaimRelatedBuilder) SetReference(v Identifier) *ClaimRelatedBuilder {
+	b.claimRelated.Reference = &v
+	return b
+}
+
+// =============================================================================
+// ClaimSupportingInfo - Fluent Builder
+// =============================================================================
+
+// ClaimSupportingInfoBuilder provides a fluent API for constructing ClaimSupportingInfo values.
+type ClaimSupportingInfoBuilder struct {
+	claimSupportingInfo *ClaimSupportingInfo
+}
+
+// NewClaimSupportingInfoBuilder creates a new ClaimSupportingInfoBuilder.
+func NewClaimSupportingInfoBuilder() *ClaimSupportingInfoBuilder {
+	return &ClaimSupportingInfoBuilder{
+		claimSupportingInfo: &ClaimSupportingInfo{},
+	}
+}
+
+// Build returns the constructed ClaimSupportingInfo.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ClaimSupportingInfoBuilder) Build() ClaimSupportingInfo {
+	return *b.claimSupportingInfo
+}
+
+// SetId sets the Id field.
+func (b *ClaimSupportingInfoBuilder) SetId(v string) *ClaimSupportingInfoBuilder {
+	b.claimSupportingInfo.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ClaimSupportingInfoBuilder) AddExtension(v Extension) *ClaimSupportingInfoBuilder {
+	b.claimSupportingInfo.Extension = append(b.claimSupportingInfo.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ClaimSupportingInfoBuilder) AddModifierExtension(v Extension) *ClaimSupportingInfoBuilder {
+	b.claimSupportingInfo.ModifierExtension = append(b.claimSupportingInfo.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *ClaimSupportingInfoBuilder) SetSequence(v uint32) *ClaimSupportingInfoBuilder {
+	b.claimSupportingInfo.Sequence = &v
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *ClaimSupportingInfoBuilder) SetCategory(v CodeableConcept) *ClaimSupportingInfoBuilder {
+	b.claimSupportingInfo.Category = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ClaimSupportingInfoBuilder) SetCode(v CodeableConcept) *ClaimSupportingInfoBuilder {
+	b.claimSupportingInfo.Code = &v
+	return b
+}
+
+// SetTimingDate sets Timing[x] to its TimingDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimSupportingInfoBuilder) SetTimingDate(v string) *ClaimSupportingInfoBuilder {
+	b.clearTiming()
+	b.claimSupportingInfo.TimingDate = &v
+	return b
+}
+
+// SetTimingDateExt sets the TimingDateExt field.
+func (b *ClaimSupportingInfoBuilder) SetTimingDateExt(v Element) *ClaimSupportingInfoBuilder {
+	b.claimSupportingInfo.TimingDateExt = &v
+	return b
+}
+
+// SetTimingPeriod sets Timing[x] to its TimingPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimSupportingInfoBuilder) SetTimingPeriod(v Period) *ClaimSupportingInfoBuilder {
+	b.clearTiming()
+	b.claimSupportingInfo.TimingPeriod = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimSupportingInfoBuilder) SetValueBoolean(v bool) *ClaimSupportingInfoBuilder {
+	b.clearValue()
+	b.claimSupportingInfo.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *ClaimSupportingInfoBuilder) SetValueBooleanExt(v Element) *ClaimSupportingInfoBuilder {
+	b.claimSupportingInfo.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimSupportingInfoBuilder) SetValueString(v string) *ClaimSupportingInfoBuilder {
+	b.clearValue()
+	b.claimSupportingInfo.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *ClaimSupportingInfoBuilder) SetValueStringExt(v Element) *ClaimSupportingInfoBuilder {
+	b.claimSupportingInfo.ValueStringExt = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimSupportingInfoBuilder) SetValueQuantity(v Quantity) *ClaimSupportingInfoBuilder {
+	b.clearValue()
+	b.claimSupportingInfo.ValueQuantity = &v
+	return b
+}
+
+// SetValueAttachment sets Value[x] to its ValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimSupportingInfoBuilder) SetValueAttachment(v Attachment) *ClaimSupportingInfoBuilder {
+	b.clearValue()
+	b.claimSupportingInfo.ValueAttachment = &v
+	return b
+}
+
+// SetValueReference sets Value[x] to its ValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ClaimSupportingInfoBuilder) SetValueReference(v Reference) *ClaimSupportingInfoBuilder {
+	b.clearValue()
+	b.claimSupportingInfo.ValueReference = &v
+	return b
+}
+
+// SetReason sets the Reason field.
+func (b *ClaimSupportingInfoBuilder) SetReason(v CodeableConcept) *ClaimSupportingInfoBuilder {
+	b.claimSupportingInfo.Reason = &v
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ClaimSupportingInfoBuilder) SetSequenceExt(v Element) *ClaimSupportingInfoBuilder {
+	b.claimSupportingInfo.SequenceExt = &v
+	return b
+}
+
+// clearTiming unsets every variant of Timing[x], including the
+// _field companions of the primitive ones.
+func (b *ClaimSupportingInfoBuilder) clearTiming() {
+	b.claimSupportingInfo.TimingDate = nil
+	b.claimSupportingInfo.TimingPeriod = nil
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *ClaimSupportingInfoBuilder) clearValue() {
+	b.claimSupportingInfo.ValueBoolean = nil
+	b.claimSupportingInfo.ValueString = nil
+	b.claimSupportingInfo.ValueStringExt = nil
+	b.claimSupportingInfo.ValueQuantity = nil
+	b.claimSupportingInfo.ValueAttachment = nil
+	b.claimSupportingInfo.ValueReference = nil
+}

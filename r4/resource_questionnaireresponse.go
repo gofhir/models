@@ -936,3 +936,413 @@ func (b *QuestionnaireResponseBuilder) AddItem(v QuestionnaireResponseItem) *Que
 	b.questionnaireResponse.Item = append(b.questionnaireResponse.Item, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *QuestionnaireResponseBuilder) SetImplicitRulesExt(v Element) *QuestionnaireResponseBuilder {
+	b.questionnaireResponse.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *QuestionnaireResponseBuilder) SetLanguageExt(v Element) *QuestionnaireResponseBuilder {
+	b.questionnaireResponse.LanguageExt = &v
+	return b
+}
+
+// SetQuestionnaireExt sets the extensions carried by Questionnaire, serialized as
+// "_questionnaire".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *QuestionnaireResponseBuilder) SetQuestionnaireExt(v Element) *QuestionnaireResponseBuilder {
+	b.questionnaireResponse.QuestionnaireExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *QuestionnaireResponseBuilder) SetStatusExt(v Element) *QuestionnaireResponseBuilder {
+	b.questionnaireResponse.StatusExt = &v
+	return b
+}
+
+// SetAuthoredExt sets the extensions carried by Authored, serialized as
+// "_authored".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *QuestionnaireResponseBuilder) SetAuthoredExt(v Element) *QuestionnaireResponseBuilder {
+	b.questionnaireResponse.AuthoredExt = &v
+	return b
+}
+
+// =============================================================================
+// QuestionnaireResponseItem - Fluent Builder
+// =============================================================================
+
+// QuestionnaireResponseItemBuilder provides a fluent API for constructing QuestionnaireResponseItem values.
+type QuestionnaireResponseItemBuilder struct {
+	questionnaireResponseItem *QuestionnaireResponseItem
+}
+
+// NewQuestionnaireResponseItemBuilder creates a new QuestionnaireResponseItemBuilder.
+func NewQuestionnaireResponseItemBuilder() *QuestionnaireResponseItemBuilder {
+	return &QuestionnaireResponseItemBuilder{
+		questionnaireResponseItem: &QuestionnaireResponseItem{},
+	}
+}
+
+// Build returns the constructed QuestionnaireResponseItem.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *QuestionnaireResponseItemBuilder) Build() QuestionnaireResponseItem {
+	return *b.questionnaireResponseItem
+}
+
+// SetId sets the Id field.
+func (b *QuestionnaireResponseItemBuilder) SetId(v string) *QuestionnaireResponseItemBuilder {
+	b.questionnaireResponseItem.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *QuestionnaireResponseItemBuilder) AddExtension(v Extension) *QuestionnaireResponseItemBuilder {
+	b.questionnaireResponseItem.Extension = append(b.questionnaireResponseItem.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *QuestionnaireResponseItemBuilder) AddModifierExtension(v Extension) *QuestionnaireResponseItemBuilder {
+	b.questionnaireResponseItem.ModifierExtension = append(b.questionnaireResponseItem.ModifierExtension, v)
+	return b
+}
+
+// SetLinkId sets the LinkId field.
+func (b *QuestionnaireResponseItemBuilder) SetLinkId(v string) *QuestionnaireResponseItemBuilder {
+	b.questionnaireResponseItem.LinkId = &v
+	return b
+}
+
+// SetDefinition sets the Definition field.
+func (b *QuestionnaireResponseItemBuilder) SetDefinition(v string) *QuestionnaireResponseItemBuilder {
+	b.questionnaireResponseItem.Definition = &v
+	return b
+}
+
+// SetText sets the Text field.
+func (b *QuestionnaireResponseItemBuilder) SetText(v string) *QuestionnaireResponseItemBuilder {
+	b.questionnaireResponseItem.Text = &v
+	return b
+}
+
+// AddAnswer adds a Answer element.
+func (b *QuestionnaireResponseItemBuilder) AddAnswer(v QuestionnaireResponseItemAnswer) *QuestionnaireResponseItemBuilder {
+	b.questionnaireResponseItem.Answer = append(b.questionnaireResponseItem.Answer, v)
+	return b
+}
+
+// AddItem adds a Item element.
+func (b *QuestionnaireResponseItemBuilder) AddItem(v QuestionnaireResponseItem) *QuestionnaireResponseItemBuilder {
+	b.questionnaireResponseItem.Item = append(b.questionnaireResponseItem.Item, v)
+	return b
+}
+
+// SetLinkIdExt sets the extensions carried by LinkId, serialized as
+// "_linkId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *QuestionnaireResponseItemBuilder) SetLinkIdExt(v Element) *QuestionnaireResponseItemBuilder {
+	b.questionnaireResponseItem.LinkIdExt = &v
+	return b
+}
+
+// SetDefinitionExt sets the extensions carried by Definition, serialized as
+// "_definition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *QuestionnaireResponseItemBuilder) SetDefinitionExt(v Element) *QuestionnaireResponseItemBuilder {
+	b.questionnaireResponseItem.DefinitionExt = &v
+	return b
+}
+
+// SetTextExt sets the extensions carried by Text, serialized as
+// "_text".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *QuestionnaireResponseItemBuilder) SetTextExt(v Element) *QuestionnaireResponseItemBuilder {
+	b.questionnaireResponseItem.TextExt = &v
+	return b
+}
+
+// =============================================================================
+// QuestionnaireResponseItemAnswer - Fluent Builder
+// =============================================================================
+
+// QuestionnaireResponseItemAnswerBuilder provides a fluent API for constructing QuestionnaireResponseItemAnswer values.
+type QuestionnaireResponseItemAnswerBuilder struct {
+	questionnaireResponseItemAnswer *QuestionnaireResponseItemAnswer
+}
+
+// NewQuestionnaireResponseItemAnswerBuilder creates a new QuestionnaireResponseItemAnswerBuilder.
+func NewQuestionnaireResponseItemAnswerBuilder() *QuestionnaireResponseItemAnswerBuilder {
+	return &QuestionnaireResponseItemAnswerBuilder{
+		questionnaireResponseItemAnswer: &QuestionnaireResponseItemAnswer{},
+	}
+}
+
+// Build returns the constructed QuestionnaireResponseItemAnswer.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *QuestionnaireResponseItemAnswerBuilder) Build() QuestionnaireResponseItemAnswer {
+	return *b.questionnaireResponseItemAnswer
+}
+
+// SetId sets the Id field.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetId(v string) *QuestionnaireResponseItemAnswerBuilder {
+	b.questionnaireResponseItemAnswer.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *QuestionnaireResponseItemAnswerBuilder) AddExtension(v Extension) *QuestionnaireResponseItemAnswerBuilder {
+	b.questionnaireResponseItemAnswer.Extension = append(b.questionnaireResponseItemAnswer.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *QuestionnaireResponseItemAnswerBuilder) AddModifierExtension(v Extension) *QuestionnaireResponseItemAnswerBuilder {
+	b.questionnaireResponseItemAnswer.ModifierExtension = append(b.questionnaireResponseItemAnswer.ModifierExtension, v)
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetValueBoolean(v bool) *QuestionnaireResponseItemAnswerBuilder {
+	b.clearValue()
+	b.questionnaireResponseItemAnswer.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetValueBooleanExt(v Element) *QuestionnaireResponseItemAnswerBuilder {
+	b.questionnaireResponseItemAnswer.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueDecimal sets Value[x] to its ValueDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetValueDecimal(v Decimal) *QuestionnaireResponseItemAnswerBuilder {
+	b.clearValue()
+	b.questionnaireResponseItemAnswer.ValueDecimal = &v
+	return b
+}
+
+// SetValueDecimalExt sets the ValueDecimalExt field.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetValueDecimalExt(v Element) *QuestionnaireResponseItemAnswerBuilder {
+	b.questionnaireResponseItemAnswer.ValueDecimalExt = &v
+	return b
+}
+
+// SetValueInteger sets Value[x] to its ValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetValueInteger(v int) *QuestionnaireResponseItemAnswerBuilder {
+	b.clearValue()
+	b.questionnaireResponseItemAnswer.ValueInteger = &v
+	return b
+}
+
+// SetValueIntegerExt sets the ValueIntegerExt field.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetValueIntegerExt(v Element) *QuestionnaireResponseItemAnswerBuilder {
+	b.questionnaireResponseItemAnswer.ValueIntegerExt = &v
+	return b
+}
+
+// SetValueDate sets Value[x] to its ValueDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetValueDate(v string) *QuestionnaireResponseItemAnswerBuilder {
+	b.clearValue()
+	b.questionnaireResponseItemAnswer.ValueDate = &v
+	return b
+}
+
+// SetValueDateExt sets the ValueDateExt field.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetValueDateExt(v Element) *QuestionnaireResponseItemAnswerBuilder {
+	b.questionnaireResponseItemAnswer.ValueDateExt = &v
+	return b
+}
+
+// SetValueDateTime sets Value[x] to its ValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetValueDateTime(v string) *QuestionnaireResponseItemAnswerBuilder {
+	b.clearValue()
+	b.questionnaireResponseItemAnswer.ValueDateTime = &v
+	return b
+}
+
+// SetValueDateTimeExt sets the ValueDateTimeExt field.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetValueDateTimeExt(v Element) *QuestionnaireResponseItemAnswerBuilder {
+	b.questionnaireResponseItemAnswer.ValueDateTimeExt = &v
+	return b
+}
+
+// SetValueTime sets Value[x] to its ValueTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetValueTime(v string) *QuestionnaireResponseItemAnswerBuilder {
+	b.clearValue()
+	b.questionnaireResponseItemAnswer.ValueTime = &v
+	return b
+}
+
+// SetValueTimeExt sets the ValueTimeExt field.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetValueTimeExt(v Element) *QuestionnaireResponseItemAnswerBuilder {
+	b.questionnaireResponseItemAnswer.ValueTimeExt = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetValueString(v string) *QuestionnaireResponseItemAnswerBuilder {
+	b.clearValue()
+	b.questionnaireResponseItemAnswer.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetValueStringExt(v Element) *QuestionnaireResponseItemAnswerBuilder {
+	b.questionnaireResponseItemAnswer.ValueStringExt = &v
+	return b
+}
+
+// SetValueUri sets Value[x] to its ValueUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetValueUri(v string) *QuestionnaireResponseItemAnswerBuilder {
+	b.clearValue()
+	b.questionnaireResponseItemAnswer.ValueUri = &v
+	return b
+}
+
+// SetValueUriExt sets the ValueUriExt field.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetValueUriExt(v Element) *QuestionnaireResponseItemAnswerBuilder {
+	b.questionnaireResponseItemAnswer.ValueUriExt = &v
+	return b
+}
+
+// SetValueAttachment sets Value[x] to its ValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetValueAttachment(v Attachment) *QuestionnaireResponseItemAnswerBuilder {
+	b.clearValue()
+	b.questionnaireResponseItemAnswer.ValueAttachment = &v
+	return b
+}
+
+// SetValueCoding sets Value[x] to its ValueCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetValueCoding(v Coding) *QuestionnaireResponseItemAnswerBuilder {
+	b.clearValue()
+	b.questionnaireResponseItemAnswer.ValueCoding = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetValueQuantity(v Quantity) *QuestionnaireResponseItemAnswerBuilder {
+	b.clearValue()
+	b.questionnaireResponseItemAnswer.ValueQuantity = &v
+	return b
+}
+
+// SetValueReference sets Value[x] to its ValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *QuestionnaireResponseItemAnswerBuilder) SetValueReference(v Reference) *QuestionnaireResponseItemAnswerBuilder {
+	b.clearValue()
+	b.questionnaireResponseItemAnswer.ValueReference = &v
+	return b
+}
+
+// AddItem adds a Item element.
+func (b *QuestionnaireResponseItemAnswerBuilder) AddItem(v QuestionnaireResponseItem) *QuestionnaireResponseItemAnswerBuilder {
+	b.questionnaireResponseItemAnswer.Item = append(b.questionnaireResponseItemAnswer.Item, v)
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *QuestionnaireResponseItemAnswerBuilder) clearValue() {
+	b.questionnaireResponseItemAnswer.ValueBoolean = nil
+	b.questionnaireResponseItemAnswer.ValueDecimal = nil
+	b.questionnaireResponseItemAnswer.ValueDecimalExt = nil
+	b.questionnaireResponseItemAnswer.ValueInteger = nil
+	b.questionnaireResponseItemAnswer.ValueIntegerExt = nil
+	b.questionnaireResponseItemAnswer.ValueDate = nil
+	b.questionnaireResponseItemAnswer.ValueDateExt = nil
+	b.questionnaireResponseItemAnswer.ValueDateTime = nil
+	b.questionnaireResponseItemAnswer.ValueDateTimeExt = nil
+	b.questionnaireResponseItemAnswer.ValueTime = nil
+	b.questionnaireResponseItemAnswer.ValueTimeExt = nil
+	b.questionnaireResponseItemAnswer.ValueString = nil
+	b.questionnaireResponseItemAnswer.ValueStringExt = nil
+	b.questionnaireResponseItemAnswer.ValueUri = nil
+	b.questionnaireResponseItemAnswer.ValueUriExt = nil
+	b.questionnaireResponseItemAnswer.ValueAttachment = nil
+	b.questionnaireResponseItemAnswer.ValueCoding = nil
+	b.questionnaireResponseItemAnswer.ValueQuantity = nil
+	b.questionnaireResponseItemAnswer.ValueReference = nil
+}
