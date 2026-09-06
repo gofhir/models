@@ -5,6 +5,8 @@
 
 package {{.PackageName}}
 
+import "strings"
+
 // Ptr returns a pointer to v.
 //
 // Optional FHIR elements are pointers so that "absent" stays distinguishable from
@@ -158,4 +160,43 @@ func ExtensionsByURL(extensions []Extension, url string) []*Extension {
 // all, so asking about presence is not the same as reading a value.
 func HasExtensionByURL(extensions []Extension, url string) bool {
 	return ExtensionByURL(extensions, url) != nil
+}
+
+// aliasError hides an internal type name from a decoding error.
+//
+// Decoding a resource that holds a polymorphic field goes through a local
+// "type Alias X" to stop UnmarshalJSON recursing into itself. encoding/json names
+// the type it was decoding into, so that internal detail reached the caller:
+//
+//	json: cannot unmarshal number into Go struct field
+//	      Parameters.parameter.Alias.name of type string
+//
+// There is no such field as Alias. The wrapper removes it and keeps the original
+// error underneath, so errors.Is and errors.As still see what json returned.
+type aliasError struct {
+	err error
+	msg string
+}
+
+func (e *aliasError) Error() string { return e.msg }
+func (e *aliasError) Unwrap() error { return e.err }
+
+// unwrapAliasError replaces the alias in err with the type being decoded, or
+// returns err unchanged.
+//
+// The auxiliary struct is anonymous, so encoding/json has no type name for it and
+// writes "field .Alias.name". Deleting the alias alone would leave "field .name",
+// with a leading dot and no idea what it belongs to — worse than the original.
+// Substituting the real type name gives "field ParametersParameter.name".
+func unwrapAliasError(err error, typeName string) error {
+	if err == nil {
+		return nil
+	}
+	msg := err.Error()
+	cleaned := strings.ReplaceAll(msg, "field .Alias.", "field "+typeName+".")
+	cleaned = strings.ReplaceAll(cleaned, ".Alias.", "."+typeName+".")
+	if cleaned == msg {
+		return err
+	}
+	return &aliasError{err: err, msg: cleaned}
 }

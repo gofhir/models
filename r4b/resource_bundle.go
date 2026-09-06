@@ -318,7 +318,9 @@ func (b *BundleEntry) UnmarshalJSON(data []byte) error {
 	}
 
 	if err := json.Unmarshal(data, aux); err != nil {
-		return err
+		// The alias is an implementation detail of the recursion guard; a caller
+		// reading the error should not be told about a field that does not exist.
+		return unwrapAliasError(err, "BundleEntry")
 	}
 
 	// Unmarshal the resource field using the dispatcher
@@ -729,7 +731,9 @@ func (b *BundleEntryResponse) UnmarshalJSON(data []byte) error {
 	}
 
 	if err := json.Unmarshal(data, aux); err != nil {
-		return err
+		// The alias is an implementation detail of the recursion guard; a caller
+		// reading the error should not be told about a field that does not exist.
+		return unwrapAliasError(err, "BundleEntryResponse")
 	}
 
 	// Unmarshal the resource field using the dispatcher
