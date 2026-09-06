@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.6.0](https://github.com/gofhir/models/compare/r4b/v2.5.0...r4b/v2.6.0) (2026-09-06)
+
+
+### Features
+
+* **xml:** keep resources of unknown types, as the JSON path does ([be75d74](https://github.com/gofhir/models/commit/be75d7421db4bffb3e57523352d2ec9c1600454e))
+
 ## [2.5.0](https://github.com/gofhir/models/compare/r4b/v2.4.0...r4b/v2.5.0) (2026-09-06)
 
 
