@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.5.0](https://github.com/gofhir/models/compare/r4b/v2.4.0...r4b/v2.5.0) (2026-09-06)
+
+
+### Features
+
+* **codesystems:** give every enum its display, system and Coding ([036d0fa](https://github.com/gofhir/models/commit/036d0fac3343b96b26f0275c9cc69f79060d91f3))
+
+
+### Bug Fixes
+
+* stop leaking the recursion guard's type name into decode errors ([d0e5fec](https://github.com/gofhir/models/commit/d0e5fec841695bea92794f47f7156d6b6b58d3ef))
+
 ## [2.4.0](https://github.com/gofhir/models/compare/r4b/v2.3.0...r4b/v2.4.0) (2026-09-06)
 
 
