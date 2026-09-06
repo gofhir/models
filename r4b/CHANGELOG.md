@@ -8,7 +8,6 @@
 * **builder:** extend the fluent builders to datatypes ([60c4550](https://github.com/gofhir/models/commit/60c4550e7f02890aeeaeb6e4fa5cfbe197f61f85))
 * **builder:** make choice setters exclusive ([ac7d8ee](https://github.com/gofhir/models/commit/ac7d8ee1d04b23d4c4d3e9e89f3fdc2faa059b0c))
 * **json:** keep resources of unknown types instead of failing the document ([9682c45](https://github.com/gofhir/models/commit/9682c453a0c6b68f803de3296ba008e786c35a54))
-* **json:** keep resources of unknown types instead of failing the document ([9682c45](https://github.com/gofhir/models/commit/9682c453a0c6b68f803de3296ba008e786c35a54))
 
 
 ### Bug Fixes
