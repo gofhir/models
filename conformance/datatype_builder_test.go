@@ -155,7 +155,11 @@ func TestDatatypeBuildReturnsAValue(t *testing.T) {
 		t.Error("the chain did not carry the name through")
 	}
 
-	// And a copy: mutating what Build returned must not reach the builder.
+	// Build returns a copy, so replacing a field on the result does not reach the
+	// builder. The copy is shallow, which is what a struct assignment does in Go
+	// and not something the builder changes: the slices and pointers inside are
+	// still shared. TestBuiltValuesShareTheirSlices states that explicitly, so
+	// "a copy" is not read as more than it is.
 	b := r4.NewHumanNameBuilder().SetFamily("Original")
 	first := b.Build()
 	first.Family = r4.Ptr("Mutated")
@@ -163,6 +167,44 @@ func TestDatatypeBuildReturnsAValue(t *testing.T) {
 		t.Fatal("the copy was not writable")
 	}
 	if second := b.Build(); second.Family == nil || *second.Family != "Original" {
-		t.Errorf("mutating a built value reached back into the builder: %v", second.Family)
+		t.Errorf("replacing a field on a built value reached back into the builder: %v", second.Family)
+	}
+}
+
+// TestBuiltValuesShareTheirSlices records the limit of "returns a copy".
+//
+// Copying a struct copies the slice headers inside it, so two values built from
+// one builder point at the same backing array. That is Go's semantics for `a := b`
+// and not something the builder introduces; deep-copying instead would be
+// surprising, and expensive on every Build.
+//
+// It is recorded because "Build returns a copy" reads as more of a guarantee than
+// it is, and because reusing one builder for two values is the case where it bites.
+func TestBuiltValuesShareTheirSlices(t *testing.T) {
+	b := r4.NewHumanNameBuilder().SetFamily("Smith").AddGiven("John")
+	first, second := b.Build(), b.Build()
+
+	*first.Given[0] = "Mutated"
+	if second.Given[0] == nil || *second.Given[0] != "Mutated" {
+		t.Fatal("the slices are no longer shared — if Build now deep-copies, delete this test")
+	}
+	t.Log("two values built from one builder share their slices, as struct assignment does")
+}
+
+// TestResourceBuilderReturnsTheSameInstance is the resource-side counterpart.
+//
+// Build hands back the pointer it has been filling, so calling it twice yields the
+// same object rather than two resources. A builder is meant to be used once; this
+// is what happens if it is not.
+func TestResourceBuilderReturnsTheSameInstance(t *testing.T) {
+	b := r4.NewPatientBuilder().SetId("p1")
+	first, second := b.Build(), b.Build()
+
+	if first != second {
+		t.Fatal("Build now returns distinct resources — if that changed deliberately, delete this test")
+	}
+	first.Id = r4.Ptr("changed")
+	if second.Id == nil || *second.Id != "changed" {
+		t.Error("the two are no longer the same object")
 	}
 }

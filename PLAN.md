@@ -576,6 +576,8 @@ Extender los builders a datatypes y backbones **primero**; retirar después. Hoy
 >
 > **Los backbones se quedan fuera a propósito**, incluidos los 14 que viven en `datatypes.go`. Medido: 578 tipos en r4 y 733 en r5, unas **120.000 líneas** frente a las 20.000 de los datatypes, y son tipos que se construyen dentro de su recurso, no a mano. La decisión se apoya en el uso real del corpus: sobre 1.200 ejemplos de R4, `CodeableConcept` aparece **165.085** veces, `Reference` 62.690, `Extension` 23.378 — y **26 de los 58 datatypes no aparecen ni una vez**. El valor está concentrado donde ahora hay builder.
 >
+> **Pendiente que la revisión sacó a la luz:** los builders no generan `Set<Campo>Ext`, así que de **2.230 compañeros `_ext` en r4** solo **66** son alcanzables desde un builder. La causa es estructural: el campo `Ext` lo emite la plantilla a partir de `.HasExtension` y no es una propiedad de la lista, así que el builder no lo ve —los 66 que sí llegan son los de choice, que el analyzer sí añade como propiedades—. Es anterior a los builders de datatypes y se mide en `TestPrimitiveExtensionGap`.
+>
 > Efecto secundario: la exclusividad de choice pasa de 218 grupos a **255**, e incluye `Extension.value[x]`, que con sus 71 variantes era el grupo más grande sin protección.
 
 Dato del análisis competitivo: **ninguna de las siete librerías Go del ecosistema ofrece builders**, así que completarlos es diferenciador, no paridad.
