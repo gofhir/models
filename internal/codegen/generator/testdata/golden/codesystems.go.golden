@@ -25,3 +25,127 @@ const (
 	// SampleStatusCodesFinal - Final
 	SampleStatusCodesFinal SampleStatusCodes = "final"
 )
+
+// ProbeStatusCodesInfo is the specification's own data for one code.
+type ProbeStatusCodesInfo struct {
+	System  string
+	Display string
+}
+
+// ProbeStatusCodesTable maps each code to what the specification says about it.
+var ProbeStatusCodesTable = map[ProbeStatusCodes]ProbeStatusCodesInfo{
+	ProbeStatusCodesActive:   {"http://hl7.org/fhir/probe-status", "Active"},
+	ProbeStatusCodesInactive: {"http://hl7.org/fhir/probe-status", "Inactive"},
+}
+
+// ProbeStatusCodesValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ProbeStatusCodesValues() []ProbeStatusCodes {
+	return []ProbeStatusCodes{
+		ProbeStatusCodesActive,
+		ProbeStatusCodesInactive,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ProbeStatusCodes) Display() string {
+	if info, ok := ProbeStatusCodesTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ProbeStatusCodes) System() string {
+	return ProbeStatusCodesTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ProbeStatusCodes) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ProbeStatusCodes) IsValid() bool {
+	_, ok := ProbeStatusCodesTable[c]
+	return ok
+}
+
+// SampleStatusCodesInfo is the specification's own data for one code.
+type SampleStatusCodesInfo struct {
+	System  string
+	Display string
+}
+
+// SampleStatusCodesTable maps each code to what the specification says about it.
+var SampleStatusCodesTable = map[SampleStatusCodes]SampleStatusCodesInfo{
+	SampleStatusCodesDraft: {"http://hl7.org/fhir/sample-status", "Draft"},
+	SampleStatusCodesFinal: {"http://hl7.org/fhir/sample-status", "Final"},
+}
+
+// SampleStatusCodesValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SampleStatusCodesValues() []SampleStatusCodes {
+	return []SampleStatusCodes{
+		SampleStatusCodesDraft,
+		SampleStatusCodesFinal,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SampleStatusCodes) Display() string {
+	if info, ok := SampleStatusCodesTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SampleStatusCodes) System() string {
+	return SampleStatusCodesTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SampleStatusCodes) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c SampleStatusCodes) IsValid() bool {
+	_, ok := SampleStatusCodesTable[c]
+	return ok
+}

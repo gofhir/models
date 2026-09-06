@@ -23,3 +23,84 @@ const (
 )
 
 {{end}}
+
+{{/* Identity for each enum: display, system, and the Coding they make.
+
+     A generated enum was a bare string. The display text and the CodeSystem URL
+     were both in the specification and both discarded — the display survived only
+     as a comment, unreachable at run time — so anything showing a code to a person,
+     or writing one into a CodeableConcept, carried its own copy of data the
+     generator already had.
+
+     One table per type rather than one per field: a ValueSet may draw codes from
+     more than one CodeSystem, so the system belongs to the code and not to the
+     type. */}}
+{{range .ValueSets}}
+{{- $vs := . -}}
+{{- if .Codes}}
+
+// {{.TypeName}}Info is the specification's own data for one code.
+type {{.TypeName}}Info struct {
+	System  string
+	Display string
+}
+
+// {{.TypeName}}Table maps each code to what the specification says about it.
+var {{.TypeName}}Table = map[{{.TypeName}}]{{.TypeName}}Info{
+{{- range .Codes}}
+	{{$vs.TypeName}}{{.ConstName}}: { {{- printf "%q" .System}}, {{printf "%q" .Display}}},
+{{- end}}
+}
+
+// {{.TypeName}}Values returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func {{.TypeName}}Values() []{{.TypeName}} {
+	return []{{.TypeName}}{
+{{- range .Codes}}
+		{{$vs.TypeName}}{{.ConstName}},
+{{- end}}
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c {{.TypeName}}) Display() string {
+	if info, ok := {{.TypeName}}Table[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c {{.TypeName}}) System() string {
+	return {{.TypeName}}Table[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c {{.TypeName}}) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c {{.TypeName}}) IsValid() bool {
+	_, ok := {{.TypeName}}Table[c]
+	return ok
+}
+{{- end}}
+{{end}}

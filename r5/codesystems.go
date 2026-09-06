@@ -4599,3 +4599,16763 @@ const (
 	// VisionEyesLeft - Left Eye
 	VisionEyesLeft VisionEyes = "left"
 )
+
+// FHIRVersionInfo is the specification's own data for one code.
+type FHIRVersionInfo struct {
+	System  string
+	Display string
+}
+
+// FHIRVersionTable maps each code to what the specification says about it.
+var FHIRVersionTable = map[FHIRVersion]FHIRVersionInfo{
+	FHIRVersion001:           {"http://hl7.org/fhir/FHIR-version", "0.01"},
+	FHIRVersion005:           {"http://hl7.org/fhir/FHIR-version", "0.05"},
+	FHIRVersion006:           {"http://hl7.org/fhir/FHIR-version", "0.06"},
+	FHIRVersion011:           {"http://hl7.org/fhir/FHIR-version", "0.11"},
+	FHIRVersion00:            {"http://hl7.org/fhir/FHIR-version", "0.0"},
+	FHIRVersion0080:          {"http://hl7.org/fhir/FHIR-version", "0.0.80"},
+	FHIRVersion0081:          {"http://hl7.org/fhir/FHIR-version", "0.0.81"},
+	FHIRVersion0082:          {"http://hl7.org/fhir/FHIR-version", "0.0.82"},
+	FHIRVersion04:            {"http://hl7.org/fhir/FHIR-version", "0.4"},
+	FHIRVersion040:           {"http://hl7.org/fhir/FHIR-version", "0.4.0"},
+	FHIRVersion05:            {"http://hl7.org/fhir/FHIR-version", "0.5"},
+	FHIRVersion050:           {"http://hl7.org/fhir/FHIR-version", "0.5.0"},
+	FHIRVersion10:            {"http://hl7.org/fhir/FHIR-version", "1.0"},
+	FHIRVersion100:           {"http://hl7.org/fhir/FHIR-version", "1.0.0"},
+	FHIRVersion101:           {"http://hl7.org/fhir/FHIR-version", "1.0.1"},
+	FHIRVersion102:           {"http://hl7.org/fhir/FHIR-version", "1.0.2"},
+	FHIRVersion11:            {"http://hl7.org/fhir/FHIR-version", "1.1"},
+	FHIRVersion110:           {"http://hl7.org/fhir/FHIR-version", "1.1.0"},
+	FHIRVersion14:            {"http://hl7.org/fhir/FHIR-version", "1.4"},
+	FHIRVersion140:           {"http://hl7.org/fhir/FHIR-version", "1.4.0"},
+	FHIRVersion16:            {"http://hl7.org/fhir/FHIR-version", "1.6"},
+	FHIRVersion160:           {"http://hl7.org/fhir/FHIR-version", "1.6.0"},
+	FHIRVersion18:            {"http://hl7.org/fhir/FHIR-version", "1.8"},
+	FHIRVersion180:           {"http://hl7.org/fhir/FHIR-version", "1.8.0"},
+	FHIRVersion30:            {"http://hl7.org/fhir/FHIR-version", "3.0"},
+	FHIRVersion300:           {"http://hl7.org/fhir/FHIR-version", "3.0.0"},
+	FHIRVersion301:           {"http://hl7.org/fhir/FHIR-version", "3.0.1"},
+	FHIRVersion302:           {"http://hl7.org/fhir/FHIR-version", "3.0.2"},
+	FHIRVersion33:            {"http://hl7.org/fhir/FHIR-version", "3.3"},
+	FHIRVersion330:           {"http://hl7.org/fhir/FHIR-version", "3.3.0"},
+	FHIRVersion35:            {"http://hl7.org/fhir/FHIR-version", "3.5"},
+	FHIRVersion350:           {"http://hl7.org/fhir/FHIR-version", "3.5.0"},
+	FHIRVersion40:            {"http://hl7.org/fhir/FHIR-version", "4.0"},
+	FHIRVersion400:           {"http://hl7.org/fhir/FHIR-version", "4.0.0"},
+	FHIRVersion401:           {"http://hl7.org/fhir/FHIR-version", "4.0.1"},
+	FHIRVersion41:            {"http://hl7.org/fhir/FHIR-version", "4.1"},
+	FHIRVersion410:           {"http://hl7.org/fhir/FHIR-version", "4.1.0"},
+	FHIRVersion42:            {"http://hl7.org/fhir/FHIR-version", "4.2"},
+	FHIRVersion420:           {"http://hl7.org/fhir/FHIR-version", "4.2.0"},
+	FHIRVersion43:            {"http://hl7.org/fhir/FHIR-version", "4.3"},
+	FHIRVersion430:           {"http://hl7.org/fhir/FHIR-version", "4.3.0"},
+	FHIRVersion430Cibuild:    {"http://hl7.org/fhir/FHIR-version", "4.3.0-cibuild"},
+	FHIRVersion430Snapshot1:  {"http://hl7.org/fhir/FHIR-version", "4.3.0-snapshot1"},
+	FHIRVersion44:            {"http://hl7.org/fhir/FHIR-version", "4.4"},
+	FHIRVersion440:           {"http://hl7.org/fhir/FHIR-version", "4.4.0"},
+	FHIRVersion45:            {"http://hl7.org/fhir/FHIR-version", "4.5"},
+	FHIRVersion450:           {"http://hl7.org/fhir/FHIR-version", "4.5.0"},
+	FHIRVersion46:            {"http://hl7.org/fhir/FHIR-version", "4.6"},
+	FHIRVersion460:           {"http://hl7.org/fhir/FHIR-version", "4.6.0"},
+	FHIRVersion50:            {"http://hl7.org/fhir/FHIR-version", "5.0"},
+	FHIRVersion500:           {"http://hl7.org/fhir/FHIR-version", "5.0.0"},
+	FHIRVersion500Cibuild:    {"http://hl7.org/fhir/FHIR-version", "5.0.0-cibuild"},
+	FHIRVersion500Snapshot1:  {"http://hl7.org/fhir/FHIR-version", "5.0.0-snapshot1"},
+	FHIRVersion500Snapshot2:  {"http://hl7.org/fhir/FHIR-version", "5.0.0-snapshot2"},
+	FHIRVersion500Ballot:     {"http://hl7.org/fhir/FHIR-version", "5.0.0-ballot"},
+	FHIRVersion500Snapshot3:  {"http://hl7.org/fhir/FHIR-version", "5.0.0-snapshot3"},
+	FHIRVersion500DraftFinal: {"http://hl7.org/fhir/FHIR-version", "5.0.0-draft-final"},
+}
+
+// FHIRVersionValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func FHIRVersionValues() []FHIRVersion {
+	return []FHIRVersion{
+		FHIRVersion001,
+		FHIRVersion005,
+		FHIRVersion006,
+		FHIRVersion011,
+		FHIRVersion00,
+		FHIRVersion0080,
+		FHIRVersion0081,
+		FHIRVersion0082,
+		FHIRVersion04,
+		FHIRVersion040,
+		FHIRVersion05,
+		FHIRVersion050,
+		FHIRVersion10,
+		FHIRVersion100,
+		FHIRVersion101,
+		FHIRVersion102,
+		FHIRVersion11,
+		FHIRVersion110,
+		FHIRVersion14,
+		FHIRVersion140,
+		FHIRVersion16,
+		FHIRVersion160,
+		FHIRVersion18,
+		FHIRVersion180,
+		FHIRVersion30,
+		FHIRVersion300,
+		FHIRVersion301,
+		FHIRVersion302,
+		FHIRVersion33,
+		FHIRVersion330,
+		FHIRVersion35,
+		FHIRVersion350,
+		FHIRVersion40,
+		FHIRVersion400,
+		FHIRVersion401,
+		FHIRVersion41,
+		FHIRVersion410,
+		FHIRVersion42,
+		FHIRVersion420,
+		FHIRVersion43,
+		FHIRVersion430,
+		FHIRVersion430Cibuild,
+		FHIRVersion430Snapshot1,
+		FHIRVersion44,
+		FHIRVersion440,
+		FHIRVersion45,
+		FHIRVersion450,
+		FHIRVersion46,
+		FHIRVersion460,
+		FHIRVersion50,
+		FHIRVersion500,
+		FHIRVersion500Cibuild,
+		FHIRVersion500Snapshot1,
+		FHIRVersion500Snapshot2,
+		FHIRVersion500Ballot,
+		FHIRVersion500Snapshot3,
+		FHIRVersion500DraftFinal,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c FHIRVersion) Display() string {
+	if info, ok := FHIRVersionTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c FHIRVersion) System() string {
+	return FHIRVersionTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c FHIRVersion) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c FHIRVersion) IsValid() bool {
+	_, ok := FHIRVersionTable[c]
+	return ok
+}
+
+// AccountStatusInfo is the specification's own data for one code.
+type AccountStatusInfo struct {
+	System  string
+	Display string
+}
+
+// AccountStatusTable maps each code to what the specification says about it.
+var AccountStatusTable = map[AccountStatus]AccountStatusInfo{
+	AccountStatusActive:         {"http://hl7.org/fhir/account-status", "Active"},
+	AccountStatusInactive:       {"http://hl7.org/fhir/account-status", "Inactive"},
+	AccountStatusEnteredInError: {"http://hl7.org/fhir/account-status", "Entered in error"},
+	AccountStatusOnHold:         {"http://hl7.org/fhir/account-status", "On Hold"},
+	AccountStatusUnknown:        {"http://hl7.org/fhir/account-status", "Unknown"},
+}
+
+// AccountStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func AccountStatusValues() []AccountStatus {
+	return []AccountStatus{
+		AccountStatusActive,
+		AccountStatusInactive,
+		AccountStatusEnteredInError,
+		AccountStatusOnHold,
+		AccountStatusUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c AccountStatus) Display() string {
+	if info, ok := AccountStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c AccountStatus) System() string {
+	return AccountStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c AccountStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c AccountStatus) IsValid() bool {
+	_, ok := AccountStatusTable[c]
+	return ok
+}
+
+// ActionCardinalityBehaviorInfo is the specification's own data for one code.
+type ActionCardinalityBehaviorInfo struct {
+	System  string
+	Display string
+}
+
+// ActionCardinalityBehaviorTable maps each code to what the specification says about it.
+var ActionCardinalityBehaviorTable = map[ActionCardinalityBehavior]ActionCardinalityBehaviorInfo{
+	ActionCardinalityBehaviorSingle:   {"http://hl7.org/fhir/action-cardinality-behavior", "Single"},
+	ActionCardinalityBehaviorMultiple: {"http://hl7.org/fhir/action-cardinality-behavior", "Multiple"},
+}
+
+// ActionCardinalityBehaviorValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ActionCardinalityBehaviorValues() []ActionCardinalityBehavior {
+	return []ActionCardinalityBehavior{
+		ActionCardinalityBehaviorSingle,
+		ActionCardinalityBehaviorMultiple,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ActionCardinalityBehavior) Display() string {
+	if info, ok := ActionCardinalityBehaviorTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ActionCardinalityBehavior) System() string {
+	return ActionCardinalityBehaviorTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ActionCardinalityBehavior) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ActionCardinalityBehavior) IsValid() bool {
+	_, ok := ActionCardinalityBehaviorTable[c]
+	return ok
+}
+
+// ActionConditionKindInfo is the specification's own data for one code.
+type ActionConditionKindInfo struct {
+	System  string
+	Display string
+}
+
+// ActionConditionKindTable maps each code to what the specification says about it.
+var ActionConditionKindTable = map[ActionConditionKind]ActionConditionKindInfo{
+	ActionConditionKindApplicability: {"http://hl7.org/fhir/action-condition-kind", "Applicability"},
+	ActionConditionKindStart:         {"http://hl7.org/fhir/action-condition-kind", "Start"},
+	ActionConditionKindStop:          {"http://hl7.org/fhir/action-condition-kind", "Stop"},
+}
+
+// ActionConditionKindValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ActionConditionKindValues() []ActionConditionKind {
+	return []ActionConditionKind{
+		ActionConditionKindApplicability,
+		ActionConditionKindStart,
+		ActionConditionKindStop,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ActionConditionKind) Display() string {
+	if info, ok := ActionConditionKindTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ActionConditionKind) System() string {
+	return ActionConditionKindTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ActionConditionKind) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ActionConditionKind) IsValid() bool {
+	_, ok := ActionConditionKindTable[c]
+	return ok
+}
+
+// ActionGroupingBehaviorInfo is the specification's own data for one code.
+type ActionGroupingBehaviorInfo struct {
+	System  string
+	Display string
+}
+
+// ActionGroupingBehaviorTable maps each code to what the specification says about it.
+var ActionGroupingBehaviorTable = map[ActionGroupingBehavior]ActionGroupingBehaviorInfo{
+	ActionGroupingBehaviorVisualGroup:   {"http://hl7.org/fhir/action-grouping-behavior", "Visual Group"},
+	ActionGroupingBehaviorLogicalGroup:  {"http://hl7.org/fhir/action-grouping-behavior", "Logical Group"},
+	ActionGroupingBehaviorSentenceGroup: {"http://hl7.org/fhir/action-grouping-behavior", "Sentence Group"},
+}
+
+// ActionGroupingBehaviorValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ActionGroupingBehaviorValues() []ActionGroupingBehavior {
+	return []ActionGroupingBehavior{
+		ActionGroupingBehaviorVisualGroup,
+		ActionGroupingBehaviorLogicalGroup,
+		ActionGroupingBehaviorSentenceGroup,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ActionGroupingBehavior) Display() string {
+	if info, ok := ActionGroupingBehaviorTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ActionGroupingBehavior) System() string {
+	return ActionGroupingBehaviorTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ActionGroupingBehavior) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ActionGroupingBehavior) IsValid() bool {
+	_, ok := ActionGroupingBehaviorTable[c]
+	return ok
+}
+
+// ActivityParticipantTypeInfo is the specification's own data for one code.
+type ActivityParticipantTypeInfo struct {
+	System  string
+	Display string
+}
+
+// ActivityParticipantTypeTable maps each code to what the specification says about it.
+var ActivityParticipantTypeTable = map[ActivityParticipantType]ActivityParticipantTypeInfo{
+	ActivityParticipantTypeCareteam:          {"http://hl7.org/fhir/action-participant-type", "CareTeam"},
+	ActivityParticipantTypeDevice:            {"http://hl7.org/fhir/action-participant-type", "Device"},
+	ActivityParticipantTypeGroup:             {"http://hl7.org/fhir/action-participant-type", "Group"},
+	ActivityParticipantTypeHealthcareservice: {"http://hl7.org/fhir/action-participant-type", "HealthcareService"},
+	ActivityParticipantTypeLocation:          {"http://hl7.org/fhir/action-participant-type", "Location"},
+	ActivityParticipantTypeOrganization:      {"http://hl7.org/fhir/action-participant-type", "Organization"},
+	ActivityParticipantTypePatient:           {"http://hl7.org/fhir/action-participant-type", "Patient"},
+	ActivityParticipantTypePractitioner:      {"http://hl7.org/fhir/action-participant-type", "Practitioner"},
+	ActivityParticipantTypePractitionerrole:  {"http://hl7.org/fhir/action-participant-type", "PractitionerRole"},
+	ActivityParticipantTypeRelatedperson:     {"http://hl7.org/fhir/action-participant-type", "RelatedPerson"},
+}
+
+// ActivityParticipantTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ActivityParticipantTypeValues() []ActivityParticipantType {
+	return []ActivityParticipantType{
+		ActivityParticipantTypeCareteam,
+		ActivityParticipantTypeDevice,
+		ActivityParticipantTypeGroup,
+		ActivityParticipantTypeHealthcareservice,
+		ActivityParticipantTypeLocation,
+		ActivityParticipantTypeOrganization,
+		ActivityParticipantTypePatient,
+		ActivityParticipantTypePractitioner,
+		ActivityParticipantTypePractitionerrole,
+		ActivityParticipantTypeRelatedperson,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ActivityParticipantType) Display() string {
+	if info, ok := ActivityParticipantTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ActivityParticipantType) System() string {
+	return ActivityParticipantTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ActivityParticipantType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ActivityParticipantType) IsValid() bool {
+	_, ok := ActivityParticipantTypeTable[c]
+	return ok
+}
+
+// ActionPrecheckBehaviorInfo is the specification's own data for one code.
+type ActionPrecheckBehaviorInfo struct {
+	System  string
+	Display string
+}
+
+// ActionPrecheckBehaviorTable maps each code to what the specification says about it.
+var ActionPrecheckBehaviorTable = map[ActionPrecheckBehavior]ActionPrecheckBehaviorInfo{
+	ActionPrecheckBehaviorYes: {"http://hl7.org/fhir/action-precheck-behavior", "Yes"},
+	ActionPrecheckBehaviorNo:  {"http://hl7.org/fhir/action-precheck-behavior", "No"},
+}
+
+// ActionPrecheckBehaviorValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ActionPrecheckBehaviorValues() []ActionPrecheckBehavior {
+	return []ActionPrecheckBehavior{
+		ActionPrecheckBehaviorYes,
+		ActionPrecheckBehaviorNo,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ActionPrecheckBehavior) Display() string {
+	if info, ok := ActionPrecheckBehaviorTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ActionPrecheckBehavior) System() string {
+	return ActionPrecheckBehaviorTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ActionPrecheckBehavior) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ActionPrecheckBehavior) IsValid() bool {
+	_, ok := ActionPrecheckBehaviorTable[c]
+	return ok
+}
+
+// ActionRelationshipTypeInfo is the specification's own data for one code.
+type ActionRelationshipTypeInfo struct {
+	System  string
+	Display string
+}
+
+// ActionRelationshipTypeTable maps each code to what the specification says about it.
+var ActionRelationshipTypeTable = map[ActionRelationshipType]ActionRelationshipTypeInfo{
+	ActionRelationshipTypeBefore:              {"http://hl7.org/fhir/action-relationship-type", "Before"},
+	ActionRelationshipTypeBeforeStart:         {"http://hl7.org/fhir/action-relationship-type", "Before Start"},
+	ActionRelationshipTypeBeforeEnd:           {"http://hl7.org/fhir/action-relationship-type", "Before End"},
+	ActionRelationshipTypeConcurrent:          {"http://hl7.org/fhir/action-relationship-type", "Concurrent"},
+	ActionRelationshipTypeConcurrentWithStart: {"http://hl7.org/fhir/action-relationship-type", "Concurrent With Start"},
+	ActionRelationshipTypeConcurrentWithEnd:   {"http://hl7.org/fhir/action-relationship-type", "Concurrent With End"},
+	ActionRelationshipTypeAfter:               {"http://hl7.org/fhir/action-relationship-type", "After"},
+	ActionRelationshipTypeAfterStart:          {"http://hl7.org/fhir/action-relationship-type", "After Start"},
+	ActionRelationshipTypeAfterEnd:            {"http://hl7.org/fhir/action-relationship-type", "After End"},
+}
+
+// ActionRelationshipTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ActionRelationshipTypeValues() []ActionRelationshipType {
+	return []ActionRelationshipType{
+		ActionRelationshipTypeBefore,
+		ActionRelationshipTypeBeforeStart,
+		ActionRelationshipTypeBeforeEnd,
+		ActionRelationshipTypeConcurrent,
+		ActionRelationshipTypeConcurrentWithStart,
+		ActionRelationshipTypeConcurrentWithEnd,
+		ActionRelationshipTypeAfter,
+		ActionRelationshipTypeAfterStart,
+		ActionRelationshipTypeAfterEnd,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ActionRelationshipType) Display() string {
+	if info, ok := ActionRelationshipTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ActionRelationshipType) System() string {
+	return ActionRelationshipTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ActionRelationshipType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ActionRelationshipType) IsValid() bool {
+	_, ok := ActionRelationshipTypeTable[c]
+	return ok
+}
+
+// ActionRequiredBehaviorInfo is the specification's own data for one code.
+type ActionRequiredBehaviorInfo struct {
+	System  string
+	Display string
+}
+
+// ActionRequiredBehaviorTable maps each code to what the specification says about it.
+var ActionRequiredBehaviorTable = map[ActionRequiredBehavior]ActionRequiredBehaviorInfo{
+	ActionRequiredBehaviorMust:                 {"http://hl7.org/fhir/action-required-behavior", "Must"},
+	ActionRequiredBehaviorCould:                {"http://hl7.org/fhir/action-required-behavior", "Could"},
+	ActionRequiredBehaviorMustUnlessDocumented: {"http://hl7.org/fhir/action-required-behavior", "Must Unless Documented"},
+}
+
+// ActionRequiredBehaviorValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ActionRequiredBehaviorValues() []ActionRequiredBehavior {
+	return []ActionRequiredBehavior{
+		ActionRequiredBehaviorMust,
+		ActionRequiredBehaviorCould,
+		ActionRequiredBehaviorMustUnlessDocumented,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ActionRequiredBehavior) Display() string {
+	if info, ok := ActionRequiredBehaviorTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ActionRequiredBehavior) System() string {
+	return ActionRequiredBehaviorTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ActionRequiredBehavior) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ActionRequiredBehavior) IsValid() bool {
+	_, ok := ActionRequiredBehaviorTable[c]
+	return ok
+}
+
+// ActionSelectionBehaviorInfo is the specification's own data for one code.
+type ActionSelectionBehaviorInfo struct {
+	System  string
+	Display string
+}
+
+// ActionSelectionBehaviorTable maps each code to what the specification says about it.
+var ActionSelectionBehaviorTable = map[ActionSelectionBehavior]ActionSelectionBehaviorInfo{
+	ActionSelectionBehaviorAny:        {"http://hl7.org/fhir/action-selection-behavior", "Any"},
+	ActionSelectionBehaviorAll:        {"http://hl7.org/fhir/action-selection-behavior", "All"},
+	ActionSelectionBehaviorAllOrNone:  {"http://hl7.org/fhir/action-selection-behavior", "All Or None"},
+	ActionSelectionBehaviorExactlyOne: {"http://hl7.org/fhir/action-selection-behavior", "Exactly One"},
+	ActionSelectionBehaviorAtMostOne:  {"http://hl7.org/fhir/action-selection-behavior", "At Most One"},
+	ActionSelectionBehaviorOneOrMore:  {"http://hl7.org/fhir/action-selection-behavior", "One Or More"},
+}
+
+// ActionSelectionBehaviorValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ActionSelectionBehaviorValues() []ActionSelectionBehavior {
+	return []ActionSelectionBehavior{
+		ActionSelectionBehaviorAny,
+		ActionSelectionBehaviorAll,
+		ActionSelectionBehaviorAllOrNone,
+		ActionSelectionBehaviorExactlyOne,
+		ActionSelectionBehaviorAtMostOne,
+		ActionSelectionBehaviorOneOrMore,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ActionSelectionBehavior) Display() string {
+	if info, ok := ActionSelectionBehaviorTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ActionSelectionBehavior) System() string {
+	return ActionSelectionBehaviorTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ActionSelectionBehavior) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ActionSelectionBehavior) IsValid() bool {
+	_, ok := ActionSelectionBehaviorTable[c]
+	return ok
+}
+
+// AdditionalBindingPurposeInfo is the specification's own data for one code.
+type AdditionalBindingPurposeInfo struct {
+	System  string
+	Display string
+}
+
+// AdditionalBindingPurposeTable maps each code to what the specification says about it.
+var AdditionalBindingPurposeTable = map[AdditionalBindingPurpose]AdditionalBindingPurposeInfo{
+	AdditionalBindingPurposeMaximum:    {"http://hl7.org/fhir/CodeSystem/additional-binding-purpose", "Maximum Binding"},
+	AdditionalBindingPurposeMinimum:    {"http://hl7.org/fhir/CodeSystem/additional-binding-purpose", "Minimum Binding"},
+	AdditionalBindingPurposeRequired:   {"http://hl7.org/fhir/CodeSystem/additional-binding-purpose", "Required Binding"},
+	AdditionalBindingPurposeExtensible: {"http://hl7.org/fhir/CodeSystem/additional-binding-purpose", "Conformance Binding"},
+	AdditionalBindingPurposeCandidate:  {"http://hl7.org/fhir/CodeSystem/additional-binding-purpose", "Candidate Binding"},
+	AdditionalBindingPurposeCurrent:    {"http://hl7.org/fhir/CodeSystem/additional-binding-purpose", "Current Binding"},
+	AdditionalBindingPurposePreferred:  {"http://hl7.org/fhir/CodeSystem/additional-binding-purpose", "Preferred Binding"},
+	AdditionalBindingPurposeUi:         {"http://hl7.org/fhir/CodeSystem/additional-binding-purpose", "UI Suggested Binding"},
+	AdditionalBindingPurposeStarter:    {"http://hl7.org/fhir/CodeSystem/additional-binding-purpose", "Starter Binding"},
+	AdditionalBindingPurposeComponent:  {"http://hl7.org/fhir/CodeSystem/additional-binding-purpose", "Component Binding"},
+}
+
+// AdditionalBindingPurposeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func AdditionalBindingPurposeValues() []AdditionalBindingPurpose {
+	return []AdditionalBindingPurpose{
+		AdditionalBindingPurposeMaximum,
+		AdditionalBindingPurposeMinimum,
+		AdditionalBindingPurposeRequired,
+		AdditionalBindingPurposeExtensible,
+		AdditionalBindingPurposeCandidate,
+		AdditionalBindingPurposeCurrent,
+		AdditionalBindingPurposePreferred,
+		AdditionalBindingPurposeUi,
+		AdditionalBindingPurposeStarter,
+		AdditionalBindingPurposeComponent,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c AdditionalBindingPurpose) Display() string {
+	if info, ok := AdditionalBindingPurposeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c AdditionalBindingPurpose) System() string {
+	return AdditionalBindingPurposeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c AdditionalBindingPurpose) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c AdditionalBindingPurpose) IsValid() bool {
+	_, ok := AdditionalBindingPurposeTable[c]
+	return ok
+}
+
+// AddressTypeInfo is the specification's own data for one code.
+type AddressTypeInfo struct {
+	System  string
+	Display string
+}
+
+// AddressTypeTable maps each code to what the specification says about it.
+var AddressTypeTable = map[AddressType]AddressTypeInfo{
+	AddressTypePostal:   {"http://hl7.org/fhir/address-type", "Postal"},
+	AddressTypePhysical: {"http://hl7.org/fhir/address-type", "Physical"},
+	AddressTypeBoth:     {"http://hl7.org/fhir/address-type", "Postal & Physical"},
+}
+
+// AddressTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func AddressTypeValues() []AddressType {
+	return []AddressType{
+		AddressTypePostal,
+		AddressTypePhysical,
+		AddressTypeBoth,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c AddressType) Display() string {
+	if info, ok := AddressTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c AddressType) System() string {
+	return AddressTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c AddressType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c AddressType) IsValid() bool {
+	_, ok := AddressTypeTable[c]
+	return ok
+}
+
+// AddressUseInfo is the specification's own data for one code.
+type AddressUseInfo struct {
+	System  string
+	Display string
+}
+
+// AddressUseTable maps each code to what the specification says about it.
+var AddressUseTable = map[AddressUse]AddressUseInfo{
+	AddressUseHome:    {"http://hl7.org/fhir/address-use", "Home"},
+	AddressUseWork:    {"http://hl7.org/fhir/address-use", "Work"},
+	AddressUseTemp:    {"http://hl7.org/fhir/address-use", "Temporary"},
+	AddressUseOld:     {"http://hl7.org/fhir/address-use", "Old / Incorrect"},
+	AddressUseBilling: {"http://hl7.org/fhir/address-use", "Billing"},
+}
+
+// AddressUseValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func AddressUseValues() []AddressUse {
+	return []AddressUse{
+		AddressUseHome,
+		AddressUseWork,
+		AddressUseTemp,
+		AddressUseOld,
+		AddressUseBilling,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c AddressUse) Display() string {
+	if info, ok := AddressUseTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c AddressUse) System() string {
+	return AddressUseTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c AddressUse) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c AddressUse) IsValid() bool {
+	_, ok := AddressUseTable[c]
+	return ok
+}
+
+// AdministrativeGenderInfo is the specification's own data for one code.
+type AdministrativeGenderInfo struct {
+	System  string
+	Display string
+}
+
+// AdministrativeGenderTable maps each code to what the specification says about it.
+var AdministrativeGenderTable = map[AdministrativeGender]AdministrativeGenderInfo{
+	AdministrativeGenderMale:    {"http://hl7.org/fhir/administrative-gender", "Male"},
+	AdministrativeGenderFemale:  {"http://hl7.org/fhir/administrative-gender", "Female"},
+	AdministrativeGenderOther:   {"http://hl7.org/fhir/administrative-gender", "Other"},
+	AdministrativeGenderUnknown: {"http://hl7.org/fhir/administrative-gender", "Unknown"},
+}
+
+// AdministrativeGenderValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func AdministrativeGenderValues() []AdministrativeGender {
+	return []AdministrativeGender{
+		AdministrativeGenderMale,
+		AdministrativeGenderFemale,
+		AdministrativeGenderOther,
+		AdministrativeGenderUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c AdministrativeGender) Display() string {
+	if info, ok := AdministrativeGenderTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c AdministrativeGender) System() string {
+	return AdministrativeGenderTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c AdministrativeGender) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c AdministrativeGender) IsValid() bool {
+	_, ok := AdministrativeGenderTable[c]
+	return ok
+}
+
+// AdverseEventActualityInfo is the specification's own data for one code.
+type AdverseEventActualityInfo struct {
+	System  string
+	Display string
+}
+
+// AdverseEventActualityTable maps each code to what the specification says about it.
+var AdverseEventActualityTable = map[AdverseEventActuality]AdverseEventActualityInfo{
+	AdverseEventActualityActual:    {"http://hl7.org/fhir/adverse-event-actuality", "Adverse Event"},
+	AdverseEventActualityPotential: {"http://hl7.org/fhir/adverse-event-actuality", "Potential Adverse Event"},
+}
+
+// AdverseEventActualityValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func AdverseEventActualityValues() []AdverseEventActuality {
+	return []AdverseEventActuality{
+		AdverseEventActualityActual,
+		AdverseEventActualityPotential,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c AdverseEventActuality) Display() string {
+	if info, ok := AdverseEventActualityTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c AdverseEventActuality) System() string {
+	return AdverseEventActualityTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c AdverseEventActuality) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c AdverseEventActuality) IsValid() bool {
+	_, ok := AdverseEventActualityTable[c]
+	return ok
+}
+
+// AdverseEventStatusInfo is the specification's own data for one code.
+type AdverseEventStatusInfo struct {
+	System  string
+	Display string
+}
+
+// AdverseEventStatusTable maps each code to what the specification says about it.
+var AdverseEventStatusTable = map[AdverseEventStatus]AdverseEventStatusInfo{
+	AdverseEventStatusInProgress:     {"http://hl7.org/fhir/event-status", ""},
+	AdverseEventStatusCompleted:      {"http://hl7.org/fhir/event-status", ""},
+	AdverseEventStatusEnteredInError: {"http://hl7.org/fhir/event-status", ""},
+	AdverseEventStatusUnknown:        {"http://hl7.org/fhir/event-status", ""},
+}
+
+// AdverseEventStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func AdverseEventStatusValues() []AdverseEventStatus {
+	return []AdverseEventStatus{
+		AdverseEventStatusInProgress,
+		AdverseEventStatusCompleted,
+		AdverseEventStatusEnteredInError,
+		AdverseEventStatusUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c AdverseEventStatus) Display() string {
+	if info, ok := AdverseEventStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c AdverseEventStatus) System() string {
+	return AdverseEventStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c AdverseEventStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c AdverseEventStatus) IsValid() bool {
+	_, ok := AdverseEventStatusTable[c]
+	return ok
+}
+
+// AllergyIntoleranceCategoryInfo is the specification's own data for one code.
+type AllergyIntoleranceCategoryInfo struct {
+	System  string
+	Display string
+}
+
+// AllergyIntoleranceCategoryTable maps each code to what the specification says about it.
+var AllergyIntoleranceCategoryTable = map[AllergyIntoleranceCategory]AllergyIntoleranceCategoryInfo{
+	AllergyIntoleranceCategoryFood:        {"http://hl7.org/fhir/allergy-intolerance-category", "Food"},
+	AllergyIntoleranceCategoryMedication:  {"http://hl7.org/fhir/allergy-intolerance-category", "Medication"},
+	AllergyIntoleranceCategoryEnvironment: {"http://hl7.org/fhir/allergy-intolerance-category", "Environment"},
+	AllergyIntoleranceCategoryBiologic:    {"http://hl7.org/fhir/allergy-intolerance-category", "Biologic"},
+}
+
+// AllergyIntoleranceCategoryValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func AllergyIntoleranceCategoryValues() []AllergyIntoleranceCategory {
+	return []AllergyIntoleranceCategory{
+		AllergyIntoleranceCategoryFood,
+		AllergyIntoleranceCategoryMedication,
+		AllergyIntoleranceCategoryEnvironment,
+		AllergyIntoleranceCategoryBiologic,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c AllergyIntoleranceCategory) Display() string {
+	if info, ok := AllergyIntoleranceCategoryTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c AllergyIntoleranceCategory) System() string {
+	return AllergyIntoleranceCategoryTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c AllergyIntoleranceCategory) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c AllergyIntoleranceCategory) IsValid() bool {
+	_, ok := AllergyIntoleranceCategoryTable[c]
+	return ok
+}
+
+// AllergyIntoleranceCriticalityInfo is the specification's own data for one code.
+type AllergyIntoleranceCriticalityInfo struct {
+	System  string
+	Display string
+}
+
+// AllergyIntoleranceCriticalityTable maps each code to what the specification says about it.
+var AllergyIntoleranceCriticalityTable = map[AllergyIntoleranceCriticality]AllergyIntoleranceCriticalityInfo{
+	AllergyIntoleranceCriticalityLow:            {"http://hl7.org/fhir/allergy-intolerance-criticality", "Low Risk"},
+	AllergyIntoleranceCriticalityHigh:           {"http://hl7.org/fhir/allergy-intolerance-criticality", "High Risk"},
+	AllergyIntoleranceCriticalityUnableToAssess: {"http://hl7.org/fhir/allergy-intolerance-criticality", "Unable to Assess Risk"},
+}
+
+// AllergyIntoleranceCriticalityValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func AllergyIntoleranceCriticalityValues() []AllergyIntoleranceCriticality {
+	return []AllergyIntoleranceCriticality{
+		AllergyIntoleranceCriticalityLow,
+		AllergyIntoleranceCriticalityHigh,
+		AllergyIntoleranceCriticalityUnableToAssess,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c AllergyIntoleranceCriticality) Display() string {
+	if info, ok := AllergyIntoleranceCriticalityTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c AllergyIntoleranceCriticality) System() string {
+	return AllergyIntoleranceCriticalityTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c AllergyIntoleranceCriticality) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c AllergyIntoleranceCriticality) IsValid() bool {
+	_, ok := AllergyIntoleranceCriticalityTable[c]
+	return ok
+}
+
+// ParticipantStatusInfo is the specification's own data for one code.
+type ParticipantStatusInfo struct {
+	System  string
+	Display string
+}
+
+// ParticipantStatusTable maps each code to what the specification says about it.
+var ParticipantStatusTable = map[ParticipantStatus]ParticipantStatusInfo{
+	ParticipantStatusAccepted:       {"http://hl7.org/fhir/participationstatus", "Accepted"},
+	ParticipantStatusDeclined:       {"http://hl7.org/fhir/participationstatus", "Declined"},
+	ParticipantStatusTentative:      {"http://hl7.org/fhir/participationstatus", "Tentative"},
+	ParticipantStatusNeedsAction:    {"http://hl7.org/fhir/participationstatus", "Needs Action"},
+	ParticipantStatusEnteredInError: {"http://hl7.org/fhir/appointmentstatus", "Entered in error"},
+}
+
+// ParticipantStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ParticipantStatusValues() []ParticipantStatus {
+	return []ParticipantStatus{
+		ParticipantStatusAccepted,
+		ParticipantStatusDeclined,
+		ParticipantStatusTentative,
+		ParticipantStatusNeedsAction,
+		ParticipantStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ParticipantStatus) Display() string {
+	if info, ok := ParticipantStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ParticipantStatus) System() string {
+	return ParticipantStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ParticipantStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ParticipantStatus) IsValid() bool {
+	_, ok := ParticipantStatusTable[c]
+	return ok
+}
+
+// AppointmentStatusInfo is the specification's own data for one code.
+type AppointmentStatusInfo struct {
+	System  string
+	Display string
+}
+
+// AppointmentStatusTable maps each code to what the specification says about it.
+var AppointmentStatusTable = map[AppointmentStatus]AppointmentStatusInfo{
+	AppointmentStatusProposed:       {"http://hl7.org/fhir/appointmentstatus", "Proposed"},
+	AppointmentStatusPending:        {"http://hl7.org/fhir/appointmentstatus", "Pending"},
+	AppointmentStatusBooked:         {"http://hl7.org/fhir/appointmentstatus", "Booked"},
+	AppointmentStatusArrived:        {"http://hl7.org/fhir/appointmentstatus", "Arrived"},
+	AppointmentStatusFulfilled:      {"http://hl7.org/fhir/appointmentstatus", "Fulfilled"},
+	AppointmentStatusCancelled:      {"http://hl7.org/fhir/appointmentstatus", "Cancelled"},
+	AppointmentStatusNoshow:         {"http://hl7.org/fhir/appointmentstatus", "No Show"},
+	AppointmentStatusEnteredInError: {"http://hl7.org/fhir/appointmentstatus", "Entered in error"},
+	AppointmentStatusCheckedIn:      {"http://hl7.org/fhir/appointmentstatus", "Checked In"},
+	AppointmentStatusWaitlist:       {"http://hl7.org/fhir/appointmentstatus", "Waitlisted"},
+}
+
+// AppointmentStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func AppointmentStatusValues() []AppointmentStatus {
+	return []AppointmentStatus{
+		AppointmentStatusProposed,
+		AppointmentStatusPending,
+		AppointmentStatusBooked,
+		AppointmentStatusArrived,
+		AppointmentStatusFulfilled,
+		AppointmentStatusCancelled,
+		AppointmentStatusNoshow,
+		AppointmentStatusEnteredInError,
+		AppointmentStatusCheckedIn,
+		AppointmentStatusWaitlist,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c AppointmentStatus) Display() string {
+	if info, ok := AppointmentStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c AppointmentStatus) System() string {
+	return AppointmentStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c AppointmentStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c AppointmentStatus) IsValid() bool {
+	_, ok := AppointmentStatusTable[c]
+	return ok
+}
+
+// ArtifactAssessmentDispositionInfo is the specification's own data for one code.
+type ArtifactAssessmentDispositionInfo struct {
+	System  string
+	Display string
+}
+
+// ArtifactAssessmentDispositionTable maps each code to what the specification says about it.
+var ArtifactAssessmentDispositionTable = map[ArtifactAssessmentDisposition]ArtifactAssessmentDispositionInfo{
+	ArtifactAssessmentDispositionUnresolved:                    {"http://hl7.org/fhir/artifactassessment-disposition", "Unresolved"},
+	ArtifactAssessmentDispositionNotPersuasive:                 {"http://hl7.org/fhir/artifactassessment-disposition", "Not Persuasive"},
+	ArtifactAssessmentDispositionPersuasive:                    {"http://hl7.org/fhir/artifactassessment-disposition", "Persuasive"},
+	ArtifactAssessmentDispositionPersuasiveWithModification:    {"http://hl7.org/fhir/artifactassessment-disposition", "Persuasive with Modification"},
+	ArtifactAssessmentDispositionNotPersuasiveWithModification: {"http://hl7.org/fhir/artifactassessment-disposition", "Not Persuasive with Modification"},
+}
+
+// ArtifactAssessmentDispositionValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ArtifactAssessmentDispositionValues() []ArtifactAssessmentDisposition {
+	return []ArtifactAssessmentDisposition{
+		ArtifactAssessmentDispositionUnresolved,
+		ArtifactAssessmentDispositionNotPersuasive,
+		ArtifactAssessmentDispositionPersuasive,
+		ArtifactAssessmentDispositionPersuasiveWithModification,
+		ArtifactAssessmentDispositionNotPersuasiveWithModification,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ArtifactAssessmentDisposition) Display() string {
+	if info, ok := ArtifactAssessmentDispositionTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ArtifactAssessmentDisposition) System() string {
+	return ArtifactAssessmentDispositionTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ArtifactAssessmentDisposition) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ArtifactAssessmentDisposition) IsValid() bool {
+	_, ok := ArtifactAssessmentDispositionTable[c]
+	return ok
+}
+
+// ArtifactAssessmentInformationTypeInfo is the specification's own data for one code.
+type ArtifactAssessmentInformationTypeInfo struct {
+	System  string
+	Display string
+}
+
+// ArtifactAssessmentInformationTypeTable maps each code to what the specification says about it.
+var ArtifactAssessmentInformationTypeTable = map[ArtifactAssessmentInformationType]ArtifactAssessmentInformationTypeInfo{
+	ArtifactAssessmentInformationTypeComment:       {"http://hl7.org/fhir/artifactassessment-information-type", "Comment"},
+	ArtifactAssessmentInformationTypeClassifier:    {"http://hl7.org/fhir/artifactassessment-information-type", "Classifier"},
+	ArtifactAssessmentInformationTypeRating:        {"http://hl7.org/fhir/artifactassessment-information-type", "Rating"},
+	ArtifactAssessmentInformationTypeContainer:     {"http://hl7.org/fhir/artifactassessment-information-type", "Container"},
+	ArtifactAssessmentInformationTypeResponse:      {"http://hl7.org/fhir/artifactassessment-information-type", "Response"},
+	ArtifactAssessmentInformationTypeChangeRequest: {"http://hl7.org/fhir/artifactassessment-information-type", "Change Request"},
+}
+
+// ArtifactAssessmentInformationTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ArtifactAssessmentInformationTypeValues() []ArtifactAssessmentInformationType {
+	return []ArtifactAssessmentInformationType{
+		ArtifactAssessmentInformationTypeComment,
+		ArtifactAssessmentInformationTypeClassifier,
+		ArtifactAssessmentInformationTypeRating,
+		ArtifactAssessmentInformationTypeContainer,
+		ArtifactAssessmentInformationTypeResponse,
+		ArtifactAssessmentInformationTypeChangeRequest,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ArtifactAssessmentInformationType) Display() string {
+	if info, ok := ArtifactAssessmentInformationTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ArtifactAssessmentInformationType) System() string {
+	return ArtifactAssessmentInformationTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ArtifactAssessmentInformationType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ArtifactAssessmentInformationType) IsValid() bool {
+	_, ok := ArtifactAssessmentInformationTypeTable[c]
+	return ok
+}
+
+// ArtifactAssessmentWorkflowStatusInfo is the specification's own data for one code.
+type ArtifactAssessmentWorkflowStatusInfo struct {
+	System  string
+	Display string
+}
+
+// ArtifactAssessmentWorkflowStatusTable maps each code to what the specification says about it.
+var ArtifactAssessmentWorkflowStatusTable = map[ArtifactAssessmentWorkflowStatus]ArtifactAssessmentWorkflowStatusInfo{
+	ArtifactAssessmentWorkflowStatusSubmitted:              {"http://hl7.org/fhir/artifactassessment-workflow-status", "Submitted"},
+	ArtifactAssessmentWorkflowStatusTriaged:                {"http://hl7.org/fhir/artifactassessment-workflow-status", "Triaged"},
+	ArtifactAssessmentWorkflowStatusWaitingForInput:        {"http://hl7.org/fhir/artifactassessment-workflow-status", "Waiting for Input"},
+	ArtifactAssessmentWorkflowStatusResolvedNoChange:       {"http://hl7.org/fhir/artifactassessment-workflow-status", "Resolved - No Change"},
+	ArtifactAssessmentWorkflowStatusResolvedChangeRequired: {"http://hl7.org/fhir/artifactassessment-workflow-status", "Resolved - Change Required"},
+	ArtifactAssessmentWorkflowStatusDeferred:               {"http://hl7.org/fhir/artifactassessment-workflow-status", "Deferred"},
+	ArtifactAssessmentWorkflowStatusDuplicate:              {"http://hl7.org/fhir/artifactassessment-workflow-status", "Duplicate"},
+	ArtifactAssessmentWorkflowStatusApplied:                {"http://hl7.org/fhir/artifactassessment-workflow-status", "Applied"},
+	ArtifactAssessmentWorkflowStatusPublished:              {"http://hl7.org/fhir/artifactassessment-workflow-status", "Published"},
+	ArtifactAssessmentWorkflowStatusEnteredInError:         {"http://hl7.org/fhir/artifactassessment-workflow-status", "Entered in Error"},
+}
+
+// ArtifactAssessmentWorkflowStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ArtifactAssessmentWorkflowStatusValues() []ArtifactAssessmentWorkflowStatus {
+	return []ArtifactAssessmentWorkflowStatus{
+		ArtifactAssessmentWorkflowStatusSubmitted,
+		ArtifactAssessmentWorkflowStatusTriaged,
+		ArtifactAssessmentWorkflowStatusWaitingForInput,
+		ArtifactAssessmentWorkflowStatusResolvedNoChange,
+		ArtifactAssessmentWorkflowStatusResolvedChangeRequired,
+		ArtifactAssessmentWorkflowStatusDeferred,
+		ArtifactAssessmentWorkflowStatusDuplicate,
+		ArtifactAssessmentWorkflowStatusApplied,
+		ArtifactAssessmentWorkflowStatusPublished,
+		ArtifactAssessmentWorkflowStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ArtifactAssessmentWorkflowStatus) Display() string {
+	if info, ok := ArtifactAssessmentWorkflowStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ArtifactAssessmentWorkflowStatus) System() string {
+	return ArtifactAssessmentWorkflowStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ArtifactAssessmentWorkflowStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ArtifactAssessmentWorkflowStatus) IsValid() bool {
+	_, ok := ArtifactAssessmentWorkflowStatusTable[c]
+	return ok
+}
+
+// AssertionDirectionTypeInfo is the specification's own data for one code.
+type AssertionDirectionTypeInfo struct {
+	System  string
+	Display string
+}
+
+// AssertionDirectionTypeTable maps each code to what the specification says about it.
+var AssertionDirectionTypeTable = map[AssertionDirectionType]AssertionDirectionTypeInfo{
+	AssertionDirectionTypeResponse: {"http://hl7.org/fhir/assert-direction-codes", "response"},
+	AssertionDirectionTypeRequest:  {"http://hl7.org/fhir/assert-direction-codes", "request"},
+}
+
+// AssertionDirectionTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func AssertionDirectionTypeValues() []AssertionDirectionType {
+	return []AssertionDirectionType{
+		AssertionDirectionTypeResponse,
+		AssertionDirectionTypeRequest,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c AssertionDirectionType) Display() string {
+	if info, ok := AssertionDirectionTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c AssertionDirectionType) System() string {
+	return AssertionDirectionTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c AssertionDirectionType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c AssertionDirectionType) IsValid() bool {
+	_, ok := AssertionDirectionTypeTable[c]
+	return ok
+}
+
+// AssertionManualCompletionTypeInfo is the specification's own data for one code.
+type AssertionManualCompletionTypeInfo struct {
+	System  string
+	Display string
+}
+
+// AssertionManualCompletionTypeTable maps each code to what the specification says about it.
+var AssertionManualCompletionTypeTable = map[AssertionManualCompletionType]AssertionManualCompletionTypeInfo{
+	AssertionManualCompletionTypeFail: {"http://hl7.org/fhir/assert-manual-completion-codes", "Fail"},
+	AssertionManualCompletionTypePass: {"http://hl7.org/fhir/assert-manual-completion-codes", "Pass"},
+	AssertionManualCompletionTypeSkip: {"http://hl7.org/fhir/assert-manual-completion-codes", "Skip"},
+	AssertionManualCompletionTypeStop: {"http://hl7.org/fhir/assert-manual-completion-codes", "Stop"},
+}
+
+// AssertionManualCompletionTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func AssertionManualCompletionTypeValues() []AssertionManualCompletionType {
+	return []AssertionManualCompletionType{
+		AssertionManualCompletionTypeFail,
+		AssertionManualCompletionTypePass,
+		AssertionManualCompletionTypeSkip,
+		AssertionManualCompletionTypeStop,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c AssertionManualCompletionType) Display() string {
+	if info, ok := AssertionManualCompletionTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c AssertionManualCompletionType) System() string {
+	return AssertionManualCompletionTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c AssertionManualCompletionType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c AssertionManualCompletionType) IsValid() bool {
+	_, ok := AssertionManualCompletionTypeTable[c]
+	return ok
+}
+
+// AssertionOperatorTypeInfo is the specification's own data for one code.
+type AssertionOperatorTypeInfo struct {
+	System  string
+	Display string
+}
+
+// AssertionOperatorTypeTable maps each code to what the specification says about it.
+var AssertionOperatorTypeTable = map[AssertionOperatorType]AssertionOperatorTypeInfo{
+	AssertionOperatorTypeEquals:      {"http://hl7.org/fhir/assert-operator-codes", "equals"},
+	AssertionOperatorTypeNotequals:   {"http://hl7.org/fhir/assert-operator-codes", "notEquals"},
+	AssertionOperatorTypeIn:          {"http://hl7.org/fhir/assert-operator-codes", "in"},
+	AssertionOperatorTypeNotin:       {"http://hl7.org/fhir/assert-operator-codes", "notIn"},
+	AssertionOperatorTypeGreaterthan: {"http://hl7.org/fhir/assert-operator-codes", "greaterThan"},
+	AssertionOperatorTypeLessthan:    {"http://hl7.org/fhir/assert-operator-codes", "lessThan"},
+	AssertionOperatorTypeEmpty:       {"http://hl7.org/fhir/assert-operator-codes", "empty"},
+	AssertionOperatorTypeNotempty:    {"http://hl7.org/fhir/assert-operator-codes", "notEmpty"},
+	AssertionOperatorTypeContains:    {"http://hl7.org/fhir/assert-operator-codes", "contains"},
+	AssertionOperatorTypeNotcontains: {"http://hl7.org/fhir/assert-operator-codes", "notContains"},
+	AssertionOperatorTypeEval:        {"http://hl7.org/fhir/assert-operator-codes", "evaluate"},
+	AssertionOperatorTypeManualeval:  {"http://hl7.org/fhir/assert-operator-codes", "manualEvaluate"},
+}
+
+// AssertionOperatorTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func AssertionOperatorTypeValues() []AssertionOperatorType {
+	return []AssertionOperatorType{
+		AssertionOperatorTypeEquals,
+		AssertionOperatorTypeNotequals,
+		AssertionOperatorTypeIn,
+		AssertionOperatorTypeNotin,
+		AssertionOperatorTypeGreaterthan,
+		AssertionOperatorTypeLessthan,
+		AssertionOperatorTypeEmpty,
+		AssertionOperatorTypeNotempty,
+		AssertionOperatorTypeContains,
+		AssertionOperatorTypeNotcontains,
+		AssertionOperatorTypeEval,
+		AssertionOperatorTypeManualeval,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c AssertionOperatorType) Display() string {
+	if info, ok := AssertionOperatorTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c AssertionOperatorType) System() string {
+	return AssertionOperatorTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c AssertionOperatorType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c AssertionOperatorType) IsValid() bool {
+	_, ok := AssertionOperatorTypeTable[c]
+	return ok
+}
+
+// AssertionResponseTypesInfo is the specification's own data for one code.
+type AssertionResponseTypesInfo struct {
+	System  string
+	Display string
+}
+
+// AssertionResponseTypesTable maps each code to what the specification says about it.
+var AssertionResponseTypesTable = map[AssertionResponseTypes]AssertionResponseTypesInfo{
+	AssertionResponseTypesContinue:                    {"http://hl7.org/fhir/assert-response-code-types", "Continue"},
+	AssertionResponseTypesSwitchingprotocols:          {"http://hl7.org/fhir/assert-response-code-types", "Switching Protocols"},
+	AssertionResponseTypesOkay:                        {"http://hl7.org/fhir/assert-response-code-types", "OK"},
+	AssertionResponseTypesCreated:                     {"http://hl7.org/fhir/assert-response-code-types", "Created"},
+	AssertionResponseTypesAccepted:                    {"http://hl7.org/fhir/assert-response-code-types", "Accepted"},
+	AssertionResponseTypesNonauthoritativeinformation: {"http://hl7.org/fhir/assert-response-code-types", "Non-Authoritative Information"},
+	AssertionResponseTypesNocontent:                   {"http://hl7.org/fhir/assert-response-code-types", "No Content"},
+	AssertionResponseTypesResetcontent:                {"http://hl7.org/fhir/assert-response-code-types", "Reset Content"},
+	AssertionResponseTypesPartialcontent:              {"http://hl7.org/fhir/assert-response-code-types", "Partial Content"},
+	AssertionResponseTypesMultiplechoices:             {"http://hl7.org/fhir/assert-response-code-types", "Multiple Choices"},
+	AssertionResponseTypesMovedpermanently:            {"http://hl7.org/fhir/assert-response-code-types", "Moved Permanently"},
+	AssertionResponseTypesFound:                       {"http://hl7.org/fhir/assert-response-code-types", "Found"},
+	AssertionResponseTypesSeeother:                    {"http://hl7.org/fhir/assert-response-code-types", "See Other"},
+	AssertionResponseTypesNotmodified:                 {"http://hl7.org/fhir/assert-response-code-types", "Not Modified"},
+	AssertionResponseTypesUseproxy:                    {"http://hl7.org/fhir/assert-response-code-types", "Use Proxy"},
+	AssertionResponseTypesTemporaryredirect:           {"http://hl7.org/fhir/assert-response-code-types", "Temporary Redirect"},
+	AssertionResponseTypesPermanentredirect:           {"http://hl7.org/fhir/assert-response-code-types", "Permanent Redirect"},
+	AssertionResponseTypesBadrequest:                  {"http://hl7.org/fhir/assert-response-code-types", "Bad Request"},
+	AssertionResponseTypesUnauthorized:                {"http://hl7.org/fhir/assert-response-code-types", "Unauthorized"},
+	AssertionResponseTypesPaymentrequired:             {"http://hl7.org/fhir/assert-response-code-types", "Payment Required"},
+	AssertionResponseTypesForbidden:                   {"http://hl7.org/fhir/assert-response-code-types", "Forbidden"},
+	AssertionResponseTypesNotfound:                    {"http://hl7.org/fhir/assert-response-code-types", "Not Found"},
+	AssertionResponseTypesMethodnotallowed:            {"http://hl7.org/fhir/assert-response-code-types", "Method Not Allowed"},
+	AssertionResponseTypesNotacceptable:               {"http://hl7.org/fhir/assert-response-code-types", "Not Acceptable"},
+	AssertionResponseTypesProxyauthenticationrequired: {"http://hl7.org/fhir/assert-response-code-types", "Proxy Authentication Required"},
+	AssertionResponseTypesRequesttimeout:              {"http://hl7.org/fhir/assert-response-code-types", "Request Timeout"},
+	AssertionResponseTypesConflict:                    {"http://hl7.org/fhir/assert-response-code-types", "Conflict"},
+	AssertionResponseTypesGone:                        {"http://hl7.org/fhir/assert-response-code-types", "Gone"},
+	AssertionResponseTypesLengthrequired:              {"http://hl7.org/fhir/assert-response-code-types", "Length Required"},
+	AssertionResponseTypesPreconditionfailed:          {"http://hl7.org/fhir/assert-response-code-types", "Precondition Failed"},
+	AssertionResponseTypesContenttoolarge:             {"http://hl7.org/fhir/assert-response-code-types", "Content Too Large"},
+	AssertionResponseTypesUritoolong:                  {"http://hl7.org/fhir/assert-response-code-types", "URI Too Long"},
+	AssertionResponseTypesUnsupportedmediatype:        {"http://hl7.org/fhir/assert-response-code-types", "Unsupported Media Type"},
+	AssertionResponseTypesRangenotsatisfiable:         {"http://hl7.org/fhir/assert-response-code-types", "Range Not Satisfiable"},
+	AssertionResponseTypesExpectationfailed:           {"http://hl7.org/fhir/assert-response-code-types", "Expectation Failed"},
+	AssertionResponseTypesMisdirectedrequest:          {"http://hl7.org/fhir/assert-response-code-types", "Misdirected Request"},
+	AssertionResponseTypesUnprocessablecontent:        {"http://hl7.org/fhir/assert-response-code-types", "Unprocessable Content"},
+	AssertionResponseTypesUpgraderequired:             {"http://hl7.org/fhir/assert-response-code-types", "Upgrade Required"},
+	AssertionResponseTypesInternalservererror:         {"http://hl7.org/fhir/assert-response-code-types", "Internal Server Error"},
+	AssertionResponseTypesNotimplemented:              {"http://hl7.org/fhir/assert-response-code-types", "Not Implemented"},
+	AssertionResponseTypesBadgateway:                  {"http://hl7.org/fhir/assert-response-code-types", "Bad Gateway"},
+	AssertionResponseTypesServiceunavailable:          {"http://hl7.org/fhir/assert-response-code-types", "Service Unavailable"},
+	AssertionResponseTypesGatewaytimeout:              {"http://hl7.org/fhir/assert-response-code-types", "Gateway Timeout"},
+	AssertionResponseTypesHttpversionnotsupported:     {"http://hl7.org/fhir/assert-response-code-types", "HTTP Version Not Supported"},
+}
+
+// AssertionResponseTypesValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func AssertionResponseTypesValues() []AssertionResponseTypes {
+	return []AssertionResponseTypes{
+		AssertionResponseTypesContinue,
+		AssertionResponseTypesSwitchingprotocols,
+		AssertionResponseTypesOkay,
+		AssertionResponseTypesCreated,
+		AssertionResponseTypesAccepted,
+		AssertionResponseTypesNonauthoritativeinformation,
+		AssertionResponseTypesNocontent,
+		AssertionResponseTypesResetcontent,
+		AssertionResponseTypesPartialcontent,
+		AssertionResponseTypesMultiplechoices,
+		AssertionResponseTypesMovedpermanently,
+		AssertionResponseTypesFound,
+		AssertionResponseTypesSeeother,
+		AssertionResponseTypesNotmodified,
+		AssertionResponseTypesUseproxy,
+		AssertionResponseTypesTemporaryredirect,
+		AssertionResponseTypesPermanentredirect,
+		AssertionResponseTypesBadrequest,
+		AssertionResponseTypesUnauthorized,
+		AssertionResponseTypesPaymentrequired,
+		AssertionResponseTypesForbidden,
+		AssertionResponseTypesNotfound,
+		AssertionResponseTypesMethodnotallowed,
+		AssertionResponseTypesNotacceptable,
+		AssertionResponseTypesProxyauthenticationrequired,
+		AssertionResponseTypesRequesttimeout,
+		AssertionResponseTypesConflict,
+		AssertionResponseTypesGone,
+		AssertionResponseTypesLengthrequired,
+		AssertionResponseTypesPreconditionfailed,
+		AssertionResponseTypesContenttoolarge,
+		AssertionResponseTypesUritoolong,
+		AssertionResponseTypesUnsupportedmediatype,
+		AssertionResponseTypesRangenotsatisfiable,
+		AssertionResponseTypesExpectationfailed,
+		AssertionResponseTypesMisdirectedrequest,
+		AssertionResponseTypesUnprocessablecontent,
+		AssertionResponseTypesUpgraderequired,
+		AssertionResponseTypesInternalservererror,
+		AssertionResponseTypesNotimplemented,
+		AssertionResponseTypesBadgateway,
+		AssertionResponseTypesServiceunavailable,
+		AssertionResponseTypesGatewaytimeout,
+		AssertionResponseTypesHttpversionnotsupported,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c AssertionResponseTypes) Display() string {
+	if info, ok := AssertionResponseTypesTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c AssertionResponseTypes) System() string {
+	return AssertionResponseTypesTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c AssertionResponseTypes) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c AssertionResponseTypes) IsValid() bool {
+	_, ok := AssertionResponseTypesTable[c]
+	return ok
+}
+
+// AuditEventActionInfo is the specification's own data for one code.
+type AuditEventActionInfo struct {
+	System  string
+	Display string
+}
+
+// AuditEventActionTable maps each code to what the specification says about it.
+var AuditEventActionTable = map[AuditEventAction]AuditEventActionInfo{
+	AuditEventActionC: {"http://hl7.org/fhir/audit-event-action", "Create"},
+	AuditEventActionR: {"http://hl7.org/fhir/audit-event-action", "Read"},
+	AuditEventActionU: {"http://hl7.org/fhir/audit-event-action", "Update"},
+	AuditEventActionD: {"http://hl7.org/fhir/audit-event-action", "Delete"},
+	AuditEventActionE: {"http://hl7.org/fhir/audit-event-action", "Execute"},
+}
+
+// AuditEventActionValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func AuditEventActionValues() []AuditEventAction {
+	return []AuditEventAction{
+		AuditEventActionC,
+		AuditEventActionR,
+		AuditEventActionU,
+		AuditEventActionD,
+		AuditEventActionE,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c AuditEventAction) Display() string {
+	if info, ok := AuditEventActionTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c AuditEventAction) System() string {
+	return AuditEventActionTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c AuditEventAction) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c AuditEventAction) IsValid() bool {
+	_, ok := AuditEventActionTable[c]
+	return ok
+}
+
+// AuditEventSeverityInfo is the specification's own data for one code.
+type AuditEventSeverityInfo struct {
+	System  string
+	Display string
+}
+
+// AuditEventSeverityTable maps each code to what the specification says about it.
+var AuditEventSeverityTable = map[AuditEventSeverity]AuditEventSeverityInfo{
+	AuditEventSeverityEmergency:     {"http://hl7.org/fhir/audit-event-severity", "Emergency"},
+	AuditEventSeverityAlert:         {"http://hl7.org/fhir/audit-event-severity", "Alert"},
+	AuditEventSeverityCritical:      {"http://hl7.org/fhir/audit-event-severity", "Critical"},
+	AuditEventSeverityError:         {"http://hl7.org/fhir/audit-event-severity", "Error"},
+	AuditEventSeverityWarning:       {"http://hl7.org/fhir/audit-event-severity", "Warning"},
+	AuditEventSeverityNotice:        {"http://hl7.org/fhir/audit-event-severity", "Notice"},
+	AuditEventSeverityInformational: {"http://hl7.org/fhir/audit-event-severity", "Informational"},
+	AuditEventSeverityDebug:         {"http://hl7.org/fhir/audit-event-severity", "Debug"},
+}
+
+// AuditEventSeverityValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func AuditEventSeverityValues() []AuditEventSeverity {
+	return []AuditEventSeverity{
+		AuditEventSeverityEmergency,
+		AuditEventSeverityAlert,
+		AuditEventSeverityCritical,
+		AuditEventSeverityError,
+		AuditEventSeverityWarning,
+		AuditEventSeverityNotice,
+		AuditEventSeverityInformational,
+		AuditEventSeverityDebug,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c AuditEventSeverity) Display() string {
+	if info, ok := AuditEventSeverityTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c AuditEventSeverity) System() string {
+	return AuditEventSeverityTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c AuditEventSeverity) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c AuditEventSeverity) IsValid() bool {
+	_, ok := AuditEventSeverityTable[c]
+	return ok
+}
+
+// BindingStrengthInfo is the specification's own data for one code.
+type BindingStrengthInfo struct {
+	System  string
+	Display string
+}
+
+// BindingStrengthTable maps each code to what the specification says about it.
+var BindingStrengthTable = map[BindingStrength]BindingStrengthInfo{
+	BindingStrengthRequired:   {"http://hl7.org/fhir/binding-strength", "Required"},
+	BindingStrengthExtensible: {"http://hl7.org/fhir/binding-strength", "Extensible"},
+	BindingStrengthPreferred:  {"http://hl7.org/fhir/binding-strength", "Preferred"},
+	BindingStrengthExample:    {"http://hl7.org/fhir/binding-strength", "Example"},
+}
+
+// BindingStrengthValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func BindingStrengthValues() []BindingStrength {
+	return []BindingStrength{
+		BindingStrengthRequired,
+		BindingStrengthExtensible,
+		BindingStrengthPreferred,
+		BindingStrengthExample,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c BindingStrength) Display() string {
+	if info, ok := BindingStrengthTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c BindingStrength) System() string {
+	return BindingStrengthTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c BindingStrength) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c BindingStrength) IsValid() bool {
+	_, ok := BindingStrengthTable[c]
+	return ok
+}
+
+// BiologicallyDerivedProductDispenseStatusInfo is the specification's own data for one code.
+type BiologicallyDerivedProductDispenseStatusInfo struct {
+	System  string
+	Display string
+}
+
+// BiologicallyDerivedProductDispenseStatusTable maps each code to what the specification says about it.
+var BiologicallyDerivedProductDispenseStatusTable = map[BiologicallyDerivedProductDispenseStatus]BiologicallyDerivedProductDispenseStatusInfo{
+	BiologicallyDerivedProductDispenseStatusPreparation:    {"http://hl7.org/fhir/biologicallyderivedproductdispense-status", "Preparation"},
+	BiologicallyDerivedProductDispenseStatusInProgress:     {"http://hl7.org/fhir/biologicallyderivedproductdispense-status", "In Progress"},
+	BiologicallyDerivedProductDispenseStatusAllocated:      {"http://hl7.org/fhir/biologicallyderivedproductdispense-status", "Allocated"},
+	BiologicallyDerivedProductDispenseStatusIssued:         {"http://hl7.org/fhir/biologicallyderivedproductdispense-status", "Issued"},
+	BiologicallyDerivedProductDispenseStatusUnfulfilled:    {"http://hl7.org/fhir/biologicallyderivedproductdispense-status", "Unfulfilled"},
+	BiologicallyDerivedProductDispenseStatusReturned:       {"http://hl7.org/fhir/biologicallyderivedproductdispense-status", "Returned"},
+	BiologicallyDerivedProductDispenseStatusEnteredInError: {"http://hl7.org/fhir/biologicallyderivedproductdispense-status", "Entered in Error"},
+	BiologicallyDerivedProductDispenseStatusUnknown:        {"http://hl7.org/fhir/biologicallyderivedproductdispense-status", "Unknown"},
+}
+
+// BiologicallyDerivedProductDispenseStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func BiologicallyDerivedProductDispenseStatusValues() []BiologicallyDerivedProductDispenseStatus {
+	return []BiologicallyDerivedProductDispenseStatus{
+		BiologicallyDerivedProductDispenseStatusPreparation,
+		BiologicallyDerivedProductDispenseStatusInProgress,
+		BiologicallyDerivedProductDispenseStatusAllocated,
+		BiologicallyDerivedProductDispenseStatusIssued,
+		BiologicallyDerivedProductDispenseStatusUnfulfilled,
+		BiologicallyDerivedProductDispenseStatusReturned,
+		BiologicallyDerivedProductDispenseStatusEnteredInError,
+		BiologicallyDerivedProductDispenseStatusUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c BiologicallyDerivedProductDispenseStatus) Display() string {
+	if info, ok := BiologicallyDerivedProductDispenseStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c BiologicallyDerivedProductDispenseStatus) System() string {
+	return BiologicallyDerivedProductDispenseStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c BiologicallyDerivedProductDispenseStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c BiologicallyDerivedProductDispenseStatus) IsValid() bool {
+	_, ok := BiologicallyDerivedProductDispenseStatusTable[c]
+	return ok
+}
+
+// BundleTypeInfo is the specification's own data for one code.
+type BundleTypeInfo struct {
+	System  string
+	Display string
+}
+
+// BundleTypeTable maps each code to what the specification says about it.
+var BundleTypeTable = map[BundleType]BundleTypeInfo{
+	BundleTypeDocument:                 {"http://hl7.org/fhir/bundle-type", "Document"},
+	BundleTypeMessage:                  {"http://hl7.org/fhir/bundle-type", "Message"},
+	BundleTypeTransaction:              {"http://hl7.org/fhir/bundle-type", "Transaction"},
+	BundleTypeTransactionResponse:      {"http://hl7.org/fhir/bundle-type", "Transaction Response"},
+	BundleTypeBatch:                    {"http://hl7.org/fhir/bundle-type", "Batch"},
+	BundleTypeBatchResponse:            {"http://hl7.org/fhir/bundle-type", "Batch Response"},
+	BundleTypeHistory:                  {"http://hl7.org/fhir/bundle-type", "History List"},
+	BundleTypeSearchset:                {"http://hl7.org/fhir/bundle-type", "Search Results"},
+	BundleTypeCollection:               {"http://hl7.org/fhir/bundle-type", "Collection"},
+	BundleTypeSubscriptionNotification: {"http://hl7.org/fhir/bundle-type", "Subscription Notification"},
+}
+
+// BundleTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func BundleTypeValues() []BundleType {
+	return []BundleType{
+		BundleTypeDocument,
+		BundleTypeMessage,
+		BundleTypeTransaction,
+		BundleTypeTransactionResponse,
+		BundleTypeBatch,
+		BundleTypeBatchResponse,
+		BundleTypeHistory,
+		BundleTypeSearchset,
+		BundleTypeCollection,
+		BundleTypeSubscriptionNotification,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c BundleType) Display() string {
+	if info, ok := BundleTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c BundleType) System() string {
+	return BundleTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c BundleType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c BundleType) IsValid() bool {
+	_, ok := BundleTypeTable[c]
+	return ok
+}
+
+// CapabilityStatementKindInfo is the specification's own data for one code.
+type CapabilityStatementKindInfo struct {
+	System  string
+	Display string
+}
+
+// CapabilityStatementKindTable maps each code to what the specification says about it.
+var CapabilityStatementKindTable = map[CapabilityStatementKind]CapabilityStatementKindInfo{
+	CapabilityStatementKindInstance:     {"http://hl7.org/fhir/capability-statement-kind", "Instance"},
+	CapabilityStatementKindCapability:   {"http://hl7.org/fhir/capability-statement-kind", "Capability"},
+	CapabilityStatementKindRequirements: {"http://hl7.org/fhir/capability-statement-kind", "Requirements"},
+}
+
+// CapabilityStatementKindValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func CapabilityStatementKindValues() []CapabilityStatementKind {
+	return []CapabilityStatementKind{
+		CapabilityStatementKindInstance,
+		CapabilityStatementKindCapability,
+		CapabilityStatementKindRequirements,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c CapabilityStatementKind) Display() string {
+	if info, ok := CapabilityStatementKindTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c CapabilityStatementKind) System() string {
+	return CapabilityStatementKindTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c CapabilityStatementKind) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c CapabilityStatementKind) IsValid() bool {
+	_, ok := CapabilityStatementKindTable[c]
+	return ok
+}
+
+// CarePlanIntentInfo is the specification's own data for one code.
+type CarePlanIntentInfo struct {
+	System  string
+	Display string
+}
+
+// CarePlanIntentTable maps each code to what the specification says about it.
+var CarePlanIntentTable = map[CarePlanIntent]CarePlanIntentInfo{
+	CarePlanIntentProposal:  {"http://hl7.org/fhir/request-intent", ""},
+	CarePlanIntentPlan:      {"http://hl7.org/fhir/request-intent", ""},
+	CarePlanIntentOrder:     {"http://hl7.org/fhir/request-intent", ""},
+	CarePlanIntentOption:    {"http://hl7.org/fhir/request-intent", ""},
+	CarePlanIntentDirective: {"http://hl7.org/fhir/request-intent", ""},
+}
+
+// CarePlanIntentValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func CarePlanIntentValues() []CarePlanIntent {
+	return []CarePlanIntent{
+		CarePlanIntentProposal,
+		CarePlanIntentPlan,
+		CarePlanIntentOrder,
+		CarePlanIntentOption,
+		CarePlanIntentDirective,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c CarePlanIntent) Display() string {
+	if info, ok := CarePlanIntentTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c CarePlanIntent) System() string {
+	return CarePlanIntentTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c CarePlanIntent) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c CarePlanIntent) IsValid() bool {
+	_, ok := CarePlanIntentTable[c]
+	return ok
+}
+
+// CareTeamStatusInfo is the specification's own data for one code.
+type CareTeamStatusInfo struct {
+	System  string
+	Display string
+}
+
+// CareTeamStatusTable maps each code to what the specification says about it.
+var CareTeamStatusTable = map[CareTeamStatus]CareTeamStatusInfo{
+	CareTeamStatusProposed:       {"http://hl7.org/fhir/care-team-status", "Proposed"},
+	CareTeamStatusActive:         {"http://hl7.org/fhir/care-team-status", "Active"},
+	CareTeamStatusSuspended:      {"http://hl7.org/fhir/care-team-status", "Suspended"},
+	CareTeamStatusInactive:       {"http://hl7.org/fhir/care-team-status", "Inactive"},
+	CareTeamStatusEnteredInError: {"http://hl7.org/fhir/care-team-status", "Entered in Error"},
+}
+
+// CareTeamStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func CareTeamStatusValues() []CareTeamStatus {
+	return []CareTeamStatus{
+		CareTeamStatusProposed,
+		CareTeamStatusActive,
+		CareTeamStatusSuspended,
+		CareTeamStatusInactive,
+		CareTeamStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c CareTeamStatus) Display() string {
+	if info, ok := CareTeamStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c CareTeamStatus) System() string {
+	return CareTeamStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c CareTeamStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c CareTeamStatus) IsValid() bool {
+	_, ok := CareTeamStatusTable[c]
+	return ok
+}
+
+// CharacteristicCombinationInfo is the specification's own data for one code.
+type CharacteristicCombinationInfo struct {
+	System  string
+	Display string
+}
+
+// CharacteristicCombinationTable maps each code to what the specification says about it.
+var CharacteristicCombinationTable = map[CharacteristicCombination]CharacteristicCombinationInfo{
+	CharacteristicCombinationAllOf:       {"http://hl7.org/fhir/characteristic-combination", "All of"},
+	CharacteristicCombinationAnyOf:       {"http://hl7.org/fhir/characteristic-combination", "Any of"},
+	CharacteristicCombinationAtLeast:     {"http://hl7.org/fhir/characteristic-combination", "At least"},
+	CharacteristicCombinationAtMost:      {"http://hl7.org/fhir/characteristic-combination", "At most"},
+	CharacteristicCombinationStatistical: {"http://hl7.org/fhir/characteristic-combination", "Statistical"},
+	CharacteristicCombinationNetEffect:   {"http://hl7.org/fhir/characteristic-combination", "Net effect"},
+	CharacteristicCombinationDataset:     {"http://hl7.org/fhir/characteristic-combination", "Dataset"},
+}
+
+// CharacteristicCombinationValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func CharacteristicCombinationValues() []CharacteristicCombination {
+	return []CharacteristicCombination{
+		CharacteristicCombinationAllOf,
+		CharacteristicCombinationAnyOf,
+		CharacteristicCombinationAtLeast,
+		CharacteristicCombinationAtMost,
+		CharacteristicCombinationStatistical,
+		CharacteristicCombinationNetEffect,
+		CharacteristicCombinationDataset,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c CharacteristicCombination) Display() string {
+	if info, ok := CharacteristicCombinationTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c CharacteristicCombination) System() string {
+	return CharacteristicCombinationTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c CharacteristicCombination) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c CharacteristicCombination) IsValid() bool {
+	_, ok := CharacteristicCombinationTable[c]
+	return ok
+}
+
+// ChargeItemStatusInfo is the specification's own data for one code.
+type ChargeItemStatusInfo struct {
+	System  string
+	Display string
+}
+
+// ChargeItemStatusTable maps each code to what the specification says about it.
+var ChargeItemStatusTable = map[ChargeItemStatus]ChargeItemStatusInfo{
+	ChargeItemStatusPlanned:        {"http://hl7.org/fhir/chargeitem-status", "Planned"},
+	ChargeItemStatusBillable:       {"http://hl7.org/fhir/chargeitem-status", "Billable"},
+	ChargeItemStatusNotBillable:    {"http://hl7.org/fhir/chargeitem-status", "Not billable"},
+	ChargeItemStatusAborted:        {"http://hl7.org/fhir/chargeitem-status", "Aborted"},
+	ChargeItemStatusBilled:         {"http://hl7.org/fhir/chargeitem-status", "Billed"},
+	ChargeItemStatusEnteredInError: {"http://hl7.org/fhir/chargeitem-status", "Entered in Error"},
+	ChargeItemStatusUnknown:        {"http://hl7.org/fhir/chargeitem-status", "Unknown"},
+}
+
+// ChargeItemStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ChargeItemStatusValues() []ChargeItemStatus {
+	return []ChargeItemStatus{
+		ChargeItemStatusPlanned,
+		ChargeItemStatusBillable,
+		ChargeItemStatusNotBillable,
+		ChargeItemStatusAborted,
+		ChargeItemStatusBilled,
+		ChargeItemStatusEnteredInError,
+		ChargeItemStatusUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ChargeItemStatus) Display() string {
+	if info, ok := ChargeItemStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ChargeItemStatus) System() string {
+	return ChargeItemStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ChargeItemStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ChargeItemStatus) IsValid() bool {
+	_, ok := ChargeItemStatusTable[c]
+	return ok
+}
+
+// ClaimProcessingCodesInfo is the specification's own data for one code.
+type ClaimProcessingCodesInfo struct {
+	System  string
+	Display string
+}
+
+// ClaimProcessingCodesTable maps each code to what the specification says about it.
+var ClaimProcessingCodesTable = map[ClaimProcessingCodes]ClaimProcessingCodesInfo{
+	ClaimProcessingCodesQueued:   {"http://hl7.org/fhir/claim-outcome", "Queued"},
+	ClaimProcessingCodesComplete: {"http://hl7.org/fhir/claim-outcome", "Processing Complete"},
+	ClaimProcessingCodesError:    {"http://hl7.org/fhir/claim-outcome", "Error"},
+	ClaimProcessingCodesPartial:  {"http://hl7.org/fhir/claim-outcome", "Partial Processing"},
+}
+
+// ClaimProcessingCodesValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ClaimProcessingCodesValues() []ClaimProcessingCodes {
+	return []ClaimProcessingCodes{
+		ClaimProcessingCodesQueued,
+		ClaimProcessingCodesComplete,
+		ClaimProcessingCodesError,
+		ClaimProcessingCodesPartial,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ClaimProcessingCodes) Display() string {
+	if info, ok := ClaimProcessingCodesTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ClaimProcessingCodes) System() string {
+	return ClaimProcessingCodesTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ClaimProcessingCodes) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ClaimProcessingCodes) IsValid() bool {
+	_, ok := ClaimProcessingCodesTable[c]
+	return ok
+}
+
+// UseInfo is the specification's own data for one code.
+type UseInfo struct {
+	System  string
+	Display string
+}
+
+// UseTable maps each code to what the specification says about it.
+var UseTable = map[Use]UseInfo{
+	UseClaim:            {"http://hl7.org/fhir/claim-use", "Claim"},
+	UsePreauthorization: {"http://hl7.org/fhir/claim-use", "Preauthorization"},
+	UsePredetermination: {"http://hl7.org/fhir/claim-use", "Predetermination"},
+}
+
+// UseValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func UseValues() []Use {
+	return []Use{
+		UseClaim,
+		UsePreauthorization,
+		UsePredetermination,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c Use) Display() string {
+	if info, ok := UseTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c Use) System() string {
+	return UseTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c Use) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c Use) IsValid() bool {
+	_, ok := UseTable[c]
+	return ok
+}
+
+// ClinicalUseDefinitionTypeInfo is the specification's own data for one code.
+type ClinicalUseDefinitionTypeInfo struct {
+	System  string
+	Display string
+}
+
+// ClinicalUseDefinitionTypeTable maps each code to what the specification says about it.
+var ClinicalUseDefinitionTypeTable = map[ClinicalUseDefinitionType]ClinicalUseDefinitionTypeInfo{
+	ClinicalUseDefinitionTypeIndication:        {"http://hl7.org/fhir/clinical-use-definition-type", "Indication"},
+	ClinicalUseDefinitionTypeContraindication:  {"http://hl7.org/fhir/clinical-use-definition-type", "Contraindication"},
+	ClinicalUseDefinitionTypeInteraction:       {"http://hl7.org/fhir/clinical-use-definition-type", "Interaction"},
+	ClinicalUseDefinitionTypeUndesirableEffect: {"http://hl7.org/fhir/clinical-use-definition-type", "Undesirable Effect"},
+	ClinicalUseDefinitionTypeWarning:           {"http://hl7.org/fhir/clinical-use-definition-type", "Warning"},
+}
+
+// ClinicalUseDefinitionTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ClinicalUseDefinitionTypeValues() []ClinicalUseDefinitionType {
+	return []ClinicalUseDefinitionType{
+		ClinicalUseDefinitionTypeIndication,
+		ClinicalUseDefinitionTypeContraindication,
+		ClinicalUseDefinitionTypeInteraction,
+		ClinicalUseDefinitionTypeUndesirableEffect,
+		ClinicalUseDefinitionTypeWarning,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ClinicalUseDefinitionType) Display() string {
+	if info, ok := ClinicalUseDefinitionTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ClinicalUseDefinitionType) System() string {
+	return ClinicalUseDefinitionTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ClinicalUseDefinitionType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ClinicalUseDefinitionType) IsValid() bool {
+	_, ok := ClinicalUseDefinitionTypeTable[c]
+	return ok
+}
+
+// CodeSearchSupportInfo is the specification's own data for one code.
+type CodeSearchSupportInfo struct {
+	System  string
+	Display string
+}
+
+// CodeSearchSupportTable maps each code to what the specification says about it.
+var CodeSearchSupportTable = map[CodeSearchSupport]CodeSearchSupportInfo{
+	CodeSearchSupportInCompose:            {"http://hl7.org/fhir/code-search-support", "In Compose"},
+	CodeSearchSupportInExpansion:          {"http://hl7.org/fhir/code-search-support", "In Expansion"},
+	CodeSearchSupportInComposeOrExpansion: {"http://hl7.org/fhir/code-search-support", "In Compose Or Expansion"},
+}
+
+// CodeSearchSupportValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func CodeSearchSupportValues() []CodeSearchSupport {
+	return []CodeSearchSupport{
+		CodeSearchSupportInCompose,
+		CodeSearchSupportInExpansion,
+		CodeSearchSupportInComposeOrExpansion,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c CodeSearchSupport) Display() string {
+	if info, ok := CodeSearchSupportTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c CodeSearchSupport) System() string {
+	return CodeSearchSupportTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c CodeSearchSupport) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c CodeSearchSupport) IsValid() bool {
+	_, ok := CodeSearchSupportTable[c]
+	return ok
+}
+
+// CodeSystemContentModeInfo is the specification's own data for one code.
+type CodeSystemContentModeInfo struct {
+	System  string
+	Display string
+}
+
+// CodeSystemContentModeTable maps each code to what the specification says about it.
+var CodeSystemContentModeTable = map[CodeSystemContentMode]CodeSystemContentModeInfo{
+	CodeSystemContentModeNotPresent: {"http://hl7.org/fhir/codesystem-content-mode", "Not Present"},
+	CodeSystemContentModeExample:    {"http://hl7.org/fhir/codesystem-content-mode", "Example"},
+	CodeSystemContentModeFragment:   {"http://hl7.org/fhir/codesystem-content-mode", "Fragment"},
+	CodeSystemContentModeComplete:   {"http://hl7.org/fhir/codesystem-content-mode", "Complete"},
+	CodeSystemContentModeSupplement: {"http://hl7.org/fhir/codesystem-content-mode", "Supplement"},
+}
+
+// CodeSystemContentModeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func CodeSystemContentModeValues() []CodeSystemContentMode {
+	return []CodeSystemContentMode{
+		CodeSystemContentModeNotPresent,
+		CodeSystemContentModeExample,
+		CodeSystemContentModeFragment,
+		CodeSystemContentModeComplete,
+		CodeSystemContentModeSupplement,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c CodeSystemContentMode) Display() string {
+	if info, ok := CodeSystemContentModeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c CodeSystemContentMode) System() string {
+	return CodeSystemContentModeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c CodeSystemContentMode) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c CodeSystemContentMode) IsValid() bool {
+	_, ok := CodeSystemContentModeTable[c]
+	return ok
+}
+
+// CodeSystemHierarchyMeaningInfo is the specification's own data for one code.
+type CodeSystemHierarchyMeaningInfo struct {
+	System  string
+	Display string
+}
+
+// CodeSystemHierarchyMeaningTable maps each code to what the specification says about it.
+var CodeSystemHierarchyMeaningTable = map[CodeSystemHierarchyMeaning]CodeSystemHierarchyMeaningInfo{
+	CodeSystemHierarchyMeaningGroupedBy:      {"http://hl7.org/fhir/codesystem-hierarchy-meaning", "Grouped By"},
+	CodeSystemHierarchyMeaningIsA:            {"http://hl7.org/fhir/codesystem-hierarchy-meaning", "Is-A"},
+	CodeSystemHierarchyMeaningPartOf:         {"http://hl7.org/fhir/codesystem-hierarchy-meaning", "Part Of"},
+	CodeSystemHierarchyMeaningClassifiedWith: {"http://hl7.org/fhir/codesystem-hierarchy-meaning", "Classified With"},
+}
+
+// CodeSystemHierarchyMeaningValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func CodeSystemHierarchyMeaningValues() []CodeSystemHierarchyMeaning {
+	return []CodeSystemHierarchyMeaning{
+		CodeSystemHierarchyMeaningGroupedBy,
+		CodeSystemHierarchyMeaningIsA,
+		CodeSystemHierarchyMeaningPartOf,
+		CodeSystemHierarchyMeaningClassifiedWith,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c CodeSystemHierarchyMeaning) Display() string {
+	if info, ok := CodeSystemHierarchyMeaningTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c CodeSystemHierarchyMeaning) System() string {
+	return CodeSystemHierarchyMeaningTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c CodeSystemHierarchyMeaning) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c CodeSystemHierarchyMeaning) IsValid() bool {
+	_, ok := CodeSystemHierarchyMeaningTable[c]
+	return ok
+}
+
+// CompartmentTypeInfo is the specification's own data for one code.
+type CompartmentTypeInfo struct {
+	System  string
+	Display string
+}
+
+// CompartmentTypeTable maps each code to what the specification says about it.
+var CompartmentTypeTable = map[CompartmentType]CompartmentTypeInfo{
+	CompartmentTypePatient:       {"http://hl7.org/fhir/compartment-type", "Patient"},
+	CompartmentTypeEncounter:     {"http://hl7.org/fhir/compartment-type", "Encounter"},
+	CompartmentTypeRelatedperson: {"http://hl7.org/fhir/compartment-type", "RelatedPerson"},
+	CompartmentTypePractitioner:  {"http://hl7.org/fhir/compartment-type", "Practitioner"},
+	CompartmentTypeDevice:        {"http://hl7.org/fhir/compartment-type", "Device"},
+	CompartmentTypeEpisodeofcare: {"http://hl7.org/fhir/compartment-type", "EpisodeOfCare"},
+}
+
+// CompartmentTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func CompartmentTypeValues() []CompartmentType {
+	return []CompartmentType{
+		CompartmentTypePatient,
+		CompartmentTypeEncounter,
+		CompartmentTypeRelatedperson,
+		CompartmentTypePractitioner,
+		CompartmentTypeDevice,
+		CompartmentTypeEpisodeofcare,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c CompartmentType) Display() string {
+	if info, ok := CompartmentTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c CompartmentType) System() string {
+	return CompartmentTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c CompartmentType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c CompartmentType) IsValid() bool {
+	_, ok := CompartmentTypeTable[c]
+	return ok
+}
+
+// CompositionStatusInfo is the specification's own data for one code.
+type CompositionStatusInfo struct {
+	System  string
+	Display string
+}
+
+// CompositionStatusTable maps each code to what the specification says about it.
+var CompositionStatusTable = map[CompositionStatus]CompositionStatusInfo{
+	CompositionStatusRegistered:     {"http://hl7.org/fhir/composition-status", "Registered"},
+	CompositionStatusPartial:        {"http://hl7.org/fhir/composition-status", "Partial"},
+	CompositionStatusPreliminary:    {"http://hl7.org/fhir/composition-status", "Preliminary"},
+	CompositionStatusFinal:          {"http://hl7.org/fhir/composition-status", "Final"},
+	CompositionStatusAmended:        {"http://hl7.org/fhir/composition-status", "Amended"},
+	CompositionStatusCorrected:      {"http://hl7.org/fhir/composition-status", "Corrected"},
+	CompositionStatusAppended:       {"http://hl7.org/fhir/composition-status", "Appended"},
+	CompositionStatusCancelled:      {"http://hl7.org/fhir/composition-status", "Cancelled"},
+	CompositionStatusEnteredInError: {"http://hl7.org/fhir/composition-status", "Entered in Error"},
+	CompositionStatusDeprecated:     {"http://hl7.org/fhir/composition-status", "Deprecated"},
+	CompositionStatusUnknown:        {"http://hl7.org/fhir/composition-status", "Unknown"},
+}
+
+// CompositionStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func CompositionStatusValues() []CompositionStatus {
+	return []CompositionStatus{
+		CompositionStatusRegistered,
+		CompositionStatusPartial,
+		CompositionStatusPreliminary,
+		CompositionStatusFinal,
+		CompositionStatusAmended,
+		CompositionStatusCorrected,
+		CompositionStatusAppended,
+		CompositionStatusCancelled,
+		CompositionStatusEnteredInError,
+		CompositionStatusDeprecated,
+		CompositionStatusUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c CompositionStatus) Display() string {
+	if info, ok := CompositionStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c CompositionStatus) System() string {
+	return CompositionStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c CompositionStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c CompositionStatus) IsValid() bool {
+	_, ok := CompositionStatusTable[c]
+	return ok
+}
+
+// ConceptMapRelationshipInfo is the specification's own data for one code.
+type ConceptMapRelationshipInfo struct {
+	System  string
+	Display string
+}
+
+// ConceptMapRelationshipTable maps each code to what the specification says about it.
+var ConceptMapRelationshipTable = map[ConceptMapRelationship]ConceptMapRelationshipInfo{
+	ConceptMapRelationshipRelatedTo:                  {"http://hl7.org/fhir/concept-map-relationship", "Related To"},
+	ConceptMapRelationshipEquivalent:                 {"http://hl7.org/fhir/concept-map-relationship", "Equivalent"},
+	ConceptMapRelationshipSourceIsNarrowerThanTarget: {"http://hl7.org/fhir/concept-map-relationship", "Source Is Narrower Than Target"},
+	ConceptMapRelationshipSourceIsBroaderThanTarget:  {"http://hl7.org/fhir/concept-map-relationship", "Source Is Broader Than Target"},
+	ConceptMapRelationshipNotRelatedTo:               {"http://hl7.org/fhir/concept-map-relationship", "Not Related To"},
+}
+
+// ConceptMapRelationshipValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ConceptMapRelationshipValues() []ConceptMapRelationship {
+	return []ConceptMapRelationship{
+		ConceptMapRelationshipRelatedTo,
+		ConceptMapRelationshipEquivalent,
+		ConceptMapRelationshipSourceIsNarrowerThanTarget,
+		ConceptMapRelationshipSourceIsBroaderThanTarget,
+		ConceptMapRelationshipNotRelatedTo,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ConceptMapRelationship) Display() string {
+	if info, ok := ConceptMapRelationshipTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ConceptMapRelationship) System() string {
+	return ConceptMapRelationshipTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ConceptMapRelationship) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ConceptMapRelationship) IsValid() bool {
+	_, ok := ConceptMapRelationshipTable[c]
+	return ok
+}
+
+// PropertyTypeInfo is the specification's own data for one code.
+type PropertyTypeInfo struct {
+	System  string
+	Display string
+}
+
+// PropertyTypeTable maps each code to what the specification says about it.
+var PropertyTypeTable = map[PropertyType]PropertyTypeInfo{
+	PropertyTypeCode:     {"http://hl7.org/fhir/concept-property-type", "code (internal reference)"},
+	PropertyTypeCoding:   {"http://hl7.org/fhir/concept-property-type", "Coding (external reference)"},
+	PropertyTypeString:   {"http://hl7.org/fhir/concept-property-type", "string"},
+	PropertyTypeInteger:  {"http://hl7.org/fhir/concept-property-type", "integer"},
+	PropertyTypeBoolean:  {"http://hl7.org/fhir/concept-property-type", "boolean"},
+	PropertyTypeDatetime: {"http://hl7.org/fhir/concept-property-type", "dateTime"},
+	PropertyTypeDecimal:  {"http://hl7.org/fhir/concept-property-type", "decimal"},
+}
+
+// PropertyTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func PropertyTypeValues() []PropertyType {
+	return []PropertyType{
+		PropertyTypeCode,
+		PropertyTypeCoding,
+		PropertyTypeString,
+		PropertyTypeInteger,
+		PropertyTypeBoolean,
+		PropertyTypeDatetime,
+		PropertyTypeDecimal,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c PropertyType) Display() string {
+	if info, ok := PropertyTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c PropertyType) System() string {
+	return PropertyTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c PropertyType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c PropertyType) IsValid() bool {
+	_, ok := PropertyTypeTable[c]
+	return ok
+}
+
+// ConceptMapAttributeTypeInfo is the specification's own data for one code.
+type ConceptMapAttributeTypeInfo struct {
+	System  string
+	Display string
+}
+
+// ConceptMapAttributeTypeTable maps each code to what the specification says about it.
+var ConceptMapAttributeTypeTable = map[ConceptMapAttributeType]ConceptMapAttributeTypeInfo{
+	ConceptMapAttributeTypeCode:     {"http://hl7.org/fhir/conceptmap-attribute-type", "code"},
+	ConceptMapAttributeTypeCoding:   {"http://hl7.org/fhir/conceptmap-attribute-type", "Coding"},
+	ConceptMapAttributeTypeString:   {"http://hl7.org/fhir/conceptmap-attribute-type", "string"},
+	ConceptMapAttributeTypeBoolean:  {"http://hl7.org/fhir/conceptmap-attribute-type", "boolean"},
+	ConceptMapAttributeTypeQuantity: {"http://hl7.org/fhir/conceptmap-attribute-type", "Quantity"},
+}
+
+// ConceptMapAttributeTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ConceptMapAttributeTypeValues() []ConceptMapAttributeType {
+	return []ConceptMapAttributeType{
+		ConceptMapAttributeTypeCode,
+		ConceptMapAttributeTypeCoding,
+		ConceptMapAttributeTypeString,
+		ConceptMapAttributeTypeBoolean,
+		ConceptMapAttributeTypeQuantity,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ConceptMapAttributeType) Display() string {
+	if info, ok := ConceptMapAttributeTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ConceptMapAttributeType) System() string {
+	return ConceptMapAttributeTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ConceptMapAttributeType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ConceptMapAttributeType) IsValid() bool {
+	_, ok := ConceptMapAttributeTypeTable[c]
+	return ok
+}
+
+// ConceptMapPropertyTypeInfo is the specification's own data for one code.
+type ConceptMapPropertyTypeInfo struct {
+	System  string
+	Display string
+}
+
+// ConceptMapPropertyTypeTable maps each code to what the specification says about it.
+var ConceptMapPropertyTypeTable = map[ConceptMapPropertyType]ConceptMapPropertyTypeInfo{
+	ConceptMapPropertyTypeCoding:   {"http://hl7.org/fhir/conceptmap-property-type", "Coding (external reference)"},
+	ConceptMapPropertyTypeString:   {"http://hl7.org/fhir/conceptmap-property-type", "string"},
+	ConceptMapPropertyTypeInteger:  {"http://hl7.org/fhir/conceptmap-property-type", "integer"},
+	ConceptMapPropertyTypeBoolean:  {"http://hl7.org/fhir/conceptmap-property-type", "boolean"},
+	ConceptMapPropertyTypeDatetime: {"http://hl7.org/fhir/conceptmap-property-type", "dateTime"},
+	ConceptMapPropertyTypeDecimal:  {"http://hl7.org/fhir/conceptmap-property-type", "decimal"},
+	ConceptMapPropertyTypeCode:     {"http://hl7.org/fhir/conceptmap-property-type", "code"},
+}
+
+// ConceptMapPropertyTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ConceptMapPropertyTypeValues() []ConceptMapPropertyType {
+	return []ConceptMapPropertyType{
+		ConceptMapPropertyTypeCoding,
+		ConceptMapPropertyTypeString,
+		ConceptMapPropertyTypeInteger,
+		ConceptMapPropertyTypeBoolean,
+		ConceptMapPropertyTypeDatetime,
+		ConceptMapPropertyTypeDecimal,
+		ConceptMapPropertyTypeCode,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ConceptMapPropertyType) Display() string {
+	if info, ok := ConceptMapPropertyTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ConceptMapPropertyType) System() string {
+	return ConceptMapPropertyTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ConceptMapPropertyType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ConceptMapPropertyType) IsValid() bool {
+	_, ok := ConceptMapPropertyTypeTable[c]
+	return ok
+}
+
+// ConceptMapGroupUnmappedModeInfo is the specification's own data for one code.
+type ConceptMapGroupUnmappedModeInfo struct {
+	System  string
+	Display string
+}
+
+// ConceptMapGroupUnmappedModeTable maps each code to what the specification says about it.
+var ConceptMapGroupUnmappedModeTable = map[ConceptMapGroupUnmappedMode]ConceptMapGroupUnmappedModeInfo{
+	ConceptMapGroupUnmappedModeUseSourceCode: {"http://hl7.org/fhir/conceptmap-unmapped-mode", "Use Provided Source Code"},
+	ConceptMapGroupUnmappedModeFixed:         {"http://hl7.org/fhir/conceptmap-unmapped-mode", "Fixed Code"},
+	ConceptMapGroupUnmappedModeOtherMap:      {"http://hl7.org/fhir/conceptmap-unmapped-mode", "Other Map"},
+}
+
+// ConceptMapGroupUnmappedModeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ConceptMapGroupUnmappedModeValues() []ConceptMapGroupUnmappedMode {
+	return []ConceptMapGroupUnmappedMode{
+		ConceptMapGroupUnmappedModeUseSourceCode,
+		ConceptMapGroupUnmappedModeFixed,
+		ConceptMapGroupUnmappedModeOtherMap,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ConceptMapGroupUnmappedMode) Display() string {
+	if info, ok := ConceptMapGroupUnmappedModeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ConceptMapGroupUnmappedMode) System() string {
+	return ConceptMapGroupUnmappedModeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ConceptMapGroupUnmappedMode) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ConceptMapGroupUnmappedMode) IsValid() bool {
+	_, ok := ConceptMapGroupUnmappedModeTable[c]
+	return ok
+}
+
+// ConditionPreconditionTypeInfo is the specification's own data for one code.
+type ConditionPreconditionTypeInfo struct {
+	System  string
+	Display string
+}
+
+// ConditionPreconditionTypeTable maps each code to what the specification says about it.
+var ConditionPreconditionTypeTable = map[ConditionPreconditionType]ConditionPreconditionTypeInfo{
+	ConditionPreconditionTypeSensitive: {"http://hl7.org/fhir/condition-precondition-type", "Sensitive"},
+	ConditionPreconditionTypeSpecific:  {"http://hl7.org/fhir/condition-precondition-type", "Specific"},
+}
+
+// ConditionPreconditionTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ConditionPreconditionTypeValues() []ConditionPreconditionType {
+	return []ConditionPreconditionType{
+		ConditionPreconditionTypeSensitive,
+		ConditionPreconditionTypeSpecific,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ConditionPreconditionType) Display() string {
+	if info, ok := ConditionPreconditionTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ConditionPreconditionType) System() string {
+	return ConditionPreconditionTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ConditionPreconditionType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ConditionPreconditionType) IsValid() bool {
+	_, ok := ConditionPreconditionTypeTable[c]
+	return ok
+}
+
+// ConditionQuestionnairePurposeInfo is the specification's own data for one code.
+type ConditionQuestionnairePurposeInfo struct {
+	System  string
+	Display string
+}
+
+// ConditionQuestionnairePurposeTable maps each code to what the specification says about it.
+var ConditionQuestionnairePurposeTable = map[ConditionQuestionnairePurpose]ConditionQuestionnairePurposeInfo{
+	ConditionQuestionnairePurposePreadmit:      {"http://hl7.org/fhir/condition-questionnaire-purpose", "Pre-admit"},
+	ConditionQuestionnairePurposeDiffDiagnosis: {"http://hl7.org/fhir/condition-questionnaire-purpose", "Diff Diagnosis"},
+	ConditionQuestionnairePurposeOutcome:       {"http://hl7.org/fhir/condition-questionnaire-purpose", "Outcome"},
+}
+
+// ConditionQuestionnairePurposeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ConditionQuestionnairePurposeValues() []ConditionQuestionnairePurpose {
+	return []ConditionQuestionnairePurpose{
+		ConditionQuestionnairePurposePreadmit,
+		ConditionQuestionnairePurposeDiffDiagnosis,
+		ConditionQuestionnairePurposeOutcome,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ConditionQuestionnairePurpose) Display() string {
+	if info, ok := ConditionQuestionnairePurposeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ConditionQuestionnairePurpose) System() string {
+	return ConditionQuestionnairePurposeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ConditionQuestionnairePurpose) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ConditionQuestionnairePurpose) IsValid() bool {
+	_, ok := ConditionQuestionnairePurposeTable[c]
+	return ok
+}
+
+// ConditionalDeleteStatusInfo is the specification's own data for one code.
+type ConditionalDeleteStatusInfo struct {
+	System  string
+	Display string
+}
+
+// ConditionalDeleteStatusTable maps each code to what the specification says about it.
+var ConditionalDeleteStatusTable = map[ConditionalDeleteStatus]ConditionalDeleteStatusInfo{
+	ConditionalDeleteStatusNotSupported: {"http://hl7.org/fhir/conditional-delete-status", "Not Supported"},
+	ConditionalDeleteStatusSingle:       {"http://hl7.org/fhir/conditional-delete-status", "Single Deletes Supported"},
+	ConditionalDeleteStatusMultiple:     {"http://hl7.org/fhir/conditional-delete-status", "Multiple Deletes Supported"},
+}
+
+// ConditionalDeleteStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ConditionalDeleteStatusValues() []ConditionalDeleteStatus {
+	return []ConditionalDeleteStatus{
+		ConditionalDeleteStatusNotSupported,
+		ConditionalDeleteStatusSingle,
+		ConditionalDeleteStatusMultiple,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ConditionalDeleteStatus) Display() string {
+	if info, ok := ConditionalDeleteStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ConditionalDeleteStatus) System() string {
+	return ConditionalDeleteStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ConditionalDeleteStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ConditionalDeleteStatus) IsValid() bool {
+	_, ok := ConditionalDeleteStatusTable[c]
+	return ok
+}
+
+// ConditionalReadStatusInfo is the specification's own data for one code.
+type ConditionalReadStatusInfo struct {
+	System  string
+	Display string
+}
+
+// ConditionalReadStatusTable maps each code to what the specification says about it.
+var ConditionalReadStatusTable = map[ConditionalReadStatus]ConditionalReadStatusInfo{
+	ConditionalReadStatusNotSupported:  {"http://hl7.org/fhir/conditional-read-status", "Not Supported"},
+	ConditionalReadStatusModifiedSince: {"http://hl7.org/fhir/conditional-read-status", "If-Modified-Since"},
+	ConditionalReadStatusNotMatch:      {"http://hl7.org/fhir/conditional-read-status", "If-None-Match"},
+	ConditionalReadStatusFullSupport:   {"http://hl7.org/fhir/conditional-read-status", "Full Support"},
+}
+
+// ConditionalReadStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ConditionalReadStatusValues() []ConditionalReadStatus {
+	return []ConditionalReadStatus{
+		ConditionalReadStatusNotSupported,
+		ConditionalReadStatusModifiedSince,
+		ConditionalReadStatusNotMatch,
+		ConditionalReadStatusFullSupport,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ConditionalReadStatus) Display() string {
+	if info, ok := ConditionalReadStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ConditionalReadStatus) System() string {
+	return ConditionalReadStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ConditionalReadStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ConditionalReadStatus) IsValid() bool {
+	_, ok := ConditionalReadStatusTable[c]
+	return ok
+}
+
+// ConformanceExpectationInfo is the specification's own data for one code.
+type ConformanceExpectationInfo struct {
+	System  string
+	Display string
+}
+
+// ConformanceExpectationTable maps each code to what the specification says about it.
+var ConformanceExpectationTable = map[ConformanceExpectation]ConformanceExpectationInfo{
+	ConformanceExpectationShall:     {"http://hl7.org/fhir/conformance-expectation", "SHALL"},
+	ConformanceExpectationShould:    {"http://hl7.org/fhir/conformance-expectation", "SHOULD"},
+	ConformanceExpectationMay:       {"http://hl7.org/fhir/conformance-expectation", "MAY"},
+	ConformanceExpectationShouldNot: {"http://hl7.org/fhir/conformance-expectation", "SHOULD-NOT"},
+}
+
+// ConformanceExpectationValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ConformanceExpectationValues() []ConformanceExpectation {
+	return []ConformanceExpectation{
+		ConformanceExpectationShall,
+		ConformanceExpectationShould,
+		ConformanceExpectationMay,
+		ConformanceExpectationShouldNot,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ConformanceExpectation) Display() string {
+	if info, ok := ConformanceExpectationTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ConformanceExpectation) System() string {
+	return ConformanceExpectationTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ConformanceExpectation) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ConformanceExpectation) IsValid() bool {
+	_, ok := ConformanceExpectationTable[c]
+	return ok
+}
+
+// ConsentDataMeaningInfo is the specification's own data for one code.
+type ConsentDataMeaningInfo struct {
+	System  string
+	Display string
+}
+
+// ConsentDataMeaningTable maps each code to what the specification says about it.
+var ConsentDataMeaningTable = map[ConsentDataMeaning]ConsentDataMeaningInfo{
+	ConsentDataMeaningInstance:   {"http://hl7.org/fhir/consent-data-meaning", "Instance"},
+	ConsentDataMeaningRelated:    {"http://hl7.org/fhir/consent-data-meaning", "Related"},
+	ConsentDataMeaningDependents: {"http://hl7.org/fhir/consent-data-meaning", "Dependents"},
+	ConsentDataMeaningAuthoredby: {"http://hl7.org/fhir/consent-data-meaning", "AuthoredBy"},
+}
+
+// ConsentDataMeaningValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ConsentDataMeaningValues() []ConsentDataMeaning {
+	return []ConsentDataMeaning{
+		ConsentDataMeaningInstance,
+		ConsentDataMeaningRelated,
+		ConsentDataMeaningDependents,
+		ConsentDataMeaningAuthoredby,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ConsentDataMeaning) Display() string {
+	if info, ok := ConsentDataMeaningTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ConsentDataMeaning) System() string {
+	return ConsentDataMeaningTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ConsentDataMeaning) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ConsentDataMeaning) IsValid() bool {
+	_, ok := ConsentDataMeaningTable[c]
+	return ok
+}
+
+// ConsentProvisionTypeInfo is the specification's own data for one code.
+type ConsentProvisionTypeInfo struct {
+	System  string
+	Display string
+}
+
+// ConsentProvisionTypeTable maps each code to what the specification says about it.
+var ConsentProvisionTypeTable = map[ConsentProvisionType]ConsentProvisionTypeInfo{
+	ConsentProvisionTypeDeny:   {"http://hl7.org/fhir/consent-provision-type", "Deny"},
+	ConsentProvisionTypePermit: {"http://hl7.org/fhir/consent-provision-type", "Permit"},
+}
+
+// ConsentProvisionTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ConsentProvisionTypeValues() []ConsentProvisionType {
+	return []ConsentProvisionType{
+		ConsentProvisionTypeDeny,
+		ConsentProvisionTypePermit,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ConsentProvisionType) Display() string {
+	if info, ok := ConsentProvisionTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ConsentProvisionType) System() string {
+	return ConsentProvisionTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ConsentProvisionType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ConsentProvisionType) IsValid() bool {
+	_, ok := ConsentProvisionTypeTable[c]
+	return ok
+}
+
+// ConsentStateInfo is the specification's own data for one code.
+type ConsentStateInfo struct {
+	System  string
+	Display string
+}
+
+// ConsentStateTable maps each code to what the specification says about it.
+var ConsentStateTable = map[ConsentState]ConsentStateInfo{
+	ConsentStateDraft:          {"http://hl7.org/fhir/consent-state-codes", "Pending"},
+	ConsentStateActive:         {"http://hl7.org/fhir/consent-state-codes", "Active"},
+	ConsentStateInactive:       {"http://hl7.org/fhir/consent-state-codes", "Inactive"},
+	ConsentStateNotDone:        {"http://hl7.org/fhir/consent-state-codes", "Abandoned"},
+	ConsentStateEnteredInError: {"http://hl7.org/fhir/consent-state-codes", "Entered in Error"},
+	ConsentStateUnknown:        {"http://hl7.org/fhir/consent-state-codes", "Unknown"},
+}
+
+// ConsentStateValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ConsentStateValues() []ConsentState {
+	return []ConsentState{
+		ConsentStateDraft,
+		ConsentStateActive,
+		ConsentStateInactive,
+		ConsentStateNotDone,
+		ConsentStateEnteredInError,
+		ConsentStateUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ConsentState) Display() string {
+	if info, ok := ConsentStateTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ConsentState) System() string {
+	return ConsentStateTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ConsentState) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ConsentState) IsValid() bool {
+	_, ok := ConsentStateTable[c]
+	return ok
+}
+
+// ConstraintSeverityInfo is the specification's own data for one code.
+type ConstraintSeverityInfo struct {
+	System  string
+	Display string
+}
+
+// ConstraintSeverityTable maps each code to what the specification says about it.
+var ConstraintSeverityTable = map[ConstraintSeverity]ConstraintSeverityInfo{
+	ConstraintSeverityError:   {"http://hl7.org/fhir/constraint-severity", "Error"},
+	ConstraintSeverityWarning: {"http://hl7.org/fhir/constraint-severity", "Warning"},
+}
+
+// ConstraintSeverityValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ConstraintSeverityValues() []ConstraintSeverity {
+	return []ConstraintSeverity{
+		ConstraintSeverityError,
+		ConstraintSeverityWarning,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ConstraintSeverity) Display() string {
+	if info, ok := ConstraintSeverityTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ConstraintSeverity) System() string {
+	return ConstraintSeverityTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ConstraintSeverity) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ConstraintSeverity) IsValid() bool {
+	_, ok := ConstraintSeverityTable[c]
+	return ok
+}
+
+// ContactPointSystemInfo is the specification's own data for one code.
+type ContactPointSystemInfo struct {
+	System  string
+	Display string
+}
+
+// ContactPointSystemTable maps each code to what the specification says about it.
+var ContactPointSystemTable = map[ContactPointSystem]ContactPointSystemInfo{
+	ContactPointSystemPhone: {"http://hl7.org/fhir/contact-point-system", "Phone"},
+	ContactPointSystemFax:   {"http://hl7.org/fhir/contact-point-system", "Fax"},
+	ContactPointSystemEmail: {"http://hl7.org/fhir/contact-point-system", "Email"},
+	ContactPointSystemPager: {"http://hl7.org/fhir/contact-point-system", "Pager"},
+	ContactPointSystemUrl:   {"http://hl7.org/fhir/contact-point-system", "URL"},
+	ContactPointSystemSms:   {"http://hl7.org/fhir/contact-point-system", "SMS"},
+	ContactPointSystemOther: {"http://hl7.org/fhir/contact-point-system", "Other"},
+}
+
+// ContactPointSystemValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ContactPointSystemValues() []ContactPointSystem {
+	return []ContactPointSystem{
+		ContactPointSystemPhone,
+		ContactPointSystemFax,
+		ContactPointSystemEmail,
+		ContactPointSystemPager,
+		ContactPointSystemUrl,
+		ContactPointSystemSms,
+		ContactPointSystemOther,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ContactPointSystem) Display() string {
+	if info, ok := ContactPointSystemTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ContactPointSystem) System() string {
+	return ContactPointSystemTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ContactPointSystem) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ContactPointSystem) IsValid() bool {
+	_, ok := ContactPointSystemTable[c]
+	return ok
+}
+
+// ContactPointUseInfo is the specification's own data for one code.
+type ContactPointUseInfo struct {
+	System  string
+	Display string
+}
+
+// ContactPointUseTable maps each code to what the specification says about it.
+var ContactPointUseTable = map[ContactPointUse]ContactPointUseInfo{
+	ContactPointUseHome:   {"http://hl7.org/fhir/contact-point-use", "Home"},
+	ContactPointUseWork:   {"http://hl7.org/fhir/contact-point-use", "Work"},
+	ContactPointUseTemp:   {"http://hl7.org/fhir/contact-point-use", "Temp"},
+	ContactPointUseOld:    {"http://hl7.org/fhir/contact-point-use", "Old"},
+	ContactPointUseMobile: {"http://hl7.org/fhir/contact-point-use", "Mobile"},
+}
+
+// ContactPointUseValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ContactPointUseValues() []ContactPointUse {
+	return []ContactPointUse{
+		ContactPointUseHome,
+		ContactPointUseWork,
+		ContactPointUseTemp,
+		ContactPointUseOld,
+		ContactPointUseMobile,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ContactPointUse) Display() string {
+	if info, ok := ContactPointUseTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ContactPointUse) System() string {
+	return ContactPointUseTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ContactPointUse) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ContactPointUse) IsValid() bool {
+	_, ok := ContactPointUseTable[c]
+	return ok
+}
+
+// ContractPublicationStatusInfo is the specification's own data for one code.
+type ContractPublicationStatusInfo struct {
+	System  string
+	Display string
+}
+
+// ContractPublicationStatusTable maps each code to what the specification says about it.
+var ContractPublicationStatusTable = map[ContractPublicationStatus]ContractPublicationStatusInfo{
+	ContractPublicationStatusAmended:        {"http://hl7.org/fhir/contract-publicationstatus", "Amended"},
+	ContractPublicationStatusAppended:       {"http://hl7.org/fhir/contract-publicationstatus", "Appended"},
+	ContractPublicationStatusCancelled:      {"http://hl7.org/fhir/contract-publicationstatus", "Cancelled"},
+	ContractPublicationStatusDisputed:       {"http://hl7.org/fhir/contract-publicationstatus", "Disputed"},
+	ContractPublicationStatusEnteredInError: {"http://hl7.org/fhir/contract-publicationstatus", "Entered in Error"},
+	ContractPublicationStatusExecutable:     {"http://hl7.org/fhir/contract-publicationstatus", "Executable"},
+	ContractPublicationStatusExecuted:       {"http://hl7.org/fhir/contract-publicationstatus", "Executed"},
+	ContractPublicationStatusNegotiable:     {"http://hl7.org/fhir/contract-publicationstatus", "Negotiable"},
+	ContractPublicationStatusOffered:        {"http://hl7.org/fhir/contract-publicationstatus", "Offered"},
+	ContractPublicationStatusPolicy:         {"http://hl7.org/fhir/contract-publicationstatus", "Policy"},
+	ContractPublicationStatusRejected:       {"http://hl7.org/fhir/contract-publicationstatus", "Rejected"},
+	ContractPublicationStatusRenewed:        {"http://hl7.org/fhir/contract-publicationstatus", "Renewed"},
+	ContractPublicationStatusRevoked:        {"http://hl7.org/fhir/contract-publicationstatus", "Revoked"},
+	ContractPublicationStatusResolved:       {"http://hl7.org/fhir/contract-publicationstatus", "Resolved"},
+	ContractPublicationStatusTerminated:     {"http://hl7.org/fhir/contract-publicationstatus", "Terminated"},
+}
+
+// ContractPublicationStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ContractPublicationStatusValues() []ContractPublicationStatus {
+	return []ContractPublicationStatus{
+		ContractPublicationStatusAmended,
+		ContractPublicationStatusAppended,
+		ContractPublicationStatusCancelled,
+		ContractPublicationStatusDisputed,
+		ContractPublicationStatusEnteredInError,
+		ContractPublicationStatusExecutable,
+		ContractPublicationStatusExecuted,
+		ContractPublicationStatusNegotiable,
+		ContractPublicationStatusOffered,
+		ContractPublicationStatusPolicy,
+		ContractPublicationStatusRejected,
+		ContractPublicationStatusRenewed,
+		ContractPublicationStatusRevoked,
+		ContractPublicationStatusResolved,
+		ContractPublicationStatusTerminated,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ContractPublicationStatus) Display() string {
+	if info, ok := ContractPublicationStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ContractPublicationStatus) System() string {
+	return ContractPublicationStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ContractPublicationStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ContractPublicationStatus) IsValid() bool {
+	_, ok := ContractPublicationStatusTable[c]
+	return ok
+}
+
+// ContractStatusInfo is the specification's own data for one code.
+type ContractStatusInfo struct {
+	System  string
+	Display string
+}
+
+// ContractStatusTable maps each code to what the specification says about it.
+var ContractStatusTable = map[ContractStatus]ContractStatusInfo{
+	ContractStatusAmended:        {"http://hl7.org/fhir/contract-status", "Amended"},
+	ContractStatusAppended:       {"http://hl7.org/fhir/contract-status", "Appended"},
+	ContractStatusCancelled:      {"http://hl7.org/fhir/contract-status", "Cancelled"},
+	ContractStatusDisputed:       {"http://hl7.org/fhir/contract-status", "Disputed"},
+	ContractStatusEnteredInError: {"http://hl7.org/fhir/contract-status", "Entered in Error"},
+	ContractStatusExecutable:     {"http://hl7.org/fhir/contract-status", "Executable"},
+	ContractStatusExecuted:       {"http://hl7.org/fhir/contract-status", "Executed"},
+	ContractStatusNegotiable:     {"http://hl7.org/fhir/contract-status", "Negotiable"},
+	ContractStatusOffered:        {"http://hl7.org/fhir/contract-status", "Offered"},
+	ContractStatusPolicy:         {"http://hl7.org/fhir/contract-status", "Policy"},
+	ContractStatusRejected:       {"http://hl7.org/fhir/contract-status", "Rejected"},
+	ContractStatusRenewed:        {"http://hl7.org/fhir/contract-status", "Renewed"},
+	ContractStatusRevoked:        {"http://hl7.org/fhir/contract-status", "Revoked"},
+	ContractStatusResolved:       {"http://hl7.org/fhir/contract-status", "Resolved"},
+	ContractStatusTerminated:     {"http://hl7.org/fhir/contract-status", "Terminated"},
+}
+
+// ContractStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ContractStatusValues() []ContractStatus {
+	return []ContractStatus{
+		ContractStatusAmended,
+		ContractStatusAppended,
+		ContractStatusCancelled,
+		ContractStatusDisputed,
+		ContractStatusEnteredInError,
+		ContractStatusExecutable,
+		ContractStatusExecuted,
+		ContractStatusNegotiable,
+		ContractStatusOffered,
+		ContractStatusPolicy,
+		ContractStatusRejected,
+		ContractStatusRenewed,
+		ContractStatusRevoked,
+		ContractStatusResolved,
+		ContractStatusTerminated,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ContractStatus) Display() string {
+	if info, ok := ContractStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ContractStatus) System() string {
+	return ContractStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ContractStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ContractStatus) IsValid() bool {
+	_, ok := ContractStatusTable[c]
+	return ok
+}
+
+// ContributorTypeInfo is the specification's own data for one code.
+type ContributorTypeInfo struct {
+	System  string
+	Display string
+}
+
+// ContributorTypeTable maps each code to what the specification says about it.
+var ContributorTypeTable = map[ContributorType]ContributorTypeInfo{
+	ContributorTypeAuthor:   {"http://hl7.org/fhir/contributor-type", "Author"},
+	ContributorTypeEditor:   {"http://hl7.org/fhir/contributor-type", "Editor"},
+	ContributorTypeReviewer: {"http://hl7.org/fhir/contributor-type", "Reviewer"},
+	ContributorTypeEndorser: {"http://hl7.org/fhir/contributor-type", "Endorser"},
+}
+
+// ContributorTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ContributorTypeValues() []ContributorType {
+	return []ContributorType{
+		ContributorTypeAuthor,
+		ContributorTypeEditor,
+		ContributorTypeReviewer,
+		ContributorTypeEndorser,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ContributorType) Display() string {
+	if info, ok := ContributorTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ContributorType) System() string {
+	return ContributorTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ContributorType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ContributorType) IsValid() bool {
+	_, ok := ContributorTypeTable[c]
+	return ok
+}
+
+// CoverageKindInfo is the specification's own data for one code.
+type CoverageKindInfo struct {
+	System  string
+	Display string
+}
+
+// CoverageKindTable maps each code to what the specification says about it.
+var CoverageKindTable = map[CoverageKind]CoverageKindInfo{
+	CoverageKindInsurance: {"http://hl7.org/fhir/coverage-kind", "Insurance"},
+	CoverageKindSelfPay:   {"http://hl7.org/fhir/coverage-kind", "Self-pay"},
+	CoverageKindOther:     {"http://hl7.org/fhir/coverage-kind", "Other"},
+}
+
+// CoverageKindValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func CoverageKindValues() []CoverageKind {
+	return []CoverageKind{
+		CoverageKindInsurance,
+		CoverageKindSelfPay,
+		CoverageKindOther,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c CoverageKind) Display() string {
+	if info, ok := CoverageKindTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c CoverageKind) System() string {
+	return CoverageKindTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c CoverageKind) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c CoverageKind) IsValid() bool {
+	_, ok := CoverageKindTable[c]
+	return ok
+}
+
+// DaysOfWeekInfo is the specification's own data for one code.
+type DaysOfWeekInfo struct {
+	System  string
+	Display string
+}
+
+// DaysOfWeekTable maps each code to what the specification says about it.
+var DaysOfWeekTable = map[DaysOfWeek]DaysOfWeekInfo{
+	DaysOfWeekMon: {"http://hl7.org/fhir/days-of-week", "Monday"},
+	DaysOfWeekTue: {"http://hl7.org/fhir/days-of-week", "Tuesday"},
+	DaysOfWeekWed: {"http://hl7.org/fhir/days-of-week", "Wednesday"},
+	DaysOfWeekThu: {"http://hl7.org/fhir/days-of-week", "Thursday"},
+	DaysOfWeekFri: {"http://hl7.org/fhir/days-of-week", "Friday"},
+	DaysOfWeekSat: {"http://hl7.org/fhir/days-of-week", "Saturday"},
+	DaysOfWeekSun: {"http://hl7.org/fhir/days-of-week", "Sunday"},
+}
+
+// DaysOfWeekValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func DaysOfWeekValues() []DaysOfWeek {
+	return []DaysOfWeek{
+		DaysOfWeekMon,
+		DaysOfWeekTue,
+		DaysOfWeekWed,
+		DaysOfWeekThu,
+		DaysOfWeekFri,
+		DaysOfWeekSat,
+		DaysOfWeekSun,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c DaysOfWeek) Display() string {
+	if info, ok := DaysOfWeekTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c DaysOfWeek) System() string {
+	return DaysOfWeekTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c DaysOfWeek) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c DaysOfWeek) IsValid() bool {
+	_, ok := DaysOfWeekTable[c]
+	return ok
+}
+
+// DetectedIssueSeverityInfo is the specification's own data for one code.
+type DetectedIssueSeverityInfo struct {
+	System  string
+	Display string
+}
+
+// DetectedIssueSeverityTable maps each code to what the specification says about it.
+var DetectedIssueSeverityTable = map[DetectedIssueSeverity]DetectedIssueSeverityInfo{
+	DetectedIssueSeverityHigh:     {"http://hl7.org/fhir/detectedissue-severity", "High"},
+	DetectedIssueSeverityModerate: {"http://hl7.org/fhir/detectedissue-severity", "Moderate"},
+	DetectedIssueSeverityLow:      {"http://hl7.org/fhir/detectedissue-severity", "Low"},
+}
+
+// DetectedIssueSeverityValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func DetectedIssueSeverityValues() []DetectedIssueSeverity {
+	return []DetectedIssueSeverity{
+		DetectedIssueSeverityHigh,
+		DetectedIssueSeverityModerate,
+		DetectedIssueSeverityLow,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c DetectedIssueSeverity) Display() string {
+	if info, ok := DetectedIssueSeverityTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c DetectedIssueSeverity) System() string {
+	return DetectedIssueSeverityTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c DetectedIssueSeverity) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c DetectedIssueSeverity) IsValid() bool {
+	_, ok := DetectedIssueSeverityTable[c]
+	return ok
+}
+
+// DetectedIssueStatusInfo is the specification's own data for one code.
+type DetectedIssueStatusInfo struct {
+	System  string
+	Display string
+}
+
+// DetectedIssueStatusTable maps each code to what the specification says about it.
+var DetectedIssueStatusTable = map[DetectedIssueStatus]DetectedIssueStatusInfo{
+	DetectedIssueStatusPreliminary:    {"http://hl7.org/fhir/observation-status", "Preliminary"},
+	DetectedIssueStatusFinal:          {"http://hl7.org/fhir/observation-status", "Final"},
+	DetectedIssueStatusEnteredInError: {"http://hl7.org/fhir/observation-status", "Entered in Error"},
+	DetectedIssueStatusMitigated:      {"http://hl7.org/fhir/detectedissue-status", "Mitigated"},
+}
+
+// DetectedIssueStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func DetectedIssueStatusValues() []DetectedIssueStatus {
+	return []DetectedIssueStatus{
+		DetectedIssueStatusPreliminary,
+		DetectedIssueStatusFinal,
+		DetectedIssueStatusEnteredInError,
+		DetectedIssueStatusMitigated,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c DetectedIssueStatus) Display() string {
+	if info, ok := DetectedIssueStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c DetectedIssueStatus) System() string {
+	return DetectedIssueStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c DetectedIssueStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c DetectedIssueStatus) IsValid() bool {
+	_, ok := DetectedIssueStatusTable[c]
+	return ok
+}
+
+// DeviceCorrectiveActionScopeInfo is the specification's own data for one code.
+type DeviceCorrectiveActionScopeInfo struct {
+	System  string
+	Display string
+}
+
+// DeviceCorrectiveActionScopeTable maps each code to what the specification says about it.
+var DeviceCorrectiveActionScopeTable = map[DeviceCorrectiveActionScope]DeviceCorrectiveActionScopeInfo{
+	DeviceCorrectiveActionScopeModel:         {"http://hl7.org/fhir/device-correctiveactionscope", "Model"},
+	DeviceCorrectiveActionScopeLotNumbers:    {"http://hl7.org/fhir/device-correctiveactionscope", "Lot Numbers"},
+	DeviceCorrectiveActionScopeSerialNumbers: {"http://hl7.org/fhir/device-correctiveactionscope", "Serial Numbers"},
+}
+
+// DeviceCorrectiveActionScopeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func DeviceCorrectiveActionScopeValues() []DeviceCorrectiveActionScope {
+	return []DeviceCorrectiveActionScope{
+		DeviceCorrectiveActionScopeModel,
+		DeviceCorrectiveActionScopeLotNumbers,
+		DeviceCorrectiveActionScopeSerialNumbers,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c DeviceCorrectiveActionScope) Display() string {
+	if info, ok := DeviceCorrectiveActionScopeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c DeviceCorrectiveActionScope) System() string {
+	return DeviceCorrectiveActionScopeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c DeviceCorrectiveActionScope) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c DeviceCorrectiveActionScope) IsValid() bool {
+	_, ok := DeviceCorrectiveActionScopeTable[c]
+	return ok
+}
+
+// DeviceNameTypeInfo is the specification's own data for one code.
+type DeviceNameTypeInfo struct {
+	System  string
+	Display string
+}
+
+// DeviceNameTypeTable maps each code to what the specification says about it.
+var DeviceNameTypeTable = map[DeviceNameType]DeviceNameTypeInfo{
+	DeviceNameTypeRegisteredName:      {"http://hl7.org/fhir/device-nametype", "Registered name"},
+	DeviceNameTypeUserFriendlyName:    {"http://hl7.org/fhir/device-nametype", "User Friendly name"},
+	DeviceNameTypePatientReportedName: {"http://hl7.org/fhir/device-nametype", "Patient Reported name"},
+}
+
+// DeviceNameTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func DeviceNameTypeValues() []DeviceNameType {
+	return []DeviceNameType{
+		DeviceNameTypeRegisteredName,
+		DeviceNameTypeUserFriendlyName,
+		DeviceNameTypePatientReportedName,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c DeviceNameType) Display() string {
+	if info, ok := DeviceNameTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c DeviceNameType) System() string {
+	return DeviceNameTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c DeviceNameType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c DeviceNameType) IsValid() bool {
+	_, ok := DeviceNameTypeTable[c]
+	return ok
+}
+
+// DeviceProductionIdentifierInUDIInfo is the specification's own data for one code.
+type DeviceProductionIdentifierInUDIInfo struct {
+	System  string
+	Display string
+}
+
+// DeviceProductionIdentifierInUDITable maps each code to what the specification says about it.
+var DeviceProductionIdentifierInUDITable = map[DeviceProductionIdentifierInUDI]DeviceProductionIdentifierInUDIInfo{
+	DeviceProductionIdentifierInUDILotNumber:        {"http://hl7.org/fhir/device-productidentifierinudi", "Lot Number"},
+	DeviceProductionIdentifierInUDIManufacturedDate: {"http://hl7.org/fhir/device-productidentifierinudi", "Manufactured date"},
+	DeviceProductionIdentifierInUDISerialNumber:     {"http://hl7.org/fhir/device-productidentifierinudi", "Serial Number"},
+	DeviceProductionIdentifierInUDIExpirationDate:   {"http://hl7.org/fhir/device-productidentifierinudi", "Expiration date"},
+	DeviceProductionIdentifierInUDIBiologicalSource: {"http://hl7.org/fhir/device-productidentifierinudi", "Biological source"},
+	DeviceProductionIdentifierInUDISoftwareVersion:  {"http://hl7.org/fhir/device-productidentifierinudi", "Software Version"},
+}
+
+// DeviceProductionIdentifierInUDIValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func DeviceProductionIdentifierInUDIValues() []DeviceProductionIdentifierInUDI {
+	return []DeviceProductionIdentifierInUDI{
+		DeviceProductionIdentifierInUDILotNumber,
+		DeviceProductionIdentifierInUDIManufacturedDate,
+		DeviceProductionIdentifierInUDISerialNumber,
+		DeviceProductionIdentifierInUDIExpirationDate,
+		DeviceProductionIdentifierInUDIBiologicalSource,
+		DeviceProductionIdentifierInUDISoftwareVersion,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c DeviceProductionIdentifierInUDI) Display() string {
+	if info, ok := DeviceProductionIdentifierInUDITable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c DeviceProductionIdentifierInUDI) System() string {
+	return DeviceProductionIdentifierInUDITable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c DeviceProductionIdentifierInUDI) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c DeviceProductionIdentifierInUDI) IsValid() bool {
+	_, ok := DeviceProductionIdentifierInUDITable[c]
+	return ok
+}
+
+// FHIRDeviceStatusInfo is the specification's own data for one code.
+type FHIRDeviceStatusInfo struct {
+	System  string
+	Display string
+}
+
+// FHIRDeviceStatusTable maps each code to what the specification says about it.
+var FHIRDeviceStatusTable = map[FHIRDeviceStatus]FHIRDeviceStatusInfo{
+	FHIRDeviceStatusActive:         {"http://hl7.org/fhir/device-status", "Active"},
+	FHIRDeviceStatusInactive:       {"http://hl7.org/fhir/device-status", "Inactive"},
+	FHIRDeviceStatusEnteredInError: {"http://hl7.org/fhir/device-status", "Entered in Error"},
+}
+
+// FHIRDeviceStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func FHIRDeviceStatusValues() []FHIRDeviceStatus {
+	return []FHIRDeviceStatus{
+		FHIRDeviceStatusActive,
+		FHIRDeviceStatusInactive,
+		FHIRDeviceStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c FHIRDeviceStatus) Display() string {
+	if info, ok := FHIRDeviceStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c FHIRDeviceStatus) System() string {
+	return FHIRDeviceStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c FHIRDeviceStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c FHIRDeviceStatus) IsValid() bool {
+	_, ok := FHIRDeviceStatusTable[c]
+	return ok
+}
+
+// DeviceRegulatoryIdentifierTypeInfo is the specification's own data for one code.
+type DeviceRegulatoryIdentifierTypeInfo struct {
+	System  string
+	Display string
+}
+
+// DeviceRegulatoryIdentifierTypeTable maps each code to what the specification says about it.
+var DeviceRegulatoryIdentifierTypeTable = map[DeviceRegulatoryIdentifierType]DeviceRegulatoryIdentifierTypeInfo{
+	DeviceRegulatoryIdentifierTypeBasic:   {"http://hl7.org/fhir/devicedefinition-regulatory-identifier-type", "Basic"},
+	DeviceRegulatoryIdentifierTypeMaster:  {"http://hl7.org/fhir/devicedefinition-regulatory-identifier-type", "Master"},
+	DeviceRegulatoryIdentifierTypeLicense: {"http://hl7.org/fhir/devicedefinition-regulatory-identifier-type", "License"},
+}
+
+// DeviceRegulatoryIdentifierTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func DeviceRegulatoryIdentifierTypeValues() []DeviceRegulatoryIdentifierType {
+	return []DeviceRegulatoryIdentifierType{
+		DeviceRegulatoryIdentifierTypeBasic,
+		DeviceRegulatoryIdentifierTypeMaster,
+		DeviceRegulatoryIdentifierTypeLicense,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c DeviceRegulatoryIdentifierType) Display() string {
+	if info, ok := DeviceRegulatoryIdentifierTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c DeviceRegulatoryIdentifierType) System() string {
+	return DeviceRegulatoryIdentifierTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c DeviceRegulatoryIdentifierType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c DeviceRegulatoryIdentifierType) IsValid() bool {
+	_, ok := DeviceRegulatoryIdentifierTypeTable[c]
+	return ok
+}
+
+// DeviceDispenseStatusInfo is the specification's own data for one code.
+type DeviceDispenseStatusInfo struct {
+	System  string
+	Display string
+}
+
+// DeviceDispenseStatusTable maps each code to what the specification says about it.
+var DeviceDispenseStatusTable = map[DeviceDispenseStatus]DeviceDispenseStatusInfo{
+	DeviceDispenseStatusPreparation:    {"http://hl7.org/fhir/devicedispense-status", "Preparation"},
+	DeviceDispenseStatusInProgress:     {"http://hl7.org/fhir/devicedispense-status", "In Progress"},
+	DeviceDispenseStatusCancelled:      {"http://hl7.org/fhir/devicedispense-status", "Cancelled"},
+	DeviceDispenseStatusOnHold:         {"http://hl7.org/fhir/devicedispense-status", "On Hold"},
+	DeviceDispenseStatusCompleted:      {"http://hl7.org/fhir/devicedispense-status", "Completed"},
+	DeviceDispenseStatusEnteredInError: {"http://hl7.org/fhir/devicedispense-status", "Entered in Error"},
+	DeviceDispenseStatusStopped:        {"http://hl7.org/fhir/devicedispense-status", "Stopped"},
+	DeviceDispenseStatusDeclined:       {"http://hl7.org/fhir/devicedispense-status", "Declined"},
+	DeviceDispenseStatusUnknown:        {"http://hl7.org/fhir/devicedispense-status", "Unknown"},
+}
+
+// DeviceDispenseStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func DeviceDispenseStatusValues() []DeviceDispenseStatus {
+	return []DeviceDispenseStatus{
+		DeviceDispenseStatusPreparation,
+		DeviceDispenseStatusInProgress,
+		DeviceDispenseStatusCancelled,
+		DeviceDispenseStatusOnHold,
+		DeviceDispenseStatusCompleted,
+		DeviceDispenseStatusEnteredInError,
+		DeviceDispenseStatusStopped,
+		DeviceDispenseStatusDeclined,
+		DeviceDispenseStatusUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c DeviceDispenseStatus) Display() string {
+	if info, ok := DeviceDispenseStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c DeviceDispenseStatus) System() string {
+	return DeviceDispenseStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c DeviceDispenseStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c DeviceDispenseStatus) IsValid() bool {
+	_, ok := DeviceDispenseStatusTable[c]
+	return ok
+}
+
+// DeviceUsageStatusInfo is the specification's own data for one code.
+type DeviceUsageStatusInfo struct {
+	System  string
+	Display string
+}
+
+// DeviceUsageStatusTable maps each code to what the specification says about it.
+var DeviceUsageStatusTable = map[DeviceUsageStatus]DeviceUsageStatusInfo{
+	DeviceUsageStatusActive:         {"http://hl7.org/fhir/deviceusage-status", "Active"},
+	DeviceUsageStatusCompleted:      {"http://hl7.org/fhir/deviceusage-status", "Completed"},
+	DeviceUsageStatusNotDone:        {"http://hl7.org/fhir/deviceusage-status", "Not done"},
+	DeviceUsageStatusEnteredInError: {"http://hl7.org/fhir/deviceusage-status", "Entered in Error"},
+	DeviceUsageStatusIntended:       {"http://hl7.org/fhir/deviceusage-status", "Intended"},
+	DeviceUsageStatusStopped:        {"http://hl7.org/fhir/deviceusage-status", "Stopped"},
+	DeviceUsageStatusOnHold:         {"http://hl7.org/fhir/deviceusage-status", "On Hold"},
+}
+
+// DeviceUsageStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func DeviceUsageStatusValues() []DeviceUsageStatus {
+	return []DeviceUsageStatus{
+		DeviceUsageStatusActive,
+		DeviceUsageStatusCompleted,
+		DeviceUsageStatusNotDone,
+		DeviceUsageStatusEnteredInError,
+		DeviceUsageStatusIntended,
+		DeviceUsageStatusStopped,
+		DeviceUsageStatusOnHold,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c DeviceUsageStatus) Display() string {
+	if info, ok := DeviceUsageStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c DeviceUsageStatus) System() string {
+	return DeviceUsageStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c DeviceUsageStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c DeviceUsageStatus) IsValid() bool {
+	_, ok := DeviceUsageStatusTable[c]
+	return ok
+}
+
+// DiagnosticReportStatusInfo is the specification's own data for one code.
+type DiagnosticReportStatusInfo struct {
+	System  string
+	Display string
+}
+
+// DiagnosticReportStatusTable maps each code to what the specification says about it.
+var DiagnosticReportStatusTable = map[DiagnosticReportStatus]DiagnosticReportStatusInfo{
+	DiagnosticReportStatusRegistered:     {"http://hl7.org/fhir/diagnostic-report-status", "Registered"},
+	DiagnosticReportStatusPartial:        {"http://hl7.org/fhir/diagnostic-report-status", "Partial"},
+	DiagnosticReportStatusPreliminary:    {"http://hl7.org/fhir/diagnostic-report-status", "Preliminary"},
+	DiagnosticReportStatusModified:       {"http://hl7.org/fhir/diagnostic-report-status", "Modified"},
+	DiagnosticReportStatusFinal:          {"http://hl7.org/fhir/diagnostic-report-status", "Final"},
+	DiagnosticReportStatusAmended:        {"http://hl7.org/fhir/diagnostic-report-status", "Amended"},
+	DiagnosticReportStatusCorrected:      {"http://hl7.org/fhir/diagnostic-report-status", "Corrected"},
+	DiagnosticReportStatusAppended:       {"http://hl7.org/fhir/diagnostic-report-status", "Appended"},
+	DiagnosticReportStatusCancelled:      {"http://hl7.org/fhir/diagnostic-report-status", "Cancelled"},
+	DiagnosticReportStatusEnteredInError: {"http://hl7.org/fhir/diagnostic-report-status", "Entered in Error"},
+	DiagnosticReportStatusUnknown:        {"http://hl7.org/fhir/diagnostic-report-status", "Unknown"},
+}
+
+// DiagnosticReportStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func DiagnosticReportStatusValues() []DiagnosticReportStatus {
+	return []DiagnosticReportStatus{
+		DiagnosticReportStatusRegistered,
+		DiagnosticReportStatusPartial,
+		DiagnosticReportStatusPreliminary,
+		DiagnosticReportStatusModified,
+		DiagnosticReportStatusFinal,
+		DiagnosticReportStatusAmended,
+		DiagnosticReportStatusCorrected,
+		DiagnosticReportStatusAppended,
+		DiagnosticReportStatusCancelled,
+		DiagnosticReportStatusEnteredInError,
+		DiagnosticReportStatusUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c DiagnosticReportStatus) Display() string {
+	if info, ok := DiagnosticReportStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c DiagnosticReportStatus) System() string {
+	return DiagnosticReportStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c DiagnosticReportStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c DiagnosticReportStatus) IsValid() bool {
+	_, ok := DiagnosticReportStatusTable[c]
+	return ok
+}
+
+// DiscriminatorTypeInfo is the specification's own data for one code.
+type DiscriminatorTypeInfo struct {
+	System  string
+	Display string
+}
+
+// DiscriminatorTypeTable maps each code to what the specification says about it.
+var DiscriminatorTypeTable = map[DiscriminatorType]DiscriminatorTypeInfo{
+	DiscriminatorTypeValue:    {"http://hl7.org/fhir/discriminator-type", "Value"},
+	DiscriminatorTypeExists:   {"http://hl7.org/fhir/discriminator-type", "Exists"},
+	DiscriminatorTypePattern:  {"http://hl7.org/fhir/discriminator-type", "Pattern"},
+	DiscriminatorTypeType:     {"http://hl7.org/fhir/discriminator-type", "Type"},
+	DiscriminatorTypeProfile:  {"http://hl7.org/fhir/discriminator-type", "Profile"},
+	DiscriminatorTypePosition: {"http://hl7.org/fhir/discriminator-type", "Position"},
+}
+
+// DiscriminatorTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func DiscriminatorTypeValues() []DiscriminatorType {
+	return []DiscriminatorType{
+		DiscriminatorTypeValue,
+		DiscriminatorTypeExists,
+		DiscriminatorTypePattern,
+		DiscriminatorTypeType,
+		DiscriminatorTypeProfile,
+		DiscriminatorTypePosition,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c DiscriminatorType) Display() string {
+	if info, ok := DiscriminatorTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c DiscriminatorType) System() string {
+	return DiscriminatorTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c DiscriminatorType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c DiscriminatorType) IsValid() bool {
+	_, ok := DiscriminatorTypeTable[c]
+	return ok
+}
+
+// DocumentModeInfo is the specification's own data for one code.
+type DocumentModeInfo struct {
+	System  string
+	Display string
+}
+
+// DocumentModeTable maps each code to what the specification says about it.
+var DocumentModeTable = map[DocumentMode]DocumentModeInfo{
+	DocumentModeProducer: {"http://hl7.org/fhir/document-mode", "Producer"},
+	DocumentModeConsumer: {"http://hl7.org/fhir/document-mode", "Consumer"},
+}
+
+// DocumentModeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func DocumentModeValues() []DocumentMode {
+	return []DocumentMode{
+		DocumentModeProducer,
+		DocumentModeConsumer,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c DocumentMode) Display() string {
+	if info, ok := DocumentModeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c DocumentMode) System() string {
+	return DocumentModeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c DocumentMode) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c DocumentMode) IsValid() bool {
+	_, ok := DocumentModeTable[c]
+	return ok
+}
+
+// DocumentReferenceStatusInfo is the specification's own data for one code.
+type DocumentReferenceStatusInfo struct {
+	System  string
+	Display string
+}
+
+// DocumentReferenceStatusTable maps each code to what the specification says about it.
+var DocumentReferenceStatusTable = map[DocumentReferenceStatus]DocumentReferenceStatusInfo{
+	DocumentReferenceStatusCurrent:        {"http://hl7.org/fhir/document-reference-status", "Current"},
+	DocumentReferenceStatusSuperseded:     {"http://hl7.org/fhir/document-reference-status", "Superseded"},
+	DocumentReferenceStatusEnteredInError: {"http://hl7.org/fhir/document-reference-status", "Entered in Error"},
+}
+
+// DocumentReferenceStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func DocumentReferenceStatusValues() []DocumentReferenceStatus {
+	return []DocumentReferenceStatus{
+		DocumentReferenceStatusCurrent,
+		DocumentReferenceStatusSuperseded,
+		DocumentReferenceStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c DocumentReferenceStatus) Display() string {
+	if info, ok := DocumentReferenceStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c DocumentReferenceStatus) System() string {
+	return DocumentReferenceStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c DocumentReferenceStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c DocumentReferenceStatus) IsValid() bool {
+	_, ok := DocumentReferenceStatusTable[c]
+	return ok
+}
+
+// EligibilityOutcomeInfo is the specification's own data for one code.
+type EligibilityOutcomeInfo struct {
+	System  string
+	Display string
+}
+
+// EligibilityOutcomeTable maps each code to what the specification says about it.
+var EligibilityOutcomeTable = map[EligibilityOutcome]EligibilityOutcomeInfo{
+	EligibilityOutcomeQueued:   {"http://hl7.org/fhir/eligibility-outcome", "Queued"},
+	EligibilityOutcomeComplete: {"http://hl7.org/fhir/eligibility-outcome", "Processing Complete"},
+	EligibilityOutcomeError:    {"http://hl7.org/fhir/eligibility-outcome", "Error"},
+	EligibilityOutcomePartial:  {"http://hl7.org/fhir/eligibility-outcome", "Partial Processing"},
+}
+
+// EligibilityOutcomeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func EligibilityOutcomeValues() []EligibilityOutcome {
+	return []EligibilityOutcome{
+		EligibilityOutcomeQueued,
+		EligibilityOutcomeComplete,
+		EligibilityOutcomeError,
+		EligibilityOutcomePartial,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c EligibilityOutcome) Display() string {
+	if info, ok := EligibilityOutcomeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c EligibilityOutcome) System() string {
+	return EligibilityOutcomeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c EligibilityOutcome) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c EligibilityOutcome) IsValid() bool {
+	_, ok := EligibilityOutcomeTable[c]
+	return ok
+}
+
+// EligibilityRequestPurposeInfo is the specification's own data for one code.
+type EligibilityRequestPurposeInfo struct {
+	System  string
+	Display string
+}
+
+// EligibilityRequestPurposeTable maps each code to what the specification says about it.
+var EligibilityRequestPurposeTable = map[EligibilityRequestPurpose]EligibilityRequestPurposeInfo{
+	EligibilityRequestPurposeAuthRequirements: {"http://hl7.org/fhir/eligibilityrequest-purpose", "Coverage auth-requirements"},
+	EligibilityRequestPurposeBenefits:         {"http://hl7.org/fhir/eligibilityrequest-purpose", "Coverage benefits"},
+	EligibilityRequestPurposeDiscovery:        {"http://hl7.org/fhir/eligibilityrequest-purpose", "Coverage Discovery"},
+	EligibilityRequestPurposeValidation:       {"http://hl7.org/fhir/eligibilityrequest-purpose", "Coverage Validation"},
+}
+
+// EligibilityRequestPurposeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func EligibilityRequestPurposeValues() []EligibilityRequestPurpose {
+	return []EligibilityRequestPurpose{
+		EligibilityRequestPurposeAuthRequirements,
+		EligibilityRequestPurposeBenefits,
+		EligibilityRequestPurposeDiscovery,
+		EligibilityRequestPurposeValidation,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c EligibilityRequestPurpose) Display() string {
+	if info, ok := EligibilityRequestPurposeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c EligibilityRequestPurpose) System() string {
+	return EligibilityRequestPurposeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c EligibilityRequestPurpose) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c EligibilityRequestPurpose) IsValid() bool {
+	_, ok := EligibilityRequestPurposeTable[c]
+	return ok
+}
+
+// EligibilityResponsePurposeInfo is the specification's own data for one code.
+type EligibilityResponsePurposeInfo struct {
+	System  string
+	Display string
+}
+
+// EligibilityResponsePurposeTable maps each code to what the specification says about it.
+var EligibilityResponsePurposeTable = map[EligibilityResponsePurpose]EligibilityResponsePurposeInfo{
+	EligibilityResponsePurposeAuthRequirements: {"http://hl7.org/fhir/eligibilityresponse-purpose", "Coverage auth-requirements"},
+	EligibilityResponsePurposeBenefits:         {"http://hl7.org/fhir/eligibilityresponse-purpose", "Coverage benefits"},
+	EligibilityResponsePurposeDiscovery:        {"http://hl7.org/fhir/eligibilityresponse-purpose", "Coverage Discovery"},
+	EligibilityResponsePurposeValidation:       {"http://hl7.org/fhir/eligibilityresponse-purpose", "Coverage Validation"},
+}
+
+// EligibilityResponsePurposeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func EligibilityResponsePurposeValues() []EligibilityResponsePurpose {
+	return []EligibilityResponsePurpose{
+		EligibilityResponsePurposeAuthRequirements,
+		EligibilityResponsePurposeBenefits,
+		EligibilityResponsePurposeDiscovery,
+		EligibilityResponsePurposeValidation,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c EligibilityResponsePurpose) Display() string {
+	if info, ok := EligibilityResponsePurposeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c EligibilityResponsePurpose) System() string {
+	return EligibilityResponsePurposeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c EligibilityResponsePurpose) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c EligibilityResponsePurpose) IsValid() bool {
+	_, ok := EligibilityResponsePurposeTable[c]
+	return ok
+}
+
+// EncounterLocationStatusInfo is the specification's own data for one code.
+type EncounterLocationStatusInfo struct {
+	System  string
+	Display string
+}
+
+// EncounterLocationStatusTable maps each code to what the specification says about it.
+var EncounterLocationStatusTable = map[EncounterLocationStatus]EncounterLocationStatusInfo{
+	EncounterLocationStatusPlanned:   {"http://hl7.org/fhir/encounter-location-status", "Planned"},
+	EncounterLocationStatusActive:    {"http://hl7.org/fhir/encounter-location-status", "Active"},
+	EncounterLocationStatusReserved:  {"http://hl7.org/fhir/encounter-location-status", "Reserved"},
+	EncounterLocationStatusCompleted: {"http://hl7.org/fhir/encounter-location-status", "Completed"},
+}
+
+// EncounterLocationStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func EncounterLocationStatusValues() []EncounterLocationStatus {
+	return []EncounterLocationStatus{
+		EncounterLocationStatusPlanned,
+		EncounterLocationStatusActive,
+		EncounterLocationStatusReserved,
+		EncounterLocationStatusCompleted,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c EncounterLocationStatus) Display() string {
+	if info, ok := EncounterLocationStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c EncounterLocationStatus) System() string {
+	return EncounterLocationStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c EncounterLocationStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c EncounterLocationStatus) IsValid() bool {
+	_, ok := EncounterLocationStatusTable[c]
+	return ok
+}
+
+// EncounterStatusInfo is the specification's own data for one code.
+type EncounterStatusInfo struct {
+	System  string
+	Display string
+}
+
+// EncounterStatusTable maps each code to what the specification says about it.
+var EncounterStatusTable = map[EncounterStatus]EncounterStatusInfo{
+	EncounterStatusPlanned:        {"http://hl7.org/fhir/encounter-status", "Planned"},
+	EncounterStatusInProgress:     {"http://hl7.org/fhir/encounter-status", "In Progress"},
+	EncounterStatusOnHold:         {"http://hl7.org/fhir/encounter-status", "On Hold"},
+	EncounterStatusDischarged:     {"http://hl7.org/fhir/encounter-status", "Discharged"},
+	EncounterStatusCompleted:      {"http://hl7.org/fhir/encounter-status", "Completed"},
+	EncounterStatusCancelled:      {"http://hl7.org/fhir/encounter-status", "Cancelled"},
+	EncounterStatusDiscontinued:   {"http://hl7.org/fhir/encounter-status", "Discontinued"},
+	EncounterStatusEnteredInError: {"http://hl7.org/fhir/encounter-status", "Entered in Error"},
+	EncounterStatusUnknown:        {"http://hl7.org/fhir/encounter-status", "Unknown"},
+}
+
+// EncounterStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func EncounterStatusValues() []EncounterStatus {
+	return []EncounterStatus{
+		EncounterStatusPlanned,
+		EncounterStatusInProgress,
+		EncounterStatusOnHold,
+		EncounterStatusDischarged,
+		EncounterStatusCompleted,
+		EncounterStatusCancelled,
+		EncounterStatusDiscontinued,
+		EncounterStatusEnteredInError,
+		EncounterStatusUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c EncounterStatus) Display() string {
+	if info, ok := EncounterStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c EncounterStatus) System() string {
+	return EncounterStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c EncounterStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c EncounterStatus) IsValid() bool {
+	_, ok := EncounterStatusTable[c]
+	return ok
+}
+
+// EndpointStatusInfo is the specification's own data for one code.
+type EndpointStatusInfo struct {
+	System  string
+	Display string
+}
+
+// EndpointStatusTable maps each code to what the specification says about it.
+var EndpointStatusTable = map[EndpointStatus]EndpointStatusInfo{
+	EndpointStatusActive:         {"http://hl7.org/fhir/endpoint-status", "Active"},
+	EndpointStatusSuspended:      {"http://hl7.org/fhir/endpoint-status", "Suspended"},
+	EndpointStatusError:          {"http://hl7.org/fhir/endpoint-status", "Error"},
+	EndpointStatusOff:            {"http://hl7.org/fhir/endpoint-status", "Off"},
+	EndpointStatusEnteredInError: {"http://hl7.org/fhir/endpoint-status", "Entered in error"},
+}
+
+// EndpointStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func EndpointStatusValues() []EndpointStatus {
+	return []EndpointStatus{
+		EndpointStatusActive,
+		EndpointStatusSuspended,
+		EndpointStatusError,
+		EndpointStatusOff,
+		EndpointStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c EndpointStatus) Display() string {
+	if info, ok := EndpointStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c EndpointStatus) System() string {
+	return EndpointStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c EndpointStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c EndpointStatus) IsValid() bool {
+	_, ok := EndpointStatusTable[c]
+	return ok
+}
+
+// EnrollmentOutcomeInfo is the specification's own data for one code.
+type EnrollmentOutcomeInfo struct {
+	System  string
+	Display string
+}
+
+// EnrollmentOutcomeTable maps each code to what the specification says about it.
+var EnrollmentOutcomeTable = map[EnrollmentOutcome]EnrollmentOutcomeInfo{
+	EnrollmentOutcomeQueued:   {"http://hl7.org/fhir/enrollment-outcome", "Queued"},
+	EnrollmentOutcomeComplete: {"http://hl7.org/fhir/enrollment-outcome", "Processing Complete"},
+	EnrollmentOutcomeError:    {"http://hl7.org/fhir/enrollment-outcome", "Error"},
+	EnrollmentOutcomePartial:  {"http://hl7.org/fhir/enrollment-outcome", "Partial Processing"},
+}
+
+// EnrollmentOutcomeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func EnrollmentOutcomeValues() []EnrollmentOutcome {
+	return []EnrollmentOutcome{
+		EnrollmentOutcomeQueued,
+		EnrollmentOutcomeComplete,
+		EnrollmentOutcomeError,
+		EnrollmentOutcomePartial,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c EnrollmentOutcome) Display() string {
+	if info, ok := EnrollmentOutcomeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c EnrollmentOutcome) System() string {
+	return EnrollmentOutcomeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c EnrollmentOutcome) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c EnrollmentOutcome) IsValid() bool {
+	_, ok := EnrollmentOutcomeTable[c]
+	return ok
+}
+
+// EpisodeOfCareStatusInfo is the specification's own data for one code.
+type EpisodeOfCareStatusInfo struct {
+	System  string
+	Display string
+}
+
+// EpisodeOfCareStatusTable maps each code to what the specification says about it.
+var EpisodeOfCareStatusTable = map[EpisodeOfCareStatus]EpisodeOfCareStatusInfo{
+	EpisodeOfCareStatusPlanned:        {"http://hl7.org/fhir/episode-of-care-status", "Planned"},
+	EpisodeOfCareStatusWaitlist:       {"http://hl7.org/fhir/episode-of-care-status", "Waitlist"},
+	EpisodeOfCareStatusActive:         {"http://hl7.org/fhir/episode-of-care-status", "Active"},
+	EpisodeOfCareStatusOnhold:         {"http://hl7.org/fhir/episode-of-care-status", "On Hold"},
+	EpisodeOfCareStatusFinished:       {"http://hl7.org/fhir/episode-of-care-status", "Finished"},
+	EpisodeOfCareStatusCancelled:      {"http://hl7.org/fhir/episode-of-care-status", "Cancelled"},
+	EpisodeOfCareStatusEnteredInError: {"http://hl7.org/fhir/episode-of-care-status", "Entered in Error"},
+}
+
+// EpisodeOfCareStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func EpisodeOfCareStatusValues() []EpisodeOfCareStatus {
+	return []EpisodeOfCareStatus{
+		EpisodeOfCareStatusPlanned,
+		EpisodeOfCareStatusWaitlist,
+		EpisodeOfCareStatusActive,
+		EpisodeOfCareStatusOnhold,
+		EpisodeOfCareStatusFinished,
+		EpisodeOfCareStatusCancelled,
+		EpisodeOfCareStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c EpisodeOfCareStatus) Display() string {
+	if info, ok := EpisodeOfCareStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c EpisodeOfCareStatus) System() string {
+	return EpisodeOfCareStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c EpisodeOfCareStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c EpisodeOfCareStatus) IsValid() bool {
+	_, ok := EpisodeOfCareStatusTable[c]
+	return ok
+}
+
+// EventCapabilityModeInfo is the specification's own data for one code.
+type EventCapabilityModeInfo struct {
+	System  string
+	Display string
+}
+
+// EventCapabilityModeTable maps each code to what the specification says about it.
+var EventCapabilityModeTable = map[EventCapabilityMode]EventCapabilityModeInfo{
+	EventCapabilityModeSender:   {"http://hl7.org/fhir/event-capability-mode", "Sender"},
+	EventCapabilityModeReceiver: {"http://hl7.org/fhir/event-capability-mode", "Receiver"},
+}
+
+// EventCapabilityModeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func EventCapabilityModeValues() []EventCapabilityMode {
+	return []EventCapabilityMode{
+		EventCapabilityModeSender,
+		EventCapabilityModeReceiver,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c EventCapabilityMode) Display() string {
+	if info, ok := EventCapabilityModeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c EventCapabilityMode) System() string {
+	return EventCapabilityModeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c EventCapabilityMode) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c EventCapabilityMode) IsValid() bool {
+	_, ok := EventCapabilityModeTable[c]
+	return ok
+}
+
+// EventStatusInfo is the specification's own data for one code.
+type EventStatusInfo struct {
+	System  string
+	Display string
+}
+
+// EventStatusTable maps each code to what the specification says about it.
+var EventStatusTable = map[EventStatus]EventStatusInfo{
+	EventStatusPreparation:    {"http://hl7.org/fhir/event-status", "Preparation"},
+	EventStatusInProgress:     {"http://hl7.org/fhir/event-status", "In Progress"},
+	EventStatusNotDone:        {"http://hl7.org/fhir/event-status", "Not Done"},
+	EventStatusOnHold:         {"http://hl7.org/fhir/event-status", "On Hold"},
+	EventStatusStopped:        {"http://hl7.org/fhir/event-status", "Stopped"},
+	EventStatusCompleted:      {"http://hl7.org/fhir/event-status", "Completed"},
+	EventStatusEnteredInError: {"http://hl7.org/fhir/event-status", "Entered in Error"},
+	EventStatusUnknown:        {"http://hl7.org/fhir/event-status", "Unknown"},
+}
+
+// EventStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func EventStatusValues() []EventStatus {
+	return []EventStatus{
+		EventStatusPreparation,
+		EventStatusInProgress,
+		EventStatusNotDone,
+		EventStatusOnHold,
+		EventStatusStopped,
+		EventStatusCompleted,
+		EventStatusEnteredInError,
+		EventStatusUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c EventStatus) Display() string {
+	if info, ok := EventStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c EventStatus) System() string {
+	return EventStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c EventStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c EventStatus) IsValid() bool {
+	_, ok := EventStatusTable[c]
+	return ok
+}
+
+// EventTimingInfo is the specification's own data for one code.
+type EventTimingInfo struct {
+	System  string
+	Display string
+}
+
+// EventTimingTable maps each code to what the specification says about it.
+var EventTimingTable = map[EventTiming]EventTimingInfo{
+	EventTimingMorn:      {"http://hl7.org/fhir/event-timing", "Morning"},
+	EventTimingMornEarly: {"http://hl7.org/fhir/event-timing", "Early Morning"},
+	EventTimingMornLate:  {"http://hl7.org/fhir/event-timing", "Late Morning"},
+	EventTimingNoon:      {"http://hl7.org/fhir/event-timing", "Noon"},
+	EventTimingAft:       {"http://hl7.org/fhir/event-timing", "Afternoon"},
+	EventTimingAftEarly:  {"http://hl7.org/fhir/event-timing", "Early Afternoon"},
+	EventTimingAftLate:   {"http://hl7.org/fhir/event-timing", "Late Afternoon"},
+	EventTimingEve:       {"http://hl7.org/fhir/event-timing", "Evening"},
+	EventTimingEveEarly:  {"http://hl7.org/fhir/event-timing", "Early Evening"},
+	EventTimingEveLate:   {"http://hl7.org/fhir/event-timing", "Late Evening"},
+	EventTimingNight:     {"http://hl7.org/fhir/event-timing", "Night"},
+	EventTimingPhs:       {"http://hl7.org/fhir/event-timing", "After Sleep"},
+	EventTimingImd:       {"http://hl7.org/fhir/event-timing", "Immediate"},
+	EventTimingHs:        {"http://terminology.hl7.org/CodeSystem/v3-TimingEvent", ""},
+	EventTimingWake:      {"http://terminology.hl7.org/CodeSystem/v3-TimingEvent", ""},
+	EventTimingC:         {"http://terminology.hl7.org/CodeSystem/v3-TimingEvent", ""},
+	EventTimingCm:        {"http://terminology.hl7.org/CodeSystem/v3-TimingEvent", ""},
+	EventTimingCd:        {"http://terminology.hl7.org/CodeSystem/v3-TimingEvent", ""},
+	EventTimingCv:        {"http://terminology.hl7.org/CodeSystem/v3-TimingEvent", ""},
+	EventTimingAc:        {"http://terminology.hl7.org/CodeSystem/v3-TimingEvent", ""},
+	EventTimingAcm:       {"http://terminology.hl7.org/CodeSystem/v3-TimingEvent", ""},
+	EventTimingAcd:       {"http://terminology.hl7.org/CodeSystem/v3-TimingEvent", ""},
+	EventTimingAcv:       {"http://terminology.hl7.org/CodeSystem/v3-TimingEvent", ""},
+	EventTimingPc:        {"http://terminology.hl7.org/CodeSystem/v3-TimingEvent", ""},
+	EventTimingPcm:       {"http://terminology.hl7.org/CodeSystem/v3-TimingEvent", ""},
+	EventTimingPcd:       {"http://terminology.hl7.org/CodeSystem/v3-TimingEvent", ""},
+	EventTimingPcv:       {"http://terminology.hl7.org/CodeSystem/v3-TimingEvent", ""},
+}
+
+// EventTimingValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func EventTimingValues() []EventTiming {
+	return []EventTiming{
+		EventTimingMorn,
+		EventTimingMornEarly,
+		EventTimingMornLate,
+		EventTimingNoon,
+		EventTimingAft,
+		EventTimingAftEarly,
+		EventTimingAftLate,
+		EventTimingEve,
+		EventTimingEveEarly,
+		EventTimingEveLate,
+		EventTimingNight,
+		EventTimingPhs,
+		EventTimingImd,
+		EventTimingHs,
+		EventTimingWake,
+		EventTimingC,
+		EventTimingCm,
+		EventTimingCd,
+		EventTimingCv,
+		EventTimingAc,
+		EventTimingAcm,
+		EventTimingAcd,
+		EventTimingAcv,
+		EventTimingPc,
+		EventTimingPcm,
+		EventTimingPcd,
+		EventTimingPcv,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c EventTiming) Display() string {
+	if info, ok := EventTimingTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c EventTiming) System() string {
+	return EventTimingTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c EventTiming) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c EventTiming) IsValid() bool {
+	_, ok := EventTimingTable[c]
+	return ok
+}
+
+// ExampleScenarioActorTypeInfo is the specification's own data for one code.
+type ExampleScenarioActorTypeInfo struct {
+	System  string
+	Display string
+}
+
+// ExampleScenarioActorTypeTable maps each code to what the specification says about it.
+var ExampleScenarioActorTypeTable = map[ExampleScenarioActorType]ExampleScenarioActorTypeInfo{
+	ExampleScenarioActorTypePerson: {"http://hl7.org/fhir/examplescenario-actor-type", "Person"},
+	ExampleScenarioActorTypeSystem: {"http://hl7.org/fhir/examplescenario-actor-type", "System"},
+}
+
+// ExampleScenarioActorTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ExampleScenarioActorTypeValues() []ExampleScenarioActorType {
+	return []ExampleScenarioActorType{
+		ExampleScenarioActorTypePerson,
+		ExampleScenarioActorTypeSystem,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ExampleScenarioActorType) Display() string {
+	if info, ok := ExampleScenarioActorTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ExampleScenarioActorType) System() string {
+	return ExampleScenarioActorTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ExampleScenarioActorType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ExampleScenarioActorType) IsValid() bool {
+	_, ok := ExampleScenarioActorTypeTable[c]
+	return ok
+}
+
+// ExplanationOfBenefitStatusInfo is the specification's own data for one code.
+type ExplanationOfBenefitStatusInfo struct {
+	System  string
+	Display string
+}
+
+// ExplanationOfBenefitStatusTable maps each code to what the specification says about it.
+var ExplanationOfBenefitStatusTable = map[ExplanationOfBenefitStatus]ExplanationOfBenefitStatusInfo{
+	ExplanationOfBenefitStatusActive:         {"http://hl7.org/fhir/explanationofbenefit-status", "Active"},
+	ExplanationOfBenefitStatusCancelled:      {"http://hl7.org/fhir/explanationofbenefit-status", "Cancelled"},
+	ExplanationOfBenefitStatusDraft:          {"http://hl7.org/fhir/explanationofbenefit-status", "Draft"},
+	ExplanationOfBenefitStatusEnteredInError: {"http://hl7.org/fhir/explanationofbenefit-status", "Entered In Error"},
+}
+
+// ExplanationOfBenefitStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ExplanationOfBenefitStatusValues() []ExplanationOfBenefitStatus {
+	return []ExplanationOfBenefitStatus{
+		ExplanationOfBenefitStatusActive,
+		ExplanationOfBenefitStatusCancelled,
+		ExplanationOfBenefitStatusDraft,
+		ExplanationOfBenefitStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ExplanationOfBenefitStatus) Display() string {
+	if info, ok := ExplanationOfBenefitStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ExplanationOfBenefitStatus) System() string {
+	return ExplanationOfBenefitStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ExplanationOfBenefitStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ExplanationOfBenefitStatus) IsValid() bool {
+	_, ok := ExplanationOfBenefitStatusTable[c]
+	return ok
+}
+
+// ExtensionContextTypeInfo is the specification's own data for one code.
+type ExtensionContextTypeInfo struct {
+	System  string
+	Display string
+}
+
+// ExtensionContextTypeTable maps each code to what the specification says about it.
+var ExtensionContextTypeTable = map[ExtensionContextType]ExtensionContextTypeInfo{
+	ExtensionContextTypeFhirpath:  {"http://hl7.org/fhir/extension-context-type", "FHIRPath"},
+	ExtensionContextTypeElement:   {"http://hl7.org/fhir/extension-context-type", "Element ID"},
+	ExtensionContextTypeExtension: {"http://hl7.org/fhir/extension-context-type", "Extension URL"},
+}
+
+// ExtensionContextTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ExtensionContextTypeValues() []ExtensionContextType {
+	return []ExtensionContextType{
+		ExtensionContextTypeFhirpath,
+		ExtensionContextTypeElement,
+		ExtensionContextTypeExtension,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ExtensionContextType) Display() string {
+	if info, ok := ExtensionContextTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ExtensionContextType) System() string {
+	return ExtensionContextTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ExtensionContextType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ExtensionContextType) IsValid() bool {
+	_, ok := ExtensionContextTypeTable[c]
+	return ok
+}
+
+// FilterOperatorInfo is the specification's own data for one code.
+type FilterOperatorInfo struct {
+	System  string
+	Display string
+}
+
+// FilterOperatorTable maps each code to what the specification says about it.
+var FilterOperatorTable = map[FilterOperator]FilterOperatorInfo{
+	FilterOperatorEqual:          {"http://hl7.org/fhir/filter-operator", "Equals"},
+	FilterOperatorIsA:            {"http://hl7.org/fhir/filter-operator", "Is A (by subsumption)"},
+	FilterOperatorDescendentOf:   {"http://hl7.org/fhir/filter-operator", "Descendent Of (by subsumption)"},
+	FilterOperatorIsNotA:         {"http://hl7.org/fhir/filter-operator", "Not (Is A) (by subsumption)"},
+	FilterOperatorRegex:          {"http://hl7.org/fhir/filter-operator", "Regular Expression"},
+	FilterOperatorIn:             {"http://hl7.org/fhir/filter-operator", "In Set"},
+	FilterOperatorNotIn:          {"http://hl7.org/fhir/filter-operator", "Not in Set"},
+	FilterOperatorGeneralizes:    {"http://hl7.org/fhir/filter-operator", "Generalizes (by Subsumption)"},
+	FilterOperatorChildOf:        {"http://hl7.org/fhir/filter-operator", "Child Of"},
+	FilterOperatorDescendentLeaf: {"http://hl7.org/fhir/filter-operator", "Descendent Leaf"},
+	FilterOperatorExists:         {"http://hl7.org/fhir/filter-operator", "Exists"},
+}
+
+// FilterOperatorValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func FilterOperatorValues() []FilterOperator {
+	return []FilterOperator{
+		FilterOperatorEqual,
+		FilterOperatorIsA,
+		FilterOperatorDescendentOf,
+		FilterOperatorIsNotA,
+		FilterOperatorRegex,
+		FilterOperatorIn,
+		FilterOperatorNotIn,
+		FilterOperatorGeneralizes,
+		FilterOperatorChildOf,
+		FilterOperatorDescendentLeaf,
+		FilterOperatorExists,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c FilterOperator) Display() string {
+	if info, ok := FilterOperatorTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c FilterOperator) System() string {
+	return FilterOperatorTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c FilterOperator) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c FilterOperator) IsValid() bool {
+	_, ok := FilterOperatorTable[c]
+	return ok
+}
+
+// FlagStatusInfo is the specification's own data for one code.
+type FlagStatusInfo struct {
+	System  string
+	Display string
+}
+
+// FlagStatusTable maps each code to what the specification says about it.
+var FlagStatusTable = map[FlagStatus]FlagStatusInfo{
+	FlagStatusActive:         {"http://hl7.org/fhir/flag-status", "Active"},
+	FlagStatusInactive:       {"http://hl7.org/fhir/flag-status", "Inactive"},
+	FlagStatusEnteredInError: {"http://hl7.org/fhir/flag-status", "Entered in Error"},
+}
+
+// FlagStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func FlagStatusValues() []FlagStatus {
+	return []FlagStatus{
+		FlagStatusActive,
+		FlagStatusInactive,
+		FlagStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c FlagStatus) Display() string {
+	if info, ok := FlagStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c FlagStatus) System() string {
+	return FlagStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c FlagStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c FlagStatus) IsValid() bool {
+	_, ok := FlagStatusTable[c]
+	return ok
+}
+
+// FinancialResourceStatusCodesInfo is the specification's own data for one code.
+type FinancialResourceStatusCodesInfo struct {
+	System  string
+	Display string
+}
+
+// FinancialResourceStatusCodesTable maps each code to what the specification says about it.
+var FinancialResourceStatusCodesTable = map[FinancialResourceStatusCodes]FinancialResourceStatusCodesInfo{
+	FinancialResourceStatusCodesActive:         {"http://hl7.org/fhir/fm-status", "Active"},
+	FinancialResourceStatusCodesCancelled:      {"http://hl7.org/fhir/fm-status", "Cancelled"},
+	FinancialResourceStatusCodesDraft:          {"http://hl7.org/fhir/fm-status", "Draft"},
+	FinancialResourceStatusCodesEnteredInError: {"http://hl7.org/fhir/fm-status", "Entered in Error"},
+}
+
+// FinancialResourceStatusCodesValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func FinancialResourceStatusCodesValues() []FinancialResourceStatusCodes {
+	return []FinancialResourceStatusCodes{
+		FinancialResourceStatusCodesActive,
+		FinancialResourceStatusCodesCancelled,
+		FinancialResourceStatusCodesDraft,
+		FinancialResourceStatusCodesEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c FinancialResourceStatusCodes) Display() string {
+	if info, ok := FinancialResourceStatusCodesTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c FinancialResourceStatusCodes) System() string {
+	return FinancialResourceStatusCodesTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c FinancialResourceStatusCodes) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c FinancialResourceStatusCodes) IsValid() bool {
+	_, ok := FinancialResourceStatusCodesTable[c]
+	return ok
+}
+
+// FormularyItemStatusInfo is the specification's own data for one code.
+type FormularyItemStatusInfo struct {
+	System  string
+	Display string
+}
+
+// FormularyItemStatusTable maps each code to what the specification says about it.
+var FormularyItemStatusTable = map[FormularyItemStatus]FormularyItemStatusInfo{
+	FormularyItemStatusActive:         {"http://hl7.org/fhir/CodeSystem/formularyitem-status", "Active"},
+	FormularyItemStatusEnteredInError: {"http://hl7.org/fhir/CodeSystem/formularyitem-status", "Entered in Error"},
+	FormularyItemStatusInactive:       {"http://hl7.org/fhir/CodeSystem/formularyitem-status", "Inactive"},
+}
+
+// FormularyItemStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func FormularyItemStatusValues() []FormularyItemStatus {
+	return []FormularyItemStatus{
+		FormularyItemStatusActive,
+		FormularyItemStatusEnteredInError,
+		FormularyItemStatusInactive,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c FormularyItemStatus) Display() string {
+	if info, ok := FormularyItemStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c FormularyItemStatus) System() string {
+	return FormularyItemStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c FormularyItemStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c FormularyItemStatus) IsValid() bool {
+	_, ok := FormularyItemStatusTable[c]
+	return ok
+}
+
+// GenomicStudyStatusInfo is the specification's own data for one code.
+type GenomicStudyStatusInfo struct {
+	System  string
+	Display string
+}
+
+// GenomicStudyStatusTable maps each code to what the specification says about it.
+var GenomicStudyStatusTable = map[GenomicStudyStatus]GenomicStudyStatusInfo{
+	GenomicStudyStatusRegistered:     {"http://hl7.org/fhir/genomicstudy-status", "Registered"},
+	GenomicStudyStatusAvailable:      {"http://hl7.org/fhir/genomicstudy-status", "Available"},
+	GenomicStudyStatusCancelled:      {"http://hl7.org/fhir/genomicstudy-status", "Cancelled"},
+	GenomicStudyStatusEnteredInError: {"http://hl7.org/fhir/genomicstudy-status", "Entered in Error"},
+	GenomicStudyStatusUnknown:        {"http://hl7.org/fhir/genomicstudy-status", "Unknown"},
+}
+
+// GenomicStudyStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func GenomicStudyStatusValues() []GenomicStudyStatus {
+	return []GenomicStudyStatus{
+		GenomicStudyStatusRegistered,
+		GenomicStudyStatusAvailable,
+		GenomicStudyStatusCancelled,
+		GenomicStudyStatusEnteredInError,
+		GenomicStudyStatusUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c GenomicStudyStatus) Display() string {
+	if info, ok := GenomicStudyStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c GenomicStudyStatus) System() string {
+	return GenomicStudyStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c GenomicStudyStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c GenomicStudyStatus) IsValid() bool {
+	_, ok := GenomicStudyStatusTable[c]
+	return ok
+}
+
+// GoalLifecycleStatusInfo is the specification's own data for one code.
+type GoalLifecycleStatusInfo struct {
+	System  string
+	Display string
+}
+
+// GoalLifecycleStatusTable maps each code to what the specification says about it.
+var GoalLifecycleStatusTable = map[GoalLifecycleStatus]GoalLifecycleStatusInfo{
+	GoalLifecycleStatusProposed:       {"http://hl7.org/fhir/goal-status", "Proposed"},
+	GoalLifecycleStatusPlanned:        {"http://hl7.org/fhir/goal-status", "Planned"},
+	GoalLifecycleStatusAccepted:       {"http://hl7.org/fhir/goal-status", "Accepted"},
+	GoalLifecycleStatusActive:         {"http://hl7.org/fhir/goal-status", "Active"},
+	GoalLifecycleStatusOnHold:         {"http://hl7.org/fhir/goal-status", "On Hold"},
+	GoalLifecycleStatusCompleted:      {"http://hl7.org/fhir/goal-status", "Completed"},
+	GoalLifecycleStatusCancelled:      {"http://hl7.org/fhir/goal-status", "Cancelled"},
+	GoalLifecycleStatusEnteredInError: {"http://hl7.org/fhir/goal-status", "Entered in Error"},
+	GoalLifecycleStatusRejected:       {"http://hl7.org/fhir/goal-status", "Rejected"},
+}
+
+// GoalLifecycleStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func GoalLifecycleStatusValues() []GoalLifecycleStatus {
+	return []GoalLifecycleStatus{
+		GoalLifecycleStatusProposed,
+		GoalLifecycleStatusPlanned,
+		GoalLifecycleStatusAccepted,
+		GoalLifecycleStatusActive,
+		GoalLifecycleStatusOnHold,
+		GoalLifecycleStatusCompleted,
+		GoalLifecycleStatusCancelled,
+		GoalLifecycleStatusEnteredInError,
+		GoalLifecycleStatusRejected,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c GoalLifecycleStatus) Display() string {
+	if info, ok := GoalLifecycleStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c GoalLifecycleStatus) System() string {
+	return GoalLifecycleStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c GoalLifecycleStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c GoalLifecycleStatus) IsValid() bool {
+	_, ok := GoalLifecycleStatusTable[c]
+	return ok
+}
+
+// GraphCompartmentRuleInfo is the specification's own data for one code.
+type GraphCompartmentRuleInfo struct {
+	System  string
+	Display string
+}
+
+// GraphCompartmentRuleTable maps each code to what the specification says about it.
+var GraphCompartmentRuleTable = map[GraphCompartmentRule]GraphCompartmentRuleInfo{
+	GraphCompartmentRuleIdentical: {"http://hl7.org/fhir/graph-compartment-rule", "Identical"},
+	GraphCompartmentRuleMatching:  {"http://hl7.org/fhir/graph-compartment-rule", "Matching"},
+	GraphCompartmentRuleDifferent: {"http://hl7.org/fhir/graph-compartment-rule", "Different"},
+	GraphCompartmentRuleCustom:    {"http://hl7.org/fhir/graph-compartment-rule", "Custom"},
+}
+
+// GraphCompartmentRuleValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func GraphCompartmentRuleValues() []GraphCompartmentRule {
+	return []GraphCompartmentRule{
+		GraphCompartmentRuleIdentical,
+		GraphCompartmentRuleMatching,
+		GraphCompartmentRuleDifferent,
+		GraphCompartmentRuleCustom,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c GraphCompartmentRule) Display() string {
+	if info, ok := GraphCompartmentRuleTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c GraphCompartmentRule) System() string {
+	return GraphCompartmentRuleTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c GraphCompartmentRule) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c GraphCompartmentRule) IsValid() bool {
+	_, ok := GraphCompartmentRuleTable[c]
+	return ok
+}
+
+// GraphCompartmentUseInfo is the specification's own data for one code.
+type GraphCompartmentUseInfo struct {
+	System  string
+	Display string
+}
+
+// GraphCompartmentUseTable maps each code to what the specification says about it.
+var GraphCompartmentUseTable = map[GraphCompartmentUse]GraphCompartmentUseInfo{
+	GraphCompartmentUseWhere:    {"http://hl7.org/fhir/graph-compartment-use", "Where"},
+	GraphCompartmentUseRequires: {"http://hl7.org/fhir/graph-compartment-use", "requires"},
+}
+
+// GraphCompartmentUseValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func GraphCompartmentUseValues() []GraphCompartmentUse {
+	return []GraphCompartmentUse{
+		GraphCompartmentUseWhere,
+		GraphCompartmentUseRequires,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c GraphCompartmentUse) Display() string {
+	if info, ok := GraphCompartmentUseTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c GraphCompartmentUse) System() string {
+	return GraphCompartmentUseTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c GraphCompartmentUse) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c GraphCompartmentUse) IsValid() bool {
+	_, ok := GraphCompartmentUseTable[c]
+	return ok
+}
+
+// GroupMembershipBasisInfo is the specification's own data for one code.
+type GroupMembershipBasisInfo struct {
+	System  string
+	Display string
+}
+
+// GroupMembershipBasisTable maps each code to what the specification says about it.
+var GroupMembershipBasisTable = map[GroupMembershipBasis]GroupMembershipBasisInfo{
+	GroupMembershipBasisDefinitional: {"http://hl7.org/fhir/group-membership-basis", "Definitional"},
+	GroupMembershipBasisEnumerated:   {"http://hl7.org/fhir/group-membership-basis", "Enumerated"},
+}
+
+// GroupMembershipBasisValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func GroupMembershipBasisValues() []GroupMembershipBasis {
+	return []GroupMembershipBasis{
+		GroupMembershipBasisDefinitional,
+		GroupMembershipBasisEnumerated,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c GroupMembershipBasis) Display() string {
+	if info, ok := GroupMembershipBasisTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c GroupMembershipBasis) System() string {
+	return GroupMembershipBasisTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c GroupMembershipBasis) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c GroupMembershipBasis) IsValid() bool {
+	_, ok := GroupMembershipBasisTable[c]
+	return ok
+}
+
+// GroupTypeInfo is the specification's own data for one code.
+type GroupTypeInfo struct {
+	System  string
+	Display string
+}
+
+// GroupTypeTable maps each code to what the specification says about it.
+var GroupTypeTable = map[GroupType]GroupTypeInfo{
+	GroupTypePerson:            {"http://hl7.org/fhir/group-type", "Person"},
+	GroupTypeAnimal:            {"http://hl7.org/fhir/group-type", "Animal"},
+	GroupTypePractitioner:      {"http://hl7.org/fhir/group-type", "Practitioner"},
+	GroupTypeDevice:            {"http://hl7.org/fhir/group-type", "Device"},
+	GroupTypeCareteam:          {"http://hl7.org/fhir/group-type", "CareTeam"},
+	GroupTypeHealthcareservice: {"http://hl7.org/fhir/group-type", "HealthcareService"},
+	GroupTypeLocation:          {"http://hl7.org/fhir/group-type", "Location"},
+	GroupTypeOrganization:      {"http://hl7.org/fhir/group-type", "Organization"},
+	GroupTypeRelatedperson:     {"http://hl7.org/fhir/group-type", "RelatedPerson"},
+	GroupTypeSpecimen:          {"http://hl7.org/fhir/group-type", "Specimen"},
+}
+
+// GroupTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func GroupTypeValues() []GroupType {
+	return []GroupType{
+		GroupTypePerson,
+		GroupTypeAnimal,
+		GroupTypePractitioner,
+		GroupTypeDevice,
+		GroupTypeCareteam,
+		GroupTypeHealthcareservice,
+		GroupTypeLocation,
+		GroupTypeOrganization,
+		GroupTypeRelatedperson,
+		GroupTypeSpecimen,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c GroupType) Display() string {
+	if info, ok := GroupTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c GroupType) System() string {
+	return GroupTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c GroupType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c GroupType) IsValid() bool {
+	_, ok := GroupTypeTable[c]
+	return ok
+}
+
+// GuidanceResponseStatusInfo is the specification's own data for one code.
+type GuidanceResponseStatusInfo struct {
+	System  string
+	Display string
+}
+
+// GuidanceResponseStatusTable maps each code to what the specification says about it.
+var GuidanceResponseStatusTable = map[GuidanceResponseStatus]GuidanceResponseStatusInfo{
+	GuidanceResponseStatusSuccess:        {"http://hl7.org/fhir/guidance-response-status", "Success"},
+	GuidanceResponseStatusDataRequested:  {"http://hl7.org/fhir/guidance-response-status", "Data Requested"},
+	GuidanceResponseStatusDataRequired:   {"http://hl7.org/fhir/guidance-response-status", "Data Required"},
+	GuidanceResponseStatusInProgress:     {"http://hl7.org/fhir/guidance-response-status", "In Progress"},
+	GuidanceResponseStatusFailure:        {"http://hl7.org/fhir/guidance-response-status", "Failure"},
+	GuidanceResponseStatusEnteredInError: {"http://hl7.org/fhir/guidance-response-status", "Entered In Error"},
+}
+
+// GuidanceResponseStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func GuidanceResponseStatusValues() []GuidanceResponseStatus {
+	return []GuidanceResponseStatus{
+		GuidanceResponseStatusSuccess,
+		GuidanceResponseStatusDataRequested,
+		GuidanceResponseStatusDataRequired,
+		GuidanceResponseStatusInProgress,
+		GuidanceResponseStatusFailure,
+		GuidanceResponseStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c GuidanceResponseStatus) Display() string {
+	if info, ok := GuidanceResponseStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c GuidanceResponseStatus) System() string {
+	return GuidanceResponseStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c GuidanceResponseStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c GuidanceResponseStatus) IsValid() bool {
+	_, ok := GuidanceResponseStatusTable[c]
+	return ok
+}
+
+// GuidePageGenerationInfo is the specification's own data for one code.
+type GuidePageGenerationInfo struct {
+	System  string
+	Display string
+}
+
+// GuidePageGenerationTable maps each code to what the specification says about it.
+var GuidePageGenerationTable = map[GuidePageGeneration]GuidePageGenerationInfo{
+	GuidePageGenerationHtml:      {"http://hl7.org/fhir/guide-page-generation", "HTML"},
+	GuidePageGenerationMarkdown:  {"http://hl7.org/fhir/guide-page-generation", "Markdown"},
+	GuidePageGenerationXml:       {"http://hl7.org/fhir/guide-page-generation", "XML"},
+	GuidePageGenerationGenerated: {"http://hl7.org/fhir/guide-page-generation", "Generated"},
+}
+
+// GuidePageGenerationValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func GuidePageGenerationValues() []GuidePageGeneration {
+	return []GuidePageGeneration{
+		GuidePageGenerationHtml,
+		GuidePageGenerationMarkdown,
+		GuidePageGenerationXml,
+		GuidePageGenerationGenerated,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c GuidePageGeneration) Display() string {
+	if info, ok := GuidePageGenerationTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c GuidePageGeneration) System() string {
+	return GuidePageGenerationTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c GuidePageGeneration) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c GuidePageGeneration) IsValid() bool {
+	_, ok := GuidePageGenerationTable[c]
+	return ok
+}
+
+// FamilyHistoryStatusInfo is the specification's own data for one code.
+type FamilyHistoryStatusInfo struct {
+	System  string
+	Display string
+}
+
+// FamilyHistoryStatusTable maps each code to what the specification says about it.
+var FamilyHistoryStatusTable = map[FamilyHistoryStatus]FamilyHistoryStatusInfo{
+	FamilyHistoryStatusPartial:        {"http://hl7.org/fhir/history-status", "Partial"},
+	FamilyHistoryStatusCompleted:      {"http://hl7.org/fhir/history-status", "Completed"},
+	FamilyHistoryStatusEnteredInError: {"http://hl7.org/fhir/history-status", "Entered in Error"},
+	FamilyHistoryStatusHealthUnknown:  {"http://hl7.org/fhir/history-status", "Health Unknown"},
+}
+
+// FamilyHistoryStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func FamilyHistoryStatusValues() []FamilyHistoryStatus {
+	return []FamilyHistoryStatus{
+		FamilyHistoryStatusPartial,
+		FamilyHistoryStatusCompleted,
+		FamilyHistoryStatusEnteredInError,
+		FamilyHistoryStatusHealthUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c FamilyHistoryStatus) Display() string {
+	if info, ok := FamilyHistoryStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c FamilyHistoryStatus) System() string {
+	return FamilyHistoryStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c FamilyHistoryStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c FamilyHistoryStatus) IsValid() bool {
+	_, ok := FamilyHistoryStatusTable[c]
+	return ok
+}
+
+// TestScriptRequestMethodCodeInfo is the specification's own data for one code.
+type TestScriptRequestMethodCodeInfo struct {
+	System  string
+	Display string
+}
+
+// TestScriptRequestMethodCodeTable maps each code to what the specification says about it.
+var TestScriptRequestMethodCodeTable = map[TestScriptRequestMethodCode]TestScriptRequestMethodCodeInfo{
+	TestScriptRequestMethodCodeDelete:  {"http://hl7.org/fhir/http-operations", "DELETE"},
+	TestScriptRequestMethodCodeGet:     {"http://hl7.org/fhir/http-operations", "GET"},
+	TestScriptRequestMethodCodeOptions: {"http://hl7.org/fhir/http-operations", "OPTIONS"},
+	TestScriptRequestMethodCodePatch:   {"http://hl7.org/fhir/http-operations", "PATCH"},
+	TestScriptRequestMethodCodePost:    {"http://hl7.org/fhir/http-operations", "POST"},
+	TestScriptRequestMethodCodePut:     {"http://hl7.org/fhir/http-operations", "PUT"},
+	TestScriptRequestMethodCodeHead:    {"http://hl7.org/fhir/http-operations", "HEAD"},
+}
+
+// TestScriptRequestMethodCodeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func TestScriptRequestMethodCodeValues() []TestScriptRequestMethodCode {
+	return []TestScriptRequestMethodCode{
+		TestScriptRequestMethodCodeDelete,
+		TestScriptRequestMethodCodeGet,
+		TestScriptRequestMethodCodeOptions,
+		TestScriptRequestMethodCodePatch,
+		TestScriptRequestMethodCodePost,
+		TestScriptRequestMethodCodePut,
+		TestScriptRequestMethodCodeHead,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c TestScriptRequestMethodCode) Display() string {
+	if info, ok := TestScriptRequestMethodCodeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c TestScriptRequestMethodCode) System() string {
+	return TestScriptRequestMethodCodeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c TestScriptRequestMethodCode) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c TestScriptRequestMethodCode) IsValid() bool {
+	_, ok := TestScriptRequestMethodCodeTable[c]
+	return ok
+}
+
+// HTTPVerbInfo is the specification's own data for one code.
+type HTTPVerbInfo struct {
+	System  string
+	Display string
+}
+
+// HTTPVerbTable maps each code to what the specification says about it.
+var HTTPVerbTable = map[HTTPVerb]HTTPVerbInfo{
+	HTTPVerbGet:    {"http://hl7.org/fhir/http-verb", "GET"},
+	HTTPVerbHead:   {"http://hl7.org/fhir/http-verb", "HEAD"},
+	HTTPVerbPost:   {"http://hl7.org/fhir/http-verb", "POST"},
+	HTTPVerbPut:    {"http://hl7.org/fhir/http-verb", "PUT"},
+	HTTPVerbDelete: {"http://hl7.org/fhir/http-verb", "DELETE"},
+	HTTPVerbPatch:  {"http://hl7.org/fhir/http-verb", "PATCH"},
+}
+
+// HTTPVerbValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func HTTPVerbValues() []HTTPVerb {
+	return []HTTPVerb{
+		HTTPVerbGet,
+		HTTPVerbHead,
+		HTTPVerbPost,
+		HTTPVerbPut,
+		HTTPVerbDelete,
+		HTTPVerbPatch,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c HTTPVerb) Display() string {
+	if info, ok := HTTPVerbTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c HTTPVerb) System() string {
+	return HTTPVerbTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c HTTPVerb) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c HTTPVerb) IsValid() bool {
+	_, ok := HTTPVerbTable[c]
+	return ok
+}
+
+// IdentifierUseInfo is the specification's own data for one code.
+type IdentifierUseInfo struct {
+	System  string
+	Display string
+}
+
+// IdentifierUseTable maps each code to what the specification says about it.
+var IdentifierUseTable = map[IdentifierUse]IdentifierUseInfo{
+	IdentifierUseUsual:     {"http://hl7.org/fhir/identifier-use", "Usual"},
+	IdentifierUseOfficial:  {"http://hl7.org/fhir/identifier-use", "Official"},
+	IdentifierUseTemp:      {"http://hl7.org/fhir/identifier-use", "Temp"},
+	IdentifierUseSecondary: {"http://hl7.org/fhir/identifier-use", "Secondary"},
+	IdentifierUseOld:       {"http://hl7.org/fhir/identifier-use", "Old"},
+}
+
+// IdentifierUseValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func IdentifierUseValues() []IdentifierUse {
+	return []IdentifierUse{
+		IdentifierUseUsual,
+		IdentifierUseOfficial,
+		IdentifierUseTemp,
+		IdentifierUseSecondary,
+		IdentifierUseOld,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c IdentifierUse) Display() string {
+	if info, ok := IdentifierUseTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c IdentifierUse) System() string {
+	return IdentifierUseTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c IdentifierUse) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c IdentifierUse) IsValid() bool {
+	_, ok := IdentifierUseTable[c]
+	return ok
+}
+
+// IdentityAssuranceLevelInfo is the specification's own data for one code.
+type IdentityAssuranceLevelInfo struct {
+	System  string
+	Display string
+}
+
+// IdentityAssuranceLevelTable maps each code to what the specification says about it.
+var IdentityAssuranceLevelTable = map[IdentityAssuranceLevel]IdentityAssuranceLevelInfo{
+	IdentityAssuranceLevelLevel1: {"http://hl7.org/fhir/identity-assuranceLevel", "Level 1"},
+	IdentityAssuranceLevelLevel2: {"http://hl7.org/fhir/identity-assuranceLevel", "Level 2"},
+	IdentityAssuranceLevelLevel3: {"http://hl7.org/fhir/identity-assuranceLevel", "Level 3"},
+	IdentityAssuranceLevelLevel4: {"http://hl7.org/fhir/identity-assuranceLevel", "Level 4"},
+}
+
+// IdentityAssuranceLevelValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func IdentityAssuranceLevelValues() []IdentityAssuranceLevel {
+	return []IdentityAssuranceLevel{
+		IdentityAssuranceLevelLevel1,
+		IdentityAssuranceLevelLevel2,
+		IdentityAssuranceLevelLevel3,
+		IdentityAssuranceLevelLevel4,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c IdentityAssuranceLevel) Display() string {
+	if info, ok := IdentityAssuranceLevelTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c IdentityAssuranceLevel) System() string {
+	return IdentityAssuranceLevelTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c IdentityAssuranceLevel) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c IdentityAssuranceLevel) IsValid() bool {
+	_, ok := IdentityAssuranceLevelTable[c]
+	return ok
+}
+
+// ImagingSelection2DGraphicTypeInfo is the specification's own data for one code.
+type ImagingSelection2DGraphicTypeInfo struct {
+	System  string
+	Display string
+}
+
+// ImagingSelection2DGraphicTypeTable maps each code to what the specification says about it.
+var ImagingSelection2DGraphicTypeTable = map[ImagingSelection2DGraphicType]ImagingSelection2DGraphicTypeInfo{
+	ImagingSelection2DGraphicTypePoint:        {"http://hl7.org/fhir/imagingselection-2dgraphictype", "POINT"},
+	ImagingSelection2DGraphicTypePolyline:     {"http://hl7.org/fhir/imagingselection-2dgraphictype", "POLYLINE"},
+	ImagingSelection2DGraphicTypeInterpolated: {"http://hl7.org/fhir/imagingselection-2dgraphictype", "INTERPOLATED"},
+	ImagingSelection2DGraphicTypeCircle:       {"http://hl7.org/fhir/imagingselection-2dgraphictype", "CIRCLE"},
+	ImagingSelection2DGraphicTypeEllipse:      {"http://hl7.org/fhir/imagingselection-2dgraphictype", "ELLIPSE"},
+}
+
+// ImagingSelection2DGraphicTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ImagingSelection2DGraphicTypeValues() []ImagingSelection2DGraphicType {
+	return []ImagingSelection2DGraphicType{
+		ImagingSelection2DGraphicTypePoint,
+		ImagingSelection2DGraphicTypePolyline,
+		ImagingSelection2DGraphicTypeInterpolated,
+		ImagingSelection2DGraphicTypeCircle,
+		ImagingSelection2DGraphicTypeEllipse,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ImagingSelection2DGraphicType) Display() string {
+	if info, ok := ImagingSelection2DGraphicTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ImagingSelection2DGraphicType) System() string {
+	return ImagingSelection2DGraphicTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ImagingSelection2DGraphicType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ImagingSelection2DGraphicType) IsValid() bool {
+	_, ok := ImagingSelection2DGraphicTypeTable[c]
+	return ok
+}
+
+// ImagingSelection3DGraphicTypeInfo is the specification's own data for one code.
+type ImagingSelection3DGraphicTypeInfo struct {
+	System  string
+	Display string
+}
+
+// ImagingSelection3DGraphicTypeTable maps each code to what the specification says about it.
+var ImagingSelection3DGraphicTypeTable = map[ImagingSelection3DGraphicType]ImagingSelection3DGraphicTypeInfo{
+	ImagingSelection3DGraphicTypePoint:      {"http://hl7.org/fhir/imagingselection-3dgraphictype", "POINT"},
+	ImagingSelection3DGraphicTypeMultipoint: {"http://hl7.org/fhir/imagingselection-3dgraphictype", "MULTIPOINT"},
+	ImagingSelection3DGraphicTypePolyline:   {"http://hl7.org/fhir/imagingselection-3dgraphictype", "POLYLINE"},
+	ImagingSelection3DGraphicTypePolygon:    {"http://hl7.org/fhir/imagingselection-3dgraphictype", "POLYGON"},
+	ImagingSelection3DGraphicTypeEllipse:    {"http://hl7.org/fhir/imagingselection-3dgraphictype", "ELLIPSE"},
+	ImagingSelection3DGraphicTypeEllipsoid:  {"http://hl7.org/fhir/imagingselection-3dgraphictype", "ELLIPSOID"},
+}
+
+// ImagingSelection3DGraphicTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ImagingSelection3DGraphicTypeValues() []ImagingSelection3DGraphicType {
+	return []ImagingSelection3DGraphicType{
+		ImagingSelection3DGraphicTypePoint,
+		ImagingSelection3DGraphicTypeMultipoint,
+		ImagingSelection3DGraphicTypePolyline,
+		ImagingSelection3DGraphicTypePolygon,
+		ImagingSelection3DGraphicTypeEllipse,
+		ImagingSelection3DGraphicTypeEllipsoid,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ImagingSelection3DGraphicType) Display() string {
+	if info, ok := ImagingSelection3DGraphicTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ImagingSelection3DGraphicType) System() string {
+	return ImagingSelection3DGraphicTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ImagingSelection3DGraphicType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ImagingSelection3DGraphicType) IsValid() bool {
+	_, ok := ImagingSelection3DGraphicTypeTable[c]
+	return ok
+}
+
+// ImagingSelectionStatusInfo is the specification's own data for one code.
+type ImagingSelectionStatusInfo struct {
+	System  string
+	Display string
+}
+
+// ImagingSelectionStatusTable maps each code to what the specification says about it.
+var ImagingSelectionStatusTable = map[ImagingSelectionStatus]ImagingSelectionStatusInfo{
+	ImagingSelectionStatusAvailable:      {"http://hl7.org/fhir/imagingselection-status", "Available"},
+	ImagingSelectionStatusEnteredInError: {"http://hl7.org/fhir/imagingselection-status", "Entered in Error"},
+	ImagingSelectionStatusUnknown:        {"http://hl7.org/fhir/imagingselection-status", "Unknown"},
+}
+
+// ImagingSelectionStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ImagingSelectionStatusValues() []ImagingSelectionStatus {
+	return []ImagingSelectionStatus{
+		ImagingSelectionStatusAvailable,
+		ImagingSelectionStatusEnteredInError,
+		ImagingSelectionStatusUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ImagingSelectionStatus) Display() string {
+	if info, ok := ImagingSelectionStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ImagingSelectionStatus) System() string {
+	return ImagingSelectionStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ImagingSelectionStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ImagingSelectionStatus) IsValid() bool {
+	_, ok := ImagingSelectionStatusTable[c]
+	return ok
+}
+
+// ImagingStudyStatusInfo is the specification's own data for one code.
+type ImagingStudyStatusInfo struct {
+	System  string
+	Display string
+}
+
+// ImagingStudyStatusTable maps each code to what the specification says about it.
+var ImagingStudyStatusTable = map[ImagingStudyStatus]ImagingStudyStatusInfo{
+	ImagingStudyStatusRegistered:     {"http://hl7.org/fhir/imagingstudy-status", "Registered"},
+	ImagingStudyStatusAvailable:      {"http://hl7.org/fhir/imagingstudy-status", "Available"},
+	ImagingStudyStatusCancelled:      {"http://hl7.org/fhir/imagingstudy-status", "Cancelled"},
+	ImagingStudyStatusEnteredInError: {"http://hl7.org/fhir/imagingstudy-status", "Entered in Error"},
+	ImagingStudyStatusUnknown:        {"http://hl7.org/fhir/imagingstudy-status", "Unknown"},
+}
+
+// ImagingStudyStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ImagingStudyStatusValues() []ImagingStudyStatus {
+	return []ImagingStudyStatus{
+		ImagingStudyStatusRegistered,
+		ImagingStudyStatusAvailable,
+		ImagingStudyStatusCancelled,
+		ImagingStudyStatusEnteredInError,
+		ImagingStudyStatusUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ImagingStudyStatus) Display() string {
+	if info, ok := ImagingStudyStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ImagingStudyStatus) System() string {
+	return ImagingStudyStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ImagingStudyStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ImagingStudyStatus) IsValid() bool {
+	_, ok := ImagingStudyStatusTable[c]
+	return ok
+}
+
+// ImmunizationEvaluationStatusInfo is the specification's own data for one code.
+type ImmunizationEvaluationStatusInfo struct {
+	System  string
+	Display string
+}
+
+// ImmunizationEvaluationStatusTable maps each code to what the specification says about it.
+var ImmunizationEvaluationStatusTable = map[ImmunizationEvaluationStatus]ImmunizationEvaluationStatusInfo{
+	ImmunizationEvaluationStatusCompleted:      {"http://hl7.org/fhir/CodeSystem/medication-admin-status", ""},
+	ImmunizationEvaluationStatusEnteredInError: {"http://hl7.org/fhir/CodeSystem/medication-admin-status", ""},
+}
+
+// ImmunizationEvaluationStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ImmunizationEvaluationStatusValues() []ImmunizationEvaluationStatus {
+	return []ImmunizationEvaluationStatus{
+		ImmunizationEvaluationStatusCompleted,
+		ImmunizationEvaluationStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ImmunizationEvaluationStatus) Display() string {
+	if info, ok := ImmunizationEvaluationStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ImmunizationEvaluationStatus) System() string {
+	return ImmunizationEvaluationStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ImmunizationEvaluationStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ImmunizationEvaluationStatus) IsValid() bool {
+	_, ok := ImmunizationEvaluationStatusTable[c]
+	return ok
+}
+
+// ImmunizationStatusInfo is the specification's own data for one code.
+type ImmunizationStatusInfo struct {
+	System  string
+	Display string
+}
+
+// ImmunizationStatusTable maps each code to what the specification says about it.
+var ImmunizationStatusTable = map[ImmunizationStatus]ImmunizationStatusInfo{
+	ImmunizationStatusCompleted:      {"http://hl7.org/fhir/event-status", ""},
+	ImmunizationStatusEnteredInError: {"http://hl7.org/fhir/event-status", ""},
+	ImmunizationStatusNotDone:        {"http://hl7.org/fhir/event-status", ""},
+}
+
+// ImmunizationStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ImmunizationStatusValues() []ImmunizationStatus {
+	return []ImmunizationStatus{
+		ImmunizationStatusCompleted,
+		ImmunizationStatusEnteredInError,
+		ImmunizationStatusNotDone,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ImmunizationStatus) Display() string {
+	if info, ok := ImmunizationStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ImmunizationStatus) System() string {
+	return ImmunizationStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ImmunizationStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ImmunizationStatus) IsValid() bool {
+	_, ok := ImmunizationStatusTable[c]
+	return ok
+}
+
+// IngredientManufacturerRoleInfo is the specification's own data for one code.
+type IngredientManufacturerRoleInfo struct {
+	System  string
+	Display string
+}
+
+// IngredientManufacturerRoleTable maps each code to what the specification says about it.
+var IngredientManufacturerRoleTable = map[IngredientManufacturerRole]IngredientManufacturerRoleInfo{
+	IngredientManufacturerRoleAllowed:  {"http://hl7.org/fhir/ingredient-manufacturer-role", "Manufacturer is specifically allowed for this ingredient"},
+	IngredientManufacturerRolePossible: {"http://hl7.org/fhir/ingredient-manufacturer-role", "Manufacturer is known to make this ingredient in general"},
+	IngredientManufacturerRoleActual:   {"http://hl7.org/fhir/ingredient-manufacturer-role", "Manufacturer actually makes this particular ingredient"},
+}
+
+// IngredientManufacturerRoleValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func IngredientManufacturerRoleValues() []IngredientManufacturerRole {
+	return []IngredientManufacturerRole{
+		IngredientManufacturerRoleAllowed,
+		IngredientManufacturerRolePossible,
+		IngredientManufacturerRoleActual,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c IngredientManufacturerRole) Display() string {
+	if info, ok := IngredientManufacturerRoleTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c IngredientManufacturerRole) System() string {
+	return IngredientManufacturerRoleTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c IngredientManufacturerRole) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c IngredientManufacturerRole) IsValid() bool {
+	_, ok := IngredientManufacturerRoleTable[c]
+	return ok
+}
+
+// MethodCodeInfo is the specification's own data for one code.
+type MethodCodeInfo struct {
+	System  string
+	Display string
+}
+
+// MethodCodeTable maps each code to what the specification says about it.
+var MethodCodeTable = map[MethodCode]MethodCodeInfo{
+	MethodCodeCreate: {"http://hl7.org/fhir/restful-interaction", ""},
+	MethodCodeUpdate: {"http://hl7.org/fhir/restful-interaction", ""},
+	MethodCodeDelete: {"http://hl7.org/fhir/restful-interaction", ""},
+}
+
+// MethodCodeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func MethodCodeValues() []MethodCode {
+	return []MethodCode{
+		MethodCodeCreate,
+		MethodCodeUpdate,
+		MethodCodeDelete,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c MethodCode) Display() string {
+	if info, ok := MethodCodeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c MethodCode) System() string {
+	return MethodCodeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c MethodCode) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c MethodCode) IsValid() bool {
+	_, ok := MethodCodeTable[c]
+	return ok
+}
+
+// InventoryItemStatusInfo is the specification's own data for one code.
+type InventoryItemStatusInfo struct {
+	System  string
+	Display string
+}
+
+// InventoryItemStatusTable maps each code to what the specification says about it.
+var InventoryItemStatusTable = map[InventoryItemStatus]InventoryItemStatusInfo{
+	InventoryItemStatusActive:         {"http://hl7.org/fhir/inventoryitem-status", "Active"},
+	InventoryItemStatusInactive:       {"http://hl7.org/fhir/inventoryitem-status", "Inactive"},
+	InventoryItemStatusEnteredInError: {"http://hl7.org/fhir/inventoryitem-status", "Entered in Error"},
+	InventoryItemStatusUnknown:        {"http://hl7.org/fhir/inventoryitem-status", "Unknown"},
+}
+
+// InventoryItemStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func InventoryItemStatusValues() []InventoryItemStatus {
+	return []InventoryItemStatus{
+		InventoryItemStatusActive,
+		InventoryItemStatusInactive,
+		InventoryItemStatusEnteredInError,
+		InventoryItemStatusUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c InventoryItemStatus) Display() string {
+	if info, ok := InventoryItemStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c InventoryItemStatus) System() string {
+	return InventoryItemStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c InventoryItemStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c InventoryItemStatus) IsValid() bool {
+	_, ok := InventoryItemStatusTable[c]
+	return ok
+}
+
+// InventoryCountTypeInfo is the specification's own data for one code.
+type InventoryCountTypeInfo struct {
+	System  string
+	Display string
+}
+
+// InventoryCountTypeTable maps each code to what the specification says about it.
+var InventoryCountTypeTable = map[InventoryCountType]InventoryCountTypeInfo{
+	InventoryCountTypeSnapshot:   {"http://hl7.org/fhir/inventoryreport-counttype", "Snapshot"},
+	InventoryCountTypeDifference: {"http://hl7.org/fhir/inventoryreport-counttype", "Difference"},
+}
+
+// InventoryCountTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func InventoryCountTypeValues() []InventoryCountType {
+	return []InventoryCountType{
+		InventoryCountTypeSnapshot,
+		InventoryCountTypeDifference,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c InventoryCountType) Display() string {
+	if info, ok := InventoryCountTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c InventoryCountType) System() string {
+	return InventoryCountTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c InventoryCountType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c InventoryCountType) IsValid() bool {
+	_, ok := InventoryCountTypeTable[c]
+	return ok
+}
+
+// InventoryReportStatusInfo is the specification's own data for one code.
+type InventoryReportStatusInfo struct {
+	System  string
+	Display string
+}
+
+// InventoryReportStatusTable maps each code to what the specification says about it.
+var InventoryReportStatusTable = map[InventoryReportStatus]InventoryReportStatusInfo{
+	InventoryReportStatusDraft:          {"http://hl7.org/fhir/inventoryreport-status", "Draft"},
+	InventoryReportStatusRequested:      {"http://hl7.org/fhir/inventoryreport-status", "Requested"},
+	InventoryReportStatusActive:         {"http://hl7.org/fhir/inventoryreport-status", "Active"},
+	InventoryReportStatusEnteredInError: {"http://hl7.org/fhir/inventoryreport-status", "Entered in Error"},
+}
+
+// InventoryReportStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func InventoryReportStatusValues() []InventoryReportStatus {
+	return []InventoryReportStatus{
+		InventoryReportStatusDraft,
+		InventoryReportStatusRequested,
+		InventoryReportStatusActive,
+		InventoryReportStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c InventoryReportStatus) Display() string {
+	if info, ok := InventoryReportStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c InventoryReportStatus) System() string {
+	return InventoryReportStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c InventoryReportStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c InventoryReportStatus) IsValid() bool {
+	_, ok := InventoryReportStatusTable[c]
+	return ok
+}
+
+// InvoiceStatusInfo is the specification's own data for one code.
+type InvoiceStatusInfo struct {
+	System  string
+	Display string
+}
+
+// InvoiceStatusTable maps each code to what the specification says about it.
+var InvoiceStatusTable = map[InvoiceStatus]InvoiceStatusInfo{
+	InvoiceStatusDraft:          {"http://hl7.org/fhir/invoice-status", "draft"},
+	InvoiceStatusIssued:         {"http://hl7.org/fhir/invoice-status", "issued"},
+	InvoiceStatusBalanced:       {"http://hl7.org/fhir/invoice-status", "balanced"},
+	InvoiceStatusCancelled:      {"http://hl7.org/fhir/invoice-status", "cancelled"},
+	InvoiceStatusEnteredInError: {"http://hl7.org/fhir/invoice-status", "entered in error"},
+}
+
+// InvoiceStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func InvoiceStatusValues() []InvoiceStatus {
+	return []InvoiceStatus{
+		InvoiceStatusDraft,
+		InvoiceStatusIssued,
+		InvoiceStatusBalanced,
+		InvoiceStatusCancelled,
+		InvoiceStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c InvoiceStatus) Display() string {
+	if info, ok := InvoiceStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c InvoiceStatus) System() string {
+	return InvoiceStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c InvoiceStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c InvoiceStatus) IsValid() bool {
+	_, ok := InvoiceStatusTable[c]
+	return ok
+}
+
+// IssueSeverityInfo is the specification's own data for one code.
+type IssueSeverityInfo struct {
+	System  string
+	Display string
+}
+
+// IssueSeverityTable maps each code to what the specification says about it.
+var IssueSeverityTable = map[IssueSeverity]IssueSeverityInfo{
+	IssueSeverityFatal:       {"http://hl7.org/fhir/issue-severity", "Fatal"},
+	IssueSeverityError:       {"http://hl7.org/fhir/issue-severity", "Error"},
+	IssueSeverityWarning:     {"http://hl7.org/fhir/issue-severity", "Warning"},
+	IssueSeverityInformation: {"http://hl7.org/fhir/issue-severity", "Information"},
+	IssueSeveritySuccess:     {"http://hl7.org/fhir/issue-severity", "Operation Successful"},
+}
+
+// IssueSeverityValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func IssueSeverityValues() []IssueSeverity {
+	return []IssueSeverity{
+		IssueSeverityFatal,
+		IssueSeverityError,
+		IssueSeverityWarning,
+		IssueSeverityInformation,
+		IssueSeveritySuccess,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c IssueSeverity) Display() string {
+	if info, ok := IssueSeverityTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c IssueSeverity) System() string {
+	return IssueSeverityTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c IssueSeverity) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c IssueSeverity) IsValid() bool {
+	_, ok := IssueSeverityTable[c]
+	return ok
+}
+
+// IssueTypeInfo is the specification's own data for one code.
+type IssueTypeInfo struct {
+	System  string
+	Display string
+}
+
+// IssueTypeTable maps each code to what the specification says about it.
+var IssueTypeTable = map[IssueType]IssueTypeInfo{
+	IssueTypeInvalid:         {"http://hl7.org/fhir/issue-type", "Invalid Content"},
+	IssueTypeStructure:       {"http://hl7.org/fhir/issue-type", "Structural Issue"},
+	IssueTypeRequired:        {"http://hl7.org/fhir/issue-type", "Required element missing"},
+	IssueTypeValue:           {"http://hl7.org/fhir/issue-type", "Element value invalid"},
+	IssueTypeInvariant:       {"http://hl7.org/fhir/issue-type", "Validation rule failed"},
+	IssueTypeSecurity:        {"http://hl7.org/fhir/issue-type", "Security Problem"},
+	IssueTypeLogin:           {"http://hl7.org/fhir/issue-type", "Login Required"},
+	IssueTypeUnknown:         {"http://hl7.org/fhir/issue-type", "Unknown User"},
+	IssueTypeExpired:         {"http://hl7.org/fhir/issue-type", "Session Expired"},
+	IssueTypeForbidden:       {"http://hl7.org/fhir/issue-type", "Forbidden"},
+	IssueTypeSuppressed:      {"http://hl7.org/fhir/issue-type", "Information  Suppressed"},
+	IssueTypeProcessing:      {"http://hl7.org/fhir/issue-type", "Processing Failure"},
+	IssueTypeNotSupported:    {"http://hl7.org/fhir/issue-type", "Content not supported"},
+	IssueTypeDuplicate:       {"http://hl7.org/fhir/issue-type", "Duplicate"},
+	IssueTypeMultipleMatches: {"http://hl7.org/fhir/issue-type", "Multiple Matches"},
+	IssueTypeNotFound:        {"http://hl7.org/fhir/issue-type", "Not Found"},
+	IssueTypeDeleted:         {"http://hl7.org/fhir/issue-type", "Deleted"},
+	IssueTypeTooLong:         {"http://hl7.org/fhir/issue-type", "Content Too Long"},
+	IssueTypeCodeInvalid:     {"http://hl7.org/fhir/issue-type", "Invalid Code"},
+	IssueTypeExtension:       {"http://hl7.org/fhir/issue-type", "Unacceptable Extension"},
+	IssueTypeTooCostly:       {"http://hl7.org/fhir/issue-type", "Operation Too Costly"},
+	IssueTypeBusinessRule:    {"http://hl7.org/fhir/issue-type", "Business Rule Violation"},
+	IssueTypeConflict:        {"http://hl7.org/fhir/issue-type", "Edit Version Conflict"},
+	IssueTypeLimitedFilter:   {"http://hl7.org/fhir/issue-type", "Limited Filter Application"},
+	IssueTypeTransient:       {"http://hl7.org/fhir/issue-type", "Transient Issue"},
+	IssueTypeLockError:       {"http://hl7.org/fhir/issue-type", "Lock Error"},
+	IssueTypeNoStore:         {"http://hl7.org/fhir/issue-type", "No Store Available"},
+	IssueTypeException:       {"http://hl7.org/fhir/issue-type", "Exception"},
+	IssueTypeTimeout:         {"http://hl7.org/fhir/issue-type", "Timeout"},
+	IssueTypeIncomplete:      {"http://hl7.org/fhir/issue-type", "Incomplete Results"},
+	IssueTypeThrottled:       {"http://hl7.org/fhir/issue-type", "Throttled"},
+	IssueTypeInformational:   {"http://hl7.org/fhir/issue-type", "Informational Note"},
+	IssueTypeSuccess:         {"http://hl7.org/fhir/issue-type", "Operation Successful"},
+}
+
+// IssueTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func IssueTypeValues() []IssueType {
+	return []IssueType{
+		IssueTypeInvalid,
+		IssueTypeStructure,
+		IssueTypeRequired,
+		IssueTypeValue,
+		IssueTypeInvariant,
+		IssueTypeSecurity,
+		IssueTypeLogin,
+		IssueTypeUnknown,
+		IssueTypeExpired,
+		IssueTypeForbidden,
+		IssueTypeSuppressed,
+		IssueTypeProcessing,
+		IssueTypeNotSupported,
+		IssueTypeDuplicate,
+		IssueTypeMultipleMatches,
+		IssueTypeNotFound,
+		IssueTypeDeleted,
+		IssueTypeTooLong,
+		IssueTypeCodeInvalid,
+		IssueTypeExtension,
+		IssueTypeTooCostly,
+		IssueTypeBusinessRule,
+		IssueTypeConflict,
+		IssueTypeLimitedFilter,
+		IssueTypeTransient,
+		IssueTypeLockError,
+		IssueTypeNoStore,
+		IssueTypeException,
+		IssueTypeTimeout,
+		IssueTypeIncomplete,
+		IssueTypeThrottled,
+		IssueTypeInformational,
+		IssueTypeSuccess,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c IssueType) Display() string {
+	if info, ok := IssueTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c IssueType) System() string {
+	return IssueTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c IssueType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c IssueType) IsValid() bool {
+	_, ok := IssueTypeTable[c]
+	return ok
+}
+
+// QuestionnaireItemTypeInfo is the specification's own data for one code.
+type QuestionnaireItemTypeInfo struct {
+	System  string
+	Display string
+}
+
+// QuestionnaireItemTypeTable maps each code to what the specification says about it.
+var QuestionnaireItemTypeTable = map[QuestionnaireItemType]QuestionnaireItemTypeInfo{
+	QuestionnaireItemTypeGroup:      {"http://hl7.org/fhir/item-type", "Group"},
+	QuestionnaireItemTypeDisplay:    {"http://hl7.org/fhir/item-type", "Display"},
+	QuestionnaireItemTypeQuestion:   {"http://hl7.org/fhir/item-type", "Question"},
+	QuestionnaireItemTypeBoolean:    {"http://hl7.org/fhir/item-type", "Boolean"},
+	QuestionnaireItemTypeDecimal:    {"http://hl7.org/fhir/item-type", "Decimal"},
+	QuestionnaireItemTypeInteger:    {"http://hl7.org/fhir/item-type", "Integer"},
+	QuestionnaireItemTypeDate:       {"http://hl7.org/fhir/item-type", "Date"},
+	QuestionnaireItemTypeDatetime:   {"http://hl7.org/fhir/item-type", "Date Time"},
+	QuestionnaireItemTypeTime:       {"http://hl7.org/fhir/item-type", "Time"},
+	QuestionnaireItemTypeString:     {"http://hl7.org/fhir/item-type", "String"},
+	QuestionnaireItemTypeText:       {"http://hl7.org/fhir/item-type", "Text"},
+	QuestionnaireItemTypeUrl:        {"http://hl7.org/fhir/item-type", "Url"},
+	QuestionnaireItemTypeCoding:     {"http://hl7.org/fhir/item-type", "Coding"},
+	QuestionnaireItemTypeAttachment: {"http://hl7.org/fhir/item-type", "Attachment"},
+	QuestionnaireItemTypeReference:  {"http://hl7.org/fhir/item-type", "Reference"},
+	QuestionnaireItemTypeQuantity:   {"http://hl7.org/fhir/item-type", "Quantity"},
+}
+
+// QuestionnaireItemTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func QuestionnaireItemTypeValues() []QuestionnaireItemType {
+	return []QuestionnaireItemType{
+		QuestionnaireItemTypeGroup,
+		QuestionnaireItemTypeDisplay,
+		QuestionnaireItemTypeQuestion,
+		QuestionnaireItemTypeBoolean,
+		QuestionnaireItemTypeDecimal,
+		QuestionnaireItemTypeInteger,
+		QuestionnaireItemTypeDate,
+		QuestionnaireItemTypeDatetime,
+		QuestionnaireItemTypeTime,
+		QuestionnaireItemTypeString,
+		QuestionnaireItemTypeText,
+		QuestionnaireItemTypeUrl,
+		QuestionnaireItemTypeCoding,
+		QuestionnaireItemTypeAttachment,
+		QuestionnaireItemTypeReference,
+		QuestionnaireItemTypeQuantity,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c QuestionnaireItemType) Display() string {
+	if info, ok := QuestionnaireItemTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c QuestionnaireItemType) System() string {
+	return QuestionnaireItemTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c QuestionnaireItemType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c QuestionnaireItemType) IsValid() bool {
+	_, ok := QuestionnaireItemTypeTable[c]
+	return ok
+}
+
+// CommonLanguagesInfo is the specification's own data for one code.
+type CommonLanguagesInfo struct {
+	System  string
+	Display string
+}
+
+// CommonLanguagesTable maps each code to what the specification says about it.
+var CommonLanguagesTable = map[CommonLanguages]CommonLanguagesInfo{
+	CommonLanguagesAr:   {"urn:ietf:bcp:47", "Arabic"},
+	CommonLanguagesBg:   {"urn:ietf:bcp:47", "Bulgarian"},
+	CommonLanguagesBgBg: {"urn:ietf:bcp:47", "Bulgarian (Bulgaria)"},
+	CommonLanguagesBn:   {"urn:ietf:bcp:47", "Bengali"},
+	CommonLanguagesCs:   {"urn:ietf:bcp:47", "Czech"},
+	CommonLanguagesCsCz: {"urn:ietf:bcp:47", "Czech (Czechia)"},
+	CommonLanguagesBs:   {"urn:ietf:bcp:47", "Bosnian"},
+	CommonLanguagesBsBa: {"urn:ietf:bcp:47", "Bosnian (Bosnia and Herzegovina)"},
+	CommonLanguagesDa:   {"urn:ietf:bcp:47", "Danish"},
+	CommonLanguagesDaDk: {"urn:ietf:bcp:47", "Danish (Denmark)"},
+	CommonLanguagesDe:   {"urn:ietf:bcp:47", "German"},
+	CommonLanguagesDeAt: {"urn:ietf:bcp:47", "German (Austria)"},
+	CommonLanguagesDeCh: {"urn:ietf:bcp:47", "German (Switzerland)"},
+	CommonLanguagesDeDe: {"urn:ietf:bcp:47", "German (Germany)"},
+	CommonLanguagesEl:   {"urn:ietf:bcp:47", "Greek"},
+	CommonLanguagesElGr: {"urn:ietf:bcp:47", "Greek (Greece)"},
+	CommonLanguagesEn:   {"urn:ietf:bcp:47", "English"},
+	CommonLanguagesEnAu: {"urn:ietf:bcp:47", "English (Australia)"},
+	CommonLanguagesEnCa: {"urn:ietf:bcp:47", "English (Canada)"},
+	CommonLanguagesEnGb: {"urn:ietf:bcp:47", "English (Great Britain)"},
+	CommonLanguagesEnIn: {"urn:ietf:bcp:47", "English (India)"},
+	CommonLanguagesEnNz: {"urn:ietf:bcp:47", "English (New Zealand)"},
+	CommonLanguagesEnSg: {"urn:ietf:bcp:47", "English (Singapore)"},
+	CommonLanguagesEnUs: {"urn:ietf:bcp:47", "English (United States)"},
+	CommonLanguagesEs:   {"urn:ietf:bcp:47", "Spanish"},
+	CommonLanguagesEsAr: {"urn:ietf:bcp:47", "Spanish (Argentina)"},
+	CommonLanguagesEsEs: {"urn:ietf:bcp:47", "Spanish (Spain)"},
+	CommonLanguagesEsUy: {"urn:ietf:bcp:47", "Spanish (Uruguay)"},
+	CommonLanguagesEt:   {"urn:ietf:bcp:47", "Estonian"},
+	CommonLanguagesEtEe: {"urn:ietf:bcp:47", "Estonian (Estonia)"},
+	CommonLanguagesFi:   {"urn:ietf:bcp:47", "Finnish"},
+	CommonLanguagesFr:   {"urn:ietf:bcp:47", "French"},
+	CommonLanguagesFrBe: {"urn:ietf:bcp:47", "French (Belgium)"},
+	CommonLanguagesFrCh: {"urn:ietf:bcp:47", "French (Switzerland)"},
+	CommonLanguagesFrFr: {"urn:ietf:bcp:47", "French (France)"},
+	CommonLanguagesFiFi: {"urn:ietf:bcp:47", "Finnish (Finland)"},
+	CommonLanguagesFrCa: {"urn:ietf:bcp:47", "French (Canada)"},
+	CommonLanguagesFy:   {"urn:ietf:bcp:47", "Frisian"},
+	CommonLanguagesFyNl: {"urn:ietf:bcp:47", "Frisian (Netherlands)"},
+	CommonLanguagesHi:   {"urn:ietf:bcp:47", "Hindi"},
+	CommonLanguagesHr:   {"urn:ietf:bcp:47", "Croatian"},
+	CommonLanguagesHrHr: {"urn:ietf:bcp:47", "Croatian (Croatia)"},
+	CommonLanguagesIs:   {"urn:ietf:bcp:47", "Icelandic"},
+	CommonLanguagesIsIs: {"urn:ietf:bcp:47", "Icelandic (Iceland)"},
+	CommonLanguagesIt:   {"urn:ietf:bcp:47", "Italian"},
+	CommonLanguagesItCh: {"urn:ietf:bcp:47", "Italian (Switzerland)"},
+	CommonLanguagesItIt: {"urn:ietf:bcp:47", "Italian (Italy)"},
+	CommonLanguagesJa:   {"urn:ietf:bcp:47", "Japanese"},
+	CommonLanguagesKo:   {"urn:ietf:bcp:47", "Korean"},
+	CommonLanguagesLt:   {"urn:ietf:bcp:47", "Lithuanian"},
+	CommonLanguagesLtLt: {"urn:ietf:bcp:47", "Lithuanian (Lithuania)"},
+	CommonLanguagesLv:   {"urn:ietf:bcp:47", "Latvian"},
+	CommonLanguagesLvLv: {"urn:ietf:bcp:47", "Latvian (Latvia)"},
+	CommonLanguagesNl:   {"urn:ietf:bcp:47", "Dutch"},
+	CommonLanguagesNlBe: {"urn:ietf:bcp:47", "Dutch (Belgium)"},
+	CommonLanguagesNlNl: {"urn:ietf:bcp:47", "Dutch (Netherlands)"},
+	CommonLanguagesNo:   {"urn:ietf:bcp:47", "Norwegian"},
+	CommonLanguagesNoNo: {"urn:ietf:bcp:47", "Norwegian (Norway)"},
+	CommonLanguagesPa:   {"urn:ietf:bcp:47", "Punjabi"},
+	CommonLanguagesPl:   {"urn:ietf:bcp:47", "Polish"},
+	CommonLanguagesPlPl: {"urn:ietf:bcp:47", "Polish (Poland)"},
+	CommonLanguagesPt:   {"urn:ietf:bcp:47", "Portuguese"},
+	CommonLanguagesPtPt: {"urn:ietf:bcp:47", "Portuguese (Portugal)"},
+	CommonLanguagesPtBr: {"urn:ietf:bcp:47", "Portuguese (Brazil)"},
+	CommonLanguagesRo:   {"urn:ietf:bcp:47", "Romanian"},
+	CommonLanguagesRoRo: {"urn:ietf:bcp:47", "Romanian (Romania)"},
+	CommonLanguagesRu:   {"urn:ietf:bcp:47", "Russian"},
+	CommonLanguagesRuRu: {"urn:ietf:bcp:47", "Russian (Russia)"},
+	CommonLanguagesSk:   {"urn:ietf:bcp:47", "Slovakian"},
+	CommonLanguagesSkSk: {"urn:ietf:bcp:47", "Slovakian (Slovakia)"},
+	CommonLanguagesSl:   {"urn:ietf:bcp:47", "Slovenian"},
+	CommonLanguagesSlSi: {"urn:ietf:bcp:47", "Slovenian (Slovenia)"},
+	CommonLanguagesSr:   {"urn:ietf:bcp:47", "Serbian"},
+	CommonLanguagesSrRs: {"urn:ietf:bcp:47", "Serbian (Serbia)"},
+	CommonLanguagesSv:   {"urn:ietf:bcp:47", "Swedish"},
+	CommonLanguagesSvSe: {"urn:ietf:bcp:47", "Swedish (Sweden)"},
+	CommonLanguagesTe:   {"urn:ietf:bcp:47", "Telugu"},
+	CommonLanguagesZh:   {"urn:ietf:bcp:47", "Chinese"},
+	CommonLanguagesZhCn: {"urn:ietf:bcp:47", "Chinese (China)"},
+	CommonLanguagesZhHk: {"urn:ietf:bcp:47", "Chinese (Hong Kong)"},
+	CommonLanguagesZhSg: {"urn:ietf:bcp:47", "Chinese (Singapore)"},
+	CommonLanguagesZhTw: {"urn:ietf:bcp:47", "Chinese (Taiwan)"},
+}
+
+// CommonLanguagesValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func CommonLanguagesValues() []CommonLanguages {
+	return []CommonLanguages{
+		CommonLanguagesAr,
+		CommonLanguagesBg,
+		CommonLanguagesBgBg,
+		CommonLanguagesBn,
+		CommonLanguagesCs,
+		CommonLanguagesCsCz,
+		CommonLanguagesBs,
+		CommonLanguagesBsBa,
+		CommonLanguagesDa,
+		CommonLanguagesDaDk,
+		CommonLanguagesDe,
+		CommonLanguagesDeAt,
+		CommonLanguagesDeCh,
+		CommonLanguagesDeDe,
+		CommonLanguagesEl,
+		CommonLanguagesElGr,
+		CommonLanguagesEn,
+		CommonLanguagesEnAu,
+		CommonLanguagesEnCa,
+		CommonLanguagesEnGb,
+		CommonLanguagesEnIn,
+		CommonLanguagesEnNz,
+		CommonLanguagesEnSg,
+		CommonLanguagesEnUs,
+		CommonLanguagesEs,
+		CommonLanguagesEsAr,
+		CommonLanguagesEsEs,
+		CommonLanguagesEsUy,
+		CommonLanguagesEt,
+		CommonLanguagesEtEe,
+		CommonLanguagesFi,
+		CommonLanguagesFr,
+		CommonLanguagesFrBe,
+		CommonLanguagesFrCh,
+		CommonLanguagesFrFr,
+		CommonLanguagesFiFi,
+		CommonLanguagesFrCa,
+		CommonLanguagesFy,
+		CommonLanguagesFyNl,
+		CommonLanguagesHi,
+		CommonLanguagesHr,
+		CommonLanguagesHrHr,
+		CommonLanguagesIs,
+		CommonLanguagesIsIs,
+		CommonLanguagesIt,
+		CommonLanguagesItCh,
+		CommonLanguagesItIt,
+		CommonLanguagesJa,
+		CommonLanguagesKo,
+		CommonLanguagesLt,
+		CommonLanguagesLtLt,
+		CommonLanguagesLv,
+		CommonLanguagesLvLv,
+		CommonLanguagesNl,
+		CommonLanguagesNlBe,
+		CommonLanguagesNlNl,
+		CommonLanguagesNo,
+		CommonLanguagesNoNo,
+		CommonLanguagesPa,
+		CommonLanguagesPl,
+		CommonLanguagesPlPl,
+		CommonLanguagesPt,
+		CommonLanguagesPtPt,
+		CommonLanguagesPtBr,
+		CommonLanguagesRo,
+		CommonLanguagesRoRo,
+		CommonLanguagesRu,
+		CommonLanguagesRuRu,
+		CommonLanguagesSk,
+		CommonLanguagesSkSk,
+		CommonLanguagesSl,
+		CommonLanguagesSlSi,
+		CommonLanguagesSr,
+		CommonLanguagesSrRs,
+		CommonLanguagesSv,
+		CommonLanguagesSvSe,
+		CommonLanguagesTe,
+		CommonLanguagesZh,
+		CommonLanguagesZhCn,
+		CommonLanguagesZhHk,
+		CommonLanguagesZhSg,
+		CommonLanguagesZhTw,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c CommonLanguages) Display() string {
+	if info, ok := CommonLanguagesTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c CommonLanguages) System() string {
+	return CommonLanguagesTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c CommonLanguages) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c CommonLanguages) IsValid() bool {
+	_, ok := CommonLanguagesTable[c]
+	return ok
+}
+
+// LinkTypeInfo is the specification's own data for one code.
+type LinkTypeInfo struct {
+	System  string
+	Display string
+}
+
+// LinkTypeTable maps each code to what the specification says about it.
+var LinkTypeTable = map[LinkType]LinkTypeInfo{
+	LinkTypeReplacedBy: {"http://hl7.org/fhir/link-type", "Replaced-by"},
+	LinkTypeReplaces:   {"http://hl7.org/fhir/link-type", "Replaces"},
+	LinkTypeRefer:      {"http://hl7.org/fhir/link-type", "Refer"},
+	LinkTypeSeealso:    {"http://hl7.org/fhir/link-type", "See also"},
+}
+
+// LinkTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func LinkTypeValues() []LinkType {
+	return []LinkType{
+		LinkTypeReplacedBy,
+		LinkTypeReplaces,
+		LinkTypeRefer,
+		LinkTypeSeealso,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c LinkType) Display() string {
+	if info, ok := LinkTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c LinkType) System() string {
+	return LinkTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c LinkType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c LinkType) IsValid() bool {
+	_, ok := LinkTypeTable[c]
+	return ok
+}
+
+// LinkageTypeInfo is the specification's own data for one code.
+type LinkageTypeInfo struct {
+	System  string
+	Display string
+}
+
+// LinkageTypeTable maps each code to what the specification says about it.
+var LinkageTypeTable = map[LinkageType]LinkageTypeInfo{
+	LinkageTypeSource:     {"http://hl7.org/fhir/linkage-type", "Source of Truth"},
+	LinkageTypeAlternate:  {"http://hl7.org/fhir/linkage-type", "Alternate Record"},
+	LinkageTypeHistorical: {"http://hl7.org/fhir/linkage-type", "Historical/Obsolete Record"},
+}
+
+// LinkageTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func LinkageTypeValues() []LinkageType {
+	return []LinkageType{
+		LinkageTypeSource,
+		LinkageTypeAlternate,
+		LinkageTypeHistorical,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c LinkageType) Display() string {
+	if info, ok := LinkageTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c LinkageType) System() string {
+	return LinkageTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c LinkageType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c LinkageType) IsValid() bool {
+	_, ok := LinkageTypeTable[c]
+	return ok
+}
+
+// ListModeInfo is the specification's own data for one code.
+type ListModeInfo struct {
+	System  string
+	Display string
+}
+
+// ListModeTable maps each code to what the specification says about it.
+var ListModeTable = map[ListMode]ListModeInfo{
+	ListModeWorking:  {"http://hl7.org/fhir/list-mode", "Working List"},
+	ListModeSnapshot: {"http://hl7.org/fhir/list-mode", "Snapshot List"},
+	ListModeChanges:  {"http://hl7.org/fhir/list-mode", "Change List"},
+}
+
+// ListModeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ListModeValues() []ListMode {
+	return []ListMode{
+		ListModeWorking,
+		ListModeSnapshot,
+		ListModeChanges,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ListMode) Display() string {
+	if info, ok := ListModeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ListMode) System() string {
+	return ListModeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ListMode) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ListMode) IsValid() bool {
+	_, ok := ListModeTable[c]
+	return ok
+}
+
+// ListStatusInfo is the specification's own data for one code.
+type ListStatusInfo struct {
+	System  string
+	Display string
+}
+
+// ListStatusTable maps each code to what the specification says about it.
+var ListStatusTable = map[ListStatus]ListStatusInfo{
+	ListStatusCurrent:        {"http://hl7.org/fhir/list-status", "Current"},
+	ListStatusRetired:        {"http://hl7.org/fhir/list-status", "Retired"},
+	ListStatusEnteredInError: {"http://hl7.org/fhir/list-status", "Entered In Error"},
+}
+
+// ListStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ListStatusValues() []ListStatus {
+	return []ListStatus{
+		ListStatusCurrent,
+		ListStatusRetired,
+		ListStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ListStatus) Display() string {
+	if info, ok := ListStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ListStatus) System() string {
+	return ListStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ListStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ListStatus) IsValid() bool {
+	_, ok := ListStatusTable[c]
+	return ok
+}
+
+// LocationModeInfo is the specification's own data for one code.
+type LocationModeInfo struct {
+	System  string
+	Display string
+}
+
+// LocationModeTable maps each code to what the specification says about it.
+var LocationModeTable = map[LocationMode]LocationModeInfo{
+	LocationModeInstance: {"http://hl7.org/fhir/location-mode", "Instance"},
+	LocationModeKind:     {"http://hl7.org/fhir/location-mode", "Kind"},
+}
+
+// LocationModeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func LocationModeValues() []LocationMode {
+	return []LocationMode{
+		LocationModeInstance,
+		LocationModeKind,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c LocationMode) Display() string {
+	if info, ok := LocationModeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c LocationMode) System() string {
+	return LocationModeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c LocationMode) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c LocationMode) IsValid() bool {
+	_, ok := LocationModeTable[c]
+	return ok
+}
+
+// LocationStatusInfo is the specification's own data for one code.
+type LocationStatusInfo struct {
+	System  string
+	Display string
+}
+
+// LocationStatusTable maps each code to what the specification says about it.
+var LocationStatusTable = map[LocationStatus]LocationStatusInfo{
+	LocationStatusActive:    {"http://hl7.org/fhir/location-status", "Active"},
+	LocationStatusSuspended: {"http://hl7.org/fhir/location-status", "Suspended"},
+	LocationStatusInactive:  {"http://hl7.org/fhir/location-status", "Inactive"},
+}
+
+// LocationStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func LocationStatusValues() []LocationStatus {
+	return []LocationStatus{
+		LocationStatusActive,
+		LocationStatusSuspended,
+		LocationStatusInactive,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c LocationStatus) Display() string {
+	if info, ok := LocationStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c LocationStatus) System() string {
+	return LocationStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c LocationStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c LocationStatus) IsValid() bool {
+	_, ok := LocationStatusTable[c]
+	return ok
+}
+
+// StructureMapGroupTypeModeInfo is the specification's own data for one code.
+type StructureMapGroupTypeModeInfo struct {
+	System  string
+	Display string
+}
+
+// StructureMapGroupTypeModeTable maps each code to what the specification says about it.
+var StructureMapGroupTypeModeTable = map[StructureMapGroupTypeMode]StructureMapGroupTypeModeInfo{
+	StructureMapGroupTypeModeTypes:        {"http://hl7.org/fhir/map-group-type-mode", "Default for Type Combination"},
+	StructureMapGroupTypeModeTypeAndTypes: {"http://hl7.org/fhir/map-group-type-mode", "Default for type + combination"},
+}
+
+// StructureMapGroupTypeModeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func StructureMapGroupTypeModeValues() []StructureMapGroupTypeMode {
+	return []StructureMapGroupTypeMode{
+		StructureMapGroupTypeModeTypes,
+		StructureMapGroupTypeModeTypeAndTypes,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c StructureMapGroupTypeMode) Display() string {
+	if info, ok := StructureMapGroupTypeModeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c StructureMapGroupTypeMode) System() string {
+	return StructureMapGroupTypeModeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c StructureMapGroupTypeMode) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c StructureMapGroupTypeMode) IsValid() bool {
+	_, ok := StructureMapGroupTypeModeTable[c]
+	return ok
+}
+
+// StructureMapInputModeInfo is the specification's own data for one code.
+type StructureMapInputModeInfo struct {
+	System  string
+	Display string
+}
+
+// StructureMapInputModeTable maps each code to what the specification says about it.
+var StructureMapInputModeTable = map[StructureMapInputMode]StructureMapInputModeInfo{
+	StructureMapInputModeSource: {"http://hl7.org/fhir/map-input-mode", "Source Instance"},
+	StructureMapInputModeTarget: {"http://hl7.org/fhir/map-input-mode", "Target Instance"},
+}
+
+// StructureMapInputModeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func StructureMapInputModeValues() []StructureMapInputMode {
+	return []StructureMapInputMode{
+		StructureMapInputModeSource,
+		StructureMapInputModeTarget,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c StructureMapInputMode) Display() string {
+	if info, ok := StructureMapInputModeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c StructureMapInputMode) System() string {
+	return StructureMapInputModeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c StructureMapInputMode) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c StructureMapInputMode) IsValid() bool {
+	_, ok := StructureMapInputModeTable[c]
+	return ok
+}
+
+// StructureMapModelModeInfo is the specification's own data for one code.
+type StructureMapModelModeInfo struct {
+	System  string
+	Display string
+}
+
+// StructureMapModelModeTable maps each code to what the specification says about it.
+var StructureMapModelModeTable = map[StructureMapModelMode]StructureMapModelModeInfo{
+	StructureMapModelModeSource:   {"http://hl7.org/fhir/map-model-mode", "Source Structure Definition"},
+	StructureMapModelModeQueried:  {"http://hl7.org/fhir/map-model-mode", "Queried Structure Definition"},
+	StructureMapModelModeTarget:   {"http://hl7.org/fhir/map-model-mode", "Target Structure Definition"},
+	StructureMapModelModeProduced: {"http://hl7.org/fhir/map-model-mode", "Produced Structure Definition"},
+}
+
+// StructureMapModelModeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func StructureMapModelModeValues() []StructureMapModelMode {
+	return []StructureMapModelMode{
+		StructureMapModelModeSource,
+		StructureMapModelModeQueried,
+		StructureMapModelModeTarget,
+		StructureMapModelModeProduced,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c StructureMapModelMode) Display() string {
+	if info, ok := StructureMapModelModeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c StructureMapModelMode) System() string {
+	return StructureMapModelModeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c StructureMapModelMode) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c StructureMapModelMode) IsValid() bool {
+	_, ok := StructureMapModelModeTable[c]
+	return ok
+}
+
+// StructureMapSourceListModeInfo is the specification's own data for one code.
+type StructureMapSourceListModeInfo struct {
+	System  string
+	Display string
+}
+
+// StructureMapSourceListModeTable maps each code to what the specification says about it.
+var StructureMapSourceListModeTable = map[StructureMapSourceListMode]StructureMapSourceListModeInfo{
+	StructureMapSourceListModeFirst:    {"http://hl7.org/fhir/map-source-list-mode", "First"},
+	StructureMapSourceListModeNotFirst: {"http://hl7.org/fhir/map-source-list-mode", "All but the first"},
+	StructureMapSourceListModeLast:     {"http://hl7.org/fhir/map-source-list-mode", "Last"},
+	StructureMapSourceListModeNotLast:  {"http://hl7.org/fhir/map-source-list-mode", "All but the last"},
+	StructureMapSourceListModeOnlyOne:  {"http://hl7.org/fhir/map-source-list-mode", "Enforce only one"},
+}
+
+// StructureMapSourceListModeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func StructureMapSourceListModeValues() []StructureMapSourceListMode {
+	return []StructureMapSourceListMode{
+		StructureMapSourceListModeFirst,
+		StructureMapSourceListModeNotFirst,
+		StructureMapSourceListModeLast,
+		StructureMapSourceListModeNotLast,
+		StructureMapSourceListModeOnlyOne,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c StructureMapSourceListMode) Display() string {
+	if info, ok := StructureMapSourceListModeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c StructureMapSourceListMode) System() string {
+	return StructureMapSourceListModeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c StructureMapSourceListMode) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c StructureMapSourceListMode) IsValid() bool {
+	_, ok := StructureMapSourceListModeTable[c]
+	return ok
+}
+
+// StructureMapTargetListModeInfo is the specification's own data for one code.
+type StructureMapTargetListModeInfo struct {
+	System  string
+	Display string
+}
+
+// StructureMapTargetListModeTable maps each code to what the specification says about it.
+var StructureMapTargetListModeTable = map[StructureMapTargetListMode]StructureMapTargetListModeInfo{
+	StructureMapTargetListModeFirst:  {"http://hl7.org/fhir/map-target-list-mode", "First"},
+	StructureMapTargetListModeShare:  {"http://hl7.org/fhir/map-target-list-mode", "Share"},
+	StructureMapTargetListModeLast:   {"http://hl7.org/fhir/map-target-list-mode", "Last"},
+	StructureMapTargetListModeSingle: {"http://hl7.org/fhir/map-target-list-mode", "single"},
+}
+
+// StructureMapTargetListModeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func StructureMapTargetListModeValues() []StructureMapTargetListMode {
+	return []StructureMapTargetListMode{
+		StructureMapTargetListModeFirst,
+		StructureMapTargetListModeShare,
+		StructureMapTargetListModeLast,
+		StructureMapTargetListModeSingle,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c StructureMapTargetListMode) Display() string {
+	if info, ok := StructureMapTargetListModeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c StructureMapTargetListMode) System() string {
+	return StructureMapTargetListModeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c StructureMapTargetListMode) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c StructureMapTargetListMode) IsValid() bool {
+	_, ok := StructureMapTargetListModeTable[c]
+	return ok
+}
+
+// StructureMapTransformInfo is the specification's own data for one code.
+type StructureMapTransformInfo struct {
+	System  string
+	Display string
+}
+
+// StructureMapTransformTable maps each code to what the specification says about it.
+var StructureMapTransformTable = map[StructureMapTransform]StructureMapTransformInfo{
+	StructureMapTransformCreate:    {"http://hl7.org/fhir/map-transform", "create"},
+	StructureMapTransformCopy:      {"http://hl7.org/fhir/map-transform", "copy"},
+	StructureMapTransformTruncate:  {"http://hl7.org/fhir/map-transform", "truncate"},
+	StructureMapTransformEscape:    {"http://hl7.org/fhir/map-transform", "escape"},
+	StructureMapTransformCast:      {"http://hl7.org/fhir/map-transform", "cast"},
+	StructureMapTransformAppend:    {"http://hl7.org/fhir/map-transform", "append"},
+	StructureMapTransformTranslate: {"http://hl7.org/fhir/map-transform", "translate"},
+	StructureMapTransformReference: {"http://hl7.org/fhir/map-transform", "reference"},
+	StructureMapTransformDateop:    {"http://hl7.org/fhir/map-transform", "dateOp"},
+	StructureMapTransformUuid:      {"http://hl7.org/fhir/map-transform", "uuid"},
+	StructureMapTransformPointer:   {"http://hl7.org/fhir/map-transform", "pointer"},
+	StructureMapTransformEvaluate:  {"http://hl7.org/fhir/map-transform", "evaluate"},
+	StructureMapTransformCc:        {"http://hl7.org/fhir/map-transform", "cc"},
+	StructureMapTransformC:         {"http://hl7.org/fhir/map-transform", "c"},
+	StructureMapTransformQty:       {"http://hl7.org/fhir/map-transform", "qty"},
+	StructureMapTransformId:        {"http://hl7.org/fhir/map-transform", "id"},
+	StructureMapTransformCp:        {"http://hl7.org/fhir/map-transform", "cp"},
+}
+
+// StructureMapTransformValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func StructureMapTransformValues() []StructureMapTransform {
+	return []StructureMapTransform{
+		StructureMapTransformCreate,
+		StructureMapTransformCopy,
+		StructureMapTransformTruncate,
+		StructureMapTransformEscape,
+		StructureMapTransformCast,
+		StructureMapTransformAppend,
+		StructureMapTransformTranslate,
+		StructureMapTransformReference,
+		StructureMapTransformDateop,
+		StructureMapTransformUuid,
+		StructureMapTransformPointer,
+		StructureMapTransformEvaluate,
+		StructureMapTransformCc,
+		StructureMapTransformC,
+		StructureMapTransformQty,
+		StructureMapTransformId,
+		StructureMapTransformCp,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c StructureMapTransform) Display() string {
+	if info, ok := StructureMapTransformTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c StructureMapTransform) System() string {
+	return StructureMapTransformTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c StructureMapTransform) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c StructureMapTransform) IsValid() bool {
+	_, ok := StructureMapTransformTable[c]
+	return ok
+}
+
+// MeasureReportStatusInfo is the specification's own data for one code.
+type MeasureReportStatusInfo struct {
+	System  string
+	Display string
+}
+
+// MeasureReportStatusTable maps each code to what the specification says about it.
+var MeasureReportStatusTable = map[MeasureReportStatus]MeasureReportStatusInfo{
+	MeasureReportStatusComplete: {"http://hl7.org/fhir/measure-report-status", "Complete"},
+	MeasureReportStatusPending:  {"http://hl7.org/fhir/measure-report-status", "Pending"},
+	MeasureReportStatusError:    {"http://hl7.org/fhir/measure-report-status", "Error"},
+}
+
+// MeasureReportStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func MeasureReportStatusValues() []MeasureReportStatus {
+	return []MeasureReportStatus{
+		MeasureReportStatusComplete,
+		MeasureReportStatusPending,
+		MeasureReportStatusError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c MeasureReportStatus) Display() string {
+	if info, ok := MeasureReportStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c MeasureReportStatus) System() string {
+	return MeasureReportStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c MeasureReportStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c MeasureReportStatus) IsValid() bool {
+	_, ok := MeasureReportStatusTable[c]
+	return ok
+}
+
+// MeasureReportTypeInfo is the specification's own data for one code.
+type MeasureReportTypeInfo struct {
+	System  string
+	Display string
+}
+
+// MeasureReportTypeTable maps each code to what the specification says about it.
+var MeasureReportTypeTable = map[MeasureReportType]MeasureReportTypeInfo{
+	MeasureReportTypeIndividual:   {"http://hl7.org/fhir/measure-report-type", "Individual"},
+	MeasureReportTypeSubjectList:  {"http://hl7.org/fhir/measure-report-type", "Subject List"},
+	MeasureReportTypeSummary:      {"http://hl7.org/fhir/measure-report-type", "Summary"},
+	MeasureReportTypeDataExchange: {"http://hl7.org/fhir/measure-report-type", "Data Exchange"},
+}
+
+// MeasureReportTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func MeasureReportTypeValues() []MeasureReportType {
+	return []MeasureReportType{
+		MeasureReportTypeIndividual,
+		MeasureReportTypeSubjectList,
+		MeasureReportTypeSummary,
+		MeasureReportTypeDataExchange,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c MeasureReportType) Display() string {
+	if info, ok := MeasureReportTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c MeasureReportType) System() string {
+	return MeasureReportTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c MeasureReportType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c MeasureReportType) IsValid() bool {
+	_, ok := MeasureReportTypeTable[c]
+	return ok
+}
+
+// MedicationAdministrationStatusInfo is the specification's own data for one code.
+type MedicationAdministrationStatusInfo struct {
+	System  string
+	Display string
+}
+
+// MedicationAdministrationStatusTable maps each code to what the specification says about it.
+var MedicationAdministrationStatusTable = map[MedicationAdministrationStatus]MedicationAdministrationStatusInfo{
+	MedicationAdministrationStatusInProgress:     {"http://hl7.org/fhir/CodeSystem/medication-admin-status", "In Progress"},
+	MedicationAdministrationStatusNotDone:        {"http://hl7.org/fhir/CodeSystem/medication-admin-status", "Not Done"},
+	MedicationAdministrationStatusOnHold:         {"http://hl7.org/fhir/CodeSystem/medication-admin-status", "On Hold"},
+	MedicationAdministrationStatusCompleted:      {"http://hl7.org/fhir/CodeSystem/medication-admin-status", "Completed"},
+	MedicationAdministrationStatusEnteredInError: {"http://hl7.org/fhir/CodeSystem/medication-admin-status", "Entered in Error"},
+	MedicationAdministrationStatusStopped:        {"http://hl7.org/fhir/CodeSystem/medication-admin-status", "Stopped"},
+	MedicationAdministrationStatusUnknown:        {"http://hl7.org/fhir/CodeSystem/medication-admin-status", "Unknown"},
+}
+
+// MedicationAdministrationStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func MedicationAdministrationStatusValues() []MedicationAdministrationStatus {
+	return []MedicationAdministrationStatus{
+		MedicationAdministrationStatusInProgress,
+		MedicationAdministrationStatusNotDone,
+		MedicationAdministrationStatusOnHold,
+		MedicationAdministrationStatusCompleted,
+		MedicationAdministrationStatusEnteredInError,
+		MedicationAdministrationStatusStopped,
+		MedicationAdministrationStatusUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c MedicationAdministrationStatus) Display() string {
+	if info, ok := MedicationAdministrationStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c MedicationAdministrationStatus) System() string {
+	return MedicationAdministrationStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c MedicationAdministrationStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c MedicationAdministrationStatus) IsValid() bool {
+	_, ok := MedicationAdministrationStatusTable[c]
+	return ok
+}
+
+// MedicationStatementStatusInfo is the specification's own data for one code.
+type MedicationStatementStatusInfo struct {
+	System  string
+	Display string
+}
+
+// MedicationStatementStatusTable maps each code to what the specification says about it.
+var MedicationStatementStatusTable = map[MedicationStatementStatus]MedicationStatementStatusInfo{
+	MedicationStatementStatusRecorded:       {"http://hl7.org/fhir/CodeSystem/medication-statement-status", "Recorded"},
+	MedicationStatementStatusEnteredInError: {"http://hl7.org/fhir/CodeSystem/medication-statement-status", "Entered in Error"},
+	MedicationStatementStatusDraft:          {"http://hl7.org/fhir/CodeSystem/medication-statement-status", "Draft"},
+}
+
+// MedicationStatementStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func MedicationStatementStatusValues() []MedicationStatementStatus {
+	return []MedicationStatementStatus{
+		MedicationStatementStatusRecorded,
+		MedicationStatementStatusEnteredInError,
+		MedicationStatementStatusDraft,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c MedicationStatementStatus) Display() string {
+	if info, ok := MedicationStatementStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c MedicationStatementStatus) System() string {
+	return MedicationStatementStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c MedicationStatementStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c MedicationStatementStatus) IsValid() bool {
+	_, ok := MedicationStatementStatusTable[c]
+	return ok
+}
+
+// MedicationStatusInfo is the specification's own data for one code.
+type MedicationStatusInfo struct {
+	System  string
+	Display string
+}
+
+// MedicationStatusTable maps each code to what the specification says about it.
+var MedicationStatusTable = map[MedicationStatus]MedicationStatusInfo{
+	MedicationStatusActive:         {"http://hl7.org/fhir/CodeSystem/medication-status", "Active"},
+	MedicationStatusInactive:       {"http://hl7.org/fhir/CodeSystem/medication-status", "Inactive"},
+	MedicationStatusEnteredInError: {"http://hl7.org/fhir/CodeSystem/medication-status", "Entered in Error"},
+}
+
+// MedicationStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func MedicationStatusValues() []MedicationStatus {
+	return []MedicationStatus{
+		MedicationStatusActive,
+		MedicationStatusInactive,
+		MedicationStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c MedicationStatus) Display() string {
+	if info, ok := MedicationStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c MedicationStatus) System() string {
+	return MedicationStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c MedicationStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c MedicationStatus) IsValid() bool {
+	_, ok := MedicationStatusTable[c]
+	return ok
+}
+
+// MedicationDispenseStatusInfo is the specification's own data for one code.
+type MedicationDispenseStatusInfo struct {
+	System  string
+	Display string
+}
+
+// MedicationDispenseStatusTable maps each code to what the specification says about it.
+var MedicationDispenseStatusTable = map[MedicationDispenseStatus]MedicationDispenseStatusInfo{
+	MedicationDispenseStatusPreparation:    {"http://hl7.org/fhir/CodeSystem/medicationdispense-status", "Preparation"},
+	MedicationDispenseStatusInProgress:     {"http://hl7.org/fhir/CodeSystem/medicationdispense-status", "In Progress"},
+	MedicationDispenseStatusCancelled:      {"http://hl7.org/fhir/CodeSystem/medicationdispense-status", "Cancelled"},
+	MedicationDispenseStatusOnHold:         {"http://hl7.org/fhir/CodeSystem/medicationdispense-status", "On Hold"},
+	MedicationDispenseStatusCompleted:      {"http://hl7.org/fhir/CodeSystem/medicationdispense-status", "Completed"},
+	MedicationDispenseStatusEnteredInError: {"http://hl7.org/fhir/CodeSystem/medicationdispense-status", "Entered in Error"},
+	MedicationDispenseStatusStopped:        {"http://hl7.org/fhir/CodeSystem/medicationdispense-status", "Stopped"},
+	MedicationDispenseStatusDeclined:       {"http://hl7.org/fhir/CodeSystem/medicationdispense-status", "Declined"},
+	MedicationDispenseStatusUnknown:        {"http://hl7.org/fhir/CodeSystem/medicationdispense-status", "Unknown"},
+}
+
+// MedicationDispenseStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func MedicationDispenseStatusValues() []MedicationDispenseStatus {
+	return []MedicationDispenseStatus{
+		MedicationDispenseStatusPreparation,
+		MedicationDispenseStatusInProgress,
+		MedicationDispenseStatusCancelled,
+		MedicationDispenseStatusOnHold,
+		MedicationDispenseStatusCompleted,
+		MedicationDispenseStatusEnteredInError,
+		MedicationDispenseStatusStopped,
+		MedicationDispenseStatusDeclined,
+		MedicationDispenseStatusUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c MedicationDispenseStatus) Display() string {
+	if info, ok := MedicationDispenseStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c MedicationDispenseStatus) System() string {
+	return MedicationDispenseStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c MedicationDispenseStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c MedicationDispenseStatus) IsValid() bool {
+	_, ok := MedicationDispenseStatusTable[c]
+	return ok
+}
+
+// MedicationKnowledgeStatusInfo is the specification's own data for one code.
+type MedicationKnowledgeStatusInfo struct {
+	System  string
+	Display string
+}
+
+// MedicationKnowledgeStatusTable maps each code to what the specification says about it.
+var MedicationKnowledgeStatusTable = map[MedicationKnowledgeStatus]MedicationKnowledgeStatusInfo{
+	MedicationKnowledgeStatusActive:         {"http://hl7.org/fhir/CodeSystem/medicationknowledge-status", "Active"},
+	MedicationKnowledgeStatusEnteredInError: {"http://hl7.org/fhir/CodeSystem/medicationknowledge-status", "Entered in Error"},
+	MedicationKnowledgeStatusInactive:       {"http://hl7.org/fhir/CodeSystem/medicationknowledge-status", "Inactive"},
+}
+
+// MedicationKnowledgeStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func MedicationKnowledgeStatusValues() []MedicationKnowledgeStatus {
+	return []MedicationKnowledgeStatus{
+		MedicationKnowledgeStatusActive,
+		MedicationKnowledgeStatusEnteredInError,
+		MedicationKnowledgeStatusInactive,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c MedicationKnowledgeStatus) Display() string {
+	if info, ok := MedicationKnowledgeStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c MedicationKnowledgeStatus) System() string {
+	return MedicationKnowledgeStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c MedicationKnowledgeStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c MedicationKnowledgeStatus) IsValid() bool {
+	_, ok := MedicationKnowledgeStatusTable[c]
+	return ok
+}
+
+// MedicationRequestIntentInfo is the specification's own data for one code.
+type MedicationRequestIntentInfo struct {
+	System  string
+	Display string
+}
+
+// MedicationRequestIntentTable maps each code to what the specification says about it.
+var MedicationRequestIntentTable = map[MedicationRequestIntent]MedicationRequestIntentInfo{
+	MedicationRequestIntentProposal:      {"http://hl7.org/fhir/CodeSystem/medicationrequest-intent", "Proposal"},
+	MedicationRequestIntentPlan:          {"http://hl7.org/fhir/CodeSystem/medicationrequest-intent", "Plan"},
+	MedicationRequestIntentOrder:         {"http://hl7.org/fhir/CodeSystem/medicationrequest-intent", "Order"},
+	MedicationRequestIntentOriginalOrder: {"http://hl7.org/fhir/CodeSystem/medicationrequest-intent", "Original Order"},
+	MedicationRequestIntentReflexOrder:   {"http://hl7.org/fhir/CodeSystem/medicationrequest-intent", "Reflex Order"},
+	MedicationRequestIntentFillerOrder:   {"http://hl7.org/fhir/CodeSystem/medicationrequest-intent", "Filler Order"},
+	MedicationRequestIntentInstanceOrder: {"http://hl7.org/fhir/CodeSystem/medicationrequest-intent", "Instance Order"},
+	MedicationRequestIntentOption:        {"http://hl7.org/fhir/CodeSystem/medicationrequest-intent", "Option"},
+}
+
+// MedicationRequestIntentValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func MedicationRequestIntentValues() []MedicationRequestIntent {
+	return []MedicationRequestIntent{
+		MedicationRequestIntentProposal,
+		MedicationRequestIntentPlan,
+		MedicationRequestIntentOrder,
+		MedicationRequestIntentOriginalOrder,
+		MedicationRequestIntentReflexOrder,
+		MedicationRequestIntentFillerOrder,
+		MedicationRequestIntentInstanceOrder,
+		MedicationRequestIntentOption,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c MedicationRequestIntent) Display() string {
+	if info, ok := MedicationRequestIntentTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c MedicationRequestIntent) System() string {
+	return MedicationRequestIntentTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c MedicationRequestIntent) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c MedicationRequestIntent) IsValid() bool {
+	_, ok := MedicationRequestIntentTable[c]
+	return ok
+}
+
+// MedicationRequestStatusInfo is the specification's own data for one code.
+type MedicationRequestStatusInfo struct {
+	System  string
+	Display string
+}
+
+// MedicationRequestStatusTable maps each code to what the specification says about it.
+var MedicationRequestStatusTable = map[MedicationRequestStatus]MedicationRequestStatusInfo{
+	MedicationRequestStatusActive:         {"http://hl7.org/fhir/CodeSystem/medicationrequest-status", "Active"},
+	MedicationRequestStatusOnHold:         {"http://hl7.org/fhir/CodeSystem/medicationrequest-status", "On Hold"},
+	MedicationRequestStatusEnded:          {"http://hl7.org/fhir/CodeSystem/medicationrequest-status", "Ended"},
+	MedicationRequestStatusStopped:        {"http://hl7.org/fhir/CodeSystem/medicationrequest-status", "Stopped"},
+	MedicationRequestStatusCompleted:      {"http://hl7.org/fhir/CodeSystem/medicationrequest-status", "Completed"},
+	MedicationRequestStatusCancelled:      {"http://hl7.org/fhir/CodeSystem/medicationrequest-status", "Cancelled"},
+	MedicationRequestStatusEnteredInError: {"http://hl7.org/fhir/CodeSystem/medicationrequest-status", "Entered in Error"},
+	MedicationRequestStatusDraft:          {"http://hl7.org/fhir/CodeSystem/medicationrequest-status", "Draft"},
+	MedicationRequestStatusUnknown:        {"http://hl7.org/fhir/CodeSystem/medicationrequest-status", "Unknown"},
+}
+
+// MedicationRequestStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func MedicationRequestStatusValues() []MedicationRequestStatus {
+	return []MedicationRequestStatus{
+		MedicationRequestStatusActive,
+		MedicationRequestStatusOnHold,
+		MedicationRequestStatusEnded,
+		MedicationRequestStatusStopped,
+		MedicationRequestStatusCompleted,
+		MedicationRequestStatusCancelled,
+		MedicationRequestStatusEnteredInError,
+		MedicationRequestStatusDraft,
+		MedicationRequestStatusUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c MedicationRequestStatus) Display() string {
+	if info, ok := MedicationRequestStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c MedicationRequestStatus) System() string {
+	return MedicationRequestStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c MedicationRequestStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c MedicationRequestStatus) IsValid() bool {
+	_, ok := MedicationRequestStatusTable[c]
+	return ok
+}
+
+// MessageSignificanceCategoryInfo is the specification's own data for one code.
+type MessageSignificanceCategoryInfo struct {
+	System  string
+	Display string
+}
+
+// MessageSignificanceCategoryTable maps each code to what the specification says about it.
+var MessageSignificanceCategoryTable = map[MessageSignificanceCategory]MessageSignificanceCategoryInfo{
+	MessageSignificanceCategoryConsequence:  {"http://hl7.org/fhir/message-significance-category", "Consequence"},
+	MessageSignificanceCategoryCurrency:     {"http://hl7.org/fhir/message-significance-category", "Currency"},
+	MessageSignificanceCategoryNotification: {"http://hl7.org/fhir/message-significance-category", "Notification"},
+}
+
+// MessageSignificanceCategoryValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func MessageSignificanceCategoryValues() []MessageSignificanceCategory {
+	return []MessageSignificanceCategory{
+		MessageSignificanceCategoryConsequence,
+		MessageSignificanceCategoryCurrency,
+		MessageSignificanceCategoryNotification,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c MessageSignificanceCategory) Display() string {
+	if info, ok := MessageSignificanceCategoryTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c MessageSignificanceCategory) System() string {
+	return MessageSignificanceCategoryTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c MessageSignificanceCategory) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c MessageSignificanceCategory) IsValid() bool {
+	_, ok := MessageSignificanceCategoryTable[c]
+	return ok
+}
+
+// MessageheaderResponseRequestInfo is the specification's own data for one code.
+type MessageheaderResponseRequestInfo struct {
+	System  string
+	Display string
+}
+
+// MessageheaderResponseRequestTable maps each code to what the specification says about it.
+var MessageheaderResponseRequestTable = map[MessageheaderResponseRequest]MessageheaderResponseRequestInfo{
+	MessageheaderResponseRequestAlways:    {"http://hl7.org/fhir/messageheader-response-request", "Always"},
+	MessageheaderResponseRequestOnError:   {"http://hl7.org/fhir/messageheader-response-request", "Error/reject conditions only"},
+	MessageheaderResponseRequestNever:     {"http://hl7.org/fhir/messageheader-response-request", "Never"},
+	MessageheaderResponseRequestOnSuccess: {"http://hl7.org/fhir/messageheader-response-request", "Successful completion only"},
+}
+
+// MessageheaderResponseRequestValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func MessageheaderResponseRequestValues() []MessageheaderResponseRequest {
+	return []MessageheaderResponseRequest{
+		MessageheaderResponseRequestAlways,
+		MessageheaderResponseRequestOnError,
+		MessageheaderResponseRequestNever,
+		MessageheaderResponseRequestOnSuccess,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c MessageheaderResponseRequest) Display() string {
+	if info, ok := MessageheaderResponseRequestTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c MessageheaderResponseRequest) System() string {
+	return MessageheaderResponseRequestTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c MessageheaderResponseRequest) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c MessageheaderResponseRequest) IsValid() bool {
+	_, ok := MessageheaderResponseRequestTable[c]
+	return ok
+}
+
+// DeviceMetricCalibrationStateInfo is the specification's own data for one code.
+type DeviceMetricCalibrationStateInfo struct {
+	System  string
+	Display string
+}
+
+// DeviceMetricCalibrationStateTable maps each code to what the specification says about it.
+var DeviceMetricCalibrationStateTable = map[DeviceMetricCalibrationState]DeviceMetricCalibrationStateInfo{
+	DeviceMetricCalibrationStateNotCalibrated:       {"http://hl7.org/fhir/metric-calibration-state", "Not Calibrated"},
+	DeviceMetricCalibrationStateCalibrationRequired: {"http://hl7.org/fhir/metric-calibration-state", "Calibration Required"},
+	DeviceMetricCalibrationStateCalibrated:          {"http://hl7.org/fhir/metric-calibration-state", "Calibrated"},
+	DeviceMetricCalibrationStateUnspecified:         {"http://hl7.org/fhir/metric-calibration-state", "Unspecified"},
+}
+
+// DeviceMetricCalibrationStateValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func DeviceMetricCalibrationStateValues() []DeviceMetricCalibrationState {
+	return []DeviceMetricCalibrationState{
+		DeviceMetricCalibrationStateNotCalibrated,
+		DeviceMetricCalibrationStateCalibrationRequired,
+		DeviceMetricCalibrationStateCalibrated,
+		DeviceMetricCalibrationStateUnspecified,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c DeviceMetricCalibrationState) Display() string {
+	if info, ok := DeviceMetricCalibrationStateTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c DeviceMetricCalibrationState) System() string {
+	return DeviceMetricCalibrationStateTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c DeviceMetricCalibrationState) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c DeviceMetricCalibrationState) IsValid() bool {
+	_, ok := DeviceMetricCalibrationStateTable[c]
+	return ok
+}
+
+// DeviceMetricCalibrationTypeInfo is the specification's own data for one code.
+type DeviceMetricCalibrationTypeInfo struct {
+	System  string
+	Display string
+}
+
+// DeviceMetricCalibrationTypeTable maps each code to what the specification says about it.
+var DeviceMetricCalibrationTypeTable = map[DeviceMetricCalibrationType]DeviceMetricCalibrationTypeInfo{
+	DeviceMetricCalibrationTypeUnspecified: {"http://hl7.org/fhir/metric-calibration-type", "Unspecified"},
+	DeviceMetricCalibrationTypeOffset:      {"http://hl7.org/fhir/metric-calibration-type", "Offset"},
+	DeviceMetricCalibrationTypeGain:        {"http://hl7.org/fhir/metric-calibration-type", "Gain"},
+	DeviceMetricCalibrationTypeTwoPoint:    {"http://hl7.org/fhir/metric-calibration-type", "Two Point"},
+}
+
+// DeviceMetricCalibrationTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func DeviceMetricCalibrationTypeValues() []DeviceMetricCalibrationType {
+	return []DeviceMetricCalibrationType{
+		DeviceMetricCalibrationTypeUnspecified,
+		DeviceMetricCalibrationTypeOffset,
+		DeviceMetricCalibrationTypeGain,
+		DeviceMetricCalibrationTypeTwoPoint,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c DeviceMetricCalibrationType) Display() string {
+	if info, ok := DeviceMetricCalibrationTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c DeviceMetricCalibrationType) System() string {
+	return DeviceMetricCalibrationTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c DeviceMetricCalibrationType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c DeviceMetricCalibrationType) IsValid() bool {
+	_, ok := DeviceMetricCalibrationTypeTable[c]
+	return ok
+}
+
+// DeviceMetricCategoryInfo is the specification's own data for one code.
+type DeviceMetricCategoryInfo struct {
+	System  string
+	Display string
+}
+
+// DeviceMetricCategoryTable maps each code to what the specification says about it.
+var DeviceMetricCategoryTable = map[DeviceMetricCategory]DeviceMetricCategoryInfo{
+	DeviceMetricCategoryMeasurement: {"http://hl7.org/fhir/metric-category", "Measurement"},
+	DeviceMetricCategorySetting:     {"http://hl7.org/fhir/metric-category", "Setting"},
+	DeviceMetricCategoryCalculation: {"http://hl7.org/fhir/metric-category", "Calculation"},
+	DeviceMetricCategoryUnspecified: {"http://hl7.org/fhir/metric-category", "Unspecified"},
+}
+
+// DeviceMetricCategoryValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func DeviceMetricCategoryValues() []DeviceMetricCategory {
+	return []DeviceMetricCategory{
+		DeviceMetricCategoryMeasurement,
+		DeviceMetricCategorySetting,
+		DeviceMetricCategoryCalculation,
+		DeviceMetricCategoryUnspecified,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c DeviceMetricCategory) Display() string {
+	if info, ok := DeviceMetricCategoryTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c DeviceMetricCategory) System() string {
+	return DeviceMetricCategoryTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c DeviceMetricCategory) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c DeviceMetricCategory) IsValid() bool {
+	_, ok := DeviceMetricCategoryTable[c]
+	return ok
+}
+
+// DeviceMetricOperationalStatusInfo is the specification's own data for one code.
+type DeviceMetricOperationalStatusInfo struct {
+	System  string
+	Display string
+}
+
+// DeviceMetricOperationalStatusTable maps each code to what the specification says about it.
+var DeviceMetricOperationalStatusTable = map[DeviceMetricOperationalStatus]DeviceMetricOperationalStatusInfo{
+	DeviceMetricOperationalStatusOn:             {"http://hl7.org/fhir/metric-operational-status", "On"},
+	DeviceMetricOperationalStatusOff:            {"http://hl7.org/fhir/metric-operational-status", "Off"},
+	DeviceMetricOperationalStatusStandby:        {"http://hl7.org/fhir/metric-operational-status", "Standby"},
+	DeviceMetricOperationalStatusEnteredInError: {"http://hl7.org/fhir/metric-operational-status", "Entered In Error"},
+}
+
+// DeviceMetricOperationalStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func DeviceMetricOperationalStatusValues() []DeviceMetricOperationalStatus {
+	return []DeviceMetricOperationalStatus{
+		DeviceMetricOperationalStatusOn,
+		DeviceMetricOperationalStatusOff,
+		DeviceMetricOperationalStatusStandby,
+		DeviceMetricOperationalStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c DeviceMetricOperationalStatus) Display() string {
+	if info, ok := DeviceMetricOperationalStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c DeviceMetricOperationalStatus) System() string {
+	return DeviceMetricOperationalStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c DeviceMetricOperationalStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c DeviceMetricOperationalStatus) IsValid() bool {
+	_, ok := DeviceMetricOperationalStatusTable[c]
+	return ok
+}
+
+// NameUseInfo is the specification's own data for one code.
+type NameUseInfo struct {
+	System  string
+	Display string
+}
+
+// NameUseTable maps each code to what the specification says about it.
+var NameUseTable = map[NameUse]NameUseInfo{
+	NameUseUsual:     {"http://hl7.org/fhir/name-use", "Usual"},
+	NameUseOfficial:  {"http://hl7.org/fhir/name-use", "Official"},
+	NameUseTemp:      {"http://hl7.org/fhir/name-use", "Temp"},
+	NameUseNickname:  {"http://hl7.org/fhir/name-use", "Nickname"},
+	NameUseAnonymous: {"http://hl7.org/fhir/name-use", "Anonymous"},
+	NameUseOld:       {"http://hl7.org/fhir/name-use", "Old"},
+	NameUseMaiden:    {"http://hl7.org/fhir/name-use", "Name changed for Marriage"},
+}
+
+// NameUseValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func NameUseValues() []NameUse {
+	return []NameUse{
+		NameUseUsual,
+		NameUseOfficial,
+		NameUseTemp,
+		NameUseNickname,
+		NameUseAnonymous,
+		NameUseOld,
+		NameUseMaiden,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c NameUse) Display() string {
+	if info, ok := NameUseTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c NameUse) System() string {
+	return NameUseTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c NameUse) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c NameUse) IsValid() bool {
+	_, ok := NameUseTable[c]
+	return ok
+}
+
+// NamingSystemIdentifierTypeInfo is the specification's own data for one code.
+type NamingSystemIdentifierTypeInfo struct {
+	System  string
+	Display string
+}
+
+// NamingSystemIdentifierTypeTable maps each code to what the specification says about it.
+var NamingSystemIdentifierTypeTable = map[NamingSystemIdentifierType]NamingSystemIdentifierTypeInfo{
+	NamingSystemIdentifierTypeOid:          {"http://hl7.org/fhir/namingsystem-identifier-type", "OID"},
+	NamingSystemIdentifierTypeUuid:         {"http://hl7.org/fhir/namingsystem-identifier-type", "UUID"},
+	NamingSystemIdentifierTypeUri:          {"http://hl7.org/fhir/namingsystem-identifier-type", "URI"},
+	NamingSystemIdentifierTypeIriStem:      {"http://hl7.org/fhir/namingsystem-identifier-type", "IRI stem"},
+	NamingSystemIdentifierTypeV2csmnemonic: {"http://hl7.org/fhir/namingsystem-identifier-type", "V2CSMNemonic"},
+	NamingSystemIdentifierTypeOther:        {"http://hl7.org/fhir/namingsystem-identifier-type", "Other"},
+}
+
+// NamingSystemIdentifierTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func NamingSystemIdentifierTypeValues() []NamingSystemIdentifierType {
+	return []NamingSystemIdentifierType{
+		NamingSystemIdentifierTypeOid,
+		NamingSystemIdentifierTypeUuid,
+		NamingSystemIdentifierTypeUri,
+		NamingSystemIdentifierTypeIriStem,
+		NamingSystemIdentifierTypeV2csmnemonic,
+		NamingSystemIdentifierTypeOther,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c NamingSystemIdentifierType) Display() string {
+	if info, ok := NamingSystemIdentifierTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c NamingSystemIdentifierType) System() string {
+	return NamingSystemIdentifierTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c NamingSystemIdentifierType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c NamingSystemIdentifierType) IsValid() bool {
+	_, ok := NamingSystemIdentifierTypeTable[c]
+	return ok
+}
+
+// NamingSystemTypeInfo is the specification's own data for one code.
+type NamingSystemTypeInfo struct {
+	System  string
+	Display string
+}
+
+// NamingSystemTypeTable maps each code to what the specification says about it.
+var NamingSystemTypeTable = map[NamingSystemType]NamingSystemTypeInfo{
+	NamingSystemTypeCodesystem: {"http://hl7.org/fhir/namingsystem-type", "Code System"},
+	NamingSystemTypeIdentifier: {"http://hl7.org/fhir/namingsystem-type", "Identifier"},
+	NamingSystemTypeRoot:       {"http://hl7.org/fhir/namingsystem-type", "Root"},
+}
+
+// NamingSystemTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func NamingSystemTypeValues() []NamingSystemType {
+	return []NamingSystemType{
+		NamingSystemTypeCodesystem,
+		NamingSystemTypeIdentifier,
+		NamingSystemTypeRoot,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c NamingSystemType) Display() string {
+	if info, ok := NamingSystemTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c NamingSystemType) System() string {
+	return NamingSystemTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c NamingSystemType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c NamingSystemType) IsValid() bool {
+	_, ok := NamingSystemTypeTable[c]
+	return ok
+}
+
+// NarrativeStatusInfo is the specification's own data for one code.
+type NarrativeStatusInfo struct {
+	System  string
+	Display string
+}
+
+// NarrativeStatusTable maps each code to what the specification says about it.
+var NarrativeStatusTable = map[NarrativeStatus]NarrativeStatusInfo{
+	NarrativeStatusGenerated:  {"http://hl7.org/fhir/narrative-status", "Generated"},
+	NarrativeStatusExtensions: {"http://hl7.org/fhir/narrative-status", "Extensions"},
+	NarrativeStatusAdditional: {"http://hl7.org/fhir/narrative-status", "Additional"},
+	NarrativeStatusEmpty:      {"http://hl7.org/fhir/narrative-status", "Empty"},
+}
+
+// NarrativeStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func NarrativeStatusValues() []NarrativeStatus {
+	return []NarrativeStatus{
+		NarrativeStatusGenerated,
+		NarrativeStatusExtensions,
+		NarrativeStatusAdditional,
+		NarrativeStatusEmpty,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c NarrativeStatus) Display() string {
+	if info, ok := NarrativeStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c NarrativeStatus) System() string {
+	return NarrativeStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c NarrativeStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c NarrativeStatus) IsValid() bool {
+	_, ok := NarrativeStatusTable[c]
+	return ok
+}
+
+// NoteTypeInfo is the specification's own data for one code.
+type NoteTypeInfo struct {
+	System  string
+	Display string
+}
+
+// NoteTypeTable maps each code to what the specification says about it.
+var NoteTypeTable = map[NoteType]NoteTypeInfo{
+	NoteTypeDisplay:   {"http://hl7.org/fhir/note-type", "Display"},
+	NoteTypePrint:     {"http://hl7.org/fhir/note-type", "Print (Form)"},
+	NoteTypePrintoper: {"http://hl7.org/fhir/note-type", "Print (Operator)"},
+}
+
+// NoteTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func NoteTypeValues() []NoteType {
+	return []NoteType{
+		NoteTypeDisplay,
+		NoteTypePrint,
+		NoteTypePrintoper,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c NoteType) Display() string {
+	if info, ok := NoteTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c NoteType) System() string {
+	return NoteTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c NoteType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c NoteType) IsValid() bool {
+	_, ok := NoteTypeTable[c]
+	return ok
+}
+
+// NutritionProductStatusInfo is the specification's own data for one code.
+type NutritionProductStatusInfo struct {
+	System  string
+	Display string
+}
+
+// NutritionProductStatusTable maps each code to what the specification says about it.
+var NutritionProductStatusTable = map[NutritionProductStatus]NutritionProductStatusInfo{
+	NutritionProductStatusActive:         {"http://hl7.org/fhir/nutritionproduct-status", "Active"},
+	NutritionProductStatusInactive:       {"http://hl7.org/fhir/nutritionproduct-status", "Inactive"},
+	NutritionProductStatusEnteredInError: {"http://hl7.org/fhir/nutritionproduct-status", "Entered in Error"},
+}
+
+// NutritionProductStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func NutritionProductStatusValues() []NutritionProductStatus {
+	return []NutritionProductStatus{
+		NutritionProductStatusActive,
+		NutritionProductStatusInactive,
+		NutritionProductStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c NutritionProductStatus) Display() string {
+	if info, ok := NutritionProductStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c NutritionProductStatus) System() string {
+	return NutritionProductStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c NutritionProductStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c NutritionProductStatus) IsValid() bool {
+	_, ok := NutritionProductStatusTable[c]
+	return ok
+}
+
+// ObservationRangeCategoryInfo is the specification's own data for one code.
+type ObservationRangeCategoryInfo struct {
+	System  string
+	Display string
+}
+
+// ObservationRangeCategoryTable maps each code to what the specification says about it.
+var ObservationRangeCategoryTable = map[ObservationRangeCategory]ObservationRangeCategoryInfo{
+	ObservationRangeCategoryReference: {"http://hl7.org/fhir/observation-range-category", "reference range"},
+	ObservationRangeCategoryCritical:  {"http://hl7.org/fhir/observation-range-category", "critical range"},
+	ObservationRangeCategoryAbsolute:  {"http://hl7.org/fhir/observation-range-category", "absolute range"},
+}
+
+// ObservationRangeCategoryValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ObservationRangeCategoryValues() []ObservationRangeCategory {
+	return []ObservationRangeCategory{
+		ObservationRangeCategoryReference,
+		ObservationRangeCategoryCritical,
+		ObservationRangeCategoryAbsolute,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ObservationRangeCategory) Display() string {
+	if info, ok := ObservationRangeCategoryTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ObservationRangeCategory) System() string {
+	return ObservationRangeCategoryTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ObservationRangeCategory) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ObservationRangeCategory) IsValid() bool {
+	_, ok := ObservationRangeCategoryTable[c]
+	return ok
+}
+
+// ObservationStatusInfo is the specification's own data for one code.
+type ObservationStatusInfo struct {
+	System  string
+	Display string
+}
+
+// ObservationStatusTable maps each code to what the specification says about it.
+var ObservationStatusTable = map[ObservationStatus]ObservationStatusInfo{
+	ObservationStatusRegistered:     {"http://hl7.org/fhir/observation-status", "Registered"},
+	ObservationStatusPreliminary:    {"http://hl7.org/fhir/observation-status", "Preliminary"},
+	ObservationStatusFinal:          {"http://hl7.org/fhir/observation-status", "Final"},
+	ObservationStatusAmended:        {"http://hl7.org/fhir/observation-status", "Amended"},
+	ObservationStatusCorrected:      {"http://hl7.org/fhir/observation-status", "Corrected"},
+	ObservationStatusCancelled:      {"http://hl7.org/fhir/observation-status", "Cancelled"},
+	ObservationStatusEnteredInError: {"http://hl7.org/fhir/observation-status", "Entered in Error"},
+	ObservationStatusUnknown:        {"http://hl7.org/fhir/observation-status", "Unknown"},
+}
+
+// ObservationStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ObservationStatusValues() []ObservationStatus {
+	return []ObservationStatus{
+		ObservationStatusRegistered,
+		ObservationStatusPreliminary,
+		ObservationStatusFinal,
+		ObservationStatusAmended,
+		ObservationStatusCorrected,
+		ObservationStatusCancelled,
+		ObservationStatusEnteredInError,
+		ObservationStatusUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ObservationStatus) Display() string {
+	if info, ok := ObservationStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ObservationStatus) System() string {
+	return ObservationStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ObservationStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ObservationStatus) IsValid() bool {
+	_, ok := ObservationStatusTable[c]
+	return ok
+}
+
+// TriggeredByTypeInfo is the specification's own data for one code.
+type TriggeredByTypeInfo struct {
+	System  string
+	Display string
+}
+
+// TriggeredByTypeTable maps each code to what the specification says about it.
+var TriggeredByTypeTable = map[TriggeredByType]TriggeredByTypeInfo{
+	TriggeredByTypeReflex: {"http://hl7.org/fhir/observation-triggeredbytype", "Reflex"},
+	TriggeredByTypeRepeat: {"http://hl7.org/fhir/observation-triggeredbytype", "Repeat (per policy)"},
+	TriggeredByTypeReRun:  {"http://hl7.org/fhir/observation-triggeredbytype", "Re-run (per policy)"},
+}
+
+// TriggeredByTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func TriggeredByTypeValues() []TriggeredByType {
+	return []TriggeredByType{
+		TriggeredByTypeReflex,
+		TriggeredByTypeRepeat,
+		TriggeredByTypeReRun,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c TriggeredByType) Display() string {
+	if info, ok := TriggeredByTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c TriggeredByType) System() string {
+	return TriggeredByTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c TriggeredByType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c TriggeredByType) IsValid() bool {
+	_, ok := TriggeredByTypeTable[c]
+	return ok
+}
+
+// OperationKindInfo is the specification's own data for one code.
+type OperationKindInfo struct {
+	System  string
+	Display string
+}
+
+// OperationKindTable maps each code to what the specification says about it.
+var OperationKindTable = map[OperationKind]OperationKindInfo{
+	OperationKindOperation: {"http://hl7.org/fhir/operation-kind", "Operation"},
+	OperationKindQuery:     {"http://hl7.org/fhir/operation-kind", "Query"},
+}
+
+// OperationKindValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func OperationKindValues() []OperationKind {
+	return []OperationKind{
+		OperationKindOperation,
+		OperationKindQuery,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c OperationKind) Display() string {
+	if info, ok := OperationKindTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c OperationKind) System() string {
+	return OperationKindTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c OperationKind) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c OperationKind) IsValid() bool {
+	_, ok := OperationKindTable[c]
+	return ok
+}
+
+// OperationParameterScopeInfo is the specification's own data for one code.
+type OperationParameterScopeInfo struct {
+	System  string
+	Display string
+}
+
+// OperationParameterScopeTable maps each code to what the specification says about it.
+var OperationParameterScopeTable = map[OperationParameterScope]OperationParameterScopeInfo{
+	OperationParameterScopeInstance: {"http://hl7.org/fhir/operation-parameter-scope", "Instance"},
+	OperationParameterScopeType:     {"http://hl7.org/fhir/operation-parameter-scope", "Type"},
+	OperationParameterScopeSystem:   {"http://hl7.org/fhir/operation-parameter-scope", "System"},
+}
+
+// OperationParameterScopeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func OperationParameterScopeValues() []OperationParameterScope {
+	return []OperationParameterScope{
+		OperationParameterScopeInstance,
+		OperationParameterScopeType,
+		OperationParameterScopeSystem,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c OperationParameterScope) Display() string {
+	if info, ok := OperationParameterScopeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c OperationParameterScope) System() string {
+	return OperationParameterScopeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c OperationParameterScope) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c OperationParameterScope) IsValid() bool {
+	_, ok := OperationParameterScopeTable[c]
+	return ok
+}
+
+// OperationParameterUseInfo is the specification's own data for one code.
+type OperationParameterUseInfo struct {
+	System  string
+	Display string
+}
+
+// OperationParameterUseTable maps each code to what the specification says about it.
+var OperationParameterUseTable = map[OperationParameterUse]OperationParameterUseInfo{
+	OperationParameterUseIn:  {"http://hl7.org/fhir/operation-parameter-use", "In"},
+	OperationParameterUseOut: {"http://hl7.org/fhir/operation-parameter-use", "Out"},
+}
+
+// OperationParameterUseValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func OperationParameterUseValues() []OperationParameterUse {
+	return []OperationParameterUse{
+		OperationParameterUseIn,
+		OperationParameterUseOut,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c OperationParameterUse) Display() string {
+	if info, ok := OperationParameterUseTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c OperationParameterUse) System() string {
+	return OperationParameterUseTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c OperationParameterUse) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c OperationParameterUse) IsValid() bool {
+	_, ok := OperationParameterUseTable[c]
+	return ok
+}
+
+// OrientationTypeInfo is the specification's own data for one code.
+type OrientationTypeInfo struct {
+	System  string
+	Display string
+}
+
+// OrientationTypeTable maps each code to what the specification says about it.
+var OrientationTypeTable = map[OrientationType]OrientationTypeInfo{
+	OrientationTypeSense:     {"http://hl7.org/fhir/orientation-type", "Sense orientation of referenceSeq"},
+	OrientationTypeAntisense: {"http://hl7.org/fhir/orientation-type", "Antisense orientation of referenceSeq"},
+}
+
+// OrientationTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func OrientationTypeValues() []OrientationType {
+	return []OrientationType{
+		OrientationTypeSense,
+		OrientationTypeAntisense,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c OrientationType) Display() string {
+	if info, ok := OrientationTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c OrientationType) System() string {
+	return OrientationTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c OrientationType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c OrientationType) IsValid() bool {
+	_, ok := OrientationTypeTable[c]
+	return ok
+}
+
+// ParticipationStatusInfo is the specification's own data for one code.
+type ParticipationStatusInfo struct {
+	System  string
+	Display string
+}
+
+// ParticipationStatusTable maps each code to what the specification says about it.
+var ParticipationStatusTable = map[ParticipationStatus]ParticipationStatusInfo{
+	ParticipationStatusAccepted:    {"http://hl7.org/fhir/participationstatus", "Accepted"},
+	ParticipationStatusDeclined:    {"http://hl7.org/fhir/participationstatus", "Declined"},
+	ParticipationStatusTentative:   {"http://hl7.org/fhir/participationstatus", "Tentative"},
+	ParticipationStatusNeedsAction: {"http://hl7.org/fhir/participationstatus", "Needs Action"},
+}
+
+// ParticipationStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ParticipationStatusValues() []ParticipationStatus {
+	return []ParticipationStatus{
+		ParticipationStatusAccepted,
+		ParticipationStatusDeclined,
+		ParticipationStatusTentative,
+		ParticipationStatusNeedsAction,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ParticipationStatus) Display() string {
+	if info, ok := ParticipationStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ParticipationStatus) System() string {
+	return ParticipationStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ParticipationStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ParticipationStatus) IsValid() bool {
+	_, ok := ParticipationStatusTable[c]
+	return ok
+}
+
+// PaymentOutcomeInfo is the specification's own data for one code.
+type PaymentOutcomeInfo struct {
+	System  string
+	Display string
+}
+
+// PaymentOutcomeTable maps each code to what the specification says about it.
+var PaymentOutcomeTable = map[PaymentOutcome]PaymentOutcomeInfo{
+	PaymentOutcomeQueued:   {"http://hl7.org/fhir/payment-outcome", "Queued"},
+	PaymentOutcomeComplete: {"http://hl7.org/fhir/payment-outcome", "Processing Complete"},
+	PaymentOutcomeError:    {"http://hl7.org/fhir/payment-outcome", "Error"},
+	PaymentOutcomePartial:  {"http://hl7.org/fhir/payment-outcome", "Partial Processing"},
+}
+
+// PaymentOutcomeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func PaymentOutcomeValues() []PaymentOutcome {
+	return []PaymentOutcome{
+		PaymentOutcomeQueued,
+		PaymentOutcomeComplete,
+		PaymentOutcomeError,
+		PaymentOutcomePartial,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c PaymentOutcome) Display() string {
+	if info, ok := PaymentOutcomeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c PaymentOutcome) System() string {
+	return PaymentOutcomeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c PaymentOutcome) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c PaymentOutcome) IsValid() bool {
+	_, ok := PaymentOutcomeTable[c]
+	return ok
+}
+
+// PermissionCombiningInfo is the specification's own data for one code.
+type PermissionCombiningInfo struct {
+	System  string
+	Display string
+}
+
+// PermissionCombiningTable maps each code to what the specification says about it.
+var PermissionCombiningTable = map[PermissionCombining]PermissionCombiningInfo{
+	PermissionCombiningDenyOverrides:          {"http://hl7.org/fhir/permission-rule-combining", "Deny-overrides"},
+	PermissionCombiningPermitOverrides:        {"http://hl7.org/fhir/permission-rule-combining", "Permit-overrides"},
+	PermissionCombiningOrderedDenyOverrides:   {"http://hl7.org/fhir/permission-rule-combining", "Ordered-deny-overrides"},
+	PermissionCombiningOrderedPermitOverrides: {"http://hl7.org/fhir/permission-rule-combining", "Ordered-permit-overrides"},
+	PermissionCombiningDenyUnlessPermit:       {"http://hl7.org/fhir/permission-rule-combining", "Deny-unless-permit"},
+	PermissionCombiningPermitUnlessDeny:       {"http://hl7.org/fhir/permission-rule-combining", "Permit-unless-deny"},
+}
+
+// PermissionCombiningValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func PermissionCombiningValues() []PermissionCombining {
+	return []PermissionCombining{
+		PermissionCombiningDenyOverrides,
+		PermissionCombiningPermitOverrides,
+		PermissionCombiningOrderedDenyOverrides,
+		PermissionCombiningOrderedPermitOverrides,
+		PermissionCombiningDenyUnlessPermit,
+		PermissionCombiningPermitUnlessDeny,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c PermissionCombining) Display() string {
+	if info, ok := PermissionCombiningTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c PermissionCombining) System() string {
+	return PermissionCombiningTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c PermissionCombining) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c PermissionCombining) IsValid() bool {
+	_, ok := PermissionCombiningTable[c]
+	return ok
+}
+
+// PermissionStatusInfo is the specification's own data for one code.
+type PermissionStatusInfo struct {
+	System  string
+	Display string
+}
+
+// PermissionStatusTable maps each code to what the specification says about it.
+var PermissionStatusTable = map[PermissionStatus]PermissionStatusInfo{
+	PermissionStatusActive:         {"http://hl7.org/fhir/permission-status", "Active"},
+	PermissionStatusEnteredInError: {"http://hl7.org/fhir/permission-status", "Entered in Error"},
+	PermissionStatusDraft:          {"http://hl7.org/fhir/permission-status", "Draft"},
+	PermissionStatusRejected:       {"http://hl7.org/fhir/permission-status", "Rejected"},
+}
+
+// PermissionStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func PermissionStatusValues() []PermissionStatus {
+	return []PermissionStatus{
+		PermissionStatusActive,
+		PermissionStatusEnteredInError,
+		PermissionStatusDraft,
+		PermissionStatusRejected,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c PermissionStatus) Display() string {
+	if info, ok := PermissionStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c PermissionStatus) System() string {
+	return PermissionStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c PermissionStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c PermissionStatus) IsValid() bool {
+	_, ok := PermissionStatusTable[c]
+	return ok
+}
+
+// ObservationDataTypeInfo is the specification's own data for one code.
+type ObservationDataTypeInfo struct {
+	System  string
+	Display string
+}
+
+// ObservationDataTypeTable maps each code to what the specification says about it.
+var ObservationDataTypeTable = map[ObservationDataType]ObservationDataTypeInfo{
+	ObservationDataTypeQuantity:        {"http://hl7.org/fhir/permitted-data-type", "Quantity"},
+	ObservationDataTypeCodeableconcept: {"http://hl7.org/fhir/permitted-data-type", "CodeableConcept"},
+	ObservationDataTypeString:          {"http://hl7.org/fhir/permitted-data-type", "string"},
+	ObservationDataTypeBoolean:         {"http://hl7.org/fhir/permitted-data-type", "boolean"},
+	ObservationDataTypeInteger:         {"http://hl7.org/fhir/permitted-data-type", "integer"},
+	ObservationDataTypeRange:           {"http://hl7.org/fhir/permitted-data-type", "Range"},
+	ObservationDataTypeRatio:           {"http://hl7.org/fhir/permitted-data-type", "Ratio"},
+	ObservationDataTypeSampleddata:     {"http://hl7.org/fhir/permitted-data-type", "SampledData"},
+	ObservationDataTypeTime:            {"http://hl7.org/fhir/permitted-data-type", "time"},
+	ObservationDataTypeDatetime:        {"http://hl7.org/fhir/permitted-data-type", "dateTime"},
+	ObservationDataTypePeriod:          {"http://hl7.org/fhir/permitted-data-type", "Period"},
+}
+
+// ObservationDataTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ObservationDataTypeValues() []ObservationDataType {
+	return []ObservationDataType{
+		ObservationDataTypeQuantity,
+		ObservationDataTypeCodeableconcept,
+		ObservationDataTypeString,
+		ObservationDataTypeBoolean,
+		ObservationDataTypeInteger,
+		ObservationDataTypeRange,
+		ObservationDataTypeRatio,
+		ObservationDataTypeSampleddata,
+		ObservationDataTypeTime,
+		ObservationDataTypeDatetime,
+		ObservationDataTypePeriod,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ObservationDataType) Display() string {
+	if info, ok := ObservationDataTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ObservationDataType) System() string {
+	return ObservationDataTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ObservationDataType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ObservationDataType) IsValid() bool {
+	_, ok := ObservationDataTypeTable[c]
+	return ok
+}
+
+// PriceComponentTypeInfo is the specification's own data for one code.
+type PriceComponentTypeInfo struct {
+	System  string
+	Display string
+}
+
+// PriceComponentTypeTable maps each code to what the specification says about it.
+var PriceComponentTypeTable = map[PriceComponentType]PriceComponentTypeInfo{
+	PriceComponentTypeBase:          {"http://hl7.org/fhir/price-component-type", "base price"},
+	PriceComponentTypeSurcharge:     {"http://hl7.org/fhir/price-component-type", "surcharge"},
+	PriceComponentTypeDeduction:     {"http://hl7.org/fhir/price-component-type", "deduction"},
+	PriceComponentTypeDiscount:      {"http://hl7.org/fhir/price-component-type", "discount"},
+	PriceComponentTypeTax:           {"http://hl7.org/fhir/price-component-type", "tax"},
+	PriceComponentTypeInformational: {"http://hl7.org/fhir/price-component-type", "informational"},
+}
+
+// PriceComponentTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func PriceComponentTypeValues() []PriceComponentType {
+	return []PriceComponentType{
+		PriceComponentTypeBase,
+		PriceComponentTypeSurcharge,
+		PriceComponentTypeDeduction,
+		PriceComponentTypeDiscount,
+		PriceComponentTypeTax,
+		PriceComponentTypeInformational,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c PriceComponentType) Display() string {
+	if info, ok := PriceComponentTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c PriceComponentType) System() string {
+	return PriceComponentTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c PriceComponentType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c PriceComponentType) IsValid() bool {
+	_, ok := PriceComponentTypeTable[c]
+	return ok
+}
+
+// PropertyRepresentationInfo is the specification's own data for one code.
+type PropertyRepresentationInfo struct {
+	System  string
+	Display string
+}
+
+// PropertyRepresentationTable maps each code to what the specification says about it.
+var PropertyRepresentationTable = map[PropertyRepresentation]PropertyRepresentationInfo{
+	PropertyRepresentationXmlattr:  {"http://hl7.org/fhir/property-representation", "XML Attribute"},
+	PropertyRepresentationXmltext:  {"http://hl7.org/fhir/property-representation", "XML Text"},
+	PropertyRepresentationTypeattr: {"http://hl7.org/fhir/property-representation", "Type Attribute"},
+	PropertyRepresentationCdatext:  {"http://hl7.org/fhir/property-representation", "CDA Text Format"},
+	PropertyRepresentationXhtml:    {"http://hl7.org/fhir/property-representation", "XHTML"},
+}
+
+// PropertyRepresentationValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func PropertyRepresentationValues() []PropertyRepresentation {
+	return []PropertyRepresentation{
+		PropertyRepresentationXmlattr,
+		PropertyRepresentationXmltext,
+		PropertyRepresentationTypeattr,
+		PropertyRepresentationCdatext,
+		PropertyRepresentationXhtml,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c PropertyRepresentation) Display() string {
+	if info, ok := PropertyRepresentationTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c PropertyRepresentation) System() string {
+	return PropertyRepresentationTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c PropertyRepresentation) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c PropertyRepresentation) IsValid() bool {
+	_, ok := PropertyRepresentationTable[c]
+	return ok
+}
+
+// ProvenanceEntityRoleInfo is the specification's own data for one code.
+type ProvenanceEntityRoleInfo struct {
+	System  string
+	Display string
+}
+
+// ProvenanceEntityRoleTable maps each code to what the specification says about it.
+var ProvenanceEntityRoleTable = map[ProvenanceEntityRole]ProvenanceEntityRoleInfo{
+	ProvenanceEntityRoleRevision:     {"http://hl7.org/fhir/provenance-entity-role", "Revision"},
+	ProvenanceEntityRoleQuotation:    {"http://hl7.org/fhir/provenance-entity-role", "Quotation"},
+	ProvenanceEntityRoleSource:       {"http://hl7.org/fhir/provenance-entity-role", "Source"},
+	ProvenanceEntityRoleInstantiates: {"http://hl7.org/fhir/provenance-entity-role", "Instantiates"},
+	ProvenanceEntityRoleRemoval:      {"http://hl7.org/fhir/provenance-entity-role", "Removal"},
+}
+
+// ProvenanceEntityRoleValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ProvenanceEntityRoleValues() []ProvenanceEntityRole {
+	return []ProvenanceEntityRole{
+		ProvenanceEntityRoleRevision,
+		ProvenanceEntityRoleQuotation,
+		ProvenanceEntityRoleSource,
+		ProvenanceEntityRoleInstantiates,
+		ProvenanceEntityRoleRemoval,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ProvenanceEntityRole) Display() string {
+	if info, ok := ProvenanceEntityRoleTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ProvenanceEntityRole) System() string {
+	return ProvenanceEntityRoleTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ProvenanceEntityRole) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ProvenanceEntityRole) IsValid() bool {
+	_, ok := ProvenanceEntityRoleTable[c]
+	return ok
+}
+
+// PublicationStatusInfo is the specification's own data for one code.
+type PublicationStatusInfo struct {
+	System  string
+	Display string
+}
+
+// PublicationStatusTable maps each code to what the specification says about it.
+var PublicationStatusTable = map[PublicationStatus]PublicationStatusInfo{
+	PublicationStatusDraft:   {"http://hl7.org/fhir/publication-status", "Draft"},
+	PublicationStatusActive:  {"http://hl7.org/fhir/publication-status", "Active"},
+	PublicationStatusRetired: {"http://hl7.org/fhir/publication-status", "Retired"},
+	PublicationStatusUnknown: {"http://hl7.org/fhir/publication-status", "Unknown"},
+}
+
+// PublicationStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func PublicationStatusValues() []PublicationStatus {
+	return []PublicationStatus{
+		PublicationStatusDraft,
+		PublicationStatusActive,
+		PublicationStatusRetired,
+		PublicationStatusUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c PublicationStatus) Display() string {
+	if info, ok := PublicationStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c PublicationStatus) System() string {
+	return PublicationStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c PublicationStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c PublicationStatus) IsValid() bool {
+	_, ok := PublicationStatusTable[c]
+	return ok
+}
+
+// QuantityComparatorInfo is the specification's own data for one code.
+type QuantityComparatorInfo struct {
+	System  string
+	Display string
+}
+
+// QuantityComparatorTable maps each code to what the specification says about it.
+var QuantityComparatorTable = map[QuantityComparator]QuantityComparatorInfo{
+	QuantityComparatorLessThan:       {"http://hl7.org/fhir/quantity-comparator", "Less than"},
+	QuantityComparatorLessOrEqual:    {"http://hl7.org/fhir/quantity-comparator", "Less or Equal to"},
+	QuantityComparatorGreaterOrEqual: {"http://hl7.org/fhir/quantity-comparator", "Greater or Equal to"},
+	QuantityComparatorGreaterThan:    {"http://hl7.org/fhir/quantity-comparator", "Greater than"},
+	QuantityComparatorAd:             {"http://hl7.org/fhir/quantity-comparator", "Sufficient to achieve this total quantity"},
+}
+
+// QuantityComparatorValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func QuantityComparatorValues() []QuantityComparator {
+	return []QuantityComparator{
+		QuantityComparatorLessThan,
+		QuantityComparatorLessOrEqual,
+		QuantityComparatorGreaterOrEqual,
+		QuantityComparatorGreaterThan,
+		QuantityComparatorAd,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c QuantityComparator) Display() string {
+	if info, ok := QuantityComparatorTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c QuantityComparator) System() string {
+	return QuantityComparatorTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c QuantityComparator) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c QuantityComparator) IsValid() bool {
+	_, ok := QuantityComparatorTable[c]
+	return ok
+}
+
+// QuestionnaireAnswerConstraintInfo is the specification's own data for one code.
+type QuestionnaireAnswerConstraintInfo struct {
+	System  string
+	Display string
+}
+
+// QuestionnaireAnswerConstraintTable maps each code to what the specification says about it.
+var QuestionnaireAnswerConstraintTable = map[QuestionnaireAnswerConstraint]QuestionnaireAnswerConstraintInfo{
+	QuestionnaireAnswerConstraintOptionsonly:     {"http://hl7.org/fhir/questionnaire-answer-constraint", "Options only"},
+	QuestionnaireAnswerConstraintOptionsortype:   {"http://hl7.org/fhir/questionnaire-answer-constraint", "Options or 'type'"},
+	QuestionnaireAnswerConstraintOptionsorstring: {"http://hl7.org/fhir/questionnaire-answer-constraint", "Options or string"},
+}
+
+// QuestionnaireAnswerConstraintValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func QuestionnaireAnswerConstraintValues() []QuestionnaireAnswerConstraint {
+	return []QuestionnaireAnswerConstraint{
+		QuestionnaireAnswerConstraintOptionsonly,
+		QuestionnaireAnswerConstraintOptionsortype,
+		QuestionnaireAnswerConstraintOptionsorstring,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c QuestionnaireAnswerConstraint) Display() string {
+	if info, ok := QuestionnaireAnswerConstraintTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c QuestionnaireAnswerConstraint) System() string {
+	return QuestionnaireAnswerConstraintTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c QuestionnaireAnswerConstraint) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c QuestionnaireAnswerConstraint) IsValid() bool {
+	_, ok := QuestionnaireAnswerConstraintTable[c]
+	return ok
+}
+
+// QuestionnaireResponseStatusInfo is the specification's own data for one code.
+type QuestionnaireResponseStatusInfo struct {
+	System  string
+	Display string
+}
+
+// QuestionnaireResponseStatusTable maps each code to what the specification says about it.
+var QuestionnaireResponseStatusTable = map[QuestionnaireResponseStatus]QuestionnaireResponseStatusInfo{
+	QuestionnaireResponseStatusInProgress:     {"http://hl7.org/fhir/questionnaire-answers-status", "In Progress"},
+	QuestionnaireResponseStatusCompleted:      {"http://hl7.org/fhir/questionnaire-answers-status", "Completed"},
+	QuestionnaireResponseStatusAmended:        {"http://hl7.org/fhir/questionnaire-answers-status", "Amended"},
+	QuestionnaireResponseStatusEnteredInError: {"http://hl7.org/fhir/questionnaire-answers-status", "Entered in Error"},
+	QuestionnaireResponseStatusStopped:        {"http://hl7.org/fhir/questionnaire-answers-status", "Stopped"},
+}
+
+// QuestionnaireResponseStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func QuestionnaireResponseStatusValues() []QuestionnaireResponseStatus {
+	return []QuestionnaireResponseStatus{
+		QuestionnaireResponseStatusInProgress,
+		QuestionnaireResponseStatusCompleted,
+		QuestionnaireResponseStatusAmended,
+		QuestionnaireResponseStatusEnteredInError,
+		QuestionnaireResponseStatusStopped,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c QuestionnaireResponseStatus) Display() string {
+	if info, ok := QuestionnaireResponseStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c QuestionnaireResponseStatus) System() string {
+	return QuestionnaireResponseStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c QuestionnaireResponseStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c QuestionnaireResponseStatus) IsValid() bool {
+	_, ok := QuestionnaireResponseStatusTable[c]
+	return ok
+}
+
+// QuestionnaireItemDisabledDisplayInfo is the specification's own data for one code.
+type QuestionnaireItemDisabledDisplayInfo struct {
+	System  string
+	Display string
+}
+
+// QuestionnaireItemDisabledDisplayTable maps each code to what the specification says about it.
+var QuestionnaireItemDisabledDisplayTable = map[QuestionnaireItemDisabledDisplay]QuestionnaireItemDisabledDisplayInfo{
+	QuestionnaireItemDisabledDisplayHidden:    {"http://hl7.org/fhir/questionnaire-disabled-display", "Hidden"},
+	QuestionnaireItemDisabledDisplayProtected: {"http://hl7.org/fhir/questionnaire-disabled-display", "Protected"},
+}
+
+// QuestionnaireItemDisabledDisplayValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func QuestionnaireItemDisabledDisplayValues() []QuestionnaireItemDisabledDisplay {
+	return []QuestionnaireItemDisabledDisplay{
+		QuestionnaireItemDisabledDisplayHidden,
+		QuestionnaireItemDisabledDisplayProtected,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c QuestionnaireItemDisabledDisplay) Display() string {
+	if info, ok := QuestionnaireItemDisabledDisplayTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c QuestionnaireItemDisabledDisplay) System() string {
+	return QuestionnaireItemDisabledDisplayTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c QuestionnaireItemDisabledDisplay) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c QuestionnaireItemDisabledDisplay) IsValid() bool {
+	_, ok := QuestionnaireItemDisabledDisplayTable[c]
+	return ok
+}
+
+// EnableWhenBehaviorInfo is the specification's own data for one code.
+type EnableWhenBehaviorInfo struct {
+	System  string
+	Display string
+}
+
+// EnableWhenBehaviorTable maps each code to what the specification says about it.
+var EnableWhenBehaviorTable = map[EnableWhenBehavior]EnableWhenBehaviorInfo{
+	EnableWhenBehaviorAll: {"http://hl7.org/fhir/questionnaire-enable-behavior", "All"},
+	EnableWhenBehaviorAny: {"http://hl7.org/fhir/questionnaire-enable-behavior", "Any"},
+}
+
+// EnableWhenBehaviorValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func EnableWhenBehaviorValues() []EnableWhenBehavior {
+	return []EnableWhenBehavior{
+		EnableWhenBehaviorAll,
+		EnableWhenBehaviorAny,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c EnableWhenBehavior) Display() string {
+	if info, ok := EnableWhenBehaviorTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c EnableWhenBehavior) System() string {
+	return EnableWhenBehaviorTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c EnableWhenBehavior) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c EnableWhenBehavior) IsValid() bool {
+	_, ok := EnableWhenBehaviorTable[c]
+	return ok
+}
+
+// QuestionnaireItemOperatorInfo is the specification's own data for one code.
+type QuestionnaireItemOperatorInfo struct {
+	System  string
+	Display string
+}
+
+// QuestionnaireItemOperatorTable maps each code to what the specification says about it.
+var QuestionnaireItemOperatorTable = map[QuestionnaireItemOperator]QuestionnaireItemOperatorInfo{
+	QuestionnaireItemOperatorExists:         {"http://hl7.org/fhir/questionnaire-enable-operator", "Exists"},
+	QuestionnaireItemOperatorEqual:          {"http://hl7.org/fhir/questionnaire-enable-operator", "Equals"},
+	QuestionnaireItemOperatorNotEqual:       {"http://hl7.org/fhir/questionnaire-enable-operator", "Not Equals"},
+	QuestionnaireItemOperatorGreaterThan:    {"http://hl7.org/fhir/questionnaire-enable-operator", "Greater Than"},
+	QuestionnaireItemOperatorLessThan:       {"http://hl7.org/fhir/questionnaire-enable-operator", "Less Than"},
+	QuestionnaireItemOperatorGreaterOrEqual: {"http://hl7.org/fhir/questionnaire-enable-operator", "Greater or Equals"},
+	QuestionnaireItemOperatorLessOrEqual:    {"http://hl7.org/fhir/questionnaire-enable-operator", "Less or Equals"},
+}
+
+// QuestionnaireItemOperatorValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func QuestionnaireItemOperatorValues() []QuestionnaireItemOperator {
+	return []QuestionnaireItemOperator{
+		QuestionnaireItemOperatorExists,
+		QuestionnaireItemOperatorEqual,
+		QuestionnaireItemOperatorNotEqual,
+		QuestionnaireItemOperatorGreaterThan,
+		QuestionnaireItemOperatorLessThan,
+		QuestionnaireItemOperatorGreaterOrEqual,
+		QuestionnaireItemOperatorLessOrEqual,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c QuestionnaireItemOperator) Display() string {
+	if info, ok := QuestionnaireItemOperatorTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c QuestionnaireItemOperator) System() string {
+	return QuestionnaireItemOperatorTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c QuestionnaireItemOperator) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c QuestionnaireItemOperator) IsValid() bool {
+	_, ok := QuestionnaireItemOperatorTable[c]
+	return ok
+}
+
+// AllergyIntoleranceSeverityInfo is the specification's own data for one code.
+type AllergyIntoleranceSeverityInfo struct {
+	System  string
+	Display string
+}
+
+// AllergyIntoleranceSeverityTable maps each code to what the specification says about it.
+var AllergyIntoleranceSeverityTable = map[AllergyIntoleranceSeverity]AllergyIntoleranceSeverityInfo{
+	AllergyIntoleranceSeverityMild:     {"http://hl7.org/fhir/reaction-event-severity", "Mild"},
+	AllergyIntoleranceSeverityModerate: {"http://hl7.org/fhir/reaction-event-severity", "Moderate"},
+	AllergyIntoleranceSeveritySevere:   {"http://hl7.org/fhir/reaction-event-severity", "Severe"},
+}
+
+// AllergyIntoleranceSeverityValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func AllergyIntoleranceSeverityValues() []AllergyIntoleranceSeverity {
+	return []AllergyIntoleranceSeverity{
+		AllergyIntoleranceSeverityMild,
+		AllergyIntoleranceSeverityModerate,
+		AllergyIntoleranceSeveritySevere,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c AllergyIntoleranceSeverity) Display() string {
+	if info, ok := AllergyIntoleranceSeverityTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c AllergyIntoleranceSeverity) System() string {
+	return AllergyIntoleranceSeverityTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c AllergyIntoleranceSeverity) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c AllergyIntoleranceSeverity) IsValid() bool {
+	_, ok := AllergyIntoleranceSeverityTable[c]
+	return ok
+}
+
+// ReferenceHandlingPolicyInfo is the specification's own data for one code.
+type ReferenceHandlingPolicyInfo struct {
+	System  string
+	Display string
+}
+
+// ReferenceHandlingPolicyTable maps each code to what the specification says about it.
+var ReferenceHandlingPolicyTable = map[ReferenceHandlingPolicy]ReferenceHandlingPolicyInfo{
+	ReferenceHandlingPolicyLiteral:  {"http://hl7.org/fhir/reference-handling-policy", "Literal References"},
+	ReferenceHandlingPolicyLogical:  {"http://hl7.org/fhir/reference-handling-policy", "Logical References"},
+	ReferenceHandlingPolicyResolves: {"http://hl7.org/fhir/reference-handling-policy", "Resolves References"},
+	ReferenceHandlingPolicyEnforced: {"http://hl7.org/fhir/reference-handling-policy", "Reference Integrity Enforced"},
+	ReferenceHandlingPolicyLocal:    {"http://hl7.org/fhir/reference-handling-policy", "Local References Only"},
+}
+
+// ReferenceHandlingPolicyValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ReferenceHandlingPolicyValues() []ReferenceHandlingPolicy {
+	return []ReferenceHandlingPolicy{
+		ReferenceHandlingPolicyLiteral,
+		ReferenceHandlingPolicyLogical,
+		ReferenceHandlingPolicyResolves,
+		ReferenceHandlingPolicyEnforced,
+		ReferenceHandlingPolicyLocal,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ReferenceHandlingPolicy) Display() string {
+	if info, ok := ReferenceHandlingPolicyTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ReferenceHandlingPolicy) System() string {
+	return ReferenceHandlingPolicyTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ReferenceHandlingPolicy) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ReferenceHandlingPolicy) IsValid() bool {
+	_, ok := ReferenceHandlingPolicyTable[c]
+	return ok
+}
+
+// ReferenceVersionRulesInfo is the specification's own data for one code.
+type ReferenceVersionRulesInfo struct {
+	System  string
+	Display string
+}
+
+// ReferenceVersionRulesTable maps each code to what the specification says about it.
+var ReferenceVersionRulesTable = map[ReferenceVersionRules]ReferenceVersionRulesInfo{
+	ReferenceVersionRulesEither:      {"http://hl7.org/fhir/reference-version-rules", "Either Specific or independent"},
+	ReferenceVersionRulesIndependent: {"http://hl7.org/fhir/reference-version-rules", "Version independent"},
+	ReferenceVersionRulesSpecific:    {"http://hl7.org/fhir/reference-version-rules", "Version Specific"},
+}
+
+// ReferenceVersionRulesValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ReferenceVersionRulesValues() []ReferenceVersionRules {
+	return []ReferenceVersionRules{
+		ReferenceVersionRulesEither,
+		ReferenceVersionRulesIndependent,
+		ReferenceVersionRulesSpecific,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ReferenceVersionRules) Display() string {
+	if info, ok := ReferenceVersionRulesTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ReferenceVersionRules) System() string {
+	return ReferenceVersionRulesTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ReferenceVersionRules) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ReferenceVersionRules) IsValid() bool {
+	_, ok := ReferenceVersionRulesTable[c]
+	return ok
+}
+
+// RelatedArtifactTypeExpandedInfo is the specification's own data for one code.
+type RelatedArtifactTypeExpandedInfo struct {
+	System  string
+	Display string
+}
+
+// RelatedArtifactTypeExpandedTable maps each code to what the specification says about it.
+var RelatedArtifactTypeExpandedTable = map[RelatedArtifactTypeExpanded]RelatedArtifactTypeExpandedInfo{
+	RelatedArtifactTypeExpandedDocumentation:   {"http://hl7.org/fhir/related-artifact-type", "Documentation"},
+	RelatedArtifactTypeExpandedJustification:   {"http://hl7.org/fhir/related-artifact-type", "Justification"},
+	RelatedArtifactTypeExpandedCitation:        {"http://hl7.org/fhir/related-artifact-type", "Citation"},
+	RelatedArtifactTypeExpandedPredecessor:     {"http://hl7.org/fhir/related-artifact-type", "Predecessor"},
+	RelatedArtifactTypeExpandedSuccessor:       {"http://hl7.org/fhir/related-artifact-type", "Successor"},
+	RelatedArtifactTypeExpandedDerivedFrom:     {"http://hl7.org/fhir/related-artifact-type", "Derived From"},
+	RelatedArtifactTypeExpandedDependsOn:       {"http://hl7.org/fhir/related-artifact-type", "Depends On"},
+	RelatedArtifactTypeExpandedComposedOf:      {"http://hl7.org/fhir/related-artifact-type", "Composed Of"},
+	RelatedArtifactTypeExpandedPartOf:          {"http://hl7.org/fhir/related-artifact-type", "Part Of"},
+	RelatedArtifactTypeExpandedAmends:          {"http://hl7.org/fhir/related-artifact-type", "Amends"},
+	RelatedArtifactTypeExpandedAmendedWith:     {"http://hl7.org/fhir/related-artifact-type", "Amended With"},
+	RelatedArtifactTypeExpandedAppends:         {"http://hl7.org/fhir/related-artifact-type", "Appends"},
+	RelatedArtifactTypeExpandedAppendedWith:    {"http://hl7.org/fhir/related-artifact-type", "Appended With"},
+	RelatedArtifactTypeExpandedCites:           {"http://hl7.org/fhir/related-artifact-type", "Cites"},
+	RelatedArtifactTypeExpandedCitedBy:         {"http://hl7.org/fhir/related-artifact-type", "Cited By"},
+	RelatedArtifactTypeExpandedCommentsOn:      {"http://hl7.org/fhir/related-artifact-type", "Is Comment On"},
+	RelatedArtifactTypeExpandedCommentIn:       {"http://hl7.org/fhir/related-artifact-type", "Has Comment In"},
+	RelatedArtifactTypeExpandedContains:        {"http://hl7.org/fhir/related-artifact-type", "Contains"},
+	RelatedArtifactTypeExpandedContainedIn:     {"http://hl7.org/fhir/related-artifact-type", "Contained In"},
+	RelatedArtifactTypeExpandedCorrects:        {"http://hl7.org/fhir/related-artifact-type", "Corrects"},
+	RelatedArtifactTypeExpandedCorrectionIn:    {"http://hl7.org/fhir/related-artifact-type", "Correction In"},
+	RelatedArtifactTypeExpandedReplaces:        {"http://hl7.org/fhir/related-artifact-type", "Replaces"},
+	RelatedArtifactTypeExpandedReplacedWith:    {"http://hl7.org/fhir/related-artifact-type", "Replaced With"},
+	RelatedArtifactTypeExpandedRetracts:        {"http://hl7.org/fhir/related-artifact-type", "Retracts"},
+	RelatedArtifactTypeExpandedRetractedBy:     {"http://hl7.org/fhir/related-artifact-type", "Retracted By"},
+	RelatedArtifactTypeExpandedSigns:           {"http://hl7.org/fhir/related-artifact-type", "Signs"},
+	RelatedArtifactTypeExpandedSimilarTo:       {"http://hl7.org/fhir/related-artifact-type", "Similar To"},
+	RelatedArtifactTypeExpandedSupports:        {"http://hl7.org/fhir/related-artifact-type", "Supports"},
+	RelatedArtifactTypeExpandedSupportedWith:   {"http://hl7.org/fhir/related-artifact-type", "Supported With"},
+	RelatedArtifactTypeExpandedTransforms:      {"http://hl7.org/fhir/related-artifact-type", "Transforms"},
+	RelatedArtifactTypeExpandedTransformedInto: {"http://hl7.org/fhir/related-artifact-type", "Transformed Into"},
+	RelatedArtifactTypeExpandedTransformedWith: {"http://hl7.org/fhir/related-artifact-type", "Transformed With"},
+	RelatedArtifactTypeExpandedDocuments:       {"http://hl7.org/fhir/related-artifact-type", "Documents"},
+	RelatedArtifactTypeExpandedSpecificationOf: {"http://hl7.org/fhir/related-artifact-type", "Specification Of"},
+	RelatedArtifactTypeExpandedCreatedWith:     {"http://hl7.org/fhir/related-artifact-type", "Created With"},
+	RelatedArtifactTypeExpandedCiteAs:          {"http://hl7.org/fhir/related-artifact-type", "Cite As"},
+	RelatedArtifactTypeExpandedReprint:         {"http://hl7.org/fhir/related-artifact-type-expanded", "Reprint"},
+	RelatedArtifactTypeExpandedReprintOf:       {"http://hl7.org/fhir/related-artifact-type-expanded", "Reprint Of"},
+}
+
+// RelatedArtifactTypeExpandedValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func RelatedArtifactTypeExpandedValues() []RelatedArtifactTypeExpanded {
+	return []RelatedArtifactTypeExpanded{
+		RelatedArtifactTypeExpandedDocumentation,
+		RelatedArtifactTypeExpandedJustification,
+		RelatedArtifactTypeExpandedCitation,
+		RelatedArtifactTypeExpandedPredecessor,
+		RelatedArtifactTypeExpandedSuccessor,
+		RelatedArtifactTypeExpandedDerivedFrom,
+		RelatedArtifactTypeExpandedDependsOn,
+		RelatedArtifactTypeExpandedComposedOf,
+		RelatedArtifactTypeExpandedPartOf,
+		RelatedArtifactTypeExpandedAmends,
+		RelatedArtifactTypeExpandedAmendedWith,
+		RelatedArtifactTypeExpandedAppends,
+		RelatedArtifactTypeExpandedAppendedWith,
+		RelatedArtifactTypeExpandedCites,
+		RelatedArtifactTypeExpandedCitedBy,
+		RelatedArtifactTypeExpandedCommentsOn,
+		RelatedArtifactTypeExpandedCommentIn,
+		RelatedArtifactTypeExpandedContains,
+		RelatedArtifactTypeExpandedContainedIn,
+		RelatedArtifactTypeExpandedCorrects,
+		RelatedArtifactTypeExpandedCorrectionIn,
+		RelatedArtifactTypeExpandedReplaces,
+		RelatedArtifactTypeExpandedReplacedWith,
+		RelatedArtifactTypeExpandedRetracts,
+		RelatedArtifactTypeExpandedRetractedBy,
+		RelatedArtifactTypeExpandedSigns,
+		RelatedArtifactTypeExpandedSimilarTo,
+		RelatedArtifactTypeExpandedSupports,
+		RelatedArtifactTypeExpandedSupportedWith,
+		RelatedArtifactTypeExpandedTransforms,
+		RelatedArtifactTypeExpandedTransformedInto,
+		RelatedArtifactTypeExpandedTransformedWith,
+		RelatedArtifactTypeExpandedDocuments,
+		RelatedArtifactTypeExpandedSpecificationOf,
+		RelatedArtifactTypeExpandedCreatedWith,
+		RelatedArtifactTypeExpandedCiteAs,
+		RelatedArtifactTypeExpandedReprint,
+		RelatedArtifactTypeExpandedReprintOf,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c RelatedArtifactTypeExpanded) Display() string {
+	if info, ok := RelatedArtifactTypeExpandedTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c RelatedArtifactTypeExpanded) System() string {
+	return RelatedArtifactTypeExpandedTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c RelatedArtifactTypeExpanded) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c RelatedArtifactTypeExpanded) IsValid() bool {
+	_, ok := RelatedArtifactTypeExpandedTable[c]
+	return ok
+}
+
+// RelatedArtifactTypeInfo is the specification's own data for one code.
+type RelatedArtifactTypeInfo struct {
+	System  string
+	Display string
+}
+
+// RelatedArtifactTypeTable maps each code to what the specification says about it.
+var RelatedArtifactTypeTable = map[RelatedArtifactType]RelatedArtifactTypeInfo{
+	RelatedArtifactTypeDocumentation:   {"http://hl7.org/fhir/related-artifact-type", "Documentation"},
+	RelatedArtifactTypeJustification:   {"http://hl7.org/fhir/related-artifact-type", "Justification"},
+	RelatedArtifactTypeCitation:        {"http://hl7.org/fhir/related-artifact-type", "Citation"},
+	RelatedArtifactTypePredecessor:     {"http://hl7.org/fhir/related-artifact-type", "Predecessor"},
+	RelatedArtifactTypeSuccessor:       {"http://hl7.org/fhir/related-artifact-type", "Successor"},
+	RelatedArtifactTypeDerivedFrom:     {"http://hl7.org/fhir/related-artifact-type", "Derived From"},
+	RelatedArtifactTypeDependsOn:       {"http://hl7.org/fhir/related-artifact-type", "Depends On"},
+	RelatedArtifactTypeComposedOf:      {"http://hl7.org/fhir/related-artifact-type", "Composed Of"},
+	RelatedArtifactTypePartOf:          {"http://hl7.org/fhir/related-artifact-type", "Part Of"},
+	RelatedArtifactTypeAmends:          {"http://hl7.org/fhir/related-artifact-type", "Amends"},
+	RelatedArtifactTypeAmendedWith:     {"http://hl7.org/fhir/related-artifact-type", "Amended With"},
+	RelatedArtifactTypeAppends:         {"http://hl7.org/fhir/related-artifact-type", "Appends"},
+	RelatedArtifactTypeAppendedWith:    {"http://hl7.org/fhir/related-artifact-type", "Appended With"},
+	RelatedArtifactTypeCites:           {"http://hl7.org/fhir/related-artifact-type", "Cites"},
+	RelatedArtifactTypeCitedBy:         {"http://hl7.org/fhir/related-artifact-type", "Cited By"},
+	RelatedArtifactTypeCommentsOn:      {"http://hl7.org/fhir/related-artifact-type", "Is Comment On"},
+	RelatedArtifactTypeCommentIn:       {"http://hl7.org/fhir/related-artifact-type", "Has Comment In"},
+	RelatedArtifactTypeContains:        {"http://hl7.org/fhir/related-artifact-type", "Contains"},
+	RelatedArtifactTypeContainedIn:     {"http://hl7.org/fhir/related-artifact-type", "Contained In"},
+	RelatedArtifactTypeCorrects:        {"http://hl7.org/fhir/related-artifact-type", "Corrects"},
+	RelatedArtifactTypeCorrectionIn:    {"http://hl7.org/fhir/related-artifact-type", "Correction In"},
+	RelatedArtifactTypeReplaces:        {"http://hl7.org/fhir/related-artifact-type", "Replaces"},
+	RelatedArtifactTypeReplacedWith:    {"http://hl7.org/fhir/related-artifact-type", "Replaced With"},
+	RelatedArtifactTypeRetracts:        {"http://hl7.org/fhir/related-artifact-type", "Retracts"},
+	RelatedArtifactTypeRetractedBy:     {"http://hl7.org/fhir/related-artifact-type", "Retracted By"},
+	RelatedArtifactTypeSigns:           {"http://hl7.org/fhir/related-artifact-type", "Signs"},
+	RelatedArtifactTypeSimilarTo:       {"http://hl7.org/fhir/related-artifact-type", "Similar To"},
+	RelatedArtifactTypeSupports:        {"http://hl7.org/fhir/related-artifact-type", "Supports"},
+	RelatedArtifactTypeSupportedWith:   {"http://hl7.org/fhir/related-artifact-type", "Supported With"},
+	RelatedArtifactTypeTransforms:      {"http://hl7.org/fhir/related-artifact-type", "Transforms"},
+	RelatedArtifactTypeTransformedInto: {"http://hl7.org/fhir/related-artifact-type", "Transformed Into"},
+	RelatedArtifactTypeTransformedWith: {"http://hl7.org/fhir/related-artifact-type", "Transformed With"},
+	RelatedArtifactTypeDocuments:       {"http://hl7.org/fhir/related-artifact-type", "Documents"},
+	RelatedArtifactTypeSpecificationOf: {"http://hl7.org/fhir/related-artifact-type", "Specification Of"},
+	RelatedArtifactTypeCreatedWith:     {"http://hl7.org/fhir/related-artifact-type", "Created With"},
+	RelatedArtifactTypeCiteAs:          {"http://hl7.org/fhir/related-artifact-type", "Cite As"},
+}
+
+// RelatedArtifactTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func RelatedArtifactTypeValues() []RelatedArtifactType {
+	return []RelatedArtifactType{
+		RelatedArtifactTypeDocumentation,
+		RelatedArtifactTypeJustification,
+		RelatedArtifactTypeCitation,
+		RelatedArtifactTypePredecessor,
+		RelatedArtifactTypeSuccessor,
+		RelatedArtifactTypeDerivedFrom,
+		RelatedArtifactTypeDependsOn,
+		RelatedArtifactTypeComposedOf,
+		RelatedArtifactTypePartOf,
+		RelatedArtifactTypeAmends,
+		RelatedArtifactTypeAmendedWith,
+		RelatedArtifactTypeAppends,
+		RelatedArtifactTypeAppendedWith,
+		RelatedArtifactTypeCites,
+		RelatedArtifactTypeCitedBy,
+		RelatedArtifactTypeCommentsOn,
+		RelatedArtifactTypeCommentIn,
+		RelatedArtifactTypeContains,
+		RelatedArtifactTypeContainedIn,
+		RelatedArtifactTypeCorrects,
+		RelatedArtifactTypeCorrectionIn,
+		RelatedArtifactTypeReplaces,
+		RelatedArtifactTypeReplacedWith,
+		RelatedArtifactTypeRetracts,
+		RelatedArtifactTypeRetractedBy,
+		RelatedArtifactTypeSigns,
+		RelatedArtifactTypeSimilarTo,
+		RelatedArtifactTypeSupports,
+		RelatedArtifactTypeSupportedWith,
+		RelatedArtifactTypeTransforms,
+		RelatedArtifactTypeTransformedInto,
+		RelatedArtifactTypeTransformedWith,
+		RelatedArtifactTypeDocuments,
+		RelatedArtifactTypeSpecificationOf,
+		RelatedArtifactTypeCreatedWith,
+		RelatedArtifactTypeCiteAs,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c RelatedArtifactType) Display() string {
+	if info, ok := RelatedArtifactTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c RelatedArtifactType) System() string {
+	return RelatedArtifactTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c RelatedArtifactType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c RelatedArtifactType) IsValid() bool {
+	_, ok := RelatedArtifactTypeTable[c]
+	return ok
+}
+
+// TestReportActionResultInfo is the specification's own data for one code.
+type TestReportActionResultInfo struct {
+	System  string
+	Display string
+}
+
+// TestReportActionResultTable maps each code to what the specification says about it.
+var TestReportActionResultTable = map[TestReportActionResult]TestReportActionResultInfo{
+	TestReportActionResultPass:    {"http://hl7.org/fhir/report-action-result-codes", "Pass"},
+	TestReportActionResultSkip:    {"http://hl7.org/fhir/report-action-result-codes", "Skip"},
+	TestReportActionResultFail:    {"http://hl7.org/fhir/report-action-result-codes", "Fail"},
+	TestReportActionResultWarning: {"http://hl7.org/fhir/report-action-result-codes", "Warning"},
+	TestReportActionResultError:   {"http://hl7.org/fhir/report-action-result-codes", "Error"},
+}
+
+// TestReportActionResultValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func TestReportActionResultValues() []TestReportActionResult {
+	return []TestReportActionResult{
+		TestReportActionResultPass,
+		TestReportActionResultSkip,
+		TestReportActionResultFail,
+		TestReportActionResultWarning,
+		TestReportActionResultError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c TestReportActionResult) Display() string {
+	if info, ok := TestReportActionResultTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c TestReportActionResult) System() string {
+	return TestReportActionResultTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c TestReportActionResult) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c TestReportActionResult) IsValid() bool {
+	_, ok := TestReportActionResultTable[c]
+	return ok
+}
+
+// TestReportParticipantTypeInfo is the specification's own data for one code.
+type TestReportParticipantTypeInfo struct {
+	System  string
+	Display string
+}
+
+// TestReportParticipantTypeTable maps each code to what the specification says about it.
+var TestReportParticipantTypeTable = map[TestReportParticipantType]TestReportParticipantTypeInfo{
+	TestReportParticipantTypeTestEngine: {"http://hl7.org/fhir/report-participant-type", "Test Engine"},
+	TestReportParticipantTypeClient:     {"http://hl7.org/fhir/report-participant-type", "Client"},
+	TestReportParticipantTypeServer:     {"http://hl7.org/fhir/report-participant-type", "Server"},
+}
+
+// TestReportParticipantTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func TestReportParticipantTypeValues() []TestReportParticipantType {
+	return []TestReportParticipantType{
+		TestReportParticipantTypeTestEngine,
+		TestReportParticipantTypeClient,
+		TestReportParticipantTypeServer,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c TestReportParticipantType) Display() string {
+	if info, ok := TestReportParticipantTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c TestReportParticipantType) System() string {
+	return TestReportParticipantTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c TestReportParticipantType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c TestReportParticipantType) IsValid() bool {
+	_, ok := TestReportParticipantTypeTable[c]
+	return ok
+}
+
+// ReportRelationshipTypeInfo is the specification's own data for one code.
+type ReportRelationshipTypeInfo struct {
+	System  string
+	Display string
+}
+
+// ReportRelationshipTypeTable maps each code to what the specification says about it.
+var ReportRelationshipTypeTable = map[ReportRelationshipType]ReportRelationshipTypeInfo{
+	ReportRelationshipTypeReplaces:        {"http://hl7.org/fhir/report-relation-type", "Replaces"},
+	ReportRelationshipTypeAmends:          {"http://hl7.org/fhir/report-relation-type", "Amends"},
+	ReportRelationshipTypeAppends:         {"http://hl7.org/fhir/report-relation-type", "Appends"},
+	ReportRelationshipTypeTransforms:      {"http://hl7.org/fhir/report-relation-type", "Transforms"},
+	ReportRelationshipTypeReplacedwith:    {"http://hl7.org/fhir/report-relation-type", "Replaced With"},
+	ReportRelationshipTypeAmendedwith:     {"http://hl7.org/fhir/report-relation-type", "Amended With"},
+	ReportRelationshipTypeAppendedwith:    {"http://hl7.org/fhir/report-relation-type", "Appended With"},
+	ReportRelationshipTypeTransformedwith: {"http://hl7.org/fhir/report-relation-type", "Transformed With"},
+}
+
+// ReportRelationshipTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ReportRelationshipTypeValues() []ReportRelationshipType {
+	return []ReportRelationshipType{
+		ReportRelationshipTypeReplaces,
+		ReportRelationshipTypeAmends,
+		ReportRelationshipTypeAppends,
+		ReportRelationshipTypeTransforms,
+		ReportRelationshipTypeReplacedwith,
+		ReportRelationshipTypeAmendedwith,
+		ReportRelationshipTypeAppendedwith,
+		ReportRelationshipTypeTransformedwith,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ReportRelationshipType) Display() string {
+	if info, ok := ReportRelationshipTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ReportRelationshipType) System() string {
+	return ReportRelationshipTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ReportRelationshipType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ReportRelationshipType) IsValid() bool {
+	_, ok := ReportRelationshipTypeTable[c]
+	return ok
+}
+
+// TestReportResultInfo is the specification's own data for one code.
+type TestReportResultInfo struct {
+	System  string
+	Display string
+}
+
+// TestReportResultTable maps each code to what the specification says about it.
+var TestReportResultTable = map[TestReportResult]TestReportResultInfo{
+	TestReportResultPass:    {"http://hl7.org/fhir/report-result-codes", "Pass"},
+	TestReportResultFail:    {"http://hl7.org/fhir/report-result-codes", "Fail"},
+	TestReportResultPending: {"http://hl7.org/fhir/report-result-codes", "Pending"},
+}
+
+// TestReportResultValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func TestReportResultValues() []TestReportResult {
+	return []TestReportResult{
+		TestReportResultPass,
+		TestReportResultFail,
+		TestReportResultPending,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c TestReportResult) Display() string {
+	if info, ok := TestReportResultTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c TestReportResult) System() string {
+	return TestReportResultTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c TestReportResult) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c TestReportResult) IsValid() bool {
+	_, ok := TestReportResultTable[c]
+	return ok
+}
+
+// TestReportStatusInfo is the specification's own data for one code.
+type TestReportStatusInfo struct {
+	System  string
+	Display string
+}
+
+// TestReportStatusTable maps each code to what the specification says about it.
+var TestReportStatusTable = map[TestReportStatus]TestReportStatusInfo{
+	TestReportStatusCompleted:      {"http://hl7.org/fhir/report-status-codes", "Completed"},
+	TestReportStatusInProgress:     {"http://hl7.org/fhir/report-status-codes", "In Progress"},
+	TestReportStatusWaiting:        {"http://hl7.org/fhir/report-status-codes", "Waiting"},
+	TestReportStatusStopped:        {"http://hl7.org/fhir/report-status-codes", "Stopped"},
+	TestReportStatusEnteredInError: {"http://hl7.org/fhir/report-status-codes", "Entered In Error"},
+}
+
+// TestReportStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func TestReportStatusValues() []TestReportStatus {
+	return []TestReportStatus{
+		TestReportStatusCompleted,
+		TestReportStatusInProgress,
+		TestReportStatusWaiting,
+		TestReportStatusStopped,
+		TestReportStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c TestReportStatus) Display() string {
+	if info, ok := TestReportStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c TestReportStatus) System() string {
+	return TestReportStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c TestReportStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c TestReportStatus) IsValid() bool {
+	_, ok := TestReportStatusTable[c]
+	return ok
+}
+
+// RequestIntentInfo is the specification's own data for one code.
+type RequestIntentInfo struct {
+	System  string
+	Display string
+}
+
+// RequestIntentTable maps each code to what the specification says about it.
+var RequestIntentTable = map[RequestIntent]RequestIntentInfo{
+	RequestIntentProposal:      {"http://hl7.org/fhir/request-intent", "Proposal"},
+	RequestIntentPlan:          {"http://hl7.org/fhir/request-intent", "Plan"},
+	RequestIntentDirective:     {"http://hl7.org/fhir/request-intent", "Directive"},
+	RequestIntentOrder:         {"http://hl7.org/fhir/request-intent", "Order"},
+	RequestIntentOriginalOrder: {"http://hl7.org/fhir/request-intent", "Original Order"},
+	RequestIntentReflexOrder:   {"http://hl7.org/fhir/request-intent", "Reflex Order"},
+	RequestIntentFillerOrder:   {"http://hl7.org/fhir/request-intent", "Filler Order"},
+	RequestIntentInstanceOrder: {"http://hl7.org/fhir/request-intent", "Instance Order"},
+	RequestIntentOption:        {"http://hl7.org/fhir/request-intent", "Option"},
+}
+
+// RequestIntentValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func RequestIntentValues() []RequestIntent {
+	return []RequestIntent{
+		RequestIntentProposal,
+		RequestIntentPlan,
+		RequestIntentDirective,
+		RequestIntentOrder,
+		RequestIntentOriginalOrder,
+		RequestIntentReflexOrder,
+		RequestIntentFillerOrder,
+		RequestIntentInstanceOrder,
+		RequestIntentOption,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c RequestIntent) Display() string {
+	if info, ok := RequestIntentTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c RequestIntent) System() string {
+	return RequestIntentTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c RequestIntent) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c RequestIntent) IsValid() bool {
+	_, ok := RequestIntentTable[c]
+	return ok
+}
+
+// RequestPriorityInfo is the specification's own data for one code.
+type RequestPriorityInfo struct {
+	System  string
+	Display string
+}
+
+// RequestPriorityTable maps each code to what the specification says about it.
+var RequestPriorityTable = map[RequestPriority]RequestPriorityInfo{
+	RequestPriorityRoutine: {"http://hl7.org/fhir/request-priority", "Routine"},
+	RequestPriorityUrgent:  {"http://hl7.org/fhir/request-priority", "Urgent"},
+	RequestPriorityAsap:    {"http://hl7.org/fhir/request-priority", "ASAP"},
+	RequestPriorityStat:    {"http://hl7.org/fhir/request-priority", "STAT"},
+}
+
+// RequestPriorityValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func RequestPriorityValues() []RequestPriority {
+	return []RequestPriority{
+		RequestPriorityRoutine,
+		RequestPriorityUrgent,
+		RequestPriorityAsap,
+		RequestPriorityStat,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c RequestPriority) Display() string {
+	if info, ok := RequestPriorityTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c RequestPriority) System() string {
+	return RequestPriorityTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c RequestPriority) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c RequestPriority) IsValid() bool {
+	_, ok := RequestPriorityTable[c]
+	return ok
+}
+
+// ActivityDefinitionKindInfo is the specification's own data for one code.
+type ActivityDefinitionKindInfo struct {
+	System  string
+	Display string
+}
+
+// ActivityDefinitionKindTable maps each code to what the specification says about it.
+var ActivityDefinitionKindTable = map[ActivityDefinitionKind]ActivityDefinitionKindInfo{
+	ActivityDefinitionKindAppointment:                {"http://hl7.org/fhir/fhir-types", ""},
+	ActivityDefinitionKindAppointmentresponse:        {"http://hl7.org/fhir/fhir-types", ""},
+	ActivityDefinitionKindCareplan:                   {"http://hl7.org/fhir/fhir-types", ""},
+	ActivityDefinitionKindClaim:                      {"http://hl7.org/fhir/fhir-types", ""},
+	ActivityDefinitionKindCommunicationrequest:       {"http://hl7.org/fhir/fhir-types", ""},
+	ActivityDefinitionKindCoverageeligibilityrequest: {"http://hl7.org/fhir/fhir-types", ""},
+	ActivityDefinitionKindDevicerequest:              {"http://hl7.org/fhir/fhir-types", ""},
+	ActivityDefinitionKindEnrollmentrequest:          {"http://hl7.org/fhir/fhir-types", ""},
+	ActivityDefinitionKindImmunizationrecommendation: {"http://hl7.org/fhir/fhir-types", ""},
+	ActivityDefinitionKindMedicationrequest:          {"http://hl7.org/fhir/fhir-types", ""},
+	ActivityDefinitionKindNutritionorder:             {"http://hl7.org/fhir/fhir-types", ""},
+	ActivityDefinitionKindRequestorchestration:       {"http://hl7.org/fhir/fhir-types", ""},
+	ActivityDefinitionKindServicerequest:             {"http://hl7.org/fhir/fhir-types", ""},
+	ActivityDefinitionKindSupplyrequest:              {"http://hl7.org/fhir/fhir-types", ""},
+	ActivityDefinitionKindTask:                       {"http://hl7.org/fhir/fhir-types", ""},
+	ActivityDefinitionKindTransport:                  {"http://hl7.org/fhir/fhir-types", ""},
+	ActivityDefinitionKindVisionprescription:         {"http://hl7.org/fhir/fhir-types", ""},
+}
+
+// ActivityDefinitionKindValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ActivityDefinitionKindValues() []ActivityDefinitionKind {
+	return []ActivityDefinitionKind{
+		ActivityDefinitionKindAppointment,
+		ActivityDefinitionKindAppointmentresponse,
+		ActivityDefinitionKindCareplan,
+		ActivityDefinitionKindClaim,
+		ActivityDefinitionKindCommunicationrequest,
+		ActivityDefinitionKindCoverageeligibilityrequest,
+		ActivityDefinitionKindDevicerequest,
+		ActivityDefinitionKindEnrollmentrequest,
+		ActivityDefinitionKindImmunizationrecommendation,
+		ActivityDefinitionKindMedicationrequest,
+		ActivityDefinitionKindNutritionorder,
+		ActivityDefinitionKindRequestorchestration,
+		ActivityDefinitionKindServicerequest,
+		ActivityDefinitionKindSupplyrequest,
+		ActivityDefinitionKindTask,
+		ActivityDefinitionKindTransport,
+		ActivityDefinitionKindVisionprescription,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ActivityDefinitionKind) Display() string {
+	if info, ok := ActivityDefinitionKindTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ActivityDefinitionKind) System() string {
+	return ActivityDefinitionKindTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ActivityDefinitionKind) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ActivityDefinitionKind) IsValid() bool {
+	_, ok := ActivityDefinitionKindTable[c]
+	return ok
+}
+
+// RequestStatusInfo is the specification's own data for one code.
+type RequestStatusInfo struct {
+	System  string
+	Display string
+}
+
+// RequestStatusTable maps each code to what the specification says about it.
+var RequestStatusTable = map[RequestStatus]RequestStatusInfo{
+	RequestStatusDraft:          {"http://hl7.org/fhir/request-status", "Draft"},
+	RequestStatusActive:         {"http://hl7.org/fhir/request-status", "Active"},
+	RequestStatusOnHold:         {"http://hl7.org/fhir/request-status", "On Hold"},
+	RequestStatusRevoked:        {"http://hl7.org/fhir/request-status", "Revoked"},
+	RequestStatusCompleted:      {"http://hl7.org/fhir/request-status", "Completed"},
+	RequestStatusEnteredInError: {"http://hl7.org/fhir/request-status", "Entered in Error"},
+	RequestStatusUnknown:        {"http://hl7.org/fhir/request-status", "Unknown"},
+}
+
+// RequestStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func RequestStatusValues() []RequestStatus {
+	return []RequestStatus{
+		RequestStatusDraft,
+		RequestStatusActive,
+		RequestStatusOnHold,
+		RequestStatusRevoked,
+		RequestStatusCompleted,
+		RequestStatusEnteredInError,
+		RequestStatusUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c RequestStatus) Display() string {
+	if info, ok := RequestStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c RequestStatus) System() string {
+	return RequestStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c RequestStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c RequestStatus) IsValid() bool {
+	_, ok := RequestStatusTable[c]
+	return ok
+}
+
+// AggregationModeInfo is the specification's own data for one code.
+type AggregationModeInfo struct {
+	System  string
+	Display string
+}
+
+// AggregationModeTable maps each code to what the specification says about it.
+var AggregationModeTable = map[AggregationMode]AggregationModeInfo{
+	AggregationModeContained:  {"http://hl7.org/fhir/resource-aggregation-mode", "Contained"},
+	AggregationModeReferenced: {"http://hl7.org/fhir/resource-aggregation-mode", "Referenced"},
+	AggregationModeBundled:    {"http://hl7.org/fhir/resource-aggregation-mode", "Bundled"},
+}
+
+// AggregationModeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func AggregationModeValues() []AggregationMode {
+	return []AggregationMode{
+		AggregationModeContained,
+		AggregationModeReferenced,
+		AggregationModeBundled,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c AggregationMode) Display() string {
+	if info, ok := AggregationModeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c AggregationMode) System() string {
+	return AggregationModeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c AggregationMode) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c AggregationMode) IsValid() bool {
+	_, ok := AggregationModeTable[c]
+	return ok
+}
+
+// SlicingRulesInfo is the specification's own data for one code.
+type SlicingRulesInfo struct {
+	System  string
+	Display string
+}
+
+// SlicingRulesTable maps each code to what the specification says about it.
+var SlicingRulesTable = map[SlicingRules]SlicingRulesInfo{
+	SlicingRulesClosed:    {"http://hl7.org/fhir/resource-slicing-rules", "Closed"},
+	SlicingRulesOpen:      {"http://hl7.org/fhir/resource-slicing-rules", "Open"},
+	SlicingRulesOpenatend: {"http://hl7.org/fhir/resource-slicing-rules", "Open at End"},
+}
+
+// SlicingRulesValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SlicingRulesValues() []SlicingRules {
+	return []SlicingRules{
+		SlicingRulesClosed,
+		SlicingRulesOpen,
+		SlicingRulesOpenatend,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SlicingRules) Display() string {
+	if info, ok := SlicingRulesTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SlicingRules) System() string {
+	return SlicingRulesTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SlicingRules) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c SlicingRules) IsValid() bool {
+	_, ok := SlicingRulesTable[c]
+	return ok
+}
+
+// ResponseTypeInfo is the specification's own data for one code.
+type ResponseTypeInfo struct {
+	System  string
+	Display string
+}
+
+// ResponseTypeTable maps each code to what the specification says about it.
+var ResponseTypeTable = map[ResponseType]ResponseTypeInfo{
+	ResponseTypeOk:             {"http://hl7.org/fhir/response-code", "OK"},
+	ResponseTypeTransientError: {"http://hl7.org/fhir/response-code", "Transient Error"},
+	ResponseTypeFatalError:     {"http://hl7.org/fhir/response-code", "Fatal Error"},
+}
+
+// ResponseTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ResponseTypeValues() []ResponseType {
+	return []ResponseType{
+		ResponseTypeOk,
+		ResponseTypeTransientError,
+		ResponseTypeFatalError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ResponseType) Display() string {
+	if info, ok := ResponseTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ResponseType) System() string {
+	return ResponseTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ResponseType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ResponseType) IsValid() bool {
+	_, ok := ResponseTypeTable[c]
+	return ok
+}
+
+// RestfulCapabilityModeInfo is the specification's own data for one code.
+type RestfulCapabilityModeInfo struct {
+	System  string
+	Display string
+}
+
+// RestfulCapabilityModeTable maps each code to what the specification says about it.
+var RestfulCapabilityModeTable = map[RestfulCapabilityMode]RestfulCapabilityModeInfo{
+	RestfulCapabilityModeClient: {"http://hl7.org/fhir/restful-capability-mode", "Client"},
+	RestfulCapabilityModeServer: {"http://hl7.org/fhir/restful-capability-mode", "Server"},
+}
+
+// RestfulCapabilityModeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func RestfulCapabilityModeValues() []RestfulCapabilityMode {
+	return []RestfulCapabilityMode{
+		RestfulCapabilityModeClient,
+		RestfulCapabilityModeServer,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c RestfulCapabilityMode) Display() string {
+	if info, ok := RestfulCapabilityModeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c RestfulCapabilityMode) System() string {
+	return RestfulCapabilityModeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c RestfulCapabilityMode) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c RestfulCapabilityMode) IsValid() bool {
+	_, ok := RestfulCapabilityModeTable[c]
+	return ok
+}
+
+// SearchComparatorInfo is the specification's own data for one code.
+type SearchComparatorInfo struct {
+	System  string
+	Display string
+}
+
+// SearchComparatorTable maps each code to what the specification says about it.
+var SearchComparatorTable = map[SearchComparator]SearchComparatorInfo{
+	SearchComparatorEq: {"http://hl7.org/fhir/search-comparator", "Equals"},
+	SearchComparatorNe: {"http://hl7.org/fhir/search-comparator", "Not Equals"},
+	SearchComparatorGt: {"http://hl7.org/fhir/search-comparator", "Greater Than"},
+	SearchComparatorLt: {"http://hl7.org/fhir/search-comparator", "Less Than"},
+	SearchComparatorGe: {"http://hl7.org/fhir/search-comparator", "Greater or Equals"},
+	SearchComparatorLe: {"http://hl7.org/fhir/search-comparator", "Less of Equal"},
+	SearchComparatorSa: {"http://hl7.org/fhir/search-comparator", "Starts After"},
+	SearchComparatorEb: {"http://hl7.org/fhir/search-comparator", "Ends Before"},
+	SearchComparatorAp: {"http://hl7.org/fhir/search-comparator", "Approximately"},
+}
+
+// SearchComparatorValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SearchComparatorValues() []SearchComparator {
+	return []SearchComparator{
+		SearchComparatorEq,
+		SearchComparatorNe,
+		SearchComparatorGt,
+		SearchComparatorLt,
+		SearchComparatorGe,
+		SearchComparatorLe,
+		SearchComparatorSa,
+		SearchComparatorEb,
+		SearchComparatorAp,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SearchComparator) Display() string {
+	if info, ok := SearchComparatorTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SearchComparator) System() string {
+	return SearchComparatorTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SearchComparator) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c SearchComparator) IsValid() bool {
+	_, ok := SearchComparatorTable[c]
+	return ok
+}
+
+// SearchEntryModeInfo is the specification's own data for one code.
+type SearchEntryModeInfo struct {
+	System  string
+	Display string
+}
+
+// SearchEntryModeTable maps each code to what the specification says about it.
+var SearchEntryModeTable = map[SearchEntryMode]SearchEntryModeInfo{
+	SearchEntryModeMatch:   {"http://hl7.org/fhir/search-entry-mode", "Match"},
+	SearchEntryModeInclude: {"http://hl7.org/fhir/search-entry-mode", "Include"},
+	SearchEntryModeOutcome: {"http://hl7.org/fhir/search-entry-mode", "Outcome"},
+}
+
+// SearchEntryModeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SearchEntryModeValues() []SearchEntryMode {
+	return []SearchEntryMode{
+		SearchEntryModeMatch,
+		SearchEntryModeInclude,
+		SearchEntryModeOutcome,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SearchEntryMode) Display() string {
+	if info, ok := SearchEntryModeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SearchEntryMode) System() string {
+	return SearchEntryModeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SearchEntryMode) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c SearchEntryMode) IsValid() bool {
+	_, ok := SearchEntryModeTable[c]
+	return ok
+}
+
+// SearchModifierCodeInfo is the specification's own data for one code.
+type SearchModifierCodeInfo struct {
+	System  string
+	Display string
+}
+
+// SearchModifierCodeTable maps each code to what the specification says about it.
+var SearchModifierCodeTable = map[SearchModifierCode]SearchModifierCodeInfo{
+	SearchModifierCodeMissing:      {"http://hl7.org/fhir/search-modifier-code", "Missing"},
+	SearchModifierCodeExact:        {"http://hl7.org/fhir/search-modifier-code", "Exact"},
+	SearchModifierCodeContains:     {"http://hl7.org/fhir/search-modifier-code", "Contains"},
+	SearchModifierCodeNot:          {"http://hl7.org/fhir/search-modifier-code", "Not"},
+	SearchModifierCodeText:         {"http://hl7.org/fhir/search-modifier-code", "Text"},
+	SearchModifierCodeIn:           {"http://hl7.org/fhir/search-modifier-code", "In"},
+	SearchModifierCodeNotIn:        {"http://hl7.org/fhir/search-modifier-code", "Not In"},
+	SearchModifierCodeBelow:        {"http://hl7.org/fhir/search-modifier-code", "Below"},
+	SearchModifierCodeAbove:        {"http://hl7.org/fhir/search-modifier-code", "Above"},
+	SearchModifierCodeType:         {"http://hl7.org/fhir/search-modifier-code", "Type"},
+	SearchModifierCodeIdentifier:   {"http://hl7.org/fhir/search-modifier-code", "Identifier"},
+	SearchModifierCodeOfType:       {"http://hl7.org/fhir/search-modifier-code", "Of Type"},
+	SearchModifierCodeCodeText:     {"http://hl7.org/fhir/search-modifier-code", "Code Text"},
+	SearchModifierCodeTextAdvanced: {"http://hl7.org/fhir/search-modifier-code", "Text Advanced"},
+	SearchModifierCodeIterate:      {"http://hl7.org/fhir/search-modifier-code", "Iterate"},
+}
+
+// SearchModifierCodeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SearchModifierCodeValues() []SearchModifierCode {
+	return []SearchModifierCode{
+		SearchModifierCodeMissing,
+		SearchModifierCodeExact,
+		SearchModifierCodeContains,
+		SearchModifierCodeNot,
+		SearchModifierCodeText,
+		SearchModifierCodeIn,
+		SearchModifierCodeNotIn,
+		SearchModifierCodeBelow,
+		SearchModifierCodeAbove,
+		SearchModifierCodeType,
+		SearchModifierCodeIdentifier,
+		SearchModifierCodeOfType,
+		SearchModifierCodeCodeText,
+		SearchModifierCodeTextAdvanced,
+		SearchModifierCodeIterate,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SearchModifierCode) Display() string {
+	if info, ok := SearchModifierCodeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SearchModifierCode) System() string {
+	return SearchModifierCodeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SearchModifierCode) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c SearchModifierCode) IsValid() bool {
+	_, ok := SearchModifierCodeTable[c]
+	return ok
+}
+
+// SearchParamTypeInfo is the specification's own data for one code.
+type SearchParamTypeInfo struct {
+	System  string
+	Display string
+}
+
+// SearchParamTypeTable maps each code to what the specification says about it.
+var SearchParamTypeTable = map[SearchParamType]SearchParamTypeInfo{
+	SearchParamTypeNumber:    {"http://hl7.org/fhir/search-param-type", "Number"},
+	SearchParamTypeDate:      {"http://hl7.org/fhir/search-param-type", "Date/DateTime"},
+	SearchParamTypeString:    {"http://hl7.org/fhir/search-param-type", "String"},
+	SearchParamTypeToken:     {"http://hl7.org/fhir/search-param-type", "Token"},
+	SearchParamTypeReference: {"http://hl7.org/fhir/search-param-type", "Reference"},
+	SearchParamTypeComposite: {"http://hl7.org/fhir/search-param-type", "Composite"},
+	SearchParamTypeQuantity:  {"http://hl7.org/fhir/search-param-type", "Quantity"},
+	SearchParamTypeUri:       {"http://hl7.org/fhir/search-param-type", "URI"},
+	SearchParamTypeSpecial:   {"http://hl7.org/fhir/search-param-type", "Special"},
+}
+
+// SearchParamTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SearchParamTypeValues() []SearchParamType {
+	return []SearchParamType{
+		SearchParamTypeNumber,
+		SearchParamTypeDate,
+		SearchParamTypeString,
+		SearchParamTypeToken,
+		SearchParamTypeReference,
+		SearchParamTypeComposite,
+		SearchParamTypeQuantity,
+		SearchParamTypeUri,
+		SearchParamTypeSpecial,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SearchParamType) Display() string {
+	if info, ok := SearchParamTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SearchParamType) System() string {
+	return SearchParamTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SearchParamType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c SearchParamType) IsValid() bool {
+	_, ok := SearchParamTypeTable[c]
+	return ok
+}
+
+// SearchProcessingModeTypeInfo is the specification's own data for one code.
+type SearchProcessingModeTypeInfo struct {
+	System  string
+	Display string
+}
+
+// SearchProcessingModeTypeTable maps each code to what the specification says about it.
+var SearchProcessingModeTypeTable = map[SearchProcessingModeType]SearchProcessingModeTypeInfo{
+	SearchProcessingModeTypeNormal:   {"http://hl7.org/fhir/search-processingmode", "Normal"},
+	SearchProcessingModeTypePhonetic: {"http://hl7.org/fhir/search-processingmode", "Phonetic"},
+	SearchProcessingModeTypeOther:    {"http://hl7.org/fhir/search-processingmode", "Other"},
+}
+
+// SearchProcessingModeTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SearchProcessingModeTypeValues() []SearchProcessingModeType {
+	return []SearchProcessingModeType{
+		SearchProcessingModeTypeNormal,
+		SearchProcessingModeTypePhonetic,
+		SearchProcessingModeTypeOther,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SearchProcessingModeType) Display() string {
+	if info, ok := SearchProcessingModeTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SearchProcessingModeType) System() string {
+	return SearchProcessingModeTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SearchProcessingModeType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c SearchProcessingModeType) IsValid() bool {
+	_, ok := SearchProcessingModeTypeTable[c]
+	return ok
+}
+
+// SequenceTypeInfo is the specification's own data for one code.
+type SequenceTypeInfo struct {
+	System  string
+	Display string
+}
+
+// SequenceTypeTable maps each code to what the specification says about it.
+var SequenceTypeTable = map[SequenceType]SequenceTypeInfo{
+	SequenceTypeAa:  {"http://hl7.org/fhir/sequence-type", "AA Sequence"},
+	SequenceTypeDna: {"http://hl7.org/fhir/sequence-type", "DNA Sequence"},
+	SequenceTypeRna: {"http://hl7.org/fhir/sequence-type", "RNA Sequence"},
+}
+
+// SequenceTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SequenceTypeValues() []SequenceType {
+	return []SequenceType{
+		SequenceTypeAa,
+		SequenceTypeDna,
+		SequenceTypeRna,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SequenceType) Display() string {
+	if info, ok := SequenceTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SequenceType) System() string {
+	return SequenceTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SequenceType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c SequenceType) IsValid() bool {
+	_, ok := SequenceTypeTable[c]
+	return ok
+}
+
+// SlotStatusInfo is the specification's own data for one code.
+type SlotStatusInfo struct {
+	System  string
+	Display string
+}
+
+// SlotStatusTable maps each code to what the specification says about it.
+var SlotStatusTable = map[SlotStatus]SlotStatusInfo{
+	SlotStatusBusy:            {"http://hl7.org/fhir/slotstatus", "Busy"},
+	SlotStatusFree:            {"http://hl7.org/fhir/slotstatus", "Free"},
+	SlotStatusBusyUnavailable: {"http://hl7.org/fhir/slotstatus", "Busy (Unavailable)"},
+	SlotStatusBusyTentative:   {"http://hl7.org/fhir/slotstatus", "Busy (Tentative)"},
+	SlotStatusEnteredInError:  {"http://hl7.org/fhir/slotstatus", "Entered in error"},
+}
+
+// SlotStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SlotStatusValues() []SlotStatus {
+	return []SlotStatus{
+		SlotStatusBusy,
+		SlotStatusFree,
+		SlotStatusBusyUnavailable,
+		SlotStatusBusyTentative,
+		SlotStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SlotStatus) Display() string {
+	if info, ok := SlotStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SlotStatus) System() string {
+	return SlotStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SlotStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c SlotStatus) IsValid() bool {
+	_, ok := SlotStatusTable[c]
+	return ok
+}
+
+// SortDirectionInfo is the specification's own data for one code.
+type SortDirectionInfo struct {
+	System  string
+	Display string
+}
+
+// SortDirectionTable maps each code to what the specification says about it.
+var SortDirectionTable = map[SortDirection]SortDirectionInfo{
+	SortDirectionAscending:  {"http://hl7.org/fhir/sort-direction", "Ascending"},
+	SortDirectionDescending: {"http://hl7.org/fhir/sort-direction", "Descending"},
+}
+
+// SortDirectionValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SortDirectionValues() []SortDirection {
+	return []SortDirection{
+		SortDirectionAscending,
+		SortDirectionDescending,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SortDirection) Display() string {
+	if info, ok := SortDirectionTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SortDirection) System() string {
+	return SortDirectionTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SortDirection) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c SortDirection) IsValid() bool {
+	_, ok := SortDirectionTable[c]
+	return ok
+}
+
+// SpecimenCombinedInfo is the specification's own data for one code.
+type SpecimenCombinedInfo struct {
+	System  string
+	Display string
+}
+
+// SpecimenCombinedTable maps each code to what the specification says about it.
+var SpecimenCombinedTable = map[SpecimenCombined]SpecimenCombinedInfo{
+	SpecimenCombinedGrouped: {"http://hl7.org/fhir/specimen-combined", "Grouped"},
+	SpecimenCombinedPooled:  {"http://hl7.org/fhir/specimen-combined", "Pooled"},
+}
+
+// SpecimenCombinedValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SpecimenCombinedValues() []SpecimenCombined {
+	return []SpecimenCombined{
+		SpecimenCombinedGrouped,
+		SpecimenCombinedPooled,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SpecimenCombined) Display() string {
+	if info, ok := SpecimenCombinedTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SpecimenCombined) System() string {
+	return SpecimenCombinedTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SpecimenCombined) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c SpecimenCombined) IsValid() bool {
+	_, ok := SpecimenCombinedTable[c]
+	return ok
+}
+
+// SpecimenContainedPreferenceInfo is the specification's own data for one code.
+type SpecimenContainedPreferenceInfo struct {
+	System  string
+	Display string
+}
+
+// SpecimenContainedPreferenceTable maps each code to what the specification says about it.
+var SpecimenContainedPreferenceTable = map[SpecimenContainedPreference]SpecimenContainedPreferenceInfo{
+	SpecimenContainedPreferencePreferred: {"http://hl7.org/fhir/specimen-contained-preference", "Preferred"},
+	SpecimenContainedPreferenceAlternate: {"http://hl7.org/fhir/specimen-contained-preference", "Alternate"},
+}
+
+// SpecimenContainedPreferenceValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SpecimenContainedPreferenceValues() []SpecimenContainedPreference {
+	return []SpecimenContainedPreference{
+		SpecimenContainedPreferencePreferred,
+		SpecimenContainedPreferenceAlternate,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SpecimenContainedPreference) Display() string {
+	if info, ok := SpecimenContainedPreferenceTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SpecimenContainedPreference) System() string {
+	return SpecimenContainedPreferenceTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SpecimenContainedPreference) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c SpecimenContainedPreference) IsValid() bool {
+	_, ok := SpecimenContainedPreferenceTable[c]
+	return ok
+}
+
+// SpecimenStatusInfo is the specification's own data for one code.
+type SpecimenStatusInfo struct {
+	System  string
+	Display string
+}
+
+// SpecimenStatusTable maps each code to what the specification says about it.
+var SpecimenStatusTable = map[SpecimenStatus]SpecimenStatusInfo{
+	SpecimenStatusAvailable:      {"http://hl7.org/fhir/specimen-status", "Available"},
+	SpecimenStatusUnavailable:    {"http://hl7.org/fhir/specimen-status", "Unavailable"},
+	SpecimenStatusUnsatisfactory: {"http://hl7.org/fhir/specimen-status", "Unsatisfactory"},
+	SpecimenStatusEnteredInError: {"http://hl7.org/fhir/specimen-status", "Entered in Error"},
+}
+
+// SpecimenStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SpecimenStatusValues() []SpecimenStatus {
+	return []SpecimenStatus{
+		SpecimenStatusAvailable,
+		SpecimenStatusUnavailable,
+		SpecimenStatusUnsatisfactory,
+		SpecimenStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SpecimenStatus) Display() string {
+	if info, ok := SpecimenStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SpecimenStatus) System() string {
+	return SpecimenStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SpecimenStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c SpecimenStatus) IsValid() bool {
+	_, ok := SpecimenStatusTable[c]
+	return ok
+}
+
+// StrandTypeInfo is the specification's own data for one code.
+type StrandTypeInfo struct {
+	System  string
+	Display string
+}
+
+// StrandTypeTable maps each code to what the specification says about it.
+var StrandTypeTable = map[StrandType]StrandTypeInfo{
+	StrandTypeWatson: {"http://hl7.org/fhir/strand-type", "Watson strand of starting sequence"},
+	StrandTypeCrick:  {"http://hl7.org/fhir/strand-type", "Crick strand of starting sequence"},
+}
+
+// StrandTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func StrandTypeValues() []StrandType {
+	return []StrandType{
+		StrandTypeWatson,
+		StrandTypeCrick,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c StrandType) Display() string {
+	if info, ok := StrandTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c StrandType) System() string {
+	return StrandTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c StrandType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c StrandType) IsValid() bool {
+	_, ok := StrandTypeTable[c]
+	return ok
+}
+
+// StructureDefinitionKindInfo is the specification's own data for one code.
+type StructureDefinitionKindInfo struct {
+	System  string
+	Display string
+}
+
+// StructureDefinitionKindTable maps each code to what the specification says about it.
+var StructureDefinitionKindTable = map[StructureDefinitionKind]StructureDefinitionKindInfo{
+	StructureDefinitionKindPrimitiveType: {"http://hl7.org/fhir/structure-definition-kind", "Primitive Data Type"},
+	StructureDefinitionKindComplexType:   {"http://hl7.org/fhir/structure-definition-kind", "Complex Data Type"},
+	StructureDefinitionKindResource:      {"http://hl7.org/fhir/structure-definition-kind", "Resource"},
+	StructureDefinitionKindLogical:       {"http://hl7.org/fhir/structure-definition-kind", "Logical"},
+}
+
+// StructureDefinitionKindValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func StructureDefinitionKindValues() []StructureDefinitionKind {
+	return []StructureDefinitionKind{
+		StructureDefinitionKindPrimitiveType,
+		StructureDefinitionKindComplexType,
+		StructureDefinitionKindResource,
+		StructureDefinitionKindLogical,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c StructureDefinitionKind) Display() string {
+	if info, ok := StructureDefinitionKindTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c StructureDefinitionKind) System() string {
+	return StructureDefinitionKindTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c StructureDefinitionKind) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c StructureDefinitionKind) IsValid() bool {
+	_, ok := StructureDefinitionKindTable[c]
+	return ok
+}
+
+// SubmitDataUpdateTypeInfo is the specification's own data for one code.
+type SubmitDataUpdateTypeInfo struct {
+	System  string
+	Display string
+}
+
+// SubmitDataUpdateTypeTable maps each code to what the specification says about it.
+var SubmitDataUpdateTypeTable = map[SubmitDataUpdateType]SubmitDataUpdateTypeInfo{
+	SubmitDataUpdateTypeIncremental: {"http://hl7.org/fhir/CodeSystem/submit-data-update-type", "Incremental"},
+	SubmitDataUpdateTypeSnapshot:    {"http://hl7.org/fhir/CodeSystem/submit-data-update-type", "Snapshot"},
+}
+
+// SubmitDataUpdateTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SubmitDataUpdateTypeValues() []SubmitDataUpdateType {
+	return []SubmitDataUpdateType{
+		SubmitDataUpdateTypeIncremental,
+		SubmitDataUpdateTypeSnapshot,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SubmitDataUpdateType) Display() string {
+	if info, ok := SubmitDataUpdateTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SubmitDataUpdateType) System() string {
+	return SubmitDataUpdateTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SubmitDataUpdateType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c SubmitDataUpdateType) IsValid() bool {
+	_, ok := SubmitDataUpdateTypeTable[c]
+	return ok
+}
+
+// SubscriptionNotificationTypeInfo is the specification's own data for one code.
+type SubscriptionNotificationTypeInfo struct {
+	System  string
+	Display string
+}
+
+// SubscriptionNotificationTypeTable maps each code to what the specification says about it.
+var SubscriptionNotificationTypeTable = map[SubscriptionNotificationType]SubscriptionNotificationTypeInfo{
+	SubscriptionNotificationTypeHandshake:         {"http://hl7.org/fhir/subscription-notification-type", "Handshake"},
+	SubscriptionNotificationTypeHeartbeat:         {"http://hl7.org/fhir/subscription-notification-type", "Heartbeat"},
+	SubscriptionNotificationTypeEventNotification: {"http://hl7.org/fhir/subscription-notification-type", "Event Notification"},
+	SubscriptionNotificationTypeQueryStatus:       {"http://hl7.org/fhir/subscription-notification-type", "Query Status"},
+	SubscriptionNotificationTypeQueryEvent:        {"http://hl7.org/fhir/subscription-notification-type", "Query Event"},
+}
+
+// SubscriptionNotificationTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SubscriptionNotificationTypeValues() []SubscriptionNotificationType {
+	return []SubscriptionNotificationType{
+		SubscriptionNotificationTypeHandshake,
+		SubscriptionNotificationTypeHeartbeat,
+		SubscriptionNotificationTypeEventNotification,
+		SubscriptionNotificationTypeQueryStatus,
+		SubscriptionNotificationTypeQueryEvent,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SubscriptionNotificationType) Display() string {
+	if info, ok := SubscriptionNotificationTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SubscriptionNotificationType) System() string {
+	return SubscriptionNotificationTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SubscriptionNotificationType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c SubscriptionNotificationType) IsValid() bool {
+	_, ok := SubscriptionNotificationTypeTable[c]
+	return ok
+}
+
+// SubscriptionPayloadContentInfo is the specification's own data for one code.
+type SubscriptionPayloadContentInfo struct {
+	System  string
+	Display string
+}
+
+// SubscriptionPayloadContentTable maps each code to what the specification says about it.
+var SubscriptionPayloadContentTable = map[SubscriptionPayloadContent]SubscriptionPayloadContentInfo{
+	SubscriptionPayloadContentEmpty:        {"http://hl7.org/fhir/subscription-payload-content", "Empty"},
+	SubscriptionPayloadContentIdOnly:       {"http://hl7.org/fhir/subscription-payload-content", "Id-only"},
+	SubscriptionPayloadContentFullResource: {"http://hl7.org/fhir/subscription-payload-content", "Full-resource"},
+}
+
+// SubscriptionPayloadContentValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SubscriptionPayloadContentValues() []SubscriptionPayloadContent {
+	return []SubscriptionPayloadContent{
+		SubscriptionPayloadContentEmpty,
+		SubscriptionPayloadContentIdOnly,
+		SubscriptionPayloadContentFullResource,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SubscriptionPayloadContent) Display() string {
+	if info, ok := SubscriptionPayloadContentTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SubscriptionPayloadContent) System() string {
+	return SubscriptionPayloadContentTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SubscriptionPayloadContent) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c SubscriptionPayloadContent) IsValid() bool {
+	_, ok := SubscriptionPayloadContentTable[c]
+	return ok
+}
+
+// SubscriptionStatusCodesInfo is the specification's own data for one code.
+type SubscriptionStatusCodesInfo struct {
+	System  string
+	Display string
+}
+
+// SubscriptionStatusCodesTable maps each code to what the specification says about it.
+var SubscriptionStatusCodesTable = map[SubscriptionStatusCodes]SubscriptionStatusCodesInfo{
+	SubscriptionStatusCodesRequested:      {"http://hl7.org/fhir/subscription-status", "Requested"},
+	SubscriptionStatusCodesActive:         {"http://hl7.org/fhir/subscription-status", "Active"},
+	SubscriptionStatusCodesError:          {"http://hl7.org/fhir/subscription-status", "Error"},
+	SubscriptionStatusCodesOff:            {"http://hl7.org/fhir/subscription-status", "Off"},
+	SubscriptionStatusCodesEnteredInError: {"http://hl7.org/fhir/subscription-status", "Entered in Error"},
+}
+
+// SubscriptionStatusCodesValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SubscriptionStatusCodesValues() []SubscriptionStatusCodes {
+	return []SubscriptionStatusCodes{
+		SubscriptionStatusCodesRequested,
+		SubscriptionStatusCodesActive,
+		SubscriptionStatusCodesError,
+		SubscriptionStatusCodesOff,
+		SubscriptionStatusCodesEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SubscriptionStatusCodes) Display() string {
+	if info, ok := SubscriptionStatusCodesTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SubscriptionStatusCodes) System() string {
+	return SubscriptionStatusCodesTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SubscriptionStatusCodes) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c SubscriptionStatusCodes) IsValid() bool {
+	_, ok := SubscriptionStatusCodesTable[c]
+	return ok
+}
+
+// CriteriaNotExistsBehaviorInfo is the specification's own data for one code.
+type CriteriaNotExistsBehaviorInfo struct {
+	System  string
+	Display string
+}
+
+// CriteriaNotExistsBehaviorTable maps each code to what the specification says about it.
+var CriteriaNotExistsBehaviorTable = map[CriteriaNotExistsBehavior]CriteriaNotExistsBehaviorInfo{
+	CriteriaNotExistsBehaviorTestPasses: {"http://hl7.org/fhir/subscriptiontopic-cr-behavior", "Test passes"},
+	CriteriaNotExistsBehaviorTestFails:  {"http://hl7.org/fhir/subscriptiontopic-cr-behavior", "Test fails"},
+}
+
+// CriteriaNotExistsBehaviorValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func CriteriaNotExistsBehaviorValues() []CriteriaNotExistsBehavior {
+	return []CriteriaNotExistsBehavior{
+		CriteriaNotExistsBehaviorTestPasses,
+		CriteriaNotExistsBehaviorTestFails,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c CriteriaNotExistsBehavior) Display() string {
+	if info, ok := CriteriaNotExistsBehaviorTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c CriteriaNotExistsBehavior) System() string {
+	return CriteriaNotExistsBehaviorTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c CriteriaNotExistsBehavior) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c CriteriaNotExistsBehavior) IsValid() bool {
+	_, ok := CriteriaNotExistsBehaviorTable[c]
+	return ok
+}
+
+// FHIRSubstanceStatusInfo is the specification's own data for one code.
+type FHIRSubstanceStatusInfo struct {
+	System  string
+	Display string
+}
+
+// FHIRSubstanceStatusTable maps each code to what the specification says about it.
+var FHIRSubstanceStatusTable = map[FHIRSubstanceStatus]FHIRSubstanceStatusInfo{
+	FHIRSubstanceStatusActive:         {"http://hl7.org/fhir/substance-status", "Active"},
+	FHIRSubstanceStatusInactive:       {"http://hl7.org/fhir/substance-status", "Inactive"},
+	FHIRSubstanceStatusEnteredInError: {"http://hl7.org/fhir/substance-status", "Entered in Error"},
+}
+
+// FHIRSubstanceStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func FHIRSubstanceStatusValues() []FHIRSubstanceStatus {
+	return []FHIRSubstanceStatus{
+		FHIRSubstanceStatusActive,
+		FHIRSubstanceStatusInactive,
+		FHIRSubstanceStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c FHIRSubstanceStatus) Display() string {
+	if info, ok := FHIRSubstanceStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c FHIRSubstanceStatus) System() string {
+	return FHIRSubstanceStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c FHIRSubstanceStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c FHIRSubstanceStatus) IsValid() bool {
+	_, ok := FHIRSubstanceStatusTable[c]
+	return ok
+}
+
+// SupplyDeliveryStatusInfo is the specification's own data for one code.
+type SupplyDeliveryStatusInfo struct {
+	System  string
+	Display string
+}
+
+// SupplyDeliveryStatusTable maps each code to what the specification says about it.
+var SupplyDeliveryStatusTable = map[SupplyDeliveryStatus]SupplyDeliveryStatusInfo{
+	SupplyDeliveryStatusInProgress:     {"http://hl7.org/fhir/supplydelivery-status", "In Progress"},
+	SupplyDeliveryStatusCompleted:      {"http://hl7.org/fhir/supplydelivery-status", "Delivered"},
+	SupplyDeliveryStatusAbandoned:      {"http://hl7.org/fhir/supplydelivery-status", "Abandoned"},
+	SupplyDeliveryStatusEnteredInError: {"http://hl7.org/fhir/supplydelivery-status", "Entered In Error"},
+}
+
+// SupplyDeliveryStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SupplyDeliveryStatusValues() []SupplyDeliveryStatus {
+	return []SupplyDeliveryStatus{
+		SupplyDeliveryStatusInProgress,
+		SupplyDeliveryStatusCompleted,
+		SupplyDeliveryStatusAbandoned,
+		SupplyDeliveryStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SupplyDeliveryStatus) Display() string {
+	if info, ok := SupplyDeliveryStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SupplyDeliveryStatus) System() string {
+	return SupplyDeliveryStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SupplyDeliveryStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c SupplyDeliveryStatus) IsValid() bool {
+	_, ok := SupplyDeliveryStatusTable[c]
+	return ok
+}
+
+// SupplyRequestStatusInfo is the specification's own data for one code.
+type SupplyRequestStatusInfo struct {
+	System  string
+	Display string
+}
+
+// SupplyRequestStatusTable maps each code to what the specification says about it.
+var SupplyRequestStatusTable = map[SupplyRequestStatus]SupplyRequestStatusInfo{
+	SupplyRequestStatusDraft:          {"http://hl7.org/fhir/supplyrequest-status", "Draft"},
+	SupplyRequestStatusActive:         {"http://hl7.org/fhir/supplyrequest-status", "Active"},
+	SupplyRequestStatusSuspended:      {"http://hl7.org/fhir/supplyrequest-status", "Suspended"},
+	SupplyRequestStatusCancelled:      {"http://hl7.org/fhir/supplyrequest-status", "Cancelled"},
+	SupplyRequestStatusCompleted:      {"http://hl7.org/fhir/supplyrequest-status", "Completed"},
+	SupplyRequestStatusEnteredInError: {"http://hl7.org/fhir/supplyrequest-status", "Entered in Error"},
+	SupplyRequestStatusUnknown:        {"http://hl7.org/fhir/supplyrequest-status", "Unknown"},
+}
+
+// SupplyRequestStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SupplyRequestStatusValues() []SupplyRequestStatus {
+	return []SupplyRequestStatus{
+		SupplyRequestStatusDraft,
+		SupplyRequestStatusActive,
+		SupplyRequestStatusSuspended,
+		SupplyRequestStatusCancelled,
+		SupplyRequestStatusCompleted,
+		SupplyRequestStatusEnteredInError,
+		SupplyRequestStatusUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SupplyRequestStatus) Display() string {
+	if info, ok := SupplyRequestStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SupplyRequestStatus) System() string {
+	return SupplyRequestStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SupplyRequestStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c SupplyRequestStatus) IsValid() bool {
+	_, ok := SupplyRequestStatusTable[c]
+	return ok
+}
+
+// SystemRestfulInteractionInfo is the specification's own data for one code.
+type SystemRestfulInteractionInfo struct {
+	System  string
+	Display string
+}
+
+// SystemRestfulInteractionTable maps each code to what the specification says about it.
+var SystemRestfulInteractionTable = map[SystemRestfulInteraction]SystemRestfulInteractionInfo{
+	SystemRestfulInteractionTransaction:   {"http://hl7.org/fhir/restful-interaction", ""},
+	SystemRestfulInteractionBatch:         {"http://hl7.org/fhir/restful-interaction", ""},
+	SystemRestfulInteractionSearchSystem:  {"http://hl7.org/fhir/restful-interaction", ""},
+	SystemRestfulInteractionHistorySystem: {"http://hl7.org/fhir/restful-interaction", ""},
+}
+
+// SystemRestfulInteractionValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SystemRestfulInteractionValues() []SystemRestfulInteraction {
+	return []SystemRestfulInteraction{
+		SystemRestfulInteractionTransaction,
+		SystemRestfulInteractionBatch,
+		SystemRestfulInteractionSearchSystem,
+		SystemRestfulInteractionHistorySystem,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SystemRestfulInteraction) Display() string {
+	if info, ok := SystemRestfulInteractionTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SystemRestfulInteraction) System() string {
+	return SystemRestfulInteractionTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SystemRestfulInteraction) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c SystemRestfulInteraction) IsValid() bool {
+	_, ok := SystemRestfulInteractionTable[c]
+	return ok
+}
+
+// TaskIntentInfo is the specification's own data for one code.
+type TaskIntentInfo struct {
+	System  string
+	Display string
+}
+
+// TaskIntentTable maps each code to what the specification says about it.
+var TaskIntentTable = map[TaskIntent]TaskIntentInfo{
+	TaskIntentUnknown:       {"http://hl7.org/fhir/task-intent", "Unknown"},
+	TaskIntentProposal:      {"http://hl7.org/fhir/request-intent", ""},
+	TaskIntentPlan:          {"http://hl7.org/fhir/request-intent", ""},
+	TaskIntentOrder:         {"http://hl7.org/fhir/request-intent", ""},
+	TaskIntentOriginalOrder: {"http://hl7.org/fhir/request-intent", ""},
+	TaskIntentReflexOrder:   {"http://hl7.org/fhir/request-intent", ""},
+	TaskIntentFillerOrder:   {"http://hl7.org/fhir/request-intent", ""},
+	TaskIntentInstanceOrder: {"http://hl7.org/fhir/request-intent", ""},
+	TaskIntentOption:        {"http://hl7.org/fhir/request-intent", ""},
+}
+
+// TaskIntentValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func TaskIntentValues() []TaskIntent {
+	return []TaskIntent{
+		TaskIntentUnknown,
+		TaskIntentProposal,
+		TaskIntentPlan,
+		TaskIntentOrder,
+		TaskIntentOriginalOrder,
+		TaskIntentReflexOrder,
+		TaskIntentFillerOrder,
+		TaskIntentInstanceOrder,
+		TaskIntentOption,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c TaskIntent) Display() string {
+	if info, ok := TaskIntentTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c TaskIntent) System() string {
+	return TaskIntentTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c TaskIntent) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c TaskIntent) IsValid() bool {
+	_, ok := TaskIntentTable[c]
+	return ok
+}
+
+// TaskStatusInfo is the specification's own data for one code.
+type TaskStatusInfo struct {
+	System  string
+	Display string
+}
+
+// TaskStatusTable maps each code to what the specification says about it.
+var TaskStatusTable = map[TaskStatus]TaskStatusInfo{
+	TaskStatusDraft:          {"http://hl7.org/fhir/task-status", "Draft"},
+	TaskStatusRequested:      {"http://hl7.org/fhir/task-status", "Requested"},
+	TaskStatusReceived:       {"http://hl7.org/fhir/task-status", "Received"},
+	TaskStatusAccepted:       {"http://hl7.org/fhir/task-status", "Accepted"},
+	TaskStatusRejected:       {"http://hl7.org/fhir/task-status", "Rejected"},
+	TaskStatusReady:          {"http://hl7.org/fhir/task-status", "Ready"},
+	TaskStatusCancelled:      {"http://hl7.org/fhir/task-status", "Cancelled"},
+	TaskStatusInProgress:     {"http://hl7.org/fhir/task-status", "In Progress"},
+	TaskStatusOnHold:         {"http://hl7.org/fhir/task-status", "On Hold"},
+	TaskStatusFailed:         {"http://hl7.org/fhir/task-status", "Failed"},
+	TaskStatusCompleted:      {"http://hl7.org/fhir/task-status", "Completed"},
+	TaskStatusEnteredInError: {"http://hl7.org/fhir/task-status", "Entered in Error"},
+}
+
+// TaskStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func TaskStatusValues() []TaskStatus {
+	return []TaskStatus{
+		TaskStatusDraft,
+		TaskStatusRequested,
+		TaskStatusReceived,
+		TaskStatusAccepted,
+		TaskStatusRejected,
+		TaskStatusReady,
+		TaskStatusCancelled,
+		TaskStatusInProgress,
+		TaskStatusOnHold,
+		TaskStatusFailed,
+		TaskStatusCompleted,
+		TaskStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c TaskStatus) Display() string {
+	if info, ok := TaskStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c TaskStatus) System() string {
+	return TaskStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c TaskStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c TaskStatus) IsValid() bool {
+	_, ok := TaskStatusTable[c]
+	return ok
+}
+
+// TransportIntentInfo is the specification's own data for one code.
+type TransportIntentInfo struct {
+	System  string
+	Display string
+}
+
+// TransportIntentTable maps each code to what the specification says about it.
+var TransportIntentTable = map[TransportIntent]TransportIntentInfo{
+	TransportIntentUnknown:       {"http://hl7.org/fhir/transport-intent", "Unknown"},
+	TransportIntentProposal:      {"http://hl7.org/fhir/request-intent", ""},
+	TransportIntentPlan:          {"http://hl7.org/fhir/request-intent", ""},
+	TransportIntentOrder:         {"http://hl7.org/fhir/request-intent", ""},
+	TransportIntentOriginalOrder: {"http://hl7.org/fhir/request-intent", ""},
+	TransportIntentReflexOrder:   {"http://hl7.org/fhir/request-intent", ""},
+	TransportIntentFillerOrder:   {"http://hl7.org/fhir/request-intent", ""},
+	TransportIntentInstanceOrder: {"http://hl7.org/fhir/request-intent", ""},
+	TransportIntentOption:        {"http://hl7.org/fhir/request-intent", ""},
+}
+
+// TransportIntentValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func TransportIntentValues() []TransportIntent {
+	return []TransportIntent{
+		TransportIntentUnknown,
+		TransportIntentProposal,
+		TransportIntentPlan,
+		TransportIntentOrder,
+		TransportIntentOriginalOrder,
+		TransportIntentReflexOrder,
+		TransportIntentFillerOrder,
+		TransportIntentInstanceOrder,
+		TransportIntentOption,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c TransportIntent) Display() string {
+	if info, ok := TransportIntentTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c TransportIntent) System() string {
+	return TransportIntentTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c TransportIntent) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c TransportIntent) IsValid() bool {
+	_, ok := TransportIntentTable[c]
+	return ok
+}
+
+// TransportStatusInfo is the specification's own data for one code.
+type TransportStatusInfo struct {
+	System  string
+	Display string
+}
+
+// TransportStatusTable maps each code to what the specification says about it.
+var TransportStatusTable = map[TransportStatus]TransportStatusInfo{
+	TransportStatusInProgress:     {"http://hl7.org/fhir/transport-status", "In Progress"},
+	TransportStatusCompleted:      {"http://hl7.org/fhir/transport-status", "Completed"},
+	TransportStatusAbandoned:      {"http://hl7.org/fhir/transport-status", "Abandoned"},
+	TransportStatusCancelled:      {"http://hl7.org/fhir/transport-status", "Cancelled"},
+	TransportStatusPlanned:        {"http://hl7.org/fhir/transport-status", "Planned"},
+	TransportStatusEnteredInError: {"http://hl7.org/fhir/transport-status", "Entered In Error"},
+}
+
+// TransportStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func TransportStatusValues() []TransportStatus {
+	return []TransportStatus{
+		TransportStatusInProgress,
+		TransportStatusCompleted,
+		TransportStatusAbandoned,
+		TransportStatusCancelled,
+		TransportStatusPlanned,
+		TransportStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c TransportStatus) Display() string {
+	if info, ok := TransportStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c TransportStatus) System() string {
+	return TransportStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c TransportStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c TransportStatus) IsValid() bool {
+	_, ok := TransportStatusTable[c]
+	return ok
+}
+
+// TriggerTypeInfo is the specification's own data for one code.
+type TriggerTypeInfo struct {
+	System  string
+	Display string
+}
+
+// TriggerTypeTable maps each code to what the specification says about it.
+var TriggerTypeTable = map[TriggerType]TriggerTypeInfo{
+	TriggerTypeNamedEvent:      {"http://hl7.org/fhir/trigger-type", "Named Event"},
+	TriggerTypePeriodic:        {"http://hl7.org/fhir/trigger-type", "Periodic"},
+	TriggerTypeDataChanged:     {"http://hl7.org/fhir/trigger-type", "Data Changed"},
+	TriggerTypeDataAdded:       {"http://hl7.org/fhir/trigger-type", "Data Added"},
+	TriggerTypeDataModified:    {"http://hl7.org/fhir/trigger-type", "Data Updated"},
+	TriggerTypeDataRemoved:     {"http://hl7.org/fhir/trigger-type", "Data Removed"},
+	TriggerTypeDataAccessed:    {"http://hl7.org/fhir/trigger-type", "Data Accessed"},
+	TriggerTypeDataAccessEnded: {"http://hl7.org/fhir/trigger-type", "Data Access Ended"},
+}
+
+// TriggerTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func TriggerTypeValues() []TriggerType {
+	return []TriggerType{
+		TriggerTypeNamedEvent,
+		TriggerTypePeriodic,
+		TriggerTypeDataChanged,
+		TriggerTypeDataAdded,
+		TriggerTypeDataModified,
+		TriggerTypeDataRemoved,
+		TriggerTypeDataAccessed,
+		TriggerTypeDataAccessEnded,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c TriggerType) Display() string {
+	if info, ok := TriggerTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c TriggerType) System() string {
+	return TriggerTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c TriggerType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c TriggerType) IsValid() bool {
+	_, ok := TriggerTypeTable[c]
+	return ok
+}
+
+// TypeDerivationRuleInfo is the specification's own data for one code.
+type TypeDerivationRuleInfo struct {
+	System  string
+	Display string
+}
+
+// TypeDerivationRuleTable maps each code to what the specification says about it.
+var TypeDerivationRuleTable = map[TypeDerivationRule]TypeDerivationRuleInfo{
+	TypeDerivationRuleSpecialization: {"http://hl7.org/fhir/type-derivation-rule", "Specialization"},
+	TypeDerivationRuleConstraint:     {"http://hl7.org/fhir/type-derivation-rule", "Constraint"},
+}
+
+// TypeDerivationRuleValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func TypeDerivationRuleValues() []TypeDerivationRule {
+	return []TypeDerivationRule{
+		TypeDerivationRuleSpecialization,
+		TypeDerivationRuleConstraint,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c TypeDerivationRule) Display() string {
+	if info, ok := TypeDerivationRuleTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c TypeDerivationRule) System() string {
+	return TypeDerivationRuleTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c TypeDerivationRule) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c TypeDerivationRule) IsValid() bool {
+	_, ok := TypeDerivationRuleTable[c]
+	return ok
+}
+
+// TypeRestfulInteractionInfo is the specification's own data for one code.
+type TypeRestfulInteractionInfo struct {
+	System  string
+	Display string
+}
+
+// TypeRestfulInteractionTable maps each code to what the specification says about it.
+var TypeRestfulInteractionTable = map[TypeRestfulInteraction]TypeRestfulInteractionInfo{
+	TypeRestfulInteractionRead:            {"http://hl7.org/fhir/restful-interaction", ""},
+	TypeRestfulInteractionVread:           {"http://hl7.org/fhir/restful-interaction", ""},
+	TypeRestfulInteractionUpdate:          {"http://hl7.org/fhir/restful-interaction", ""},
+	TypeRestfulInteractionPatch:           {"http://hl7.org/fhir/restful-interaction", ""},
+	TypeRestfulInteractionDelete:          {"http://hl7.org/fhir/restful-interaction", ""},
+	TypeRestfulInteractionHistoryInstance: {"http://hl7.org/fhir/restful-interaction", ""},
+	TypeRestfulInteractionHistoryType:     {"http://hl7.org/fhir/restful-interaction", ""},
+	TypeRestfulInteractionCreate:          {"http://hl7.org/fhir/restful-interaction", ""},
+	TypeRestfulInteractionSearchType:      {"http://hl7.org/fhir/restful-interaction", ""},
+}
+
+// TypeRestfulInteractionValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func TypeRestfulInteractionValues() []TypeRestfulInteraction {
+	return []TypeRestfulInteraction{
+		TypeRestfulInteractionRead,
+		TypeRestfulInteractionVread,
+		TypeRestfulInteractionUpdate,
+		TypeRestfulInteractionPatch,
+		TypeRestfulInteractionDelete,
+		TypeRestfulInteractionHistoryInstance,
+		TypeRestfulInteractionHistoryType,
+		TypeRestfulInteractionCreate,
+		TypeRestfulInteractionSearchType,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c TypeRestfulInteraction) Display() string {
+	if info, ok := TypeRestfulInteractionTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c TypeRestfulInteraction) System() string {
+	return TypeRestfulInteractionTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c TypeRestfulInteraction) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c TypeRestfulInteraction) IsValid() bool {
+	_, ok := TypeRestfulInteractionTable[c]
+	return ok
+}
+
+// UDIEntryTypeInfo is the specification's own data for one code.
+type UDIEntryTypeInfo struct {
+	System  string
+	Display string
+}
+
+// UDIEntryTypeTable maps each code to what the specification says about it.
+var UDIEntryTypeTable = map[UDIEntryType]UDIEntryTypeInfo{
+	UDIEntryTypeBarcode:                {"http://hl7.org/fhir/udi-entry-type", "Barcode"},
+	UDIEntryTypeRfid:                   {"http://hl7.org/fhir/udi-entry-type", "RFID"},
+	UDIEntryTypeManual:                 {"http://hl7.org/fhir/udi-entry-type", "Manual"},
+	UDIEntryTypeCard:                   {"http://hl7.org/fhir/udi-entry-type", "Card"},
+	UDIEntryTypeSelfReported:           {"http://hl7.org/fhir/udi-entry-type", "Self Reported"},
+	UDIEntryTypeElectronicTransmission: {"http://hl7.org/fhir/udi-entry-type", "Electronic Transmission"},
+	UDIEntryTypeUnknown:                {"http://hl7.org/fhir/udi-entry-type", "Unknown"},
+}
+
+// UDIEntryTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func UDIEntryTypeValues() []UDIEntryType {
+	return []UDIEntryType{
+		UDIEntryTypeBarcode,
+		UDIEntryTypeRfid,
+		UDIEntryTypeManual,
+		UDIEntryTypeCard,
+		UDIEntryTypeSelfReported,
+		UDIEntryTypeElectronicTransmission,
+		UDIEntryTypeUnknown,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c UDIEntryType) Display() string {
+	if info, ok := UDIEntryTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c UDIEntryType) System() string {
+	return UDIEntryTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c UDIEntryType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c UDIEntryType) IsValid() bool {
+	_, ok := UDIEntryTypeTable[c]
+	return ok
+}
+
+// UnitsOfTimeInfo is the specification's own data for one code.
+type UnitsOfTimeInfo struct {
+	System  string
+	Display string
+}
+
+// UnitsOfTimeTable maps each code to what the specification says about it.
+var UnitsOfTimeTable = map[UnitsOfTime]UnitsOfTimeInfo{
+	UnitsOfTimeS:   {"http://unitsofmeasure.org", "second"},
+	UnitsOfTimeMin: {"http://unitsofmeasure.org", "minute"},
+	UnitsOfTimeH:   {"http://unitsofmeasure.org", "hour"},
+	UnitsOfTimeD:   {"http://unitsofmeasure.org", "day"},
+	UnitsOfTimeWk:  {"http://unitsofmeasure.org", "week"},
+	UnitsOfTimeMo:  {"http://unitsofmeasure.org", "month"},
+	UnitsOfTimeA:   {"http://unitsofmeasure.org", "year"},
+}
+
+// UnitsOfTimeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func UnitsOfTimeValues() []UnitsOfTime {
+	return []UnitsOfTime{
+		UnitsOfTimeS,
+		UnitsOfTimeMin,
+		UnitsOfTimeH,
+		UnitsOfTimeD,
+		UnitsOfTimeWk,
+		UnitsOfTimeMo,
+		UnitsOfTimeA,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c UnitsOfTime) Display() string {
+	if info, ok := UnitsOfTimeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c UnitsOfTime) System() string {
+	return UnitsOfTimeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c UnitsOfTime) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c UnitsOfTime) IsValid() bool {
+	_, ok := UnitsOfTimeTable[c]
+	return ok
+}
+
+// ValueFilterComparatorInfo is the specification's own data for one code.
+type ValueFilterComparatorInfo struct {
+	System  string
+	Display string
+}
+
+// ValueFilterComparatorTable maps each code to what the specification says about it.
+var ValueFilterComparatorTable = map[ValueFilterComparator]ValueFilterComparatorInfo{
+	ValueFilterComparatorEq: {"http://hl7.org/fhir/search-comparator", "Equals"},
+	ValueFilterComparatorGt: {"http://hl7.org/fhir/search-comparator", "Greater Than"},
+	ValueFilterComparatorLt: {"http://hl7.org/fhir/search-comparator", "Less Than"},
+	ValueFilterComparatorGe: {"http://hl7.org/fhir/search-comparator", "Greater or Equals"},
+	ValueFilterComparatorLe: {"http://hl7.org/fhir/search-comparator", "Less of Equal"},
+	ValueFilterComparatorSa: {"http://hl7.org/fhir/search-comparator", "Starts After"},
+	ValueFilterComparatorEb: {"http://hl7.org/fhir/search-comparator", "Ends Before"},
+}
+
+// ValueFilterComparatorValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ValueFilterComparatorValues() []ValueFilterComparator {
+	return []ValueFilterComparator{
+		ValueFilterComparatorEq,
+		ValueFilterComparatorGt,
+		ValueFilterComparatorLt,
+		ValueFilterComparatorGe,
+		ValueFilterComparatorLe,
+		ValueFilterComparatorSa,
+		ValueFilterComparatorEb,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ValueFilterComparator) Display() string {
+	if info, ok := ValueFilterComparatorTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ValueFilterComparator) System() string {
+	return ValueFilterComparatorTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ValueFilterComparator) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ValueFilterComparator) IsValid() bool {
+	_, ok := ValueFilterComparatorTable[c]
+	return ok
+}
+
+// EvidenceVariableHandlingInfo is the specification's own data for one code.
+type EvidenceVariableHandlingInfo struct {
+	System  string
+	Display string
+}
+
+// EvidenceVariableHandlingTable maps each code to what the specification says about it.
+var EvidenceVariableHandlingTable = map[EvidenceVariableHandling]EvidenceVariableHandlingInfo{
+	EvidenceVariableHandlingContinuous:    {"http://hl7.org/fhir/variable-handling", "continuous variable"},
+	EvidenceVariableHandlingDichotomous:   {"http://hl7.org/fhir/variable-handling", "dichotomous variable"},
+	EvidenceVariableHandlingOrdinal:       {"http://hl7.org/fhir/variable-handling", "ordinal variable"},
+	EvidenceVariableHandlingPolychotomous: {"http://hl7.org/fhir/variable-handling", "polychotomous variable"},
+}
+
+// EvidenceVariableHandlingValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func EvidenceVariableHandlingValues() []EvidenceVariableHandling {
+	return []EvidenceVariableHandling{
+		EvidenceVariableHandlingContinuous,
+		EvidenceVariableHandlingDichotomous,
+		EvidenceVariableHandlingOrdinal,
+		EvidenceVariableHandlingPolychotomous,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c EvidenceVariableHandling) Display() string {
+	if info, ok := EvidenceVariableHandlingTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c EvidenceVariableHandling) System() string {
+	return EvidenceVariableHandlingTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c EvidenceVariableHandling) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c EvidenceVariableHandling) IsValid() bool {
+	_, ok := EvidenceVariableHandlingTable[c]
+	return ok
+}
+
+// VerificationResultStatusInfo is the specification's own data for one code.
+type VerificationResultStatusInfo struct {
+	System  string
+	Display string
+}
+
+// VerificationResultStatusTable maps each code to what the specification says about it.
+var VerificationResultStatusTable = map[VerificationResultStatus]VerificationResultStatusInfo{
+	VerificationResultStatusAttested:       {"http://hl7.org/fhir/CodeSystem/verificationresult-status", "Attested"},
+	VerificationResultStatusValidated:      {"http://hl7.org/fhir/CodeSystem/verificationresult-status", "Validated"},
+	VerificationResultStatusInProcess:      {"http://hl7.org/fhir/CodeSystem/verificationresult-status", "In process"},
+	VerificationResultStatusReqRevalid:     {"http://hl7.org/fhir/CodeSystem/verificationresult-status", "Requires revalidation"},
+	VerificationResultStatusValFail:        {"http://hl7.org/fhir/CodeSystem/verificationresult-status", "Validation failed"},
+	VerificationResultStatusRevalFail:      {"http://hl7.org/fhir/CodeSystem/verificationresult-status", "Re-Validation failed"},
+	VerificationResultStatusEnteredInError: {"http://hl7.org/fhir/CodeSystem/verificationresult-status", "Entered in Error"},
+}
+
+// VerificationResultStatusValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func VerificationResultStatusValues() []VerificationResultStatus {
+	return []VerificationResultStatus{
+		VerificationResultStatusAttested,
+		VerificationResultStatusValidated,
+		VerificationResultStatusInProcess,
+		VerificationResultStatusReqRevalid,
+		VerificationResultStatusValFail,
+		VerificationResultStatusRevalFail,
+		VerificationResultStatusEnteredInError,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c VerificationResultStatus) Display() string {
+	if info, ok := VerificationResultStatusTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c VerificationResultStatus) System() string {
+	return VerificationResultStatusTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c VerificationResultStatus) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c VerificationResultStatus) IsValid() bool {
+	_, ok := VerificationResultStatusTable[c]
+	return ok
+}
+
+// FHIRTypesInfo is the specification's own data for one code.
+type FHIRTypesInfo struct {
+	System  string
+	Display string
+}
+
+// FHIRTypesTable maps each code to what the specification says about it.
+var FHIRTypesTable = map[FHIRTypes]FHIRTypesInfo{
+	FHIRTypesBodysite:                          {"http://hl7.org/fhir/fhir-old-types", "BodySite"},
+	FHIRTypesCatalogentry:                      {"http://hl7.org/fhir/fhir-old-types", "CatalogEntry"},
+	FHIRTypesConformance:                       {"http://hl7.org/fhir/fhir-old-types", "Conformance"},
+	FHIRTypesDataelement:                       {"http://hl7.org/fhir/fhir-old-types", "DataElement"},
+	FHIRTypesDevicecomponent:                   {"http://hl7.org/fhir/fhir-old-types", "DeviceComponent"},
+	FHIRTypesDeviceuserequest:                  {"http://hl7.org/fhir/fhir-old-types", "DeviceUseRequest"},
+	FHIRTypesDeviceusestatement:                {"http://hl7.org/fhir/fhir-old-types", "DeviceUseStatement"},
+	FHIRTypesDiagnosticorder:                   {"http://hl7.org/fhir/fhir-old-types", "DiagnosticOrder"},
+	FHIRTypesDocumentmanifest:                  {"http://hl7.org/fhir/fhir-old-types", "DocumentManifest"},
+	FHIRTypesEffectevidencesynthesis:           {"http://hl7.org/fhir/fhir-old-types", "EffectEvidenceSynthesis"},
+	FHIRTypesEligibilityrequest:                {"http://hl7.org/fhir/fhir-old-types", "EligibilityRequest"},
+	FHIRTypesEligibilityresponse:               {"http://hl7.org/fhir/fhir-old-types", "EligibilityResponse"},
+	FHIRTypesExpansionprofile:                  {"http://hl7.org/fhir/fhir-old-types", "ExpansionProfile"},
+	FHIRTypesImagingmanifest:                   {"http://hl7.org/fhir/fhir-old-types", "ImagingManifest"},
+	FHIRTypesImagingobjectselection:            {"http://hl7.org/fhir/fhir-old-types", "ImagingObjectSelection"},
+	FHIRTypesMedia:                             {"http://hl7.org/fhir/fhir-old-types", "Media"},
+	FHIRTypesMedicationorder:                   {"http://hl7.org/fhir/fhir-old-types", "MedicationOrder"},
+	FHIRTypesMedicationusage:                   {"http://hl7.org/fhir/fhir-old-types", "MedicationUsage"},
+	FHIRTypesMedicinalproduct:                  {"http://hl7.org/fhir/fhir-old-types", "MedicinalProduct"},
+	FHIRTypesMedicinalproductauthorization:     {"http://hl7.org/fhir/fhir-old-types", "MedicinalProductAuthorization"},
+	FHIRTypesMedicinalproductcontraindication:  {"http://hl7.org/fhir/fhir-old-types", "MedicinalProductContraindication"},
+	FHIRTypesMedicinalproductindication:        {"http://hl7.org/fhir/fhir-old-types", "MedicinalProductIndication"},
+	FHIRTypesMedicinalproductingredient:        {"http://hl7.org/fhir/fhir-old-types", "MedicinalProductIngredient"},
+	FHIRTypesMedicinalproductinteraction:       {"http://hl7.org/fhir/fhir-old-types", "MedicinalProductInteraction"},
+	FHIRTypesMedicinalproductmanufactured:      {"http://hl7.org/fhir/fhir-old-types", "MedicinalProductManufactured"},
+	FHIRTypesMedicinalproductpackaged:          {"http://hl7.org/fhir/fhir-old-types", "MedicinalProductPackaged"},
+	FHIRTypesMedicinalproductpharmaceutical:    {"http://hl7.org/fhir/fhir-old-types", "MedicinalProductPharmaceutical"},
+	FHIRTypesMedicinalproductundesirableeffect: {"http://hl7.org/fhir/fhir-old-types", "MedicinalProductUndesirableEffect"},
+	FHIRTypesOrder:                             {"http://hl7.org/fhir/fhir-old-types", "Order"},
+	FHIRTypesOrderresponse:                     {"http://hl7.org/fhir/fhir-old-types", "OrderResponse"},
+	FHIRTypesProcedurerequest:                  {"http://hl7.org/fhir/fhir-old-types", "ProcedureRequest"},
+	FHIRTypesProcessrequest:                    {"http://hl7.org/fhir/fhir-old-types", "ProcessRequest"},
+	FHIRTypesProcessresponse:                   {"http://hl7.org/fhir/fhir-old-types", "ProcessResponse"},
+	FHIRTypesReferralrequest:                   {"http://hl7.org/fhir/fhir-old-types", "ReferralRequest"},
+	FHIRTypesRequestgroup:                      {"http://hl7.org/fhir/fhir-old-types", "RequestGroup"},
+	FHIRTypesResearchdefinition:                {"http://hl7.org/fhir/fhir-old-types", "ResearchDefinition"},
+	FHIRTypesResearchelementdefinition:         {"http://hl7.org/fhir/fhir-old-types", "ResearchElementDefinition"},
+	FHIRTypesRiskevidencesynthesis:             {"http://hl7.org/fhir/fhir-old-types", "RiskEvidenceSynthesis"},
+	FHIRTypesSequence:                          {"http://hl7.org/fhir/fhir-old-types", "Sequence"},
+	FHIRTypesServicedefinition:                 {"http://hl7.org/fhir/fhir-old-types", "ServiceDefinition"},
+	FHIRTypesSubstancespecification:            {"http://hl7.org/fhir/fhir-old-types", "SubstanceSpecification"},
+}
+
+// FHIRTypesValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func FHIRTypesValues() []FHIRTypes {
+	return []FHIRTypes{
+		FHIRTypesBodysite,
+		FHIRTypesCatalogentry,
+		FHIRTypesConformance,
+		FHIRTypesDataelement,
+		FHIRTypesDevicecomponent,
+		FHIRTypesDeviceuserequest,
+		FHIRTypesDeviceusestatement,
+		FHIRTypesDiagnosticorder,
+		FHIRTypesDocumentmanifest,
+		FHIRTypesEffectevidencesynthesis,
+		FHIRTypesEligibilityrequest,
+		FHIRTypesEligibilityresponse,
+		FHIRTypesExpansionprofile,
+		FHIRTypesImagingmanifest,
+		FHIRTypesImagingobjectselection,
+		FHIRTypesMedia,
+		FHIRTypesMedicationorder,
+		FHIRTypesMedicationusage,
+		FHIRTypesMedicinalproduct,
+		FHIRTypesMedicinalproductauthorization,
+		FHIRTypesMedicinalproductcontraindication,
+		FHIRTypesMedicinalproductindication,
+		FHIRTypesMedicinalproductingredient,
+		FHIRTypesMedicinalproductinteraction,
+		FHIRTypesMedicinalproductmanufactured,
+		FHIRTypesMedicinalproductpackaged,
+		FHIRTypesMedicinalproductpharmaceutical,
+		FHIRTypesMedicinalproductundesirableeffect,
+		FHIRTypesOrder,
+		FHIRTypesOrderresponse,
+		FHIRTypesProcedurerequest,
+		FHIRTypesProcessrequest,
+		FHIRTypesProcessresponse,
+		FHIRTypesReferralrequest,
+		FHIRTypesRequestgroup,
+		FHIRTypesResearchdefinition,
+		FHIRTypesResearchelementdefinition,
+		FHIRTypesRiskevidencesynthesis,
+		FHIRTypesSequence,
+		FHIRTypesServicedefinition,
+		FHIRTypesSubstancespecification,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c FHIRTypes) Display() string {
+	if info, ok := FHIRTypesTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c FHIRTypes) System() string {
+	return FHIRTypesTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c FHIRTypes) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c FHIRTypes) IsValid() bool {
+	_, ok := FHIRTypesTable[c]
+	return ok
+}
+
+// ResourceVersionPolicyInfo is the specification's own data for one code.
+type ResourceVersionPolicyInfo struct {
+	System  string
+	Display string
+}
+
+// ResourceVersionPolicyTable maps each code to what the specification says about it.
+var ResourceVersionPolicyTable = map[ResourceVersionPolicy]ResourceVersionPolicyInfo{
+	ResourceVersionPolicyNoVersion:       {"http://hl7.org/fhir/versioning-policy", "No VersionId Support"},
+	ResourceVersionPolicyVersioned:       {"http://hl7.org/fhir/versioning-policy", "Versioned"},
+	ResourceVersionPolicyVersionedUpdate: {"http://hl7.org/fhir/versioning-policy", "VersionId tracked fully"},
+}
+
+// ResourceVersionPolicyValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ResourceVersionPolicyValues() []ResourceVersionPolicy {
+	return []ResourceVersionPolicy{
+		ResourceVersionPolicyNoVersion,
+		ResourceVersionPolicyVersioned,
+		ResourceVersionPolicyVersionedUpdate,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ResourceVersionPolicy) Display() string {
+	if info, ok := ResourceVersionPolicyTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ResourceVersionPolicy) System() string {
+	return ResourceVersionPolicyTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ResourceVersionPolicy) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c ResourceVersionPolicy) IsValid() bool {
+	_, ok := ResourceVersionPolicyTable[c]
+	return ok
+}
+
+// VisionBaseInfo is the specification's own data for one code.
+type VisionBaseInfo struct {
+	System  string
+	Display string
+}
+
+// VisionBaseTable maps each code to what the specification says about it.
+var VisionBaseTable = map[VisionBase]VisionBaseInfo{
+	VisionBaseUp:   {"http://hl7.org/fhir/vision-base-codes", "Up"},
+	VisionBaseDown: {"http://hl7.org/fhir/vision-base-codes", "Down"},
+	VisionBaseIn:   {"http://hl7.org/fhir/vision-base-codes", "In"},
+	VisionBaseOut:  {"http://hl7.org/fhir/vision-base-codes", "Out"},
+}
+
+// VisionBaseValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func VisionBaseValues() []VisionBase {
+	return []VisionBase{
+		VisionBaseUp,
+		VisionBaseDown,
+		VisionBaseIn,
+		VisionBaseOut,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c VisionBase) Display() string {
+	if info, ok := VisionBaseTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c VisionBase) System() string {
+	return VisionBaseTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c VisionBase) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c VisionBase) IsValid() bool {
+	_, ok := VisionBaseTable[c]
+	return ok
+}
+
+// VisionEyesInfo is the specification's own data for one code.
+type VisionEyesInfo struct {
+	System  string
+	Display string
+}
+
+// VisionEyesTable maps each code to what the specification says about it.
+var VisionEyesTable = map[VisionEyes]VisionEyesInfo{
+	VisionEyesRight: {"http://hl7.org/fhir/vision-eye-codes", "Right Eye"},
+	VisionEyesLeft:  {"http://hl7.org/fhir/vision-eye-codes", "Left Eye"},
+}
+
+// VisionEyesValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func VisionEyesValues() []VisionEyes {
+	return []VisionEyes{
+		VisionEyesRight,
+		VisionEyesLeft,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c VisionEyes) Display() string {
+	if info, ok := VisionEyesTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c VisionEyes) System() string {
+	return VisionEyesTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c VisionEyes) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// IsValid reports whether c is one of the codes the specification defines.
+//
+// The type is a string, so anything can be assigned to it — including a value that
+// came off the wire and was never checked.
+func (c VisionEyes) IsValid() bool {
+	_, ok := VisionEyesTable[c]
+	return ok
+}

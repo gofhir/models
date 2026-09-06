@@ -56,6 +56,9 @@ type CodeData struct {
 	Code      string
 	Display   string
 	ConstName string
+	// System is the CodeSystem URL. A code is not a coding without it: "male"
+	// says nothing until you say which vocabulary it comes from.
+	System string
 }
 
 // ResourceBuilderData holds data for a single resource builder.
@@ -397,6 +400,7 @@ func (c *CodeGen) generateCodeSystemsFromTemplate() error {
 				Code:      code.Code,
 				Display:   code.Display,
 				ConstName: toPascalCaseCode(code.Code),
+				System:    code.System,
 			})
 		}
 
