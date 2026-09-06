@@ -497,3 +497,26 @@ func firstDiff(want, got string) string {
 	}
 	return "files differ only in trailing content"
 }
+
+// TestBuilderFieldNameAvoidsKeywords covers a defect that only one type triggers.
+//
+// The builder names its field after the type, lower-cased. Range becomes "range",
+// which is reserved, and the generated struct was a syntax error. Every resource
+// name is safe by luck; the guard is on the language so a future one is too.
+func TestBuilderFieldNameAvoidsKeywords(t *testing.T) {
+	for _, module := range []string{"r4", "r4b", "r5"} {
+		source, err := os.ReadFile(filepath.Join("..", "..", "..", module, "datatypes.go"))
+		if err != nil {
+			t.Fatalf("reading %s/datatypes.go: %v", module, err)
+		}
+		text := string(source)
+
+		if !strings.Contains(text, "type RangeBuilder struct {\n\trangeValue *Range\n}") {
+			t.Errorf("%s: RangeBuilder does not use the escaped field name", module)
+		}
+		// The unescaped form is a syntax error, so its absence is the real check.
+		if strings.Contains(text, "\trange *Range\n") {
+			t.Errorf("%s: a builder field is named after a keyword", module)
+		}
+	}
+}

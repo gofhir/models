@@ -7,6 +7,7 @@ import (
 	"go/format"
 	"os"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strings"
 	"text/template"
@@ -59,8 +60,10 @@ type CodeData struct {
 
 // ResourceBuilderData holds data for a single resource builder.
 type ResourceBuilderData struct {
-	Name      string
-	LowerName string
+	// IsResource is false for datatypes, which have no resourceType marker.
+	IsResource bool
+	Name       string
+	LowerName  string
 	// FHIRName is the resource type as it appears on the wire, which the
 	// constructors use to populate ResourceType.
 	FHIRName   string
@@ -106,6 +109,43 @@ type DatatypesConsolidatedData struct {
 	TemplateData
 	Types     []*analyzer.AnalyzedType
 	Backbones []*analyzer.AnalyzedType
+	// Builders covers Types only. Datatypes are what a caller writes by hand —
+	// CodeableConcept appears 165,085 times in 1,200 published R4 examples,
+	// Reference 62,690 — and until now the fluent chain stopped at the first one.
+	// Backbones are left out deliberately: 578 types in r4 and 733 in r5, roughly
+	// 120,000 generated lines across the three versions against 21,000 for these.
+	Builders []ResourceBuilderData
+}
+
+// sharedTemplates are parsed alongside every template, so a block used by more
+// than one generated file lives in one place. The builder is the only one: it is
+// emitted for resources and for datatypes, and used to be 120 lines duplicated
+// between the two templates.
+var sharedTemplates = []string{"builder.go.tmpl"}
+
+// invokesTemplate matches a {{template "name"}} action, allowing the whitespace
+// and trim markers text/template accepts. Matching a fixed string missed
+// {{- template and {{ template, which would parse fine and then fail at execution
+// with "no such template".
+var invokesTemplate = regexp.MustCompile(`\{\{-?\s*template\s`)
+
+func parseSharedTemplates(tmpl *template.Template, content string) (*template.Template, error) {
+	// Only for templates that invoke one. The shared blocks use functions that
+	// only some FuncMaps carry, so parsing them everywhere fails the templates
+	// that neither need nor declare those functions.
+	if !invokesTemplate.MatchString(content) {
+		return tmpl, nil
+	}
+	for _, name := range sharedTemplates {
+		content, err := templatesFS.ReadFile("templates/" + name)
+		if err != nil {
+			return nil, fmt.Errorf("failed to read shared template %s: %w", name, err)
+		}
+		if tmpl, err = tmpl.Parse(string(content)); err != nil {
+			return nil, fmt.Errorf("failed to parse shared template %s: %w", name, err)
+		}
+	}
+	return tmpl, nil
 }
 
 // loadTemplate loads a template by name from embedded files.
@@ -116,6 +156,9 @@ func loadTemplate(name string) (*template.Template, error) {
 	}
 
 	tmpl, err := template.New(name).Parse(string(content))
+	if err == nil {
+		tmpl, err = parseSharedTemplates(tmpl, string(content))
+	}
 	if err != nil {
 		return nil, fmt.Errorf("failed to parse template %s: %w", name, err)
 	}
@@ -427,11 +470,40 @@ func (c *CodeGen) generateSummaryFromTemplate() error {
 	return writeTemplateFile(path, "summary.go.tmpl", data)
 }
 
+// goKeywords are the identifiers a builder's field cannot be named.
+//
+// Lower-casing the type name is fine for every resource, but Range is a datatype
+// and "range" is reserved — the generated struct did not compile. Only Range
+// collides today, in all three versions.
+var goKeywords = map[string]bool{
+	"break": true, "case": true, "chan": true, "const": true, "continue": true,
+	"default": true, "defer": true, "else": true, "fallthrough": true, "for": true,
+	"func": true, "go": true, "goto": true, "if": true, "import": true,
+	"interface": true, "map": true, "package": true, "range": true, "return": true,
+	"select": true, "struct": true, "switch": true, "type": true, "var": true,
+}
+
+// buildDatatypeBuilderData is buildResourceBuilderData for a datatype: the same
+// data with IsResource cleared, since a datatype has no resourceType marker.
+func buildDatatypeBuilderData(t *analyzer.AnalyzedType) ResourceBuilderData {
+	data := buildResourceBuilderData(t)
+	data.IsResource = false
+	return data
+}
+
 // buildResourceBuilderData converts an AnalyzedType to ResourceBuilderData.
 func buildResourceBuilderData(t *analyzer.AnalyzedType) ResourceBuilderData {
+	lower := toLowerFirstChar(t.Name)
+	if goKeywords[lower] {
+		// Range lower-cases to "range". No resource name collides today, but the
+		// guard belongs on the language rather than on the one type that happens
+		// to hit it, and both builders come through here.
+		lower += "Value"
+	}
 	resource := ResourceBuilderData{
+		IsResource: true,
 		Name:       t.Name,
-		LowerName:  toLowerFirstChar(t.Name),
+		LowerName:  lower,
 		FHIRName:   t.FHIRName,
 		Properties: make([]PropertyBuilderData, 0, len(t.Properties)),
 	}
@@ -661,6 +733,9 @@ func loadTemplateWithFuncs(name string, funcMap template.FuncMap) (*template.Tem
 	}
 
 	tmpl, err := template.New(name).Funcs(funcMap).Parse(string(content))
+	if err == nil {
+		tmpl, err = parseSharedTemplates(tmpl, string(content))
+	}
 	if err != nil {
 		return nil, fmt.Errorf("failed to parse template %s: %w", name, err)
 	}
@@ -807,6 +882,9 @@ func (c *CodeGen) generateDatatypesConsolidated() error {
 		},
 		Types:     allTypes,
 		Backbones: allBackbones,
+	}
+	for _, t := range allTypes {
+		data.Builders = append(data.Builders, buildDatatypeBuilderData(t))
 	}
 
 	path := filepath.Join(c.config.OutputDir, "datatypes.go")
