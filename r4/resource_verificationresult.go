@@ -150,9 +150,38 @@ func (r *VerificationResult) GetExtension() []Extension {
 	return r.Extension
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the resource.
+func (r *VerificationResult) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *VerificationResult) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *VerificationResult) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
 // GetModifierExtension returns the resource's modifier extensions.
 func (r *VerificationResult) GetModifierExtension() []Extension {
 	return r.ModifierExtension
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil.
+//
+// Kept separate from GetExtensionByURL on purpose: a modifier extension changes the
+// meaning of the element it is on, so a reader that cannot recognize one must not
+// process the element at all. Folding the two searches together would hide that.
+func (r *VerificationResult) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes VerificationResult to FHIR-conformant XML.
@@ -461,6 +490,32 @@ type VerificationResultAttestation struct {
 	SourceSignature *Signature `json:"sourceSignature,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *VerificationResultAttestation) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *VerificationResultAttestation) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *VerificationResultAttestation) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *VerificationResultAttestation) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes VerificationResultAttestation to FHIR-conformant XML.
 func (b VerificationResultAttestation) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -639,6 +694,32 @@ type VerificationResultPrimarySource struct {
 	PushTypeAvailable []CodeableConcept `json:"pushTypeAvailable,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *VerificationResultPrimarySource) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *VerificationResultPrimarySource) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *VerificationResultPrimarySource) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *VerificationResultPrimarySource) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes VerificationResultPrimarySource to FHIR-conformant XML.
 func (b VerificationResultPrimarySource) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -798,6 +879,32 @@ type VerificationResultValidator struct {
 	IdentityCertificateExt *Element `json:"_identityCertificate,omitempty"`
 	// Validator signature
 	AttestationSignature *Signature `json:"attestationSignature,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *VerificationResultValidator) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *VerificationResultValidator) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *VerificationResultValidator) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *VerificationResultValidator) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes VerificationResultValidator to FHIR-conformant XML.

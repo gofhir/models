@@ -186,9 +186,38 @@ func (r *ChargeItemDefinition) GetExtension() []Extension {
 	return r.Extension
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the resource.
+func (r *ChargeItemDefinition) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ChargeItemDefinition) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *ChargeItemDefinition) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
 // GetModifierExtension returns the resource's modifier extensions.
 func (r *ChargeItemDefinition) GetModifierExtension() []Extension {
 	return r.ModifierExtension
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil.
+//
+// Kept separate from GetExtensionByURL on purpose: a modifier extension changes the
+// meaning of the element it is on, so a reader that cannot recognize one must not
+// process the element at all. Folding the two searches together would hide that.
+func (r *ChargeItemDefinition) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes ChargeItemDefinition to FHIR-conformant XML.
@@ -579,6 +608,32 @@ type ChargeItemDefinitionApplicability struct {
 	ExpressionExt *Element `json:"_expression,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ChargeItemDefinitionApplicability) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ChargeItemDefinitionApplicability) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *ChargeItemDefinitionApplicability) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ChargeItemDefinitionApplicability) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes ChargeItemDefinitionApplicability to FHIR-conformant XML.
 func (b ChargeItemDefinitionApplicability) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -690,6 +745,32 @@ type ChargeItemDefinitionPropertyGroup struct {
 	PriceComponent []ChargeItemDefinitionPropertyGroupPriceComponent `json:"priceComponent,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ChargeItemDefinitionPropertyGroup) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ChargeItemDefinitionPropertyGroup) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *ChargeItemDefinitionPropertyGroup) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ChargeItemDefinitionPropertyGroup) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes ChargeItemDefinitionPropertyGroup to FHIR-conformant XML.
 func (b ChargeItemDefinitionPropertyGroup) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -799,6 +880,32 @@ type ChargeItemDefinitionPropertyGroupPriceComponent struct {
 	FactorExt *Element `json:"_factor,omitempty"`
 	// Monetary amount associated with this component
 	Amount *Money `json:"amount,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ChargeItemDefinitionPropertyGroupPriceComponent) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ChargeItemDefinitionPropertyGroupPriceComponent) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *ChargeItemDefinitionPropertyGroupPriceComponent) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ChargeItemDefinitionPropertyGroupPriceComponent) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes ChargeItemDefinitionPropertyGroupPriceComponent to FHIR-conformant XML.

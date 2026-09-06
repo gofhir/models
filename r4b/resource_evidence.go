@@ -186,9 +186,38 @@ func (r *Evidence) GetExtension() []Extension {
 	return r.Extension
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the resource.
+func (r *Evidence) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *Evidence) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *Evidence) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
 // GetModifierExtension returns the resource's modifier extensions.
 func (r *Evidence) GetModifierExtension() []Extension {
 	return r.ModifierExtension
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil.
+//
+// Kept separate from GetExtensionByURL on purpose: a modifier extension changes the
+// meaning of the element it is on, so a reader that cannot recognize one must not
+// process the element at all. Folding the two searches together would hide that.
+func (r *Evidence) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes Evidence to FHIR-conformant XML.
@@ -616,6 +645,32 @@ type EvidenceCertainty struct {
 	Subcomponent []EvidenceCertainty `json:"subcomponent,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *EvidenceCertainty) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *EvidenceCertainty) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *EvidenceCertainty) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *EvidenceCertainty) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes EvidenceCertainty to FHIR-conformant XML.
 func (b EvidenceCertainty) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -781,6 +836,32 @@ type EvidenceStatistic struct {
 	AttributeEstimate []EvidenceStatisticAttributeEstimate `json:"attributeEstimate,omitempty"`
 	// An aspect of the statistical model
 	ModelCharacteristic []EvidenceStatisticModelCharacteristic `json:"modelCharacteristic,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *EvidenceStatistic) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *EvidenceStatistic) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *EvidenceStatistic) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *EvidenceStatistic) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes EvidenceStatistic to FHIR-conformant XML.
@@ -985,6 +1066,32 @@ type EvidenceStatisticAttributeEstimate struct {
 	AttributeEstimate []EvidenceStatisticAttributeEstimate `json:"attributeEstimate,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *EvidenceStatisticAttributeEstimate) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *EvidenceStatisticAttributeEstimate) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *EvidenceStatisticAttributeEstimate) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *EvidenceStatisticAttributeEstimate) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes EvidenceStatisticAttributeEstimate to FHIR-conformant XML.
 func (b EvidenceStatisticAttributeEstimate) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -1145,6 +1252,32 @@ type EvidenceStatisticModelCharacteristic struct {
 	AttributeEstimate []EvidenceStatisticAttributeEstimate `json:"attributeEstimate,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *EvidenceStatisticModelCharacteristic) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *EvidenceStatisticModelCharacteristic) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *EvidenceStatisticModelCharacteristic) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *EvidenceStatisticModelCharacteristic) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes EvidenceStatisticModelCharacteristic to FHIR-conformant XML.
 func (b EvidenceStatisticModelCharacteristic) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -1276,6 +1409,32 @@ type EvidenceStatisticModelCharacteristicVariable struct {
 	ValueQuantity []Quantity `json:"valueQuantity,omitempty"`
 	// Range of values for grouping of ordinal or polychotomous variables
 	ValueRange []Range `json:"valueRange,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *EvidenceStatisticModelCharacteristicVariable) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *EvidenceStatisticModelCharacteristicVariable) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *EvidenceStatisticModelCharacteristicVariable) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *EvidenceStatisticModelCharacteristicVariable) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes EvidenceStatisticModelCharacteristicVariable to FHIR-conformant XML.
@@ -1427,6 +1586,32 @@ type EvidenceStatisticSampleSize struct {
 	KnownDataCountExt *Element `json:"_knownDataCount,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *EvidenceStatisticSampleSize) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *EvidenceStatisticSampleSize) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *EvidenceStatisticSampleSize) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *EvidenceStatisticSampleSize) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes EvidenceStatisticSampleSize to FHIR-conformant XML.
 func (b EvidenceStatisticSampleSize) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -1567,6 +1752,32 @@ type EvidenceVariableDefinition struct {
 	Intended *Reference `json:"intended,omitempty"`
 	// low | moderate | high | exact
 	DirectnessMatch *CodeableConcept `json:"directnessMatch,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *EvidenceVariableDefinition) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *EvidenceVariableDefinition) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *EvidenceVariableDefinition) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *EvidenceVariableDefinition) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes EvidenceVariableDefinition to FHIR-conformant XML.

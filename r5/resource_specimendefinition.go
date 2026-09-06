@@ -208,9 +208,38 @@ func (r *SpecimenDefinition) GetExtension() []Extension {
 	return r.Extension
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the resource.
+func (r *SpecimenDefinition) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *SpecimenDefinition) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *SpecimenDefinition) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
 // GetModifierExtension returns the resource's modifier extensions.
 func (r *SpecimenDefinition) GetModifierExtension() []Extension {
 	return r.ModifierExtension
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil.
+//
+// Kept separate from GetExtensionByURL on purpose: a modifier extension changes the
+// meaning of the element it is on, so a reader that cannot recognize one must not
+// process the element at all. Folding the two searches together would hide that.
+func (r *SpecimenDefinition) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes SpecimenDefinition to FHIR-conformant XML.
@@ -689,6 +718,32 @@ type SpecimenDefinitionTypeTested struct {
 	TestingDestination []CodeableConcept `json:"testingDestination,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *SpecimenDefinitionTypeTested) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *SpecimenDefinitionTypeTested) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *SpecimenDefinitionTypeTested) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *SpecimenDefinitionTypeTested) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes SpecimenDefinitionTypeTested to FHIR-conformant XML.
 func (b SpecimenDefinitionTypeTested) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -896,6 +951,32 @@ type SpecimenDefinitionTypeTestedContainer struct {
 	PreparationExt *Element `json:"_preparation,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *SpecimenDefinitionTypeTestedContainer) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *SpecimenDefinitionTypeTestedContainer) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *SpecimenDefinitionTypeTestedContainer) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *SpecimenDefinitionTypeTestedContainer) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes SpecimenDefinitionTypeTestedContainer to FHIR-conformant XML.
 func (b SpecimenDefinitionTypeTestedContainer) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -1073,6 +1154,32 @@ type SpecimenDefinitionTypeTestedContainerAdditive struct {
 	AdditiveReference *Reference `json:"additiveReference,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *SpecimenDefinitionTypeTestedContainerAdditive) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *SpecimenDefinitionTypeTestedContainerAdditive) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *SpecimenDefinitionTypeTestedContainerAdditive) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *SpecimenDefinitionTypeTestedContainerAdditive) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes SpecimenDefinitionTypeTestedContainerAdditive to FHIR-conformant XML.
 func (b SpecimenDefinitionTypeTestedContainerAdditive) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -1180,6 +1287,32 @@ type SpecimenDefinitionTypeTestedHandling struct {
 	Instruction *string `json:"instruction,omitempty"`
 	// Extension for Instruction
 	InstructionExt *Element `json:"_instruction,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *SpecimenDefinitionTypeTestedHandling) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *SpecimenDefinitionTypeTestedHandling) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *SpecimenDefinitionTypeTestedHandling) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *SpecimenDefinitionTypeTestedHandling) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes SpecimenDefinitionTypeTestedHandling to FHIR-conformant XML.

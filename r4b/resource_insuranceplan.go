@@ -146,9 +146,38 @@ func (r *InsurancePlan) GetExtension() []Extension {
 	return r.Extension
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the resource.
+func (r *InsurancePlan) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *InsurancePlan) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *InsurancePlan) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
 // GetModifierExtension returns the resource's modifier extensions.
 func (r *InsurancePlan) GetModifierExtension() []Extension {
 	return r.ModifierExtension
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil.
+//
+// Kept separate from GetExtensionByURL on purpose: a modifier extension changes the
+// meaning of the element it is on, so a reader that cannot recognize one must not
+// process the element at all. Folding the two searches together would hide that.
+func (r *InsurancePlan) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes InsurancePlan to FHIR-conformant XML.
@@ -445,6 +474,32 @@ type InsurancePlanContact struct {
 	Address *Address `json:"address,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *InsurancePlanContact) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *InsurancePlanContact) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *InsurancePlanContact) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *InsurancePlanContact) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes InsurancePlanContact to FHIR-conformant XML.
 func (b InsurancePlanContact) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -572,6 +627,32 @@ type InsurancePlanCoverage struct {
 	Benefit []InsurancePlanCoverageBenefit `json:"benefit,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *InsurancePlanCoverage) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *InsurancePlanCoverage) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *InsurancePlanCoverage) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *InsurancePlanCoverage) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes InsurancePlanCoverage to FHIR-conformant XML.
 func (b InsurancePlanCoverage) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -690,6 +771,32 @@ type InsurancePlanCoverageBenefit struct {
 	Limit []InsurancePlanCoverageBenefitLimit `json:"limit,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *InsurancePlanCoverageBenefit) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *InsurancePlanCoverageBenefit) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *InsurancePlanCoverageBenefit) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *InsurancePlanCoverageBenefit) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes InsurancePlanCoverageBenefit to FHIR-conformant XML.
 func (b InsurancePlanCoverageBenefit) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -803,6 +910,32 @@ type InsurancePlanCoverageBenefitLimit struct {
 	Code *CodeableConcept `json:"code,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *InsurancePlanCoverageBenefitLimit) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *InsurancePlanCoverageBenefitLimit) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *InsurancePlanCoverageBenefitLimit) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *InsurancePlanCoverageBenefitLimit) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes InsurancePlanCoverageBenefitLimit to FHIR-conformant XML.
 func (b InsurancePlanCoverageBenefitLimit) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -912,6 +1045,32 @@ type InsurancePlanPlan struct {
 	GeneralCost []InsurancePlanPlanGeneralCost `json:"generalCost,omitempty"`
 	// Specific costs
 	SpecificCost []InsurancePlanPlanSpecificCost `json:"specificCost,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *InsurancePlanPlan) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *InsurancePlanPlan) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *InsurancePlanPlan) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *InsurancePlanPlan) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes InsurancePlanPlan to FHIR-conformant XML.
@@ -1069,6 +1228,32 @@ type InsurancePlanPlanGeneralCost struct {
 	CommentExt *Element `json:"_comment,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *InsurancePlanPlanGeneralCost) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *InsurancePlanPlanGeneralCost) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *InsurancePlanPlanGeneralCost) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *InsurancePlanPlanGeneralCost) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes InsurancePlanPlanGeneralCost to FHIR-conformant XML.
 func (b InsurancePlanPlanGeneralCost) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -1192,6 +1377,32 @@ type InsurancePlanPlanSpecificCost struct {
 	Benefit []InsurancePlanPlanSpecificCostBenefit `json:"benefit,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *InsurancePlanPlanSpecificCost) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *InsurancePlanPlanSpecificCost) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *InsurancePlanPlanSpecificCost) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *InsurancePlanPlanSpecificCost) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes InsurancePlanPlanSpecificCost to FHIR-conformant XML.
 func (b InsurancePlanPlanSpecificCost) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -1293,6 +1504,32 @@ type InsurancePlanPlanSpecificCostBenefit struct {
 	Type *CodeableConcept `json:"type,omitempty"`
 	// List of the costs
 	Cost []InsurancePlanPlanSpecificCostBenefitCost `json:"cost,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *InsurancePlanPlanSpecificCostBenefit) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *InsurancePlanPlanSpecificCostBenefit) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *InsurancePlanPlanSpecificCostBenefit) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *InsurancePlanPlanSpecificCostBenefit) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes InsurancePlanPlanSpecificCostBenefit to FHIR-conformant XML.
@@ -1400,6 +1637,32 @@ type InsurancePlanPlanSpecificCostBenefitCost struct {
 	Qualifiers []CodeableConcept `json:"qualifiers,omitempty"`
 	// The actual cost value
 	Value *Quantity `json:"value,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *InsurancePlanPlanSpecificCostBenefitCost) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *InsurancePlanPlanSpecificCostBenefitCost) GetExtensionsByURL(url string) []Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionURL reports whether any extension carries the given URL, which is
+// the whole meaning of the extensions that have no value.
+func (r *InsurancePlanPlanSpecificCostBenefitCost) HasExtensionURL(url string) bool {
+	return HasExtensionURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *InsurancePlanPlanSpecificCostBenefitCost) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes InsurancePlanPlanSpecificCostBenefitCost to FHIR-conformant XML.
