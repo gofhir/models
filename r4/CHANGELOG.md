@@ -6,7 +6,6 @@
 ### Features
 
 * **builder:** complete the builder surface — backbones and _field companions ([a6bacf9](https://github.com/gofhir/models/commit/a6bacf90932c6bad7c0dfcee64d561d3440d7bac))
-* **builder:** complete the builder surface — backbones and _field companions ([a6bacf9](https://github.com/gofhir/models/commit/a6bacf90932c6bad7c0dfcee64d561d3440d7bac))
 
 
 ### Bug Fixes
