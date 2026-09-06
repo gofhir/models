@@ -123,3 +123,35 @@ func TestAliasIsHiddenInEveryVersion(t *testing.T) {
 		}
 	})
 }
+
+// TestFHIRFieldsNamedAliasAreUntouched guards the narrowness of the rewrite.
+//
+// FHIR has fields called alias — Organization.alias, Location.alias — and a looser
+// pattern than "field .Alias." would rewrite them, or worse, rewrite a caller's own
+// data that happened to contain the same text. They appear lower-cased in these
+// messages, so the two cannot collide.
+func TestFHIRFieldsNamedAliasAreUntouched(t *testing.T) {
+	for _, tt := range []struct {
+		name   string
+		doc    string
+		target func() any
+		want   string
+	}{
+		{"Organization", `{"resourceType":"Organization","alias":[42]}`,
+			func() any { return &r4.Organization{} },
+			"json: cannot unmarshal number into Go struct field Organization.alias of type string"},
+		{"Location", `{"resourceType":"Location","alias":[42]}`,
+			func() any { return &r4.Location{} },
+			"json: cannot unmarshal number into Go struct field Location.alias of type string"},
+	} {
+		t.Run(tt.name, func(t *testing.T) {
+			err := json.Unmarshal([]byte(tt.doc), tt.target())
+			if err == nil {
+				t.Fatal("expected an error")
+			}
+			if err.Error() != tt.want {
+				t.Errorf("a real alias field was rewritten:\n  got  %v\n  want %s", err, tt.want)
+			}
+		})
+	}
+}

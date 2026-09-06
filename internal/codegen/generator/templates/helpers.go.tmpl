@@ -186,15 +186,18 @@ func (e *aliasError) Unwrap() error { return e.err }
 //
 // The auxiliary struct is anonymous, so encoding/json has no type name for it and
 // writes "field .Alias.name". Deleting the alias alone would leave "field .name",
-// with a leading dot and no idea what it belongs to — worse than the original.
-// Substituting the real type name gives "field ParametersParameter.name".
+// with a leading dot and nothing to say what it belongs to — worse than the
+// original. Substituting the real type name gives "field ParametersParameter.name".
+//
+// The match is deliberately narrow. FHIR has fields named alias — Organization,
+// Location — and they appear lower-cased in these messages, so "field .Alias."
+// cannot collide with one. A looser pattern could rewrite a caller's own data.
 func unwrapAliasError(err error, typeName string) error {
 	if err == nil {
 		return nil
 	}
 	msg := err.Error()
 	cleaned := strings.ReplaceAll(msg, "field .Alias.", "field "+typeName+".")
-	cleaned = strings.ReplaceAll(cleaned, ".Alias.", "."+typeName+".")
 	if cleaned == msg {
 		return err
 	}
