@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.3.0](https://github.com/gofhir/models/compare/r4b/v2.2.0...r4b/v2.3.0) (2026-09-06)
+
+
+### Features
+
+* **builder:** complete the builder surface — backbones and _field companions ([a6bacf9](https://github.com/gofhir/models/commit/a6bacf90932c6bad7c0dfcee64d561d3440d7bac))
+
+
+### Bug Fixes
+
+* **builder:** align an extension slot with the value it was added after ([a6bacf9](https://github.com/gofhir/models/commit/a6bacf90932c6bad7c0dfcee64d561d3440d7bac))
+
 ## [2.2.0](https://github.com/gofhir/models/compare/r4b/v2.1.0...r4b/v2.2.0) (2026-09-06)
 
 
