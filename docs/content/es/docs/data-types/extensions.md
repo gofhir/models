@@ -5,7 +5,7 @@ description: "Modelo de extensibilidad FHIR con tipos Extension y Element, inclu
 weight: 5
 ---
 
-El framework de extensibilidad de FHIR permite que los recursos lleven datos adicionales más allá de lo que define la especificación base. La biblioteca `gofhir/models` soporta extensiones a través del struct `Extension` (para agregar datos a recursos y tipos complejos) y el struct `Element` (para extender valores primitivos). Con una salvedad conocida: las extensiones sobre primitivos **dentro de backbone elements** no son representables y se descartan en silencio. A nivel de recurso y de datatype el campo compañero sí se genera, así que sobreviven; toda pérdida de extensiones medida en los corpus es un backbone element. Consulta [JSON Marshaling](../../serialization/json-marshaling/) para el desglose completo.
+El framework de extensibilidad de FHIR permite que los recursos lleven datos adicionales más allá de lo que define la especificación base. La biblioteca `gofhir/models` soporta extensiones a través del struct `Extension` (para agregar datos a recursos y tipos complejos) y el struct `Element` (para extender valores primitivos). Las extensiones sobre primitivos se preservan en todos los niveles: recurso, datatype y backbone element. Los backbone elements eran la excepción y explicaban toda la pérdida de extensiones medida en los corpus; se corrigió, y el corpus ahora hace round-trip de 8757/8757 en JSON y 3653/3653 en XML.
 
 ## El Struct Extension
 
@@ -308,27 +308,75 @@ En JSON, esto se serializa como:
 }
 ```
 
-## Lectura de Extensiones
+## Leer extensiones
 
-Al procesar datos FHIR entrantes, verifica las extensiones examinando el slice `Extension`:
+Las extensiones se buscan por URL —el orden del slice no significa nada— y todo tipo
+que pueda llevarlas trae la búsqueda incorporada:
 
 ```go
-func findExtension(extensions []r4.Extension, url string) *r4.Extension {
-    for i := range extensions {
-        if extensions[i].Url == url {
-            return &extensions[i]
-        }
-    }
-    return nil
-}
-
-// Usage
-ext := findExtension(patient.Extension, "http://example.org/fhir/StructureDefinition/favorite-color")
-if ext != nil && ext.ValueString != nil {
-    fmt.Println("Favorite color:", *ext.ValueString)
+race := patient.GetExtensionByURL("http://hl7.org/fhir/us/core/StructureDefinition/us-core-race")
+if race != nil && race.ValueString != nil {
+    fmt.Println("Raza:", *race.ValueString)
 }
 ```
 
+Tres métodos, porque una sola respuesta no siempre es la correcta:
+
+| Método | Devuelve |
+|---|---|
+| `GetExtensionByURL(url)` | la primera coincidencia como `*Extension`, o `nil` |
+| `GetExtensionsByURL(url)` | **todas** las coincidencias, como `[]*Extension` |
+| `HasExtensionByURL(url)` | si hay alguna |
+
+`GetExtensionsByURL` importa porque una URL se repite cuando la cardinalidad de la
+extensión lo permite, así que quedarse con la primera perdería datos.
+`HasExtensionByURL` importa porque algunas extensiones son banderas sin valor alguno:
+su presencia es todo el significado.
+
+Ambas búsquedas devuelven **punteros al interior del recurso**, así que escribir a
+través del resultado edita el recurso y no una copia:
+
+```go
+if ext := patient.GetExtensionByURL(url); ext != nil {
+    ext.ValueString = r4.Ptr("actualizado")   // patient queda actualizado
+}
+```
+
+### En todos los niveles, incluso dentro de otra extensión
+
+Los métodos se generan en cada tipo con campo `extension`: recursos, datatypes,
+backbone elements y la propia `Extension`. Esto último es como se recorre una
+extensión compleja, que lleva sub-extensiones en lugar de un valor:
+
+```go
+ethnicity := patient.GetExtensionByURL(ethnicityURL)
+ombCode := ethnicity.GetExtensionByURL("ombCategory")
+
+// datatypes y backbones también
+given := patient.Name[0].GetExtensionByURL(url)
+phone := patient.Contact[0].GetExtensionByURL(url)
+```
+
+Las extensiones modificadoras tienen su propia búsqueda, `GetModifierExtensionByURL`,
+deliberadamente separada: una extensión modificadora cambia el significado del
+elemento sobre el que está, así que quien no la reconozca no debe procesar ese
+elemento.
+
+### Sobre un slice suelto
+
+Las mismas tres existen como funciones, para un `[]Extension` que no venga de un tipo
+generado:
+
+```go
+r4.ExtensionByURL(exts, url)
+r4.ExtensionsByURL(exts, url)
+r4.HasExtensionByURL(exts, url)
+```
+
 {{< callout type="info" >}}
-El campo `Extension.Url` es un `string` requerido (no un puntero), porque toda extensión debe tener una URL que identifique su definición. Este es el único campo que no es puntero en el struct de extensión además de `Id`.
+`Extension.Url` es un `*string`, así que una extensión sin URL es representable — por
+eso un bucle de búsqueda escrito a mano necesita comprobar nil antes de
+desreferenciar. Las búsquedas incorporadas lo hacen; un bucle que lo olvide revienta
+con la primera extensión sin URL.
 {{< /callout >}}
+

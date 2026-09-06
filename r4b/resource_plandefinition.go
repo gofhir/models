@@ -212,9 +212,38 @@ func (r *PlanDefinition) GetExtension() []Extension {
 	return r.Extension
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the resource.
+func (r *PlanDefinition) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *PlanDefinition) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *PlanDefinition) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
 // GetModifierExtension returns the resource's modifier extensions.
 func (r *PlanDefinition) GetModifierExtension() []Extension {
 	return r.ModifierExtension
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil.
+//
+// Kept separate from GetExtensionByURL on purpose: a modifier extension changes the
+// meaning of the element it is on, so a reader that cannot recognize one must not
+// process the element at all. Folding the two searches together would hide that.
+func (r *PlanDefinition) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes PlanDefinition to FHIR-conformant XML.
@@ -800,6 +829,32 @@ type PlanDefinitionAction struct {
 	Action []PlanDefinitionAction `json:"action,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *PlanDefinitionAction) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *PlanDefinitionAction) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *PlanDefinitionAction) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *PlanDefinitionAction) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes PlanDefinitionAction to FHIR-conformant XML.
 func (b PlanDefinitionAction) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -1253,6 +1308,32 @@ type PlanDefinitionActionCondition struct {
 	Expression *Expression `json:"expression,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *PlanDefinitionActionCondition) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *PlanDefinitionActionCondition) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *PlanDefinitionActionCondition) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *PlanDefinitionActionCondition) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes PlanDefinitionActionCondition to FHIR-conformant XML.
 func (b PlanDefinitionActionCondition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -1357,6 +1438,32 @@ type PlanDefinitionActionDynamicValue struct {
 	Expression *Expression `json:"expression,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *PlanDefinitionActionDynamicValue) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *PlanDefinitionActionDynamicValue) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *PlanDefinitionActionDynamicValue) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *PlanDefinitionActionDynamicValue) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes PlanDefinitionActionDynamicValue to FHIR-conformant XML.
 func (b PlanDefinitionActionDynamicValue) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -1459,6 +1566,32 @@ type PlanDefinitionActionParticipant struct {
 	TypeExt *Element `json:"_type,omitempty"`
 	// E.g. Nurse, Surgeon, Parent
 	Role *CodeableConcept `json:"role,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *PlanDefinitionActionParticipant) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *PlanDefinitionActionParticipant) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *PlanDefinitionActionParticipant) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *PlanDefinitionActionParticipant) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes PlanDefinitionActionParticipant to FHIR-conformant XML.
@@ -1569,6 +1702,32 @@ type PlanDefinitionActionRelatedAction struct {
 	OffsetDuration *Duration `json:"offsetDuration,omitempty"`
 	// Time offset for the relationship
 	OffsetRange *Range `json:"offsetRange,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *PlanDefinitionActionRelatedAction) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *PlanDefinitionActionRelatedAction) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *PlanDefinitionActionRelatedAction) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *PlanDefinitionActionRelatedAction) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes PlanDefinitionActionRelatedAction to FHIR-conformant XML.
@@ -1702,6 +1861,32 @@ type PlanDefinitionGoal struct {
 	Documentation []RelatedArtifact `json:"documentation,omitempty"`
 	// Target outcome for the goal
 	Target []PlanDefinitionGoalTarget `json:"target,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *PlanDefinitionGoal) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *PlanDefinitionGoal) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *PlanDefinitionGoal) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *PlanDefinitionGoal) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes PlanDefinitionGoal to FHIR-conformant XML.
@@ -1866,6 +2051,32 @@ type PlanDefinitionGoalTarget struct {
 	DetailCodeableConcept *CodeableConcept `json:"detailCodeableConcept,omitempty"`
 	// Reach goal within
 	Due *Duration `json:"due,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *PlanDefinitionGoalTarget) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *PlanDefinitionGoalTarget) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *PlanDefinitionGoalTarget) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *PlanDefinitionGoalTarget) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes PlanDefinitionGoalTarget to FHIR-conformant XML.

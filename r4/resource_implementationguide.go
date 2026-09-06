@@ -178,9 +178,38 @@ func (r *ImplementationGuide) GetExtension() []Extension {
 	return r.Extension
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the resource.
+func (r *ImplementationGuide) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ImplementationGuide) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ImplementationGuide) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
 // GetModifierExtension returns the resource's modifier extensions.
 func (r *ImplementationGuide) GetModifierExtension() []Extension {
 	return r.ModifierExtension
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil.
+//
+// Kept separate from GetExtensionByURL on purpose: a modifier extension changes the
+// meaning of the element it is on, so a reader that cannot recognize one must not
+// process the element at all. Folding the two searches together would hide that.
+func (r *ImplementationGuide) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes ImplementationGuide to FHIR-conformant XML.
@@ -535,6 +564,32 @@ type ImplementationGuideDefinition struct {
 	Template []ImplementationGuideDefinitionTemplate `json:"template,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ImplementationGuideDefinition) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ImplementationGuideDefinition) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ImplementationGuideDefinition) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ImplementationGuideDefinition) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes ImplementationGuideDefinition to FHIR-conformant XML.
 func (b ImplementationGuideDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -675,6 +730,32 @@ type ImplementationGuideDefinitionGrouping struct {
 	DescriptionExt *Element `json:"_description,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ImplementationGuideDefinitionGrouping) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ImplementationGuideDefinitionGrouping) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ImplementationGuideDefinitionGrouping) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ImplementationGuideDefinitionGrouping) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes ImplementationGuideDefinitionGrouping to FHIR-conformant XML.
 func (b ImplementationGuideDefinitionGrouping) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -786,6 +867,32 @@ type ImplementationGuideDefinitionPage struct {
 	GenerationExt *Element `json:"_generation,omitempty"`
 	// Nested Pages / Sections
 	Page []ImplementationGuideDefinitionPage `json:"page,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ImplementationGuideDefinitionPage) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ImplementationGuideDefinitionPage) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ImplementationGuideDefinitionPage) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ImplementationGuideDefinitionPage) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes ImplementationGuideDefinitionPage to FHIR-conformant XML.
@@ -925,6 +1032,32 @@ type ImplementationGuideDefinitionParameter struct {
 	ValueExt *Element `json:"_value,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ImplementationGuideDefinitionParameter) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ImplementationGuideDefinitionParameter) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ImplementationGuideDefinitionParameter) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ImplementationGuideDefinitionParameter) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes ImplementationGuideDefinitionParameter to FHIR-conformant XML.
 func (b ImplementationGuideDefinitionParameter) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -1046,6 +1179,32 @@ type ImplementationGuideDefinitionResource struct {
 	GroupingId *string `json:"groupingId,omitempty"`
 	// Extension for GroupingId
 	GroupingIdExt *Element `json:"_groupingId,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ImplementationGuideDefinitionResource) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ImplementationGuideDefinitionResource) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ImplementationGuideDefinitionResource) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ImplementationGuideDefinitionResource) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes ImplementationGuideDefinitionResource to FHIR-conformant XML.
@@ -1209,6 +1368,32 @@ type ImplementationGuideDefinitionTemplate struct {
 	ScopeExt *Element `json:"_scope,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ImplementationGuideDefinitionTemplate) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ImplementationGuideDefinitionTemplate) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ImplementationGuideDefinitionTemplate) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ImplementationGuideDefinitionTemplate) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes ImplementationGuideDefinitionTemplate to FHIR-conformant XML.
 func (b ImplementationGuideDefinitionTemplate) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -1328,6 +1513,32 @@ type ImplementationGuideDependsOn struct {
 	VersionExt *Element `json:"_version,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ImplementationGuideDependsOn) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ImplementationGuideDependsOn) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ImplementationGuideDependsOn) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ImplementationGuideDependsOn) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes ImplementationGuideDependsOn to FHIR-conformant XML.
 func (b ImplementationGuideDependsOn) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -1443,6 +1654,32 @@ type ImplementationGuideGlobal struct {
 	ProfileExt *Element `json:"_profile,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ImplementationGuideGlobal) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ImplementationGuideGlobal) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ImplementationGuideGlobal) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ImplementationGuideGlobal) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes ImplementationGuideGlobal to FHIR-conformant XML.
 func (b ImplementationGuideGlobal) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -1554,6 +1791,32 @@ type ImplementationGuideManifest struct {
 	Other []*string `json:"other,omitempty"`
 	// Extension for Other
 	OtherExt []*Element `json:"_other,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ImplementationGuideManifest) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ImplementationGuideManifest) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ImplementationGuideManifest) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ImplementationGuideManifest) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes ImplementationGuideManifest to FHIR-conformant XML.
@@ -1699,6 +1962,32 @@ type ImplementationGuideManifestPage struct {
 	AnchorExt []*Element `json:"_anchor,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ImplementationGuideManifestPage) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ImplementationGuideManifestPage) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ImplementationGuideManifestPage) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ImplementationGuideManifestPage) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes ImplementationGuideManifestPage to FHIR-conformant XML.
 func (b ImplementationGuideManifestPage) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -1819,6 +2108,32 @@ type ImplementationGuideManifestResource struct {
 	RelativePath *string `json:"relativePath,omitempty"`
 	// Extension for RelativePath
 	RelativePathExt *Element `json:"_relativePath,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ImplementationGuideManifestResource) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ImplementationGuideManifestResource) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ImplementationGuideManifestResource) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ImplementationGuideManifestResource) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes ImplementationGuideManifestResource to FHIR-conformant XML.

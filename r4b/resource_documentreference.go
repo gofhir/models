@@ -152,9 +152,38 @@ func (r *DocumentReference) GetExtension() []Extension {
 	return r.Extension
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the resource.
+func (r *DocumentReference) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *DocumentReference) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *DocumentReference) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
 // GetModifierExtension returns the resource's modifier extensions.
 func (r *DocumentReference) GetModifierExtension() []Extension {
 	return r.ModifierExtension
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil.
+//
+// Kept separate from GetExtensionByURL on purpose: a modifier extension changes the
+// meaning of the element it is on, so a reader that cannot recognize one must not
+// process the element at all. Folding the two searches together would hide that.
+func (r *DocumentReference) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes DocumentReference to FHIR-conformant XML.
@@ -467,6 +496,32 @@ type DocumentReferenceContent struct {
 	Format *Coding `json:"format,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *DocumentReferenceContent) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *DocumentReferenceContent) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *DocumentReferenceContent) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *DocumentReferenceContent) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes DocumentReferenceContent to FHIR-conformant XML.
 func (b DocumentReferenceContent) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -578,6 +633,32 @@ type DocumentReferenceContext struct {
 	SourcePatientInfo *Reference `json:"sourcePatientInfo,omitempty"`
 	// Related identifiers or resources
 	Related []Reference `json:"related,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *DocumentReferenceContext) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *DocumentReferenceContext) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *DocumentReferenceContext) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *DocumentReferenceContext) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes DocumentReferenceContext to FHIR-conformant XML.
@@ -738,6 +819,32 @@ type DocumentReferenceRelatesTo struct {
 	CodeExt *Element `json:"_code,omitempty"`
 	// Target of the relationship
 	Target *Reference `json:"target,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *DocumentReferenceRelatesTo) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *DocumentReferenceRelatesTo) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *DocumentReferenceRelatesTo) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *DocumentReferenceRelatesTo) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes DocumentReferenceRelatesTo to FHIR-conformant XML.

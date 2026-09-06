@@ -140,9 +140,38 @@ func (r *ClinicalUseDefinition) GetExtension() []Extension {
 	return r.Extension
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the resource.
+func (r *ClinicalUseDefinition) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ClinicalUseDefinition) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ClinicalUseDefinition) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
 // GetModifierExtension returns the resource's modifier extensions.
 func (r *ClinicalUseDefinition) GetModifierExtension() []Extension {
 	return r.ModifierExtension
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil.
+//
+// Kept separate from GetExtensionByURL on purpose: a modifier extension changes the
+// meaning of the element it is on, so a reader that cannot recognize one must not
+// process the element at all. Folding the two searches together would hide that.
+func (r *ClinicalUseDefinition) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes ClinicalUseDefinition to FHIR-conformant XML.
@@ -422,6 +451,32 @@ type ClinicalUseDefinitionContraindication struct {
 	OtherTherapy []ClinicalUseDefinitionContraindicationOtherTherapy `json:"otherTherapy,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ClinicalUseDefinitionContraindication) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ClinicalUseDefinitionContraindication) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ClinicalUseDefinitionContraindication) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ClinicalUseDefinitionContraindication) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes ClinicalUseDefinitionContraindication to FHIR-conformant XML.
 func (b ClinicalUseDefinitionContraindication) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -569,6 +624,32 @@ type ClinicalUseDefinitionContraindicationOtherTherapy struct {
 	Treatment *CodeableReference `json:"treatment,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ClinicalUseDefinitionContraindicationOtherTherapy) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ClinicalUseDefinitionContraindicationOtherTherapy) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ClinicalUseDefinitionContraindicationOtherTherapy) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ClinicalUseDefinitionContraindicationOtherTherapy) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes ClinicalUseDefinitionContraindicationOtherTherapy to FHIR-conformant XML.
 func (b ClinicalUseDefinitionContraindicationOtherTherapy) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -686,6 +767,32 @@ type ClinicalUseDefinitionIndication struct {
 	Applicability *Expression `json:"applicability,omitempty"`
 	// The use of the medicinal product in relation to other therapies described as part of the indication
 	OtherTherapy []ClinicalUseDefinitionContraindicationOtherTherapy `json:"otherTherapy,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ClinicalUseDefinitionIndication) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ClinicalUseDefinitionIndication) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ClinicalUseDefinitionIndication) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ClinicalUseDefinitionIndication) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes ClinicalUseDefinitionIndication to FHIR-conformant XML.
@@ -873,6 +980,32 @@ type ClinicalUseDefinitionInteraction struct {
 	Management []CodeableConcept `json:"management,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ClinicalUseDefinitionInteraction) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ClinicalUseDefinitionInteraction) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ClinicalUseDefinitionInteraction) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ClinicalUseDefinitionInteraction) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes ClinicalUseDefinitionInteraction to FHIR-conformant XML.
 func (b ClinicalUseDefinitionInteraction) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -1009,6 +1142,32 @@ type ClinicalUseDefinitionInteractionInteractant struct {
 	ItemCodeableConcept *CodeableConcept `json:"itemCodeableConcept,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ClinicalUseDefinitionInteractionInteractant) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ClinicalUseDefinitionInteractionInteractant) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ClinicalUseDefinitionInteractionInteractant) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ClinicalUseDefinitionInteractionInteractant) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes ClinicalUseDefinitionInteractionInteractant to FHIR-conformant XML.
 func (b ClinicalUseDefinitionInteractionInteractant) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -1112,6 +1271,32 @@ type ClinicalUseDefinitionUndesirableEffect struct {
 	Classification *CodeableConcept `json:"classification,omitempty"`
 	// How often the effect is seen
 	FrequencyOfOccurrence *CodeableConcept `json:"frequencyOfOccurrence,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ClinicalUseDefinitionUndesirableEffect) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ClinicalUseDefinitionUndesirableEffect) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ClinicalUseDefinitionUndesirableEffect) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ClinicalUseDefinitionUndesirableEffect) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes ClinicalUseDefinitionUndesirableEffect to FHIR-conformant XML.
@@ -1228,6 +1413,32 @@ type ClinicalUseDefinitionWarning struct {
 	DescriptionExt *Element `json:"_description,omitempty"`
 	// A coded or unformatted textual definition of this warning
 	Code *CodeableConcept `json:"code,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *ClinicalUseDefinitionWarning) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *ClinicalUseDefinitionWarning) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ClinicalUseDefinitionWarning) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *ClinicalUseDefinitionWarning) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes ClinicalUseDefinitionWarning to FHIR-conformant XML.

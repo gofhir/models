@@ -152,9 +152,38 @@ func (r *MolecularSequence) GetExtension() []Extension {
 	return r.Extension
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the resource.
+func (r *MolecularSequence) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *MolecularSequence) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *MolecularSequence) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
 // GetModifierExtension returns the resource's modifier extensions.
 func (r *MolecularSequence) GetModifierExtension() []Extension {
 	return r.ModifierExtension
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil.
+//
+// Kept separate from GetExtensionByURL on purpose: a modifier extension changes the
+// meaning of the element it is on, so a reader that cannot recognize one must not
+// process the element at all. Folding the two searches together would hide that.
+func (r *MolecularSequence) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes MolecularSequence to FHIR-conformant XML.
@@ -515,6 +544,32 @@ type MolecularSequenceQuality struct {
 	Roc *MolecularSequenceQualityRoc `json:"roc,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *MolecularSequenceQuality) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *MolecularSequenceQuality) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *MolecularSequenceQuality) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *MolecularSequenceQuality) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes MolecularSequenceQuality to FHIR-conformant XML.
 func (b MolecularSequenceQuality) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -774,6 +829,32 @@ type MolecularSequenceQualityRoc struct {
 	FMeasureExt []*Element `json:"_fMeasure,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *MolecularSequenceQualityRoc) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *MolecularSequenceQualityRoc) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *MolecularSequenceQualityRoc) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *MolecularSequenceQualityRoc) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes MolecularSequenceQualityRoc to FHIR-conformant XML.
 func (b MolecularSequenceQualityRoc) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -956,6 +1037,32 @@ type MolecularSequenceReferenceSeq struct {
 	WindowEnd *int `json:"windowEnd,omitempty"`
 	// Extension for WindowEnd
 	WindowEndExt *Element `json:"_windowEnd,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *MolecularSequenceReferenceSeq) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *MolecularSequenceReferenceSeq) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *MolecularSequenceReferenceSeq) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *MolecularSequenceReferenceSeq) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes MolecularSequenceReferenceSeq to FHIR-conformant XML.
@@ -1152,6 +1259,32 @@ type MolecularSequenceRepository struct {
 	ReadsetIdExt *Element `json:"_readsetId,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *MolecularSequenceRepository) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *MolecularSequenceRepository) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *MolecularSequenceRepository) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *MolecularSequenceRepository) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes MolecularSequenceRepository to FHIR-conformant XML.
 func (b MolecularSequenceRepository) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -1303,6 +1436,32 @@ type MolecularSequenceStructureVariant struct {
 	Inner *MolecularSequenceStructureVariantInner `json:"inner,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *MolecularSequenceStructureVariant) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *MolecularSequenceStructureVariant) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *MolecularSequenceStructureVariant) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *MolecularSequenceStructureVariant) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes MolecularSequenceStructureVariant to FHIR-conformant XML.
 func (b MolecularSequenceStructureVariant) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -1441,6 +1600,32 @@ type MolecularSequenceStructureVariantInner struct {
 	EndExt *Element `json:"_end,omitempty"`
 }
 
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *MolecularSequenceStructureVariantInner) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *MolecularSequenceStructureVariantInner) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *MolecularSequenceStructureVariantInner) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *MolecularSequenceStructureVariantInner) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
+}
+
 // MarshalXML serializes MolecularSequenceStructureVariantInner to FHIR-conformant XML.
 func (b MolecularSequenceStructureVariantInner) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if start.Name.Local == "" {
@@ -1544,6 +1729,32 @@ type MolecularSequenceStructureVariantOuter struct {
 	End *int `json:"end,omitempty"`
 	// Extension for End
 	EndExt *Element `json:"_end,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *MolecularSequenceStructureVariantOuter) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *MolecularSequenceStructureVariantOuter) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *MolecularSequenceStructureVariantOuter) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *MolecularSequenceStructureVariantOuter) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes MolecularSequenceStructureVariantOuter to FHIR-conformant XML.
@@ -1663,6 +1874,32 @@ type MolecularSequenceVariant struct {
 	CigarExt *Element `json:"_cigar,omitempty"`
 	// Pointer to observed variant information
 	VariantPointer *Reference `json:"variantPointer,omitempty"`
+}
+
+// GetExtensionByURL returns the first extension with the given URL, or nil.
+//
+// The result points into the slice, so writing through it edits the value.
+func (r *MolecularSequenceVariant) GetExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.Extension, url)
+}
+
+// GetExtensionsByURL returns every extension with the given URL. A URL may repeat
+// where the extension's cardinality allows it.
+func (r *MolecularSequenceVariant) GetExtensionsByURL(url string) []*Extension {
+	return ExtensionsByURL(r.Extension, url)
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *MolecularSequenceVariant) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
+}
+
+// GetModifierExtensionByURL returns the first modifier extension with the given
+// URL, or nil. Kept separate from GetExtensionByURL because a modifier extension
+// changes the meaning of the element it is on.
+func (r *MolecularSequenceVariant) GetModifierExtensionByURL(url string) *Extension {
+	return ExtensionByURL(r.ModifierExtension, url)
 }
 
 // MarshalXML serializes MolecularSequenceVariant to FHIR-conformant XML.

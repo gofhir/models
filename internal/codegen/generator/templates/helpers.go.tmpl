@@ -112,3 +112,50 @@ func Vals[T any](values []*T) []T {
 	}
 	return out
 }
+
+// ExtensionByURL returns the first extension with the given URL, or nil.
+//
+// Extensions are the whole point of FHIR's extensibility model, and reading one
+// means finding it by URL — the slice order carries no meaning. Every consumer was
+// writing the same loop:
+//
+//	for _, e := range patient.Extension {
+//	    if e.Url != nil && *e.Url == wanted { ... }
+//	}
+//
+// The result points into the slice, so writing through it edits the resource.
+func ExtensionByURL(extensions []Extension, url string) *Extension {
+	for i := range extensions {
+		if extensions[i].Url != nil && *extensions[i].Url == url {
+			return &extensions[i]
+		}
+	}
+	return nil
+}
+
+// ExtensionsByURL returns every extension with the given URL.
+//
+// A URL may legitimately repeat: FHIR uses that for extensions with a cardinality
+// above one, so taking only the first would quietly drop data.
+//
+// Pointers, like ExtensionByURL, so writing through a result edits the resource.
+// Returning values would make the plural silently read-only while the singular is
+// not — a loop assigning through the results would compile, run, and change
+// nothing.
+func ExtensionsByURL(extensions []Extension, url string) []*Extension {
+	var found []*Extension
+	for i := range extensions {
+		if extensions[i].Url != nil && *extensions[i].Url == url {
+			found = append(found, &extensions[i])
+		}
+	}
+	return found
+}
+
+// HasExtensionByURL reports whether any extension carries the given URL.
+//
+// Some extensions are flags whose presence is the whole meaning, with no value at
+// all, so asking about presence is not the same as reading a value.
+func HasExtensionByURL(extensions []Extension, url string) bool {
+	return ExtensionByURL(extensions, url) != nil
+}

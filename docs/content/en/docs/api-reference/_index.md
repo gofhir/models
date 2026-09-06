@@ -25,7 +25,7 @@ The library exports a small, focused API surface on top of the generated resourc
 | Interfaces | `Resource`, `DomainResource` | Generic resource handling without type assertions |
 | Registry | `NewResource`, `UnmarshalResource`, `GetResourceType`, `IsKnownResourceType`, `AllResourceTypes` | Dynamic resource creation and deserialization |
 | Builders | `New<Resource>Builder`, `Set*`, `Add*`, `Build` | Fluent resource construction |
-| Serialization | `Marshal`, `MarshalIndent`, `MarshalResourceXML`, `MarshalResourceXMLIndent`, `UnmarshalResourceXML` | FHIR-conformant JSON encoding; XML encoding is experimental |
+| Serialization | `Marshal`, `MarshalIndent`, `MarshalResourceXML`, `MarshalResourceXMLIndent`, `UnmarshalResourceXML` | FHIR-conformant JSON and XML encoding |
 | Metadata | `FHIRPathModel`, `SummaryFields` | Runtime type information and summary field lists |
 
 All examples in this section use the `r4` package. The same patterns apply to `r4b` and `r5` with their respective type definitions.
