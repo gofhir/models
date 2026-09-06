@@ -272,8 +272,16 @@ func UnmarshalResource(data []byte) (Resource, error) {
 type UnknownResource struct {
 	// Type is the resourceType the document declared.
 	Type string
-	// Raw is the document as it arrived, byte for byte.
+	// Raw is the document as it arrived, byte for byte, when it came from JSON.
 	Raw json.RawMessage
+	// RawXML is the element as it arrived when it came from XML.
+	//
+	// Only one of Raw and RawXML is set: the library cannot convert between the
+	// two formats for a type it does not model, since that would mean knowing
+	// which members are attributes, which are elements, and which are primitives
+	// carrying a value attribute. Asking for the other format is an error rather
+	// than a guess.
+	RawXML string
 
 	id   *string
 	meta *Meta
@@ -364,6 +372,10 @@ func (u *UnknownResource) UnmarshalJSON(data []byte) error {
 // GetResourceType would report one type while the JSON kept saying another.
 // Rebuilding costs the original formatting and nothing else.
 func (u UnknownResource) MarshalJSON() ([]byte, error) {
+	if len(u.Raw) == 0 && u.RawXML != "" {
+		return nil, fmt.Errorf("%s was read from XML and cannot be written as JSON: "+
+			"converting it would require knowing its structure, which is what makes it unknown", u.Type)
+	}
 	if len(u.Raw) == 0 {
 		// Nothing was captured. A resource with no type cannot be written at all;
 		// with one, the type is the only thing there is to say.
