@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.7.0](https://github.com/gofhir/models/compare/r5/v2.6.0...r5/v2.7.0) (2026-09-06)
+
+
+### Features
+
+* **codesystems:** drop IsValid from the enums ([0005d19](https://github.com/gofhir/models/commit/0005d192c25e359519a295aed8d96cae087c6c6c))
+
 ## [2.6.0](https://github.com/gofhir/models/compare/r5/v2.5.0...r5/v2.6.0) (2026-09-06)
 
 
